@@ -21,7 +21,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		private readonly IReadOnlyGrid _puzzle;
 
-		
+
 		/// <summary>
 		/// Indicates the searching depth.
 		/// </summary>

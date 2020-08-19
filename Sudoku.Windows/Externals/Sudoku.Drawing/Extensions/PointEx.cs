@@ -41,34 +41,34 @@ namespace Sudoku.Drawing.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
 		/// <returns>The result of conversion.</returns>
-		public static WPoint ToWPoint(this DPoint @this) => new WPoint(@this.X, @this.Y);
+		public static WPoint ToWPoint(this DPoint @this) => new(@this.X, @this.Y);
 
 		/// <summary>
 		/// Convert a <see cref="WPoint"/> to <see cref="DPoint"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
 		/// <returns>The result of conversion.</returns>
-		public static DPoint ToDPoint(this WPoint @this) => new DPoint((int)@this.X, (int)@this.Y);
+		public static DPoint ToDPoint(this WPoint @this) => new((int)@this.X, (int)@this.Y);
 
 		/// <summary>
 		/// Convert a <see cref="WPoint"/> to <see cref="DPointF"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
 		/// <returns>The result of conversion.</returns>
-		public static DPointF ToDPointF(this WPoint @this) => new DPointF((float)@this.X, (float)@this.Y);
+		public static DPointF ToDPointF(this WPoint @this) => new((float)@this.X, (float)@this.Y);
 
 		/// <summary>
 		/// To truncate the point.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The point to truncate.</param>
 		/// <returns>The result.</returns>
-		public static WPoint Truncate(this WPoint @this) => new WPoint((int)@this.X, (int)@this.Y);
+		public static WPoint Truncate(this WPoint @this) => new((int)@this.X, (int)@this.Y);
 
 		/// <summary>
 		/// To truncate the point.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The point to truncate.</param>
 		/// <returns>The result.</returns>
-		public static DPoint Truncate(this DPointF @this) => new DPoint((int)@this.X, (int)@this.Y);
+		public static DPoint Truncate(this DPointF @this) => new((int)@this.X, (int)@this.Y);
 	}
 }

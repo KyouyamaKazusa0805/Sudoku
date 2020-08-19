@@ -30,6 +30,6 @@ namespace Sudoku.Drawing.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The size.</param>
 		/// <returns>The result.</returns>
-		public static Size Truncate(this SizeF @this) => new Size((int)@this.Width, (int)@this.Height);
+		public static Size Truncate(this SizeF @this) => new((int)@this.Width, (int)@this.Height);
 	}
 }

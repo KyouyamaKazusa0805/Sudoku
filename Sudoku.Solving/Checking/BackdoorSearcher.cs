@@ -195,7 +195,7 @@ namespace Sudoku.Solving.Checking
 								result.Add(
 									new[]
 									{
-										new Conclusion(Elimination, c1),
+										new(Elimination, c1),
 										new Conclusion(Elimination, c2)
 									});
 							}
@@ -212,8 +212,8 @@ namespace Sudoku.Solving.Checking
 									result.Add(
 										new[]
 										{
-											new Conclusion(Elimination, c1),
-											new Conclusion(Elimination, c2),
+											new(Elimination, c1),
+											new(Elimination, c2),
 											new Conclusion(Elimination, c3)
 										});
 								}

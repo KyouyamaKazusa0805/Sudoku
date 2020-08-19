@@ -421,7 +421,7 @@ namespace Sudoku.Data
 		/// var map = new GridMap(testMap, InitializeOption.ProcessPeersWithoutItself);
 		/// </code>
 		/// </example>
-		public readonly GridMap PeerIntersection => new GridMap(Offsets, ProcessPeersWithoutItself);
+		public readonly GridMap PeerIntersection => new(Offsets, ProcessPeersWithoutItself);
 
 		/// <summary>
 		/// Indicates all regions covered. This property is used to check all regions that all cells
@@ -746,7 +746,7 @@ namespace Sudoku.Data
 		/// that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator ~(GridMap gridMap) => new GridMap(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
+		public static GridMap operator ~(GridMap gridMap) => new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
 
 		/// <summary>
 		/// Add a cell into the specified map.
@@ -805,7 +805,7 @@ namespace Sudoku.Data
 		/// <returns>The intersection result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator &(GridMap left, GridMap right) =>
-			new GridMap(left._high & right._high, left._low & right._low);
+			new(left._high & right._high, left._low & right._low);
 
 		/// <summary>
 		/// Get all cells from two <see cref="GridMap"/>s.
@@ -815,7 +815,7 @@ namespace Sudoku.Data
 		/// <returns>The union result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator |(GridMap left, GridMap right) =>
-			new GridMap(left._high | right._high, left._low | right._low);
+			new(left._high | right._high, left._low | right._low);
 
 		/// <summary>
 		/// Get all cells that only appears once in two <see cref="GridMap"/>s.
@@ -825,7 +825,7 @@ namespace Sudoku.Data
 		/// <returns>The symmetrical difference result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator ^(GridMap left, GridMap right) =>
-			new GridMap(left._high ^ right._high, left._low ^ right._low);
+			new(left._high ^ right._high, left._low ^ right._low);
 
 
 		/// <summary>
@@ -833,14 +833,14 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cells">The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static implicit operator GridMap(int[] cells) => new GridMap(cells);
+		public static implicit operator GridMap(int[] cells) => new(cells);
 
 		/// <summary>
 		/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="GridMap"/>.
 		/// </summary>
 		/// <param name="cells">The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static implicit operator GridMap(ReadOnlySpan<int> cells) => new GridMap(cells);
+		public static implicit operator GridMap(ReadOnlySpan<int> cells) => new(cells);
 
 		/// <summary>
 		/// Explicit cast from <see cref="GridMap"/> to <see cref="int"/>[].

@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			var conclusions = new List<Conclusion>();
 			foreach (int digit in mask.GetAllSets())
 			{
-				conclusions.Add(new Conclusion(Elimination, elimCell, digit));
+				conclusions.Add(new(Elimination, elimCell, digit));
 			}
 
 			var cellOffsets = (from Cell in square | pair select (0, Cell)).ToList();
@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			var conclusions = new List<Conclusion>();
 			foreach (int cell in elimMap)
 			{
-				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 
 			var cellOffsets = (from Cell in square | pair select (0, Cell)).ToList();
@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						{
 							foreach (int cell in allCellsMap - cells & CandMaps[digit])
 							{
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -248,7 +248,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap)
 					{
-						conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+						conclusions.Add(new(Elimination, cell, elimDigit));
 					}
 
 					var cellOffsets = (from Cell in square | pair select (0, Cell)).ToList();
@@ -279,7 +279,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 									links: null)
 							},
 							pattern,
-							conjugatePair: new ConjugatePair(pair, digit)));
+							conjugatePair: new(pair, digit)));
 				}
 			}
 		}
@@ -341,7 +341,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			{
 				if (grid.Exists(candidate / 9, candidate % 9) is true)
 				{
-					conclusions.Add(new Conclusion(Elimination, candidate));
+					conclusions.Add(new(Elimination, candidate));
 				}
 			}
 			if (conclusions.Count == 0)

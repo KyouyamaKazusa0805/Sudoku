@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						foreach (int digit in cands.GetAllSets())
 						{
-							targetElims.Add(new Conclusion(Elimination, combination[0], digit));
+							targetElims.Add(new(Elimination, combination[0], digit));
 						}
 					}
 					cands = (short)(elimDigits & grid.GetCandidateMask(combination[1]));
@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						foreach (int digit in cands.GetAllSets())
 						{
-							targetElims.Add(new Conclusion(Elimination, combination[1], digit));
+							targetElims.Add(new(Elimination, combination[1], digit));
 						}
 					}
 
@@ -156,7 +156,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 							foreach (int digit in cands.GetAllSets())
 							{
-								trueBaseElims.Add(new Conclusion(Elimination, combination[j], digit));
+								trueBaseElims.Add(new(Elimination, combination[j], digit));
 							}
 						}
 					}
@@ -173,7 +173,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 							foreach (int cell in elimMap)
 							{
-								trueBaseElims.Add(new Conclusion(Elimination, cell, digit));
+								trueBaseElims.Add(new(Elimination, cell, digit));
 							}
 						}
 					}
@@ -245,7 +245,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 								foreach (int digit in cands.GetAllSets())
 								{
-									compatibilityElims.Add(new Conclusion(Elimination, compatibleCells[k], digit));
+									compatibilityElims.Add(new(Elimination, compatibleCells[k], digit));
 								}
 							}
 						}
@@ -557,14 +557,14 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					if (grid.Exists(elimTarget, digit) is true)
 					{
-						compatibilityElims.Add(new Conclusion(Elimination, elimTarget, digit));
+						compatibilityElims.Add(new(Elimination, elimTarget, digit));
 					}
 
 					if (elimMap.IsNotEmpty)
 					{
 						foreach (int cell in elimMap)
 						{
-							compatibilityElims.Add(new Conclusion(Elimination, cell, digit));
+							compatibilityElims.Add(new(Elimination, cell, digit));
 						}
 					}
 				}

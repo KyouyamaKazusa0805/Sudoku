@@ -124,8 +124,7 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		/// <param name="collection">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
-		public static DigitCollection operator ~(DigitCollection collection) =>
-			new DigitCollection((short)~collection._mask);
+		public static DigitCollection operator ~(DigitCollection collection) => new((short)~collection._mask);
 
 		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(DigitCollection left, DigitCollection right) => left.Equals(right);

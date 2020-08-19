@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				var conclusions = new List<Conclusion>();
 				foreach (int digit in elimMask.GetAllSets())
 				{
-					conclusions.Add(new Conclusion(Elimination, elimCell, digit));
+					conclusions.Add(new(Elimination, elimCell, digit));
 				}
 
 				var candidateOffsets = new List<(int, int)>();
@@ -90,7 +90,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap)
 				{
-					conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+					conclusions.Add(new(Elimination, cell, extraDigit));
 				}
 
 				var candidateOffsets = new List<(int, int)>();
@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							{
 								foreach (int cell in (allCells - cellsMap) & CandMaps[digit])
 								{
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 							}
 							if (conclusions.Count == 0)
@@ -261,7 +261,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					{
 						foreach (int cell in compareMap & CandMaps[digit])
 						{
-							conclusions.Add(new Conclusion(Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)

@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in resultMap)
 				{
-					conclusions.Add(new Conclusion(Assignment, cell, digit));
+					conclusions.Add(new(Assignment, cell, digit));
 				}
 
 				if (conclusions.Count == 0)
@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in resultMap)
 				{
-					conclusions.Add(new Conclusion(Elimination, cell, digit));
+					conclusions.Add(new(Elimination, cell, digit));
 				}
 
 				if (conclusions.Count == 0)

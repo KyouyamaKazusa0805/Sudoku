@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual
 				}
 				catch (WrongHandlingException ex)
 				{
-					return new AnalysisResult(
+					return new(
 						solverName: SolverName,
 						puzzle: grid,
 						solution: null,
@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Manual
 			}
 			else
 			{
-				return new AnalysisResult(
+				return new(
 					solverName: SolverName,
 					puzzle: grid,
 					solution: null,

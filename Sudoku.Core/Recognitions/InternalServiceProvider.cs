@@ -55,7 +55,7 @@ namespace Sudoku.Recognitions
 				{
 					// Recognize digit from cell.
 					int recognition =
-						RecognizeCellNumber(field.GetSubRect(new Rectangle(o + w * x, o + w * y, w - o * 2, w - o * 2)));
+						RecognizeCellNumber(field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2)));
 					if (recognition == 0)
 					{
 						continue;
@@ -134,7 +134,7 @@ namespace Sudoku.Recognitions
 					return await TesseractDownloadLangFileAsync(dir, lang);
 				}
 
-				_ocr = new Tesseract(dir, lang, OcrEngineMode.TesseractOnly, "123456789");
+				_ocr = new(dir, lang, OcrEngineMode.TesseractOnly, "123456789");
 				return true;
 			}
 			catch
@@ -160,7 +160,7 @@ namespace Sudoku.Recognitions
 			HttpClient? client = null;
 			try
 			{
-				client = new HttpClient();
+				client = new();
 				File.WriteAllText(
 					$@"{dir}\{lang}.traineddata",
 					await client.GetStringAsync(

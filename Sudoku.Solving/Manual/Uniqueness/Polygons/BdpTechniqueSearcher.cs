@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Solving.Constants.Processings;
@@ -30,48 +29,52 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				return;
 			}
 
-			var funcs = new Action<IList<TechniqueInfo>, IReadOnlyGrid, Pattern, short, short, short, GridMap>[]
+			unsafe
 			{
-				CheckType1,
-				CheckType2,
-				CheckType3,
-				CheckType4
-			};
+				var funcs =
+					new delegate*<IList<TechniqueInfo>, IReadOnlyGrid, Pattern, short, short, short, GridMap, void>[]
+					{
+						&CheckType1,
+						&CheckType2,
+						&CheckType3,
+						&CheckType4
+					};
 
-			for (int i = 0, end = EmptyMap.Count == 7 ? 14580 : 11664; i < end; i++)
-			{
-				var pattern = Patterns[i];
-				if ((EmptyMap | pattern.Map) != EmptyMap)
+				for (int i = 0, end = EmptyMap.Count == 7 ? 14580 : 11664; i < end; i++)
 				{
-					// The pattern contains non-empty cells.
-					continue;
-				}
+					var pattern = Patterns[i];
+					if ((EmptyMap | pattern.Map) != EmptyMap)
+					{
+						// The pattern contains non-empty cells.
+						continue;
+					}
 
-				short cornerMask1 = BitwiseOrMasks(grid, pattern.Pair1Map);
-				short cornerMask2 = BitwiseOrMasks(grid, pattern.Pair2Map);
-				short centerMask = BitwiseOrMasks(grid, pattern.CenterCellsMap);
-				var map = pattern.Map;
+					short cornerMask1 = BitwiseOrMasks(grid, pattern.Pair1Map);
+					short cornerMask2 = BitwiseOrMasks(grid, pattern.Pair2Map);
+					short centerMask = BitwiseOrMasks(grid, pattern.CenterCellsMap);
+					var map = pattern.Map;
 
-				foreach (var func in funcs)
-				{
-					func(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
+					foreach (var func in funcs)
+					{
+						func(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
+					}
 				}
 			}
 		}
 
-		partial void CheckType1(
+		private static partial void CheckType1(
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map);
 
-		partial void CheckType2(
+		private static partial void CheckType2(
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map);
 
-		partial void CheckType3(
+		private static partial void CheckType3(
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map);
 
-		partial void CheckType4(
+		private static partial void CheckType4(
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map);
 	}

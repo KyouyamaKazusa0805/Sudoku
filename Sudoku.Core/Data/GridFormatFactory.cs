@@ -19,7 +19,7 @@ namespace Sudoku.Data
 			// Special cases.
 			if (gridOutputOption == Excel)
 			{
-				return new GridFormatter(true) { Excel = true };
+				return new(true) { Excel = true };
 			}
 
 			var formatter = new GridFormatter(gridOutputOption.HasFlag(Multiline));
@@ -64,36 +64,36 @@ namespace Sudoku.Data
 		public static GridFormatter Create(string? format) =>
 			format switch
 			{
-				null or "." => new GridFormatter(false),
-				"+" or ".+" or "+." => new GridFormatter(false) { WithModifiables = true },
-				"0" => new GridFormatter(false) { Placeholder = '0' },
-				":" => new GridFormatter(false) { WithCandidates = true },
-				"!" or ".!" or "!." => new GridFormatter(false) { WithModifiables = true, TreatValueAsGiven = true },
-				"0!" or "!0" => new GridFormatter(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
-				".:" => new GridFormatter(false) { WithCandidates = true },
-				"0:" => new GridFormatter(false) { Placeholder = '0', WithCandidates = true },
-				"0+" or "+0" => new GridFormatter(false) { Placeholder = '0', WithModifiables = true },
-				"+:" or "+.:" or ".+:" or "#" or "#." => new GridFormatter(false) { WithModifiables = true, WithCandidates = true },
-				"0+:" or "+0:" or "#0" => new GridFormatter(false) { Placeholder = '0', WithModifiables = true, WithCandidates = true },
-				".!:" or "!.:" => new GridFormatter(false) { WithModifiables = true, TreatValueAsGiven = true },
-				"0!:" or "!0:" => new GridFormatter(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
-				"@" or "@." => new GridFormatter(true) { SubtleGridLines = true },
-				"@0" => new GridFormatter(true) { Placeholder = '0', SubtleGridLines = true },
-				"@!" or "@.!" or "@!." => new GridFormatter(true) { TreatValueAsGiven = true, SubtleGridLines = true },
-				"@0!" or "@!0" => new GridFormatter(true) { Placeholder = '0', TreatValueAsGiven = true, SubtleGridLines = true },
-				"@*" or "@.*" or "@*." => new GridFormatter(true),
-				"@0*" or "@*0" => new GridFormatter(true) { Placeholder = '0' },
-				"@!*" or "@*!" => new GridFormatter(true) { TreatValueAsGiven = true },
-				"@:" => new GridFormatter(true) { WithCandidates = true, SubtleGridLines = true },
-				"@:!" or "@!:" => new GridFormatter(true) { WithCandidates = true, TreatValueAsGiven = true, SubtleGridLines = true },
-				"@*:" or "@:*" => new GridFormatter(true) { WithCandidates = true },
-				"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!" => new GridFormatter(true) { WithCandidates = true, TreatValueAsGiven = true },
-				"~" or "~0" => new GridFormatter(false) { Sukaku = true, Placeholder = '0' },
-				"~." => new GridFormatter(false) { Sukaku = true, Placeholder = '.' },
-				"@~" or "~@" => new GridFormatter(true) { Sukaku = true },
-				"@~0" or "@0~" or "~@0" or "~0@" => new GridFormatter(true) { Sukaku = true, Placeholder = '0' },
-				"@~." or "@.~" or "~@." or "~.@" => new GridFormatter(true) { Sukaku = true, Placeholder = '.' },
-				"%" => new GridFormatter(true) { Excel = true },
+				null or "." => new(false),
+				"+" or ".+" or "+." => new(false) { WithModifiables = true },
+				"0" => new(false) { Placeholder = '0' },
+				":" => new(false) { WithCandidates = true },
+				"!" or ".!" or "!." => new(false) { WithModifiables = true, TreatValueAsGiven = true },
+				"0!" or "!0" => new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
+				".:" => new(false) { WithCandidates = true },
+				"0:" => new(false) { Placeholder = '0', WithCandidates = true },
+				"0+" or "+0" => new(false) { Placeholder = '0', WithModifiables = true },
+				"+:" or "+.:" or ".+:" or "#" or "#." => new(false) { WithModifiables = true, WithCandidates = true },
+				"0+:" or "+0:" or "#0" => new(false) { Placeholder = '0', WithModifiables = true, WithCandidates = true },
+				".!:" or "!.:" => new(false) { WithModifiables = true, TreatValueAsGiven = true },
+				"0!:" or "!0:" => new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
+				"@" or "@." => new(true) { SubtleGridLines = true },
+				"@0" => new(true) { Placeholder = '0', SubtleGridLines = true },
+				"@!" or "@.!" or "@!." => new(true) { TreatValueAsGiven = true, SubtleGridLines = true },
+				"@0!" or "@!0" => new(true) { Placeholder = '0', TreatValueAsGiven = true, SubtleGridLines = true },
+				"@*" or "@.*" or "@*." => new(true),
+				"@0*" or "@*0" => new(true) { Placeholder = '0' },
+				"@!*" or "@*!" => new(true) { TreatValueAsGiven = true },
+				"@:" => new(true) { WithCandidates = true, SubtleGridLines = true },
+				"@:!" or "@!:" => new(true) { WithCandidates = true, TreatValueAsGiven = true, SubtleGridLines = true },
+				"@*:" or "@:*" => new(true) { WithCandidates = true },
+				"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!" => new(true) { WithCandidates = true, TreatValueAsGiven = true },
+				"~" or "~0" => new(false) { Sukaku = true, Placeholder = '0' },
+				"~." => new(false) { Sukaku = true, Placeholder = '.' },
+				"@~" or "~@" => new(true) { Sukaku = true },
+				"@~0" or "@0~" or "~@0" or "~0@" => new(true) { Sukaku = true, Placeholder = '0' },
+				"@~." or "@.~" or "~@." or "~.@" => new(true) { Sukaku = true, Placeholder = '.' },
+				"%" => new(true) { Excel = true },
 				_ => throw Throwings.FormatError
 			};
 		#region Obsolete code

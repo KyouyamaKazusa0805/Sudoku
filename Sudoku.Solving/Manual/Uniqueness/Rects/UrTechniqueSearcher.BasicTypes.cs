@@ -39,11 +39,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var conclusions = new List<Conclusion>();
 			if (grid.Exists(cornerCell, d1) is true)
 			{
-				conclusions.Add(new Conclusion(Elimination, cornerCell, d1));
+				conclusions.Add(new(Elimination, cornerCell, d1));
 			}
 			if (grid.Exists(cornerCell, d2) is true)
 			{
-				conclusions.Add(new Conclusion(Elimination, cornerCell, d2));
+				conclusions.Add(new(Elimination, cornerCell, d2));
 			}
 			if (conclusions.Count == 0)
 			{
@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var conclusions = new List<Conclusion>();
 			foreach (int cell in elimMap)
 			{
-				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 
 			var candidateOffsets = new List<(int, int)>();
@@ -218,7 +218,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							foreach (int cell in (iterationMap - iteratedCells) & CandMaps[digit])
 							{
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -317,7 +317,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap)
 					{
-						conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+						conclusions.Add(new(Elimination, cell, elimDigit));
 					}
 
 					var candidateOffsets = new List<(int, int)>();
@@ -414,7 +414,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int cell in cellsThatContainsExtraDigit.PeerIntersection & CandMaps[extraDigit])
 			{
-				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 			if (conclusions.Count == 0)
 			{
@@ -485,11 +485,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			void gather(bool isRow, int digit, int region1, int region2)
 			{
 				if ((!isRow
-					|| !IsConjugatePair(digit, new GridMap { corner1, o1 }, region1)
-					|| !IsConjugatePair(digit, new GridMap { corner2, o2 }, region2))
+					|| !IsConjugatePair(digit, new()
+				{ corner1, o1 }, region1)
+					|| !IsConjugatePair(digit, new()
+				{ corner2, o2 }, region2))
 					&& (isRow
-					|| !IsConjugatePair(digit, new GridMap { corner1, o2 }, region1)
-					|| !IsConjugatePair(digit, new GridMap { corner2, o1 }, region2)))
+					|| !IsConjugatePair(digit, new()
+				{ corner1, o2 }, region1)
+					|| !IsConjugatePair(digit, new()
+				{ corner2, o1 }, region2)))
 				{
 					return;
 				}
@@ -504,7 +508,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap)
 				{
-					conclusions.Add(new Conclusion(Elimination, cell, digit));
+					conclusions.Add(new(Elimination, cell, digit));
 				}
 
 				var candidateOffsets = new List<(int, int)>();
@@ -554,7 +558,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						cells: urCells,
 						conjugatePairs: new[]
 						{
-							new ConjugatePair(corner1, isRow ? o1 : o2, digit),
+							new(corner1, isRow ? o1 : o2, digit),
 							new ConjugatePair(corner2, isRow ? o2 : o1, digit)
 						},
 						isAr: false));
@@ -647,7 +651,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						cells: urCells,
 						conjugatePairs: new[]
 						{
-							new ConjugatePair(abzCell, abxCell, digit),
+							new(abzCell, abxCell, digit),
 							new ConjugatePair(abzCell, abyCell, digit),
 						},
 						isAr: arMode));

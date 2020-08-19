@@ -39,13 +39,11 @@ namespace Sudoku.Drawing.Extensions
 			p7.Y += rectangle.Height;
 			p8.X += rectangle.Width - circleRadius;
 			p8.Y += rectangle.Height;
-			r1 = new RectangleF(rectangle.X, rectangle.Y, circleRadius * 2, circleRadius * 2);
-			r2 = new RectangleF(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y,
-				circleRadius * 2, circleRadius * 2);
-			r3 = new RectangleF(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius,
-				circleRadius * 2, circleRadius * 2);
-			r4 = new RectangleF(rectangle.X + rectangle.Width - 2 * circleRadius,
-				rectangle.Y + rectangle.Height - 2 * circleRadius,
+			r1 = new(rectangle.X, rectangle.Y, circleRadius * 2, circleRadius * 2);
+			r2 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y, circleRadius * 2, circleRadius * 2);
+			r3 = new(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
+			r4 = new(
+				rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y + rectangle.Height - 2 * circleRadius,
 				circleRadius * 2, circleRadius * 2);
 
 			var path = new GraphicsPath();
@@ -96,11 +94,9 @@ namespace Sudoku.Drawing.Extensions
 			p7.Y += rectangle.Height;
 			p8.X += rectangle.Width - circleRadius;
 			p8.Y += rectangle.Height;
-			r1 = new RectangleF(rectangle.X, rectangle.Y, circleRadius * 2, circleRadius * 2);
-			r2 = new RectangleF(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y,
-				circleRadius * 2, circleRadius * 2);
-			r3 = new RectangleF(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius,
-				circleRadius * 2, circleRadius * 2);
+			r1 = new(rectangle.X, rectangle.Y, circleRadius * 2, circleRadius * 2);
+			r2 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y, circleRadius * 2, circleRadius * 2);
+			r3 = new(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
 			r4 = new RectangleF(rectangle.X + rectangle.Width - 2 * circleRadius,
 				rectangle.Y + rectangle.Height - 2 * circleRadius,
 				circleRadius * 2, circleRadius * 2);

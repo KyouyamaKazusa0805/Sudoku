@@ -155,18 +155,18 @@ namespace Sudoku.Solving.Manual.Exocets
 								}
 							}
 
-							exocet = new Pattern(
+							exocet = new(
 								b1,
 								b2,
 								tq1,
 								B[BC[i, 0]] + RqIter[k, 1],
 								tr1,
 								B[BC[i, 1]] + RqIter[l, 1],
-								new GridMap(crossline[7..]),
-								new GridMap { B[BC[i, 1]] + M[l, 2], B[BC[i, 1]] + M[l, 3] },
-								new GridMap { B[BC[i, 1]] + M[l, 0], B[BC[i, 1]] + M[l, 1] },
-								new GridMap { B[BC[i, 0]] + M[k, 2], B[BC[i, 0]] + M[k, 3] },
-								new GridMap { B[BC[i, 0]] + M[k, 0], B[BC[i, 0]] + M[k, 1] });
+								new(crossline[7..]),
+								new() { B[BC[i, 1]] + M[l, 2], B[BC[i, 1]] + M[l, 3] },
+								new() { B[BC[i, 1]] + M[l, 0], B[BC[i, 1]] + M[l, 1] },
+								new() { B[BC[i, 0]] + M[k, 2], B[BC[i, 0]] + M[k, 3] },
+								new() { B[BC[i, 0]] + M[k, 0], B[BC[i, 0]] + M[k, 1] });
 
 							n++;
 						}
@@ -206,7 +206,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				foreach (int digit in targetElimination.GetAllSets())
 				{
-					targetElims.Add(new Conclusion(Elimination, target, digit));
+					targetElims.Add(new(Elimination, target, digit));
 				}
 			}
 
@@ -225,7 +225,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						cellOffsets.Add((3, playground[1]));
 						foreach (int digit in candidateMask.GetAllSets())
 						{
-							mirrorElims.Add(new Conclusion(Elimination, p, digit));
+							mirrorElims.Add(new(Elimination, p, digit));
 						}
 					}
 
@@ -300,7 +300,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							{
 								foreach (int digit in candidateMask.GetAllSets())
 								{
-									mirrorElims.Add(new Conclusion(Elimination, target, digit));
+									mirrorElims.Add(new(Elimination, target, digit));
 								}
 							}
 						}
@@ -324,7 +324,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 								foreach (int digit in candidateMask.GetAllSets())
 								{
-									mirrorElims.Add(new Conclusion(Elimination, playground[i], digit));
+									mirrorElims.Add(new(Elimination, playground[i], digit));
 								}
 
 								return true;

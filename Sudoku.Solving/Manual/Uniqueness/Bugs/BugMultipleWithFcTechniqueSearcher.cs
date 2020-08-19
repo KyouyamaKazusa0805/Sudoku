@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				var onToOn = new Set<Node>();
 				var onToOff = new Set<Node>();
 
-				onToOn.Add(new Node(cell, digit, true));
+				onToOn.Add(new(cell, digit, true));
 				DoChaining(grid, onToOn, onToOff);
 
 				// Collect results for cell chaining.
@@ -59,8 +59,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				valueToOff.Add(candidate, onToOff);
 				if (cellToOn is null/* || cellToOff is null*/)
 				{
-					cellToOn = new Set<Node>(onToOn);
-					cellToOff = new Set<Node>(onToOff);
+					cellToOn = new(onToOn);
+					cellToOff = new(onToOff);
 				}
 				else
 				{
@@ -175,7 +175,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>
 			{
-				new Conclusion(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
+				new(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
 			};
 
 			// Build chains.
@@ -195,12 +195,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			{
 				var candidateOffsets = new List<(int, int)>(GetCandidateOffsets(node)) { (2, candidate) };
 				var links = new List<Link>(GetLinks(node, true));
-				views.Add(new View(null, candidateOffsets, null, links));
+				views.Add(new(null, candidateOffsets, null, links));
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);
 			}
 
-			views.Insert(0, new View(null, globalCandidates, null, globalLinks));
+			views.Insert(0, new(null, globalCandidates, null, globalLinks));
 
 			return new BugMultipleWithFcTechniqueInfo(conclusions, views, candidates: trueCandidates, chains);
 		}

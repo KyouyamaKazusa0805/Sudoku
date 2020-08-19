@@ -138,7 +138,7 @@ namespace Sudoku.Drawing
 		/// </returns>
 		public Bitmap Draw(Bitmap? bitmap, Graphics g)
 		{
-			bitmap ??= new Bitmap((int)Width, (int)Height);
+			bitmap ??= new((int)Width, (int)Height);
 
 			DrawBackground(g);
 			DrawGridAndBlockLines(g);
@@ -294,8 +294,8 @@ namespace Sudoku.Drawing
 			var points = new HashSet<PointF>();
 			foreach (var (startCand, endCand, _) in links)
 			{
-				points.Add(PointConverter.GetMouseCenterOfCandidates(new SudokuMap { startCand }));
-				points.Add(PointConverter.GetMouseCenterOfCandidates(new SudokuMap { endCand }));
+				points.Add(PointConverter.GetMouseCenterOfCandidates(new() { startCand }));
+				points.Add(PointConverter.GetMouseCenterOfCandidates(new() { endCand }));
 			}
 
 			if (Conclusions is not null)
@@ -322,8 +322,8 @@ namespace Sudoku.Drawing
 					_ => Dash
 				};
 
-				var pt1 = PointConverter.GetMouseCenterOfCandidates(new SudokuMap { start });
-				var pt2 = PointConverter.GetMouseCenterOfCandidates(new SudokuMap { end });
+				var pt1 = PointConverter.GetMouseCenterOfCandidates(new() { start });
+				var pt2 = PointConverter.GetMouseCenterOfCandidates(new() { end });
 				var (pt1x, pt1y) = pt1;
 				var (pt2x, pt2y) = pt2;
 
@@ -465,7 +465,7 @@ namespace Sudoku.Drawing
 		/// <param name="scale">The scale.</param>
 		/// <returns>The font.</returns>
 		private static Font GetFontByScale(string fontName, float size, decimal scale) =>
-			new Font(fontName, size * (float)scale, Regular);
+			new(fontName, size * (float)scale, Regular);
 
 		/// <summary>
 		/// To cut the link to let the head and the tail is outside the candidate.

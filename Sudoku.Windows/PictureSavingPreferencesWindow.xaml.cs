@@ -13,7 +13,6 @@ using Sudoku.Windows.Constants;
 using static System.Drawing.StringAlignment;
 using static Sudoku.Windows.Constants.Processings;
 using DFontStyle = System.Drawing.FontStyle;
-using PointConverter = Sudoku.Drawing.PointConverter;
 #if ADVANCED_PICTURE_SAVING
 using System.Linq;
 using Sudoku.Constants;
@@ -154,7 +153,7 @@ namespace Sudoku.Windows
 				}
 
 				var targetPainter =
-					new GridPainter(new PointConverter(size, size), _settings, conclusions: _targetPainter.Conclusions)
+					new GridPainter(new(size, size), _settings, conclusions: _targetPainter.Conclusions)
 					{
 						Grid = _grid,
 						View = _targetPainter.View, // May be null.
@@ -169,7 +168,7 @@ namespace Sudoku.Windows
 					bitmap = targetPainter.Draw();
 					switch (selectedIndex)
 					{
-						case int v when v >= -1 && v <= 3: // Normal picture formats.
+						case >= -1 and <= 3: // Normal picture formats.
 						{
 							if (_format is not null)
 							{

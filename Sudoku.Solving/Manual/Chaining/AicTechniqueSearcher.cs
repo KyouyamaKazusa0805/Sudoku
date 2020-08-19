@@ -97,14 +97,14 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Y-Chains don't exist (length must be both odd and even).
 
 				// AICs with off implication.
-				onToOn = new Set<Node> { pOn };
-				onToOff = new Set<Node>();
+				onToOn = new() { pOn };
+				onToOff = new();
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOn);
 
 				// AICs with on implication.
 				var pOff = new Node(pOn.Cell, pOn.Digit, false);
-				onToOn = new Set<Node>();
-				onToOff = new Set<Node> { pOff };
+				onToOn = new();
+				onToOff = new() { pOff };
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOff);
 			}
 
@@ -162,7 +162,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					{
 						if (grid.Exists(candidate / 9, candidate % 9) is true)
 						{
-							conclusions.Add(new Conclusion(Elimination, candidate));
+							conclusions.Add(new(Elimination, candidate));
 						}
 					}
 				}
@@ -217,15 +217,15 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					if (grid.Exists(candidate / 9, candidate % 9) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, candidate));
+						conclusions.Add(new(Elimination, candidate));
 					}
 				}
 
-				//conclusions.Add(new Conclusion(Elimination, startCandidate));
+				//conclusions.Add(new(Elimination, startCandidate));
 			}
 			//else
 			//{
-			//	conclusions.Add(new Conclusion(Assignment, target._cell, target.Digit));
+			//	conclusions.Add(new(Assignment, target._cell, target.Digit));
 			//}
 
 			return conclusions.Count == 0

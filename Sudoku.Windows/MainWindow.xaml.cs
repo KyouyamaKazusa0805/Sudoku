@@ -76,7 +76,7 @@ namespace Sudoku.Windows
 			// Then initialize for recognizer.
 			try
 			{
-				_recognition = new RecognitionServiceProvider();
+				_recognition = new();
 			}
 			catch (Exception ex)
 			{
@@ -100,7 +100,7 @@ namespace Sudoku.Windows
 			_imageGrid.Height = _imageGrid.Width =
 				Math.Min(_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
 			Settings.GridSize = _gridMain.ColumnDefinitions[0].ActualWidth;
-			_currentPainter.PointConverter = new PointConverter(_imageGrid.RenderSize);
+			_currentPainter.PointConverter = new(_imageGrid.RenderSize);
 
 			UpdateImageGrid();
 		}
@@ -415,13 +415,13 @@ namespace Sudoku.Windows
 		/// </param>
 		private void LoadConfigIfWorth(string path = "configurations.scfg")
 		{
-			Settings = new Settings();
+			Settings = new();
 			if (File.Exists(path))
 			{
 				FileStream? fs = null;
 				try
 				{
-					fs = new FileStream(path, FileMode.Open);
+					fs = new(path, FileMode.Open);
 					Settings = (Settings)new BinaryFormatter().Deserialize(fs);
 				}
 				catch
@@ -447,7 +447,7 @@ namespace Sudoku.Windows
 			FileStream? fs = null;
 			try
 			{
-				fs = new FileStream(path, FileMode.Create);
+				fs = new(path, FileMode.Create);
 				var formatter = new BinaryFormatter();
 				formatter.Serialize(fs, Settings);
 			}
@@ -478,9 +478,7 @@ namespace Sudoku.Windows
 			var command = new RoutedCommand();
 			command.InputGestures.Add(new KeyGesture(key, modifierKeys));
 			CommandBindings.Add(
-				new CommandBinding(
-					command,
-					(sender, e) => ((matchControl?.IsEnabled ?? true) ? executed : null)?.Invoke(sender, e)));
+				new(command, (sender, e) => ((matchControl?.IsEnabled ?? true) ? executed : null)?.Invoke(sender, e)));
 		}
 
 		/// <summary>
@@ -574,7 +572,7 @@ namespace Sudoku.Windows
 
 			_manualSolver = Settings.MainManualSolver;
 
-			_gridMain.ColumnDefinitions[0].Width = new GridLength(Settings.GridSize);
+			_gridMain.ColumnDefinitions[0].Width = new(Settings.GridSize);
 
 			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
 			_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex;
@@ -613,8 +611,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void InitializePointConverterAndLayers() =>
 			_currentPainter =
-				new GridPainter(
-					_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height), Settings)
+				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings)
 				{
 					Grid = _puzzle
 				};
@@ -627,7 +624,7 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-				Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr, Settings.PmGridCompatible));
+				Puzzle = new(SudokuGrid.Parse(puzzleStr, Settings.PmGridCompatible));
 
 				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 				UpdateImageGrid();
@@ -645,14 +642,14 @@ namespace Sudoku.Windows
 		{
 			_imageUndoIcon.Source =
 				new BitmapImage(
-					new Uri(
+					new(
 						$@"Resources/ImageIcon-Undo{
 							((_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps) ? string.Empty : "Disable")
 						}.png",
 						UriKind.Relative));
 			_imageRedoIcon.Source =
 				new BitmapImage(
-					new Uri(
+					new(
 						$@"Resources/ImageIcon-Redo{
 							((_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps) ? string.Empty : "Disable")
 						}.png",
@@ -894,6 +891,22 @@ namespace Sudoku.Windows
 		/// Transform the grid.
 		/// </summary>
 		/// <param name="transformation">The inner function to process the transformation.</param>
+		private unsafe void Transform(delegate*<IReadOnlyGrid, SudokuGrid> transformation)
+		{
+			if (_puzzle != SudokuGrid.Empty.ToMutable()/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
+			{
+				Puzzle = new(transformation(_puzzle));
+
+				UpdateUndoRedoControls();
+				UpdateImageGrid();
+			}
+		}
+
+		/// <summary>
+		/// Transform the grid.
+		/// </summary>
+		/// <param name="transformation">The inner function to process the transformation.</param>
+		[Obsolete("Use function pointer to speed up.")]
 		private void Transform(Func<IReadOnlyGrid, UndoableGrid> transformation)
 		{
 			if (_puzzle != SudokuGrid.Empty.ToMutable()/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
@@ -970,7 +983,7 @@ namespace Sudoku.Windows
 				{
 					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
 					pathList.Add(
-						new ListBoxItem
+						new()
 						{
 							Foreground = new SolidColorBrush(fore.ToWColor()),
 							Background = new SolidColorBrush(back.ToWColor()),
@@ -1007,14 +1020,14 @@ namespace Sudoku.Windows
 						summaryMax = Math.Max(step.Difficulty, maximum);
 					}
 
-					collection.Add(new DifficultyInfo(name, count, total, maximum));
+					collection.Add(new(name, count, total, maximum));
 				}
 
-				collection.Add(new DifficultyInfo(null, summaryCount, summary, summaryMax));
+				collection.Add(new(null, summaryCount, summary, summaryMax));
 
 				GridView view;
 				_listViewSummary.ItemsSource = collection;
-				_listViewSummary.View = view = new GridView();
+				_listViewSummary.View = view = new();
 				view.Columns.AddRange(
 					createGridViewColumn(LangSource["TechniqueHeader"], nameof(DifficultyInfo.Technique), .6),
 					createGridViewColumn(LangSource["TechniqueCount"], nameof(DifficultyInfo.Count), .1),
@@ -1023,7 +1036,7 @@ namespace Sudoku.Windows
 				view.AllowsColumnReorder = false;
 
 				GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
-					new GridViewColumn
+					new()
 					{
 						Header = header,
 						DisplayMemberBinding = new Binding(name),

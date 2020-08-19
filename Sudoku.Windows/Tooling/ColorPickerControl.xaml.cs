@@ -145,8 +145,7 @@ namespace Sudoku.Windows.Tooling
 
 			if (_colorPalette is null)
 			{
-				_colorPalette = new ColorPalette();
-				_colorPalette.InitializeDefaults();
+				(_colorPalette = new()).InitializeDefaults();
 			}
 
 			_colorSwatch1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
@@ -342,7 +341,7 @@ namespace Sudoku.Windows.Tooling
 		{
 			var img =
 				new BitmapImage(
-					new Uri(
+					new(
 						"pack://application:,,,/Sudoku.Windows;component/Resources/ColorSample.png",
 						UriKind.RelativeOrAbsolute));
 			float sliderHue = (float)_pickerHueSlider.Value;

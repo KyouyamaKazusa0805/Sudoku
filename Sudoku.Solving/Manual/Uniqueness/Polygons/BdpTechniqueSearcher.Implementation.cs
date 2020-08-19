@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
 	partial class BdpTechniqueSearcher
 	{
-		partial void CheckType1(
+		private static partial void CheckType1(
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				var conclusions = new List<Conclusion>();
 				foreach (int digit in elimMask.GetAllSets())
 				{
-					conclusions.Add(new Conclusion(Elimination, elimCell, digit));
+					conclusions.Add(new(Elimination, elimCell, digit));
 				}
 
 				var candidateOffsets = new List<(int, int)>();
@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 		}
 
-		partial void CheckType2(
+		private static partial void CheckType2(
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
@@ -104,7 +104,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap)
 				{
-					conclusions.Add(new Conclusion(Elimination, cell, otherDigit));
+					conclusions.Add(new(Elimination, cell, otherDigit));
 				}
 
 				var candidateOffsets = new List<(int, int)>();
@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 		}
 
-		partial void CheckType3(
+		private static partial void CheckType3(
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 								foreach (int cell in cells)
 								{
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 							}
 
@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		}
 
 		[SuppressMessage("", "IDE0004:Remove redundant cast")]
-		partial void CheckType4(
+		private static partial void CheckType4(
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
@@ -309,7 +309,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in elimMap)
 						{
-							conclusions.Add(new Conclusion(Elimination, cell, finalDigit));
+							conclusions.Add(new(Elimination, cell, finalDigit));
 						}
 
 						var candidateOffsets = new List<(int, int)>();

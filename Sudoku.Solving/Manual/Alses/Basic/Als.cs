@@ -183,8 +183,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			// Get all bi-value-cell ALSes.
 			foreach (int cell in bivalueMap)
 			{
-				yield return new Als(
-					grid.GetCandidateMask(cell), new GridMap { cell }, PeerMaps[cell] & emptyMap);
+				yield return new(grid.GetCandidateMask(cell), new() { cell }, PeerMaps[cell] & emptyMap);
 			}
 
 			// Get all non-bi-value-cell ALSes.
@@ -225,7 +224,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 
 						int coveredLine = map.CoveredLine;
-						yield return new Als(
+						yield return new(
 							digitsMask,
 							map,
 							region < 9 && coveredLine >= 9

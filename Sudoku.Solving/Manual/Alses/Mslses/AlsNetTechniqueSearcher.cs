@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								canL[digit].Add(cell);
 							}
 
-							conclusions.Add(new Conclusion(Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 

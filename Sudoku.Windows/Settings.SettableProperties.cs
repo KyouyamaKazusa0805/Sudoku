@@ -356,7 +356,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The main manual solver.
 		/// </summary>
-		public ManualSolver MainManualSolver { get; set; } = new ManualSolver();
+		public ManualSolver MainManualSolver { get; set; } = new();
 
 		/// <summary>
 		/// The color table for each difficulty level.

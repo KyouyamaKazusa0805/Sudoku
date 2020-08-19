@@ -153,7 +153,8 @@ namespace Sudoku.Solving.Constants
 				{
 					var pr = p[j];
 					result.Add(
-						new Link(
+						new
+						(
 							startCandidate: p.Cell * 9 + p.Digit,
 							endCandidate: pr.Cell * 9 + pr.Digit,
 							linkType: (pr.IsOn, p.IsOn) switch
@@ -161,7 +162,8 @@ namespace Sudoku.Solving.Constants
 								(false, true) => Strong,
 								(true, false) => Weak,
 								_ => Default
-							}));
+							}
+						));
 				}
 			}
 

@@ -22,10 +22,12 @@
 		<Optimize>false</Optimize>
 		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING; TARGET_64BIT; AUTHOR_RESERVED</DefineConstants>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>

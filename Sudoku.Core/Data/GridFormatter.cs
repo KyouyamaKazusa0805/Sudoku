@@ -101,7 +101,7 @@ namespace Sudoku.Data
 				var builders = new StringBuilder[81];
 				for (int i = 0; i < 81; i++)
 				{
-					builders[i] = new StringBuilder();
+					builders[i] = new();
 					foreach (int digit in ((IReadOnlyGrid)grid).GetCandidates(i))
 					{
 						builders[i].Append(digit + 1);
@@ -454,18 +454,18 @@ namespace Sudoku.Data
 		/// Get the default list.
 		/// </summary>
 		/// <returns>The list.</returns>
-		private static Dictionary<int, IList<short>> DefaultList =>
-			new Dictionary<int, IList<short>>
+		private static Dictionary<int, List<short>> DefaultList =>
+			new()
 			{
-				[0] = new List<short>(),
-				[1] = new List<short>(),
-				[2] = new List<short>(),
-				[3] = new List<short>(),
-				[4] = new List<short>(),
-				[5] = new List<short>(),
-				[6] = new List<short>(),
-				[7] = new List<short>(),
-				[8] = new List<short>()
+				[0] = new(),
+				[1] = new(),
+				[2] = new(),
+				[3] = new(),
+				[4] = new(),
+				[5] = new(),
+				[6] = new(),
+				[7] = new(),
+				[8] = new(),
 			};
 	}
 }

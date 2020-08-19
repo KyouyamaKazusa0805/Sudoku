@@ -160,7 +160,7 @@ namespace Sudoku.Windows
 								{
 									var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
 									grid.Fix();
-									Puzzle = new UndoableGrid(grid);
+									Puzzle = new(grid);
 								}
 
 								UpdateUndoRedoControls();
@@ -280,7 +280,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_puzzle = new UndoableGrid(grid);
+			_puzzle = new(grid);
 			_puzzle.Unfix();
 			_puzzle.ClearStack();
 
@@ -337,7 +337,7 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku));
+					Puzzle = new(SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku));
 
 					_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 					UpdateImageGrid();
@@ -373,7 +373,7 @@ namespace Sudoku.Windows
 
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
 		{
-			_currentPainter.Grid = _puzzle = new UndoableGrid(_initialPuzzle);
+			_currentPainter.Grid = _puzzle = new(_initialPuzzle);
 			_currentPainter.View = null;
 
 			UpdateImageGrid();
@@ -394,7 +394,7 @@ namespace Sudoku.Windows
 
 		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
 		{
-			Puzzle = new UndoableGrid(SudokuGrid.Empty);
+			Puzzle = new(SudokuGrid.Empty);
 			_analyisResult = null;
 
 			UpdateImageGrid();
@@ -423,7 +423,7 @@ namespace Sudoku.Windows
 
 					var symmetry = (SymmetryType)(1 << _comboBoxSymmetry.SelectedIndex + 1);
 					//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
-					Puzzle = new UndoableGrid(
+					Puzzle = new(
 						await new BasicPuzzleGenerator().GenerateAsync(
 							33, symmetry, dialog.DefaultReporting, Settings.LanguageCode));
 
@@ -463,7 +463,7 @@ namespace Sudoku.Windows
 					Settings.GeneratingDifficultyLevelSelectedIndex = _comboBoxDifficulty.SelectedIndex;
 
 					Puzzle =
-						new UndoableGrid(
+						new(
 							await new HardPatternPuzzleGenerator().GenerateAsync(
 								index - 1,
 								dialog.DefaultReporting,
@@ -502,7 +502,7 @@ namespace Sudoku.Windows
 						goto Last;
 					}
 
-					Puzzle = new UndoableGrid(
+					Puzzle = new(
 						await new TechniqueFilteringPuzzleGenerator().GenerateAsync(
 							filter, dialog.DefaultReporting, Settings.LanguageCode));
 				}
@@ -538,7 +538,7 @@ namespace Sudoku.Windows
 				var grid = SudokuGrid.Parse(sb.ToString());
 				grid.Unfix();
 
-				Puzzle = new UndoableGrid(grid);
+				Puzzle = new(grid);
 				UpdateImageGrid();
 				return true;
 			}
@@ -579,7 +579,7 @@ namespace Sudoku.Windows
 					}
 				}
 
-				Puzzle = new UndoableGrid(SudokuGrid.Parse(newSb.ToString()));
+				Puzzle = new(SudokuGrid.Parse(newSb.ToString()));
 				UpdateImageGrid();
 				return true;
 			}
@@ -716,26 +716,26 @@ namespace Sudoku.Windows
 			new BugNSearchWindow(_puzzle).ShowDialog();
 		}
 
-		private void MenuItemTransformMirrorLeftRight_Click(object sender, RoutedEventArgs e) =>
-			Transform(p => new UndoableGrid(p.MirrorLeftRight()));
+		private unsafe void MenuItemTransformMirrorLeftRight_Click(object sender, RoutedEventArgs e) =>
+			Transform(&GridTransformationExtensions.MirrorLeftRight);
 
-		private void MenuItemTransformMirrorTopBotton_Click(object sender, RoutedEventArgs e) =>
-			Transform(p => new UndoableGrid(p.MirrorTopBottom()));
+		private unsafe void MenuItemTransformMirrorTopBotton_Click(object sender, RoutedEventArgs e) =>
+			Transform(&GridTransformationExtensions.MirrorTopBottom);
 
-		private void MenuItemTransformMirrorDiagonal_Click(object sender, RoutedEventArgs e) =>
-			Transform(p => new UndoableGrid(p.MirrorDiagonal()));
+		private unsafe void MenuItemTransformMirrorDiagonal_Click(object sender, RoutedEventArgs e) =>
+			Transform(&GridTransformationExtensions.MirrorDiagonal);
 
-		private void MenuItemTransformMirrorAntidiagonal_Click(object sender, RoutedEventArgs e) =>
-			Transform(p => new UndoableGrid(p.MirrorAntidiagonal()));
+		private unsafe void MenuItemTransformMirrorAntidiagonal_Click(object sender, RoutedEventArgs e) =>
+			Transform(&GridTransformationExtensions.MirrorAntidiagonal);
 
-		private void MenuItemTransformRotateClockwise_Click(object sender, RoutedEventArgs e) =>
-			Transform(p => new UndoableGrid(p.RotateClockwise()));
+		private unsafe void MenuItemTransformRotateClockwise_Click(object sender, RoutedEventArgs e) =>
+			Transform(&GridTransformationExtensions.RotateClockwise);
 
-		private void MenuItemTransformRotateCounterclockwise_Click(object sender, RoutedEventArgs e) =>
-			Transform(p => new UndoableGrid(p.RotateCounterclockwise()));
+		private unsafe void MenuItemTransformRotateCounterclockwise_Click(object sender, RoutedEventArgs e) =>
+			Transform(&GridTransformationExtensions.RotateCounterclockwise);
 
-		private void MenuItemTransformRotatePi_Click(object sender, RoutedEventArgs e) =>
-			Transform(p => new UndoableGrid(p.RotatePi()));
+		private unsafe void MenuItemTransformRotatePi_Click(object sender, RoutedEventArgs e) =>
+			Transform(&GridTransformationExtensions.RotatePi);
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemViewsShowBugN_Click(object sender, RoutedEventArgs e)
@@ -763,7 +763,7 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_currentPainter.View = new View((from Candidate in trueCandidates select (0, Candidate)).ToArray());
+				_currentPainter.View = new((from Candidate in trueCandidates select (0, Candidate)).ToArray());
 				_currentPainter.Conclusions = null;
 
 				UpdateImageGrid();
@@ -815,11 +815,10 @@ namespace Sudoku.Windows
 					currentLevel++;
 				}
 
-				_currentPainter.View =
-					new View((
-						from Conclusion in backdoors
-						where Conclusion.ConclusionType == ConclusionType.Assignment
-						select (0, Conclusion.CellOffset * 9 + Conclusion.Digit)).ToArray());
+				_currentPainter.View = new((
+					from Conclusion in backdoors
+					where Conclusion.ConclusionType == ConclusionType.Assignment
+					select (0, Conclusion.CellOffset * 9 + Conclusion.Digit)).ToArray());
 				_currentPainter.Conclusions = backdoors;
 
 				UpdateImageGrid();
@@ -877,7 +876,7 @@ namespace Sudoku.Windows
 			}
 
 			_textBoxInfo.Text = info.ToString();
-			_currentPainter.View = new View(cellOffsets, null, null, null);
+			_currentPainter.View = new(cellOffsets, null, null, null);
 			_currentPainter.Conclusions = info.Conclusions;
 
 			UpdateImageGrid();

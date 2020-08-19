@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			List<GridMap> rbList = new List<GridMap>(3), cbList = new List<GridMap>(3);
+			List<GridMap> rbList = new(3), cbList = new(3);
 			foreach (int pivot in EmptyMap)
 			{
 				int r = GetRegion(pivot, Row), c = GetRegion(pivot, Column), b = GetRegion(pivot, Block);
@@ -52,16 +52,16 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					{
 						case 2:
 						{
-							list.Add(new GridMap { emptyMap.SetAt(0), emptyMap.SetAt(1) });
+							list.Add(new() { emptyMap.SetAt(0), emptyMap.SetAt(1) });
 
 							break;
 						}
 						case 3:
 						{
 							var (i, j, k) = (emptyMap.SetAt(0), emptyMap.SetAt(1), emptyMap.SetAt(2));
-							list.Add(new GridMap { i, j });
-							list.Add(new GridMap { i, k });
-							list.Add(new GridMap { j, k });
+							list.Add(new() { i, j });
+							list.Add(new() { i, k });
+							list.Add(new() { j, k });
 
 							break;
 						}
@@ -216,21 +216,21 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 													{
 														foreach (int cell in elimMapBlock & CandMaps[digit])
 														{
-															conclusions.Add(new Conclusion(Elimination, cell, digit));
+															conclusions.Add(new(Elimination, cell, digit));
 														}
 													}
 													foreach (int digit in rowMask.GetAllSets())
 													{
 														foreach (int cell in elimMapRow & CandMaps[digit])
 														{
-															conclusions.Add(new Conclusion(Elimination, cell, digit));
+															conclusions.Add(new(Elimination, cell, digit));
 														}
 													}
 													foreach (int digit in columnMask.GetAllSets())
 													{
 														foreach (int cell in elimMapColumn & CandMaps[digit])
 														{
-															conclusions.Add(new Conclusion(Elimination, cell, digit));
+															conclusions.Add(new(Elimination, cell, digit));
 														}
 													}
 													if (conclusions.Count == 0)

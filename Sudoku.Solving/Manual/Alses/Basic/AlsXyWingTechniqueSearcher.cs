@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								finalZ |= (short)(1 << digit);
 								foreach (int cell in elimMap)
 								{
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 							}
 							if (conclusions.Count == 0)

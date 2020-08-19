@@ -256,12 +256,12 @@ namespace Sudoku.Solving.Manual.Fishes
 								foreach (int cell in elimMap)
 								{
 									// Normal eliminations.
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 								foreach (int cell in two)
 								{
 									// Cannibalisms.
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 
 								var regionOffsets = new List<(int, int)>();

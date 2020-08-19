@@ -121,7 +121,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 							foreach (int cell in elimMap)
 							{
-								conclusions.Add(new Conclusion(Elimination, cell, d));
+								conclusions.Add(new(Elimination, cell, d));
 							}
 						}
 
@@ -327,7 +327,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							continue;
 						}
 
-						list.Add(new Als(cands, map));
+						list.Add(new(cands, map));
 					}
 				}
 			}

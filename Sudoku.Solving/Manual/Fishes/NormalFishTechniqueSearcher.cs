@@ -169,7 +169,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										var conclusions = new List<Conclusion>();
 										foreach (int offset in elimMap)
 										{
-											conclusions.Add(new Conclusion(Elimination, offset * 9 + digit));
+											conclusions.Add(new(Elimination, offset * 9 + digit));
 										}
 										if (conclusions.Count == 0)
 										{
@@ -347,7 +347,7 @@ namespace Sudoku.Solving.Manual.Fishes
 													var conclusions = new List<Conclusion>();
 													foreach (int cell in elimMap)
 													{
-														conclusions.Add(new Conclusion(Elimination, cell * 9 + digit));
+														conclusions.Add(new(Elimination, cell * 9 + digit));
 													}
 													if (conclusions.Count == 0)
 													{
@@ -538,8 +538,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															var conclusions = new List<Conclusion>();
 															foreach (int offset in elimMap)
 															{
-																conclusions.Add(
-																	new Conclusion(Elimination, offset * 9 + digit));
+																conclusions.Add(new(Elimination, offset * 9 + digit));
 															}
 															if (conclusions.Count == 0)
 															{
@@ -692,7 +691,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				candidateOffsets!.Add((1, cell * 9 + digit));
 			}
 
-			return new View(cellOffsets, candidateOffsets, null, null);
+			return new(cellOffsets, candidateOffsets, null, null);
 		}
 
 		/// <summary>

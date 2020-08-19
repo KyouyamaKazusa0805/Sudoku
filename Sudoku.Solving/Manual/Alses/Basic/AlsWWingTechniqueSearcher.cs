@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					(conjugatePairs[digit] ??= new List<ConjugatePair>()).Add(new ConjugatePair(temp, digit));
+					(conjugatePairs[digit] ??= new List<ConjugatePair>()).Add(new(temp, digit));
 				}
 			}
 
@@ -108,7 +108,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								wDigitsMask |= (short)(1 << w);
 								foreach (int cell in tempMap)
 								{
-									conclusions.Add(new Conclusion(Elimination, cell, w));
+									conclusions.Add(new(Elimination, cell, w));
 								}
 							}
 

@@ -108,7 +108,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								}
 							}
 
-							Patterns[count++] = new Pattern(v);
+							Patterns[count++] = new(v);
 						}
 					}
 				}
@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							}
 						}
 
-						Patterns[count++] = new Pattern(v);
+						Patterns[count++] = new(v);
 					}
 				}
 			}

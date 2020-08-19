@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap)
 					{
-						conclusions.Add(new Conclusion(Elimination, cell, digit));
+						conclusions.Add(new(Elimination, cell, digit));
 					}
 
 					var candidateOffsets = new List<(int, int)>();

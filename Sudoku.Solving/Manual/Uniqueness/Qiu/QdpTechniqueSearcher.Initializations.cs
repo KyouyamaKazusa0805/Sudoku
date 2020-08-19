@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 								RegionMaps[GetRegion(c1, isRow ? Column : Row)]
 								| RegionMaps[GetRegion(c2, isRow ? Column : Row)]);
 
-						Patterns[n++] = new Pattern(squareMap, baseLineMap - squareMap, pairMap);
+						Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
 					}
 				}
 			}

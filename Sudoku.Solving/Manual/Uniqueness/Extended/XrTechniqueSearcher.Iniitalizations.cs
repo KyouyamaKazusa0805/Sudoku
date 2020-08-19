@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					int c12 = c11 + 9, c22 = c21 + 9;
 					int c13 = c11 + 18, c23 = c21 + 18;
 					combinations.Add((
-						new GridMap { c11, c12, c13, c21, c22, c23 },
+						new() { c11, c12, c13, c21, c22, c23 },
 						new[] { (c11, c21), (c12, c22), (c13, c23) },
 						3));
 				}
@@ -83,7 +83,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					int c12 = c11 + 1, c22 = c21 + 1;
 					int c13 = c11 + 2, c23 = c21 + 2;
 					combinations.Add((
-						new GridMap { c11, c12, c13, c21, c22, c23 },
+						new() { c11, c12, c13, c21, c22, c23 },
 						new[] { (c11, c21), (c12, c22), (c13, c23) },
 						3));
 				}

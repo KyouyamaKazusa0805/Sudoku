@@ -59,9 +59,9 @@ namespace Sudoku.Data
 			get
 			{
 				var ancestors = new List<Node>();
-				for (List<Node> todo = new List<Node> { this }, next; todo.Count != 0; todo = next)
+				for (List<Node> todo = new() { this }, next; todo.Count != 0; todo = next)
 				{
-					next = new List<Node>();
+					next = new();
 					foreach (var p in todo)
 					{
 						if (!ancestors.Contains(p))

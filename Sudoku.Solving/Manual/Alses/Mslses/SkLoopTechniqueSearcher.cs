@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							{
 								foreach (int digit in cands.GetAllSets())
 								{
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 							}
 						}

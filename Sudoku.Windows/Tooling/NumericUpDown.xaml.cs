@@ -33,7 +33,7 @@ namespace Sudoku.Windows.Tooling
 					_buttonUp.IsEnabled = value != MaxValue;
 					_buttonDown.IsEnabled = value != MinValue;
 
-					ValueChanged?.Invoke(this, new RoutedEventArgs());
+					ValueChanged?.Invoke(this, new());
 				}
 			}
 		}

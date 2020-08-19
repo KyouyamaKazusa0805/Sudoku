@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					{
 						case 2:
 						{
-							list.Add(new GridMap { emptyCellsInInterMap.SetAt(0), emptyCellsInInterMap.SetAt(1) });
+							list.Add(new() { emptyCellsInInterMap.SetAt(0), emptyCellsInInterMap.SetAt(1) });
 
 							break;
 						}
@@ -67,10 +67,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								emptyCellsInInterMap.SetAt(0),
 								emptyCellsInInterMap.SetAt(1),
 								emptyCellsInInterMap.SetAt(2));
-							list.Add(new GridMap { i, j });
-							list.Add(new GridMap { j, k });
-							list.Add(new GridMap { i, k });
-							list.Add(new GridMap { i, j, k });
+							list.Add(new() { i, j });
+							list.Add(new() { j, k });
+							list.Add(new() { i, k });
+							list.Add(new() { i, j, k });
 
 							break;
 						}
@@ -178,7 +178,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 												{
 													if ((blockMask >> digit & 1) != 0)
 													{
-														conclusions.Add(new Conclusion(Elimination, cell, digit));
+														conclusions.Add(new(Elimination, cell, digit));
 													}
 												}
 											}
@@ -188,13 +188,13 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 												{
 													if ((lineMask >> digit & 1) != 0)
 													{
-														conclusions.Add(new Conclusion(Elimination, cell, digit));
+														conclusions.Add(new(Elimination, cell, digit));
 													}
 												}
 											}
 											foreach (int cell in elimMapIsolated)
 											{
-												conclusions.Add(new Conclusion(Elimination, cell, digitIsolated));
+												conclusions.Add(new(Elimination, cell, digitIsolated));
 											}
 											if (conclusions.Count == 0)
 											{

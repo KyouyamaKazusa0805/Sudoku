@@ -25,7 +25,7 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Indictaes the chosen techniques.
 		/// </summary>
-		public TechniqueCodeFilter ChosenTechniques { get; } = new TechniqueCodeFilter();
+		public TechniqueCodeFilter ChosenTechniques { get; } = new();
 
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Sudoku.Windows.Tooling
 			{
 				var box = new TechniqueBox
 				{
-					Technique = new PriorKeyedTuple<string, TechniqueCode>(name, technique),
+					Technique = new(name, technique),
 					Category = $"{LangSource["Category"]}{category}"
 				};
 

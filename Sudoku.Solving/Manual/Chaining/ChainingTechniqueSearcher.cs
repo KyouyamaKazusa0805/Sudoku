@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					if (digit != p.Digit && grid.Exists(p.Cell, digit) is true)
 					{
-						result.Add(new Node(p.Cell, digit, false, p));
+						result.Add(new(p.Cell, digit, false, p));
 					}
 				}
 			}
@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					int cell = RegionCells[region][pos];
 					if (cell != p.Cell && grid.Exists(cell, p.Digit) is true)
 					{
-						result.Add(new Node(cell, p.Digit, false, p));
+						result.Add(new(cell, p.Digit, false, p));
 					}
 				}
 			}

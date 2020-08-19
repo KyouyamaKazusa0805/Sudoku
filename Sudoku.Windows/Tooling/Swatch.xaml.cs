@@ -69,6 +69,6 @@ namespace Sudoku.Windows.Tooling
 		}
 
 		internal ICollection<ColorSwatchItem> GetColors() =>
-			SwatchListBox.ItemsSource as List<ColorSwatchItem> ?? new List<ColorSwatchItem>();
+			SwatchListBox.ItemsSource as List<ColorSwatchItem> ?? new();
 	}
 }

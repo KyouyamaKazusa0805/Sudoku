@@ -95,7 +95,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 							var conclusions = new List<Conclusion>();
 							foreach (int offset in elimMap)
 							{
-								conclusions.Add(new Conclusion(Elimination, offset, elimDigit));
+								conclusions.Add(new(Elimination, offset, elimDigit));
 							}
 
 							accumulator.Add(
@@ -119,7 +119,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 									},
 									startCellOffset: c1,
 									endCellOffset: c2,
-									conjugatePair: new ConjugatePair(bridgeStart, bridgeEnd, digit)));
+									conjugatePair: new(bridgeStart, bridgeEnd, digit)));
 						}
 					}
 				}

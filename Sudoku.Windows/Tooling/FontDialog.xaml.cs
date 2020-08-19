@@ -80,7 +80,7 @@ namespace Sudoku.Windows.Tooling
 			_listBoxFonts.ItemsSource = from Font in new InstalledFontCollection().Families select Font.Name;
 			_listBoxFonts.SelectedIndex = 0;
 
-			SelectedFont = new Font(_listBoxFonts.Items[0].ToString(), (float)FontSize, DFontStyle.Regular);
+			SelectedFont = new(_listBoxFonts.Items[0].ToString(), (float)FontSize, DFontStyle.Regular);
 
 			_textBoxSize.Text = FontSize.ToString();
 
@@ -94,7 +94,7 @@ namespace Sudoku.Windows.Tooling
 			g.TextRenderingHint = AntiAlias;
 			g.DrawString(
 				SampleText, SelectedFont, _brush, bitmap.Width >> 1, bitmap.Height >> 1,
-				new StringFormat { Alignment = Center, LineAlignment = Center });
+				new() { Alignment = Center, LineAlignment = Center });
 
 			_imagePreview.Source = bitmap.ToImageSource();
 		}
@@ -121,7 +121,7 @@ namespace Sudoku.Windows.Tooling
 			// While initializing, 'SelectedFont' is null.
 			if (sender is ListBox listBox && SelectedFont is not null)
 			{
-				SelectedFont = new Font(SelectedFont, (DFontStyle)listBox.SelectedIndex);
+				SelectedFont = new(SelectedFont, (DFontStyle)listBox.SelectedIndex);
 
 				DrawString();
 			}
@@ -132,7 +132,7 @@ namespace Sudoku.Windows.Tooling
 			// While initializing, 'SelectedFont' is null.
 			if (sender is ListBox listBox && SelectedFont is not null)
 			{
-				SelectedFont = new Font(listBox.SelectedItem.ToString(), SelectedFont.Size, SelectedFont.Style);
+				SelectedFont = new(listBox.SelectedItem.ToString(), SelectedFont.Size, SelectedFont.Style);
 
 				DrawString();
 			}
@@ -150,7 +150,7 @@ namespace Sudoku.Windows.Tooling
 					return;
 				}
 
-				SelectedFont = new Font(SelectedFont.Name, (float)value, SelectedFont.Style);
+				SelectedFont = new(SelectedFont.Name, (float)value, SelectedFont.Style);
 
 				DrawString();
 			}

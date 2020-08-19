@@ -30,7 +30,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			return results.Count switch
 			{
 				0 => throw new NoSolutionException(grid),
-				1 => new AnalysisResult
+				1 => new
 				(
 					solverName: SolverName,
 					puzzle: grid,

@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual
 
 				if (cloneation.HasSolved)
 				{
-					result = new AnalysisResult(
+					result = new(
 						solverName: SolverName,
 						puzzle: grid,
 						solution: cloneation,

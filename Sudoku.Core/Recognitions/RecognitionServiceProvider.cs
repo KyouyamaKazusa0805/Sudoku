@@ -21,7 +21,7 @@ namespace Sudoku.Recognitions
 		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public RecognitionServiceProvider()
 		{
-			_recognizingServiceProvider = new InternalServiceProvider();
+			_recognizingServiceProvider = new();
 			_recognizingServiceProvider.InitTesseractAsync($@"{Directory.GetCurrentDirectory()}\tessdata").Wait();
 		}
 

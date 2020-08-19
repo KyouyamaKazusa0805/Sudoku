@@ -57,11 +57,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					if (grid.Exists(cell, x) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, cell, x));
+						conclusions.Add(new(Elimination, cell, x));
 					}
 					if (grid.Exists(cell, y) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, cell, y));
+						conclusions.Add(new(Elimination, cell, y));
 					}
 				}
 				if (conclusions.Count == 0)
@@ -151,7 +151,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					foreach (int digit in stackalloc[] { d1, d2 })
 					{
-						if (!IsConjugatePair(digit, new GridMap { cell, sameRegionCell }, region))
+						if (!IsConjugatePair(digit, new() { cell, sameRegionCell }, region))
 						{
 							continue;
 						}
@@ -166,7 +166,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var conclusions = new List<Conclusion>();
 						if (grid.Exists(elimCell, elimDigit) is true)
 						{
-							conclusions.Add(new Conclusion(Elimination, elimCell, elimDigit));
+							conclusions.Add(new(Elimination, elimCell, elimDigit));
 						}
 						if (conclusions.Count == 0)
 						{
@@ -272,7 +272,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					foreach (int digit in stackalloc[] { d1, d2 })
 					{
-						if (!IsConjugatePair(digit, new GridMap { cell, sameRegionCell }, region))
+						if (!IsConjugatePair(digit, new() { cell, sameRegionCell }, region))
 						{
 							continue;
 						}
@@ -286,7 +286,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var conclusions = new List<Conclusion>();
 						if (grid.Exists(elimCell, digit) is true)
 						{
-							conclusions.Add(new Conclusion(Elimination, elimCell, digit));
+							conclusions.Add(new(Elimination, elimCell, digit));
 						}
 						if (conclusions.Count == 0)
 						{
@@ -401,11 +401,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					if (grid.Exists(cell, x) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, cell, x));
+						conclusions.Add(new(Elimination, cell, x));
 					}
 					if (grid.Exists(cell, y) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, cell, y));
+						conclusions.Add(new(Elimination, cell, y));
 					}
 				}
 				if (conclusions.Count == 0)
@@ -494,11 +494,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var conclusions = new List<Conclusion>();
 				if (grid.Exists(abxCell, a) is true)
 				{
-					conclusions.Add(new Conclusion(Elimination, abxCell, a));
+					conclusions.Add(new(Elimination, abxCell, a));
 				}
 				if (grid.Exists(abyCell, b) is true)
 				{
-					conclusions.Add(new Conclusion(Elimination, abyCell, b));
+					conclusions.Add(new(Elimination, abyCell, b));
 				}
 				if (conclusions.Count == 0)
 				{
@@ -553,7 +553,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						cells: urCells,
 						conjugatePairs: new[]
 						{
-							new ConjugatePair(abxCell, abzCell, b),
+							new(abxCell, abzCell, b),
 							new ConjugatePair(abyCell, abzCell, a)
 						},
 						isAr: arMode));
@@ -603,7 +603,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(end, a) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, end, a));
+						conclusions.Add(new(Elimination, end, a));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -644,7 +644,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					var conjugatePairs = new[]
 					{
-						new ConjugatePair(cornerCell, begin, a),
+						new(cornerCell, begin, a),
 						new ConjugatePair(begin, abzCell, b)
 					};
 					accumulator.Add(
@@ -706,7 +706,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(begin, a) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, begin, a));
+						conclusions.Add(new(Elimination, begin, a));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -746,7 +746,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					var conjugatePairs = new[]
 					{
-						new ConjugatePair(cornerCell, end, a),
+						new(cornerCell, end, a),
 						new ConjugatePair(begin, abzCell, b)
 					};
 					accumulator.Add(
@@ -808,7 +808,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(abzCell, b) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, abzCell, b));
+						conclusions.Add(new(Elimination, abzCell, b));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -848,7 +848,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					var conjugatePairs = new[]
 					{
-						new ConjugatePair(cornerCell, end, a),
+						new(cornerCell, end, a),
 						new ConjugatePair(begin, abzCell, a)
 					};
 					accumulator.Add(
@@ -909,11 +909,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(head, b) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, head, b));
+						conclusions.Add(new(Elimination, head, b));
 					}
 					if (grid.Exists(extra, b) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, extra, b));
+						conclusions.Add(new(Elimination, extra, b));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -956,8 +956,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					var conjugatePairs = new[]
 					{
-						new ConjugatePair(head, begin, a),
-						new ConjugatePair(begin, end, b),
+						new(head, begin, a),
+						new(begin, end, b),
 						new ConjugatePair(end, extra, a)
 					};
 					accumulator.Add(
@@ -1025,7 +1025,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					GridMap link3Map1 = new GridMap { abw, abz }, link3Map2 = new GridMap { abx, abz };
+					GridMap link3Map1 = new() { abw, abz }, link3Map2 = new() { abx, abz };
 					innerMaps[0] = link3Map1;
 					innerMaps[1] = link3Map2;
 					for (int i = 0; i < 2; i++)
@@ -1039,7 +1039,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var conclusions = new List<Conclusion>();
 						if (grid.Exists(aby, b) is true)
 						{
-							conclusions.Add(new Conclusion(Elimination, aby, b));
+							conclusions.Add(new(Elimination, aby, b));
 						}
 						if (conclusions.Count == 0)
 						{
@@ -1082,8 +1082,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						var conjugatePairs = new[]
 						{
-							new ConjugatePair(abx, aby, a),
-							new ConjugatePair(aby, abw, a),
+							new(abx, aby, a),
+							new(aby, abw, a),
 							new ConjugatePair(linkMap.SetAt(0), linkMap.SetAt(1), b)
 						};
 						accumulator.Add(
@@ -1213,7 +1213,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							foreach (int cell in elimMap)
 							{
-								conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+								conclusions.Add(new(Elimination, cell, elimDigit));
 							}
 
 							var candidateOffsets = new List<(int, int)>();
@@ -1316,7 +1316,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									foreach (int cell in elimMap)
 									{
-										conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+										conclusions.Add(new(Elimination, cell, elimDigit));
 									}
 
 									var candidateOffsets = new List<(int, int)>();
@@ -1416,7 +1416,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 										foreach (int cell in elimMap)
 										{
-											conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+											conclusions.Add(new(Elimination, cell, elimDigit));
 										}
 
 										var candidateOffsets = new List<(int, int)>();

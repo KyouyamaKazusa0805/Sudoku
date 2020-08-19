@@ -119,14 +119,14 @@ namespace Sudoku.Solving.Manual.Intersections
 
 					foreach (int digit in (mask & grid.GetCandidateMask(aCell)).GetAllSets())
 					{
-						conclusions.Add(new Conclusion(Elimination, aCell, digit));
+						conclusions.Add(new(Elimination, aCell, digit));
 					}
 				}
 				foreach (int digit in (Grid.MaxCandidatesMask & ~mask).GetAllSets())
 				{
 					foreach (int ahsCell in ahsCells & CandMaps[digit])
 					{
-						conclusions.Add(new Conclusion(Elimination, ahsCell, digit));
+						conclusions.Add(new(Elimination, ahsCell, digit));
 					}
 				}
 				if (conclusions.Count == 0)

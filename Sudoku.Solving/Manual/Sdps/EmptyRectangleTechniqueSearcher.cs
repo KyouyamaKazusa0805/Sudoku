@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual.Sdps
 								},
 								digit,
 								block,
-								conjugatePair: new ConjugatePair(cpCells[0], cpCells[1], digit)));
+								conjugatePair: new(cpCells[0], cpCells[1], digit)));
 					}
 				}
 			}

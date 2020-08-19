@@ -243,7 +243,7 @@ namespace Sudoku.Data
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
-						ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, result, value));
+						ValueChanged.Invoke(this, new(offset, copy, result, value));
 
 						break;
 					}
@@ -269,7 +269,7 @@ namespace Sudoku.Data
 				}
 
 				// To trigger the event.
-				ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, result, -1));
+				ValueChanged.Invoke(this, new(offset, copy, result, -1));
 			}
 		}
 
@@ -330,7 +330,7 @@ namespace Sudoku.Data
 			short copy = mask;
 			mask = (short)((int)cellStatus << 9 | mask & MaxCandidatesMask);
 
-			ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, mask, -1));
+			ValueChanged.Invoke(this, new(offset, copy, mask, -1));
 		}
 
 		/// <summary>
@@ -345,7 +345,7 @@ namespace Sudoku.Data
 			short copy = mask;
 			mask = value;
 
-			ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, mask, -1));
+			ValueChanged.Invoke(this, new(offset, copy, mask, -1));
 		}
 
 		/// <summary>
@@ -459,7 +459,7 @@ namespace Sudoku.Data
 		public CellStatus GetStatus(int offset) => (CellStatus)(_masks[offset] >> 9 & (int)CellStatus.All);
 
 		/// <inheritdoc/>
-		public Grid Clone() => new Grid((short[])_masks.Clone());
+		public Grid Clone() => new((short[])_masks.Clone());
 
 		/// <inheritdoc/>
 		public IEnumerator<short> GetEnumerator() => ((IEnumerable<short>)_masks).GetEnumerator();

@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <summary>
 		/// Indicates the cells used in this ALS.
 		/// </summary>
-		public GridMap Map => new GridMap(Cells);
+		public GridMap Map => new(Cells);
 
 		/// <summary>
 		/// Indicates all digits used.
@@ -246,7 +246,8 @@ namespace Sudoku.Solving.Manual.Alses
 							break;
 						}
 					}
-					yield return new Als((int)mask | 1 << i << 9 | b << 18);
+
+					yield return new((int)mask | 1 << i << 9 | b << 18);
 				}
 			}
 
@@ -291,7 +292,7 @@ namespace Sudoku.Solving.Manual.Alses
 							continue;
 						}
 
-						yield return new Als((int)digitsMask | realMask << 9 | region << 18);
+						yield return new((int)digitsMask | realMask << 9 | region << 18);
 					}
 				}
 			}

@@ -134,8 +134,8 @@ namespace Sudoku.Recognitions
 				resultField,
 				CvInvoke.GetPerspectiveTransform(
 					field,
-					new[] { new PointF(0, 0), new PointF(RSize, 0), new PointF(0, RSize), new PointF(RSize, RSize) }),
-				new Size(RSize, RSize));
+					new[] { new(0, 0), new(RSize, 0), new(0, RSize), new PointF(RSize, RSize) }),
+				new(RSize, RSize));
 
 			return resultField;
 		}
@@ -211,9 +211,9 @@ namespace Sudoku.Recognitions
 
 			var sides = new[]
 			{
-				new LineSegment2DF(contour[0], contour[1]),
-				new LineSegment2DF(contour[1], contour[3]),
-				new LineSegment2DF(contour[2], contour[3]),
+				new(contour[0], contour[1]),
+				new(contour[1], contour[3]),
+				new(contour[2], contour[3]),
 				new LineSegment2DF(contour[0], contour[2])
 			};
 

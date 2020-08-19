@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
-using Action = System.Action<System.Collections.Generic.IList<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.IReadOnlyGrid>;
 
 namespace Sudoku.Solving.Manual.Symmetry
 {
@@ -20,9 +20,16 @@ namespace Sudoku.Solving.Manual.Symmetry
 		{
 			// To verify all kinds of symmetry.
 			// Note that Gurth's symmetrical placement does not have X-axis and Y-axis type.
-			foreach (var act in new Action[] { CheckCentral, CheckDiagonal, CheckAntiDiagonal })
+			unsafe
 			{
-				act(accumulator, grid);
+				foreach (var act in
+					new delegate*<IList<TechniqueInfo>, IReadOnlyGrid, void>[]
+					{
+						&CheckCentral, &CheckDiagonal, &CheckAntiDiagonal
+					})
+				{
+					act(accumulator, grid);
+				}
 			}
 		}
 
@@ -31,7 +38,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		private void CheckDiagonal(IList<TechniqueInfo> result, IReadOnlyGrid grid)
+		private static void CheckDiagonal(IList<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool diagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -134,7 +141,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 						continue;
 					}
 
-					conclusions.Add(new Conclusion(Elimination, cell, digit));
+					conclusions.Add(new(Elimination, cell, digit));
 				}
 			}
 
@@ -156,7 +163,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		private void CheckAntiDiagonal(IList<TechniqueInfo> result, IReadOnlyGrid grid)
+		private static void CheckAntiDiagonal(IList<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool antiDiagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -259,7 +266,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 						continue;
 					}
 
-					conclusions.Add(new Conclusion(Elimination, cell, digit));
+					conclusions.Add(new(Elimination, cell, digit));
 				}
 			}
 

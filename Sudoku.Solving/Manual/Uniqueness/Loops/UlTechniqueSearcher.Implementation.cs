@@ -29,11 +29,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			var conclusions = new List<Conclusion>();
 			if (grid.Exists(extraCell, d1) is true)
 			{
-				conclusions.Add(new Conclusion(Elimination, extraCell, d1));
+				conclusions.Add(new(Elimination, extraCell, d1));
 			}
 			if (grid.Exists(extraCell, d2) is true)
 			{
-				conclusions.Add(new Conclusion(Elimination, extraCell, d2));
+				conclusions.Add(new(Elimination, extraCell, d2));
 			}
 			if (conclusions.Count == 0)
 			{
@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			var conclusions = new List<Conclusion>();
 			foreach (int cell in elimMap)
 			{
-				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 
 			var candidateOffsets = new List<(int, int)>();
@@ -183,7 +183,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						{
 							foreach (int cell in elimMap & CandMaps[digit])
 							{
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -263,11 +263,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(first, otherDigit) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, first, otherDigit));
+						conclusions.Add(new(Elimination, first, otherDigit));
 					}
 					if (grid.Exists(second, otherDigit) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, second, otherDigit));
+						conclusions.Add(new(Elimination, second, otherDigit));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -301,7 +301,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							d1,
 							d2,
 							loop,
-							conjugatePair: new ConjugatePair(first, second, digit)));
+							conjugatePair: new(first, second, digit)));
 				}
 			}
 		}

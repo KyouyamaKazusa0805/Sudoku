@@ -175,7 +175,7 @@ namespace Sudoku.Solving.Manual
 			// All solver cannot finish the puzzle...
 			// :(
 			stopwatch.Stop();
-			return new AnalysisResult(
+			return new(
 				solverName: SolverName,
 				puzzle: grid,
 				solution: null,

@@ -18,7 +18,7 @@ namespace Sudoku.Drawing.Extensions
 		/// <param name="rightDown">The right down point.</param>
 		/// <returns>The rectangle.</returns>
 		public static Rectangle CreateInstance(Point leftUp, Point rightDown) =>
-			new Rectangle(leftUp.X, leftUp.Y, rightDown.X - leftUp.X, rightDown.Y - leftUp.Y);
+			new(leftUp.X, leftUp.Y, rightDown.X - leftUp.X, rightDown.Y - leftUp.Y);
 
 		/// <summary>
 		/// Create an instance with two points.
@@ -27,7 +27,7 @@ namespace Sudoku.Drawing.Extensions
 		/// <param name="rightDown">The right down point.</param>
 		/// <returns>The rectangle.</returns>
 		public static RectangleF CreateInstance(PointF leftUp, PointF rightDown) =>
-			new RectangleF(leftUp.X, leftUp.Y, rightDown.X - leftUp.X, rightDown.Y - leftUp.Y);
+			new(leftUp.X, leftUp.Y, rightDown.X - leftUp.X, rightDown.Y - leftUp.Y);
 
 		/// <summary>
 		/// Zoom in or out the rectangle by the specified offset.

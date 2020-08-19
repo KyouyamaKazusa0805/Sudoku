@@ -125,7 +125,7 @@ namespace Sudoku.Windows.Tooling
 					if (node.Content == category)
 					{
 						allNodes.Add(
-							new TreeNode<string>
+							new()
 							{
 								Content = displayName,
 								Id = techniqueId + 1000,

@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Manual.Alses
 						// in two ALSes.
 						foreach (int elimDigit in (digitsMask & ~(1 << commonDigit)).GetAllSets())
 						{
-							yield return new Rcc(als1, als2, commonDigit, region);
+							yield return new(als1, als2, commonDigit, region);
 						}
 					}
 				}

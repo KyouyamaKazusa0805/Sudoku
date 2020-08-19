@@ -90,7 +90,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 						foreach (int cell in gridMap)
 						{
-							conclusions.Add(new Conclusion(Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 						if (conclusions.Count == 0)
 						{

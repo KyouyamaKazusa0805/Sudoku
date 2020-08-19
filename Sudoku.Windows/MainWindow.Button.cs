@@ -58,7 +58,7 @@ namespace Sudoku.Windows
 					_buttonFindAllSteps.IsEnabled = false;
 					DisableSolvingControls();
 
-					dialog = new ProgressWindow();
+					dialog = new();
 					dialog.Show();
 					IEnumerable<TechniqueGroupedByName> s() =>
 						new StepFinder(Settings).Search(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);

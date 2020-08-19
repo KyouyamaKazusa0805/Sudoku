@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				foreach (int cell in CandMaps[digit])
 				{
-					_tempConclusions.Add(new Conclusion(Assignment, cell, digit));
+					_tempConclusions.Add(new(Assignment, cell, digit));
 					var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
 
 					// Try to fill this cell.
@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				var (_, c1) = _tempConclusions[i];
 				var (_, c2) = _tempConclusions[i + 1];
-				result.Add(new Link(c1, c2, Default));
+				result.Add(new(c1, c2, Default));
 			}
 
 			return result;

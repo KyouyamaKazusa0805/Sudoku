@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					{
 						if (digit != extraDigit)
 						{
-							conclusions.Add(new Conclusion(Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 				}
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in elimMap)
 			{
-				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 
 			foreach (int cell in allCellsMap)
@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						{
 							foreach (int cell in elimMap & CandMaps[digit])
 							{
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -185,7 +185,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					{
 						if (grid.Exists(extraCell, digit) is true)
 						{
-							conclusions.Add(new Conclusion(Elimination, extraCell, digit));
+							conclusions.Add(new(Elimination, extraCell, digit));
 						}
 					}
 
@@ -245,7 +245,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							{
 								foreach (int cell in extraCellsMap & CandMaps[digit])
 								{
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 							}
 							if (conclusions.Count == 0)
@@ -279,7 +279,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 									},
 									cells: allCellsMap,
 									digits: normalDigits,
-									conjugatePair: new ConjugatePair(extraCellsMap, conjugateDigit)));
+									conjugatePair: new(extraCellsMap, conjugateDigit)));
 						}
 					}
 

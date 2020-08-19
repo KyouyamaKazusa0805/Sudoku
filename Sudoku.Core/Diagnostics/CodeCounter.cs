@@ -62,7 +62,7 @@ namespace Sudoku.Diagnostics
 		/// <returns>The number of lines.</returns>
 		public int CountCodeLines(out int filesCount)
 		{
-			GetAllFilesRecursively(new DirectoryInfo(_root));
+			GetAllFilesRecursively(new(_root));
 
 			int count = 0;
 			int result = 0;

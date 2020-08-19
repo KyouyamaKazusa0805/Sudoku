@@ -202,7 +202,7 @@ namespace Sudoku.Windows.Tooling
 			using var writer =
 				XmlWriter.Create(
 					sw,
-					new XmlWriterSettings
+					new()
 					{
 						Indent = true,
 						IndentChars = "    ",

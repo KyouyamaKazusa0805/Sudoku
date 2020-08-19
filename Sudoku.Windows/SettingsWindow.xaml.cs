@@ -92,11 +92,11 @@ namespace Sudoku.Windows
 			_numericUpDownValueScale.CurrentValue = Settings.ValueScale;
 			_numericUpDownCandidateScale.CurrentValue = Settings.CandidateScale;
 			_labelGivenFontName.Content = Settings.GivenFontName;
-			_labelGivenFontName.FontFamily = new FontFamily(Settings.GivenFontName);
+			_labelGivenFontName.FontFamily = new(Settings.GivenFontName);
 			_labelModifiableFontName.Content = Settings.ModifiableFontName;
-			_labelModifiableFontName.FontFamily = new FontFamily(Settings.ModifiableFontName);
+			_labelModifiableFontName.FontFamily = new(Settings.ModifiableFontName);
 			_labelCandidateFontName.Content = Settings.CandidateFontName;
-			_labelCandidateFontName.FontFamily = new FontFamily(Settings.CandidateFontName);
+			_labelCandidateFontName.FontFamily = new(Settings.CandidateFontName);
 			_buttonBackgroundColor.Background = new SolidColorBrush(Settings.BackgroundColor.ToWColor());
 			_buttonGivenColor.Background = new SolidColorBrush(Settings.GivenColor.ToWColor());
 			_buttonModifiableColor.Background = new SolidColorBrush(Settings.ModifiableColor.ToWColor());
@@ -250,7 +250,7 @@ namespace Sudoku.Windows
 			{
 				_assigments += () =>
 				{
-					_labelGivenFontName.FontFamily = new FontFamily(Settings.GivenFontName = dialog.SelectedFont.Name);
+					_labelGivenFontName.FontFamily = new(Settings.GivenFontName = dialog.SelectedFont.Name);
 					_labelGivenFontName.Content = dialog.SelectedFont.Name;
 				};
 			}
@@ -277,8 +277,7 @@ namespace Sudoku.Windows
 			{
 				_assigments += () =>
 				{
-					_labelCandidateFontName.FontFamily = new FontFamily(
-						Settings.CandidateFontName = dialog.SelectedFont.Name);
+					_labelCandidateFontName.FontFamily = new(Settings.CandidateFontName = dialog.SelectedFont.Name);
 					_labelCandidateFontName.Content = dialog.SelectedFont.Name;
 				};
 			}

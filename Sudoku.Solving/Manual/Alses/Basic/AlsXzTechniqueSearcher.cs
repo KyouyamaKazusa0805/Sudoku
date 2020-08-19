@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 						foreach (int cell in elimMap)
 						{
-							conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+							conclusions.Add(new(Elimination, cell, elimDigit));
 						}
 
 						finalZ |= (short)(1 << elimDigit);
@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							{
 								foreach (int cell in elimMap)
 								{
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 							}
 
@@ -153,10 +153,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							foreach (int cell in tempMap)
 							{
-								foreach (int digit in
-									(grid.GetCandidateMask(cell) & (mask1 & ~rccMask)).GetAllSets())
+								foreach (int digit in (grid.GetCandidateMask(cell) & (mask1 & ~rccMask)).GetAllSets())
 								{
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 							}
 						}
@@ -170,10 +169,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							foreach (int cell in tempMap)
 							{
-								foreach (int digit in
-									(grid.GetCandidateMask(cell) & (mask2 & ~rccMask)).GetAllSets())
+								foreach (int digit in (grid.GetCandidateMask(cell) & (mask2 & ~rccMask)).GetAllSets())
 								{
-									conclusions.Add(new Conclusion(Elimination, cell, digit));
+									conclusions.Add(new(Elimination, cell, digit));
 								}
 							}
 						}

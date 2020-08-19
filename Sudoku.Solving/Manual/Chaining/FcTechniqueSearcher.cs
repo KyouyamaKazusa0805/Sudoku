@@ -123,8 +123,8 @@ namespace Sudoku.Solving.Manual.Chaining
 						valueToOff.Add(digit, onToOff);
 						if (cellToOn is null/* || cellToOff is null*/)
 						{
-							cellToOn = new Set<Node>(onToOn);
-							cellToOff = new Set<Node>(onToOff);
+							cellToOn = new(onToOn);
+							cellToOff = new(onToOff);
 						}
 						else
 						{
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			ISet<Node> onToOn, ISet<Node> onToOff, bool doDouble, bool doContradiction)
 		{
 			Node[]? absurdNodes;
-			Set<Node> offToOn = new Set<Node>(), offToOff = new Set<Node>();
+			Set<Node> offToOn = new(), offToOff = new();
 
 			// Circular forcing chains (hypothesis implying its negation)
 			// are already covered by cell forcing chains, and are therefore not checked for.
@@ -252,7 +252,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					{
 						var posToOn = new Dictionary<int, Set<Node>>();
 						var posToOff = new Dictionary<int, Set<Node>>();
-						Set<Node> regionToOn = new Set<Node>(), regionToOff = new Set<Node>();
+						Set<Node> regionToOn = new(), regionToOff = new();
 
 						// Iterate on node positions within the region.
 						foreach (int otherCell in worthMap)
@@ -267,7 +267,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							else
 							{
 								var other = new Node(otherCell, digit, true);
-								Set<Node> otherToOn = new Set<Node> { other }, otherToOff = new Set<Node>();
+								Set<Node> otherToOn = new() { other }, otherToOff = new();
 
 								DoChaining(grid, otherToOn, otherToOff);
 
@@ -403,7 +403,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private ChainingTechniqueInfo? CreateChainingOnHint(
 			Node destOn, Node destOff, Node source, Node target, bool isAbsurd) =>
 			new BinaryChainingTechniqueInfo(
-				conclusions: new List<Conclusion> { new Conclusion(Assignment, target._cell, target.Digit) },
+				conclusions: new List<Conclusion> { new(Assignment, target._cell, target.Digit) },
 				views: new[]
 				{
 					new View(
@@ -421,7 +421,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private ChainingTechniqueInfo? CreateChainingOffHint(
 			Node destOn, Node destOff, Node source, Node target, bool isAbsurd) =>
 			new BinaryChainingTechniqueInfo(
-				conclusions: new List<Conclusion> { new Conclusion(Elimination, target._cell, target.Digit) },
+				conclusions: new List<Conclusion> { new(Elimination, target._cell, target.Digit) },
 				views: new[]
 				{
 					new View(
@@ -443,7 +443,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>
 			{
-				new Conclusion(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
+				new(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
 			};
 
 			// Build chains.
@@ -463,13 +463,13 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				var candidateOffsets = new List<(int, int)>(GetCandidateOffsets(node)) { (2, sourceCell * 9 + digit) };
 				var links = GetLinks(node, true);
-				views.Add(new View(new[] { (0, sourceCell) }, candidateOffsets, null, links));
+				views.Add(new(new[] { (0, sourceCell) }, candidateOffsets, null, links));
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);
 			}
 
 			// Insert the global view at head.
-			views.Insert(0, new View(new[] { (0, sourceCell) }, globalCandidates, null, globalLinks));
+			views.Insert(0, new(new[] { (0, sourceCell) }, globalCandidates, null, globalLinks));
 
 			return new CellChainingTechniqueInfo(conclusions, views, sourceCell, chains);
 		}
@@ -480,7 +480,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>
 			{
-				new Conclusion(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
+				new(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
 			};
 
 			// Build chains.
@@ -501,12 +501,12 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				var candidateOffsets = new List<(int, int)>(GetCandidateOffsets(node)) { (2, cell * 9 + digit) };
 				var links = GetLinks(node, true);
-				views.Add(new View(null, candidateOffsets, new[] { (0, region) }, links));
+				views.Add(new(null, candidateOffsets, new[] { (0, region) }, links));
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);
 			}
 
-			views.Insert(0, new View(null, globalCandidates, new[] { (0, region) }, globalLinks));
+			views.Insert(0, new(null, globalCandidates, new[] { (0, region) }, globalLinks));
 
 			return new RegionChainingTechniqueInfo(conclusions, views, region, digit, chains);
 		}

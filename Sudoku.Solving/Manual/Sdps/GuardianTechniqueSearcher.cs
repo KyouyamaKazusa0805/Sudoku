@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Sdps
 									var conclusions = new List<Conclusion>();
 									foreach (int elimCell in elimMap)
 									{
-										conclusions.Add(new Conclusion(Elimination, elimCell, digit));
+										conclusions.Add(new(Elimination, elimCell, digit));
 									}
 
 									var candidateOffsets = new List<(int, int)>();

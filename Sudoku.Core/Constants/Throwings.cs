@@ -18,32 +18,29 @@ namespace Sudoku.Constants
 		/// generate a warning (CS8509).
 		/// </para>
 		/// </summary>
-		public static SwitchExpressionException ImpossibleCase =>
-			new SwitchExpressionException("Impossible case.");
+		public static SwitchExpressionException ImpossibleCase => new("Impossible case.");
 
 		/// <summary>
 		/// Indicates an exception throwing when the format string is invalid.
 		/// </summary>
-		public static FormatException FormatError => new FormatException("The specified format is invalid.");
+		public static FormatException FormatError => new("The specified format is invalid.");
 
 		/// <summary>
 		/// Indicates an exception throwing when the format string contains invalid characters.
 		/// </summary>
 		public static FormatException FormatErrorWithInvalidChars =>
-			throw new FormatException("The specified format is invalid due to with invalid characters.");
+			throw new("The specified format is invalid due to with invalid characters.");
 
 		/// <summary>
 		/// Indicates all <see langword="ref struct"/>s cannot
 		/// use any boxing operations.
 		/// </summary>
-		public static NotSupportedException RefStructNotSupported =>
-			new NotSupportedException("Ref structs cannot use any boxing operations.");
+		public static NotSupportedException RefStructNotSupported => new("Ref structs cannot use any boxing operations.");
 
 		/// <summary>
 		/// Indicates the current operation is invalid.
 		/// </summary>
-		public static InvalidOperationException InvalidOperation =>
-			new InvalidOperationException("The specified operation is invalid.");
+		public static InvalidOperationException InvalidOperation => new("The specified operation is invalid.");
 
 
 		/// <summary>
@@ -53,8 +50,7 @@ namespace Sudoku.Constants
 		/// <param name="message">The specified message to display.</param>
 		/// <returns>The exception.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SwitchExpressionException ImpossibleCaseWithMessage(string message) =>
-			new SwitchExpressionException(message);
+		public static SwitchExpressionException ImpossibleCaseWithMessage(string message) => new(message);
 
 		/// <summary>
 		/// Indicates an exception throwing when the parsing is failed.
@@ -64,9 +60,7 @@ namespace Sudoku.Constants
 		/// <returns>The exception.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static ArgumentException ParsingError<TTarget>(string paramName) =>
-			new ArgumentException(
-				message: $"Argument cannot be parsed and converted to target type {typeof(TTarget)}.",
-				paramName);
+			new($"Argument cannot be parsed and converted to target type {typeof(TTarget)}.", paramName);
 
 		/// <summary>
 		/// Indicates an exception throwing when the format string is error.
@@ -76,8 +70,6 @@ namespace Sudoku.Constants
 		/// <returns>The exception.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static FormatException FormatErrorWithMessage(string message, string paramName) =>
-			new FormatException(
-				message: "The specified format is invalid.",
-				innerException: new ArgumentException(message, paramName));
+			new("The specified format is invalid.", new ArgumentException(message, paramName));
 	}
 }

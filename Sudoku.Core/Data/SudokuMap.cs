@@ -33,7 +33,7 @@ namespace Sudoku.Data
 
 		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap() => _innerArray = new BitArray(729);
+		public SudokuMap() => _innerArray = new(729);
 
 		/// <summary>
 		/// Initializes an instance with another map.
@@ -416,7 +416,7 @@ namespace Sudoku.Data
 				result.And(AssignBitArray(candidate, false));
 			}
 
-			return new SudokuMap(result);
+			return new(result);
 		}
 
 		/// <summary>
@@ -432,7 +432,7 @@ namespace Sudoku.Data
 				result.And(AssignBitArray(candidate, false));
 			}
 
-			return new SudokuMap(result);
+			return new(result);
 		}
 
 		/// <summary>
@@ -496,9 +496,9 @@ namespace Sudoku.Data
 		public static SudokuMap operator -(SudokuMap? left, SudokuMap? right) =>
 			(left is null, right is null) switch
 			{
-				(true, true) => new SudokuMap(),
-				(false, false) => new SudokuMap(((BitArray)left!._innerArray.Clone()).And(right!._innerArray).Not()),
-				(true, false) => new SudokuMap(),
+				(true, true) => new(),
+				(false, false) => new(((BitArray)left!._innerArray.Clone()).And(right!._innerArray).Not()),
+				(true, false) => new(),
 				(false, true) => left!
 			};
 
@@ -512,9 +512,9 @@ namespace Sudoku.Data
 		public static SudokuMap operator &(SudokuMap? left, SudokuMap? right) =>
 			(left is null, right is null) switch
 			{
-				(true, true) => new SudokuMap(),
-				(false, false) => new SudokuMap(((BitArray)left!._innerArray.Clone()).And(right!._innerArray)),
-				_ => new SudokuMap(),
+				(true, true) => new(),
+				(false, false) => new(((BitArray)left!._innerArray.Clone()).And(right!._innerArray)),
+				_ => new(),
 			};
 
 		/// <summary>
@@ -527,8 +527,8 @@ namespace Sudoku.Data
 		public static SudokuMap operator |(SudokuMap? left, SudokuMap? right) =>
 			(left is null, right is null) switch
 			{
-				(true, true) => new SudokuMap(),
-				(false, false) => new SudokuMap(((BitArray)left!._innerArray.Clone()).Or(right!._innerArray)),
+				(true, true) => new(),
+				(false, false) => new(((BitArray)left!._innerArray.Clone()).Or(right!._innerArray)),
 				_ => (left ?? right)!
 			};
 
@@ -542,8 +542,8 @@ namespace Sudoku.Data
 		public static SudokuMap operator ^(SudokuMap? left, SudokuMap? right) =>
 			(left is null, right is null) switch
 			{
-				(true, true) => new SudokuMap(),
-				(false, false) => new SudokuMap(((BitArray)left!._innerArray.Clone()).Xor(right!._innerArray)),
+				(true, true) => new(),
+				(false, false) => new(((BitArray)left!._innerArray.Clone()).Xor(right!._innerArray)),
 				_ => (left ?? right)!
 			};
 
@@ -556,9 +556,7 @@ namespace Sudoku.Data
 		/// <returns>The negative result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuMap operator ~(SudokuMap? map) =>
-			map is null
-				? new SudokuMap(new BitArray(729, true))
-				: new SudokuMap(((BitArray)map._innerArray.Clone()).Not());
+			map is null ? new SudokuMap(new BitArray(729, true)) : new(((BitArray)map._innerArray.Clone()).Not());
 
 
 		/// <summary>
@@ -566,14 +564,14 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cells">The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static implicit operator SudokuMap(int[] cells) => new SudokuMap(cells);
+		public static implicit operator SudokuMap(int[] cells) => new(cells);
 
 		/// <summary>
 		/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="SudokuMap"/>.
 		/// </summary>
 		/// <param name="cells">The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static implicit operator SudokuMap(ReadOnlySpan<int> cells) => new SudokuMap(cells);
+		public static implicit operator SudokuMap(ReadOnlySpan<int> cells) => new(cells);
 
 		/// <summary>
 		/// Explicit cast from <see cref="SudokuMap"/> to <see cref="bool"/>[].

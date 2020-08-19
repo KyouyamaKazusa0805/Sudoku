@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Generating
 		/// Indicates the default filter.
 		/// </summary>
 		private static readonly TechniqueCodeFilter DefaultFilter =
-			new TechniqueCodeFilter(
+			new(
 				LastDigit, FullHouse,
 				HiddenSingleRow, HiddenSingleColumn, HiddenSingleBlock, NakedSingle,
 				NakedPair, NakedPairPlus, HiddenPair, LockedPair,

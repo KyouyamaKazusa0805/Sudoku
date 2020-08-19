@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="map"> The map.</param>
 		/// <returns>The map after being negated.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator ~(RegionMap map) => new RegionMap(~map.Mask);
+		public static RegionMap operator ~(RegionMap map) => new(~map.Mask);
 
 		/// <summary>
 		/// Get the regions that two maps both contain.
@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="right">The right map.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator &(RegionMap left, RegionMap right) => new RegionMap(left.Mask & right.Mask);
+		public static RegionMap operator &(RegionMap left, RegionMap right) => new(left.Mask & right.Mask);
 
 		/// <summary>
 		/// Get all regions that comes from two maps.
@@ -168,7 +168,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="right">The right map.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator |(RegionMap left, RegionMap right) => new RegionMap(left.Mask | right.Mask);
+		public static RegionMap operator |(RegionMap left, RegionMap right) => new(left.Mask | right.Mask);
 
 		/// <summary>
 		/// Get the regions that two maps contain but don't overlap with each other.
@@ -177,7 +177,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="right">The right map.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator ^(RegionMap left, RegionMap right) => new RegionMap(left.Mask ^ right.Mask);
+		public static RegionMap operator ^(RegionMap left, RegionMap right) => new(left.Mask ^ right.Mask);
 
 		/// <summary>
 		/// Get the regions that <paramref name="left"/> contains but the <paramref name="right"/> does not contain.
@@ -186,6 +186,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="right">The right map.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator -(RegionMap left, RegionMap right) => new RegionMap(left.Mask & ~right.Mask);
+		public static RegionMap operator -(RegionMap left, RegionMap right) => new(left.Mask & ~right.Mask);
 	}
 }

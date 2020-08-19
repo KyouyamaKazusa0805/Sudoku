@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in elimMap)
 						{
-							conclusions.Add(new Conclusion(Elimination, cell, zDigit));
+							conclusions.Add(new(Elimination, cell, zDigit));
 						}
 
 						// Gather highlight candidates.

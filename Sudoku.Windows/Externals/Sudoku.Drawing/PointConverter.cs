@@ -143,7 +143,7 @@ namespace Sudoku.Drawing
 			int max = map.SetAt(^1);
 			var (x1, y1) = GetMousePointInCenter(min / 9, min % 9);
 			var (x2, y2) = GetMousePointInCenter(max / 9, max % 9);
-			return new PointF((x1 + x2) / 2, (y1 + y2) / 2);
+			return new((x1 + x2) / 2, (y1 + y2) / 2);
 		}
 
 		/// <summary>
@@ -176,7 +176,7 @@ namespace Sudoku.Drawing
 		{
 			var (cw, ch) = CellSize;
 			var (x, y) = GetMousePointInCenter(cell);
-			return new RectangleF(x - cw / 2, y - ch / 2, cw, ch);
+			return new(x - cw / 2, y - ch / 2, cw, ch);
 		}
 
 		/// <summary>
@@ -190,7 +190,7 @@ namespace Sudoku.Drawing
 		{
 			var (cw, ch) = CandidateSize;
 			var (x, y) = GetMousePointInCenter(cell, digit);
-			return new RectangleF(x - cw / 2, y - ch / 2, cw, ch);
+			return new(x - cw / 2, y - ch / 2, cw, ch);
 		}
 
 		/// <summary>
@@ -235,7 +235,7 @@ namespace Sudoku.Drawing
 		{
 			var (cw, ch) = CellSize;
 			var (x, y) = GridPoints[cellOffset % 9 * 3, cellOffset / 9 * 3];
-			return new PointF(x + cw / 2, y + ch / 2);
+			return new(x + cw / 2, y + ch / 2);
 		}
 
 		/// <summary>
@@ -249,7 +249,7 @@ namespace Sudoku.Drawing
 		{
 			var (cw, ch) = CandidateSize;
 			var (x, y) = GridPoints[cellOffset % 9 * 3 + digit % 3, cellOffset / 9 * 3 + digit / 3];
-			return new PointF(x + cw / 2, y + ch / 2);
+			return new(x + cw / 2, y + ch / 2);
 		}
 
 		/// <summary>
@@ -265,9 +265,9 @@ namespace Sudoku.Drawing
 		private void InitializeSizes(SizeF size)
 		{
 			var (width, height) = ControlSize = size;
-			var (gridWidth, gridHeight) = GridSize = new SizeF(width - (Offset << 1), height - (Offset << 1));
-			CellSize = new SizeF(gridWidth / 9, gridHeight / 9);
-			CandidateSize = new SizeF(gridWidth / 27, gridHeight / 27);
+			var (gridWidth, gridHeight) = GridSize = new(width - (Offset << 1), height - (Offset << 1));
+			CellSize = new(gridWidth / 9, gridHeight / 9);
+			CandidateSize = new(gridWidth / 27, gridHeight / 27);
 		}
 
 		/// <summary>
@@ -287,7 +287,7 @@ namespace Sudoku.Drawing
 			{
 				for (int j = 0; j < length; j++)
 				{
-					GridPoints[i, j] = new PointF(cw * i + Offset, ch * j + Offset);
+					GridPoints[i, j] = new(cw * i + Offset, ch * j + Offset);
 				}
 			}
 		}

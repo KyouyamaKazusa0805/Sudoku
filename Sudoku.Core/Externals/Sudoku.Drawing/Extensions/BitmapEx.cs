@@ -98,10 +98,7 @@ namespace Sudoku.Drawing.Extensions
 				{
 					if (TypeEquals<TColor, Bgr>() && TypeEquals<TDepth, byte>())
 					{
-						var data = bitmap.LockBits(
-							new Rectangle(Point.Empty, size),
-							ImageLockMode.ReadOnly,
-							bitmap.PixelFormat);
+						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
 						using (var mat = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0))
 						{
@@ -126,13 +123,12 @@ namespace Sudoku.Drawing.Extensions
 					}
 					else
 					{
-						var data = bitmap.LockBits(
-							new Rectangle(Point.Empty, size),
-							ImageLockMode.ReadOnly,
-							bitmap.PixelFormat);
-						using (var tmp =
-							new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0))
+						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+						using (var tmp = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0))
+						{
 							image.ConvertFrom(tmp);
+						}
+
 						bitmap.UnlockBits(data);
 					}
 
@@ -189,8 +185,7 @@ namespace Sudoku.Drawing.Extensions
 					}
 					else
 					{
-						var data = bitmap.LockBits(
-							new Rectangle(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 						using var tmp = new Image<Bgr, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 						image.ConvertFrom(tmp);
 						bitmap.UnlockBits(data);
@@ -204,8 +199,7 @@ namespace Sudoku.Drawing.Extensions
 					{
 						int rows = size.Height;
 						int cols = size.Width;
-						var data = bitmap.LockBits(
-							new Rectangle(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
 						int fullByteCount = cols >> 3;
 						int partialBitCount = cols & 7;
@@ -278,10 +272,10 @@ namespace Sudoku.Drawing.Extensions
 			ColorPalette palette, out Matrix<byte> bTable,
 			out Matrix<byte> gTable, out Matrix<byte> rTable, out Matrix<byte> aTable)
 		{
-			bTable = new Matrix<byte>(256, 1);
-			gTable = new Matrix<byte>(256, 1);
-			rTable = new Matrix<byte>(256, 1);
-			aTable = new Matrix<byte>(256, 1);
+			bTable = new(256, 1);
+			gTable = new(256, 1);
+			rTable = new(256, 1);
+			aTable = new(256, 1);
 			byte[,] bData = bTable.Data;
 			byte[,] gData = gTable.Data;
 			byte[,] rData = rTable.Data;
@@ -307,7 +301,7 @@ namespace Sudoku.Drawing.Extensions
 			where TColor : struct, IColor
 			where TDepth : new()
 		{
-			var data = bmp.LockBits(new Rectangle(Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
+			var data = bmp.LockBits(new(Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
 			using var mat = new Matrix<TDepth>(bmp.Height, bmp.Width, image.NumberOfChannels, data.Scan0, data.Stride);
 			CvInvoke.cvCopy(mat.Ptr, image.Ptr, IntPtr.Zero);
 			bmp.UnlockBits(data);

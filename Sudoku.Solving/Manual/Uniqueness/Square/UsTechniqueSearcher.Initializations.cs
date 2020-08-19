@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					int a = ChuteIterator[j, 0] + i * 27;
 					int b = ChuteIterator[j, 1] + i * 27;
 					int c = ChuteIterator[j, 2] + i * 27;
-					Patterns[n++] = new GridMap { a, b, c, a + 9, b + 9, c + 9, a + 18, b + 18, c + 18 };
+					Patterns[n++] = new() { a, b, c, a + 9, b + 9, c + 9, a + 18, b + 18, c + 18 };
 				}
 			}
 
@@ -41,13 +41,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					int a = ChuteIterator[j, 0] * 9;
 					int b = ChuteIterator[j, 1] * 9;
 					int c = ChuteIterator[j, 2] * 9;
-					Patterns[n++] =
-						new GridMap
-						{
-							a + 3 * i, b + 3 * i, c + 3 * i,
-							a + 1 + 3 * i, b + 1 + 3 * i, c + 1 + 3 * i,
-							a + 2 + 3 * i, b + 2 + 3 * i, c + 2 + 3 * i
-						};
+					Patterns[n++] = new()
+					{
+						a + 3 * i, b + 3 * i, c + 3 * i,
+						a + 1 + 3 * i, b + 1 + 3 * i, c + 1 + 3 * i,
+						a + 2 + 3 * i, b + 2 + 3 * i, c + 2 + 3 * i
+					};
 				}
 			}
 		}

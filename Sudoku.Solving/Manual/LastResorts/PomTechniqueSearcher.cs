@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 													|| i9 == i4 || i9 == i5 || i9 == i6
 													|| i9 / 3 == i7 / 3 || i9 / 3 == i8 / 3) continue;
 
-												yield return new GridMap(
+												yield return new(
 													1 << i1 | 1 << (i2 + 9) | 1 << (i3 + 18),
 													1 << i4 | 1 << (i5 + 9) | 1 << (i6 + 18),
 													1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18));

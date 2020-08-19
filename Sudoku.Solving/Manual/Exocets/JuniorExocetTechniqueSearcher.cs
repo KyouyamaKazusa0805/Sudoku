@@ -269,7 +269,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				foreach (int digit in candidateMask.GetAllSets())
 				{
-					targetElims.Add(new Conclusion(Elimination, cell, digit));
+					targetElims.Add(new(Elimination, cell, digit));
 				}
 
 				return true;
@@ -506,7 +506,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					foreach (int digit in candidateMask.GetAllSets())
 					{
-						bibiElims.Add(new Conclusion(Elimination, pos2, digit));
+						bibiElims.Add(new(Elimination, pos2, digit));
 						dic[pos2] &= (short)~(1 << digit);
 					}
 				}
@@ -518,22 +518,22 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				if (grid.Exists(tq1, digit) is true)
 				{
-					bibiElims.Add(new Conclusion(Elimination, tq1, digit));
+					bibiElims.Add(new(Elimination, tq1, digit));
 				}
 				if (grid.Exists(tq2, digit) is true)
 				{
-					bibiElims.Add(new Conclusion(Elimination, tq2, digit));
+					bibiElims.Add(new(Elimination, tq2, digit));
 				}
 			}
 			foreach (int digit in (Grid.MaxCandidatesMask & ~last & ~lockedR).GetAllSets())
 			{
 				if (grid.Exists(tr1, digit) is true)
 				{
-					bibiElims.Add(new Conclusion(Elimination, tr1, digit));
+					bibiElims.Add(new(Elimination, tr1, digit));
 				}
 				if (grid.Exists(tr2, digit) is true)
 				{
-					bibiElims.Add(new Conclusion(Elimination, tr2, digit));
+					bibiElims.Add(new(Elimination, tr2, digit));
 				}
 			}
 
@@ -552,10 +552,10 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					foreach (int cell in elimMap & CandMaps[digit])
 					{
-						targetPairElims.Add(new Conclusion(Elimination, cell, digit));
+						targetPairElims.Add(new(Elimination, cell, digit));
 					}
 				}
-				elimMap = new GridMap(stackalloc[] { b1, b2 }, ProcessPeersWithoutItself);
+				elimMap = new(stackalloc[] { b1, b2 }, ProcessPeersWithoutItself);
 				if (elimMap.IsEmpty)
 				{
 					return true;
@@ -565,7 +565,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					foreach (int cell in elimMap & CandMaps[digit])
 					{
-						targetPairElims.Add(new Conclusion(Elimination, cell, digit));
+						targetPairElims.Add(new(Elimination, cell, digit));
 					}
 				}
 
@@ -580,7 +580,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						{
 							foreach (int cell in (RegionMaps[region] & CandMaps[digit]) - crossline)
 							{
-								swordfishElims.Add(new Conclusion(Elimination, cell, digit));
+								swordfishElims.Add(new(Elimination, cell, digit));
 							}
 						}
 					}

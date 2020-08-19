@@ -38,14 +38,15 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				return count switch
 				{
 					0 => throw new NoSolutionException(grid),
-					1 =>
-						new AnalysisResult(
-							solverName: SolverName,
-							puzzle: grid,
-							solution: Grid.Parse(sb.ToString()),
-							hasSolved: true,
-							elapsedTime: stopwatch.Elapsed,
-							additional: null),
+					1 => new
+					(
+						solverName: SolverName,
+						puzzle: grid,
+						solution: Grid.Parse(sb.ToString()),
+						hasSolved: true,
+						elapsedTime: stopwatch.Elapsed,
+						additional: null
+					),
 					_ => throw new MultipleSolutionsException(grid)
 				};
 			}
@@ -60,20 +61,21 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					return count switch
 					{
 						0 => throw new NoSolutionException(grid),
-						1 =>
-							new AnalysisResult(
-								solverName: SolverName,
-								puzzle: grid,
-								solution: Grid.Parse(sb.ToString()),
-								hasSolved: true,
-								elapsedTime: stopwatch.Elapsed,
-								additional: null),
+						1 => new
+						(
+							solverName: SolverName,
+							puzzle: grid,
+							solution: Grid.Parse(sb.ToString()),
+							hasSolved: true,
+							elapsedTime: stopwatch.Elapsed,
+							additional: null
+						),
 						_ => throw new MultipleSolutionsException(grid)
 					};
 				}
 				catch (Exception ex2)
 				{
-					return new AnalysisResult(
+					return new(
 						solverName: SolverName,
 						puzzle: grid,
 						solution: null,

@@ -11,7 +11,7 @@ namespace Sudoku.Windows
 		{
 			if (_listBoxPaths.SelectedIndex == -1)
 			{
-				_puzzle = new UndoableGrid(_initialPuzzle);
+				_puzzle = new(_initialPuzzle);
 				UpdateImageGrid();
 
 				e.Handled = true;
@@ -28,7 +28,7 @@ namespace Sudoku.Windows
 				var (_, n, s, _) = triplet;
 				var techniqueInfo = _analyisResult!.SolvingSteps![n];
 				_currentTechniqueInfo = techniqueInfo;
-				_currentPainter.Grid = _puzzle = new UndoableGrid(_analyisResult.StepGrids![n]);
+				_currentPainter.Grid = _puzzle = new(_analyisResult.StepGrids![n]);
 				_currentPainter.View = s.Views[_currentViewIndex = 0];
 				_currentPainter.Conclusions = techniqueInfo.Conclusions;
 				_textBoxInfo.Text = techniqueInfo.ToFullString();

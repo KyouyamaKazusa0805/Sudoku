@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Subsets
 
 							foreach (int cell in map)
 							{
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						{
 							foreach (int cell in map & CandMaps[digit])
 							{
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
