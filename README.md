@@ -73,15 +73,19 @@ Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/
 This whole solution consists of several folders below:<br/>这个解决方案由如下文件夹构成：
 
 * [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core): The main data structure implementation of the sudoku elementary.<br/>对数独基本元素的主要数据结构的实现。
-* [`Sudoku.Core.Old`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core.Old): The old project of sudoku implementations, including the sudoku metadata and solving techniques (only singles, locked candidates and subsets).<br/>以前的数独项目实现，包含数独的相关元素以及一些数独技巧（只有排除、唯一余数、区块和数组）。
+* <font color="red">*</font> [`Sudoku.Core.Old`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core.Old): The old project of sudoku implementations, including the sudoku metadata and solving techniques (only singles, locked candidates and subsets).<br/>以前的数独项目实现，包含数独的相关元素以及一些数独技巧（只有排除、唯一余数、区块和数组）。
 * [`Sudoku.Drawing`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Drawing): The project that can be used for drawing and rendering sudoku grids.<br/>这个项目用于绘制和渲染数独盘面。
 * [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving): The generating and solving project.<br/>解题和题目生成的项目。
-* [`Sudoku.Solving.BruteForces.Bitwise`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving.BruteForces/Bitwise): The native code for solving sudokus, which is used for speed up the calculation.<br/>解数独题目的 native 代码，用它是为了加快计算速度。
+* <font color="red">*</font> [`Sudoku.Solving.BruteForces.Bitwise`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving.BruteForces/Bitwise): The native code for solving sudokus, which is used for speed up the calculation.<br/>解数独题目的 native 代码，用它是为了加快计算速度。
 * [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows): The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。
 * [`Sudoku.Bot`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Bot): The project for QQ bot for sudoku. If you think that using this project is unnecessary, just delete it!<br/>数独 QQ 机器人项目。如果你不想用这个项目，删掉就行！
 * [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging): The project that can be used while debugging only.<br/>这个项目仅用于调试代码时。
 * [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref): The profiles for sudoku for references.<br/>数独相关参考资料。
 * [`pic`](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic): The pictures.<br/>图片。
+
+> The project with <font color="red">*</font> means the project is not important for the whole solution, they may not join in compiling.
+>
+> 带有 <font color="red">*</font> 符号的项目对整个解决方案都不重要，它们不会参与编译。
 
 
 
