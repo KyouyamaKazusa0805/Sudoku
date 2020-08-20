@@ -70,12 +70,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 								views: new[]
 								{
 									new View(
-										cellOffsets: null,
-										candidateOffsets: (
+										null,
+										(
 											from Conclusion in _tempConclusions
-											select (0, Conclusion.CellOffset * 9 + Conclusion.Digit)).ToArray(),
-										regionOffsets: null,
-										links: GetLinks())
+											select (0, Conclusion.CellOffset * 9 + Conclusion.Digit)
+										).ToArray(),
+										null,
+										GetLinks())
 								},
 								contradictionSeries: new List<Conclusion>(_tempConclusions)));
 					}
@@ -133,12 +134,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 						views: new[]
 						{
 							new View(
-								cellOffsets: null,
-								candidateOffsets: (
+								null,
+								(
 									from TempConclusion in _tempConclusions
-									select (0, TempConclusion.CellOffset * 9 + TempConclusion.Digit)).ToList(),
-								regionOffsets: null,
-								links: GetLinks())
+									select (0, TempConclusion.CellOffset * 9 + TempConclusion.Digit)
+								).ToList(),
+								null,
+								GetLinks())
 						},
 						contradictionSeries: new List<Conclusion>(_tempConclusions)));
 			}

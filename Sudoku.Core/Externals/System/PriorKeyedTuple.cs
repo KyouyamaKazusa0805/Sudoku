@@ -1,4 +1,6 @@
-﻿#pragma warning disable CS1591
+﻿#if CSHARP_9_PREVIEW
+#pragma warning disable CS1591
+#endif
 
 using System.Runtime.CompilerServices;
 using Sudoku.Constants;

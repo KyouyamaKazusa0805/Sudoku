@@ -208,13 +208,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								views: new[]
 								{
 									new View(
-										cellOffsets:
-											_alsShowRegions
-												? (IReadOnlyList<(int, int)>)new[] { (0, pivot) }
-												: cellOffsets,
-										candidateOffsets: _alsShowRegions ? candidateOffsets : null,
-										regionOffsets: _alsShowRegions ? regionOffsets : null,
-										links: null)
+										_alsShowRegions switch { true => new[] { (0, pivot) }, _ => cellOffsets },
+										_alsShowRegions ? candidateOffsets : null,
+										_alsShowRegions ? regionOffsets : null,
+										null)
 								},
 								pivot,
 								alses: dic));

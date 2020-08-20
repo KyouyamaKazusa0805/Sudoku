@@ -104,8 +104,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 									views: new[]
 									{
 										new View(
-											cellOffsets: null,
-											candidateOffsets: new[]
+											null,
+											new[]
 											{
 												(1, c1 * 9 + elimDigit),
 												(0, c1 * 9 + digit),
@@ -114,8 +114,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 												(0, c2 * 9 + digit),
 												(1, c2 * 9 + elimDigit)
 											},
-											regionOffsets: new[] { (0, region) },
-											links: null)
+											new[] { (0, region) },
+											null)
 									},
 									startCellOffset: c1,
 									endCellOffset: c2,

@@ -245,13 +245,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 													views: new[]
 													{
 														new View(
-															cellOffsets: _alsShowRegions ? null : cellOffsets,
-															candidateOffsets: _alsShowRegions ? candidateOffsets : null,
-															regionOffsets:
-																_alsShowRegions
-																	? new (int, int)[] { (0, coverSet), (1, baseSet) }
-																	: null,
-															links: null)
+															_alsShowRegions ? null : cellOffsets,
+															_alsShowRegions ? candidateOffsets : null,
+															_alsShowRegions switch
+															{
+																true => new (int, int)[] { (0, coverSet), (1, baseSet) },
+																_ => null
+															},
+															null)
 													},
 													block: coverSet,
 													line: baseSet,

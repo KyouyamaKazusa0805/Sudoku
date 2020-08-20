@@ -61,14 +61,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					accumulator.Add(
 						new LcTechniqueInfo(
 							conclusions,
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets,
-									regionOffsets: new[] { (0, r[0]), (1, r[1]) },
-									links: null)
-							},
+							views: new[] { new View(null, candidateOffsets, new[] { (0, r[0]), (1, r[1]) }, null) },
 							digit,
 							baseSet: r[0],
 							coverSet: r[1]));

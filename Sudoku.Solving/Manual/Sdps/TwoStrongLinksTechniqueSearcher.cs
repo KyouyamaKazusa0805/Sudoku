@@ -103,21 +103,14 @@ namespace Sudoku.Solving.Manual.Sdps
 								views: new[]
 								{
 									new View(
-										cellOffsets: null,
-										candidateOffsets: new[]
+										null,
+										new[]
 										{
-											(0, cells1[c1Index] * 9 + digit),
-											(0, cells2[c2Index] * 9 + digit),
-											(0, head * 9 + digit),
-											(0, tail * 9 + digit)
+											(0, cells1[c1Index] * 9 + digit), (0, cells2[c2Index] * 9 + digit),
+											(0, head * 9 + digit), (0, tail * 9 + digit)
 										},
-										regionOffsets: new[]
-										{
-											(0, r1),
-											(0, r2),
-											(1, sameRegion)
-										},
-										links: null)
+										new[] { (0, r1), (0, r2), (1, sameRegion) },
+										null)
 								},
 								digit,
 								baseRegion: r1,

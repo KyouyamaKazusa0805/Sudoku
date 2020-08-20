@@ -99,14 +99,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						accumulator.Add(
 							new EmptyRectangleTechniqueInfo(
 								conclusions: new[] { new Conclusion(Elimination, elimCell, digit) },
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets,
-										regionOffsets: new[] { (0, block) },
-										links: null)
-								},
+								views: new[] { new View(null, candidateOffsets, new[] { (0, block) }, null) },
 								digit,
 								block,
 								conjugatePair: new(cpCells[0], cpCells[1], digit)));

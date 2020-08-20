@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿#if CSHARP_9_PREVIEW
+#pragma warning disable CS1591
+#endif
+
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data;

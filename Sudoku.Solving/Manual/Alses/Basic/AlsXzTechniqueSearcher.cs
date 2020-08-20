@@ -244,13 +244,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							views: new[]
 							{
 								new View(
-									cellOffsets: _alsShowRegions ? null : cellOffsets,
-									candidateOffsets: _alsShowRegions ? candidateOffsets : null,
-									regionOffsets:
-										_alsShowRegions
-											? isEsp ? null : new[] { (0, region1), (1, region2) }
-											: null,
-									links: null)
+									_alsShowRegions ? null : cellOffsets,
+									_alsShowRegions ? candidateOffsets : null,
+									_alsShowRegions switch
+									{
+										true => isEsp ? null : new[] { (0, region1), (1, region2) },
+										_ => null
+									},
+									null)
 							},
 							als1,
 							als2,

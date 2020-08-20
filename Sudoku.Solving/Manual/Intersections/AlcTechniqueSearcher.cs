@@ -166,10 +166,8 @@ namespace Sudoku.Solving.Manual.Intersections
 						views: new[]
 						{
 							new View(
-								cellOffsets: hasValueCell ? valueCells.ToArray() : null,
-								candidateOffsets,
-								regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-								links: null)
+								hasValueCell ? valueCells.ToArray() : null,
+								candidateOffsets, new[] { (0, baseSet), (1, coverSet) },  null)
 						},
 						digits: mask,
 						baseCells: cellsMap,

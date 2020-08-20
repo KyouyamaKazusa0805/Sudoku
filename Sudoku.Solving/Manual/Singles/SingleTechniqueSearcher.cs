@@ -76,10 +76,8 @@ namespace Sudoku.Solving.Manual.Singles
 							views: new[]
 							{
 								new View(
-									cellOffsets: null,
-									candidateOffsets: new[] { (0, resultCell * 9 + digit) },
-									regionOffsets: new[] { (0, region) },
-									links: null)
+									null, new[] { (0, resultCell * 9 + digit) },
+									new[] { (0, region) }, null)
 							},
 							cellOffset: resultCell,
 							digit));
@@ -135,10 +133,10 @@ namespace Sudoku.Solving.Manual.Singles
 							views: new[]
 							{
 								new View(
-									cellOffsets: enableAndIsLastDigit ? cellOffsets : null,
-									candidateOffsets: new[] { (0, resultCell * 9 + digit) },
-									regionOffsets: enableAndIsLastDigit ? null : new[] { (0, region) },
-									links: null)
+									enableAndIsLastDigit ? cellOffsets : null,
+									new[] { (0, resultCell * 9 + digit) },
+									enableAndIsLastDigit ? null : new[] { (0, region) },
+									null)
 							},
 							regionOffset: region,
 							cellOffset: resultCell,

@@ -141,14 +141,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						accumulator.Add(
 							new BugType3TechniqueInfo(
 								conclusions,
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets,
-										regionOffsets: new[] { (0, region) },
-										links: null)
-								},
+								views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
 								trueCandidates,
 								digits: digitsMask.GetAllSets().ToArray(),
 								cells,
@@ -262,15 +255,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							views: new[]
 							{
 								new View(
-									cellOffsets: null,
-									candidateOffsets:
-										new List<(int, int)>(from Cand in trueCandidates select (0, Cand))
-										{
-											(1, c1 * 9 + conjuagtePairDigit),
-											(1, c2 * 9 + conjuagtePairDigit)
-										},
-									regionOffsets: new[] { (0, region) },
-									links: null)
+									null,
+									new List<(int, int)>(from Cand in trueCandidates select (0, Cand))
+									{
+										(1, c1 * 9 + conjuagtePairDigit),
+										(1, c2 * 9 + conjuagtePairDigit)
+									},
+									new[] { (0, region) },
+									null)
 							},
 							digits: digits.ToList(),
 							cells,
@@ -368,14 +360,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				accumulator.Add(
 					new BugXzTechniqueInfo(
 						conclusions,
-						views: new[]
-						{
-							new View(
-								cellOffsets,
-								candidateOffsets,
-								regionOffsets: null,
-								links: null)
-						},
+						views: new[] { new View(cellOffsets, candidateOffsets, null, null) },
 						digitMask: mask,
 						cells: new[] { c1, c2 },
 						extraCell: cell));

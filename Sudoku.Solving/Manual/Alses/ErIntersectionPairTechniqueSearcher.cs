@@ -129,10 +129,8 @@ namespace Sudoku.Solving.Manual.Alses
 								views: new[]
 								{
 									new View(
-										cellOffsets: new[] { (0, c1), (0, c2) },
-										candidateOffsets,
-										regionOffsets: new[] { (0, block) },
-										links: null)
+										new[] { (0, c1), (0, c2) }, candidateOffsets,
+										new[] { (0, block) }, null)
 								},
 								startCell: c1,
 								endCell: c2,

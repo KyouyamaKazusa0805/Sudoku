@@ -151,14 +151,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						accumulator.Add(
 							new XrType3TechniqueInfo(
 								conclusions,
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets,
-										regionOffsets: new[] { (0, region) },
-										links: null)
-								},
+								views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
 								cells: allCellsMap,
 								digits: normalDigits,
 								extraCells: cells,
@@ -269,14 +262,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							accumulator.Add(
 								new XrType4TechniqueInfo(
 									conclusions,
-									views: new[]
-									{
-										new View(
-											cellOffsets: null,
-											candidateOffsets,
-											regionOffsets: new[] { (0, region) },
-											links: null)
-									},
+									views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
 									cells: allCellsMap,
 									digits: normalDigits,
 									conjugatePair: new(extraCellsMap, conjugateDigit)));

@@ -214,14 +214,8 @@ namespace Sudoku.Solving.Manual.Fishes
 												views: new[]
 												{
 													new View(
-														cellOffsets: null,
-														candidateOffsets,
-														regionOffsets: new[]
-														{
-															(0, bs1), (0, bs2),
-															(1, cs1), (1, cs2)
-														},
-														links: null),
+														null, candidateOffsets,
+														new[] { (0, bs1), (0, bs2), (1, cs1), (1, cs2) }, null),
 													GetDirectView(
 														grid, digit, baseSets2, coverSets2, searchRow, finCellsMap)
 												},
@@ -392,14 +386,14 @@ namespace Sudoku.Solving.Manual.Fishes
 															views: new[]
 															{
 																new View(
-																	cellOffsets: null,
+																	null,
 																	candidateOffsets,
-																	regionOffsets: new[]
+																	new[]
 																	{
 																		(0, bs1), (0, bs2), (0, bs3),
 																		(1, cs1), (1, cs2), (1, cs3)
 																	},
-																	links: null),
+																	null),
 																GetDirectView(
 																	grid, digit, baseSets3,
 																	coverSets3, searchRow, finCellsMap)
@@ -585,16 +579,16 @@ namespace Sudoku.Solving.Manual.Fishes
 																	views: new[]
 																	{
 																		new View(
-																			cellOffsets: null,
+																			null,
 																			candidateOffsets,
-																			regionOffsets: new[]
+																			new[]
 																			{
 																				(0, bs1), (0, bs2),
 																				(0, bs3), (0, bs4),
 																				(1, cs1), (1, cs2),
 																				(1, cs3), (1, cs4)
 																			},
-																			links: null),
+																			null),
 																		GetDirectView(
 																			grid, digit, baseSets4,
 																			coverSets4, searchRow, finCellsMap)

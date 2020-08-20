@@ -12,7 +12,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>.\Sudoku.Drawing.xml</DocumentationFile>
 		<WarningLevel>0</WarningLevel>
-		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING</DefineConstants>
+		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING; CSHARP_9_PREVIEW</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

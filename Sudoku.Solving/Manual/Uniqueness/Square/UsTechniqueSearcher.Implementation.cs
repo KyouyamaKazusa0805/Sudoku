@@ -188,14 +188,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							accumulator.Add(
 								new UsType3TechniqueInfo(
 									conclusions,
-									views: new[]
-									{
-										new View(
-											cellOffsets: null,
-											candidateOffsets,
-											regionOffsets: new[] { (0, region) },
-											links: null)
-									},
+									views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
 									cells: pattern,
 									digitsMask,
 									extraDigitsMask,
@@ -289,14 +282,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					accumulator.Add(
 						new UsType4TechniqueInfo(
 							conclusions,
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets,
-									regionOffsets: new[] { (0, region) },
-									links: null)
-							},
+							views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
 							cells: pattern,
 							digitsMask,
 							d1,

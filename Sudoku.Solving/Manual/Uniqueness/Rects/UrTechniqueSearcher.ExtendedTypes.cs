@@ -100,14 +100,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				accumulator.Add(
 					new Ur2DOr3XTechniqueInfo(
 						conclusions,
-						views: new[]
-						{
-							new View(
-								cellOffsets: arMode ? GetHighlightCells(urCells) : null,
-								candidateOffsets,
-								regionOffsets: null,
-								links: null)
-						},
+						views: new[] { new View(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null) },
 						typeCode: arMode ? APlus2D : Plus2D,
 						digit1: d1,
 						digit2: d2,
@@ -151,7 +144,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					foreach (int digit in stackalloc[] { d1, d2 })
 					{
-						if (!IsConjugatePair(digit, new() { cell, sameRegionCell }, region))
+						if (!IsConjugatePair(digit, new()
+						{ cell, sameRegionCell }, region))
 						{
 							continue;
 						}
@@ -223,10 +217,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								views: new[]
 								{
 									new View(
-										cellOffsets: arMode ? GetHighlightCells(urCells) : null,
-										candidateOffsets,
-										regionOffsets: new[] { (0, region) },
-										links: null)
+										arMode ? GetHighlightCells(urCells) : null,
+										candidateOffsets, new[] { (0, region) }, null)
 								},
 								typeCode: Plus2B1SL,
 								digit1: d1,
@@ -272,7 +264,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					foreach (int digit in stackalloc[] { d1, d2 })
 					{
-						if (!IsConjugatePair(digit, new() { cell, sameRegionCell }, region))
+						if (!IsConjugatePair(digit, new()
+						{ cell, sameRegionCell }, region))
 						{
 							continue;
 						}
@@ -340,10 +333,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								views: new[]
 								{
 									new View(
-										cellOffsets: arMode ? GetHighlightCells(urCells) : null,
-										candidateOffsets,
-										regionOffsets: new[] { (0, region) },
-										links: null)
+										arMode ? GetHighlightCells(urCells) : null,
+										candidateOffsets, new[] { (0, region) }, null)
 								},
 								typeCode: Plus2D1SL,
 								digit1: d1,
@@ -446,10 +437,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						views: new[]
 						{
 							new View(
-								cellOffsets: arMode ? GetHighlightCells(urCells) : null,
-								candidateOffsets,
-								regionOffsets: null,
-								links: null)
+								arMode ? GetHighlightCells(urCells) : null,
+								candidateOffsets, null, null)
 						},
 						typeCode: arMode ? APlus3X : Plus3X,
 						digit1: d1,
@@ -542,10 +531,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						views: new[]
 						{
 							new View(
-								cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+								arMode ? GetHighlightCells(urCells) : null,
 								candidateOffsets,
-								regionOffsets: new[] { (0, map1.CoveredLine), (1, map2.CoveredLine) },
-								links: null)
+								new[] { (0, map1.CoveredLine), (1, map2.CoveredLine) },
+								null)
 						},
 						typeCode: Plus3X2SL,
 						digit1: d1,
@@ -653,10 +642,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							views: new[]
 							{
 								new View(
-									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
-									regionOffsets: new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
-									links: null)
+									new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
+									null)
 							},
 							typeCode: Plus3N2SL,
 							digit1: d1,
@@ -755,10 +744,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							views: new[]
 							{
 								new View(
-									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
-									regionOffsets: new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
-									links: null)
+									new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
+									null)
 							},
 							typeCode: Plus3U2SL,
 							digit1: d1,
@@ -857,10 +846,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							views: new[]
 							{
 								new View(
-									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
-									regionOffsets: new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
-									links: null)
+									new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
+									null)
 							},
 							typeCode: Plus3E2SL,
 							digit1: d1,
@@ -966,15 +955,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							views: new[]
 							{
 								new View(
-									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
-									regionOffsets: new[]
+									new[]
 									{
 										(0, conjugatePairs[0].Line),
 										(1, conjugatePairs[1].Line),
 										(0, conjugatePairs[2].Line)
 									},
-									links: null)
+									null)
 							},
 							typeCode: Plus4X3SL,
 							digit1: d1,
@@ -1092,15 +1081,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								views: new[]
 								{
 									new View(
-										cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+										arMode ? GetHighlightCells(urCells) : null,
 										candidateOffsets,
-										regionOffsets: new[]
+										new[]
 										{
 											(0, conjugatePairs[0].Line),
 											(0, conjugatePairs[1].Line),
 											(1, conjugatePairs[2].Line)
 										},
-										links: null)
+										null)
 								},
 								typeCode: Plus4C3SL,
 								digit1: d1,
@@ -1252,10 +1241,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									views: new[]
 									{
 										new View(
-											cellOffsets: arMode ? GetHighlightCells(urCells) : null,
-											candidateOffsets,
-											regionOffsets: null,
-											links: null)
+											arMode ? GetHighlightCells(urCells) : null,
+											candidateOffsets, null, null)
 									},
 									typeCode: arMode ? AXyWing : XyWing,
 									digit1: d1,
@@ -1354,10 +1341,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											views: new[]
 											{
 												new View(
-													cellOffsets: arMode ? GetHighlightCells(urCells) : null,
-													candidateOffsets,
-													regionOffsets: null,
-													links: null)
+													arMode ? GetHighlightCells(urCells) : null,
+													candidateOffsets, null, null)
 											},
 											typeCode: arMode ? AXyzWing : XyzWing,
 											digit1: d1,
@@ -1458,10 +1443,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												views: new[]
 												{
 													new View(
-														cellOffsets: arMode ? GetHighlightCells(urCells) : null,
-														candidateOffsets,
-														regionOffsets: null,
-														links: null)
+														arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null)
 												},
 												typeCode: arMode ? AWxyzWing : WxyzWing,
 												digit1: d1,

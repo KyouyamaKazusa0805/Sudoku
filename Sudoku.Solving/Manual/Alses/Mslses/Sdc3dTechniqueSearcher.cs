@@ -274,14 +274,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 															views: new[]
 															{
 																new View(
-																	cellOffsets: _alsShowRegions ? null : cellOffsets,
-																	candidateOffsets:
-																		_alsShowRegions ? candidateOffsets : null,
-																	regionOffsets:
-																		_alsShowRegions
-																			? new[] { (0, r), (1, c), (2, b) }
-																			: null,
-																	links: null)
+																	_alsShowRegions ? null : cellOffsets,
+																	_alsShowRegions ? candidateOffsets : null,
+																	_alsShowRegions ? new[] { (0, r), (1, c), (2, b) } : null,
+																	null)
 															},
 															rowDigitsMask: rowMask,
 															columnDigitsMask: columnMask,

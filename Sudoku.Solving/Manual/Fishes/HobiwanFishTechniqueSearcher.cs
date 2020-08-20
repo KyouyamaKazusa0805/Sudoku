@@ -225,7 +225,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									elimMap &= elimEndoFinsMap;
 								}
 
-								var (one, two) = (GridMap.Empty, GridMap.Empty);
+								GridMap one = GridMap.Empty, two = GridMap.Empty;
 								for (int i = 0; i < coverSets.Length; i++)
 								{
 									var z = RegionMaps[coverSets[i]];
@@ -301,14 +301,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								accumulator.Add(
 									new HobiwanFishTechniqueInfo(
 										conclusions,
-										views: new[]
-										{
-											new View(
-												cellOffsets: null,
-												candidateOffsets,
-												regionOffsets,
-												links: null)
-										},
+										views: new[] { new View(null, candidateOffsets, regionOffsets, null) },
 										digit,
 										baseSets,
 										coverSets,
