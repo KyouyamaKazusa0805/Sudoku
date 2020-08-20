@@ -1080,7 +1080,7 @@ static int FullUpdate(void)
 }
 
 // Calculate the number of solutions
-extern int Solve(const char* const puzzle, char* solutionPtr, int limit)
+extern int __stdcall Solve(const char *const puzzle, char *solutionPtr, int limit)
 {
 	numSolutions = 0;
 	limitSolutions = limit;
