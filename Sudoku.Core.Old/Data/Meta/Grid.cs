@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -24,8 +23,6 @@ namespace Sudoku.Data.Meta
 
 		public Grid(int[,] gridValues)
 		{
-			Contract.Requires(gridValues.GetLength(0) == 9 && gridValues.GetLength(1) == 9);
-
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
@@ -49,9 +46,6 @@ namespace Sudoku.Data.Meta
 		public Grid(
 			(int value, CellType cellType)[,] gridValues, IEnumerable<Candidate>? eliminations)
 		{
-			Contract.Assert(gridValues is not null);
-			Contract.Requires(gridValues.GetLength(0) == 9 && gridValues.GetLength(1) == 9);
-
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
@@ -81,8 +75,6 @@ namespace Sudoku.Data.Meta
 
 		private Grid(object[,] gridValues)
 		{
-			Contract.Requires(gridValues.GetLength(0) == 9 && gridValues.GetLength(1) == 9);
-
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
@@ -102,8 +94,6 @@ namespace Sudoku.Data.Meta
 
 		private Grid(CellInfo[,] cellInfos)
 		{
-			Contract.Requires(cellInfos.GetLength(0) == 9 && cellInfos.GetLength(1) == 9);
-
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
@@ -208,8 +198,6 @@ namespace Sudoku.Data.Meta
 			if (option == GridEqualityOptions.None)
 				return true;
 
-			Contract.Assume(other is not null);
-
 			bool result = true;
 			if (option.HasFlag(GridEqualityOptions.CheckGivens))
 			{
@@ -237,12 +225,7 @@ namespace Sudoku.Data.Meta
 
 		public bool SimplyEquals(Grid other) => CustomEquals(other, GridEqualityOptions.CheckValues);
 
-		public bool DeeplyEquals(Grid other)
-		{
-			Contract.Assume(other is not null);
-
-			return GetHashCode() == other.GetHashCode();
-		}
+		public bool DeeplyEquals(Grid other) => GetHashCode() == other.GetHashCode();
 
 		public bool SimplyValidate() =>
 			GivensCount >= 17 && Series.All(
@@ -407,8 +390,6 @@ namespace Sudoku.Data.Meta
 
 		private void OnValueChanging(object sender, ValueChangingEventArgs e)
 		{
-			Contract.Assume(e is not null);
-
 			if (!e.Cancel)
 			{
 				var (cell, value) = e.Candidate;
@@ -700,19 +681,9 @@ namespace Sudoku.Data.Meta
 		}
 
 
-		public static bool operator ==(Grid left, Grid right)
-		{
-			Contract.Assume(left is not null);
+		public static bool operator ==(Grid left, Grid right) => left.Equals(right);
 
-			return left.Equals(right);
-		}
-
-		public static bool operator !=(Grid left, Grid right)
-		{
-			Contract.Assume(left is not null);
-
-			return !left.Equals(right);
-		}
+		public static bool operator !=(Grid left, Grid right) => !left.Equals(right);
 
 		private void OnAppending(StringBuilder sb)
 		{

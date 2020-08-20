@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using Sudoku.Data.Extensions;
@@ -12,56 +11,43 @@ namespace Sudoku.Data.Meta
 {
 	public readonly struct Region : IEquatable<Region>, IComparable<Region>
 	{
-		public Region(RegionType regionType, int index)
-		{
-			Contract.Requires(index is >= 0 and < 9);
-
-			(RegionType, Index) = (regionType, index);
-		}
+		public Region(RegionType regionType, int index) => (RegionType, Index) = (regionType, index);
 
 
 		public int Index { get; }
 
-		public Region[] CrossRegions
-		{
-			get
+		public Region[] CrossRegions =>
+			(RegionType, Index) switch
 			{
-				Contract.Assume(RegionType is >= 0 and <= (RegionType)2);
-				Contract.Assume(Index is >= 0 and < 9);
-
-				return (RegionType, Index) switch
-				{
-					(Row, 0) => new[] { Parse("b1"), Parse("b2"), Parse("b3") },
-					(Row, 1) => new[] { Parse("b1"), Parse("b2"), Parse("b3") },
-					(Row, 2) => new[] { Parse("b1"), Parse("b2"), Parse("b3") },
-					(Row, 3) => new[] { Parse("b4"), Parse("b5"), Parse("b6") },
-					(Row, 4) => new[] { Parse("b4"), Parse("b5"), Parse("b6") },
-					(Row, 5) => new[] { Parse("b4"), Parse("b5"), Parse("b6") },
-					(Row, 6) => new[] { Parse("b7"), Parse("b8"), Parse("b9") },
-					(Row, 7) => new[] { Parse("b7"), Parse("b8"), Parse("b9") },
-					(Row, 8) => new[] { Parse("b7"), Parse("b8"), Parse("b9") },
-					(Column, 0) => new[] { Parse("b1"), Parse("b4"), Parse("b7") },
-					(Column, 1) => new[] { Parse("b1"), Parse("b4"), Parse("b7") },
-					(Column, 2) => new[] { Parse("b1"), Parse("b4"), Parse("b7") },
-					(Column, 3) => new[] { Parse("b2"), Parse("b5"), Parse("b8") },
-					(Column, 4) => new[] { Parse("b2"), Parse("b5"), Parse("b8") },
-					(Column, 5) => new[] { Parse("b2"), Parse("b5"), Parse("b8") },
-					(Column, 6) => new[] { Parse("b3"), Parse("b6"), Parse("b9") },
-					(Column, 7) => new[] { Parse("b3"), Parse("b6"), Parse("b9") },
-					(Column, 8) => new[] { Parse("b3"), Parse("b6"), Parse("b9") },
-					(Block, 0) => new[] { Parse("r1"), Parse("r2"), Parse("r3"), Parse("c1"), Parse("c2"), Parse("c3") },
-					(Block, 1) => new[] { Parse("r1"), Parse("r2"), Parse("r3"), Parse("c4"), Parse("c5"), Parse("c6") },
-					(Block, 2) => new[] { Parse("r1"), Parse("r2"), Parse("r3"), Parse("c7"), Parse("c8"), Parse("c9") },
-					(Block, 3) => new[] { Parse("r4"), Parse("r5"), Parse("r6"), Parse("c1"), Parse("c2"), Parse("c3") },
-					(Block, 4) => new[] { Parse("r4"), Parse("r5"), Parse("r6"), Parse("c4"), Parse("c5"), Parse("c6") },
-					(Block, 5) => new[] { Parse("r4"), Parse("r5"), Parse("r6"), Parse("c7"), Parse("c8"), Parse("c9") },
-					(Block, 6) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c1"), Parse("c2"), Parse("c3") },
-					(Block, 7) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c4"), Parse("c5"), Parse("c6") },
-					(Block, 8) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c7"), Parse("c8"), Parse("c9") },
-					_ => throw new Exception($"Impossible case ({nameof(RegionType)} is out of range).")
-				};
-			}
-		}
+				(Row, 0) => new[] { Parse("b1"), Parse("b2"), Parse("b3") },
+				(Row, 1) => new[] { Parse("b1"), Parse("b2"), Parse("b3") },
+				(Row, 2) => new[] { Parse("b1"), Parse("b2"), Parse("b3") },
+				(Row, 3) => new[] { Parse("b4"), Parse("b5"), Parse("b6") },
+				(Row, 4) => new[] { Parse("b4"), Parse("b5"), Parse("b6") },
+				(Row, 5) => new[] { Parse("b4"), Parse("b5"), Parse("b6") },
+				(Row, 6) => new[] { Parse("b7"), Parse("b8"), Parse("b9") },
+				(Row, 7) => new[] { Parse("b7"), Parse("b8"), Parse("b9") },
+				(Row, 8) => new[] { Parse("b7"), Parse("b8"), Parse("b9") },
+				(Column, 0) => new[] { Parse("b1"), Parse("b4"), Parse("b7") },
+				(Column, 1) => new[] { Parse("b1"), Parse("b4"), Parse("b7") },
+				(Column, 2) => new[] { Parse("b1"), Parse("b4"), Parse("b7") },
+				(Column, 3) => new[] { Parse("b2"), Parse("b5"), Parse("b8") },
+				(Column, 4) => new[] { Parse("b2"), Parse("b5"), Parse("b8") },
+				(Column, 5) => new[] { Parse("b2"), Parse("b5"), Parse("b8") },
+				(Column, 6) => new[] { Parse("b3"), Parse("b6"), Parse("b9") },
+				(Column, 7) => new[] { Parse("b3"), Parse("b6"), Parse("b9") },
+				(Column, 8) => new[] { Parse("b3"), Parse("b6"), Parse("b9") },
+				(Block, 0) => new[] { Parse("r1"), Parse("r2"), Parse("r3"), Parse("c1"), Parse("c2"), Parse("c3") },
+				(Block, 1) => new[] { Parse("r1"), Parse("r2"), Parse("r3"), Parse("c4"), Parse("c5"), Parse("c6") },
+				(Block, 2) => new[] { Parse("r1"), Parse("r2"), Parse("r3"), Parse("c7"), Parse("c8"), Parse("c9") },
+				(Block, 3) => new[] { Parse("r4"), Parse("r5"), Parse("r6"), Parse("c1"), Parse("c2"), Parse("c3") },
+				(Block, 4) => new[] { Parse("r4"), Parse("r5"), Parse("r6"), Parse("c4"), Parse("c5"), Parse("c6") },
+				(Block, 5) => new[] { Parse("r4"), Parse("r5"), Parse("r6"), Parse("c7"), Parse("c8"), Parse("c9") },
+				(Block, 6) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c1"), Parse("c2"), Parse("c3") },
+				(Block, 7) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c4"), Parse("c5"), Parse("c6") },
+				(Block, 8) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c7"), Parse("c8"), Parse("c9") },
+				_ => throw new Exception($"Impossible case ({nameof(RegionType)} is out of range).")
+			};
 
 		public RegionType RegionType { get; }
 

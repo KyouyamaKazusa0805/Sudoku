@@ -4,8 +4,7 @@ namespace Sudoku.Solving.Bf.Dlx
 {
 	public class DataNode
 	{
-		public DataNode(int id, ColumnNode? column) =>
-			(Id, Column, Left, Right, Up, Down) = (id, column, this, this, this, this);
+		public DataNode(int id, ColumnNode? column) => (Id, Column, Left, Right, Up, Down) = (id, column, this, this, this, this);
 
 
 		public int Id { get; set; }

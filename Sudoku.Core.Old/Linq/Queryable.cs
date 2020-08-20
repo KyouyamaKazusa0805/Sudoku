@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace Sudoku.Linq
@@ -9,22 +8,16 @@ namespace Sudoku.Linq
 	{
 		[return: MaybeNull]
 		public static TElement Min<TElement, TComparable>(
-			this IQueryable<TElement> elements, Func<TElement, IComparable<TComparable>> selector)
-		{
-			Contract.Assume(elements is not null);
-
-			return (
+			this IQueryable<TElement> elements, Func<TElement, IComparable<TComparable>> selector) =>
+			(
 				from element in elements
 				orderby selector(element) ascending
 				select element
 			).FirstOrDefault();
-		}
 
 		public static int Count<TElement>(
 			this IQueryable<TElement> elements, Func<TElement, int> countingFormula)
 		{
-			Contract.Assume(elements is not null);
-
 			int count = 0;
 			foreach (var element in elements)
 			{
@@ -38,8 +31,6 @@ namespace Sudoku.Linq
 			this IQueryable<TElement> elements,
 			Predicate<TElement> selector, Func<TElement, int> countingFormula)
 		{
-			Contract.Assume(elements is not null);
-
 			int count = 0;
 			foreach (var element in elements)
 			{

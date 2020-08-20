@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 
@@ -28,8 +27,6 @@ namespace Sudoku.Data.Meta
 
 		public CellInfo(Cell cell, int value, CellType type, CandidateField candidates)
 		{
-			Contract.Requires(value is >= 0 and < 9);
-
 			(Cell, Candidates, _cellValue, _cellType) = (cell, candidates, value, type);
 			(ValueChanging, ValueChanged, CellTypeChanging, CellTypeChanged) = (null, null, null, null);
 		}
@@ -89,22 +86,12 @@ namespace Sudoku.Data.Meta
 		public event CellTypeChangedEventHandler? CellTypeChanged;
 
 
-		public readonly void Set(int digit, bool value)
-		{
-			Contract.Requires(digit is >= 0 and < 9);
-
-			Candidates[digit] = value;
-		}
+		public readonly void Set(int digit, bool value) => Candidates[digit] = value;
 
 		public void Deconstruct(out Cell cell, out int value, out CellType cellType, out CandidateField candidates) =>
 			(cell, value, cellType, candidates) = (Cell, Value, CellType, Candidates.Clone());
 
-		public readonly bool Get(int digit)
-		{
-			Contract.Requires(digit is >= 0 and < 9);
-
-			return Candidates[digit];
-		}
+		public readonly bool Get(int digit) => Candidates[digit];
 
 		public override bool Equals(object? obj) => obj is CellInfo comparer && Equals(comparer);
 

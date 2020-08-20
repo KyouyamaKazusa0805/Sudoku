@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using static Sudoku.Solving.DifficultyLevel;
@@ -30,8 +29,6 @@ namespace Sudoku.Solving
 
 		public void ApplyTo(Grid grid)
 		{
-			Contract.Assume(grid is not null);
-
 			// Note that the operation is un-undo-able...
 			// If you want to impliment undo-and-redos, please
 			// design a data structure (may be a `Stack<Step>`)

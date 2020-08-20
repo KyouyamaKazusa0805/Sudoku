@@ -26,8 +26,6 @@ namespace Sudoku.Checking
 
 		public static bool IsMinimal(this Grid grid)
 		{
-			Contract.Assume(grid is not null);
-
 			int hintCount = 0;
 			var array = grid.ToArray();
 			var valueList = new Queue<(int, int)>();
@@ -43,7 +41,7 @@ namespace Sudoku.Checking
 				}
 			}
 
-			var tempArrays = new int[hintCount][,];
+			int[][,] tempArrays = new int[hintCount][,];
 			for (int i = 0; i < hintCount; i++)
 			{
 				var (r, c) = valueList.Dequeue();

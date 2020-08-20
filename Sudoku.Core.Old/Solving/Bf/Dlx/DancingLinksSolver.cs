@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Bf.Dlx
 
 		public override Grid? Solve(Grid grid, out AnalysisInfo analysisInfo)
 		{
-			var dlx = new DancingLink(new ColumnNode(-1));
+			var dlx = new DancingLink(new(-1));
 			_root = dlx.CreateLinkedList(grid);
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();

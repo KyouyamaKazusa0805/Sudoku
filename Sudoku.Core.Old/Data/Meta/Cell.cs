@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using Sudoku.Data.Extensions;
@@ -11,13 +9,7 @@ namespace Sudoku.Data.Meta
 {
 	public readonly struct Cell : IEquatable<Cell>, IComparable<Cell>
 	{
-		public Cell(int row, int column)
-		{
-			Contract.Requires(row is >= 0 and < 9);
-			Contract.Requires(column is >= 0 and < 9);
-
-			(Row, Column) = (row, column);
-		}
+		public Cell(int row, int column) => (Row, Column) = (row, column);
 
 
 		public int Row { get; }
@@ -133,17 +125,13 @@ namespace Sudoku.Data.Meta
 				: new Cell(match[1] - '1', match[3] - '1');
 		}
 
-		public static Cell GetCell(Region region, int relativePosition)
-		{
-			Contract.Requires(relativePosition is >= 0 and < 9);
-
-			return region.RegionType switch
+		public static Cell GetCell(Region region, int relativePosition) =>
+			region.RegionType switch
 			{
 				RegionType.Row => new(region.Index, relativePosition),
 				RegionType.Column => new(relativePosition, region.Index),
 				_ => new(region.Index / 3 * 3 + relativePosition / 3, region.Index % 3 * 3 + relativePosition % 3)
 			};
-		}
 
 
 		public static bool operator ==(Cell left, Cell right) => left.Equals(right);

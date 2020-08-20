@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using Sudoku.Data.Extensions;
@@ -15,12 +14,7 @@ namespace Sudoku.Data.Meta
 		{
 		}
 
-		public Candidate(Cell cell, int digit)
-		{
-			Contract.Requires(digit is >= 0 and < 9);
-
-			(Cell, Digit) = (cell, digit);
-		}
+		public Candidate(Cell cell, int digit) => (Cell, Digit) = (cell, digit);
 
 
 		public int Digit { get; }
@@ -123,9 +117,6 @@ namespace Sudoku.Data.Meta
 
 		public static string ToString(string separator, IEnumerable<Candidate> candidates)
 		{
-			Contract.Assume(separator is not null);
-			Contract.Assume(candidates is not null);
-
 			var sb = new StringBuilder();
 			foreach (var digitGroup in from cand in candidates group cand by cand.Digit)
 			{
@@ -148,13 +139,8 @@ namespace Sudoku.Data.Meta
 				: new Candidate(match[2] - '1', match[4] - '1', match[0] - '1');
 		}
 
-		public static Candidate GetCandidate(Region region, int relativePosition, int digit)
-		{
-			Contract.Requires(relativePosition is >= 0 and < 9);
-			Contract.Requires(digit is >= 0 and < 9);
-
-			return new(Cell.GetCell(region, relativePosition), digit);
-		}
+		public static Candidate GetCandidate(Region region, int relativePosition, int digit) =>
+			new(Cell.GetCell(region, relativePosition), digit);
 
 
 		public static bool operator ==(Candidate left, Candidate right) => left.Equals(right);

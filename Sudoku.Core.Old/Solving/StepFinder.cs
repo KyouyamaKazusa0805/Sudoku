@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using Sudoku.Data.Meta;
 
@@ -72,14 +71,11 @@ namespace Sudoku.Solving
 		/// <param name="grid">The grid.</param>
 		/// <param name="count">The count of steps you want to take.</param>
 		/// <returns>These steps.</returns>
-		public IEnumerable<TechniqueInfo> Take(Grid grid, int count)
-		{
-			Contract.Requires(count >= 1);
-
-			// `Take` method will never throw exceptions when
-			// count is greater than the step count of the list.
-			return TakeAll(grid).Take(count);
-		}
+		/// <remarks>
+		/// `Take` method will never throw exceptions when
+		/// count is greater than the step count of the list.
+		/// </remarks>
+		public IEnumerable<TechniqueInfo> Take(Grid grid, int count) => TakeAll(grid).Take(count);
 
 		/// <summary>
 		/// Get all technique steps at current grid.
