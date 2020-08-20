@@ -21,12 +21,11 @@ namespace Sudoku.Solving.Subsets
 	/// </summary>
 	public sealed class SubsetStepFinder : StepFinder
 	{
-		private static readonly int[] IterationSizes = new[] { 2, 3, 4 };
+		private static readonly int[] IterationSizes = { 2, 3, 4 };
 
 
-		public override IEnumerable<TechniqueInfo> TakeAll(Grid grid)
-		{
-			return (
+		public override IEnumerable<TechniqueInfo> TakeAll(Grid grid) =>
+			(
 				// Iterate on naked subset steps.
 				from size in IterationSizes
 				from region in Values.RegionRange
@@ -35,7 +34,7 @@ namespace Sudoku.Solving.Subsets
 				let structInfos = grid.SelectInfos(region, cellPositionMask)
 				let structCands = structInfos.Select(i => i.Candidates)
 				let commonCands = Utility.FindCommonSubset(structCands, size)
-				where !(commonCands is null) && structInfos.Count() == size
+				where commonCands is not null && structInfos.Count() == size
 				let digits = commonCands.Trues
 				let candsToDisplay = GetCandsToDisplayNaked(structInfos, digits)
 				let fixes = structInfos.Select(i => i.Cell)
@@ -56,7 +55,7 @@ namespace Sudoku.Solving.Subsets
 				let digits = digitMask.Trues
 				let cellPositionMasks = grid.SelectCellPositions(region, digitMask)
 				let commonCands = Utility.FindCommonSubset(cellPositionMasks, size)
-				where !(commonCands is null) && !HasValueCell(grid, region, digits)
+				where commonCands is not null && !HasValueCell(grid, region, digits)
 				let structInfos = grid.SelectInfos(region, commonCands)
 				let elims = GetElimsHidden(structInfos, digits)
 				where elims.Any()
@@ -64,71 +63,56 @@ namespace Sudoku.Solving.Subsets
 				let view = GetView(region, candsToDisplay)
 				select (SubsetInfo)GetInfoHidden(size, region, digits, elims, view)
 			);
-		}
 
 
-		private static bool HasValueCell(Grid grid, Region region, IEnumerable<int> digits)
-		{
-			return digits.Any(digit =>
-			{
-				return grid[region].Any(info =>
-				{
-					return info.IsValueCell && info.Value == digit;
-				});
-			});
-		}
+		private static bool HasValueCell(Grid grid, Region region, IEnumerable<int> digits) =>
+			digits.Any(digit => grid[region].Any(info => info.IsValueCell && info.Value == digit));
 
 		private static NakedSubsetInfo GetInfoNaked(
-			int size, Region region,
-			IEnumerable<int> digits, IEnumerable<Candidate> elims,
+			int size, Region region, IEnumerable<int> digits, IEnumerable<Candidate> elims,
 			IEnumerable<Candidate> extraElims, bool isLocked, View view)
 		{
 			if (isLocked)
 			{
 				return new LockedSubsetInfo(
-					conclusion: new Conclusion(Elimination, elims.Concat(extraElims)),
+					conclusion: new(Elimination, elims.Concat(extraElims)),
 					views: new List<View> { view }, region, digits, size);
 			}
 			else if (extraElims.Any())
 			{
 				return new NakedSubsetPlusInfo(
-					conclusion: new Conclusion(Elimination, elims.Concat(extraElims)),
+					conclusion: new(Elimination, elims.Concat(extraElims)),
 					views: new List<View> { view }, region, digits, size);
 			}
 			else
 			{
-				return new NakedSubsetInfo(
-					conclusion: new Conclusion(Elimination, elims),
+				return new(
+					conclusion: new(Elimination, elims),
 					views: new List<View> { view }, region, digits, size);
 			}
 		}
 
 		private static HiddenSubsetInfo GetInfoHidden(
-			int size, Region region, IEnumerable<int> digits,
-			IEnumerable<Candidate> elims, View view)
-		{
-			return new HiddenSubsetInfo(
-				conclusion: new Conclusion(Elimination, elims),
+			int size, Region region, IEnumerable<int> digits, IEnumerable<Candidate> elims, View view) =>
+			new(
+				conclusion: new(Elimination, elims),
 				views: new List<View> { view }, region, digits, size);
-		}
 
-		private static View GetView(
-			Region region, IEnumerable<(Id, Candidate)> candsToDisplay)
-		{
-			return new View(
+		private static View GetView(Region region, IEnumerable<(Id, Candidate)> candsToDisplay) =>
+			new(
 				cells: null,
 				candidates: candsToDisplay,
 				regions: new List<(Id, Region)> { (0, region) },
 				inferences: null);
-		}
 
 		private static IEnumerable<(int digit, ISet<Region> digitRegions)> CheckLockedRegionTypes(
 			IEnumerable<CellInfo> structInfos, IEnumerable<int> digits)
 		{
-			foreach (var group in from digit in digits
-								  from info in structInfos
-								  where info.Contains(digit)
-								  group info by digit)
+			foreach (var group in
+				from digit in digits
+				from info in structInfos
+				where info.Contains(digit)
+				group info by digit)
 			{
 				var list = group.ToList();
 				int count = list.Count;
@@ -143,47 +127,36 @@ namespace Sudoku.Solving.Subsets
 		}
 
 		private static IEnumerable<(Id, Candidate)> GetCandsToDisplayNaked(
-			IEnumerable<CellInfo> structInfos, IEnumerable<int> digits)
-		{
-			return from info in structInfos
-				   from digit in digits
-				   where info[digit]
-				   select ((Id)0, new Candidate(info.Cell, digit));
-		}
+			IEnumerable<CellInfo> structInfos, IEnumerable<int> digits) =>
+			from info in structInfos
+			from digit in digits
+			where info[digit]
+			select ((Id)0, new Candidate(info.Cell, digit));
 
 		private static IEnumerable<(Id, Candidate)> GetCandsToDisplayHidden(
-			IEnumerable<CellInfo> structInfos, IEnumerable<int> digits)
-		{
-			return from info in structInfos
-				   from digit in digits
-				   where !info.IsValueCell && info.Contains(digit)
-				   select ((Id)0, new Candidate(info.Cell, digit));
-		}
+			IEnumerable<CellInfo> structInfos, IEnumerable<int> digits) =>
+			from info in structInfos
+			from digit in digits
+			where !info.IsValueCell && info.Contains(digit)
+			select ((Id)0, new Candidate(info.Cell, digit));
 
 		private static IEnumerable<Candidate> GetElimsNaked(
-			IEnumerable<CellInfo> cellInfos, IEnumerable<Cell> fixes,
-			CandidateField commonCandsMask)
-		{
-			return from info in cellInfos
-				   from setValue in commonCandsMask.Trues
-				   let cell = info.Cell
-				   where !fixes.Contains(cell) && !info.IsValueCell && info[setValue]
-				   select new Candidate(cell, setValue);
-		}
+			IEnumerable<CellInfo> cellInfos, IEnumerable<Cell> fixes, CandidateField commonCandsMask) =>
+			from info in cellInfos
+			from setValue in commonCandsMask.Trues
+			let cell = info.Cell
+			where !fixes.Contains(cell) && !info.IsValueCell && info[setValue]
+			select new Candidate(cell, setValue);
 
-		private static IEnumerable<Candidate> GetElimsHidden(
-			IEnumerable<CellInfo> cellInfos, IEnumerable<int> digits)
-		{
-			return from info in cellInfos
-				   from digit in Values.DigitRange.Except(digits)
-				   where !info.IsValueCell && info.Contains(digit)
-				   select new Candidate(info.Cell, digit);
-		}
+		private static IEnumerable<Candidate> GetElimsHidden(IEnumerable<CellInfo> cellInfos, IEnumerable<int> digits) =>
+			from info in cellInfos
+			from digit in Values.DigitRange.Except(digits)
+			where !info.IsValueCell && info.Contains(digit)
+			select new Candidate(info.Cell, digit);
 
 		private static IEnumerable<Candidate> GetExtraElimsNaked(
-			Grid grid, IEnumerable<Candidate> elims,
-			IEnumerable<Cell> fixes, IEnumerable<(int, ISet<Region>)> lockedRegions,
-			CandidateField commonCandsMask)
+			Grid grid, IEnumerable<Candidate> elims, IEnumerable<Cell> fixes,
+			IEnumerable<(int, ISet<Region>)> lockedRegions, CandidateField commonCandsMask)
 		{
 			for (int i = 0; i < 9; i++)
 			{
@@ -199,12 +172,8 @@ namespace Sudoku.Solving.Subsets
 							list.AddRange(
 								from info in grid[region]
 								let cand = new Candidate(info.Cell, i)
-								where digit == i
-								&& !fixes.Contains(info.Cell)
-								&& !info.IsValueCell
-								&& info[i]
-								&& !elims.Contains(cand)
-								&& !list.Contains(cand)
+								where digit == i && !fixes.Contains(info.Cell) && !info.IsValueCell
+								&& info[i] && !elims.Contains(cand) && !list.Contains(cand)
 								select cand);
 						}
 					}

@@ -13,13 +13,11 @@ namespace Sudoku.Runtime
 		{
 		}
 
-		public NoSolutionException(string message, Exception innerException)
-			: base(message, innerException)
+		public NoSolutionException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
-		
-		protected NoSolutionException(SerializationInfo info, StreamingContext context)
-			: base(info, context)
+
+		protected NoSolutionException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}
 	}

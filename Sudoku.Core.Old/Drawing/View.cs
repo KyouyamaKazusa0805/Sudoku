@@ -12,19 +12,19 @@ namespace Sudoku.Drawing
 			IEnumerable<(Id, Cell)>? cells, IEnumerable<(Id, Candidate)>? candidates,
 			IEnumerable<(Id, Region)>? regions, IEnumerable<Inference>? inferences)
 		{
-			if (!(cells is null))
+			if (cells is not null)
 			{
 				Cells = new HashSet<(Id, Cell)>(cells, new Comparer<Cell>());
 			}
-			if (!(candidates is null))
+			if (candidates is not null)
 			{
 				Candidates = new HashSet<(Id, Candidate)>(candidates, new Comparer<Candidate>());
 			}
-			if (!(regions is null))
+			if (regions is not null)
 			{
 				Regions = new HashSet<(Id, Region)>(regions, new Comparer<Region>());
 			}
-			if (!(inferences is null))
+			if (inferences is not null)
 			{
 				Inferences = new HashSet<Inference>(inferences);
 			}
@@ -40,15 +40,14 @@ namespace Sudoku.Drawing
 		public ISet<(Id id, Region region)>? Regions { get; }
 
 
-		public override int GetHashCode() =>
-			GetType().GetHashCode() ^ ToString().GetHashCode(StringComparison.Ordinal);
+		public override int GetHashCode() => GetType().GetHashCode() ^ ToString().GetHashCode(StringComparison.Ordinal);
 
 		public override string ToString()
 		{
 			const string separator = ", ";
 			var sb = new StringBuilder();
 
-			if (!(Cells is null))
+			if (Cells is not null)
 			{
 				sb.AppendLine("Cells:");
 				foreach (var (_, cell) in Cells)
@@ -58,7 +57,7 @@ namespace Sudoku.Drawing
 				sb.RemoveFromLast(separator.Length).AppendLine();
 			}
 
-			if (!(Candidates is null))
+			if (Candidates is not null)
 			{
 				sb.AppendLine("Candidates:");
 				foreach (var (_, candidate) in Candidates)
@@ -67,7 +66,7 @@ namespace Sudoku.Drawing
 				}
 				sb.RemoveFromLast(separator.Length).AppendLine();
 			}
-			if (!(Regions is null))
+			if (Regions is not null)
 			{
 				sb.AppendLine("Regions:");
 				foreach (var (_, region) in Regions)
@@ -76,7 +75,7 @@ namespace Sudoku.Drawing
 				}
 				sb.RemoveFromLast(separator.Length).AppendLine();
 			}
-			if (!(Inferences is null))
+			if (Inferences is not null)
 			{
 				sb.AppendLine("Inferences:");
 				foreach (var inference in Inferences)

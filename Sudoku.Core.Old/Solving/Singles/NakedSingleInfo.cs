@@ -5,8 +5,7 @@ namespace Sudoku.Solving.Singles
 {
 	public sealed class NakedSingleInfo : SingleInfo
 	{
-		public NakedSingleInfo(Conclusion conclusion, ICollection<View> views)
-			: base(conclusion, views)
+		public NakedSingleInfo(Conclusion conclusion, ICollection<View> views) : base(conclusion, views)
 		{
 		}
 

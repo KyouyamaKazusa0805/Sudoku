@@ -7,21 +7,19 @@ namespace Sudoku.Runtime
 	public class PuzzleCannotBeSolvedException : Exception
 	{
 		public PuzzleCannotBeSolvedException()
-		{ 
+		{
 		}
 
 		public PuzzleCannotBeSolvedException(string message) : base(message)
-		{ 
+		{
 		}
 
-		public PuzzleCannotBeSolvedException(string message, Exception inner)
-			: base(message, inner)
-		{ 
+		public PuzzleCannotBeSolvedException(string message, Exception inner) : base(message, inner)
+		{
 		}
 
-		protected PuzzleCannotBeSolvedException(SerializationInfo info, StreamingContext context)
-			: base(info, context)
-		{ 
+		protected PuzzleCannotBeSolvedException(SerializationInfo info, StreamingContext context) : base(info, context)
+		{
 		}
 	}
 }

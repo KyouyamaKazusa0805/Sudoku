@@ -2,7 +2,6 @@
 using Sudoku.Solving;
 using Sudoku.Solving.Bf.Dlx;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Linq;
 
@@ -10,13 +9,13 @@ namespace Sudoku.Checking
 {
 	public static class PuzzleAttributeChecker
 	{
-		public static bool IsUnique(this Grid grid, [NotNullWhen(true)] out Grid? resultIfUnique)
+		public static bool IsUnique(this Grid grid, out Grid? resultIfUnique)
 		{
 			try
 			{
 				var result = new DancingLinksSolver().Solve(grid, out _);
 				resultIfUnique = result;
-				return !(result is null);
+				return result is not null;
 			}
 			catch
 			{
@@ -27,7 +26,7 @@ namespace Sudoku.Checking
 
 		public static bool IsMinimal(this Grid grid)
 		{
-			Contract.Assume(!(grid is null));
+			Contract.Assume(grid is not null);
 
 			int hintCount = 0;
 			var array = grid.ToArray();

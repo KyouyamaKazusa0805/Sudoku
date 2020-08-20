@@ -16,24 +16,12 @@ namespace Sudoku.Solving.Subsets
 		}
 
 
-		public override decimal Difficulty
-		{
-			get
-			{
-				return Size switch
-				{
-					2 => 3m,
-					3 => 3.6m,
-					_ => 5m
-				};
-			}
-		}
+		public override decimal Difficulty => Size switch { 2 => 3m, 3 => 3.6m, _ => 5m };
 
 		public override string Name => $"Naked {Values.SubsetNames[Size]}";
 
 
-		public override string ToString() =>
-			$"{Name}: {GetValues(Digits)} in {Region} => {Conclusion}";
+		public override string ToString() => $"{Name}: {GetValues(Digits)} in {Region} => {Conclusion}";
 
 		private static string GetValues(IEnumerable<int> values)
 		{

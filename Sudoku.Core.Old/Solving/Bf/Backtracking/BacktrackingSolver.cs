@@ -21,15 +21,15 @@ namespace Sudoku.Solving.Bf.Backtracking
 				BacktrackinglySolve(ref solutionsCount, ref result, gridValues, 0);
 				stopwatch.Stop();
 
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, true);
-				return new Grid(result ?? throw new NoSolutionException());
+				analysisInfo = new(Name, null, stopwatch.Elapsed, true);
+				return new(result ?? throw new NoSolutionException());
 			}
 			catch (MultipleSolutionsException)
 			{
 				// Multiple solutions.
 				stopwatch.Stop();
 
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, false);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, false);
 				return null;
 			}
 			catch (NoSolutionException)
@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Bf.Backtracking
 				// No solution.
 				stopwatch.Stop();
 
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, false);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, false);
 				return null;
 			}
 		}
@@ -67,8 +67,7 @@ namespace Sudoku.Solving.Bf.Backtracking
 			int r = finishedCellsCount / 9, c = finishedCellsCount % 9;
 			if (gridValues[r, c] != 0)
 			{
-				BacktrackinglySolve(
-					ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
+				BacktrackinglySolve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
 			}
 			else
 			{
@@ -80,8 +79,7 @@ namespace Sudoku.Solving.Bf.Backtracking
 					gridValues[r, c]++; // Only use value increment operator.
 					if (IsValid(gridValues, r, c))
 					{
-						BacktrackinglySolve(
-							ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
+						BacktrackinglySolve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
 					}
 				}
 

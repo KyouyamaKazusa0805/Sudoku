@@ -69,7 +69,7 @@ namespace Sudoku.Solving
 						// :)
 						stopwatch.Stop();
 
-						analysisInfo = new AnalysisInfo(Name, steps, stopwatch.Elapsed, true);
+						analysisInfo = new(Name, steps, stopwatch.Elapsed, true);
 						return cloneation;
 					}
 					else
@@ -85,7 +85,7 @@ namespace Sudoku.Solving
 			// All solver cannot finish the puzzle...
 			// :(
 			//throw new CannotBeSolvedException(grid);
-			analysisInfo = new AnalysisInfo(Name, steps, stopwatch.Elapsed, false);
+			analysisInfo = new(Name, steps, stopwatch.Elapsed, false);
 			return null;
 		}
 	}

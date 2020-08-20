@@ -22,12 +22,12 @@ namespace Sudoku.Solving.Bf.Linqing
 			stopwatch.Stop();
 			if (results.Count == 1)
 			{
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, true);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, true);
 				return Grid.Parse(results[0]);
 			}
 			else
 			{
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, false);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, false);
 				return null;
 			}
 		}

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS8767
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -11,20 +13,20 @@ namespace Sudoku.Data.Meta
 {
 	public sealed class CandidateField : IComparable<CandidateField>, ICloneable<CandidateField>, IEquatable<CandidateField>, IEnumerable<bool>
 	{
-		private readonly BitArray _candidates = new BitArray(9, true);
+		private readonly BitArray _candidates = new(9, true);
 
 
-		public CandidateField() { }
+		public CandidateField()
+		{
+		}
 
-		public CandidateField(bool initializeBy) =>
-			_candidates = new BitArray(9, initializeBy);
+		public CandidateField(bool initializeBy) => _candidates = new BitArray(9, initializeBy);
 
 		public CandidateField(int digit) : this(new[] { digit })
 		{
 		}
 
-		public CandidateField(params int[] digits)
-			: this((IEnumerable<int>)digits)
+		public CandidateField(params int[] digits) : this((IEnumerable<int>)digits)
 		{
 		}
 
@@ -62,32 +64,18 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
-		public IEnumerable<int> Trues
-		{
-			get
-			{
-				return from digit in Values.DigitRange
-					   where _candidates[digit]
-					   select digit;
-			}
-		}
+		public IEnumerable<int> Trues =>
+			from digit in Values.DigitRange
+			where _candidates[digit]
+			select digit;
 
-		public IEnumerable<int> Falses
-		{
-			get
-			{
-				return from digit in Values.DigitRange
-					   where !_candidates[digit]
-					   select digit;
-			}
-		}
+		public IEnumerable<int> Falses =>
+			from digit in Values.DigitRange
+			where !_candidates[digit]
+			select digit;
 
 
-		public bool this[Index index]
-		{
-			get => _candidates[index];
-			set => _candidates[index] = value;
-		}
+		public bool this[Index index] { get => _candidates[index]; set => _candidates[index] = value; }
 
 
 		public override bool Equals(object? obj) =>
@@ -155,16 +143,9 @@ namespace Sudoku.Data.Meta
 			return this;
 		}
 
-		public CandidateField Clone() =>
-			new CandidateField((BitArray)_candidates.Clone());
+		public CandidateField Clone() => new((BitArray)_candidates.Clone());
 
-		public IEnumerator<bool> GetEnumerator()
-		{
-			return (
-				from i in Values.DigitRange
-				select _candidates[i]
-			).GetEnumerator();
-		}
+		public IEnumerator<bool> GetEnumerator() => (from i in Values.DigitRange select _candidates[i]).GetEnumerator();
 
 		object ICloneable.Clone() => Clone();
 
@@ -178,8 +159,7 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
-		public static bool TryParse(
-			string str, [NotNullWhen(true)] out CandidateField? result)
+		public static bool TryParse(string str, [NotNullWhen(true)] out CandidateField? result)
 		{
 			try
 			{
@@ -202,34 +182,24 @@ namespace Sudoku.Data.Meta
 		}
 
 
-		public static bool operator ==(CandidateField left, CandidateField right) =>
-			left.Equals(right);
+		public static bool operator ==(CandidateField left, CandidateField right) => left.Equals(right);
 
-		public static bool operator !=(CandidateField left, CandidateField right) =>
-			!(left == right);
+		public static bool operator !=(CandidateField left, CandidateField right) => !(left == right);
 
-		public static bool operator >(CandidateField left, CandidateField right) =>
-			left.CompareTo(right) > 0;
+		public static bool operator >(CandidateField left, CandidateField right) => left.CompareTo(right) > 0;
 
-		public static bool operator <(CandidateField left, CandidateField right) =>
-			left.CompareTo(right) < 0;
+		public static bool operator <(CandidateField left, CandidateField right) => left.CompareTo(right) < 0;
 
-		public static bool operator >=(CandidateField left, CandidateField right) =>
-			left.CompareTo(right) >= 0;
+		public static bool operator >=(CandidateField left, CandidateField right) => left.CompareTo(right) >= 0;
 
-		public static bool operator <=(CandidateField left, CandidateField right) =>
-			left.CompareTo(right) <= 0;
+		public static bool operator <=(CandidateField left, CandidateField right) => left.CompareTo(right) <= 0;
 
-		public static CandidateField operator ~(CandidateField candidateField) =>
-			candidateField.Clone().BitNot();
+		public static CandidateField operator ~(CandidateField candidateField) => candidateField.Clone().BitNot();
 
-		public static CandidateField operator &(CandidateField left, CandidateField right) =>
-			left.Clone().BitAndWith(right);
+		public static CandidateField operator &(CandidateField left, CandidateField right) => left.Clone().BitAndWith(right);
 
-		public static CandidateField operator |(CandidateField left, CandidateField right) =>
-			left.Clone().BitOrWith(right);
+		public static CandidateField operator |(CandidateField left, CandidateField right) => left.Clone().BitOrWith(right);
 
-		public static CandidateField operator ^(CandidateField left, CandidateField right) =>
-			left.Clone().BitXorWith(right);
+		public static CandidateField operator ^(CandidateField left, CandidateField right) => left.Clone().BitXorWith(right);
 	}
 }

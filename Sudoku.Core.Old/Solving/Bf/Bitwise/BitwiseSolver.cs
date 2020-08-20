@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
@@ -8,6 +9,7 @@ using Sudoku.Data.Meta;
 namespace Sudoku.Solving.Bf.Bitwise
 {
 	[SuppressUnmanagedCodeSecurity]
+	[SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments", Justification = "<挂起>")]
 	public sealed class BitwiseSolver : BruteForceSolver
 	{
 		public override string Name => "Bitwise";
@@ -23,7 +25,7 @@ namespace Sudoku.Solving.Bf.Bitwise
 			{
 				stopwatch.Start();
 
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, true);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, true);
 				return Solve32(str, sb, 2) != 1 ? null : Grid.Parse(sb.ToString());
 			}
 			catch (BadImageFormatException ex) when (ex.HResult == -2147024885)
@@ -36,7 +38,7 @@ namespace Sudoku.Solving.Bf.Bitwise
 				// and try using 64-bit dll to execute that unmanaged function.
 				// 0x8007000B is not a `int` value, but a `uint` value,
 				// so we should express the value by its complement value.
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, false);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, false);
 				return Solve64(str, sb, 2) != 1 ? null : Grid.Parse(sb.ToString());
 			}
 			catch
@@ -45,7 +47,7 @@ namespace Sudoku.Solving.Bf.Bitwise
 
 				// Neither x86 nor x64 or wrong execution.
 				// What the hell will return?
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, false);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, false);
 				return null;
 			}
 		}
@@ -62,10 +64,10 @@ namespace Sudoku.Solving.Bf.Bitwise
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sunniedoku.BitwiseSolver (x86).dll", EntryPoint = "Solve", CharSet = CharSet.Unicode)]
-		private static extern int Solve32(
-			[MarshalAs(UnmanagedType.LPWStr)] string puzzle,
-			[MarshalAs(UnmanagedType.LPWStr)] StringBuilder solution,
-			[MarshalAs(UnmanagedType.I4)] int limit);
+		private static extern nint Solve32(
+			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
+			[MarshalAs(UnmanagedType.LPStr)] StringBuilder solution,
+			nint limit);
 
 		/// <summary>
 		/// The core function of solving the puzzle based on x64 platform.
@@ -78,9 +80,9 @@ namespace Sudoku.Solving.Bf.Bitwise
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sunniedoku.BitwiseSolver (x64).dll", EntryPoint = "Solve", CharSet = CharSet.Unicode)]
-		private static extern int Solve64(
-			[MarshalAs(UnmanagedType.LPWStr)] string puzzle,
-			[MarshalAs(UnmanagedType.LPWStr)] StringBuilder solution,
-			[MarshalAs(UnmanagedType.I4)] int limit);
+		private static extern nint Solve64(
+			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
+			[MarshalAs(UnmanagedType.LPStr)] StringBuilder solution,
+			nint limit);
 	}
 }

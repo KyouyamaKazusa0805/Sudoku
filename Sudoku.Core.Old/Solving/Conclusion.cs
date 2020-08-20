@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS8767
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +20,7 @@ namespace Sudoku.Solving
 		{
 		}
 
-		public Conclusion(ConclusionType conclusionType) =>
-			ConclusionType = conclusionType;
+		public Conclusion(ConclusionType conclusionType) => ConclusionType = conclusionType;
 
 		public Conclusion(ConclusionType conclusionType, IEnumerable<Candidate> candidates)
 			: this(conclusionType) => AddRange(candidates);
@@ -158,31 +159,26 @@ namespace Sudoku.Solving
 			return candidates;
 		}
 
-		public static Conclusion operator *(
-			Conclusion candidates, IEnumerable<Candidate> values)
+		public static Conclusion operator *(Conclusion candidates, IEnumerable<Candidate> values)
 		{
 			candidates.AddRange(values);
 			return candidates;
 		}
 
-		public static Conclusion operator /(
-			Conclusion candidates, Predicate<Candidate> predicate)
+		public static Conclusion operator /(Conclusion candidates, Predicate<Candidate> predicate)
 		{
 			candidates.RemoveWhen(predicate);
 			return candidates;
 		}
 
-		public static Conclusion operator %(
-			Conclusion candidates, Predicate<Candidate> predicate)
+		public static Conclusion operator %(Conclusion candidates, Predicate<Candidate> predicate)
 		{
 			candidates.IntersectWith(candidates.Where(cand => predicate(cand)));
 			return candidates;
 		}
 
-		public static bool operator ==(Conclusion left, Conclusion right) =>
-			left.Equals(right);
+		public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
 
-		public static bool operator !=(Conclusion left, Conclusion right) =>
-			!(left == right);
+		public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
 	}
 }

@@ -7,14 +7,11 @@
 		<Authors>Sunnie</Authors>
 		<Nullable>Enable</Nullable>
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
+		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DefineConstants>TRACE</DefineConstants>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
-	</ItemGroup>
 
 </Project>

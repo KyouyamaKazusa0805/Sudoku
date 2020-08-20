@@ -11,8 +11,7 @@ namespace Sudoku.Solving.Bf.Dlx
 		public ColumnNode Root { get; set; }
 
 
-		public ColumnNode CreateLinkedList(Grid grid) =>
-			CreateLinkedList(GetArray(grid));
+		public ColumnNode CreateLinkedList(Grid grid) => CreateLinkedList(GetArray(grid));
 
 		public ColumnNode CreateLinkedList(int[,] grid)
 		{

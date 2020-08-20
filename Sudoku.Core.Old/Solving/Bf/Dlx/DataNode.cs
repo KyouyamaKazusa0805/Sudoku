@@ -25,11 +25,11 @@ namespace Sudoku.Solving.Bf.Dlx
 		{
 			Right.Left = Left;
 			Left.Right = Right;
-			for (var i = Down; i != this; i = i.Down)
+			for (var i = Down; !ReferenceEquals(i, this); i = i.Down)
 			{
-				for (var j = i.Right; j != i; j = j.Right)
+				for (var j = i.Right; !ReferenceEquals(j, i); j = j.Right)
 				{
-					Contract.Assume(!(j.Column is null));
+					Contract.Assume(j.Column is not null);
 
 					j.Down.Up = j.Up;
 					j.Up.Down = j.Down;
@@ -40,11 +40,11 @@ namespace Sudoku.Solving.Bf.Dlx
 
 		public void Uncover()
 		{
-			for (var i = Up; i != this; i = i.Up)
+			for (var i = Up; !ReferenceEquals(i, this); i = i.Up)
 			{
-				for (var j = i.Left; j != i; j = j.Left)
+				for (var j = i.Left; !ReferenceEquals(j, i); j = j.Left)
 				{
-					Contract.Assume(!(j.Column is null));
+					Contract.Assume(j.Column is not null);
 
 					j.Column.Size++;
 					j.Down.Up = j;

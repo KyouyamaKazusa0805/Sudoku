@@ -7,8 +7,7 @@ namespace Sudoku.Solving.Subsets
 	public abstract class SubsetInfo : TechniqueInfo
 	{
 		protected SubsetInfo(
-			Conclusion conclusion, ICollection<View> views,
-			Region region, IEnumerable<int> digits, int size)
+			Conclusion conclusion, ICollection<View> views, Region region, IEnumerable<int> digits, int size)
 			: base(conclusion, views) => (Region, Digits, Size) = (region, digits, size);
 
 

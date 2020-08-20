@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Literals;
-using Sudoku.Diagnostics.CodeAnalysis;
 using static Sudoku.Data.Meta.RegionType;
 
 namespace Sudoku.Data.Meta
@@ -15,7 +14,7 @@ namespace Sudoku.Data.Meta
 	{
 		public Region(RegionType regionType, int index)
 		{
-			Contract.Requires(index >= 0 && index < 9);
+			Contract.Requires(index is >= 0 and < 9);
 
 			(RegionType, Index) = (regionType, index);
 		}
@@ -27,8 +26,8 @@ namespace Sudoku.Data.Meta
 		{
 			get
 			{
-				Contract.Assume(RegionType >= 0 && RegionType <= (RegionType)2);
-				Contract.Assume(Index >= 0 && Index < 9);
+				Contract.Assume(RegionType is >= 0 and <= (RegionType)2);
+				Contract.Assume(Index is >= 0 and < 9);
 
 				return (RegionType, Index) switch
 				{
@@ -82,7 +81,6 @@ namespace Sudoku.Data.Meta
 		private int HashCode => (int)RegionType * 9 + Index;
 
 
-		[OnDeconstruction]
 		public void Deconstruct(out RegionType regionType, out int index) =>
 			(regionType, index) = (RegionType, Index);
 
@@ -95,19 +93,16 @@ namespace Sudoku.Data.Meta
 
 		public int CompareTo(Region other) => HashCode.CompareTo(other.HashCode);
 
-		public override string ToString()
-		{
-			return $@"{RegionType switch
+		public override string ToString() =>
+			$@"{RegionType switch
 			{
 				Row => "r",
 				Column => "c",
 				_ => "b"
 			}}{Index + 1 }";
-		}
 
 
-		public static bool TryParse(
-			string str, [NotNullWhen(returnValue: true)] out Region? result)
+		public static bool TryParse(string str, [NotNullWhen(returnValue: true)] out Region? result)
 		{
 			try
 			{

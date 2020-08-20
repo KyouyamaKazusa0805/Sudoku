@@ -38,24 +38,20 @@ namespace Sudoku.Solving.Locked
 
 		private static LockedInfo GetLockedInfo(
 			int digit, Region baseSet, Region coverSet, Conclusion conclusion, View view) =>
-			new LockedInfo(conclusion, new List<View> { view }, digit, baseSet, coverSet);
+			new(conclusion, new List<View> { view }, digit, baseSet, coverSet);
 
 		private static Conclusion GetConclusion(
-			Grid grid, Region coverSet, int digit, IEnumerable<Cell> cellsHavingDigit)
-		{
-			return new Conclusion(
+			Grid grid, Region coverSet, int digit, IEnumerable<Cell> cellsHavingDigit) =>
+			new(
 				conclusionType: ConclusionType.Elimination,
 				candidates:
 					from info in grid[coverSet]
 					where !cellsHavingDigit.Contains(info.Cell) && !info.IsValueCell && info.Contains(digit)
 					select new Candidate(info.Cell, digit));
-		}
 
 		private static View GetView(
-			Grid grid, Region baseSet, Region coverSet,
-			int digit, IEnumerable<Cell> coverCells)
-		{
-			return new View(
+			Grid grid, Region baseSet, Region coverSet, int digit, IEnumerable<Cell> coverCells) =>
+			new(
 				cells: null,
 				candidates:
 					from cell in baseSet.Cells
@@ -64,6 +60,5 @@ namespace Sudoku.Solving.Locked
 					select ((Id)0, new Candidate(cell, digit)),
 				regions: new List<(Id, Region)> { (0, baseSet), (1, coverSet) },
 				inferences: null);
-		}
 	}
 }

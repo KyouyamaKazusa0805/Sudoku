@@ -8,13 +8,13 @@ namespace Sudoku.Data.Literals
 {
 	public static class Values
 	{
-		public static readonly string[] SubsetNames = new[]
+		public static readonly string[] SubsetNames =
 		{
 			"Null", "Single", "Pair", "Triple", "Quadruple",
 			"Quintuple", "Sextuple", "Septuple", "Octuple", "Nonuple"
 		};
 
-		public static readonly string[] FishNames = new[]
+		public static readonly string[] FishNames =
 		{
 			"Null", "Single", "X-Wing", "Swordfish", "Jellyfish",
 			"Squirmbag", "Whale", "Leviathan", "Octopus", "Dragon"
@@ -80,8 +80,7 @@ namespace Sudoku.Data.Literals
 
 		public static readonly IEnumerable<int> DigitRange = Enumerable.Range(0, 9);
 
-		public static readonly IEnumerable<RegionType> RegionTypeRange =
-			(RegionType[])Enum.GetValues(typeof(RegionType));
+		public static readonly IEnumerable<RegionType> RegionTypeRange = (RegionType[])Enum.GetValues(typeof(RegionType));
 
 		public static readonly IEnumerable<Region> RegionRange =
 			from regionType in RegionTypeRange

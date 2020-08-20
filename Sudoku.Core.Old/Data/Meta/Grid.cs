@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS8767
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -15,7 +17,7 @@ namespace Sudoku.Data.Meta
 {
 	public sealed class Grid : ICloneable<Grid>, IEnumerable<CellInfo>, IEquatable<Grid>, IFormattable
 	{
-		public static readonly Grid Empty = new Grid();
+		public static readonly Grid Empty = new();
 
 		private readonly CellInfo[,] _grid = new CellInfo[9, 9];
 
@@ -30,8 +32,8 @@ namespace Sudoku.Data.Meta
 				{
 					int value = gridValues[i, j];
 					_grid[i, j] = value == 0
-						? new CellInfo(new Cell(i, j))
-						: new CellInfo(new Cell(i, j), gridValues[i, j] - 1, CellType.Given);
+						? new(new(i, j))
+						: new CellInfo(new(i, j), gridValues[i, j] - 1, CellType.Given);
 
 					AddEventHandler(ref _grid[i, j]);
 				}
@@ -47,7 +49,7 @@ namespace Sudoku.Data.Meta
 		public Grid(
 			(int value, CellType cellType)[,] gridValues, IEnumerable<Candidate>? eliminations)
 		{
-			Contract.Assert(!(gridValues is null));
+			Contract.Assert(gridValues is not null);
 			Contract.Requires(gridValues.GetLength(0) == 9 && gridValues.GetLength(1) == 9);
 
 			for (int i = 0; i < 9; i++)
@@ -55,7 +57,7 @@ namespace Sudoku.Data.Meta
 				for (int j = 0; j < 9; j++)
 				{
 					var (value, cellType) = gridValues[i, j];
-					_grid[i, j] = new CellInfo(new Cell(i, j), value, cellType);
+					_grid[i, j] = new(new(i, j), value, cellType);
 
 					AddEventHandler(ref _grid[i, j]);
 				}
@@ -64,7 +66,7 @@ namespace Sudoku.Data.Meta
 			InitializeCandidates();
 
 			// Custom eliminations (if exists).
-			if (!(eliminations is null))
+			if (eliminations is not null)
 			{
 				foreach (var candidate in eliminations)
 				{
@@ -73,7 +75,9 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
-		private Grid() { }
+		private Grid()
+		{
+		}
 
 		private Grid(object[,] gridValues)
 		{
@@ -85,11 +89,10 @@ namespace Sudoku.Data.Meta
 				{
 					_grid[i, j] = gridValues[i, j] switch
 					{
-						int value => new CellInfo(new Cell(i, j), value),
-						CandidateField cands => new CellInfo(new Cell(i, j), default, default, cands),
+						int value => new(new(i, j), value),
+						CandidateField cands => new(new(i, j), default, default, cands),
 						CellInfo info => info,
-						_ => throw new InvalidCastException(
-							$"The type is not {nameof(Int32)} or {nameof(CandidateField)}.")
+						_ => throw new InvalidCastException($"The type is not {nameof(Int32)} or {nameof(CandidateField)}.")
 					};
 
 					AddEventHandler(ref _grid[i, j]);
@@ -119,56 +122,28 @@ namespace Sudoku.Data.Meta
 
 		public int ValuesCount => Series.Count(info => info.IsValueCell);
 
-		public int CandidatesCount
-		{
-			get
-			{
-				return Series.Count(
-					info => !info.IsValueCell,
-					info => info.CandidateCount);
-			}
-		}
+		public int CandidatesCount => Series.Count(info => !info.IsValueCell, info => info.CandidateCount);
 
-		public IEnumerable<(Cell cell, int value)> Givens
-		{
-			get
-			{
-				return from info in Series
-					   where info.CellType == CellType.Given
-					   select (info.Cell, info.Value);
-			}
-		}
+		public IEnumerable<(Cell cell, int value)> Givens =>
+			from info in Series
+			where info.CellType == CellType.Given
+			select (info.Cell, info.Value);
 
-		public IEnumerable<(Cell cell, int value)> Modifiables
-		{
-			get
-			{
-				return from info in Series
-					   where info.CellType == CellType.Modifiable
-					   select (info.Cell, info.Value);
-			}
-		}
+		public IEnumerable<(Cell cell, int value)> Modifiables =>
+			from info in Series
+			where info.CellType == CellType.Modifiable
+			select (info.Cell, info.Value);
 
-		public IEnumerable<(Cell cell, CandidateField candidates)> Candidates
-		{
-			get
-			{
-				return from info in Series
-					   where info.CellType == CellType.Empty
-					   select (info.Cell, info.Candidates);
-			}
-		}
+		public IEnumerable<(Cell cell, CandidateField candidates)> Candidates =>
+			from info in Series
+			where info.CellType == CellType.Empty
+			select (info.Cell, info.Candidates);
 
-		public IEnumerable<Candidate> CandidateList
-		{
-			get
-			{
-				return from info in Series
-					   from i in Values.DigitRange
-					   where !info.IsValueCell && info[i]
-					   select new Candidate(info.Cell, i);
-			}
-		}
+		public IEnumerable<Candidate> CandidateList =>
+			from info in Series
+			from i in Values.DigitRange
+			where !info.IsValueCell && info[i]
+			select new Candidate(info.Cell, i);
 
 		private IEnumerable<CellInfo> Series => _grid.Cast<CellInfo>();
 
@@ -190,8 +165,7 @@ namespace Sudoku.Data.Meta
 
 		public ref CellInfo this[Cell cell] => ref this[cell.GlobalOffset];
 
-		public IEnumerable<CellInfo> this[Region region] =>
-			region.Cells.Select(cell => this[cell]);
+		public IEnumerable<CellInfo> this[Region region] => region.Cells.Select(cell => this[cell]);
 
 		internal ref CellInfo this[int offset] => ref _grid[offset / 9, offset % 9];
 
@@ -234,7 +208,7 @@ namespace Sudoku.Data.Meta
 			if (option == GridEqualityOptions.None)
 				return true;
 
-			Contract.Assume(!(other is null));
+			Contract.Assume(other is not null);
 
 			bool result = true;
 			if (option.HasFlag(GridEqualityOptions.CheckGivens))
@@ -265,25 +239,16 @@ namespace Sudoku.Data.Meta
 
 		public bool DeeplyEquals(Grid other)
 		{
-			Contract.Assume(!(other is null));
+			Contract.Assume(other is not null);
 
 			return GetHashCode() == other.GetHashCode();
 		}
 
-		public bool SimplyValidate()
-		{
-			return GivensCount >= 17 && Series.All(
+		public bool SimplyValidate() =>
+			GivensCount >= 17 && Series.All(
 				info =>
-				{
-					return GetPeerInfosOf(info.Cell).All(
-						peerInfo =>
-						{
-							return info.IsValueCell
-								&& peerInfo.IsValueCell
-								&& peerInfo.Value != info.Value;
-						});
-				});
-		}
+					GetPeerInfosOf(info.Cell).All(
+						peerInfo => info.IsValueCell && peerInfo.IsValueCell && peerInfo.Value != info.Value));
 
 		public bool DeeplyValidate() => this.IsUnique(out var _);
 
@@ -297,8 +262,7 @@ namespace Sudoku.Data.Meta
 			return result;
 		}
 
-		public int GetEmptyCellsCount(Region region) =>
-			this[region].Count(info => !info.IsValueCell);
+		public int GetEmptyCellsCount(Region region) => this[region].Count(info => !info.IsValueCell);
 
 		public int[,] ToArray()
 		{
@@ -418,26 +382,22 @@ namespace Sudoku.Data.Meta
 				for (int j = 0; j < 9; j++)
 				{
 					var (cell, value, cellType, candidates) = _grid[i, j];
-					result[i, j] = new CellInfo(cell, value, cellType, candidates);
+					result[i, j] = new(cell, value, cellType, candidates);
 				}
 			}
 
-			return new Grid(result);
+			return new(result);
 		}
 
-		public IEnumerable<CellInfo> GetPotentialInfosFor(Region region, int digit)
-		{
-			return from CellInfo info in this[region]
-				   where !info.IsValueCell && info[digit]
-				   select info;
-		}
+		public IEnumerable<CellInfo> GetPotentialInfosFor(Region region, int digit) =>
+			from CellInfo info in this[region]
+			where !info.IsValueCell && info[digit]
+			select info;
 
-		public IEnumerable<CellInfo> GetPeerInfosOf(Cell cell)
-		{
-			return from info in Series
-				   where cell.Peers.Contains(info.Cell)
-				   select info;
-		}
+		public IEnumerable<CellInfo> GetPeerInfosOf(Cell cell) =>
+			from info in Series
+			where cell.Peers.Contains(info.Cell)
+			select info;
 
 		public IEnumerator<CellInfo> GetEnumerator() => Series.GetEnumerator();
 
@@ -447,7 +407,7 @@ namespace Sudoku.Data.Meta
 
 		private void OnValueChanging(object sender, ValueChangingEventArgs e)
 		{
-			Contract.Assume(!(e is null));
+			Contract.Assume(e is not null);
 
 			if (!e.Cancel)
 			{
@@ -464,18 +424,18 @@ namespace Sudoku.Data.Meta
 
 		private void InitializeCandidates()
 		{
-			foreach (var (info, peerInfo) in from info in Series
-											 where info.IsValueCell
-											 from peerInfo in GetPeerInfosOf(info.Cell)
-											 where !peerInfo.IsValueCell
-											 select (info, peerInfo))
+			foreach (var (info, peerInfo) in
+				from info in Series
+				where info.IsValueCell
+				from peerInfo in GetPeerInfosOf(info.Cell)
+				where !peerInfo.IsValueCell
+				select (info, peerInfo))
 			{
 				peerInfo.Candidates[info.Value] = false;
 			}
 		}
 
-		private void AddEventHandler(ref CellInfo info) =>
-			info.ValueChanging += OnValueChanging;
+		private void AddEventHandler(ref CellInfo info) => info.ValueChanging += OnValueChanging;
 
 		private void GetOutputWithEliminations(StringBuilder sb, string format)
 		{
@@ -483,9 +443,10 @@ namespace Sudoku.Data.Meta
 			string s = ToString(format, null);
 
 			sb.Append($"{s}: ");
-			foreach (var (cell, digit) in from cand in Parse(s).CandidateList
-										  where !this[cand.Cell].IsValueCell && !this[cand]
-										  select cand)
+			foreach (var (cell, digit) in
+				from cand in Parse(s).CandidateList
+				where !this[cand.Cell].IsValueCell && !this[cand]
+				select cand)
 			{
 				if (isStarted)
 				{
@@ -536,8 +497,7 @@ namespace Sudoku.Data.Meta
 			).All(predicate);
 		}
 
-		private static bool TryParsePMGridFormat(
-			string str, [NotNullWhen(returnValue: true)] out Grid? result)
+		private static bool TryParsePMGridFormat(string str, [NotNullWhen(returnValue: true)] out Grid? result)
 		{
 			string[] matches = str.MatchAll(Regexes.PMGridValuesGroup);
 			if (matches.Length < 81)
@@ -627,8 +587,7 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
-		private static bool TryParseSusserFormat(
-			string str, [NotNullWhen(returnValue: true)] out Grid? result)
+		private static bool TryParseSusserFormat(string str, [NotNullWhen(returnValue: true)] out Grid? result)
 		{
 			string? match = str.Match(Regexes.ExtendedSusser);
 			if (match is null)
@@ -674,7 +633,7 @@ namespace Sudoku.Data.Meta
 									char d = str[++current];
 									array[row, column] = d switch
 									{
-										_ when d >= '1' && d <= '9' => (d - '1', CellType.Modifiable),
+										>= '1' and <= '9' => (d - '1', CellType.Modifiable),
 										_ => throw new FormatException(
 											$"Parameter {nameof(str)} cannot parse" +
 											$" to target type {nameof(Grid)}." +
@@ -688,8 +647,8 @@ namespace Sudoku.Data.Meta
 							{
 								array[row, column] = c switch
 								{
-									_ when c == '0' || c == '.' => default,
-									_ when c >= '1' && c <= '9' => (c - '1', CellType.Given),
+									'0' or '.' => default,
+									>= '1' and <= '9' => (c - '1', CellType.Given),
 									_ => throw new FormatException(
 										$"Parameter {nameof(str)} cannot parse" +
 										$" to target type {nameof(Grid)}."),
@@ -702,7 +661,7 @@ namespace Sudoku.Data.Meta
 						if (elimPart is null)
 						{
 							// No custom elimination, return directly.
-							result = new Grid(array);
+							result = new(array);
 						}
 						else
 						{
@@ -720,13 +679,13 @@ namespace Sudoku.Data.Meta
 							foreach (string elimStr in elimsStr!)
 							{
 								elimList.Add(
-									new Candidate(
+									new(
 										row: elimStr[1] - '1',
 										column: elimStr[2] - '1',
 										digit: elimStr[0] - '1'));
 							}
 
-							result = new Grid(array, elimList);
+							result = new(array, elimList);
 						}
 
 						return true;
@@ -743,14 +702,14 @@ namespace Sudoku.Data.Meta
 
 		public static bool operator ==(Grid left, Grid right)
 		{
-			Contract.Assume(!(left is null));
+			Contract.Assume(left is not null);
 
 			return left.Equals(right);
 		}
 
 		public static bool operator !=(Grid left, Grid right)
 		{
-			Contract.Assume(!(left is null));
+			Contract.Assume(left is not null);
 
 			return !left.Equals(right);
 		}
@@ -762,18 +721,16 @@ namespace Sudoku.Data.Meta
 			int[] maxLengths = new int[9];
 			{
 				int i = 0;
-				foreach (var group in from info in Series
-									  orderby info.Column
-									  group info by info.Column)
+				foreach (var group in from info in Series orderby info.Column group info by info.Column)
 				{
 					// Replace the smaller one.
 					int maxLength = 0;
-					maxLengths[i++] = group.Max(info =>
-					{
-						return Math.Max(info.CellType == CellType.Given
-							? Math.Max(info.CandidateCount, 3)
-							: info.CandidateCount, maxLength);
-					});
+					maxLengths[i++] = group.Max(
+						info =>
+							Math.Max(
+								info.CellType == CellType.Given
+									? Math.Max(info.CandidateCount, 3)
+									: info.CandidateCount, maxLength));
 				}
 			} // This bracket is for protecting local variable `i`.
 
@@ -797,9 +754,9 @@ namespace Sudoku.Data.Meta
 							sb, maxLengths,
 							this[new Region(RegionType.Row, i switch
 							{
-								_ when i >= 1 && i <= 3 => i - 1,
-								_ when i >= 5 && i <= 7 => i - 2,
-								_ when i >= 9 && i <= 11 => i - 3,
+								>= 1 and <= 3 => i - 1,
+								>= 5 and <= 7 => i - 2,
+								>= 9 and <= 11 => i - 3,
 								_ => throw new Exception("On the border, here will do nothing")
 							})], '|', '|');
 						break;

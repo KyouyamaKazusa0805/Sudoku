@@ -5,8 +5,7 @@ namespace Sudoku.Solving.Singles
 {
 	public abstract class SingleInfo : TechniqueInfo
 	{
-		protected SingleInfo(Conclusion conclusion, ICollection<View> views)
-			: base(conclusion, views)
+		protected SingleInfo(Conclusion conclusion, ICollection<View> views) : base(conclusion, views)
 		{
 		}
 

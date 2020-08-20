@@ -34,21 +34,21 @@ namespace Sudoku.Solving.Bf.Dlx
 
 				stopwatch.Stop();
 
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, true);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, true);
 				return _resultGrid;
 			}
 			catch
 			{
 				stopwatch.Stop();
 
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, false);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, false);
 				return null;
 			}
 		}
 
 		public Grid? Solve(int[,] gridArray, out AnalysisInfo analysisInfo)
 		{
-			var dlx = new DancingLink(new ColumnNode(-1));
+			var dlx = new DancingLink(new(-1));
 			_root = dlx.CreateLinkedList(gridArray);
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
@@ -59,14 +59,14 @@ namespace Sudoku.Solving.Bf.Dlx
 
 				stopwatch.Stop();
 
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, true);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, true);
 				return _resultGrid;
 			}
 			catch
 			{
 				stopwatch.Stop();
 
-				analysisInfo = new AnalysisInfo(Name, null, stopwatch.Elapsed, false);
+				analysisInfo = new(Name, null, stopwatch.Elapsed, false);
 				return null;
 			}
 		}
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Bf.Dlx
 				throw new MultipleSolutionsException();
 			}
 
-			Contract.Assume(!(_root is null));
+			Contract.Assume(_root is not null);
 			if (_root.Right == _root)
 			{
 				// All columns were removed!
@@ -96,18 +96,18 @@ namespace Sudoku.Solving.Bf.Dlx
 					_answerNodesStack.Push(r);
 					for (var j = r.Right; j != r; j = j.Right)
 					{
-						Contract.Assert(!(j.Column is null));
+						Contract.Assert(j.Column is not null);
 
 						j.Column.Uncover();
 					}
 					Search();
 					r = _answerNodesStack.Pop();
-					Contract.Assume(!(r.Column is null));
+					Contract.Assume(r.Column is not null);
 					c = r.Column;
 
 					for (var j = r.Left; j != r; j = j.Left)
 					{
-						Contract.Assert(!(j.Column is null));
+						Contract.Assert(j.Column is not null);
 
 						j.Column.Uncover();
 					}

@@ -11,7 +11,7 @@ namespace Sudoku.Linq
 		public static TElement Min<TElement, TComparable>(
 			this IQueryable<TElement> elements, Func<TElement, IComparable<TComparable>> selector)
 		{
-			Contract.Assume(!(elements is null));
+			Contract.Assume(elements is not null);
 
 			return (
 				from element in elements
@@ -23,7 +23,7 @@ namespace Sudoku.Linq
 		public static int Count<TElement>(
 			this IQueryable<TElement> elements, Func<TElement, int> countingFormula)
 		{
-			Contract.Assume(!(elements is null));
+			Contract.Assume(elements is not null);
 
 			int count = 0;
 			foreach (var element in elements)
@@ -38,7 +38,7 @@ namespace Sudoku.Linq
 			this IQueryable<TElement> elements,
 			Predicate<TElement> selector, Func<TElement, int> countingFormula)
 		{
-			Contract.Assume(!(elements is null));
+			Contract.Assume(elements is not null);
 
 			int count = 0;
 			foreach (var element in elements)

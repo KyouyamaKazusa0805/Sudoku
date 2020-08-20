@@ -7,8 +7,8 @@ namespace Sudoku.Data.Extensions
 	{
 		public static void AddRange<T>(this ICollection<T> @this, IEnumerable<T> values)
 		{
-			Contract.Assume(!(@this is null));
-			Contract.Assume(!(values is null));
+			Contract.Assume(@this is not null);
+			Contract.Assume(values is not null);
 
 			foreach (var value in values)
 			{

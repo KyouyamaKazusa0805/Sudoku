@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Literals;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data.Meta
 {
@@ -14,8 +13,8 @@ namespace Sudoku.Data.Meta
 	{
 		public Cell(int row, int column)
 		{
-			Contract.Requires(row >= 0 && row < 9);
-			Contract.Requires(column >= 0 && column < 9);
+			Contract.Requires(row is >= 0 and < 9);
+			Contract.Requires(column is >= 0 and < 9);
 
 			(Row, Column) = (row, column);
 		}
@@ -37,33 +36,24 @@ namespace Sudoku.Data.Meta
 				int r = Row, c = Column, b = Block, kr = r / 3 * 3, kc = c / 3 * 3;
 				result.AddRange(from i in Values.DigitRange select new Cell(i, c));
 				result.AddRange(from i in Values.DigitRange select new Cell(r, i));
-				result.AddRange(
-					from i in Enumerable.Range(kr, 3)
-					from j in Enumerable.Range(kc, 3)
-					select new Cell(i, j));
+				result.AddRange(from i in Enumerable.Range(kr, 3) from j in Enumerable.Range(kc, 3) select new Cell(i, j));
 				result.Remove(this);
 				return result;
 			}
 		}
 
-		public ISet<Region> Regions => new HashSet<Region>
-		{
-			RegionRow, RegionColumn, RegionBlock
-		};
+		public ISet<Region> Regions => new HashSet<Region> { RegionRow, RegionColumn, RegionBlock };
 
-		internal Region RegionRow => new Region(RegionType.Row, Row);
+		internal Region RegionRow => new(RegionType.Row, Row);
 
-		internal Region RegionColumn => new Region(RegionType.Column, Column);
+		internal Region RegionColumn => new(RegionType.Column, Column);
 
-		internal Region RegionBlock => new Region(RegionType.Block, Block);
+		internal Region RegionBlock => new(RegionType.Block, Block);
 
 
-		[OnDeconstruction]
-		public void Deconstruct(out int row, out int column) =>
-			(row, column) = (Row, Column);
+		public void Deconstruct(out int row, out int column) => (row, column) = (Row, Column);
 
-		public override bool Equals(object? obj) =>
-			obj is Cell comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is Cell comparer && Equals(comparer);
 
 		public bool Equals(Cell other) => GlobalOffset == other.GlobalOffset;
 
@@ -114,9 +104,7 @@ namespace Sudoku.Data.Meta
 		public static string ToString(string separator, IEnumerable<Cell> cells)
 		{
 			var sb = new StringBuilder();
-			foreach (var groupByRow in from cell in cells
-									   orderby cell
-									   group cell by cell.Row)
+			foreach (var groupByRow in from cell in cells orderby cell group cell by cell.Row)
 			{
 				bool isFirstCell = true;
 
@@ -147,15 +135,13 @@ namespace Sudoku.Data.Meta
 
 		public static Cell GetCell(Region region, int relativePosition)
 		{
-			Contract.Requires(relativePosition >= 0 && relativePosition < 9);
+			Contract.Requires(relativePosition is >= 0 and < 9);
 
 			return region.RegionType switch
 			{
-				RegionType.Row => new Cell(region.Index, relativePosition),
-				RegionType.Column => new Cell(relativePosition, region.Index),
-				_ => new Cell(
-					region.Index / 3 * 3 + relativePosition / 3,
-					region.Index % 3 * 3 + relativePosition % 3)
+				RegionType.Row => new(region.Index, relativePosition),
+				RegionType.Column => new(relativePosition, region.Index),
+				_ => new(region.Index / 3 * 3 + relativePosition / 3, region.Index % 3 * 3 + relativePosition % 3)
 			};
 		}
 
@@ -172,7 +158,6 @@ namespace Sudoku.Data.Meta
 
 		public static bool operator <=(Cell left, Cell right) => left.CompareTo(right) <= 0;
 
-		public static ISet<Cell> operator &(Cell left, Cell right) =>
-			left.IntersectWith(right);
+		public static ISet<Cell> operator &(Cell left, Cell right) => left.IntersectWith(right);
 	}
 }

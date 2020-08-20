@@ -6,20 +6,18 @@ using System.Linq;
 using System.Text;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Literals;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data.Meta
 {
 	public readonly struct Candidate : IEquatable<Candidate>, IComparable<Candidate>
 	{
-		public Candidate(int row, int column, int digit)
-			: this(new Cell(row, column), digit)
+		public Candidate(int row, int column, int digit) : this(new(row, column), digit)
 		{
 		}
 
 		public Candidate(Cell cell, int digit)
 		{
-			Contract.Requires(digit >= 0 && digit < 9);
+			Contract.Requires(digit is >= 0 and < 9);
 
 			(Cell, Digit) = (cell, digit);
 		}
@@ -44,12 +42,8 @@ namespace Sudoku.Data.Meta
 				var result = new HashSet<Candidate>();
 				var currentCell = Cell;
 				int currentDigit = Digit;
-				result.AddRange(
-					from i in Values.DigitRange
-					select new Candidate(currentCell, i));
-				result.AddRange(
-					from cell in Cell.Peers
-					select new Candidate(cell, currentDigit));
+				result.AddRange(from i in Values.DigitRange select new Candidate(currentCell, i));
+				result.AddRange(from cell in Cell.Peers select new Candidate(cell, currentDigit));
 				result.Remove(this);
 				return result;
 			}
@@ -64,21 +58,15 @@ namespace Sudoku.Data.Meta
 		internal Region RegionBlock => Cell.RegionBlock;
 
 
-		[OnDeconstruction]
-		public void Deconstruct(out int row, out int column, out int digit) =>
-			(row, column, digit) = (Row, Column, Digit);
+		public void Deconstruct(out int row, out int column, out int digit) => (row, column, digit) = (Row, Column, Digit);
 
-		[OnDeconstruction]
-		public void Deconstruct(out Cell cell, out int digit) =>
-			(cell, digit) = (Cell, Digit);
+		public void Deconstruct(out Cell cell, out int digit) => (cell, digit) = (Cell, Digit);
 
 		public bool Equals(Candidate other) => GlobalOffset == other.GlobalOffset;
 
-		public override bool Equals(object? obj) =>
-			obj is Candidate comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is Candidate comparer && Equals(comparer);
 
-		public int CompareTo(Candidate other) =>
-			GlobalOffset.CompareTo(other.GlobalOffset);
+		public int CompareTo(Candidate other) => GlobalOffset.CompareTo(other.GlobalOffset);
 
 		public override int GetHashCode() => GlobalOffset;
 
@@ -92,32 +80,27 @@ namespace Sudoku.Data.Meta
 				if (Digit == other.Digit) // Same digit...
 				{
 					var cell = Cell;
-					result.AddRange(
-						from i in Values.DigitRange
-						select new Candidate(cell, i));
+					result.AddRange(from i in Values.DigitRange select new Candidate(cell, i));
 					result.Remove(this);
 					result.Remove(other);
 				}
 				else // Different digit...
 				{
-					result.Add(new Candidate(Cell, other.Digit));
-					result.Add(new Candidate(other.Cell, Digit));
+					result.Add(new(Cell, other.Digit));
+					result.Add(new(other.Cell, Digit));
 				}
 			}
 			else if (Digit == other.Digit)
 			{
 				int digit = Digit;
-				result.AddRange(
-					from cell in Cell & other.Cell
-					select new Candidate(cell, digit));
+				result.AddRange(from cell in Cell & other.Cell select new Candidate(cell, digit));
 			}
 
 			return result;
 		}
 
 
-		public static bool TryParse(
-			string str, [NotNullWhen(returnValue: true)] out Candidate? result)
+		public static bool TryParse(string str, [NotNullWhen(returnValue: true)] out Candidate? result)
 		{
 			try
 			{
@@ -131,26 +114,22 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
-		public static string ToString(params Candidate[] candidates) =>
-			ToString(", ", candidates);
+		public static string ToString(params Candidate[] candidates) => ToString(", ", candidates);
 
 		public static string ToString(string separator, params Candidate[] candidates) =>
 			ToString(separator, (IEnumerable<Candidate>)candidates);
 
-		public static string ToString(IEnumerable<Candidate> candidates) =>
-			ToString(", ", candidates);
+		public static string ToString(IEnumerable<Candidate> candidates) => ToString(", ", candidates);
 
 		public static string ToString(string separator, IEnumerable<Candidate> candidates)
 		{
-			Contract.Assume(!(separator is null));
-			Contract.Assume(!(candidates is null));
+			Contract.Assume(separator is not null);
+			Contract.Assume(candidates is not null);
 
 			var sb = new StringBuilder();
-			foreach (var digitGroup in from cand in candidates
-									   group cand by cand.Digit)
+			foreach (var digitGroup in from cand in candidates group cand by cand.Digit)
 			{
-				foreach (var rowGroup in from cand in digitGroup
-										 group cand by cand.Row)
+				foreach (var rowGroup in from cand in digitGroup group cand by cand.Row)
 				{
 					int digit = rowGroup.Key;
 					sb.Append(Cell.ToString(from cand in rowGroup select cand.Cell));
@@ -169,35 +148,27 @@ namespace Sudoku.Data.Meta
 				: new Candidate(match[2] - '1', match[4] - '1', match[0] - '1');
 		}
 
-		public static Candidate GetCandidate(
-			Region region, int relativePosition, int digit)
+		public static Candidate GetCandidate(Region region, int relativePosition, int digit)
 		{
-			Contract.Requires(relativePosition >= 0 && relativePosition < 9);
-			Contract.Requires(digit >= 0 && digit < 9);
+			Contract.Requires(relativePosition is >= 0 and < 9);
+			Contract.Requires(digit is >= 0 and < 9);
 
-			return new Candidate(Cell.GetCell(region, relativePosition), digit);
+			return new(Cell.GetCell(region, relativePosition), digit);
 		}
 
 
-		public static bool operator ==(Candidate left, Candidate right) =>
-			left.Equals(right);
+		public static bool operator ==(Candidate left, Candidate right) => left.Equals(right);
 
-		public static bool operator !=(Candidate left, Candidate right) =>
-			!(left == right);
+		public static bool operator !=(Candidate left, Candidate right) => !(left == right);
 
-		public static bool operator >(Candidate left, Candidate right) =>
-			left.CompareTo(right) > 0;
+		public static bool operator >(Candidate left, Candidate right) => left.CompareTo(right) > 0;
 
-		public static bool operator <(Candidate left, Candidate right) =>
-			left.CompareTo(right) < 0;
+		public static bool operator <(Candidate left, Candidate right) => left.CompareTo(right) < 0;
 
-		public static bool operator >=(Candidate left, Candidate right) =>
-			left.CompareTo(right) >= 0;
+		public static bool operator >=(Candidate left, Candidate right) => left.CompareTo(right) >= 0;
 
-		public static bool operator <=(Candidate left, Candidate right) =>
-			left.CompareTo(right) <= 0;
+		public static bool operator <=(Candidate left, Candidate right) => left.CompareTo(right) <= 0;
 
-		public static ISet<Candidate> operator &(Candidate left, Candidate right) =>
-			left.IntersectWith(right);
+		public static ISet<Candidate> operator &(Candidate left, Candidate right) => left.IntersectWith(right);
 	}
 }

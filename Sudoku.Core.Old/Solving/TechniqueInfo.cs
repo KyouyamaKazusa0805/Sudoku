@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS8767
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using Sudoku.Data.Meta;
@@ -28,7 +30,7 @@ namespace Sudoku.Solving
 
 		public void ApplyTo(Grid grid)
 		{
-			Contract.Assume(!(grid is null));
+			Contract.Assume(grid is not null);
 
 			// Note that the operation is un-undo-able...
 			// If you want to impliment undo-and-redos, please
@@ -78,22 +80,16 @@ namespace Sudoku.Solving
 		public abstract override string ToString();
 
 
-		public static bool operator ==(TechniqueInfo left, TechniqueInfo right) =>
-			left.Equals(right);
+		public static bool operator ==(TechniqueInfo left, TechniqueInfo right) => left.Equals(right);
 
-		public static bool operator !=(TechniqueInfo left, TechniqueInfo right) =>
-			!(left == right);
+		public static bool operator !=(TechniqueInfo left, TechniqueInfo right) => !(left == right);
 
-		public static bool operator >(TechniqueInfo left, TechniqueInfo right) =>
-			left.CompareTo(right) > 0;
+		public static bool operator >(TechniqueInfo left, TechniqueInfo right) => left.CompareTo(right) > 0;
 
-		public static bool operator <(TechniqueInfo left, TechniqueInfo right) =>
-			left.CompareTo(right) < 0;
+		public static bool operator <(TechniqueInfo left, TechniqueInfo right) => left.CompareTo(right) < 0;
 
-		public static bool operator >=(TechniqueInfo left, TechniqueInfo right) =>
-			left.CompareTo(right) >= 0;
+		public static bool operator >=(TechniqueInfo left, TechniqueInfo right) => left.CompareTo(right) >= 0;
 
-		public static bool operator <=(TechniqueInfo left, TechniqueInfo right) =>
-			left.CompareTo(right) <= 0;
+		public static bool operator <=(TechniqueInfo left, TechniqueInfo right) => left.CompareTo(right) <= 0;
 	}
 }

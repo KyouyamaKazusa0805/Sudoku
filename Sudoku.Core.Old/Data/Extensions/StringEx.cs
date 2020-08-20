@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data.Extensions
 {
 	public static class StringEx
 	{
-		public static string? Match(this string @this, [Pattern] string pattern)
+		public static string? Match(this string @this, string pattern)
 		{
 			if (!pattern.IsRegexPattern())
 				return null;
 
 			var match = Regex.Match(@this, pattern);
-			return match.Success
-				? match.Value
-				: null;
+			return match.Success ? match.Value : null;
 		}
 
-		public static string[] MatchAll(this string @this, [Pattern] string pattern)
+		public static string[] MatchAll(this string @this, string pattern)
 		{
 			if (!pattern.IsRegexPattern())
 				return Array.Empty<string>();
@@ -27,7 +24,7 @@ namespace Sudoku.Data.Extensions
 			var result = new List<string>();
 			foreach (Match? match in matches) // Do not use 'var' ('var' is 'object?').
 			{
-				if (!(match is null))
+				if (match is not null)
 				{
 					result.Add(match.Value);
 				}

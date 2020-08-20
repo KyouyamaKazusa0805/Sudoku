@@ -16,9 +16,8 @@ namespace Sudoku.Solving.Singles
 	/// </summary>
 	public sealed class SingleStepFinder : StepFinder
 	{
-		public override IEnumerable<TechniqueInfo> TakeAll(Grid grid)
-		{
-			return (
+		public override IEnumerable<TechniqueInfo> TakeAll(Grid grid) =>
+			(
 				// Iterate on hidden single steps.
 				from quad in
 					from region in Values.RegionRange
@@ -34,47 +33,37 @@ namespace Sudoku.Solving.Singles
 				where info.IsNakedSingle
 				select (SingleInfo)GetInfoNaked(GetViewNaked(info, info.Cell), info)
 			);
-		}
 
 
-		private static NakedSingleInfo GetInfoNaked(View view, CellInfo info)
-		{
-			return new NakedSingleInfo(
-				conclusion: new Conclusion(
+		private static NakedSingleInfo GetInfoNaked(View view, CellInfo info) =>
+			new(
+				conclusion: new(
 					conclusionType: ConclusionType.Assignment,
 					candidates: new[] { new Candidate(info.Cell, info.TrendValue) }),
 				views: new List<View> { view });
-		}
 
-		private static View GetViewNaked(CellInfo info, Cell cell)
-		{
-			return new View(
+		private static View GetViewNaked(CellInfo info, Cell cell) =>
+			new(
 				cells: new List<(Id, Cell)> { (0, cell) },
 				candidates: new List<(Id, Candidate)> { (0, new Candidate(cell, info.TrendValue)) },
 				regions: null,
 				inferences: null);
-		}
 
-		private static HiddenSingleInfo GetInfoHidden(
-			(int digit, Region region, bool isFullHouse, Cell cell) quad, View view)
-		{
-			return new HiddenSingleInfo(
-				conclusion: new Conclusion(
+		private static HiddenSingleInfo GetInfoHidden((int digit, Region region, bool isFullHouse, Cell cell) quad, View view) =>
+			new(
+				conclusion: new(
 					conclusionType: ConclusionType.Assignment,
 					candidates: new[] { new Candidate(quad.cell, quad.digit) }),
 				views: new List<View> { view },
 				region: quad.region,
 				digit: quad.digit,
 				isFullHouse: quad.isFullHouse);
-		}
 
-		private static View GetViewHidden((int digit, Region region, bool, Cell cell) quad)
-		{
-			return new View(
+		private static View GetViewHidden((int digit, Region region, bool, Cell cell) quad) =>
+			new(
 				cells: null,
 				candidates: new List<(Id, Candidate)> { (0, new Candidate(quad.cell, quad.digit)) },
 				regions: new List<(Id, Region)> { (0, quad.region) },
 				inferences: null);
-		}
 	}
 }
