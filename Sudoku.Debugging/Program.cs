@@ -16,7 +16,7 @@ using static System.Console;
 
 var w = new Stopwatch();
 
-var z = new CodeCounter(Solution.PathRoot, @".+\.cs$");
+var z = new CodeLineCounter(Solution.PathRoot, @".+\.cs$");
 
 w.Start();
 int codeLines = z.CountCodeLines(out int count);

@@ -118,10 +118,10 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc/>
 		public virtual bool Equals(TechniqueInfo? other) =>
-			(this is null, other is null) switch
+			(this, other) switch
 			{
-				(true, true) => true,
-				(false, false) => ToString() == other!.ToString(),
+				(null, null) => true,
+				(not null, not null) => ToString() == other!.ToString(),
 				_ => false
 			};
 

@@ -4077,50 +4077,28 @@
             <param name="sender">The object triggering the event.</param>
             <param name="e">The data while triggering.</param>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeCounter">
+        <member name="T:Sudoku.Diagnostics.CodeLineCounter">
             <summary>
             Encapsulates a code line counter.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeCounter._root">
+        <member name="M:Sudoku.Diagnostics.CodeLineCounter.#ctor(System.String,System.String)">
             <summary>
-            The root directory of the project.
+            Encapsulates a code line counter.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeCounter._pattern">
-            <summary>
-            The filter pattern.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeCounter.#ctor(System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeLineCounter.#ctor(System.String)">
             <summary>
             Initializes an instance with the specified root directory.
             </summary>
             <param name="root">The directory.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeCounter.#ctor(System.String,System.String)">
-            <summary>
-            Initializes an instance with the specified root directory and the filter pattern.
-            </summary>
-            <param name="root">The root directory.</param>
-            <param name="filterPattern">
-            The filter pattern.
-            </param>
-            <example>
-            For example, you can write code like this:
-            <code>
-            var cc = new CodeCounter(<br/>
-                root: @"C:\Users\HelloWorld\Desktop\Project",<br/>
-                filterPattern: @".+\.cs$");
-            </code>
-            </example>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeCounter.FileList">
+        <member name="P:Sudoku.Diagnostics.CodeLineCounter.FileList">
             <summary>
             All file paths at this root directory.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeCounter.CountCodeLines(System.Int32@)">
+        <member name="M:Sudoku.Diagnostics.CodeLineCounter.CountCodeLines(System.Int32@)">
             <summary>
             Count on code lines in all files in the specified root directory.
             </summary>
@@ -4129,7 +4107,7 @@
             </param>
             <returns>The number of lines.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeCounter.GetAllFilesRecursively(System.IO.DirectoryInfo)">
+        <member name="M:Sudoku.Diagnostics.CodeLineCounter.GetAllFilesRecursively(System.IO.DirectoryInfo)">
             <summary>
             Get all files in the specified directory recursively.
             </summary>

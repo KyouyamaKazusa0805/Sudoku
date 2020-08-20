@@ -9,6 +9,41 @@ namespace Sudoku.Drawing
 	/// Encapsulates a view when displaying the information on forms.
 	/// </summary>
 	[DebuggerStepThrough]
+	public sealed record View(
+		IReadOnlyList<(int _id, int _cellOffset)>? CellOffsets,
+		IReadOnlyList<(int _id, int _candidateOffset)>? CandidateOffsets,
+		IReadOnlyList<(int _id, int _regionOffset)>? RegionOffsets,
+		IReadOnlyList<Link>? Links)
+	{
+		/// <summary>
+		/// Provides a new default view list for initialization.
+		/// </summary>
+		public static readonly View[] DefaultViews = new[] { new View() };
+
+
+		/// <summary>
+		/// Initializes an instance with the specified highlighted candidate offsets.
+		/// </summary>
+		/// <param name="candidateOffsets">
+		/// The list of pairs of identifier and candidate offset.
+		/// </param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public View(IReadOnlyList<(int, int)> candidateOffsets) : this(null, candidateOffsets, null, null)
+		{
+		}
+
+		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private View() : this(default, default, default, default)
+		{
+		}
+	}
+
+#if false
+	/// <summary>
+	/// Encapsulates a view when displaying the information on forms.
+	/// </summary>
+	[DebuggerStepThrough]
 	public sealed class View
 	{
 		/// <summary>
@@ -88,4 +123,5 @@ namespace Sudoku.Drawing
 		/// </summary>
 		public IReadOnlyList<Link>? Links { get; }
 	}
+#endif
 }
