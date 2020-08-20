@@ -32,7 +32,7 @@ namespace Sudoku
 		/// </returns>
 		public static string? GetName<TEnum>(TEnum enumField) where TEnum : Enum =>
 			typeof(TEnum).GetField(enumField.ToString()) is FieldInfo fieldInfo
-			&& fieldInfo.GetCustomAttribute<NameAttribute>() is not null and { Name: string result }
+			&& fieldInfo.GetCustomAttribute<NameAttribute>() is NameAttribute { Name: string result }
 				? result
 				: null;
 	}

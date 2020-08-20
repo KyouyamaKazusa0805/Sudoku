@@ -9,6 +9,11 @@
             Provides an analysis result after a puzzle solved.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.Boolean,System.String,System.String,System.TimeSpan,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.IReadOnlyGrid})">
+            <summary>
+            Provides an analysis result after a puzzle solved.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid,System.Boolean,System.TimeSpan,System.String)">
             <summary>
             Initializes an instance with some information.
@@ -44,15 +49,6 @@
             <param name="steps">All steps produced in solving.</param>
             <param name="stepGrids">All intermediate grids.</param>
             <param name="additional">The additional message.</param>
-        </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.HasSolved">
-            <summary>
-            <para>Indicates whether the puzzle has been solved.</para>
-            <para>
-            If the puzzle has multiple solutions or no solution,
-            this value will be always <see langword="false"/>.
-            </para>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.MaxDifficulty">
             <summary>
@@ -117,24 +113,6 @@
             Indicates the number of all solving steps recorded.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.SolverName">
-            <summary>
-            Indicates the solver's name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.Additional">
-            <summary>
-            Indicates the additional message during solving, which
-            can be the message from an exception, or the debugging information.
-            If this instance does not need to have this one, the value
-            will be <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.ElapsedTime">
-            <summary>
-            Indicates the solving elapsed time.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.AnalysisResult.DifficultyLevel">
             <summary>
             Indicates the difficulty level of the puzzle.
@@ -145,29 +123,6 @@
         <member name="P:Sudoku.Solving.AnalysisResult.Bottleneck">
             <summary>
             Indicates the bottle neck during the whole grid solving.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.Puzzle">
-            <summary>
-            Indicates the initial puzzle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.Solution">
-            <summary>
-            Indicates the solution grid. If and only if the puzzle
-            is not solved, this value will be <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.SolvingSteps">
-            <summary>
-            Indicates the solving steps during solving. If the puzzle is not
-            solved and the manual solver cannot find out any steps, or else
-            the puzzle is solved by other solvers, this value will be <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.StepGrids">
-            <summary>
-            Indicates the intermediate grids while solving.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@)">

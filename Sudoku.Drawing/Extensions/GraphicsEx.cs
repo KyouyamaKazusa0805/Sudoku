@@ -97,7 +97,7 @@ namespace Sudoku.Drawing.Extensions
 			r1 = new(rectangle.X, rectangle.Y, circleRadius * 2, circleRadius * 2);
 			r2 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y, circleRadius * 2, circleRadius * 2);
 			r3 = new(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
-			r4 = new RectangleF(rectangle.X + rectangle.Width - 2 * circleRadius,
+			r4 = new(rectangle.X + rectangle.Width - 2 * circleRadius,
 				rectangle.Y + rectangle.Height - 2 * circleRadius,
 				circleRadius * 2, circleRadius * 2);
 

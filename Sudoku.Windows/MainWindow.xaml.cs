@@ -288,7 +288,7 @@ namespace Sudoku.Windows
 		{
 			base.OnKeyUp(e);
 
-			if (_previewMap is not null && e.Key == K.Space)
+			if (_previewMap.HasValue && e.Key == K.Space)
 			{
 				_focusedCells = _previewMap.Value;
 

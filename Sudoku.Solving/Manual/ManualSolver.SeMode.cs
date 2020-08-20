@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual
 				var searcherListGroup = searchers[i];
 				foreach (var searcher in searcherListGroup)
 				{
-					if (sukaku is true && searcher is UniquenessTechniqueSearcher)
+					if ((sukaku, searcher) is (true, UniquenessTechniqueSearcher))
 					{
 						// Sukaku mode cannot use them.
 						// In fact, sukaku can use uniqueness tests, however the program should

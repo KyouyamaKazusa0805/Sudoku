@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			for (int i = 0; i < 9; i++)
 			{
 				int? value = MappingTable[i];
-				sb.Append($"{i + 1}{(value is null || value == i ? "" : $" -> {(int)value + 1}")}{separator}");
+				sb.Append($"{i + 1}{(!value.HasValue || value == i ? "" : $" -> {value.Value + 1}")}{separator}");
 			}
 
 			string customName = NameAttribute.GetName(SymmetryType)!.ToLower();

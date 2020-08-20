@@ -87,7 +87,7 @@ namespace Sudoku.Solving
 			// Print solving steps (if worth).
 			var bottleneckData = GetBottleneckData();
 			void a() => sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);
-			if (steps is not null && steps.Count != 0 && showTechniqueSteps)
+			if (showTechniqueSteps && steps is not null and { Count: not 0 })
 			{
 				sb.AppendLine(GetValue("AnalysisResultSolvingSteps"));
 				if (bottleneckData is not null)
@@ -133,8 +133,8 @@ namespace Sudoku.Solving
 			}
 
 			// Print solving step statistics (if worth).
-			var solvingStepsGrouped = GetSolvingStepsGrouped();
-			if (solvingStepsGrouped is not null && solvingStepsGrouped.Count() != 0)
+			var solvingStepsGrouped = GetSolvingStepsGrouped()?.ToList();
+			if (solvingStepsGrouped is not null and { Count: not 0 })
 			{
 				sb.AppendLine(GetValue("AnalysisResultTechniqueUsed"));
 				if (showTechniqueDetail)
@@ -267,7 +267,7 @@ namespace Sudoku.Solving
 			for (int i = solvingStepsCount - 1; i >= 0; i--)
 			{
 				var step = solvingSteps[i];
-				if (step is not SingleTechniqueInfo { ShowDifficulty: true })
+				if (step is not SingleTechniqueInfo and { ShowDifficulty: true })
 				{
 					return (i, step);
 				}

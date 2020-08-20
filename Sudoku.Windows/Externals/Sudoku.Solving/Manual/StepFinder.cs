@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				if (sukaku is true && searcher is UniquenessTechniqueSearcher)
+				if ((sukaku, searcher) is (true, UniquenessTechniqueSearcher))
 				{
 					// Sukaku mode cannot use them.
 					// In fact, sukaku can use uniqueness tests, but this will make the project
