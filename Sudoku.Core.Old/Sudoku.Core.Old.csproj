@@ -5,7 +5,7 @@
 		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides all sudoku implementations using older implementation logic.</Description>
 		<Authors>Sunnie</Authors>
-		<Nullable>Enable</Nullable>
+		<Nullable>enable</Nullable>
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
