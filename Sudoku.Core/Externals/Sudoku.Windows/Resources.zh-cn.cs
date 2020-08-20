@@ -16,14 +16,17 @@ namespace Sudoku.Windows
 		[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 		private static readonly SourceDictionary LangSourceZhCn = new Dictionary<string, string>
 		{
+#line 1000
 			// Punctuation marks
 			["Ellipsis"] = "……",
 			["Colon"] = "：",
 
+#line 2000
 			// GridProgressResult
 			["UnsolvedCells"] = "剩余空格总数：",
 			["UnsolvedCandidates"] = "，剩余候选数总数：",
 
+#line 3000
 			// Solver
 			["Manual"] = "人工",
 			["ManualLight"] = "人工 (轻量级)",
@@ -32,6 +35,7 @@ namespace Sudoku.Windows
 			["BitwiseSukaku"] = "候选数数独位运算",
 			["OneLineLinq"] = "单行 LINQ",
 
+#line 4000
 			// StepFinder
 			["ProgressAlsWWing"] = "待定数组-W-Wing",
 			["ProgressAlsXyWing"] = "待定数组-XY-Wing",
@@ -76,6 +80,7 @@ namespace Sudoku.Windows
 			["GeneratingProgressSingular"] = "1 次盘面尝试",
 			["GeneratingProgressPlural"] = "次盘面尝试",
 
+#line 5000
 			// Separate words
 			["Petal"] = "个花瓣",
 			["Grouped"] = "区块",
@@ -105,6 +110,7 @@ namespace Sudoku.Windows
 			["AnalysisResultAttributes"] = "题目特性：",
 			["AnalysisResultBackdoors"] = "后门：",
 
+#line 6000
 			// Techniques
 			["FullHouse"] = "同区剩余",
 			["LastDigit"] = "同数剩余",

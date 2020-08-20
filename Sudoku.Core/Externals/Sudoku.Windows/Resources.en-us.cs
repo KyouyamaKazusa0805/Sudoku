@@ -16,14 +16,17 @@ namespace Sudoku.Windows
 		[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 		private static readonly SourceDictionary LangSourceEnUs = new Dictionary<string, string>
 		{
+#line 1000
 			// Punctuation marks
 			["Ellipsis"] = "......",
 			["Colon"] = ":",
 
+#line 2000
 			// GridProgressResult
 			["UnsolvedCells"] = "Unsolved cells: ",
 			["UnsolvedCandidates"] = ", candidates: ",
 
+#line 3000
 			// Solver
 			["Manual"] = "Manual",
 			["ManualLight"] = "Manual (Light)",
@@ -32,6 +35,7 @@ namespace Sudoku.Windows
 			["BitwiseSukaku"] = "Bitwise Sukaku",
 			["OneLineLinq"] = "One line LINQ",
 
+#line 4000
 			// StepFinder
 			["ProgressAlsWWing"] = "Almost Locked Sets W-Wing",
 			["ProgressAlsXyWing"] = "Almost Locked Sets XY-Wing",
@@ -76,6 +80,7 @@ namespace Sudoku.Windows
 			["GeneratingProgressSingular"] = "1 time tried",
 			["GeneratingProgressPlural"] = "times tried",
 
+#line 5000
 			// Separate words
 			["Petal"] = "Petals",
 			["Grouped"] = "Grouped ",
@@ -105,6 +110,7 @@ namespace Sudoku.Windows
 			["AnalysisResultAttributes"] = "Attributes:",
 			["AnalysisResultBackdoors"] = "Backdoors:",
 
+#line 6000
 			// Techniques
 			["FullHouse"] = "Full House",
 			["LastDigit"] = "Last Digit",
