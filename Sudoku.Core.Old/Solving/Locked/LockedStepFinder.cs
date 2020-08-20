@@ -18,22 +18,19 @@ namespace Sudoku.Solving.Locked
 	/// </summary>
 	public sealed class LockedStepFinder : StepFinder
 	{
-		public override IEnumerable<TechniqueInfo> TakeAll(Grid grid)
-		{
-			// Iterate on locked steps.
-			return from baseSet in Values.RegionRange
-				   from coverSet in baseSet.CrossRegions
-				   from digit in Values.DigitRange
-				   let cardinality = grid.GetDigitPositionsOf(baseSet, digit).Cardinality
-				   where cardinality >= 2 && cardinality <= 3
-				   let cellsHavingDigit = grid.GetAllInfosWhenHavingDigit(baseSet, digit).Select(i => i.Cell)
-				   let coverCells = coverSet.Cells
-				   where cellsHavingDigit.All(c => coverCells.Contains(c))
-				   let conclusion = GetConclusion(grid, coverSet, digit, cellsHavingDigit)
-				   where conclusion.Any()
-				   let view = GetView(grid, baseSet, coverSet, digit, coverCells)
-				   select GetLockedInfo(digit, baseSet, coverSet, conclusion, view);
-		}
+		public override IEnumerable<TechniqueInfo> TakeAll(Grid grid) =>
+			from baseSet in Values.RegionRange
+			from coverSet in baseSet.CrossRegions
+			from digit in Values.DigitRange
+			let cardinality = grid.GetDigitPositionsOf(baseSet, digit).Cardinality
+			where cardinality is 2 or 3
+			let cellsHavingDigit = grid.GetAllInfosWhenHavingDigit(baseSet, digit).Select(i => i.Cell)
+			let coverCells = coverSet.Cells
+			where cellsHavingDigit.All(c => coverCells.Contains(c))
+			let conclusion = GetConclusion(grid, coverSet, digit, cellsHavingDigit)
+			where conclusion.Any()
+			let view = GetView(grid, baseSet, coverSet, digit, coverCells)
+			select GetLockedInfo(digit, baseSet, coverSet, conclusion, view);
 
 
 		private static LockedInfo GetLockedInfo(
