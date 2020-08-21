@@ -11,6 +11,7 @@ using Sudoku.Checking;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Literals;
 using Sudoku.Linq;
+using static System.Math;
 
 namespace Sudoku.Data.Meta
 {
@@ -43,8 +44,7 @@ namespace Sudoku.Data.Meta
 		{
 		}
 
-		public Grid(
-			(int value, CellType cellType)[,] gridValues, IEnumerable<Candidate>? eliminations)
+		public Grid((int value, CellType cellType)[,] gridValues, IEnumerable<Candidate>? eliminations)
 		{
 			for (int i = 0; i < 9; i++)
 			{
@@ -143,8 +143,7 @@ namespace Sudoku.Data.Meta
 			get => this[candidate.Cell][candidate.Digit];
 			set
 			{
-				var info = this[candidate.Cell];
-				if (!info.IsValueCell)
+				if (this[candidate.Cell] is CellInfo { IsValueCell: false } info)
 				{
 					info[candidate.Digit] = value;
 				}
@@ -186,8 +185,7 @@ namespace Sudoku.Data.Meta
 
 		public void RecomputeCandidates() => InitializeCandidates();
 
-		public override bool Equals(object? obj) =>
-			obj is Grid comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is Grid comparer && Equals(comparer);
 
 		public bool Equals(Grid other) => SimplyEquals(other);
 
@@ -659,11 +657,7 @@ namespace Sudoku.Data.Meta
 							//Contract.Assert(!(elimsStr is null));
 							foreach (string elimStr in elimsStr!)
 							{
-								elimList.Add(
-									new(
-										row: elimStr[1] - '1',
-										column: elimStr[2] - '1',
-										digit: elimStr[0] - '1'));
+								elimList.Add(new(elimStr[1] - '1', elimStr[2] - '1', elimStr[0] - '1'));
 							}
 
 							result = new(array, elimList);
@@ -698,9 +692,9 @@ namespace Sudoku.Data.Meta
 					int maxLength = 0;
 					maxLengths[i++] = group.Max(
 						info =>
-							Math.Max(
+							Max(
 								info.CellType == CellType.Given
-									? Math.Max(info.CandidateCount, 3)
+									? Max(info.CandidateCount, 3)
 									: info.CandidateCount, maxLength));
 				}
 			} // This bracket is for protecting local variable `i`.
@@ -725,9 +719,9 @@ namespace Sudoku.Data.Meta
 							sb, maxLengths,
 							this[new Region(RegionType.Row, i switch
 							{
-								>= 1 and <= 3 => i - 1,
-								>= 5 and <= 7 => i - 2,
-								>= 9 and <= 11 => i - 3,
+								1 or 2 or 3 => i - 1,
+								5 or 6 or 7 => i - 2,
+								9 or 10 or 11 => i - 3,
 								_ => throw new Exception("On the border, here will do nothing")
 							})], '|', '|');
 						break;
@@ -755,9 +749,10 @@ namespace Sudoku.Data.Meta
 			for (int i = start; i <= end; i++)
 			{
 				var info = values.ElementAt(i);
-				sb.Append(info.CellType != CellType.Given
-					? info.Candidates.ToString().PadRight(maxLengths[i])
-					: $"<{info.Value + 1}>".PadRight(maxLengths[i]));
+				sb.Append(
+					info.CellType != CellType.Given
+						? info.Candidates.ToString().PadRight(maxLengths[i])
+						: $"<{info.Value + 1}>".PadRight(maxLengths[i]));
 				sb.Append(i != end ? "  " : " ");
 			}
 		}

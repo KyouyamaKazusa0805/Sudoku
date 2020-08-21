@@ -2,7 +2,6 @@
 using Sudoku.Solving;
 using Sudoku.Solving.Bf.Dlx;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace Sudoku.Checking
