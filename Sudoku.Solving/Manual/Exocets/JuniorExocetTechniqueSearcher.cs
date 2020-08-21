@@ -222,9 +222,9 @@ namespace Sudoku.Solving.Manual.Exocets
 				return CheckMirror(
 					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : (short)0,
 					baseCandidatesMask, mirror, x,
-					(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
+					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
 						? tr1
-						: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0 ? tr2 : -1,
+						: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
 					cellOffsets, candidateOffsets);
 			}
 			else if ((grid.GetCandidateMask(tq2) & baseCandidatesMask) != 0)
@@ -234,9 +234,9 @@ namespace Sudoku.Solving.Manual.Exocets
 				return CheckMirror(
 					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : (short)0,
 					baseCandidatesMask, mirror, x,
-					(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
+					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
 						? tr1
-						: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0 ? tr2 : -1,
+						: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
 					cellOffsets, candidateOffsets);
 			}
 			else
@@ -463,11 +463,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 
 			short commonCandidatesMask = (short)((temp[0] | temp[3]) & (temp[1] | temp[2]) & baseCandidatesMask);
-			playground[1] = (short)(
-				temp[0] & temp[3] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
-			playground[2] = (short)(
-				temp[1] & temp[2] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
-			if (playground[1] == 0 || playground[2] == 0)
+			playground[1] = (short)(temp[0] & temp[3] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
+			playground[2] = (short)(temp[1] & temp[2] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
+			if ((playground[1], playground[2]) is not (not 0, not 0))
 			{
 				// Does not contain Bi-bi pattern.
 				return false;

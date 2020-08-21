@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				int r = GetRegion(pivot, Row), c = GetRegion(pivot, Column), b = GetRegion(pivot, Block);
 				GridMap rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
 				GridMap rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
-				if (rbEmptyMap.Count < 2 || cbEmptyMap.Count < 2)
+				if ((rbEmptyMap.Count, cbEmptyMap.Count) is not ( >= 2, >= 2))
 				{
 					// The intersection needs at least two cells.
 					continue;
@@ -170,8 +170,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 												}
 												elimMapColumn &= RegionMaps[c] - cbCurrentMap - currentColumnMap;
 
-												if ((blockMask & rowMask) != 0 || (rowMask & columnMask) != 0
-													|| (blockMask & columnMask) != 0)
+												if ((blockMask & rowMask, rowMask & columnMask, blockMask & columnMask) is
+													not (0, 0, 0))
 												{
 													continue;
 												}
@@ -248,21 +248,25 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 													var candidateOffsets = new List<(int, int)>();
 													foreach (int digit in rowMask.GetAllSets())
 													{
-														foreach (int cell in (currentRowMap | rbCurrentMap) & CandMaps[digit])
+														foreach (int cell in
+															(currentRowMap | rbCurrentMap) & CandMaps[digit])
 														{
 															candidateOffsets.Add((0, cell * 9 + digit));
 														}
 													}
 													foreach (int digit in columnMask.GetAllSets())
 													{
-														foreach (int cell in (currentColumnMap | cbCurrentMap) & CandMaps[digit])
+														foreach (int cell in
+															(currentColumnMap | cbCurrentMap) & CandMaps[digit])
 														{
 															candidateOffsets.Add((1, cell * 9 + digit));
 														}
 													}
 													foreach (int digit in blockMask.GetAllSets())
 													{
-														foreach (int cell in (currentBlockMap | rbCurrentMap | cbCurrentMap) & CandMaps[digit])
+														foreach (int cell in
+															(currentBlockMap | rbCurrentMap | cbCurrentMap) &
+															CandMaps[digit])
 														{
 															candidateOffsets.Add((2, cell * 9 + digit));
 														}
@@ -276,7 +280,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 																new View(
 																	_alsShowRegions ? null : cellOffsets,
 																	_alsShowRegions ? candidateOffsets : null,
-																	_alsShowRegions ? new[] { (0, r), (1, c), (2, b) } : null,
+																	_alsShowRegions
+																		? new[] { (0, r), (1, c), (2, b) }
+																		: null,
 																	null)
 															},
 															rowDigitsMask: rowMask,

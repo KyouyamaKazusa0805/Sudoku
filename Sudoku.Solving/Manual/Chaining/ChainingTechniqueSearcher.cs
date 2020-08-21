@@ -67,15 +67,12 @@ namespace Sudoku.Solving.Manual.Chaining
 			if (yEnabled)
 			{
 				// First rule: If there's only two candidates in this cell, the other one gets on.
-				if (BivalueMap[p.Cell])
+				if (BivalueMap[p.Cell] &&
+					(short)(grid.GetCandidateMask(p.Cell) & ~(1 << p.Digit)) is short mask && mask.IsPowerOfTwo())
 				{
-					short mask = (short)(grid.GetCandidateMask(p.Cell) & ~(1 << p.Digit));
-					if (mask.IsPowerOfTwo())
-					{
-						var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p);
-						//AddHiddenParentsOfCell(pOn, grid, offNodes);
-						result.Add(pOn);
-					}
+					var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p);
+					//AddHiddenParentsOfCell(pOn, grid, offNodes);
+					result.Add(pOn);
 				}
 			}
 
@@ -103,9 +100,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
 		/// <returns>The result list.</returns>
-		protected static IQueryable<ChainingTechniqueInfo> SortInfo(IEnumerable<ChainingTechniqueInfo> accumulator) => (
+		protected static IQueryable<ChainingTechniqueInfo> SortInfo(IEnumerable<ChainingTechniqueInfo> accumulator) =>
+		(
 			from Info in new Set<ChainingTechniqueInfo>(accumulator)
 			orderby Info.Difficulty, Info.Complexity, Info.SortKey
-			select Info).AsQueryable();
+			select Info
+		).AsQueryable();
 	}
 }

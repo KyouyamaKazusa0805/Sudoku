@@ -64,8 +64,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						case 3:
 						{
 							var (i, j, k) = (
-								emptyCellsInInterMap.SetAt(0),
-								emptyCellsInInterMap.SetAt(1),
+								emptyCellsInInterMap.SetAt(0), emptyCellsInInterMap.SetAt(1),
 								emptyCellsInInterMap.SetAt(2));
 							list.Add(new() { i, j });
 							list.Add(new() { j, k });
@@ -230,12 +229,13 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											{
 												foreach (int digit in grid.GetCandidates(cell))
 												{
-													candidateOffsets.Add((true switch
-													{
-														_ when digitIsolated == digit => 2,
-														_ when (blockMask >> digit & 1) != 0 => 0,
-														_ => 1
-													}, cell * 9 + digit));
+													candidateOffsets.Add((
+														true switch
+														{
+															_ when digitIsolated == digit => 2,
+															_ when (blockMask >> digit & 1) != 0 => 0,
+															_ => 1
+														}, cell * 9 + digit));
 												}
 											}
 

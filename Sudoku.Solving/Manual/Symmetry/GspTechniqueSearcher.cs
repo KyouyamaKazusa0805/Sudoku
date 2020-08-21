@@ -22,11 +22,10 @@ namespace Sudoku.Solving.Manual.Symmetry
 			// Note that Gurth's symmetrical placement does not have X-axis and Y-axis type.
 			unsafe
 			{
-				foreach (var act in
-					new delegate*<IList<TechniqueInfo>, IReadOnlyGrid, void>[]
-					{
-						&CheckCentral, &CheckDiagonal, &CheckAntiDiagonal
-					})
+				foreach (var act in new delegate*<IList<TechniqueInfo>, IReadOnlyGrid, void>[]
+				{
+					&CheckCentral, &CheckDiagonal, &CheckAntiDiagonal
+				})
 				{
 					act(accumulator, grid);
 				}

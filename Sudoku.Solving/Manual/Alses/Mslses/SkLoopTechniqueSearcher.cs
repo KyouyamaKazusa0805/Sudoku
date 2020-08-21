@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						pairs[i] |= grid.GetCandidateMask(cells[(i << 1) + 1]);
 					}
 
-					if (n > 4 || pairs[i].CountSet() > 5 || pairs[i] == 0)
+					if ((n, pairs[i].CountSet(), pairs[i]) is not ( <= 4, <= 5, not 0))
 					{
 						break;
 					}

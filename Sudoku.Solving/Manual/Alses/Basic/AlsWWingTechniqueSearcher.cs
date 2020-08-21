@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								continue;
 							}
 
-							if ((cpMap & p1).Count != 1 || (cpMap & p2).Count != 1 || ((p1 | p2) & cpMap).Count != 2)
+							if (((cpMap & p1).Count, (cpMap & p2).Count, ((p1 | p2) & cpMap).Count) is not (1, 1, 2))
 							{
 								continue;
 							}
@@ -163,11 +163,12 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 										new View(
 											_alsShowRegions ? null : cellOffsets,
 											_alsShowRegions ? candidateOffsets : null,
-											_alsShowRegions switch
-											{
-												true => new[] { (-1, region1), (-2, region2), (0, conjugatePair.Region.First()) },
-												_ => null
-											},
+											_alsShowRegions
+												? new[]
+												{
+													(-1, region1), (-2, region2), (0, conjugatePair.Region.First())
+												}
+												: null,
 											null)
 									},
 									als1,
