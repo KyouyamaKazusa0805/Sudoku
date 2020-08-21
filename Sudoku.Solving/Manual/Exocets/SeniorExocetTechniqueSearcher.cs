@@ -140,7 +140,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					// Get all true base eliminations.
 					TrueBaseEliminations trueBaseElims = default;
 					if (tbCands != 0
-						&& (grid.GetStatus(combination[0]) != Empty || grid.GetStatus(combination[1]) != Empty))
+						&& (grid.GetStatus(combination[0]), grid.GetStatus(combination[1])) is not (Empty, Empty))
 					{
 						for (int j = 0; j < 2; j++)
 						{
@@ -256,9 +256,9 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					if (_checkAdvanced
-						? mirrorElims.Count == 0 && compatibilityElims.Count == 0
-							&& targetElims.Count == 0 && trueBaseElims.Count == 0
-						: mirrorElims.Count == 0 && compatibilityElims.Count == 0)
+						? (mirrorElims.Count, compatibilityElims.Count) is (0, 0)
+							&& (targetElims.Count, trueBaseElims.Count) is (0, 0)
+						: (mirrorElims.Count, compatibilityElims.Count) is (0, 0))
 					{
 						continue;
 					}

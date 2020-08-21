@@ -85,7 +85,7 @@ namespace Sudoku.Solving.Manual
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];
-				if (sukaku && searcher is UniquenessTechniqueSearcher)
+				if ((sukaku, searcher) is (true, UniquenessTechniqueSearcher))
 				{
 					continue;
 				}

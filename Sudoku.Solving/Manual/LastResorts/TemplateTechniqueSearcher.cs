@@ -37,18 +37,17 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </exception>
 		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			if (grid.IsValid(out var solution))
-			{
-				if (!_templateDeleteOnly)
-				{
-					GetAllTemplateSet(accumulator, solution);
-				}
-				GetAllTemplateDelete(accumulator, solution);
-			}
-			else
+			if (!grid.IsValid(out var solution))
 			{
 				throw new WrongHandlingException(grid);
 			}
+
+			if (!_templateDeleteOnly)
+			{
+				GetAllTemplateSet(accumulator, solution);
+			}
+
+			GetAllTemplateDelete(accumulator, solution);
 		}
 
 
@@ -137,7 +136,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			if (!grid.HasSolved)
 			{
-				throw new ArgumentException($"The specified sudoku grid has not been solved.");
+				throw new ArgumentException("The specified sudoku grid has not been solved.");
 			}
 
 			var result = GridMap.Empty;
@@ -148,6 +147,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					result.Add(cell);
 				}
 			}
+
 			return result;
 		}
 	}

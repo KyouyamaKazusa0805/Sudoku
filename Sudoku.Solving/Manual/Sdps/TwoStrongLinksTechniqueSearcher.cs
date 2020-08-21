@@ -78,9 +78,7 @@ namespace Sudoku.Solving.Manual.Sdps
 					Checking:
 						// Two strong link found.
 						// Record all eliminations.
-						int head, tail;
-						head = cells1[headIndex];
-						tail = cells2[tailIndex];
+						int head = cells1[headIndex], tail = cells2[tailIndex];
 						var conclusions = new List<Conclusion>();
 						var gridMap = PeerMaps[head] & PeerMaps[tail] & CandMaps[digit];
 						if (gridMap.IsEmpty)

@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 										null,
 										GetLinks())
 								},
-								contradictionSeries: new List<Conclusion>(_tempConclusions)));
+								contradictionSeries: _tempConclusions.ToArray()));
 					}
 
 					// Undo the operation.
@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 								null,
 								GetLinks())
 						},
-						contradictionSeries: new List<Conclusion>(_tempConclusions)));
+						contradictionSeries: _tempConclusions.ToArray()));
 			}
 
 			// Undo grid.
@@ -212,9 +212,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		private static bool IsValidGrid(IReadOnlyGrid grid, int cell) =>
 			Peers[cell].All(
 				c =>
-				{
-					var status = grid.GetStatus(c);
-					return (status != Empty && grid[c] != grid[cell] || status == Empty) && grid.GetCandidateMask(c) != 0;
-				});
+					grid.GetStatus(c) is CellStatus status
+					&& (status != Empty && grid[c] != grid[cell] || status == Empty)
+					&& grid.GetCandidateMask(c) != 0);
 	}
 }

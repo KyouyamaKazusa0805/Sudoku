@@ -58,7 +58,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					candidateOffsets.Add((0, cell * 9 + digit));
 				}
 			}
-			if (!_allowIncompleteUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
+
+			if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) is not (6, 2))
 			{
 				return;
 			}
@@ -161,11 +162,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// (ab ) (ab )
 			//  abx   aby
 			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer
-				|| otherCellsMap.Any(c =>
-				{
-					short mask = grid.GetCandidateMask(c);
-					return (mask & comparer) == 0 || mask == comparer || arMode && grid.GetStatus(c) != Empty;
-				}))
+				|| otherCellsMap.Any(
+					c =>
+						grid.GetCandidateMask(c) is short mask
+						&& (mask & comparer) == 0 || mask == comparer || arMode && grid.GetStatus(c) != Empty))
 			{
 				return;
 			}
@@ -340,7 +340,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 					}
 
-					if (!_allowIncompleteUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
+					if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) is not (6, 2))
 					{
 						continue;
 					}
@@ -515,7 +515,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 				}
 
-				if (!_allowIncompleteUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
+				if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) is not (6, 2))
 				{
 					return;
 				}

@@ -33,19 +33,30 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					mask |= grid.GetCandidateMask(cell);
 				}
 
-				CheckType1(accumulator, grid, pattern, mask);
-				CheckType2(accumulator, pattern, mask);
-				CheckType3(accumulator, grid, pattern, mask);
-				CheckType4(accumulator, grid, pattern, mask);
+				unsafe
+				{
+					foreach (var f in
+						new delegate*<IList<TechniqueInfo>, IReadOnlyGrid, GridMap, short, void>[]
+						{
+							&CheckType1, &CheckType2, &CheckType3, &CheckType4
+						})
+					{
+						f(accumulator, grid, pattern, mask);
+					}
+				}
 			}
 		}
 
-		partial void CheckType1(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
+		private static partial void CheckType1(
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
 
-		partial void CheckType2(IList<TechniqueInfo> accumulator, GridMap pattern, short mask);
+		private static partial void CheckType2(
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
 
-		partial void CheckType3(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
+		private static partial void CheckType3(
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
 
-		partial void CheckType4(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
+		private static partial void CheckType4(
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
 	}
 }

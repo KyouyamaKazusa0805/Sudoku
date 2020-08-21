@@ -379,6 +379,12 @@
         <member name="M:Sudoku.Solving.Annotations.SearcherPropertyAttribute.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Annotations.SearcherPropertyAttribute.op_Explicit(Sudoku.Solving.Annotations.SearcherPropertyAttribute)~System.ValueTuple{System.Boolean,System.Boolean,System.Int32,Sudoku.Solving.Annotations.DisabledReason}">
+            <summary>
+            Converts the current object to the quadruple <see cref="T:System.ValueTuple`4"/>.
+            </summary>
+            <param name="this">The current instance.</param>
+        </member>
         <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
             <summary>
             Provides a solver using backtracking method.

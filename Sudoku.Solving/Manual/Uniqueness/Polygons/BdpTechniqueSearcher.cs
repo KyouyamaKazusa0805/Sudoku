@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc/>
-		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			if (EmptyMap.Count < 7)
 			{

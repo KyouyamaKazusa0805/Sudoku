@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Checking
 				switch (candidatesCount)
 				{
 					case 1:
-					case int z when z > 2 && ++multivalueCellsCount > maximumEmptyCells:
+					case > 2 when ++multivalueCellsCount > maximumEmptyCells:
 					{
 						return DefaultList;
 					}

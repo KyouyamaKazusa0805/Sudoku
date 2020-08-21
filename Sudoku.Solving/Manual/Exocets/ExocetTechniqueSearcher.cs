@@ -163,10 +163,14 @@ namespace Sudoku.Solving.Manual.Exocets
 								tr1,
 								B[BC[i, 1]] + RqIter[l, 1],
 								new(crossline[7..]),
-								new() { B[BC[i, 1]] + M[l, 2], B[BC[i, 1]] + M[l, 3] },
-								new() { B[BC[i, 1]] + M[l, 0], B[BC[i, 1]] + M[l, 1] },
-								new() { B[BC[i, 0]] + M[k, 2], B[BC[i, 0]] + M[k, 3] },
-								new() { B[BC[i, 0]] + M[k, 0], B[BC[i, 0]] + M[k, 1] });
+								new()
+							{ B[BC[i, 1]] + M[l, 2], B[BC[i, 1]] + M[l, 3] },
+								new()
+							{ B[BC[i, 1]] + M[l, 0], B[BC[i, 1]] + M[l, 1] },
+								new()
+							{ B[BC[i, 0]] + M[k, 2], B[BC[i, 0]] + M[k, 3] },
+								new()
+							{ B[BC[i, 0]] + M[k, 0], B[BC[i, 0]] + M[k, 1] });
 
 							n++;
 						}
@@ -215,7 +219,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				var regions = (Span<int>)stackalloc int[2];
 				short m1 = (short)(grid.GetCandidateMask(playground[0]) & baseCandidateMask);
 				short m2 = (short)(grid.GetCandidateMask(playground[1]) & baseCandidateMask);
-				if (m1 != 0 ^ m2 != 0)
+				if ((m1, m2) is (0, not 0) or (not 0, 0))
 				{
 					int p = playground[m1 == 0 ? 1 : 0];
 					short candidateMask = (short)(grid.GetCandidateMask(p) & ~commonBase);

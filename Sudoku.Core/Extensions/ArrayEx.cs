@@ -47,39 +47,29 @@ namespace Sudoku.Extensions
 			}
 
 			var result = new List<T[]>();
-			GetCombinationsRecursively(ref result, @this, @this.Length, count, count, new int[count]);
+			g(@this, @this.Length, count, count, new int[count]);
 
 			return result;
-		}
 
-		/// <summary>
-		/// Get all combinations for an array recursively.
-		/// </summary>
-		/// <param name="resultList">The result list.</param>
-		/// <param name="array">The base array.</param>
-		/// <param name="last">The number of the last elements will be checked.</param>
-		/// <param name="count">The number of the elements.</param>
-		/// <param name="m">Auxiliary variable.</param>
-		/// <param name="b">Auxiliary variable.</param>
-		private static void GetCombinationsRecursively<T>(
-			ref List<T[]> resultList, T[] array, int last, int count, int m, int[] b)
-		{
-			for (int i = last; i >= m; i--)
+			void g(T[] array, int last, int count, int m, int[] b)
 			{
-				b[m - 1] = i - 1;
-				if (m > 1)
+				for (int i = last; i >= m; i--)
 				{
-					GetCombinationsRecursively(ref resultList, array, i - 1, count, m - 1, b);
-				}
-				else
-				{
-					var temp = new T[count];
-					for (int j = 0; j < b.Length; j++)
+					b[m - 1] = i - 1;
+					if (m > 1)
 					{
-						temp[j] = array[b[j]];
+						g(array, i - 1, count, m - 1, b);
 					}
+					else
+					{
+						var temp = new T[count];
+						for (int j = 0; j < b.Length; j++)
+						{
+							temp[j] = array[b[j]];
+						}
 
-					resultList.Add(temp);
+						result.Add(temp);
+					}
 				}
 			}
 		}
