@@ -314,14 +314,14 @@ namespace Sudoku.Data
 		/// This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsNotEmpty"/>
-		public readonly bool IsEmpty => _high == 0 && _low == 0;
+		public readonly bool IsEmpty => (_high, _low) is (0, 0);
 
 		/// <summary>
 		/// Indicates whether the map has at least one set bit.
 		/// This property is equivalent to code '<c>!this.IsEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsEmpty"/>
-		public readonly bool IsNotEmpty => _high != 0 || _low != 0;
+		public readonly bool IsNotEmpty => (_high, _low) is not (0, 0);
 
 		/// <summary>
 		/// Indicates the mask of block.
@@ -594,8 +594,8 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int CompareTo(GridMap other) =>
-			((new BigInteger(_high) << Shifting) + new BigInteger(_low)).CompareTo(
-				(new BigInteger(other._high) << Shifting) + new BigInteger(other._low));
+			((new BigInteger(_high) << Shifting) + new BigInteger(_low))
+				.CompareTo((new BigInteger(other._high) << Shifting) + new BigInteger(other._low));
 
 		/// <summary>
 		/// Get all cell offsets whose bits are set <see langword="true"/>.
