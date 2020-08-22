@@ -74,6 +74,7 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 
 * [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core): The main data structure implementation of the sudoku elementary.<br/>对数独基本元素的主要数据结构的实现。
 * <font color="red">*</font> [`Sudoku.Core.Old`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core.Old): The old project of sudoku implementations, including the sudoku metadata and solving techniques (only singles, locked candidates and subsets).<br/>以前的数独项目实现，包含数独的相关元素以及一些数独技巧（只有排除、唯一余数、区块和数组）。
+* [`Sudoku.Document`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Document): The project for parsing doc comment files and generating Markdown files.<br/>解析文档注释文件并生成 Markdown 的项目。
 * [`Sudoku.Drawing`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Drawing): The project that can be used for drawing and rendering sudoku grids.<br/>这个项目用于绘制和渲染数独盘面。
 * [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving): The generating and solving project.<br/>解题和题目生成的项目。
 * <font color="red">*</font> [`Sudoku.Solving.BruteForces.Bitwise`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving.BruteForces/Bitwise): The native code for solving sudokus, which is used for speed up the calculation.<br/>解数独题目的 native 代码，用它是为了加快计算速度。
