@@ -128,7 +128,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										}
 									}
 
-									if (c1 == 0 && c2 == 3 || c1 == 1 && c2 == 2)
+									if ((c1, c2) is (0, 3) or (1, 2))
 									{
 										// Diagonal type.
 										if (!arMode)
@@ -215,7 +215,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 				}
 
-				return modifiableCount != 4 && emptyCountWhenArMode != 4;
+				return (modifiableCount, emptyCountWhenArMode) is (not 4, not 4);
 			}
 		}
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using Quadruple = System.ValueTuple<bool, bool, int, Sudoku.Solving.Annotations.DisabledReason>;
 
 namespace Sudoku.Solving.Annotations
 {
@@ -54,10 +56,18 @@ namespace Sudoku.Solving.Annotations
 
 
 		/// <inheritdoc/>
-		public override string ToString()
+		public override string ToString() => ((Quadruple)this).ToString();
+
+
+		/// <summary>
+		/// Converts the current object to the quadruple <see cref="Quadruple"/>.
+		/// </summary>
+		/// <param name="this">The current instance.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static explicit operator Quadruple(SearcherPropertyAttribute @this)
 		{
-			var (a, b, c, d) = this;
-			return (a, b, c, d).ToString();
+			var (a, b, c, d) = @this;
+			return (a, b, c, d);
 		}
 	}
 }

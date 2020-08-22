@@ -70,15 +70,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					else
 					{
 						// Don't forget to record the square cells.
-						var squareMap = square & regionMap;
-						if (squareMap.IsNotEmpty)
-						{
-							f(squareMap);
-						}
-						else
+						if ((square & regionMap) is GridMap squareMap && squareMap.IsEmpty)
 						{
 							continue;
 						}
+
+						f(squareMap);
 					}
 
 					void f(GridMap map)

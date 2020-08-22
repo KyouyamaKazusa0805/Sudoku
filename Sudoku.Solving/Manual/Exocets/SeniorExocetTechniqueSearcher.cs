@@ -140,7 +140,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					// Get all true base eliminations.
 					TrueBaseEliminations trueBaseElims = default;
 					if (tbCands != 0
-						&& (grid.GetStatus(combination[0]) != Empty || grid.GetStatus(combination[1]) != Empty))
+						&& (grid.GetStatus(combination[0]), grid.GetStatus(combination[1])) is not (Empty, Empty))
 					{
 						for (int j = 0; j < 2; j++)
 						{
@@ -256,9 +256,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					if (_checkAdvanced
-						? mirrorElims.Count == 0 && compatibilityElims.Count == 0
-							&& targetElims.Count == 0 && trueBaseElims.Count == 0
-						: mirrorElims.Count == 0 && compatibilityElims.Count == 0)
+						? (mirrorElims.Count, compatibilityElims.Count, targetElims.Count, trueBaseElims.Count) is (0, 0, 0, 0)
+						: (mirrorElims.Count, compatibilityElims.Count) is (0, 0))
 					{
 						continue;
 					}
@@ -467,11 +466,9 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						continue;
 					}
-					else
-					{
-						flag = true;
-						break;
-					}
+
+					flag = true;
+					break;
 				}
 
 				if (!flag)
@@ -498,7 +495,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			IReadOnlyGrid grid, ref CompatibilityTestEliminations compatibilityElims,
 			GridMap baseCellsMap, short baseCandidatesMask, int t1, int t2)
 		{
-			if (grid.GetStatus(t1) != Empty && grid.GetStatus(t2) != Empty)
+			if ((grid.GetStatus(t1), grid.GetStatus(t2)) is (not Empty, not Empty))
 			{
 				return;
 			}

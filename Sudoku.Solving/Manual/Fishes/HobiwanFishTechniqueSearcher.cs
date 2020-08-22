@@ -171,8 +171,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						internalSize <= Min(coverCombinationsContainElim.Count, size);
 						internalSize++)
 					{
-						foreach (int[] comb in
-							coverCombinationsContainElim.ToArray().GetSubsets(internalSize))
+						foreach (int[] comb in coverCombinationsContainElim.ToArray().GetSubsets(internalSize))
 						{
 							foreach (int[] comb2 in
 								coverCombinationsDoNotContainElim.ToArray().GetSubsets(size - internalSize))
@@ -192,8 +191,8 @@ namespace Sudoku.Solving.Manual.Fishes
 									continue;
 								}
 
-								if ((baseRegionMap.Mask & 0x3FFFF) == 0 && (coverRegionMap.Mask & 0x7FC01FF) == 0
-									|| (baseRegionMap.Mask & 0x7FC01FF) == 0 && (coverRegionMap.Mask & 0x3FFFF) == 0)
+								if ((baseRegionMap.Mask & 0x3FFFF, coverRegionMap.Mask & 0x7FC01FF) is (0, 0)
+									|| (baseRegionMap.Mask & 0x7FC01FF, coverRegionMap.Mask & 0x3FFFF) is (0, 0))
 								{
 									// Basic fish.
 									continue;

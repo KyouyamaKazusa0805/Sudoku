@@ -32,15 +32,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short o1 = grid.GetCandidateMask(otherCells[0]);
 			short o2 = grid.GetCandidateMask(otherCells[1]);
 			short o = (short)(o1 | o2);
-			if (o.CountSet() != 4 || o1.CountSet() > 3 || o2.CountSet() > 3
-				|| (o & comparer) != comparer || (o1 & comparer) == 0 || (o2 & comparer) == 0)
+			if ((o.CountSet(), o1.CountSet(), o2.CountSet(), o1 & comparer, o2 & comparer) is not (4, <= 3, <= 3, not 0, not 0)
+				|| (o & comparer) != comparer)
 			{
 				return;
 			}
 
+			//if (o.CountSet() != 4 || o1.CountSet() > 3 || o2.CountSet() > 3
+			//	|| (o & comparer) != comparer || (o1 & comparer) == 0 || (o2 & comparer) == 0)
+			//{
+			//	return;
+			//}
+
 			short xyMask = (short)(o ^ comparer);
-			int x = xyMask.FindFirstSet();
-			int y = xyMask.GetNextSet(x);
+			int x = xyMask.FindFirstSet(), y = xyMask.GetNextSet(x);
 			var inter = new GridMap(otherCells, ProcessPeersWithoutItself) - urCells;
 			foreach (int possibleXyCell in inter)
 			{
@@ -310,7 +315,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								void record(int d)
 								{
-									if (grid.Exists(urCell, d) is true && (urCell != elimCell || d != digit))
+									if ((grid.Exists(urCell, d), urCell != elimCell || d != digit) is (true, true))
 									{
 										candidateOffsets.Add((
 											urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
@@ -367,12 +372,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short m2 = grid.GetCandidateMask(c2);
 			short m3 = grid.GetCandidateMask(c3);
 			short mask = (short)((short)(m1 | m2) | m3);
-			if (mask.CountSet() != 4 || m1.CountSet() > 3 || m2.CountSet() > 3 || m3.CountSet() > 3
-				|| (mask & comparer) != comparer
-				|| (m1 & comparer) == 0 || (m2 & comparer) == 0 || (m3 & comparer) == 0)
+
+			if ((mask.CountSet(), m1.CountSet(), m2.CountSet(), m3.CountSet(), m1 & comparer, m2 & comparer, m3 & comparer) is
+				not (4, <= 3, <= 3, <= 3, not 0, not 0, not 0) || (mask & comparer) != comparer)
 			{
 				return;
 			}
+
+			//if (mask.CountSet() != 4 || m1.CountSet() > 3 || m2.CountSet() > 3 || m3.CountSet() > 3
+			//	|| (mask & comparer) != comparer
+			//	|| (m1 & comparer) == 0 || (m2 & comparer) == 0 || (m3 & comparer) == 0)
+			//{
+			//	return;
+			//}
 
 			short xyMask = (short)(mask ^ comparer);
 			int x = xyMask.FindFirstSet();
@@ -938,7 +950,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add((1, end * 9 + d));
 						}
 					}
-					if (!_allowIncompleteUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
+					if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) is not (6, 2))
 					{
 						continue;
 					}
@@ -1131,6 +1143,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				short mask1 = grid.GetCandidateMask(otherCell1);
 				short mask2 = grid.GetCandidateMask(otherCell2);
 				short mask = (short)(mask1 | mask2);
+
 				if (mask.CountSet() != 2 + size || (mask & comparer) != comparer
 					|| mask1 == comparer || mask2 == comparer)
 				{
@@ -1168,7 +1181,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							// Check XY-Wing.
 							short m = (short)((short)(m1 | m2) ^ extraDigitsMask);
-							if (m.CountSet() != 1 || (m1 & m2).CountSet() != 1)
+							if ((m.CountSet(), (m1 & m2).CountSet()) is not (1, 1))
 							{
 								continue;
 							}
@@ -1268,7 +1281,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									// Check XYZ-Wing.
 									short m = (short)(((short)(m1 | m2) | m3) ^ extraDigitsMask);
-									if (m.CountSet() != 1 || (m1 & m2 & m3).CountSet() != 1)
+									if ((m.CountSet(), (m1 & m2 & m3).CountSet()) is not (1, 1))
 									{
 										continue;
 									}
@@ -1366,7 +1379,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 										// Check WXYZ-Wing.
 										short m = (short)((short)((short)((short)(m1 | m2) | m3) | m4) ^ extraDigitsMask);
-										if (m.CountSet() != 1 || (m1 & m2 & m3 & m4).CountSet() != 1)
+										if ((m.CountSet(), (m1 & m2 & m3 & m4).CountSet()) is not (1, 1))
 										{
 											continue;
 										}

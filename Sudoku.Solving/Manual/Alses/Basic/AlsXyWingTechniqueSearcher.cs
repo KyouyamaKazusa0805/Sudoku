@@ -45,8 +45,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					short mask = (short)(mask1 & mask2);
-					if (mask == 0)
+					if ((short)(mask1 & mask2) is short mask && mask == 0)
 					{
 						continue;
 					}

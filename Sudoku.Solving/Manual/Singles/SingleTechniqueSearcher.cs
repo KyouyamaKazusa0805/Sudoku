@@ -148,19 +148,16 @@ namespace Sudoku.Solving.Manual.Singles
 			// Search for naked singles.
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (grid.GetStatus(cell) == CellStatus.Empty)
+				if (grid.GetStatus(cell) == CellStatus.Empty &&
+					grid.GetCandidateMask(cell) is short mask && mask.IsPowerOfTwo() &&
+					mask.FindFirstSet() is int digit)
 				{
-					short mask = grid.GetCandidateMask(cell);
-					if (mask.IsPowerOfTwo())
-					{
-						int digit = mask.FindFirstSet();
-						accumulator.Add(
-							new NakedSingleTechniqueInfo(
-								conclusions: new[] { new Conclusion(Assignment, cell, digit) },
-								views: new[] { new View(new[] { (0, cell * 9 + digit) }) },
-								cellOffset: cell,
-								digit));
-					}
+					accumulator.Add(
+						new NakedSingleTechniqueInfo(
+							conclusions: new[] { new Conclusion(Assignment, cell, digit) },
+							views: new[] { new View(new[] { (0, cell * 9 + digit) }) },
+							cellOffset: cell,
+							digit));
 				}
 			}
 		}

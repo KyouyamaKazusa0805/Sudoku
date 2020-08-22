@@ -4156,17 +4156,6 @@
             <param name="count">The number of elements you want to take.</param>
             <returns>All subsets.</returns>
         </member>
-        <member name="M:Sudoku.Extensions.ArrayEx.GetCombinationsRecursively``1(System.Collections.Generic.List{``0[]}@,``0[],System.Int32,System.Int32,System.Int32,System.Int32[])">
-            <summary>
-            Get all combinations for an array recursively.
-            </summary>
-            <param name="resultList">The result list.</param>
-            <param name="array">The base array.</param>
-            <param name="last">The number of the last elements will be checked.</param>
-            <param name="count">The number of the elements.</param>
-            <param name="m">Auxiliary variable.</param>
-            <param name="b">Auxiliary variable.</param>
-        </member>
         <member name="T:Sudoku.Extensions.BitArrayEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
@@ -7226,6 +7215,13 @@
             Throws when the tool has not initialized yet.
             </exception>
         </member>
+        <member name="M:Sudoku.Recognitions.RecognitionServiceProvider.RecorgnizeAsync(System.Drawing.Bitmap)">
+            <summary>
+            Recognize the image asynchronizedly.
+            </summary>
+            <param name="image">The image.</param>
+            <returns>The task.</returns>
+        </member>
         <member name="T:Sudoku.Recognitions.RecognizingException">
             <summary>
             Represents an error that the OCR tools cannot work normally.
@@ -7360,7 +7356,7 @@
             </summary>
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor">
-            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/defaultConstructor" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -7500,10 +7496,10 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_Equality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_Inequality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_BitwiseAnd(System.Collections.Generic.Set{`0},System.Collections.Generic.IEnumerable{`0})">
             <summary>

@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			foreach (var pattern in Patterns)
 			{
 				var map = EmptyMap & pattern;
-				if (pattern.Count < 12 && pattern.Count - map.Count > 1 || pattern.Count - map.Count > 2)
+				if (pattern.Count < 12 && (pattern.Count - map.Count, pattern.Count - map.Count) is not ( <= 1, <= 2))
 				{
 					continue;
 				}
@@ -35,13 +35,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				int n = 0, count = map.Count;
 				for (int digit = 0; digit < 9; digit++)
 				{
-					ref var currentMap = ref linkForEachDigit[digit];
-					currentMap = CandMaps[digit] & map;
-					n +=
-						Min(
-							currentMap.RowMask.CountSet(),
-							currentMap.ColumnMask.CountSet(),
-							currentMap.BlockMask.CountSet());
+					ref var curMap = ref linkForEachDigit[digit];
+					curMap = CandMaps[digit] & map;
+					n += Min(curMap.RowMask.CountSet(), curMap.ColumnMask.CountSet(), curMap.BlockMask.CountSet());
 				}
 
 				if (n == count)

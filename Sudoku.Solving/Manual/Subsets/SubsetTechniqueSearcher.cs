@@ -24,8 +24,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				// Get naked subsets.
 				for (int region = 0; region < 27; region++)
 				{
-					var currentEmptyMap = RegionMaps[region] & EmptyMap;
-					if (currentEmptyMap.Count < 2)
+					if ((RegionMaps[region] & EmptyMap) is GridMap currentEmptyMap && currentEmptyMap.Count < 2)
 					{
 						continue;
 					}

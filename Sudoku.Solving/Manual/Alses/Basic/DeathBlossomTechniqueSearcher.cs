@@ -317,7 +317,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 
 						var map = new GridMap(cells);
-						if (map.BlockMask.CountSet() == 1 && region >= 9)
+						if ((map.BlockMask.CountSet(), region) is (1, >= 9))
 						{
 							// If the current cells are in the same block and same line (i.e. in mini-line),
 							// we will process them in blocks.

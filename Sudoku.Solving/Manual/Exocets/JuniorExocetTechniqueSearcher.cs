@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
 				if (GatheringTargetEliminations(tq1, grid, baseCandidatesMask, temp, ref targetElims)
 					| GatheringTargetEliminations(tq2, grid, baseCandidatesMask, temp, ref targetElims)
-					&& nonBaseQ != 0 && grid.GetStatus(tq1) == Empty && grid.GetStatus(tq2) == Empty)
+					&& (nonBaseQ, grid.GetStatus(tq1), grid.GetStatus(tq2)) is (not 0, Empty, Empty))
 				{
 					int conjugatPairDigit = nonBaseQ.FindFirstSet();
 					if (grid.Exists(tq1, conjugatPairDigit) is true)
@@ -162,8 +162,9 @@ namespace Sudoku.Solving.Manual.Exocets
 						out targetPairEliminations, out swordfishEliminations);
 				}
 
-				if (_checkAdvanced && targetEliminations.Count == 0 && mirrorEliminations.Count == 0
-					&& bibiEliminations.Count == 0 || !_checkAdvanced && targetEliminations.Count == 0)
+				if ((_checkAdvanced, targetEliminations.Count, mirrorEliminations.Count, bibiEliminations.Count) is
+					(true, 0, 0, 0)
+					|| (_checkAdvanced, targetEliminations.Count) is (false, 0))
 				{
 					continue;
 				}
@@ -221,9 +222,9 @@ namespace Sudoku.Solving.Manual.Exocets
 				return CheckMirror(
 					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : (short)0,
 					baseCandidatesMask, mirror, x,
-					(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
+					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
 						? tr1
-						: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0 ? tr2 : -1,
+						: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
 					cellOffsets, candidateOffsets);
 			}
 			else if ((grid.GetCandidateMask(tq2) & baseCandidatesMask) != 0)
@@ -233,9 +234,9 @@ namespace Sudoku.Solving.Manual.Exocets
 				return CheckMirror(
 					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : (short)0,
 					baseCandidatesMask, mirror, x,
-					(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
+					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
 						? tr1
-						: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0 ? tr2 : -1,
+						: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
 					cellOffsets, candidateOffsets);
 			}
 			else
@@ -257,8 +258,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			int cell, IReadOnlyGrid grid, short baseCandidatesMask, short temp, ref TargetEliminations targetElims)
 		{
 			short candidateMask = (short)(grid.GetCandidateMask(cell) & ~temp);
-			if (grid.GetStatus(cell) == Empty && candidateMask != 0
-				&& (grid.GetCandidateMask(cell) & baseCandidatesMask) != 0)
+			if ((grid.GetStatus(cell), candidateMask, grid.GetCandidateMask(cell) & baseCandidatesMask) is (Empty, not 0, not 0))
 			{
 				foreach (int digit in candidateMask.GetAllSets())
 				{
@@ -287,7 +287,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var crosslinePerCandidate = crossline & DigitMaps[digit];
 				int r = crosslinePerCandidate.RowMask, c = crosslinePerCandidate.ColumnMask;
-				if (r.CountSet() <= 2 || c.CountSet() <= 2)
+				if ((r.CountSet(), c.CountSet()) is not ( > 2, > 2))
 				{
 					continue;
 				}
@@ -340,15 +340,15 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			short m1 = grid.GetCandidateMask(pos1);
 			short m2 = grid.GetCandidateMask(pos2);
-			if ((baseCandidatesMask & m1) != 0 ^ (baseCandidatesMask & m2) != 0)
+			if ((baseCandidatesMask & m1, baseCandidatesMask & m2) is (0, not 0) or (not 0, 0))
 			{
 				// One cell contains the digit that base candidate holds,
 				// and another one does not contain.
 				return true;
 			}
 
-			if ((m1 & baseCandidatesMask) == 0 && (m2 & baseCandidatesMask) == 0
-				|| (m1 & ~baseCandidatesMask) == 0 && (m2 & ~baseCandidatesMask) == 0)
+			if ((m1 & baseCandidatesMask, m2 & baseCandidatesMask) is (0, 0)
+				|| (m1 & ~baseCandidatesMask, m2 & ~baseCandidatesMask) is (0, 0))
 			{
 				// Two cells don't contain any digits in the base cells neither,
 				// or both contains only digits from base cells,
@@ -463,11 +463,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 
 			short commonCandidatesMask = (short)((temp[0] | temp[3]) & (temp[1] | temp[2]) & baseCandidatesMask);
-			playground[1] = (short)(
-				temp[0] & temp[3] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
-			playground[2] = (short)(
-				temp[1] & temp[2] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
-			if (playground[1] == 0 || playground[2] == 0)
+			playground[1] = (short)(temp[0] & temp[3] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
+			playground[2] = (short)(temp[1] & temp[2] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
+			if ((playground[1], playground[2]) is not (not 0, not 0))
 			{
 				// Does not contain Bi-bi pattern.
 				return false;

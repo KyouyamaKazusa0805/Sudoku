@@ -82,8 +82,7 @@ namespace Sudoku.Constants
 		/// In addition, in this data structure, "<c>_coverSet</c>" is a block and "<c>_baseSet</c>" is a line.
 		/// </para>
 		/// </summary>
-		public static readonly
-			IReadOnlyDictionary<(byte _baseSet, byte _coverSet), (GridMap _a, GridMap _b, GridMap _c)> IntersectionMaps;
+		public static readonly IReadOnlyDictionary<(byte, byte), (GridMap, GridMap, GridMap)> IntersectionMaps;
 
 
 		/// <summary>
@@ -94,13 +93,15 @@ namespace Sudoku.Constants
 		/// <returns>The region index (<c>0..27</c>).</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int GetRegion(int cell, RegionLabel label) =>
-			(label switch
-			{
-				Row => RowTable,
-				Column => ColumnTable,
-				Block => BlockTable,
-				_ => throw Throwings.ImpossibleCase
-			})[cell];
+			(
+				label switch
+				{
+					Row => RowTable,
+					Column => ColumnTable,
+					Block => BlockTable,
+					_ => throw Throwings.ImpossibleCase
+				}
+			)[cell];
 
 		/// <summary>
 		/// Get the name in the specified region.
