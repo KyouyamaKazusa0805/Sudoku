@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Sudoku.Data;
 
 namespace Sudoku.Recognitions
@@ -56,6 +57,14 @@ namespace Sudoku.Recognitions
 				"The recognizer has not initialized.",
 				new NullReferenceException("The tool is current null."));
 		}
+
+		/// <summary>
+		/// Recognize the image asynchronizedly.
+		/// </summary>
+		/// <param name="image">The image.</param>
+		/// <returns>The task.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public async Task<IReadOnlyGrid> RecorgnizeAsync(Bitmap image) => await Task.Run(() => Recorgnize(image));
 	}
 }
 #endif

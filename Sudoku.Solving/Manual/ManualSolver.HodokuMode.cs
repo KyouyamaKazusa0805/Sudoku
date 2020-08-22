@@ -41,6 +41,7 @@ namespace Sudoku.Solving.Manual
 			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 			// Check symmetry first.
+			var stepGrids = new List<IReadOnlyGrid>();
 			if (!sukaku && CheckGurthSymmetricalPlacement)
 			{
 				var symmetrySearcher = new GspTechniqueSearcher();
@@ -49,6 +50,7 @@ namespace Sudoku.Solving.Manual
 				{
 					if (CheckConclusionsValidity(solution, tempStep.Conclusions))
 					{
+						stepGrids.Add(cloneation.Clone());
 						tempStep.ApplyTo(cloneation);
 						steps.Add(tempStep);
 
@@ -75,7 +77,6 @@ namespace Sudoku.Solving.Manual
 				searchers.Sort((a, b) => a.SearcherProperties!.Priority.CompareTo(b.SearcherProperties!.Priority));
 			}
 
-			var stepGrids = new List<IReadOnlyGrid>();
 			var bag = new List<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
@@ -91,7 +92,7 @@ namespace Sudoku.Solving.Manual
 				}
 
 				var (isEnabled, _, _, disabledReason) = searcher.SearcherProperties!;
-				if (!isEnabled && disabledReason != DisabledReason.TooSlow)
+				if ((isEnabled, disabledReason) is (false, not DisabledReason.TooSlow))
 				{
 					continue;
 				}

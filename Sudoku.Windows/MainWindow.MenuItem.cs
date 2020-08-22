@@ -12,8 +12,6 @@ using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
-using Sudoku.Data.Stepping;
-using Sudoku.Drawing;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
@@ -158,7 +156,7 @@ namespace Sudoku.Windows
 								_textBoxInfo.Text = (string)LangSource["TextOpeningPictures"];
 								using (var bitmap = new Bitmap(dialog.FileName))
 								{
-									var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
+									var grid = (await _recognition.RecorgnizeAsync(bitmap)).ToMutable();
 									grid.Fix();
 									Puzzle = new(grid);
 								}
@@ -876,7 +874,7 @@ namespace Sudoku.Windows
 			}
 
 			_textBoxInfo.Text = info.ToString();
-			_currentPainter.View = new(cellOffsets, null, null, null);
+			_currentPainter.View = new(cellOffsets, info.Views[0].CandidateOffsets, null, null);
 			_currentPainter.Conclusions = info.Conclusions;
 
 			UpdateImageGrid();

@@ -356,7 +356,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					result.Add(
 						new GspTechniqueInfo(
 							conclusions: new[] { new Conclusion(Assignment, 40, digit) },
-							views: View.DefaultViews,
+							views: new[] { new View(null, new[] { (0, 360 + digit) }, null, null) },
 							symmetryType: SymmetryType.Central,
 							mappingTable: mapping));
 

@@ -7215,6 +7215,13 @@
             Throws when the tool has not initialized yet.
             </exception>
         </member>
+        <member name="M:Sudoku.Recognitions.RecognitionServiceProvider.RecorgnizeAsync(System.Drawing.Bitmap)">
+            <summary>
+            Recognize the image asynchronizedly.
+            </summary>
+            <param name="image">The image.</param>
+            <returns>The task.</returns>
+        </member>
         <member name="T:Sudoku.Recognitions.RecognizingException">
             <summary>
             Represents an error that the OCR tools cannot work normally.
