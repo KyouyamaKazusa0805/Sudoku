@@ -395,6 +395,13 @@ namespace Sudoku.Windows
 			Puzzle = new(SudokuGrid.Empty);
 			_analyisResult = null;
 
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+			_textBoxInfo.ClearValue(TextBox.TextProperty);
+
+			_tabControlInfo.SelectedIndex = 0;
+
 			UpdateImageGrid();
 		}
 
@@ -466,7 +473,9 @@ namespace Sudoku.Windows
 								index - 1,
 								dialog.DefaultReporting,
 								(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex,
-								Settings.LanguageCode));
+								Settings.LanguageCode
+							)
+						);
 
 					dialog.CloseAnyway();
 
