@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		.editorconfig = .editorconfig
 		GlobalDocComments.xml = GlobalDocComments.xml
 		README.md = README.md
+		Sudoku.Namespaces.xml = Sudoku.Namespaces.xml
 		Supported grid texts.txt = Supported grid texts.txt
 		Update log.txt = Update log.txt
 		User Manual.md = User Manual.md
@@ -42,7 +43,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0E1D4D29-4563-4709-ADD9-C80C30F9A010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E1D4D29-4563-4709-ADD9-C80C30F9A010}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E1D4D29-4563-4709-ADD9-C80C30F9A010}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{0E1D4D29-4563-4709-ADD9-C80C30F9A010}.Debug|x64.Build.0 = Debug|Any CPU
 		{0E1D4D29-4563-4709-ADD9-C80C30F9A010}.Debug|x86.ActiveCfg = Debug|Any CPU

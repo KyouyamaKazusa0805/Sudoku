@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<doc>
+	<members>
+		<member name="N:Sudoku">
+			<summary>
+				This namespace contains some basic sudoku classes, for example,
+				<see cref="NoSolutionException"/> means the puzzle contains no solution.
+			</summary>
+		</member>
+		<member name="N:Sudoku.Constants">
+			<summary>
+				This namespace contains the
+				<see langword="readonly"/> or
+				<see langword="const"/> values used for helping to construct sudoku implementations.
+			</summary>
+		</member>
+		<member name="N:Sudoku.Data">
+			<summary>
+				This namespace contains the metadata (basic implementations) of the sudoku game, such as a sudoku
+				<see cref="Grid"/>.
+			</summary>
+		</member>
+		<member name="N:Sudoku.Data.Collections">
+			<summary>
+				<para>
+					This namespace contains the collections used for standing for a sudoku element, for example,
+					<see cref="CellCollection"/> means a serial of cells.
+				</para>
+				<para>
+					This namspace only contains
+					<see langword="ref struct"/>s, which means these collections can only used for parameters or locals.
+				</para>
+			</summary>
+		</member>
+		<member name="N:Sudoku.Data.Extensions">
+			<summary>
+				This namespace contains extension methods for sudoku implementation elements.
+			</summary>
+		</member>
+		<member name="N:Sudoku.Extensions">
+			<summary>This namespace contains the extension methods for the sudoku elements.</summary>
+		</member>
+		<member name="N:Sudoku.Data.Stepping">
+			<summary>
+				This namespace implements the undoable and redoable sudoku grid (please see
+				<see cref="UndoableGrid"/>). Except for this, the basic undo- and redo- unit (a
+				<see cref="Step"/> is also in it).
+			</summary>
+		</member>
+		<member name="N:Sudoku.Diagnostics">
+			<summary>This namespace implements the information for diagnostics.</summary>
+		</member>
+		<member name="N:Sudoku.Drawing">
+			<summary>This namespace implements the drawing (using GDI+).</summary>
+		</member>
+		<member name="N:Sudoku.Drawing.Extensions">
+			<summary>
+				This namespace contains the extension methods for the instance in the namespace
+				<see cref="Sudoku.Drawing"/>.
+			</summary>
+		</member>
+		<member name="N:Sudoku.Extensions">
+			<summary>This namespace contains extension methods for .NET basic types (i.e. built-in types).</summary>
+		</member>
+		<member name="N:Sudoku.Models">
+			<summary>This namespace contains the models for displaying sudoku information while generating or solving a puzzle, as a status recorder.</summary>
+		</member>
+		<member name="N:Sudoku.Recognitions">
+			<summary>This namespace contains the OCR tool APIs.</summary>
+		</member>
+		<member name="N:Sudoku.Solving">
+			<summary>This namespace contains the solving methods or instances.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Annotations">
+			<summary>
+				This namespace contains the annotations for
+				<see cref="TechniqueSearcher"/>s to specify a special status.
+			</summary>
+		</member>
+		<member name="N:Sudoku.Solving.BruteForces.Backtracking">
+			<summary>This namespace contains the backtracking algorithms for sudoku solving.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.BruteForces.Bitwise">
+			<summary>This namespace contains the bitwise algorithms for sudoku solving.</summary>
+			<remarks>
+				Please note that the files in this namespace will use or call native codes implemented by C programming language, so these files will use native features such as
+				<see langword="nint"/>s, function pointers,
+				<see cref="MarshalAsAttribute"/> and so on.
+			</remarks>
+		</member>
+		<member name="N:Sudoku.Solving.BruteForces.Linqing">
+			<summary>This namespace contains the algorithms using LINQ for sudoku solving.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Checking">
+			<summary>
+				This namespace contains methods for checking the features of a sudoku grid. For example,
+				<see cref="PuzzleAttributeChecker.IsMinimal(IReadOnlyGrid)"/> means whether the specified puzzle is a minimal puzzle.
+			</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Constants">
+			<summary>
+				This namespace contains the <see langword="readonly"/> or <see langword="const"/>
+				values for solving a sudoku.
+			</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Generating">
+			<summary>This namespace contains the methods for generating sudokus.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual">
+			<summary>This namespace contains the manual sudoku technique searcher or solver.</summary>
+		</member>
+		<member name="N:Sudoku.Windows">
+			<summary>This namespace contains the instances for interact with WPF windows.</summary>
+		</member>
+		<member name="N:System">
+			<summary>This namespace contains the C# core instances. But in this solution, the namespace will be extended with more new instances.</summary>
+		</member>
+		<member name="N:System.Collections.Generic">
+			<summary>This namespace contains C# core collections with generics. But in this solution, the namespace will be extended with more new instances.</summary>
+		</member>
+		<member name="N:System.Linq">
+			<summary>
+				This namespace contains C# searching or querying objects on
+				<see cref="IEnumerable"/> or
+				<see cref="IEnumerable{T}"/>. But in this solution, the namespace will be extended with more new instances.
+			</summary>
+		</member>
+		<member name="N:System.Runtime.CompilerServices">
+			<summary>This namespace contains the instances used for C# compiler. But in this solution, the namespace will be extended with more new instances.</summary>
+		</member>
+		<member name="N:System.Text.RegularExpressions">
+			<summary>This namespace contains the instances used for regular expression checkers or matchers. But in this solution, the namespace will be extended with more new instances.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Alses">
+			<summary>This namespace contains ALS technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Alses.Basic">
+			<summary>This namespace contains basic ALS technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Alses.Mslses">
+			<summary>This namespace contains basic MSLS (or MSLS-like) technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Chaining">
+			<summary>This namespace contains chain technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Exocets">
+			<summary>This namespace contains exocets technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Exocets.Eliminations">
+			<summary>This namespace contains the feature eliminations for exocets.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Fishes">
+			<summary>This namespace contains fish technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Intersections">
+			<summary>This namespace contains intersection technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.LastResorts">
+			<summary>This namespace contains last resort technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Sdps">
+			<summary>This namespace contains single-digit-pattern checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Singles">
+			<summary>This namespace contains single technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Subsets">
+			<summary>This namespace contains subset technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Symmetry">
+			<summary>This namespace contains technique checkers or information instance using symmetry to determine.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Uniqueness">
+			<summary>This namespace contains uniqueness-test checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Uniqueness.Bugs">
+			<summary>This namespace contains bivalue universal grave technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Uniqueness.Extended">
+			<summary>This namespace contains extended rectangle technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Uniqueness.Loops">
+			<summary>This namespace contains unique loop technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Uniqueness.Polygons">
+			<summary>
+				This namespace contains unique polygon (I call them
+				<b>Borescoper's deadly patterns</b>) technique checkers or information instance.
+			</summary>
+			<remarks>Why they called Borescoper's deadly patterns? The reason is that the technique with variants is regularizeds by my friend, nickname Borescoper.</remarks>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Uniqueness.Qiu">
+			<summary>This namespace contains Qiu's deadly pattern technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Uniqueness.Rects">
+			<summary>This namespace contains normal unique rectangle technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Uniqueness.Square">
+			<summary>This namespace contains unique square technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Wings">
+			<summary>This namespace contains wing technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Wings.Irregular">
+			<summary>This namespace contains irregualr wing technique checkers or information instance.</summary>
+		</member>
+		<member name="N:Sudoku.Solving.Manual.Wings.Regular">
+			<summary>This namespace contains regular wing technique checkers or information instance.</summary>
+		</member>
+	</members>
+</doc>

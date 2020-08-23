@@ -197,6 +197,7 @@ namespace Sudoku.Data
 		/// <param name="candidate">The candidate offset (index).</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		/// <value>The <see cref="bool"/> value to set.</value>
+		[IndexerName("Candidate")]
 		public bool this[int candidate] { get => _innerArray[candidate]; set => _innerArray[candidate] = value; }
 
 

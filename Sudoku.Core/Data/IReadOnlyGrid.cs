@@ -54,6 +54,7 @@ namespace Sudoku.Data
 		/// (i.e. The cell is <see cref="CellStatus.Empty"/>),
 		/// The value will be -1.
 		/// </returns>
+		[IndexerName("Value")]
 		int this[int cell] { get; }
 
 		/// <summary>
@@ -66,6 +67,7 @@ namespace Sudoku.Data
 		/// does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
 		/// </value>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[IndexerName("Value")]
 		bool this[int cell, int digit] { get; }
 
 

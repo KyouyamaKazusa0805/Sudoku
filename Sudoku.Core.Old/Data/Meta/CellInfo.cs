@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Sudoku.Data.Meta
@@ -77,6 +78,7 @@ namespace Sudoku.Data.Meta
 		public readonly CandidateField Candidates { get; }
 
 
+		[IndexerName("Digit")]
 		public bool this[int digit] { get => Get(digit); set => Set(digit, value); }
 
 

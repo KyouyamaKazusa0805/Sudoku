@@ -16,9 +16,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <para>
 		/// This mask is of type <see cref="long"/>:
 		/// <code>
-		/// 0      7     14     21     28     35     42     49     56<br/>
-		/// ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓<br/>
-		/// |-------|-------|-------|-------|-------|-------|-------|-------|<br/>
+		/// 0      7     14     21     28     35     42     49     56
+		/// ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+		/// |-------|-------|-------|-------|-------|-------|-------|-------|
 		/// </code>
 		/// where the bit [0..56] is for 8 cells, the last 7 bits determine the pattern is a
 		/// heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.

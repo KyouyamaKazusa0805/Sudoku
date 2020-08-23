@@ -511,6 +511,7 @@ namespace Sudoku.Data
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the cell has digit.
 		/// </returns>
+		[IndexerName("Index")]
 		public bool this[int offset]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

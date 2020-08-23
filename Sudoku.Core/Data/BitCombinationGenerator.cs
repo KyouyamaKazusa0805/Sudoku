@@ -12,9 +12,9 @@ namespace Sudoku.Data
 	/// <example>
 	/// You can use this struct like this:
 	/// <code>
-	/// foreach (short mask in new BitCombinationGenerator(9, 3))<br/>
-	/// {<br/>
-	///     // Do something to use the mask.<br/>
+	/// foreach (short mask in new BitCombinationGenerator(9, 3))
+	/// {
+	///     // Do something to use the mask.
 	/// }
 	/// </code>
 	/// </example>

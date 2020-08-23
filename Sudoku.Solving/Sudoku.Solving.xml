@@ -3488,18 +3488,18 @@
             <para>
             Encapsulates an <b>exocet</b> technique searcher. The pattern will be like:
             <code>
-            .-------.-------.-------.<br/>
-            | B B E | E . . | E . . |<br/>
-            | . . E | Q . . | R . . |<br/>
-            | . . E | Q . . | R . . |<br/>
-            :-------+-------+-------:<br/>
-            | . . S | S . . | S . . |<br/>
-            | . . S | S . . | S . . |<br/>
-            | . . S | S . . | S . . |<br/>
-            :-------+-------+-------:<br/>
-            | . . S | S . . | S . . |<br/>
-            | . . S | S . . | S . . |<br/>
-            | . . S | S . . | S . . |<br/>
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
             '-------'-------'-------'
             </code>
             Where:
@@ -4296,7 +4296,7 @@
             Indicates all regions used.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.RegionMap.Item(System.Int32)">
+        <member name="P:Sudoku.Solving.Manual.Fishes.RegionMap.Region(System.Int32)">
             <summary>
             Get whether the specified region is in this collection.
             </summary>
@@ -6946,9 +6946,9 @@
             <para>
             This mask is of type <see cref="T:System.Int64"/>:
             <code>
-            0      7     14     21     28     35     42     49     56<br/>
-            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓<br/>
-            |-------|-------|-------|-------|-------|-------|-------|-------|<br/>
+            0      7     14     21     28     35     42     49     56
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+            |-------|-------|-------|-------|-------|-------|-------|-------|
             </code>
             where the bit [0..56] is for 8 cells, the last 7 bits determine the pattern is a
             heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
@@ -7139,18 +7139,18 @@
             <summary>
             Encapsulates a <b>Qiu's deadly pattern</b> technique searcher.
             <code>
-            .-------.-------.-------.<br/>
-            | . . . | . . . | . . . |<br/>
-            | . . . | . . . | . . . |<br/>
-            | P P . | . . . | . . . |<br/>
-            :-------+-------+-------:<br/>
-            | S S B | B B B | B B B |<br/>
-            | S S B | B B B | B B B |<br/>
-            | . . . | . . . | . . . |<br/>
-            :-------+-------+-------:<br/>
-            | . . . | . . . | . . . |<br/>
-            | . . . | . . . | . . . |<br/>
-            | . . . | . . . | . . . |<br/>
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | P P . | . . . | . . . |
+            :-------+-------+-------:
+            | S S B | B B B | B B B |
+            | S S B | B B B | B B B |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
             '-------'-------'-------'
             </code>
             Where:

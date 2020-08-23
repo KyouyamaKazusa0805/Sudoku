@@ -71,10 +71,10 @@ namespace Sudoku.Constants
 		/// <para>
 		/// Indicates all maps that forms the each intersection. The pattern will be like:
 		/// <code>
-		/// .-------.-------.-------.<br/>
-		/// | C C C | A A A | A A A |<br/>
-		/// | B B B | . . . | . . . |<br/>
-		/// | B B B | . . . | . . . |<br/>
+		/// .-------.-------.-------.
+		/// | C C C | A A A | A A A |
+		/// | B B B | . . . | . . . |
+		/// | B B B | . . . | . . . |
 		/// '-------'-------'-------'
 		/// </code>
 		/// </para>

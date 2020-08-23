@@ -28,9 +28,9 @@ namespace Sudoku.Extensions
 		/// <example>
 		/// Using the method, you can simplify the check if the code is like:
 		/// <code>
-		/// if (formatProvider.HasFormatted(this, format, out string? result))<br/>
-		/// {<br/>
-		/// 	return result;<br/>
+		/// if (formatProvider.HasFormatted(this, format, out string? result))
+		/// {
+		/// 	return result;
 		/// }
 		/// </code>
 		/// </example>

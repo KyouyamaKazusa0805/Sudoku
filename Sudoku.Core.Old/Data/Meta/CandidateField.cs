@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Literals;
@@ -75,6 +76,7 @@ namespace Sudoku.Data.Meta
 			select digit;
 
 
+		[IndexerName("Index")]
 		public bool this[Index index] { get => _candidates[index]; set => _candidates[index] = value; }
 
 

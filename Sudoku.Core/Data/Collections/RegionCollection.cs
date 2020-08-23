@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Extensions;
@@ -62,6 +63,7 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
+		[IndexerName("Region")]
 		public bool this[int region] => (_mask >> region & 1) != 0;
 
 
