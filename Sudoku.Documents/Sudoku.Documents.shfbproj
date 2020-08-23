@@ -105,7 +105,4 @@
       <HintPath>..\Sudoku.Solving\bin\Debug\netcoreapp3.1\Sudoku.Solving.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Logs.log" />
-  </ItemGroup>
 </Project>
