@@ -89,6 +89,22 @@ namespace Sudoku.Extensions
 			@this.AppendLine(obj.NullableToString());
 
 		/// <summary>
+		/// Append several lines into the <see cref="StringBuilder"/> instance.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="lines">The lines you want to add.</param>
+		/// <returns>The reference of the parameter <paramref name="this"/>.</returns>
+		public static StringBuilder AppendLines(this StringBuilder @this, int lines)
+		{
+			for (int i = 0; i < lines; i++)
+			{
+				@this.AppendLine();
+			}
+
+			return @this;
+		}
+
+		/// <summary>
 		/// Append the text into the tail of the <see cref="StringBuilder"/> object if
 		/// the text is not <see langword="null"/>; otherwise, do nothing.
 		/// </summary>

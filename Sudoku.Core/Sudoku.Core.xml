@@ -4977,6 +4977,14 @@
             This method can solve the problem of boxing and unboxing.
             </remarks>
         </member>
+        <member name="M:Sudoku.Extensions.StringBuilderEx.AppendLines(System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Append several lines into the <see cref="T:System.Text.StringBuilder"/> instance.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="lines">The lines you want to add.</param>
+            <returns>The reference of the parameter <paramref name="this"/>.</returns>
+        </member>
         <member name="M:Sudoku.Extensions.StringBuilderEx.NullableAppend(System.Text.StringBuilder,System.String)">
             <summary>
             Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
