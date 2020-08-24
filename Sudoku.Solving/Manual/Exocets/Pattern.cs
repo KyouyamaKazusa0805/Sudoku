@@ -96,8 +96,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
 		public void Deconstruct(out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap) =>
 			(baseCellsMap, targetCellsMap, crosslineMap) = (
-				new() { Base1, Base2 },
-				new() { TargetQ1, TargetQ2, TargetR1, TargetR2 },
+				new()
+		{ Base1, Base2 },
+				new()
+		{ TargetQ1, TargetQ2, TargetR1, TargetR2 },
 				CrossLine);
 
 		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -131,10 +133,10 @@ namespace Sudoku.Solving.Manual.Exocets
 			(crossline, mq1, mq2, mr1, mr2) = (CrossLine, MirrorQ1, MirrorQ2, MirrorR1, MirrorR2);
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public bool Equals(Pattern other) =>
 			Base1 == other.Base1 && Base2 == other.Base2
 			&& TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
@@ -143,7 +145,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			&& MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
 			&& CrossLine == other.CrossLine;
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode()
 		{
 			var hashCode = new HashCode();
@@ -161,7 +163,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			return hashCode.ToHashCode();
 		}
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
 			string baseCells = new CellCollection(stackalloc[] { Base1, Base2 }).ToString();

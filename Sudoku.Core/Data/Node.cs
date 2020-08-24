@@ -59,7 +59,8 @@ namespace Sudoku.Data
 			get
 			{
 				var ancestors = new List<Node>();
-				for (List<Node> todo = new() { this }, next; todo.Count != 0; todo = next)
+				for (List<Node> todo = new()
+				{ this }, next; todo.Count != 0; todo = next)
 				{
 					next = new();
 					foreach (var p in todo)
@@ -193,7 +194,7 @@ namespace Sudoku.Data
 			return false;
 		}
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override readonly int GetHashCode()
 		{
 			if (_parents is null)
@@ -210,7 +211,7 @@ namespace Sudoku.Data
 			return hashCode.ToHashCode();
 		}
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString()
 		{
 			if (ParentsCount == 0)

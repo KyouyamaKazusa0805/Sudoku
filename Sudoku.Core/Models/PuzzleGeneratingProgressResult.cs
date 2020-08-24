@@ -1,4 +1,6 @@
-﻿using Sudoku.Windows;
+﻿#pragma warning disable CA1815
+
+using Sudoku.Windows;
 
 namespace Sudoku.Models
 {
@@ -28,7 +30,7 @@ namespace Sudoku.Models
 		public readonly string GlobalizationString { get; }
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() =>
 			GeneratingTrial == 1
 				? Resources.GetValue("GeneratingProgressSingular")

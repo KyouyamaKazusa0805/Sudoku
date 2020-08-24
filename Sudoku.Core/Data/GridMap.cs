@@ -148,8 +148,7 @@ namespace Sudoku.Data
 
 					break;
 				}
-				case ProcessPeersAlso:
-				case ProcessPeersWithoutItself:
+				case ProcessPeersAlso or ProcessPeersWithoutItself:
 				{
 					int i = 0;
 					foreach (int offset in offsets)
@@ -550,7 +549,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly bool Equals(object? obj) => obj is GridMap comparer && Equals(comparer);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Equals(GridMap other) => _high == other._high && _low == other._low;
 
@@ -630,11 +629,11 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly IEnumerator<int> GetEnumerator() => Offsets.GetEnumerator();
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly int GetHashCode() => GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString()
 		{
 			var sb = new StringBuilder();

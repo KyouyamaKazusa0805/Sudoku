@@ -73,16 +73,16 @@ namespace Sudoku.Data.Collections
 		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public bool Equals(RegionCollection other) => _mask == other._mask;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
 		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
 			if (Count == 0)
@@ -143,10 +143,7 @@ namespace Sudoku.Data.Collections
 			return sb.ToString();
 		}
 
-		/// <summary>
-		/// Get the enumerator.
-		/// </summary>
-		/// <returns>The enumerator.</returns>
+		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		public IEnumerator<int> GetEnumerator() => _mask.GetAllSets().GetEnumerator();
 
 		/// <summary>

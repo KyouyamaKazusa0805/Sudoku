@@ -70,10 +70,10 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public bool Equals(ConjugatePair other) => Map == other.Map && Digit == other.Digit;
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => Map.GetHashCode() ^ Digit;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
 			int v = Digit + 1;

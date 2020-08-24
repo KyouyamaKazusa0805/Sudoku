@@ -128,10 +128,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			return result.IsNotEmpty;
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public bool Equals(Als other) => DigitsMask == other.DigitsMask && Map == other.Map;
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <remarks>
 		/// If you want to determine the equality of two instance, I recommend you
 		/// <b>should</b> use method <see cref="Equals(Als)"/> instead of this method.
@@ -205,7 +205,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					foreach (int[] cells in list.ToArray().GetSubsets(size))
 					{
 						var map = new GridMap(cells);
-						if (map.BlockMask.CountSet() == 1 && region >= 9)
+						if (map.BlockMask.IsPowerOfTwo() && region >= 9)
 						{
 							// All ALS cells lying on a box-row or a box-column
 							// will be processed as a block ALS.
@@ -227,7 +227,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						yield return new(
 							digitsMask,
 							map,
-							region < 9 && coveredLine >= 9
+							(region, coveredLine) is ( < 9, >= 9)
 								? ((regionMap | RegionMaps[coveredLine]) & emptyMap) - map
 								: tempMap - map);
 					}

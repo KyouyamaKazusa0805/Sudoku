@@ -202,13 +202,12 @@ namespace Sudoku.Solving.Manual.Alses
 			return result.IsNotEmpty;
 		}
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => _mask;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
-		public override string ToString()
-		{
-			return IsBivalueCellAls
+		/// <inheritdoc cref="object.ToString"/>
+		public override string ToString() =>
+			IsBivalueCellAls
 				? new StringBuilder()
 					.Append(new DigitCollection(Digits).ToString(null))
 					.Append("/")
@@ -220,7 +219,6 @@ namespace Sudoku.Solving.Manual.Alses
 					.Append(new CellCollection(Cells).ToString())
 					.Append($" in {new RegionCollection(Region).ToString()}")
 					.ToString();
-		}
 
 
 		/// <summary>

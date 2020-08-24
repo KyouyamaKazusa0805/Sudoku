@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1815
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sudoku.Data;
@@ -53,7 +55,7 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 			(Conclusions ?? Array.Empty<Conclusion>()).GetEnumerator();
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string? ToString() =>
 			Conclusions is null ? null : $"  * Mirror eliminations: {new ConclusionCollection(Conclusions).ToString()}";
 
