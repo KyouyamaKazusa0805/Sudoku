@@ -161,7 +161,9 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sudoku.BitwiseSolver (x86).dll", EntryPoint = "Solve", CallingConvention = StdCall, CharSet = Ansi)]
 		private static extern nint Solve32(
-			[MarshalAs(LPStr)] string puzzle, [MarshalAs(LPStr)] StringBuilder? solution, nint limit);
+			[MarshalAs(LPStr), In] string puzzle,
+			[MarshalAs(LPStr), Out] StringBuilder? solution,
+			[In] nint limit);
 
 		/// <summary>
 		/// The core function of solving the puzzle based on x64 platform.
@@ -175,6 +177,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sudoku.BitwiseSolver (x64).dll", EntryPoint = "Solve", CallingConvention = StdCall, CharSet = Ansi)]
 		private static extern nint Solve64(
-			[MarshalAs(LPStr)] string puzzle, [MarshalAs(LPStr)] StringBuilder? solution, nint limit);
+			[MarshalAs(LPStr)] string puzzle,
+			[MarshalAs(LPStr)] StringBuilder? solution,
+			nint limit);
 	}
 }
