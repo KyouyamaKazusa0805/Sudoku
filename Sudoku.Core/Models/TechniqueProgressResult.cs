@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Models
+﻿#pragma warning disable CA1815
+
+namespace Sudoku.Models
 {
 	/// <summary>
 	/// Indicates a technique progress result.
@@ -40,7 +42,7 @@
 		public readonly int TotalSearchers { get; }
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString() => CurrentTechnique;
 	}
 }

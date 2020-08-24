@@ -93,20 +93,13 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Conclusion comparer && Equals(comparer);
 
-		/// <summary>
-		/// Indicates whether the current object has the same value with the other one.
-		/// </summary>
-		/// <param name="other">The other value to compare.</param>
-		/// <returns>
-		/// The result of this comparison. <see langword="true"/> if two instances hold a same
-		/// value; otherwise, <see langword="false"/>.
-		/// </returns>
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public bool Equals(Conclusion other) => GetHashCode() == other.GetHashCode();
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => ((int)ConclusionType + 1) * (CellOffset * 9 + Digit);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		/// <exception cref="InvalidOperationException">
 		/// Throws when the current conclusion type is invalid (neither <see cref="ConclusionType.Assignment"/>
 		/// nor <see cref="ConclusionType.Elimination"/>.

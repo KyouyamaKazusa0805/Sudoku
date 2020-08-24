@@ -71,10 +71,10 @@ namespace Sudoku.Data
 		bool this[int cell, int digit] { get; }
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <inheritdoc cref="object.Equals(object?)"/>
 		bool Equals(object? obj);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		int GetHashCode();
 
 		/// <summary>

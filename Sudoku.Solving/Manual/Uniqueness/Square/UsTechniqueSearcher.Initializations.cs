@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Square
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
 	partial class UsTechniqueSearcher
 	{
@@ -43,9 +41,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					int c = ChuteIterator[j, 2] * 9;
 					Patterns[n++] = new()
 					{
-						a + 3 * i, b + 3 * i, c + 3 * i,
-						a + 1 + 3 * i, b + 1 + 3 * i, c + 1 + 3 * i,
-						a + 2 + 3 * i, b + 2 + 3 * i, c + 2 + 3 * i
+						a + 3 * i,
+						b + 3 * i,
+						c + 3 * i,
+						a + 1 + 3 * i,
+						b + 1 + 3 * i,
+						c + 1 + 3 * i,
+						a + 2 + 3 * i,
+						b + 2 + 3 * i,
+						c + 2 + 3 * i
 					};
 				}
 			}

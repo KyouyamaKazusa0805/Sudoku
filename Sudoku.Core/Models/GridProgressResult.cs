@@ -66,20 +66,20 @@ namespace Sudoku.Models
 			(currentCandidatesCount, currentCellsCount, initialCandidatesCount) =
 			(CurrentCandidatesCount, CurrentCellsCount, InitialCandidatesCount);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString() =>
 			$"{Resources.GetValue("UnsolvedCells")}{CurrentCellsCount}" +
 			$"{Resources.GetValue("UnsolvedCandidates")}{CurrentCandidatesCount}";
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override readonly bool Equals(object? obj) => obj is GridProgressResult comparer && Equals(comparer);
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public readonly bool Equals(GridProgressResult other) =>
 			CurrentCellsCount == other.CurrentCellsCount && CurrentCandidatesCount == other.CurrentCandidatesCount
 			&& InitialCandidatesCount == other.InitialCandidatesCount && GlobalizationString == other.GlobalizationString;
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override readonly int GetHashCode() =>
 			CurrentCellsCount * 729 + CurrentCandidatesCount ^ InitialCandidatesCount ^ GlobalizationString.GetHashCode();
 

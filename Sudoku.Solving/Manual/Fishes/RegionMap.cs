@@ -84,11 +84,11 @@ namespace Sudoku.Solving.Manual.Fishes
 		[DoesNotReturn]
 		public override readonly bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Equals(RegionMap other) => Mask == other.Mask;
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override int GetHashCode() => Mask;
 
@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int[] ToArray() => Mask.GetAllSets().ToArray();
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly string ToString() => new RegionCollection(Regions).ToString();
 

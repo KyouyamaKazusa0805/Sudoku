@@ -89,16 +89,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public GridMap Map => Pair1Map | Pair2Map | CenterCellsMap;
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public bool Equals(Pattern other) => _mask == other._mask;
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => (int)_mask;
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => $"{new CellCollection(Map).ToString()}";
 
 

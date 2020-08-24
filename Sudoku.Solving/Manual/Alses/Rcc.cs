@@ -65,11 +65,11 @@ namespace Sudoku.Solving.Manual.Alses
 			&& CommonRegion == other.CommonRegion
 			&& (Als1 == other.Als1 && Als2 == other.Als2 || Als1 == other.Als2 && Als2 == other.Als1);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() =>
 			Als1.GetHashCode() ^ Als2.GetHashCode() ^ CommonDigit ^ CommonRegion;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => $"{CommonDigit + 1} in {Als1} & {Als2}";
 
 

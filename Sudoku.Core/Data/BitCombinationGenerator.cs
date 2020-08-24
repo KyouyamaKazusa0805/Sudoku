@@ -69,13 +69,13 @@ namespace Sudoku.Data
 		[DoesNotReturn]
 		public override readonly bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
 		public override readonly int GetHashCode() => throw Throwings.RefStructNotSupported;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
@@ -92,10 +92,7 @@ namespace Sudoku.Data
 			return result;
 		}
 
-		/// <summary>
-		/// Get the enumerator.
-		/// </summary>
-		/// <returns>The enumerator.</returns>
+		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		public IEnumerator<long> GetEnumerator()
 		{
 			var list = new List<long>();

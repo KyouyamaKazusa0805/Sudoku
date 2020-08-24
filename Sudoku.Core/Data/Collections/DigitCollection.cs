@@ -68,7 +68,7 @@ namespace Sudoku.Data.Collections
 		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public bool Equals(DigitCollection other) => _mask == other._mask;
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace Sudoku.Data.Collections
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool Contains(int digit) => (_mask >> digit & 1) != 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]

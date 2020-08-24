@@ -842,20 +842,19 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.ConjugatePair.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.ConjugatePair.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.ConjugatePair.op_Equality(Sudoku.Solving.ConjugatePair,Sudoku.Solving.ConjugatePair)">
             <operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.ConjugatePair.op_Inequality(Sudoku.Solving.ConjugatePair,Sudoku.Solving.ConjugatePair)">
@@ -863,7 +862,9 @@
 		<summary>Indicates whether two instances have two different values.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="T:Sudoku.Solving.Constants.Processings">
@@ -1284,18 +1285,10 @@
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.GetHashCode">
-            <method name="GetHashCode">
-		<summary>
-			Serves as the default hash function.
-		</summary>
-		<returns>The hash code.</returns>
-	</method>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.IReadOnlyGrid)">
             <summary>
@@ -1317,7 +1310,9 @@
 		<summary>Indicates whether two instances have a same value.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als)">
@@ -1325,7 +1320,9 @@
 		<summary>Indicates whether two instances have two different values.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsTechniqueInfo">
@@ -1421,13 +1418,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.GridMap@)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="region">(<see langword="out" /> parameter) The region.</param>
             <param name="digitsMask">(<see langword="out" /> parameter) The digits mask.</param>
             <param name="map">(<see langword="out" /> parameter) The map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Collections.Generic.IEnumerable{System.Int16}@)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="isBivalueCell">
             (<see langword="out" /> parameter) Indicates whether the specified ALS is bi-value.
             </param>
@@ -1450,13 +1447,13 @@
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
             <remarks>
             If you want to determine the equality of two instance, I recommend you
-            <b>should</b> use method <see cref="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als)" /> instead of this method.
+            <b>should</b> use method <see cref="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als)"/> instead of this method.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ToString">
@@ -1470,10 +1467,10 @@
             <returns>All ALSes searched.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Equality(Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo">
             <summary>
@@ -1900,7 +1897,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueInfo">
             <summary>
@@ -2152,7 +2149,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Rcc">
             <summary>
@@ -2208,18 +2205,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetHashCode">
-            <method name="GetHashCode">
-		<summary>
-			Serves as the default hash function.
-		</summary>
-		<returns>The hash code.</returns>
-	</method>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Rcc.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetAllRccs(Sudoku.Data.IReadOnlyGrid,System.Boolean)">
             <summary>
@@ -2263,7 +2252,9 @@
 		<summary>Indicates whether two instances have a same value.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Rcc.op_Inequality(Sudoku.Solving.Manual.Alses.Rcc,Sudoku.Solving.Manual.Alses.Rcc)">
@@ -2271,7 +2262,9 @@
 		<summary>Indicates whether two instances have two different values.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo">
@@ -2596,10 +2589,10 @@
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.op_Equality(Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo,Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.op_Inequality(Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo,Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher">
             <summary>
@@ -2868,7 +2861,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -2947,7 +2940,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -3026,7 +3019,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -3105,7 +3098,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -3184,7 +3177,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -3263,7 +3256,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -3342,7 +3335,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -3568,7 +3561,7 @@
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
@@ -3800,13 +3793,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="baseCellsMap">(<see langword="out" /> parameter) The base cells.</param>
             <param name="targetCellsMap">(<see langword="out" /> parameter) The target cells.</param>
             <param name="crosslineMap">(<see langword="out" /> parameter) The cross-line cells.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="base1">(<see langword="out" /> parameter) The base cell 1.</param>
             <param name="base2">(<see langword="out" /> parameter) The base cell 2.</param>
             <param name="tq1">(<see langword="out" /> parameter) The target Q1 cell.</param>
@@ -3815,7 +3808,7 @@
             <param name="tr2">(<see langword="out" /> parameter) The target R2 cell.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="base1">(<see langword="out" /> parameter) The base cell 1.</param>
             <param name="base2">(<see langword="out" /> parameter) The base cell 2.</param>
             <param name="tq1">(<see langword="out" /> parameter) The target Q1 cell.</param>
@@ -3829,22 +3822,22 @@
             <param name="mr2">(<see langword="out" /> parameter) The mirror R2 cell.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(Sudoku.Solving.Manual.Exocets.Pattern)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Equality(Sudoku.Solving.Manual.Exocets.Pattern,Sudoku.Solving.Manual.Exocets.Pattern)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Inequality(Sudoku.Solving.Manual.Exocets.Pattern,Sudoku.Solving.Manual.Exocets.Pattern)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo">
             <summary>
@@ -4307,10 +4300,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.Equals(Sudoku.Solving.Manual.Fishes.RegionMap)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;__any&quot;]" />
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.ToArray">
             <summary>
@@ -4319,7 +4312,7 @@
             <returns>The array.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.GetEnumerator">
             <summary>
@@ -4346,10 +4339,10 @@
             <param name="region">The region.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_Equality(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_Inequality(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_OnesComplement(Sudoku.Solving.Manual.Fishes.RegionMap)">
             <summary>
@@ -6381,7 +6374,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo">
             <summary>
@@ -6810,7 +6803,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo">
             <summary>
@@ -7008,22 +7001,22 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(System.Object)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Equality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern">
             <summary>
@@ -7059,13 +7052,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="pair">(<see langword="out" /> parameter) The pair map.</param>
             <param name="square">(<see langword="out" /> parameter) The square map.</param>
             <param name="baseLine">(<see langword="out" /> parameter) The base line map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeTechniqueInfo">
             <summary>
@@ -7181,7 +7174,7 @@
             <seealso cref="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Pair"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/defaultConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1TechniqueInfo">
             <summary>
@@ -8048,7 +8041,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsType1TechniqueInfo">
             <summary>
@@ -8524,7 +8517,9 @@
 		<summary>Indicates whether two instances have a same value.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.op_Inequality(Sudoku.Solving.TechniqueInfo,Sudoku.Solving.TechniqueInfo)">
@@ -8532,7 +8527,9 @@
 		<summary>Indicates whether two instances have two different values.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="T:Sudoku.Solving.TechniqueSearcher">
@@ -8672,7 +8669,9 @@
 		<summary>Indicates whether two instances have a same value.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_Inequality(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
@@ -8680,7 +8679,9 @@
 		<summary>Indicates whether two instances have two different values.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
@@ -8688,7 +8689,9 @@
 		<summary>Indicates whether the left value is greater than the right value.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
@@ -8698,7 +8701,9 @@
 		</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
@@ -8706,7 +8711,9 @@
 		<summary>Indicates whether the left value is less than the right value.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
@@ -8716,7 +8723,9 @@
 		</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
 	</operator>
         </member>
     </members>

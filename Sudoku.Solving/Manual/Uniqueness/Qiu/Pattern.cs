@@ -1,4 +1,6 @@
-﻿using Sudoku.Data;
+﻿#pragma warning disable CA1815
+
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
@@ -46,7 +48,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public void Deconstruct(out GridMap pair, out GridMap square, out GridMap baseLine) =>
 			(pair, square, baseLine) = (Pair, Square, BaseLine);
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => new CellCollection(FullMap).ToString();
 	}
 }

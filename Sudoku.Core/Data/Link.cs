@@ -58,7 +58,7 @@ namespace Sudoku.Data
 			(startCell, startDigit, endCell, endDigit, linkType) = (
 				StartCandidate / 9, StartCandidate % 9, EndCandidate / 9, EndCandidate % 9, LinkType);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
 			string startStr = new CandidateCollection(StartCandidate).ToString();
@@ -67,7 +67,7 @@ namespace Sudoku.Data
 			return $"{startStr}{linkStr}{endStr}";
 		}
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);
 
 		/// <inheritdoc/>
@@ -79,7 +79,7 @@ namespace Sudoku.Data
 				|| ((int)c << 20 | b << 10 | a) == ((int)f << 20 | e << 10 | d);
 		}
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
 
 

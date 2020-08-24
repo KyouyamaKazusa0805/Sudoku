@@ -1,6 +1,6 @@
-> I have no time to update the project recently... If you find any bugs, please raise a issue or tell me directly. Thx!
+> **I have no time to update the project recently... If you find any bugs, please raise a issue or tell me directly. Thx!**
 >
-> 我最近没有时间更新项目……如果你找到了 bug，请提 issue 或者直接告诉我。感谢！
+> **我最近没有时间更新项目……如果你找到了 bug，请提 issue 或者直接告诉我。感谢！**
 
 # Sunnie's Sudoku Solution
 
@@ -66,6 +66,16 @@ Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/
 
 
 
+### API Docs
+
+标题：**API 文档**
+
+Please download [this](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku%20API%20references.chm) file.
+
+请下载[这个](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku%20API%20references.chm)文件。
+
+
+
 ### Folders
 
 标题：**文件夹**
@@ -79,7 +89,6 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 * [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving): The generating and solving project.<br/>解题和题目生成的项目。
 * <font color="red">*</font> [`Sudoku.Solving.BruteForces.Bitwise`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving.BruteForces/Bitwise): The native code for solving sudokus, which is used for speed up the calculation.<br/>解数独题目的 native 代码，用它是为了加快计算速度。
 * [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows): The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。
-* [`Sudoku.Bot`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Bot): The project for QQ bot for sudoku. If you think that using this project is unnecessary, just delete it!<br/>数独 QQ 机器人项目。如果你不想用这个项目，删掉就行！
 * [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging): The project that can be used while debugging only.<br/>这个项目仅用于调试代码时。
 * [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref): The profiles for sudoku for references.<br/>数独相关参考资料。
 * [`pic`](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic): The pictures.<br/>图片。
