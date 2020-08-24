@@ -70,9 +70,9 @@ Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/
 
 标题：**API 文档**
 
-Please download [this]([https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku%20API%20references.chm](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku API references.chm)) file.
+Please download [this](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku%20API%20references.chm) file.
 
-请下载[这个]([https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku%20API%20references.chm](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku API references.chm))文件。
+请下载[这个](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku%20API%20references.chm)文件。
 
 
 
