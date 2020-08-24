@@ -20,7 +20,7 @@
     <OutputPath>bin\debug\</OutputPath>
     <HtmlHelpName>Sudoku Class Library</HtmlHelpName>
     <Language>en-US</Language>
-    <HelpFileFormat>HtmlHelp1</HelpFileFormat>
+    <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
     <SyntaxFilters>C#</SyntaxFilters>
     <PresentationStyle>VS2013</PresentationStyle>
     <BuildLogFile>Logs.log</BuildLogFile>
@@ -39,7 +39,7 @@
     <MaximumGroupParts>2</MaximumGroupParts>
     <Preliminary>False</Preliminary>
     <SdkLinkTarget>Blank</SdkLinkTarget>
-    <MissingTags>Summary, Parameter, Returns, Value, Remarks, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter, IncludeTargets, AutoDocumentDispose</MissingTags>
     <WarnOnMissingSourceContext>False</WarnOnMissingSourceContext>
     <WorkingPath>working\</WorkingPath>
     <VisibleItems>ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, InheritedFrameworkInternalMembers, InheritedFrameworkPrivateMembers, Internals, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, EditorBrowsableNever, NonBrowsable</VisibleItems>
