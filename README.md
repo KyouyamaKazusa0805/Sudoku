@@ -66,6 +66,16 @@ Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/
 
 
 
+### API Docs
+
+标题：**API 文档**
+
+Please download [this]([https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku%20API%20references.chm](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku API references.chm)) file.
+
+请下载[这个]([https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku%20API%20references.chm](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Sudoku API references.chm))文件。
+
+
+
 ### Folders
 
 标题：**文件夹**
