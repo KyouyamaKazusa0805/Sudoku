@@ -52,14 +52,14 @@ namespace Sudoku.Solving.BruteForces.Linqing
 		private static List<string> SolveStrings(string puzzle)
 		{
 			const string values = "123456789";
-			static int indexOf(string solution) => solution.IndexOf('0', OrdinalIgnoreCase);
+			static int i(string solution) => solution.IndexOf('0', OrdinalIgnoreCase);
 
 			var result = new List<string> { puzzle };
-			while (result.Count > 0 && indexOf(result[0]) != -1)
+			while ((result.Count, i(result[0])) is ( > 0, not -1))
 			{
 				result = (
 					from Solution in result
-					let Index = indexOf(Solution)
+					let Index = i(Solution)
 					let Column = Index % 9
 					let Block = Index - Index % 27 + Column - Index % 3
 					from Value in values

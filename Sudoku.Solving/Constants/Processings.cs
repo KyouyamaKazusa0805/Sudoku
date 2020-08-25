@@ -114,7 +114,7 @@ namespace Sudoku.Solving.Constants
 						(true, false) => Weak,
 						_ => Default
 					};
-					if (linkType == Weak && i == 0)
+					if ((linkType, i) is (Weak, 0))
 					{
 						// Because of forcing chain, the first node will not be drawn.
 						continue;
