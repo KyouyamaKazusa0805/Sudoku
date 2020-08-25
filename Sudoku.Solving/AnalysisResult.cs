@@ -17,10 +17,14 @@ namespace Sudoku.Solving
 	/// Provides an analysis result after a puzzle solved.
 	/// </summary>
 	public sealed record AnalysisResult(
-		bool HasSolved, string SolverName, string? Additional,
-		TimeSpan ElapsedTime, IReadOnlyGrid Puzzle, IReadOnlyGrid? Solution,
-		IReadOnlyList<TechniqueInfo>? SolvingSteps, IReadOnlyList<IReadOnlyGrid>? StepGrids)
-		: IEnumerable<TechniqueInfo>, IFormattable
+		bool HasSolved,
+		string SolverName,
+		string? Additional,
+		TimeSpan ElapsedTime,
+		IReadOnlyGrid Puzzle,
+		IReadOnlyGrid? Solution,
+		IReadOnlyList<TechniqueInfo>? SolvingSteps,
+		IReadOnlyList<IReadOnlyGrid>? StepGrids) : IEnumerable<TechniqueInfo>, IFormattable
 	{
 		/// <summary>
 		/// Initializes an instance with some information.
@@ -172,9 +176,9 @@ namespace Sudoku.Solving
 			get
 			{
 				var maxLevel = DifficultyLevel.Unknown;
-				if (HasSolved && SolvingSteps is not null)
+				if ((HasSolved, SolvingSteps) is (true, not null))
 				{
-					foreach (var step in SolvingSteps)
+					foreach (var step in SolvingSteps!)
 					{
 						if (step.ShowDifficulty && step.DifficultyLevel > maxLevel)
 						{
