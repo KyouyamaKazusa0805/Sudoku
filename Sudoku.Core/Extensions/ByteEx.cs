@@ -22,7 +22,17 @@ namespace Sudoku.Extensions
 
 		/// <include file='CoreDocComments.xml' path='comments/method[@name="CountSet"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int CountSet(this byte @this) => Int32Ex.CountSet(@this);
+		public static int CountSet(this byte @this)
+		{
+			@this = (byte)((@this & 0x55) + ((@this >> 1) & 0x55));
+			@this = (byte)((@this & 0x33) + ((@this >> 2) & 0x33));
+			@this = (byte)((@this & 0x0F) + ((@this >> 4) & 0x0F));
+			return @this;
+
+			#region Obsolete code
+			//return Int32Ex.CountSet(@this);
+			#endregion
+		}
 
 		/// <include file='CoreDocComments.xml' path='comments/method[@name="GetNextSet"]'/>
 		public static int GetNextSet(this byte @this, int index)
@@ -80,7 +90,7 @@ namespace Sudoku.Extensions
 		{
 			@this = (byte)(@this >> 1 & 0x55 | (@this & 0x55) << 1);
 			@this = (byte)(@this >> 2 & 0x33 | (@this & 0x33) << 2);
-			@this = (byte)(@this >> 4        |  @this         << 4);
+			@this = (byte)(@this >> 4 | @this << 4);
 		}
 	}
 }
