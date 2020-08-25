@@ -4328,16 +4328,6 @@
             Provides extension methods on generic instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Extensions.GenericEx.TryCast``2(``0,``1@)">
-            <summary>
-            Try to cast the specified value to the specified type.
-            </summary>
-            <typeparam name="T">The type of the object.</typeparam>
-            <typeparam name="TStruct">The target type.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <param name="result">(<see langword="out"/> parameter) The result.</param>
-            <returns>Indicates whether the specified cast is successful.</returns>
-        </member>
         <member name="M:Sudoku.Extensions.GenericEx.NullableToString``1(``0)">
             <summary>
             Returns a <see cref="T:System.String"/> that represents the current object
