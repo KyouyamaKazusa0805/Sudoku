@@ -38,9 +38,19 @@ namespace Sudoku.Extensions
 		/// <include file='CoreDocComments.xml' path='comments/method[@name="CountSet"]'/>
 		public static int CountSet(this long @this)
 		{
-			int count;
-			for (count = 0; @this != 0; @this &= @this - 1L, count++) ;
-			return count;
+			@this = (@this & 0x5555555555555555L) + ((@this >> 1) & 0x5555555555555555L);
+			@this = (@this & 0x3333333333333333L) + ((@this >> 2) & 0x3333333333333333L);
+			@this = (@this & 0x0F0F0F0F0F0F0F0FL) + ((@this >> 4) & 0x0F0F0F0F0F0F0F0FL);
+			@this = (@this & 0x00FF00FF00FF00FFL) + ((@this >> 8) & 0x00FF00FF00FF00FFL);
+			@this = (@this & 0x0000FFFF0000FFFFL) + ((@this >> 16) & 0x0000FFFF0000FFFFL);
+			@this = (@this & 0x00000000FFFFFFFFL) + ((@this >> 32) & 0x00000000FFFFFFFFL);
+			return (int)@this;
+
+			#region Obsolete code
+			//int count;
+			//for (count = 0; @this != 0; @this &= @this - 1L, count++) ;
+			//return count;
+			#endregion
 		}
 
 		/// <include file='CoreDocComments.xml' path='comments/method[@name="GetNextSet"]'/>
@@ -97,10 +107,10 @@ namespace Sudoku.Extensions
 		[SuppressMessage("", "IDE0055:Fix formatting")]
 		public static void ReverseBits(this ref long @this)
 		{
-			@this = @this >>  1 & 0x55555555_55555555L | (@this & 0x55555555_55555555L) <<  1;
-			@this = @this >>  2 & 0x33333333_33333333L | (@this & 0x33333333_33333333L) <<  2;
-			@this = @this >>  4 & 0x0F0F0F0F_0F0F0F0FL | (@this & 0x0F0F0F0F_0F0F0F0FL) <<  4;
-			@this = @this >>  8 & 0x00FF00FF_00FF00FFL | (@this & 0x00FF00FF_00FF00FFL) <<  8;
+			@this = @this >> 1 & 0x55555555_55555555L | (@this & 0x55555555_55555555L) << 1;
+			@this = @this >> 2 & 0x33333333_33333333L | (@this & 0x33333333_33333333L) << 2;
+			@this = @this >> 4 & 0x0F0F0F0F_0F0F0F0FL | (@this & 0x0F0F0F0F_0F0F0F0FL) << 4;
+			@this = @this >> 8 & 0x00FF00FF_00FF00FFL | (@this & 0x00FF00FF_00FF00FFL) << 8;
 			@this = @this >> 16 & 0x0000FFFF_0000FFFFL | (@this & 0x0000FFFF_0000FFFFL) << 16;
 			@this = @this >> 32 | @this << 32;
 		}
