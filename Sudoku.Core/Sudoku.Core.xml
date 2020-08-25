@@ -2035,7 +2035,7 @@
             <param name="low">(<see langword="out" /> parameter) Lower 41 bits.</param>
         </member>
         <member name="M:Sudoku.Data.GridMap.Equals(System.Object)">
-            <!--未找到下列包含标记的匹配元素 --><include file="..\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
+            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
         </member>
         <member name="M:Sudoku.Data.GridMap.Equals(Sudoku.Data.GridMap)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
@@ -2994,7 +2994,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Data.Node.Equals(System.Object)">
-            <!--未找到下列包含标记的匹配元素 --><include file="..\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
+            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
         </member>
         <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node)">
             <inheritdoc/>
@@ -7234,7 +7234,7 @@
             </summary>
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor">
-            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/defaultConstructor" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -7374,10 +7374,10 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_Equality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_Inequality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_BitwiseAnd(System.Collections.Generic.Set{`0},System.Collections.Generic.IEnumerable{`0})">
             <summary>
