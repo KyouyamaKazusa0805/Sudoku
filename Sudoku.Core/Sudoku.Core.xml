@@ -3932,41 +3932,64 @@
             <param name="sender">The object triggering the event.</param>
             <param name="e">The data while triggering.</param>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeLineCounter">
+        <member name="T:Sudoku.Diagnostics.FileCounter">
             <summary>
-            Encapsulates a code line counter.
+            Encapsulates a file counter.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeLineCounter.#ctor(System.String,System.String)">
+        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String,System.String,System.Boolean,System.Collections.Generic.IList{System.String})">
             <summary>
-            Encapsulates a code line counter.
+            Encapsulates a file counter.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeLineCounter.#ctor(System.String)">
+        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String)">
             <summary>
             Initializes an instance with the specified root directory.
             </summary>
             <param name="root">The directory.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeLineCounter.FileList">
+        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String,System.String)">
             <summary>
-            All file paths at this root directory.
+            Initializes an instance with the specified root directory,
+            and the filter pattern. The pattern is specified as a file extension,
+            such as <c>"cs"</c> (without dot) or <c>".cs"</c> (with dot).
             </summary>
+            <param name="root">The root.</param>
+            <param name="extension">
+            The file extension. This parameter can be <see langword="null"/>. If
+            so, the counter will sum up all files with all extensions.
+            </param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeLineCounter.CountCodeLines(System.Int32@)">
+        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified root directory,
+            the file extension and a <see cref="T:System.Boolean"/> value indicating whether
+            the counter will record the codes in directories <c>bin</c> and <c>obj</c>.
+            </summary>
+            <param name="root">The root.</param>
+            <param name="extension">
+            The file extension. This parameter can be <see langword="null"/>. If
+            so, the counter will sum up all files with all extensions.
+            </param>
+            <param name="withBinOrObjDirectory">
+            Indicates whether the counter will record the codes in directories
+            <c>bin</c> and <c>obj</c>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.CountCodeLines(System.Int32@,System.Int64@,System.Int64@)">
             <summary>
             Count on code lines in all files in the specified root directory.
             </summary>
             <param name="filesCount">
             (<see langword="out"/> parameter) The number of files searched.
             </param>
+            <param name="charactersCount">
+            (<see langword="out"/> parameter) The total characters from all files.
+            </param>
+            <param name="bytes">
+            (<see langword="out"/> parameter) The total bytes from all files.
+            </param>
             <returns>The number of lines.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeLineCounter.GetAllFilesRecursively(System.IO.DirectoryInfo)">
-            <summary>
-            Get all files in the specified directory recursively.
-            </summary>
-            <param name="directory">The directory information instance.</param>
         </member>
         <member name="T:Sudoku.Diagnostics.Solution">
             <summary>
