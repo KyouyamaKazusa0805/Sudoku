@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Diagnostics;
@@ -18,8 +19,25 @@ using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Chaining;
 using static System.Console;
 
-#region File counter
+#region Batch digit base conversion
 #if true
+string s = @"0777777777, 0777777000, 0777000777, 0777000000, 0777777, 0777000, 0777, 00,";
+var regex = new Regex("0[0-7]+");
+string result = regex.Replace(
+	s,
+	match =>
+	{
+		string matchValue = match.Value;
+		long l = Convert.ToInt64(matchValue, 8);
+		return $"0x{l:X}";
+	});
+
+Console.WriteLine(result);
+#endif
+#endregion
+
+#region File counter
+#if false
 var w = new Stopwatch();
 
 var z = new FileCounter(Solution.PathRoot, "cs", false);

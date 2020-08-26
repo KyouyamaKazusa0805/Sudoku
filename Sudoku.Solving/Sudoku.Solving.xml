@@ -555,6 +555,220 @@
             </param>
             <returns>The solution count of the puzzle.</returns>
         </member>
+        <member name="T:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver">
+            <summary>
+            Define an unsafe bitwise solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BitSet27">
+            <summary>
+            All pencil marks set - 27 bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._stack">
+            <summary>
+            Stack to store current and previous states.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._g">
+            <summary>
+            Pointer to the currently active slot.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._numSolutions">
+            <summary>
+            The number of solutions found so far.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._limitSolutions">
+            <summary>
+            The max number of solution we're looking for.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._singleApplied">
+            <summary>
+            Nasty global flag telling if <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._solution">
+            <summary>
+            Pointer to where to store the first solution. This value can be <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SolverName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
+            <summary>
+            Set a cell as solved - used in <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InitSudoku(System.Char*)"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.EliminateDigit(System.Int32,System.Int32)">
+            <summary>
+            Eliminate a digit - used in <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InitSudoku(System.Char*)"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SetSolvedMask(System.Int32,System.Int64)">
+            <summary>
+            Set a cell as solved - used in various guess routines.
+            </summary>
+            <param name="band">The band.</param>
+            <param name="mask">The mask.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InitSudoku(System.Char*)">
+            <summary>
+            Setup everything and load the puzzle.
+            </summary>
+            <returns>The sudoku code string.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Update">
+            <summary>
+            Core of fast processing.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ApplySingleOrEmptyCells">
+            <summary>
+            Find singles, bi-value cells, and impossible cells.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ExtractSolution(System.Char*)">
+            <summary>
+            Extract solution as a character string.
+            </summary>
+            <param name="solution">
+            The solution pointer. <b>The buffer should be at least 82 of length.</b>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.GuessBiValueInCell">
+            <summary>
+            Try both options for cells with exactly two pencil marks.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.GuessFirstCell">
+            <summary>
+            Guess all possibilities in first unsolved cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Guess">
+            <summary>
+            Either already solved, or guess and recurse.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.FullUpdate">
+            <summary>
+            Get as far as possible without guessing.
+            </summary>
+            <returns>An <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BitPos(System.Int64)">
+            <summary>
+            Get the bit position.
+            </summary>
+            <param name="map">The map.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Strlen(System.Char*)">
+            <summary>
+            Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
+            </summary>
+            <param name="ptr">The pointer.</param>
+            <returns>The total length.</returns>
+            <remarks>
+            In C#, this function is unsafe because the implementation of
+            <see cref="T:System.String"/> types between C and C# is totally different.
+            In C, <see cref="T:System.String"/> is like a <see cref="T:System.Char"/>* or a
+            <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>,
+            however, C# not.
+            </remarks>
+            <exception cref="T:System.ArgumentException">
+            Throws when the last character is not <see cref="F:System.Char.MinValue"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Memset(System.Void*,System.IntPtr,System.IntPtr)">
+            <summary>
+            Function <c>memset</c> in C.
+            </summary>
+            <param name="dest">The destination pointer.</param>
+            <param name="c">The start offset.</param>
+            <param name="count">The size of the unit.</param>
+            <returns>The pointer.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.MemCopy(System.Void*,System.Void*,System.Int32)">
+            <summary>
+            Function <c>memcpy</c> in C.
+            </summary>
+            <param name="dest">The destination pointer.</param>
+            <param name="src">The source pointer.</param>
+            <param name="count">The number of unit you want to copy.</param>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.bands">
+            <summary>
+            Pencil marks in bands by digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.prevBands">
+            <summary>
+            Value of bands last time it was calculated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.unsolvedCells">
+            <summary>
+            Bit vector of unsolved cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.unsolvedRows">
+            <summary>
+            Bit vector of unsolved rows - three bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.pairs">
+            <summary>
+            Bit vector of cells with exactly two pencil marks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblComplexMask">
+            <summary>
+            To keep mini rows still valid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblMaskSingle">
+            <summary>
+            Kill in other blocks locked column/box.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblShrinkSingle">
+            <summary>
+            Keep only rows with single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblRowUniq">
+            <summary>
+            1 is row not defined in block mode 1 to 111.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblColumnSingle">
+            <summary>
+            Single in column applied to shrinked block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblRowMask">
+            <summary>
+            Rows where single  found  000 to 111.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver">
             <summary>
             Provides a solver using LINQ method.
@@ -1418,13 +1632,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.GridMap@)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="region">(<see langword="out" /> parameter) The region.</param>
             <param name="digitsMask">(<see langword="out" /> parameter) The digits mask.</param>
             <param name="map">(<see langword="out" /> parameter) The map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Collections.Generic.IEnumerable{System.Int16}@)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="isBivalueCell">
             (<see langword="out" /> parameter) Indicates whether the specified ALS is bi-value.
             </param>
@@ -1467,10 +1681,10 @@
             <returns>All ALSes searched.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Equality(Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo">
             <summary>
@@ -1897,7 +2111,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueInfo">
             <summary>
@@ -2149,7 +2363,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Rcc">
             <summary>
@@ -2589,10 +2803,10 @@
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.op_Equality(Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo,Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.op_Inequality(Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo,Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher">
             <summary>
@@ -3561,7 +3775,7 @@
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
@@ -3793,13 +4007,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="baseCellsMap">(<see langword="out" /> parameter) The base cells.</param>
             <param name="targetCellsMap">(<see langword="out" /> parameter) The target cells.</param>
             <param name="crosslineMap">(<see langword="out" /> parameter) The cross-line cells.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="base1">(<see langword="out" /> parameter) The base cell 1.</param>
             <param name="base2">(<see langword="out" /> parameter) The base cell 2.</param>
             <param name="tq1">(<see langword="out" /> parameter) The target Q1 cell.</param>
@@ -3808,7 +4022,7 @@
             <param name="tr2">(<see langword="out" /> parameter) The target R2 cell.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="base1">(<see langword="out" /> parameter) The base cell 1.</param>
             <param name="base2">(<see langword="out" /> parameter) The base cell 2.</param>
             <param name="tq1">(<see langword="out" /> parameter) The target Q1 cell.</param>
@@ -3834,10 +4048,10 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Equality(Sudoku.Solving.Manual.Exocets.Pattern,Sudoku.Solving.Manual.Exocets.Pattern)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Inequality(Sudoku.Solving.Manual.Exocets.Pattern,Sudoku.Solving.Manual.Exocets.Pattern)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo">
             <summary>
@@ -4339,10 +4553,10 @@
             <param name="region">The region.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_Equality(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_Inequality(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_OnesComplement(Sudoku.Solving.Manual.Fishes.RegionMap)">
             <summary>
@@ -6374,7 +6588,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo">
             <summary>
@@ -6803,7 +7017,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo">
             <summary>
@@ -7013,10 +7227,10 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Equality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern">
             <summary>
@@ -7052,7 +7266,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="pair">(<see langword="out" /> parameter) The pair map.</param>
             <param name="square">(<see langword="out" /> parameter) The square map.</param>
             <param name="baseLine">(<see langword="out" /> parameter) The base line map.</param>
@@ -7174,7 +7388,7 @@
             <seealso cref="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Pair"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/defaultConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1TechniqueInfo">
             <summary>
@@ -8041,7 +8255,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file="....\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsType1TechniqueInfo">
             <summary>
