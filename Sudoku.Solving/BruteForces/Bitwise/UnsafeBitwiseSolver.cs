@@ -189,57 +189,57 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				try
 				{
 					_numSolutions = 0;
-					for (int band = 0; band < 3 * 9; ++band) _g->bands[band] = BitSet27;
-					Memset(_g->prevBands, 0, sizeof(long*)); // sizeof(_g->prevBands)
-					_g->unsolvedCells[0] = _g->unsolvedCells[1] = _g->unsolvedCells[2] = BitSet27;
-					_g->unsolvedRows[0] = _g->unsolvedRows[1] = _g->unsolvedRows[2] = BitSet27;
-					_g->pairs[0] = _g->pairs[1] = _g->pairs[2] = 0;
-
-					switch (Strlen(board))
-					{
-						case 81:
-						{
-							for (int cell = 0; cell < 81; ++cell, ++board)
-							{
-								if (char.IsDigit(*board) && *board != '0')
-								{
-									int digit = *board - '1';
-									if (!SetSolvedDigit(cell, digit)) return 0;
-								}
-								else if (*board == 0) return 0; // End of string before end of puzzle!
-							}
-							return 1;
-						}
-						case 729:
-						{
-							for (int cell = 0; cell < 81; ++cell)
-							{
-								short mask = 0;
-								for (int digit = 0; digit < 9; ++digit, ++board)
-								{
-									if (*board == '0')
-									{
-										mask |= (short)(1 << digit);
-									}
-								}
-
-								for (int digit = 0, temp = mask; digit < 9; digit++, temp >>= 1)
-								{
-									if ((temp & 1) != 0 && !EliminateDigit(cell, digit))
-									{
-										return 0;
-									}
-								}
-							}
-							return 1;
-						}
-						default: return 0;
-					}
+					for (int band = 0; band < 3 * 9; ++band) g->bands[band] = BitSet27;
+					Memset(g->prevBands, 0, sizeof(long*)); // sizeof(_g->prevBands)
+					g->unsolvedCells[0] = g->unsolvedCells[1] = g->unsolvedCells[2] = BitSet27;
+					g->unsolvedRows[0] = g->unsolvedRows[1] = g->unsolvedRows[2] = BitSet27;
+					g->pairs[0] = g->pairs[1] = g->pairs[2] = 0;
 				}
 				finally
 				{
 					_g = g;
 				}
+			}
+
+			switch (Strlen(board))
+			{
+				case 81:
+				{
+					for (int cell = 0; cell < 81; ++cell, ++board)
+					{
+						if (char.IsDigit(*board) && *board != '0')
+						{
+							int digit = *board - '1';
+							if (!SetSolvedDigit(cell, digit)) return 0;
+						}
+						else if (*board == 0) return 0; // End of string before end of puzzle!
+					}
+					return 1;
+				}
+				case 729:
+				{
+					for (int cell = 0; cell < 81; ++cell)
+					{
+						short mask = 0;
+						for (int digit = 0; digit < 9; ++digit, ++board)
+						{
+							if (*board == '0')
+							{
+								mask |= (short)(1 << digit);
+							}
+						}
+
+						for (int digit = 0, temp = mask; digit < 9; digit++, temp >>= 1)
+						{
+							if ((temp & 1) != 0 && !EliminateDigit(cell, digit))
+							{
+								return 0;
+							}
+						}
+					}
+					return 1;
+				}
+				default: return 0;
 			}
 		}
 
@@ -756,7 +756,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="map">The map.</param>
 		/// <returns>The position.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static byte BitPos(long map) => MultiplyDeBruijnBitPosition32[map * 0x077CB531U >> 27];
+		private static byte BitPos(long map) => MultiplyDeBruijnBitPosition32[(map * 0x077CB531U) >> 27];
 
 		/// <summary>
 		/// Get the length of the specified string which is represented by a <see cref="char"/>*.
@@ -767,8 +767,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// In C#, this function is unsafe because the implementation of
 		/// <see cref="string"/> types between C and C# is totally different.
 		/// In C, <see cref="string"/> is like a <see cref="char"/>* or a
-		/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>,
-		/// however, C# not.
+		/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
+		/// However, C# not.
 		/// </remarks>
 		/// <exception cref="ArgumentException">
 		/// Throws when the last character is not <see cref="char.MinValue"/>.

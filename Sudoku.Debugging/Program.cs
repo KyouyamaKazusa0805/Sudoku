@@ -15,12 +15,22 @@ using Sudoku.Data.Collections;
 using Sudoku.Diagnostics;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Chaining;
 using static System.Console;
 
-#region Batch digit base conversion
+#region Unsafe solver tester
 #if true
+var grid = Grid.Parse("050602000003000000040583001930000500000704000004000026700126050000000900000307060");
+var solver = new UnsafeBitwiseSolver();
+var result = solver.Solve(grid);
+Console.WriteLine(result);
+#endif
+#endregion
+
+#region Batch digit base conversion
+#if false
 string s = @"0777777777, 0777777000, 0777000777, 0777000000, 0777777, 0777000, 0777, 00,";
 var regex = new Regex("0[0-7]+");
 string result = regex.Replace(
