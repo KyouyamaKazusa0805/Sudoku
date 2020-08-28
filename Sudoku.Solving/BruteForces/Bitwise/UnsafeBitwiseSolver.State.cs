@@ -2,6 +2,9 @@
 {
 	public sealed partial class UnsafeBitwiseSolver
 	{
+		/// <summary>
+		/// To describe a state for a current grid using binary values.
+		/// </summary>
 		private unsafe struct State
 		{
 			/// <summary>

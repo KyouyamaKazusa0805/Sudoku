@@ -629,7 +629,8 @@
             <summary>
             Setup everything and load the puzzle.
             </summary>
-            <returns>The sudoku code string.</returns>
+            <param name="board">The puzzle string.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Update">
             <summary>
@@ -671,7 +672,7 @@
             <summary>
             Get as far as possible without guessing.
             </summary>
-            <returns>An <see cref="T:System.Int32"/> result.</returns>
+            <returns>An <see cref="T:System.Byte"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BitPos(System.Int64)">
             <summary>
@@ -713,6 +714,11 @@
             <param name="dest">The destination pointer.</param>
             <param name="src">The source pointer.</param>
             <param name="count">The number of unit you want to copy.</param>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State">
+            <summary>
+            To describe a state for a current grid using binary values.
+            </summary>
         </member>
         <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.bands">
             <summary>

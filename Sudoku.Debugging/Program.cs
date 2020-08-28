@@ -1,8 +1,6 @@
 ﻿#pragma warning disable IDE0005
 #pragma warning disable IDE1006
 
-#warning This file should be compiled manually.
-
 using System;
 using System.Diagnostics;
 using System.IO;

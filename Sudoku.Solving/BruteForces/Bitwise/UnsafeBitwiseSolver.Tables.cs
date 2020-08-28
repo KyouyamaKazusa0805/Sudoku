@@ -25,7 +25,7 @@
 		/// <summary>
 		/// To keep mini rows still valid.
 		/// </summary>
-		private static readonly long[] TblComplexMask =
+		private static readonly int[] TblComplexMask =
 		{
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -88,7 +88,7 @@
 		/// <summary>
 		/// Kill in other blocks locked column/box.
 		/// </summary>
-		private static readonly long[] TblMaskSingle =
+		private static readonly int[] TblMaskSingle =
 		{
 			0x3FFFFFFF, 0x3FFBFDFE, 0x3FF7FBFD, 0x3FFFFFFF, 0x3FEFF7FB, 0x3FFFFFFF, 0x3FFFFFFF, 0x3FFFFFFF,
 			0x3FDFEFF7, 0x3FDBEDF6, 0x3FD7EBF5, 0x3FDFEFF7, 0x3FCFE7F3, 0x3FDFEFF7, 0x3FDFEFF7, 0x3FDFEFF7,
@@ -262,7 +262,7 @@
 			2, 2, 2, 2, 2, 2, 2, 2, 2,
 		};
 
-		private static readonly uint[] CellToMask =
+		private static readonly int[] CellToMask =
 		{
 			0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100,
 			0x200, 0x400, 0x800, 0x1000, 0x2000, 0x4000, 0x8000, 0x10000, 0x20000,
@@ -275,7 +275,7 @@
 			0x40000, 0x80000, 0x100000, 0x200000, 0x400000, 0x800000, 0x1000000, 0x2000000, 0x4000000,
 		};
 
-		private static readonly int[] DigitToBaseBand =
+		private static readonly byte[] DigitToBaseBand =
 		{
 			0, 3, 6, 9, 12, 15, 18, 21, 24,
 		};
@@ -295,7 +295,7 @@
 			0x1C007E3F,
 		};
 
-		private static readonly int[] TblAnother1 =
+		private static readonly byte[] TblAnother1 =
 		{
 			0x1, 0x0, 0x0, 0x4, 0x3, 0x3, 0x7, 0x6,
 			0x6, 0xA, 0x9, 0x9, 0xD, 0xC, 0xC, 0x10,
@@ -303,7 +303,7 @@
 			0x19, 0x18, 0x18,
 		};
 
-		private static readonly int[] TblAnother2 =
+		private static readonly byte[] TblAnother2 =
 		{
 			0x2, 0x2, 0x1, 0x5, 0x5, 0x4, 0x8, 0x8,
 			0x7, 0xB, 0xB, 0xA, 0xE, 0xE, 0xD, 0x11,
@@ -311,7 +311,7 @@
 			0x1A, 0x1A, 0x19,
 		};
 
-		private static readonly uint[] TblOtherMask =
+		private static readonly int[] TblOtherMask =
 		{
 			0x3FFBFDFE, 0x3FF7FBFD, 0x3FEFF7FB, 0x3FDFEFF7, 0x3FBFDFEF, 0x3F7FBFDF, 0x3EFF7FBF, 0x3DFEFF7F,
 			0x3BFDFEFF, 0x3FFBFDFE, 0x3FF7FBFD, 0x3FEFF7FB, 0x3FDFEFF7, 0x3FBFDFEF, 0x3F7FBFDF, 0x3EFF7FBF,

@@ -64,7 +64,12 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			string puzzle = grid.ToString("0");
 			fixed (char* p = puzzle)
 			{
-				char* solutionStr = stackalloc char[bufferLength];
+				char* solutionStr = stackalloc char[82];
+				for (int i = 0; i < 81; i++)
+				{
+					solutionStr[i] = '0';
+				}
+				//solutionStr[81] = '\0';
 
 				stopwatch.Start();
 				s(in p, solutionStr, 2);
@@ -92,7 +97,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				_numSolutions = 0;
 				_limitSolutions = limit;
 				_solution = solutionPtr;
-				if (InitSudoku(puzzle) == 0) return 0;    // locked invalid cell
+				if (!InitSudoku(puzzle)) return 0;    // locked invalid cell
 				if (ApplySingleOrEmptyCells()) return 0;  // locked empty cell or conflict singles in cells
 				if (FullUpdate() == 0) return 0;
 				Guess();
@@ -111,10 +116,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		{
 			int subBand = CellToSubBand[cell];
 			int band = DigitToBaseBand[digit] + subBand;
-			uint mask = CellToMask[cell];
+			int mask = CellToMask[cell];
 			if ((_g->bands[band] & mask) == 0) return false;
 			_g->bands[band] &= TblSelfMask[cell];
-			uint tblMask = TblOtherMask[cell];
+			int tblMask = TblOtherMask[cell];
 			_g->bands[TblAnother1[band]] &= tblMask;
 			_g->bands[TblAnother2[band]] &= tblMask;
 			mask = ~mask;
@@ -130,7 +135,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			_g->bands[subBand + 18] &= mask;
 			_g->bands[subBand + 21] &= mask;
 			_g->bands[subBand + 24] &= mask;
-			_g->bands[band] |= ~mask;
+			_g->bands[band] |= (long)~mask;
 			return true;
 		}
 
@@ -144,7 +149,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		{
 			int subBand = CellToSubBand[cell];
 			int band = DigitToBaseBand[digit] + subBand;
-			uint mask = CellToMask[cell];
+			int mask = CellToMask[cell];
 			if ((_g->bands[band] & mask) == 0) return true;
 			_g->bands[band] &= ~mask;
 			return true;
@@ -181,16 +186,25 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <summary>
 		/// Setup everything and load the puzzle.
 		/// </summary>
-		/// <returns>The sudoku code string.</returns>
-		private int InitSudoku(char* board)
+		/// <param name="board">The puzzle string.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		private bool InitSudoku(char* board)
 		{
 			fixed (State* g = _stack)
 			{
 				try
 				{
+					static void @for(State* g, int start, int end)
+					{
+						for (int band = start; band < end; band++)
+						{
+							g->bands[band] = BitSet27;
+						}
+					}
+
 					_numSolutions = 0;
-					for (int band = 0; band < 3 * 9; ++band) g->bands[band] = BitSet27;
-					Memset(g->prevBands, 0, sizeof(long*)); // sizeof(_g->prevBands)
+					@for(g, 0, 27);
+					Memset(g->prevBands, 0, sizeof(long)); // sizeof(_g->prevBands)
 					g->unsolvedCells[0] = g->unsolvedCells[1] = g->unsolvedCells[2] = BitSet27;
 					g->unsolvedRows[0] = g->unsolvedRows[1] = g->unsolvedRows[2] = BitSet27;
 					g->pairs[0] = g->pairs[1] = g->pairs[2] = 0;
@@ -210,11 +224,11 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						if (char.IsDigit(*board) && *board != '0')
 						{
 							int digit = *board - '1';
-							if (!SetSolvedDigit(cell, digit)) return 0;
+							if (!SetSolvedDigit(cell, digit)) return false;
 						}
-						else if (*board == 0) return 0; // End of string before end of puzzle!
+						else if (*board == 0) return false; // End of string before end of puzzle!
 					}
-					return 1;
+					return true;
 				}
 				case 729:
 				{
@@ -233,13 +247,17 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						{
 							if ((temp & 1) != 0 && !EliminateDigit(cell, digit))
 							{
-								return 0;
+								return false;
 							}
 						}
 					}
-					return 1;
+
+					return true;
 				}
-				default: return 0;
+				default:
+				{
+					return false;
+				}
 			}
 		}
 
@@ -306,7 +324,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(2, 2, 8, 11, 14, 17, 20, 23, 26);
 					}
 				Digit2:
-					if (((ar >> 18) & 0x1ff) == 0) goto end012;
+					if (((ar >> 18) & 0x1ff) == 0) goto End012;
 					if (_g->bands[2 * 3 + 0] == _g->prevBands[2 * 3 + 0]) goto Digit2b;
 					if (updn(2, 0, 1, 2)) return false;
 					if (((ar >> 18) & 7) != s)
@@ -323,14 +341,14 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(1, 1, 4, 10, 13, 16, 19, 22, 25);
 					}
 				Digit2c:
-					if (_g->bands[2 * 3 + 2] == _g->prevBands[2 * 3 + 2]) goto end012;
+					if (_g->bands[2 * 3 + 2] == _g->prevBands[2 * 3 + 2]) goto End012;
 					if (updn(2, 2, 0, 1)) return false;
 					if (((ar >> 24) & 7) != s)
 					{
 						ar &= 0xFFFFFF | (s << 24);
 						upwcl(2, 2, 5, 11, 14, 17, 20, 23, 26);
 					}
-				end012:
+				End012:
 					_g->unsolvedRows[0] = ar;
 				}
 			Digit3:
@@ -387,7 +405,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(2, 2, 5, 8, 11, 17, 20, 23, 26);
 					}
 				Digit5:
-					if (((ar >> 18) & 0x1ff) == 0) goto end345;
+					if (((ar >> 18) & 0x1ff) == 0) goto End345;
 					if (_g->bands[5 * 3 + 0] == _g->prevBands[5 * 3 + 0]) goto Digit5b;
 					if (updn(5, 0, 1, 2)) return false;
 					if (((ar >> 18) & 7) != s)
@@ -404,14 +422,14 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(1, 1, 4, 7, 10, 13, 19, 22, 25);
 					}
 				Digit5c:
-					if (_g->bands[5 * 3 + 2] == _g->prevBands[5 * 3 + 2]) goto end345;
+					if (_g->bands[5 * 3 + 2] == _g->prevBands[5 * 3 + 2]) goto End345;
 					if (updn(5, 2, 0, 1)) return false;
 					if (((ar >> 24) & 7) != s)
 					{
 						ar &= 0xFFFFFF | (s << 24);
 						upwcl(2, 2, 5, 8, 11, 14, 20, 23, 26);
 					}
-				end345:
+				End345:
 					_g->unsolvedRows[1] = ar;
 				}
 			Digit6:
@@ -468,7 +486,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(2, 2, 5, 8, 11, 14, 17, 20, 26);
 					}
 				Digit8:
-					if (((ar >> 18) & 0x1ff) == 0) goto end678;
+					if (((ar >> 18) & 0x1ff) == 0) goto End678;
 					if (_g->bands[8 * 3 + 0] == _g->prevBands[8 * 3 + 0]) goto Digit8b;
 					if (updn(8, 0, 1, 2)) return false;
 					if (((ar >> 18) & 7) != s)
@@ -485,21 +503,21 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(1, 1, 4, 7, 10, 13, 16, 19, 22);
 					}
 				Digit8c:
-					if (_g->bands[8 * 3 + 2] == _g->prevBands[8 * 3 + 2]) goto end678;
+					if (_g->bands[8 * 3 + 2] == _g->prevBands[8 * 3 + 2]) goto End678;
 					if (updn(8, 2, 0, 1)) return false;
 					if (((ar >> 24) & 7) != s)
 					{
 						ar &= 0xFFFFFF | (s << 24);
 						upwcl(2, 2, 5, 8, 11, 14, 17, 20, 23);
 					}
-				end678:
+				End678:
 					_g->unsolvedRows[2] = ar;
 				}
 			}
 			return true;
 
 			// The core Update routine from zhouyundong.
-			//	This copy has been optimized by champagne and JasonLion in minor ways.
+			// This copy has been optimized by champagne and JasonLion in minor ways.
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			bool updn(int i, int j, int k, int l)
 			{
@@ -622,7 +640,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		{
 			for (int cell = 0; cell < 81; ++cell)
 			{
-				uint mask = CellToMask[cell];
+				int mask = CellToMask[cell];
 				int offset = CellToSubBand[cell];
 				for (int digit = 0; digit < 9; ++digit)
 				{
@@ -729,8 +747,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <summary>
 		/// Get as far as possible without guessing.
 		/// </summary>
-		/// <returns>An <see cref="int"/> result.</returns>
-		private int FullUpdate()
+		/// <returns>An <see cref="byte"/> result.</returns>
+		private byte FullUpdate()
 		{
 			if (_numSolutions >= _limitSolutions) return 0;
 			while (true)
@@ -756,7 +774,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="map">The map.</param>
 		/// <returns>The position.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static byte BitPos(long map) => MultiplyDeBruijnBitPosition32[(map * 0x077CB531U) >> 27];
+		private static byte BitPos(long map) => MultiplyDeBruijnBitPosition32[map * 0x077CB531 >> 27];
 
 		/// <summary>
 		/// Get the length of the specified string which is represented by a <see cref="char"/>*.
