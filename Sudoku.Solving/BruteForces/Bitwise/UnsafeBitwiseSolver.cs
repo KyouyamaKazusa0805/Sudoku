@@ -55,13 +55,22 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		public override string SolverName => "Bitwise (Unsafe)";
 
 
+		/// <summary>
+		/// To call <see cref="GridParser"/> to parse the current puzzle code string
+		/// and solve it.
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <returns>The result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public AnalysisResult Solve(string str) => Solve(new GridParser(str).Parse());
+
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
 			const int bufferLength = 82;
 			var stopwatch = new Stopwatch();
 
-			string puzzle = grid.ToString("0");
+			string puzzle = $"{grid:0}";
 			fixed (char* p = puzzle)
 			{
 				char* solutionStr = stackalloc char[82];
@@ -247,7 +256,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				{
 					for (int cell = 0; cell < 81; ++cell, ++board)
 					{
-						if (char.IsDigit(*board) && *board != '0')
+						if (*board is > '0' and <= '9')
 						{
 							if (!SetSolvedDigit(cell, *board - '1'))
 							{

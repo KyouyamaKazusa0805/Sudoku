@@ -598,6 +598,14 @@
         <member name="P:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SolverName">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(System.String)">
+            <summary>
+            To call <see cref="T:Sudoku.Data.GridParser"/> to parse the current puzzle code string
+            and solve it.
+            </summary>
+            <param name="str">The string.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
