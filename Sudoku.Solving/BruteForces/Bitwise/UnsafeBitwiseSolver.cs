@@ -97,9 +97,23 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				_numSolutions = 0;
 				_limitSolutions = limit;
 				_solution = solutionPtr;
-				if (!InitSudoku(puzzle)) return 0;    // locked invalid cell
-				if (ApplySingleOrEmptyCells()) return 0;  // locked empty cell or conflict singles in cells
-				if (FullUpdate() == 0) return 0;
+
+				if (!InitSudoku(puzzle))
+				{
+					return 0;
+				}
+
+				if (ApplySingleOrEmptyCells())
+				{
+					// Locked empty cell or conflict singles in cells.
+					return 0;
+				}
+
+				if (FullUpdate() == 0)
+				{
+					return 0;
+				}
+
 				Guess();
 
 				return _numSolutions;
@@ -117,7 +131,11 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			int subBand = CellToSubBand[cell];
 			int band = DigitToBaseBand[digit] + subBand;
 			int mask = CellToMask[cell];
-			if ((_g->bands[band] & mask) == 0) return false;
+			if ((_g->bands[band] & mask) == 0)
+			{
+				return false;
+			}
+
 			_g->bands[band] &= TblSelfMask[cell];
 			int tblMask = TblOtherMask[cell];
 			_g->bands[TblAnother1[band]] &= tblMask;
@@ -150,7 +168,11 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			int subBand = CellToSubBand[cell];
 			int band = DigitToBaseBand[digit] + subBand;
 			int mask = CellToMask[cell];
-			if ((_g->bands[band] & mask) == 0) return true;
+			if ((_g->bands[band] & mask) == 0)
+			{
+				return true;
+			}
+
 			_g->bands[band] &= ~mask;
 			return true;
 		}
@@ -163,7 +185,11 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private bool SetSolvedMask(int band, long mask)
 		{
-			if ((_g->bands[band] & mask) == 0) return false;
+			if ((_g->bands[band] & mask) == 0)
+			{
+				return false;
+			}
+
 			int subBand = Mod3[band];
 			int cell = subBand * 27 + BitPos(mask);
 			_g->bands[band] &= TblSelfMask[cell];
@@ -223,11 +249,18 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					{
 						if (char.IsDigit(*board) && *board != '0')
 						{
-							int digit = *board - '1';
-							if (!SetSolvedDigit(cell, digit)) return false;
+							if (!SetSolvedDigit(cell, *board - '1'))
+							{
+								return false;
+							}
 						}
-						else if (*board == 0) return false; // End of string before end of puzzle!
+						else if (*board == 0)
+						{
+							// End of string before end of puzzle!
+							return false;
+						}
 					}
+
 					return true;
 				}
 				case 729:
@@ -274,7 +307,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				if (_g->unsolvedRows[0] == 0) goto Digit3;
 				{
 					long ar = _g->unsolvedRows[0];  // valid for Digits 0,1,2
-					if ((ar & 0x1ff) == 0) goto Digit1;
+					if ((ar & 0x1FF) == 0) goto Digit1;
 					if (_g->bands[0 * 3 + 0] == _g->prevBands[0 * 3 + 0]) goto Digit0b;
 					if (updn(0, 0, 1, 2)) return false;
 					if ((ar & 7) != s)
@@ -299,7 +332,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(2, 5, 8, 11, 14, 17, 20, 23, 26);
 					}
 				Digit1:
-					if (((ar >> 9) & 0x1ff) == 0) goto Digit2;
+					if (((ar >> 9) & 0x1FF) == 0) goto Digit2;
 					if (_g->bands[1 * 3 + 0] == _g->prevBands[1 * 3 + 0]) goto Digit1b;
 					if (updn(1, 0, 1, 2)) return false;
 					if (((ar >> 9) & 7) != s)
@@ -324,7 +357,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(2, 2, 8, 11, 14, 17, 20, 23, 26);
 					}
 				Digit2:
-					if (((ar >> 18) & 0x1ff) == 0) goto End012;
+					if (((ar >> 18) & 0x1FF) == 0) goto End012;
 					if (_g->bands[2 * 3 + 0] == _g->prevBands[2 * 3 + 0]) goto Digit2b;
 					if (updn(2, 0, 1, 2)) return false;
 					if (((ar >> 18) & 7) != s)
@@ -355,7 +388,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				if (_g->unsolvedRows[1] == 0) goto Digit6;
 				{
 					long ar = _g->unsolvedRows[1];  // valid for Digits 3,4,5
-					if ((ar & 0x1ff) == 0) goto Digit4;
+					if ((ar & 0x1FF) == 0) goto Digit4;
 					if (_g->bands[3 * 3 + 0] == _g->prevBands[3 * 3 + 0]) goto Digit3b;
 					if (updn(3, 0, 1, 2)) return false;
 					if ((ar & 7) != s)
@@ -380,7 +413,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(2, 2, 5, 8, 14, 17, 20, 23, 26);
 					}
 				Digit4:
-					if (((ar >> 9) & 0x1ff) == 0) goto Digit5;
+					if (((ar >> 9) & 0x1FF) == 0) goto Digit5;
 					if (_g->bands[4 * 3 + 0] == _g->prevBands[4 * 3 + 0]) goto Digit4b;
 					if (updn(4, 0, 1, 2)) return false;
 					if (((ar >> 9) & 7) != s)
@@ -405,7 +438,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(2, 2, 5, 8, 11, 17, 20, 23, 26);
 					}
 				Digit5:
-					if (((ar >> 18) & 0x1ff) == 0) goto End345;
+					if (((ar >> 18) & 0x1FF) == 0) goto End345;
 					if (_g->bands[5 * 3 + 0] == _g->prevBands[5 * 3 + 0]) goto Digit5b;
 					if (updn(5, 0, 1, 2)) return false;
 					if (((ar >> 18) & 7) != s)
@@ -436,7 +469,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				if (_g->unsolvedRows[2] == 0) continue;
 				{
 					long ar = _g->unsolvedRows[2];  // valid for Digits 6,7,8
-					if ((ar & 0x1ff) == 0) goto Digit7;
+					if ((ar & 0x1FF) == 0) goto Digit7;
 					if (_g->bands[6 * 3 + 0] == _g->prevBands[6 * 3 + 0]) goto Digit6b;
 					if (updn(6, 0, 1, 2)) return false;
 					if ((ar & 7) != s)
@@ -461,7 +494,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(2, 2, 5, 8, 11, 14, 17, 23, 26);
 					}
 				Digit7:
-					if (((ar >> 9) & 0x1ff) == 0) goto Digit8;
+					if (((ar >> 9) & 0x1FF) == 0) goto Digit8;
 					if (_g->bands[7 * 3 + 0] == _g->prevBands[7 * 3 + 0]) goto Digit7b;
 					if (updn(7, 0, 1, 2)) return false;
 					if (((ar >> 9) & 7) != s)
@@ -486,7 +519,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						upwcl(2, 2, 5, 8, 11, 14, 17, 20, 26);
 					}
 				Digit8:
-					if (((ar >> 18) & 0x1ff) == 0) goto End678;
+					if (((ar >> 18) & 0x1FF) == 0) goto End678;
 					if (_g->bands[8 * 3 + 0] == _g->prevBands[8 * 3 + 0]) goto Digit8b;
 					if (updn(8, 0, 1, 2)) return false;
 					if (((ar >> 18) & 7) != s)
@@ -523,7 +556,11 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			{
 				a = _g->bands[i * 3 + j];
 				shrink = TblShrinkMask[a & 0x1FF] | TblShrinkMask[(a >> 9) & 0x1FF] << 3 | TblShrinkMask[a >> 18] << 6;
-				if ((a &= TblComplexMask[shrink]) == 0) return false;
+				if ((a &= TblComplexMask[shrink]) == 0)
+				{
+					return false;
+				}
+
 				b = _g->bands[i * 3 + k];
 				c = _g->bands[i * 3 + l];
 				s = (a | a >> 9 | a >> 18) & 0x1FF;
@@ -561,59 +598,65 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			for (int subBand = 0; subBand < 3; ++subBand)
 			{
 #if false
-				uint R1 = 0, R2 = 0, R3 = 0;
+				uint r1 = 0, r2 = 0, r3 = 0;
 				for (int band = subBand; band < 27; band += 3)
 				{
 					unsigned int bandData = g->bands[band];
-					R3 |= R2 & bandData;
-					R2 |= R1 & bandData;
-					R1 |= bandData;
+					r3 |= r2 & bandData;
+					r2 |= r1 & bandData;
+					r1 |= bandData;
 				}
 #else
-				// Loop unrolling _really_ helps
-				long R1 = _g->bands[subBand];            // R1 - Cells in band with pencil one or more times
-				long bandData = _g->bands[subBand + 3];  // bandData - hint to save value in register
-				long R2 = R1 & bandData;                 // R2 - pencil mark in cell two or more times
-				R1 |= bandData;
+
+				// Loop unrolling really helps.
+				long r1 = _g->bands[subBand];           // r1 - Cells in band with pencil one or more times.
+				long bandData = _g->bands[subBand + 3]; // bandData - Hint to save value in register.
+				long r2 = r1 & bandData;                // r2 - Pencil mark in cell two or more times.
+				r1 |= bandData;
 				bandData = _g->bands[subBand + 6];
-				long R3 = R2 & bandData;                 // R3 - pencil mark in cell three or more times
-				R2 |= R1 & bandData;
-				R1 |= bandData;
+				long r3 = r2 & bandData;                // r3 - Pencil mark in cell three or more times.
+				r2 |= r1 & bandData;
+				r1 |= bandData;
 				bandData = _g->bands[subBand + 9];
-				R3 |= R2 & bandData;
-				R2 |= R1 & bandData;
-				R1 |= bandData;
+				r3 |= r2 & bandData;
+				r2 |= r1 & bandData;
+				r1 |= bandData;
 				bandData = _g->bands[subBand + 12];
-				R3 |= R2 & bandData;
-				R2 |= R1 & bandData;
-				R1 |= bandData;
+				r3 |= r2 & bandData;
+				r2 |= r1 & bandData;
+				r1 |= bandData;
 				bandData = _g->bands[subBand + 15];
-				R3 |= R2 & bandData;
-				R2 |= R1 & bandData;
-				R1 |= bandData;
+				r3 |= r2 & bandData;
+				r2 |= r1 & bandData;
+				r1 |= bandData;
 				bandData = _g->bands[subBand + 18];
-				R3 |= R2 & bandData;
-				R2 |= R1 & bandData;
-				R1 |= bandData;
+				r3 |= r2 & bandData;
+				r2 |= r1 & bandData;
+				r1 |= bandData;
 				bandData = _g->bands[subBand + 21];
-				R3 |= R2 & bandData;
-				R2 |= R1 & bandData;
-				R1 |= bandData;
+				r3 |= r2 & bandData;
+				r2 |= r1 & bandData;
+				r1 |= bandData;
 				bandData = _g->bands[subBand + 24];
-				R3 |= R2 & bandData;
-				R2 |= R1 & bandData;
-				R1 |= bandData;
+				r3 |= r2 & bandData;
+				r2 |= r1 & bandData;
+				r1 |= bandData;
 #endif
-				if (R1 != BitSet27) return true;         // Something is locked, can't be solved
-				_g->pairs[subBand] = R2 & ~R3;           // Exactly two pencil marks in cell
-				R1 &= ~R2;                               // Exactly one pencil mark in cell
-				R1 &= _g->unsolvedCells[subBand];        // Ignore already solved cells
-				while (R1 != 0)
+				if (r1 != BitSet27)
+				{
+					// Something is locked, can't be solved.
+					return true;
+				}
+
+				_g->pairs[subBand] = r2 & ~r3;          // Exactly two pencil marks in cell.
+				r1 &= ~r2;                              // Exactly one pencil mark in cell.
+				r1 &= _g->unsolvedCells[subBand];       // Ignore already solved cells.
+				while (r1 != 0)
 				{
 					// Set all the single pencil mark cells
 					_singleApplied = true;
-					long bit = R1 & -(int)R1;            // Process once cell at a time
-					R1 ^= bit;
+					long bit = r1 & -(int)r1;           // Process once cell at a time.
+					r1 ^= bit;
 					int digit;
 					for (digit = 0; digit < 9; ++digit)
 					{
@@ -624,7 +667,11 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 							break;
 						}
 					}
-					if (digit == 9) return true;         // Previous singles locked the cell
+					if (digit == 9)
+					{
+						// Previous singles locked the cell.
+						return true;
+					}
 				}
 			}
 			return false;
@@ -716,10 +763,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				{
 					if ((_g->bands[band] & cellMask) != 0)
 					{
-						MemCopy(_g + 1, _g, sizeof(State)); // Eliminate option in the current stack entry
+						MemCopy(_g + 1, _g, sizeof(State)); // Eliminate option in the current stack entry.
 						_g->bands[band] ^= cellMask;
 						++_g;
-						SetSolvedMask(band, cellMask);   // and try it out in a nested stack entry
+						SetSolvedMask(band, cellMask);      // And try it out in a nested stack entry.
 						if (FullUpdate() != 0) Guess();
 						--_g;
 					}
@@ -735,13 +782,23 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		{
 			if ((_g->unsolvedRows[0] | _g->unsolvedRows[1] | _g->unsolvedRows[2]) == 0)
 			{
-				// Already solved
-				if (_solution != null && _numSolutions == 0) ExtractSolution(_solution); // store the first solution
+				// Already solved.
+				if (_solution != null && _numSolutions == 0)
+				{
+					// Store the first solution.
+					ExtractSolution(_solution);
+				}
+
 				_numSolutions++;
 
 				return;
 			}
-			if (!GuessBiValueInCell()) GuessFirstCell(); // Both of these recurse
+
+			if (!GuessBiValueInCell())
+			{
+				// Both of these recursions.
+				GuessFirstCell();
+			}
 		}
 
 		/// <summary>
@@ -750,20 +807,39 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <returns>An <see cref="byte"/> result.</returns>
 		private byte FullUpdate()
 		{
-			if (_numSolutions >= _limitSolutions) return 0;
+			if (_numSolutions >= _limitSolutions)
+			{
+				return 0;
+			}
+
 			while (true)
 			{
-				if (!Update()) return 0;                 // game locked in update
+				if (!Update())
+				{
+					// Game locked in update.
+					return 0;
+				}
+
 				if ((_g->unsolvedCells[0] | _g->unsolvedCells[1] | _g->unsolvedCells[2]) == 0)
 				{
 					return 2;
 				}
 
-				if (ApplySingleOrEmptyCells()) return 0; // locked empty cell or conflict singles in cells
-				if (_singleApplied) continue;            // Found a single, run Update again
+				// locked empty cell or conflict singles in cells
+				if (ApplySingleOrEmptyCells())
+				{
+					return 0;
+				}
+
+				// Found a single, run Update again
+				if (_singleApplied)
+				{
+					continue;
+				}
 
 				break;
 			}
+
 			return 1;
 		}
 
@@ -788,9 +864,6 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
 		/// However, C# not.
 		/// </remarks>
-		/// <exception cref="ArgumentException">
-		/// Throws when the last character is not <see cref="char.MinValue"/>.
-		/// </exception>
 		private static int Strlen(char* ptr)
 		{
 			int result = 0;

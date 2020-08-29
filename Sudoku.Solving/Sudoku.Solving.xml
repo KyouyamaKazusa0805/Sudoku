@@ -694,9 +694,6 @@
             <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
             However, C# not.
             </remarks>
-            <exception cref="T:System.ArgumentException">
-            Throws when the last character is not <see cref="F:System.Char.MinValue"/>.
-            </exception>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Memset(System.Void*,System.IntPtr,System.IntPtr)">
             <summary>
