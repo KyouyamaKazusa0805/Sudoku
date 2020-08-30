@@ -16,10 +16,13 @@ using Sudoku.Solving.Annotations;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Chaining;
+using Sudoku.Windows;
 using static System.Console;
 
 #region Unsafe solver tester
-#if true
+#if false
+Resources.ChangeLanguage("en-us");
+
 var grid = Grid.Parse("050602000003000000040583001930000500000704000004000026700126050000000900000307060");
 var solver = new UnsafeBitwiseSolver();
 var result = solver.Solve(grid);
@@ -45,7 +48,7 @@ Console.WriteLine(result);
 #endregion
 
 #region File counter
-#if false
+#if true
 var w = new Stopwatch();
 
 var z = new FileCounter(Solution.PathRoot, "cs", false);

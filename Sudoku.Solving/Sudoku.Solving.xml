@@ -625,7 +625,7 @@
             <param name="digit">The digit.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SetSolvedMask(System.Int32,System.Int64)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SetSolvedMask(System.Int32,System.UInt32)">
             <summary>
             Set a cell as solved - used in various guess routines.
             </summary>
@@ -682,7 +682,7 @@
             </summary>
             <returns>An <see cref="T:System.Byte"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BitPos(System.Int64)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BitPos(System.UInt32)">
             <summary>
             Get the bit position.
             </summary>
@@ -725,27 +725,27 @@
             To describe a state for a current grid using binary values.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.bands">
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.Bands">
             <summary>
             Pencil marks in bands by digit.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.prevBands">
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.PrevBands">
             <summary>
             Value of bands last time it was calculated.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.unsolvedCells">
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.UnsolvedCells">
             <summary>
             Bit vector of unsolved cells.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.unsolvedRows">
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.UnsolvedRows">
             <summary>
             Bit vector of unsolved rows - three bits per band.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.pairs">
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.Pairs">
             <summary>
             Bit vector of cells with exactly two pencil marks.
             </summary>

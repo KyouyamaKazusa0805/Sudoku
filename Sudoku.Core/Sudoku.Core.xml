@@ -7124,6 +7124,9 @@
         <member name="M:Sudoku.SudokuRuntimeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.SudokuRuntimeException.Message">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.WrongHandlingException">
             <summary>
             Represents an error that the puzzle has wrong handling while solving with

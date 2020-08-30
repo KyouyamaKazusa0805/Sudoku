@@ -28,5 +28,8 @@ namespace Sudoku
 		protected SudokuRuntimeException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}
+
+		/// <inheritdoc/>
+		public override string Message => base.Message;
 	}
 }

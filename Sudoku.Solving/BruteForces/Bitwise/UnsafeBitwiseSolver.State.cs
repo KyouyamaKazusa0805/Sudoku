@@ -10,27 +10,27 @@
 			/// <summary>
 			/// Pencil marks in bands by digit.
 			/// </summary>
-			public fixed long bands[27];
+			public fixed uint Bands[3 * 9];
 
 			/// <summary>
 			/// Value of bands last time it was calculated.
 			/// </summary>
-			public fixed long prevBands[27];
+			public fixed uint PrevBands[3 * 9];
 
 			/// <summary>
 			/// Bit vector of unsolved cells.
 			/// </summary>
-			public fixed long unsolvedCells[3];
+			public fixed uint UnsolvedCells[3];
 
 			/// <summary>
 			/// Bit vector of unsolved rows - three bits per band.
 			/// </summary>
-			public fixed long unsolvedRows[3];
+			public fixed uint UnsolvedRows[3];
 
 			/// <summary>
 			/// Bit vector of cells with exactly two pencil marks.
 			/// </summary>
-			public fixed long pairs[3];
+			public fixed uint Pairs[3];
 		}
 	}
 }

@@ -244,7 +244,7 @@
 		/// <summary>
 		/// Rows where single  found  000 to 111.
 		/// </summary>
-		private static readonly int[] TblRowMask =
+		private static readonly uint[] TblRowMask =
 		{
 			0x7FFFFFF, 0x7FFFE00, 0x7FC01FF, 0x7FC0000, 0x3FFFF, 0x3FE00, 0x1FF, 0x0,
 		};
@@ -280,7 +280,7 @@
 			0, 3, 6, 9, 12, 15, 18, 21, 24,
 		};
 
-		private static readonly int[] TblSelfMask =
+		private static readonly uint[] TblSelfMask =
 		{
 			0x37E3F001, 0x37E3F002, 0x37E3F004, 0x371F8E08, 0x371F8E10, 0x371F8E20, 0x30FC7E40, 0x30FC7E80,
 			0x30FC7F00, 0x2FE003F8, 0x2FE005F8, 0x2FE009F8, 0x2F1C11C7, 0x2F1C21C7, 0x2F1C41C7, 0x28FC803F,
