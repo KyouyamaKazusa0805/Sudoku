@@ -3991,6 +3991,77 @@
             </param>
             <returns>The number of lines.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.SizeUnit">
+            <summary>
+            Indicates a unit for a file size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Byte">
+            <summary>
+            Indictaes the size is of bytes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Kilobyte">
+            <summary>
+            Indicates the size is of kilobytes (KB).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Megabyte">
+            <summary>
+            Indicates the size is of megabytes (MB).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Gigabyte">
+            <summary>
+            Indictaes the size is of gigabytes (GB).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Terabyte">
+            <summary>
+            Indicates the size is of terabytes (TB).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.IKilobyte">
+            <summary>
+            Indicates the size is of KiB.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.IMegabyte">
+            <summary>
+            Indicates the size is of MiB.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.IGigabyte">
+            <summary>
+            Indictaes the size is of GiB.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.ITerabyte">
+            <summary>
+            Indicates the size is of TiB.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.SizeUnitConverter">
+            <summary>
+            Encapsulates a size unit converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.SizeUnitConverter.ConvertTo(System.Int64,Sudoku.Diagnostics.SizeUnit)">
+            <summary>
+            To convert the size into the specified unit.
+            </summary>
+            <param name="bytes">The bytes.</param>
+            <param name="sizeUnit">The size unit.</param>
+            <returns>The value of the specified size unit.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.SizeUnitConverter.Convert(System.Int64,Sudoku.Diagnostics.SizeUnit@)">
+            <summary>
+            To convert the size into the appropriate size unit.
+            </summary>
+            <param name="bytes">The bytes.</param>
+            <param name="unit">(<see langword="out"/> parameter) The unit.</param>
+            <returns>The value of the specified size unit.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.Solution">
             <summary>
             Provides the solution constant values.

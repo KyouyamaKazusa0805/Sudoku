@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Diagnostics;
@@ -64,39 +65,15 @@ foreach (var fileName in z.FileList)
 
 WriteLine(
 	$"Code lines: {codeLines}, found files: {filesCount}, total characters: {charsCount}, " +
-	$"total bytes: {g(bytes, out string unit):.000} {unit}, " +
-	$"time elapsed: {w.Elapsed:hh\\:mm\\.ss\\.fff}");
-
-static decimal g(long bytes, out string unit)
-{
-	switch (bytes)
+	$@"total bytes: {SizeUnitConverter.Convert(bytes, out var unit):.000} {unit switch
 	{
-		case <= 1024L:
-		{
-			unit = "B";
-			return bytes;
-		}
-		case <= 1048576L:
-		{
-			unit = "KB";
-			return bytes / 1024M;
-		}
-		case <= 1073741824L:
-		{
-			unit = "MB";
-			return bytes / 1048576M;
-		}
-		case <= 1099511627776L:
-		{
-			unit = "GB";
-			return bytes / 1073741824M;
-		}
-		default:
-		{
-			unit = "TB";
-			return bytes / 1099511627776M;
-		}
-	}
-}
+		SizeUnit.Byte => "B",
+		SizeUnit.Kilobyte => "KB",
+		SizeUnit.Megabyte => "MB",
+		SizeUnit.Gigabyte => "GB",
+		SizeUnit.Terabyte => "TB",
+		_ => throw Throwings.ImpossibleCase
+	}}, " +
+	$"time elapsed: {w.Elapsed:hh\\:mm\\.ss\\.fff}");
 #endif
 #endregion
