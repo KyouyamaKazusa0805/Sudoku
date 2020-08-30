@@ -97,6 +97,8 @@
 	<sys:String x:Key="_comboBoxItemDifficulty4">极难（过渡类技巧）</sys:String>
 	<sys:String x:Key="_comboBoxItemDifficulty5">地狱（强制链和复杂链）</sys:String>
 
+	<sys:String x:Key="_textBlockGridIsReadOnlyWhileSolving">解题和出题时题目是不允许修改的。</sys:String>
+
 	<sys:String x:Key="_menuItemImageGridSet1">填入 1</sys:String>
 	<sys:String x:Key="_menuItemImageGridSet2">填入 2</sys:String>
 	<sys:String x:Key="_menuItemImageGridSet3">填入 3</sys:String>

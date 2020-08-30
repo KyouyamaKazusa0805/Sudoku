@@ -696,6 +696,8 @@ namespace Sudoku.Windows
 			_comboBoxDifficulty.IsEnabled = false;
 			_textBoxPathFilter.IsEnabled = false;
 
+			_imageGrid.Visibility = Visibility.Hidden;
+
 			UpdateDatabaseControls(false, false, false, false);
 			_textBoxJumpTo.IsEnabled = false;
 			_labelPuzzleNumber.ClearValue(ContentProperty);
@@ -741,6 +743,8 @@ namespace Sudoku.Windows
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 			_comboBoxDifficulty.IsEnabled = true;
 			_textBoxPathFilter.IsEnabled = true;
+
+			_imageGrid.Visibility = Visibility.Visible;
 
 			UpdateUndoRedoControls();
 		}
@@ -793,6 +797,8 @@ namespace Sudoku.Windows
 			_comboBoxDifficulty.IsEnabled = false;
 			_textBoxPathFilter.IsEnabled = false;
 
+			_imageGrid.Visibility = Visibility.Hidden;
+
 			UpdateUndoRedoControls();
 		}
 
@@ -842,6 +848,8 @@ namespace Sudoku.Windows
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 			_comboBoxDifficulty.IsEnabled = true;
 			_textBoxPathFilter.IsEnabled = true;
+
+			_imageGrid.Visibility = Visibility.Visible;
 
 			UpdateUndoRedoControls();
 		}

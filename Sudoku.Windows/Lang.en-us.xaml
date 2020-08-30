@@ -97,6 +97,8 @@
 	<sys:String x:Key="_comboBoxItemDifficulty4">Fiendish</sys:String>
 	<sys:String x:Key="_comboBoxItemDifficulty5">Nightmare</sys:String>
 
+	<sys:String x:Key="_textBlockGridIsReadOnlyWhileSolving">At present the grid is read-only.</sys:String>
+
 	<sys:String x:Key="_menuItemImageGridSet1">Set 1</sys:String>
 	<sys:String x:Key="_menuItemImageGridSet2">Set 2</sys:String>
 	<sys:String x:Key="_menuItemImageGridSet3">Set 3</sys:String>

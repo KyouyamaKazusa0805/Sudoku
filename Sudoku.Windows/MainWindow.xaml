@@ -326,14 +326,15 @@
 				<ColumnDefinition Width="10"/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
-			
+
 			<!-- Inner row 0 -->
 			<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 				   Name="_imageGrid" Grid.Row="0" Grid.Column="0" Width="576" Height="576"
 				   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
 				   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"
 				   MouseRightButtonUp="ImageGrid_MouseRightButtonUp"
-				   ContextMenuOpening="ImageGrid_ContextMenuOpening">
+				   ContextMenuOpening="ImageGrid_ContextMenuOpening"
+				   Panel.ZIndex="1">
 				<Image.ContextMenu>
 					<ContextMenu Name="_imageGridContextMenu">
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet1}"
@@ -394,6 +395,15 @@
 					</ContextMenu>
 				</Image.ContextMenu>
 			</Image>
+			<TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource _textBlockGridIsReadOnlyWhileSolving}"
+					   FontSize="36" Foreground="#CCFF0000" FontFamily="Tahoma,Microsoft YaHei UI"
+					   TextAlignment="Center" TextWrapping="NoWrap"
+					   VerticalAlignment="Center" HorizontalAlignment="Center"
+					   Panel.ZIndex="0">
+				<TextBlock.LayoutTransform>
+					<RotateTransform Angle="345" />
+				</TextBlock.LayoutTransform>
+			</TextBlock>
 			<GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"
 						  Name="_gridSplitterColumn01" Focusable="False"
 						  DragDelta="GridSplitterColumn01_DragDelta"
@@ -710,7 +720,7 @@
 					   HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Grid>
 		</Grid>
-		
+
 		<!-- Row 3 -->
 		<TextBox Grid.Row="3" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
 				 TextWrapping="Wrap" Name="_textBoxInfo" IsTabStop="False"/>
