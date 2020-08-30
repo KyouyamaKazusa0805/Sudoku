@@ -96,10 +96,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
 		public void Deconstruct(out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap) =>
 			(baseCellsMap, targetCellsMap, crosslineMap) = (
-				new()
-		{ Base1, Base2 },
-				new()
-		{ TargetQ1, TargetQ2, TargetR1, TargetR2 },
+				new() { Base1, Base2 },
+				new() { TargetQ1, TargetQ2, TargetR1, TargetR2 },
 				CrossLine);
 
 		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>

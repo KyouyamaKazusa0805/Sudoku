@@ -69,6 +69,9 @@
 		<member name="N:Sudoku.Recognitions">
 			<summary>This namespace contains the OCR tool APIs.</summary>
 		</member>
+		<member name="N:Sudoku.Runtime">
+			<summary>This namespace contains the handling for the runtime.</summary>
+		</member>
 		<member name="N:Sudoku.Solving">
 			<summary>This namespace contains the solving methods or instances.</summary>
 		</member>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Sudoku
+namespace Sudoku.Runtime
 {
 	/// <summary>
 	/// Represents an error that the puzzle has no solution while solving.

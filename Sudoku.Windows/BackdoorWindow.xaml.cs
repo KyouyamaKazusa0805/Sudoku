@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Windows.Constants;
 using static Sudoku.Windows.Constants.Processings;

@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Data;
+using Sudoku.Runtime;
 using static System.Runtime.InteropServices.CallingConvention;
 
 namespace Sudoku.Solving.BruteForces.Bitwise

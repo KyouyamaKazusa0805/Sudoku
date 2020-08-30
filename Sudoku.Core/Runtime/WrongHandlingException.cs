@@ -1,10 +1,13 @@
-﻿using System;
+﻿#pragma warning disable CA1032
+#pragma warning disable CA2229
+
+using System;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 using Sudoku.Data;
 using Sudoku.Extensions;
 
-namespace Sudoku
+namespace Sudoku.Runtime
 {
 	/// <summary>
 	/// Represents an error that the puzzle has wrong handling while solving with

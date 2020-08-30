@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿#pragma warning disable CA2235
+
+using System.Collections.Generic;
 using System.Drawing;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
@@ -7,7 +8,6 @@ using static Sudoku.Solving.DifficultyLevel;
 
 namespace Sudoku.Windows
 {
-	[SuppressMessage("Usage", "CA2235:Mark all non-serializable fields", Justification = "<Pending>")]
 	partial class Settings
 	{
 		/// <summary>
@@ -379,11 +379,21 @@ namespace Sudoku.Windows
 		public IDictionary<int, Color> PaletteColors =>
 			new Dictionary<int, Color>
 			{
-				[-4] = Color8, [-3] = Color7, [-2] = Color6, [-1] = Color5,
-				[0] = Color1, [1] = Color2, [2] = Color3,
-				[3] = Color4, [4] = Color9, [5] = Color10,
-				[6] = Color11, [7] = Color12, [8] = Color13,
-				[9] = Color14, [10] = Color15,
+				[-4] = Color8,
+				[-3] = Color7,
+				[-2] = Color6,
+				[-1] = Color5,
+				[0] = Color1,
+				[1] = Color2,
+				[2] = Color3,
+				[3] = Color4,
+				[4] = Color9,
+				[5] = Color10,
+				[6] = Color11,
+				[7] = Color12,
+				[8] = Color13,
+				[9] = Color14,
+				[10] = Color15,
 			};
 	}
 }

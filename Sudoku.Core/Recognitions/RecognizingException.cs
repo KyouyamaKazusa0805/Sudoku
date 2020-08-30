@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Sudoku.Runtime;
 
 namespace Sudoku.Recognitions
 {
