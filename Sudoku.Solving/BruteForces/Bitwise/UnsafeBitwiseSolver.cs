@@ -238,7 +238,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			{
 				case 81:
 				{
-					for (int cell = 0; cell < 81; ++cell, ++board)
+					for (int cell = 0; cell < 81; cell++, board++)
 					{
 						if (*board is > '0' and <= '9')
 						{
@@ -258,10 +258,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				}
 				case 729:
 				{
-					for (int cell = 0; cell < 81; ++cell)
+					for (int cell = 0; cell < 81; cell++)
 					{
 						short mask = 0;
-						for (int digit = 0; digit < 9; ++digit, ++board)
+						for (int digit = 0; digit < 9; digit++, board++)
 						{
 							if (*board == '0')
 							{
@@ -588,7 +588,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		private bool ApplySingleOrEmptyCells()
 		{
 			_singleApplied = false;
-			for (int subBand = 0; subBand < 3; ++subBand)
+			for (int subBand = 0; subBand < 3; subBand++)
 			{
 				// Loop unrolling really helps.
 				uint r1 = _g->Bands[subBand];           // r1 - Cells in band with pencil one or more times.
@@ -640,7 +640,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					uint bit = r1 & (uint)-(int)r1;     // Process once cell at a time.
 					r1 ^= bit;
 					int digit;
-					for (digit = 0; digit < 9; ++digit)
+					for (digit = 0; digit < 9; digit++)
 					{
 						// Requires finding which digit they are for
 						if ((_g->Bands[digit * 3 + subBand] & bit) != 0)
@@ -667,11 +667,11 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// </param>
 		private void ExtractSolution(char* solution)
 		{
-			for (int cell = 0; cell < 81; ++cell)
+			for (int cell = 0; cell < 81; cell++)
 			{
 				int mask = CellToMask[cell];
 				int offset = CellToSubBand[cell];
-				for (int digit = 0; digit < 9; ++digit)
+				for (int digit = 0; digit < 9; digit++)
 				{
 					if ((_g->Bands[offset] & mask) != 0)
 					{
@@ -692,7 +692,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		private bool GuessBiValueInCell()
 		{
 			// Uses pairs map, set in ApplySingleOrEmptyCells
-			for (int subBand = 0; subBand < 3; ++subBand)
+			for (int subBand = 0; subBand < 3; subBand++)
 			{
 				uint map = _g->Pairs[subBand];
 				if (map != 0)
@@ -700,7 +700,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					map &= (uint)-(int)map;
 					int tries = 2;
 					int band = subBand;
-					for (int digit = 0; digit < 9; ++digit, band += 3)
+					for (int digit = 0; digit < 9; digit++, band += 3)
 					{
 						if ((_g->Bands[band] & map) != 0)
 						{
@@ -709,10 +709,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 								// First of pair
 								MemCopy(_g + 1, _g, sizeof(State));
 								_g->Bands[band] ^= map;
-								++_g;
+								_g++;
 								SetSolvedMask(band, map);
 								if (FullUpdate() != 0) Guess();
-								--_g;
+								_g--;
 							}
 							else
 							{
@@ -735,22 +735,22 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		private void GuessFirstCell()
 		{
 			// Kind of dumb, but _way_ fast code
-			for (int subBand = 0; subBand < 3; ++subBand)
+			for (int subBand = 0; subBand < 3; subBand++)
 			{
 				if (_g->UnsolvedCells[subBand] == 0) continue;
 				uint cellMask = _g->UnsolvedCells[subBand];
 				cellMask &= (uint)-(int)cellMask;
 				int band = subBand;
-				for (int digit = 0; digit < 9; ++digit, band += 3)
+				for (int digit = 0; digit < 9; digit++, band += 3)
 				{
 					if ((_g->Bands[band] & cellMask) != 0)
 					{
 						MemCopy(_g + 1, _g, sizeof(State)); // Eliminate option in the current stack entry.
 						_g->Bands[band] ^= cellMask;
-						++_g;
+						_g++;
 						SetSolvedMask(band, cellMask);      // And try it out in a nested stack entry.
 						if (FullUpdate() != 0) Guess();
-						--_g;
+						_g--;
 					}
 				}
 				return;
