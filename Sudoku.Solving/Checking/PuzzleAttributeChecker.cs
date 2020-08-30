@@ -16,6 +16,12 @@ namespace Sudoku.Solving.Checking
 	public static class PuzzleAttributeChecker
 	{
 		/// <summary>
+		/// Indicates the inner solver.
+		/// </summary>
+		private static readonly UnsafeBitwiseSolver Solver = new();
+
+
+		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
@@ -28,8 +34,8 @@ namespace Sudoku.Solving.Checking
 		{
 			solutionIfValid = null;
 
-			if (new BitwiseSolver().CheckValidity(@this.ToString(), out string? solution)
-				|| new SukakuBitwiseSolver().CheckValidity(@this.ToString("~"), out solution))
+			if (Solver.CheckValidity(@this.ToString(), out string? solution)
+				|| Solver.CheckValidity(@this.ToString("~"), out solution))
 			{
 				solutionIfValid = Grid.Parse(solution);
 				return true;
@@ -56,13 +62,13 @@ namespace Sudoku.Solving.Checking
 			this IReadOnlyGrid @this, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfValid,
 			[NotNullWhen(true)] out bool? sukaku)
 		{
-			if (new BitwiseSolver().CheckValidity(@this.ToString(), out string? solution))
+			if (Solver.CheckValidity(@this.ToString(), out string? solution))
 			{
 				solutionIfValid = Grid.Parse(solution);
 				sukaku = false;
 				return true;
 			}
-			else if (new SukakuBitwiseSolver().CheckValidity(@this.ToString("~"), out solution))
+			else if (Solver.CheckValidity(@this.ToString("~"), out solution))
 			{
 				solutionIfValid = Grid.Parse(solution);
 				sukaku = true;
@@ -106,8 +112,7 @@ namespace Sudoku.Solving.Checking
 				tempArrays[i][r * 9 + c] = 0;
 			}
 
-			var solver = new BitwiseSolver();
-			return tempArrays.All(gridValues => !solver.Solve(Grid.CreateInstance(gridValues)).HasSolved);
+			return tempArrays.All(gridValues => !Solver.Solve(Grid.CreateInstance(gridValues)).HasSolved);
 		}
 
 		/// <summary>

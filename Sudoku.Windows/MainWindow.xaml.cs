@@ -29,12 +29,10 @@ using static Sudoku.Windows.Constants.Processings;
 using CoreResources = Sudoku.Windows.Resources;
 using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
-using PointConverter = Sudoku.Drawing.PointConverter;
 using R = System.Windows.MessageBoxResult;
 using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
-using Sudoku.Recognitions;
 #endif
 
 namespace Sudoku.Windows

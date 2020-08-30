@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Generating
 		/// <summary>
 		/// The fast solver.
 		/// </summary>
-		protected static readonly BitwiseSolver FastSolver = new();
+		protected static readonly UnsafeBitwiseSolver FastSolver = new();
 
 
 		/// <summary>

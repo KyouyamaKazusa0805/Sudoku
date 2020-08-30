@@ -61,6 +61,8 @@ namespace Sudoku.Data
 				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
 				?? OnParsingSusser()
 				?? OnParsingExcel()
+				?? (CompatibleFirst ? OnParsingSukaku(true) : OnParsingSukaku(false))
+				?? (CompatibleFirst ? OnParsingSukaku(false) : OnParsingSukaku(true))
 				?? throw Throwings.ParsingError<Grid>(nameof(ParsingValue));
 
 		/// <summary>
@@ -331,7 +333,7 @@ namespace Sudoku.Data
 		private Grid? OnParsingSusser()
 		{
 			string? match = ParsingValue.Match(RegularExpressions.Susser);
-			if (match is null)
+			if (match is null or { Length: > 162 })
 			{
 				return null;
 			}
@@ -426,7 +428,7 @@ namespace Sudoku.Data
 		/// Parse the sukaku format string.
 		/// </summary>
 		/// <returns>The result.</returns>
-		public Grid? OnParsingSukaku(bool compatibleFirst)
+		private Grid? OnParsingSukaku(bool compatibleFirst)
 		{
 			if (compatibleFirst)
 			{

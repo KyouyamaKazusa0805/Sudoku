@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Text;
 using Sudoku.Data;
 using static System.Runtime.InteropServices.CallingConvention;
 
@@ -20,6 +22,11 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// All pencil marks set - 27 bits per band.
 		/// </summary>
 		private const int BitSet27 = 0x7FFFFFF;
+
+		/// <summary>
+		/// The buffer length of a solution puzzle.
+		/// </summary>
+		private const int BufferLength = 82;
 
 
 		/// <summary>
@@ -69,13 +76,12 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
-			const int bufferLength = 82;
 			var stopwatch = new Stopwatch();
 
 			string puzzle = $"{grid:0}";
 			fixed (char* p = puzzle)
 			{
-				char* solutionStr = stackalloc char[82];
+				char* solutionStr = stackalloc char[BufferLength];
 				for (int i = 0; i < 81; i++)
 				{
 					solutionStr[i] = '0';
@@ -83,7 +89,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				//solutionStr[81] = '\0';
 
 				stopwatch.Start();
-				s(in p, solutionStr, 2);
+				InternalSolve(in p, solutionStr, 2);
 				stopwatch.Stop();
 
 				return _numSolutions switch
@@ -93,7 +99,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					(
 						solverName: SolverName,
 						puzzle: grid,
-						solution: Grid.Parse(new Span<char>(solutionStr, bufferLength).ToString()),
+						solution: Grid.Parse(new Span<char>(solutionStr, BufferLength).ToString()),
 						hasSolved: true,
 						elapsedTime: stopwatch.Elapsed,
 						additional: null
@@ -101,33 +107,72 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					_ => throw new MultipleSolutionsException(grid)
 				};
 			}
+		}
 
-			// Core function to solve the puzzle.
-			long s(in char* puzzle, char* solutionPtr, int limit)
+		/// <summary>
+		/// The inner solver.
+		/// </summary>
+		/// <param name="puzzle">The puzzle.</param>
+		/// <param name="solution">
+		/// (<see langword="out"/> parameter) The solution. The value keeps <see langword="null"/>
+		/// if you does not want to use this result.
+		/// </param>
+		/// <param name="limit">The limit.</param>
+		/// <returns>The number of all solutions.</returns>
+		public long Solve(string puzzle, out string solution, int limit)
+		{
+			fixed (char* p = puzzle)
 			{
-				_numSolutions = 0;
-				_limitSolutions = limit;
-				_solution = solutionPtr;
+				char* solutionStr = stackalloc char[BufferLength];
+				long result = InternalSolve(in p, solutionStr, limit);
 
-				if (!InitSudoku(puzzle))
+				solution = new string(solutionStr);
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// The inner solver.
+		/// </summary>
+		/// <param name="puzzle">The puzzle.</param>
+		/// <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
+		/// <param name="limit">The limit.</param>
+		/// <returns>The number of all solutions.</returns>
+		public long Solve(string puzzle, StringBuilder? solution, int limit)
+		{
+			fixed (char* p = puzzle)
+			{
+				char* solutionStr = stackalloc char[BufferLength];
+				long result = InternalSolve(in p, solutionStr, limit);
+
+				solution?.Clear().Append(new string(solutionStr));
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Check the validity of the puzzle.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="solutionIfUnique">(<see langword="out"/> parameter) The solution if the puzzle is unique.</param>
+		/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
+		public bool CheckValidity(string grid, [NotNullWhen(true)] out string? solutionIfUnique)
+		{
+			fixed (char* puzzle = grid)
+			{
+				char* result = stackalloc char[BufferLength];
+				if (InternalSolve(in puzzle, result, 2) == 1)
 				{
-					return 0;
+					solutionIfUnique = new Span<char>(result, BufferLength).ToString();
+					return true;
 				}
-
-				if (ApplySingleOrEmptyCells())
+				else
 				{
-					// Locked empty cell or conflict singles in cells.
-					return 0;
+					solutionIfUnique = null;
+					return false;
 				}
-
-				if (FullUpdate() == 0)
-				{
-					return 0;
-				}
-
-				Guess();
-
-				return _numSolutions;
 			}
 		}
 
@@ -662,10 +707,44 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		}
 
 		/// <summary>
+		/// The internal solving method.
+		/// </summary>
+		/// <param name="puzzle">(<see langword="in"/> parameter) The pointer to the puzzle string.</param>
+		/// <param name="solutionPtr">The pointer to the solution string.</param>
+		/// <param name="limit">The limitation for the number of all final solutions.</param>
+		/// <returns>The number of solutions found.</returns>
+		private long InternalSolve([In] in char* puzzle, [Out] char* solutionPtr, [In] int limit)
+		{
+			_numSolutions = 0;
+			_limitSolutions = limit;
+			_solution = solutionPtr;
+
+			if (!InitSudoku(puzzle))
+			{
+				return 0;
+			}
+
+			if (ApplySingleOrEmptyCells())
+			{
+				// Locked empty cell or conflict singles in cells.
+				return 0;
+			}
+
+			if (FullUpdate() == 0)
+			{
+				return 0;
+			}
+
+			Guess();
+
+			return _numSolutions;
+		}
+
+		/// <summary>
 		/// Extract solution as a character string.
 		/// </summary>
 		/// <param name="solution">
-		/// The solution pointer. <b>The buffer should be at least 82 of length.</b>
+		/// The solution pointer. <b>The buffer should be at least <see cref="BufferLength"/> of value of length.</b>
 		/// </param>
 		private void ExtractSolution(char* solution)
 		{

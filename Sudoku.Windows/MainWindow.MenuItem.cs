@@ -270,7 +270,7 @@ namespace Sudoku.Windows
 			}
 
 			var grid = SudokuGrid.CreateInstance(z);
-			if (new BitwiseSolver().Solve(grid.ToString(), null, 2) == 0)
+			if (new UnsafeBitwiseSolver().Solve(grid.ToString(), null, 2) == 0)
 			{
 				Messagings.SukakuCannotUseThisFunction();
 
@@ -536,7 +536,7 @@ namespace Sudoku.Windows
 			bool applySukaku()
 			{
 				var sb = new StringBuilder(SudokuGrid.EmptyString);
-				if (new SukakuBitwiseSolver().Solve(
+				if (new UnsafeBitwiseSolver().Solve(
 					_puzzle.ToString($"~{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}"), sb, 2) != 1)
 				{
 					return !(e.Handled = true);
@@ -554,7 +554,7 @@ namespace Sudoku.Windows
 			{
 				var solutionSb = new StringBuilder();
 				string puzzleStr = _puzzle.ToString("0+");
-				if (new BitwiseSolver().Solve(_puzzle.ToString(), solutionSb, 2) != 1)
+				if (new UnsafeBitwiseSolver().Solve(_puzzle.ToString(), solutionSb, 2) != 1)
 				{
 					return !(e.Handled = true);
 				}
@@ -614,7 +614,7 @@ namespace Sudoku.Windows
 				if (sukakuMode)
 				{
 					string puzzleString = _puzzle.ToString("~");
-					if (new SukakuBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
+					if (new UnsafeBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
 					{
 						return !(e.Handled = true);
 					}
@@ -626,7 +626,7 @@ namespace Sudoku.Windows
 						sb[cell] += (char)(_puzzle[cell] + 1);
 					}
 
-					if (new BitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
+					if (new UnsafeBitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
 					{
 						return !(e.Handled = true);
 					}

@@ -423,138 +423,6 @@
             <param name="c">The current column index.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver">
-            <summary>
-            Provides a solver using bitwise method.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.SolverName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.CheckValidity(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid@)">
-            <summary>
-            Check the validity of the puzzle.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="solutionIfUnique">
-            (<see langword="out"/> parameter) The solution.
-            </param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.CheckValidity(System.String,System.String@)">
-            <summary>
-            Check the validity of the puzzle.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="solutionIfUnique">
-            (<see langword="out"/> parameter) The solution.
-            </param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.IntPtr)">
-            <summary>
-            The inner solver.
-            </summary>
-            <param name="puzzle">The puzzle.</param>
-            <param name="solution">
-            The solution. <see langword="null"/> if you does not want to use this result.
-            </param>
-            <param name="limit">The limit.</param>
-            <returns>The number of all solutions.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.IntPtr)">
-            <summary>
-            The core function of solving the puzzle based on x86 platform.
-            </summary>
-            <param name="puzzle">The puzzle Susser format string.</param>
-            <param name="solution">The solution.</param>
-            <param name="limit">
-            The limit count in solving the puzzle.
-            You should pass the value by a positive integer at least 1.
-            </param>
-            <returns>The solution count of the puzzle.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve64(System.String,System.Text.StringBuilder,System.IntPtr)">
-            <summary>
-            The core function of solving the puzzle based on x64 platform.
-            </summary>
-            <param name="puzzle">The puzzle Susser format string.</param>
-            <param name="solution">The solution.</param>
-            <param name="limit">
-            The limit count in solving the puzzle.
-            You should pass the value by a positive integer at least 1.
-            </param>
-            <returns>The solution count of the puzzle.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver">
-            <summary>
-            Provides a sukaku solver using bitwise method.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.SolverName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.CheckValidity(Sudoku.Data.IReadOnlyGrid,System.String@)">
-            <summary>
-            Check the validity of the puzzle.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="solutionIfUnique">
-            (<see langword="out"/> parameter) The solution.
-            </param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.CheckValidity(System.String,System.String@)">
-            <summary>
-            Check the validity of the puzzle.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="solutionIfUnique">
-            (<see langword="out"/> parameter) The solution.
-            </param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.IntPtr)">
-            <summary>
-            The inner solver.
-            </summary>
-            <param name="puzzle">The puzzle.</param>
-            <param name="solution">
-            The solution. <see langword="null"/> if you does not want to use this result.
-            </param>
-            <param name="limit">The limit.</param>
-            <returns>The number of all solutions.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.IntPtr)">
-            <summary>
-            The core function of solving the puzzle based on x86 platform.
-            </summary>
-            <param name="puzzle">The puzzle Susser format string.</param>
-            <param name="solution">The solution.</param>
-            <param name="limit">
-            The limit count in solving the puzzle.
-            You should pass the value by a positive integer at least 1.
-            </param>
-            <returns>The solution count of the puzzle.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve64(System.String,System.Text.StringBuilder,System.IntPtr)">
-            <summary>
-            The core function of solving the puzzle based on x64 platform.
-            </summary>
-            <param name="puzzle">The puzzle Susser format string.</param>
-            <param name="solution">The solution.</param>
-            <param name="limit">
-            The limit count in solving the puzzle.
-            You should pass the value by a positive integer at least 1.
-            </param>
-            <returns>The solution count of the puzzle.</returns>
-        </member>
         <member name="T:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver">
             <summary>
             Define an unsafe bitwise solver.
@@ -567,6 +435,11 @@
         <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BitSet27">
             <summary>
             All pencil marks set - 27 bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BufferLength">
+            <summary>
+            The buffer length of a solution puzzle.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._stack">
@@ -613,6 +486,35 @@
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(System.String,System.String@,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">
+            (<see langword="out"/> parameter) The solution. The value keeps <see langword="null"/>
+            if you does not want to use this result.
+            </param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)">
+            <summary>
+            Check the validity of the puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="solutionIfUnique">(<see langword="out"/> parameter) The solution if the puzzle is unique.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+        </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
             <summary>
             Set a cell as solved - used in <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InitSudoku(System.Char*)"/>.
@@ -656,12 +558,21 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InternalSolve(System.Char*@,System.Char*,System.Int32)">
+            <summary>
+            The internal solving method.
+            </summary>
+            <param name="puzzle">(<see langword="in"/> parameter) The pointer to the puzzle string.</param>
+            <param name="solutionPtr">The pointer to the solution string.</param>
+            <param name="limit">The limitation for the number of all final solutions.</param>
+            <returns>The number of solutions found.</returns>
+        </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ExtractSolution(System.Char*)">
             <summary>
             Extract solution as a character string.
             </summary>
             <param name="solution">
-            The solution pointer. <b>The buffer should be at least 82 of length.</b>
+            The solution pointer. <b>The buffer should be at least <see cref="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BufferLength"/> of value of length.</b>
             </param>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.GuessBiValueInCell">
@@ -946,6 +857,11 @@
         <member name="T:Sudoku.Solving.Checking.PuzzleAttributeChecker">
             <summary>
             Provides some puzzle attributes validation operations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Checking.PuzzleAttributeChecker.Solver">
+            <summary>
+            Indicates the inner solver.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid@)">

@@ -126,7 +126,7 @@ namespace Sudoku.Windows
 			{
 				var info = triplet.Item2;
 				if (!Settings.MainManualSolver.CheckConclusionValidityAfterSearched
-					|| CheckConclusionsValidity(new BitwiseSolver().Solve(_puzzle).Solution!, info.Conclusions))
+					|| CheckConclusionsValidity(new UnsafeBitwiseSolver().Solve(_puzzle).Solution!, info.Conclusions))
 				{
 					info.ApplyTo(_puzzle);
 
