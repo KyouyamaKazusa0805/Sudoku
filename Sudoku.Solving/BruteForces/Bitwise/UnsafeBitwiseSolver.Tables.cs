@@ -179,9 +179,9 @@
 			0, 0xA1, 0x62, 0x20, 0, 0xA1, 0x62, 0x20, 0, 0xA1, 0x2, 0, 0x8C, 0x80, 0, 0, 0, 0x1, 0x62, 0, 0x54, 0, 0x40, 0, 0, 0x1, 0x2, 0, 0x4, 0, 0, 0,
 		};
 
-		/// <summary>
-		/// 1 is row not defined in block mode 1 to 111.
-		/// </summary>
+		/// <remarks>
+		/// 1 is row not defined in block mode <c>1</c> to <c>111</c>.
+		/// </remarks>
 		private static readonly byte[] TblRowUniq =
 		{
 			7, 6, 6, 6, 6, 6, 6, 6, 5, 4, 4, 4, 4, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4,
@@ -203,7 +203,7 @@
 		};
 
 		/// <summary>
-		/// Single in column applied to shrinked block.
+		/// Single in column applied to shrunk block.
 		/// </summary>
 		private static readonly int[] TblColumnSingle =
 		{
@@ -242,7 +242,7 @@
 		};
 
 		/// <summary>
-		/// Rows where single  found  000 to 111.
+		/// Rows where single found: <c>000</c> to <c>111</c>.
 		/// </summary>
 		private static readonly uint[] TblRowMask =
 		{

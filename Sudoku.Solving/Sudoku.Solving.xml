@@ -559,6 +559,10 @@
             <summary>
             Define an unsafe bitwise solver.
             </summary>
+            <remarks>
+            This solver is implemented by Zhou Yundong, but he wrote this solver using C.
+            I change the programming language to C# to decrease the native calling.
+            </remarks>
         </member>
         <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BitSet27">
             <summary>
@@ -766,18 +770,18 @@
             </summary>
         </member>
         <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblRowUniq">
-            <summary>
-            1 is row not defined in block mode 1 to 111.
-            </summary>
+            <remarks>
+            1 is row not defined in block mode <c>1</c> to <c>111</c>.
+            </remarks>
         </member>
         <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblColumnSingle">
             <summary>
-            Single in column applied to shrinked block.
+            Single in column applied to shrunk block.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblRowMask">
             <summary>
-            Rows where single  found  000 to 111.
+            Rows where single found: <c>000</c> to <c>111</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver">

@@ -10,6 +10,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 	/// <summary>
 	/// Define an unsafe bitwise solver.
 	/// </summary>
+	/// <remarks>
+	/// This solver is implemented by Zhou Yundong, but he wrote this solver using C.
+	/// I change the programming language to C# to decrease the native calling.
+	/// </remarks>
 	public sealed unsafe partial class UnsafeBitwiseSolver : Solver
 	{
 		/// <summary>
