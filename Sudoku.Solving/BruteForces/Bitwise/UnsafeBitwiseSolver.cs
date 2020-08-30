@@ -952,6 +952,6 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="src">The source pointer.</param>
 		/// <param name="count">The number of unit you want to copy.</param>
 		[DllImport("msvcrt.dll", EntryPoint = "memcpy", CallingConvention = Cdecl, SetLastError = false)]
-		private static extern void MemCopy([Out] void* dest, [In] void* src, [In] int count);
+		private static extern void MemCopy([Out] void* dest, [In] void* src, [In] nint count);
 	}
 }

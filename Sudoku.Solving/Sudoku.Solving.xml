@@ -627,7 +627,7 @@
             <param name="count">The size of the unit.</param>
             <returns>The pointer.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.MemCopy(System.Void*,System.Void*,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.MemCopy(System.Void*,System.Void*,System.IntPtr)">
             <summary>
             Function <c>memcpy</c> in C.
             </summary>
