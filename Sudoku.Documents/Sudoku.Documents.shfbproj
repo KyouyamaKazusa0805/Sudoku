@@ -18,7 +18,7 @@
     <!-- SHFB properties -->
     <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
     <OutputPath>bin\debug\</OutputPath>
-    <HtmlHelpName>Sudoku Class Library</HtmlHelpName>
+    <HtmlHelpName>Sudoku API references</HtmlHelpName>
     <Language>en-US</Language>
     <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
     <SyntaxFilters>C#</SyntaxFilters>
@@ -30,7 +30,7 @@
     <IndentHtml>False</IndentHtml>
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
-    <HelpTitle>Sudoku Class Library</HelpTitle>
+    <HelpTitle>Sudoku API references</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>
     <NamingMethod>MemberName</NamingMethod>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
@@ -53,7 +53,8 @@
       <DocumentationSource sourceFile="..\Sudoku.Namespaces.xml" />
     </DocumentationSources>
     <FooterText>The documents for this solution. Copyright %28c%29 Sunnie 2019-2020, all rights reversed.</FooterText>
-    <HeaderText>Welcome to API document for sudoku!</HeaderText>
+    <HeaderText>
+    </HeaderText>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
