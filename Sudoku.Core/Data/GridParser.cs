@@ -344,68 +344,77 @@ namespace Sudoku.Data
 			for (int realPos = 0; i < length && match[i] != ':'; realPos++)
 			{
 				char c = match[i];
-				if (c == '+')
+				switch (c)
 				{
-					// Plus sign means the character after it is a digit,
-					// which is modifiable value in the grid in its corresponding position.
-					if (i < length - 1)
+					case '+':
 					{
-						char nextChar = match[i + 1];
-						if (nextChar is >= '1' and <= '9')
+						// Plus sign means the character after it is a digit,
+						// which is modifiable value in the grid in its corresponding position.
+						if (i < length - 1)
 						{
-							// Set value.
-							// Note that the subtracter is character '1', not '0'.
-							result[realPos] = nextChar - '1';
+							char nextChar = match[i + 1];
+							if (nextChar is >= '1' and <= '9')
+							{
+								// Set value.
+								// Note that the subtracter is character '1', not '0'.
+								result[realPos] = nextChar - '1';
 
-							// Add 2 on iteration variable to skip 2 characters
-							// (A plus sign '+' and a digit).
-							i += 2;
+								// Add 2 on iteration variable to skip 2 characters
+								// (A plus sign '+' and a digit).
+								i += 2;
+							}
+							else
+							{
+								// Why isn't the character a digit character?
+								// Throws an exception to report this case.
+								//throw new ArgumentException(
+								//	message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
+								//	innerException: new ArgumentException(
+								//		message: "The value after the specified argument is not a digit.",
+								//		paramName: nameof(i)));
+								return null;
+							}
 						}
 						else
 						{
-							// Why isn't the character a digit character?
-							// Throws an exception to report this case.
-							//throw new ArgumentException(
-							//	message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
-							//	innerException: new ArgumentException(
-							//		message: "The value after the specified argument is not a digit.",
-							//		paramName: nameof(i)));
 							return null;
 						}
+
+						break;
 					}
-					else
+					case '.' or '0':
 					{
+						// A placeholder.
+						// Do nothing but only move 1 step forward.
+						i++;
+
+						break;
+					}
+					case >= '1' and <= '9':
+					{
+						// Is a digit character.
+						// Digits are representing given values in the grid.
+						// Not the plus sign, but a placeholder '0' or '.'.
+						// Set value.
+						result[realPos] = c - '1';
+
+						// Set the cell status as 'CellStatus.Given'.
+						// If the code below does not make sense to you,
+						// you can see the comments in method 'OnParsingSusser(string)'
+						// to know the meaning also.
+						result.SetStatus(realPos, Given);
+
+						// Finally moves 1 step forward.
+						i++;
+
+						break;
+					}
+					default:
+					{
+						// Other invalid characters. Throws an exception.
+						//throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 						return null;
 					}
-				}
-				else if (c is '.' or '0')
-				{
-					// A placeholder.
-					// Do nothing but only move 1 step forward.
-					i++;
-				}
-				else if (c is >= '1' and <= '9')
-				{
-					// Is a digit character.
-					// Digits are representing given values in the grid.
-					// Not the plus sign, but a placeholder '0' or '.'.
-					// Set value.
-					result[realPos] = c - '1';
-
-					// Set the cell status as 'CellStatus.Given'.
-					// If the code below does not make sense to you,
-					// you can see the comments in method 'OnParsingSusser(string)'
-					// to know the meaning also.
-					result.SetStatus(realPos, Given);
-
-					// Finally moves 1 step forward.
-					i++;
-				}
-				else
-				{
-					// Other invalid characters. Throws an exception.
-					//throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
-					return null;
 				}
 			}
 
@@ -456,11 +465,21 @@ namespace Sudoku.Data
 			}
 			else
 			{
-				string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
-				if (matches.Length != 81)
+				// You cannot use 'is string[] matches', but 'is var matches'.
+				// Don't ask me why.
+				if (ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit) is var matches
+					&& matches is { Length: not 81 })
 				{
 					return null;
 				}
+
+				#region Obsolete code
+				//string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
+				//if (matches.Length != 81)
+				//{
+				//	return null;
+				//}
+				#endregion
 
 				var result = Grid.Empty.Clone();
 				for (int offset = 0; offset < 81; offset++)
