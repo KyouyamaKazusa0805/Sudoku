@@ -789,7 +789,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 							if (--tries != 0)
 							{
 								// First of pair
-								MemCopy(_g + 1, _g, sizeof(State));
+								//MemCopy(_g + 1, _g, sizeof(State));
+								Memcpy(_g + 1, _g, sizeof(State));
 								_g->Bands[band] ^= map;
 								_g++;
 								SetSolvedMask(band, map);
@@ -827,7 +828,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				{
 					if ((_g->Bands[band] & cellMask) != 0)
 					{
-						MemCopy(_g + 1, _g, sizeof(State)); // Eliminate option in the current stack entry.
+						//MemCopy(_g + 1, _g, sizeof(State)); // Eliminate option in the current stack entry.
+						Memcpy(_g + 1, _g, sizeof(State)); // Eliminate option in the current stack entry.
 						_g->Bands[band] ^= cellMask;
 						_g++;
 						SetSolvedMask(band, cellMask);      // And try it out in a nested stack entry.
@@ -936,14 +938,62 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		}
 
 		/// <summary>
+		/// Copies the specified memory to the destination memory block,
+		/// with the specified value indicating the size unit.
+		/// </summary>
+		/// <param name="dest">(<see langword="out"/> parameter) The pointer to the destination block.</param>
+		/// <param name="src">(<see langword="in"/> parameter) The pointer to the destination block.</param>
+		/// <param name="size">(<see langword="in"/> parameter) The number of the size unit.</param>
+		/// <returns>Same as <paramref name="dest"/>.</returns>
+		private static void* Memcpy([Out] void* dest, [In] void* src, [In] int size)
+		{
+			if (src == null || dest == null || size < 0)
+			{
+				return null;
+			}
+
+			char* tempDest = (char*)dest;
+			char* tempSrc = (char*)src;
+
+			int n = size;
+			while (n-- > 0)
+			{
+				*tempDest++ = *tempSrc++;
+			}
+
+			return dest;
+		}
+
+		/// <summary>
+		/// Assign the specified memory block to the specified value.
+		/// </summary>
+		/// <param name="src">The source pointer.</param>
+		/// <param name="value">The value to assign.</param>
+		/// <param name="size">The size of the size unit.</param>
+		/// <returns>Same as <paramref name="src"/>.</returns>
+		private static void* Memset([Out] void* src, [In] int value, [In] int size)
+		{
+			void* p = src;
+
+			while (size-- != 0)
+			{
+				*(char*)src = (char)value;
+				src = (char*)src + 1;
+			}
+
+			return p;
+		}
+
+		/// <summary>
 		/// Function <c>memset</c> in C.
 		/// </summary>
-		/// <param name="dest">The destination pointer.</param>
+		/// <param name="src">The source pointer.</param>
 		/// <param name="c">The start offset.</param>
-		/// <param name="count">The size of the unit.</param>
+		/// <param name="size">The size of the unit.</param>
 		/// <returns>The pointer.</returns>
 		[DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = Cdecl, SetLastError = false)]
-		private static extern void* Memset([Out] void* dest, [In] nint c, [In] nint count);
+		[Obsolete]
+		private static extern void* Memset([Out] void* src, [In] nint c, [In] nint size);
 
 		/// <summary>
 		/// Function <c>memcpy</c> in C.
@@ -952,6 +1002,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="src">The source pointer.</param>
 		/// <param name="count">The number of unit you want to copy.</param>
 		[DllImport("msvcrt.dll", EntryPoint = "memcpy", CallingConvention = Cdecl, SetLastError = false)]
+		[Obsolete]
 		private static extern void MemCopy([Out] void* dest, [In] void* src, [In] nint count);
 	}
 }
