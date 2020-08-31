@@ -333,7 +333,7 @@ namespace Sudoku.Data
 		private Grid? OnParsingSusser()
 		{
 			string? match = ParsingValue.Match(RegularExpressions.Susser);
-			if (match is null or { Length: > 162 })
+			if (match is null or { Length: > 405 })
 			{
 				return null;
 			}
