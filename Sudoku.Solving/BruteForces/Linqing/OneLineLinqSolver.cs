@@ -25,7 +25,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			var stopwatch = new Stopwatch();
 
 			stopwatch.Start();
-			var results = SolveStrings(grid.ToString("0"));
+			var results = SolveStrings($"{grid:0}");
 			stopwatch.Stop();
 
 			return results.Count switch
