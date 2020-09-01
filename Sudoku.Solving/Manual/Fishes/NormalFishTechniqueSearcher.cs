@@ -48,12 +48,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			int baseSetStart = searchRow ? 9 : 18;
 			int coverSetStart = searchRow ? 18 : 9;
-			var baseSets2 = (Span<int>)stackalloc int[2];
-			var coverSets2 = (Span<int>)stackalloc int[2];
-			var baseSets3 = (Span<int>)stackalloc int[3];
-			var coverSets3 = (Span<int>)stackalloc int[3];
-			var baseSets4 = (Span<int>)stackalloc int[4];
-			var coverSets4 = (Span<int>)stackalloc int[4];
+			var baseSets2 = (stackalloc int[2]);
+			var coverSets2 = (stackalloc int[2]);
+			var baseSets3 = (stackalloc int[3]);
+			var coverSets3 = (stackalloc int[3]);
+			var baseSets4 = (stackalloc int[4]);
+			var coverSets4 = (stackalloc int[4]);
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var candMap = CandMaps[digit];

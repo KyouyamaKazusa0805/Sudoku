@@ -1,5 +1,4 @@
-﻿using System;
-using Sudoku.Data;
+﻿using Sudoku.Data;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
@@ -32,18 +31,24 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			}
 
 			// Initialize for SK-loop table.
-			var s = (Span<int>)stackalloc int[4];
+			var s = (stackalloc int[4]);
 			for (int a = 9, n = 0; a < 18; a++)
 			{
 				for (int b = 9; b < 18; b++)
 				{
-					if (a / 3 == b / 3 || b < a) continue;
+					if (a / 3 == b / 3 || b < a)
+					{
+						continue;
+					}
 
 					for (int c = 18; c < 27; c++)
 					{
 						for (int d = 18; d < 27; d++)
 						{
-							if (c / 3 == d / 3 || d < c) continue;
+							if (c / 3 == d / 3 || d < c)
+							{
+								continue;
+							}
 
 							var all = RegionMaps[a] | RegionMaps[b] | RegionMaps[c] | RegionMaps[d];
 							var overlap = (RegionMaps[a] | RegionMaps[b]) & (RegionMaps[c] | RegionMaps[d]);

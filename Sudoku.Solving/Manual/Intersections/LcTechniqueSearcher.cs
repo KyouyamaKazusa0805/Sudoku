@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var r = (Span<int>)stackalloc int[2];
+			var r = (stackalloc int[2]);
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 			{
 				if (!EmptyMap.Overlaps(c))

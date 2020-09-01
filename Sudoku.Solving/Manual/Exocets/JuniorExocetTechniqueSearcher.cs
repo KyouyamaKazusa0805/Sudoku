@@ -445,7 +445,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			bibiElims = default;
 			targetPairElims = default;
 			swordfishElims = default;
-			var playground = (Span<short>)stackalloc short[3];
+			var playground = (stackalloc short[3]);
 			int block = GetRegion(b1, Block);
 			short[] temp = new short[4];
 			for (int i = 0; i < 9; i++)

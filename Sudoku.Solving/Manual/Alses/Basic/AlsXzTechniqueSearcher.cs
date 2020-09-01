@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -27,7 +26,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var house = (Span<int>)stackalloc int[2];
+			var house = (stackalloc int[2]);
 			var alses = Als.GetAllAlses(grid).ToArray();
 			for (int i = 0, length = alses.Length; i < length - 1; i++)
 			{

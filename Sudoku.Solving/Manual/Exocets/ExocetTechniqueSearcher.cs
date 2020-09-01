@@ -120,8 +120,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <include file='...\GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static ExocetTechniqueSearcher()
 		{
-			var t = (Span<int>)stackalloc int[3];
-			var crossline = (Span<int>)stackalloc int[25]; // Only use [7]..[24].
+			var t = (stackalloc int[3]);
+			var crossline = (stackalloc int[25]); // Only use [7]..[24].
 			int n = 0;
 			for (int i = 0; i < 18; i++)
 			{
@@ -163,14 +163,10 @@ namespace Sudoku.Solving.Manual.Exocets
 								tr1,
 								B[BC[i, 1]] + RqIter[l, 1],
 								new(crossline[7..]),
-								new()
-							{ B[BC[i, 1]] + M[l, 2], B[BC[i, 1]] + M[l, 3] },
-								new()
-							{ B[BC[i, 1]] + M[l, 0], B[BC[i, 1]] + M[l, 1] },
-								new()
-							{ B[BC[i, 0]] + M[k, 2], B[BC[i, 0]] + M[k, 3] },
-								new()
-							{ B[BC[i, 0]] + M[k, 0], B[BC[i, 0]] + M[k, 1] });
+								new() { B[BC[i, 1]] + M[l, 2], B[BC[i, 1]] + M[l, 3] },
+								new() { B[BC[i, 1]] + M[l, 0], B[BC[i, 1]] + M[l, 1] },
+								new() { B[BC[i, 0]] + M[k, 2], B[BC[i, 0]] + M[k, 3] },
+								new() { B[BC[i, 0]] + M[k, 0], B[BC[i, 0]] + M[k, 1] });
 
 							n++;
 						}
@@ -216,7 +212,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			if (_checkAdvanced)
 			{
-				var regions = (Span<int>)stackalloc int[2];
+				var regions = (stackalloc int[2]);
 				short m1 = (short)(grid.GetCandidateMask(playground[0]) & baseCandidateMask);
 				short m2 = (short)(grid.GetCandidateMask(playground[1]) & baseCandidateMask);
 				if ((m1, m2) is (0, not 0) or (not 0, 0))

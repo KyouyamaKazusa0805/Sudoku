@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -22,8 +21,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var linkForEachRegion = (Span<short>)stackalloc short[27];
-			var linkForEachDigit = (Span<GridMap>)stackalloc GridMap[9];
+			var linkForEachRegion = (stackalloc short[27]);
+			var linkForEachDigit = (stackalloc GridMap[9]);
 			foreach (var pattern in Patterns)
 			{
 				var map = EmptyMap & pattern;

@@ -96,7 +96,7 @@ namespace Sudoku.Solving.Checking
 			}
 
 			// Store all bivalue cells and construct the relations.
-			var span = (Span<int>)stackalloc int[3];
+			var span = (stackalloc int[3]);
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
 			if (_bivalueMap.IsNotEmpty)
 			{
@@ -145,7 +145,7 @@ namespace Sudoku.Solving.Checking
 			// Now check the pattern.
 			// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
 			// combinations; otherwise, none will be found.
-			var playground = (Span<int>)stackalloc int[3];
+			var playground = (stackalloc int[3]);
 			int currentIndex = 1;
 			int[] chosen = new int[multivalueCellsCount + 1];
 			var resultMap = new GridMap[9];

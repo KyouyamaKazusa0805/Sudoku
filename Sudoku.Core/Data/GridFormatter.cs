@@ -110,7 +110,7 @@ namespace Sudoku.Data
 
 				// Now consider the alignment for each column of output text.
 				var sb = new StringBuilder();
-				var span = (Span<int>)stackalloc int[9];
+				var span = (stackalloc int[9]);
 				for (int column = 0; column < 9; column++)
 				{
 					int maxLength = 0;

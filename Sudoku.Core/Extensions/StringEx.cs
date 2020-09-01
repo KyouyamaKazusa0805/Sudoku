@@ -177,7 +177,7 @@ namespace Sudoku.Extensions
 		/// <returns>The result string.</returns>
 		public static string Reserve(this string @this, string reservePattern)
 		{
-			var span = (Span<char>)stackalloc char[1];
+			var span = (stackalloc char[1]);
 
 			var sb = new StringBuilder();
 			foreach (char c in @this)

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -30,8 +29,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var compatibleCells = (Span<int>)stackalloc int[4];
-			var cover = (Span<int>)stackalloc int[8];
+			var compatibleCells = (stackalloc int[4]);
+			var cover = (stackalloc int[8]);
 			foreach (var exocet in Patterns)
 			{
 				var (baseMap, targetMap, _) = exocet;

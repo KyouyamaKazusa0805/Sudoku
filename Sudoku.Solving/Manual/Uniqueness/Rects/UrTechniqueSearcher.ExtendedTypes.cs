@@ -1006,7 +1006,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//   | b       | a
 			//   |         |
 			//  abz       abw
-			var innerMaps = (Span<GridMap>)stackalloc GridMap[2];
+			var innerMaps = (stackalloc GridMap[2]);
 			var link1Map = new GridMap { corner1, corner2 };
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{

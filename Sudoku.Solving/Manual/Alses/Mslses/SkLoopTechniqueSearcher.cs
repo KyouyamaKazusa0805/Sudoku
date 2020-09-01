@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -22,9 +21,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var pairs = (Span<short>)stackalloc short[8];
-			var tempLink = (Span<short>)stackalloc short[8];
-			var linkRegion = (Span<int>)stackalloc int[8];
+			var pairs = (stackalloc short[8]);
+			var tempLink = (stackalloc short[8]);
+			var linkRegion = (stackalloc int[8]);
 			foreach (int[] cells in SkLoopTable)
 			{
 				int n = 0, candidateCount = 0, i = 0;

@@ -394,7 +394,7 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public int[] ToArray()
 		{
-			var span = (Span<int>)stackalloc int[81];
+			var span = (stackalloc int[81]);
 			for (int i = 0; i < 81; i++)
 			{
 				// 'this[i]' is always in range -1 to 8 (-1 is empty, and 0 to 8 is 1 to 9 for
