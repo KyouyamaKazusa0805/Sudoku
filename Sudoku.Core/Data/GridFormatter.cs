@@ -215,7 +215,7 @@ namespace Sudoku.Data
 				offset++;
 			}
 
-			string elimsStr = elims.ToString();
+			string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFromEnd(1).ToString();
 			return $"{sb}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
 		}
 

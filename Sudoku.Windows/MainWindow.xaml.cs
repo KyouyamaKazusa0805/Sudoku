@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Windows;
@@ -52,43 +51,30 @@ namespace Sudoku.Windows
 			// Call the base method.
 			base.OnInitialized(e);
 
-			// Load configurations.
 			LoadConfigIfWorth();
 
-			// Load language configuration.
 			ChangeLanguage(Settings.LanguageCode ??= "en-us");
 
-			// Prevent you opening the second same window.
-			var mutex = new Mutex(true, LangSource["SolutionName"] as string, out bool mutexIsNew);
-			if (mutexIsNew)
-			{
-				mutex.ReleaseMutex();
-			}
-			else
-			{
-				Messagings.OnlyOpenOneProgram();
-				Environment.Exit(0);
-			}
+			PreventYouOpeningTwoSameWindows();
 
 #if SUDOKU_RECOGNIZING
-			// Then initialize for recognizer.
-			try
-			{
-				_recognition = new();
-			}
-			catch (Exception ex)
-			{
-				Messagings.FailedToLoadRecognitionTool(ex);
-			}
+			InitializeRecognizerIfWorth();
 #endif
 
-			// Define shortcuts.
-			AddShortCuts();
+			DefineShortCuts();
 
 			InitializePointConverterAndLayers();
 			LoadDatabaseIfWorth();
 			UpdateControls();
 		}
+
+#if SUDOKU_RECOGNIZING
+		private void InitializeRecognizerIfWorth()
+		{
+			try { _recognition = new(); }
+			catch (Exception ex) { Messagings.FailedToLoadRecognitionTool(ex); }
+		}
+#endif
 
 		/// <inheritdoc/>
 		protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
@@ -299,7 +285,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Add short cuts while initializing.
 		/// </summary>
-		private void AddShortCuts()
+		private void DefineShortCuts()
 		{
 			AddShortCut(K.C, M.Control, null, MenuItemEditCopy_Click);
 			AddShortCut(K.H, M.Control, _menuItemGenerateHardPattern, MenuItemGenerateHardPattern_Click);
@@ -498,7 +484,7 @@ namespace Sudoku.Windows
 			{
 				Messagings.FailedToSaveToClipboardDueToArgumentNullException(ex);
 			}
-#if true
+#if false
 			catch (COMException ex) when (ex.HResult == unchecked((int)2147746256))
 			{
 				Messagings.FailedToSaveToClipboardDueToAsyncCalling();
@@ -942,8 +928,7 @@ namespace Sudoku.Windows
 
 			// Get the specified dictionary.
 			ResourceDictionary? g(string p) => dictionaries.FirstOrDefault(d => d.Source.OriginalString == p);
-			if ((g($"Lang.{globalizationString}.xaml") ?? g("Lang.en-us.xaml")) is
-				not ResourceDictionary resourceDictionary)
+			if ((g($"Lang.{globalizationString}.xaml") ?? g("Lang.en-us.xaml")) is not ResourceDictionary resourceDictionary)
 			{
 				Messagings.FailedToLoadGlobalizationFile();
 				return;
@@ -961,12 +946,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void DisplayDifficultyInfoAfterAnalyzed()
 		{
-			if (_tabControlInfo.ActualWidth <= 50 || _tabControlInfo.ActualHeight <= 50)
-			{
-				return;
-			}
-
-			if (_analyisResult is null)
+			if (_tabControlInfo is not { ActualWidth: > 50, ActualHeight: > 50 } || _analyisResult is null)
 			{
 				return;
 			}
@@ -975,12 +955,10 @@ namespace Sudoku.Windows
 			{
 				_textBoxInfo.Text =
 					$"{_analyisResult.SolvingStepsCount} " +
-					$@"{(
-						_analyisResult.SolvingStepsCount == 1 ? LangSource["StepSingular"] : LangSource["StepPlural"]
-					)}" +
+					$@"{(LangSource[_analyisResult.SolvingStepsCount == 1 ? "StepSingular" : "StepPlural"])}" +
 					$"{LangSource["Comma"]}" +
 					$"{LangSource["TimeElapsed"]}" +
-					$"{_analyisResult.ElapsedTime:hh':'mm'.'ss'.'fff}" +
+					$"{_analyisResult.ElapsedTime:hh\\:mm\\.ss\\.fff}" +
 					$"{LangSource["Period"]}";
 
 				int i = 0;
@@ -1058,6 +1036,23 @@ namespace Sudoku.Windows
 
 		private void Window_SizeChanged(object sender, SizeChangedEventArgs e) => DisplayDifficultyInfoAfterAnalyzed();
 
+
+		/// <summary>
+		/// To prevent you opening two same windows.
+		/// </summary>
+		private static void PreventYouOpeningTwoSameWindows()
+		{
+			var mutex = new Mutex(true, LangSource["SolutionName"] as string, out bool mutexIsNew);
+			if (mutexIsNew)
+			{
+				mutex.ReleaseMutex();
+			}
+			else
+			{
+				Messagings.YouCanOnlyOpenOneProgram();
+				Environment.Exit(0);
+			}
+		}
 
 		/// <summary>
 		/// To check the validity of all conclusions.
