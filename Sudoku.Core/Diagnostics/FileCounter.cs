@@ -97,7 +97,6 @@ namespace Sudoku.Diagnostics
 		{
 			g(new(Root));
 
-			(FilesCount, CharactersCount, Bytes) = (0, 0, 0);
 			foreach (string fileName in FileList)
 			{
 				try
