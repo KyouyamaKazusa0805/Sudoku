@@ -54,8 +54,7 @@ namespace Sudoku.Recognitions
 				for (int y = 0; y < 9; y++)
 				{
 					// Recognize digit from cell.
-					int recognition =
-						RecognizeCellNumber(field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2)));
+					int recognition = RecognizeCellNumber(field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2)));
 					if (recognition == 0)
 					{
 						continue;

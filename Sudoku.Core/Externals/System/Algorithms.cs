@@ -42,24 +42,5 @@ namespace System
 		/// <returns>Which is the most minimal one.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int Min(int a, int b, int c, int d) => Math.Min(Math.Min(Math.Min(a, b), c), d);
-
-		/// <summary>
-		/// Get the most minimal value in the array.
-		/// </summary>
-		/// <param name="array">(<see langword="params"/> parameter) The array.</param>
-		/// <returns>The most minimal value.</returns>
-		public static int Min(params int[] array)
-		{
-			int result = int.MaxValue;
-			foreach (int value in array)
-			{
-				if (value <= result)
-				{
-					result = value;
-				}
-			}
-
-			return result;
-		}
 	}
 }

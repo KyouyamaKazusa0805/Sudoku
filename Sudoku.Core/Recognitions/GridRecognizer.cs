@@ -31,7 +31,7 @@ namespace Sudoku.Recognitions
 		/// <param name="photo">The photo.</param>
 		public GridRecognizer(Bitmap photo)
 		{
-			photo.CorectOrientation();
+			photo.CorrectOrientation();
 			_image = photo.ToImage<Bgr, byte>();
 		}
 

@@ -21,7 +21,7 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// Indicates whether the current node is the left node.
 		/// </summary>
-		public bool IsLeaf => (Children?.Count ?? 0) == 0;
+		public bool IsLeaf => Children is { Count: 0 };
 
 		/// <summary>
 		/// Indicates the content.
@@ -61,6 +61,12 @@ namespace System.Collections.Generic
 		public override string ToString() => (Id, ParentId, Content, ChildrenCount: Children.Count).ToString();
 
 
+		/// <summary>
+		/// The internal comparsion.
+		/// </summary>
+		/// <param name="left">The left.</param>
+		/// <param name="right">The right.</param>
+		/// <returns>The result.</returns>
 		private static int InternalCompare(TreeNode<T>? left, TreeNode<T>? right) =>
 			(left, right) switch
 			{

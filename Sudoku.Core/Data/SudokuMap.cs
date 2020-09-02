@@ -444,10 +444,10 @@ namespace Sudoku.Data
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static bool Equals(SudokuMap? left, SudokuMap? right) =>
-			(left is null, right is null) switch
+			(left, right) switch
 			{
-				(true, true) => true,
-				(false, false) => Enumerable.Range(0, 729).All(i => left![i] == right![i]),
+				(null, null) => true,
+				(not null, not null) => Enumerable.Range(0, 729).All(i => left![i] == right![i]),
 				_ => false
 			};
 
@@ -495,12 +495,12 @@ namespace Sudoku.Data
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuMap operator -(SudokuMap? left, SudokuMap? right) =>
-			(left is null, right is null) switch
+			(left, right) switch
 			{
-				(true, true) => new(),
-				(false, false) => new(((BitArray)left!._innerArray.Clone()).And(right!._innerArray).Not()),
-				(true, false) => new(),
-				(false, true) => left!
+				(null, null) => new(),
+				(not null, not null) => new(((BitArray)left!._innerArray.Clone()).And(right!._innerArray).Not()),
+				(null, not null) => new(),
+				(not null, null) => left!
 			};
 
 		/// <summary>
@@ -511,10 +511,10 @@ namespace Sudoku.Data
 		/// <returns>The intersection result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuMap operator &(SudokuMap? left, SudokuMap? right) =>
-			(left is null, right is null) switch
+			(left, right) switch
 			{
-				(true, true) => new(),
-				(false, false) => new(((BitArray)left!._innerArray.Clone()).And(right!._innerArray)),
+				(null, null) => new(),
+				(not null, not null) => new(((BitArray)left!._innerArray.Clone()).And(right!._innerArray)),
 				_ => new(),
 			};
 
@@ -526,10 +526,10 @@ namespace Sudoku.Data
 		/// <returns>The union result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuMap operator |(SudokuMap? left, SudokuMap? right) =>
-			(left is null, right is null) switch
+			(left, right) switch
 			{
-				(true, true) => new(),
-				(false, false) => new(((BitArray)left!._innerArray.Clone()).Or(right!._innerArray)),
+				(null, null) => new(),
+				(not null, not null) => new(((BitArray)left!._innerArray.Clone()).Or(right!._innerArray)),
 				_ => (left ?? right)!
 			};
 
@@ -541,10 +541,10 @@ namespace Sudoku.Data
 		/// <returns>The symmetrical difference result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuMap operator ^(SudokuMap? left, SudokuMap? right) =>
-			(left is null, right is null) switch
+			(left, right) switch
 			{
-				(true, true) => new(),
-				(false, false) => new(((BitArray)left!._innerArray.Clone()).Xor(right!._innerArray)),
+				(null, null) => new(),
+				(not null, not null) => new(((BitArray)left!._innerArray.Clone()).Xor(right!._innerArray)),
 				_ => (left ?? right)!
 			};
 
@@ -557,7 +557,7 @@ namespace Sudoku.Data
 		/// <returns>The negative result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuMap operator ~(SudokuMap? map) =>
-			map is null ? new SudokuMap(new BitArray(729, true)) : new(((BitArray)map._innerArray.Clone()).Not());
+			map is null ? new(new BitArray(729, true)) : new SudokuMap(((BitArray)map._innerArray.Clone()).Not());
 
 
 		/// <summary>

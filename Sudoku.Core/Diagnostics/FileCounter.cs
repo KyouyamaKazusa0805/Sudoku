@@ -25,7 +25,7 @@ namespace Sudoku.Diagnostics
 		/// <summary>
 		/// Initializes an instance with the specified root directory,
 		/// and the filter pattern. The pattern is specified as a file extension,
-		/// such as <c>"cs"</c> (without dot) or <c>".cs"</c> (with dot).
+		/// such as <c>"cs"</c>.
 		/// </summary>
 		/// <param name="root">The root.</param>
 		/// <param name="extension">
@@ -115,9 +115,12 @@ namespace Sudoku.Diagnostics
 				foreach (var d in
 					from Dir in directory.GetDirectories()
 					let Name = Dir.Name
-					let Precondition = Name.Length > 0 && !Name.StartsWith('.') && Name[0] is >= 'A' and <= 'Z'
-					let InnerCondition = !@this.WithBinOrObjDirectory && Name is not ("bin" or "Bin" or "obj" or "Obj") || @this.WithBinOrObjDirectory
-					where Precondition && InnerCondition
+					where
+						Name.Length > 0 && Name[0] is >= 'A' and <= 'Z'
+						&& (
+							@this is { WithBinOrObjDirectory: false }
+							&& Name is not ("bin" or "Bin" or "obj" or "Obj")
+							|| @this is { WithBinOrObjDirectory: true })
 					select Dir)
 				{
 					g(@this, d);

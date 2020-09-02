@@ -13,16 +13,6 @@ namespace Sudoku.Extensions
 	public static class TypeEx
 	{
 		/// <summary>
-		/// Determines whether the current <see cref="Type"/> has marked the specified attribute.
-		/// </summary>
-		/// <typeparam name="TAttribute">The type of the attribute to determine.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The type.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasMarked<TAttribute>(this Type @this) where TAttribute : Attribute =>
-			!(@this.GetCustomAttribute<TAttribute>() is null);
-
-		/// <summary>
 		/// Determines whether the current <see cref="Type"/> derives from the specified <see cref="Type"/>.
 		/// </summary>
 		/// <typeparam name="T">The type you want to determine.</typeparam>

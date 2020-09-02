@@ -236,8 +236,7 @@ namespace Sudoku.Data
 
 					break;
 				}
-				case ProcessPeersAlso:
-				case ProcessPeersWithoutItself:
+				case ProcessPeersAlso or ProcessPeersWithoutItself:
 				{
 					int i = 0;
 					foreach (int offset in offsets)

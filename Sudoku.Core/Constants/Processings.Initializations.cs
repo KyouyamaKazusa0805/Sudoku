@@ -60,7 +60,7 @@ namespace Sudoku.Constants
 
 			#region Peers
 			{
-				Peers = new int[81][]
+				Peers = new int[][]
 				{
 					new[] { 9, 18, 27, 36, 45, 54, 63, 72, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 19, 20 },
 					new[] { 10, 19, 28, 37, 46, 55, 64, 73, 0, 2, 3, 4, 5, 6, 7, 8, 9, 11, 18, 20 },
@@ -202,8 +202,8 @@ namespace Sudoku.Constants
 
 			#region IntersectionMaps
 			{
-				var r = (ReadOnlySpan<byte>)stackalloc byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-				var c = (ReadOnlySpan<byte>)stackalloc byte[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
+				ReadOnlySpan<byte> r = (stackalloc byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
+				ReadOnlySpan<byte> c = (stackalloc byte[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
 				var dic = new Dictionary<(byte, byte), (GridMap, GridMap, GridMap)>(new ValueTupleComparer());
 				for (byte bs = 9; bs < 27; bs++)
 				{
