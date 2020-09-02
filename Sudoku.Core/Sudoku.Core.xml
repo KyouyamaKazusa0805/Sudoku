@@ -3932,6 +3932,11 @@
             Encapsulates a file counter.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.FileCounter.CommentLineRegex">
+            <summary>
+            Indicates the comment lint regular expression instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String)">
             <summary>
             Initializes an instance with the specified root directory.
@@ -3966,19 +3971,35 @@
             <c>bin</c> and <c>obj</c>.
             </param>
         </member>
-        <member name="M:Sudoku.Diagnostics.FileCounter.CountCodeLines(System.Int32@,System.Int64@,System.Int64@)">
+        <member name="P:Sudoku.Diagnostics.FileCounter.CommentLines">
+            <summary>
+            Indicates the total number of the comment lines.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.FilesCount">
+            <summary>
+            Indicates the number of files.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.ResultLines">
+            <summary>
+            Indicates the number of result lines.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.CharactersCount">
+            <summary>
+            Indicates the characters in files.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.Bytes">
+            <summary>
+            Indicates the length of all files.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.CountCodeLines">
             <summary>
             Count on code lines in all files in the specified root directory.
             </summary>
-            <param name="filesCount">
-            (<see langword="out"/> parameter) The number of files searched.
-            </param>
-            <param name="charactersCount">
-            (<see langword="out"/> parameter) The total characters from all files.
-            </param>
-            <param name="bytes">
-            (<see langword="out"/> parameter) The total bytes from all files.
-            </param>
             <returns>The number of lines.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.SizeUnit">
