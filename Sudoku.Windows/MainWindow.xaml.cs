@@ -473,7 +473,7 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-#if true
+#if !COPY_SYNC
 				Clipboard.SetDataObject(_puzzle.ToString(format));
 #else
 				// This may throw exceptions being called while solving and generating puzzles.
@@ -484,7 +484,7 @@ namespace Sudoku.Windows
 			{
 				Messagings.FailedToSaveToClipboardDueToArgumentNullException(ex);
 			}
-#if false
+#if COPY_SYNC
 			catch (COMException ex) when (ex.HResult == unchecked((int)2147746256))
 			{
 				Messagings.FailedToSaveToClipboardDueToAsyncCalling();
