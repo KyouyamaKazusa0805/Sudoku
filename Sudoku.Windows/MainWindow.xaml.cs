@@ -113,7 +113,7 @@ namespace Sudoku.Windows
 			base.OnClosing(e);
 
 #if SUDOKU_RECOGNIZING
-			if (_recognition?.ToolIsInitialized ?? false)
+			if (_recognition is { ToolIsInitialized: true })
 			{
 				// If you don't use this feature, the program will not need to use
 				// this method to KILL itself... KILL... sounds terrible and dangerous, isn't it?
@@ -596,9 +596,9 @@ namespace Sudoku.Windows
 		private void InitializePointConverterAndLayers() =>
 			_currentPainter =
 				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings)
-				{
-					Grid = _puzzle
-				};
+		{
+			Grid = _puzzle
+		};
 
 		/// <summary>
 		/// To load a puzzle with a specified possible puzzle string.
@@ -968,14 +968,14 @@ namespace Sudoku.Windows
 					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
 					pathList.Add(
 						new()
-						{
-							Foreground = new SolidColorBrush(fore.ToWColor()),
-							Background = new SolidColorBrush(back.ToWColor()),
-							Content =
+					{
+						Foreground = new SolidColorBrush(fore.ToWColor()),
+						Background = new SolidColorBrush(back.ToWColor()),
+						Content =
 								new PriorKeyedTuple<string, int, TechniqueInfo>(
 									$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
-							BorderThickness = default
-						});
+						BorderThickness = default
+					});
 				}
 				_listBoxPaths.ItemsSource = pathList;
 
@@ -1021,11 +1021,11 @@ namespace Sudoku.Windows
 
 				GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
 					new()
-					{
-						Header = header,
-						DisplayMemberBinding = new Binding(name),
-						Width = _tabControlInfo.ActualWidth * widthScale - 4,
-					};
+				{
+					Header = header,
+					DisplayMemberBinding = new Binding(name),
+					Width = _tabControlInfo.ActualWidth * widthScale - 4,
+				};
 			}
 			else
 			{
