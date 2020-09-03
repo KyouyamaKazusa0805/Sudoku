@@ -1447,6 +1447,20 @@
             </summary>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Data.Grid.Parse(System.ReadOnlySpan{System.Char})">
+            <summary>
+            <para>
+            Parses a string value and converts to this type.
+            </para>
+            <para>
+            If you want to parse a PM grid, we recommend you use the method
+            <see cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
+            </para>
+            </summary>
+            <param name="str">The string.</param>
+            <returns>The result instance had converted.</returns>
+            <seealso cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
+        </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.String)">
             <summary>
             <para>

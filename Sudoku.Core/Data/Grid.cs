@@ -539,6 +539,21 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Grid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
+
+		/// <summary>
+		/// <para>
+		/// Parses a string value and converts to this type.
+		/// </para>
+		/// <para>
+		/// If you want to parse a PM grid, we recommend you use the method
+		/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
+		/// </para>
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <returns>The result instance had converted.</returns>
+		/// <seealso cref="Parse(string, GridParsingOption)"/>
 		public static Grid Parse(string str) => new GridParser(str).Parse();
 
 		/// <summary>
@@ -631,8 +646,7 @@ namespace Sudoku.Data
 			var result = Empty.Clone();
 			for (int i = 0; i < 81; i++)
 			{
-				int value = gridValues[i];
-				if (value != 0)
+				if (gridValues[i] is var value and not 0)
 				{
 					// Calls the indexer to trigger the event
 					// (Clear the candidates in peer cells).

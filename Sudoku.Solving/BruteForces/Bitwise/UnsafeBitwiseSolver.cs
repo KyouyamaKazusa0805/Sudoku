@@ -100,7 +100,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					(
 						solverName: SolverName,
 						puzzle: grid,
-						solution: Grid.Parse(new Span<char>(solutionStr, BufferLength).ToString()),
+						solution: Grid.Parse(new Span<char>(solutionStr, BufferLength)),
 						hasSolved: true,
 						elapsedTime: stopwatch.Elapsed,
 						additional: null

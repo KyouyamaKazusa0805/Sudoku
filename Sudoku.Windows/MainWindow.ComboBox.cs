@@ -21,7 +21,7 @@ namespace Sudoku.Windows
 		private void ComboBoxSymmetry_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// When initializing, 'Settings' may be null.
-			if (sender is ComboBox comboBox && Settings is not null)
+			if ((sender, Settings) is (ComboBox comboBox, not null))
 			{
 				Settings.GeneratingSymmetryModeComboBoxSelectedIndex = comboBox.SelectedIndex;
 			}
@@ -30,7 +30,7 @@ namespace Sudoku.Windows
 		private void ComboBoxBackdoorFilteringDepth_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// When initializing, 'Settings' may be null.
-			if (sender is ComboBox comboBox && Settings is not null)
+			if ((sender, Settings) is (ComboBox comboBox, not null))
 			{
 				Settings.GeneratingBackdoorSelectedIndex = comboBox.SelectedIndex;
 			}
@@ -39,7 +39,7 @@ namespace Sudoku.Windows
 		private void ComboBoxDifficulty_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// When initializing, 'Settings' may be null.
-			if (sender is ComboBox comboBox && Settings is not null)
+			if ((sender, Settings) is (ComboBox comboBox, not null))
 			{
 				Settings.GeneratingDifficultyLevelSelectedIndex = comboBox.SelectedIndex;
 			}

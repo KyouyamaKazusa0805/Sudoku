@@ -148,9 +148,9 @@ namespace Sudoku.Solving.Manual.Singles
 			// Search for naked singles.
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (grid.GetStatus(cell) == CellStatus.Empty &&
-					grid.GetCandidateMask(cell) is short mask && mask.IsPowerOfTwo() &&
-					mask.FindFirstSet() is int digit)
+				if (grid.GetStatus(cell) == CellStatus.Empty
+					&& grid.GetCandidateMask(cell) is var mask && mask.IsPowerOfTwo()
+					&& mask.FindFirstSet() is var digit)
 				{
 					accumulator.Add(
 						new NakedSingleTechniqueInfo(

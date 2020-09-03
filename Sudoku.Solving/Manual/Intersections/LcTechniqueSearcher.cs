@@ -28,7 +28,8 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
-				if ((short)(BitwiseOrMasks(grid, c) & (BitwiseOrMasks(grid, a) ^ BitwiseOrMasks(grid, b))) is short m && m == 0)
+				short m = (short)(BitwiseOrMasks(grid, c) & (BitwiseOrMasks(grid, a) ^ BitwiseOrMasks(grid, b)));
+				if (m == 0)
 				{
 					continue;
 				}

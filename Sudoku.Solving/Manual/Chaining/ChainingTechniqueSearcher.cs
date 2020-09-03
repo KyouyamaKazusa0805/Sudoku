@@ -68,7 +68,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				// First rule: If there's only two candidates in this cell, the other one gets on.
 				if (BivalueMap[p.Cell] &&
-					(short)(grid.GetCandidateMask(p.Cell) & ~(1 << p.Digit)) is short mask && mask.IsPowerOfTwo())
+					(short)(grid.GetCandidateMask(p.Cell) & ~(1 << p.Digit)) is var mask && mask.IsPowerOfTwo())
 				{
 					var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p);
 					//AddHiddenParentsOfCell(pOn, grid, offNodes);

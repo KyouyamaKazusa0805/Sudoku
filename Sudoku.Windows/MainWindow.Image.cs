@@ -169,70 +169,73 @@ namespace Sudoku.Windows
 
 		private void ImageGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
 		{
-			if (sender is Image image && _customDrawingMode != -1)
+			if ((sender, _customDrawingMode) is not (Image image, not -1))
 			{
-				int cell = _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
-				_selectedCellsWhileDrawingRegions.Add(cell);
-
-				switch (Keyboard.Modifiers)
-				{
-					case ModifierKeys.None:
-					{
-						if (_currentColor == int.MinValue)
-						{
-							_focusedCells.Clear();
-							_focusedCells.Add(cell);
-						}
-						else
-						{
-							switch (_customDrawingMode)
-							{
-								case 2 when _selectedCellsWhileDrawingRegions.Count == 2: // Region.
-								{
-									int first = _selectedCellsWhileDrawingRegions.SetAt(0);
-									int second = _selectedCellsWhileDrawingRegions.SetAt(1);
-									int r1 = GetRegion(first, Row), r2 = GetRegion(second, Row);
-									int c1 = GetRegion(first, Column), c2 = GetRegion(second, Column);
-									int b1 = GetRegion(first, Block), b2 = GetRegion(second, Block);
-									int region = (r1 == r2, c1 == c2, b1 == b2) switch
-									{
-										(true, _, _) => r1,
-										(_, true, _) => c1,
-										(_, _, true) => b1,
-										_ => -1
-									};
-									if (region != -1)
-									{
-										if (_view.ContainsRegion(region))
-										{
-											_view.RemoveRegion(region);
-										}
-										else
-										{
-											_view.AddRegion(_currentColor, region);
-										}
-									}
-
-									_selectedCellsWhileDrawingRegions.Clear();
-									break;
-								}
-							}
-
-							_currentPainter.FocusedCells = null;
-							_currentPainter.CustomView = _view;
-							_currentPainter.Conclusions = null;
-
-							UpdateImageGrid();
-						}
-
-						break;
-					}
-				}
-
-				_currentPainter.FocusedCells = _focusedCells;
-
-				UpdateImageGrid();
+				e.Handled = true;
+				return;
 			}
+
+			int cell = _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
+			_selectedCellsWhileDrawingRegions.Add(cell);
+
+			switch (Keyboard.Modifiers)
+			{
+				case ModifierKeys.None:
+				{
+					if (_currentColor == int.MinValue)
+					{
+						_focusedCells.Clear();
+						_focusedCells.Add(cell);
+					}
+					else
+					{
+						switch (_customDrawingMode)
+						{
+							case 2 when _selectedCellsWhileDrawingRegions.Count == 2: // Region.
+							{
+								int first = _selectedCellsWhileDrawingRegions.SetAt(0);
+								int second = _selectedCellsWhileDrawingRegions.SetAt(1);
+								int r1 = GetRegion(first, Row), r2 = GetRegion(second, Row);
+								int c1 = GetRegion(first, Column), c2 = GetRegion(second, Column);
+								int b1 = GetRegion(first, Block), b2 = GetRegion(second, Block);
+								int region = (r1 == r2, c1 == c2, b1 == b2) switch
+								{
+									(true, _, _) => r1,
+									(_, true, _) => c1,
+									(_, _, true) => b1,
+									_ => -1
+								};
+								if (region != -1)
+								{
+									if (_view.ContainsRegion(region))
+									{
+										_view.RemoveRegion(region);
+									}
+									else
+									{
+										_view.AddRegion(_currentColor, region);
+									}
+								}
+
+								_selectedCellsWhileDrawingRegions.Clear();
+								break;
+							}
+						}
+
+						_currentPainter.FocusedCells = null;
+						_currentPainter.CustomView = _view;
+						_currentPainter.Conclusions = null;
+
+						UpdateImageGrid();
+					}
+
+					break;
+				}
+			}
+
+			_currentPainter.FocusedCells = _focusedCells;
+
+			UpdateImageGrid();
 		}
 
 		private void ImageUndoIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>

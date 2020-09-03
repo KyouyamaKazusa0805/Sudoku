@@ -45,25 +45,23 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					if ((short)(mask1 & mask2) is short mask && mask == 0)
+					if ((mask1 & mask2) is var mask and not 0)
 					{
-						continue;
-					}
-
-					short rccMask = 0;
-					foreach (int digit in mask.GetAllSets())
-					{
-						if ((map & CandMaps[digit]).AllSetsAreInOneRegion(out _))
+						short rccMask = 0;
+						foreach (int digit in mask.GetAllSets())
 						{
-							rccMask |= (short)(1 << digit);
+							if ((map & CandMaps[digit]).AllSetsAreInOneRegion(out _))
+							{
+								rccMask |= (short)(1 << digit);
+							}
 						}
-					}
-					if (rccMask == 0)
-					{
-						continue;
-					}
+						if (rccMask == 0)
+						{
+							continue;
+						}
 
-					rccs.Add((als1, als2, rccMask));
+						rccs.Add((als1, als2, rccMask));
+					}
 				}
 			}
 
