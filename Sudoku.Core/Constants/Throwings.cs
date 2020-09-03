@@ -21,26 +21,10 @@ namespace Sudoku.Constants
 		public static SwitchExpressionException ImpossibleCase => new("Impossible case.");
 
 		/// <summary>
-		/// Indicates an exception throwing when the format string is invalid.
-		/// </summary>
-		public static FormatException FormatError => new("The specified format is invalid.");
-
-		/// <summary>
-		/// Indicates an exception throwing when the format string contains invalid characters.
-		/// </summary>
-		public static FormatException FormatErrorWithInvalidChars =>
-			throw new("The specified format is invalid due to with invalid characters.");
-
-		/// <summary>
 		/// Indicates all <see langword="ref struct"/>s cannot
 		/// use any boxing operations.
 		/// </summary>
 		public static NotSupportedException RefStructNotSupported => new("Ref structs cannot use any boxing operations.");
-
-		/// <summary>
-		/// Indicates the current operation is invalid.
-		/// </summary>
-		public static InvalidOperationException InvalidOperation => new("The specified operation is invalid.");
 
 
 		/// <summary>

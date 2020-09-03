@@ -176,7 +176,9 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public int EmptiesCount => Triplet._a;
 
-
+		/// <summary>
+		/// The triplet of three main information.
+		/// </summary>
 		private (int _a, int _b, int _c) Triplet
 		{
 			get

@@ -291,25 +291,10 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Constants.Throwings.FormatError">
-            <summary>
-            Indicates an exception throwing when the format string is invalid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Constants.Throwings.FormatErrorWithInvalidChars">
-            <summary>
-            Indicates an exception throwing when the format string contains invalid characters.
-            </summary>
-        </member>
         <member name="P:Sudoku.Constants.Throwings.RefStructNotSupported">
             <summary>
             Indicates all <see langword="ref struct"/>s cannot
             use any boxing operations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Constants.Throwings.InvalidOperation">
-            <summary>
-            Indicates the current operation is invalid.
             </summary>
         </member>
         <member name="M:Sudoku.Constants.Throwings.ImpossibleCaseWithMessage(System.String)">
@@ -1343,6 +1328,11 @@
         </member>
         <member name="P:Sudoku.Data.Grid.EmptiesCount">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Triplet">
+            <summary>
+            The triplet of three main information.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.Item(System.Int32)">
             <inheritdoc/>
@@ -3942,6 +3932,11 @@
             Encapsulates a file counter.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.FileCounter.CommentLineRegex">
+            <summary>
+            Indicates the comment lint regular expression instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String)">
             <summary>
             Initializes an instance with the specified root directory.
@@ -3952,7 +3947,7 @@
             <summary>
             Initializes an instance with the specified root directory,
             and the filter pattern. The pattern is specified as a file extension,
-            such as <c>"cs"</c> (without dot) or <c>".cs"</c> (with dot).
+            such as <c>"cs"</c>.
             </summary>
             <param name="root">The root.</param>
             <param name="extension">
@@ -3976,19 +3971,35 @@
             <c>bin</c> and <c>obj</c>.
             </param>
         </member>
-        <member name="M:Sudoku.Diagnostics.FileCounter.CountCodeLines(System.Int32@,System.Int64@,System.Int64@)">
+        <member name="P:Sudoku.Diagnostics.FileCounter.CommentLines">
+            <summary>
+            Indicates the total number of the comment lines.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.FilesCount">
+            <summary>
+            Indicates the number of files.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.ResultLines">
+            <summary>
+            Indicates the number of result lines.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.CharactersCount">
+            <summary>
+            Indicates the characters in files.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.Bytes">
+            <summary>
+            Indicates the length of all files.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.CountCodeLines">
             <summary>
             Count on code lines in all files in the specified root directory.
             </summary>
-            <param name="filesCount">
-            (<see langword="out"/> parameter) The number of files searched.
-            </param>
-            <param name="charactersCount">
-            (<see langword="out"/> parameter) The total characters from all files.
-            </param>
-            <param name="bytes">
-            (<see langword="out"/> parameter) The total bytes from all files.
-            </param>
             <returns>The number of lines.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.SizeUnit">
@@ -5100,14 +5111,6 @@
             </summary>
             <seealso cref="T:System.Type"/>
         </member>
-        <member name="M:Sudoku.Extensions.TypeEx.HasMarked``1(System.Type)">
-            <summary>
-            Determines whether the current <see cref="T:System.Type"/> has marked the specified attribute.
-            </summary>
-            <typeparam name="TAttribute">The type of the attribute to determine.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The type.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Extensions.TypeEx.IsSubclassOf``1(System.Type)">
             <summary>
             Determines whether the current <see cref="T:System.Type"/> derives from the specified <see cref="T:System.Type"/>.
@@ -5140,9 +5143,9 @@
             </remarks>
             <seealso cref="T:System.Drawing.Bitmap"/>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CorectOrientation(System.Drawing.Bitmap)">
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CorrectOrientation(System.Drawing.Bitmap)">
             <summary>
-            Co-rect orientation.
+            To correct the orientation.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The bitmap.</param>
         </member>
@@ -7279,13 +7282,6 @@
             <param name="d">The fourth value.</param>
             <returns>Which is the most minimal one.</returns>
         </member>
-        <member name="M:System.Algorithms.Min(System.Int32[])">
-            <summary>
-            Get the most minimal value in the array.
-            </summary>
-            <param name="array">(<see langword="params"/> parameter) The array.</param>
-            <returns>The most minimal value.</returns>
-        </member>
         <member name="T:System.Collections.Generic.Set`1">
             <summary>
             Indicates a set which contains the different elements.
@@ -7529,6 +7525,14 @@
         <member name="M:System.Collections.Generic.TreeNode`1.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.InternalCompare(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
+            <summary>
+            The internal comparsion.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_Equality(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
             <operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>
@@ -7594,17 +7598,17 @@
 	</operator>
         </member>
         <member name="T:System.ICloneable`1">
-            <summary>
-            Supports cloning, which creates a new instance of a class with the same value
-            as an existing instance. Different with <see cref="T:System.ICloneable"/>, the cloneation
-            has the same type with this existing instance.
-            </summary>
+            <inheritdoc cref="T:System.ICloneable"/>
             <typeparam name="T">
             The type of this instance. This type should be only a class because the cloning
             operation is needed only in reference types, while the value types will be passed
             by value, at this time all value members (fields and properties) will be copied
             one by one.
             </typeparam>
+            <remarks>
+            Different with <see cref="T:System.ICloneable"/>, the cloneation
+            has the same type with this existing instance.
+            </remarks>
             <seealso cref="T:System.ICloneable"/>
         </member>
         <member name="M:System.ICloneable`1.Clone">
@@ -7616,6 +7620,10 @@
             used and defined before using this method, so the return type will be
             never <see langword="null"/>.
             </returns>
+            <remarks>
+            Here we hide the inner method <see cref="M:System.ICloneable.Clone"/>, so this method
+            should be implemented, but the inner method don't have to.
+            </remarks>
         </member>
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>

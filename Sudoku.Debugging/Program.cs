@@ -27,17 +27,27 @@ var w = new Stopwatch();
 var z = new FileCounter(Solution.PathRoot, "cs", false);
 
 w.Start();
-int codeLines = z.CountCodeLines(out int filesCount, out long charsCount, out long bytes);
+z.CountCodeLines();
 w.Stop();
 
-foreach (var fileName in z.FileList)
-{
-	WriteLine(fileName);
-}
+//foreach (string fileName in z.FileList)
+//{
+//	WriteLine(fileName);
+//}
+//WriteLine();
 
 WriteLine(
-	$"Code lines: {codeLines}, found files: {filesCount}, total characters: {charsCount}, " +
-	$@"total bytes: {SizeUnitConverter.Convert(bytes, out var unit):.000} {unit switch
+	$"Results:\n" +
+	$"* Code lines: {z.ResultLines} (Comment lines: {z.CommentLines})\n" +
+	$"* Files: {z.FilesCount}\n" +
+	$"* Characters: {z.CharactersCount}\n" +
+	$"* Bytes: {SizeUnitConverter.Convert(z.Bytes, out var unit):.000} {Tostring(unit)} ({z.Bytes} Bytes)\n" +
+	$"* Time elapsed: {w.Elapsed:hh\\:mm\\.ss\\.fff}");
+#endif
+#endregion
+
+static string Tostring(SizeUnit @this) =>
+	@this switch
 	{
 		SizeUnit.Byte => "B",
 		SizeUnit.Kilobyte => "KB",
@@ -45,7 +55,4 @@ WriteLine(
 		SizeUnit.Gigabyte => "GB",
 		SizeUnit.Terabyte => "TB",
 		_ => throw Throwings.ImpossibleCase
-	}}, " +
-	$"time elapsed: {w.Elapsed:hh\\:mm\\.ss\\.fff}");
-#endif
-#endregion
+	};

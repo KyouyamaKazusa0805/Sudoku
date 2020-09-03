@@ -14,7 +14,7 @@ namespace Sudoku.Windows.Constants
 		/// <summary>
 		/// Indicates the message for only opening one program.
 		/// </summary>
-		public static void OnlyOpenOneProgram() =>
+		public static void YouCanOnlyOpenOneProgram() =>
 			MessageBox.Show(
 				(string)LangSource["OnlyOpenOneProgram"],
 				(string)LangSource["CaptionInfo"]);

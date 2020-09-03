@@ -143,7 +143,7 @@ namespace Sudoku.Windows
 				from Type in
 					from Type in Assembly.Load("Sudoku.Solving").GetTypes()
 					where !Type.IsAbstract && Type.IsSubclassOf<TechniqueSearcher>()
-						&& Type.HasMarked<TechniqueDisplayAttribute>()
+						&& Type.GetCustomAttribute<HighAllocationAttribute>() is not null
 					select Type
 				let AttributeInstance = Type.GetCustomAttribute<SearcherPropertyAttribute>()
 				where AttributeInstance is not null

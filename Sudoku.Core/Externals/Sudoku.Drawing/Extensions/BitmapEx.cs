@@ -25,10 +25,10 @@ namespace Sudoku.Drawing.Extensions
 	public static class BitmapEx
 	{
 		/// <summary>
-		/// Co-rect orientation.
+		/// To correct the orientation.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The bitmap.</param>
-		public static void CorectOrientation(this Bitmap @this)
+		public static void CorrectOrientation(this Bitmap @this)
 		{
 			if (Array.IndexOf(@this.PropertyIdList, 274) > -1)
 			{

@@ -15,17 +15,19 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// The inner list.
 		/// </summary>
-		private readonly IList<T> _list;
+		private readonly IList<T> _list = new List<T>();
 
 
 		/// <include file='.....\GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public Set() => _list = new List<T>();
+		public Set()
+		{
+		}
 
 		/// <summary>
 		/// Add a series of elements.
 		/// </summary>
 		/// <param name="elements">The elements.</param>
-		public Set(IEnumerable<T> elements) : this()
+		public Set(IEnumerable<T> elements)
 		{
 			foreach (var element in elements)
 			{
@@ -254,13 +256,13 @@ namespace System.Collections.Generic
 		/// <returns>A <see cref="bool"/> result.</returns>
 		private static bool SetEquals(Set<T>? left, Set<T>? right)
 		{
-			switch ((left is null, right is null))
+			switch ((left, right))
 			{
-				case (true, true):
+				case (null, null):
 				{
 					return true;
 				}
-				case (false, false):
+				case (not null, not null):
 				{
 					foreach (var element in left!._list)
 					{

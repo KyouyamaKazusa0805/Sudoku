@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Constants;
@@ -54,7 +53,7 @@ namespace Sudoku.Data
 		/// <returns>The string.</returns>
 		private string ToExcelString(Grid grid)
 		{
-			var span = grid.ToString("0").AsSpan();
+			var span = $"{grid:0}".AsSpan();
 			var sb = new StringBuilder();
 			for (int i = 0; i < 9; i++)
 			{
@@ -91,8 +90,6 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
 		/// </exception>
-		[SuppressMessage("Style", "IDE0071:Simplify interpolation", Justification = "<Pending>")]
-		[SuppressMessage("Style", "IDE0071WithoutSuggestion:Simplify interpolation", Justification = "<Pending>")]
 		private string ToSukakuString(Grid grid)
 		{
 			if (Multiline)
@@ -166,7 +163,7 @@ namespace Sudoku.Data
 			if (WithCandidates)
 			{
 				// Get a temp grid only used for checking.
-				tempGrid = Grid.Parse(grid.ToString(".+"));
+				tempGrid = Grid.Parse($"{grid:.+}");
 			}
 
 			int offset = 0;
@@ -218,7 +215,7 @@ namespace Sudoku.Data
 				offset++;
 			}
 
-			string elimsStr = elims.ToString();
+			string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFromEnd(1).ToString();
 			return $"{sb}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
 		}
 
@@ -262,22 +259,21 @@ namespace Sudoku.Data
 		private string ToMultiLineSimpleGridCore(Grid grid)
 		{
 			string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
-			return
-				new StringBuilder()
-					.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
-					.AppendLine($"| {t[0]} {t[1]} {t[2]} | {t[3]} {t[4]} {t[5]} | {t[6]} {t[7]} {t[8]} |")
-					.AppendLine($"| {t[9]} {t[10]} {t[11]} | {t[12]} {t[13]} {t[14]} | {t[15]} {t[16]} {t[17]} |")
-					.AppendLine($"| {t[18]} {t[19]} {t[20]} | {t[21]} {t[22]} {t[23]} | {t[24]} {t[25]} {t[26]} |")
-					.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
-					.AppendLine($"| {t[27]} {t[28]} {t[29]} | {t[30]} {t[31]} {t[32]} | {t[33]} {t[34]} {t[35]} |")
-					.AppendLine($"| {t[36]} {t[37]} {t[38]} | {t[39]} {t[40]} {t[41]} | {t[42]} {t[43]} {t[44]} |")
-					.AppendLine($"| {t[45]} {t[46]} {t[47]} | {t[48]} {t[49]} {t[50]} | {t[51]} {t[52]} {t[53]} |")
-					.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
-					.AppendLine($"| {t[54]} {t[55]} {t[56]} | {t[57]} {t[58]} {t[59]} | {t[60]} {t[61]} {t[62]} |")
-					.AppendLine($"| {t[63]} {t[64]} {t[65]} | {t[66]} {t[67]} {t[68]} | {t[69]} {t[70]} {t[71]} |")
-					.AppendLine($"| {t[72]} {t[73]} {t[74]} | {t[75]} {t[76]} {t[77]} | {t[78]} {t[79]} {t[80]} |")
-					.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
-					.ToString();
+			return new StringBuilder()
+				.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
+				.AppendLine($"| {t[0]} {t[1]} {t[2]} | {t[3]} {t[4]} {t[5]} | {t[6]} {t[7]} {t[8]} |")
+				.AppendLine($"| {t[9]} {t[10]} {t[11]} | {t[12]} {t[13]} {t[14]} | {t[15]} {t[16]} {t[17]} |")
+				.AppendLine($"| {t[18]} {t[19]} {t[20]} | {t[21]} {t[22]} {t[23]} | {t[24]} {t[25]} {t[26]} |")
+				.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
+				.AppendLine($"| {t[27]} {t[28]} {t[29]} | {t[30]} {t[31]} {t[32]} | {t[33]} {t[34]} {t[35]} |")
+				.AppendLine($"| {t[36]} {t[37]} {t[38]} | {t[39]} {t[40]} {t[41]} | {t[42]} {t[43]} {t[44]} |")
+				.AppendLine($"| {t[45]} {t[46]} {t[47]} | {t[48]} {t[49]} {t[50]} | {t[51]} {t[52]} {t[53]} |")
+				.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
+				.AppendLine($"| {t[54]} {t[55]} {t[56]} | {t[57]} {t[58]} {t[59]} | {t[60]} {t[61]} {t[62]} |")
+				.AppendLine($"| {t[63]} {t[64]} {t[65]} | {t[66]} {t[67]} {t[68]} | {t[69]} {t[70]} {t[71]} |")
+				.AppendLine($"| {t[72]} {t[73]} {t[74]} | {t[75]} {t[76]} {t[77]} | {t[78]} {t[79]} {t[80]} |")
+				.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
+				.ToString();
 		}
 
 		/// <summary>
@@ -350,8 +346,7 @@ namespace Sudoku.Data
 						else PrintTabLines('+', '+', '-', maxLengths, sb);
 						break;
 					}
-					case 4:
-					case 8: // Print tabs of mediate lines.
+					case 4 or 8: // Print tabs of mediate lines.
 					{
 						if (SubtleGridLines) PrintTabLines(':', '+', '-', maxLengths, sb);
 						else PrintTabLines('+', '+', '-', maxLengths, sb);

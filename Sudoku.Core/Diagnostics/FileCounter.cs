@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Sudoku.Extensions;
 
 namespace Sudoku.Diagnostics
@@ -14,6 +15,12 @@ namespace Sudoku.Diagnostics
 	/// </summary>
 	public sealed record FileCounter(string Root, string? Pattern, bool WithBinOrObjDirectory, IList<string> FileList)
 	{
+		/// <summary>
+		/// Indicates the comment lint regular expression instance.
+		/// </summary>
+		private static readonly Regex CommentLineRegex = new(@"(\s//.+|/\*.+|.+\*/)", RegexOptions.Compiled);
+
+
 		/// <summary>
 		/// Initializes an instance with the specified root directory.
 		/// </summary>
@@ -25,15 +32,14 @@ namespace Sudoku.Diagnostics
 		/// <summary>
 		/// Initializes an instance with the specified root directory,
 		/// and the filter pattern. The pattern is specified as a file extension,
-		/// such as <c>"cs"</c> (without dot) or <c>".cs"</c> (with dot).
+		/// such as <c>"cs"</c>.
 		/// </summary>
 		/// <param name="root">The root.</param>
 		/// <param name="extension">
 		/// The file extension. This parameter can be <see langword="null"/>. If
 		/// so, the counter will sum up all files with all extensions.
 		/// </param>
-		public FileCounter(string root, string? extension)
-			: this(root, $@".+\.{extension}$", true, new List<string>())
+		public FileCounter(string root, string? extension) : this(root, $@".+\.{extension}$", true, new List<string>())
 		{
 		}
 
@@ -58,43 +64,64 @@ namespace Sudoku.Diagnostics
 
 
 		/// <summary>
+		/// Indicates the total number of the comment lines.
+		/// </summary>
+		public int CommentLines { get; private set; }
+
+		/// <summary>
+		/// Indicates the number of files.
+		/// </summary>
+		public int FilesCount { get; private set; }
+
+		/// <summary>
+		/// Indicates the number of result lines.
+		/// </summary>
+		public int ResultLines { get; private set; }
+
+		/// <summary>
+		/// Indicates the characters in files.
+		/// </summary>
+		public long CharactersCount { get; private set; }
+
+		/// <summary>
+		/// Indicates the length of all files.
+		/// </summary>
+		public long Bytes { get; private set; }
+
+
+		/// <summary>
 		/// Count on code lines in all files in the specified root directory.
 		/// </summary>
-		/// <param name="filesCount">
-		/// (<see langword="out"/> parameter) The number of files searched.
-		/// </param>
-		/// <param name="charactersCount">
-		/// (<see langword="out"/> parameter) The total characters from all files.
-		/// </param>
-		/// <param name="bytes">
-		/// (<see langword="out"/> parameter) The total bytes from all files.
-		/// </param>
 		/// <returns>The number of lines.</returns>
-		public int CountCodeLines(out int filesCount, out long charactersCount, out long bytes)
+		public void CountCodeLines()
 		{
-			g(this, new(Root));
+			g(new(Root));
 
-			(filesCount, charactersCount, bytes) = (0, 0, 0);
-			int resultLines = 0;
 			foreach (string fileName in FileList)
 			{
 				try
 				{
 					using var sr = new StreamReader(fileName);
 					int fileLines = 0;
-					string? tempStr;
-					while ((tempStr = sr.ReadLine()) is not null)
+					string? s;
+					while ((s = sr.ReadLine()) is not null)
 					{
 						fileLines++;
-						charactersCount += tempStr?.Length ?? 0;
+						CharactersCount += s.Length;
 
-						// Remove trailing \t.
-						charactersCount -= tempStr?.Reserve(@"\t").Length ?? 0;
+						// Remove header \t.
+						CharactersCount -= s.Reserve(@"\t").Length;
+
+						// Check whether the current line is comment line.
+						if (CommentLineRegex.Match(s) is Match { Success: true })
+						{
+							CommentLines++;
+						}
 					}
 
-					resultLines += fileLines;
-					bytes += new FileInfo(fileName).Length;
-					filesCount++;
+					ResultLines += fileLines;
+					Bytes += new FileInfo(fileName).Length;
+					FilesCount++;
 				}
 				catch
 				{
@@ -102,25 +129,26 @@ namespace Sudoku.Diagnostics
 				}
 			}
 
-			return resultLines;
-
-			static void g(FileCounter @this, DirectoryInfo directory)
+			void g(DirectoryInfo directory)
 			{
-				@this.FileList.AddRange(
+				FileList.AddRange(
 					from File in directory.GetFiles()
-					where @this.Pattern is null || File.FullName.SatisfyPattern(@this.Pattern)
+					where Pattern is null || File.FullName.SatisfyPattern(Pattern)
 					select File.FullName);
 
 				// Get all files for each folder recursively.
 				foreach (var d in
 					from Dir in directory.GetDirectories()
 					let Name = Dir.Name
-					let Precondition = Name.Length > 0 && !Name.StartsWith('.') && Name[0] is >= 'A' and <= 'Z'
-					let InnerCondition = !@this.WithBinOrObjDirectory && Name is not ("bin" or "Bin" or "obj" or "Obj") || @this.WithBinOrObjDirectory
-					where Precondition && InnerCondition
+					where
+						Name.Length > 0 && Name[0] is >= 'A' and <= 'Z'
+						&& (
+							!WithBinOrObjDirectory
+							&& Name is not ("bin" or "Bin" or "obj" or "Obj")
+							|| WithBinOrObjDirectory)
 					select Dir)
 				{
-					g(@this, d);
+					g(d);
 				}
 			}
 		}
