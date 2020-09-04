@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	partial class QdpTechniqueSearcher
 	{
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
 		{
 			if (!otherDigitsMask.IsPowerOfTwo())
@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
 		{
 			if (!otherDigitsMask.IsPowerOfTwo())
@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		partial void CheckType3(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
 		{
 			foreach (int region in pair.CoveredRegions)
@@ -289,7 +289,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		partial void CheckLockedType(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer)
 		{
 			// Firstly, we should check the cells in the block that the square cells lying on.

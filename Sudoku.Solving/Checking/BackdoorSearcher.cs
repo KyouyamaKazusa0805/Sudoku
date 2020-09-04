@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Checking
 		/// <exception cref="SudokuRuntimeException">
 		/// Throws when the specified grid is invalid.
 		/// </exception>
-		public IEnumerable<Conclusions> SearchForBackdoors(IReadOnlyGrid grid, int depth)
+		public IEnumerable<Conclusions> SearchForBackdoors(Grid grid, int depth)
 		{
 			if (depth is < 0 or > 3)
 			{
@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
-		public IEnumerable<Conclusions> SearchForBackdoorsExact(IReadOnlyGrid grid, int depth)
+		public IEnumerable<Conclusions> SearchForBackdoorsExact(Grid grid, int depth)
 		{
 			if (depth is < 0 or > 3)
 			{
@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>The task to calculate all conclusions.</returns>
-		public async Task<IEnumerable<Conclusions>> SearchForBackdoorsExactAsync(IReadOnlyGrid grid, int depth) =>
+		public async Task<IEnumerable<Conclusions>> SearchForBackdoorsExactAsync(Grid grid, int depth) =>
 			await Task.Run(() => SearchForBackdoorsExact(grid, depth));
 
 
@@ -104,7 +104,7 @@ namespace Sudoku.Solving.Checking
 		/// <exception cref="InvalidOperationException">
 		/// Throws when the grid is invalid (has no solution or multiple solutions).
 		/// </exception>
-		private static void SearchForBackdoors(IList<Conclusions> result, IReadOnlyGrid grid, int depth)
+		private static void SearchForBackdoors(IList<Conclusions> result, Grid grid, int depth)
 		{
 			if (!grid.IsValid(out var solution))
 			{

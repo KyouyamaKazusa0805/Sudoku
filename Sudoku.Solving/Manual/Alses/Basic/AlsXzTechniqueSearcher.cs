@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			var house = (stackalloc int[2]);
 			var alses = Als.GetAllAlses(grid).ToArray();

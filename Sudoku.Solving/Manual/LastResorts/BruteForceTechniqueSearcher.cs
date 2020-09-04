@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// The solution.
 		/// </summary>
-		private readonly IReadOnlyGrid _solution;
+		private readonly Grid _solution;
 
 
 		/// <summary>
@@ -49,11 +49,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// solution.
 		/// </summary>
 		/// <param name="solution">The solution.</param>
-		public BruteForceTechniqueSearcher(IReadOnlyGrid solution) => _solution = solution;
+		public BruteForceTechniqueSearcher(Grid solution) => _solution = solution;
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			foreach (int offset in TryAndErrorOrder)
 			{

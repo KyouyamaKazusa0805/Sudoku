@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			// Check POM eliminations first.
 			bool[] elimKeys = { false, false, false, false, false, false, false, false, false };

@@ -192,7 +192,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		/// <returns>All mirror eliminations.</returns>
 		protected (TargetEliminations, MirrorEliminations) CheckMirror(
-			IReadOnlyGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
+			Grid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
 			GridMap mirror, int x, int onlyOne, IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
 		{
 			var targetElims = new TargetEliminations();

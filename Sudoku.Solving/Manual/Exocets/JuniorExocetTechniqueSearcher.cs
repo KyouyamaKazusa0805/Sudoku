@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			foreach (var exocet in Patterns)
 			{
@@ -212,7 +212,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>The result.</returns>
 		private (TargetEliminations, MirrorEliminations) GatheringMirrorEliminations(
 			int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2, short lockedNonTarget,
-			int x, IReadOnlyGrid grid, short baseCandidatesMask, List<(int, int)> cellOffsets,
+			int x, Grid grid, short baseCandidatesMask, List<(int, int)> cellOffsets,
 			List<(int, int)> candidateOffsets)
 		{
 			if ((grid.GetCandidateMask(tq1) & baseCandidatesMask) != 0)
@@ -255,7 +255,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="targetElims">(<see langword="ref"/> parameter) The target eliminations.</param>
 		/// <returns>A <see cref="bool"/> value indicating whether this method has been found eliminations.</returns>
 		private static bool GatheringTargetEliminations(
-			int cell, IReadOnlyGrid grid, short baseCandidatesMask, short temp, ref TargetEliminations targetElims)
+			int cell, Grid grid, short baseCandidatesMask, short temp, ref TargetEliminations targetElims)
 		{
 			short candidateMask = (short)(grid.GetCandidateMask(cell) & ~temp);
 			if ((grid.GetStatus(cell), candidateMask, grid.GetCandidateMask(cell) & baseCandidatesMask) is (Empty, not 0, not 0))
@@ -332,7 +332,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		private bool CheckTarget(
-			IReadOnlyGrid grid, int pos1, int pos2, int baseCandidatesMask,
+			Grid grid, int pos1, int pos2, int baseCandidatesMask,
 			out short otherCandidatesMask, out int otherRegion)
 		{
 			otherRegion = -1;
@@ -436,7 +436,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating whether the pattern exists.</returns>
 		private bool CheckBibiPattern(
-			IReadOnlyGrid grid, short baseCandidatesMask, int b1, int b2,
+			Grid grid, short baseCandidatesMask, int b1, int b2,
 			int tq1, int tq2, int tr1, int tr2, GridMap crossline, bool isRow,
 			short lockedQ, short lockedR, GridMap targetMap,
 			out BibiPatternEliminations bibiElims, out TargetPairEliminations targetPairElims,

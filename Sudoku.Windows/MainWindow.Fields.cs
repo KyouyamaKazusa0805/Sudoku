@@ -151,7 +151,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The initial grid.
 		/// </summary>
-		private IReadOnlyGrid _initialPuzzle = null!;
+		private Grid _initialPuzzle = null!;
 
 		/// <summary>
 		/// The steps searched. This field stores the previous group that searched before.

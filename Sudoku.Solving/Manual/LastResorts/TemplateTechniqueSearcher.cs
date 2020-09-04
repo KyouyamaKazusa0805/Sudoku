@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the puzzle is not unique.
 		/// </exception>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			if (!grid.IsValid(out var solution))
 			{
@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="result">The result.</param>
 		/// <param name="solution">The solution.</param>
 		/// <returns>All template sets.</returns>
-		private static void GetAllTemplateSet(IList<TechniqueInfo> result, IReadOnlyGrid solution)
+		private static void GetAllTemplateSet(IList<TechniqueInfo> result, Grid solution)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -94,7 +94,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="result">The result.</param>
 		/// <param name="solution">The solution.</param>
 		/// <returns>All template deletes.</returns>
-		private static void GetAllTemplateDelete(IList<TechniqueInfo> result, IReadOnlyGrid solution)
+		private static void GetAllTemplateDelete(IList<TechniqueInfo> result, Grid solution)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -133,7 +133,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <exception cref="ArgumentException">
 		/// Throws when the puzzle has not been solved.
 		/// </exception>
-		private static GridMap CreateInstance(IReadOnlyGrid grid, int digit)
+		private static GridMap CreateInstance(Grid grid, int digit)
 		{
 			if (!grid.HasSolved)
 			{

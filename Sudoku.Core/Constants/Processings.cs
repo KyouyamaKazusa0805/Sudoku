@@ -143,7 +143,7 @@ namespace Sudoku.Constants
 		/// and the digit is the specified one.
 		/// </param>
 		public static void Deconstruct(
-			this IReadOnlyGrid @this, out GridMap empty, out GridMap bivalue,
+			this Grid @this, out GridMap empty, out GridMap bivalue,
 			out GridMap[] candidates, out GridMap[] digits, out GridMap[] values) =>
 			(empty, bivalue, candidates, digits, values) = (
 				@this.GetEmptyCellsMap(), @this.GetBivalueCellsMap(),
@@ -154,7 +154,7 @@ namespace Sudoku.Constants
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		private static GridMap GetEmptyCellsMap(this IReadOnlyGrid @this)
+		private static GridMap GetEmptyCellsMap(this Grid @this)
 		{
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
@@ -173,7 +173,7 @@ namespace Sudoku.Constants
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		private static GridMap GetBivalueCellsMap(this IReadOnlyGrid @this)
+		private static GridMap GetBivalueCellsMap(this Grid @this)
 		{
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
@@ -192,7 +192,7 @@ namespace Sudoku.Constants
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		private static GridMap[] GetCandidatesMap(this IReadOnlyGrid @this)
+		private static GridMap[] GetCandidatesMap(this Grid @this)
 		{
 			var result = new GridMap[9];
 			for (int digit = 0; digit < 9; digit++)
@@ -213,15 +213,15 @@ namespace Sudoku.Constants
 		/// <summary>
 		/// <para>Get the map of all distributions for digits.</para>
 		/// <para>
-		/// Different with <see cref="GetCandidatesMap(IReadOnlyGrid)"/>,
+		/// Different with <see cref="GetCandidatesMap(Grid)"/>,
 		/// this method will get all cells that contain the digit or fill this digit
 		/// (given or modifiable).
 		/// </para>
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		/// <seealso cref="GetCandidatesMap(IReadOnlyGrid)"/>
-		private static GridMap[] GetDigitsMap(this IReadOnlyGrid @this)
+		/// <seealso cref="GetCandidatesMap(Grid)"/>
+		private static GridMap[] GetDigitsMap(this Grid @this)
 		{
 			var result = new GridMap[9];
 			for (int digit = 0; digit < 9; digit++)
@@ -244,7 +244,7 @@ namespace Sudoku.Constants
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		private static GridMap[] GetValuesMap(this IReadOnlyGrid @this)
+		private static GridMap[] GetValuesMap(this Grid @this)
 		{
 			var result = new GridMap[9];
 			for (int digit = 0; digit < 9; digit++)

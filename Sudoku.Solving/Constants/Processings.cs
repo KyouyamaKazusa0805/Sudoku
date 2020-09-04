@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Constants
 		/// <param name="grid">The grid.</param>
 		/// <param name="map">The map.</param>
 		/// <returns>The result.</returns>
-		public static short BitwiseOrMasks(IReadOnlyGrid grid, GridMap map)
+		public static short BitwiseOrMasks(Grid grid, GridMap map)
 		{
 			short mask = 0;
 			foreach (int cell in map)

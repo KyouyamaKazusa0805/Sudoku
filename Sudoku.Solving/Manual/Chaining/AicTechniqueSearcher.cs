@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	public sealed class AicTechniqueSearcher : ChainingTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			var tempAccumulator = new List<ChainingTechniqueInfo>();
 			GetAll(tempAccumulator, grid, true, false);
@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="yEnabled">
 		/// Indicates whether the strong links in cells are enabled to search for.
 		/// </param>
-		private void GetAll(IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, bool xEnabled, bool yEnabled)
+		private void GetAll(IList<ChainingTechniqueInfo> accumulator, Grid grid, bool xEnabled, bool yEnabled)
 		{
 			foreach (int cell in EmptyMap)
 			{
@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates whether the strong links in cells are enabled to search for.
 		/// </param>
 		private void DoUnaryChaining(
-			IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, bool xEnabled, bool yEnabled)
+			IList<ChainingTechniqueInfo> accumulator, Grid grid, Node pOn, bool xEnabled, bool yEnabled)
 		{
 			if (grid.GetCandidateMask(pOn.Cell).CountSet() > 2 && !xEnabled)
 			{
@@ -144,7 +144,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
 		/// <seealso cref="LoopTechniqueInfo"/>
-		private ChainingTechniqueInfo? CreateLoopHint(IReadOnlyGrid grid, Node destOn, bool xEnabled, bool yEnabled)
+		private ChainingTechniqueInfo? CreateLoopHint(Grid grid, Node destOn, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
 			var links = GetLinks(destOn, true); //! Maybe wrong when adding grouped nodes.
@@ -190,7 +190,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
 		/// <seealso cref="AicTechniqueInfo"/>
-		private ChainingTechniqueInfo? CreateAicHint(IReadOnlyGrid grid, Node target, bool xEnabled, bool yEnabled)
+		private ChainingTechniqueInfo? CreateAicHint(Grid grid, Node target, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
 			if (!target.IsOn)
@@ -241,7 +241,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="chains">The chain nodes.</param>
 		/// <param name="source">The source node.</param>
 		private void DoAic(
-			IReadOnlyGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled,
+			Grid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled,
 			IList<Node> chains, Node source)
 		{
 			var pendingOn = new List<Node>(onToOn);
@@ -310,7 +310,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="loops">The loop nodes.</param>
 		/// <param name="source">The source node.</param>
 		private void DoLoops(
-			IReadOnlyGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool xEnabled, bool yEnabled,
+			Grid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool xEnabled, bool yEnabled,
 			IList<Node> loops, Node source)
 		{
 			var pendingOn = new List<Node>(onToOn);

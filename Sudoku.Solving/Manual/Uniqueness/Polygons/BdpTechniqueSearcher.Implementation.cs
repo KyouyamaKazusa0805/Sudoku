@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -13,7 +12,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	partial class BdpTechniqueSearcher
 	{
 		private static partial void CheckType1(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, Grid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -75,7 +74,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		}
 
 		private static partial void CheckType2(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, Grid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -127,7 +126,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		}
 
 		private static partial void CheckType3(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, Grid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -228,9 +227,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 		}
 
-		[SuppressMessage("", "IDE0004:Remove redundant cast")]
 		private static partial void CheckType4(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, Grid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			// The type 4 may be complex and terrible to process.

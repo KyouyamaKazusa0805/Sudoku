@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			var compatibleCells = (stackalloc int[4]);
 			var cover = (stackalloc int[8]);
@@ -491,7 +491,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="t2">The target cell 2.</param>
 		/// <seealso cref="CompatibilityTest(short, GridMap[], GridMap, GridMap, int, int)"/>
 		private void CompatibilityTest2(
-			IReadOnlyGrid grid, ref CompatibilityTestEliminations compatibilityElims,
+			Grid grid, ref CompatibilityTestEliminations compatibilityElims,
 			GridMap baseCellsMap, short baseCandidatesMask, int t1, int t2)
 		{
 			if ((grid.GetStatus(t1), grid.GetStatus(t2)) is (not Empty, not Empty))

@@ -156,7 +156,7 @@ namespace Sudoku.Windows
 								_textBoxInfo.Text = (string)LangSource["TextOpeningPictures"];
 								using (var bitmap = new Bitmap(dialog.FileName))
 								{
-									var grid = (await _recognition.RecorgnizeAsync(bitmap)).ToMutable();
+									var grid = await _recognition.RecorgnizeAsync(bitmap);
 									grid.Fix();
 									Puzzle = new(grid);
 								}

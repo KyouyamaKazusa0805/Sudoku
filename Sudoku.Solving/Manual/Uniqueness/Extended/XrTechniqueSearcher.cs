@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	public sealed partial class XrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			foreach (var (allCellsMap, pairs, size) in Combinations)
 			{
@@ -117,19 +117,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		}
 
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			GridMap extraCells, short normalDigits, int extraDigit);
 
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			GridMap extraCells, short normalDigits, int extraDigit);
 
 		partial void CheckType3Naked(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			short normalDigits, short extraDigits, GridMap extraCellsMap);
 
 		partial void CheckType14(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			short normalDigits, GridMap extraCellsMap);
 	}
 }

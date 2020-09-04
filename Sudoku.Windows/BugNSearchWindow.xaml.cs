@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Solving.Checking;
 using static Sudoku.Windows.Constants.Processings;
+using Grid = Sudoku.Data.Grid;
 
 namespace Sudoku.Windows
 {
@@ -19,14 +19,14 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The puzzle.
 		/// </summary>
-		private readonly IReadOnlyGrid _puzzle;
+		private readonly Grid _puzzle;
 
 
 		/// <summary>
 		/// Initializes an instance with the specified puzzle.
 		/// </summary>
 		/// <param name="puzzle">The puzzle.</param>
-		public BugNSearchWindow(IReadOnlyGrid puzzle)
+		public BugNSearchWindow(Grid puzzle)
 		{
 			InitializeComponent();
 

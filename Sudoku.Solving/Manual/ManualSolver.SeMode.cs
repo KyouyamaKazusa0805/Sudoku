@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual
 		/// <seealso cref="GridProgressResult"/>
 		[Obsolete]
 		private AnalysisResult SolveSeMode(
-			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku,
+			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution, bool sukaku,
 			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 #if I_CANT_DECIDE_WHETHER_THE_FIELD_SHOULD_BE_REMOVED__IF_THE_FIELD_IS_REMOVED__THIS_METHOD_WILL_BE_CHANGED_SYNCHRONIZEDLY
@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual
 #else
 			var searchers = GetSearchersSeMode(solution);
 #endif
-			var stepGrids = new List<IReadOnlyGrid>();
+			var stepGrids = new List<Grid>();
 			var bag = new List<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();

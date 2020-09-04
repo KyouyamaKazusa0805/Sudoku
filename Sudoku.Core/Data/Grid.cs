@@ -17,7 +17,7 @@ namespace Sudoku.Data
 	/// Encapsulates a basic sudoku grid, which uses mask table to store all information for 81 cells.
 	/// </summary>
 	[DebuggerStepThrough]
-	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid?>, IReadOnlyGrid
+	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid?>, IFormattable
 	{
 		/// <summary>
 		/// Indicates the empty grid string.
@@ -27,7 +27,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates an empty grid, where all values are zero.
 		/// </summary>
-		public static readonly IReadOnlyGrid Empty = new Grid();
+		public static readonly Grid Empty = new();
 
 
 		/// <summary>
@@ -128,13 +128,16 @@ namespace Sudoku.Data
 			// Initializes the event handler.
 			// Note that the default event initialization hides the back delegate field,
 			// so we should use this field-style event to trigger the event by
-			// 'Event.Invoke(objectToTrigger, eventArg)', where the variable
+			// 'Event(objectToTrigger, eventArg)', where the variable
 			// 'objectToTrigger' is always 'this'.
 			ValueChanged += OnValueChanged;
 		}
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the grid has already solved. If the value is <see langword="true"/>,
+		/// the grid is solved; otherwise, <see langword="false"/>.
+		/// </summary>
 		public bool HasSolved
 		{
 			get
@@ -151,7 +154,9 @@ namespace Sudoku.Data
 			}
 		}
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the number of total candidates.
+		/// </summary>
 		public int CandidatesCount
 		{
 			get
@@ -169,13 +174,19 @@ namespace Sudoku.Data
 			}
 		}
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the total number of given cells.
+		/// </summary>
 		public int GivensCount => Triplet.C;
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the total number of modifiable cells.
+		/// </summary>
 		public int ModifiablesCount => Triplet.B;
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the total number of empty cells.
+		/// </summary>
 		public int EmptiesCount => Triplet.A;
 
 		/// <summary>
@@ -197,32 +208,48 @@ namespace Sudoku.Data
 		}
 
 
-		/// <inheritdoc/>
-		public virtual int this[int offset]
+		/// <summary>
+		/// Gets or sets a digit into a cell.
+		/// </summary>
+		/// <param name="cell">The cell offset you want to get or set.</param>
+		/// <value>
+		/// The digit you want to set. This value should be between 0 and 8.
+		/// In addition, if your input is -1, the candidate mask in this cell
+		/// will be re-computed. If your input is none of them above, this indexer
+		/// will do nothing.
+		/// </value>
+		/// <returns>
+		/// An <see cref="int"/> value indicating the result.
+		/// If the current cell does not have a digit
+		/// (i.e. The cell is <see cref="S.Empty"/>),
+		/// The value will be -1.
+		/// </returns>
+		[IndexerName("Value")]
+		public virtual int this[int cell]
 		{
-			get => GetStatus(offset) switch
+			get => GetStatus(cell) switch
 			{
 				S.Empty => -1,
-				S.Modifiable => (~_masks[offset]).FindFirstSet(),
-				S.Given => (~_masks[offset]).FindFirstSet(),
+				S.Modifiable => (~_masks[cell]).FindFirstSet(),
+				S.Given => (~_masks[cell]).FindFirstSet(),
 				_ => throw T.ImpossibleCase
 			};
 			set
 			{
 				switch (value)
 				{
-					case -1 when GetStatus(offset) == S.Modifiable:
+					case -1 when GetStatus(cell) == S.Modifiable:
 					{
 						// If 'value' is -1, we should reset the grid.
 						// Note that reset candidates may not trigger the event.
-						_masks[offset] = (short)S.Empty << 9;
+						_masks[cell] = (short)S.Empty << 9;
 						RecomputeCandidates();
 
 						break;
 					}
 					case >= 0 and < 9:
 					{
-						ref short result = ref _masks[offset];
+						ref short result = ref _masks[cell];
 						short copy = result;
 
 						// Set cell status to 'CellStatus.Modifiable'.
@@ -230,7 +257,7 @@ namespace Sudoku.Data
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
-						ValueChanged.Invoke(this, new(offset, copy, result, value));
+						ValueChanged(this, new(cell, copy, result, value));
 
 						break;
 					}
@@ -238,13 +265,23 @@ namespace Sudoku.Data
 			}
 		}
 
-		/// <inheritdoc/>
-		public virtual bool this[int offset, int digit]
+		/// <summary>
+		/// Gets or sets a candidate existence case with a <see cref="bool"/> value.
+		/// </summary>
+		/// <param name="cell">The cell offset between 0 and 80.</param>
+		/// <param name="digit">The digit between 0 and 8.</param>
+		/// <value>
+		/// The case you want to set. <see langword="true"/> means that this candidate
+		/// does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
+		/// </value>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[IndexerName("Value")]
+		public virtual bool this[int cell, int digit]
 		{
-			get => (_masks[offset] >> digit & 1) != 0;
+			get => (_masks[cell] >> digit & 1) != 0;
 			set
 			{
-				ref short result = ref _masks[offset];
+				ref short result = ref _masks[cell];
 				short copy = result;
 				if (value)
 				{
@@ -256,7 +293,7 @@ namespace Sudoku.Data
 				}
 
 				// To trigger the event.
-				ValueChanged.Invoke(this, new(offset, copy, result, -1));
+				ValueChanged(this, new(cell, copy, result, -1));
 			}
 		}
 
@@ -317,7 +354,7 @@ namespace Sudoku.Data
 			short copy = mask;
 			mask = (short)((int)cellStatus << 9 | mask & MaxCandidatesMask);
 
-			ValueChanged.Invoke(this, new(offset, copy, mask, -1));
+			ValueChanged(this, new(offset, copy, mask, -1));
 		}
 
 		/// <summary>
@@ -332,7 +369,7 @@ namespace Sudoku.Data
 			short copy = mask;
 			mask = value;
 
-			ValueChanged.Invoke(this, new(offset, copy, mask, -1));
+			ValueChanged(this, new(offset, copy, mask, -1));
 		}
 
 		/// <summary>
@@ -378,7 +415,13 @@ namespace Sudoku.Data
 			return result;
 		}
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Serializes this instance to an array, where all digit value will be stored.
+		/// </summary>
+		/// <returns>
+		/// This array. All elements are between 0 to 9, where 0 means the
+		/// cell is <see cref="S.Empty"/> now.
+		/// </returns>
 		public int[] ToArray()
 		{
 			var span = (stackalloc int[81]);
@@ -392,13 +435,31 @@ namespace Sudoku.Data
 			return span.ToArray();
 		}
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Get a mask of the specified cell.
+		/// </summary>
+		/// <param name="offset">The cell offset you want to get.</param>
+		/// <returns>The mask.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public short GetMask(int offset) => _masks[offset];
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Get the candidate mask part of the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell offset you want to get.</param>
+		/// <returns>
+		/// The candidate mask. The return value is a 9-bit <see cref="short"/>
+		/// value, where the bit will be <c>0</c> if the corresponding digit <b>does not exist</b> in the cell,
+		/// and will be <c>1</c> if the corresponding contains this digit (either the cell
+		/// is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
+		/// </returns>
+		/// <remarks>
+		/// Please note that the grid masks is represented with bits, where 0 is for the digit containing in a
+		/// cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
+		/// 1 is for containing and 0 is for <b>not</b>.
+		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public short GetCandidateMask(int offset) => (short)(~_masks[offset] & MaxCandidatesMask);
+		public short GetCandidateMask(int cell) => (short)(~_masks[cell] & MaxCandidatesMask);
 
 		/// <inheritdoc/>
 		public sealed override string ToString() => ToString(null, null);
@@ -441,12 +502,24 @@ namespace Sudoku.Data
 			};
 		}
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Get the current status for the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell offset you want to get.</param>
+		/// <returns>The cell status.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public S GetStatus(int offset) => (S)(_masks[offset] >> 9 & (int)S.All);
+		public S GetStatus(int cell) => (S)(_masks[cell] >> 9 & (int)S.All);
 
 		/// <inheritdoc/>
 		public Grid Clone() => new((short[])_masks.Clone());
+
+		/// <summary>
+		/// Get all candidates containing in the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell you want to get.</param>
+		/// <returns>All candidates.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public IEnumerable<int> GetCandidates(int cell) => GetCandidateMask(cell).GetAllSets();
 
 		/// <inheritdoc/>
 		public IEnumerator<short> GetEnumerator() => ((IEnumerable<short>)_masks).GetEnumerator();

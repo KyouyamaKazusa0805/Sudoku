@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	public sealed partial class UlTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			if (BivalueMap.Count < 6)
 			{
@@ -141,19 +141,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		}
 
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
+			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap);
 
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
+			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap, short comparer);
 
 		partial void CheckType3(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
+			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap, short comparer);
 
 		partial void CheckType4(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
+			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap, short comparer);
 	}
 }

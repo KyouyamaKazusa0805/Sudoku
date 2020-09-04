@@ -18,14 +18,14 @@ namespace Sudoku.Runtime
 		/// Initializes an instance with a grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public MultipleSolutionsException(IReadOnlyGrid grid) : base() => Grid = grid;
+		public MultipleSolutionsException(Grid grid) : base() => Grid = grid;
 
 		/// <summary>
 		/// Initializes an instance with a grid and an error message.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="message">The error message.</param>
-		public MultipleSolutionsException(IReadOnlyGrid grid, string message)
+		public MultipleSolutionsException(Grid grid, string message)
 			: base(message) => Grid = grid;
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace Sudoku.Runtime
 		/// <param name="grid">The grid.</param>
 		/// <param name="message">The error message.</param>
 		/// <param name="inner">The inner exception.</param>
-		public MultipleSolutionsException(IReadOnlyGrid grid, string message, Exception inner)
+		public MultipleSolutionsException(Grid grid, string message, Exception inner)
 			: base(message, inner) => Grid = grid;
 
 		/// <summary>
@@ -44,7 +44,7 @@ namespace Sudoku.Runtime
 		/// <param name="grid">The grid.</param>
 		/// <param name="info">The streaming information.</param>
 		/// <param name="context">The streaming context.</param>
-		protected MultipleSolutionsException(IReadOnlyGrid grid, SerializationInfo info, StreamingContext context)
+		protected MultipleSolutionsException(Grid grid, SerializationInfo info, StreamingContext context)
 			: base(info, context) => Grid = grid;
 
 
@@ -56,6 +56,6 @@ namespace Sudoku.Runtime
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		public IReadOnlyGrid Grid { get; }
+		public Grid Grid { get; }
 	}
 }

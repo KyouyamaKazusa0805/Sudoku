@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			int value = Digit + 1;
 			string baseSetStr = new RegionCollection(BaseSets).ToString();
 			string coverSetStr = new RegionCollection(CoverSets).ToString();
-			string? finStr = FinCellOffsets is not null and { Count: not 0 }
+			string? finStr = FinCellOffsets is { Count: not 0 }
 				? $" f{new CellCollection(FinCellOffsets).ToString()}"
 				: string.Empty;
 			string elimStr = new ConclusionCollection(Conclusions).ToString();

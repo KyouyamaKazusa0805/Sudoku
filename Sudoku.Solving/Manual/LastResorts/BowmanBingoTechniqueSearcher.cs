@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			var tempAccumulator = new List<BowmanBingoTechniqueInfo>();
 			var tempGrid = grid.Clone();
@@ -209,7 +209,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="grid">The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
-		private static bool IsValidGrid(IReadOnlyGrid grid, int cell) =>
+		private static bool IsValidGrid(Grid grid, int cell) =>
 			Peers[cell].All(
 				c =>
 					grid.GetStatus(c) is CellStatus status

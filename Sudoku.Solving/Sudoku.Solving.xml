@@ -9,12 +9,12 @@
             Provides an analysis result after a puzzle solved.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.Boolean,System.String,System.String,System.TimeSpan,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.IReadOnlyGrid})">
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.Boolean,System.String,System.String,System.TimeSpan,Sudoku.Data.Grid,Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Grid})">
             <summary>
             Provides an analysis result after a puzzle solved.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid,System.Boolean,System.TimeSpan,System.String)">
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.Grid,Sudoku.Data.Grid,System.Boolean,System.TimeSpan,System.String)">
             <summary>
             Initializes an instance with some information.
             </summary>
@@ -25,7 +25,7 @@
             <param name="elapsedTime">The elapsed time while solving.</param>
             <param name="additional">The additional message.</param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid,System.Boolean,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.IReadOnlyGrid})">
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.Grid,Sudoku.Data.Grid,System.Boolean,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Grid})">
             <summary>
             Initializes an instance with some information.
             </summary>
@@ -37,7 +37,7 @@
             <param name="steps">All steps produced in solving.</param>
             <param name="stepGrids">All intermediate grids.</param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid,System.Boolean,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.IReadOnlyGrid},System.String)">
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.Grid,Sudoku.Data.Grid,System.Boolean,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Grid},System.String)">
             <summary>
             Initializes an instance with some information.
             </summary>
@@ -167,7 +167,7 @@
             (<see langword="out" /> parameter) The diamond difficulty.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.IReadOnlyGrid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.IReadOnlyGrid@,Sudoku.Solving.DifficultyLevel@)">
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Grid@,Sudoku.Solving.DifficultyLevel@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
@@ -187,7 +187,7 @@
             (<see langword="out" /> parameter) The difficulty level.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@,Sudoku.Data.IReadOnlyGrid@,Sudoku.Data.IReadOnlyGrid@,System.TimeSpan@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.IReadOnlyGrid}@,System.String@)">
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.TimeSpan@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Grid}@,System.String@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
@@ -398,7 +398,7 @@
         <member name="P:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.Solve(Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.BacktrackinglySolve(System.Int32@,System.Int32[]@,System.Int32[],System.Int32)">
@@ -483,7 +483,7 @@
             <param name="str">The string.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(System.String,System.String@,System.Int32)">
@@ -722,7 +722,7 @@
         <member name="P:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.SolveStrings(System.String)">
@@ -747,7 +747,7 @@
             The temporary test solver used in this searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoors(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoors(Sudoku.Data.Grid,System.Int32)">
             <summary>
             Search all backdoors whose level is lower or equals than the
             specified depth.
@@ -762,7 +762,7 @@
             Throws when the specified grid is invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExact(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExact(Sudoku.Data.Grid,System.Int32)">
             <summary>
             Search all backdoors whose depth is exactly same as the argument.
             </summary>
@@ -773,7 +773,7 @@
             </param>
             <returns>All backdoors.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExactAsync(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExactAsync(Sudoku.Data.Grid,System.Int32)">
             <summary>
             Search all backdoors whose depth is exactly same as the argument asynchronizedly.
             </summary>
@@ -784,7 +784,7 @@
             </param>
             <returns>The task to calculate all conclusions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoors(System.Collections.Generic.IList{System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}},Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoors(System.Collections.Generic.IList{System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}},Sudoku.Data.Grid,System.Int32)">
             <summary>
             To find all backdoors in a sudoku grid.
             </summary>
@@ -815,7 +815,7 @@
             The distribution of all digits.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BugChecker.#ctor(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Checking.BugChecker.#ctor(Sudoku.Data.Grid)">
             <summary>
             Initializes an instance with the specified grid.
             </summary>
@@ -883,7 +883,7 @@
             Indicates the inner solver.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid@)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Grid,Sudoku.Data.Grid@)">
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
@@ -894,7 +894,7 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid@,System.Nullable{System.Boolean}@)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Grid,Sudoku.Data.Grid@,System.Nullable{System.Boolean}@)">
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
@@ -908,35 +908,35 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsMinimal(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsMinimal(Sudoku.Data.Grid)">
             <summary>
             To check if the puzzle is minimal or not.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsPearl(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsPearl(Sudoku.Data.Grid)">
             <summary>
             To check if the puzzle is pearl or not.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsDiamond(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsDiamond(Sudoku.Data.Grid)">
             <summary>
             To check if the puzzle is diamond or not.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.CanBeSolvedUsingOnlySsts(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.CanBeSolvedUsingOnlySsts(Sudoku.Data.Grid)">
             <summary>
             To check whether the puzzle can be solved using only simple sudoku technique set.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.DifficultyLevel(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.DifficultyLevel(Sudoku.Data.Grid)">
             <summary>
             Get the difficulty level of this puzzle.
             </summary>
@@ -1053,7 +1053,7 @@
             The names of all regular wings by their sizes.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Constants.Processings.BitwiseOrMasks(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Constants.Processings.BitwiseOrMasks(Sudoku.Data.Grid,Sudoku.Data.GridMap)">
             <summary>
             Get the mask that is a result after the bitwise or operation processed all cells
             in the specified map.
@@ -1439,7 +1439,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(Sudoku.Solving.Manual.Alses.Als)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.ContainsDigit(Sudoku.Data.IReadOnlyGrid,System.Int32,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.ContainsDigit(Sudoku.Data.Grid,System.Int32,Sudoku.Data.GridMap@)">
             <summary>
             Indicates whether the specified grid contains the digit.
             </summary>
@@ -1454,7 +1454,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Als.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.Grid)">
             <summary>
             To search for all ALSes in the specified grid.
             </summary>
@@ -1601,7 +1601,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ContainsDigit(Sudoku.Data.IReadOnlyGrid,System.Int32,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ContainsDigit(Sudoku.Data.Grid,System.Int32,Sudoku.Data.GridMap@)">
             <summary>
             Indicates whether the specified grid contains the digit.
             </summary>
@@ -1623,7 +1623,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.GetAllAlses(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.GetAllAlses(Sudoku.Data.Grid)">
             <summary>
             To search for all ALSes in the specified grid.
             </summary>
@@ -1700,7 +1700,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueInfo">
@@ -1773,7 +1773,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo">
@@ -1858,7 +1858,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo">
@@ -1928,10 +1928,10 @@
             Indicates the max petals of instance to search.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.ProcessDeathAlsInfo(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[],System.Int16[],System.Int32[0:,0:],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Alses.Basic.Als})">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.ProcessDeathAlsInfo(Sudoku.Data.Grid,Sudoku.Data.GridMap[],System.Int16[],System.Int32[0:,0:],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Alses.Basic.Als})">
             <summary>
             Process death ALSes information.
             </summary>
@@ -1941,7 +1941,7 @@
             <param name="death">The death table.</param>
             <param name="alses">The ALS list.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.PreprocessAndRecordAlses(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.PreprocessAndRecordAlses(Sudoku.Data.Grid,Sudoku.Data.GridMap)">
             <summary>
             To preprocess and record all ALSes.
             </summary>
@@ -2010,7 +2010,7 @@
             Encapsulates an <b>empty rectangle intersection pair</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo">
@@ -2052,7 +2052,7 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueSearcher"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.Patterns">
@@ -2150,7 +2150,7 @@
             <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> will not be used here.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo">
@@ -2252,7 +2252,7 @@
             <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> will not be used here.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo">
@@ -2292,7 +2292,7 @@
             Encapsulates a <b>domino loop</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.GetCombinations(System.Int16)">
@@ -2374,7 +2374,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Rcc.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetAllRccs(Sudoku.Data.IReadOnlyGrid,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetAllRccs(Sudoku.Data.Grid,System.Boolean)">
             <summary>
             Get all RCCs in the specified grid.
             </summary>
@@ -2384,7 +2384,7 @@
             </param>
             <returns>All RCCs searched.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetCommonDigits(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int16@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetCommonDigits(Sudoku.Data.Grid,Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int16@)">
             <summary>
             Get the common digit that two ALSes share.
             </summary>
@@ -2399,7 +2399,7 @@
             it will return <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.DigitAppears(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,System.Int32,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.DigitAppears(Sudoku.Data.Grid,Sudoku.Solving.Manual.Alses.Als,System.Int32,Sudoku.Data.GridMap@)">
             <summary>
             Check whether the digit appears at least once in the specified ALS.
             </summary>
@@ -2486,10 +2486,10 @@
             the redundant backtracking.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.Grid,System.Boolean,System.Boolean)">
             <summary>
             Search for chains of each type.
             </summary>
@@ -2502,7 +2502,7 @@
             Indicates whether the strong links in cells are enabled to search for.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.DoUnaryChaining(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.DoUnaryChaining(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.Grid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
             <summary>
             Do unary chaining.
             </summary>
@@ -2516,7 +2516,7 @@
             Indicates whether the strong links in cells are enabled to search for.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.CreateLoopHint(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.CreateLoopHint(Sudoku.Data.Grid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
             <summary>
             Create a loop hint (i.e. a <see cref="T:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo"/>).
             </summary>
@@ -2530,7 +2530,7 @@
             </returns>
             <seealso cref="T:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.CreateAicHint(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.CreateAicHint(Sudoku.Data.Grid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
             <summary>
             Create an AIC hint (i.e. a <see cref="T:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo"/>).
             </summary>
@@ -2544,7 +2544,7 @@
             </returns>
             <seealso cref="T:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.DoAic(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean,System.Collections.Generic.IList{Sudoku.Data.Node},Sudoku.Data.Node)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.DoAic(Sudoku.Data.Grid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean,System.Collections.Generic.IList{Sudoku.Data.Node},Sudoku.Data.Node)">
             <summary>
             Simulate the passing strong and weak links in AICs.
             </summary>
@@ -2555,7 +2555,7 @@
             <param name="chains">The chain nodes.</param>
             <param name="source">The source node.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.DoLoops(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean,System.Boolean,System.Collections.Generic.IList{Sudoku.Data.Node},Sudoku.Data.Node)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.DoLoops(Sudoku.Data.Grid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean,System.Boolean,System.Collections.Generic.IList{Sudoku.Data.Node},Sudoku.Data.Node)">
             <summary>
             Simulate the passing strong and weak links in CNLs.
             </summary>
@@ -2763,7 +2763,7 @@
             Encapsulates a <b>chain</b> technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOnToOff(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOnToOff(Sudoku.Data.Grid,Sudoku.Data.Node,System.Boolean)">
             <summary>
             Get all available weak links.
             </summary>
@@ -2772,7 +2772,7 @@
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible weak links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOffToOn(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOffToOn(Sudoku.Data.Grid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
             <summary>
             Get all available strong links.
             </summary>
@@ -2864,10 +2864,10 @@
             Initializes an instance with the specified information.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.Grid)">
             <summary>
             Search for chains of each type.
             </summary>
@@ -3727,7 +3727,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
             <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/staticConstructor" />
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.Grid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Check mirror eliminations.
             </summary>
@@ -3794,10 +3794,10 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.#ctor(System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringMirrorEliminations(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32,Sudoku.Data.IReadOnlyGrid,System.Int16,System.Collections.Generic.List{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.List{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringMirrorEliminations(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32,Sudoku.Data.Grid,System.Int16,System.Collections.Generic.List{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.List{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Gathering mirror eliminations. This method is an entry for the method check mirror in base class.
             </summary>
@@ -3815,7 +3815,7 @@
             <param name="candidateOffsets">The highliht candidates.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringTargetEliminations(System.Int32,Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int16,Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringTargetEliminations(System.Int32,Sudoku.Data.Grid,System.Int16,System.Int16,Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations@)">
             <summary>
             The method for gathering target eliminations.
             </summary>
@@ -3836,7 +3836,7 @@
             A <see cref="T:System.Boolean"/> value indicating whether the structure passed the validation.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckTarget(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32,System.Int16@,System.Int32@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckTarget(Sudoku.Data.Grid,System.Int32,System.Int32,System.Int32,System.Int16@,System.Int32@)">
             <summary>
             Check the target cells.
             </summary>
@@ -3850,7 +3850,7 @@
             <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Boolean,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.Grid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Boolean,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations@)">
             <summary>
             Check Bi-bi pattern eliminations.
             </summary>
@@ -4057,7 +4057,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.#ctor(System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32[]@)">
@@ -4099,7 +4099,7 @@
             <param name="t2">The target cell 2.</param>
             <returns>The mask of all incompatible values.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest2(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations@,Sudoku.Data.GridMap,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest2(Sudoku.Data.Grid,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations@,Sudoku.Data.GridMap,System.Int16,System.Int32,System.Int32)">
             <summary>
             The compatibility testing after the method
             <see cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32,System.Int32)"/>.
@@ -4298,10 +4298,10 @@
             Indicates whether the puzzle will check POM first.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Int32)">
             <summary>
             Accumulate all technique information instances into the specified accumulator by size.
             </summary>
@@ -4374,10 +4374,10 @@
             Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Boolean)">
             <summary>
             Searches all basic fish of the specified size.
             </summary>
@@ -4389,7 +4389,7 @@
             </param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetDirectView(Sudoku.Data.IReadOnlyGrid,System.Int32,System.ReadOnlySpan{System.Int32},System.ReadOnlySpan{System.Int32},System.Boolean,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetDirectView(Sudoku.Data.Grid,System.Int32,System.ReadOnlySpan{System.Int32},System.ReadOnlySpan{System.Int32},System.Boolean,Sudoku.Data.GridMap)">
             <summary>
             Get the direct fish view with the specified grid and the base sets.
             </summary>
@@ -4622,10 +4622,10 @@
             Indicates whether the searcher should check almost locked quadruple.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Int32)">
             <summary>
             Get all technique information instances by size.
             </summary>
@@ -4634,7 +4634,7 @@
             <param name="size">The size.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Process the calculation.
             </summary>
@@ -4709,7 +4709,7 @@
             Encapsulates a <b>locked candidates</b> (LC) technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo">
@@ -4770,7 +4770,7 @@
             </summary>
             <param name="length">The length.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Int32)">
@@ -4806,7 +4806,7 @@
             <param name="cell">The cell.</param>
             <param name="mask">The mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.IsValidGrid(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.IsValidGrid(Sudoku.Data.Grid,System.Int32)">
             <summary>
             To check the specified cell has a same digit filled in a cell
             which is same region with the current one.
@@ -4862,7 +4862,7 @@
             The solution.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.#ctor(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.#ctor(Sudoku.Data.Grid)">
             <summary>
             A trick. Initializes an instance with the solution grid.
             This searcher will try to extract a value from the
@@ -4870,7 +4870,7 @@
             </summary>
             <param name="solution">The solution.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueInfo">
@@ -4922,10 +4922,10 @@
             Encapsulates a <b>pattern overlay method</b> (POM) technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetInvalidPos(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetInvalidPos(Sudoku.Data.Grid)">
             <summary>
             Get all invalid positions.
             </summary>
@@ -4995,13 +4995,13 @@
             Indicates whether the technique searcher checks template deletes only.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
             <exception cref="T:Sudoku.Runtime.WrongHandlingException">
             Throws when the puzzle is not unique.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateSet(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateSet(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <summary>
             Get all template sets.
             </summary>
@@ -5009,7 +5009,7 @@
             <param name="solution">The solution.</param>
             <returns>All template sets.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateDelete(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateDelete(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <summary>
             Get all template deletes.
             </summary>
@@ -5017,7 +5017,7 @@
             <param name="solution">The solution.</param>
             <returns>All template deletes.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.CreateInstance(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.CreateInstance(Sudoku.Data.Grid,System.Int32)">
             <summary>
             Create a <see cref="T:Sudoku.Data.GridMap"/> instance with the specified solution.
             If the puzzle has been solved, this method will create a grid map of
@@ -5043,15 +5043,15 @@
         <member name="P:Sudoku.Solving.Manual.LightManualSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LightManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LightManualSolver.Solve(Sudoku.Data.Grid)">
             <inheritdoc/>
             <remarks>
-            You should use the simple version of the solving method <see cref="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.IReadOnlyGrid)"/>.
+            You should use the simple version of the solving method <see cref="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.Grid)"/>.
             </remarks>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-            <seealso cref="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.IReadOnlyGrid)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.Grid)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.Grid)">
             <summary>
             To check whether the specified solver can solve the puzzle.
             </summary>
@@ -5083,10 +5083,10 @@
             Indicates the list that used as a cache.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.IReadOnlyGrid,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Grid,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
             <summary>
             To solve the puzzle.
             </summary>
@@ -5097,7 +5097,7 @@
             </param>
             <returns>The analysis result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.Grid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult})">
             <summary>
             Solve naively.
             </summary>
@@ -5122,7 +5122,7 @@
             </exception>
             <seealso cref="T:Sudoku.Models.GridProgressResult"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveSeMode(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveSeMode(Sudoku.Data.Grid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult})">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
@@ -5475,21 +5475,21 @@
             <para>The value is <c>5</c> in default case.</para>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSearchersHodokuMode(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSearchersHodokuMode(Sudoku.Data.Grid)">
             <summary>
             Get all searchers using in Hodoku-like mode.
             </summary>
             <param name="solution">The solution used for brute forces.</param>
             <returns>The searchers.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSearchersSeMode(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSearchersSeMode(Sudoku.Data.Grid)">
             <summary>
             Get all searchers using in Sudoku Explainer-like mode.
             </summary>
             <param name="solution">The solution used for brute forces.</param>
             <returns>The searchers.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Diagnostics.Stopwatch,System.Collections.Generic.List{Sudoku.Data.IReadOnlyGrid},Sudoku.Solving.AnalysisResult@)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.Grid,Sudoku.Data.Grid,System.Diagnostics.Stopwatch,System.Collections.Generic.List{Sudoku.Data.Grid},Sudoku.Solving.AnalysisResult@)">
             <summary>
             Bound with on-solving methods returns the solving state.
             </summary>
@@ -5502,7 +5502,7 @@
             <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.Grid,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             To check the validity of all conclusions.
             </summary>
@@ -5510,7 +5510,7 @@
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.ReportProgress(Sudoku.Data.IReadOnlyGrid,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Models.GridProgressResult@)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.ReportProgress(Sudoku.Data.Grid,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Models.GridProgressResult@)">
             <summary>
             To report the progress.
             </summary>
@@ -5568,7 +5568,7 @@
             forming an empty rectangle.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.IsEmptyRectangle(Sudoku.Data.GridMap,System.Int32,System.Int32@,System.Int32@)">
@@ -5625,7 +5625,7 @@
             Encapsulates a <b>guardian</b> technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.SdpTechniqueInfo">
@@ -5697,7 +5697,7 @@
             Encapsulates a two strong links technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo">
@@ -5846,7 +5846,7 @@
             Indicates whether the solver enables last digit.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
             <remarks>
             Note that this technique searcher will be used in other functions,
@@ -5960,7 +5960,7 @@
             Encapsulates a <b>subset</b> technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo">
@@ -6009,24 +6009,24 @@
             Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.CheckDiagonal(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.CheckDiagonal(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <summary>
             Check diagonal symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.CheckAntiDiagonal(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.CheckAntiDiagonal(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <summary>
             Check anti-diagonal symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.CheckCentral(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.CheckCentral(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <summary>
             Check central symmetry.
             </summary>
@@ -6148,10 +6148,10 @@
             technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check BUG + n with forcing chains.
             </summary>
@@ -6159,27 +6159,27 @@
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.DoChaining(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.DoChaining(Sudoku.Data.Grid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node})">
             <summary>
             Do chaining. This method is only called by
-            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>.
+            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>.
             </summary>
             <param name="grid">The grid.</param>
             <param name="toOn">All nodes to on.</param>
             <param name="toOff">All nodes to off.</param>
             <returns>The result nodes.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CreateEliminationHint(System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.Node,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.Node}})">
             <summary>
             Create the elimination hint. This method is only called by
-            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>.
+            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>.
             </summary>
             <param name="trueCandidates">The true candidates.</param>
             <param name="target">The target node.</param>
             <param name="outcomes">All outcomes.</param>
             <returns>The result information instance.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher">
             <summary>
@@ -6202,7 +6202,7 @@
             difficult searching.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{System.Int32})">
@@ -6212,7 +6212,7 @@
             <param name="accumulator">The result list.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check type 3 (with naked subsets).
             </summary>
@@ -6220,7 +6220,7 @@
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check type 4.
             </summary>
@@ -6228,7 +6228,7 @@
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckMultiple(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckMultiple(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check BUG + n.
             </summary>
@@ -6236,7 +6236,7 @@
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckXz(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckXz(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check BUG-XZ.
             </summary>
@@ -6514,7 +6514,7 @@
             Encapsulates an <b>extended rectangle</b> technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.Regions">
@@ -6737,10 +6737,10 @@
             In fact the unique loop can also search for URs.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Check type 1.
             </summary>
@@ -6751,7 +6751,7 @@
             <param name="loop">The loop.</param>
             <param name="extraCellsMap">The extra cells map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
             <summary>
             Check type 2.
             </summary>
@@ -6763,7 +6763,7 @@
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
             <summary>
             Check type 3.
             </summary>
@@ -6775,7 +6775,7 @@
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
             <summary>
             Check type 4.
             </summary>
@@ -6958,7 +6958,7 @@
             All possible heptagons and octagons are in here.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Quads">
@@ -7077,9 +7077,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.ConjugateRegion">
             <summary>
             The so-called conjugate region. If you do not know what is a "conjugate region",
-            please read the comments in the method <see cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)"/> for more details.
+            please read the comments in the method <see cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)"/> for more details.
             </summary>
-            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.Difficulty">
             <inheritdoc/>
@@ -7323,7 +7323,7 @@
             All different patterns.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.BaseLineIterator">
@@ -7659,7 +7659,7 @@
             </param>
             <param name="searchExtended">A <see cref="T:System.Boolean"/> value indicating that.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.IsConjugatePair(System.Int32,Sudoku.Data.GridMap,System.Int32)">
@@ -8196,7 +8196,7 @@
             Indicates the patterns.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.ChuteIterator">
@@ -8372,7 +8372,7 @@
             Encapsulates an <b>irregular wing</b> technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
             <remarks>
             In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
@@ -8507,7 +8507,7 @@
             </summary>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.WingTechniqueInfo">
@@ -8533,7 +8533,7 @@
             Indicates the name of this solver.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Solver.Solve(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Solver.Solve(Sudoku.Data.Grid)">
             <summary>
             To solve the specified puzzle.
             </summary>
@@ -8721,11 +8721,11 @@
             </summary>
             <property name="IMaps">
 		<remarks>
-			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" /> called, and you<b>'d better</b>
+			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" /> called, and you<b>'d better</b>
 			not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher" /> instance.
 		</remarks>
 	</property>
-            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" />
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" />
         </member>
         <member name="P:Sudoku.Solving.TechniqueSearcher.BivalueMap">
             <summary>
@@ -8733,11 +8733,11 @@
             </summary>
             <property name="IMaps">
 		<remarks>
-			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" /> called, and you<b>'d better</b>
+			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" /> called, and you<b>'d better</b>
 			not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher" /> instance.
 		</remarks>
 	</property>
-            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" />
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" />
         </member>
         <member name="P:Sudoku.Solving.TechniqueSearcher.CandMaps">
             <summary>
@@ -8745,11 +8745,11 @@
             </summary>
             <property name="IMaps">
 		<remarks>
-			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" /> called, and you<b>'d better</b>
+			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" /> called, and you<b>'d better</b>
 			not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher" /> instance.
 		</remarks>
 	</property>
-            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" />
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" />
         </member>
         <member name="P:Sudoku.Solving.TechniqueSearcher.DigitMaps">
             <summary>
@@ -8757,11 +8757,11 @@
             </summary>
             <property name="IMaps">
 		<remarks>
-			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" /> called, and you<b>'d better</b>
+			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" /> called, and you<b>'d better</b>
 			not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher" /> instance.
 		</remarks>
 	</property>
-            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" />
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" />
         </member>
         <member name="P:Sudoku.Solving.TechniqueSearcher.ValueMaps">
             <summary>
@@ -8769,20 +8769,20 @@
             </summary>
             <property name="IMaps">
 		<remarks>
-			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" /> called, and you<b>'d better</b>
+			This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" /> called, and you<b>'d better</b>
 			not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher" /> instance.
 		</remarks>
 	</property>
-            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)" />
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" />
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.GetOne(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.TechniqueSearcher.GetOne(Sudoku.Data.Grid)">
             <summary>
             Take a technique step after searched all solving steps.
             </summary>
             <param name="grid">The grid to search steps.</param>
             <returns>A technique information.</returns>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.TechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <summary>
             Accumulate all technique information instances into the specified accumulator.
             </summary>
@@ -8804,7 +8804,7 @@
         <member name="M:Sudoku.Solving.TechniqueSearcher.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)">
             <summary>
             Initialize the maps that used later.
             </summary>

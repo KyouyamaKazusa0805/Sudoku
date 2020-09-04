@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			var tempAccumulator = new List<ChainingTechniqueInfo>();
 			GetAll(tempAccumulator, grid);
@@ -77,7 +77,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
 		/// <param name="grid">Thr grid.</param>
-		private void GetAll(IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid)
+		private void GetAll(IList<ChainingTechniqueInfo> accumulator, Grid grid)
 		{
 			// Iterate on all empty cells.
 			foreach (int cell in EmptyMap)
@@ -172,7 +172,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 #if DYNAMIC_CHAINING
 		private void DoBinaryChaining(
-			IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, Node pOff,
+			IList<ChainingTechniqueInfo> accumulator, Grid grid, Node pOn, Node pOff,
 			ISet<Node> onToOn, ISet<Node> onToOff, bool doDouble, bool doContradiction)
 		{
 			Node[]? absurdNodes;
@@ -238,7 +238,7 @@ namespace Sudoku.Solving.Manual.Chaining
 #endif
 
 		private void DoRegionChaining(
-			IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, int cell, int digit,
+			IList<ChainingTechniqueInfo> accumulator, Grid grid, int cell, int digit,
 			Set<Node> onToOn, Set<Node> onToOff)
 		{
 			for (var label = Block; label <= Column; label++)
@@ -300,7 +300,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
-		private Node[]? DoChaining(IReadOnlyGrid grid, ISet<Node> toOn, ISet<Node> toOff)
+		private Node[]? DoChaining(Grid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
 #if DYNAMIC_CHAINING
 			_tempGrid = grid.Clone();
@@ -438,7 +438,7 @@ namespace Sudoku.Solving.Manual.Chaining
 #endif
 
 		private ChainingTechniqueInfo? CreateCellEliminationHint(
-			IReadOnlyGrid grid, int sourceCell, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
+			Grid grid, int sourceCell, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
 		{
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>

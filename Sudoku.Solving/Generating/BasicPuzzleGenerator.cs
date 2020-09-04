@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Generating
 	public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 	{
 		/// <inheritdoc/>
-		public override IReadOnlyGrid Generate() => Generate(28, Central, null);
+		public override Grid Generate() => Generate(28, Central, null);
 
 		/// <summary>
 		/// Generate a puzzle with the specified information.
@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The grid.</returns>
 		/// <seealso cref="SymmetryType"/>
-		public IReadOnlyGrid Generate(
+		public Grid Generate(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult>? progress,
 			string? globalizationString = null)
 		{
@@ -128,7 +128,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="globalzationString">The globalization string.</param>
 		/// <returns>The task.</returns>
 		/// <seealso cref="SymmetryType"/>
-		public async Task<IReadOnlyGrid> GenerateAsync(
+		public async Task<Grid> GenerateAsync(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult> progress,
 			string? globalzationString = null) =>
 			await Task.Run(() => Generate(max, symmetricalType, progress, globalzationString));

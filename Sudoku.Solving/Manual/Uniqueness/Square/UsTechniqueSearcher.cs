@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			foreach (var pattern in Patterns)
 			{
@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				unsafe
 				{
 					foreach (var f in
-						new delegate*<IList<TechniqueInfo>, IReadOnlyGrid, GridMap, short, void>[]
+						new delegate*<IList<TechniqueInfo>, Grid, GridMap, short, void>[]
 						{
 							&CheckType1, &CheckType2, &CheckType3, &CheckType4
 						})
@@ -47,16 +47,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		private static partial void CheckType1(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
+		private static partial void CheckType1(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask);
 
-		private static partial void CheckType2(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
+		private static partial void CheckType2(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask);
 
-		private static partial void CheckType3(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
+		private static partial void CheckType3(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask);
 
-		private static partial void CheckType4(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask);
+		private static partial void CheckType4(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask);
 	}
 }

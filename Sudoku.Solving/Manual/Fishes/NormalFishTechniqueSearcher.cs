@@ -21,13 +21,13 @@ namespace Sudoku.Solving.Manual.Fishes
 	public sealed class NormalFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			for (int size = 2; size <= 4; size++)
 			{
 				foreach (bool searchRow in BooleanValues)
 				{
-					AccumulateAllBySize(accumulator, grid, size, searchRow);
+					GetAll(accumulator, grid, size, searchRow);
 				}
 			}
 		}
@@ -43,8 +43,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Indicates the solver will searching rows or columns.
 		/// </param>
 		/// <returns>The result.</returns>
-		private static void AccumulateAllBySize(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int size, bool searchRow)
+		private static void GetAll(IList<TechniqueInfo> accumulator, Grid grid, int size, bool searchRow)
 		{
 			int baseSetStart = searchRow ? 9 : 18;
 			int coverSetStart = searchRow ? 18 : 9;
@@ -623,7 +622,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="finCellsMap">The fins map.</param>
 		/// <returns>The view.</returns>
 		private static View GetDirectView(
-			IReadOnlyGrid grid, int digit, ReadOnlySpan<int> baseSets, ReadOnlySpan<int> coverSets,
+			Grid grid, int digit, ReadOnlySpan<int> baseSets, ReadOnlySpan<int> coverSets,
 			bool searchRow, GridMap finCellsMap)
 		{
 			// Get the highlight cells (necessary).

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Sudoku.Data.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Stepping
@@ -38,19 +37,6 @@ namespace Sudoku.Data.Stepping
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		public UndoableGrid(Grid grid) : this((short[])grid._masks.Clone())
-		{
-		}
-
-		/// <summary>
-		/// Initializes an instance with the specified read only grid.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <exception cref="ArgumentException">
-		/// Throws when the type is invalid (invalid grid type).
-		/// </exception>
-		public UndoableGrid(IReadOnlyGrid grid)
-			: this((short[])(
-				(grid as Grid)?._masks.Clone() ?? throw new ArgumentException("The type is invalid.", nameof(grid))))
 		{
 		}
 
@@ -230,7 +216,7 @@ namespace Sudoku.Data.Stepping
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(UndoableGrid? other) => Equals(other?.ToMutable());
+		public bool Equals(UndoableGrid? other) => Equals(other as Grid);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

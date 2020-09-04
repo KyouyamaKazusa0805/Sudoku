@@ -188,7 +188,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="digit">The digit.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The result.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsDigit(IReadOnlyGrid grid, int digit, out GridMap result)
+		public bool ContainsDigit(Grid grid, int digit, out GridMap result)
 		{
 			result = GridMap.Empty;
 			foreach (int cell in Cells)
@@ -227,7 +227,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="grid">The grid.</param>
 		/// <returns>All ALSes searched.</returns>
 		[SuppressMessage("", "IDE0004")]
-		public static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid)
+		public static IEnumerable<Als> GetAllAlses(Grid grid)
 		{
 			// Search for bi-value cells first.
 			for (int cell = 0; cell < 81; cell++)

@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	partial class XrTechniqueSearcher
 	{
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			GridMap extraCells, short normalDigits, int extraDigit)
 		{
 			var conclusions = new List<Conclusion>();
@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		}
 
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			GridMap extraCells, short normalDigits, int extraDigit)
 		{
 			var elimMap = extraCells.PeerIntersection & CandMaps[extraDigit];
@@ -85,7 +85,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		}
 
 		partial void CheckType3Naked(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			short normalDigits, short extraDigits, GridMap extraCellsMap)
 		{
 			foreach (int region in extraCellsMap.CoveredRegions)
@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		}
 
 		partial void CheckType14(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			short normalDigits, GridMap extraCellsMap)
 		{
 			switch (extraCellsMap.Count)

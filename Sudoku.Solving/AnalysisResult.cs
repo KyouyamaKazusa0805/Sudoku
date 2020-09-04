@@ -21,10 +21,10 @@ namespace Sudoku.Solving
 		string SolverName,
 		string? Additional,
 		TimeSpan ElapsedTime,
-		IReadOnlyGrid Puzzle,
-		IReadOnlyGrid? Solution,
+		Grid Puzzle,
+		Grid? Solution,
 		IReadOnlyList<TechniqueInfo>? SolvingSteps,
-		IReadOnlyList<IReadOnlyGrid>? StepGrids) : IEnumerable<TechniqueInfo>, IFormattable
+		IReadOnlyList<Grid>? StepGrids) : IEnumerable<TechniqueInfo>, IFormattable
 	{
 		/// <summary>
 		/// Initializes an instance with some information.
@@ -36,7 +36,7 @@ namespace Sudoku.Solving
 		/// <param name="elapsedTime">The elapsed time while solving.</param>
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
-			string solverName, IReadOnlyGrid puzzle, IReadOnlyGrid? solution, bool hasSolved,
+			string solverName, Grid puzzle, Grid? solution, bool hasSolved,
 			TimeSpan elapsedTime, string? additional)
 			: this(solverName, puzzle, solution, hasSolved, elapsedTime, null, null, additional)
 		{
@@ -53,8 +53,8 @@ namespace Sudoku.Solving
 		/// <param name="steps">All steps produced in solving.</param>
 		/// <param name="stepGrids">All intermediate grids.</param>
 		public AnalysisResult(
-			string solverName, IReadOnlyGrid puzzle, IReadOnlyGrid? solution, bool hasSolved,
-			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<IReadOnlyGrid>? stepGrids)
+			string solverName, Grid puzzle, Grid? solution, bool hasSolved,
+			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<Grid>? stepGrids)
 			: this(solverName, puzzle, solution, hasSolved, elapsedTime, steps, stepGrids, null)
 		{
 		}
@@ -71,8 +71,8 @@ namespace Sudoku.Solving
 		/// <param name="stepGrids">All intermediate grids.</param>
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
-			string solverName, IReadOnlyGrid puzzle, IReadOnlyGrid? solution, bool hasSolved,
-			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<IReadOnlyGrid>? stepGrids,
+			string solverName, Grid puzzle, Grid? solution, bool hasSolved,
+			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<Grid>? stepGrids,
 			string? additional) : this(hasSolved, solverName, additional, elapsedTime, puzzle, solution, steps, stepGrids)
 		{
 		}
@@ -276,8 +276,8 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) The difficulty level.
 		/// </param>
 		public void Deconstruct(
-			out IReadOnlyGrid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
-			out IReadOnlyGrid? solution, out DifficultyLevel difficultyLevel) =>
+			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
+			out Grid? solution, out DifficultyLevel difficultyLevel) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
 
 		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -298,8 +298,8 @@ namespace Sudoku.Solving
 		/// <param name="additional">(<see langword="out"/> parameter) The additional message.</param>
 		public void Deconstruct(
 			out string solverName, out bool hasSolved, out decimal total, out decimal max, out decimal pearl,
-			out decimal diamond, out IReadOnlyGrid puzzle, out IReadOnlyGrid? solution, out TimeSpan elasped,
-			out int stepCount, out IReadOnlyList<TechniqueInfo>? steps, out IReadOnlyList<IReadOnlyGrid>? stepGrids,
+			out decimal diamond, out Grid puzzle, out Grid? solution, out TimeSpan elasped,
+			out int stepCount, out IReadOnlyList<TechniqueInfo>? steps, out IReadOnlyList<Grid>? stepGrids,
 			out string? additional)
 		{
 			solverName = SolverName;
@@ -358,7 +358,7 @@ namespace Sudoku.Solving
 		/// <param name="elapsedTime">The elapsed time while solving.</param>
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
-			string solverName, IReadOnlyGrid puzzle, IReadOnlyGrid? solution, bool hasSolved,
+			string solverName, Grid puzzle, Grid? solution, bool hasSolved,
 			TimeSpan elapsedTime, string? additional)
 			: this(solverName, puzzle, solution, hasSolved, elapsedTime, null, null, additional)
 		{
@@ -375,8 +375,8 @@ namespace Sudoku.Solving
 		/// <param name="steps">All steps produced in solving.</param>
 		/// <param name="stepGrids">All intermediate grids.</param>
 		public AnalysisResult(
-			string solverName, IReadOnlyGrid puzzle, IReadOnlyGrid? solution, bool hasSolved,
-			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<IReadOnlyGrid>? stepGrids)
+			string solverName, Grid puzzle, Grid? solution, bool hasSolved,
+			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<Grid>? stepGrids)
 			: this(solverName, puzzle, solution, hasSolved, elapsedTime, steps, stepGrids, null)
 		{
 		}
@@ -393,8 +393,8 @@ namespace Sudoku.Solving
 		/// <param name="stepGrids">All intermediate grids.</param>
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
-			string solverName, IReadOnlyGrid puzzle, IReadOnlyGrid? solution, bool hasSolved,
-			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<IReadOnlyGrid>? stepGrids,
+			string solverName, Grid puzzle, Grid? solution, bool hasSolved,
+			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<Grid>? stepGrids,
 			string? additional) =>
 			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional, StepGrids) = (
 				puzzle, solverName, hasSolved, solution, steps, elapsedTime, additional, stepGrids);
@@ -570,13 +570,13 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the initial puzzle.
 		/// </summary>
-		public IReadOnlyGrid Puzzle { get; }
+		public Grid Puzzle { get; }
 
 		/// <summary>
 		/// Indicates the solution grid. If and only if the puzzle
 		/// is not solved, this value will be <see langword="null"/>.
 		/// </summary>
-		public IReadOnlyGrid? Solution { get; }
+		public Grid? Solution { get; }
 
 		/// <summary>
 		/// Indicates the solving steps during solving. If the puzzle is not
@@ -588,7 +588,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the intermediate grids while solving.
 		/// </summary>
-		public IReadOnlyList<IReadOnlyGrid>? StepGrids { get; }
+		public IReadOnlyList<Grid>? StepGrids { get; }
 
 
 		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -648,8 +648,8 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) The difficulty level.
 		/// </param>
 		public void Deconstruct(
-			out IReadOnlyGrid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
-			out IReadOnlyGrid? solution, out DifficultyLevel difficultyLevel) =>
+			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
+			out Grid? solution, out DifficultyLevel difficultyLevel) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
 
 		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -670,8 +670,8 @@ namespace Sudoku.Solving
 		/// <param name="additional">(<see langword="out"/> parameter) The additional message.</param>
 		public void Deconstruct(
 			out string solverName, out bool hasSolved, out decimal total, out decimal max, out decimal pearl,
-			out decimal diamond, out IReadOnlyGrid puzzle, out IReadOnlyGrid? solution, out TimeSpan elasped,
-			out int stepCount, out IReadOnlyList<TechniqueInfo>? steps, out IReadOnlyList<IReadOnlyGrid>? stepGrids,
+			out decimal diamond, out Grid puzzle, out Grid? solution, out TimeSpan elasped,
+			out int stepCount, out IReadOnlyList<TechniqueInfo>? steps, out IReadOnlyList<Grid>? stepGrids,
 			out string? additional)
 		{
 			solverName = SolverName;

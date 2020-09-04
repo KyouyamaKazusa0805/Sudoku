@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			for (int size = 2; size <= (_checkAlq ? 4 : 3); size++)
 			{
@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>The result.</returns>
-		private static void GetAll(IList<TechniqueInfo> result, IReadOnlyGrid grid, int size)
+		private static void GetAll(IList<TechniqueInfo> result, Grid grid, int size)
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 			{
@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="b">The right grid map.</param>
 		/// <param name="c">The intersection.</param>
 		private static void GetAll(
-			IList<TechniqueInfo> result, IReadOnlyGrid grid, int size, int baseSet, int coverSet,
+			IList<TechniqueInfo> result, Grid grid, int size, int baseSet, int coverSet,
 			GridMap a, GridMap b, GridMap c)
 		{
 			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))

@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			if (EmptyMap.Count < 7)
 			{
@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			unsafe
 			{
 				var funcs =
-					new delegate*<IList<TechniqueInfo>, IReadOnlyGrid, Pattern, short, short, short, GridMap, void>[]
+					new delegate*<IList<TechniqueInfo>, Grid, Pattern, short, short, short, GridMap, void>[]
 					{
 						&CheckType1,
 						&CheckType2,
@@ -63,19 +63,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		}
 
 		private static partial void CheckType1(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, Grid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map);
 
 		private static partial void CheckType2(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, Grid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map);
 
 		private static partial void CheckType3(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, Grid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map);
 
 		private static partial void CheckType4(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, Grid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map);
 	}
 }

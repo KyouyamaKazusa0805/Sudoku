@@ -5,10 +5,10 @@ using static Sudoku.Constants.Processings;
 namespace Sudoku.Data.Extensions
 {
 	/// <summary>
-	/// Provides a series of methods for <see cref="IReadOnlyGrid"/>
+	/// Provides a series of methods for <see cref="Grid"/>
 	/// using in transformations.
 	/// </summary>
-	/// <seealso cref="IReadOnlyGrid"/>
+	/// <seealso cref="Grid"/>
 	public static class GridTransformationExtensions
 	{
 		/// <summary>
@@ -65,7 +65,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorLeftRight(this IReadOnlyGrid @this)
+		public static Grid MirrorLeftRight(this Grid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 9; i++)
@@ -86,7 +86,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorTopBottom(this IReadOnlyGrid @this)
+		public static Grid MirrorTopBottom(this Grid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 4; i++)
@@ -107,7 +107,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorDiagonal(this IReadOnlyGrid @this)
+		public static Grid MirrorDiagonal(this Grid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 1; i < 9; i++)
@@ -129,14 +129,14 @@ namespace Sudoku.Data.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Grid Transpose(this IReadOnlyGrid @this) => @this.MirrorDiagonal();
+		public static Grid Transpose(this Grid @this) => @this.MirrorDiagonal();
 
 		/// <summary>
 		/// Mirror anti-diagonal the grid.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorAntidiagonal(this IReadOnlyGrid @this)
+		public static Grid MirrorAntidiagonal(this Grid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 9; i++)
@@ -157,7 +157,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotateClockwise(this IReadOnlyGrid @this)
+		public static Grid RotateClockwise(this Grid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 81; i++)
@@ -175,7 +175,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotateCounterclockwise(this IReadOnlyGrid @this)
+		public static Grid RotateCounterclockwise(this Grid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 81; i++)
@@ -193,7 +193,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotatePi(this IReadOnlyGrid @this)
+		public static Grid RotatePi(this Grid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 81; i++)
@@ -217,7 +217,7 @@ namespace Sudoku.Data.Extensions
 		/// Throws when two specified region argument is not in valid range (0..27)
 		/// or two regions are not in same region type.
 		/// </exception>
-		public static Grid SwapTwoRegions(this IReadOnlyGrid @this, int region1, int region2)
+		public static Grid SwapTwoRegions(this Grid @this, int region1, int region2)
 		{
 			if (region1 is < 0 or >= 18)
 			{

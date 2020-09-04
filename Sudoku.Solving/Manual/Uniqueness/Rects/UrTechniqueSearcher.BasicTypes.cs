@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	partial class UrTechniqueSearcher
 	{
 		partial void CheckType1(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
 			//   ↓ cornerCell
@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void CheckType2(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			//   ↓ corner1 and corner2
@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void CheckType3Naked(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			//  ↓ corner1, corner2
@@ -267,7 +267,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void CheckType4(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			//  ↓ corner1, corner2
@@ -365,7 +365,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void CheckType5(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
 			//  ↓ cornerCell
@@ -438,7 +438,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void CheckType6(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			//  ↓ corner1
@@ -543,7 +543,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void CheckHidden(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
 			//  ↓ cornerCell

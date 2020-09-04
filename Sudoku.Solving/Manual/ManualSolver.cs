@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(IReadOnlyGrid grid) => Solve(grid, null);
+		public override AnalysisResult Solve(Grid grid) => Solve(grid, null);
 
 		/// <summary>
 		/// To solve the puzzle.
@@ -36,8 +36,7 @@ namespace Sudoku.Solving.Manual
 		/// The globalization string. The default value is <see langword="null"/>.
 		/// </param>
 		/// <returns>The analysis result.</returns>
-		public AnalysisResult Solve(
-			IReadOnlyGrid grid, IProgress<IProgressResult>? progress, string? globalizationString = null)
+		public AnalysisResult Solve(Grid grid, IProgress<IProgressResult>? progress, string? globalizationString = null)
 		{
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{

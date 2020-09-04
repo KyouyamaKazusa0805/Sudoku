@@ -39,11 +39,11 @@ namespace Sudoku.Solving.Manual
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
 		private AnalysisResult SolveNaively(
-			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku,
+			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution, bool sukaku,
 			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 			// Check symmetry first.
-			var stepGrids = new List<IReadOnlyGrid>();
+			var stepGrids = new List<Grid>();
 			if (!sukaku && CheckGurthSymmetricalPlacement)
 			{
 				var symmetrySearcher = new GspTechniqueSearcher();

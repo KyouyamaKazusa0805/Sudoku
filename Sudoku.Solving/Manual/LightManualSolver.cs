@@ -24,12 +24,12 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc/>
 		/// <remarks>
-		/// You should use the simple version of the solving method <see cref="CanSolve(IReadOnlyGrid)"/>.
+		/// You should use the simple version of the solving method <see cref="CanSolve(Grid)"/>.
 		/// </remarks>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		/// <seealso cref="CanSolve(IReadOnlyGrid)"/>
+		/// <seealso cref="CanSolve(Grid)"/>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override AnalysisResult Solve(IReadOnlyGrid grid) =>
+		public override AnalysisResult Solve(Grid grid) =>
 			throw new NotSupportedException($"The specified method should be replaced with '{nameof(CanSolve)}'.");
 
 		/// <summary>
@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual
 		/// A <see cref="bool"/> value indicating whether the solver
 		/// solved the puzzle successfully.
 		/// </returns>
-		public bool CanSolve(IReadOnlyGrid grid)
+		public bool CanSolve(Grid grid)
 		{
 			var cloneation = grid.Clone();
 

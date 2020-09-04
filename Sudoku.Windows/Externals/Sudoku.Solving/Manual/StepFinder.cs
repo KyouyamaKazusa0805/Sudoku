@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="progress">The progress.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		public IEnumerable<TechniquesGroupedByName> Search(
-			IReadOnlyGrid grid, IProgress<IProgressResult>? progress, string? globalizationString)
+			Grid grid, IProgress<IProgressResult>? progress, string? globalizationString)
 		{
 			if (grid.HasSolved || !grid.IsValid(out _, out bool? sukaku))
 			{

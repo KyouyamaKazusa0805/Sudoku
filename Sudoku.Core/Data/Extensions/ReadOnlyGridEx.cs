@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.Extensions;
 using static Sudoku.Data.CellStatus;
@@ -7,12 +6,13 @@ using static Sudoku.Data.CellStatus;
 namespace Sudoku.Data.Extensions
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="IReadOnlyGrid"/>.
+	/// Provides extension methods on <see cref="Grid"/>.
 	/// </summary>
-	/// <seealso cref="IReadOnlyGrid"/>
+	/// <seealso cref="Grid"/>
 	[DebuggerStepThrough]
 	public static class ReadOnlyGridEx
 	{
+#if false
 		/// <summary>
 		/// Convert the current read-only grid to mutable one.
 		/// </summary>
@@ -23,13 +23,14 @@ namespace Sudoku.Data.Extensions
 		/// reference with this specified argument holds.
 		/// </remarks>
 		/// <exception cref="InvalidCastException">
-		/// Throws when <see cref="IReadOnlyGrid"/> cannot convert to a <see cref="Grid"/>.
+		/// Throws when <see cref="Grid"/> cannot convert to a <see cref="Grid"/>.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Grid ToMutable(this IReadOnlyGrid @this) =>
+		public static Grid ToMutable(this Grid @this) =>
 			@this is Grid result
 				? result
 				: throw new InvalidCastException("The specified read-only grid cannot converted to a normal one.");
+#endif
 
 		/// <summary>
 		/// <para>Indicates whether the specified cell is a bivalue cell.</para>
@@ -47,7 +48,7 @@ namespace Sudoku.Data.Extensions
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsBivalueCell(this IReadOnlyGrid @this, int cellOffset, out short mask)
+		public static bool IsBivalueCell(this Grid @this, int cellOffset, out short mask)
 		{
 			mask = 0;
 			return @this.GetStatus(cellOffset) == Empty && (mask = @this.GetCandidateMask(cellOffset)).CountSet() == 2;
@@ -97,7 +98,7 @@ namespace Sudoku.Data.Extensions
 		/// to decide whether a condition is true.
 		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool? Exists(this IReadOnlyGrid @this, int cellOffset, int digit) =>
+		public static bool? Exists(this Grid @this, int cellOffset, int digit) =>
 			@this.GetStatus(cellOffset) == Empty ? !@this[cellOffset, digit] : (bool?)null;
 	}
 }

@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="solution">The solution used for brute forces.</param>
 		/// <returns>The searchers.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private TechniqueSearcher[] GetSearchersHodokuMode(IReadOnlyGrid solution) =>
+		private TechniqueSearcher[] GetSearchersHodokuMode(Grid solution) =>
 			new TechniqueSearcher[]
 			{
 				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual
 		/// <returns>The searchers.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[Obsolete("Because of some unstable techniques, please use the another field instead.")]
-		private TechniqueSearcher[][] GetSearchersSeMode(IReadOnlyGrid solution) =>
+		private TechniqueSearcher[][] GetSearchersSeMode(Grid solution) =>
 			new TechniqueSearcher[][]
 			{
 				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
@@ -154,8 +154,8 @@ namespace Sudoku.Solving.Manual
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
-			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid,
-			Grid cloneation, Stopwatch stopwatch, List<IReadOnlyGrid> stepGrids,
+			List<TechniqueInfo> steps, TechniqueInfo step, Grid grid,
+			Grid cloneation, Stopwatch stopwatch, List<Grid> stepGrids,
 			[NotNullWhen(true)] out AnalysisResult? result)
 		{
 			bool needAdd = false;
@@ -205,7 +205,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="solution">The solution.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		private static bool CheckConclusionsValidity(IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
+		private static bool CheckConclusionsValidity(Grid solution, IEnumerable<Conclusion> conclusions)
 		{
 			foreach (var (t, c, d) in conclusions)
 			{
@@ -230,7 +230,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="progress">The progress reporter.</param>
 		/// <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
 		private static void ReportProgress(
-			IReadOnlyGrid cloneation, IProgress<IProgressResult> progress,
+			Grid cloneation, IProgress<IProgressResult> progress,
 			ref GridProgressResult progressResult)
 		{
 			progressResult.CurrentCandidatesCount = cloneation.CandidatesCount;

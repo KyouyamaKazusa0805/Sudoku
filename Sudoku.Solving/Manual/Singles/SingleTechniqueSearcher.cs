@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// so we should not use base maps like 'EmptyMap'.
 		/// Those maps will be initialized in the special cases.
 		/// </remarks>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			// Search for full houses.
 			if (_enableFullHouse)

@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	partial class UrTechniqueSearcher
 	{
 		partial void Check2D(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			//   ↓ corner1
@@ -118,7 +118,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void Check2B1SL(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			//   ↓ corner1, corner2
@@ -237,7 +237,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void Check2D1SL(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			//   ↓ corner1
@@ -353,7 +353,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void Check3X(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
 			//   ↓ cornerCell
@@ -464,7 +464,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void Check3X2SL(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
 			//   ↓ cornerCell
@@ -562,7 +562,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void Check3N2SL(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
 			//   ↓ cornerCell
@@ -670,7 +670,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void Check3U2SL(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
 			//   ↓ cornerCell
@@ -772,7 +772,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void Check3E2SL(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
 			//   ↓ cornerCell
@@ -874,7 +874,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void Check4X3SL(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			//   ↓ corner1, corner2
@@ -988,7 +988,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void Check4C3SL(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			// Subtype 1:
@@ -1115,7 +1115,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		partial void CheckWing(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap,
 			int size)
 		{

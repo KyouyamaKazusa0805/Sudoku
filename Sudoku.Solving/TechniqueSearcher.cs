@@ -49,35 +49,35 @@ namespace Sudoku.Solving
 		/// The empty cells map.
 		/// </summary>
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
-		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
+		/// <seealso cref="InitializeMaps(Grid)"/>
 		internal static GridMap EmptyMap { get; set; }
 
 		/// <summary>
 		/// The bi-value cells map.
 		/// </summary>
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
-		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
+		/// <seealso cref="InitializeMaps(Grid)"/>
 		internal static GridMap BivalueMap { get; set; }
 
 		/// <summary>
 		/// The candidate maps.
 		/// </summary>
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
-		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
+		/// <seealso cref="InitializeMaps(Grid)"/>
 		internal static GridMap[] CandMaps { get; set; } = null!;
 
 		/// <summary>
 		/// The digit maps.
 		/// </summary>
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
-		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
+		/// <seealso cref="InitializeMaps(Grid)"/>
 		internal static GridMap[] DigitMaps { get; set; } = null!;
 
 		/// <summary>
 		/// The value maps.
 		/// </summary>
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
-		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
+		/// <seealso cref="InitializeMaps(Grid)"/>
 		internal static GridMap[] ValueMaps { get; set; } = null!;
 
 
@@ -86,7 +86,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="grid">The grid to search steps.</param>
 		/// <returns>A technique information.</returns>
-		public TechniqueInfo? GetOne(IReadOnlyGrid grid)
+		public TechniqueInfo? GetOne(Grid grid)
 		{
 			var bag = new List<TechniqueInfo>();
 			GetAll(bag, grid);
@@ -98,7 +98,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="accumulator">The accumulator to store technique information.</param>
 		/// <param name="grid">The grid to search for techniques.</param>
-		public abstract void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid);
+		public abstract void GetAll(IList<TechniqueInfo> accumulator, Grid grid);
 
 		/// <inheritdoc/>
 		public virtual int CompareTo(TechniqueSearcher? other) =>
@@ -121,7 +121,7 @@ namespace Sudoku.Solving
 		/// Initialize the maps that used later.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public static void InitializeMaps(IReadOnlyGrid grid) =>
+		public static void InitializeMaps(Grid grid) =>
 			(EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;
 
 		/// <summary>

@@ -11,8 +11,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
 	partial class UsTechniqueSearcher
 	{
-		private static partial void CheckType1(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
+		private static partial void CheckType1(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask)
 		{
 			if (mask.CountSet() != 5)
 			{
@@ -67,9 +66,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		[SuppressMessage("Style", "IDE0060:删除未使用的参数", Justification = "<挂起>")]
-		private static partial void CheckType2(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
+		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+		private static partial void CheckType2(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask)
 		{
 			if (mask.CountSet() != 5)
 			{
@@ -120,8 +118,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		private static partial void CheckType3(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
+		private static partial void CheckType3(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask)
 		{
 			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
@@ -204,8 +201,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		private static partial void CheckType4(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
+		private static partial void CheckType4(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask)
 		{
 			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{

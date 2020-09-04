@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public sealed class PomTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			var templates = GetInvalidPos(grid);
 			for (int digit = 0; digit < 9; digit++)
@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The 9 maps for invalid positions of each digit.</returns>
-		private static GridMap[] GetInvalidPos(IReadOnlyGrid grid)
+		private static GridMap[] GetInvalidPos(Grid grid)
 		{
 			var result = new GridMap[9];
 			var invalidPos = new GridMap[9];

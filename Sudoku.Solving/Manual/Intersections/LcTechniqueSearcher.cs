@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -18,7 +17,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	public sealed class LcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			var r = (stackalloc int[2]);
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)

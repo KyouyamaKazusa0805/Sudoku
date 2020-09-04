@@ -20,14 +20,14 @@ namespace Sudoku.Runtime
 		/// Initializes an instance with a grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public WrongHandlingException(IReadOnlyGrid grid) => Grid = grid;
+		public WrongHandlingException(Grid grid) => Grid = grid;
 
 		/// <summary>
 		/// Initializes an instance with a grid and an error message.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="wrongInfo">The error message.</param>
-		public WrongHandlingException(IReadOnlyGrid grid, string wrongInfo) : base(wrongInfo) =>
+		public WrongHandlingException(Grid grid, string wrongInfo) : base(wrongInfo) =>
 			(Grid, WrongInfo) = (grid, wrongInfo);
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace Sudoku.Runtime
 		/// <param name="grid">The grid.</param>
 		/// <param name="wrongInfo">The error message.</param>
 		/// <param name="inner">The inner exception.</param>
-		public WrongHandlingException(IReadOnlyGrid grid, string wrongInfo, Exception inner) : base(wrongInfo, inner) =>
+		public WrongHandlingException(Grid grid, string wrongInfo, Exception inner) : base(wrongInfo, inner) =>
 			(Grid, WrongInfo) = (grid, wrongInfo);
 
 		/// <summary>
@@ -46,7 +46,7 @@ namespace Sudoku.Runtime
 		/// <param name="grid">The grid.</param>
 		/// <param name="info">The streaming information.</param>
 		/// <param name="context">The streaming context.</param>
-		protected WrongHandlingException(IReadOnlyGrid grid, SerializationInfo info, StreamingContext context)
+		protected WrongHandlingException(Grid grid, SerializationInfo info, StreamingContext context)
 			: base(info, context) => Grid = grid;
 
 
@@ -58,7 +58,7 @@ namespace Sudoku.Runtime
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		public IReadOnlyGrid Grid { get; }
+		public Grid Grid { get; }
 
 		/// <inheritdoc/>
 		public override string Message =>

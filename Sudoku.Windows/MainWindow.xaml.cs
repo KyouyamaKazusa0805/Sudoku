@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
@@ -883,9 +882,9 @@ namespace Sudoku.Windows
 		/// Transform the grid.
 		/// </summary>
 		/// <param name="transformation">The inner function to process the transformation.</param>
-		private unsafe void Transform(delegate*<IReadOnlyGrid, Grid> transformation)
+		private unsafe void Transform(delegate*<Grid, Grid> transformation)
 		{
-			if (_puzzle != Grid.Empty.ToMutable()/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
+			if (_puzzle != Grid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
 			{
 				Puzzle = new(transformation(_puzzle));
 
@@ -899,9 +898,9 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <param name="transformation">The inner function to process the transformation.</param>
 		[Obsolete("Use function pointer to speed up.")]
-		private void Transform(Func<IReadOnlyGrid, UndoableGrid> transformation)
+		private void Transform(Func<Grid, UndoableGrid> transformation)
 		{
-			if (_puzzle != Grid.Empty.ToMutable()/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
+			if (_puzzle != Grid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
 			{
 				Puzzle = transformation(_puzzle);
 
@@ -1060,7 +1059,7 @@ namespace Sudoku.Windows
 		/// <param name="solution">The solution.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		private static bool CheckConclusionsValidity(IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
+		private static bool CheckConclusionsValidity(Grid solution, IEnumerable<Conclusion> conclusions)
 		{
 			foreach (var (t, c, d) in conclusions)
 			{

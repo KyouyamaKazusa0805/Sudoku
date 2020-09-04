@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	public sealed class BugMultipleWithFcTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			var trueCandidates = new BugChecker(grid).TrueCandidates;
 			if (trueCandidates.Count <= 1)
@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private void CheckMultipleWithForcingChains(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+			IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates)
 		{
 			var tempAccumulator = new List<BugMultipleWithFcTechniqueInfo>();
 
@@ -99,14 +99,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		/// <summary>
 		/// Do chaining. This method is only called by
-		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>.
+		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, Grid, IReadOnlyList{int})"/>.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="toOn">All nodes to on.</param>
 		/// <param name="toOff">All nodes to off.</param>
 		/// <returns>The result nodes.</returns>
-		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>
-		private static Node[]? DoChaining(IReadOnlyGrid grid, ISet<Node> toOn, ISet<Node> toOff)
+		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, Grid, IReadOnlyList{int})"/>
+		private static Node[]? DoChaining(Grid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
 			var pendingOn = new Set<Node>(toOn);
 			var pendingOff = new Set<Node>(toOff);
@@ -162,13 +162,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		/// <summary>
 		/// Create the elimination hint. This method is only called by
-		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>.
+		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, Grid, IReadOnlyList{int})"/>.
 		/// </summary>
 		/// <param name="trueCandidates">The true candidates.</param>
 		/// <param name="target">The target node.</param>
 		/// <param name="outcomes">All outcomes.</param>
 		/// <returns>The result information instance.</returns>
-		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>
+		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, Grid, IReadOnlyList{int})"/>
 		private static BugMultipleWithFcTechniqueInfo? CreateEliminationHint(
 			IReadOnlyList<int> trueCandidates, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
 		{

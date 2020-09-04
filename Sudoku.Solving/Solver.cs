@@ -22,6 +22,6 @@ namespace Sudoku.Solving
 		/// <returns>
 		/// An <see cref="AnalysisResult"/> displaying all information of solving.
 		/// </returns>
-		public abstract AnalysisResult Solve(IReadOnlyGrid grid);
+		public abstract AnalysisResult Solve(Grid grid);
 	}
 }

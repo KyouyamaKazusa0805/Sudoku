@@ -75,7 +75,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		public AnalysisResult Solve(string str) => Solve(new GridParser(str).Parse());
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(IReadOnlyGrid grid)
+		public override AnalysisResult Solve(Grid grid)
 		{
 			var stopwatch = new Stopwatch();
 

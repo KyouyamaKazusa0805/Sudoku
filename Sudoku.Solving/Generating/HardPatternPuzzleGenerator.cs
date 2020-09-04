@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Generating
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyGrid Generate() => Generate(-1, null, Unknown, null);
+		public override Grid Generate() => Generate(-1, null, Unknown, null);
 
 		/// <summary>
 		/// To generate a sudoku grid with a backdoor filter depth.
@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="difficultyLevel">The difficulty level.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The grid.</returns>
-		public IReadOnlyGrid Generate(
+		public Grid Generate(
 			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
 			DifficultyLevel difficultyLevel = Unknown, string? globalizationString = null)
 		{
@@ -110,7 +110,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="difficultyLevel">The difficulty level.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The task.</returns>
-		public async Task<IReadOnlyGrid> GenerateAsync(
+		public async Task<Grid> GenerateAsync(
 			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
 			DifficultyLevel difficultyLevel = Unknown, string? globalizationString = null) =>
 			await Task.Run(() => Generate(backdoorFilterDepth, progress, difficultyLevel, globalizationString));

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -58,7 +57,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			for (int size = 2; size <= _size; size++)
 			{
@@ -72,8 +71,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="accumulator">The accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size to iterate on.</param>
-		[SuppressMessage("", "IDE0004:Cast is redundant")]
-		private void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int size)
+		private void GetAll(IList<TechniqueInfo> accumulator, Grid grid, int size)
 		{
 			var bag = new List<TechniqueInfo>();
 			var conclusionList = new GridMap[9];

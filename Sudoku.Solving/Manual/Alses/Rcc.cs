@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Indicates whether the specified searcher allows ALSes overlapping.
 		/// </param>
 		/// <returns>All RCCs searched.</returns>
-		public static IEnumerable<Rcc> GetAllRccs(IReadOnlyGrid grid, bool allowOverlap)
+		public static IEnumerable<Rcc> GetAllRccs(Grid grid, bool allowOverlap)
 		{
 			var candMaps = TechniqueSearcher.CandMaps;
 			var alses = Als.GetAllAlses(grid).ToArray();
@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// it will return <see langword="null"/>.
 		/// </returns>
 		public static IEnumerable<(int Digit, int Region)> GetCommonDigits(
-			IReadOnlyGrid grid, Als als1, Als als2, out short digitsMask)
+			Grid grid, Als als1, Als als2, out short digitsMask)
 		{
 			var result = new List<(int, int)>();
 			foreach (int digit in (digitsMask = (short)(als1.DigitsMask & als2.DigitsMask)).GetAllSets())
@@ -160,7 +160,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// (<see langword="out"/> parameter) The map of cells.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private static bool DigitAppears(IReadOnlyGrid grid, Als als, int digit, out GridMap map)
+		private static bool DigitAppears(Grid grid, Als als, int digit, out GridMap map)
 		{
 			map = GridMap.Empty;
 			foreach (int cell in als.Cells)

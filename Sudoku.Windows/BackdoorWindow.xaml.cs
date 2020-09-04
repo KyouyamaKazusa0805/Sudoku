@@ -3,12 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Windows.Constants;
 using static Sudoku.Windows.Constants.Processings;
+using Grid = Sudoku.Data.Grid;
 
 namespace Sudoku.Windows
 {
@@ -20,7 +20,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The puzzle.
 		/// </summary>
-		private readonly IReadOnlyGrid _puzzle;
+		private readonly Grid _puzzle;
 
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace Sudoku.Windows
 		/// Initializes an instance with the specified puzzle.
 		/// </summary>
 		/// <param name="puzzle">The puzzle.</param>
-		public BackdoorWindow(IReadOnlyGrid puzzle)
+		public BackdoorWindow(Grid puzzle)
 		{
 			InitializeComponent();
 

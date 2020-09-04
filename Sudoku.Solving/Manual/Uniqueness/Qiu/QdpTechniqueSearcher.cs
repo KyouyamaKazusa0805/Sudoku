@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			for (int i = 0, length = Patterns.Length; i < length; i++)
 			{
@@ -164,15 +164,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask);
 
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask);
 
 		partial void CheckType3(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask);
 
 		partial void CheckType4(
@@ -180,7 +180,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			GridMap baseLine, Pattern pattern, short comparer);
 
 		partial void CheckLockedType(
-			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer);
 	}
 }

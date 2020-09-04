@@ -20,7 +20,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(IReadOnlyGrid grid)
+		public override AnalysisResult Solve(Grid grid)
 		{
 			var stopwatch = new Stopwatch();
 

@@ -100,7 +100,7 @@
             <param name="mask">The mask.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="M:Sudoku.Constants.Processings.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
+        <member name="M:Sudoku.Constants.Processings.Deconstruct(Sudoku.Data.Grid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
@@ -119,41 +119,41 @@
             and the digit is the specified one.
             </param>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetEmptyCellsMap(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Constants.Processings.GetEmptyCellsMap(Sudoku.Data.Grid)">
             <summary>
             Get the map of all empty cells in this grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The map.</returns>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Constants.Processings.GetBivalueCellsMap(Sudoku.Data.Grid)">
             <summary>
             Get the map of all bi-value cells in this grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The map.</returns>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.Grid)">
             <summary>
             Get the map of all distributions for digits.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The map.</returns>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetDigitsMap(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Constants.Processings.GetDigitsMap(Sudoku.Data.Grid)">
             <summary>
             <para>Get the map of all distributions for digits.</para>
             <para>
-            Different with <see cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)"/>,
+            Different with <see cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.Grid)"/>,
             this method will get all cells that contain the digit or fill this digit
             (given or modifiable).
             </para>
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The map.</returns>
-            <seealso cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)"/>
+            <seealso cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.Grid)"/>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetValuesMap(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Constants.Processings.GetValuesMap(Sudoku.Data.Grid)">
             <summary>
             Get the map of all distributions for digits.
             </summary>
@@ -1055,10 +1055,10 @@
         </member>
         <member name="T:Sudoku.Data.Extensions.GridTransformationExtensions">
             <summary>
-            Provides a series of methods for <see cref="T:Sudoku.Data.IReadOnlyGrid"/>
+            Provides a series of methods for <see cref="T:Sudoku.Data.Grid"/>
             using in transformations.
             </summary>
-            <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
+            <seealso cref="T:Sudoku.Data.Grid"/>
         </member>
         <member name="F:Sudoku.Data.Extensions.GridTransformationExtensions.ClockwiseTable">
             <summary>
@@ -1075,63 +1075,63 @@
             The table of pi-rotation.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorLeftRight(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorLeftRight(Sudoku.Data.Grid)">
             <summary>
             Mirror left-right the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorTopBottom(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorTopBottom(Sudoku.Data.Grid)">
             <summary>
             Mirror top-bottom the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorDiagonal(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorDiagonal(Sudoku.Data.Grid)">
             <summary>
             Mirror diagonal the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.Transpose(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.Transpose(Sudoku.Data.Grid)">
             <summary>
             Transpose the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorAntidiagonal(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorAntidiagonal(Sudoku.Data.Grid)">
             <summary>
             Mirror anti-diagonal the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateClockwise(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateClockwise(Sudoku.Data.Grid)">
             <summary>
             Rotate the grid clockwise.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateCounterclockwise(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateCounterclockwise(Sudoku.Data.Grid)">
             <summary>
             Rotate the grid counterclockwise.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotatePi(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotatePi(Sudoku.Data.Grid)">
             <summary>
             Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.SwapTwoRegions(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.SwapTwoRegions(Sudoku.Data.Grid,System.Int32,System.Int32)">
             <summary>
             Swap to regions.
             </summary>
@@ -1146,25 +1146,11 @@
         </member>
         <member name="T:Sudoku.Data.Extensions.ReadOnlyGridEx">
             <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.IReadOnlyGrid"/>.
+            Provides extension methods on <see cref="T:Sudoku.Data.Grid"/>.
             </summary>
-            <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
+            <seealso cref="T:Sudoku.Data.Grid"/>
         </member>
-        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.ToMutable(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Convert the current read-only grid to mutable one.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The mutable one.</returns>
-            <remarks>
-            This method is only use type conversion, so the return value has a same
-            reference with this specified argument holds.
-            </remarks>
-            <exception cref="T:System.InvalidCastException">
-            Throws when <see cref="T:Sudoku.Data.IReadOnlyGrid"/> cannot convert to a <see cref="T:Sudoku.Data.Grid"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.IsBivalueCell(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int16@)">
+        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.IsBivalueCell(Sudoku.Data.Grid,System.Int32,System.Int16@)">
             <summary>
             <para>Indicates whether the specified cell is a bivalue cell.</para>
             <para>
@@ -1181,7 +1167,7 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.Exists(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.Exists(Sudoku.Data.Grid,System.Int32,System.Int32)">
             <summary>
             <para>
             Indicates whether the specified grid contains the digit in the specified cell.
@@ -1315,30 +1301,65 @@
 	</defaultConstructor>
         </member>
         <member name="P:Sudoku.Data.Grid.HasSolved">
-            <inheritdoc/>
+            <summary>
+            Indicates the grid has already solved. If the value is <see langword="true"/>,
+            the grid is solved; otherwise, <see langword="false"/>.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.CandidatesCount">
-            <inheritdoc/>
+            <summary>
+            Indicates the number of total candidates.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.GivensCount">
-            <inheritdoc/>
+            <summary>
+            Indicates the total number of given cells.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.ModifiablesCount">
-            <inheritdoc/>
+            <summary>
+            Indicates the total number of modifiable cells.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.EmptiesCount">
-            <inheritdoc/>
+            <summary>
+            Indicates the total number of empty cells.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.Triplet">
             <summary>
             The triplet of three main information.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Grid.Item(System.Int32)">
-            <inheritdoc/>
+        <member name="P:Sudoku.Data.Grid.Value(System.Int32)">
+            <summary>
+            Gets or sets a digit into a cell.
+            </summary>
+            <param name="cell">The cell offset you want to get or set.</param>
+            <value>
+            The digit you want to set. This value should be between 0 and 8.
+            In addition, if your input is -1, the candidate mask in this cell
+            will be re-computed. If your input is none of them above, this indexer
+            will do nothing.
+            </value>
+            <returns>
+            An <see cref="T:System.Int32"/> value indicating the result.
+            If the current cell does not have a digit
+            (i.e. The cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>),
+            The value will be -1.
+            </returns>
         </member>
-        <member name="P:Sudoku.Data.Grid.Item(System.Int32,System.Int32)">
-            <inheritdoc/>
+        <member name="P:Sudoku.Data.Grid.Value(System.Int32,System.Int32)">
+            <summary>
+            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="cell">The cell offset between 0 and 80.</param>
+            <param name="digit">The digit between 0 and 8.</param>
+            <value>
+            The case you want to set. <see langword="true"/> means that this candidate
+            does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
+            </value>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="E:Sudoku.Data.Grid.ValueChanged">
             <summary>
@@ -1391,13 +1412,37 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.ToArray">
-            <inheritdoc/>
+            <summary>
+            Serializes this instance to an array, where all digit value will be stored.
+            </summary>
+            <returns>
+            This array. All elements are between 0 to 9, where 0 means the
+            cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/> now.
+            </returns>
         </member>
         <member name="M:Sudoku.Data.Grid.GetMask(System.Int32)">
-            <inheritdoc/>
+            <summary>
+            Get a mask of the specified cell.
+            </summary>
+            <param name="offset">The cell offset you want to get.</param>
+            <returns>The mask.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.GetCandidateMask(System.Int32)">
-            <inheritdoc/>
+            <summary>
+            Get the candidate mask part of the specified cell.
+            </summary>
+            <param name="cell">The cell offset you want to get.</param>
+            <returns>
+            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
+            value, where the bit will be <c>0</c> if the corresponding digit <b>does not exist</b> in the cell,
+            and will be <c>1</c> if the corresponding contains this digit (either the cell
+            is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
+            </returns>
+            <remarks>
+            Please note that the grid masks is represented with bits, where 0 is for the digit containing in a
+            cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
+            1 is for containing and 0 is for <b>not</b>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.Grid.ToString">
             <inheritdoc/>
@@ -1423,10 +1468,21 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.GetStatus(System.Int32)">
-            <inheritdoc/>
+            <summary>
+            Get the current status for the specified cell.
+            </summary>
+            <param name="cell">The cell offset you want to get.</param>
+            <returns>The cell status.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.Clone">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Grid.GetCandidates(System.Int32)">
+            <summary>
+            Get all candidates containing in the specified cell.
+            </summary>
+            <param name="cell">The cell you want to get.</param>
+            <returns>All candidates.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.GetEnumerator">
             <inheritdoc/>
@@ -2664,145 +2720,6 @@
             </para>
             </summary>
         </member>
-        <member name="T:Sudoku.Data.IReadOnlyGrid">
-            <summary>
-            Provides a read-only sudoku grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IReadOnlyGrid.HasSolved">
-            <summary>
-            Indicates the grid has already solved. If the value is <see langword="true"/>,
-            the grid is solved; otherwise, <see langword="false"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IReadOnlyGrid.CandidatesCount">
-            <summary>
-            Indicates the number of total candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IReadOnlyGrid.GivensCount">
-            <summary>
-            Indicates the total number of given cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IReadOnlyGrid.ModifiablesCount">
-            <summary>
-            Indicates the total number of modifiable cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IReadOnlyGrid.EmptiesCount">
-            <summary>
-            Indicates the total number of empty cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IReadOnlyGrid.Value(System.Int32)">
-            <summary>
-            Gets or sets a digit into a cell.
-            </summary>
-            <param name="cell">The cell offset you want to get or set.</param>
-            <value>
-            The digit you want to set. This value should be between 0 and 8.
-            In addition, if your input is -1, the candidate mask in this cell
-            will be re-computed. If your input is none of them above, this indexer
-            will do nothing.
-            </value>
-            <returns>
-            An <see cref="T:System.Int32"/> value indicating the result.
-            If the current cell does not have a digit
-            (i.e. The cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>),
-            The value will be -1.
-            </returns>
-        </member>
-        <member name="P:Sudoku.Data.IReadOnlyGrid.Value(System.Int32,System.Int32)">
-            <summary>
-            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="cell">The cell offset between 0 and 80.</param>
-            <param name="digit">The digit between 0 and 8.</param>
-            <value>
-            The case you want to set. <see langword="true"/> means that this candidate
-            does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
-            </value>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.ToArray">
-            <summary>
-            Serializes this instance to an array, where all digit value will be stored.
-            </summary>
-            <returns>
-            This array. All elements are between 0 to 9, where 0 means the
-            cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/> now.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.GetMask(System.Int32)">
-            <summary>
-            Get a mask of the specified cell.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The mask.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.GetCandidateMask(System.Int32)">
-            <summary>
-            Get the candidate mask part of the specified cell.
-            </summary>
-            <param name="cell">The cell offset you want to get.</param>
-            <returns>
-            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
-            value, where the bit will be <c>0</c> if the corresponding digit <b>does not exist</b> in the cell,
-            and will be <c>1</c> if the corresponding contains this digit (either the cell
-            is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
-            </returns>
-            <remarks>
-            Please note that the grid masks is represented with bits, where 0 is for the digit containing in a
-            cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
-            1 is for containing and 0 is for <b>not</b>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.ToString(System.String)">
-            <method name="ToString" paramType="string">
-		<summary>
-			Returns a string that represents the current object with the
-			specified format string.
-		</summary>
-		<param name="format">The format.</param>
-		<returns>The string result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.GetStatus(System.Int32)">
-            <summary>
-            Get the current status for the specified cell.
-            </summary>
-            <param name="cell">The cell offset you want to get.</param>
-            <returns>The cell status.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.GetCandidates(System.Int32)">
-            <summary>
-            Get all candidates containing in the specified cell.
-            </summary>
-            <param name="cell">The cell you want to get.</param>
-            <returns>All candidates.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.ToString">
-            <summary>
-            Formats the value of the current instance using the specified format.
-            </summary>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.Clone">
-            <summary>
-            Creates a new instance that is a copy of the current instance.
-            </summary>
-            <returns>The cloneation.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Data.Link">
             <summary>
             Encapsulates a link used for drawing.
@@ -3313,15 +3230,6 @@
             an undoable grid).
             </summary>
             <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Initializes an instance with the specified read only grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the type is invalid (invalid grid type).
-            </exception>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.HasUndoSteps">
             <summary>
@@ -7110,20 +7018,20 @@
             Represents an error that the puzzle has multiple solutions while solving.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Grid)">
             <summary>
             Initializes an instance with a grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Grid,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Grid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
@@ -7131,7 +7039,7 @@
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.
@@ -7155,20 +7063,20 @@
             Represents an error that the puzzle has no solution while solving.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Grid)">
             <summary>
             Initializes an instance with a grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Grid,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Grid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
@@ -7176,7 +7084,7 @@
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.
@@ -7221,20 +7129,20 @@
             manual logic tools.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Grid)">
             <summary>
             Initializes an instance with a grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Grid,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
             <param name="wrongInfo">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Grid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
@@ -7242,7 +7150,7 @@
             <param name="wrongInfo">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.

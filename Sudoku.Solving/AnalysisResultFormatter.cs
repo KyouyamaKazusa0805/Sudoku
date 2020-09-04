@@ -86,7 +86,7 @@ namespace Sudoku.Solving
 			// Print solving steps (if worth).
 			var bottleneckData = GetBottleneckData();
 			void a() => sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);
-			if (showTechniqueSteps && steps is not null and { Count: not 0 })
+			if (showTechniqueSteps && steps is { Count: not 0 })
 			{
 				sb.AppendLine(GetValue("AnalysisResultSolvingSteps"));
 				if (bottleneckData is not null)
@@ -133,7 +133,7 @@ namespace Sudoku.Solving
 
 			// Print solving step statistics (if worth).
 			var solvingStepsGrouped = GetSolvingStepsGrouped()?.ToList();
-			if (solvingStepsGrouped is not null and { Count: not 0 })
+			if (solvingStepsGrouped is { Count: not 0 })
 			{
 				sb.AppendLine(GetValue("AnalysisResultTechniqueUsed"));
 				if (showTechniqueDetail)
@@ -196,13 +196,13 @@ namespace Sudoku.Solving
 
 			// Print attributes (if worth).
 			// Here use dynamic call (reflection) to get all methods which contains
-			// only one parameter and its type is 'IReadOnlyGrid'.
+			// only one parameter and its type is 'Grid'.
 			if (showAttributes)
 			{
 				sb.AppendLine(GetValue("AnalysisResultAttributes"));
 
 				static bool m(ParameterInfo[] p, MethodInfo m) =>
-					p.Length == 1 && p[0].ParameterType == typeof(IReadOnlyGrid) && m.ReturnType == typeof(bool);
+					p.Length == 1 && p[0].ParameterType == typeof(Grid) && m.ReturnType == typeof(bool);
 				foreach (var methodInfo in
 					from MethodInfo in typeof(PuzzleAttributeChecker).GetMethods()
 					let Params = MethodInfo.GetParameters()

@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Checking
 		/// Initializes an instance with the specified grid.
 		/// </summary>
 		/// <param name="puzzle">The current puzzle grid.</param>
-		public BugChecker(IReadOnlyGrid puzzle)
+		public BugChecker(Grid puzzle)
 		{
 			if (puzzle.IsValid(out _))
 			{
@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		public IReadOnlyGrid Puzzle { get; }
+		public Grid Puzzle { get; }
 
 		/// <summary>
 		/// Indicates all true candidates (non-BUG candidates).
