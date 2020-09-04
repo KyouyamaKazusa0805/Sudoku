@@ -36,34 +36,17 @@ namespace Sudoku.Diagnostics
 		/// <returns>The value of the specified size unit.</returns>
 		public static decimal Convert(long bytes, out SizeUnit unit)
 		{
-			switch (bytes)
+			decimal size;
+			(unit, size) = bytes switch
 			{
-				case <= 1024L:
-				{
-					unit = SizeUnit.Byte;
-					return bytes;
-				}
-				case <= 1048576L:
-				{
-					unit = SizeUnit.Kilobyte;
-					return bytes / 1024M;
-				}
-				case <= 1073741824L:
-				{
-					unit = SizeUnit.Megabyte;
-					return bytes / 1048576M;
-				}
-				case <= 1099511627776L:
-				{
-					unit = SizeUnit.Gigabyte;
-					return bytes / 1073741824M;
-				}
-				default:
-				{
-					unit = SizeUnit.Terabyte;
-					return bytes / 1099511627776M;
-				}
-			}
+				<= 1024L => (SizeUnit.Byte, 1M),
+				<= 1048576L => (SizeUnit.Kilobyte, 1024M),
+				<= 1073741824L => (SizeUnit.Megabyte, 1048576M),
+				<= 1099511627776L => (SizeUnit.Gigabyte, 1073741824M),
+				_ => (SizeUnit.Terabyte, 1099511627776M)
+			};
+
+			return size != 1M ? bytes / size : bytes;
 		}
 	}
 }
