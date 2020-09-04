@@ -31,16 +31,5 @@ namespace System
 		/// <returns>Which is the most minimal one.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int Min(int a, int b, int c) => Math.Min(Math.Min(a, b), c);
-
-		/// <summary>
-		/// Get the minimal one of four values.
-		/// </summary>
-		/// <param name="a">The first value.</param>
-		/// <param name="b">The second value.</param>
-		/// <param name="c">The third value.</param>
-		/// <param name="d">The fourth value.</param>
-		/// <returns>Which is the most minimal one.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int Min(int a, int b, int c, int d) => Math.Min(Math.Min(Math.Min(a, b), c), d);
 	}
 }

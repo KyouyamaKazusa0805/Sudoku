@@ -7286,16 +7286,6 @@
             <param name="c">The third value.</param>
             <returns>Which is the most minimal one.</returns>
         </member>
-        <member name="M:System.Algorithms.Min(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Get the minimal one of four values.
-            </summary>
-            <param name="a">The first value.</param>
-            <param name="b">The second value.</param>
-            <param name="c">The third value.</param>
-            <param name="d">The fourth value.</param>
-            <returns>Which is the most minimal one.</returns>
-        </member>
         <member name="T:System.Collections.Generic.Set`1">
             <summary>
             Indicates a set which contains the different elements.
