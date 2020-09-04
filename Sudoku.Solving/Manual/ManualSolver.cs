@@ -45,12 +45,12 @@ namespace Sudoku.Solving.Manual
 				int candsCount = grid.CandidatesCount;
 				try
 				{
+#pragma warning disable CS0612
 					GridProgressResult defaultValue = default;
 					var defaultPr = new GridProgressResult(candsCount, emptyCellsCount, candsCount, globalizationString);
 					ref var pr = ref progress is null ? ref defaultValue : ref defaultPr;
 					progress?.Report(defaultPr);
 
-#pragma warning disable CS0612
 					return AnalyzeDifficultyStrictly
 						? SolveSeMode(grid, grid.Clone(), TempList, solution, sukaku.Value, ref pr, progress)
 						: SolveNaively(grid, grid.Clone(), TempList, solution, sukaku.Value, ref pr, progress);
