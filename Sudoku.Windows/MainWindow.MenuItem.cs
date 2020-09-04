@@ -20,7 +20,7 @@ using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
 using static System.StringSplitOptions;
 using static Sudoku.Windows.Constants.Processings;
-using SudokuGrid = Sudoku.Data.Grid;
+using Grid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
 #endif
@@ -269,7 +269,7 @@ namespace Sudoku.Windows
 				z[cell] = _puzzle[cell] + 1;
 			}
 
-			var grid = SudokuGrid.CreateInstance(z);
+			var grid = Grid.CreateInstance(z);
 			if (new UnsafeBitwiseSolver().Solve(grid.ToString(), null, 2) == 0)
 			{
 				Messagings.SukakuCannotUseThisFunction();
@@ -335,7 +335,7 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					Puzzle = new(SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku));
+					Puzzle = new(Grid.Parse(puzzleStr, GridParsingOption.Sukaku));
 
 					_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 					UpdateImageGrid();
@@ -392,7 +392,7 @@ namespace Sudoku.Windows
 
 		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
 		{
-			Puzzle = new(SudokuGrid.Empty);
+			Puzzle = new(Grid.Empty);
 			_analyisResult = null;
 
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -535,14 +535,14 @@ namespace Sudoku.Windows
 
 			bool applySukaku()
 			{
-				var sb = new StringBuilder(SudokuGrid.EmptyString);
+				var sb = new StringBuilder(Grid.EmptyString);
 				if (new UnsafeBitwiseSolver().Solve(
 					_puzzle.ToString($"~{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}"), sb, 2) != 1)
 				{
 					return !(e.Handled = true);
 				}
 
-				var grid = SudokuGrid.Parse(sb.ToString());
+				var grid = Grid.Parse(sb.ToString());
 				grid.Unfix();
 
 				Puzzle = new(grid);
@@ -586,7 +586,7 @@ namespace Sudoku.Windows
 					}
 				}
 
-				Puzzle = new(SudokuGrid.Parse(newSb.ToString()));
+				Puzzle = new(Grid.Parse(newSb.ToString()));
 				UpdateImageGrid();
 				return true;
 			}
@@ -610,10 +610,10 @@ namespace Sudoku.Windows
 					return !(e.Handled = true);
 				}
 
-				var sb = new StringBuilder(SudokuGrid.EmptyString);
+				var sb = new StringBuilder(Grid.EmptyString);
 				if (sukakuMode)
 				{
-					string puzzleString = _puzzle.ToString("~");
+					string puzzleString = $"{_puzzle:~}";
 					if (new UnsafeBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
 					{
 						return !(e.Handled = true);

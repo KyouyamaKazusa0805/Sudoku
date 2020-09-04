@@ -118,10 +118,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is MenuItem && _listBoxTechniques is
 			{
-				SelectedItem: ListBoxItem
-				{
-					Content: PriorKeyedTuple<string, TechniqueInfo, bool> { Item3: true } triplet
-				}
+				SelectedItem: ListBoxItem { Content: PriorKeyedTuple<string, TechniqueInfo, bool> { Item3: true } triplet }
 			})
 			{
 				var info = triplet.Item2;

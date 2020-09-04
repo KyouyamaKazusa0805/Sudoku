@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Controls;
-using Sudoku.Data.Stepping;
 using Sudoku.Solving;
 
 namespace Sudoku.Windows

@@ -6,7 +6,7 @@ using Sudoku.Drawing;
 using Sudoku.Recognitions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
-using SudokuGrid = Sudoku.Data.Grid;
+using Grid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
 
 namespace Sudoku.Windows
@@ -135,7 +135,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		private UndoableGrid _puzzle = new(SudokuGrid.Empty);
+		private UndoableGrid _puzzle = new(Grid.Empty);
 
 		/// <summary>
 		/// Indicates the internal manual solver.

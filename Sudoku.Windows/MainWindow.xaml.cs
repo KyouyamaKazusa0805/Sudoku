@@ -29,7 +29,7 @@ using CoreResources = Sudoku.Windows.Resources;
 using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
-using SudokuGrid = Sudoku.Data.Grid;
+using Grid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 #endif
@@ -608,7 +608,7 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-				Puzzle = new(SudokuGrid.Parse(puzzleStr, Settings.PmGridCompatible));
+				Puzzle = new(Grid.Parse(puzzleStr, Settings.PmGridCompatible));
 
 				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 				UpdateImageGrid();
@@ -883,9 +883,9 @@ namespace Sudoku.Windows
 		/// Transform the grid.
 		/// </summary>
 		/// <param name="transformation">The inner function to process the transformation.</param>
-		private unsafe void Transform(delegate*<IReadOnlyGrid, SudokuGrid> transformation)
+		private unsafe void Transform(delegate*<IReadOnlyGrid, Grid> transformation)
 		{
-			if (_puzzle != SudokuGrid.Empty.ToMutable()/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
+			if (_puzzle != Grid.Empty.ToMutable()/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
 			{
 				Puzzle = new(transformation(_puzzle));
 
@@ -901,7 +901,7 @@ namespace Sudoku.Windows
 		[Obsolete("Use function pointer to speed up.")]
 		private void Transform(Func<IReadOnlyGrid, UndoableGrid> transformation)
 		{
-			if (_puzzle != SudokuGrid.Empty.ToMutable()/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
+			if (_puzzle != Grid.Empty.ToMutable()/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
 			{
 				Puzzle = transformation(_puzzle);
 
