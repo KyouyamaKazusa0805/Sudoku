@@ -107,7 +107,7 @@ namespace Sudoku.Data.Collections
 
 					// Remove redundant digit labels:
 					// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).
-					var list = new List<(int _pos, char _value)>();
+					var list = new List<(int Pos, char Value)>();
 					for (int i = 0; i < sb.Length; i++)
 					{
 						if (sb[i] == '(')
@@ -117,15 +117,15 @@ namespace Sudoku.Data.Collections
 						}
 					}
 
-					char digit = list[^1]._value;
+					char digit = list[^1].Value;
 					for (int i = list.Count - 1; i >= 1; i--)
 					{
-						if (list[i - 1]._value == digit)
+						if (list[i - 1].Value == digit)
 						{
-							sb.Remove(list[i - 1]._pos, 3);
+							sb.Remove(list[i - 1].Pos, 3);
 						}
 
-						digit = list[i - 1]._value;
+						digit = list[i - 1].Value;
 					}
 
 					return sb.ToString();

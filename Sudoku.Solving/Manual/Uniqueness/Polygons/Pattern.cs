@@ -40,12 +40,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <summary>
 		/// Indicates the pair 1.
 		/// </summary>
-		public (int _1, int _2) Pair1 => ((int)(_mask >> 7 & 127), (int)(_mask & 127));
+		private (int Cell1, int Cell2) Pair1 => ((int)(_mask >> 7 & 127), (int)(_mask & 127));
 
 		/// <summary>
 		/// Indicates the pair 2.
 		/// </summary>
-		public (int _1, int _2) Pair2 => ((int)(_mask >> 21 & 127), (int)(_mask >> 14 & 127));
+		private (int Cell1, int Cell2) Pair2 => ((int)(_mask >> 21 & 127), (int)(_mask >> 14 & 127));
 
 		/// <summary>
 		/// Indicates the other three (or four) cells.
@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <remarks>
 		/// <b>If and only if</b> the fourth value in the returned quadruple is available.
 		/// </remarks>
-		public (int _1, int _2, int _3, int _4) CenterCells =>
+		private (int Cell1, int Cell2, int Cell3, int Cell4) CenterCells =>
 			((int)(_mask >> 49 & 127), (int)(_mask >> 42 & 127), (int)(_mask >> 35 & 127), (int)(_mask >> 28 & 127));
 
 		/// <summary>
@@ -64,12 +64,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <summary>
 		/// Indicates the map of pair 1 cells.
 		/// </summary>
-		public GridMap Pair1Map => new() { Pair1._1, Pair1._2 };
+		public GridMap Pair1Map => new() { Pair1.Cell1, Pair1.Cell2 };
 
 		/// <summary>
 		/// Indicates the map of pair 2 cells.
 		/// </summary>
-		public GridMap Pair2Map => new() { Pair2._1, Pair2._2 };
+		public GridMap Pair2Map => new() { Pair2.Cell1, Pair2.Cell2 };
 
 		/// <summary>
 		/// The map of other three (or four) cells.

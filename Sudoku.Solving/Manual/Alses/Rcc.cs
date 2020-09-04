@@ -133,7 +133,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// The digit. If the method cannot find out a digit,
 		/// it will return <see langword="null"/>.
 		/// </returns>
-		public static IEnumerable<(int _digit, int _region)> GetCommonDigits(
+		public static IEnumerable<(int Digit, int Region)> GetCommonDigits(
 			IReadOnlyGrid grid, Als als1, Als als2, out short digitsMask)
 		{
 			var result = new List<(int, int)>();

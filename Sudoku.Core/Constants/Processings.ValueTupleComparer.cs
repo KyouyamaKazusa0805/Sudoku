@@ -10,13 +10,13 @@ namespace Sudoku.Constants
 		/// the field <see cref="IntersectionMaps"/>.
 		/// </summary>
 		/// <seealso cref="IntersectionMaps"/>
-		private readonly struct ValueTupleComparer : IEqualityComparer<(byte _a, byte _b)>
+		private readonly struct ValueTupleComparer : IEqualityComparer<(byte Value1, byte Value2)>
 		{
-			/// <inheritdoc cref="IEqualityComparer{T}.Equals(T, T)"/>
-			public bool Equals((byte _a, byte _b) x, (byte _a, byte _b) y) => x == y;
+			/// <inheritdoc/>
+			public bool Equals((byte Value1, byte Value2) x, (byte Value1, byte Value2) y) => x == y;
 
-			/// <inheritdoc cref="IEqualityComparer{T}.GetHashCode"/>
-			public int GetHashCode((byte _a, byte _b) obj) => obj._a << 5 | obj._b;
+			/// <inheritdoc/>
+			public int GetHashCode((byte Value1, byte Value2) obj) => obj.Value1 << 5 | obj.Value2;
 		}
 	}
 }

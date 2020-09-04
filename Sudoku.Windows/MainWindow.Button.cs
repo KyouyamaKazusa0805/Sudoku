@@ -87,8 +87,8 @@ namespace Sudoku.Windows
 						select new ListBoxItem
 						{
 							Content = new PriorKeyedTuple<string, TechniqueInfo, bool>(Info.ToSimpleString(), Info, true),
-							Foreground = new SolidColorBrush(Pair._foreground.ToWColor()),
-							Background = new SolidColorBrush(Pair._background.ToWColor()),
+							Foreground = new SolidColorBrush(Pair.Foreground.ToWColor()),
+							Background = new SolidColorBrush(Pair.Background.ToWColor()),
 							BorderThickness = default
 						});
 				}

@@ -76,7 +76,7 @@ namespace Sudoku.Windows.Tooling
 			if (match.Success)
 			{
 				int candidate = AsCandidate(match.Groups[1].Value);
-				return i => i.Views.Any(v => v.CandidateOffsets?.Any(p => p._candidateOffset == candidate) ?? false);
+				return i => i.Views.Any(v => v.CandidateOffsets?.Any(p => p.CandidateOffset == candidate) ?? false);
 			}
 
 			return null;
@@ -88,7 +88,7 @@ namespace Sudoku.Windows.Tooling
 			if (match.Success)
 			{
 				int cell = AsCell(match.Groups[1].Value);
-				return i => i.Views.Any(v => v.CellOffsets?.Any(p => p._cellOffset == cell) ?? false);
+				return i => i.Views.Any(v => v.CellOffsets?.Any(p => p.CellOffset == cell) ?? false);
 			}
 
 			return null;
@@ -100,7 +100,7 @@ namespace Sudoku.Windows.Tooling
 			if (match.Success)
 			{
 				int region = AsRegion(match.Groups[1].Value);
-				return i => i.Views.Any(v => v.RegionOffsets?.Any(p => p._regionOffset == region) ?? false);
+				return i => i.Views.Any(v => v.RegionOffsets?.Any(p => p.RegionOffset == region) ?? false);
 			}
 
 			return null;

@@ -278,7 +278,7 @@ namespace Sudoku.Drawing
 					case Elimination:
 					{
 						g.FillEllipse(
-							View?.CandidateOffsets?.Any(pair => pair._candidateOffset == c * 9 + d) ?? false
+							View?.CandidateOffsets?.Any(pair => pair.CandidateOffset == c * 9 + d) ?? false
 								? cannibalBrush
 								: eliminationBrush,
 							PointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));

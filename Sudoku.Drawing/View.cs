@@ -14,9 +14,9 @@ namespace Sudoku.Drawing
 	/// </summary>
 	[DebuggerStepThrough]
 	public sealed record View(
-		IReadOnlyList<(int _id, int _cellOffset)>? CellOffsets,
-		IReadOnlyList<(int _id, int _candidateOffset)>? CandidateOffsets,
-		IReadOnlyList<(int _id, int _regionOffset)>? RegionOffsets,
+		IReadOnlyList<(int Id, int CellOffset)>? CellOffsets,
+		IReadOnlyList<(int Id, int CandidateOffset)>? CandidateOffsets,
+		IReadOnlyList<(int Id, int RegionOffset)>? RegionOffsets,
 		IReadOnlyList<Link>? Links)
 	{
 		/// <summary>
@@ -100,7 +100,7 @@ namespace Sudoku.Drawing
 		/// where the identifier is an <see cref="int"/> value that can tell
 		/// all cell offsets' colors.
 		/// </remarks>
-		public IReadOnlyList<(int _id, int _cellOffset)>? CellOffsets { get; }
+		public IReadOnlyList<(int Id, int CellOffset)>? CellOffsets { get; }
 
 		/// <summary>
 		/// All candidate offsets.
@@ -110,7 +110,7 @@ namespace Sudoku.Drawing
 		/// where the identifier is an <see cref="int"/> value that can tell
 		/// all cell offsets' colors.
 		/// </remarks>
-		public IReadOnlyList<(int _id, int _candidateOffset)>? CandidateOffsets { get; }
+		public IReadOnlyList<(int Id, int CandidateOffset)>? CandidateOffsets { get; }
 
 		/// <summary>
 		/// All region offsets.
@@ -120,7 +120,7 @@ namespace Sudoku.Drawing
 		/// where the identifier is an <see cref="int"/> value that can tell
 		/// all cell offsets' colors.
 		/// </remarks>
-		public IReadOnlyList<(int _id, int _regionOffset)>? RegionOffsets { get; }
+		public IReadOnlyList<(int Id, int RegionOffset)>? RegionOffsets { get; }
 
 		/// <summary>
 		/// All link masks.

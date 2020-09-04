@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Sudoku.Extensions;
 using Sudoku.Solving.Manual;
@@ -73,7 +74,7 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			// Find the parents.
-			var parentList = new List<(int _id, int _parentId, string _content)>();
+			var parentList = new List<(int Id, int ParentId, string Content)>();
 			int id = 0;
 			foreach (string category in categories)
 			{
@@ -107,14 +108,11 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			// Create nodes.
-			var list = new List<TreeNode<string>>(
-				from Category in parentList
-				select new TreeNode<string>
-				{
-					Content = Category._content,
-					Id = Category._id,
-					ParentId = Category._parentId
-				});
+			var list = (from Category in parentList select g(Category)).ToList();
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static TreeNode<string> g((int Id, int ParentId, string Content) triplet) =>
+				new() { Content = triplet.Content, Id = triplet.Id, ParentId = triplet.ParentId };
 
 			// The last step: get all techniques.
 			var allNodes = new List<TreeNode<string>>(list);

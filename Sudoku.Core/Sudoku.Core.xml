@@ -179,10 +179,10 @@
             <seealso cref="F:Sudoku.Constants.Processings.IntersectionMaps"/>
         </member>
         <member name="M:Sudoku.Constants.Processings.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
-            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Constants.Processings.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
-            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Constants.RegionLabel">
             <summary>

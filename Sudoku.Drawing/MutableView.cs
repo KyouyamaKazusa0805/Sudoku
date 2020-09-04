@@ -17,9 +17,9 @@ namespace Sudoku.Drawing
 	/// <seealso cref="View"/>
 	[DebuggerStepThrough]
 	public sealed record MutableView(
-		ICollection<(int _id, int _cellOffset)>? CellOffsets,
-		ICollection<(int _id, int _candidateOffset)>? CandidateOffsets,
-		ICollection<(int _id, int _regionOffset)>? RegionOffsets,
+		ICollection<(int Id, int CellOffset)>? CellOffsets,
+		ICollection<(int Id, int CandidateOffset)>? CandidateOffsets,
+		ICollection<(int Id, int RegionOffset)>? RegionOffsets,
 		ICollection<Link>? Links)
 	{
 		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
@@ -100,21 +100,21 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsCell(int cell) => CellOffsets.Any(p => p._cellOffset == cell);
+		public bool ContainsCell(int cell) => CellOffsets.Any(p => p.CellOffset == cell);
 
 		/// <summary>
 		/// Indicates whether the specified list contains the candidate.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsCandidate(int candidate) => CandidateOffsets.Any(p => p._candidateOffset == candidate);
+		public bool ContainsCandidate(int candidate) => CandidateOffsets.Any(p => p.CandidateOffset == candidate);
 
 		/// <summary>
 		/// Indicates whether the specified list contains the region.
 		/// </summary>
 		/// <param name="cell">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsRegion(int region) => RegionOffsets.Any(p => p._regionOffset == region);
+		public bool ContainsRegion(int region) => RegionOffsets.Any(p => p.RegionOffset == region);
 
 		/// <summary>
 		/// Indicates whether the specified list contains the link.

@@ -8,6 +8,8 @@ using System.Security;
 using Sudoku.Constants;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
+using S = Sudoku.Data.CellStatus;
+using T = Sudoku.Constants.Throwings;
 
 namespace Sudoku.Data
 {
@@ -31,7 +33,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
 		/// </summary>
-		public const short DefaultMask = (short)CellStatus.Empty << 9;
+		public const short DefaultMask = (short)S.Empty << 9;
 
 		/// <summary>
 		/// Indicates the maximum candidate mask that used.
@@ -58,15 +60,15 @@ namespace Sudoku.Data
 		/// <list type="table">
 		/// <item>
 		/// <term><c>0b001</c> (1)</term>
-		/// <description>The cell is <see cref="CellStatus.Empty"/>.</description>
+		/// <description>The cell is <see cref="S.Empty"/>.</description>
 		/// </item>
 		/// <item>
 		/// <term><c>0b010</c> (2)</term>
-		/// <description>The cell is <see cref="CellStatus.Modifiable"/>.</description>
+		/// <description>The cell is <see cref="S.Modifiable"/>.</description>
 		/// </item>
 		/// <item>
 		/// <term><c>0b100</c> (4)</term>
-		/// <description>The cell is <see cref="CellStatus.Given"/>.</description>
+		/// <description>The cell is <see cref="S.Given"/>.</description>
 		/// </item>
 		/// </list>
 		/// </para>
@@ -74,7 +76,7 @@ namespace Sudoku.Data
 		/// <permission cref="PermissionSet">
 		/// The current project or the derived class can access this field.
 		/// </permission>
-		/// <seealso cref="CellStatus"/>
+		/// <seealso cref="S"/>
 		protected internal readonly short[] _masks;
 
 		/// <summary>
@@ -139,7 +141,7 @@ namespace Sudoku.Data
 			{
 				for (int i = 0; i < 81; i++)
 				{
-					if (GetStatus(i) == CellStatus.Empty)
+					if (GetStatus(i) == S.Empty)
 					{
 						return false;
 					}
@@ -157,7 +159,7 @@ namespace Sudoku.Data
 				int count = 0;
 				for (int i = 0; i < 81; i++)
 				{
-					if (GetStatus(i) == CellStatus.Empty)
+					if (GetStatus(i) == S.Empty)
 					{
 						count += GetCandidateMask(i).CountSet();
 					}
@@ -168,18 +170,18 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
-		public int GivensCount => Triplet._c;
+		public int GivensCount => Triplet.C;
 
 		/// <inheritdoc/>
-		public int ModifiablesCount => Triplet._b;
+		public int ModifiablesCount => Triplet.B;
 
 		/// <inheritdoc/>
-		public int EmptiesCount => Triplet._a;
+		public int EmptiesCount => Triplet.A;
 
 		/// <summary>
 		/// The triplet of three main information.
 		/// </summary>
-		private (int _a, int _b, int _c) Triplet
+		private unsafe (int A, int B, int C) Triplet
 		{
 			get
 			{
@@ -187,24 +189,7 @@ namespace Sudoku.Data
 				a = b = c = 0;
 				for (int i = 0; i < 81; i++)
 				{
-					switch (GetStatus(i))
-					{
-						case CellStatus.Empty:
-						{
-							a++;
-							break;
-						}
-						case CellStatus.Modifiable:
-						{
-							b++;
-							break;
-						}
-						case CellStatus.Given:
-						{
-							c++;
-							break;
-						}
-					}
+					(*(GetStatus(i) switch { S.Empty => &a, S.Modifiable => &b, S.Given => &c, _ => throw T.ImpossibleCase }))++;
 				}
 
 				return (a, b, c);
@@ -217,20 +202,20 @@ namespace Sudoku.Data
 		{
 			get => GetStatus(offset) switch
 			{
-				CellStatus.Empty => -1,
-				CellStatus.Modifiable => (~_masks[offset]).FindFirstSet(),
-				CellStatus.Given => (~_masks[offset]).FindFirstSet(),
-				_ => throw Throwings.ImpossibleCase
+				S.Empty => -1,
+				S.Modifiable => (~_masks[offset]).FindFirstSet(),
+				S.Given => (~_masks[offset]).FindFirstSet(),
+				_ => throw T.ImpossibleCase
 			};
 			set
 			{
 				switch (value)
 				{
-					case -1 when GetStatus(offset) == CellStatus.Modifiable:
+					case -1 when GetStatus(offset) == S.Modifiable:
 					{
 						// If 'value' is -1, we should reset the grid.
 						// Note that reset candidates may not trigger the event.
-						_masks[offset] = (short)CellStatus.Empty << 9;
+						_masks[offset] = (short)S.Empty << 9;
 						RecomputeCandidates();
 
 						break;
@@ -241,7 +226,7 @@ namespace Sudoku.Data
 						short copy = result;
 
 						// Set cell status to 'CellStatus.Modifiable'.
-						result = (short)((short)CellStatus.Modifiable << 9 | MaxCandidatesMask & ~(1 << value));
+						result = (short)((short)S.Modifiable << 9 | MaxCandidatesMask & ~(1 << value));
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
@@ -290,9 +275,9 @@ namespace Sudoku.Data
 		{
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetStatus(i) == CellStatus.Modifiable)
+				if (GetStatus(i) == S.Modifiable)
 				{
-					SetStatus(i, CellStatus.Given);
+					SetStatus(i, S.Given);
 				}
 			}
 
@@ -307,9 +292,9 @@ namespace Sudoku.Data
 		{
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetStatus(i) == CellStatus.Given)
+				if (GetStatus(i) == S.Given)
 				{
-					SetStatus(i, CellStatus.Modifiable);
+					SetStatus(i, S.Modifiable);
 				}
 			}
 		}
@@ -326,7 +311,7 @@ namespace Sudoku.Data
 		/// <param name="offset">The cell offset you want to change.</param>
 		/// <param name="cellStatus">The cell status you want to set.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public virtual void SetStatus(int offset, CellStatus cellStatus)
+		public virtual void SetStatus(int offset, S cellStatus)
 		{
 			ref short mask = ref _masks[offset];
 			short copy = mask;
@@ -357,7 +342,7 @@ namespace Sudoku.Data
 		{
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetStatus(i) == CellStatus.Empty)
+				if (GetStatus(i) == S.Empty)
 				{
 					short mask = 0;
 					foreach (int cell in PeerMaps[i])
@@ -369,7 +354,7 @@ namespace Sudoku.Data
 						}
 					}
 
-					_masks[i] = (short)((int)CellStatus.Empty << 9 | mask);
+					_masks[i] = (short)((int)S.Empty << 9 | mask);
 				}
 			}
 		}
@@ -458,7 +443,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public CellStatus GetStatus(int offset) => (CellStatus)(_masks[offset] >> 9 & (int)CellStatus.All);
+		public S GetStatus(int offset) => (S)(_masks[offset] >> 9 & (int)S.All);
 
 		/// <inheritdoc/>
 		public Grid Clone() => new((short[])_masks.Clone());
@@ -484,7 +469,7 @@ namespace Sudoku.Data
 
 			foreach (int cell in PeerMaps[offset])
 			{
-				if (GetStatus(cell) == CellStatus.Empty)
+				if (GetStatus(cell) == S.Empty)
 				{
 					_masks[cell] |= (short)(1 << setValue);
 				}
@@ -502,12 +487,12 @@ namespace Sudoku.Data
 			{
 				switch (GetStatus(i))
 				{
-					case CellStatus.Given:
+					case S.Given:
 					{
 						count++;
-						goto case CellStatus.Modifiable;
+						goto case S.Modifiable;
 					}
-					case CellStatus.Modifiable:
+					case S.Modifiable:
 					{
 						int curDigit = this[i];
 						foreach (int cell in PeerMaps[i])
@@ -653,7 +638,7 @@ namespace Sudoku.Data
 					result[i] = value - 1;
 
 					// Set the status to 'CellStatus.Given'.
-					result.SetStatus(i, CellStatus.Given);
+					result.SetStatus(i, S.Given);
 				}
 			}
 
@@ -706,19 +691,19 @@ namespace Sudoku.Data
 			{
 				if (!format.StartsWith('@'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Multi-line identifier '@' must be at the first place.",
 						nameof(format));
 				}
 				else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"In multi-line environment, '0' and '.' cannot appear with ':' together.",
 						nameof(format));
 				}
 				else if (format.IsMatch(@"\@[^0\!\~\*\.\:]+"))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'.",
 						nameof(format));
 				}
@@ -727,31 +712,31 @@ namespace Sudoku.Data
 			{
 				if (!format.StartsWith('#'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Intelligence option character '#' must be at the first place.",
 						nameof(format));
 				}
 				else if (format.IsMatch(@"\#[^\.0]+"))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Intelligence option character '#' must be with placeholder '0' or '.'.",
 						nameof(format));
 				}
 				else if (format.Contains('0') && format.Contains('.'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Placeholder character '0' and '.' cannot appear both.",
 						nameof(format));
 				}
 				else if (format.Contains('+') && format.Contains('!'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Cell status character '+' and '!' cannot appear both.",
 						nameof(format));
 				}
 				else if (format.Contains(':') && !format.EndsWith(':'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Candidate leading character ':' must be at the last place.",
 						nameof(format));
 				}
@@ -760,7 +745,7 @@ namespace Sudoku.Data
 			{
 				if (format.IsMatch(@"(\~[^\@\.0]|[^\@0\.]\~)"))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Sukaku character '~' can only be together with the characters '0', '.' or '@'.",
 						nameof(format));
 				}
@@ -769,7 +754,7 @@ namespace Sudoku.Data
 			{
 				if (format.Length > 1)
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Excel option character '%' cannot be used with other characters together.",
 						nameof(format));
 				}

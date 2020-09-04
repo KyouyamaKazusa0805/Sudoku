@@ -108,7 +108,7 @@ namespace Sudoku.Windows
 			var thisThursday = today.AddDays(1 - (int)today.DayOfWeek) + TimeSpan.FromDays(3);
 #endif
 
-			var dic = new (string _escape, string _replacement)[]
+			var dic = new (string Escape, string Replacement)[]
 			{
 				("$f", Path.GetFileNameWithoutExtension(filePath)),
 				("$e", Path.GetExtension(filePath)),

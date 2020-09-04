@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
@@ -256,7 +255,7 @@ namespace Sudoku.Solving
 		/// Get the data of bottleneck.
 		/// </summary>
 		/// <returns>The data.</returns>
-		private (int _stepIndex, TechniqueInfo _stepInfo)? GetBottleneckData()
+		private (int StepIndex, TechniqueInfo StepInfo)? GetBottleneckData()
 		{
 			var (_, solvingStepsCount, solvingSteps) = Result;
 			if (solvingSteps is null)

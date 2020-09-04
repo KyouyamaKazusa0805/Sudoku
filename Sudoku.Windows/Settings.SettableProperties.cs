@@ -361,7 +361,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The color table for each difficulty level.
 		/// </summary>
-		public IDictionary<DifficultyLevel, (Color _foreground, Color _background)> DiffColors =>
+		public IDictionary<DifficultyLevel, (Color Foreground, Color Background)> DiffColors =>
 			new Dictionary<DifficultyLevel, (Color, Color)>
 			{
 				[Unknown] = (Color.Black, Color.Gray),
