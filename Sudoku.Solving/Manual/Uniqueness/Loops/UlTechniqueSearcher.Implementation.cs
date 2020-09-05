@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			}
 
 			var candidateOffsets = new List<(int, int)>();
-			foreach (int cell in loop - extraCell)
+			foreach (int cell in new GridMap(loop) { [extraCell] = false })
 			{
 				candidateOffsets.Add((0, cell * 9 + d1));
 				candidateOffsets.Add((0, cell * 9 + d2));

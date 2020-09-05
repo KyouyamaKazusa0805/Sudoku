@@ -2264,6 +2264,11 @@
             <param name="map">The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The map after adding.</returns>
+            <remarks>
+            This operator can simplify your code but create a new instance.
+            If you want to consider the performance, please <b>don't</b>
+            use this operator.
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Addition(System.Int32,Sudoku.Data.GridMap)">
             <summary>
@@ -2272,6 +2277,11 @@
             <param name="map">The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The map after adding.</returns>
+            <remarks>
+            This operator can simplify your code but create a new instance.
+            If you want to consider the performance, please <b>don't</b>
+            use this operator.
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,System.Int32)">
             <summary>
@@ -2280,6 +2290,11 @@
             <param name="map">The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The map after removing.</returns>
+            <remarks>
+            This operator can simplify your code but create a new instance.
+            If you want to consider the performance, please <b>don't</b>
+            use this operator.
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>

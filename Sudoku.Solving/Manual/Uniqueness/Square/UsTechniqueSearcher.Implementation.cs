@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				var candidateOffsets = new List<(int, int)>();
 				foreach (int digit in digits)
 				{
-					foreach (int cell in pattern - elimCell & CandMaps[digit])
+					foreach (int cell in new GridMap(pattern) { [elimCell] = false } & CandMaps[digit])
 					{
 						candidateOffsets.Add((0, cell * 9 + digit));
 					}

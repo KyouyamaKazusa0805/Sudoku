@@ -164,8 +164,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer
 				|| otherCellsMap.Any(
 					c =>
-						grid.GetCandidateMask(c) is short mask
-						&& (mask & comparer) == 0 || mask == comparer || arMode && grid.GetStatus(c) != Empty))
+						grid.GetCandidateMask(c) is var mask
+						&& (mask & comparer) == 0 || mask == comparer || arMode
+						&& grid.GetStatus(c) != Empty))
 			{
 				return;
 			}

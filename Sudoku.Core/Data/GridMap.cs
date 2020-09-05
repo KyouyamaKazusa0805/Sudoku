@@ -686,7 +686,7 @@ namespace Sudoku.Data
 		/// Set the specified cells as <see langword="true"/> value.
 		/// </summary>
 		/// <param name="offsets">The cells to add.</param>
-		internal void AddRange(ReadOnlySpan<int> offsets)
+		public void AddRange(ReadOnlySpan<int> offsets)
 		{
 			foreach (int cell in offsets)
 			{
@@ -698,7 +698,7 @@ namespace Sudoku.Data
 		/// Set the specified cells as <see langword="true"/> value.
 		/// </summary>
 		/// <param name="offsets">The cells to add.</param>
-		internal void AddRange(IEnumerable<int> offsets)
+		public void AddRange(IEnumerable<int> offsets)
 		{
 			foreach (int cell in offsets)
 			{
@@ -751,6 +751,11 @@ namespace Sudoku.Data
 		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The map after adding.</returns>
+		/// <remarks>
+		/// This operator can simplify your code but create a new instance.
+		/// If you want to consider the performance, please <b>don't</b>
+		/// use this operator.
+		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator +(GridMap map, int cell)
 		{
@@ -766,6 +771,11 @@ namespace Sudoku.Data
 		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The map after adding.</returns>
+		/// <remarks>
+		/// This operator can simplify your code but create a new instance.
+		/// If you want to consider the performance, please <b>don't</b>
+		/// use this operator.
+		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator +(int cell, GridMap map) => map + cell;
 
@@ -775,6 +785,11 @@ namespace Sudoku.Data
 		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The map after removing.</returns>
+		/// <remarks>
+		/// This operator can simplify your code but create a new instance.
+		/// If you want to consider the performance, please <b>don't</b>
+		/// use this operator.
+		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator -(GridMap map, int cell)
 		{

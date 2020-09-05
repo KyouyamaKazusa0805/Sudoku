@@ -46,7 +46,7 @@ namespace Sudoku.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Distinct<T>(this IList<T> @this) where T : notnull
 		{
-			var tempList = Enumerable.Distinct(@this);
+			var tempList = Enumerable.Distinct(@this).ToList(); // Do not forget '.ToList'.
 			@this.Clear();
 			@this.AddRange(tempList);
 		}
