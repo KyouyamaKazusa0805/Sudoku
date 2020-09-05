@@ -35,11 +35,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 				unsafe
 				{
-					foreach (var f in
-						new delegate*<IList<TechniqueInfo>, Grid, GridMap, short, void>[]
-						{
-							&CheckType1, &CheckType2, &CheckType3, &CheckType4
-						})
+					foreach (var f in new delegate*<IList<TechniqueInfo>, Grid, GridMap, short, void>[]
+					{
+						&CheckType1, &CheckType2, &CheckType3, &CheckType4
+					})
 					{
 						f(accumulator, grid, pattern, mask);
 					}

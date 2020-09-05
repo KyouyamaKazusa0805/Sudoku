@@ -1863,7 +1863,7 @@
             while initializing with the type <see cref="T:System.Int32"/>[], the complier
             gives me an error without this constructor (ambiguity of two
             constructors). However, unfortunately, <see cref="T:System.ReadOnlySpan`1"/>
-            does not implemented the interface <see cref="T:System.Collections.Generic.IEnumerable`1"/>...
+            does not implemented the interface <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
         </member>

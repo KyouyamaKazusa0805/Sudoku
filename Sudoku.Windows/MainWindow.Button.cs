@@ -16,7 +16,6 @@ using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Tooling;
 using static Sudoku.Windows.Constants.Processings;
-using TechniqueGroupedByName = System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>;
 
 namespace Sudoku.Windows
 {
@@ -47,7 +46,7 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				IEnumerable<TechniqueGroupedByName> techniqueGroups;
+				IEnumerable<IGrouping<string, TechniqueInfo>> techniqueGroups;
 				ProgressWindow? dialog = null;
 				var list = new List<ListBoxItem>();
 				if (_cacheAllSteps is null)
@@ -60,7 +59,7 @@ namespace Sudoku.Windows
 
 					dialog = new();
 					dialog.Show();
-					IEnumerable<TechniqueGroupedByName> s() =>
+					IEnumerable<IGrouping<string, TechniqueInfo>> s() =>
 						new StepFinder(Settings).Search(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
 					_cacheAllSteps = await Task.Run(s);
 					techniqueGroups = _cacheAllSteps;

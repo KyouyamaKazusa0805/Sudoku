@@ -233,26 +233,5 @@ namespace Sudoku.Windows.Tooling
 
 			return result;
 		}
-
-		/// <summary>
-		/// Deserialize the text.
-		/// </summary>
-		/// <typeparam name="T">The type of the instance.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
-		/// <param name="xml">The text.</param>
-		/// <returns>The instance.</returns>
-		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-		[return: MaybeNull]
-		public static T LoadFromXmlText<T>(this T @this, string xml)
-		{
-			T result = default;
-			if (!string.IsNullOrEmpty(xml))
-			{
-				using var xr = XmlReader.Create(new StringReader(xml));
-				result = (T)new XmlSerializer(typeof(T)).Deserialize(xr);
-			}
-
-			return result;
-		}
 	}
 }

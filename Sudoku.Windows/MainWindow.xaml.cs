@@ -1066,7 +1066,7 @@ namespace Sudoku.Windows
 				int digit = solution[c];
 				switch (t)
 				{
-					case Assignment when digit != d:
+					case ConclusionType.Assignment when digit != d:
 					case Elimination when digit == d:
 					{
 						return false;

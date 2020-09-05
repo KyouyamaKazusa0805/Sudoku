@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -72,7 +71,7 @@ namespace Sudoku.Data
 		/// while initializing with the type <see cref="int"/>[], the complier
 		/// gives me an error without this constructor (ambiguity of two
 		/// constructors). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
-		/// does not implemented the interface <see cref="IEnumerable{T}"/>...
+		/// does not implemented the interface <see cref="IEnumerable{T}"/>.
 		/// </remarks>
 		/// <seealso cref="GridMap(IEnumerable{int})"/>
 		public GridMap(int[] offsets) : this((IEnumerable<int>)offsets)
@@ -448,7 +447,6 @@ namespace Sudoku.Data
 		/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
 		/// and the region 19 (column 2).
 		/// </summary>
-		[SuppressMessage("", "IDE0004:Remove redundant cast")]
 		public readonly IEnumerable<int> Regions => ((int)BlockMask | RowMask << 9 | ColumnMask << 18).GetAllSets();
 
 		/// <summary>

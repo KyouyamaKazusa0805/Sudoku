@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable IDE0051
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -20,7 +22,6 @@ namespace Sudoku.Windows.Tooling
 	/// <summary>
 	/// Interaction logic for <c>ColorPickerControl.xaml</c>.
 	/// </summary>
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	public sealed partial class ColorPickerControl : UserControl
 	{
 		/// <summary>

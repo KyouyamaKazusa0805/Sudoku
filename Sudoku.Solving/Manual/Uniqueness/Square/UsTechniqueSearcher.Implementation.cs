@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -66,7 +65,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		private static partial void CheckType2(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask)
 		{
 			if (mask.CountSet() != 5)

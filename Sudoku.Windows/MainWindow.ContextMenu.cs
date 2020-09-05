@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -88,7 +87,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		[SuppressMessage("Style", "IDE0038:Use pattern matching", Justification = "<Pending>")]
 		private void ContextListBoxPathsCopyAllSteps_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is MenuItem)

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -24,7 +23,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc/>
-		[SuppressMessage("", "IDE0004")]
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			var rccs = new List<(Als Left, Als Right, short Mask)>();

@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#pragma warning disable CA1032
+#pragma warning disable CA2229
+
 using System.Runtime.Serialization;
 using System;
 using System.Diagnostics;
@@ -10,8 +12,6 @@ namespace Sudoku.Runtime
 	/// Represents an error that the puzzle has multiple solutions while solving.
 	/// </summary>
 	[Serializable, DebuggerStepThrough]
-	[SuppressMessage("Usage", "CA2229:Implement serialization constructors", Justification = "<Pending>")]
-	[SuppressMessage("Design", "CA1032:Implement standard exception constructors", Justification = "<Pending>")]
 	public class MultipleSolutionsException : SudokuRuntimeException
 	{
 		/// <summary>

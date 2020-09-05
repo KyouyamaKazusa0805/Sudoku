@@ -39,7 +39,7 @@ namespace Sudoku.Windows.Tooling
 					if (info.Conclusions.Count == 1)
 					{
 						var (type, cell, digit) = info.Conclusions[0];
-						return cell * 9 + digit == candidate && type == Assignment;
+						return cell * 9 + digit == candidate && type == Data.ConclusionType.Assignment;
 					}
 
 					return false;

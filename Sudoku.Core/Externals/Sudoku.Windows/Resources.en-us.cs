@@ -13,7 +13,6 @@ namespace Sudoku.Windows
 		/// Here we use reflection to call and use this field, which cannot be recognized by
 		/// Roslyn, so we should suppress the complier warning IDE0052.
 		/// </remarks>
-		[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 		private static readonly SourceDictionary LangSourceEnUs = new Dictionary<string, string>
 		{
 #line 1000

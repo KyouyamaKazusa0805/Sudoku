@@ -1,4 +1,7 @@
-﻿using System;
+﻿#pragma warning disable CA1815
+#pragma warning disable CA2231
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -18,8 +21,6 @@ namespace Sudoku.Data
 	/// }
 	/// </code>
 	/// </example>
-	[SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", Justification = "<Pending>")]
-	[SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
 	public ref struct BitCombinationGenerator
 	{
 		/// <summary>

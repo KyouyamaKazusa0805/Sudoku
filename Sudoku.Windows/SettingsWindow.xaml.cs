@@ -19,7 +19,7 @@ namespace Sudoku.Windows
 	/// Indicates the assignment handler.
 	/// </summary>
 	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-	internal delegate void AssignmentHandler();
+	internal delegate void Assignment();
 
 	/// <summary>
 	/// Interaction logic for <c>SettingsWindow.xaml</c>.
@@ -35,7 +35,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the handler that finish all assignments.
 		/// </summary>
-		private AssignmentHandler? _assigments;
+		private Assignment? _assigments;
 
 
 		/// <summary>

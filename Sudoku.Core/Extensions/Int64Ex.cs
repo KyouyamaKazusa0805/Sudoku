@@ -104,7 +104,6 @@ namespace Sudoku.Extensions
 
 		/// <include file='CoreDocComments.xml' path='comments/method[@name="ReverseBits"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[SuppressMessage("", "IDE0055:Fix formatting")]
 		public static void ReverseBits(this ref long @this)
 		{
 			@this = @this >> 1 & 0x55555555_55555555L | (@this & 0x55555555_55555555L) << 1;
