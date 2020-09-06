@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using System.Text;
+using Sudoku.Data.Collections;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.GridMap.InitializationOption;
@@ -633,6 +633,10 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString()
 		{
+#if true
+			var cells = new CellCollection(this);
+			return cells.ToString();
+#else
 			var sb = new StringBuilder();
 			int i;
 			long value = _low;
@@ -656,6 +660,7 @@ namespace Sudoku.Data
 			}
 
 			return sb.Reverse().ToString();
+#endif
 		}
 
 		/// <inheritdoc/>
