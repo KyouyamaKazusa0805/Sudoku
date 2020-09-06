@@ -24,26 +24,27 @@ namespace Sudoku.Extensions
 				return Array.Empty<T[]>();
 			}
 
+			// Local function 'g' will capture variable 'result'.
 			var result = new List<T[]>();
-			g(@this, @this.Length, count, count, new int[count]);
+			g(@this.Length, count, count, new int[count]);
 
 			return result;
 
-			void g(T[] array, int last, int count, int m, int[] b)
+			void g(int last, int count, int m, int[] b)
 			{
 				for (int i = last; i >= m; i--)
 				{
 					b[m - 1] = i - 1;
 					if (m > 1)
 					{
-						g(array, i - 1, count, m - 1, b);
+						g(i - 1, count, m - 1, b);
 					}
 					else
 					{
 						var temp = new T[count];
 						for (int j = 0; j < b.Length; j++)
 						{
-							temp[j] = array[b[j]];
+							temp[j] = @this[b[j]];
 						}
 
 						result.Add(temp);

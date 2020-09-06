@@ -190,7 +190,7 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-				Clipboard.SetImage((BitmapSource)_imageGrid.Source);
+				SystemClipboard.Image = (BitmapSource)_imageGrid.Source;
 			}
 			catch (Exception ex)
 			{
@@ -300,7 +300,7 @@ namespace Sudoku.Windows
 			try
 			{
 				string z = _puzzle.ToString(Settings.TextFormatPlaceholdersAreZero ? "#0" : "#.");
-				Clipboard.SetText($":0000:x:{z}{(z.Contains(':') ? "::" : ":::")}");
+				SystemClipboard.Text = $":0000:x:{z}{(z.Contains(':') ? "::" : ":::")}";
 			}
 			catch (Exception ex)
 			{
@@ -317,7 +317,7 @@ namespace Sudoku.Windows
 
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
-			string puzzleStr = Clipboard.GetText();
+			string? puzzleStr = SystemClipboard.Text;
 			if (puzzleStr is not null)
 			{
 				LoadPuzzle(puzzleStr);
@@ -330,7 +330,7 @@ namespace Sudoku.Windows
 
 		private void MenuItemEditPasteAsSukaku_Click(object sender, RoutedEventArgs e)
 		{
-			string puzzleStr = Clipboard.GetText();
+			string? puzzleStr = SystemClipboard.Text;
 			if (puzzleStr is not null)
 			{
 				try
@@ -509,9 +509,12 @@ namespace Sudoku.Windows
 						goto Last;
 					}
 
-					Puzzle = new(
-						await new TechniqueFilteringPuzzleGenerator().GenerateAsync(
-							filter, dialog.DefaultReporting, Settings.LanguageCode));
+					Puzzle =
+						new(
+							await new TechniqueFilteringPuzzleGenerator().GenerateAsync(
+								filter, dialog.DefaultReporting, Settings.LanguageCode
+							)
+						);
 				}
 
 			Last:
