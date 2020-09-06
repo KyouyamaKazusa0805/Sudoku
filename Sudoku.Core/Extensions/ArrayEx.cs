@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
 {
@@ -12,27 +11,6 @@ namespace Sudoku.Extensions
 	[DebuggerStepThrough]
 	public static class ArrayEx
 	{
-		/// <summary>
-		/// Sorts the elements in an entire <typeparamref name="T"/>[] using the default
-		/// <see cref="IComparable{T}"/> generic interface implementation of each element
-		/// of the <see cref="Array"/>.
-		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
-		/// <seealso cref="IComparable{T}"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Sort<T>(this T[] @this) => Array.Sort(@this);
-
-		/// <summary>
-		/// Sorts the elements in an <typeparamref name="T"/>[] using the specified <see cref="Comparison{T}"/>.
-		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
-		/// <param name="comparison">The comparison method.</param>
-		/// <seealso cref="Comparison{T}"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Sort<T>(this T[] @this, Comparison<T> comparison) => Array.Sort(@this, comparison);
-
 		/// <summary>
 		/// Get all subsets from the specified number of the values to take.
 		/// </summary>

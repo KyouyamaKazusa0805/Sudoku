@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Models;
 using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
@@ -76,7 +75,7 @@ namespace Sudoku.Solving.Manual
 
 			if (UseCalculationPriority)
 			{
-				searchers.Sort((a, b) => a.SearcherProperties!.Priority.CompareTo(b.SearcherProperties!.Priority));
+				Array.Sort(searchers, (a, b) => a.SearcherProperties!.Priority.CompareTo(b.SearcherProperties!.Priority));
 			}
 
 			var bag = new List<TechniqueInfo>();

@@ -58,7 +58,8 @@ namespace System
 
 
 		/// <inheritdoc/>
-		object? ITuple.this[int index] => PriorKey switch { 1 => Item1, 2 => Item2, 3 => Item3, _ => Throwings.ImpossibleCase };
+		object? ITuple.this[int index] =>
+			PriorKey switch { 1 => Item1, 2 => Item2, 3 => Item3, _ => Throwings.ImpossibleCase };
 
 		/// <inheritdoc/>
 		public override string ToString() => ((ITuple)this)[PriorKey].NullableToString();

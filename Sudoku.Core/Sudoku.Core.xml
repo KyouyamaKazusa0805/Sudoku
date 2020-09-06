@@ -4026,25 +4026,6 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
-        <member name="M:Sudoku.Extensions.ArrayEx.Sort``1(``0[])">
-            <summary>
-            Sorts the elements in an entire <typeparamref name="T"/>[] using the default
-            <see cref="T:System.IComparable`1"/> generic interface implementation of each element
-            of the <see cref="T:System.Array"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The array.</param>
-            <seealso cref="T:System.IComparable`1"/>
-        </member>
-        <member name="M:Sudoku.Extensions.ArrayEx.Sort``1(``0[],System.Comparison{``0})">
-            <summary>
-            Sorts the elements in an <typeparamref name="T"/>[] using the specified <see cref="T:System.Comparison`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The array.</param>
-            <param name="comparison">The comparison method.</param>
-            <seealso cref="T:System.Comparison`1"/>
-        </member>
         <member name="M:Sudoku.Extensions.ArrayEx.GetSubsets``1(``0[],System.Int32)">
             <summary>
             Get all subsets from the specified number of the values to take.
@@ -7544,8 +7525,8 @@
             </summary>
             <returns>
             The instance having the same type with the base one. Because the type is
-            used and defined before using this method, so the return type will be
-            never <see langword="null"/>.
+            used and defined before using this method, so the return type will never be
+            <see langword="null"/>.
             </returns>
             <remarks>
             Here we hide the inner method <see cref="M:System.ICloneable.Clone"/>, so this method

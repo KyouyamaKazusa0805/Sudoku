@@ -110,7 +110,8 @@ namespace Sudoku.Data.Collections
 					var sb = new StringBuilder();
 					if (shouldSort)
 					{
-						concs.Sort(
+						Array.Sort(
+							concs,
 							(a, b) =>
 							{
 								var (t1, c1, d1) = a;

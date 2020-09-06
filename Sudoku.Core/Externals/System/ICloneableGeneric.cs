@@ -19,8 +19,8 @@
 		/// </summary>
 		/// <returns>
 		/// The instance having the same type with the base one. Because the type is
-		/// used and defined before using this method, so the return type will be
-		/// never <see langword="null"/>.
+		/// used and defined before using this method, so the return type will never be
+		/// <see langword="null"/>.
 		/// </returns>
 		/// <remarks>
 		/// Here we hide the inner method <see cref="ICloneable.Clone"/>, so this method
