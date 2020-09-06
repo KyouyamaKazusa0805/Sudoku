@@ -29,6 +29,12 @@ namespace System.Linq
 		/// the result will be the default value, where it will be <see langword="null"/>, which
 		/// is decided in the element type.
 		/// </returns>
+		/// <remarks>
+		/// Note that the return value can be <see langword="null"/> if the list cannot be found
+		/// the specified element, but this type parameter is named <typeparamref name="TNotNull"/>
+		/// because each element cannot be <see langword="null"/> (either value types or non-<see langword="null"/>
+		/// reference types).
+		/// </remarks>
 		[return: MaybeNull]
 		public static TNotNull GetElementByMinSelector<TNotNull, TComparable>(
 			this IEnumerable<TNotNull> @this, Func<TNotNull, IComparable<TComparable>> selector)

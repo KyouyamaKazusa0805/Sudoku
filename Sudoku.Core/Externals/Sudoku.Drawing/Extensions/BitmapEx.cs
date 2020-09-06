@@ -140,10 +140,7 @@ namespace Sudoku.Drawing.Extensions
 						ColorPaletteToLookupTable(
 							bitmap.Palette, out var bTable, out var gTable, out var rTable, out var aTable);
 
-						var data = bitmap.LockBits(
-							new Rectangle(Point.Empty, size),
-							ImageLockMode.ReadOnly,
-							bitmap.PixelFormat);
+						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 						using var indexValue = new Image<Gray, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 						using var b = new Mat();
 						using var g = new Mat();
@@ -263,10 +260,10 @@ namespace Sudoku.Drawing.Extensions
 		/// Convert the color palette to four lookup tables.
 		/// </summary>
 		/// <param name="palette">The color palette to transform.</param>
-		/// <param name="bTable">Lookup table for the B channel.</param>
-		/// <param name="gTable">Lookup table for the G channel.</param>
-		/// <param name="rTable">Lookup table for the R channel.</param>
-		/// <param name="aTable">Lookup table for the A channel.</param>
+		/// <param name="bTable">(<see langword="out"/> parameter) Lookup table for the B channel.</param>
+		/// <param name="gTable">(<see langword="out"/> parameter) Lookup table for the G channel.</param>
+		/// <param name="rTable">(<see langword="out"/> parameter) Lookup table for the R channel.</param>
+		/// <param name="aTable">(<see langword="out"/> parameter) Lookup table for the A channel.</param>
 		public static void ColorPaletteToLookupTable(
 			ColorPalette palette, out Matrix<byte> bTable,
 			out Matrix<byte> gTable, out Matrix<byte> rTable, out Matrix<byte> aTable)

@@ -5097,10 +5097,10 @@
             Convert the color palette to four lookup tables.
             </summary>
             <param name="palette">The color palette to transform.</param>
-            <param name="bTable">Lookup table for the B channel.</param>
-            <param name="gTable">Lookup table for the G channel.</param>
-            <param name="rTable">Lookup table for the R channel.</param>
-            <param name="aTable">Lookup table for the A channel.</param>
+            <param name="bTable">(<see langword="out"/> parameter) Lookup table for the B channel.</param>
+            <param name="gTable">(<see langword="out"/> parameter) Lookup table for the G channel.</param>
+            <param name="rTable">(<see langword="out"/> parameter) Lookup table for the R channel.</param>
+            <param name="aTable">(<see langword="out"/> parameter) Lookup table for the A channel.</param>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CopyFromBitmap``2(Emgu.CV.Image{``0,``1},System.Drawing.Bitmap)">
             <summary>
@@ -7580,6 +7580,12 @@
             the result will be the default value, where it will be <see langword="null"/>, which
             is decided in the element type.
             </returns>
+            <remarks>
+            Note that the return value can be <see langword="null"/> if the list cannot be found
+            the specified element, but this type parameter is named <typeparamref name="TNotNull"/>
+            because each element cannot be <see langword="null"/> (either value types or non-<see langword="null"/>
+            reference types).
+            </remarks>
         </member>
         <member name="M:System.Linq.EnumerableEx.None``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
