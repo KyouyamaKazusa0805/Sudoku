@@ -85,10 +85,11 @@ namespace Sudoku.Solving.Generating
 						var grid = Grid.Parse(valueOf(solution));
 						if ((
 							backdoorFilterDepth != -1
-							&& !BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).Any()
+							&& BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).None()
 							|| backdoorFilterDepth == -1)
-							&& difficultyLevel != Unknown && grid.DifficultyLevel() == difficultyLevel
-							|| difficultyLevel == Unknown)
+							&& (
+							difficultyLevel != Unknown && grid.DifficultyLevel() == difficultyLevel
+							|| difficultyLevel == Unknown))
 						{
 							return grid;
 						}
