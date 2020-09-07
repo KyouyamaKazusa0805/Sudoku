@@ -38,10 +38,6 @@ namespace Sudoku.Solving
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>
-		/// <exception cref="ArgumentNullException">
-		/// Throws when the specified format is <see langword="null"/> and the format provider
-		/// cannot work.
-		/// </exception>
 		/// <exception cref="FormatException">
 		/// Throws when the specified format contains other invalid characters
 		/// and the format provider cannot work.

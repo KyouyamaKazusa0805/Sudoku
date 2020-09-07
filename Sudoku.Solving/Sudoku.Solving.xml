@@ -266,10 +266,6 @@
         </member>
         <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the specified format is <see langword="null"/> and the format provider
-            cannot work.
-            </exception>
             <exception cref="T:System.FormatException">
             Throws when the specified format contains other invalid characters
             and the format provider cannot work.

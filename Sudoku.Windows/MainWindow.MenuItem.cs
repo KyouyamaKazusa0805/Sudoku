@@ -566,27 +566,12 @@ namespace Sudoku.Windows
 				for (int i = 0, cell = 0, length = puzzleStr.Length; i < length; cell++)
 				{
 					char c = solutionSb[cell];
-					switch (puzzleStr[i])
+					_ = puzzleStr[i] switch
 					{
-						case '+':
-						{
-							newSb.Append($"+{c}");
-							i += 2;
-							break;
-						}
-						case '0':
-						{
-							newSb.Append($"+{c}");
-							i++;
-							break;
-						}
-						default:
-						{
-							newSb.Append(c);
-							i++;
-							break;
-						}
-					}
+						'+' => (newSb.Append($"+{c}"), i += 2),
+						'0' => (newSb.Append($"+{c}"), i++),
+						_ => (newSb.Append(c), i++)
+					};
 				}
 
 				Puzzle = new(Grid.Parse(newSb.ToString()));
