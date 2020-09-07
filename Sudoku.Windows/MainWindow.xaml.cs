@@ -22,12 +22,12 @@ using Sudoku.Windows.Extensions;
 using static System.StringSplitOptions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Windows.Constants.Processings;
-using CoreResources = Sudoku.Windows.Resources;
-using K = System.Windows.Input.Key;
 using C = Sudoku.Data.ConclusionType;
+using CoreResources = Sudoku.Windows.Resources;
+using Grid = Sudoku.Data.Grid;
+using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
-using Grid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 #endif
