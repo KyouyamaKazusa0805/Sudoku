@@ -556,7 +556,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
-			var adjacentCellsMap = new GridMap(otherCellsMap) { [abzCell] = false };
+			var adjacentCellsMap = new GridMap(otherCellsMap) { ~abzCell };
 			int r = GetRegion(abzCell, Row), c = GetRegion(abzCell, Column);
 
 			foreach (int digit in stackalloc[] { d1, d2 })

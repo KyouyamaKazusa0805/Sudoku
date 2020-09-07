@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						}
 
 						int region = GetRegion(cell, label);
-						var cellsMap = RegionMaps[region] & new GridMap(EmptyMap) { [cell] = false };
+						var cellsMap = RegionMaps[region] & new GridMap(EmptyMap) { ~cell };
 						if (cellsMap.IsEmpty)
 						{
 							continue;

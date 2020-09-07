@@ -192,6 +192,18 @@ namespace Sudoku.Data
 		/// var y = new GridMap(x) { i };
 		/// </code>
 		/// </para>
+		/// <para>
+		/// Similarly, the following code is also okay:
+		/// <code>
+		/// var y = new GridMap(x) { [i] = false };
+		/// </code>
+		/// or
+		/// <code>
+		/// var y = new GridMap(x) { ~i };
+		/// </code>
+		/// where <c>~i</c> means assigning <see langword="false"/> value to the position
+		/// whose the corresponding value is <c>i</c>.
+		/// </para>
 		/// </remarks>
 		public GridMap(GridMap another) => this = another;
 
@@ -668,16 +680,53 @@ namespace Sudoku.Data
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 		/// <summary>
-		/// Set the specified cell as <see langword="true"/> value.
+		/// Set the specified cell as <see langword="true"/> of <see langword="false"/> value.
 		/// </summary>
-		/// <param name="offset">The cell offset.</param>
+		/// <param name="offset">
+		/// The cell offset. This value can be positive and negative. If 
+		/// negative, the offset will be assigned <see langword="false"/>
+		/// into the corresponding bit position of its absolute value.
+		/// </param>
+		/// <remarks>
+		/// <para>
+		/// For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
+		/// <code>
+		/// var map = new GridMap(xxx) { ~1 };
+		/// </code>
+		/// which is equivalent to:
+		/// <code>
+		/// var map = new GridMap(xxx);
+		/// map[1] = false;
+		/// </code>
+		/// </para>
+		/// <para>
+		/// Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
+		/// to describe the value is a negative one. As the belowing example, -2 is described as <c>~1</c>,
+		/// so the offset is 1, rather than 2.
+		/// </para>
+		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Add(int offset) => this[offset] = true;
+		public void Add(int offset)
+		{
+			if (offset >= 0) // Positive or zero.
+			{
+				this[offset] = true;
+			}
+			else // Negative values.
+			{
+				this[~offset] = false;
+			}
+		}
 
 		/// <summary>
 		/// Set the specified cell as <see langword="false"/> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
+		/// <remarks>
+		/// Different with <see cref="Add(int)"/>, this method <b>cannot</b> receive
+		/// the negative value as the parameter.
+		/// </remarks>
+		/// <seealso cref="Add(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Remove(int offset) => this[offset] = false;
 
