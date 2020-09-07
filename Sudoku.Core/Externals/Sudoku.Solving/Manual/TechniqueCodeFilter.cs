@@ -114,7 +114,7 @@ namespace Sudoku.Solving.Manual
 		}
 
 		/// <inheritdoc/>
-		public TechniqueCodeFilter Clone() => new((BitArray)_internalList.Clone());
+		public TechniqueCodeFilter Clone() => new(_internalList.CloneAs<BitArray>());
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

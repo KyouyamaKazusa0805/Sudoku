@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Sudoku.Data;
+using Sudoku.Extensions;
 using Sudoku.Runtime;
 using Sudoku.Windows;
 
@@ -86,7 +87,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 					// If we use normal assignment, we well get the
 					// initial grid rather a solution, because
 					// this is a recursive function!!!
-					result = (int[])gridValues.Clone();
+					result = gridValues.CloneAs<int[]>();
 					return; // Exit the recursion.
 				}
 			}

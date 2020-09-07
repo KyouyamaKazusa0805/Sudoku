@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Stepping
@@ -36,7 +37,7 @@ namespace Sudoku.Data.Stepping
 		/// an undoable grid).
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public UndoableGrid(Grid grid) : this((short[])grid._masks.Clone())
+		public UndoableGrid(Grid grid) : this(grid._masks.CloneAs<short[]>())
 		{
 		}
 

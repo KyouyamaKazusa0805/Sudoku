@@ -108,7 +108,7 @@ namespace Sudoku.Data
 			}
 
 			_masks = masks;
-			_initialMasks = (short[])masks.Clone();
+			_initialMasks = masks.CloneAs<short[]>();
 
 			ValueChanged += OnValueChanged;
 		}
@@ -123,7 +123,8 @@ namespace Sudoku.Data
 			{
 				_masks[i] = DefaultMask;
 			}
-			_initialMasks = (short[])_masks.Clone();
+
+			_initialMasks = _masks.CloneAs<short[]>();
 
 			// Initializes the event handler.
 			// Note that the default event initialization hides the back delegate field,
@@ -511,7 +512,7 @@ namespace Sudoku.Data
 		public S GetStatus(int cell) => (S)(_masks[cell] >> 9 & (int)S.All);
 
 		/// <inheritdoc/>
-		public Grid Clone() => new((short[])_masks.Clone());
+		public Grid Clone() => new(_masks.CloneAs<short[]>());
 
 		/// <summary>
 		/// Get all candidates containing in the specified cell.

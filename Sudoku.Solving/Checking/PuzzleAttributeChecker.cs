@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Extensions;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Manual;
 using Level = Sudoku.Solving.DifficultyLevel;
@@ -108,7 +109,7 @@ namespace Sudoku.Solving.Checking
 			for (int i = 0; i < hintCount; i++)
 			{
 				var (r, c) = valueList.Dequeue();
-				tempArrays[i] = (int[])array.Clone();
+				tempArrays[i] = array.CloneAs<int[]>();
 				tempArrays[i][r * 9 + c] = 0;
 			}
 

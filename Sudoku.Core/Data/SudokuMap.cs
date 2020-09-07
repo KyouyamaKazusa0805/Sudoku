@@ -42,7 +42,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuMap(SudokuMap another)
 		{
-			_innerArray = (BitArray)another._innerArray.Clone();
+			_innerArray = another._innerArray.CloneAs<BitArray>();
 			Count = another.Count;
 		}
 
@@ -385,7 +385,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap Clone() => new SudokuMap((BitArray)_innerArray.Clone());
+		public SudokuMap Clone() => new SudokuMap(_innerArray.CloneAs<BitArray>());
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -498,7 +498,7 @@ namespace Sudoku.Data
 			(left, right) switch
 			{
 				(null, null) => new(),
-				(not null, not null) => new(((BitArray)left!._innerArray.Clone()).And(right!._innerArray).Not()),
+				(not null, not null) => new(left!._innerArray.CloneAs<BitArray>().And(right!._innerArray).Not()),
 				(null, not null) => new(),
 				(not null, null) => left!
 			};
@@ -514,7 +514,7 @@ namespace Sudoku.Data
 			(left, right) switch
 			{
 				(null, null) => new(),
-				(not null, not null) => new(((BitArray)left!._innerArray.Clone()).And(right!._innerArray)),
+				(not null, not null) => new(left!._innerArray.CloneAs<BitArray>().And(right!._innerArray)),
 				_ => new(),
 			};
 
@@ -529,7 +529,7 @@ namespace Sudoku.Data
 			(left, right) switch
 			{
 				(null, null) => new(),
-				(not null, not null) => new(((BitArray)left!._innerArray.Clone()).Or(right!._innerArray)),
+				(not null, not null) => new(left!._innerArray.CloneAs<BitArray>().Or(right!._innerArray)),
 				_ => (left ?? right)!
 			};
 
@@ -544,7 +544,7 @@ namespace Sudoku.Data
 			(left, right) switch
 			{
 				(null, null) => new(),
-				(not null, not null) => new(((BitArray)left!._innerArray.Clone()).Xor(right!._innerArray)),
+				(not null, not null) => new(left!._innerArray.CloneAs<BitArray>().Xor(right!._innerArray)),
 				_ => (left ?? right)!
 			};
 
@@ -557,7 +557,7 @@ namespace Sudoku.Data
 		/// <returns>The negative result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuMap operator ~(SudokuMap? map) =>
-			map is null ? new(new BitArray(729, true)) : new SudokuMap(((BitArray)map._innerArray.Clone()).Not());
+			map is null ? new(new BitArray(729, true)) : new SudokuMap(map._innerArray.CloneAs<BitArray>().Not());
 
 
 		/// <summary>

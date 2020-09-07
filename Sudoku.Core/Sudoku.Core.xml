@@ -4216,6 +4216,51 @@
 		</param>
 	</method>
         </member>
+        <member name="T:Sudoku.Extensions.CloneableEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.ICloneable"/>.
+            </summary>
+            <seealso cref="T:System.ICloneable"/>
+        </member>
+        <member name="M:Sudoku.Extensions.CloneableEx.TryCloneAs``1(System.ICloneable)">
+            <summary>
+            Clone this object and try to cast to the specified type.
+            If the type is invalid to cast, the return value will be <see langword="null"/>.
+            </summary>
+            <typeparam name="TClass">
+            The type to cast. The type should be a <see langword="class"/> because the type
+            to implement <see cref="T:System.ICloneable"/> should be a reference type.
+            </typeparam>
+            <param name="this">(<see langword="this"/> parameter) The object.</param>
+            <returns>
+            The cast result. If cast is valid, the value will be so valid; otherwise,
+            <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Extensions.CloneableEx.CloneAs``1(System.ICloneable)">
+            <summary>
+            Clone this object and cast to the specified type no matter how.
+            If the conversion is invalid, the method will throw <see cref="T:System.InvalidCastException"/>.
+            </summary>
+            <typeparam name="TClass">
+            The type to cast. The type should be a <see langword="class"/> because the type
+            to implement <see cref="T:System.ICloneable"/> should be a reference type.
+            </typeparam>
+            <param name="this">(<see langword="this"/> parameter) The object.</param>
+            <returns>The cast result.</returns>
+            <exception cref="T:System.InvalidCastException">
+            Throws when the cast is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Extensions.CloneableEx.Cast``1(System.ICloneable)">
+            <summary>
+            Try to cast the current instance to the generic cloneable type <see cref="T:System.ICloneable`1"/>.
+            </summary>
+            <typeparam name="TClass">The type of the instance.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The object.</param>
+            <returns>The cast result. If cast is invalid, the return value will be <see langword="null"/>.</returns>
+            <seealso cref="T:System.ICloneable`1"/>
+        </member>
         <member name="T:Sudoku.Extensions.CollectionEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
