@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
@@ -22,10 +21,10 @@ using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using static System.StringSplitOptions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processings;
 using CoreResources = Sudoku.Windows.Resources;
 using K = System.Windows.Input.Key;
+using C = Sudoku.Data.ConclusionType;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
 using Grid = Sudoku.Data.Grid;
@@ -181,7 +180,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case var key when key == K.OemMinus || key == K.OemPlus:
+				case var key and (K.OemMinus or K.OemPlus):
 				{
 					// Get the previous view or the next view.
 					if (_currentViewIndex == -1 || _currentTechniqueInfo is null)
@@ -594,10 +593,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void InitializePointConverterAndLayers() =>
 			_currentPainter =
-				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings)
-		{
-			Grid = _puzzle
-		};
+				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings) { Grid = _puzzle };
 
 		/// <summary>
 		/// To load a puzzle with a specified possible puzzle string.
@@ -894,22 +890,6 @@ namespace Sudoku.Windows
 		}
 
 		/// <summary>
-		/// Transform the grid.
-		/// </summary>
-		/// <param name="transformation">The inner function to process the transformation.</param>
-		[Obsolete("Use function pointer to speed up.")]
-		private void Transform(Func<Grid, UndoableGrid> transformation)
-		{
-			if (_puzzle != Grid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
-			{
-				Puzzle = transformation(_puzzle);
-
-				UpdateUndoRedoControls();
-				UpdateImageGrid();
-			}
-		}
-
-		/// <summary>
 		/// Change the language.
 		/// </summary>
 		/// <param name="globalizationString">The globalization string.</param>
@@ -1020,11 +1000,11 @@ namespace Sudoku.Windows
 
 				GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
 					new()
-				{
-					Header = header,
-					DisplayMemberBinding = new Binding(name),
-					Width = _tabControlInfo.ActualWidth * widthScale - 4,
-				};
+					{
+						Header = header,
+						DisplayMemberBinding = new Binding(name),
+						Width = _tabControlInfo.ActualWidth * widthScale - 4,
+					};
 			}
 			else
 			{
@@ -1066,8 +1046,8 @@ namespace Sudoku.Windows
 				int digit = solution[c];
 				switch (t)
 				{
-					case ConclusionType.Assignment when digit != d:
-					case Elimination when digit == d:
+					case C.Assignment when digit != d:
+					case C.Elimination when digit == d:
 					{
 						return false;
 					}
