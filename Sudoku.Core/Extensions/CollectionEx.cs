@@ -24,7 +24,7 @@ namespace Sudoku.Extensions
 		/// (<see langword="params"/> parameter) The values you want to add to the end of the collection.
 		/// </param>
 		public static void AddRange<T>(this ICollection<T> @this, params T[] values) where T : notnull =>
-			@this.AddRange((IEnumerable<T>)values);
+			@this.AddRange(values.AsEnumerable());
 
 		/// <summary>
 		/// Adds the elements of the specified collection to the end of the

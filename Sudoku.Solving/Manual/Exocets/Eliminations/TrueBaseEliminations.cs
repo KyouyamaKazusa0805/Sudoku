@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Extensions;
@@ -82,6 +83,6 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
 		public static TrueBaseEliminations MergeAll(params TrueBaseEliminations[] list) =>
-			MergeAll((IEnumerable<TrueBaseEliminations>)list);
+			MergeAll(list.AsEnumerable());
 	}
 }

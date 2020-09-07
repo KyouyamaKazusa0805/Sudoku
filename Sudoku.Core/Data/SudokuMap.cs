@@ -402,7 +402,7 @@ namespace Sudoku.Data
 		/// <param name="candidates">All candidates.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuMap CreateInstance(int[] candidates) => CreateInstance((IEnumerable<int>)candidates);
+		public static SudokuMap CreateInstance(int[] candidates) => CreateInstance(candidates.AsEnumerable());
 
 		/// <summary>
 		/// Get the map of candidates, which is the peer intersections from the specified candidates.

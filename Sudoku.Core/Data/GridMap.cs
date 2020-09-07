@@ -74,7 +74,7 @@ namespace Sudoku.Data
 		/// does not implemented the interface <see cref="IEnumerable{T}"/>.
 		/// </remarks>
 		/// <seealso cref="GridMap(IEnumerable{int})"/>
-		public GridMap(int[] offsets) : this((IEnumerable<int>)offsets)
+		public GridMap(int[] offsets) : this(offsets.AsEnumerable())
 		{
 		}
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Extensions;
@@ -37,7 +38,7 @@ namespace Sudoku.Data.Collections
 		/// Initializes an instance with the specified cells.
 		/// </summary>
 		/// <param name="cells">The cells.</param>
-		public CellCollection(int[] cells) : this((IEnumerable<int>)cells) { }
+		public CellCollection(int[] cells) : this(cells.AsEnumerable()) { }
 
 		/// <summary>
 		/// Initializes an instance with the specified cells.

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
 using Sudoku.Constants;
@@ -523,7 +524,7 @@ namespace Sudoku.Data
 		public IEnumerable<int> GetCandidates(int cell) => GetCandidateMask(cell).GetAllSets();
 
 		/// <inheritdoc/>
-		public IEnumerator<short> GetEnumerator() => ((IEnumerable<short>)_masks).GetEnumerator();
+		public IEnumerator<short> GetEnumerator() => _masks.AsEnumerable().GetEnumerator();
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
