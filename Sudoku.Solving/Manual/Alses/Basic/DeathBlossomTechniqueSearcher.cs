@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.DeathBlossom))]
 	[HighAllocation]
-	[SearcherProperty(80)]
+	[SearcherProperty(80, IsEnabled = false, DisabledReason = DisabledReason.TooSlow)]
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>

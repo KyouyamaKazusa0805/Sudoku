@@ -354,8 +354,11 @@
         </member>
         <member name="P:Sudoku.Solving.Annotations.SearcherPropertyAttribute.DisabledReason">
             <summary>
-            Indicates whether the current searcher has bug to fix. The default value is <see langword="false"/>.
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            The default value is <see cref="F:Sudoku.Solving.Annotations.DisabledReason.LastResort"/>.
             </summary>
+            <seealso cref="F:Sudoku.Solving.Annotations.DisabledReason.LastResort"/>
         </member>
         <member name="M:Sudoku.Solving.Annotations.SearcherPropertyAttribute.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Annotations.DisabledReason@)">
             <method name="Deconstruct">

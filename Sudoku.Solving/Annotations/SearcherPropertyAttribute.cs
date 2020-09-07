@@ -34,8 +34,11 @@ namespace Sudoku.Solving.Annotations
 		public int Priority { get; set; }
 
 		/// <summary>
-		/// Indicates whether the current searcher has bug to fix. The default value is <see langword="false"/>.
+		/// Indicates whether the current searcher has bug to fix, or something else to describe why
+		/// the searcher is (or should be) disabled.
+		/// The default value is <see cref="DisabledReason.LastResort"/>.
 		/// </summary>
+		/// <seealso cref="DisabledReason.LastResort"/>
 		public DisabledReason DisabledReason { get; set; } = DisabledReason.LastResort;
 
 
