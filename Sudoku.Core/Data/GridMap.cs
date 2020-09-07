@@ -513,9 +513,7 @@ namespace Sudoku.Data
 		/// offset.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
-		/// <value>
-		/// A <see cref="bool"/> value on assignment.
-		/// </value>
+		/// <value>A <see cref="bool"/> value on assignment.</value>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the cell has digit.
 		/// </returns>
@@ -524,6 +522,7 @@ namespace Sudoku.Data
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			readonly get => ((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;

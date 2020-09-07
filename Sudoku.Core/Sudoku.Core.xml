@@ -2092,9 +2092,7 @@
             offset.
             </summary>
             <param name="offset">The cell offset.</param>
-            <value>
-            A <see cref="T:System.Boolean"/> value on assignment.
-            </value>
+            <value>A <see cref="T:System.Boolean"/> value on assignment.</value>
             <returns>
             A <see cref="T:System.Boolean"/> value indicating whether the cell has digit.
             </returns>
