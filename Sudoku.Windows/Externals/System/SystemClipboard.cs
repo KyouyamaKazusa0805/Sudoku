@@ -15,7 +15,6 @@ namespace System
 		/// on the clipboard.
 		/// </summary>
 		/// <value>The data.</value>
-		[MaybeNull]
 		public static string Text
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

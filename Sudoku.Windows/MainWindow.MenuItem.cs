@@ -317,8 +317,7 @@ namespace Sudoku.Windows
 
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
-			string? puzzleStr = SystemClipboard.Text;
-			if (puzzleStr is not null)
+			if (SystemClipboard.Text is var puzzleStr)
 			{
 				LoadPuzzle(puzzleStr);
 
@@ -330,8 +329,7 @@ namespace Sudoku.Windows
 
 		private void MenuItemEditPasteAsSukaku_Click(object sender, RoutedEventArgs e)
 		{
-			string? puzzleStr = SystemClipboard.Text;
-			if (puzzleStr is not null)
+			if (SystemClipboard.Text is var puzzleStr)
 			{
 				try
 				{
