@@ -68,7 +68,7 @@ namespace Sudoku.Windows
 		/// Get the dictionary with the specified globalization string.
 		/// </summary>
 		/// <param name="globalizationString">The globalization string.</param>
-		private static unsafe void GetDictionary(string globalizationString)
+		private static void GetDictionary(string globalizationString)
 		{
 			// The implementation of the merged dictionary that is the same as the windows
 			// is too difficult... Here we use reflection to implement this.
@@ -76,8 +76,18 @@ namespace Sudoku.Windows
 			var sb = new StringBuilder();
 			for (int i = 0; i < z.Length; i++)
 			{
-				// To upper case.
-				fixed (char* c = z[i]) if (*c is >= 'a' and <= 'z') *c &= (char)0x5F;
+				unsafe
+				{
+					fixed (char* c = z[i])
+					{
+						if (*c is >= 'a' and <= 'z')
+						{
+							// To upper case.
+							*c &= (char)0x5F;
+						}
+					}
+				}
+
 				sb.Append(z[i]);
 			}
 
