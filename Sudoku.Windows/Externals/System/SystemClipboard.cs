@@ -24,7 +24,7 @@ namespace System
 		}
 
 		/// <summary>
-		/// Gets or sets <see cref="DataFormats.Bitmap"/> data on the clipboard.
+		/// Sets <see cref="DataFormats.Bitmap"/> data on the clipboard.
 		/// </summary>
 		/// <value>The data.</value>
 		public static BitmapSource Image
