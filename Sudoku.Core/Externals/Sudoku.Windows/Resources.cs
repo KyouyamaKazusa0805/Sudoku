@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using static System.Reflection.BindingFlags;
-using SourceDictionary = System.Collections.Generic.IReadOnlyDictionary<string, string>;
 
 namespace Sudoku.Windows
 {
@@ -13,9 +13,15 @@ namespace Sudoku.Windows
 	public static partial class Resources
 	{
 		/// <summary>
+		/// The field that means the field is <see langword="static"/> and non-<see langword="public"/>.
+		/// </summary>
+		private const BindingFlags StaticNonpublic = NonPublic | Static;
+
+
+		/// <summary>
 		/// Indicates the current source.
 		/// </summary>
-		private static SourceDictionary _dicPointer = null!;
+		private static IReadOnlyDictionary<string, string> _dicPointer = null!;
 
 
 		/// <summary>
@@ -62,7 +68,7 @@ namespace Sudoku.Windows
 		/// Get the dictionary with the specified globalization string.
 		/// </summary>
 		/// <param name="globalizationString">The globalization string.</param>
-		private static void GetDictionary(string globalizationString)
+		private static unsafe void GetDictionary(string globalizationString)
 		{
 			// The implementation of the merged dictionary that is the same as the windows
 			// is too difficult... Here we use reflection to implement this.
@@ -70,15 +76,15 @@ namespace Sudoku.Windows
 			var sb = new StringBuilder();
 			for (int i = 0; i < z.Length; i++)
 			{
-				var span = new Span<char>(z[i].ToCharArray());
-				span[0] = char.ToUpper(span[0]);
-				sb.Append(span.ToString());
+				// To upper case.
+				fixed (char* c = z[i]) if (*c is >= 'a' and <= 'z') *c &= (char)0x5F;
+				sb.Append(z[i]);
 			}
 
 			_dicPointer =
-				typeof(Resources).GetField($"LangSource{sb}", NonPublic | Static)?.GetValue(null) is SourceDictionary dic
-					? dic
-					: LangSourceEnUs; // The default case.
+				typeof(Resources).GetField($"LangSource{sb}", StaticNonpublic)?.GetValue(null)
+				as IReadOnlyDictionary<string, string>
+				?? LangSourceEnUs;
 		}
 	}
 }

@@ -757,9 +757,7 @@
             where value 0 is for searching for assignments.
             </param>
             <returns>All backdoors.</returns>
-            <exception cref="T:Sudoku.Runtime.SudokuRuntimeException">
-            Throws when the specified grid is invalid.
-            </exception>
+            <exception cref="T:Sudoku.Runtime.SudokuRuntimeException">Throws when the specified grid is invalid.</exception>
         </member>
         <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExact(Sudoku.Data.Grid,System.Int32)">
             <summary>
@@ -935,7 +933,7 @@
             <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.DifficultyLevel(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.GetDifficultyLevel(Sudoku.Data.Grid)">
             <summary>
             Get the difficulty level of this puzzle.
             </summary>

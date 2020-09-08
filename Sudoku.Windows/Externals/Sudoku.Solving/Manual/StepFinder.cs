@@ -26,7 +26,6 @@ using Sudoku.Solving.Manual.Uniqueness.Square;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
-using TechniquesGroupedByName = System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>;
 
 namespace Sudoku.Solving.Manual
 {
@@ -54,12 +53,12 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">The grid.</param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="globalizationString">The globalization string.</param>
-		public IEnumerable<TechniquesGroupedByName> Search(
+		public IEnumerable<IGrouping<string, TechniqueInfo>> Search(
 			Grid grid, IProgress<IProgressResult>? progress, string? globalizationString)
 		{
 			if (grid.HasSolved || !grid.IsValid(out _, out bool? sukaku))
 			{
-				return Array.Empty<TechniquesGroupedByName>();
+				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}
 
 			var solver = _settings.MainManualSolver;

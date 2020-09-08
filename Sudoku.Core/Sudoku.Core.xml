@@ -6588,6 +6588,11 @@
             </summary>
             <seealso cref="N:Sudoku.Windows"/>
         </member>
+        <member name="F:Sudoku.Windows.Resources.StaticNonpublic">
+            <summary>
+            The field that means the field is <see langword="static"/> and non-<see langword="public"/>.
+            </summary>
+        </member>
         <member name="F:Sudoku.Windows.Resources._dicPointer">
             <summary>
             Indicates the current source.

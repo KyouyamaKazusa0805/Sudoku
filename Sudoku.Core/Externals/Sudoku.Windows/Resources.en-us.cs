@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using SourceDictionary = System.Collections.Generic.IReadOnlyDictionary<string, string>;
 
 namespace Sudoku.Windows
 {
@@ -13,7 +12,7 @@ namespace Sudoku.Windows
 		/// Here we use reflection to call and use this field, which cannot be recognized by
 		/// Roslyn, so we should suppress the complier warning IDE0052.
 		/// </remarks>
-		private static readonly SourceDictionary LangSourceEnUs = new Dictionary<string, string>
+		private static readonly IReadOnlyDictionary<string, string> LangSourceEnUs = new Dictionary<string, string>
 		{
 #line 1000
 			// Punctuation marks

@@ -6,7 +6,6 @@ using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Manual;
-using Level = Sudoku.Solving.DifficultyLevel;
 
 namespace Sudoku.Solving.Checking
 {
@@ -164,14 +163,14 @@ namespace Sudoku.Solving.Checking
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool CanBeSolvedUsingOnlySsts(this Grid @this) =>
-			@this.IsValid(out _) && new ManualSolver().Solve(@this).DifficultyLevel <= Level.Moderate;
+			@this.IsValid(out _) && new ManualSolver().Solve(@this).DifficultyLevel <= DifficultyLevel.Moderate;
 
 		/// <summary>
 		/// Get the difficulty level of this puzzle.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
 		/// <returns>The difficulty level.</returns>
-		public static Level DifficultyLevel(this Grid @this) =>
+		public static DifficultyLevel GetDifficultyLevel(this Grid @this) =>
 			new ManualSolver().Solve(@this).DifficultyLevel;
 	}
 }

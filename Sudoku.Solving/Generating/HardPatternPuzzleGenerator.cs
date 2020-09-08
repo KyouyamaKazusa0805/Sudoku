@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Generating
 							&& BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).None()
 							|| backdoorFilterDepth == -1)
 							&& (
-							difficultyLevel != Unknown && grid.DifficultyLevel() == difficultyLevel
+							difficultyLevel != Unknown && grid.GetDifficultyLevel() == difficultyLevel
 							|| difficultyLevel == Unknown))
 						{
 							return grid;
