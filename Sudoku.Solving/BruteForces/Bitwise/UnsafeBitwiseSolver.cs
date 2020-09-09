@@ -83,11 +83,6 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			fixed (char* p = puzzle)
 			{
 				char* solutionStr = stackalloc char[BufferLength];
-				for (int i = 0; i < 81; i++)
-				{
-					solutionStr[i] = '0';
-				}
-				//solutionStr[81] = '\0';
 
 				stopwatch.Start();
 				InternalSolve(in p, solutionStr, 2);
