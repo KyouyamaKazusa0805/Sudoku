@@ -61,7 +61,7 @@ namespace Sudoku.Windows
 
 			DefineShortCuts();
 
-			InitializePointConverterAndLayers();
+			InitializePointConverter();
 			LoadDatabaseIfWorth();
 			UpdateControls();
 		}
@@ -589,9 +589,9 @@ namespace Sudoku.Windows
 		}
 
 		/// <summary>
-		/// Initializes point converter and layer instances.
+		/// Initializes point converter.
 		/// </summary>
-		private void InitializePointConverterAndLayers() =>
+		private void InitializePointConverter() =>
 			_currentPainter =
 				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings) { Grid = _puzzle };
 

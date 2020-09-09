@@ -47,7 +47,10 @@ namespace Sudoku.Solving.Generating
 
 				foreach (int cell in map)
 				{
-					do puzzle[cell] = (char)(Rng.Next(1, 9) + '0'); while (CheckDuplicate(puzzle, cell));
+					do
+					{
+						puzzle[cell] = (char)(Rng.Next(1, 9) + '0');
+					} while (CheckDuplicate(puzzle, cell));
 				}
 			} while (FastSolver.Solve(puzzle.ToString(), solution, 2) == 0);
 		}

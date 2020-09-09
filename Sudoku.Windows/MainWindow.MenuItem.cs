@@ -424,7 +424,8 @@ namespace Sudoku.Windows
 					var dialog = new ProgressWindow();
 					dialog.Show();
 
-					var symmetry = (SymmetryType)(1 << _comboBoxSymmetry.SelectedIndex + 1);
+					int si = _comboBoxSymmetry.SelectedIndex;
+					var symmetry = si == 0 ? SymmetryType.None : (SymmetryType)(1 << si - 1);
 					//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
 					Puzzle = new(
 						await new BasicPuzzleGenerator().GenerateAsync(
