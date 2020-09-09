@@ -2,11 +2,9 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Runtime;
-using static System.Runtime.InteropServices.CallingConvention;
 
 namespace Sudoku.Solving.BruteForces.Bitwise
 {
@@ -85,7 +83,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				char* solutionStr = stackalloc char[BufferLength];
 
 				stopwatch.Start();
-				InternalSolve(in p, solutionStr, 2);
+				InternalSolve(p, solutionStr, 2);
 				stopwatch.Stop();
 
 				return _numSolutions switch
@@ -120,7 +118,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			fixed (char* p = puzzle)
 			{
 				char* solutionStr = stackalloc char[BufferLength];
-				long result = InternalSolve(in p, solutionStr, limit);
+				long result = InternalSolve(p, solutionStr, limit);
 
 				solution = new string(solutionStr);
 
@@ -140,7 +138,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			fixed (char* p = puzzle)
 			{
 				char* solutionStr = stackalloc char[BufferLength];
-				long result = InternalSolve(in p, solutionStr, limit);
+				long result = InternalSolve(p, solutionStr, limit);
 
 				solution?.Clear().Append(new string(solutionStr));
 
@@ -159,7 +157,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			fixed (char* puzzle = grid)
 			{
 				char* result = stackalloc char[BufferLength];
-				if (InternalSolve(in puzzle, result, 2) == 1)
+				if (InternalSolve(puzzle, result, 2) == 1)
 				{
 					solutionIfUnique = new Span<char>(result, BufferLength).ToString();
 					return true;
@@ -709,7 +707,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="solutionPtr">The pointer to the solution string.</param>
 		/// <param name="limit">The limitation for the number of all final solutions.</param>
 		/// <returns>The number of solutions found.</returns>
-		private long InternalSolve([In] in char* puzzle, [Out] char* solutionPtr, [In] int limit)
+		private long InternalSolve(char* puzzle, char* solutionPtr, int limit)
 		{
 			_numSolutions = 0;
 			_limitSolutions = limit;
@@ -936,11 +934,11 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// Copies the specified memory to the destination memory block,
 		/// with the specified value indicating the size unit.
 		/// </summary>
-		/// <param name="dest">(<see langword="out"/> parameter) The pointer to the destination block.</param>
-		/// <param name="src">(<see langword="in"/> parameter) The pointer to the destination block.</param>
-		/// <param name="size">(<see langword="in"/> parameter) The number of the size unit.</param>
+		/// <param name="dest">The pointer to the destination block.</param>
+		/// <param name="src">The pointer to the destination block.</param>
+		/// <param name="size">The number of the size unit.</param>
 		/// <returns>Same as <paramref name="dest"/>.</returns>
-		private static void* Memcpy([Out] void* dest, [In] void* src, [In] int size)
+		private static void* Memcpy(void* dest, void* src, int size)
 		{
 			if (src == null || dest == null || size < 0)
 			{
@@ -966,7 +964,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="value">The value to assign.</param>
 		/// <param name="size">The size of the size unit.</param>
 		/// <returns>Same as <paramref name="src"/>.</returns>
-		private static void* Memset([Out] void* src, [In] int value, [In] int size)
+		private static void* Memset(void* src, int value, int size)
 		{
 			void* p = src;
 
@@ -979,6 +977,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			return p;
 		}
 
+#if false
 		/// <summary>
 		/// Function <c>memset</c> in C.
 		/// </summary>
@@ -987,7 +986,6 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="size">The size of the unit.</param>
 		/// <returns>The pointer.</returns>
 		[DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = Cdecl, SetLastError = false)]
-		[Obsolete]
 		private static extern void* Memset([Out] void* src, [In] nint c, [In] nint size);
 
 		/// <summary>
@@ -997,7 +995,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="src">The source pointer.</param>
 		/// <param name="count">The number of unit you want to copy.</param>
 		[DllImport("msvcrt.dll", EntryPoint = "memcpy", CallingConvention = Cdecl, SetLastError = false)]
-		[Obsolete]
 		private static extern void MemCopy([Out] void* dest, [In] void* src, [In] nint count);
+#endif
 	}
 }

@@ -557,7 +557,7 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InternalSolve(System.Char*@,System.Char*,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InternalSolve(System.Char*,System.Char*,System.Int32)">
             <summary>
             The internal solving method.
             </summary>
@@ -622,9 +622,9 @@
             Copies the specified memory to the destination memory block,
             with the specified value indicating the size unit.
             </summary>
-            <param name="dest">(<see langword="out"/> parameter) The pointer to the destination block.</param>
-            <param name="src">(<see langword="in"/> parameter) The pointer to the destination block.</param>
-            <param name="size">(<see langword="in"/> parameter) The number of the size unit.</param>
+            <param name="dest">The pointer to the destination block.</param>
+            <param name="src">The pointer to the destination block.</param>
+            <param name="size">The number of the size unit.</param>
             <returns>Same as <paramref name="dest"/>.</returns>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Memset(System.Void*,System.Int32,System.Int32)">
@@ -635,23 +635,6 @@
             <param name="value">The value to assign.</param>
             <param name="size">The size of the size unit.</param>
             <returns>Same as <paramref name="src"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Memset(System.Void*,System.IntPtr,System.IntPtr)">
-            <summary>
-            Function <c>memset</c> in C.
-            </summary>
-            <param name="src">The source pointer.</param>
-            <param name="c">The start offset.</param>
-            <param name="size">The size of the unit.</param>
-            <returns>The pointer.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.MemCopy(System.Void*,System.Void*,System.IntPtr)">
-            <summary>
-            Function <c>memcpy</c> in C.
-            </summary>
-            <param name="dest">The destination pointer.</param>
-            <param name="src">The source pointer.</param>
-            <param name="count">The number of unit you want to copy.</param>
         </member>
         <member name="T:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State">
             <summary>
