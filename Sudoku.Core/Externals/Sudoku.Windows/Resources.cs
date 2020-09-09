@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using static System.Reflection.BindingFlags;
+using static System.StringSplitOptions;
 
 namespace Sudoku.Windows
 {
@@ -72,7 +72,7 @@ namespace Sudoku.Windows
 		{
 			// The implementation of the merged dictionary that is the same as the windows
 			// is too difficult... Here we use reflection to implement this.
-			string[] z = globalizationString.Split('-', StringSplitOptions.RemoveEmptyEntries);
+			string[] z = globalizationString.Split('-', RemoveEmptyEntries);
 			var sb = new StringBuilder();
 			for (int i = 0; i < z.Length; i++)
 			{
@@ -92,8 +92,8 @@ namespace Sudoku.Windows
 			}
 
 			_dicPointer =
-				typeof(Resources).GetField($"LangSource{sb}", StaticNonpublic)?.GetValue(null)
-				as IReadOnlyDictionary<string, string>
+				typeof(Resources).GetField($"LangSource{sb}", StaticNonpublic)?
+					.GetValue(null) as IReadOnlyDictionary<string, string>
 				?? LangSourceEnUs;
 		}
 	}
