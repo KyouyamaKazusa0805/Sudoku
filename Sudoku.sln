@@ -10,7 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		README.md = README.md
 		Sudoku.Namespaces.xml = Sudoku.Namespaces.xml
 		Supported grid texts.txt = Supported grid texts.txt
-		Update log.txt = Update log.txt
 		User Manual.md = User Manual.md
 	EndProjectSection
 EndProject
