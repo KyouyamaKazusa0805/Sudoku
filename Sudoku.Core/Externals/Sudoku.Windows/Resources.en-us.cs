@@ -30,7 +30,6 @@ namespace Sudoku.Windows
 			["ManualLight"] = "Manual (Light)",
 			["Backtracking"] = "Backtracking",
 			["Bitwise"] = "Bitwise",
-			["BitwiseSukaku"] = "Bitwise Sukaku",
 			["OneLineLinq"] = "One line LINQ",
 
 #line 4000

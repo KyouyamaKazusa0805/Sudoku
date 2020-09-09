@@ -32,7 +32,6 @@ namespace Sudoku.Windows
 			["ManualLight"] = "人工 (轻量级)",
 			["Backtracking"] = "回溯",
 			["Bitwise"] = "位运算",
-			["BitwiseSukaku"] = "候选数数独位运算",
 			["OneLineLinq"] = "单行 LINQ",
 
 #line 4000
