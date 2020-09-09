@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
@@ -142,8 +141,7 @@ namespace Sudoku.Windows
 				ItemsControl.ItemsSourceProperty,
 				from Type in
 					from Type in Assembly.Load("Sudoku.Solving").GetTypes()
-					where !Type.IsAbstract && Type.IsSubclassOf<TechniqueSearcher>()
-						&& Type.GetCustomAttribute<HighAllocationAttribute>() is not null
+					where !Type.IsAbstract && Type.IsSubclassOf(typeof(TechniqueSearcher))
 					select Type
 				let AttributeInstance = Type.GetCustomAttribute<SearcherPropertyAttribute>()
 				where AttributeInstance is not null
@@ -159,7 +157,8 @@ namespace Sudoku.Windows
 							Type)
 				});
 			_listBoxPriority.SelectedIndex = 0;
-			var (_, priority, selectionType, _) = (PriorKeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
+			var (_, priority, selectionType, _) =
+				(PriorKeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
 			_checkBoxIsEnabled.IsEnabled = !selectionType.GetCustomAttribute<SearcherPropertyAttribute>()!.IsReadOnly;
 			_textBoxPriority.Text = priority.ToString();
 		}

@@ -5111,18 +5111,6 @@
             </summary>
             <seealso cref="T:System.Type"/>
         </member>
-        <member name="M:Sudoku.Extensions.TypeEx.IsSubclassOf``1(System.Type)">
-            <summary>
-            Determines whether the current <see cref="T:System.Type"/> derives from the specified <see cref="T:System.Type"/>.
-            </summary>
-            <typeparam name="T">The type you want to determine.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The type.</param>
-            <returns>
-            <see langword="true"/> if the current <see cref="T:System.Type"/> derives from <typeparamref name="T"/>;
-            otherwise, <see langword="false"/>. This method also returns <see langword="false"/> if
-            <typeparamref name="T"/> and the current <see cref="T:System.Type"/> are equal.
-            </returns>
-        </member>
         <member name="M:Sudoku.Extensions.TypeEx.TypeEquals``2">
             <summary>
             Indicates whether two types are same.
