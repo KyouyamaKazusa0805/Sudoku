@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
@@ -11,8 +11,12 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>.\Sudoku.Drawing.xml</DocumentationFile>
-		<WarningLevel>0</WarningLevel>
-		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING; CSHARP_9_PREVIEW</DefineConstants>
+		<DefineConstants>DEBUG; SUDOKU_RECOGNIZING; CSHARP_9_PREVIEW</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DocumentationFile>.\Sudoku.Drawing.xml</DocumentationFile>
+		<DefineConstants>SUDOKU_RECOGNIZING; CSHARP_9_PREVIEW</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

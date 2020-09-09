@@ -4,6 +4,9 @@ using System.Drawing.Drawing2D;
 
 namespace Sudoku.Drawing.Extensions
 {
+	/// <summary>
+	/// Provides extension methods for <see cref="Graphics"/>.
+	/// </summary>
 	public static class GraphicsEx
 	{
 		/// <summary>

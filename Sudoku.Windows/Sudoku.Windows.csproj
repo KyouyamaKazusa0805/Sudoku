@@ -19,13 +19,13 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<Optimize>false</Optimize>
 		<DefineConstants>DEBUG; SUDOKU_RECOGNIZING; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DefineConstants>SUDOKU_RECOGNIZING; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>

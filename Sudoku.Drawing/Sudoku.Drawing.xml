@@ -4,6 +4,11 @@
         <name>Sudoku.Drawing</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Drawing.Extensions.GraphicsEx">
+            <summary>
+            Provides extension methods for <see cref="T:System.Drawing.Graphics"/>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Drawing.Extensions.GraphicsEx.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF,System.Single)">
             <summary>
             Draw a rounded rectangle.
@@ -188,14 +193,14 @@
             <summary>
             Indicates whether the specified list contains the region.
             </summary>
-            <param name="cell">The region.</param>
+            <param name="region">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.ContainsLink(Sudoku.Data.Link)">
             <summary>
             Indicates whether the specified list contains the link.
             </summary>
-            <param name="cell">The link.</param>
+            <param name="inference">The link.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="T:Sudoku.Drawing.View">

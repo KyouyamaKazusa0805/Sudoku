@@ -13,7 +13,13 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>.\Sudoku.Solving.xml</DocumentationFile>
 		<DefineConstants>DEBUG; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
-		<Optimize>false</Optimize>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DocumentationFile>.\Sudoku.Solving.xml</DocumentationFile>
+		<DefineConstants>AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
