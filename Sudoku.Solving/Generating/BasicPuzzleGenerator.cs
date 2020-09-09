@@ -63,10 +63,7 @@ namespace Sudoku.Solving.Generating
 			do
 			{
 				var selectedType = allTypes.ElementAt(Rng.Next(count));
-				for (int i = 0; i < 81; i++)
-				{
-					solution[i] = tempSb[i];
-				}
+				tempSb.CopyTo(solution);
 
 				var totalMap = GridMap.Empty;
 				do
