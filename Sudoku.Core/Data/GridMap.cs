@@ -728,7 +728,7 @@ namespace Sudoku.Data
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 		/// <summary>
-		/// Set the specified cell as <see langword="true"/> of <see langword="false"/> value.
+		/// Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
 		/// </summary>
 		/// <param name="offset">
 		/// The cell offset. This value can be positive and negative. If 
@@ -767,6 +767,18 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Set the specified cell as <see langword="true"/> value.
+		/// </summary>
+		/// <param name="offset">The cell offset.</param>
+		/// <remarks>
+		/// Different with <see cref="Add(int)"/>, the method will process negative values,
+		/// but this won't.
+		/// </remarks>
+		/// <seealso cref="Add(int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void AddAnyway(int offset) => this[offset] = true;
+
+		/// <summary>
 		/// Set the specified cell as <see langword="false"/> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
@@ -792,7 +804,7 @@ namespace Sudoku.Data
 		{
 			foreach (int cell in offsets)
 			{
-				Add(cell);
+				AddAnyway(cell);
 			}
 		}
 
@@ -804,7 +816,7 @@ namespace Sudoku.Data
 		{
 			foreach (int cell in offsets)
 			{
-				Add(cell);
+				AddAnyway(cell);
 			}
 		}
 
@@ -862,7 +874,7 @@ namespace Sudoku.Data
 		public static GridMap operator +(GridMap map, int cell)
 		{
 			var result = map;
-			result.Add(cell);
+			result.AddAnyway(cell);
 
 			return result;
 		}

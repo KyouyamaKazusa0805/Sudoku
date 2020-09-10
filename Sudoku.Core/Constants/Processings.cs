@@ -161,7 +161,7 @@ namespace Sudoku.Constants
 			{
 				if (@this.GetStatus(cell) == Empty)
 				{
-					result.Add(cell);
+					result.AddAnyway(cell);
 				}
 			}
 
@@ -180,7 +180,7 @@ namespace Sudoku.Constants
 			{
 				if (@this.GetCandidateMask(cell).CountSet() == 2)
 				{
-					result.Add(cell);
+					result.AddAnyway(cell);
 				}
 			}
 
@@ -202,7 +202,7 @@ namespace Sudoku.Constants
 				{
 					if (@this.Exists(cell, digit) is true)
 					{
-						map.Add(cell);
+						map.AddAnyway(cell);
 					}
 				}
 			}
@@ -231,7 +231,7 @@ namespace Sudoku.Constants
 				{
 					if ((@this.GetCandidateMask(cell) >> digit & 1) != 0)
 					{
-						map.Add(cell);
+						map.AddAnyway(cell);
 					}
 				}
 			}
@@ -254,7 +254,7 @@ namespace Sudoku.Constants
 				{
 					if (@this[cell] == digit)
 					{
-						map.Add(cell);
+						map.AddAnyway(cell);
 					}
 				}
 			}

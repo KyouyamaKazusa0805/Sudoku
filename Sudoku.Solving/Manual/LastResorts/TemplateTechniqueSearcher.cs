@@ -145,7 +145,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				if (grid[cell] == digit)
 				{
-					result.Add(cell);
+					result.AddAnyway(cell);
 				}
 			}
 

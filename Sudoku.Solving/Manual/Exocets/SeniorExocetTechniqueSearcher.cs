@@ -283,7 +283,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							{
 								if (/*!tempCrosslineMap[cell] && */b1 != cell && b2 != cell && !extraMap[cell])
 								{
-									extraMap.Add(cell);
+									extraMap.AddAnyway(cell);
 									cellOffsets.Add((4, cell));
 								}
 								if (grid.Exists(cell, digit) is true)

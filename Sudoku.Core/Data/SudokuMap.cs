@@ -376,7 +376,7 @@ namespace Sudoku.Data
 			{
 				if (this[cell * 9 + digit])
 				{
-					result.Add(cell);
+					result.AddAnyway(cell);
 				}
 			}
 

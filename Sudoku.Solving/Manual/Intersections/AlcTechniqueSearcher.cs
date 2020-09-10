@@ -104,7 +104,7 @@ namespace Sudoku.Solving.Manual.Intersections
 				var ahsCells = GridMap.Empty;
 				foreach (int pos in ahsMask.GetAllSets())
 				{
-					ahsCells.Add(RegionCells[coverSet][pos]);
+					ahsCells.AddAnyway(RegionCells[coverSet][pos]);
 				}
 
 				// Record all eliminations.

@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Generating
 						int cell = Rng.Next(0, 81);
 						if (!map[cell])
 						{
-							map.Add(cell);
+							map.AddAnyway(cell);
 							break;
 						}
 					}

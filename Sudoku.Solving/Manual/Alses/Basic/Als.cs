@@ -121,7 +121,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			{
 				if ((grid.GetCandidateMask(cell) >> digit & 1) != 0)
 				{
-					result.Add(cell);
+					result.AddAnyway(cell);
 				}
 			}
 

@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				ref var map = ref RegionMaps[i];
 				foreach (int cell in RegionCells[i])
 				{
-					map.Add(cell);
+					map.AddAnyway(cell);
 				}
 			}
 

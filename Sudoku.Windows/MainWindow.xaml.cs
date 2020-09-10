@@ -205,7 +205,7 @@ namespace Sudoku.Windows
 					// Move the focused cell.
 					int cell = _focusedCells.First;
 					_focusedCells.Clear();
-					_focusedCells.Add(
+					_focusedCells.AddAnyway(
 						e.Key switch
 						{
 							K.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
@@ -240,7 +240,7 @@ namespace Sudoku.Windows
 					// Move to next box row.
 					int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.First;
 					_focusedCells.Clear();
-					_focusedCells.Add((cell + 3) % 81);
+					_focusedCells.AddAnyway((cell + 3) % 81);
 
 					_currentPainter.Grid = _puzzle;
 					_currentPainter.FocusedCells = _focusedCells;

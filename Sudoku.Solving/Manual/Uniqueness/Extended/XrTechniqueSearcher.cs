@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						{
 							if (!grid[cell, digit])
 							{
-								extraCellsMap.Add(cell);
+								extraCellsMap.AddAnyway(cell);
 								break;
 							}
 						}

@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Sdps
 					void f(int cell, RegionLabel lastLabel, int lastRegion)
 					{
 						tempList.Add(cell);
-						loop.Add(cell);
+						loop.AddAnyway(cell);
 						if (lastRegion != -1)
 						{
 							tempGuardians.Add((RegionMaps[lastRegion] & candMap) - loop);

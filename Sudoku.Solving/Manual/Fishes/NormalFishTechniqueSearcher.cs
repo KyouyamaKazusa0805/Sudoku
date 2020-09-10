@@ -131,7 +131,7 @@ namespace Sudoku.Solving.Manual.Fishes
 											int possibleFinCellOffset = RegionCells[baseSet][x];
 											if (CandMaps[digit][possibleFinCellOffset])
 											{
-												finCellsMap.Add(possibleFinCellOffset);
+												finCellsMap.AddAnyway(possibleFinCellOffset);
 											}
 										}
 									}
@@ -303,7 +303,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														int possibleFinCellOffset = RegionCells[baseSet][x];
 														if (grid.Exists(possibleFinCellOffset, digit) is true)
 														{
-															finCellsMap.Add(possibleFinCellOffset);
+															finCellsMap.AddAnyway(possibleFinCellOffset);
 														}
 													}
 												}
@@ -491,10 +491,9 @@ namespace Sudoku.Solving.Manual.Fishes
 															foreach (int x in finMask.GetAllSets())
 															{
 																int possibleFinCellOffset = RegionCells[baseSet][x];
-																if (grid.Exists(
-																	possibleFinCellOffset, digit) is true)
+																if (grid.Exists(possibleFinCellOffset, digit) is true)
 																{
-																	finCellsMap.Add(possibleFinCellOffset);
+																	finCellsMap.AddAnyway(possibleFinCellOffset);
 																}
 															}
 														}

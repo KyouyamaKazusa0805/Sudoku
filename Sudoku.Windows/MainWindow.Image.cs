@@ -38,7 +38,7 @@ namespace Sudoku.Windows
 						if (_currentColor == int.MinValue)
 						{
 							_focusedCells.Clear();
-							_focusedCells.Add(getCell());
+							_focusedCells.AddAnyway(getCell());
 						}
 						else
 						{
@@ -90,7 +90,7 @@ namespace Sudoku.Windows
 					case ModifierKeys.Control:
 					{
 						// Multi-select.
-						_focusedCells.Add(getCell());
+						_focusedCells.AddAnyway(getCell());
 
 						break;
 					}
@@ -107,7 +107,7 @@ namespace Sudoku.Windows
 						{
 							for (int c = minColumn; c <= maxColumn; c++)
 							{
-								_focusedCells.Add(r * 9 + c);
+								_focusedCells.AddAnyway(r * 9 + c);
 							}
 						}
 
@@ -128,7 +128,7 @@ namespace Sudoku.Windows
 		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			int cell = _pointConverter.GetCellOffset((_currentRightClickPos = e.GetPosition(_imageGrid)).ToDPointF());
-			_selectedCellsWhileDrawingRegions.Add(cell);
+			_selectedCellsWhileDrawingRegions.AddAnyway(cell);
 
 			// Disable all menu items.
 			var flags = NonPublic | Instance;
@@ -176,7 +176,7 @@ namespace Sudoku.Windows
 			}
 
 			int cell = _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
-			_selectedCellsWhileDrawingRegions.Add(cell);
+			_selectedCellsWhileDrawingRegions.AddAnyway(cell);
 
 			switch (Keyboard.Modifiers)
 			{
@@ -185,7 +185,7 @@ namespace Sudoku.Windows
 					if (_currentColor == int.MinValue)
 					{
 						_focusedCells.Clear();
-						_focusedCells.Add(cell);
+						_focusedCells.AddAnyway(cell);
 					}
 					else
 					{

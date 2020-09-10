@@ -32,7 +32,7 @@ namespace Sudoku.Data.Collections
 		/// Initializes an instance with the specified cell.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
-		public CellCollection(int cell) : this() => _map.Add(cell);
+		public CellCollection(int cell) : this() => _map.AddAnyway(cell);
 
 		/// <summary>
 		/// Initializes an instance with the specified cells.

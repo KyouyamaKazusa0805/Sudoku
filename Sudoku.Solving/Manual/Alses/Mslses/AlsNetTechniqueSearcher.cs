@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						{
 							if (map[cell])
 							{
-								canL[digit].Add(cell);
+								canL[digit].AddAnyway(cell);
 							}
 
 							conclusions.Add(new(Elimination, cell, digit));

@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 				void f(int d1, int d2, int cell, RegionLabel lastLabel, short exDigitsMask, int allowedExtraCellsCount)
 				{
-					loopMap.Add(cell);
+					loopMap.AddAnyway(cell);
 					tempLoop.Add(cell);
 
 					for (var label = Block; label <= Column; label++)

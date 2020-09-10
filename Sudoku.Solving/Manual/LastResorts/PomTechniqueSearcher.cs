@@ -49,11 +49,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 				{
 					if ((grid.GetCandidateMask(cell) >> digit & 1) == 0)
 					{
-						invalidPos[digit].Add(cell);
+						invalidPos[digit].AddAnyway(cell);
 					}
 					else if (grid[cell] == digit)
 					{
-						mustPos[digit].Add(cell);
+						mustPos[digit].AddAnyway(cell);
 					}
 				}
 			}

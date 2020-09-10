@@ -2178,7 +2178,7 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.Add(System.Int32)">
             <summary>
-            Set the specified cell as <see langword="true"/> of <see langword="false"/> value.
+            Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
             </summary>
             <param name="offset">
             The cell offset. This value can be positive and negative. If 
@@ -2203,6 +2203,17 @@
             so the offset is 1, rather than 2.
             </para>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.AddAnyway(System.Int32)">
+            <summary>
+            Set the specified cell as <see langword="true"/> value.
+            </summary>
+            <param name="offset">The cell offset.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Data.GridMap.Add(System.Int32)"/>, the method will process negative values,
+            but this won't.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.GridMap.Add(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.Remove(System.Int32)">
             <summary>

@@ -112,8 +112,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						foreach (int pos in mask.GetAllSets())
 						{
 							int cell1 = RegionCells[region1][pos], cell2 = RegionCells[region2][pos];
-							map.Add(cell1);
-							map.Add(cell2);
+							map.AddAnyway(cell1);
+							map.AddAnyway(cell2);
 							pairs.Add((cell1, cell2));
 						}
 

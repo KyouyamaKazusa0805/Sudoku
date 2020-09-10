@@ -95,8 +95,8 @@ namespace Sudoku.Solving.Generating
 					})
 					{
 						solution[tCell] = '0';
-						totalMap.Add(tCell);
-						tempMap.Add(tCell);
+						totalMap.AddAnyway(tCell);
+						tempMap.AddAnyway(tCell);
 					}
 				} while (81 - totalMap.Count > max);
 

@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Checking
 					foreach (int digit in Puzzle.GetCandidates(cell))
 					{
 						ref var map = ref stack[0, digit];
-						map.Add(cell);
+						map.AddAnyway(cell);
 
 						span[0] = GetRegion(cell, Row);
 						span[1] = GetRegion(cell, Column);
@@ -162,7 +162,7 @@ namespace Sudoku.Solving.Checking
 					foreach (int digit in pairs[currentIndex - 1, i].GetAllSets())
 					{
 						var temp = stack[currentIndex - 1, digit];
-						temp.Add(currentCell);
+						temp.AddAnyway(currentCell);
 
 						playground[0] = GetRegion(currentCell, Block);
 						playground[1] = GetRegion(currentCell, Row);
@@ -191,8 +191,8 @@ namespace Sudoku.Solving.Checking
 
 					chosen[currentIndex] = i;
 					int pos1 = mask.FindFirstSet();
-					stack[currentIndex, pos1].Add(currentCell);
-					stack[currentIndex, mask.GetNextSet(pos1)].Add(currentCell);
+					stack[currentIndex, pos1].AddAnyway(currentCell);
+					stack[currentIndex, mask.GetNextSet(pos1)].AddAnyway(currentCell);
 					if (currentIndex == multivalueCellsCount)
 					{
 						// Iterate on each digit.

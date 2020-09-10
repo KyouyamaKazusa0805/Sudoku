@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					foreach (var (_, cell, digit) in info.Conclusions)
 					{
-						conclusionList[digit].Add(cell);
+						conclusionList[digit].AddAnyway(cell);
 					}
 				}
 			}
