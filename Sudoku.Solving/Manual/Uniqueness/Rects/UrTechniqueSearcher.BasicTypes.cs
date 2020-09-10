@@ -359,7 +359,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							digit1: d1,
 							digit2: d2,
 							cells: urCells,
-							conjugatePairs: new[] { new ConjugatePair(otherCellsMap.SetAt(0), otherCellsMap.SetAt(1), digit) },
+							conjugatePairs: new[] { new ConjugatePair(otherCellsMap.First, otherCellsMap.SetAt(1), digit) },
 							isAr: arMode));
 				}
 			}
@@ -451,7 +451,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			int o1 = otherCellsMap.SetAt(0), o2 = otherCellsMap.SetAt(1);
+			int o1 = otherCellsMap.First, o2 = otherCellsMap.SetAt(1);
 			int r1 = GetRegion(corner1, Row), c1 = GetRegion(corner1, Column);
 			int r2 = GetRegion(corner2, Row), c2 = GetRegion(corner2, Column);
 			foreach (int digit in stackalloc[] { d1, d2 })
@@ -561,7 +561,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
-				int abxCell = adjacentCellsMap.SetAt(0);
+				int abxCell = adjacentCellsMap.First;
 				int abyCell = adjacentCellsMap.SetAt(1);
 				var map1 = new GridMap { abzCell, abxCell };
 				var map2 = new GridMap { abzCell, abyCell };

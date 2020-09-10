@@ -57,14 +57,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					{
 						case 2:
 						{
-							list.Add(new() { emptyCellsInInterMap.SetAt(0), emptyCellsInInterMap.SetAt(1) });
+							list.Add(new() { emptyCellsInInterMap.First, emptyCellsInInterMap.SetAt(1) });
 
 							break;
 						}
 						case 3:
 						{
 							var (i, j, k) = (
-								emptyCellsInInterMap.SetAt(0), emptyCellsInInterMap.SetAt(1),
+								emptyCellsInInterMap.First, emptyCellsInInterMap.SetAt(1),
 								emptyCellsInInterMap.SetAt(2));
 							list.Add(new() { i, j });
 							list.Add(new() { j, k });

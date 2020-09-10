@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						int elimCell = new GridMap(otherCellsMap) { ~sameRegionCell }.SetAt(0);
+						int elimCell = new GridMap(otherCellsMap) { ~sameRegionCell }.First;
 						if (grid.Exists(sameRegionCell, digit) is not true)
 						{
 							continue;
@@ -275,7 +275,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						int elimCell = new GridMap(otherCellsMap) { ~sameRegionCell }.SetAt(0);
+						int elimCell = new GridMap(otherCellsMap) { ~sameRegionCell }.First;
 						if (grid.Exists(sameRegionCell, digit) is not true)
 						{
 							continue;
@@ -365,7 +365,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			int c1 = otherCellsMap.SetAt(0);
+			int c1 = otherCellsMap.First;
 			int c2 = otherCellsMap.SetAt(1);
 			int c3 = otherCellsMap.SetAt(2);
 			short m1 = grid.GetCandidateMask(c1);
@@ -482,7 +482,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var adjacentCellsMap = new GridMap(otherCellsMap) { ~abzCell };
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
-				int abxCell = adjacentCellsMap.SetAt(0);
+				int abxCell = adjacentCellsMap.First;
 				int abyCell = adjacentCellsMap.SetAt(1);
 				var map1 = new GridMap { abzCell, abxCell };
 				var map2 = new GridMap { abzCell, abyCell };
@@ -580,7 +580,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// the existence of strong link.
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = new GridMap(otherCellsMap) { ~abzCell };
-			int abxCell = adjacentCellsMap.SetAt(0);
+			int abxCell = adjacentCellsMap.First;
 			int abyCell = adjacentCellsMap.SetAt(1);
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
@@ -686,7 +686,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = new GridMap(otherCellsMap) { ~abzCell };
-			int abxCell = adjacentCellsMap.SetAt(0);
+			int abxCell = adjacentCellsMap.First;
 			int abyCell = adjacentCellsMap.SetAt(1);
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
@@ -788,7 +788,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = new GridMap(otherCellsMap) { ~abzCell };
-			int abxCell = adjacentCellsMap.SetAt(0);
+			int abxCell = adjacentCellsMap.First;
 			int abyCell = adjacentCellsMap.SetAt(1);
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
@@ -892,7 +892,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				int abwCell = GetDiagonalCell(urCells, corner1);
-				int abzCell = new GridMap(otherCellsMap) { ~abwCell }.SetAt(0);
+				int abzCell = new GridMap(otherCellsMap) { ~abwCell }.First;
 				foreach (var (head, begin, end, extra) in
 					stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
 				{
@@ -1017,7 +1017,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				int end = GetDiagonalCell(urCells, corner1);
-				int extra = new GridMap(otherCellsMap) { ~end }.SetAt(0);
+				int extra = new GridMap(otherCellsMap) { ~end }.First;
 				foreach (var (abx, aby, abw, abz) in
 					stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) })
 				{
@@ -1086,7 +1086,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							new(abx, aby, a),
 							new(aby, abw, a),
-							new ConjugatePair(linkMap.SetAt(0), linkMap.SetAt(1), b)
+							new ConjugatePair(linkMap.First, linkMap.SetAt(1), b)
 						};
 						accumulator.Add(
 							new UrPlusTechniqueInfo(
@@ -1140,7 +1140,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			if (new GridMap { corner1, corner2 }.AllSetsAreInOneRegion(out int region) && region < 9)
 			{
 				// Subtype 1.
-				int otherCell1 = otherCellsMap.SetAt(0), otherCell2 = otherCellsMap.SetAt(1);
+				int otherCell1 = otherCellsMap.First, otherCell2 = otherCellsMap.SetAt(1);
 				short mask1 = grid.GetCandidateMask(otherCell1);
 				short mask2 = grid.GetCandidateMask(otherCell2);
 				short mask = (short)(mask1 | mask2);

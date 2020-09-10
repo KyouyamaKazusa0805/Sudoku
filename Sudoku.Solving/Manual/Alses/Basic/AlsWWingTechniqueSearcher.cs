@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 							var candidateOffsets = new List<(int, int)>
 							{
-								(0, cpMap.SetAt(0) * 9 + x), (0, cpMap.SetAt(1) * 9 + x)
+								(0, cpMap.First * 9 + x), (0, cpMap.SetAt(1) * 9 + x)
 							};
 							foreach (int cell in map1)
 							{

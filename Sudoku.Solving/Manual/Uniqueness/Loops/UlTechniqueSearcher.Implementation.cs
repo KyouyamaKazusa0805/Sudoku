@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap)
 		{
-			int extraCell = extraCellsMap.SetAt(0);
+			int extraCell = extraCellsMap.First;
 			var conclusions = new List<Conclusion>();
 			if (grid.Exists(extraCell, d1) is true)
 			{
@@ -251,7 +251,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						continue;
 					}
 
-					int first = extraCellsMap.SetAt(0);
+					int first = extraCellsMap.First;
 					int second = extraCellsMap.SetAt(1);
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(first, otherDigit) is true)

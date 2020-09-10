@@ -52,13 +52,13 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					{
 						case 2:
 						{
-							list.Add(new() { emptyMap.SetAt(0), emptyMap.SetAt(1) });
+							list.Add(new() { emptyMap.First, emptyMap.SetAt(1) });
 
 							break;
 						}
 						case 3:
 						{
-							var (i, j, k) = (emptyMap.SetAt(0), emptyMap.SetAt(1), emptyMap.SetAt(2));
+							var (i, j, k) = (emptyMap.First, emptyMap.SetAt(1), emptyMap.SetAt(2));
 							list.Add(new() { i, j });
 							list.Add(new() { i, k });
 							list.Add(new() { j, k });

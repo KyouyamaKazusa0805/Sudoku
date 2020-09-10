@@ -2040,6 +2040,17 @@
             value are set <see langword="true"/>.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.GridMap.First">
+            <summary>
+            Gets the first set bit position. If the current map is empty,
+            the return value will be <c>-1</c>.
+            </summary>
+            <remarks>
+            The property will use the same process with <see cref="P:Sudoku.Data.GridMap.Offsets"/>,
+            but the <see langword="yield"/> clause will be replaced with normal <see langword="return"/>s.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.GridMap.Offsets"/>
+        </member>
         <member name="P:Sudoku.Data.GridMap.PeerIntersection">
             <summary>
             Indicates the map of cells, which is the peer intersections.
@@ -2132,6 +2143,10 @@
             </summary>
             <param name="index">The true bit index order.</param>
             <returns>The real index.</returns>
+            <remarks>
+            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.GridMap.First"/> instead.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.GridMap.First"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.CompareTo(Sudoku.Data.GridMap)">
             <inheritdoc/>

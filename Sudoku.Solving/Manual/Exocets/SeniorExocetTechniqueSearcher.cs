@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					tempTarget.Add(check.SetAt(0));
+					tempTarget.Add(check.First);
 				}
 				if (tempTarget.Count == 0)
 				{

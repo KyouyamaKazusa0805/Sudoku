@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							continue;
 						}
 
-						int elimCell = elimCellMap.SetAt(0);
+						int elimCell = elimCellMap.First;
 						if (grid.Exists(elimCell, digit) is not true)
 						{
 							continue;

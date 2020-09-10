@@ -197,7 +197,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var targetElims = new TargetEliminations();
 			var mirrorElims = new MirrorEliminations();
-			var playground = (Span<int>)stackalloc[] { mirror.SetAt(0), mirror.SetAt(1) };
+			var playground = (Span<int>)stackalloc[] { mirror.First, mirror.SetAt(1) };
 			short mirrorCandidatesMask = (short)(
 				grid.GetCandidateMask(playground[0]) | grid.GetCandidateMask(playground[1]));
 			short commonBase = (short)(mirrorCandidatesMask & baseCandidateMask & grid.GetCandidateMask(target));

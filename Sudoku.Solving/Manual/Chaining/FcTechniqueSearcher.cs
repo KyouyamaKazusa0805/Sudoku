@@ -248,7 +248,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				if (worthMap.Count == 2 || _multiple && worthMap.Count > 2)
 				{
 					// Determine whether we meet this region for the first time.
-					if (worthMap.SetAt(0) == cell)
+					if (worthMap.First == cell)
 					{
 						var posToOn = new Dictionary<int, Set<Node>>();
 						var posToOff = new Dictionary<int, Set<Node>>();

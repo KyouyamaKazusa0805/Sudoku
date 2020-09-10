@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 
 						// Check whether two digits are both in the same empty rectangle.
-						int inter1 = interMap.SetAt(0);
+						int inter1 = interMap.First;
 						int inter2 = interMap.SetAt(1);
 						int b1 = GetRegion(inter1, Block);
 						int b2 = GetRegion(inter2, Block);
@@ -82,7 +82,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 						// Check eliminations.
 						var conclusions = new List<Conclusion>();
-						int z = (interMap & regionMap).SetAt(0);
+						int z = (interMap & regionMap).First;
 						var c1Map = RegionMaps[new GridMap { z, c1 }.CoveredLine];
 						var c2Map = RegionMaps[new GridMap { z, c2 }.CoveredLine];
 						foreach (int elimCell in new GridMap(c1Map | c2Map) { ~c1, ~c2 } - erMap)

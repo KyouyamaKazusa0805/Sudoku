@@ -418,6 +418,51 @@ namespace Sudoku.Data
 		public int Count { readonly get; private set; }
 
 		/// <summary>
+		/// Gets the first set bit position. If the current map is empty,
+		/// the return value will be <c>-1</c>.
+		/// </summary>
+		/// <remarks>
+		/// The property will use the same process with <see cref="Offsets"/>,
+		/// but the <see langword="yield"/> clause will be replaced with normal <see langword="return"/>s.
+		/// </remarks>
+		/// <seealso cref="Offsets"/>
+		public readonly int First
+		{
+			get
+			{
+				if (IsEmpty)
+				{
+					return -1;
+				}
+
+				long value;
+				int i;
+				if (_low != 0)
+				{
+					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
+					{
+						if ((value & 1) != 0)
+						{
+							return i;
+						}
+					}
+				}
+				if (_high != 0)
+				{
+					for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
+					{
+						if ((value & 1) != 0)
+						{
+							return i;
+						}
+					}
+				}
+
+				return default; // Here is only used for a placeholder.
+			}
+		}
+
+		/// <summary>
 		/// Indicates the map of cells, which is the peer intersections.
 		/// </summary>
 		/// <example>
@@ -596,8 +641,12 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="index">The true bit index order.</param>
 		/// <returns>The real index.</returns>
+		/// <remarks>
+		/// If you want to select the first set bit, please use <see cref="First"/> instead.
+		/// </remarks>
+		/// <seealso cref="First"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int SetAt(int index) => Offsets.ElementAt(index);
+		public readonly int SetAt(int index) => index == 0 ? First : Offsets.ElementAt(index);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					continue;
 				}
 
-				int elimCell = mapContainingThatDigit.SetAt(0);
+				int elimCell = mapContainingThatDigit.First;
 				short elimMask = (short)(grid.GetCandidateMask(elimCell) & tempMask);
 				if (elimMask == 0)
 				{

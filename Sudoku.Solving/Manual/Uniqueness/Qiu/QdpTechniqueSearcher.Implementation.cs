@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				return;
 			}
 
-			int elimCell = map.SetAt(0);
+			int elimCell = map.First;
 			short mask = (short)(grid.GetCandidateMask(elimCell) & ~(1 << extraDigit));
 			if (mask == 0)
 			{
@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					candidateOffsets.Add((1, cell * 9 + digit));
 				}
 			}
-			int anotherCellInPair = (pair - map).SetAt(0);
+			int anotherCellInPair = (pair - map).First;
 			foreach (int digit in grid.GetCandidates(anotherCellInPair))
 			{
 				candidateOffsets.Add((0, anotherCellInPair * 9 + digit));

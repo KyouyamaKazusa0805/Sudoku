@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					continue;
 				}
 
-				int elimCell = extraDigitMap.SetAt(0);
+				int elimCell = extraDigitMap.First;
 				short cellMask = grid.GetCandidateMask(elimCell);
 				short elimMask = (short)(cellMask & ~(1 << extraDigit));
 				if (elimMask == 0)

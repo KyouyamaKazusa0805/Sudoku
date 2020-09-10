@@ -30,7 +30,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="map">The map.</param>
 		/// <param name="digit">The digit.</param>
-		public ConjugatePair(GridMap map, int digit) => (Digit, From, To, Map) = (digit, map.SetAt(0), map.SetAt(1), map);
+		public ConjugatePair(GridMap map, int digit) => (Digit, From, To, Map) = (digit, map.First, map.SetAt(1), map);
 
 
 		/// <summary>

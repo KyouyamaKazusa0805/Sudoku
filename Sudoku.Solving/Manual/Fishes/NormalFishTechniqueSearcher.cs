@@ -195,7 +195,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										if (finCellsMap.IsNotEmpty)
 										{
 											isSashimi = true;
-											int finCell = finCellsMap.SetAt(0);
+											int finCell = finCellsMap.First;
 											int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
 											foreach (int offset in bodyMap)
 											{
@@ -367,7 +367,7 @@ namespace Sudoku.Solving.Manual.Fishes
 													if (finCellsMap.IsNotEmpty)
 													{
 														isSashimi = true;
-														int finCell = finCellsMap.SetAt(0);
+														int finCell = finCellsMap.First;
 														int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
 														foreach (int offset in bodyMap)
 														{
@@ -558,7 +558,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															if (finCellsMap.IsNotEmpty)
 															{
 																isSashimi = true;
-																int finCell = finCellsMap.SetAt(0);
+																int finCell = finCellsMap.First;
 																int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
 																foreach (int cell in bodyMap)
 																{

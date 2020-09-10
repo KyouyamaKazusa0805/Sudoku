@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				var (pair, square, baseLine) = pattern;
 
 				// To check whether both two pair cells are empty.
-				if (!EmptyMap[pair.SetAt(0)] || !EmptyMap[pair.SetAt(1)])
+				if (!EmptyMap[pair.First] || !EmptyMap[pair.SetAt(1)])
 				{
 					continue;
 				}
@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					void f(GridMap map)
 					{
 						bool flag = false;
-						int c1 = map.SetAt(0), c2 = map.SetAt(1);
+						int c1 = map.First, c2 = map.SetAt(1);
 						if (!EmptyMap[c1])
 						{
 							int d1 = grid[c1];

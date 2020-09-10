@@ -84,7 +84,7 @@ namespace Sudoku.Data.Collections
 
 			if (Count == 1)
 			{
-				int cell = _map.SetAt(0);
+				int cell = _map.First;
 				return $"r{cell / 9 + 1}c{cell % 9 + 1}";
 			}
 
