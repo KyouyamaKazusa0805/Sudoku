@@ -2431,7 +2431,7 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Implicit(System.Span{System.Int32})~Sudoku.Data.GridMap">
             <summary>
-            Implicit cast from <see cref="T:System.Span`1"/>[] to <see cref="T:Sudoku.Data.GridMap"/>.
+            Implicit cast from <see cref="T:System.Span`1"/> to <see cref="T:Sudoku.Data.GridMap"/>.
             </summary>
             <param name="cells">The cells.</param>
         </member>

@@ -207,6 +207,7 @@ namespace Sudoku.Data
 		/// whose the corresponding value is <c>i</c>.
 		/// </para>
 		/// </remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public GridMap(GridMap another) => this = another;
 
 		/// <summary>
@@ -1014,7 +1015,7 @@ namespace Sudoku.Data
 		public static implicit operator GridMap(int[] cells) => new(cells);
 
 		/// <summary>
-		/// Implicit cast from <see cref="Span{T}"/>[] to <see cref="GridMap"/>.
+		/// Implicit cast from <see cref="Span{T}"/> to <see cref="GridMap"/>.
 		/// </summary>
 		/// <param name="cells">The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
