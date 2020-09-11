@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Text;
+using Sudoku.Constants;
 using Sudoku.Data.Collections;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
@@ -22,7 +24,7 @@ namespace Sudoku.Data
 	/// the digit.
 	/// </remarks>
 	[DebuggerStepThrough]
-	public partial struct GridMap : IComparable<GridMap>, IEnumerable<int>, IEquatable<GridMap>
+	public partial struct GridMap : IComparable<GridMap>, IEnumerable<int>, IEquatable<GridMap>, IFormattable
 	{
 		/// <summary>
 		/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -718,37 +720,60 @@ namespace Sudoku.Data
 		public override readonly int GetHashCode() => GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override readonly string ToString()
-		{
-#if true
-			var cells = new CellCollection(this);
-			return cells.ToString();
-#else
-			var sb = new StringBuilder();
-			int i;
-			long value = _low;
-			for (i = 0; i < 27; i++, value >>= 1)
-			{
-				sb.Append(value & 1);
-			}
-			sb.Append(" ");
-			for (; i < 41; i++, value >>= 1)
-			{
-				sb.Append(value & 1);
-			}
-			for (value = _high; i < 54; i++, value >>= 1)
-			{
-				sb.Append(value & 1);
-			}
-			sb.Append(" ");
-			for (; i < 81; i++, value >>= 1)
-			{
-				sb.Append(value & 1);
-			}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public override readonly string ToString() => ToString(null);
 
-			return sb.Reverse().ToString();
-#endif
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <remarks>
+		/// The format can be <c><see langword="null"/></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>. If the former three,
+		/// the return value will be a cell notation collection; otherwise, the binary representation.
+		/// </remarks>
+		/// <exception cref="FormatException">Throws when the format is invalid.</exception>
+		public readonly string ToString(string? format)
+		{
+			switch (format)
+			{
+				case null or "N" or "n":
+				{
+					return new CellCollection(this).ToString();
+				}
+				case "B" or "b":
+				{
+					var sb = new StringBuilder();
+					int i;
+					long value = _low;
+					for (i = 0; i < 27; i++, value >>= 1)
+					{
+						sb.Append(value & 1);
+					}
+					sb.Append(" ");
+					for (; i < 41; i++, value >>= 1)
+					{
+						sb.Append(value & 1);
+					}
+					for (value = _high; i < 54; i++, value >>= 1)
+					{
+						sb.Append(value & 1);
+					}
+					sb.Append(" ");
+					for (; i < 81; i++, value >>= 1)
+					{
+						sb.Append(value & 1);
+					}
+
+					return sb.Reverse().ToString();
+				}
+				default:
+				{
+					throw Throwings.FormatErrorWithMessage(null!, nameof(format));
+				}
+			}
 		}
+
+		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly string ToString(string? format, IFormatProvider? formatProvider) =>
+			formatProvider.HasFormatted(this, format, out string? result) ? result : ToString(format);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -982,11 +1007,18 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Implicite cast from <see cref="int"/>[] to <see cref="GridMap"/>.
+		/// Implicit cast from <see cref="int"/>[] to <see cref="GridMap"/>.
 		/// </summary>
 		/// <param name="cells">The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator GridMap(int[] cells) => new(cells);
+
+		/// <summary>
+		/// Implicit cast from <see cref="Span{T}"/>[] to <see cref="GridMap"/>.
+		/// </summary>
+		/// <param name="cells">The cells.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static implicit operator GridMap(Span<int> cells) => new(cells);
 
 		/// <summary>
 		/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="GridMap"/>.
