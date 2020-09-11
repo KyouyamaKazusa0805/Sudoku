@@ -180,7 +180,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// To copy an instance with the specified information.
+		/// (Copy constructor) To copy an instance with the specified information.
 		/// </summary>
 		/// <param name="another">Another instance.</param>
 		/// <remarks>

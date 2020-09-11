@@ -1917,7 +1917,7 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap)">
             <summary>
-            To copy an instance with the specified information.
+            (Copy constructor) To copy an instance with the specified information.
             </summary>
             <param name="another">Another instance.</param>
             <remarks>
@@ -3517,7 +3517,7 @@
         </member>
         <member name="M:Sudoku.Data.SudokuMap.#ctor(Sudoku.Data.SudokuMap)">
             <summary>
-            Initializes an instance with another map.
+            (Copy constructor) Initializes an instance with another map.
             </summary>
             <param name="another">The another map.</param>
         </member>

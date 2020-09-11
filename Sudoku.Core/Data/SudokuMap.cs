@@ -36,7 +36,7 @@ namespace Sudoku.Data
 		public SudokuMap() => _innerArray = new(729);
 
 		/// <summary>
-		/// Initializes an instance with another map.
+		/// (Copy constructor) Initializes an instance with another map.
 		/// </summary>
 		/// <param name="another">The another map.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
