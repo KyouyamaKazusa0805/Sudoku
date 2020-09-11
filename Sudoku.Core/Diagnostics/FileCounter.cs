@@ -3,6 +3,7 @@
 #endif
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -13,7 +14,7 @@ namespace Sudoku.Diagnostics
 	/// <summary>
 	/// Encapsulates a file counter.
 	/// </summary>
-	public sealed record FileCounter(string Root, string? Pattern, bool WithBinOrObjDirectory, IList<string> FileList)
+	public sealed class FileCounter
 	{
 		/// <summary>
 		/// Indicates the comment lint regular expression instance.
@@ -62,41 +63,42 @@ namespace Sudoku.Diagnostics
 		{
 		}
 
-
 		/// <summary>
-		/// Indicates the total number of the comment lines.
+		/// Initializes an instance with the specified root, extension, a <see cref="bool"/> value
+		/// indicating whether the counter will searcher for bin or obj directory, and a file list.
 		/// </summary>
-		public int CommentLines { get; private set; }
+		/// <param name="root">The root.</param>
+		/// <param name="extension">The file extension.</param>
+		/// <param name="withBinOrObjDirectory">
+		/// A <see cref="bool"/> value indicating whether the counter will search for bin or obj directory.
+		/// </param>
+		/// <param name="fileList">A file list.</param>
+		private FileCounter(string root, string? extension, bool withBinOrObjDirectory, IList<string> fileList) =>
+			(Root, Pattern, WithBinOrObjDirectory, FileList) = (root, $@".+\.{extension}$", withBinOrObjDirectory, fileList);
 
-		/// <summary>
-		/// Indicates the number of files.
-		/// </summary>
-		public int FilesCount { get; private set; }
 
-		/// <summary>
-		/// Indicates the number of result lines.
-		/// </summary>
-		public int ResultLines { get; private set; }
+		public string Root { get; init; }
 
-		/// <summary>
-		/// Indicates the characters in files.
-		/// </summary>
-		public long CharactersCount { get; private set; }
+		public string? Pattern { get; init; }
 
-		/// <summary>
-		/// Indicates the length of all files.
-		/// </summary>
-		public long Bytes { get; private set; }
+		public bool WithBinOrObjDirectory { get; init; }
+
+		public IList<string> FileList { get; init; } = new List<string>();
 
 
 		/// <summary>
-		/// Count on code lines in all files in the specified root directory.
+		/// Count up for all files in the specified root directory, and return the result.
 		/// </summary>
-		/// <returns>The number of lines.</returns>
-		public void CountCodeLines()
+		/// <returns>The result information.</returns>
+		public FileCounterResult CountUp()
 		{
+			var stopwatch = new Stopwatch();
+			stopwatch.Start();
 			g(new(Root));
 
+			int commentLines, filesCount, resultLines;
+			long charactersCount, bytes;
+			charactersCount = bytes = commentLines = filesCount = resultLines = 0;
 			foreach (string fileName in FileList)
 			{
 				try
@@ -107,27 +109,30 @@ namespace Sudoku.Diagnostics
 					while ((s = sr.ReadLine()) is not null)
 					{
 						fileLines++;
-						CharactersCount += s.Length;
+						charactersCount += s.Length;
 
 						// Remove header \t.
-						CharactersCount -= s.Reserve(@"\t").Length;
+						charactersCount -= s.Reserve(@"\t").Length;
 
 						// Check whether the current line is comment line.
 						if (CommentLineRegex.Match(s) is Match { Success: true })
 						{
-							CommentLines++;
+							commentLines++;
 						}
 					}
 
-					ResultLines += fileLines;
-					Bytes += new FileInfo(fileName).Length;
-					FilesCount++;
+					resultLines += fileLines;
+					bytes += new FileInfo(fileName).Length;
+					filesCount++;
 				}
 				catch
 				{
 					// Do nothing.
 				}
 			}
+
+			stopwatch.Stop();
+			return new(resultLines, commentLines, filesCount, charactersCount, bytes, stopwatch.Elapsed, FileList);
 
 			void g(DirectoryInfo directory)
 			{

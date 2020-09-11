@@ -3927,11 +3927,6 @@
             Encapsulates a file counter.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String,System.String,System.Boolean,System.Collections.Generic.IList{System.String})">
-            <summary>
-            Encapsulates a file counter.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.FileCounter.CommentLineRegex">
             <summary>
             Indicates the comment lint regular expression instance.
@@ -3971,36 +3966,55 @@
             <c>bin</c> and <c>obj</c>.
             </param>
         </member>
-        <member name="P:Sudoku.Diagnostics.FileCounter.CommentLines">
+        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String,System.String,System.Boolean,System.Collections.Generic.IList{System.String})">
             <summary>
-            Indicates the total number of the comment lines.
+            Initializes an instance with the specified root, extension, a <see cref="T:System.Boolean"/> value
+            indicating whether the counter will searcher for bin or obj directory, and a file list.
             </summary>
+            <param name="root">The root.</param>
+            <param name="extension">The file extension.</param>
+            <param name="withBinOrObjDirectory">
+            A <see cref="T:System.Boolean"/> value indicating whether the counter will search for bin or obj directory.
+            </param>
+            <param name="fileList">A file list.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.FileCounter.FilesCount">
+        <member name="M:Sudoku.Diagnostics.FileCounter.CountUp">
             <summary>
-            Indicates the number of files.
+            Count up for all files in the specified root directory, and return the result.
             </summary>
+            <returns>The result information.</returns>
         </member>
-        <member name="P:Sudoku.Diagnostics.FileCounter.ResultLines">
+        <member name="T:Sudoku.Diagnostics.FileCounterResult">
             <summary>
-            Indicates the number of result lines.
+            Encapsulates a result after <see cref="T:Sudoku.Diagnostics.FileCounter"/>.
             </summary>
+            <remarks>
+            The property <see cref="P:Sudoku.Diagnostics.FileCounterResult.FileList"/> won't be output. If you want to use this property,
+            please write this property explicitly.
+            </remarks>
+            <seealso cref="T:Sudoku.Diagnostics.FileCounter"/>
+            <seealso cref="P:Sudoku.Diagnostics.FileCounterResult.FileList"/>
         </member>
-        <member name="P:Sudoku.Diagnostics.FileCounter.CharactersCount">
+        <member name="M:Sudoku.Diagnostics.FileCounterResult.#ctor(System.Int32,System.Int32,System.Int32,System.Int64,System.Int64,System.TimeSpan,System.Collections.Generic.IList{System.String})">
             <summary>
-            Indicates the characters in files.
+            Encapsulates a result after <see cref="T:Sudoku.Diagnostics.FileCounter"/>.
             </summary>
+            <remarks>
+            The property <see cref="P:Sudoku.Diagnostics.FileCounterResult.FileList"/> won't be output. If you want to use this property,
+            please write this property explicitly.
+            </remarks>
+            <seealso cref="T:Sudoku.Diagnostics.FileCounter"/>
+            <seealso cref="P:Sudoku.Diagnostics.FileCounterResult.FileList"/>
         </member>
-        <member name="P:Sudoku.Diagnostics.FileCounter.Bytes">
-            <summary>
-            Indicates the length of all files.
-            </summary>
+        <member name="M:Sudoku.Diagnostics.FileCounterResult.ToString">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.FileCounter.CountCodeLines">
+        <member name="M:Sudoku.Diagnostics.FileCounterResult.Tostring(Sudoku.Diagnostics.SizeUnit)">
             <summary>
-            Count on code lines in all files in the specified root directory.
+            Gets the specified string notation for a <see cref="T:Sudoku.Diagnostics.SizeUnit"/> instance.
             </summary>
-            <returns>The number of lines.</returns>
+            <param name="this">The instance.</param>
+            <returns>The string result.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.SizeUnit">
             <summary>
@@ -4072,16 +4086,6 @@
             <param name="bytes">The bytes.</param>
             <param name="unit">(<see langword="out"/> parameter) The unit.</param>
             <returns>The value of the specified size unit.</returns>
-        </member>
-        <member name="T:Sudoku.Diagnostics.Solution">
-            <summary>
-            Provides the solution constant values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.Solution.PathRoot">
-            <summary>
-            The root path of this whole solution.
-            </summary>
         </member>
         <member name="T:Sudoku.Extensions.ArrayEx">
             <summary>

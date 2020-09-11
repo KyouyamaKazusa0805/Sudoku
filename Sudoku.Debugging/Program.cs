@@ -22,37 +22,8 @@ using static System.Console;
 
 #region File counter
 #if true
-var w = new Stopwatch();
+string root = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
 
-var z = new FileCounter(Solution.PathRoot, "cs", false);
-
-w.Start();
-z.CountCodeLines();
-w.Stop();
-
-//foreach (string fileName in z.FileList)
-//{
-//	WriteLine(fileName);
-//}
-//WriteLine();
-
-WriteLine(
-	$"Results:\n" +
-	$"* Code lines: {z.ResultLines} (Comment lines: {z.CommentLines})\n" +
-	$"* Files: {z.FilesCount}\n" +
-	$"* Characters: {z.CharactersCount}\n" +
-	$"* Bytes: {SizeUnitConverter.Convert(z.Bytes, out var unit):.000} {Tostring(unit)} ({z.Bytes} Bytes)\n" +
-	$"* Time elapsed: {w.Elapsed:hh\\:mm\\.ss\\.fff}");
+WriteLine(new FileCounter(root, "cs", withBinOrObjDirectory: false).CountUp());
 #endif
 #endregion
-
-static string Tostring(SizeUnit @this) =>
-	@this switch
-	{
-		SizeUnit.Byte => "B",
-		SizeUnit.Kilobyte => "KB",
-		SizeUnit.Megabyte => "MB",
-		SizeUnit.Gigabyte => "GB",
-		SizeUnit.Terabyte => "TB",
-		_ => throw Throwings.ImpossibleCase
-	};
