@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 						}
 
-						if (temp.AllSetsAreInOneRegion(out _) || allZ[n] == 0)
+						if (temp.InOneRegion || allZ[n] == 0)
 						{
 							// All in same region means that they with target cell together
 							// forms a naked subset.

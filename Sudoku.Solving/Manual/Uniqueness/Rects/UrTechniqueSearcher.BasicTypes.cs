@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			bool isType5 = !new GridMap { corner1, corner2 }.AllSetsAreInOneRegion(out _);
+			bool isType5 = !new GridMap { corner1, corner2 }.InOneRegion;
 			accumulator.Add(
 				new UrType2TechniqueInfo(
 					conclusions,

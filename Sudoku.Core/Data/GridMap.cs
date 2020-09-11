@@ -333,6 +333,27 @@ namespace Sudoku.Data
 		public readonly bool IsNotEmpty => (_high, _low) is not (0, 0);
 
 		/// <summary>
+		/// Same as <see cref="AllSetsAreInOneRegion(out int)"/>, but only contains
+		/// the <see cref="bool"/> result.
+		/// </summary>
+		/// <seealso cref="AllSetsAreInOneRegion(out int)"/>
+		public readonly bool InOneRegion
+		{
+			get
+			{
+				for (int i = 0; i < 27; i++)
+				{
+					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+					{
+						return true;
+					}
+				}
+
+				return false;
+			}
+		}
+
+		/// <summary>
 		/// Indicates the mask of block.
 		/// </summary>
 		public readonly short BlockMask
@@ -621,6 +642,12 @@ namespace Sudoku.Data
 		/// (<see langword="out"/> parameter) The region covered. If the return value
 		/// is false, this value will be the constant -1.
 		/// </param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		/// <remarks>
+		/// If you don't want to use the <see langword="out"/> parameter value, please
+		/// use the property <see cref="InOneRegion"/> to improve the performance.
+		/// </remarks>
+		/// <seealso cref="InOneRegion"/>
 		public readonly bool AllSetsAreInOneRegion(out int region)
 		{
 			for (int i = 0; i < 27; i++)

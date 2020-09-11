@@ -2014,6 +2014,13 @@
             </summary>
             <seealso cref="P:Sudoku.Data.GridMap.IsEmpty"/>
         </member>
+        <member name="P:Sudoku.Data.GridMap.InOneRegion">
+            <summary>
+            Same as <see cref="M:Sudoku.Data.GridMap.AllSetsAreInOneRegion(System.Int32@)"/>, but only contains
+            the <see cref="T:System.Boolean"/> result.
+            </summary>
+            <seealso cref="M:Sudoku.Data.GridMap.AllSetsAreInOneRegion(System.Int32@)"/>
+        </member>
         <member name="P:Sudoku.Data.GridMap.BlockMask">
             <summary>
             Indicates the mask of block.
@@ -2136,6 +2143,12 @@
             (<see langword="out"/> parameter) The region covered. If the return value
             is false, this value will be the constant -1.
             </param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            If you don't want to use the <see langword="out"/> parameter value, please
+            use the property <see cref="P:Sudoku.Data.GridMap.InOneRegion"/> to improve the performance.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.GridMap.InOneRegion"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.SetAt(System.Int32)">
             <summary>

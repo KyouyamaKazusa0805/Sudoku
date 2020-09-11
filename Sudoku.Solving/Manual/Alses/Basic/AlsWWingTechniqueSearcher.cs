@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				{
 					var als2 = alses[j];
 					var (_, region2, mask2, map2, _, _) = als2;
-					if (map1.Overlaps(map2) || (map1 | map2).AllSetsAreInOneRegion(out _))
+					if (map1.Overlaps(map2) || (map1 | map2).InOneRegion)
 					{
 						continue;
 					}

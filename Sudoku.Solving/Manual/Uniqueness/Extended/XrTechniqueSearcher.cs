@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						}
 					}
 
-					if (!extraCellsMap.AllSetsAreInOneRegion(out _))
+					if (!extraCellsMap.InOneRegion)
 					{
 						continue;
 					}

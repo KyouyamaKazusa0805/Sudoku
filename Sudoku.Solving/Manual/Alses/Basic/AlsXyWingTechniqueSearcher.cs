@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					var als2 = alses[j];
 					var (_, _, mask2, map2, _, _) = als2;
 					var map = map1 | map2;
-					if (map.AllSetsAreInOneRegion(out _) || map1.Overlaps(map2))
+					if (map.InOneRegion || map1.Overlaps(map2))
 					{
 						continue;
 					}
@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						short rccMask = 0;
 						foreach (int digit in mask.GetAllSets())
 						{
-							if ((map & CandMaps[digit]).AllSetsAreInOneRegion(out _))
+							if ((map & CandMaps[digit]).InOneRegion)
 							{
 								rccMask |= (short)(1 << digit);
 							}

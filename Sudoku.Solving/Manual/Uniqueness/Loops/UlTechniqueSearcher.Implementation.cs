@@ -128,12 +128,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap, short comparer)
 		{
-			if (!extraCellsMap.AllSetsAreInOneRegion(out _)
-				|| extraCellsMap.Any(c =>
-				{
-					short mask = grid.GetCandidateMask(c);
-					return (mask & comparer) == 0 || mask == comparer;
-				}))
+			if (!extraCellsMap.InOneRegion
+				|| extraCellsMap.Any(
+					c => grid.GetCandidateMask(c) is var mask && (mask & comparer) == 0 || mask == comparer))
 			{
 				return;
 			}
@@ -236,7 +233,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap, short comparer)
 		{
-			if (!extraCellsMap.AllSetsAreInOneRegion(out _))
+			if (!extraCellsMap.InOneRegion)
 			{
 				return;
 			}

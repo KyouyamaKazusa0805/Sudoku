@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		{
 			// Check whether all true candidates lie on a same region.
 			var map = new GridMap(from C in trueCandidates group C by C / 9 into z select z.Key);
-			if (!map.AllSetsAreInOneRegion(out _))
+			if (!map.InOneRegion)
 			{
 				return;
 			}
@@ -336,7 +336,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 				// BUG-XZ found.
 				var conclusions = new List<Conclusion>();
-				bool condition = new GridMap { c1, cell }.AllSetsAreInOneRegion(out _);
+				bool condition = new GridMap { c1, cell }.InOneRegion;
 				int anotherCell = condition ? c2 : c1;
 				int anotherDigit = condition ? d2 : d1;
 				foreach (int peer in new GridMap(stackalloc[] { cell, anotherCell }, ProcessPeersWithoutItself))

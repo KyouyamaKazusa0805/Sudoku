@@ -230,8 +230,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="progress">The progress reporter.</param>
 		/// <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
 		private static void ReportProgress(
-			Grid cloneation, IProgress<IProgressResult> progress,
-			ref GridProgressResult progressResult)
+			Grid cloneation, IProgress<IProgressResult> progress, ref GridProgressResult progressResult)
 		{
 			progressResult.CurrentCandidatesCount = cloneation.CandidatesCount;
 			progressResult.CurrentCellsCount = cloneation.EmptiesCount;

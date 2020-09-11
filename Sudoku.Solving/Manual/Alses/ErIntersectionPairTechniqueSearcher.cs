@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					// Check the two cells are not in same region.
-					if (new GridMap { c1, c2 }.AllSetsAreInOneRegion(out _))
+					if (new GridMap { c1, c2 }.InOneRegion)
 					{
 						continue;
 					}

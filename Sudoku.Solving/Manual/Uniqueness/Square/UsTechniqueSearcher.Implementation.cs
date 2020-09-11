@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				{
 					tempMap |= CandMaps[digit];
 				}
-				if (tempMap.AllSetsAreInOneRegion(out _))
+				if (tempMap.InOneRegion)
 				{
 					continue;
 				}
@@ -215,7 +215,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				{
 					tempMap |= CandMaps[digit];
 				}
-				if (tempMap.AllSetsAreInOneRegion(out _))
+				if (tempMap.InOneRegion)
 				{
 					continue;
 				}
