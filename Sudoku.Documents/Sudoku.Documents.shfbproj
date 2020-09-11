@@ -20,7 +20,7 @@
     <OutputPath>bin\debug\</OutputPath>
     <HtmlHelpName>Sudoku API references</HtmlHelpName>
     <Language>en-US</Language>
-    <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
+    <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <SyntaxFilters>C#</SyntaxFilters>
     <PresentationStyle>VS2013</PresentationStyle>
     <BuildLogFile>Logs.log</BuildLogFile>
