@@ -10,57 +10,42 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <summary>
 	/// Indicates a using of <b>hidden single</b> technique.
 	/// </summary>
-	public sealed class HiddenSingleTechniqueInfo : SingleTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cell">The cell.</param>
+	/// <param name="Digit">The digit.</param>
+	/// <param name="Region">The region.</param>
+	/// <param name="EnableAndIsLastDigit">Indicates whether the current technique is a last digit.</param>
+	public sealed record HiddenSingleTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit,
+		int Region, bool EnableAndIsLastDigit)
+		: SingleTechniqueInfo(Conclusions, Views, Cell, Digit)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <param name="cellOffset">The cell offset.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="enableAndIsLastDigit">
-		/// Indicates whether the solver enables last digit.
-		/// </param>
-		public HiddenSingleTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int regionOffset, int cellOffset, int digit, bool enableAndIsLastDigit)
-			: base(conclusions, views, cellOffset, digit) =>
-			(RegionOffset, EnableAndIsLastDigit) = (regionOffset, enableAndIsLastDigit);
-
-
-		/// <summary>
-		/// Indicates the region offset.
-		/// </summary>
-		public int RegionOffset { get; }
-
-		/// <summary>
-		/// Indicates whether the solver enables last digit technique.
-		/// </summary>
-		public bool EnableAndIsLastDigit { get; }
-
 		/// <inheritdoc/>
-		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : RegionOffset < 9 ? 1.2M : 1.5M;
+		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : Region < 9 ? 1.2M : 1.5M;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			EnableAndIsLastDigit
-				? TechniqueCode.LastDigit
-				: GetLabel(RegionOffset) switch
+			EnableAndIsLastDigit switch
+			{
+				true => TechniqueCode.LastDigit,
+				_ => GetLabel(Region) switch
 				{
 					"Row" => TechniqueCode.HiddenSingleRow,
 					"Column" => TechniqueCode.HiddenSingleColumn,
 					"Block" => TechniqueCode.HiddenSingleBlock,
 					_ => throw Throwings.ImpossibleCase
-				};
+				}
+			};
 
 
 		/// <inheritdoc/>
 		public override string ToString()
 		{
 			string cellStr = new CellCollection(Cell).ToString();
-			string regionStr = new RegionCollection(RegionOffset).ToString();
-			int value = Digit + 1;
-			return EnableAndIsLastDigit
-				? $"{Name}: {cellStr} = {value}"
-				: $"{Name}: {cellStr} = {value} in {regionStr}";
+			string regionStr = new RegionCollection(Region).ToString();
+			int v = Digit + 1;
+			return EnableAndIsLastDigit ? $"{Name}: {cellStr} = {v}" : $"{Name}: {cellStr} = {v} in {regionStr}";
 		}
 	}
 }

@@ -8,18 +8,14 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <summary>
 	/// Indicates a usage of <b>full house</b> technique.
 	/// </summary>
-	public sealed class FullHouseTechniqueInfo : SingleTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cell">The cell.</param>
+	/// <param name="Digit">The digit.</param>
+	public sealed record FullHouseTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit)
+		: SingleTechniqueInfo(Conclusions, Views, Cell, Digit)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="cellOffset">The cell offset.</param>
-		/// <param name="digit">The digit.</param>
-		public FullHouseTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int cellOffset, int digit)
-			: base(conclusions, views, cellOffset, digit)
-		{
-		}
-
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 1.0M;
 

@@ -72,14 +72,14 @@ namespace Sudoku.Solving.Manual.Singles
 					int digit = grid.GetCandidateMask(resultCell).FindFirstSet();
 					accumulator.Add(
 						new FullHouseTechniqueInfo(
-							conclusions: new[] { new Conclusion(Assignment, resultCell, digit) },
-							views: new[]
+							new[] { new Conclusion(Assignment, resultCell, digit) },
+							new[]
 							{
 								new View(
 									null, new[] { (0, resultCell * 9 + digit) },
 									new[] { (0, region) }, null)
 							},
-							cellOffset: resultCell,
+							resultCell,
 							digit));
 				}
 			}
@@ -129,8 +129,8 @@ namespace Sudoku.Solving.Manual.Singles
 
 					accumulator.Add(
 						new HiddenSingleTechniqueInfo(
-							conclusions: new[] { new Conclusion(Assignment, resultCell, digit) },
-							views: new[]
+							new Conclusion[] { new(Assignment, resultCell, digit) },
+							new[]
 							{
 								new View(
 									enableAndIsLastDigit ? cellOffsets : null,
@@ -138,9 +138,9 @@ namespace Sudoku.Solving.Manual.Singles
 									enableAndIsLastDigit ? null : new[] { (0, region) },
 									null)
 							},
-							regionOffset: region,
-							cellOffset: resultCell,
+							resultCell,
 							digit,
+							region,
 							enableAndIsLastDigit));
 				}
 			}
@@ -154,9 +154,9 @@ namespace Sudoku.Solving.Manual.Singles
 				{
 					accumulator.Add(
 						new NakedSingleTechniqueInfo(
-							conclusions: new[] { new Conclusion(Assignment, cell, digit) },
-							views: new[] { new View(new[] { (0, cell * 9 + digit) }) },
-							cellOffset: cell,
+							new Conclusion[] { new(Assignment, cell, digit) },
+							new[] { new View(new[] { (0, cell * 9 + digit) }) },
+							cell,
 							digit));
 				}
 			}
