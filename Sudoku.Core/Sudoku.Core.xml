@@ -4257,6 +4257,14 @@
             </summary>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Data.ValueGrid.Parse(System.Char*,System.Int32)">
+            <summary>
+            Parses a string value and converts to this type.
+            </summary>
+            <param name="str">The char pointer to a string.</param>
+            <param name="length">The length.</param>
+            <returns>The grid result.</returns>
+        </member>
         <member name="M:Sudoku.Data.ValueGrid.Parse(System.ReadOnlySpan{System.Char})">
             <summary>
             <para>

@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using Sudoku.Constants;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
+using S = Sudoku.Data.CellStatus;
+using T = Sudoku.Constants.Throwings;
 
 namespace Sudoku.Data
 {
@@ -44,7 +46,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
 		/// </summary>
-		public const short DefaultMask = (short)CellStatus.Empty << 9;
+		public const short DefaultMask = (short)S.Empty << 9;
 
 		/// <summary>
 		/// Indicates the maximum candidate mask that used.
@@ -71,20 +73,20 @@ namespace Sudoku.Data
 		/// <list type="table">
 		/// <item>
 		/// <term><c>0b001</c> (1)</term>
-		/// <description>The cell is <see cref="CellStatus.Empty"/>.</description>
+		/// <description>The cell is <see cref="S.Empty"/>.</description>
 		/// </item>
 		/// <item>
 		/// <term><c>0b010</c> (2)</term>
-		/// <description>The cell is <see cref="CellStatus.Modifiable"/>.</description>
+		/// <description>The cell is <see cref="S.Modifiable"/>.</description>
 		/// </item>
 		/// <item>
 		/// <term><c>0b100</c> (4)</term>
-		/// <description>The cell is <see cref="CellStatus.Given"/>.</description>
+		/// <description>The cell is <see cref="S.Given"/>.</description>
 		/// </item>
 		/// </list>
 		/// </para>
 		/// </remarks>
-		/// <seealso cref="CellStatus"/>
+		/// <seealso cref="S"/>
 		internal /*readonly*/ fixed short _masks[81];
 
 		/// <summary>
@@ -155,7 +157,7 @@ namespace Sudoku.Data
 			{
 				for (int i = 0; i < 81; i++)
 				{
-					if (GetStatus(i) == CellStatus.Empty)
+					if (GetStatus(i) == S.Empty)
 					{
 						return false;
 					}
@@ -175,7 +177,7 @@ namespace Sudoku.Data
 				int count = 0;
 				for (int i = 0; i < 81; i++)
 				{
-					if (GetStatus(i) == CellStatus.Empty)
+					if (GetStatus(i) == S.Empty)
 					{
 						count += GetCandidateMask(i).CountSet();
 					}
@@ -211,17 +213,7 @@ namespace Sudoku.Data
 				a = b = c = 0;
 				for (int i = 0; i < 81; i++)
 				{
-					(
-						*(
-							GetStatus(i) switch
-							{
-								CellStatus.Empty => &a,
-								CellStatus.Modifiable => &b,
-								CellStatus.Given => &c,
-								_ => throw Throwings.ImpossibleCase
-							}
-						)
-					)++;
+					(*(GetStatus(i) switch { S.Empty => &a, S.Modifiable => &b, S.Given => &c, _ => throw T.ImpossibleCase }))++;
 				}
 
 				return (a, b, c);
@@ -242,7 +234,7 @@ namespace Sudoku.Data
 		/// <returns>
 		/// An <see cref="int"/> value indicating the result.
 		/// If the current cell does not have a digit
-		/// (i.e. The cell is <see cref="CellStatus.Empty"/>),
+		/// (i.e. The cell is <see cref="S.Empty"/>),
 		/// The value will be -1.
 		/// </returns>
 		[IndexerName("Value")]
@@ -250,20 +242,20 @@ namespace Sudoku.Data
 		{
 			readonly get => GetStatus(cell) switch
 			{
-				CellStatus.Empty => -1,
-				CellStatus.Modifiable => (~_masks[cell]).FindFirstSet(),
-				CellStatus.Given => (~_masks[cell]).FindFirstSet(),
-				_ => throw Throwings.ImpossibleCase
+				S.Empty => -1,
+				S.Modifiable => (~_masks[cell]).FindFirstSet(),
+				S.Given => (~_masks[cell]).FindFirstSet(),
+				_ => throw T.ImpossibleCase
 			};
 			set
 			{
 				switch (value)
 				{
-					case -1 when GetStatus(cell) == CellStatus.Modifiable:
+					case -1 when GetStatus(cell) == S.Modifiable:
 					{
 						// If 'value' is -1, we should reset the grid.
 						// Note that reset candidates may not trigger the event.
-						_masks[cell] = (short)CellStatus.Empty << 9;
+						_masks[cell] = (short)S.Empty << 9;
 						RecomputeCandidates();
 
 						break;
@@ -274,7 +266,7 @@ namespace Sudoku.Data
 						short copy = result;
 
 						// Set cell status to 'CellStatus.Modifiable'.
-						result = (short)((short)CellStatus.Modifiable << 9 | MaxCandidatesMask & ~(1 << value));
+						result = (short)((short)S.Modifiable << 9 | MaxCandidatesMask & ~(1 << value));
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
@@ -327,9 +319,9 @@ namespace Sudoku.Data
 		{
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetStatus(i) == CellStatus.Modifiable)
+				if (GetStatus(i) == S.Modifiable)
 				{
-					SetStatus(i, CellStatus.Given);
+					SetStatus(i, S.Given);
 				}
 			}
 
@@ -347,9 +339,9 @@ namespace Sudoku.Data
 		{
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetStatus(i) == CellStatus.Given)
+				if (GetStatus(i) == S.Given)
 				{
-					SetStatus(i, CellStatus.Modifiable);
+					SetStatus(i, S.Modifiable);
 				}
 			}
 		}
@@ -372,7 +364,7 @@ namespace Sudoku.Data
 		/// <param name="offset">The cell offset you want to change.</param>
 		/// <param name="cellStatus">The cell status you want to set.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SetStatus(int offset, CellStatus cellStatus)
+		public void SetStatus(int offset, S cellStatus)
 		{
 			ref short mask = ref _masks[offset];
 			short copy = mask;
@@ -403,7 +395,7 @@ namespace Sudoku.Data
 		{
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetStatus(i) == CellStatus.Empty)
+				if (GetStatus(i) == S.Empty)
 				{
 					short mask = 0;
 					foreach (int cell in PeerMaps[i])
@@ -415,13 +407,13 @@ namespace Sudoku.Data
 						}
 					}
 
-					_masks[i] = (short)((int)CellStatus.Empty << 9 | mask);
+					_masks[i] = (short)((int)S.Empty << 9 | mask);
 				}
 			}
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => Equals(obj is ValueGrid comparer ? comparer : default);
+		public override bool Equals(object? obj) => Equals(obj is ValueGrid comparer ? comparer : Undefined);
 
 		/// <inheritdoc/>
 		public bool Equals(ValueGrid other) => Equals(this, other);
@@ -444,7 +436,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>
 		/// This array. All elements are between 0 to 9, where 0 means the
-		/// cell is <see cref="CellStatus.Empty"/> now.
+		/// cell is <see cref="S.Empty"/> now.
 		/// </returns>
 		public int[] ToArray()
 		{
@@ -532,7 +524,7 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell offset you want to get.</param>
 		/// <returns>The cell status.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly CellStatus GetStatus(int cell) => (CellStatus)(_masks[cell] >> 9 & (int)CellStatus.All);
+		public readonly S GetStatus(int cell) => (S)(_masks[cell] >> 9 & (int)S.All);
 
 		/// <summary>
 		/// Get all candidates containing in the specified cell.
@@ -563,7 +555,7 @@ namespace Sudoku.Data
 
 			foreach (int cell in PeerMaps[offset])
 			{
-				if (sender.GetStatus(cell) == CellStatus.Empty)
+				if (sender.GetStatus(cell) == S.Empty)
 				{
 					sender._masks[cell] |= (short)(1 << setValue);
 				}
@@ -581,12 +573,12 @@ namespace Sudoku.Data
 			{
 				switch (GetStatus(i))
 				{
-					case CellStatus.Given:
+					case S.Given:
 					{
 						count++;
-						goto case CellStatus.Modifiable;
+						goto case S.Modifiable;
 					}
-					case CellStatus.Modifiable:
+					case S.Modifiable:
 					{
 						int curDigit = this[i];
 						foreach (int cell in PeerMaps[i])
@@ -605,6 +597,14 @@ namespace Sudoku.Data
 			return true;
 		}
 
+		/// <summary>
+		/// Parses a string value and converts to this type.
+		/// </summary>
+		/// <param name="str">The char pointer to a string.</param>
+		/// <param name="length">The length.</param>
+		/// <returns>The grid result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static ValueGrid Parse(char* str, int length) => Parse(new ReadOnlySpan<char>(str, length));
 
 		/// <summary>
 		/// <para>
@@ -734,7 +734,7 @@ namespace Sudoku.Data
 					result[i] = value - 1;
 
 					// Set the status to 'CellStatus.Given'.
-					result.SetStatus(i, CellStatus.Given);
+					result.SetStatus(i, S.Given);
 				}
 			}
 
@@ -772,19 +772,19 @@ namespace Sudoku.Data
 			{
 				if (!format.StartsWith('@'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Multi-line identifier '@' must be at the first place.",
 						nameof(format));
 				}
 				else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"In multi-line environment, '0' and '.' cannot appear with ':' together.",
 						nameof(format));
 				}
 				else if (format.IsMatch(@"\@[^0\!\~\*\.\:]+"))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'.",
 						nameof(format));
 				}
@@ -793,31 +793,31 @@ namespace Sudoku.Data
 			{
 				if (!format.StartsWith('#'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Intelligence option character '#' must be at the first place.",
 						nameof(format));
 				}
 				else if (format.IsMatch(@"\#[^\.0]+"))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Intelligence option character '#' must be with placeholder '0' or '.'.",
 						nameof(format));
 				}
 				else if (format.Contains('0') && format.Contains('.'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Placeholder character '0' and '.' cannot appear both.",
 						nameof(format));
 				}
 				else if (format.Contains('+') && format.Contains('!'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Cell status character '+' and '!' cannot appear both.",
 						nameof(format));
 				}
 				else if (format.Contains(':') && !format.EndsWith(':'))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Candidate leading character ':' must be at the last place.",
 						nameof(format));
 				}
@@ -826,7 +826,7 @@ namespace Sudoku.Data
 			{
 				if (format.IsMatch(@"(\~[^\@\.0]|[^\@0\.]\~)"))
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Sukaku character '~' can only be together with the characters '0', '.' or '@'.",
 						nameof(format));
 				}
@@ -835,7 +835,7 @@ namespace Sudoku.Data
 			{
 				if (format.Length > 1)
 				{
-					throw Throwings.FormatErrorWithMessage(
+					throw T.FormatErrorWithMessage(
 						"Excel option character '%' cannot be used with other characters together.",
 						nameof(format));
 				}
