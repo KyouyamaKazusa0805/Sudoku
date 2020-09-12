@@ -21,22 +21,16 @@ using Sudoku.Windows;
 using static System.Console;
 
 #if TEST_FOR_VALUE_GRID || true
-var stopwatch = new Stopwatch();
-stopwatch.Start();
-for (int i = 0; i < 100000000; i++)
-{
-	_ = ValueGrid.Empty;
-}
-stopwatch.Stop();
-WriteLine($"ValueGrid elapsed: {stopwatch.Elapsed:hh\\.mm\\.ss\\.fff}");
-
-stopwatch.Restart();
-for (int i = 0; i < 100000000; i++)
-{
-	_ = Grid.Empty.Clone();
-}
-stopwatch.Stop();
-WriteLine($"Grid elapsed: {stopwatch.Elapsed:hh\\.mm\\.ss\\.fff}");
+var vGrid = ValueGrid.Empty;
+var iGrid = Grid.Empty.Clone();
+vGrid[0] = 4;
+iGrid[0] = 4;
+vGrid[1, 3] = true;
+vGrid[3, 5] = true;
+iGrid[1, 3] = true;
+iGrid[3, 5] = true;
+WriteLine($"{vGrid:.+:}");
+WriteLine($"{iGrid:.+:}");
 #endif
 
 #if FILE_COUNTER || false

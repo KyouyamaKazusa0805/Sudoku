@@ -18,7 +18,7 @@ namespace Sudoku.Data
 	/// </remarks>
 	/// <seealso cref="Grid"/>
 	/// <seealso cref="ValueGrid()"/>
-	public unsafe partial struct ValueGrid : IEnumerable, IEnumerable<short>, IEquatable<ValueGrid>, IFormattable
+	public unsafe partial struct ValueGrid : IEnumerable<short>, IEquatable<ValueGrid>, IFormattable
 	{
 		/// <summary>
 		/// Indicates the empty grid string.
