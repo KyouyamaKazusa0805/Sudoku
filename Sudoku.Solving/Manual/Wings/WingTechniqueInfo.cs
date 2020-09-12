@@ -10,7 +10,5 @@ namespace Sudoku.Solving.Manual.Wings
 	/// <param name="Conclusios">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	public abstract record WingTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: TechniqueInfo(Conclusions, Views)
-	{
-	}
+		: TechniqueInfo(Conclusions, Views);
 }

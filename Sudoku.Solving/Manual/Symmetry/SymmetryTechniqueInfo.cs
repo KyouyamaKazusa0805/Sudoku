@@ -10,7 +10,5 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	public abstract record SymmetryTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: TechniqueInfo(Conclusions, Views)
-	{
-	}
+		: TechniqueInfo(Conclusions, Views);
 }
