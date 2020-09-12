@@ -7,14 +7,13 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <summary>
 	/// Provides a usage of <b>single</b> technique.
 	/// </summary>
-	public abstract class SingleTechniqueInfo : TechniqueInfo
+	public abstract record SingleTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+		: TechniqueInfo(Conclusions, Views)
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
-		protected SingleTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int cell, int digit)
-			: base(conclusions, views) => (Cell, Digit) = (cell, digit);
+		protected SingleTechniqueInfo(int cell, int digit) => (Cell, Digit) = (cell, digit);
 
 
 		/// <summary>
