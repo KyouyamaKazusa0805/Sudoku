@@ -514,7 +514,6 @@ namespace Sudoku.Data
 		/// Here must use method instead of property or field.
 		/// Because the return value should be mutable.
 		/// </remarks>
-		private static bool[] DefaultCheckingArray =>
-			new[] { true, true, true, true, true, true, true, true, true };
+		private static bool[] DefaultCheckingArray => new[] { true, true, true, true, true, true, true, true, true };
 	}
 }

@@ -9,7 +9,7 @@ namespace Sudoku.Data.Extensions
 	/// using in transformations.
 	/// </summary>
 	/// <seealso cref="Grid"/>
-	public static class GridTransformationExtensions
+	public static class GridTransformations
 	{
 		/// <summary>
 		/// The table of clockwise rotation.

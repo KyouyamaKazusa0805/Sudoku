@@ -711,25 +711,25 @@ namespace Sudoku.Windows
 		}
 
 		private unsafe void MenuItemTransformMirrorLeftRight_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformationExtensions.MirrorLeftRight);
+			Transform(&GridTransformations.MirrorLeftRight);
 
 		private unsafe void MenuItemTransformMirrorTopBotton_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformationExtensions.MirrorTopBottom);
+			Transform(&GridTransformations.MirrorTopBottom);
 
 		private unsafe void MenuItemTransformMirrorDiagonal_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformationExtensions.MirrorDiagonal);
+			Transform(&GridTransformations.MirrorDiagonal);
 
 		private unsafe void MenuItemTransformMirrorAntidiagonal_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformationExtensions.MirrorAntidiagonal);
+			Transform(&GridTransformations.MirrorAntidiagonal);
 
 		private unsafe void MenuItemTransformRotateClockwise_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformationExtensions.RotateClockwise);
+			Transform(&GridTransformations.RotateClockwise);
 
 		private unsafe void MenuItemTransformRotateCounterclockwise_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformationExtensions.RotateCounterclockwise);
+			Transform(&GridTransformations.RotateCounterclockwise);
 
 		private unsafe void MenuItemTransformRotatePi_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformationExtensions.RotatePi);
+			Transform(&GridTransformations.RotatePi);
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemViewsShowBugN_Click(object sender, RoutedEventArgs e)
