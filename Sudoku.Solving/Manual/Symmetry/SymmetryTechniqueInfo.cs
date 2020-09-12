@@ -7,12 +7,10 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// <summary>
 	/// Provides a usage of <b>symmetry</b> technique.
 	/// </summary>
-	public abstract class SymmetryTechniqueInfo : TechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	public abstract record SymmetryTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+		: TechniqueInfo(Conclusions, Views)
 	{
-		/// <inheritdoc/>
-		protected SymmetryTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
-			: base(conclusions, views)
-		{
-		}
 	}
 }
