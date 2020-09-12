@@ -853,10 +853,10 @@ namespace Sudoku.Data
 
 
 		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(ValueGrid? left, ValueGrid? right) => Equals(left, right);
+		public static bool operator ==(ValueGrid left, ValueGrid right) => Equals(left, right);
 
 		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(ValueGrid? left, ValueGrid? right) => !(left == right);
+		public static bool operator !=(ValueGrid left, ValueGrid right) => !(left == right);
 
 
 		/// <summary>

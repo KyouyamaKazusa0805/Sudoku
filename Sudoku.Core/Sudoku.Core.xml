@@ -4363,7 +4363,7 @@
             <param name="size">The number of the size unit.</param>
             <returns>Same as <paramref name="dest"/>.</returns>
         </member>
-        <member name="M:Sudoku.Data.ValueGrid.op_Equality(System.Nullable{Sudoku.Data.ValueGrid},System.Nullable{Sudoku.Data.ValueGrid})">
+        <member name="M:Sudoku.Data.ValueGrid.op_Equality(Sudoku.Data.ValueGrid,Sudoku.Data.ValueGrid)">
             <operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>
 		<param name="left">The left instance.</param>
@@ -4373,7 +4373,7 @@
 		</returns>
 	</operator>
         </member>
-        <member name="M:Sudoku.Data.ValueGrid.op_Inequality(System.Nullable{Sudoku.Data.ValueGrid},System.Nullable{Sudoku.Data.ValueGrid})">
+        <member name="M:Sudoku.Data.ValueGrid.op_Inequality(Sudoku.Data.ValueGrid,Sudoku.Data.ValueGrid)">
             <operator name="op_Inequality">
 		<summary>Indicates whether two instances have two different values.</summary>
 		<param name="left">The left instance.</param>
