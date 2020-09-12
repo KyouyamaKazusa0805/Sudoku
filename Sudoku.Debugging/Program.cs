@@ -20,10 +20,27 @@ using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Windows;
 using static System.Console;
 
-#region File counter
-#if true
+#if TEST_FOR_VALUE_GRID || true
+var stopwatch = new Stopwatch();
+stopwatch.Start();
+for (int i = 0; i < 100000000; i++)
+{
+	_ = ValueGrid.Empty;
+}
+stopwatch.Stop();
+WriteLine($"ValueGrid elapsed: {stopwatch.Elapsed:hh\\.mm\\.ss\\.fff}");
+
+stopwatch.Restart();
+for (int i = 0; i < 100000000; i++)
+{
+	_ = Grid.Empty.Clone();
+}
+stopwatch.Stop();
+WriteLine($"Grid elapsed: {stopwatch.Elapsed:hh\\.mm\\.ss\\.fff}");
+#endif
+
+#if FILE_COUNTER || false
 string root = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
 
 WriteLine(new FileCounter(root, "cs", withBinOrObjDirectory: false).CountUp());
 #endif
-#endregion

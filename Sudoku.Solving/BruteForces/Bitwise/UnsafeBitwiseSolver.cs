@@ -938,6 +938,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="src">The pointer to the destination block.</param>
 		/// <param name="size">The number of the size unit.</param>
 		/// <returns>Same as <paramref name="dest"/>.</returns>
+		[return: MaybeNull]
 		private static void* Memcpy(void* dest, void* src, int size)
 		{
 			if (src == null || dest == null || size < 0)
@@ -964,6 +965,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="value">The value to assign.</param>
 		/// <param name="size">The size of the size unit.</param>
 		/// <returns>Same as <paramref name="src"/>.</returns>
+		[return: NotNullIfNotNull("src")]
 		private static void* Memset(void* src, int value, int size)
 		{
 			void* p = src;
