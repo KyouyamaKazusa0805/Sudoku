@@ -3980,6 +3980,16 @@
             Indicates an empty grid, where all values are zero.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.ValueGrid.Undefined">
+            <summary>
+            Indicates the undefined grid (All values are 0, uninitialized,
+            i.e. <see langword="default"/>(<see cref="T:Sudoku.Data.ValueGrid"/>)).
+            </summary>
+            <remarks>
+            Please don't use the default constructor <see cref="M:Sudoku.Data.ValueGrid.#ctor"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.ValueGrid.#ctor"/>
+        </member>
         <member name="F:Sudoku.Data.ValueGrid.DefaultMask">
             <summary>
             Indicates the default mask of a cell (an empty cell, with all 9 candidates left).

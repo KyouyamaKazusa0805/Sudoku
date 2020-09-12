@@ -30,6 +30,16 @@ namespace Sudoku.Data
 		/// </summary>
 		public static readonly ValueGrid Empty;
 
+		/// <summary>
+		/// Indicates the undefined grid (All values are 0, uninitialized,
+		/// i.e. <see langword="default"/>(<see cref="ValueGrid"/>)).
+		/// </summary>
+		/// <remarks>
+		/// Please don't use the default constructor <see cref="ValueGrid()"/>.
+		/// </remarks>
+		/// <seealso cref="ValueGrid()"/>
+		public static readonly ValueGrid Undefined;
+
 
 		/// <summary>
 		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -676,7 +686,7 @@ namespace Sudoku.Data
 			}
 			catch
 			{
-				result = default;
+				result = Undefined;
 				return false;
 			}
 		}
@@ -702,7 +712,7 @@ namespace Sudoku.Data
 			}
 			catch
 			{
-				result = default;
+				result = Undefined;
 				return false;
 			}
 		}
