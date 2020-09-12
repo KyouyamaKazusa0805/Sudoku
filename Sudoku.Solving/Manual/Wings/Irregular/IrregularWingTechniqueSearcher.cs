@@ -101,9 +101,9 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 							accumulator.Add(
 								new WWingTechniqueInfo(
 									conclusions,
-									views: new[]
+									new View[]
 									{
-										new View(
+										new(
 											null,
 											new[]
 											{
@@ -117,9 +117,9 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 											new[] { (0, region) },
 											null)
 									},
-									startCellOffset: c1,
-									endCellOffset: c2,
-									conjugatePair: new(bridgeStart, bridgeEnd, digit)));
+									c1,
+									c2,
+									new(bridgeStart, bridgeEnd, digit)));
 						}
 					}
 				}
