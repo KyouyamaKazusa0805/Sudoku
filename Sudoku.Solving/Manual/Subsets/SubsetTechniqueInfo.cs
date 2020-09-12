@@ -7,33 +7,20 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <summary>
 	/// Provides a usage of <b>subset</b> technique.
 	/// </summary>
-	public abstract class SubsetTechniqueInfo : TechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Region">The region that structure lies in.</param>
+	/// <param name="Cells">All cells used.</param>
+	/// <param name="Digits">All digits used.</param>
+	public abstract record SubsetTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Region, IReadOnlyList<int> Cells, IReadOnlyList<int> Digits)
+		: TechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <param name="cellOffsets">The cell offsets.</param>
-		/// <param name="digits">The digits.</param>
-		protected SubsetTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int regionOffset, IReadOnlyList<int> cellOffsets, IReadOnlyList<int> digits)
-			: base(conclusions, views) =>
-			(RegionOffset, CellOffsets, Digits) = (regionOffset, cellOffsets, digits);
-
-
 		/// <summary>
-		/// The region offset.
+		/// Indicates the size.
 		/// </summary>
-		public int RegionOffset { get; }
-
-		/// <summary>
-		/// All digits.
-		/// </summary>
-		public IReadOnlyList<int> Digits { get; }
-
-		/// <summary>
-		/// All cell offsets.
-		/// </summary>
-		public IReadOnlyList<int> CellOffsets { get; }
+		public int Size => Digits.Count;
 
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;

@@ -9,54 +9,24 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <summary>
 	/// Provides a usage of <b>naked subset</b> technique.
 	/// </summary>
-	public sealed class NakedSubsetTechniqueInfo : SubsetTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Region">The region that structure lies in.</param>
+	/// <param name="Cells">All cells used.</param>
+	/// <param name="Digits">All digits used.</param>
+	/// <param name="IsLocked">Indicates whether the subset is locked.</param>
+	public sealed record NakedSubsetTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Region, IReadOnlyList<int> Cells, IReadOnlyList<int> Digits, bool? IsLocked)
+		: SubsetTechniqueInfo(Conclusions, Views, Region, Cells, Digits)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <param name="cellOffsets">The cell offsets.</param>
-		/// <param name="digits">The digits.</param>
-		/// <param name="isLocked">Indicates whether the technique is locked. </param>
-		public NakedSubsetTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int regionOffset, IReadOnlyList<int> cellOffsets, IReadOnlyList<int> digits,
-			bool? isLocked) : base(conclusions, views, regionOffset, cellOffsets, digits) =>
-			IsLocked = isLocked;
-
-
-		/// <summary>
-		/// Represents a value for this technique is a locked,
-		/// partial locked or normal subset.
-		/// The technique is one when the value is:
-		/// <list type="table">
-		/// <item><term><see langword="true"/></term><description>Locked subset,</description></item>
-		/// <item><term><see langword="false"/></term><description>Partial locked subset,</description></item>
-		/// <item><term><see langword="null"/></term><description>Normal subset.</description></item>
-		/// </list>
-		/// </summary>
-		public bool? IsLocked { get; }
-
-		/// <summary>
-		/// Indicates the size.
-		/// </summary>
-		public int Size => Digits.Count;
-
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			Size switch
-			{
-				2 => 3.0M,
-				3 => 3.6M,
-				4 => 5.0M,
-				_ => throw Throwings.ImpossibleCase
-			} + IsLocked switch
+			Size switch { 2 => 3.0M, 3 => 3.6M, 4 => 5.0M, _ => throw Throwings.ImpossibleCase }
+			+ IsLocked switch
 			{
 				null => 0,
-				true => Size switch
-				{
-					2 => -1.0M,
-					3 => -1.1M,
-					_ => throw Throwings.ImpossibleCase
-				},
+				true => Size switch { 2 => -1.0M, 3 => -1.1M, _ => throw Throwings.ImpossibleCase },
 				false => .1M
 			};
 
@@ -80,7 +50,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
-			string regionStr = new RegionCollection(RegionOffset).ToString();
+			string regionStr = new RegionCollection(Region).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {regionStr} => {elimStr}";
 		}

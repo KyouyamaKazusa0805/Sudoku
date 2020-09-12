@@ -9,31 +9,19 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <summary>
 	/// Provides a usage of <b>hidden subset</b> technique.
 	/// </summary>
-	public sealed class HiddenSubsetTechniqueInfo : SubsetTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Region">The region that structure lies in.</param>
+	/// <param name="Cells">All cells used.</param>
+	/// <param name="Digits">All digits used.</param>
+	public sealed record HiddenSubsetTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Region, IReadOnlyList<int> Cells, IReadOnlyList<int> Digits)
+		: SubsetTechniqueInfo(Conclusions, Views, Region, Cells, Digits)
 	{
 		/// <inheritdoc/>
-		public HiddenSubsetTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int regionOffset, IReadOnlyList<int> cellOffsets, IReadOnlyList<int> digits)
-			: base(conclusions, views, regionOffset, cellOffsets, digits)
-		{
-		}
-
-
-		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			Size switch
-			{
-				2 => 3.4M,
-				3 => 4.0M,
-				4 => 5.4M,
-				_ => throw Throwings.ImpossibleCase
-			};
-
-		/// <summary>
-		/// Indicates the size of this instance.
-		/// </summary>
-		public int Size => Digits.Count;
+			Size switch { 2 => 3.4M, 3 => 4.0M, 4 => 5.4M, _ => throw Throwings.ImpossibleCase };
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
@@ -50,7 +38,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
-			string regionStr = new RegionCollection(RegionOffset).ToString();
+			string regionStr = new RegionCollection(Region).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {regionStr} => {elimStr}";
 		}
