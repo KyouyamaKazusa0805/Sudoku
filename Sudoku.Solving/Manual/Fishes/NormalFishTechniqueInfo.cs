@@ -11,46 +11,32 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// <summary>
 	/// Provides a usage of <b>normal fish</b> technique.
 	/// </summary>
-	public sealed class NormalFishTechniqueInfo : FishTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit">The digit used.</param>
+	/// <param name="BaseSets">The base sets.</param>
+	/// <param name="CoverSets">The cover sets.</param>
+	/// <param name="FinCells">All fin cells.</param>
+	/// <param name="IsSashimi">
+	/// Indicates whether the fish instance is sashimi.
+	/// The value can be:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term><description>Sashimi finned fish.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term><description>Normal finned fish.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term><description>Normal fish.</description>
+	/// </item>
+	/// </list>
+	/// </param>
+	public sealed record NormalFishTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, IReadOnlyList<int> BaseSets,
+		IReadOnlyList<int> CoverSets, IReadOnlyList<int>? Fins, bool? IsSashimi)
+		: FishTechniqueInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit">The digit.</param>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="coverSets">The cover sets.</param>
-		/// <param name="finCellOffsets">All candidate offsets of fins' position.</param>
-		/// <param name="isSashimi">
-		/// Indicates whether the fish instance is sashimi.
-		/// </param>
-		public NormalFishTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit, IReadOnlyList<int> baseSets, IReadOnlyList<int> coverSets,
-			IReadOnlyList<int>? finCellOffsets, bool? isSashimi)
-			: base(conclusions, views, digit, baseSets, coverSets) =>
-			(IsSashimi, FinCellOffsets) = (isSashimi, finCellOffsets);
-
-
-		/// <summary>
-		/// Indicates whether the fish instance is sashimi.
-		/// The value can be:
-		/// <list type="table">
-		/// <item>
-		/// <term><see langword="true"/></term><description>Sashimi finned fish.</description>
-		/// </item>
-		/// <item>
-		/// <term><see langword="false"/></term><description>Normal finned fish.</description>
-		/// </item>
-		/// <item>
-		/// <term><see langword="null"/></term><description>Normal fish.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		public bool? IsSashimi { get; }
-
-		/// <summary>
-		/// Indicates all fin candidates in this fish information instance.
-		/// </summary>
-		public IReadOnlyList<int>? FinCellOffsets { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
 			Size switch
@@ -109,8 +95,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			int value = Digit + 1;
 			string baseSetStr = new RegionCollection(BaseSets).ToString();
 			string coverSetStr = new RegionCollection(CoverSets).ToString();
-			string? finStr = FinCellOffsets is { Count: not 0 }
-				? $" f{new CellCollection(FinCellOffsets).ToString()}"
+			string? finStr = Fins is { Count: not 0 }
+				? $" f{new CellCollection(Fins).ToString()}"
 				: string.Empty;
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr}{finStr} => {elimStr}";

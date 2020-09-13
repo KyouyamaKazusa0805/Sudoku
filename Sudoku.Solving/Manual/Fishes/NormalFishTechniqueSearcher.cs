@@ -210,18 +210,18 @@ namespace Sudoku.Solving.Manual.Fishes
 										accumulator.Add(
 											new NormalFishTechniqueInfo(
 												conclusions,
-												views: new[]
+												new View[]
 												{
-													new View(
+													new(
 														null, candidateOffsets,
 														new[] { (0, bs1), (0, bs2), (1, cs1), (1, cs2) }, null),
 													GetDirectView(
 														grid, digit, baseSets2, coverSets2, searchRow, finCellsMap)
 												},
 												digit,
-												baseSets: baseSets2.ToArray(),
-												coverSets: coverSets2.ToArray(),
-												finCellOffsets: finCellsMap.ToArray(),
+												baseSets2.ToArray(),
+												coverSets2.ToArray(),
+												finCellsMap.ToArray(),
 												isSashimi));
 									}
 								}
@@ -382,9 +382,9 @@ namespace Sudoku.Solving.Manual.Fishes
 													accumulator.Add(
 														new NormalFishTechniqueInfo(
 															conclusions,
-															views: new[]
+															new View[]
 															{
-																new View(
+																new(
 																	null,
 																	candidateOffsets,
 																	new[]
@@ -398,9 +398,9 @@ namespace Sudoku.Solving.Manual.Fishes
 																	coverSets3, searchRow, finCellsMap)
 															},
 															digit,
-															baseSets: baseSets3.ToArray(),
-															coverSets: coverSets3.ToArray(),
-															finCellOffsets: finCellsMap.ToArray(),
+															baseSets3.ToArray(),
+															coverSets3.ToArray(),
+															finCellsMap.ToArray(),
 															isSashimi));
 												}
 											}
@@ -574,9 +574,9 @@ namespace Sudoku.Solving.Manual.Fishes
 															accumulator.Add(
 																new NormalFishTechniqueInfo(
 																	conclusions,
-																	views: new[]
+																	new View[]
 																	{
-																		new View(
+																		new(
 																			null,
 																			candidateOffsets,
 																			new[]
@@ -592,9 +592,9 @@ namespace Sudoku.Solving.Manual.Fishes
 																			coverSets4, searchRow, finCellsMap)
 																	},
 																	digit,
-																	baseSets: baseSets4.ToArray(),
-																	coverSets: coverSets4.ToArray(),
-																	finCellOffsets: finCellsMap.ToArray(),
+																	baseSets4.ToArray(),
+																	coverSets4.ToArray(),
+																	finCellsMap.ToArray(),
 																	isSashimi));
 														}
 													}

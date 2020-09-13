@@ -10,7 +10,32 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// <summary>
 	/// Provides a usage of <b>Hobiwan's fish</b> technique.
 	/// </summary>
-	public sealed class HobiwanFishTechniqueInfo : FishTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit">The digit used.</param>
+	/// <param name="BaseSets">The base sets.</param>
+	/// <param name="CoverSets">The cover sets.</param>
+	/// <param name="Exofins">All exo-fins.</param>
+	/// <param name="Endofins">All endo-fins.</param>
+	/// <param name="IsSashimi">
+	/// Indicates whether the fish instance is sashimi.
+	/// The value can be:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term><description>Sashimi finned fish.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term><description>Normal finned fish.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term><description>Normal fish.</description>
+	/// </item>
+	/// </list>
+	/// </param>
+	public sealed record HobiwanFishTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, IReadOnlyList<int> BaseSets,
+		IReadOnlyList<int> CoverSets, GridMap Exofins, GridMap Endofins, bool? IsSashimi)
+		: FishTechniqueInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
 	{
 		/// <summary>
 		/// The basic difficulty rating table.
@@ -37,47 +62,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </summary>
 		private static readonly decimal[] MutantShapeDiffExtra = { 0, 0, .3M, 1.4M, 1.4M, 1.5M, 1.5M, 1.5M, 1.6M };
 
-
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit">The digit.</param>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="coverSets">The cover sets.</param>
-		/// <param name="exofins">The exo-fins.</param>
-		/// <param name="endofins">The endo-fins.</param>
-		/// <param name="isSashimi">Indicates the sashimi fish.</param>
-		public HobiwanFishTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit, IReadOnlyList<int> baseSets, IReadOnlyList<int> coverSets,
-			GridMap exofins, GridMap endofins, bool? isSashimi) : base(conclusions, views, digit, baseSets, coverSets) =>
-			(ExofinCells, EndofinCells, IsSashimi) = (exofins, endofins, isSashimi);
-
-
-		/// <summary>
-		/// Indicates whether the fish instance is sashimi.
-		/// The value can be:
-		/// <list type="table">
-		/// <item>
-		/// <term><see langword="true"/></term><description>Sashimi finned fish.</description>
-		/// </item>
-		/// <item>
-		/// <term><see langword="false"/></term><description>Normal finned fish.</description>
-		/// </item>
-		/// <item>
-		/// <term><see langword="null"/></term><description>Normal fish.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		public bool? IsSashimi { get; }
-
-		/// <summary>
-		/// Indicates all exo-fins.
-		/// </summary>
-		public GridMap ExofinCells { get; }
-
-		/// <summary>
-		/// Indicates all endo-fins.
-		/// </summary>
-		public GridMap EndofinCells { get; }
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
@@ -187,8 +171,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string baseSets = new RegionCollection(BaseSets).ToString();
 			string coverSets = new RegionCollection(CoverSets).ToString();
-			string exo = ExofinCells.IsEmpty ? string.Empty : $"f{new CellCollection(ExofinCells).ToString()} ";
-			string endo = EndofinCells.IsEmpty ? string.Empty : $"ef{new CellCollection(EndofinCells).ToString()} ";
+			string exo = Exofins.IsEmpty ? string.Empty : $"f{new CellCollection(Exofins).ToString()} ";
+			string endo = Endofins.IsEmpty ? string.Empty : $"ef{new CellCollection(Endofins).ToString()} ";
 			return $@"{Name}: {Digit + 1} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
 		}
 

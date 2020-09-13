@@ -298,13 +298,13 @@ namespace Sudoku.Solving.Manual.Fishes
 								accumulator.Add(
 									new HobiwanFishTechniqueInfo(
 										conclusions,
-										views: new[] { new View(null, candidateOffsets, regionOffsets, null) },
+										new View[] { new(null, candidateOffsets, regionOffsets, null) },
 										digit,
 										baseSets,
 										coverSets,
-										exofins: exoFinsMap,
-										endofins: endoFinsMap,
-										isSashimi: (exoFinsMap | endoFinsMap).IsEmpty ? (bool?)null : isSashimi));
+										exoFinsMap,
+										endoFinsMap,
+										(exoFinsMap | endoFinsMap).IsEmpty ? (bool?)null : isSashimi));
 							}
 						}
 					}
