@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
 using static Sudoku.Constants.Processings;
@@ -117,7 +118,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		protected ExocetTechniqueSearcher(bool checkAdvanced) => _checkAdvanced = checkAdvanced;
 
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <inheritdoc cref="StaticConstructor"/>
 		static ExocetTechniqueSearcher()
 		{
 			var t = (stackalloc int[3]);

@@ -1,4 +1,5 @@
 ﻿using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using System.Collections.Generic;
 using static Sudoku.Constants.Processings;
@@ -13,15 +14,11 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		private static readonly IReadOnlyList<GridMap> Patterns;
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <inheritdoc cref="StaticConstructor"/>
 		static AlsNetTechniqueSearcher()
 		{
 			const int a = ~7, b = ~56, c = ~448;
-			int[,] sizeList =
-			{
-				{ 3, 3 }, { 3, 4 }, { 4, 3 },
-				{ 4, 4 }, { 4, 5 }, { 5, 4 }
-			};
+			int[,] sizeList = { { 3, 3 }, { 3, 4 }, { 4, 3 }, { 4, 4 }, { 4, 5 }, { 5, 4 } };
 			int[] z = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 			var result = new GridMap[74601];
 			int n = 0;

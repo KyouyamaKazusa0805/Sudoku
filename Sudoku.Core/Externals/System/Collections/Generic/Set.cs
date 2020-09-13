@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 
 namespace System.Collections.Generic
@@ -18,7 +19,7 @@ namespace System.Collections.Generic
 		private readonly IList<T> _list = new List<T>();
 
 
-		/// <include file='.....\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public Set()
 		{
 		}

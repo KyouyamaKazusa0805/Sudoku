@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 
 namespace Sudoku.Drawing
 {
@@ -22,7 +23,7 @@ namespace Sudoku.Drawing
 		ICollection<(int Id, int RegionOffset)>? RegionOffsets,
 		ICollection<Link>? Links)
 	{
-		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		/// <remarks>
 		/// The constructor is equivalent to code '<c>new MutableView(null, null, null, null)</c>'.
 		/// </remarks>

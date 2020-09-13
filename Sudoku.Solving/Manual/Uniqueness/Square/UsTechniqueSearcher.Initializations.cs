@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Uniqueness.Square
+﻿using Sudoku.DocComments;
+
+namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
 	partial class UsTechniqueSearcher
 	{
@@ -16,7 +18,7 @@
 		};
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <inheritdoc cref="StaticConstructor"/>
 		static UsTechniqueSearcher()
 		{
 			int length = ChuteIterator.Length / 3;

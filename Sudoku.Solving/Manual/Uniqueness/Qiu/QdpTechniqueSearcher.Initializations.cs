@@ -1,4 +1,5 @@
 ﻿using Sudoku.Data;
+using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 
@@ -28,7 +29,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		};
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor()"/>
 		static QdpTechniqueSearcher()
 		{
 			for (int i = 0, n = 0, length = BaseLineIterator.Length; i < length >> 1; i++)

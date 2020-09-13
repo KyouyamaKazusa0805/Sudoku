@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 
@@ -19,7 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		};
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <inheritdoc cref="StaticConstructor"/>
 		static BdpTechniqueSearcher()
 		{
 			int count = 0;

@@ -1,4 +1,5 @@
 ﻿using Sudoku.Data;
+using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
@@ -16,7 +17,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		private static readonly GridMap[] RegionMaps;
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <inheritdoc cref="StaticConstructor"/>
 		static SkLoopTechniqueSearcher()
 		{
 			// Initialize for region maps.
