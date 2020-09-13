@@ -51,6 +51,12 @@
 		<member name="N:Sudoku.Diagnostics">
 			<summary>This namespace implements the information for diagnostics.</summary>
 		</member>
+		<member name="N:Sudoku.DocComments">
+			<summary>
+				This namespace contains the document comments provider files. These instance <see langword="class"/>es
+				cannot be used in any projects because they can only provide you with doc comments.
+			</summary>
+		</member>
 		<member name="N:Sudoku.Drawing">
 			<summary>This namespace implements the drawing (using GDI+).</summary>
 		</member>
