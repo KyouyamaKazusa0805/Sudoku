@@ -147,7 +147,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						accumulator.Add(
 							new RegularWingTechniqueInfo(
 								conclusions,
-								new[] { new View(candidateOffsets) },
+								new View[] { new(candidateOffsets) },
 								pivot,
 								mask.CountSet(),
 								union,

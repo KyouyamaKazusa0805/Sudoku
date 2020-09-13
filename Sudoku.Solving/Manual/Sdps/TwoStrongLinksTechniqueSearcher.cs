@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						accumulator.Add(
 							new TwoStrongLinksTechniqueInfo(
 								conclusions,
-								views: new[]
+								new[]
 								{
 									new View(
 										null,
@@ -111,8 +111,8 @@ namespace Sudoku.Solving.Manual.Sdps
 										null)
 								},
 								digit,
-								baseRegion: r1,
-								targetRegion: r2));
+								r1,
+								r2));
 					}
 				}
 			}

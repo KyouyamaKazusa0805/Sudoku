@@ -136,7 +136,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						accumulator.Add(
 							new HiddenSubsetTechniqueInfo(
 								conclusions,
-								new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
 								region,
 								map.ToArray(),
 								digits));
