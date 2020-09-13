@@ -7,12 +7,8 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Provides a usage of <b>intersection</b> technique.
 	/// </summary>
-	public abstract class IntersectionTechniqueInfo : TechniqueInfo
-	{
-		/// <inheritdoc/>
-		protected IntersectionTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
-			: base(conclusions, views)
-		{
-		}
-	}
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	public abstract record IntersectionTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+		: TechniqueInfo(Conclusions, Views);
 }

@@ -8,33 +8,15 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Provides a usage of <b>locked candidates</b> (LC) technique.
 	/// </summary>
-	public sealed class LcTechniqueInfo : IntersectionTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit">The digit.</param>
+	/// <param name="BaseSet">The base region.</param>
+	/// <param name="CoverSet">The cover region.</param>
+	public sealed record LcTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, int BaseSet, int CoverSet)
+		: IntersectionTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit">The digit.</param>
-		/// <param name="baseSet">The base set.</param>
-		/// <param name="coverSet">The cover set.</param>
-		public LcTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit, int baseSet, int coverSet) : base(conclusions, views) =>
-			(Digit, BaseSet, CoverSet) = (digit, baseSet, coverSet);
-
-
-		/// <summary>
-		/// Indicates the digit.
-		/// </summary>
-		public int Digit { get; }
-
-		/// <summary>
-		/// Indicates the base set.
-		/// </summary>
-		public int BaseSet { get; }
-
-		/// <summary>
-		/// Indicates the cover set.
-		/// </summary>
-		public int CoverSet { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;
 
