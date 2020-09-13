@@ -1053,121 +1053,13 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Data.Extensions.GridTransformationExtensions">
-            <summary>
-            Provides a series of methods for <see cref="T:Sudoku.Data.Grid"/>
-            using in transformations.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformationExtensions.ClockwiseTable">
-            <summary>
-            The table of clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformationExtensions.CounterClockwiseTable">
-            <summary>
-            The table of counter-clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformationExtensions.PiRotateTable">
-            <summary>
-            The table of pi-rotation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorLeftRight(Sudoku.Data.Grid)">
-            <summary>
-            Mirror left-right the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorTopBottom(Sudoku.Data.Grid)">
-            <summary>
-            Mirror top-bottom the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorDiagonal(Sudoku.Data.Grid)">
-            <summary>
-            Mirror diagonal the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.Transpose(Sudoku.Data.Grid)">
-            <summary>
-            Transpose the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorAntidiagonal(Sudoku.Data.Grid)">
-            <summary>
-            Mirror anti-diagonal the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateClockwise(Sudoku.Data.Grid)">
-            <summary>
-            Rotate the grid clockwise.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateCounterclockwise(Sudoku.Data.Grid)">
-            <summary>
-            Rotate the grid counterclockwise.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotatePi(Sudoku.Data.Grid)">
-            <summary>
-            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.SwapTwoRegions(Sudoku.Data.Grid,System.Int32,System.Int32)">
-            <summary>
-            Swap to regions.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="region1">The region 1.</param>
-            <param name="region2">The region 2.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two specified region argument is not in valid range (0..27)
-            or two regions are not in same region type.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.ReadOnlyGridEx">
+        <member name="T:Sudoku.Data.Extensions.GridEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.Grid"/>.
             </summary>
             <seealso cref="T:Sudoku.Data.Grid"/>
         </member>
-        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.IsBivalueCell(Sudoku.Data.Grid,System.Int32,System.Int16@)">
-            <summary>
-            <para>Indicates whether the specified cell is a bivalue cell.</para>
-            <para>
-            Note that given and modifiable cells always make this method
-            return <see langword="false"/>.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="cellOffset">The cell offset.</param>
-            <param name="mask">
-            (<see langword="out"/> parameter) The result mask. The mask consists of
-            9 bits, where the set bits means the digit exists in this cell; otherwise,
-            the bit will not be set.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.Exists(Sudoku.Data.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Extensions.GridEx.Exists(Sudoku.Data.Grid,System.Int32,System.Int32)">
             <summary>
             <para>
             Indicates whether the specified grid contains the digit in the specified cell.
@@ -1211,6 +1103,97 @@
             <code>grid.Exists(candidate) == true</code>
             to decide whether a condition is true.
             </example>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.GridTransformations">
+            <summary>
+            Provides a series of methods for <see cref="T:Sudoku.Data.Grid"/>
+            using in transformations.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.GridTransformations.ClockwiseTable">
+            <summary>
+            The table of clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.GridTransformations.CounterClockwiseTable">
+            <summary>
+            The table of counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.GridTransformations.PiRotateTable">
+            <summary>
+            The table of pi-rotation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorLeftRight(Sudoku.Data.Grid)">
+            <summary>
+            Mirror left-right the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorTopBottom(Sudoku.Data.Grid)">
+            <summary>
+            Mirror top-bottom the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorDiagonal(Sudoku.Data.Grid)">
+            <summary>
+            Mirror diagonal the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.Transpose(Sudoku.Data.Grid)">
+            <summary>
+            Transpose the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Grid)">
+            <summary>
+            Mirror anti-diagonal the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateClockwise(Sudoku.Data.Grid)">
+            <summary>
+            Rotate the grid clockwise.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateCounterclockwise(Sudoku.Data.Grid)">
+            <summary>
+            Rotate the grid counterclockwise.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotatePi(Sudoku.Data.Grid)">
+            <summary>
+            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.SwapTwoRegions(Sudoku.Data.Grid,System.Int32,System.Int32)">
+            <summary>
+            Swap to regions.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="region1">The region 1.</param>
+            <param name="region2">The region 2.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two specified region argument is not in valid range (0..27)
+            or two regions are not in same region type.
+            </exception>
         </member>
         <member name="T:Sudoku.Data.Grid">
             <summary>

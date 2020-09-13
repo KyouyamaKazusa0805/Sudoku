@@ -9,21 +9,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Provides a usage of <b>Bowman's bingo</b> technique.
 	/// </summary>
-	public sealed class BowmanBingoTechniqueInfo : LastResortTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="ContradictionSeries">Indicates all conclusions that occurs a contradict.</param>
+	public sealed record BowmanBingoTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<Conclusion> ContradictionSeries)
+		: LastResortTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="contradictionSeries">The contradiction series.</param>
-		public BowmanBingoTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<Conclusion> contradictionSeries)
-			: base(conclusions, views) => ContradictionSeries = contradictionSeries;
-
-
-		/// <summary>
-		/// Indicates all conclusions that occurs a contradict.
-		/// </summary>
-		public IReadOnlyList<Conclusion> ContradictionSeries { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 8.0M + GetExtraDifficultyByLength(ContradictionSeries.Count);
 

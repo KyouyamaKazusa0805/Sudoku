@@ -8,15 +8,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Provides a usage of <b>pattern overlay method</b> (POM) technique.
 	/// </summary>
-	public sealed class PomTechniqueInfo : LastResortTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	public sealed record PomTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+		: LastResortTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		public PomTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
-			: base(conclusions, views)
-		{
-		}
-
-
 		/// <summary>
 		/// Indicates the digit.
 		/// </summary>

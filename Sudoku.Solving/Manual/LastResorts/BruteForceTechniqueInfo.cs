@@ -8,17 +8,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Provides a usage of <b>brute force</b> technique.
 	/// </summary>
-	public sealed class BruteForceTechniqueInfo : LastResortTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	public sealed record BruteForceTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+		: LastResortTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		public BruteForceTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
-			: base(conclusions, views)
-		{
-		}
-
-
 		/// <inheritdoc/>
-		public override decimal Difficulty => 20M;
+		public override decimal Difficulty => 20.0M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
