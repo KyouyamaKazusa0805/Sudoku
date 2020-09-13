@@ -7,6 +7,9 @@ using System;
 
 namespace Sudoku.DocComments
 {
+	/// <summary>
+	/// Provides with doc comments for <c>ToString</c> methods.
+	/// </summary>
 	public sealed class Formattable
 	{
 		/// <summary>

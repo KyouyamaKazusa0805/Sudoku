@@ -84,10 +84,10 @@ namespace Sudoku.Data
 		public override int GetHashCode() => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(Link left, Link right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(Link left, Link right) => !(left == right);
 	}
 }

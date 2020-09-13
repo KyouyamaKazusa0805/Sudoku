@@ -6,4 +6,8 @@
     <Authors>Sunnie</Authors>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.DocComments\Sudoku.DocComments.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

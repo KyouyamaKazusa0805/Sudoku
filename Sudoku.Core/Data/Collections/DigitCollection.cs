@@ -127,10 +127,10 @@ namespace Sudoku.Data.Collections
 		/// <returns>The negative result.</returns>
 		public static DigitCollection operator ~(DigitCollection collection) => new((short)~collection._mask);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(DigitCollection left, DigitCollection right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(DigitCollection left, DigitCollection right) => !(left == right);
 	}
 }

@@ -115,10 +115,10 @@ namespace Sudoku.Data
 			}} {Digit + 1}";
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
 	}
 }

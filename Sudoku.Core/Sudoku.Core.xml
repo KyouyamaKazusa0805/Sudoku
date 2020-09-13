@@ -159,7 +159,7 @@
             <returns>The map.</returns>
         </member>
         <member name="M:Sudoku.Constants.Processings.#cctor">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
             <remarks>
             The initialization order between static constructor and static fields
             may be annoying, so I use static constructor.
@@ -471,10 +471,10 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.op_Equality(Sudoku.Data.Collections.CandidateCollection,Sudoku.Data.Collections.CandidateCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.op_Inequality(Sudoku.Data.Collections.CandidateCollection,Sudoku.Data.Collections.CandidateCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.CellCollection">
             <summary>
@@ -541,10 +541,10 @@
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.op_Equality(Sudoku.Data.Collections.CellCollection,Sudoku.Data.Collections.CellCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.op_Inequality(Sudoku.Data.Collections.CellCollection,Sudoku.Data.Collections.CellCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.ConclusionCollection">
             <summary>
@@ -612,10 +612,10 @@
             <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Equality(Sudoku.Data.Collections.ConclusionCollection,Sudoku.Data.Collections.ConclusionCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Inequality(Sudoku.Data.Collections.ConclusionCollection,Sudoku.Data.Collections.ConclusionCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.DigitCollection">
             <summary>
@@ -696,10 +696,10 @@
             <returns>The negative result.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.op_Equality(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.op_Inequality(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.LinkCollection">
             <summary>
@@ -759,10 +759,10 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.op_Equality(Sudoku.Data.Collections.LinkCollection,Sudoku.Data.Collections.LinkCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.op_Inequality(Sudoku.Data.Collections.LinkCollection,Sudoku.Data.Collections.LinkCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.RegionCollection">
             <summary>
@@ -836,10 +836,10 @@
             <returns>The label.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.op_Equality(Sudoku.Data.Collections.RegionCollection,Sudoku.Data.Collections.RegionCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.op_Inequality(Sudoku.Data.Collections.RegionCollection,Sudoku.Data.Collections.RegionCollection)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Conclusion">
             <summary>
@@ -918,10 +918,10 @@
             <seealso cref="P:Sudoku.Data.Conclusion.ConclusionType"/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_Equality(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_Inequality(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.ConclusionType">
             <summary>
@@ -1469,10 +1469,10 @@
             <seealso cref="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Data.Grid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.Grid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Grid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.Grid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.GridFormatFactory">
             <summary>
@@ -2692,10 +2692,10 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Data.Link.op_Equality(Sudoku.Data.Link,Sudoku.Data.Link)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Link.op_Inequality(Sudoku.Data.Link,Sudoku.Data.Link)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.LinkType">
             <summary>
@@ -2826,10 +2826,10 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Data.Node.op_Equality(Sudoku.Data.Node,Sudoku.Data.Node)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Node.op_Inequality(Sudoku.Data.Node,Sudoku.Data.Node)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Stepping.AntiEliminationStep">
             <summary>
@@ -3173,22 +3173,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.Stepping.UndoableGrid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Grid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.Stepping.UndoableGrid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Grid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Stepping.UnfixStep">
             <summary>
@@ -3496,10 +3496,10 @@
             <seealso cref="M:Sudoku.Data.SudokuMap.#ctor(System.Int32,System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Equality(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Inequality(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Subtraction(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
             <summary>
@@ -3761,7 +3761,7 @@
             </exception>
         </member>
         <member name="M:Sudoku.Data.ValueGrid.#cctor">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/staticConstructor[@aimTo=&quot;struct&quot;]" />
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
         <member name="P:Sudoku.Data.ValueGrid.HasSolved">
             <summary>
@@ -3913,14 +3913,7 @@
             <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Data.ValueGrid.ToString(System.String)">
-            <method name="ToString" paramType="string">
-		<summary>
-			Returns a string that represents the current object with the
-			specified format string.
-		</summary>
-		<param name="format">The format.</param>
-		<returns>The string result.</returns>
-	</method>
+            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
         </member>
         <member name="M:Sudoku.Data.ValueGrid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -4083,10 +4076,10 @@
             <returns>Same as <paramref name="dest"/>.</returns>
         </member>
         <member name="M:Sudoku.Data.ValueGrid.op_Equality(Sudoku.Data.ValueGrid,Sudoku.Data.ValueGrid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.ValueGrid.op_Inequality(Sudoku.Data.ValueGrid,Sudoku.Data.ValueGrid)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.ValueGrid.op_Implicit(Sudoku.Data.ValueGrid)~Sudoku.Data.Grid">
             <summary>
@@ -4485,10 +4478,10 @@
             <returns>The result map.</returns>
         </member>
         <member name="M:Sudoku.Data.ValueSudokuMap.op_Equality(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.ValueSudokuMap.op_Inequality(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.ValueSudokuMap.op_OnesComplement(Sudoku.Data.ValueSudokuMap)">
             <summary>
@@ -7354,10 +7347,10 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Models.GridProgressResult.op_Equality(Sudoku.Models.GridProgressResult,Sudoku.Models.GridProgressResult)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Models.GridProgressResult.op_Inequality(Sudoku.Models.GridProgressResult,Sudoku.Models.GridProgressResult)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Models.IProgressResult">
             <summary>
@@ -8247,6 +8240,9 @@
             </summary>
             <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`2.Item1"/>.</typeparam>
             <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`2.Item2"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.PriorKeyedTuple`2.#ctor(`0,`1,System.Int32)">
             <summary>
@@ -8255,6 +8251,9 @@
             </summary>
             <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`2.Item1"/>.</typeparam>
             <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`2.Item2"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.PriorKeyedTuple`2.#ctor(`0,`1)">
             <summary>
@@ -8280,6 +8279,10 @@
             <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item1"/>.</typeparam>
             <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item2"/>.</typeparam>
             <typeparam name="T3">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item3"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="Item3">The item 3.</param>
+            <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.PriorKeyedTuple`3.#ctor(`0,`1,`2,System.Int32)">
             <summary>
@@ -8289,6 +8292,10 @@
             <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item1"/>.</typeparam>
             <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item2"/>.</typeparam>
             <typeparam name="T3">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item3"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="Item3">The item 3.</param>
+            <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.PriorKeyedTuple`3.#ctor(`0,`1,`2)">
             <summary>
@@ -8316,6 +8323,11 @@
             <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item2"/>.</typeparam>
             <typeparam name="T3">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item3"/>.</typeparam>
             <typeparam name="T4">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item4"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="Item3">The item 3.</param>
+            <param name="Item4">The item 4.</param>
+            <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.PriorKeyedTuple`4.#ctor(`0,`1,`2,`3,System.Int32)">
             <summary>
@@ -8326,6 +8338,11 @@
             <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item2"/>.</typeparam>
             <typeparam name="T3">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item3"/>.</typeparam>
             <typeparam name="T4">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item4"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="Item3">The item 3.</param>
+            <param name="Item4">The item 4.</param>
+            <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.PriorKeyedTuple`4.#ctor(`0,`1,`2,`3)">
             <summary>

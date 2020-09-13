@@ -85,10 +85,10 @@ namespace Sudoku.Models
 			CurrentCellsCount * 729 + CurrentCandidatesCount ^ InitialCandidatesCount ^ GlobalizationString.GetHashCode();
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(GridProgressResult left, GridProgressResult right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(GridProgressResult left, GridProgressResult right) => !(left == right);
 	}
 }

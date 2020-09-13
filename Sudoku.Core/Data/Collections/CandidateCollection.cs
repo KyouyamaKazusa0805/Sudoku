@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Sudoku.Constants;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 
 namespace Sudoku.Data.Collections
@@ -84,10 +85,10 @@ namespace Sudoku.Data.Collections
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(CandidateCollection left, CandidateCollection right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(CandidateCollection left, CandidateCollection right) => !(left == right);
 	}
 }

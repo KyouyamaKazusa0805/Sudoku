@@ -6,6 +6,9 @@ using System;
 
 namespace Sudoku.DocComments
 {
+	/// <summary>
+	/// Provides with doc comments for operators.
+	/// </summary>
 	public sealed class Operators
 	{
 		/// <summary>

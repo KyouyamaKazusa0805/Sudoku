@@ -1,8 +1,4 @@
-﻿#if CSHARP_9_PREVIEW
-#pragma warning disable CS1591
-#endif
-
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Sudoku.Constants;
 using Sudoku.Extensions;
 
@@ -14,6 +10,9 @@ namespace System
 	/// </summary>
 	/// <typeparam name="T1">The type of the property <see cref="PriorKeyedTuple{T1, T2}.Item1"/>.</typeparam>
 	/// <typeparam name="T2">The type of the property <see cref="PriorKeyedTuple{T1, T2}.Item2"/>.</typeparam>
+	/// <param name="Item1">The item 1.</param>
+	/// <param name="Item2">The item 2.</param>
+	/// <param name="PriorKey">The prior key.</param>
 	public sealed record PriorKeyedTuple<T1, T2>(T1 Item1, T2 Item2, int PriorKey) : ITuple
 	{
 		/// <summary>
@@ -42,6 +41,10 @@ namespace System
 	/// <typeparam name="T1">The type of the property <see cref="PriorKeyedTuple{T1, T2, T3}.Item1"/>.</typeparam>
 	/// <typeparam name="T2">The type of the property <see cref="PriorKeyedTuple{T1, T2, T3}.Item2"/>.</typeparam>
 	/// <typeparam name="T3">The type of the property <see cref="PriorKeyedTuple{T1, T2, T3}.Item3"/>.</typeparam>
+	/// <param name="Item1">The item 1.</param>
+	/// <param name="Item2">The item 2.</param>
+	/// <param name="Item3">The item 3.</param>
+	/// <param name="PriorKey">The prior key.</param>
 	public sealed record PriorKeyedTuple<T1, T2, T3>(T1 Item1, T2 Item2, T3 Item3, int PriorKey) : ITuple
 	{
 		/// <summary>
@@ -73,6 +76,11 @@ namespace System
 	/// <typeparam name="T2">The type of the property <see cref="PriorKeyedTuple{T1, T2, T3, T4}.Item2"/>.</typeparam>
 	/// <typeparam name="T3">The type of the property <see cref="PriorKeyedTuple{T1, T2, T3, T4}.Item3"/>.</typeparam>
 	/// <typeparam name="T4">The type of the property <see cref="PriorKeyedTuple{T1, T2, T3, T4}.Item4"/>.</typeparam>
+	/// <param name="Item1">The item 1.</param>
+	/// <param name="Item2">The item 2.</param>
+	/// <param name="Item3">The item 3.</param>
+	/// <param name="Item4">The item 4.</param>
+	/// <param name="PriorKey">The prior key.</param>
 	public sealed record PriorKeyedTuple<T1, T2, T3, T4>(T1 Item1, T2 Item2, T3 Item3, T4 Item4, int PriorKey) : ITuple
 	{
 		/// <summary>

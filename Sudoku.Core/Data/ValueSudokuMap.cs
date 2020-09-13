@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 
@@ -583,10 +584,10 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(ValueSudokuMap left, ValueSudokuMap right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(ValueSudokuMap left, ValueSudokuMap right) => !(left == right);
 
 		/// <summary>

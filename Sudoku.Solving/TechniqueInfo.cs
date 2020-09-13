@@ -155,10 +155,10 @@ namespace Sudoku.Solving
 		public virtual string ToFullString() => ToString();
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(TechniqueInfo left, TechniqueInfo right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(TechniqueInfo left, TechniqueInfo right) => !(left == right);
 	}
 }

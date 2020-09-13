@@ -838,10 +838,10 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(Grid? left, Grid? right) => Equals(left, right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(Grid? left, Grid? right) => !(left == right);
 	}
 }

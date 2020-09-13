@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 
 namespace Sudoku.Solving
 {
@@ -83,10 +84,10 @@ namespace Sudoku.Solving
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(ConjugatePair left, ConjugatePair right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(ConjugatePair left, ConjugatePair right) => !(left == right);
 	}
 }
