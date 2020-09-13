@@ -73,10 +73,7 @@ namespace Sudoku.Data
 		public ValueSudokuMap(int candidate, bool setItself)
 		{
 			Count = setItself ? 29 : 28;
-			fixed (long* pArray = _innerBinary)
-			{
-				AssignFixedArray(candidate, setItself);
-			}
+			AssignFixedArray(candidate, setItself);
 		}
 
 		/// <summary>
