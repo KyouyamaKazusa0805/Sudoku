@@ -8,27 +8,15 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Provides a usage of guardian technique.
 	/// </summary>
-	public sealed class GuardianTechniqueInfo : SdpTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit">The digit used.</param>
+	/// <param name="Loop">The loop.</param>
+	/// <param name="Guardians">All guardians.</param>
+	public sealed record GuardianTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, GridMap Loop, GridMap Guardians)
+		: SdpTechniqueInfo(Conclusions, Views, Digit)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit">The digit.</param>
-		/// <param name="loop">The loop.</param>
-		/// <param name="guardians">The guardians.</param>
-		public GuardianTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int digit,
-			GridMap loop, GridMap guardians) : base(conclusions, views, digit) => (Loop, Guardians) = (loop, guardians);
-
-
-		/// <summary>
-		/// Indicates the loop.
-		/// </summary>
-		public GridMap Loop { get; }
-
-		/// <summary>
-		/// Indicates the guardians.
-		/// </summary>
-		public GridMap Guardians { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M + .1M * (Loop.Count >> 1);
 

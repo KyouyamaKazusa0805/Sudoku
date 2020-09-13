@@ -8,28 +8,16 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Provides a usage of empty rectangle technique.
 	/// </summary>
-	public sealed class EmptyRectangleTechniqueInfo : SdpTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit">The digit used.</param>
+	/// <param name="Block">The block that the empty rectangle lies in.</param>
+	/// <param name="ConjugatePair">The conjugate pair.</param>
+	public sealed record EmptyRectangleTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, int Block,
+		ConjugatePair ConjugatePair)
+		: SdpTechniqueInfo(Conclusions, Views, Digit)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit">The digit.</param>
-		/// <param name="block">The block.</param>
-		/// <param name="conjugatePair">The conjugate pair.</param>
-		public EmptyRectangleTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int digit,
-			int block, ConjugatePair conjugatePair) : base(conclusions, views, digit) =>
-			(Block, ConjugatePair) = (block, conjugatePair);
-
-
-		/// <summary>
-		/// The block.
-		/// </summary>
-		public int Block { get; }
-
-		/// <summary>
-		/// Indicates the conjugate pair.
-		/// </summary>
-		public ConjugatePair ConjugatePair { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.6M;
 

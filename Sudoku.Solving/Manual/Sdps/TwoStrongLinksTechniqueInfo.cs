@@ -9,28 +9,15 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Provides a usage of two strong links technique.
 	/// </summary>
-	public sealed class TwoStrongLinksTechniqueInfo : SdpTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit">The digit used.</param>
+	/// <param name="BaseRegion">The base region.</param>
+	/// <param name="TargetRegion">The target region.</param>
+	public sealed record TwoStrongLinksTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, int BaseRegion, int TargetRegion)
+		: SdpTechniqueInfo(Conclusions, Views, Digit)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit">The digit.</param>
-		/// <param name="baseRegion">The base region.</param>
-		/// <param name="targetRegion">The target region.</param>
-		public TwoStrongLinksTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit, int baseRegion, int targetRegion) : base(conclusions, views, digit) =>
-			(Digit, BaseRegion, TargetRegion) = (digit, baseRegion, targetRegion);
-
-
-		/// <summary>
-		/// Indicates the base region.
-		/// </summary>
-		public int BaseRegion { get; }
-
-		/// <summary>
-		/// Indicates the target region.
-		/// </summary>
-		public int TargetRegion { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
 			TechniqueCode switch
@@ -48,12 +35,9 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override TechniqueCode TechniqueCode =>
 			(BaseRegion / 9, TargetRegion / 9) switch
 			{
-				(0, _) => TechniqueCode.TurbotFish,
-				(_, 0) => TechniqueCode.TurbotFish,
-				(1, 1) => TechniqueCode.Skyscraper,
-				(2, 2) => TechniqueCode.Skyscraper,
-				(1, 2) => TechniqueCode.TwoStringKite,
-				(2, 1) => TechniqueCode.TwoStringKite,
+				(0, _) or (_, 0) => TechniqueCode.TurbotFish,
+				(1, 1) or (2, 2) => TechniqueCode.Skyscraper,
+				(1, 2) or (2, 1) => TechniqueCode.TwoStringKite,
 				_ => throw new NotSupportedException("The specified value is invalid.")
 			};
 
