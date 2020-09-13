@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.DocComments;
 using Sudoku.Windows;
 
 namespace Sudoku.Models
@@ -49,13 +50,13 @@ namespace Sudoku.Models
 			(double)(InitialCandidatesCount - CurrentCandidatesCount) / InitialCandidatesCount * 100;
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="current">(<see langword="out"/> parameter) The number of unsolved candidates.</param>
 		/// <param name="unsolvedCells">(<see langword="out"/> parameter) The number of unsolved cells.</param>
 		public readonly void Deconstruct(out int current, out int unsolvedCells) =>
 			(current, unsolvedCells) = (CurrentCandidatesCount, CurrentCellsCount);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="currentCandidatesCount">(<see langword="out"/> parameter) The number of unsolved candidates.</param>
 		/// <param name="currentCellsCount">(<see langword="out"/> parameter) The number of unsolved cells.</param>
 		/// <param name="initialCandidatesCount">

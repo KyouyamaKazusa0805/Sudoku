@@ -1,4 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#pragma warning disable CA1034
+#pragma warning disable CA1815
+
+using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
@@ -7,8 +10,6 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Encapsulates the arguments for the event value changed.
 		/// </summary>
-		[SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
-		[SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
 		public /*readonly*/ struct ValueChangedValues
 		{
 			/// <summary>
@@ -46,7 +47,7 @@ namespace Sudoku.Data
 			public int SetValue { get; init; }
 
 
-			/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+			/// <inheritdoc cref="DeconstructMethod"/>
 			/// <param name="cellOffset">(<see langword="out"/> parameter) The cell offset.</param>
 			/// <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
 			/// <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>

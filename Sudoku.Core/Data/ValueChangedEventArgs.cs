@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
@@ -42,7 +43,7 @@ namespace Sudoku.Data
 		public int SetValue { get; }
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="cellOffset">(<see langword="out"/> parameter) The cell offset.</param>
 		/// <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
 		/// <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Annotations
 {
@@ -41,7 +42,7 @@ namespace Sudoku.Solving.Annotations
 		public DisabledReason DisabledReason { get; set; } = DisabledReason.LastResort;
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isEnabled">
 		/// (<see langword="out"/> parameter) Indicates whether the current searcher is enabled.
 		/// </param>

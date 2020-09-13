@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.GridMap.InitializationOption;
@@ -616,7 +617,7 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
 		/// <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

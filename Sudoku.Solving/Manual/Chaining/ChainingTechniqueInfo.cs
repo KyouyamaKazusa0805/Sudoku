@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Solving.Annotations.TechniqueDisplayAttribute;
@@ -257,11 +258,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			};
 
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(ChainingTechniqueInfo? left, ChainingTechniqueInfo? right) =>
 			InternalEquals(left, right);
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator !=(ChainingTechniqueInfo? left, ChainingTechniqueInfo? right) => !(left == right);
 	}
 }

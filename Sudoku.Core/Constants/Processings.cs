@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
@@ -127,7 +128,7 @@ namespace Sudoku.Constants
 			}
 		}
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
 		/// <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>

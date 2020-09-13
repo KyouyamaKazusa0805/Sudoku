@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Exocets;
@@ -66,13 +67,13 @@ namespace Sudoku.Solving
 		public IReadOnlyList<View> Views { get; }
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		public void Deconstruct(out string name, out decimal difficulty) =>
 			(name, difficulty) = (Name, Difficulty);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
@@ -80,7 +81,7 @@ namespace Sudoku.Solving
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel) =>
 			(name, difficulty, difficultyLevel) = (Name, Difficulty, DifficultyLevel);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
@@ -90,7 +91,7 @@ namespace Sudoku.Solving
 			out IReadOnlyList<Conclusion> conclusions) =>
 			(name, difficulty, difficultyLevel, conclusions) = (Name, Difficulty, DifficultyLevel, Conclusions);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>

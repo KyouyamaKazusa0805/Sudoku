@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
@@ -77,13 +78,13 @@ namespace Sudoku.Data
 			}
 		}
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
 			(conclusionType, candidate) = (ConclusionType, CellOffset * 9 + Digit);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
 		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>

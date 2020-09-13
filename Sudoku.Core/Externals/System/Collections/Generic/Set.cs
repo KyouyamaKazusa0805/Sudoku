@@ -283,10 +283,10 @@ namespace System.Collections.Generic
 		}
 
 
-		/// <include file='.....\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(Set<T>? left, Set<T>? right) => InternalEquals(left, right);
 
-		/// <include file='.....\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(Set<T>? left, Set<T>? right) => !(left == right);
 
 		/// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -90,7 +91,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public GridMap MirrorR2 { get; }
 
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
 		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
 		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
@@ -100,7 +101,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				new() { TargetQ1, TargetQ2, TargetR1, TargetR2 },
 				CrossLine);
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
 		/// <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
 		/// <param name="tq1">(<see langword="out"/> parameter) The target Q1 cell.</param>
@@ -111,7 +112,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2) =>
 			(base1, base2, tq1, tq2, tr1, tr2) = (Base1, Base2, TargetQ1, TargetQ2, TargetR1, TargetR2);
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
 		/// <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
 		/// <param name="tq1">(<see langword="out"/> parameter) The target Q1 cell.</param>
@@ -134,7 +135,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+		/// <inheritdoc/>
 		public bool Equals(Pattern other) =>
 			Base1 == other.Base1 && Base2 == other.Base2
 			&& TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
@@ -170,10 +171,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(Pattern left, Pattern right) => left.Equals(right);
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(Pattern left, Pattern right) => !(left == right);
 	}
 }

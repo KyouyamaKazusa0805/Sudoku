@@ -1,6 +1,7 @@
 ﻿using System;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -102,10 +103,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override string ToString() => $"{new CellCollection(Map).ToString()}";
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(Pattern left, Pattern right) => left.Equals(right);
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(Pattern left, Pattern right) => !(left == right);
 	}
 }
