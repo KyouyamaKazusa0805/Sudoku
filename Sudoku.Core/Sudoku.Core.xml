@@ -678,14 +678,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.ToString(System.String)">
-            <method name="ToString" paramType="string">
-		<summary>
-			Returns a string that represents the current object with the
-			specified format string.
-		</summary>
-		<param name="format">The format.</param>
-		<returns>The string result.</returns>
-	</method>
+            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.GetEnumerator">
             <summary>
@@ -1328,14 +1321,7 @@
             <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.ToString(System.String)">
-            <method name="ToString" paramType="string">
-		<summary>
-			Returns a string that represents the current object with the
-			specified format string.
-		</summary>
-		<param name="format">The format.</param>
-		<returns>The string result.</returns>
-	</method>
+            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
         </member>
         <member name="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>

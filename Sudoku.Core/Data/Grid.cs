@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
 using Sudoku.Constants;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using S = Sudoku.Data.CellStatus;
@@ -474,7 +475,7 @@ namespace Sudoku.Data
 		public string ToString(GridOutputOptions gridOutputOption) =>
 			GridFormatFactory.Create(gridOutputOption).ToString(this);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <inheritdoc cref="Formattable.ToString(string)"/>
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>

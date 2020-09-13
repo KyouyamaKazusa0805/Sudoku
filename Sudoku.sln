@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global Files", "{5A289988-A100-41DA-B297-F4A3DE001B78}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		GlobalDocComments.xml = GlobalDocComments.xml
 		README.md = README.md
 		Sudoku.Namespaces.xml = Sudoku.Namespaces.xml
 		Supported grid texts.txt = Supported grid texts.txt
@@ -25,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Drawing", "Sudoku.Dr
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Sudoku.Documents", "Sudoku.Documents\Sudoku.Documents.shfbproj", "{3F870BB7-ADF4-4C5F-BA99-3C336E59A49D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.DocComments", "Sudoku.DocComments\Sudoku.DocComments.csproj", "{F0421987-B00D-4074-A6BC-0AA7AA2E27E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.DocComments", "Sudoku.DocComments\Sudoku.DocComments.csproj", "{F0421987-B00D-4074-A6BC-0AA7AA2E27E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

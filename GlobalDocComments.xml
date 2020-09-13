@@ -9,42 +9,4 @@
 		<param name="format">The format.</param>
 		<returns>The string result.</returns>
 	</method>
-
-	<!-- Operators -->
-	<operator name="op_GreaterThan">
-		<summary>Indicates whether the left value is greater than the right value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>
-			A <see cref="bool"/> result indicating that.
-		</returns>
-	</operator>
-	<operator name="op_LessThan">
-		<summary>Indicates whether the left value is less than the right value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>
-			A <see cref="bool"/> result indicating that.
-		</returns>
-	</operator>
-	<operator name="op_GreaterThanOrEqual">
-		<summary>
-			Indicates whether the left value is greater than or equals to the right value.
-		</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>
-			A <see cref="bool"/> result indicating that.
-		</returns>
-	</operator>
-	<operator name="op_LessThanOrEqual">
-		<summary>
-			Indicates whether the left value is less than or equals to the right value.
-		</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>
-			A <see cref="bool"/> result indicating that.
-		</returns>
-	</operator>
 </comments>

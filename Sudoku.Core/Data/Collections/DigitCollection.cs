@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Sudoku.Constants;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 
 namespace Sudoku.Data.Collections
@@ -87,7 +88,7 @@ namespace Sudoku.Data.Collections
 		/// <inheritdoc/>
 		public override string ToString() => ToString(", ");
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <inheritdoc cref="Formattable.ToString(string)"/>
 		public string ToString(string? format)
 		{
 			if (_mask == 0)
