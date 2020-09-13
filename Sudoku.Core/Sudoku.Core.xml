@@ -1053,121 +1053,13 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Data.Extensions.GridTransformationExtensions">
-            <summary>
-            Provides a series of methods for <see cref="T:Sudoku.Data.Grid"/>
-            using in transformations.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformationExtensions.ClockwiseTable">
-            <summary>
-            The table of clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformationExtensions.CounterClockwiseTable">
-            <summary>
-            The table of counter-clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformationExtensions.PiRotateTable">
-            <summary>
-            The table of pi-rotation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorLeftRight(Sudoku.Data.Grid)">
-            <summary>
-            Mirror left-right the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorTopBottom(Sudoku.Data.Grid)">
-            <summary>
-            Mirror top-bottom the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorDiagonal(Sudoku.Data.Grid)">
-            <summary>
-            Mirror diagonal the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.Transpose(Sudoku.Data.Grid)">
-            <summary>
-            Transpose the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.MirrorAntidiagonal(Sudoku.Data.Grid)">
-            <summary>
-            Mirror anti-diagonal the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateClockwise(Sudoku.Data.Grid)">
-            <summary>
-            Rotate the grid clockwise.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateCounterclockwise(Sudoku.Data.Grid)">
-            <summary>
-            Rotate the grid counterclockwise.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotatePi(Sudoku.Data.Grid)">
-            <summary>
-            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.SwapTwoRegions(Sudoku.Data.Grid,System.Int32,System.Int32)">
-            <summary>
-            Swap to regions.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="region1">The region 1.</param>
-            <param name="region2">The region 2.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two specified region argument is not in valid range (0..27)
-            or two regions are not in same region type.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.ReadOnlyGridEx">
+        <member name="T:Sudoku.Data.Extensions.GridEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.Grid"/>.
             </summary>
             <seealso cref="T:Sudoku.Data.Grid"/>
         </member>
-        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.IsBivalueCell(Sudoku.Data.Grid,System.Int32,System.Int16@)">
-            <summary>
-            <para>Indicates whether the specified cell is a bivalue cell.</para>
-            <para>
-            Note that given and modifiable cells always make this method
-            return <see langword="false"/>.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="cellOffset">The cell offset.</param>
-            <param name="mask">
-            (<see langword="out"/> parameter) The result mask. The mask consists of
-            9 bits, where the set bits means the digit exists in this cell; otherwise,
-            the bit will not be set.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.Exists(Sudoku.Data.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Extensions.GridEx.Exists(Sudoku.Data.Grid,System.Int32,System.Int32)">
             <summary>
             <para>
             Indicates whether the specified grid contains the digit in the specified cell.
@@ -1211,6 +1103,97 @@
             <code>grid.Exists(candidate) == true</code>
             to decide whether a condition is true.
             </example>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.GridTransformations">
+            <summary>
+            Provides a series of methods for <see cref="T:Sudoku.Data.Grid"/>
+            using in transformations.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.GridTransformations.ClockwiseTable">
+            <summary>
+            The table of clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.GridTransformations.CounterClockwiseTable">
+            <summary>
+            The table of counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.GridTransformations.PiRotateTable">
+            <summary>
+            The table of pi-rotation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorLeftRight(Sudoku.Data.Grid)">
+            <summary>
+            Mirror left-right the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorTopBottom(Sudoku.Data.Grid)">
+            <summary>
+            Mirror top-bottom the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorDiagonal(Sudoku.Data.Grid)">
+            <summary>
+            Mirror diagonal the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.Transpose(Sudoku.Data.Grid)">
+            <summary>
+            Transpose the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Grid)">
+            <summary>
+            Mirror anti-diagonal the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateClockwise(Sudoku.Data.Grid)">
+            <summary>
+            Rotate the grid clockwise.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateCounterclockwise(Sudoku.Data.Grid)">
+            <summary>
+            Rotate the grid counterclockwise.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotatePi(Sudoku.Data.Grid)">
+            <summary>
+            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.SwapTwoRegions(Sudoku.Data.Grid,System.Int32,System.Int32)">
+            <summary>
+            Swap to regions.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="region1">The region 1.</param>
+            <param name="region2">The region 2.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two specified region argument is not in valid range (0..27)
+            or two regions are not in same region type.
+            </exception>
         </member>
         <member name="T:Sudoku.Data.Grid">
             <summary>
@@ -2109,7 +2092,7 @@
             Gets or sets a <see cref="T:System.Boolean"/> value on the specified cell
             offset.
             </summary>
-            <param name="offset">The cell offset.</param>
+            <param name="cell">The cell offset.</param>
             <value>A <see cref="T:System.Boolean"/> value on assignment.</value>
             <returns>
             A <see cref="T:System.Boolean"/> value indicating whether the cell has digit.
@@ -4498,6 +4481,380 @@
             <param name="oldMask">(<see langword="out" /> parameter) The old mask.</param>
             <param name="newMask">(<see langword="out" /> parameter) The new mask.</param>
             <param name="setValue">(<see langword="out" /> parameter) the set value.</param>
+        </member>
+        <member name="T:Sudoku.Data.ValueSudokuMap">
+            <summary>
+            Encapsulats a map that contains 729 positions to represent a candidate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ValueSudokuMap.BufferLength">
+            <summary>
+            The length of the buffer.
+            </summary>
+            <remarks>
+            Why 12? Because 12 is equals to <c>Ceiling(729 / 64)</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Data.ValueSudokuMap.Shifting">
+            <summary>
+            Indicates the size of each unit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ValueSudokuMap.Empty">
+            <summary>
+            <para>Indicates an empty instance (all bits are 0).</para>
+            <para>
+            I strongly recommend you <b>should</b> use this instance instead of default constructor
+            <see cref="M:Sudoku.Data.ValueSudokuMap.#ctor"/>.
+            </para>
+            </summary>
+            <seealso cref="M:Sudoku.Data.ValueSudokuMap.#ctor"/>
+        </member>
+        <member name="F:Sudoku.Data.ValueSudokuMap._innerBinary">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(Sudoku.Data.ValueSudokuMap)">
+            <summary>
+            (Copy constructor) Initializes an instance with another one.
+            </summary>
+            <param name="another">The another instance.</param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified candidate and its peers.
+            </summary>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Inidicates an instance with the peer candidates of the specified candidate and a <see cref="T:System.Boolean"/>
+            value indicating whether the map will process itself with <see langword="true"/> value.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="setItself">
+            Indicates whether the map will process itself with <see langword="true"/> value.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int32[])">
+            <summary>
+            Initializes an instance with the specified candidates.
+            </summary>
+            <param name="candidates">The candidates.</param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int64[])">
+            <summary>
+            Initializes an instance with the binary array.
+            </summary>
+            <param name="binary">The array.</param>
+            <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int64*,System.Int32)">
+            <summary>
+            Initializes an instance with the pointer to the binary array and the length.
+            </summary>
+            <param name="binary">The pointer to the binary array.</param>
+            <param name="length">The length.</param>
+            <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(Sudoku.Data.GridMap,System.Int32)">
+            <summary>
+            Initializes an instance with the specified <see cref="T:Sudoku.Data.GridMap"/> and the number
+            representing.
+            </summary>
+            <param name="map">The map.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Initializes an instance with the specified candidates.
+            </summary>
+            <param name="candidates">The candidates.</param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Initializes an instance with the specified candidates.
+            </summary>
+            <param name="candidates">The candidates.</param>
+        </member>
+        <member name="P:Sudoku.Data.ValueSudokuMap.IsEmpty">
+            <summary>
+            Indicates whether the map has no set bits.
+            This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
+            </summary>
+            <seealso cref="P:Sudoku.Data.ValueSudokuMap.IsNotEmpty"/>
+        </member>
+        <member name="P:Sudoku.Data.ValueSudokuMap.IsNotEmpty">
+            <summary>
+            Indicates whether the map has at least one set bit.
+            This property is equivalent to code '<c>!this.IsEmpty</c>'.
+            </summary>
+            <seealso cref="P:Sudoku.Data.ValueSudokuMap.IsEmpty"/>
+        </member>
+        <member name="P:Sudoku.Data.ValueSudokuMap.Count">
+            <summary>
+            Indicates how many bits are set <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ValueSudokuMap.First">
+            <summary>
+            Gets the first set bit position. If the current map is empty,
+            the return value will be <c>-1</c>.
+            </summary>
+            <remarks>
+            The property will use the same process with <see cref="P:Sudoku.Data.ValueSudokuMap.Offsets"/>,
+            but the <see langword="yield"/> clause will be replaced with normal <see langword="return"/>s.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.ValueSudokuMap.Offsets"/>
+        </member>
+        <member name="P:Sudoku.Data.ValueSudokuMap.PeerIntersection">
+            <summary>
+            Indicates the map of cells, which is the peer intersections.
+            </summary>
+            <example>
+            For example, the code
+            <code>
+            var map = testMap.PeerIntersection;
+            </code>
+            is equivalent to the code
+            <code>
+            var map = SudokuMap.CreateInstance(testMap);
+            </code>
+            </example>
+        </member>
+        <member name="P:Sudoku.Data.ValueSudokuMap.Offsets">
+            <summary>
+            Indicates all indices of set bits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ValueSudokuMap.Candidate(System.Int32)">
+            <summary>
+            Gets or sets the result set case of the specified index.
+            </summary>
+            <param name="candidate">The candidate offset (index).</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+            <value>The <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.Equals(Sudoku.Data.ValueSudokuMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.Overlaps(Sudoku.Data.ValueSudokuMap)">
+            <summary>
+            Indicates whether this map overlaps another one.
+            </summary>
+            <param name="other">The other map.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.SetAt(System.Int32)">
+            <summary>
+            Get a n-th index of the <see langword="true"/> bit in this instance.
+            </summary>
+            <param name="index">The true bit index order.</param>
+            <returns>The real index.</returns>
+            <remarks>
+            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.ValueSudokuMap.First"/> instead.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.ValueSudokuMap.First"/>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.ToArray">
+            <summary>
+            Get all cell offsets whose bits are set <see langword="true"/>.
+            </summary>
+            <returns>An array of cell offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.GetSubviewMask(System.Int32,System.Int32)">
+            <summary>
+            Get the subview mask of this map.
+            </summary>
+            <param name="region">The region.</param>
+            <param name="digit">The digit.</param>
+            <returns>The mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.Reduce(System.Int32)">
+            <summary>
+            Get the final <see cref="T:Sudoku.Data.GridMap"/> to get all cells that the corresponding indices
+            are set <see langword="true"/>.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>The map of all cells chosen.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)">
+            <summary>
+            Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
+            </summary>
+            <param name="offset">
+            The cell offset. This value can be positive and negative. If 
+            negative, the offset will be assigned <see langword="false"/>
+            into the corresponding bit position of its absolute value.
+            </param>
+            <remarks>
+            <para>
+            For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
+            <code>
+            var map = new GridMap(xxx) { ~1 };
+            </code>
+            which is equivalent to:
+            <code>
+            var map = new GridMap(xxx);
+            map[1] = false;
+            </code>
+            </para>
+            <para>
+            Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
+            to describe the value is a negative one. As the belowing example, -2 is described as <c>~1</c>,
+            so the offset is 1, rather than 2.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.AddAnyway(System.Int32)">
+            <summary>
+            Set the specified cell as <see langword="true"/> value.
+            </summary>
+            <param name="offset">The cell offset.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)"/>, the method will process negative values,
+            but this won't.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.Remove(System.Int32)">
+            <summary>
+            Set the specified cell as <see langword="false"/> value.
+            </summary>
+            <param name="offset">The cell offset.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)"/>, this method <b>cannot</b> receive
+            the negative value as the parameter.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.AddRange(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Set the specified candidates as <see langword="true"/> value.
+            </summary>
+            <param name="candidates">The candidate offsets.</param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Set the specified candidates as <see langword="true"/> value.
+            </summary>
+            <param name="candidates">The candidate offsets.</param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.Clear">
+            <summary>
+            Clear all bits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.AssignFixedArray(System.Int32,System.Boolean)">
+            <summary>
+            Calls the method while initializing.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="setItself">Indicates whether the map should set itself.</param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.CreateInstance(System.Int32[])">
+            <summary>
+            Get the map of candidates, which is the peer intersections from the specified candidates.
+            </summary>
+            <param name="candidates">All candidates.</param>
+            <returns>The result map.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get the map of candidates, which is the peer intersections from the specified candidates.
+            </summary>
+            <param name="candidates">All candidates.</param>
+            <returns>The result map.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.op_Equality(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.op_Inequality(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>
+			A <see cref="T:System.Boolean" /> result indicating that.
+		</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.op_OnesComplement(Sudoku.Data.ValueSudokuMap)">
+            <summary>
+            Reverse status for all candidates, which means all <see langword="true"/> bits
+            will be set <see langword="false"/>, and all <see langword="false"/> bits
+            will be set <see langword="true"/>.
+            </summary>
+            <param name="map">The instance to negate.</param>
+            <returns>The negative result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.op_BitwiseAnd(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
+            <summary>
+            Get all candidates that two <see cref="T:Sudoku.Data.ValueSudokuMap"/>s both contain.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The intersection result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.op_BitwiseOr(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
+            <summary>
+            Get all candidates from two <see cref="T:Sudoku.Data.ValueSudokuMap"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The union result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.op_ExclusiveOr(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
+            <summary>
+            Get all candidates that only appears once in two <see cref="T:Sudoku.Data.ValueSudokuMap"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The symmetrical difference result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.op_Subtraction(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
+            <summary>
+            Get a <see cref="T:Sudoku.Data.GridMap"/> that contains all <paramref name="left"/> candidates
+            but not in <paramref name="right"/> candidates.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.op_Implicit(Sudoku.Data.ValueSudokuMap)~System.Int32[]">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Data.ValueSudokuMap"/> to <see cref="T:System.Int32"/>[].
+            </summary>
+            <param name="map">The map.</param>
+        </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.op_Implicit(System.Int32[])~Sudoku.Data.ValueSudokuMap">
+            <summary>
+            Implicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Data.ValueSudokuMap"/>.
+            </summary>
+            <param name="array">The array.</param>
         </member>
         <member name="T:Sudoku.Diagnostics.FileCounter">
             <summary>

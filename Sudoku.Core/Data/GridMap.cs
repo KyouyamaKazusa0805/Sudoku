@@ -581,24 +581,24 @@ namespace Sudoku.Data
 		/// Gets or sets a <see cref="bool"/> value on the specified cell
 		/// offset.
 		/// </summary>
-		/// <param name="offset">The cell offset.</param>
+		/// <param name="cell">The cell offset.</param>
 		/// <value>A <see cref="bool"/> value on assignment.</value>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the cell has digit.
 		/// </returns>
 		[IndexerName("Index")]
-		public bool this[int offset]
+		public bool this[int cell]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			readonly get => ((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
+			readonly get => ((stackalloc[] { _low, _high }[cell / Shifting] >> cell % Shifting) & 1) != 0;
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
-				bool older = this[offset];
+				ref long v = ref cell / Shifting == 0 ? ref _low : ref _high;
+				bool older = this[cell];
 				if (value)
 				{
-					v |= 1L << offset % Shifting;
+					v |= 1L << cell % Shifting;
 					if (!older)
 					{
 						Count++;
@@ -606,7 +606,7 @@ namespace Sudoku.Data
 				}
 				else
 				{
-					v &= ~(1L << offset % Shifting);
+					v &= ~(1L << cell % Shifting);
 					if (older)
 					{
 						Count--;
