@@ -875,27 +875,27 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(GridMap left, GridMap right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(GridMap left, GridMap right) => !(left == right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		/// <inheritdoc cref="Operators.operator &gt;"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >(GridMap left, GridMap right) => left.CompareTo(right) > 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		/// <inheritdoc cref="Operators.operator &gt;="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >=(GridMap left, GridMap right) => left.CompareTo(right) >= 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		/// <inheritdoc cref="Operators.operator &lt;"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <(GridMap left, GridMap right) => left.CompareTo(right) < 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		/// <inheritdoc cref="Operators.operator &lt;="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <=(GridMap left, GridMap right) => left.CompareTo(right) <= 0;
 

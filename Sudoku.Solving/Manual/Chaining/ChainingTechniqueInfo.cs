@@ -262,7 +262,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public static bool operator ==(ChainingTechniqueInfo? left, ChainingTechniqueInfo? right) =>
 			InternalEquals(left, right);
 
-		/// <inheritdoc cref="Operators.operator =="/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(ChainingTechniqueInfo? left, ChainingTechniqueInfo? right) => !(left == right);
 	}
 }

@@ -2423,7 +2423,7 @@
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.op_Inequality(Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo,Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher">
             <summary>
@@ -8474,54 +8474,22 @@
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_Equality(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_Inequality(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <operator name="op_GreaterThan">
-		<summary>Indicates whether the left value is greater than the right value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>
-			A <see cref="T:System.Boolean" /> result indicating that.
-		</returns>
-	</operator>
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <operator name="op_GreaterThanOrEqual">
-		<summary>
-			Indicates whether the left value is greater than or equals to the right value.
-		</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>
-			A <see cref="T:System.Boolean" /> result indicating that.
-		</returns>
-	</operator>
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <operator name="op_LessThan">
-		<summary>Indicates whether the left value is less than the right value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>
-			A <see cref="T:System.Boolean" /> result indicating that.
-		</returns>
-	</operator>
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <operator name="op_LessThanOrEqual">
-		<summary>
-			Indicates whether the left value is less than or equals to the right value.
-		</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>
-			A <see cref="T:System.Boolean" /> result indicating that.
-		</returns>
-	</operator>
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
     </members>
 </doc>
