@@ -12,43 +12,30 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Provides a usage of <b>senior exocet</b> (SE) technique.
 	/// </summary>
-	public sealed class SeniorExocetTechniqueInfo : ExocetTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Exocet">The exocet.</param>
+	/// <param name="Digits">All digits.</param>
+	/// <param name="EndoTargetCell">The endo target cell.</param>
+	/// <param name="ExtraRegionsMask">The extra regions mask.</param>
+	/// <param name="TargetEliminations">The target eliminations.</param>
+	/// <param name="TrueBaseEliminations">The true base eliminations.</param>
+	/// <param name="MirrorEliminations">The mirror eliminations.</param>
+	/// <param name="CompatibilityEliminations">The compatibility eliminations.</param>
+	public sealed record SeniorExocetTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Exocet,
+		IEnumerable<int> Digits, int EndoTargetCell, int[]? ExtraRegionsMask, TargetEliminations TargetEliminations,
+		TrueBaseEliminations TrueBaseEliminations, MirrorEliminations MirrorEliminations,
+		CompatibilityTestEliminations CompatibilityEliminations)
+		: ExocetTechniqueInfo(
+			Conclusions, Views, Exocet, Digits, TechniqueCode.Se, null, null,
+			TargetEliminations, MirrorEliminations, default, default, default,
+			TrueBaseEliminations, CompatibilityEliminations)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="exocet">The exocet.</param>
-		/// <param name="digits">All digits.</param>
-		/// <param name="endoTargetCell">The endo target cell.</param>
-		/// <param name="extraRegionsMask">The extra regions mask.</param>
-		/// <param name="targetEliminations">The target eliminations.</param>
-		/// <param name="trueBaseEliminations">The true base eliminations.</param>
-		/// <param name="mirrorEliminations">The mirror eliminations.</param>
-		/// <param name="compatibilityEliminations">The compatibility eliminations.</param>
-		public SeniorExocetTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Pattern exocet,
-			IEnumerable<int> digits, int endoTargetCell, int[]? extraRegionsMask, TargetEliminations targetEliminations,
-			TrueBaseEliminations trueBaseEliminations, MirrorEliminations mirrorEliminations,
-			CompatibilityTestEliminations compatibilityEliminations)
-			: base(
-				  conclusions, views, exocet, digits, TechniqueCode.Se, null, null,
-				  targetEliminations, mirrorEliminations, default, default, default,
-				  trueBaseEliminations, compatibilityEliminations) =>
-			(EndoTargetCell, ExtraRegionsMask) = (endoTargetCell, extraRegionsMask);
-
-
 		/// <summary>
 		/// Indicates whether the specified instance contains any extra regions.
 		/// </summary>
 		public bool ContainsExtraRegions => ExtraRegionsMask?.Any(m => m != 0) ?? false;
-
-		/// <summary>
-		/// Indicates the extra regions mask.
-		/// </summary>
-		public int[]? ExtraRegionsMask { get; }
-
-		/// <summary>
-		/// Indicates the target cell that lies on the cross-line.
-		/// </summary>
-		public int EndoTargetCell { get; }
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => ContainsExtraRegions ? TechniqueCode.ComplexSe : TechniqueCode.Se;

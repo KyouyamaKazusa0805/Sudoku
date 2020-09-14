@@ -12,134 +12,40 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Provides a usage of <b>exocet</b> technique.
 	/// </summary>
-	public abstract class ExocetTechniqueInfo : TechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Exocet">The exocet.</param>
+	/// <param name="Digits">All digits.</param>
+	/// <param name="TechniqueCode">The technique code.</param>
+	/// <param name="LockedMemberQ">The locked member Q.</param>
+	/// <param name="LockedMemberR">The locked member R.</param>
+	/// <param name="TargetEliminations">The target eliminations.</param>
+	/// <param name="MirrorEliminations">The mirror eliminations.</param>
+	/// <param name="BibiEliminations">
+	/// The Bi-bi pattern eliminations (only used for junior exocets).
+	/// </param>
+	/// <param name="TargetPairEliminations">
+	/// The target pair eliminations (only used for junior exocets).
+	/// </param>
+	/// <param name="SwordfishEliminations">
+	/// The swordfish pattern eliminations (only used for junior exocets).
+	/// </param>
+	/// <param name="TrueBaseEliminations">
+	/// The true base eliminations (only used for senior exocets).
+	/// </param>
+	/// <param name="CompatibilityEliminations">
+	/// The compatibility test eliminations (only used for senior exocets).
+	/// </param>
+	public abstract record ExocetTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		Pattern Exocet, IEnumerable<int> Digits, TechniqueCode TechniqueCode,
+		IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
+		TargetEliminations TargetEliminations, MirrorEliminations MirrorEliminations,
+		BibiPatternEliminations BibiEliminations, TargetPairEliminations TargetPairEliminations,
+		SwordfishEliminations SwordfishEliminations, TrueBaseEliminations TrueBaseEliminations,
+		CompatibilityTestEliminations CompatibilityEliminations)
+		: TechniqueInfo(GatherConclusions(Conclusions, TargetEliminations, MirrorEliminations, BibiEliminations, TargetPairEliminations, SwordfishEliminations, TrueBaseEliminations, CompatibilityEliminations), Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="exocet">The exocet.</param>
-		/// <param name="digits">All digits.</param>
-		/// <param name="techniqueCode">The technique code.</param>
-		/// <param name="lockedMemberQ">The locked member Q.</param>
-		/// <param name="lockedMemberR">The locked member R.</param>
-		/// <param name="targetEliminations">The target eliminations.</param>
-		/// <param name="mirrorEliminations">The mirror eliminations.</param>
-		/// <param name="bibiEliminations">
-		/// The Bi-bi pattern eliminations (only used for junior exocets).
-		/// </param>
-		/// <param name="targetPairEliminations">
-		/// The target pair eliminations (only used for junior exocets).
-		/// </param>
-		/// <param name="swordfishEliminations">
-		/// The swordfish pattern eliminations (only used for junior exocets).
-		/// </param>
-		/// <param name="trueBaseEliminations">
-		/// The true base eliminations (only used for senior exocets).
-		/// </param>
-		/// <param name="compatibilityEliminations">
-		/// The compatibility test eliminations (only used for senior exocets).
-		/// </param>
-		public ExocetTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			Pattern exocet, IEnumerable<int> digits, TechniqueCode techniqueCode,
-			IEnumerable<int>? lockedMemberQ, IEnumerable<int>? lockedMemberR,
-			TargetEliminations targetEliminations, MirrorEliminations mirrorEliminations,
-			BibiPatternEliminations bibiEliminations, TargetPairEliminations targetPairEliminations,
-			SwordfishEliminations swordfishEliminations, TrueBaseEliminations trueBaseEliminations,
-			CompatibilityTestEliminations compatibilityEliminations)
-			: base(conclusions, views)
-		{
-			(Exocet, Digits, TechniqueCode, LockedMemberQ, LockedMemberR) = (exocet, digits, techniqueCode, lockedMemberQ, lockedMemberR);
-
-			var list = (List<Conclusion>)Conclusions;
-			if (!((TargetEliminations = targetEliminations).Conclusions is null))
-			{
-				list.AddRange(TargetEliminations);
-			}
-			if (!((MirrorEliminations = mirrorEliminations).Conclusions is null))
-			{
-				list.AddRange(MirrorEliminations);
-			}
-			if (!((BibiEliminations = bibiEliminations).Conclusions is null))
-			{
-				list.AddRange(BibiEliminations);
-			}
-			if (!((TargetPairEliminations = targetPairEliminations).Conclusions is null))
-			{
-				list.AddRange(TargetPairEliminations);
-			}
-			if (!((SwordfishEliminations = swordfishEliminations).Conclusions is null))
-			{
-				list.AddRange(SwordfishEliminations);
-			}
-			if (!((TrueBaseEliminations = trueBaseEliminations).Conclusions is null))
-			{
-				list.AddRange(TrueBaseEliminations);
-			}
-			if (!((CompatibilityTestEliminations = compatibilityEliminations).Conclusions is null))
-			{
-				list.AddRange(CompatibilityTestEliminations);
-			}
-
-			var temp = Conclusions.Distinct().ToList(); // Call 'ToList' to execute the query forcedly.
-			list.Clear();
-			list.AddRange(temp);
-		}
-
-
-		/// <summary>
-		/// The locked member Q.
-		/// </summary>
-		public IEnumerable<int>? LockedMemberQ { get; }
-
-		/// <summary>
-		/// The locked member R.
-		/// </summary>
-		public IEnumerable<int>? LockedMemberR { get; }
-
-		/// <summary>
-		/// Indicates all digits used.
-		/// </summary>
-		public IEnumerable<int> Digits { get; }
-
-		/// <summary>
-		/// The exocet.
-		/// </summary>
-		public Pattern Exocet { get; }
-
-		/// <summary>
-		/// The target eliminations.
-		/// </summary>
-		public TargetEliminations TargetEliminations { get; }
-
-		/// <summary>
-		/// The mirror eliminations.
-		/// </summary>
-		public MirrorEliminations MirrorEliminations { get; }
-
-		/// <summary>
-		/// The Bi-bi pattern eliminations.
-		/// </summary>
-		public BibiPatternEliminations BibiEliminations { get; }
-
-		/// <summary>
-		/// The target pair eliminations.
-		/// </summary>
-		public TargetPairEliminations TargetPairEliminations { get; }
-
-		/// <summary>
-		/// The swordfish eliminations.
-		/// </summary>
-		public SwordfishEliminations SwordfishEliminations { get; }
-
-		/// <summary>
-		/// The true base eliminations.
-		/// </summary>
-		public TrueBaseEliminations TrueBaseEliminations { get; }
-
-		/// <summary>
-		/// The compatibility test eliminations.
-		/// </summary>
-		public CompatibilityTestEliminations CompatibilityTestEliminations { get; }
-
 		/// <inheritdoc/>
 		public sealed override string Name => base.Name;
 
@@ -154,7 +60,6 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode { get; }
-
 
 
 		/// <inheritdoc/>
@@ -189,7 +94,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				.NullableAppendLine(TargetPairEliminations.ToString())
 				.NullableAppendLine(SwordfishEliminations.ToString())
 				.NullableAppendLine(TrueBaseEliminations.ToString())
-				.NullableAppendLine(CompatibilityTestEliminations.ToString())
+				.NullableAppendLine(CompatibilityEliminations.ToString())
 				.ToString();
 
 		/// <summary>
@@ -197,5 +102,62 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		/// <returns>The additional message.</returns>
 		protected abstract string? GetAdditional();
+
+
+		/// <summary>
+		/// Gather conclusions.
+		/// </summary>
+		/// <param name="conclusions">The conclusions.</param>
+		/// <param name="targetEliminations">The target eliminations.</param>
+		/// <param name="mirrorEliminations">The mirror eliminations.</param>
+		/// <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
+		/// <param name="targetPairEliminations">The target pair eliminations.</param>
+		/// <param name="swordfishEliminations">The swordfish eliminations.</param>
+		/// <param name="trueBaseEliminations">The true base eliminations.</param>
+		/// <param name="compatibilityEliminations">The compatibility eliminations.</param>
+		/// <returns>The gathered result.</returns>
+		private static IReadOnlyList<Conclusion> GatherConclusions(
+			IReadOnlyList<Conclusion> conclusions,
+			TargetEliminations targetEliminations, MirrorEliminations mirrorEliminations,
+			BibiPatternEliminations bibiEliminations, TargetPairEliminations targetPairEliminations,
+			SwordfishEliminations swordfishEliminations, TrueBaseEliminations trueBaseEliminations,
+			CompatibilityTestEliminations compatibilityEliminations)
+		{
+			var list = (List<Conclusion>)conclusions;
+			if (targetEliminations.Conclusions is not null)
+			{
+				list.AddRange(targetEliminations);
+			}
+			if (mirrorEliminations.Conclusions is not null)
+			{
+				list.AddRange(mirrorEliminations);
+			}
+			if (bibiEliminations.Conclusions is not null)
+			{
+				list.AddRange(bibiEliminations);
+			}
+			if (targetPairEliminations.Conclusions is not null)
+			{
+				list.AddRange(targetPairEliminations);
+			}
+			if (swordfishEliminations.Conclusions is not null)
+			{
+				list.AddRange(swordfishEliminations);
+			}
+			if (trueBaseEliminations.Conclusions is not null)
+			{
+				list.AddRange(trueBaseEliminations);
+			}
+			if (compatibilityEliminations.Conclusions is not null)
+			{
+				list.AddRange(compatibilityEliminations);
+			}
+
+			var temp = conclusions.Distinct().ToList(); // Call 'ToList' to execute the query forcedly.
+			list.Clear();
+			list.AddRange(temp);
+
+			return list;
+		}
 	}
 }

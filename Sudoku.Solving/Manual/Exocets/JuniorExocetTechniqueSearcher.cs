@@ -180,14 +180,14 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				accumulator.Add(
 					new JuniorExocetTechniqueInfo(
-						conclusions: new List<Conclusion>(),
-						views: new[] { new View(cellOffsets, candidateOffsets, null, null) },
+						new List<Conclusion>(),
+						new View[] { new(cellOffsets, candidateOffsets, null, null) },
 						exocet,
-						digits: baseCandidatesMask.GetAllSets(),
-						lockedMemberQ: lockedMemberQ == 0 ? null : lockedMemberQ.GetAllSets(),
-						lockedMemberR: lockedMemberR == 0 ? null : lockedMemberR.GetAllSets(),
+						baseCandidatesMask.GetAllSets(),
+						lockedMemberQ == 0 ? null : lockedMemberQ.GetAllSets(),
+						lockedMemberR == 0 ? null : lockedMemberR.GetAllSets(),
 						targetEliminations,
-						mirrorEliminations: _checkAdvanced ? mirrorEliminations : default,
+						_checkAdvanced ? mirrorEliminations : default,
 						bibiEliminations,
 						targetPairEliminations,
 						swordfishEliminations));
