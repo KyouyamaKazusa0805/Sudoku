@@ -204,9 +204,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							accumulator.Add(
 								new AlsXyWingTechniqueInfo(
 									conclusions,
-									views: new[]
+									new View[]
 									{
-										new View(
+										new(
 											_alsShowRegions ? null : cellOffsets,
 											_alsShowRegions ? candidateOffsets : null,
 											_alsShowRegions switch
@@ -216,12 +216,12 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 											},
 											null)
 									},
-									als1: a,
-									als2: b,
-									bridgeAls: c,
-									xDigitsMask: finalX,
-									yDigitsMask: finalY,
-									zDigitsMask: finalZ));
+									a,
+									b,
+									c,
+									finalX,
+									finalY,
+									finalZ));
 						}
 					}
 				}

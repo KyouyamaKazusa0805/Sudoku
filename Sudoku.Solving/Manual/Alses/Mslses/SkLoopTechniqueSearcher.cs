@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					accumulator.Add(
 						new SkLoopTechniqueInfo(
 							conclusions,
-							views: new[] { new View(candidateOffsets) },
+							new View[] { new(candidateOffsets) },
 							cells));
 				}
 			}

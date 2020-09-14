@@ -142,8 +142,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					accumulator.Add(
 						new AlsNetTechniqueInfo(
 							conclusions,
-							views: new[] { new View(candidateOffsets) },
-							cells: map));
+							new View[] { new(candidateOffsets) },
+							map));
 				}
 			}
 		}

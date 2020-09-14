@@ -126,15 +126,12 @@ namespace Sudoku.Solving.Manual.Alses
 						accumulator.Add(
 							new ErIntersectionPairTechniqueInfo(
 								conclusions,
-								views: new[]
-								{
-									new View(new[] { (0, c1), (0, c2) }, candidateOffsets, new[] { (0, block) }, null)
-								},
-								startCell: c1,
-								endCell: c2,
-								region: block,
-								digit1: d1,
-								digit2: d2));
+								new View[] { new(new[] { (0, c1), (0, c2) }, candidateOffsets, new[] { (0, block) }, null) },
+								c1,
+								c2,
+								block,
+								d1,
+								d2));
 					}
 				}
 			}

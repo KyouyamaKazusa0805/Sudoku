@@ -8,45 +8,18 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Provides a usage of <b>empty rectangle intersection pair</b> technique.
 	/// </summary>
-	public sealed class ErIntersectionPairTechniqueInfo : AlsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="StartCell">The start cell.</param>
+	/// <param name="EndCell">The end cell.</param>
+	/// <param name="Region">The region that empty rectangle forms.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	public sealed record ErIntersectionPairTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int StartCell, int EndCell,
+		int Region, int Digit1, int Digit2)
+		: AlsTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="startCell">The start cell.</param>
-		/// <param name="endCell">The end cell.</param>
-		/// <param name="region">The region that empty rectangle forms.</param>
-		/// <param name="digit1">The digit 1.</param>
-		/// <param name="digit2">The digit 2.</param>
-		public ErIntersectionPairTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int startCell, int endCell, int region, int digit1, int digit2) : base(conclusions, views) =>
-			(StartCell, EndCell, Region, Digit1, Digit2) = (startCell, endCell, region, digit1, digit2);
-
-
-		/// <summary>
-		/// Indicates the region that empty rectangle forms.
-		/// </summary>
-		public int Region { get; }
-
-		/// <summary>
-		/// Indicates the start cell.
-		/// </summary>
-		public int StartCell { get; }
-
-		/// <summary>
-		/// Indicates the end cell.
-		/// </summary>
-		public int EndCell { get; }
-
-		/// <summary>
-		/// Indicates the digit 1.
-		/// </summary>
-		public int Digit1 { get; }
-
-		/// <summary>
-		/// Indicates the digit 2.
-		/// </summary>
-		public int Digit2 { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 6.0M;
 

@@ -158,17 +158,19 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							accumulator.Add(
 								new AlsWWingTechniqueInfo(
 									conclusions,
-									views: new[]
+									new View[]
 									{
-										new View(
+										new(
 											_alsShowRegions ? null : cellOffsets,
 											_alsShowRegions ? candidateOffsets : null,
-											_alsShowRegions
-												? new[]
+											_alsShowRegions switch
+											{
+												true => new[]
 												{
 													(-1, region1), (-2, region2), (0, conjugatePair.Region.First())
-												}
-												: null,
+												},
+												_ => null
+											},
 											null)
 									},
 									als1,

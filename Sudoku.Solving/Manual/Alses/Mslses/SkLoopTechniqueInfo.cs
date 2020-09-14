@@ -8,20 +8,13 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <summary>
 	/// Provides a usage of <b>domino loop</b> technique.
 	/// </summary>
-	public sealed class SkLoopTechniqueInfo : MslsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cells">All cells used.</param>
+	public sealed record SkLoopTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Cells)
+		: MslsTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="cells">All cells.</param>
-		public SkLoopTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, IReadOnlyList<int> cells)
-			: base(conclusions, views) => Cells = cells;
-
-
-		/// <summary>
-		/// The cells.
-		/// </summary>
-		public IReadOnlyList<int> Cells { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 9.6M;
 

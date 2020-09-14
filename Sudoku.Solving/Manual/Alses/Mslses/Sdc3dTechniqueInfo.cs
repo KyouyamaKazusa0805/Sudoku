@@ -9,53 +9,20 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <summary>
 	/// Provides a usage of <b>3-dimension sue de coq</b> technique.
 	/// </summary>
-	public sealed class Sdc3dTechniqueInfo : MslsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="RowDigitsMask">The row digits mask.</param>
+	/// <param name="ColumnDigitsMask">The column digits mask.</param>
+	/// <param name="BlockDigitsMask">The block digits mask.</param>
+	/// <param name="RowCells">The row cells map.</param>
+	/// <param name="ColumnCells">The column cells map.</param>
+	/// <param name="BlockCells">The block cells map.</param>
+	public sealed record Sdc3dTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		short RowDigitsMask, short ColumnDigitsMask, short BlockDigitsMask,
+		GridMap RowCells, GridMap ColumnCells, GridMap BlockCells)
+		: MslsTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="rowDigitsMask">The row digits mask.</param>
-		/// <param name="columnDigitsMask">The column digits mask.</param>
-		/// <param name="blockDigitsMask">The block digits mask.</param>
-		/// <param name="rowCells">The row cells map.</param>
-		/// <param name="columnCells">The column cells map.</param>
-		/// <param name="blockCells">The block cells map.</param>
-		public Sdc3dTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, short rowDigitsMask,
-			short columnDigitsMask, short blockDigitsMask, GridMap rowCells, GridMap columnCells,
-			GridMap blockCells) : base(conclusions, views) =>
-			(RowDigitsMask, ColumnDigitsMask, BlockDigitsMask, RowCells, ColumnCells, BlockCells) =
-			(rowDigitsMask, columnDigitsMask, blockDigitsMask, rowCells, columnCells, blockCells);
-
-
-		/// <summary>
-		/// Indicates the row digits mask.
-		/// </summary>
-		public short RowDigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the column digits mask.
-		/// </summary>
-		public short ColumnDigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the block digits mask.
-		/// </summary>
-		public short BlockDigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the row cells map.
-		/// </summary>
-		public GridMap RowCells { get; }
-
-		/// <summary>
-		/// Indicates the column cells map.
-		/// </summary>
-		public GridMap ColumnCells { get; }
-
-		/// <summary>
-		/// Indicates the block cells map.
-		/// </summary>
-		public GridMap BlockCells { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M;
 
