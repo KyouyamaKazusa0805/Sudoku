@@ -9,34 +9,16 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides a usage of <b>region forcing chains</b> technique.
 	/// </summary>
-	public sealed class RegionChainingTechniqueInfo : ChainingTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Region">The region.</param>
+	/// <param name="Digit">The digit.</param>
+	/// <param name="Chains">All branches.</param>
+	public sealed record RegionChainingTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Region, int Digit, IReadOnlyDictionary<int, Node> Chains)
+		: ChainingTechniqueInfo(Conclusions, Views, default, default, default, true, default, default)
 	{
-		/// <include file = 'SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="region">The region.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="chains">All branches.</param>
-		public RegionChainingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int region, int digit, IReadOnlyDictionary<int, Node> chains)
-			: base(conclusions, views, default, default, default, true, default, default) =>
-			(Region, Digit, Chains) = (region, digit, chains);
-
-
-		/// <summary>
-		/// Indicates the region.
-		/// </summary>
-		public int Region { get; }
-		
-		/// <summary>
-		/// Indicates the digit used.
-		/// </summary>
-		public int Digit { get; }
-
-		/// <summary>
-		/// Indicates all branches.
-		/// </summary>
-		public IReadOnlyDictionary<int, Node> Chains { get; }
-
 		/// <inheritdoc/>
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 

@@ -172,10 +172,10 @@ namespace Sudoku.Solving.Manual.Chaining
 				? null
 				: new LoopTechniqueInfo(
 					conclusions,
-					views: new[] { new View(null, GetCandidateOffsets(destOn), null, links) },
+					new View[] { new(null, GetCandidateOffsets(destOn), null, links) },
 					xEnabled,
 					yEnabled,
-					target: destOn);
+					destOn);
 		}
 
 		/// <summary>
@@ -225,7 +225,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				? null
 				: new AicTechniqueInfo(
 					conclusions,
-					views: new[] { new View(null, GetCandidateOffsets(target), null, GetLinks(target)) },
+					new View[] { new(null, GetCandidateOffsets(target), null, GetLinks(target)) },
 					xEnabled,
 					yEnabled,
 					target);
