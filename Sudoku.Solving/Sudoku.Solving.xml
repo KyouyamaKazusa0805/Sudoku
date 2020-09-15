@@ -2998,7 +2998,6 @@
             <param name="Views">All views.</param>
             <param name="Exocet">The exocet.</param>
             <param name="Digits">All digits.</param>
-            <param name="TechniqueCode">The technique code.</param>
             <param name="LockedMemberQ">The locked member Q.</param>
             <param name="LockedMemberR">The locked member R.</param>
             <param name="TargetEliminations">The target eliminations.</param>
@@ -3019,7 +3018,7 @@
             The compatibility test eliminations (only used for senior exocets).
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.TechniqueCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations)">
             <summary>
             Provides a usage of <b>exocet</b> technique.
             </summary>
@@ -3027,7 +3026,6 @@
             <param name="Views">All views.</param>
             <param name="Exocet">The exocet.</param>
             <param name="Digits">All digits.</param>
-            <param name="TechniqueCode">The technique code.</param>
             <param name="LockedMemberQ">The locked member Q.</param>
             <param name="LockedMemberR">The locked member R.</param>
             <param name="TargetEliminations">The target eliminations.</param>
@@ -3058,9 +3056,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.ToString">
@@ -3234,6 +3229,9 @@
             <param name="SwordfishEliminations">The swordfish pattern eliminations.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.GetAdditional">
@@ -3496,10 +3494,10 @@
             Indicates whether the specified instance contains any extra regions.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.GetAdditional">

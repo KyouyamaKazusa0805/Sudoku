@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		BibiPatternEliminations BibiEliminations, TargetPairEliminations TargetPairEliminations,
 		SwordfishEliminations SwordfishEliminations)
 		: ExocetTechniqueInfo(
-			Conclusions, Views, Exocet, Digits, TechniqueCode.Je,
+			Conclusions, Views, Exocet, Digits,
 			LockedMemberQ, LockedMemberR, TargetEliminations, MirrorEliminations,
 			BibiEliminations, TargetPairEliminations, SwordfishEliminations, default, default)
 	{
@@ -37,6 +37,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			(BibiEliminations.Conclusions is null ? 0 : .3M) +
 			(TargetPairEliminations.Conclusions is null ? 0 : .1M) +
 			(SwordfishEliminations.Conclusions is null ? 0 : .2M);
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.Je;
 
 
 		/// <inheritdoc/>

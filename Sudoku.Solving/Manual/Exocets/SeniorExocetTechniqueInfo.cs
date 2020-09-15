@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		TrueBaseEliminations TrueBaseEliminations, MirrorEliminations MirrorEliminations,
 		CompatibilityTestEliminations CompatibilityEliminations)
 		: ExocetTechniqueInfo(
-			Conclusions, Views, Exocet, Digits, TechniqueCode.Se, null, null,
+			Conclusions, Views, Exocet, Digits, null, null,
 			TargetEliminations, MirrorEliminations, default, default, default,
 			TrueBaseEliminations, CompatibilityEliminations)
 	{
@@ -38,10 +38,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		public bool ContainsExtraRegions => ExtraRegionsMask?.Any(m => m != 0) ?? false;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => ContainsExtraRegions ? TechniqueCode.ComplexSe : TechniqueCode.Se;
+		public override decimal Difficulty => 9.6M + (ContainsExtraRegions ? 0 : .2M);
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 9.6M + (ContainsExtraRegions ? 0 : .2M);
+		public override TechniqueCode TechniqueCode => ContainsExtraRegions ? TechniqueCode.ComplexSe : TechniqueCode.Se;
 
 
 		/// <inheritdoc/>

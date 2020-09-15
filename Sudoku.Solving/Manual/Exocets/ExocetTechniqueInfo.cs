@@ -16,7 +16,6 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <param name="Views">All views.</param>
 	/// <param name="Exocet">The exocet.</param>
 	/// <param name="Digits">All digits.</param>
-	/// <param name="TechniqueCode">The technique code.</param>
 	/// <param name="LockedMemberQ">The locked member Q.</param>
 	/// <param name="LockedMemberR">The locked member R.</param>
 	/// <param name="TargetEliminations">The target eliminations.</param>
@@ -38,7 +37,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </param>
 	public abstract record ExocetTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		Pattern Exocet, IEnumerable<int> Digits, TechniqueCode TechniqueCode,
+		Pattern Exocet, IEnumerable<int> Digits,
 		IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
 		TargetEliminations TargetEliminations, MirrorEliminations MirrorEliminations,
 		BibiPatternEliminations BibiEliminations, TargetPairEliminations TargetPairEliminations,
@@ -57,9 +56,6 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
-		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode { get; }
 
 
 		/// <inheritdoc/>
@@ -88,6 +84,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public sealed override string ToFullString() =>
 			new StringBuilder(ToString())
+				.AppendLine()
 				.NullableAppendLine(TargetEliminations.ToString())
 				.NullableAppendLine(MirrorEliminations.ToString())
 				.NullableAppendLine(BibiEliminations.ToString())
