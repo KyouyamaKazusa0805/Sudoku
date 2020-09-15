@@ -9,7 +9,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>unique rectangle</b> (UR) or
 	/// <b>avoidable rectangle</b> (AR) with wings technique.
 	/// </summary>
-	public sealed class UrWithWingTechniqueInfo : UrTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="TypeCode">The type code.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	/// <param name="ExtraCells">The extra cells.</param>
+	/// <param name="ExtraDigits">The extra digits.</param>
+	/// <param name="Pivots">The pivot cells.</param>
+	public sealed record UrWithWingTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
+		IEnumerable<int> ExtraCells, IEnumerable<int> ExtraDigits, IEnumerable<int> Pivots)
+		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable)
 	{
 		/// <summary>
 		/// Indicates the difficulty rating extra.
@@ -17,41 +31,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		private static readonly decimal[] DifficultyExtra = { .2M, .3M, .5M };
 
 
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="typeCode">The type code.</param>
-		/// <param name="digit1">The digit 1.</param>
-		/// <param name="digit2">The digit 2.</param>
-		/// <param name="cells">All cells.</param>
-		/// <param name="extraCells">The extra cells.</param>
-		/// <param name="extraDigits">The extra digits.</param>
-		/// <param name="pivots">The pivot cells.</param>
-		/// <param name="isAr">Indicates whether the specified structure forms an AR.</param>
-		public UrWithWingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, UrTypeCode typeCode,
-			int digit1, int digit2, int[] cells, IEnumerable<int> extraCells,
-			IEnumerable<int> extraDigits, IEnumerable<int> pivots, bool isAr)
-			: base(conclusions, views, typeCode, digit1, digit2, cells, isAr) =>
-			(ExtraCells, ExtraDigits, Pivots) = (extraCells, extraDigits, pivots);
-
-
-		/// <summary>
-		/// Indicates the extra cells.
-		/// </summary>
-		public IEnumerable<int> ExtraCells { get; }
-
-		/// <summary>
-		/// Indicates the extra digits.
-		/// </summary>
-		public IEnumerable<int> ExtraDigits { get; }
-
-		/// <summary>
-		/// Indicates the pivot cells.
-		/// </summary>
-		public IEnumerable<int> Pivots { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			4.4M + (IsAr ? .1M : 0) + DifficultyExtra[TypeCode - (IsAr ? UrTypeCode.AXyWing : UrTypeCode.XyWing)];
+			4.4M + (IsAvoidable ? .1M : 0) +
+			DifficultyExtra[TypeCode - (IsAvoidable ? UrTypeCode.AXyWing : UrTypeCode.XyWing)];
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
