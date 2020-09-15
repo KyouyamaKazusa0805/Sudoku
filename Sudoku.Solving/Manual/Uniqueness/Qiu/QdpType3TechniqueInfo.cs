@@ -10,28 +10,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <summary>
 	/// Provides a usage of <b>Qiu's deadly pattern type 3</b> (QDP) technique.
 	/// </summary>
-	public sealed class QdpType3TechniqueInfo : QdpTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Pattern">The pattern.</param>
+	/// <param name="ExtraDigitsMask">The extra digits mask.</param>
+	/// <param name="ExtraCells">The extra cells.</param>
+	public sealed record QdpType3TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Pattern,
+		short ExtraDigitsMask, IReadOnlyList<int> ExtraCells)
+		: QdpTechniqueInfo(Conclusions, Views, Pattern)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="pattern">The pattern.</param>
-		/// <param name="extraDigitsMask">The extra digits mask.</param>
-		/// <param name="extraCells">The extra cells.</param>
-		public QdpType3TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Pattern pattern,
-			short extraDigitsMask, IReadOnlyList<int> extraCells) : base(conclusions, views, pattern) =>
-			(ExtraDigitsMask, ExtraCells) = (extraDigitsMask, extraCells);
-
-
-		/// <summary>
-		/// Indicates the extra digits mask.
-		/// </summary>
-		public short ExtraDigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the extra cells.
-		/// </summary>
-		public IReadOnlyList<int> ExtraCells { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + ExtraDigitsMask.CountSet() * .1M;
 

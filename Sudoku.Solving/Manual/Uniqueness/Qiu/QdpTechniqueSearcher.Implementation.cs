@@ -58,9 +58,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			accumulator.Add(
 				new QdpType1TechniqueInfo(
 					conclusions,
-					views: new[]
+					new View[]
 					{
-						new View(
+						new(
 							cellOffsets,
 							candidateOffsets,
 							(
@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							null)
 					},
 					pattern,
-					candidate: elimCell * 9 + extraDigit));
+					elimCell * 9 + extraDigit));
 		}
 
 		partial void CheckType2(
@@ -116,9 +116,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			accumulator.Add(
 				new QdpType2TechniqueInfo(
 					conclusions,
-					views: new[]
+					new View[]
 					{
-						new View(
+						new(
 							cellOffsets,
 							candidateOffsets,
 							(
@@ -194,9 +194,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						accumulator.Add(
 							new QdpType3TechniqueInfo(
 								conclusions,
-								views: new[]
+								new View[]
 								{
-									new View(
+									new(
 										cellOffsets,
 										candidateOffsets,
 										(
@@ -206,8 +206,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 										null)
 								},
 								pattern,
-								extraDigitsMask: mask,
-								extraCells: cells));
+								mask,
+								cells));
 					}
 				}
 			}
@@ -271,9 +271,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					accumulator.Add(
 						new QdpType4TechniqueInfo(
 							conclusions,
-							views: new[]
+							new View[]
 							{
-								new View(
+								new(
 									cellOffsets,
 									candidateOffsets,
 									(
@@ -283,7 +283,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 									null)
 							},
 							pattern,
-							conjugatePair: new(pair, digit)));
+							new(pair, digit)));
 				}
 			}
 		}
@@ -377,9 +377,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			accumulator.Add(
 				new QdpLockedTypeTechniqueInfo(
 					conclusions,
-					views: new[]
+					new View[]
 					{
-						new View(
+						new(
 							cellOffsets,
 							candidateOffsets,
 							(

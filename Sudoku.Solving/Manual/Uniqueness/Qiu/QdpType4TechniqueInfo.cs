@@ -8,21 +8,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <summary>
 	/// Provides a usage of <b>Qiu's deadly pattern type 4</b> (QDP) technique.
 	/// </summary>
-	public sealed class QdpType4TechniqueInfo : QdpTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Pattern">The pattern.</param>
+	/// <param name="ConjugatePair">The conjugate pair.</param>
+	public sealed record QdpType4TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Pattern, ConjugatePair ConjugatePair)
+		: QdpTechniqueInfo(Conclusions, Views, Pattern)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="pattern">The pattern.</param>
-		/// <param name="conjugatePair">The conjugate pair.</param>
-		public QdpType4TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Pattern pattern,
-			ConjugatePair conjugatePair) : base(conclusions, views, pattern) => ConjugatePair = conjugatePair;
-
-
-		/// <summary>
-		/// Indicates the conjugate pair.
-		/// </summary>
-		public ConjugatePair ConjugatePair { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .2M;
 
