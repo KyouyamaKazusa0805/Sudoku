@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			string yStr = new DigitCollection(YDigitsMask.GetAllSets()).ToString();
 			string zStr = new DigitCollection(ZDigitsMask.GetAllSets()).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {Als1} -> {BridgeAls} -> {Als2}, x = {xStr}, y = {yStr}, z = {zStr} => {elimStr}";
+			return $"{Name}: {Als1} -> {Bridge} -> {Als2}, x = {xStr}, y = {yStr}, z = {zStr} => {elimStr}";
 		}
 	}
 }
