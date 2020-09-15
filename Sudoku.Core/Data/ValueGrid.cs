@@ -105,6 +105,32 @@ namespace Sudoku.Data
 
 
 		/// <summary>
+		/// Initializes an instance with the binary mask array (represented by a pointer) and a value indicating
+		/// the length of this array.
+		/// </summary>
+		/// <param name="masks">The masks.</param>
+		/// <param name="length">The length of the mask.</param>
+		/// <exception cref="ArgumentException">
+		/// Throws when the length of the specified argument is not 81.
+		/// </exception>
+		public ValueGrid(short* masks, int length) : this()
+		{
+			if (length != 81)
+			{
+				throw new ArgumentException(
+					message: "The specified argument is invalid, because the length of this argument is not 81.",
+					paramName: nameof(masks));
+			}
+
+			for (int i = 0; i < 81; i++)
+			{
+				_masks[i] = _initialMasks[i] = masks[i];
+			}
+
+			_valueChangedEventHandler = &OnValueChanged;
+		}
+
+		/// <summary>
 		/// Initializes an instance with the binary mask array.
 		/// </summary>
 		/// <param name="masks">The mask array.</param>
@@ -206,7 +232,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The triplet of three main information.
 		/// </summary>
-		private readonly unsafe (int A, int B, int C) Triplet
+		private readonly (int A, int B, int C) Triplet
 		{
 			get
 			{

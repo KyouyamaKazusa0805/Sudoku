@@ -25,6 +25,11 @@
             <summary>
             Indicates the default constructor.
             </summary>
+            <remarks>
+            Default constructor is a parameterless constructor, which is very useful in <see langword="struct"/>s
+            and <see langword="class"/>es. However, please note that if you defined other constructors
+            in <see langword="class"/>es, the default constructor won't be generated automatically.
+            </remarks>
         </member>
         <member name="T:Sudoku.DocComments.Formattable">
             <summary>
@@ -113,6 +118,10 @@
             <summary>
             Indicates the static constructor.
             </summary>
+            <remarks>
+            Static constructor is commonly appeared while initializing static fields. If the initialization cannot
+            be described by a simple value (or a simple expression), the static constructor will be useful.
+            </remarks>
         </member>
     </members>
 </doc>

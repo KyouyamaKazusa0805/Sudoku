@@ -3751,6 +3751,17 @@
             The event handler triggering when the value changed.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.ValueGrid.#ctor(System.Int16*,System.Int32)">
+            <summary>
+            Initializes an instance with the binary mask array (represented by a pointer) and a value indicating
+            the length of this array.
+            </summary>
+            <param name="masks">The masks.</param>
+            <param name="length">The length of the mask.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the length of the specified argument is not 81.
+            </exception>
+        </member>
         <member name="M:Sudoku.Data.ValueGrid.#ctor(System.Int16[])">
             <summary>
             Initializes an instance with the binary mask array.
