@@ -31,14 +31,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 			unsafe
 			{
-				var funcs =
-					new delegate*<IList<TechniqueInfo>, Grid, Pattern, short, short, short, GridMap, void>[]
-					{
-						&CheckType1,
-						&CheckType2,
-						&CheckType3,
-						&CheckType4
-					};
+				var funcs = new delegate*<IList<TechniqueInfo>, Grid, Pattern, short, short, short, GridMap, void>[]
+				{
+					&CheckType1,
+					&CheckType2,
+					&CheckType3,
+					&CheckType4
+				};
 
 				for (int i = 0, end = EmptyMap.Count == 7 ? 14580 : 11664; i < end; i++)
 				{

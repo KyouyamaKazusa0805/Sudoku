@@ -67,9 +67,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				accumulator.Add(
 					new BdpType1TechniqueInfo(
 						conclusions,
-						views: new[] { new View(candidateOffsets) },
+						new View[] { new(candidateOffsets) },
 						map,
-						digitsMask: tempMask));
+						tempMask));
 			}
 		}
 
@@ -118,10 +118,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				accumulator.Add(
 					new BdpType2TechniqueInfo(
 						conclusions,
-						views: new[] { new View(candidateOffsets) },
-						map: map,
-						digitsMask: tempMask,
-						extraDigit: otherDigit));
+						new View[] { new(candidateOffsets) },
+						map,
+						tempMask,
+						otherDigit));
 			}
 		}
 
@@ -216,11 +216,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							accumulator.Add(
 								new BdpType3TechniqueInfo(
 									conclusions,
-									views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
-									map: map,
-									digitsMask: tempMask,
-									extraCellsMap: combination,
-									extraDigitsMask: otherDigitsMask));
+									new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+									map,
+									tempMask,
+									combination,
+									otherDigitsMask));
 						}
 					}
 				}
@@ -322,11 +322,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						accumulator.Add(
 							new BdpType4TechniqueInfo(
 								conclusions,
-								views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
 								map,
-								digitsMask: otherMask,
-								conjugateRegion: currentMap,
-								extraMask: combinationMask));
+								otherMask,
+								currentMap,
+								combinationMask));
 					}
 				}
 			}

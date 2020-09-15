@@ -9,31 +9,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <summary>
 	/// Provides a usage of <b>Borescoper's deadly pattern type 4</b> (BDP) technique.
 	/// </summary>
-	public sealed class BdpType4TechniqueInfo : BdpTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Map">The cells used.</param>
+	/// <param name="DigitsMask">The digits mask.</param>
+	/// <param name="ConjugateRegion">
+	/// The so-called conjugate region. If you do not know what is a "conjugate region",
+	/// please read the comments in the method
+	/// <see cref="BdpTechniqueSearcher.CheckType4(IList{TechniqueInfo}, Grid, Pattern, short, short, short, GridMap)"/>
+	/// for more details.
+	/// </param>
+	/// <param name="ExtraMask">Indicates the mask of digits that is the combination.</param>
+	/// <seealso cref="BdpTechniqueSearcher.CheckType4(IList{TechniqueInfo}, Grid, Pattern, short, short, short, GridMap)"/>
+	public sealed record BdpType4TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Map, short DigitsMask,
+		GridMap ConjugateRegion, short ExtraMask)
+		: BdpTechniqueInfo(Conclusions, Views, Map, DigitsMask)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="map">The cells used.</param>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="conjugateRegion">The conjugate region.</param>
-		/// <param name="extraMask">The extra mask.</param>
-		public BdpType4TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap map, short digitsMask,
-			GridMap conjugateRegion, short extraMask) : base(conclusions, views, map, digitsMask) =>
-			(ExtraMask, ConjugateRegion) = (extraMask, conjugateRegion);
-
-
-		/// <summary>
-		/// Indicates the mask of digits that is the combination.
-		/// </summary>
-		public short ExtraMask { get; }
-
-		/// <summary>
-		/// The so-called conjugate region. If you do not know what is a "conjugate region",
-		/// please read the comments in the method <see cref="BdpTechniqueSearcher.CheckType4(IList{TechniqueInfo}, Grid, Pattern, short, short, short, GridMap)"/> for more details.
-		/// </summary>
-		/// <seealso cref="BdpTechniqueSearcher.CheckType4(IList{TechniqueInfo}, Grid, Pattern, short, short, short, GridMap)"/>
-		public GridMap ConjugateRegion { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M;
 
