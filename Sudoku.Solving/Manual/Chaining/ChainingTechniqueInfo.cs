@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -12,54 +11,21 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides a usage of <b>chain</b> technique.
 	/// </summary>
-	public abstract class ChainingTechniqueInfo : TechniqueInfo, IEquatable<ChainingTechniqueInfo?>
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="XEnabled">Indicates whether the chain is enabled X strong relations.</param>
+	/// <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
+	/// <param name="IsNishio">Indicates whether the chain is a nishio forcing chains (X-Forcing chains).</param>
+	/// <param name="IsMultiple">
+	/// Indicates whether the chain is a multiple forcing chains (Cell forcing chains and Region forcing chains).
+	/// </param>
+	/// <param name="IsDynamic">Indicates whether the chain is a dynamic forcng chains.</param>
+	/// <param name="Level">The dynamic searching level.</param>
+	public abstract record ChainingTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		bool XEnabled, bool YEnabled, bool IsNishio, bool IsMultiple, bool IsDynamic, int Level)
+		: TechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="xEnabled">Indicates whether the chain is enabled X strong relations.</param>
-		/// <param name="yEnabled">Indicates whether the chain is enabled Y strong relations.</param>
-		/// <param name="isNishio">Indicates whether the chain is a nishio forcing chains (X-Forcing chains).</param>
-		/// <param name="isMultiple">
-		/// Indicates whether the chain is a multiple forcing chains (Cell forcing chains and Region forcing chains).
-		/// </param>
-		/// <param name="isDynamic">Indicates whether the chain is a dynamic forcng chains.</param>
-		/// <param name="level">The dynamic searching level.</param>
-		protected ChainingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, bool xEnabled, bool yEnabled,
-			bool isNishio, bool isMultiple, bool isDynamic, int level) : base(conclusions, views) =>
-			(XEnabled, YEnabled, IsNishio, IsMultiple, IsDynamic, Level) = (
-				xEnabled, yEnabled, isNishio, isMultiple, isDynamic, level);
-
-
-		/// <summary>
-		/// Indicates whether the chain is enabled X strong relations.
-		/// </summary>
-		public bool XEnabled { get; }
-
-		/// <summary>
-		/// Indicates whether the chain is enabled Y strong relations.
-		/// </summary>
-		public bool YEnabled { get; }
-
-		/// <summary>
-		/// Indicates whether the chain is a nishio forcing chains (X-Forcing chains).
-		/// </summary>
-		public bool IsNishio { get; }
-
-		/// <summary>
-		/// Indicates whether the chain is a multiple forcing chains (Cell forcing chains and Region forcing chains).
-		/// </summary>
-		public bool IsMultiple { get; }
-
-		/// <summary>
-		/// Indicates whether the chain is a dynamic forcng chains.
-		/// </summary>
-		public bool IsDynamic { get; }
-
-		/// <summary>
-		/// Indicates the dynamic searching level.
-		/// </summary>
-		public int Level { get; }
-
 		/// <summary>
 		/// The sort key.
 		/// </summary>
@@ -120,6 +86,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			get
 			{
 				return 0;
+
+				#region Obsolete code
 				//int result = 0;
 				//var processed = new HashSet<FullChain>();
 				//foreach (var target in ChainsTargets)
@@ -139,6 +107,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				//}
 				//
 				//return result;
+				#endregion
 			}
 		}
 
@@ -205,13 +174,10 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => Equals(obj as ChainingTechniqueInfo);
-
-		/// <inheritdoc/>
 		public override bool Equals(TechniqueInfo? other) => Equals(other as ChainingTechniqueInfo);
 
 		/// <inheritdoc/>
-		public bool Equals(ChainingTechniqueInfo? other) => InternalEquals(this, other);
+		public virtual bool Equals(ChainingTechniqueInfo? other) => InternalEquals(this, other);
 
 		/// <inheritdoc/>
 		public override int GetHashCode()
@@ -256,13 +222,5 @@ namespace Sudoku.Solving.Manual.Chaining
 				(not null, not null) => left!.GetHashCode() == right!.GetHashCode(),
 				_ => false
 			};
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(ChainingTechniqueInfo? left, ChainingTechniqueInfo? right) =>
-			InternalEquals(left, right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(ChainingTechniqueInfo? left, ChainingTechniqueInfo? right) => !(left == right);
 	}
 }

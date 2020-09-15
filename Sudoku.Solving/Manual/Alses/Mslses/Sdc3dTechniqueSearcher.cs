@@ -275,9 +275,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 													accumulator.Add(
 														new Sdc3dTechniqueInfo(
 															conclusions,
-															views: new[]
+															new View[]
 															{
-																new View(
+																new(
 																	_alsShowRegions ? null : cellOffsets,
 																	_alsShowRegions ? candidateOffsets : null,
 																	_alsShowRegions
@@ -285,12 +285,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 																		: null,
 																	null)
 															},
-															rowDigitsMask: rowMask,
-															columnDigitsMask: columnMask,
-															blockDigitsMask: blockMask,
-															rowCells: currentRowMap | rbCurrentMap,
-															columnCells: currentColumnMap | cbCurrentMap,
-															blockCells: currentBlockMap | rbCurrentMap | cbCurrentMap));
+															rowMask,
+															columnMask,
+															blockMask,
+															currentRowMap | rbCurrentMap,
+															currentColumnMap | cbCurrentMap,
+															currentBlockMap | rbCurrentMap | cbCurrentMap));
 												}
 											}
 										}

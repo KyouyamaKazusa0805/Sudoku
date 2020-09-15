@@ -151,9 +151,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 			result.Add(
 				new GspTechniqueInfo(
 					conclusions,
-					views: new[] { new View(candidateOffsets) },
-					symmetryType: SymmetryType.Diagonal,
-					mappingTable: mapping));
+					new View[] { new(candidateOffsets) },
+					SymmetryType.Diagonal,
+					mapping));
 		}
 
 		/// <summary>
@@ -276,9 +276,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 			result.Add(
 				new GspTechniqueInfo(
 					conclusions,
-					views: new[] { new View(candidateOffsets) },
-					symmetryType: SymmetryType.AntiDiagonal,
-					mappingTable: mapping));
+					new View[] { new(candidateOffsets) },
+					SymmetryType.AntiDiagonal,
+					mapping));
 		}
 
 		/// <summary>
@@ -354,10 +354,10 @@ namespace Sudoku.Solving.Manual.Symmetry
 				{
 					result.Add(
 						new GspTechniqueInfo(
-							conclusions: new[] { new Conclusion(Assignment, 40, digit) },
-							views: new[] { new View(null, new[] { (0, 360 + digit) }, null, null) },
-							symmetryType: SymmetryType.Central,
-							mappingTable: mapping));
+							new Conclusion[] { new(Assignment, 40, digit) },
+							new View[] { new(null, new[] { (0, 360 + digit) }, null, null) },
+							SymmetryType.Central,
+							mapping));
 
 					return;
 				}

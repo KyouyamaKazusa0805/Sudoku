@@ -8,34 +8,16 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	/// <summary>
 	/// Provides a usage of <b>W-Wing</b> technique.
 	/// </summary>
-	public sealed class WWingTechniqueInfo : IrregularWingTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="StartCell">The start cell.</param>
+	/// <param name="EndCell">The end cell.</param>
+	/// <param name="ConjugatePair">The conjugate pair.</param>
+	public sealed record WWingTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int StartCell, int EndCell,
+		ConjugatePair ConjugatePair)
+		: IrregularWingTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="startCellOffset">Start cell offset.</param>
-		/// <param name="endCellOffset">End cell offsets.</param>
-		/// <param name="conjugatePair">The conjugate pair.</param>
-		public WWingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int startCellOffset, int endCellOffset, ConjugatePair conjugatePair)
-			: base(conclusions, views) =>
-			(StartCell, EndCell, ConjugatePair) = (startCellOffset, endCellOffset, conjugatePair);
-
-
-		/// <summary>
-		/// Indicates the start cell offset.
-		/// </summary>
-		public int StartCell { get; }
-
-		/// <summary>
-		/// Indicates the end cell offset.
-		/// </summary>
-		public int EndCell { get; }
-
-		/// <summary>
-		/// Indicates the conjugate pair.
-		/// </summary>
-		public ConjugatePair ConjugatePair { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.4M;
 

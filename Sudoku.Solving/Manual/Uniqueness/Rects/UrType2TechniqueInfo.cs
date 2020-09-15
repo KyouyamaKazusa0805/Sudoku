@@ -8,27 +8,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>unique rectangle</b> (UR) or
 	/// <b>avoidable rectangle</b> (AR) type 2 (or type 5) technique.
 	/// </summary>
-	public sealed class UrType2TechniqueInfo : UrTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="TypeCode">The type code.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	/// <param name="ExtraDigit">The extra digit.</param>
+	public sealed record UrType2TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int ExtraDigit)
+		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="typeCode">The type code.</param>
-		/// <param name="digit1">The digit 1.</param>
-		/// <param name="digit2">The digit 2.</param>
-		/// <param name="cells">All cells.</param>
-		/// <param name="isAr">Indicates whether the instance is an AR.</param>
-		/// <param name="extraDigit">The extra digit.</param>
-		public UrType2TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			UrTypeCode typeCode, int digit1, int digit2, int[] cells, bool isAr, int extraDigit)
-			: base(conclusions, views, typeCode, digit1, digit2, cells, isAr) =>
-			ExtraDigit = extraDigit;
-
-
-		/// <summary>
-		/// Indicates the extra digit.
-		/// </summary>
-		public int ExtraDigit { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.6M;
 

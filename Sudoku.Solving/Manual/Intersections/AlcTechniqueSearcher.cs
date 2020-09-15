@@ -163,15 +163,17 @@ namespace Sudoku.Solving.Manual.Intersections
 				result.Add(
 					new AlcTechniqueInfo(
 						conclusions,
-						views: new[]
+						new View[]
 						{
-							new View(
+							new(
 								hasValueCell ? valueCells.ToArray() : null,
-								candidateOffsets, new[] { (0, baseSet), (1, coverSet) },  null)
+								candidateOffsets,
+								new[] { (0, baseSet), (1, coverSet) },
+								null)
 						},
-						digits: mask,
-						baseCells: cellsMap,
-						targetCells: ahsCells,
+						mask,
+						cellsMap,
+						ahsCells,
 						hasValueCell));
 			}
 		}

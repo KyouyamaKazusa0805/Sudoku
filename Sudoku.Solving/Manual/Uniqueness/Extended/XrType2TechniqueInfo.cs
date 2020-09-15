@@ -7,23 +7,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <summary>
 	/// Provides a usage of <b>extended rectangle</b> (XR) type 2 technique.
 	/// </summary>
-	public sealed class XrType2TechniqueInfo : XrTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="DigitsMask">All digits mask.</param>
+	/// <param name="ExtraDigit">The extra digit.</param>
+	public sealed record XrType2TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
+		int ExtraDigit)
+		: XrTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="cells">All cells.</param>
-		/// <param name="digits">All digits.</param>
-		/// <param name="extraDigit">The extra digit.</param>
-		public XrType2TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			GridMap cells, short digits, int extraDigit) : base(conclusions, views, cells, digits) =>
-			ExtraDigit = extraDigit;
-
-
-		/// <summary>
-		/// Indicates the extra digit.
-		/// </summary>
-		public int ExtraDigit { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.6M + DifficultyExtra[Cells.Count];
 

@@ -105,15 +105,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				accumulator.Add(
 					new Ur2DOr3XTechniqueInfo(
 						conclusions,
-						views: new[] { new View(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null) },
-						typeCode: arMode ? APlus2D : Plus2D,
-						digit1: d1,
-						digit2: d2,
-						cells: urCells,
+						new View[] { new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null) },
+						arMode ? APlus2D : Plus2D,
+						d1,
+						d2,
+						urCells,
+						arMode,
 						x,
 						y,
-						xyCell: possibleXyCell,
-						isAr: arMode));
+						possibleXyCell));
 			}
 		}
 
@@ -219,18 +219,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						accumulator.Add(
 							new UrPlusTechniqueInfo(
 								conclusions,
-								views: new[]
+								new View[]
 								{
-									new View(
+									new(
 										arMode ? GetHighlightCells(urCells) : null,
 										candidateOffsets, new[] { (0, region) }, null)
 								},
-								typeCode: Plus2B1SL,
-								digit1: d1,
-								digit2: d2,
-								cells: urCells,
-								conjugatePairs: new[] { new ConjugatePair(cell, sameRegionCell, digit) },
-								isAr: arMode));
+								Plus2B1SL,
+								d1,
+								d2,
+								urCells,
+								arMode,
+								new ConjugatePair[] { new(cell, sameRegionCell, digit) }));
 					}
 				}
 			}
@@ -335,18 +335,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						accumulator.Add(
 							new UrPlusTechniqueInfo(
 								conclusions,
-								views: new[]
+								new View[]
 								{
-									new View(
+									new(
 										arMode ? GetHighlightCells(urCells) : null,
 										candidateOffsets, new[] { (0, region) }, null)
 								},
-								typeCode: Plus2D1SL,
-								digit1: d1,
-								digit2: d2,
-								cells: urCells,
-								conjugatePairs: new[] { new ConjugatePair(cell, sameRegionCell, digit) },
-								isAr: arMode));
+								Plus2D1SL,
+								d1,
+								d2,
+								urCells,
+								arMode,
+								new ConjugatePair[] { new(cell, sameRegionCell, digit) }));
 					}
 				}
 			}
@@ -446,20 +446,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				accumulator.Add(
 					new Ur2DOr3XTechniqueInfo(
 						conclusions,
-						views: new[]
-						{
-							new View(
-								arMode ? GetHighlightCells(urCells) : null,
-								candidateOffsets, null, null)
-						},
-						typeCode: arMode ? APlus3X : Plus3X,
-						digit1: d1,
-						digit2: d2,
-						cells: urCells,
+						new View[] { new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null) },
+						arMode ? APlus3X : Plus3X,
+						d1,
+						d2,
+						urCells,
+						arMode,
 						x,
 						y,
-						xyCell: possibleXyCell,
-						isAr: arMode));
+						possibleXyCell));
 			}
 		}
 
@@ -540,24 +535,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				accumulator.Add(
 					new UrPlusTechniqueInfo(
 						conclusions,
-						views: new[]
+						new View[]
 						{
-							new View(
+							new(
 								arMode ? GetHighlightCells(urCells) : null,
 								candidateOffsets,
 								new[] { (0, map1.CoveredLine), (1, map2.CoveredLine) },
 								null)
 						},
-						typeCode: Plus3X2SL,
-						digit1: d1,
-						digit2: d2,
-						cells: urCells,
-						conjugatePairs: new[]
+						Plus3X2SL,
+						d1,
+						d2,
+						urCells,
+						arMode,
+						new ConjugatePair[]
 						{
 							new(abxCell, abzCell, b),
-							new ConjugatePair(abyCell, abzCell, a)
-						},
-						isAr: arMode));
+							new(abyCell, abzCell, a)
+						}));
 			}
 		}
 
@@ -651,20 +646,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					accumulator.Add(
 						new UrPlusTechniqueInfo(
 							conclusions,
-							views: new[]
+							new View[]
 							{
-								new View(
+								new(
 									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
 									new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
 									null)
 							},
-							typeCode: Plus3N2SL,
-							digit1: d1,
-							digit2: d2,
-							cells: urCells,
-							conjugatePairs,
-							isAr: arMode));
+							Plus3N2SL,
+							d1,
+							d2,
+							urCells,
+							arMode,
+							conjugatePairs));
 				}
 			}
 		}
@@ -753,20 +748,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					accumulator.Add(
 						new UrPlusTechniqueInfo(
 							conclusions,
-							views: new[]
+							new View[]
 							{
-								new View(
+								new(
 									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
 									new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
 									null)
 							},
-							typeCode: Plus3U2SL,
-							digit1: d1,
-							digit2: d2,
-							cells: urCells,
-							conjugatePairs,
-							isAr: arMode));
+							Plus3U2SL,
+							d1,
+							d2,
+							urCells,
+							arMode,
+							conjugatePairs));
 				}
 			}
 		}
@@ -855,20 +850,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					accumulator.Add(
 						new UrPlusTechniqueInfo(
 							conclusions,
-							views: new[]
+							new View[]
 							{
-								new View(
+								new(
 									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
 									new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
 									null)
 							},
-							typeCode: Plus3E2SL,
-							digit1: d1,
-							digit2: d2,
-							cells: urCells,
-							conjugatePairs,
-							isAr: arMode));
+							Plus3E2SL,
+							d1,
+							d2,
+							urCells,
+							arMode,
+							conjugatePairs));
 				}
 			}
 		}
@@ -965,9 +960,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					accumulator.Add(
 						new UrPlusTechniqueInfo(
 							conclusions,
-							views: new[]
+							new View[]
 							{
-								new View(
+								new(
 									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
 									new[]
@@ -978,12 +973,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									},
 									null)
 							},
-							typeCode: Plus4X3SL,
-							digit1: d1,
-							digit2: d2,
-							cells: urCells,
-							conjugatePairs,
-							isAr: arMode));
+							Plus4X3SL,
+							d1,
+							d2,
+							urCells,
+							arMode,
+							conjugatePairs));
 				}
 			}
 		}
@@ -1091,9 +1086,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						accumulator.Add(
 							new UrPlusTechniqueInfo(
 								conclusions,
-								views: new[]
+								new View[]
 								{
-									new View(
+									new(
 										arMode ? GetHighlightCells(urCells) : null,
 										candidateOffsets,
 										new[]
@@ -1104,12 +1099,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										},
 										null)
 								},
-								typeCode: Plus4C3SL,
-								digit1: d1,
-								digit2: d2,
-								cells: urCells,
-								conjugatePairs,
-								isAr: arMode));
+								Plus4C3SL,
+								d1,
+								d2,
+								urCells,
+								arMode,
+								conjugatePairs));
 					}
 				}
 			}
@@ -1252,20 +1247,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							accumulator.Add(
 								new UrWithWingTechniqueInfo(
 									conclusions,
-									views: new[]
+									new View[]
 									{
-										new View(
-											arMode ? GetHighlightCells(urCells) : null,
-											candidateOffsets, null, null)
+										new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null)
 									},
-									typeCode: arMode ? AXyWing : XyWing,
-									digit1: d1,
-									digit2: d2,
-									cells: urCells,
-									extraCells: new[] { c1, c2 },
-									extraDigits: extraDigitsMask.GetAllSets(),
-									pivots: otherCellsMap,
-									isAr: arMode));
+									arMode ? AXyWing : XyWing,
+									d1,
+									d2,
+									urCells,
+									arMode,
+									new[] { c1, c2 },
+									extraDigitsMask.GetAllSets(),
+									otherCellsMap));
 						}
 						else // size > 2
 						{
@@ -1352,20 +1345,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									accumulator.Add(
 										new UrWithWingTechniqueInfo(
 											conclusions,
-											views: new[]
+											new View[]
 											{
-												new View(
+												new(
 													arMode ? GetHighlightCells(urCells) : null,
 													candidateOffsets, null, null)
 											},
-											typeCode: arMode ? AXyzWing : XyzWing,
-											digit1: d1,
-											digit2: d2,
-											cells: urCells,
-											extraCells: new[] { c1, c2, c3 },
-											extraDigits: extraDigitsMask.GetAllSets(),
-											pivots: otherCellsMap,
-											isAr: arMode));
+											arMode ? AXyzWing : XyzWing,
+											d1,
+											d2,
+											urCells,
+											arMode,
+											new[] { c1, c2, c3 },
+											extraDigitsMask.GetAllSets(),
+											otherCellsMap));
 								}
 								else // size == 4
 								{
@@ -1454,19 +1447,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										accumulator.Add(
 											new UrWithWingTechniqueInfo(
 												conclusions,
-												views: new[]
+												new View[]
 												{
-													new View(
-														arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null)
+													new(
+														arMode ? GetHighlightCells(urCells) : null, candidateOffsets,
+														null, null)
 												},
-												typeCode: arMode ? AWxyzWing : WxyzWing,
-												digit1: d1,
-												digit2: d2,
-												cells: urCells,
-												extraCells: new[] { c1, c2, c3, c4 },
-												extraDigits: extraDigitsMask.GetAllSets(),
-												pivots: otherCellsMap,
-												isAr: arMode));
+												arMode ? AWxyzWing : WxyzWing,
+												d1,
+												d2,
+												urCells,
+												arMode,
+												new[] { c1, c2, c3, c4 },
+												extraDigitsMask.GetAllSets(),
+												otherCellsMap));
 									}
 								}
 							}

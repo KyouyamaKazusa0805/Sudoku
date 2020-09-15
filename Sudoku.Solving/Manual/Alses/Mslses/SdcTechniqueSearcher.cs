@@ -242,9 +242,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											accumulator.Add(
 												new SdcTechniqueInfo(
 													conclusions,
-													views: new[]
+													new View[]
 													{
-														new View(
+														new(
 															_alsShowRegions ? null : cellOffsets,
 															_alsShowRegions ? candidateOffsets : null,
 															_alsShowRegions switch
@@ -254,16 +254,16 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 															},
 															null)
 													},
-													block: coverSet,
-													line: baseSet,
+													coverSet,
+													baseSet,
 													blockMask,
 													lineMask,
-													intersectionMask: selectedInterMask,
-													isCannibalistic: cannibalMode,
-													isolatedDigitsMask: maskIsolated,
-													blockCells: currentBlockMap,
-													lineCells: currentLineMap,
-													intersectionCells: currentInterMap));
+													selectedInterMask,
+													cannibalMode,
+													maskIsolated,
+													currentBlockMap,
+													currentLineMap,
+													currentInterMap));
 										}
 									}
 								}

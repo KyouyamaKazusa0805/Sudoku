@@ -10,28 +10,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>unique rectangle plus</b> (UR+) or
 	/// <b>avoidable rectangle plus</b> (AR+) technique.
 	/// </summary>
-	public class UrPlusTechniqueInfo : UrTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="TypeCode">The type code.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	/// <param name="ConjugatePairs">All conjugate pairs.</param>
+	public record UrPlusTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
+		IReadOnlyList<ConjugatePair> ConjugatePairs)
+		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="typeCode">The type code.</param>
-		/// <param name="digit1">The digit 1.</param>
-		/// <param name="digit2">The digit 2.</param>
-		/// <param name="cells">All UR cells.</param>
-		/// <param name="conjugatePairs">All conjugate pairs.</param>
-		/// <param name="isAr">Indicates whether the specified structure is an AR.</param>
-		public UrPlusTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			UrTypeCode typeCode, int digit1, int digit2, int[] cells,
-			IReadOnlyList<ConjugatePair> conjugatePairs, bool isAr)
-			: base(conclusions, views, typeCode, digit1, digit2, cells, isAr) =>
-			ConjugatePairs = conjugatePairs;
-
-
-		/// <summary>
-		/// Indicates all conjugate pairs used.
-		/// </summary>
-		public IReadOnlyList<ConjugatePair> ConjugatePairs { get; }
-
 		/// <inheritdoc/>
 		public sealed override decimal Difficulty => ConjugatePairs.Count * .2M + 4.4M;
 

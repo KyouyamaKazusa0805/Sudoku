@@ -47,8 +47,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					// BUG + 1 found.
 					accumulator.Add(
 						new BugType1TechniqueInfo(
-							conclusions: new[] { new Conclusion(Assignment, trueCandidates[0]) },
-							views: new[] { new View(new[] { (0, trueCandidates[0]) }) }));
+							new Conclusion[] { new(Assignment, trueCandidates[0]) },
+							new View[] { new(new[] { (0, trueCandidates[0]) }) }));
 					break;
 				}
 				default:

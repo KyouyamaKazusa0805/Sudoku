@@ -72,17 +72,11 @@ namespace Sudoku.Solving.Manual.Subsets
 						accumulator.Add(
 							new NakedSubsetTechniqueInfo(
 								conclusions,
-								views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
-								regionOffset: region,
-								cellOffsets: cells,
-								digits: mask.GetAllSets().ToArray(),
-								isLocked:
-									flagMask switch
-									{
-										_ when flagMask == mask => true,
-										not 0 => false,
-										_ => null
-									}));
+								new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
+								region,
+								cells,
+								mask.GetAllSets().ToArray(),
+								flagMask switch { _ when flagMask == mask => true, not 0 => false, _ => null }));
 					}
 				}
 
@@ -142,9 +136,9 @@ namespace Sudoku.Solving.Manual.Subsets
 						accumulator.Add(
 							new HiddenSubsetTechniqueInfo(
 								conclusions,
-								views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
-								regionOffset: region,
-								cellOffsets: map.ToArray(),
+								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+								region,
+								map.ToArray(),
 								digits));
 					}
 				}

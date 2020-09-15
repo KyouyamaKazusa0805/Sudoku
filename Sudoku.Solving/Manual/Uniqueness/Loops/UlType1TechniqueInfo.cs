@@ -8,16 +8,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <summary>
 	/// Provides a usage of <b>unique loop type 1</b> technique.
 	/// </summary>
-	public sealed class UlType1TechniqueInfo : UlTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Loop">The loop.</param>
+	public sealed record UlType1TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2, GridMap Loop)
+		: UlTechniqueInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
-		/// <inheritdoc/>
-		public UlType1TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int d1, int d2, GridMap loop)
-			: base(conclusions, views, d1, d2, loop)
-		{
-		}
-
-
 		/// <inheritdoc/>
 		public override int Type => 1;
 

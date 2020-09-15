@@ -10,27 +10,14 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// <summary>
 	/// Provides a usage of <b>Gurth's symmetrical placement</b> (GSP) technique.
 	/// </summary>
-	public sealed class GspTechniqueInfo : SymmetryTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="SymmetryType">The symmetry type used.</param>
+	/// <param name="MappingTable">The mapping table.</param>
+	public sealed record GspTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, SymmetryType SymmetryType, int?[] MappingTable)
+		: SymmetryTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="symmetryType">The symmetry type.</param>
-		/// <param name="mappingTable">The mapping table.</param>
-		public GspTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			SymmetryType symmetryType, int?[] mappingTable) : base(conclusions, views) =>
-			(SymmetryType, MappingTable) = (symmetryType, mappingTable);
-
-
-		/// <summary>
-		/// Indicates the symmetry type.
-		/// </summary>
-		public SymmetryType SymmetryType { get; }
-
-		/// <summary>
-		/// Indicates the mapping table.
-		/// </summary>
-		public int?[] MappingTable { get; }
-
 		/// <inheritdoc/>
 		public override bool ShowDifficulty => false;
 

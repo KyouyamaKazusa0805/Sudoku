@@ -15,45 +15,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>unique rectangle</b> (UR) or
 	/// <b>avoidable rectangle</b> (AR) technique.
 	/// </summary>
-	public abstract class UrTechniqueInfo : UniquenessTechniqueInfo, IComparable<UrTechniqueInfo>
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="TypeCode">The type code.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	public abstract record UrTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable)
+		: UniquenessTechniqueInfo(Conclusions, Views), IComparable<UrTechniqueInfo>
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="typeCode">The type code.</param>
-		/// <param name="digit1">The digit 1.</param>
-		/// <param name="digit2">The digit 2.</param>
-		/// <param name="cells">All cells.</param>
-		/// <param name="isAr">Indicates whether the structure is an AR.</param>
-		protected UrTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			UrTypeCode typeCode, int digit1, int digit2, int[] cells, bool isAr) : base(conclusions, views) =>
-			(Digit1, Digit2, Cells, IsAr, TypeCode) = (digit1, digit2, cells, isAr, typeCode);
-
-
-		/// <summary>
-		/// Indicates the UR type code.
-		/// </summary>
-		public UrTypeCode TypeCode { get; }
-
-		/// <summary>
-		/// Indicates the digit 1.
-		/// </summary>
-		public int Digit1 { get; }
-
-		/// <summary>
-		/// Indicates the digit 2.
-		/// </summary>
-		public int Digit2 { get; }
-
-		/// <summary>
-		/// Indicates the cells.
-		/// </summary>
-		public int[] Cells { get; }
-
-		/// <summary>
-		/// Indicates the current structure is UR or AR.
-		/// </summary>
-		public bool IsAr { get; }
-
 		/// <inheritdoc/>
 		public sealed override string Name => base.Name;
 

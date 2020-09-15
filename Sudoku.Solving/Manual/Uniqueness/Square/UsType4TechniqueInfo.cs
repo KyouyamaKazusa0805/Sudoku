@@ -9,35 +9,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <summary>
 	/// Provides a usage of <b>unique square type 4</b> (US) technique.
 	/// </summary>
-	public sealed class UsType4TechniqueInfo : UsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cells">The cells.</param>
+	/// <param name="DigitsMask">The digits mask.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="ConjugateRegion">The so-called conjugate region.</param>
+	public sealed record UsType4TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
+		int Digit1, int Digit2, GridMap ConjugateRegion)
+		: UsTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="cells">The cells.</param>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="d1">The digit 1.</param>
-		/// <param name="d2">The digit 2.</param>
-		/// <param name="conjugateRegion">The so-called conjugate region.</param>
-		public UsType4TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap cells, short digitsMask,
-			int d1, int d2, GridMap conjugateRegion) : base(conclusions, views, cells, digitsMask) =>
-			(Digit1, Digit2, ConjugateRegion) = (d1, d2, conjugateRegion);
-
-
-		/// <summary>
-		/// Indicates the digit 1.
-		/// </summary>
-		public int Digit1 { get; }
-
-		/// <summary>
-		/// Indicates the digit 2.
-		/// </summary>
-		public int Digit2 { get; }
-
-		/// <summary>
-		/// Indicates the so-called conjugate region.
-		/// </summary>
-		public GridMap ConjugateRegion { get; }
-
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.UsType4;
 

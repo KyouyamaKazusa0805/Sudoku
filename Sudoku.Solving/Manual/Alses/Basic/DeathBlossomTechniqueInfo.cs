@@ -10,31 +10,18 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Provides a usage of <b>death blossom</b> technique.
 	/// </summary>
-	public sealed class DeathBlossomTechniqueInfo : AlsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Pivot">The pivot cell.</param>
+	/// <param name="Alses">All ALSes used.</param>
+	public sealed record DeathBlossomTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot, IReadOnlyDictionary<int, Als> Alses)
+		: AlsTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="pivot">The pivot cell.</param>
-		/// <param name="alses">All ALSes used.</param>
-		public DeathBlossomTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int pivot, IReadOnlyDictionary<int, Als> alses) : base(conclusions, views) =>
-			(Pivot, Alses) = (pivot, alses);
-
-
 		/// <summary>
 		/// Indicates how many petals used.
 		/// </summary>
 		public int PetalsCount => Alses.Count;
-
-		/// <summary>
-		/// Indicates the pivot cell.
-		/// </summary>
-		public int Pivot { get; }
-
-		/// <summary>
-		/// Indicates all ALSes used sorted by digit.
-		/// </summary>
-		public IReadOnlyDictionary<int, Als> Alses { get; }
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => 8.0M + PetalsCount * .1M;

@@ -296,16 +296,16 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					accumulator.Add(
 						new SeniorExocetTechniqueInfo(
-							conclusions: new List<Conclusion>(), // Special eliminations will use this empty list.
-							views: new[] { new View(cellOffsets, candidateOffsets, null, null) },
+							new List<Conclusion>(), // Special eliminations will use this empty list.
+							new View[] { new(cellOffsets, candidateOffsets, null, null) },
 							exocet,
-							digits: m.GetAllSets(),
+							m.GetAllSets(),
 							endoTargetCell,
 							extraRegionsMask,
-							targetEliminations: targetElims,
-							trueBaseEliminations: trueBaseElims,
-							mirrorEliminations: mirrorElims,
-							compatibilityEliminations: compatibilityElims));
+							targetElims,
+							trueBaseElims,
+							mirrorElims,
+							compatibilityElims));
 				}
 			}
 		}

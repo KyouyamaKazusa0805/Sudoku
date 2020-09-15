@@ -5,37 +5,26 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Windows;
+using static System.Math;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
 	/// <summary>
 	/// Provides a usage of <b>BUG + n with forcing chains</b> technique.
 	/// </summary>
-	public sealed class BugMultipleWithFcTechniqueInfo : UniquenessTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Candidates">All candidates.</param>
+	/// <param name="Chains">The sub-chains.</param>
+	public sealed record BugMultipleWithFcTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates,
+		IReadOnlyDictionary<int, Node> Chains)
+		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="candidates">All candidates.</param>
-		/// <param name="chains">The sub-chains.</param>
-		public BugMultipleWithFcTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, IReadOnlyList<int> candidates,
-			IReadOnlyDictionary<int, Node> chains) : base(conclusions, views) =>
-			(Candidates, Chains) = (candidates, chains);
-
-
-		/// <summary>
-		/// The true candidates.
-		/// </summary>
-		public IReadOnlyList<int> Candidates { get; }
-
-		/// <summary>
-		/// All sub-chains.
-		/// </summary>
-		public IReadOnlyDictionary<int, Node> Chains { get; }
-
 		/// <summary>
 		/// The difficulty for the number of true candidates.
 		/// </summary>
-		public decimal CountDifficulty => Math.Floor((decimal)Math.Sqrt(2 * Candidates.Count + .5)) / 10;
+		public decimal CountDifficulty => Floor((decimal)Sqrt(2 * Candidates.Count + .5)) / 10;
 
 		/// <summary>
 		/// The length difficluty.

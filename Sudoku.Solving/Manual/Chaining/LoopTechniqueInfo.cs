@@ -11,22 +11,15 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides a usage of <b>(grouped) continuous nice loop</b> technique.
 	/// </summary>
-	public sealed class LoopTechniqueInfo : ChainingTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="XEnabled">Indicates whether the chain is enabled X strong relations.</param>
+	/// <param name="yEnabled">Indicates whether the chain is enabled Y strong relations.</param>
+	/// <param name="Target">The target.</param>
+	public sealed record LoopTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool XEnabled, bool YEnabled, Node Target)
+		: ChainingTechniqueInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="xEnabled">Indicates whether the chain is enabled X strong relations.</param>
-		/// <param name="yEnabled">Indicates whether the chain is enabled Y strong relations.</param>
-		/// <param name="target">The target.</param>
-		public LoopTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, bool xEnabled, bool yEnabled, Node target)
-			: base(conclusions, views, xEnabled, yEnabled, default, default, default, default) => Target = target;
-
-
-		/// <summary>
-		/// The target.
-		/// </summary>
-		public Node Target { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
 			(XEnabled && YEnabled ? 5.0M : 4.5M) + GetExtraDifficultyByLength(FlatComplexity - 2);
@@ -39,11 +32,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			IsXCycle switch
 			{
 				true => TechniqueCode.FishyCycle,
-				_ => IsXyChain switch
-				{
-					true => TechniqueCode.XyCycle,
-					_ => TechniqueCode.ContinuousNiceLoop
-				}
+				_ => IsXyChain switch { true => TechniqueCode.XyCycle, _ => TechniqueCode.ContinuousNiceLoop }
 			};
 
 		/// <inheritdoc/>

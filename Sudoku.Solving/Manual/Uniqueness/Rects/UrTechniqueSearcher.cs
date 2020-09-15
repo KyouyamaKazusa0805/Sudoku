@@ -299,7 +299,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			(from Cell in urCells select (0, Cell)).ToList();
 
 
-		#region Partial method statements
 		partial void CheckType1(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
@@ -371,6 +370,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		partial void CheckWing(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap, int size);
-		#endregion
 	}
 }

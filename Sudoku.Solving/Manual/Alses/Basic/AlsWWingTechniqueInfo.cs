@@ -9,45 +9,18 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Provides a usage of <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
 	/// </summary>
-	public sealed class AlsWWingTechniqueInfo : AlsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Als1">The ALS 1.</param>
+	/// <param name="Als2">The ALS 2.</param>
+	/// <param name="ConjugatePair">The conjugate pair.</param>
+	/// <param name="WDigitsMask">The W digit mask.</param>
+	/// <param name="X">The digit X.</param>
+	public sealed record AlsWWingTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Als Als1, Als Als2,
+		ConjugatePair ConjugatePair, short WDigitsMask, int X)
+		: AlsTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="als1">The ALS 1.</param>
-		/// <param name="als2">The ALS 2.</param>
-		/// <param name="conjugatePair">The conjugate pair.</param>
-		/// <param name="wDigitsMask">The W digits mask.</param>
-		/// <param name="x">The X digit.</param>
-		public AlsWWingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			Als als1, Als als2, ConjugatePair conjugatePair, short wDigitsMask, int x) : base(conclusions, views) =>
-			(Als1, Als2, ConjugatePair, WDigitsMask, XDigit) = (als1, als2, conjugatePair, wDigitsMask, x);
-
-
-		/// <summary>
-		/// Indicates the ALS 1.
-		/// </summary>
-		public Als Als1 { get; }
-
-		/// <summary>
-		/// Indicates the ALS 2.
-		/// </summary>
-		public Als Als2 { get; }
-
-		/// <summary>
-		/// Indicates the conjugate pair.
-		/// </summary>
-		public ConjugatePair ConjugatePair { get; }
-
-		/// <summary>
-		/// Indicates the W digits mask.
-		/// </summary>
-		public short WDigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the X digit.
-		/// </summary>
-		public int XDigit { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 6.2M;
 
@@ -65,7 +38,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			string wStr = new DigitCollection(WDigitsMask.GetAllSets()).ToString();
 			return
 				$"{Name}: Two ALSes {Als1}, {Als2} connected by " +
-				$"{ConjugatePair}, W = {wStr}, X = {XDigit + 1} => {elimStr}";
+				$"{ConjugatePair}, W = {wStr}, X = {X + 1} => {elimStr}";
 		}
 	}
 }

@@ -8,22 +8,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>hidden unique rectangle</b> (HUR) or
 	/// <b>hidden avoidable rectangle</b> (HAR) technique.
 	/// </summary>
-	public sealed class HiddenUrTechniqueInfo : UrPlusTechniqueInfo
-	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit1">The digit 1.</param>
-		/// <param name="digit2">The digit 2.</param>
-		/// <param name="cells">All cells.</param>
-		/// <param name="conjugatePairs">The conjugate pairs.</param>
-		/// <param name="isAr">Indicates whether the specified structure is an AR.</param>
-		public HiddenUrTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit1, int digit2, int[] cells, IReadOnlyList<ConjugatePair> conjugatePairs,
-			bool isAr)
-			: base(
-				  conclusions, views, isAr ? UrTypeCode.AHidden : UrTypeCode.Hidden,
-				  digit1, digit2, cells, conjugatePairs, isAr)
-		{
-		}
-	}
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="TypeCode">The type code.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	/// <param name="ConjugatePairs">All conjugate pairs.</param>
+	public sealed record HiddenUrTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<ConjugatePair> ConjugatePairs)
+		: UrPlusTechniqueInfo(
+			Conclusions, Views, IsAvoidable ? UrTypeCode.AHidden : UrTypeCode.Hidden,
+			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs);
 }

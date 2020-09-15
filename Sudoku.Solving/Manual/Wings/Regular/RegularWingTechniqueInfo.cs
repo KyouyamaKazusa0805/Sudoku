@@ -12,7 +12,16 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 	/// <summary>
 	/// Provides a usage of <b>regular wing</b> technique.
 	/// </summary>
-	public sealed class RegularWingTechniqueInfo : WingTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Pivot">The pivot cell.</param>
+	/// <param name="PivotCandidatesCount">The number of candidates that is in the pivot.</param>
+	/// <param name="DigitsMask">The mask of all digits used.</param>
+	/// <param name="Cells">The cells used.</param>
+	public sealed record RegularWingTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot,
+		int PivotCandidatesCount, short DigitsMask, IReadOnlyList<int> Cells)
+		: WingTechniqueInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty rating.
@@ -20,59 +29,24 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		private static readonly decimal[] DifficultyRating = { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6.0M };
 
 
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="pivot">The pivot cell offset.</param>
-		/// <param name="pivotCandidatesCount">
-		/// The number of candidates in pivot cell.
-		/// </param>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="cellOffsets">The cell offsets used.</param>
-		public RegularWingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int pivot, int pivotCandidatesCount, short digitsMask,
-			IReadOnlyList<int> cellOffsets) : base(conclusions, views) =>
-			(Pivot, PivotCellCandidatesCount, DigitsMask, CellOffsets) = (pivot, pivotCandidatesCount, digitsMask, cellOffsets);
-
+		/// <summary>
+		/// Indicates whether the structure is incomplete.
+		/// </summary>
+		public bool IsIncomplete => Size == PivotCandidatesCount + 1;
 
 		/// <summary>
 		/// Indicates the size of this regular wing.
 		/// </summary>
 		public int Size => DigitsMask.CountSet();
 
-		/// <summary>
-		/// Indicates the pivot cell.
-		/// </summary>
-		public int Pivot { get; }
-
-		/// <summary>
-		/// Indicates the number of candidates in the pivot cell.
-		/// </summary>
-		public int PivotCellCandidatesCount { get; }
-
-		/// <summary>
-		/// Indicates the digits mask.
-		/// </summary>
-		public short DigitsMask { get; }
-
-		/// <summary>
-		/// Indicates all cell offsets used.
-		/// </summary>
-		public IReadOnlyList<int> CellOffsets { get; }
-
 		/// <inheritdoc/>
-		public override decimal Difficulty
-		{
-			get
+		public override decimal Difficulty =>
+			Size switch
 			{
-				bool isIncomplete = Size == PivotCellCandidatesCount + 1;
-				return Size switch
-				{
-					3 => isIncomplete ? 4.2M : 4.4M,
-					>= 4 and < 9 => isIncomplete ? DifficultyRating[Size] + .1M : DifficultyRating[Size],
-					_ => throw Throwings.ImpossibleCase
-				};
-			}
-		}
+				3 => IsIncomplete ? 4.2M : 4.4M,
+				>= 4 and < 9 => IsIncomplete ? DifficultyRating[Size] + .1M : DifficultyRating[Size],
+				_ => throw Throwings.ImpossibleCase
+			};
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel =>
@@ -107,19 +81,13 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <summary>
 		/// Indicates the internal name.
 		/// </summary>
-		private string InternalName
-		{
-			get
+		private string InternalName =>
+			Size switch
 			{
-				bool isIncomplete = Size == PivotCellCandidatesCount + 1;
-				return Size switch
-				{
-					3 => isIncomplete ? "XY-Wing" : "XYZ-Wing",
-					>= 4 and < 9 => isIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size],
-					_ => throw Throwings.ImpossibleCase
-				};
-			}
-		}
+				3 => IsIncomplete ? "XY-Wing" : "XYZ-Wing",
+				>= 4 and < 9 => IsIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size],
+				_ => throw Throwings.ImpossibleCase
+			};
 
 
 		/// <inheritdoc/>
@@ -127,7 +95,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string pivotCellStr = new CellCollection(Pivot).ToString();
-			string cellOffsetsStr = new CellCollection(CellOffsets).ToString();
+			string cellOffsetsStr = new CellCollection(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {pivotCellStr} with {cellOffsetsStr} => {elimStr}";
 		}

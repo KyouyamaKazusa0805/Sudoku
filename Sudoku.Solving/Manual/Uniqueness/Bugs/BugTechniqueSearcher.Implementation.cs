@@ -49,9 +49,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			accumulator.Add(
 				new BugType2TechniqueInfo(
 					conclusions,
-					views: new[] { new View(candidateOffsets) },
+					new View[] { new(candidateOffsets) },
 					digit,
-					cells: selection.ToArray()));
+					selection.ToArray()));
 		}
 
 		/// <summary>
@@ -140,11 +140,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						accumulator.Add(
 							new BugType3TechniqueInfo(
 								conclusions,
-								views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
 								trueCandidates,
-								digits: digitsMask.GetAllSets().ToArray(),
+								digitsMask.GetAllSets().ToArray(),
 								cells,
-								isNaked: true));
+								true));
 					}
 				}
 			}
@@ -250,9 +250,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					accumulator.Add(
 						new BugType4TechniqueInfo(
 							conclusions,
-							views: new[]
+							new View[]
 							{
-								new View(
+								new(
 									null,
 									new List<(int, int)>(from Cand in trueCandidates select (0, Cand))
 									{
@@ -262,9 +262,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 									new[] { (0, region) },
 									null)
 							},
-							digits: digits.ToList(),
+							digits.ToList(),
 							cells,
-							conjugatePair: new(c1, c2, conjuagtePairDigit)));
+							new(c1, c2, conjuagtePairDigit)));
 				}
 			}
 		}
@@ -307,8 +307,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			accumulator.Add(
 				new BugMultipleTechniqueInfo(
 					conclusions,
-					views: new[] { new View((from Cand in trueCandidates select (0, Cand)).ToList()) },
-					candidates: trueCandidates));
+					new View[] { new((from Cand in trueCandidates select (0, Cand)).ToList()) },
+					trueCandidates));
 		}
 
 		/// <summary>
@@ -351,15 +351,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					continue;
 				}
 
-				var cellOffsets = new List<(int, int)> { (0, cell) };
-				var candidateOffsets = (from C in trueCandidates select (0, C)).ToList();
+				var cellOffsets = new[] { (0, cell) };
+				var candidateOffsets = (from C in trueCandidates select (0, C)).ToArray();
 				accumulator.Add(
 					new BugXzTechniqueInfo(
 						conclusions,
-						views: new[] { new View(cellOffsets, candidateOffsets, null, null) },
-						digitMask: mask,
-						cells: new[] { c1, c2 },
-						extraCell: cell));
+						new View[] { new(cellOffsets, candidateOffsets, null, null) },
+						mask,
+						new[] { c1, c2 },
+						cell));
 			}
 		}
 

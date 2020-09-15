@@ -7,7 +7,7 @@
 	{
 		/// <summary>
 		/// <para>The table of all UR cells.</para>
-		/// <para>I strongly recommend you <b>should not</b> modify any values in this table.</para>
+		/// <para>You <b>cannot</b> modify any values in this table.</para>
 		/// </summary>
 		public static readonly int[][] UrCellsList =
 		{

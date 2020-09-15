@@ -147,11 +147,11 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						accumulator.Add(
 							new RegularWingTechniqueInfo(
 								conclusions,
-								views: new[] { new View(candidateOffsets) },
+								new View[] { new(candidateOffsets) },
 								pivot,
-								pivotCandidatesCount: mask.CountSet(),
-								digitsMask: union,
-								cellOffsets: cells));
+								mask.CountSet(),
+								union,
+								cells));
 					}
 				}
 			}

@@ -98,11 +98,11 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Empty rectangle.
 						accumulator.Add(
 							new EmptyRectangleTechniqueInfo(
-								conclusions: new[] { new Conclusion(Elimination, elimCell, digit) },
-								views: new[] { new View(null, candidateOffsets, new[] { (0, block) }, null) },
+								new Conclusion[] { new(Elimination, elimCell, digit) },
+								new View[] { new(null, candidateOffsets, new[] { (0, block) }, null) },
 								digit,
 								block,
-								conjugatePair: new(cpCells[0], cpCells[1], digit)));
+								new(cpCells[0], cpCells[1], digit)));
 					}
 				}
 			}

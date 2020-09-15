@@ -9,22 +9,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <summary>
 	/// Provides a usage of <b>unique square type 1</b> (US) technique.
 	/// </summary>
-	public sealed class UsType1TechniqueInfo : UsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cells">The cells.</param>
+	/// <param name="DigitsMask">The digits mask.</param>
+	/// <param name="Candidate">Indicates the true candidate.</param>
+	public sealed record UsType1TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
+		int Candidate)
+		: UsTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="cells">The cells.</param>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="candidate">The candidate.</param>
-		public UsType1TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap cells, short digitsMask,
-			int candidate) : base(conclusions, views, cells, digitsMask) => Candidate = candidate;
-
-
-		/// <summary>
-		/// Indicates the true candidate.
-		/// </summary>
-		public int Candidate { get; }
-
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.UsType1;
 

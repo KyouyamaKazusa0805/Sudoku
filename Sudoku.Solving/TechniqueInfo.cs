@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
@@ -14,13 +13,10 @@ namespace Sudoku.Solving
 	/// Encapsulates all information after searched a solving step,
 	/// which include the conclusion, the difficulty and so on.
 	/// </summary>
-	public abstract class TechniqueInfo : IEquatable<TechniqueInfo?>
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	public abstract record TechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		protected TechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views) =>
-			(Conclusions, Views) = (conclusions, views);
-
-
 		/// <summary>
 		/// <para>
 		/// Indicates whether the difficulty rating of this technique should be
@@ -55,16 +51,6 @@ namespace Sudoku.Solving
 		/// The difficulty level of this step.
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }
-
-		/// <summary>
-		/// All conclusions found in this technique step.
-		/// </summary>
-		public IReadOnlyList<Conclusion> Conclusions { get; }
-
-		/// <summary>
-		/// All views to display on the GUI.
-		/// </summary>
-		public IReadOnlyList<View> Views { get; }
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
@@ -114,21 +100,6 @@ namespace Sudoku.Solving
 			}
 		}
 
-		/// <inheritdoc/>
-		public override bool Equals(object? obj) => Equals(obj as TechniqueInfo);
-
-		/// <inheritdoc/>
-		public virtual bool Equals(TechniqueInfo? other) =>
-			(this, other) switch
-			{
-				(null, null) => true,
-				(not null, not null) => ToString() == other!.ToString(),
-				_ => false
-			};
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ToString().GetHashCode();
-
 		/// <summary>
 		/// Returns a string that only contains the name and the basic information. Different with
 		/// <see cref="ToFullString"/>, the method will only contains the basic introduction about the technique.
@@ -153,12 +124,5 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <returns>The string instance.</returns>
 		public virtual string ToFullString() => ToString();
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(TechniqueInfo left, TechniqueInfo right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(TechniqueInfo left, TechniqueInfo right) => !(left == right);
 	}
 }

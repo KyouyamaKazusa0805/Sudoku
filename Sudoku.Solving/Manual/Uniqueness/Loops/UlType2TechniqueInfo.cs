@@ -8,23 +8,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <summary>
 	/// Provides a usage of <b>unique loop type 2</b> technique.
 	/// </summary>
-	public sealed class UlType2TechniqueInfo : UlTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Loop">The loop.</param>
+	/// <param name="ExtraDigit">The extra digit.</param>
+	public sealed record UlType2TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2, GridMap Loop,
+		int ExtraDigit)
+		: UlTechniqueInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="d1">The digit 1.</param>
-		/// <param name="d2">The digit 2.</param>
-		/// <param name="loop">The loop.</param>
-		/// <param name="extraDigit">The extra digit.</param>
-		public UlType2TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int d1, int d2, GridMap loop,
-			int extraDigit) : base(conclusions, views, d1, d2, loop) => ExtraDigit = extraDigit;
-
-
-		/// <summary>
-		/// Indicates the extra digit.
-		/// </summary>
-		public int ExtraDigit { get; }
-
 		/// <inheritdoc/>
 		public override int Type => 2;
 

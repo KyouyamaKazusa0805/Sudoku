@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			accumulator.AddIfDoesNotContain(
 				new UlType1TechniqueInfo(
 					conclusions,
-					views: new[] { new View(candidateOffsets) },
+					new View[] { new(candidateOffsets) },
 					d1,
 					d2,
 					loop));
@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			accumulator.AddIfDoesNotContain(
 				new UlType2TechniqueInfo(
 					conclusions,
-					views: new[] { new View(candidateOffsets) },
+					new View[] { new(candidateOffsets) },
 					d1,
 					d2,
 					loop,
@@ -208,12 +208,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						accumulator.AddIfDoesNotContain(
 							new UlType3TechniqueInfo(
 								conclusions,
-								views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
 								d1,
 								d2,
 								loop,
-								subsetDigitsMask: mask,
-								subsetCells: cells));
+								mask,
+								cells));
 					}
 				}
 			}
@@ -280,11 +280,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					accumulator.AddIfDoesNotContain(
 						new UlType4TechniqueInfo(
 							conclusions,
-							views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
+							new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
 							d1,
 							d2,
 							loop,
-							conjugatePair: new(first, second, digit)));
+							new(first, second, digit)));
 				}
 			}
 		}

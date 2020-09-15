@@ -9,28 +9,15 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides a usage of <b>cell forcing chains</b> technique.
 	/// </summary>
-	public sealed class CellChainingTechniqueInfo : ChainingTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="SourceCell">The source cell.</param>
+	/// <param name="Chains">All branches.</param>
+	public sealed record CellChainingTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int SourceCell, IReadOnlyDictionary<int, Node> Chains)
+		: ChainingTechniqueInfo(Conclusions, Views, default, default, default, true, default, default)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="sourceCell">The source cell.</param>
-		/// <param name="chains">All branches.</param>
-		public CellChainingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int sourceCell, IReadOnlyDictionary<int, Node> chains)
-			: base(conclusions, views, default, default, default, isMultiple: true, default, default) =>
-			(SourceCell, Chains) = (sourceCell, chains);
-
-
-		/// <summary>
-		/// Indicates the source cell.
-		/// </summary>
-		public int SourceCell { get; }
-
-		/// <summary>
-		/// Indicates the branches.
-		/// </summary>
-		public IReadOnlyDictionary<int, Node> Chains { get; }
-
 		/// <inheritdoc/>
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 

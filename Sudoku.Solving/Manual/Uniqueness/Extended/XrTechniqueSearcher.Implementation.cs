@@ -45,9 +45,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			accumulator.Add(
 				new XrType1TechniqueInfo(
 					conclusions,
-					views: new[] { new View(candidateOffsets) },
-					cells: allCellsMap,
-					digits: normalDigits));
+					new View[] { new(candidateOffsets) },
+					allCellsMap,
+					normalDigits));
 		}
 
 		partial void CheckType2(
@@ -78,9 +78,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			accumulator.Add(
 				new XrType2TechniqueInfo(
 					conclusions,
-					views: new[] { new View(candidateOffsets) },
-					cells: allCellsMap,
-					digits: normalDigits,
+					new View[] { new(candidateOffsets) },
+					allCellsMap,
+					normalDigits,
 					extraDigit));
 		}
 
@@ -151,11 +151,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						accumulator.Add(
 							new XrType3TechniqueInfo(
 								conclusions,
-								views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
-								cells: allCellsMap,
-								digits: normalDigits,
-								extraCells: cells,
-								extraDigits: mask,
+								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+								allCellsMap,
+								normalDigits,
+								cells,
+								mask,
 								region));
 					}
 				}
@@ -205,9 +205,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					accumulator.Add(
 						new XrType1TechniqueInfo(
 							conclusions,
-							views: new[] { new View(candidateOffsets) },
-							cells: allCellsMap,
-							digits: normalDigits));
+							new View[] { new(candidateOffsets) },
+							allCellsMap,
+							normalDigits));
 
 					break;
 				}
@@ -262,10 +262,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							accumulator.Add(
 								new XrType4TechniqueInfo(
 									conclusions,
-									views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
-									cells: allCellsMap,
-									digits: normalDigits,
-									conjugatePair: new(extraCellsMap, conjugateDigit)));
+									new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+									allCellsMap,
+									normalDigits,
+									new(extraCellsMap, conjugateDigit)));
 						}
 					}
 

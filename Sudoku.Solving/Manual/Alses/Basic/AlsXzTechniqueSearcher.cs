@@ -240,9 +240,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					accumulator.Add(
 						new AlsXzTechniqueInfo(
 							conclusions,
-							views: new[]
+							new View[]
 							{
-								new View(
+								new(
 									_alsShowRegions ? null : cellOffsets,
 									_alsShowRegions ? candidateOffsets : null,
 									_alsShowRegions switch
@@ -254,9 +254,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							},
 							als1,
 							als2,
-							xDigitsMask: rccMask,
-							zDigitsMask: finalZ,
-							isDoublyLinked: isEsp ? null : isDoublyLinked));
+							rccMask,
+							finalZ,
+							isEsp ? null : isDoublyLinked));
 				}
 			}
 		}

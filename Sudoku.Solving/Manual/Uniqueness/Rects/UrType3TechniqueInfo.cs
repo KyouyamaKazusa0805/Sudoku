@@ -9,45 +9,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>unique rectangle</b> (UR) or
 	/// <b>avoidable rectangle</b> (AR) type 3 technique.
 	/// </summary>
-	public sealed class UrType3TechniqueInfo : UrTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	/// <param name="ExtraDigits">All extra digits.</param>
+	/// <param name="ExtraCells">All extra cells.</param>
+	/// <param name="Region">The region.</param>
+	/// <param name="IsNaked">Indicates whether the subset is naked.</param>
+	public sealed record UrType3TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
+		IReadOnlyList<int> ExtraDigits, IReadOnlyList<int> ExtraCells, int Region, bool IsNaked)
+		: UrTechniqueInfo(
+			Conclusions, Views, IsAvoidable ? UrTypeCode.AType3 : UrTypeCode.Type3, Digit1, Digit2, Cells, IsAvoidable)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit1">The digit 1.</param>
-		/// <param name="digit2">The digit 2.</param>
-		/// <param name="cells">All cells.</param>
-		/// <param name="extraDigits">All extra digits.</param>
-		/// <param name="extraCells">All extra cells.</param>
-		/// <param name="region">The region.</param>
-		/// <param name="isNaked">Indicates whether the subset is naked.</param>
-		/// <param name="isAr">Indicates whether the specified structure is an AR.</param>
-		public UrType3TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit1, int digit2, int[] cells, IReadOnlyList<int> extraDigits,
-			IReadOnlyList<int> extraCells, int region, bool isNaked, bool isAr)
-			: base(conclusions, views, isAr ? UrTypeCode.AType3 : UrTypeCode.Type3, digit1, digit2, cells, isAr) =>
-			(ExtraDigits, ExtraCells, Region, IsNaked) = (extraDigits, extraCells, region, isNaked);
-
-
-		/// <summary>
-		/// Indicates the extra digits.
-		/// </summary>
-		public IReadOnlyList<int> ExtraDigits { get; }
-
-		/// <summary>
-		/// Indicates the extra cells.
-		/// </summary>
-		public IReadOnlyList<int> ExtraCells { get; }
-
-		/// <summary>
-		/// Indicates whether the specified subset is naked.
-		/// </summary>
-		public bool IsNaked { get; }
-
-		/// <summary>
-		/// Indicates the current region.
-		/// </summary>
-		public int Region { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => (IsNaked ? 4.5M : 4.6M) + .1M * ExtraDigits.Count;
 

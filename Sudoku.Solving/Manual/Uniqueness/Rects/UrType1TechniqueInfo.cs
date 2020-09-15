@@ -8,21 +8,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>unique rectangle</b> (UR) or
 	/// <b>avoidable rectangle</b> (AR) type 1 technique.
 	/// </summary>
-	public sealed class UrType1TechniqueInfo : UrTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	public sealed record UrType1TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Digit1, int Digit2, int[] Cells, bool IsAvoidable)
+		: UrTechniqueInfo(
+			Conclusions, Views, IsAvoidable ? UrTypeCode.Type1 : UrTypeCode.Type1, Digit1, Digit2, Cells, IsAvoidable)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit1">The digit 1.</param>
-		/// <param name="digit2">The digit 2.</param>
-		/// <param name="cells">All cells.</param>
-		/// <param name="isAr">Indicates whether the instance is an AR.</param>
-		public UrType1TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit1, int digit2, int[] cells, bool isAr)
-			: base(conclusions, views, isAr ? UrTypeCode.AType1 : UrTypeCode.Type1, digit1, digit2, cells, isAr)
-		{
-		}
-
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.5M;
 

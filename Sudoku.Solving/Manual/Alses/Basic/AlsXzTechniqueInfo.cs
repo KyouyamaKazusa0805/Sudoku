@@ -10,62 +10,37 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// Provides a usage of <b>almost locked sets XZ rule</b> (ALS-XZ)
 	/// or <b>extended subset principle</b> technique.
 	/// </summary>
-	public sealed class AlsXzTechniqueInfo : AlsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Als1">The ALS 1 used.</param>
+	/// <param name="Als2">The ALS 2 used.</param>
+	/// <param name="XDigitsMask">The X digits mask.</param>
+	/// <param name="ZDigitsMask">The Z digits mask.</param>
+	/// <param name="IsDoublyLinked">
+	/// <para>Indicates whether the instance is a doubly linked ALS-XZ.</para>
+	/// <para>
+	/// The property contains three different values:
+	/// <list type="table">
+	/// <item>
+	/// <term><c><see langword="true"/></c></term>
+	/// <description>The current instance is a Doubly Linked ALS-XZ.</description>
+	/// </item>
+	/// <item>
+	/// <term><c><see langword="false"/></c></term>
+	/// <description>The current instance is a Singly Linked ALS-XZ.</description>
+	/// </item>
+	/// <item>
+	/// <term><c><see langword="null"/></c></term>
+	/// <description>The current instance is a Extended Subset Principle.</description>
+	/// </item>
+	/// </list>
+	/// </para>
+	/// </param>
+	public sealed record AlsXzTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Als Als1,
+		Als Als2, short XDigitsMask, short ZDigitsMask, bool? IsDoublyLinked)
+		: AlsTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="als1">The ALS 1 used.</param>
-		/// <param name="als2">The ALS 2 used.</param>
-		/// <param name="xDigitsMask">The X digits mask.</param>
-		/// <param name="zDigitsMask">The Z digits mask.</param>
-		/// <param name="isDoublyLinked">Indicates whether the instance is a doubly linked ALS-XZ.</param>
-		public AlsXzTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Als als1,
-			Als als2, short xDigitsMask, short zDigitsMask, bool? isDoublyLinked) : base(conclusions, views) =>
-			(Als1, Als2, XDigitsMask, ZDigitsMask, IsDoublyLinked) = (als1, als2, xDigitsMask, zDigitsMask, isDoublyLinked);
-
-
-		/// <summary>
-		/// The ALS 1.
-		/// </summary>
-		public Als Als1 { get; }
-
-		/// <summary>
-		/// The ALS 2.
-		/// </summary>
-		public Als Als2 { get; }
-
-		/// <summary>
-		/// The X digits mask (RCC digits).
-		/// </summary>
-		public short XDigitsMask { get; }
-
-		/// <summary>
-		/// The Z digits mask (target digits).
-		/// </summary>
-		public short ZDigitsMask { get; }
-
-		/// <summary>
-		/// <para>Indicates whether the instance is a doubly linked ALS-XZ.</para>
-		/// <para>
-		/// The property contains three different values:
-		/// <list type="table">
-		/// <item>
-		/// <term><c><see langword="true"/></c></term>
-		/// <description>The current instance is a Doubly Linked ALS-XZ.</description>
-		/// </item>
-		/// <item>
-		/// <term><c><see langword="false"/></c></term>
-		/// <description>The current instance is a Singly Linked ALS-XZ.</description>
-		/// </item>
-		/// <item>
-		/// <term><c><see langword="null"/></c></term>
-		/// <description>The current instance is a Extended Subset Principle.</description>
-		/// </item>
-		/// </list>
-		/// </para>
-		/// </summary>
-		public bool? IsDoublyLinked { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 

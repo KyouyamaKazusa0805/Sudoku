@@ -62,8 +62,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 					int cand = offset * 9 + _solution[offset];
 					accumulator.Add(
 						new BruteForceTechniqueInfo(
-							conclusions: new[] { new Conclusion(Assignment, cand) },
-							views: new[] { new View(new[] { (0, cand) }) }));
+							new Conclusion[] { new(Assignment, cand) },
+							new View[] { new(new[] { (0, cand) }) }));
 				}
 			}
 		}

@@ -7,12 +7,10 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	/// <summary>
 	/// Encapsulates a usage of <b>irregular wing</b> technique.
 	/// </summary>
-	public abstract class IrregularWingTechniqueInfo : TechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	public abstract record IrregularWingTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+		: TechniqueInfo(Conclusions, Views)
 	{
-		/// <inheritdoc/>
-		protected IrregularWingTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
-			: base(conclusions, views)
-		{
-		}
 	}
 }

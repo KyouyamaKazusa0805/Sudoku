@@ -9,7 +9,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <summary>
 	/// Provides a usage of <b>BUG + n</b> technique.
 	/// </summary>
-	public sealed class BugMultipleTechniqueInfo : UniquenessTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Candidates">All candidates used.</param>
+	public sealed record BugMultipleTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates)
+		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The table of extra difficulty values.
@@ -20,18 +25,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			.5M, .5M, .5M, .5M, .5M, .6M, .6M, .6M
 		};
 
-
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="candidates">All candidates.</param>
-		public BugMultipleTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, IReadOnlyList<int> candidates)
-			: base(conclusions, views) => Candidates = candidates;
-
-
-		/// <summary>
-		/// Indicates all candidates used.
-		/// </summary>
-		public IReadOnlyList<int> Candidates { get; }
 
 		/// <inheritdoc/>
 		public override string Name => $"{Resources.GetValue("Bug")} + {Candidates.Count}";

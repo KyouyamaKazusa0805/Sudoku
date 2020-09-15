@@ -205,16 +205,16 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						tempAccumulator.Add(
 							new DeathBlossomTechniqueInfo(
 								conclusions,
-								views: new[]
+								new View[]
 								{
-									new View(
-										_alsShowRegions switch { true => new[] { (0, pivot) }, _ => cellOffsets },
+									new(
+										_alsShowRegions ? new[] { (0, pivot) } : (IReadOnlyList<(int, int)>)cellOffsets,
 										_alsShowRegions ? candidateOffsets : null,
 										_alsShowRegions ? regionOffsets : null,
 										null)
 								},
 								pivot,
-								alses: dic));
+								dic));
 					}
 					else
 					{

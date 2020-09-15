@@ -9,88 +9,25 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <summary>
 	/// Provides a usage of <b>sue de coq</b> (SdC) technique.
 	/// </summary>
-	public sealed class SdcTechniqueInfo : MslsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Block">The block.</param>
+	/// <param name="Line">The line.</param>
+	/// <param name="BlockMask">The block mask.</param>
+	/// <param name="LineMask">The line mask.</param>
+	/// <param name="IntersectionMask">The intersection mask.</param>
+	/// <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+	/// <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+	/// <param name="BlockCells">The map of block cells.</param>
+	/// <param name="LineCells">The map of line cells.</param>
+	/// <param name="IntersectionCells">The map of intersection cells.</param>
+	public sealed record SdcTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
+		bool IsCannibalistic, short IsolatedDigitsMask, GridMap BlockCells, GridMap LineCells,
+		GridMap IntersectionCells)
+		: MslsTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="block">The block.</param>
-		/// <param name="line">The line.</param>
-		/// <param name="blockMask">The block mask.</param>
-		/// <param name="lineMask">The line mask.</param>
-		/// <param name="intersectionMask">The intersection mask.</param>
-		/// <param name="isCannibalistic">Indicates whether the SdC is cannibalistic.</param>
-		/// <param name="isolatedDigitsMask">The isolated digits mask.</param>
-		/// <param name="blockCells">The map of block cells.</param>
-		/// <param name="lineCells">The map of line cells.</param>
-		/// <param name="intersectionCells">The map of intersection cells.</param>
-		public SdcTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int block, int line, short blockMask, short lineMask, short intersectionMask,
-			bool isCannibalistic, short isolatedDigitsMask, GridMap blockCells, GridMap lineCells,
-			GridMap intersectionCells) : base(conclusions, views)
-		{
-			Block = block;
-			Line = line;
-			BlockMask = blockMask;
-			LineMask = lineMask;
-			IntersectionMask = intersectionMask;
-			IsCannibalistic = isCannibalistic;
-			IsolatedDigitsMask = isolatedDigitsMask;
-			BlockCells = blockCells;
-			LineCells = lineCells;
-			IntersectionCells = intersectionCells;
-		}
-
-
-		/// <summary>
-		/// Indicates the block.
-		/// </summary>
-		public int Block { get; }
-
-		/// <summary>
-		/// Indicates the line.
-		/// </summary>
-		public int Line { get; }
-
-		/// <summary>
-		/// Indicates the block mask.
-		/// </summary>
-		public short BlockMask { get; }
-
-		/// <summary>
-		/// Indicates the line mask.
-		/// </summary>
-		public short LineMask { get; }
-
-		/// <summary>
-		/// Indicates the intersection mask.
-		/// </summary>
-		public short IntersectionMask { get; }
-
-		/// <summary>
-		/// Indicates whether the specified SdC is cannibalistic.
-		/// </summary>
-		public bool IsCannibalistic { get; }
-
-		/// <summary>
-		/// Indicates the isolated digit mask.
-		/// </summary>
-		public short IsolatedDigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the block cells.
-		/// </summary>
-		public GridMap BlockCells { get; }
-
-		/// <summary>
-		/// Indicates the line cells.
-		/// </summary>
-		public GridMap LineCells { get; }
-
-		/// <summary>
-		/// Indicates the intersection cells.
-		/// </summary>
-		public GridMap IntersectionCells { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.0M + (IsolatedDigitsMask != 0 ? .1M : 0) + (IsCannibalistic ? .2M : 0);
 
@@ -98,8 +35,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
-			IsCannibalistic ? TechniqueCode.CannibalizedSdc : TechniqueCode.Sdc;
+		public override TechniqueCode TechniqueCode => IsCannibalistic ? TechniqueCode.CannibalizedSdc : TechniqueCode.Sdc;
 
 
 		/// <inheritdoc/>

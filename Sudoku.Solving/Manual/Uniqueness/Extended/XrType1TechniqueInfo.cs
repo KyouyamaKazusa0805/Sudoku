@@ -7,16 +7,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <summary>
 	/// Provides a usage of <b>extended rectangle</b> (XR) type 1 technique.
 	/// </summary>
-	public sealed class XrType1TechniqueInfo : XrTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="DigitsMask">All digits mask.</param>
+	public sealed record XrType1TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask)
+		: XrTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
-		/// <inheritdoc/>
-		public XrType1TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			GridMap cells, short digits) : base(conclusions, views, cells, digits)
-		{
-		}
-
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.5M + DifficultyExtra[Cells.Count];
 

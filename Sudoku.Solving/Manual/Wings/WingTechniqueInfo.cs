@@ -7,12 +7,8 @@ namespace Sudoku.Solving.Manual.Wings
 	/// <summary>
 	/// Provides a usage of <b>wing</b> technique.
 	/// </summary>
-	public abstract class WingTechniqueInfo : TechniqueInfo
-	{
-		/// <inheritdoc/>
-		protected WingTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
-			: base(conclusions, views)
-		{
-		}
-	}
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	public abstract record WingTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+		: TechniqueInfo(Conclusions, Views);
 }

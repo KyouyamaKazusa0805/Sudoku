@@ -9,52 +9,19 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Provides a usage of <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
 	/// </summary>
-	public sealed class AlsXyWingTechniqueInfo : AlsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Als1">The ALS 1.</param>
+	/// <param name="Als2">The ALS 2.</param>
+	/// <param name="Bridge">The bridge ALS.</param>
+	/// <param name="XDigitsMask">The X digits mask.</param>
+	/// <param name="YDigitsMask">The Y digits mask.</param>
+	/// <param name="ZDigitsMask">The Z digits mask.</param>
+	public sealed record AlsXyWingTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Als Als1, Als Als2,
+		Als Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask)
+		: AlsTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="als1">The ALS 1.</param>
-		/// <param name="als2">The ALS 2.</param>
-		/// <param name="bridgeAls">The bridge ALS.</param>
-		/// <param name="xDigitsMask">The X digits mask.</param>
-		/// <param name="yDigitsMask">The Y digits mask.</param>
-		/// <param name="zDigitsMask">The Z digits mask.</param>
-		public AlsXyWingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			Als als1, Als als2, Als bridgeAls, short xDigitsMask, short yDigitsMask, short zDigitsMask)
-			: base(conclusions, views) =>
-			(Als1, Als2, BridgeAls, XDigitsMask, YDigitsMask, ZDigitsMask) = (als1, als2, bridgeAls, xDigitsMask, yDigitsMask, zDigitsMask);
-
-
-		/// <summary>
-		/// The ALS 1.
-		/// </summary>
-		public Als Als1 { get; }
-
-		/// <summary>
-		/// The ALS 2.
-		/// </summary>
-		public Als Als2 { get; }
-
-		/// <summary>
-		/// The bridge ALS.
-		/// </summary>
-		public Als BridgeAls { get; }
-
-		/// <summary>
-		/// The X digits mask.
-		/// </summary>
-		public short XDigitsMask { get; }
-
-		/// <summary>
-		/// The Y digits mask.
-		/// </summary>
-		public short YDigitsMask { get; }
-
-		/// <summary>
-		/// The Z digits mask.
-		/// </summary>
-		public short ZDigitsMask { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 6.0M;
 
@@ -72,7 +39,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			string yStr = new DigitCollection(YDigitsMask.GetAllSets()).ToString();
 			string zStr = new DigitCollection(ZDigitsMask.GetAllSets()).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {Als1} -> {BridgeAls} -> {Als2}, x = {xStr}, y = {yStr}, z = {zStr} => {elimStr}";
+			return $"{Name}: {Als1} -> {Bridge} -> {Als2}, x = {xStr}, y = {yStr}, z = {zStr} => {elimStr}";
 		}
 	}
 }

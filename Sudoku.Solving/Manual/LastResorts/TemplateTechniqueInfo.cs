@@ -8,22 +8,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Provides a usage of <b>template</b> technique.
 	/// </summary>
-	public sealed class TemplateTechniqueInfo : LastResortTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="IsTemplateDeletion">Indicates whether the current instance is template deletion.</param>
+	public sealed record TemplateTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool IsTemplateDeletion)
+		: LastResortTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="isTemplateDeletion">
-		/// Indicates whether this technique is template deletion.
-		/// </param>
-		public TemplateTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, bool isTemplateDeletion)
-			: base(conclusions, views) => IsTemplateDeletion = isTemplateDeletion;
-
-
-		/// <summary>
-		/// Indicates whether this technique is template deletion.
-		/// </summary>
-		public bool IsTemplateDeletion { get; }
-
 		/// <summary>
 		/// Indicates the digit.
 		/// </summary>

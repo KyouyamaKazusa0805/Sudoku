@@ -7,23 +7,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <summary>
 	/// Provides a usage of <b>extended rectangle</b> (XR) type 4 technique.
 	/// </summary>
-	public sealed class XrType4TechniqueInfo : XrTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="DigitsMask">All digits mask.</param>
+	/// <param name="ConjugatePair">The conjugate pair.</param>
+	public sealed record XrType4TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
+		ConjugatePair ConjugatePair)
+		: XrTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="cells">All cells.</param>
-		/// <param name="digits">All digits.</param>
-		/// <param name="conjugatePair">The conjugate pair.</param>
-		public XrType4TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			GridMap cells, short digits, ConjugatePair conjugatePair) : base(conclusions, views, cells, digits) =>
-			ConjugatePair = conjugatePair;
-
-
-		/// <summary>
-		/// The conjugate pair.
-		/// </summary>
-		public ConjugatePair ConjugatePair { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.6M + DifficultyExtra[Cells.Count];
 

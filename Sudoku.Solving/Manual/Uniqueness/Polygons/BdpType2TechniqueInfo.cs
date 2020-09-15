@@ -9,22 +9,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <summary>
 	/// Provides a usage of <b>Borescoper's deadly pattern type 2</b> (BDP) technique.
 	/// </summary>
-	public sealed class BdpType2TechniqueInfo : BdpTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Map">The cells used.</param>
+	/// <param name="DigitsMask">The digits mask.</param>
+	/// <param name="ExtraDigit">The extra digit.</param>
+	public sealed record BdpType2TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Map, short DigitsMask,
+		int ExtraDigit)
+		: BdpTechniqueInfo(Conclusions, Views, Map, DigitsMask)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="map">The cells used.</param>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="extraDigit">The extra digit.</param>
-		public BdpType2TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap map, short digitsMask,
-			int extraDigit) : base(conclusions, views, map, digitsMask) => ExtraDigit = extraDigit;
-
-
-		/// <summary>
-		/// Indicates the extra digit.
-		/// </summary>
-		public int ExtraDigit { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.4M;
 

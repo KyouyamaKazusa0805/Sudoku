@@ -11,51 +11,26 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Provides a usage of <b>almost locked candidates</b> (ALC) technique.
 	/// </summary>
-	public sealed class AlcTechniqueInfo : IntersectionTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="DigitsMask">The mask to represent all digits used.</param>
+	/// <param name="BaseCells">All base cells.</param>
+	/// <param name="TargetCells">All target cells.</param>
+	/// <param name="HasValueCell">Indicates whether the current ALC contains value cells.</param>
+	public sealed record AlcTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, short DigitsMask, GridMap BaseCells,
+		GridMap TargetCells, bool HasValueCell)
+		: IntersectionTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digits">The digits.</param>
-		/// <param name="baseCells">The base cells.</param>
-		/// <param name="targetCells">The target cells.</param>
-		/// <param name="hasValueCell">
-		/// Indicates whether the structure has the value cell.
-		/// </param>
-		public AlcTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			short digits, GridMap baseCells, GridMap targetCells,
-			bool hasValueCell) : base(conclusions, views) =>
-			(Digits, BaseCells, TargetCells, HasValueCell) = (digits, baseCells, targetCells, hasValueCell);
-
-
-		/// <summary>
-		/// Indicates the digits the technique used.
-		/// </summary>
-		public short Digits { get; }
-
-		/// <summary>
-		/// Indicates the base cells.
-		/// </summary>
-		public GridMap BaseCells { get; }
-
-		/// <summary>
-		/// Indicates the target cells.
-		/// </summary>
-		public GridMap TargetCells { get; }
-
-		/// <summary>
-		/// Indicates whether the structure has a value cell.
-		/// </summary>
-		public bool HasValueCell { get; }
-
 		/// <summary>
 		/// Indicates the size.
 		/// </summary>
-		public int Size => Digits.CountSet();
+		public int Size => DigitsMask.CountSet();
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M, _ => throw Throwings.ImpossibleCase }
-			+ (HasValueCell ? Size switch { 2 => .1M, 3 => .1M, 4 => .2M, _ => throw Throwings.ImpossibleCase } : 0);
+			Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M, _ => throw Throwings.ImpossibleCase } +
+			(HasValueCell ? Size switch { 2 => .1M, 3 => .1M, 4 => .2M, _ => throw Throwings.ImpossibleCase } : 0);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -74,7 +49,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = new DigitCollection(Digits.GetAllSets()).ToString();
+			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string baseCellsStr = new CellCollection(BaseCells).ToString();
 			string targetCellsStr = new CellCollection(TargetCells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();

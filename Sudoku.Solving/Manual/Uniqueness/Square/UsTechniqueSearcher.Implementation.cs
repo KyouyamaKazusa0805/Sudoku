@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -58,10 +60,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				accumulator.Add(
 					new UsType1TechniqueInfo(
 						conclusions,
-						views: new[] { new View(candidateOffsets) },
-						cells: pattern,
+						new View[] { new(candidateOffsets) },
+						pattern,
 						digitsMask,
-						candidate: elimCell * 9 + extraDigit));
+						elimCell * 9 + extraDigit));
 			}
 		}
 
@@ -109,8 +111,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				accumulator.Add(
 					new UsType2TechniqueInfo(
 						conclusions,
-						views: new[] { new View(candidateOffsets) },
-						cells: pattern,
+						new View[] { new(candidateOffsets) },
+						pattern,
 						digitsMask,
 						extraDigit));
 			}
@@ -188,11 +190,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							accumulator.Add(
 								new UsType3TechniqueInfo(
 									conclusions,
-									views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
-									cells: pattern,
+									new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+									pattern,
 									digitsMask,
 									extraDigitsMask,
-									extraCells: cells));
+									cells));
 						}
 					}
 				}
@@ -282,12 +284,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					accumulator.Add(
 						new UsType4TechniqueInfo(
 							conclusions,
-							views: new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
-							cells: pattern,
+							new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+							pattern,
 							digitsMask,
 							d1,
 							d2,
-							conjugateRegion: compareMap));
+							compareMap));
 				}
 			}
 		}

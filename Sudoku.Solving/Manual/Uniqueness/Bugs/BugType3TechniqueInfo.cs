@@ -9,41 +9,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <summary>
 	/// Provides a usage of <b>bivalue universal grave</b> (BUG) type 3 technique.
 	/// </summary>
-	public sealed class BugType3TechniqueInfo : UniquenessTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="TrueCandidates">All true candidates.</param>
+	/// <param name="Digits">All digits.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="IsNaked">Indicates whether the subset is naked.</param>
+	public sealed record BugType3TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		IReadOnlyList<int> TrueCandidates, IReadOnlyList<int> Digits,
+		IReadOnlyList<int> Cells, bool IsNaked)
+		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="trueCandidates">All true candidates.</param>
-		/// <param name="digits">All digits.</param>
-		/// <param name="cells">All cells.</param>
-		/// <param name="isNaked">Indicates whether the subset is naked.</param>
-		public BugType3TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<int> trueCandidates, IReadOnlyList<int> digits,
-			IReadOnlyList<int> cells, bool isNaked)
-			: base(conclusions, views) =>
-			(TrueCandidates, Digits, Cells, IsNaked) = (trueCandidates, digits, cells, isNaked);
-
-
-		/// <summary>
-		/// Indicates all true candidates.
-		/// </summary>
-		public IReadOnlyList<int> TrueCandidates { get; }
-
-		/// <summary>
-		/// Indicates all digits.
-		/// </summary>
-		public IReadOnlyList<int> Digits { get; }
-
-		/// <summary>
-		/// Indicates all cells.
-		/// </summary>
-		public IReadOnlyList<int> Cells { get; }
-
-		/// <summary>
-		/// Indicates whether the technique is with naked subsets.
-		/// </summary>
-		public bool IsNaked { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.6M + Digits.Count * .1M + (IsNaked ? 0 : .1M);
 

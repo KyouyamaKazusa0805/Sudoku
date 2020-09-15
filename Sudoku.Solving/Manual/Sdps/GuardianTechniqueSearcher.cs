@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Sdps
 									accumulator.Add(
 										new GuardianTechniqueInfo(
 											conclusions,
-											views: new[] { new View(candidateOffsets) },
+											new[] { new View(candidateOffsets) },
 											digit,
 											loop,
 											guardians));

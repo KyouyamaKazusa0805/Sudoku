@@ -78,13 +78,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 				result.Add(
 					new TemplateTechniqueInfo(
 						conclusions,
-						views: new[]
+						new View[]
 						{
-							new View((
+							new((
 								from Conclusion in conclusions
 								select (0, Conclusion.CellOffset * 9 + Conclusion.Digit)).ToArray())
 						},
-						isTemplateDeletion: false));
+						false));
 			}
 		}
 
@@ -111,11 +111,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					continue;
 				}
 
-				result.Add(
-					new TemplateTechniqueInfo(
-						conclusions,
-						views: View.DefaultViews,
-						isTemplateDeletion: true));
+				result.Add(new TemplateTechniqueInfo(conclusions, View.DefaultViews, true));
 			}
 		}
 

@@ -9,40 +9,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>unique rectangle + 2D (or 3X)</b> or
 	/// <b>avoidable rectangle + 2D (or 3X)</b> technique.
 	/// </summary>
-	public sealed class Ur2DOr3XTechniqueInfo : UrTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="TypeCode">The type code.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	/// <param name="ConjugatePairs">All conjugate pairs.</param>
+	/// <param name="XDigit">The X digit.</param>
+	/// <param name="YDigit">The Y digit.</param>
+	/// <param name="XyCell">The cell that only contains X and Y digit.</param>
+	public sealed record Ur2DOr3XTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
+		int XDigit, int YDigit, int XyCell)
+		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="typeCode">The type code.</param>
-		/// <param name="digit1">The digit 1.</param>
-		/// <param name="digit2">The digit 2.</param>
-		/// <param name="cells">All cells.</param>
-		/// <param name="x">The X digit.</param>
-		/// <param name="y">The Y digit.</param>
-		/// <param name="xyCell">The cell that only contains X and Y digit.</param>
-		/// <param name="isAr">Indicates whether the specified structure forms an AR.</param>
-		public Ur2DOr3XTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			UrTypeCode typeCode, int digit1, int digit2, int[] cells,
-			int x, int y, int xyCell, bool isAr) : base(conclusions, views, typeCode, digit1, digit2, cells, isAr) =>
-			(X, Y, XyCell) = (x, y, xyCell);
-
-
-		/// <summary>
-		/// Indicates the X digit.
-		/// </summary>
-		public int X { get; }
-
-		/// <summary>
-		/// Indicates the Y digit.
-		/// </summary>
-		public int Y { get; }
-
-		/// <summary>
-		/// Indicates the cell that only contains X and Y digit.
-		/// </summary>
-		public int XyCell { get; }
-
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.7M;
 
@@ -54,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		protected override string GetAdditional()
 		{
 			string xyCellStr = new CellCollection(XyCell).ToString();
-			return $"X = {X + 1}, Y = {Y + 1} and a bi-value cell {xyCellStr}";
+			return $"X = {XDigit + 1}, Y = {YDigit + 1} and a bi-value cell {xyCellStr}";
 		}
 	}
 }

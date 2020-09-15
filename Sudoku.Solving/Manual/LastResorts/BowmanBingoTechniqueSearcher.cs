@@ -66,10 +66,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 					{
 						tempAccumulator.Add(
 							new BowmanBingoTechniqueInfo(
-								conclusions: new[] { new Conclusion(Elimination, startCandidate) },
-								views: new[]
+								new Conclusion[] { new(Elimination, startCandidate) },
+								new View[]
 								{
-									new View(
+									new(
 										null,
 										(
 											from Conclusion in _tempConclusions
@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 										null,
 										GetLinks())
 								},
-								contradictionSeries: _tempConclusions.ToArray()));
+								_tempConclusions.ToArray()));
 					}
 
 					// Undo the operation.
@@ -130,10 +130,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				result.Add(
 					new BowmanBingoTechniqueInfo(
-						conclusions: new[] { new Conclusion(Elimination, startCandidate) },
-						views: new[]
+						new Conclusion[] { new(Elimination, startCandidate) },
+						new View[]
 						{
-							new View(
+							new(
 								null,
 								(
 									from TempConclusion in _tempConclusions
@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 								null,
 								GetLinks())
 						},
-						contradictionSeries: _tempConclusions.ToArray()));
+						_tempConclusions.ToArray()));
 			}
 
 			// Undo grid.
