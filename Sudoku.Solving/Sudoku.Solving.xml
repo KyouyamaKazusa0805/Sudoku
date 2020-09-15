@@ -7768,14 +7768,14 @@
             <summary>
             Provides a usage of <b>wing</b> technique.
             </summary>
-            <param name="Conclusios">All conclusions.</param>
+            <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.WingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <summary>
             Provides a usage of <b>wing</b> technique.
             </summary>
-            <param name="Conclusios">All conclusions.</param>
+            <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.WingTechniqueSearcher">
