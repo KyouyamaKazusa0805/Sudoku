@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
-			for (int size = 2; size <= (_checkAlq ? 4 : 3); size++)
+			for (int size = 2, maxSize = _checkAlq ? 4 : 3; size <= maxSize; size++)
 			{
 				GetAll(accumulator, grid, size);
 			}

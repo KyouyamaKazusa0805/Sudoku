@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿#if CSHARP_9_PREVIEW
+#pragma warning disable IDE0051 // Unused methods (used actually)
+#endif
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;

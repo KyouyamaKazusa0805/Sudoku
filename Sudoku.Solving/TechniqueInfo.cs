@@ -63,8 +63,7 @@ namespace Sudoku.Solving
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-		public void Deconstruct(
-			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel) =>
+		public void Deconstruct(out string name, out decimal difficulty, out DifficultyLevel difficultyLevel) =>
 			(name, difficulty, difficultyLevel) = (Name, Difficulty, DifficultyLevel);
 
 		/// <inheritdoc cref="DeconstructMethod"/>
