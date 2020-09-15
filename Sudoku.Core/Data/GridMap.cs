@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.GridMap.InitializationOption;
@@ -581,24 +582,24 @@ namespace Sudoku.Data
 		/// Gets or sets a <see cref="bool"/> value on the specified cell
 		/// offset.
 		/// </summary>
-		/// <param name="offset">The cell offset.</param>
+		/// <param name="cell">The cell offset.</param>
 		/// <value>A <see cref="bool"/> value on assignment.</value>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the cell has digit.
 		/// </returns>
 		[IndexerName("Index")]
-		public bool this[int offset]
+		public bool this[int cell]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			readonly get => ((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
+			readonly get => ((stackalloc[] { _low, _high }[cell / Shifting] >> cell % Shifting) & 1) != 0;
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
-				bool older = this[offset];
+				ref long v = ref cell / Shifting == 0 ? ref _low : ref _high;
+				bool older = this[cell];
 				if (value)
 				{
-					v |= 1L << offset % Shifting;
+					v |= 1L << cell % Shifting;
 					if (!older)
 					{
 						Count++;
@@ -606,7 +607,7 @@ namespace Sudoku.Data
 				}
 				else
 				{
-					v &= ~(1L << offset % Shifting);
+					v &= ~(1L << cell % Shifting);
 					if (older)
 					{
 						Count--;
@@ -616,7 +617,7 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
 		/// <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -874,27 +875,27 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(GridMap left, GridMap right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(GridMap left, GridMap right) => !(left == right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		/// <inheritdoc cref="Operators.operator &gt;"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >(GridMap left, GridMap right) => left.CompareTo(right) > 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		/// <inheritdoc cref="Operators.operator &gt;="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >=(GridMap left, GridMap right) => left.CompareTo(right) >= 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		/// <inheritdoc cref="Operators.operator &lt;"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <(GridMap left, GridMap right) => left.CompareTo(right) < 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		/// <inheritdoc cref="Operators.operator &lt;="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <=(GridMap left, GridMap right) => left.CompareTo(right) <= 0;
 

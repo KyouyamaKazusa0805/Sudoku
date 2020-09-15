@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
@@ -150,22 +151,22 @@ namespace Sudoku.Solving
 			};
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(TechniqueSearcher? left, TechniqueSearcher? right) => InternalEquals(left, right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(TechniqueSearcher? left, TechniqueSearcher? right) => !(left == right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		/// <inheritdoc cref="Operators.operator &gt;"/>
 		public static bool operator >(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) > 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		/// <inheritdoc cref="Operators.operator &gt;="/>
 		public static bool operator >=(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) >= 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		/// <inheritdoc cref="Operators.operator &lt;"/>
 		public static bool operator <(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) < 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		/// <inheritdoc cref="Operators.operator &lt;="/>
 		public static bool operator <=(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) <= 0;
 	}
 }

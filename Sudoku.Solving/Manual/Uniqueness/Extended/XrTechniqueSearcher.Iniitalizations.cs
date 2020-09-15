@@ -1,4 +1,5 @@
 ﻿using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using System.Collections.Generic;
 using static Sudoku.Constants.Processings;
@@ -53,7 +54,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		private static readonly IReadOnlyList<(GridMap, IReadOnlyList<(int, int)>, int)> Combinations;
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <inheritdoc cref="StaticConstructor"/>
 		static XrTechniqueSearcher()
 		{
 			var combinations = new List<(GridMap, IReadOnlyList<(int, int)>, int)>();

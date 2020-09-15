@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Sudoku.DocComments;
 
 namespace Sudoku.Drawing.Extensions
 {
@@ -12,7 +13,7 @@ namespace Sudoku.Drawing.Extensions
 	[DebuggerStepThrough]
 	public static class SizeEx
 	{
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="this">(<see langword="this"/> parameter) The size instance.</param>
 		/// <param name="width">(<see langword="out"/> parameter) The width.</param>
 		/// <param name="height">(<see langword="out"/> parameter) The height.</param>
@@ -20,7 +21,7 @@ namespace Sudoku.Drawing.Extensions
 		public static void Deconstruct(this Size @this, out int width, out int height) =>
 			(width, height) = (@this.Width, @this.Height);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="this">(<see langword="this"/> parameter) The size instance.</param>
 		/// <param name="width">(<see langword="out"/> parameter) The width.</param>
 		/// <param name="height">(<see langword="out"/> parameter) The height.</param>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Constants;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Fishes
@@ -137,11 +138,11 @@ namespace Sudoku.Solving.Manual.Fishes
 		public void Remove(int region) => Mask &= ~(1 << region);
 
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(RegionMap left, RegionMap right) => left.Equals(right);
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(RegionMap left, RegionMap right) => !(left == right);
 

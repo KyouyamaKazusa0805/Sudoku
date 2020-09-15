@@ -1,5 +1,6 @@
 ﻿using System;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
@@ -34,20 +35,20 @@ namespace Sudoku.Data
 		public LinkType LinkType { get; }
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="startCandidate">(<see langword="out"/> parameter) The start candidate.</param>
 		/// <param name="endCandidate">(<see langword="out"/> parameter) The end candidate.</param>
 		public void Deconstruct(out int startCandidate, out int endCandidate) =>
 			(startCandidate, endCandidate) = (StartCandidate, EndCandidate);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="startCandidate">(<see langword="out"/> parameter) The start candidate.</param>
 		/// <param name="endCandidate">(<see langword="out"/> parameter) The end candidate.</param>
 		/// <param name="linkType">(<see langword="out"/> parameter) The link type.</param>
 		public void Deconstruct(out int startCandidate, out int endCandidate, out LinkType linkType) =>
 			(startCandidate, endCandidate, linkType) = (StartCandidate, EndCandidate, LinkType);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="startCell">(<see langword="out"/> parameter) The start cell.</param>
 		/// <param name="startDigit">(<see langword="out"/> parameter) The start digit.</param>
 		/// <param name="endCell">(<see langword="out"/> parameter) The end cell.</param>
@@ -83,10 +84,10 @@ namespace Sudoku.Data
 		public override int GetHashCode() => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(Link left, Link right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(Link left, Link right) => !(left == right);
 	}
 }

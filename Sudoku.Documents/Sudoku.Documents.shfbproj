@@ -51,6 +51,8 @@
       <DocumentationSource sourceFile="..\Sudoku.Solving\bin\Debug\netcoreapp3.1\Sudoku.Solving.dll" />
       <DocumentationSource sourceFile="..\Sudoku.Solving\bin\Debug\netcoreapp3.1\Sudoku.Solving.xml" />
       <DocumentationSource sourceFile="..\Sudoku.Namespaces.xml" />
+      <DocumentationSource sourceFile="..\Sudoku.DocComments\bin\Debug\netcoreapp3.1\Sudoku.DocComments.dll" />
+      <DocumentationSource sourceFile="..\Sudoku.DocComments\bin\Debug\netcoreapp3.1\Sudoku.DocComments.xml" />
     </DocumentationSources>
     <FooterText>The documents for this solution. Copyright %28c%29 Sunnie 2019-2020, all rights reversed.</FooterText>
     <HeaderText>
@@ -107,5 +109,12 @@
     <Reference Include="Sudoku.Solving">
       <HintPath>..\Sudoku.Solving\bin\Debug\netcoreapp3.1\Sudoku.Solving.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj">
+      <Name>Sudoku.DocComments</Name>
+      <Project>{f0421987-b00d-4074-a6bc-0aa7aa2e27e3}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
 </Project>

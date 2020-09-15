@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 
@@ -83,14 +84,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		}
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="region">(<see langword="out"/> parameter) The region.</param>
 		/// <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
 		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
 		public void Deconstruct(out int region, out short digitsMask, out GridMap map) =>
 			(region, digitsMask, map) = (Region, DigitsMask, Map);
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isBivalueCell">
 		/// (<see langword="out"/> parameter) Indicates whether the specified ALS is bi-value.
 		/// </param>
@@ -236,10 +237,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		}
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(Als left, Als right) => left.Equals(right);
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(Als left, Als right) => !(left == right);
 	}
 }

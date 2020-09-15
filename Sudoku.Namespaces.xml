@@ -4,8 +4,8 @@
 	<members>
 		<member name="N:Sudoku">
 			<summary>
-				This namespace contains some basic sudoku classes, for example,
-				<see cref="NoSolutionException"/> means the puzzle contains no solution.
+				This namespace contains some basic sudoku classes. For example, <see cref="NameAttribute"/>
+				is an attribute marking on a technique searcher.
 			</summary>
 		</member>
 		<member name="N:Sudoku.Constants">
@@ -18,7 +18,7 @@
 		<member name="N:Sudoku.Data">
 			<summary>
 				This namespace contains the metadata (basic implementations) of the sudoku game, such as a sudoku
-				<see cref="Grid"/>.
+				<see cref="Sudoku.Data.Grid"/>.
 			</summary>
 		</member>
 		<member name="N:Sudoku.Data.Collections">
@@ -44,12 +44,18 @@
 		<member name="N:Sudoku.Data.Stepping">
 			<summary>
 				This namespace implements the undoable and redoable sudoku grid (please see
-				<see cref="UndoableGrid"/>). Except for this, the basic undo- and redo- unit (a
-				<see cref="Step"/> is also in it).
+				<see cref="Sudoku.Data.Stepping.UndoableGrid"/>). Except for this, the basic undo- and redo- unit (a
+				<see cref="Sudoku.Data.Stepping.Step"/> is also in it).
 			</summary>
 		</member>
 		<member name="N:Sudoku.Diagnostics">
 			<summary>This namespace implements the information for diagnostics.</summary>
+		</member>
+		<member name="N:Sudoku.DocComments">
+			<summary>
+				This namespace contains the document comments provider files. These instance <see langword="class"/>es
+				cannot be used in any projects because they can only provide you with doc comments.
+			</summary>
 		</member>
 		<member name="N:Sudoku.Drawing">
 			<summary>This namespace implements the drawing (using GDI+).</summary>
@@ -78,7 +84,7 @@
 		<member name="N:Sudoku.Solving.Annotations">
 			<summary>
 				This namespace contains the annotations for
-				<see cref="TechniqueSearcher"/>s to specify a special status.
+				<see cref="Sudoku.Solving.TechniqueSearcher"/>s to specify a special status.
 			</summary>
 		</member>
 		<member name="N:Sudoku.Solving.BruteForces.Backtracking">
@@ -89,7 +95,7 @@
 			<remarks>
 				Please note that the files in this namespace will use or call native codes implemented by C programming language, so these files will use native features such as
 				<see langword="nint"/>s, function pointers,
-				<see cref="MarshalAsAttribute"/> and so on.
+				<see cref="System.Runtime.CompilerServices.MarshalAsAttribute"/> and so on.
 			</remarks>
 		</member>
 		<member name="N:Sudoku.Solving.BruteForces.Linqing">

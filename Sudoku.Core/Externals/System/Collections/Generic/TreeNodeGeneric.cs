@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Sudoku.DocComments;
 
 namespace System.Collections.Generic
 {
@@ -76,22 +77,22 @@ namespace System.Collections.Generic
 			};
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) == 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(TreeNode<T>? left, TreeNode<T>? right) => !(left == right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		/// <inheritdoc cref="Operators.operator &gt;"/>
 		public static bool operator >(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) > 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		/// <inheritdoc cref="Operators.operator &gt;="/>
 		public static bool operator >=(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) >= 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		/// <inheritdoc cref="Operators.operator &lt;"/>
 		public static bool operator <(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) < 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		/// <inheritdoc cref="Operators.operator &lt;="/>
 		public static bool operator <=(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) <= 0;
 	}
 }

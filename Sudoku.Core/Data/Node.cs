@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
@@ -233,11 +234,11 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(Node left, Node right) => left.Equals(right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(Node left, Node right) => !(left == right);
 	}

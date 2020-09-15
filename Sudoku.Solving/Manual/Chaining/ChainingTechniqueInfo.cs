@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Solving.Annotations.TechniqueDisplayAttribute;

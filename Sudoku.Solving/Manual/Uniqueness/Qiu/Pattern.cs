@@ -2,6 +2,7 @@
 
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
@@ -41,7 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public GridMap FullMap => Square | BaseLine | Pair;
 
 
-		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="pair">(<see langword="out"/> parameter) The pair map.</param>
 		/// <param name="square">(<see langword="out"/> parameter) The square map.</param>
 		/// <param name="baseLine">(<see langword="out"/> parameter) The base line map.</param>

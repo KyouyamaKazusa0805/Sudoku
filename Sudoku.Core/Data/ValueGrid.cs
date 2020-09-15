@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Sudoku.Constants;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using S = Sudoku.Data.CellStatus;
@@ -87,7 +88,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// </remarks>
 		/// <seealso cref="S"/>
-		internal /*readonly*/ fixed short _masks[81];
+		internal fixed short _masks[81];
 
 		/// <summary>
 		/// Same as <see cref="_masks"/>, but this field stores the all masks at
@@ -95,7 +96,7 @@ namespace Sudoku.Data
 		/// destructs.
 		/// </summary>
 		/// <seealso cref="_masks"/>
-		internal /*readonly*/ fixed short _initialMasks[81];
+		internal fixed short _initialMasks[81];
 
 		/// <summary>
 		/// The event handler triggering when the value changed.
@@ -128,7 +129,7 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/staticConstructor[@aimTo="struct"]'/>
+		/// <inheritdoc cref="StaticConstructor"/>
 		static ValueGrid()
 		{
 			// 512 is equivalent to value '0b001_000_000_000', where the higher 3 bits
@@ -488,7 +489,7 @@ namespace Sudoku.Data
 		public readonly string ToString(GridOutputOptions gridOutputOption) =>
 			GridFormatFactory.Create(gridOutputOption).ToString(this);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <inheritdoc cref="Formattable.ToString(string?)"/>
 		public readonly string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>
@@ -862,10 +863,10 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(ValueGrid left, ValueGrid right) => Equals(left, right);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(ValueGrid left, ValueGrid right) => !(left == right);
 
 
