@@ -9,33 +9,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <summary>
 	/// Provides a usage of <b>bivalue universal grave XZ rule</b> (BUG-XZ) technique.
 	/// </summary>
-	public sealed class BugXzTechniqueInfo : UniquenessTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="DigitsMask">The digits mask.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="ExtraCell">The extra cell.</param>
+	public sealed record BugXzTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		short DigitsMask, IReadOnlyList<int> Cells, int ExtraCell)
+		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digitMask">The digits mask.</param>
-		/// <param name="cells">All cell offsets.</param>
-		/// <param name="extraCell">The extra cell.</param>
-		public BugXzTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			short digitMask, IReadOnlyList<int> cells, int extraCell) : base(conclusions, views) =>
-			(DigitsMask, Cells, ExtraCell) = (digitMask, cells, extraCell);
-
-
-		/// <summary>
-		/// Indicates the digits mask.
-		/// </summary>
-		public short DigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the cell offsets.
-		/// </summary>
-		public IReadOnlyList<int> Cells { get; }
-
-		/// <summary>
-		/// Indicates the extra cell.
-		/// </summary>
-		public int ExtraCell { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.8M;
 

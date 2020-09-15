@@ -10,31 +10,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <summary>
 	/// Provides a usage of <b>unique loop type 3</b> technique.
 	/// </summary>
-	public sealed class UlType3TechniqueInfo : UlTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Loop">The loop.</param>
+	/// <param name="SubsetDigitsMask">The subset digits mask.</param>
+	/// <param name="SubsetCells">The subset cells.</param>
+	public sealed record UlType3TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2, GridMap Loop,
+		short SubsetDigitsMask, IReadOnlyList<int> SubsetCells)
+		: UlTechniqueInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="d1">The digit 1.</param>
-		/// <param name="d2">The digit 2.</param>
-		/// <param name="loop">The loop.</param>
-		/// <param name="subsetDigitsMask">The subset digits mask.</param>
-		/// <param name="subsetCells">The subset cells.</param>
-		public UlType3TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int d1, int d2, GridMap loop,
-			short subsetDigitsMask, IReadOnlyList<int> subsetCells)
-			: base(conclusions, views, d1, d2, loop) =>
-			(SubsetDigitsMask, SubsetCells) = (subsetDigitsMask, subsetCells);
-
-
-		/// <summary>
-		/// Indicates the extra digit mask.
-		/// </summary>
-		public short SubsetDigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the subset cells.
-		/// </summary>
-		public IReadOnlyList<int> SubsetCells { get; }
-
 		/// <inheritdoc/>
 		public override int Type => 3;
 

@@ -9,22 +9,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <summary>
 	/// Provides a usage of <b>unique square type 2</b> (US) technique.
 	/// </summary>
-	public sealed class UsType2TechniqueInfo : UsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cells">The cells.</param>
+	/// <param name="DigitsMask">The digits mask.</param>
+	/// <param name="ExtraDigit">The extra digit.</param>
+	public sealed record UsType2TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
+		int ExtraDigit)
+		: UsTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="cells">The cells.</param>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="extraDigit">The extra digit.</param>
-		public UsType2TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap cells, short digitsMask,
-			int extraDigit) : base(conclusions, views, cells, digitsMask) => ExtraDigit = extraDigit;
-
-
-		/// <summary>
-		/// Indicates the extra digit.
-		/// </summary>
-		public int ExtraDigit { get; }
-
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.UsType2;
 

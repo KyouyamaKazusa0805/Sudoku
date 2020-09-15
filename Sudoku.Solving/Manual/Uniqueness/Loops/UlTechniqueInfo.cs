@@ -8,37 +8,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <summary>
 	/// Provides a usage of <b>unique loop</b> (UL) technique.
 	/// </summary>
-	public abstract class UlTechniqueInfo : UniquenessTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit1">The digit 1.</param>
+	/// <param name="Digit2">The digit 2.</param>
+	/// <param name="Loop">The loop.</param>
+	public abstract record UlTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2, GridMap Loop)
+		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty extra.
 		/// </summary>
 		private static readonly decimal[] DifficultyExtra = { 0, 0, .1M, .2M, .3M, .4M, .5M, .6M };
 
-
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="d1">The digit 1.</param>
-		/// <param name="d2">The digit 2.</param>
-		/// <param name="loop">The loop.</param>
-		public UlTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int d1, int d2, GridMap loop)
-			: base(conclusions, views) => (Digit1, Digit2, Loop) = (d1, d2, loop);
-
-
-		/// <summary>
-		/// Indicates the digit 1.
-		/// </summary>
-		public int Digit1 { get; }
-
-		/// <summary>
-		/// Indicates the digit 2.
-		/// </summary>
-		public int Digit2 { get; }
-
-		/// <summary>
-		/// Indicates the loop.
-		/// </summary>
-		public GridMap Loop { get; }
 
 		/// <summary>
 		/// Indicates the type.

@@ -7,12 +7,8 @@ namespace Sudoku.Solving.Manual.Uniqueness
 	/// <summary>
 	/// Provides a usage of <b>uniqueness</b> technique.
 	/// </summary>
-	public abstract class UniquenessTechniqueInfo : TechniqueInfo
-	{
-		/// <inheritdoc/>
-		protected UniquenessTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
-			: base(conclusions, views)
-		{
-		}
-	}
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	public abstract record UniquenessTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+		: TechniqueInfo(Conclusions, Views);
 }

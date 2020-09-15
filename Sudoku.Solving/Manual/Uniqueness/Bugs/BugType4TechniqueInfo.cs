@@ -8,34 +8,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <summary>
 	/// Provides a usage of <b>bivalue universal grave</b> (BUG) type 4 technique.
 	/// </summary>
-	public sealed class BugType4TechniqueInfo : UniquenessTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digits">All digits.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="ConjugatePair">The conjugate pair.</param>
+	public sealed record BugType4TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		IReadOnlyList<int> Digits, IReadOnlyList<int> Cells, ConjugatePair ConjugatePair)
+		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digits">All digits.</param>
-		/// <param name="cells">All cells.</param>
-		/// <param name="conjugatePair">The conjugate pair.</param>
-		public BugType4TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<int> digits, IReadOnlyList<int> cells, ConjugatePair conjugatePair)
-			: base(conclusions, views) =>
-			(Digits, Cells, ConjugatePair) = (digits, cells, conjugatePair);
-
-
-		/// <summary>
-		/// Indicates all digits.
-		/// </summary>
-		public IReadOnlyList<int> Digits { get; }
-
-		/// <summary>
-		/// Indicates all cells.
-		/// </summary>
-		public IReadOnlyList<int> Cells { get; }
-
-		/// <summary>
-		/// Indicates the conjugate pair.
-		/// </summary>
-		public ConjugatePair ConjugatePair { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.7M;
 

@@ -10,29 +10,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <summary>
 	/// Provides a usage of <b>unique square type 3</b> (US) technique.
 	/// </summary>
-	public sealed class UsType3TechniqueInfo : UsTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cells">The cells.</param>
+	/// <param name="DigitsMask">The digits mask.</param>
+	/// <param name="ExtraDigitsMask">The extra digits mask.</param>
+	/// <param name="ExtraCells">The extra cells.</param>
+	public sealed record UsType3TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
+		short ExtraDigitsMask, IReadOnlyList<int> ExtraCells)
+		: UsTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="cells">The cells.</param>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="extraDigitsMask">The extra digits mask.</param>
-		/// <param name="extraCells">The extra cells.</param>
-		public UsType3TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap cells, short digitsMask,
-			short extraDigitsMask, IReadOnlyList<int> extraCells) : base(conclusions, views, cells, digitsMask) =>
-			(ExtraDigitsMask, ExtraCells) = (extraDigitsMask, extraCells);
-
-
-		/// <summary>
-		/// Indicates the extra digits mask.
-		/// </summary>
-		public short ExtraDigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the extra cells.
-		/// </summary>
-		public IReadOnlyList<int> ExtraCells { get; }
-
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + ExtraDigitsMask.CountSet() * .1M;
 

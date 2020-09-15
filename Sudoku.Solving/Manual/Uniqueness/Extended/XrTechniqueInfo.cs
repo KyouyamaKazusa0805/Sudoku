@@ -9,31 +9,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <summary>
 	/// Provides a usage of <b>extended rectangle</b> (XR) technique.
 	/// </summary>
-	public abstract class XrTechniqueInfo : UniquenessTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Cells">All cells.</param>
+	/// <param name="DigitsMask">All digits mask.</param>
+	public abstract record XrTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask)
+		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty extra.
 		/// </summary>
 		protected static readonly decimal[] DifficultyExtra = { 0, 0, 0, 0, .1M, 0, .2M, 0, .3M, 0, .4M, 0, .5M, 0, .6M };
 
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="cells">All cells.</param>
-		/// <param name="digits">All digits.</param>
-		public XrTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			GridMap cells, short digits) : base(conclusions, views) =>
-			(Cells, Digits) = (cells, digits);
-
-
-		/// <summary>
-		/// Indicates the cells.
-		/// </summary>
-		public GridMap Cells { get; }
-
-		/// <summary>
-		/// Indicates all digits.
-		/// </summary>
-		public short Digits { get; }
 
 		/// <summary>
 		/// Indicates the size of the instance.
@@ -50,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = new DigitCollection(Digits.GetAllSets()).ToString();
+			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string cellsStr = new CellCollection(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string? additional = GetAdditional();

@@ -8,7 +8,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <summary>
 	/// Provides a usage of <b>bivalue universal grave</b> (BUG) type 2 technique.
 	/// </summary>
-	public sealed class BugType2TechniqueInfo : UniquenessTechniqueInfo
+	/// <param name="Conclusions">All conclusions.</param>
+	/// <param name="Views">All views.</param>
+	/// <param name="Digit">The digit.</param>
+	/// <param name="Cells">All cell offsets.</param>
+	public sealed record BugType2TechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, IReadOnlyList<int> Cells)
+		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The table of extra difficulty values.
@@ -19,24 +25,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			.5M, .5M, .5M, .5M, .5M, .6M, .6M, .6M, .6M, .6M
 		};
 
-
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digit">The digit.</param>
-		/// <param name="cells">All cell offsets.</param>
-		public BugType2TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int digit, IReadOnlyList<int> cells)
-			: base(conclusions, views) => (Digit, Cells) = (digit, cells);
-
-
-		/// <summary>
-		/// Indicates the digit.
-		/// </summary>
-		public int Digit { get; }
-
-		/// <summary>
-		/// Indicates the cell offsets.
-		/// </summary>
-		public IReadOnlyList<int> Cells { get; }
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.6M + DifficultyExtra[Cells.Count - 1];
