@@ -43,7 +43,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The inner binary values.
 		/// </summary>
-		private /*readonly*/ fixed long _innerBinary[BufferLength];
+		private fixed long _innerBinary[BufferLength];
 
 
 		/// <summary>

@@ -10,7 +10,11 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Encapsulates the arguments for the event value changed.
 		/// </summary>
-		public /*readonly*/ struct ValueChangedValues
+		public
+#if !CSHARP_9_PREVIEW
+			readonly
+#endif
+			struct ValueChangedValues
 		{
 			/// <summary>
 			/// Initializes the instance with some data.
