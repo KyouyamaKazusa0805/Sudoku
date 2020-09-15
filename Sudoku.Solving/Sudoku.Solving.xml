@@ -1295,7 +1295,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher.#ctor">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <summary>

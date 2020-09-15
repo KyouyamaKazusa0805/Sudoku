@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Alses
+﻿using Sudoku.DocComments;
+
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Encapsulates an <b>almost locked set</b> (ALS) technique searcher.
@@ -21,7 +23,7 @@
 		protected readonly bool _allowAlsCycles;
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		protected AlsTechniqueSearcher()
 		{
 		}
