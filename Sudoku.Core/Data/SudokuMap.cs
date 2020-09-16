@@ -15,6 +15,7 @@ namespace Sudoku.Data
 	/// Encapsulates a data structure of a sudoku map that contains 729 bits, which is similar with
 	/// <see cref="GridMap"/>.
 	/// </summary>
+	[Obsolete("Please use '" + nameof(ValueSudokuMap) + "' instead.", true)]
 	public sealed class SudokuMap : ICloneable<SudokuMap>, IEnumerable<int>, IEquatable<SudokuMap?>
 	{
 		/// <summary>

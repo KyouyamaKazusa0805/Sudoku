@@ -4383,6 +4383,17 @@
             </remarks>
             <seealso cref="P:Sudoku.Data.ValueSudokuMap.First"/>
         </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.SetAt(System.Index)">
+            <summary>
+            Get a n-th index of the <see langword="true"/> bit in this instance.
+            </summary>
+            <param name="index">The true bit index order.</param>
+            <returns>The real index.</returns>
+            <remarks>
+            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.ValueSudokuMap.First"/> instead.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.ValueSudokuMap.First"/>
+        </member>
         <member name="M:Sudoku.Data.ValueSudokuMap.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>

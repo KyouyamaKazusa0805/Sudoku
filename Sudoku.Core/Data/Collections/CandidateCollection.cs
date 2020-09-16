@@ -18,7 +18,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// The inner map.
 		/// </summary>
-		private readonly SudokuMap _map;
+		private readonly ValueSudokuMap _map;
 
 
 		/// <summary>

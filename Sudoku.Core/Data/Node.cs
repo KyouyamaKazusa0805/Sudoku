@@ -220,7 +220,7 @@ namespace Sudoku.Data
 			}
 			else
 			{
-				var nodes = new SudokuMap();
+				var nodes = new ValueSudokuMap();
 				for (int i = 0; i < ParentsCount; i++)
 				{
 					var node = _parents![i];

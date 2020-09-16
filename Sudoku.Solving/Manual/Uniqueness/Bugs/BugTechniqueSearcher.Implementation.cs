@@ -281,7 +281,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				return;
 			}
 
-			var map = SudokuMap.CreateInstance(trueCandidates);
+			var map = new ValueSudokuMap(trueCandidates).PeerIntersection;
 			if (map.IsEmpty)
 			{
 				return;

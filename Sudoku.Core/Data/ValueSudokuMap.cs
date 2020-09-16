@@ -349,6 +349,24 @@ namespace Sudoku.Data
 			}
 		}
 
+		/// <summary>
+		/// Get a n-th index of the <see langword="true"/> bit in this instance.
+		/// </summary>
+		/// <param name="index">The true bit index order.</param>
+		/// <returns>The real index.</returns>
+		/// <remarks>
+		/// If you want to select the first set bit, please use <see cref="First"/> instead.
+		/// </remarks>
+		/// <seealso cref="First"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly int SetAt(Index index)
+		{
+			fixed (ValueSudokuMap* @this = &this)
+			{
+				return @this->Offsets.ElementAt(index.GetOffset(Count));
+			}
+		}
+
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override readonly int GetHashCode()
 		{
