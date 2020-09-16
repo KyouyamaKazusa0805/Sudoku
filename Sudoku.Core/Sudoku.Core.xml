@@ -4121,6 +4121,11 @@
             Encapsulates an enumerator for <see cref="T:Sudoku.Data.ValueGrid"/>.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.ValueGrid.Enumerator._pInitial">
+            <summary>
+            Indicates the initial pointer to the first element.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.ValueGrid.Enumerator._count">
             <summary>
             The number to iterate. If the value is 81, the grid will be end to iterate.

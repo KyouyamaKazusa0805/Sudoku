@@ -11,6 +11,11 @@ namespace Sudoku.Data
 		private struct Enumerator : IEnumerator<short>
 		{
 			/// <summary>
+			/// Indicates the initial pointer to the first element.
+			/// </summary>
+			private readonly short* _pInitial;
+
+			/// <summary>
 			/// The number to iterate. If the value is 81, the grid will be end to iterate.
 			/// </summary>
 			private int _count;
@@ -32,6 +37,7 @@ namespace Sudoku.Data
 			public Enumerator(ValueGrid pointer)
 			{
 				_count = 0;
+				_pInitial = pointer._masks;
 				_pCurrent = pointer._masks;
 			}
 
@@ -60,7 +66,7 @@ namespace Sudoku.Data
 			public void Reset()
 			{
 				_count = 0;
-				_pCurrent = null;
+				_pCurrent = _pInitial;
 			}
 		}
 	}
