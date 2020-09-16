@@ -81,7 +81,7 @@ namespace Sudoku.Data.Collections
 					.Append($"({digitGroup.Key + 1}){separator}");
 			}
 
-			return sb.RemoveFromEnd(separator.Length).ToString();
+			return sb.Length == 0 ? "{ }" : sb.RemoveFromEnd(separator.Length).ToString();
 		}
 
 
