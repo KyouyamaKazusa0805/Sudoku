@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -363,11 +362,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			// covers only one of two last cells; otherwise, false.
 			short candidatesMask = (short)((m1 | m2) & ~baseCandidatesMask);
 			int r1 = GetRegion(pos1, Row);
-			var span = (Span<int>)stackalloc[]
-			{
-				GetRegion(pos1, Block),
-				r1 == GetRegion(pos2, Row) ? r1 : GetRegion(pos1, Column)
-			};
+			var span = (stackalloc[] { GetRegion(pos1, Block), r1 == GetRegion(pos2, Row) ? r1 : GetRegion(pos1, Column) });
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
 				for (int i = 0; i < 2; i++)
