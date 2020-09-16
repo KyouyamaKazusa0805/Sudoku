@@ -150,7 +150,7 @@ namespace Sudoku.Windows
 				select new ListBoxItem
 				{
 					Content =
-						new PriorKeyedTuple<string, int, Type>(
+						new KeyedTuple<string, int, Type>(
 							CoreResources.GetValue(
 								$"Progress{Type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}"),
 							Priority,
@@ -158,7 +158,7 @@ namespace Sudoku.Windows
 				});
 			_listBoxPriority.SelectedIndex = 0;
 			var (_, priority, selectionType, _) =
-				(PriorKeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
+				(KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
 			_checkBoxIsEnabled.IsEnabled = !selectionType.GetCustomAttribute<SearcherPropertyAttribute>()!.IsReadOnly;
 			_textBoxPriority.Text = priority.ToString();
 		}
@@ -452,7 +452,7 @@ namespace Sudoku.Windows
 			if (sender is ListBox
 			{
 				SelectedIndex: not -1,
-				SelectedItem: ListBoxItem { Content: PriorKeyedTuple<string, int, Type> triplet } listBoxItem
+				SelectedItem: ListBoxItem { Content: KeyedTuple<string, int, Type> triplet } listBoxItem
 			} listBox)
 			{
 				var (_, priority, type, _) = triplet;
@@ -468,7 +468,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is CheckBox checkBox)
 			{
-				var type = ((PriorKeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
+				var type = ((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
 				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
 				attr.IsEnabled = checkBox.IsChecked ?? default;
 			}
@@ -478,7 +478,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
 			{
-				var type = ((PriorKeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
+				var type = ((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
 				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
 				attr.Priority = value;
 			}

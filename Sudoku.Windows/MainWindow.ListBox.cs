@@ -17,10 +17,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (sender is ListBox
-			{
-				SelectedItem: ListBoxItem { Content: PriorKeyedTuple<string, int, TechniqueInfo> triplet }
-			})
+			if (sender is ListBox { SelectedItem: ListBoxItem { Content: KeyedTuple<string, int, TechniqueInfo> triplet } })
 			{
 				_cacheAllSteps = null; // Remove older steps cache while updating paths.
 
@@ -38,10 +35,7 @@ namespace Sudoku.Windows
 
 		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (sender is ListBox
-			{
-				SelectedItem: ListBoxItem { Content: PriorKeyedTuple<string, TechniqueInfo, bool> triplet }
-			})
+			if (sender is ListBox { SelectedItem: ListBoxItem { Content: KeyedTuple<string, TechniqueInfo, bool> triplet } })
 			{
 				if (triplet.Item3)
 				{

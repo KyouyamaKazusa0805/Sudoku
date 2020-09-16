@@ -74,7 +74,7 @@ namespace Sudoku.Windows
 				{
 					if (_listBoxPaths.SelectedItem is ListBoxItem
 					{
-						Content: PriorKeyedTuple<string, int, TechniqueInfo> triplet
+						Content: KeyedTuple<string, int, TechniqueInfo> triplet
 					})
 					{
 						Clipboard.SetText(triplet.Item3.ToFullString());
@@ -94,7 +94,7 @@ namespace Sudoku.Windows
 				var sb = new StringBuilder();
 				foreach (string step in
 					from ListBoxItem item in _listBoxPaths.Items
-					let Content = item.Content as PriorKeyedTuple<string, int, TechniqueInfo>
+					let Content = item.Content as KeyedTuple<string, int, TechniqueInfo>
 					where Content is not null
 					select Content.Item3.ToFullString())
 				{
@@ -116,7 +116,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is MenuItem && _listBoxTechniques is
 			{
-				SelectedItem: ListBoxItem { Content: PriorKeyedTuple<string, TechniqueInfo, bool> { Item3: true } triplet }
+				SelectedItem: ListBoxItem { Content: KeyedTuple<string, TechniqueInfo, bool> { Item3: true } triplet }
 			})
 			{
 				var info = triplet.Item2;

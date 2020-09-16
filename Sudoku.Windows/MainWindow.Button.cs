@@ -85,7 +85,7 @@ namespace Sudoku.Windows
 						let Pair = Settings.DiffColors[Info.DifficultyLevel]
 						select new ListBoxItem
 						{
-							Content = new PriorKeyedTuple<string, TechniqueInfo, bool>(Info.ToSimpleString(), Info, true),
+							Content = new KeyedTuple<string, TechniqueInfo, bool>(Info.ToSimpleString(), Info, true),
 							Foreground = new SolidColorBrush(Pair.Foreground.ToWColor()),
 							Background = new SolidColorBrush(Pair.Background.ToWColor()),
 							BorderThickness = default
@@ -97,7 +97,7 @@ namespace Sudoku.Windows
 				srcView.GroupDescriptions.Add(
 					new PropertyGroupDescription(
 						$"{nameof(Content)}." +
-						$"{nameof(PriorKeyedTuple<string, TechniqueInfo, bool>.Item2)}." +
+						$"{nameof(KeyedTuple<string, TechniqueInfo, bool>.Item2)}." +
 						nameof(TechniqueInfo.Name)));
 				_listBoxTechniques.ItemsSource = srcView;
 

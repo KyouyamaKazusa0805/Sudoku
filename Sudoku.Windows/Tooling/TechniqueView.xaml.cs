@@ -51,7 +51,7 @@ namespace Sudoku.Windows.Tooling
 
 				box.CheckingChanged += (sender, _) =>
 				{
-					if (sender is CheckBox { Content: PriorKeyedTuple<string, TechniqueCode> pair } box)
+					if (sender is CheckBox { Content: KeyedTuple<string, TechniqueCode> pair } box)
 					{
 						Action<TechniqueCode> f = box.IsChecked switch
 						{

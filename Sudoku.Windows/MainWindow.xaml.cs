@@ -643,6 +643,9 @@ namespace Sudoku.Windows
 			_analyisResult = null;
 			_cacheAllSteps = null;
 
+			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+
 			_textBoxInfo.Text = (string)LangSource["WhileGenerating"];
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
@@ -736,6 +739,8 @@ namespace Sudoku.Windows
 		private void DisableSolvingControls()
 		{
 			_cacheAllSteps = null;
+			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
@@ -951,7 +956,7 @@ namespace Sudoku.Windows
 						Foreground = new SolidColorBrush(fore.ToWColor()),
 						Background = new SolidColorBrush(back.ToWColor()),
 						Content =
-								new PriorKeyedTuple<string, int, TechniqueInfo>(
+								new KeyedTuple<string, int, TechniqueInfo>(
 									$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
 						BorderThickness = default
 					});

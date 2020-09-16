@@ -22,7 +22,7 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Indicates the technique.
 		/// </summary>
-		public PriorKeyedTuple<string, TechniqueCode>? Technique { get; set; }
+		public KeyedTuple<string, TechniqueCode>? Technique { get; set; }
 
 
 		/// <summary>

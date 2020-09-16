@@ -8213,6 +8213,135 @@
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
+        <member name="T:System.KeyedTuple`2">
+            <summary>
+            Provides a tuple with a primary element, which means the tuple contains multiple items,
+            but the only specified item can be output as <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`2.Item1"/>.</typeparam>
+            <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`2.Item2"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="PriorKey">The prior key.</param>
+        </member>
+        <member name="M:System.KeyedTuple`2.#ctor(`0,`1,System.Int32)">
+            <summary>
+            Provides a tuple with a primary element, which means the tuple contains multiple items,
+            but the only specified item can be output as <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`2.Item1"/>.</typeparam>
+            <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`2.Item2"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="PriorKey">The prior key.</param>
+        </member>
+        <member name="M:System.KeyedTuple`2.#ctor(`0,`1)">
+            <summary>
+            Initializes an instance with the specified 2 items, and the first one is the prior key.
+            </summary>
+            <param name="item1">The item 1.</param>
+            <param name="item2">The item 2.</param>
+        </member>
+        <member name="P:System.KeyedTuple`2.System#Runtime#CompilerServices#ITuple#Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.KeyedTuple`2.System#Runtime#CompilerServices#ITuple#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.KeyedTuple`2.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.KeyedTuple`3">
+            <summary>
+            Provides a tuple with a primary element, which means the tuple contains multiple items,
+            but the only specified item can be output as <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`3.Item1"/>.</typeparam>
+            <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`3.Item2"/>.</typeparam>
+            <typeparam name="T3">The type of the property <see cref="P:System.KeyedTuple`3.Item3"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="Item3">The item 3.</param>
+            <param name="PriorKey">The prior key.</param>
+        </member>
+        <member name="M:System.KeyedTuple`3.#ctor(`0,`1,`2,System.Int32)">
+            <summary>
+            Provides a tuple with a primary element, which means the tuple contains multiple items,
+            but the only specified item can be output as <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`3.Item1"/>.</typeparam>
+            <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`3.Item2"/>.</typeparam>
+            <typeparam name="T3">The type of the property <see cref="P:System.KeyedTuple`3.Item3"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="Item3">The item 3.</param>
+            <param name="PriorKey">The prior key.</param>
+        </member>
+        <member name="M:System.KeyedTuple`3.#ctor(`0,`1,`2)">
+            <summary>
+            Initializes an instance with the specified 3 items, and the first one is the prior key.
+            </summary>
+            <param name="item1">The item 1.</param>
+            <param name="item2">The item 2.</param>
+            <param name="item3">The item 3.</param>
+        </member>
+        <member name="P:System.KeyedTuple`3.System#Runtime#CompilerServices#ITuple#Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.KeyedTuple`3.System#Runtime#CompilerServices#ITuple#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.KeyedTuple`3.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.KeyedTuple`4">
+            <summary>
+            Provides a tuple with a primary element, which means the tuple contains multiple items,
+            but the only specified item can be output as <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`4.Item1"/>.</typeparam>
+            <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`4.Item2"/>.</typeparam>
+            <typeparam name="T3">The type of the property <see cref="P:System.KeyedTuple`4.Item3"/>.</typeparam>
+            <typeparam name="T4">The type of the property <see cref="P:System.KeyedTuple`4.Item4"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="Item3">The item 3.</param>
+            <param name="Item4">The item 4.</param>
+            <param name="PriorKey">The prior key.</param>
+        </member>
+        <member name="M:System.KeyedTuple`4.#ctor(`0,`1,`2,`3,System.Int32)">
+            <summary>
+            Provides a tuple with a primary element, which means the tuple contains multiple items,
+            but the only specified item can be output as <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`4.Item1"/>.</typeparam>
+            <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`4.Item2"/>.</typeparam>
+            <typeparam name="T3">The type of the property <see cref="P:System.KeyedTuple`4.Item3"/>.</typeparam>
+            <typeparam name="T4">The type of the property <see cref="P:System.KeyedTuple`4.Item4"/>.</typeparam>
+            <param name="Item1">The item 1.</param>
+            <param name="Item2">The item 2.</param>
+            <param name="Item3">The item 3.</param>
+            <param name="Item4">The item 4.</param>
+            <param name="PriorKey">The prior key.</param>
+        </member>
+        <member name="M:System.KeyedTuple`4.#ctor(`0,`1,`2,`3)">
+            <summary>
+            Initializes an instance with the specified 4 items, and the first one is the prior key.
+            </summary>
+            <param name="item1">The item 1.</param>
+            <param name="item2">The item 2.</param>
+            <param name="item3">The item 3.</param>
+            <param name="item4">The item 4.</param>
+        </member>
+        <member name="P:System.KeyedTuple`4.System#Runtime#CompilerServices#ITuple#Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.KeyedTuple`4.System#Runtime#CompilerServices#ITuple#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.KeyedTuple`4.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Linq.EnumerableEx">
             <summary>
             Provides a set of static methods for querying objects that implement
@@ -8260,135 +8389,6 @@
             <typeparam name="TNotNull">The type of the element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:System.PriorKeyedTuple`2">
-            <summary>
-            Provides a tuple with a primary element, which means the tuple contains multiple items,
-            but the only specified item can be output as <see cref="T:System.String"/> text.
-            </summary>
-            <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`2.Item1"/>.</typeparam>
-            <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`2.Item2"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="PriorKey">The prior key.</param>
-        </member>
-        <member name="M:System.PriorKeyedTuple`2.#ctor(`0,`1,System.Int32)">
-            <summary>
-            Provides a tuple with a primary element, which means the tuple contains multiple items,
-            but the only specified item can be output as <see cref="T:System.String"/> text.
-            </summary>
-            <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`2.Item1"/>.</typeparam>
-            <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`2.Item2"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="PriorKey">The prior key.</param>
-        </member>
-        <member name="M:System.PriorKeyedTuple`2.#ctor(`0,`1)">
-            <summary>
-            Initializes an instance with the specified 2 items, and the first one is the prior key.
-            </summary>
-            <param name="item1">The item 1.</param>
-            <param name="item2">The item 2.</param>
-        </member>
-        <member name="P:System.PriorKeyedTuple`2.System#Runtime#CompilerServices#ITuple#Length">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.PriorKeyedTuple`2.System#Runtime#CompilerServices#ITuple#Item(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.PriorKeyedTuple`2.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:System.PriorKeyedTuple`3">
-            <summary>
-            Provides a tuple with a primary element, which means the tuple contains multiple items,
-            but the only specified item can be output as <see cref="T:System.String"/> text.
-            </summary>
-            <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item1"/>.</typeparam>
-            <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item2"/>.</typeparam>
-            <typeparam name="T3">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item3"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="Item3">The item 3.</param>
-            <param name="PriorKey">The prior key.</param>
-        </member>
-        <member name="M:System.PriorKeyedTuple`3.#ctor(`0,`1,`2,System.Int32)">
-            <summary>
-            Provides a tuple with a primary element, which means the tuple contains multiple items,
-            but the only specified item can be output as <see cref="T:System.String"/> text.
-            </summary>
-            <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item1"/>.</typeparam>
-            <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item2"/>.</typeparam>
-            <typeparam name="T3">The type of the property <see cref="P:System.PriorKeyedTuple`3.Item3"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="Item3">The item 3.</param>
-            <param name="PriorKey">The prior key.</param>
-        </member>
-        <member name="M:System.PriorKeyedTuple`3.#ctor(`0,`1,`2)">
-            <summary>
-            Initializes an instance with the specified 3 items, and the first one is the prior key.
-            </summary>
-            <param name="item1">The item 1.</param>
-            <param name="item2">The item 2.</param>
-            <param name="item3">The item 3.</param>
-        </member>
-        <member name="P:System.PriorKeyedTuple`3.System#Runtime#CompilerServices#ITuple#Length">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.PriorKeyedTuple`3.System#Runtime#CompilerServices#ITuple#Item(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.PriorKeyedTuple`3.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:System.PriorKeyedTuple`4">
-            <summary>
-            Provides a tuple with a primary element, which means the tuple contains multiple items,
-            but the only specified item can be output as <see cref="T:System.String"/> text.
-            </summary>
-            <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item1"/>.</typeparam>
-            <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item2"/>.</typeparam>
-            <typeparam name="T3">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item3"/>.</typeparam>
-            <typeparam name="T4">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item4"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="Item3">The item 3.</param>
-            <param name="Item4">The item 4.</param>
-            <param name="PriorKey">The prior key.</param>
-        </member>
-        <member name="M:System.PriorKeyedTuple`4.#ctor(`0,`1,`2,`3,System.Int32)">
-            <summary>
-            Provides a tuple with a primary element, which means the tuple contains multiple items,
-            but the only specified item can be output as <see cref="T:System.String"/> text.
-            </summary>
-            <typeparam name="T1">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item1"/>.</typeparam>
-            <typeparam name="T2">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item2"/>.</typeparam>
-            <typeparam name="T3">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item3"/>.</typeparam>
-            <typeparam name="T4">The type of the property <see cref="P:System.PriorKeyedTuple`4.Item4"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="Item3">The item 3.</param>
-            <param name="Item4">The item 4.</param>
-            <param name="PriorKey">The prior key.</param>
-        </member>
-        <member name="M:System.PriorKeyedTuple`4.#ctor(`0,`1,`2,`3)">
-            <summary>
-            Initializes an instance with the specified 4 items, and the first one is the prior key.
-            </summary>
-            <param name="item1">The item 1.</param>
-            <param name="item2">The item 2.</param>
-            <param name="item3">The item 3.</param>
-            <param name="item4">The item 4.</param>
-        </member>
-        <member name="P:System.PriorKeyedTuple`4.System#Runtime#CompilerServices#ITuple#Length">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.PriorKeyedTuple`4.System#Runtime#CompilerServices#ITuple#Item(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.PriorKeyedTuple`4.ToString">
-            <inheritdoc/>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>
