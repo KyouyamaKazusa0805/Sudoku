@@ -35,6 +35,7 @@ namespace Sudoku.Drawing
 		/// The rotate angle (45 degrees, i.e. <c><see cref="PI"/> / 4</c>).
 		/// This field is used for rotate the chains if some of them are overlapped.
 		/// </summary>
+		/// <seealso cref="PI"/>
 		private const float RotateAngle = .78539816F;
 
 
@@ -192,8 +193,7 @@ namespace Sudoku.Drawing
 
 						break;
 					}
-					case Modifiable:
-					case Given:
+					case Modifiable or Given:
 					{
 						// Draw values.
 						var point = PointConverter.GetMousePointInCenter(cell);
@@ -294,8 +294,11 @@ namespace Sudoku.Drawing
 			var points = new HashSet<PointF>();
 			foreach (var (startCand, endCand, _) in links)
 			{
-				points.Add(PointConverter.GetMouseCenterOfCandidates(new() { startCand }));
-				points.Add(PointConverter.GetMouseCenterOfCandidates(new() { endCand }));
+				var map1 = new ValueSudokuMap() { startCand };
+				var map2 = new ValueSudokuMap() { endCand };
+
+				points.Add(PointConverter.GetMouseCenterOfCandidates(map1));
+				points.Add(PointConverter.GetMouseCenterOfCandidates(map2));
 			}
 
 			if (Conclusions is not null)

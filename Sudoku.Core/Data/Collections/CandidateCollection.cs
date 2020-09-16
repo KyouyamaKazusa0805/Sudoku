@@ -18,7 +18,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// The inner map.
 		/// </summary>
-		private readonly SudokuMap _map;
+		private readonly ValueSudokuMap _map;
 
 
 		/// <summary>
@@ -40,6 +40,12 @@ namespace Sudoku.Data.Collections
 			_map = new();
 			_map.AddRange(candidates);
 		}
+
+		/// <summary>
+		/// Initializes an instance with the specified sudoku map.
+		/// </summary>
+		/// <param name="candidates">The candidates.</param>
+		public CandidateCollection(ValueSudokuMap candidates) => _map = candidates;
 
 		/// <summary>
 		/// Initializes an instance with the specified candidates.
@@ -81,7 +87,7 @@ namespace Sudoku.Data.Collections
 					.Append($"({digitGroup.Key + 1}){separator}");
 			}
 
-			return sb.RemoveFromEnd(separator.Length).ToString();
+			return sb.Length == 0 ? "{ }" : sb.RemoveFromEnd(separator.Length).ToString();
 		}
 
 

@@ -450,6 +450,12 @@
             </summary>
             <param name="candidates">The candidates.</param>
         </member>
+        <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(Sudoku.Data.ValueSudokuMap)">
+            <summary>
+            Initializes an instance with the specified sudoku map.
+            </summary>
+            <param name="candidates">The candidates.</param>
+        </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Initializes an instance with the specified candidates.
@@ -4383,6 +4389,17 @@
             </remarks>
             <seealso cref="P:Sudoku.Data.ValueSudokuMap.First"/>
         </member>
+        <member name="M:Sudoku.Data.ValueSudokuMap.SetAt(System.Index)">
+            <summary>
+            Get a n-th index of the <see langword="true"/> bit in this instance.
+            </summary>
+            <param name="index">The true bit index order.</param>
+            <returns>The real index.</returns>
+            <remarks>
+            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.ValueSudokuMap.First"/> instead.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.ValueSudokuMap.First"/>
+        </member>
         <member name="M:Sudoku.Data.ValueSudokuMap.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -4490,13 +4507,6 @@
             </summary>
             <param name="candidate">The candidate.</param>
             <param name="setItself">Indicates whether the map should set itself.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.CreateInstance(System.Int32[])">
-            <summary>
-            Get the map of candidates, which is the peer intersections from the specified candidates.
-            </summary>
-            <param name="candidates">All candidates.</param>
-            <returns>The result map.</returns>
         </member>
         <member name="M:Sudoku.Data.ValueSudokuMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>

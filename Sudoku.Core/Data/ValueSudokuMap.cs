@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
@@ -212,12 +213,17 @@ namespace Sudoku.Data
 					int blockPos = 0;
 					for (long* p = pArray; blockPos < BufferLength; blockPos++, p++)
 					{
+						if (*p == 0)
+						{
+							continue;
+						}
+
 						int i = 0;
 						for (long value = *p; i < Shifting; i++, value >>= 1)
 						{
 							if ((value & 1) != 0)
 							{
-								return i;
+								return blockPos * Shifting + i;
 							}
 						}
 					}
@@ -349,6 +355,24 @@ namespace Sudoku.Data
 			}
 		}
 
+		/// <summary>
+		/// Get a n-th index of the <see langword="true"/> bit in this instance.
+		/// </summary>
+		/// <param name="index">The true bit index order.</param>
+		/// <returns>The real index.</returns>
+		/// <remarks>
+		/// If you want to select the first set bit, please use <see cref="First"/> instead.
+		/// </remarks>
+		/// <seealso cref="First"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly int SetAt(Index index)
+		{
+			fixed (ValueSudokuMap* @this = &this)
+			{
+				return @this->Offsets.ElementAt(index.GetOffset(Count));
+			}
+		}
+
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override readonly int GetHashCode()
 		{
@@ -396,7 +420,38 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
-		public override readonly string ToString() => new CandidateCollection(this).ToString();
+		public override readonly string ToString()
+		{
+			switch (Count)
+			{
+				case 0:
+				{
+					return "{ }";
+				}
+				case 1:
+				{
+					int candidate = First;
+					int cell = candidate / 9;
+					int digit = candidate % 9;
+					return $"r{cell / 9 + 1}c{cell % 9 + 1}({digit + 1})";
+				}
+				default:
+				{
+					const string separator = ", ";
+					var sb = new StringBuilder();
+
+					int[] candidates = ToArray();
+					foreach (var digitGroup in from Candidate in candidates group Candidate by Candidate % 9)
+					{
+						sb
+							.Append(new CellCollection(from Candidate in digitGroup select Candidate / 9).ToString())
+							.Append($"({digitGroup.Key + 1}){separator}");
+					}
+
+					return sb.RemoveFromEnd(separator.Length).ToString();
+				}
+			}
+		}
 
 		/// <summary>
 		/// Get the final <see cref="GridMap"/> to get all cells that the corresponding indices
@@ -460,13 +515,18 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Add(int offset)
 		{
-			if (offset >= 0) // Positive or zero.
+			switch (offset)
 			{
-				this[offset] = true;
-			}
-			else // Negative values.
-			{
-				this[~offset] = false;
+				case >= 0 when !this[offset]:
+				{
+					this[offset] = true;
+					break;
+				}
+				case < 0 when this[~offset]:
+				{
+					this[~offset] = false;
+					break;
+				}
 			}
 		}
 
@@ -558,14 +618,6 @@ namespace Sudoku.Data
 			}
 		}
 
-
-		/// <summary>
-		/// Get the map of candidates, which is the peer intersections from the specified candidates.
-		/// </summary>
-		/// <param name="candidates">All candidates.</param>
-		/// <returns>The result map.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static ValueSudokuMap CreateInstance(int[] candidates) => CreateInstance(candidates.AsEnumerable());
 
 		/// <summary>
 		/// Get the map of candidates, which is the peer intersections from the specified candidates.
