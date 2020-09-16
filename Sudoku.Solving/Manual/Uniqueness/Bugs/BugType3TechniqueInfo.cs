@@ -35,10 +35,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
-			string cellsStr = new CellCollection(Cells).ToString();
+			string cellsStr = new GridMap(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string sizeStr = SubsetNames[Digits.Count].ToLower();
-			string trueCandidatesStr = new CandidateCollection(TrueCandidates).ToString();
+			string trueCandidatesStr = new SudokuMap(TrueCandidates).ToString();
 			string subsetTypeStr = IsNaked ? "naked" : "hidden";
 			return
 				$"{Name}: True candidates {trueCandidatesStr} with {subsetTypeStr} {sizeStr} {digitsStr} " +

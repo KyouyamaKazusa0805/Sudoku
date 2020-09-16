@@ -1,5 +1,4 @@
 ﻿using System;
-using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -62,9 +61,9 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
-			string startStr = new CandidateCollection(StartCandidate).ToString();
+			string startStr = new SudokuMap { StartCandidate }.ToString();
 			string? linkStr = NameAttribute.GetName(LinkType);
-			string endStr = new CandidateCollection(EndCandidate).ToString();
+			string endStr = new SudokuMap { EndCandidate }.ToString();
 			return $"{startStr}{linkStr}{endStr}";
 		}
 

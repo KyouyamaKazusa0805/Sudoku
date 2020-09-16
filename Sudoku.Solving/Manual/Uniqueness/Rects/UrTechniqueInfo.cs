@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		{
 			int d1 = Digit1 + 1;
 			int d2 = Digit2 + 1;
-			string cellsStr = new CellCollection(Cells).ToString();
+			string cellsStr = new GridMap(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string? additional = GetAdditional();
 			return

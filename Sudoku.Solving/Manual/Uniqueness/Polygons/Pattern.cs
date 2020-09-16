@@ -1,6 +1,5 @@
 ﻿using System;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
@@ -100,7 +99,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override int GetHashCode() => (int)_mask;
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override string ToString() => $"{new CellCollection(Map).ToString()}";
+		public override string ToString() => Map.ToString();
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

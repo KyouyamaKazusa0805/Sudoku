@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -36,7 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
-			string xyCellStr = new CellCollection(XyCell).ToString();
+			string xyCellStr = new GridMap { XyCell }.ToString();
 			return $"X = {XDigit + 1}, Y = {YDigit + 1} and a bi-value cell {xyCellStr}";
 		}
 	}

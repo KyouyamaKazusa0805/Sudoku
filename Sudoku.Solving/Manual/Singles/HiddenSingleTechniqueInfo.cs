@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellStr = new CellCollection(Cell).ToString();
+			string cellStr = new GridMap { Cell }.ToString();
 			string regionStr = new RegionCollection(Region).ToString();
 			int v = Digit + 1;
 			return EnableAndIsLastDigit ? $"{Name}: {cellStr} = {v}" : $"{Name}: {cellStr} = {v} in {regionStr}";

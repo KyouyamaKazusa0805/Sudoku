@@ -294,8 +294,8 @@ namespace Sudoku.Drawing
 			var points = new HashSet<PointF>();
 			foreach (var (startCand, endCand, _) in links)
 			{
-				var map1 = new ValueSudokuMap() { startCand };
-				var map2 = new ValueSudokuMap() { endCand };
+				var map1 = new SudokuMap() { startCand };
+				var map2 = new SudokuMap() { endCand };
 
 				points.Add(PointConverter.GetMouseCenterOfCandidates(map1));
 				points.Add(PointConverter.GetMouseCenterOfCandidates(map2));

@@ -132,7 +132,7 @@ namespace Sudoku.Data.Collections
 							foreach (var digitGroup in from Conc in typeGroup group Conc by Conc.Digit)
 							{
 								sb
-									.Append(new CellCollection(from Conc in digitGroup select Conc.CellOffset).ToString())
+									.Append(new GridMap(from Conc in digitGroup select Conc.CellOffset))
 									.Append(op)
 									.Append(digitGroup.Key + 1)
 									.Append(separator);

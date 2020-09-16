@@ -32,9 +32,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
-			string cellsStr = new CellCollection(Cells).ToString();
+			string cellsStr = Cells.ToString();
 			string subsetDigitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
-			string subsetCellsStr = new CellCollection(ExtraCells).ToString();
+			string subsetCellsStr = new GridMap(ExtraCells).ToString();
 			string subsetName = SubsetNames[ExtraCells.Count + 1];
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return

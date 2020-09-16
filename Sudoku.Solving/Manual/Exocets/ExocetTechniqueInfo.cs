@@ -72,9 +72,9 @@ namespace Sudoku.Solving.Manual.Exocets
 				.Append(": Digits ")
 				.Append(new DigitCollection(Digits).ToString())
 				.Append(" in base cells ")
-				.Append(new CellCollection(baseMap).ToString())
+				.Append(baseMap)
 				.Append(", target cells ")
-				.Append(new CellCollection(targetMap).ToString())
+				.Append(targetMap)
 				.NullableAppend(
 					LockedMemberQ is null ? null : $", locked member 1: {new DigitCollection(LockedMemberQ).ToString()}")
 				.NullableAppend(

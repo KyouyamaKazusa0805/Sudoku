@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string candsStr = new CandidateCollection(Candidates).ToString();
+			string candsStr = new GridMap(Candidates).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: True candidates: {candsStr} => {elimStr}";
 		}

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 
 namespace Sudoku.Solving.Manual.Singles
@@ -26,7 +25,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellStr = new CellCollection(Cell).ToString();
+			string cellStr = new GridMap { Cell }.ToString();
 			int value = Digit + 1;
 			return $"{Name}: {cellStr} = {value}";
 		}

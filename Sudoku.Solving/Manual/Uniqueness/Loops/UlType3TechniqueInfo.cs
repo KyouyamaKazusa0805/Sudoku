@@ -29,11 +29,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellsStr = new CellCollection(Loop).ToString();
+			string cellsStr = Loop.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string subsetName = SubsetNames[SubsetCells.Count + 1];
 			string digitsStr = new DigitCollection(SubsetDigitsMask.GetAllSets()).ToString();
-			string subsetCellsStr = new CellCollection(SubsetCells).ToString();
+			string subsetCellsStr = new GridMap(SubsetCells).ToString();
 			return
 				$"{Name}: Digits {Digit1 + 1}, {Digit2 + 1} in cells {cellsStr} " +
 				$"with the naked {subsetName} with extra digits {digitsStr} " +

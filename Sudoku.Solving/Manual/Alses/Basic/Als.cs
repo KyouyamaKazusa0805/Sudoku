@@ -161,12 +161,12 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				? new StringBuilder()
 					.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
 					.Append("/")
-					.Append(new CellCollection(Map).ToString())
+					.Append(Map)
 					.ToString()
 				: new StringBuilder()
 					.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
 					.Append("/")
-					.Append(new CellCollection(Map).ToString())
+					.Append(Map)
 					.Append($" in {new RegionCollection(Region).ToString()}")
 					.ToString();
 

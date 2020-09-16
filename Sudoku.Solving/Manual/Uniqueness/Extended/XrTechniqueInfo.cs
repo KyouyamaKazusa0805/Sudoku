@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
-			string cellsStr = new CellCollection(Cells).ToString();
+			string cellsStr = Cells.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string? additional = GetAdditional();
 			return

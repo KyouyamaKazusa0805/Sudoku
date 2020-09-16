@@ -101,10 +101,10 @@ namespace Sudoku.Data.Collections
 					{
 						var (start, _, type) = links[i];
 						sb
-							.Append(new CandidateCollection(start).ToString())
+							.Append(new SudokuMap { start })
 							.Append(NameAttribute.GetName(type));
 					}
-					sb.Append(new CandidateCollection(links[^1].EndCandidate).ToString());
+					sb.Append(new SudokuMap { links[^1].EndCandidate });
 
 					// Remove redundant digit labels:
 					// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).

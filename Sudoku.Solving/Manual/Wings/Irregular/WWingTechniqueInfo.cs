@@ -31,8 +31,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string startCellStr = new CellCollection(stackalloc[] { StartCell }).ToString();
-			string endCellStr = new CellCollection(stackalloc[] { EndCell }).ToString();
+			string startCellStr = new GridMap { StartCell }.ToString();
+			string endCellStr = new GridMap { EndCell }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {startCellStr} to {endCellStr} with conjugate pair {ConjugatePair} => {elimStr}";
 		}

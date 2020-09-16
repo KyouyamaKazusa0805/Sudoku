@@ -152,7 +152,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				if (type == LinkType.Weak)
 				{
-					var elimMap = new ValueSudokuMap { start, end }.PeerIntersection;
+					var elimMap = new SudokuMap { start, end }.PeerIntersection;
 					if (elimMap.IsEmpty)
 					{
 						continue;
@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				int startCandidate = startNode.Cell * 9 + startNode.Digit;
 				var endNode = target.Chain[^2];
 				int endCandidate = endNode.Cell * 9 + endNode.Digit;
-				var elimMap = new ValueSudokuMap { startCandidate, endCandidate }.PeerIntersection;
+				var elimMap = new SudokuMap { startCandidate, endCandidate }.PeerIntersection;
 				if (elimMap.IsEmpty)
 				{
 					return null;

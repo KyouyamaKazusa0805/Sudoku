@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -216,19 +215,19 @@ namespace Sudoku.Data
 		{
 			if (ParentsCount == 0)
 			{
-				return $"Candidates: {new CellCollection(Cell).ToString()}({Digit + 1})";
+				return $"Candidates: {new GridMap { Cell }}({Digit + 1})";
 			}
 			else
 			{
-				var nodes = new ValueSudokuMap();
+				var nodes = new SudokuMap();
 				for (int i = 0; i < ParentsCount; i++)
 				{
 					var node = _parents![i];
 					nodes.Add(node.Cell * 9 + node.Digit);
 				}
 
-				string cell = new CellCollection(Cell).ToString();
-				string parents = new CandidateCollection(nodes).ToString();
+				string cell = new GridMap { Cell }.ToString();
+				string parents = nodes.ToString();
 				return $"Candidate: {cell}({Digit + 1}), Parent(s): {parents}";
 			}
 		}

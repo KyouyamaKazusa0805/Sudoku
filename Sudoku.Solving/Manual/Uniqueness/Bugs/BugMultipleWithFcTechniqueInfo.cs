@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -80,7 +79,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string candsStr = new CandidateCollection(Candidates).ToString();
+			string candsStr = new SudokuMap(Candidates).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: True candidates: {candsStr} => {elimStr}";
 		}

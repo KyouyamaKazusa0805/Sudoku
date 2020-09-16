@@ -36,9 +36,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cells1Str = new CellCollection(RowCells).ToString();
-			string cells2Str = new CellCollection(ColumnCells).ToString();
-			string cells3Str = new CellCollection(BlockCells).ToString();
+			string cells1Str = RowCells.ToString();
+			string cells2Str = ColumnCells.ToString();
+			string cells3Str = BlockCells.ToString();
 			string digits1Str = new DigitCollection(RowDigitsMask.GetAllSets()).ToString();
 			string digits2Str = new DigitCollection(ColumnDigitsMask.GetAllSets()).ToString();
 			string digits3Str = new DigitCollection(BlockDigitsMask.GetAllSets()).ToString();

@@ -1,7 +1,6 @@
 ﻿#pragma warning disable CA1815
 
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
@@ -50,6 +49,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			(pair, square, baseLine) = (Pair, Square, BaseLine);
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override string ToString() => new CellCollection(FullMap).ToString();
+		public override string ToString() => FullMap.ToString();
 	}
 }

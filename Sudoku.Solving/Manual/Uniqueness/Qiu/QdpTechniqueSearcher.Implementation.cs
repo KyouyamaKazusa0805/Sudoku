@@ -334,7 +334,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				}
 			}
 
-			var elimMap = new ValueSudokuMap(candidates).PeerIntersection;
+			var elimMap = new SudokuMap(candidates).PeerIntersection;
 			if (elimMap.IsEmpty)
 			{
 				return;

@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		protected override string GetAdditional()
 		{
 			string digitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
-			string cellsStr = new CellCollection(ExtraCells).ToString();
+			string cellsStr = new GridMap(ExtraCells).ToString();
 			string regionStr = new RegionCollection(Region).ToString();
 			return $"{digitsStr} in cells {cellsStr} in {regionStr}";
 		}

@@ -30,8 +30,8 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellsStr = new CellCollection(Loop).ToString();
-			string guardians = new CellCollection(Guardians).ToString();
+			string cellsStr = Loop.ToString();
+			string guardians = Guardians.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string guardianSingularOrPlural = Guardians.Count == 1 ? "a guardian" : "guardians";
 			return $"{Name}: Cells {cellsStr} with {guardianSingularOrPlural} {guardians} => {elimStr}";

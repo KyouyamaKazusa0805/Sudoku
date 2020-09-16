@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
-			string cellsStr = new CellCollection(Map).ToString();
+			string cellsStr = Map.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in cells {cellsStr} with the extra digit {ExtraDigit + 1} => {elimStr}";
 		}

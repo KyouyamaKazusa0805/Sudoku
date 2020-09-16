@@ -1672,6 +1672,16 @@
             </summary>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor"/>
         </member>
+        <member name="F:Sudoku.Data.GridMap.LeftCurlyBrace">
+            <summary>
+            The left curly brace.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridMap.RightCurlyBrace">
+            <summary>
+            The right curly brace.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.GridMap.Shifting">
             <summary>
             The value used for shifting.

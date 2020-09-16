@@ -94,8 +94,8 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
-			string pivotCellStr = new CellCollection(Pivot).ToString();
-			string cellOffsetsStr = new CellCollection(Cells).ToString();
+			string pivotCellStr = new GridMap { Pivot }.ToString();
+			string cellOffsetsStr = new GridMap(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {pivotCellStr} with {cellOffsetsStr} => {elimStr}";
 		}

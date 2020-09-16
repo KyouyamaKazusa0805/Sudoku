@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string patternStr = new CellCollection(Pattern.FullMap).ToString();
+			string patternStr = Pattern.FullMap.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: Cells {patternStr} will be a deadly pattern " +

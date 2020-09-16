@@ -41,11 +41,11 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string blockCellsStr = new CellCollection(BlockCells).ToString();
+			string blockCellsStr = BlockCells.ToString();
 			string blockDigitsStr = new DigitCollection(BlockMask.GetAllSets()).ToString(null);
-			string lineCellsStr = new CellCollection(LineCells).ToString();
+			string lineCellsStr = LineCells.ToString();
 			string lineDigitsStr = new DigitCollection(LineMask.GetAllSets()).ToString(null);
-			string interCellsStr = new CellCollection(IntersectionCells).ToString();
+			string interCellsStr = IntersectionCells.ToString();
 			string interDigitsStr = new DigitCollection(IntersectionMask.GetAllSets()).ToString(null);
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return

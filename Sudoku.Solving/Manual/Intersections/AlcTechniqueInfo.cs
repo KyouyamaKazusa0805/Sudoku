@@ -50,8 +50,8 @@ namespace Sudoku.Solving.Manual.Intersections
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
-			string baseCellsStr = new CellCollection(BaseCells).ToString();
-			string targetCellsStr = new CellCollection(TargetCells).ToString();
+			string baseCellsStr = BaseCells.ToString();
+			string targetCellsStr = TargetCells.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {baseCellsStr} to {targetCellsStr} => {elimStr}";
 		}

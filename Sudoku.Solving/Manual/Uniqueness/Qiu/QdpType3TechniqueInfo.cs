@@ -30,9 +30,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string patternStr = new CellCollection(Pattern.FullMap).ToString();
+			string patternStr = Pattern.FullMap.ToString();
 			string digitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
-			string cellsStr = new CellCollection(ExtraCells).ToString();
+			string cellsStr = new GridMap(ExtraCells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string subsetName = SubsetNames[ExtraCells.Count + 1].ToLower();
 			return

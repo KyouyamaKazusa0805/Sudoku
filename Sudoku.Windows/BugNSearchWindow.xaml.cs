@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Sudoku.Data.Collections;
+using Sudoku.Data;
 using Sudoku.Solving.Checking;
 using static Sudoku.Windows.Constants.Processings;
 using Grid = Sudoku.Data.Grid;
@@ -48,7 +48,7 @@ namespace Sudoku.Windows
 				var array = (
 					from Candidate in await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64)
 					orderby Candidate
-					let Str = new CandidateCollection(Candidate).ToString()
+					let Str = new SudokuMap { Candidate }.ToString()
 					select new KeyedTuple<int, string>(Candidate, Str, 2)).ToArray();
 
 				_labelStatus.ClearValue(ContentProperty);
