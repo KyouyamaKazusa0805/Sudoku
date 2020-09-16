@@ -450,6 +450,12 @@
             </summary>
             <param name="candidates">The candidates.</param>
         </member>
+        <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(Sudoku.Data.ValueSudokuMap)">
+            <summary>
+            Initializes an instance with the specified sudoku map.
+            </summary>
+            <param name="candidates">The candidates.</param>
+        </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Initializes an instance with the specified candidates.

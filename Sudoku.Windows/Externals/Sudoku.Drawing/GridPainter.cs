@@ -35,6 +35,7 @@ namespace Sudoku.Drawing
 		/// The rotate angle (45 degrees, i.e. <c><see cref="PI"/> / 4</c>).
 		/// This field is used for rotate the chains if some of them are overlapped.
 		/// </summary>
+		/// <seealso cref="PI"/>
 		private const float RotateAngle = .78539816F;
 
 
@@ -192,8 +193,7 @@ namespace Sudoku.Drawing
 
 						break;
 					}
-					case Modifiable:
-					case Given:
+					case Modifiable or Given:
 					{
 						// Draw values.
 						var point = PointConverter.GetMousePointInCenter(cell);

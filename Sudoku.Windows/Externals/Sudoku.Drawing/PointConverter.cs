@@ -5,6 +5,7 @@ using System.Windows;
 using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 using WSize = System.Windows.Size;
+using DSizeF = System.Drawing.SizeF;
 
 namespace Sudoku.Drawing
 {
@@ -35,7 +36,7 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="width">The width.</param>
 		/// <param name="height">The height.</param>
-		public PointConverter(int width, int height) : this(new SizeF(width, height))
+		public PointConverter(int width, int height) : this(new DSizeF(width, height))
 		{
 		}
 
@@ -44,7 +45,7 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="width">The width.</param>
 		/// <param name="height">The height.</param>
-		public PointConverter(float width, float height) : this(new SizeF(width, height))
+		public PointConverter(float width, float height) : this(new DSizeF(width, height))
 		{
 		}
 
@@ -53,16 +54,16 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="size">The size.</param>
 		/// <seealso cref="WSize"/>
-		public PointConverter(WSize size) : this(new SizeF((float)size.Width, (float)size.Height))
+		public PointConverter(WSize size) : this(new DSizeF((float)size.Width, (float)size.Height))
 		{
 		}
 
 		/// <summary>
-		/// Initializes an instance with the specified <see cref="SizeF"/>.
+		/// Initializes an instance with the specified <see cref="DSizeF"/>.
 		/// </summary>
 		/// <param name="size">The size.</param>
-		/// <seealso cref="SizeF"/>
-		public PointConverter(SizeF size)
+		/// <seealso cref="DSizeF"/>
+		public PointConverter(DSizeF size)
 		{
 			InitializeSizes(size);
 			InitializePoints();
@@ -78,22 +79,22 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates the control size.
 		/// </summary>
-		public SizeF ControlSize { get; private set; }
+		public DSizeF ControlSize { get; private set; }
 
 		/// <summary>
 		/// Indicates the grid size.
 		/// </summary>
-		public SizeF GridSize { get; private set; }
+		public DSizeF GridSize { get; private set; }
 
 		/// <summary>
 		/// Indicates the cell size.
 		/// </summary>
-		public SizeF CellSize { get; private set; }
+		public DSizeF CellSize { get; private set; }
 
 		/// <summary>
 		/// Indicates the candidate size.
 		/// </summary>
-		public SizeF CandidateSize { get; private set; }
+		public DSizeF CandidateSize { get; private set; }
 
 
 		/// <summary>
@@ -255,14 +256,14 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Bound with the constructor <see cref="PointConverter(int, int)"/>,
 		/// <see cref="PointConverter(float, float)"/> and
-		/// <see cref="PointConverter(SizeF)"/>.
+		/// <see cref="PointConverter(DSizeF)"/>.
 		/// </summary>
 		/// <param name="size">The size.</param>
 		/// <seealso cref="PointConverter(int, int)"/>
 		/// <seealso cref="PointConverter(float, float)"/>
-		/// <seealso cref="PointConverter(SizeF)"/>
+		/// <seealso cref="PointConverter(DSizeF)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void InitializeSizes(SizeF size)
+		private void InitializeSizes(DSizeF size)
 		{
 			var (width, height) = ControlSize = size;
 			var (gridWidth, gridHeight) = GridSize = new(width - (Offset << 1), height - (Offset << 1));
@@ -273,11 +274,11 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Bound with the constructor <see cref="PointConverter(int, int)"/>,
 		/// <see cref="PointConverter(float, float)"/> and
-		/// <see cref="PointConverter(SizeF)"/>.
+		/// <see cref="PointConverter(DSizeF)"/>.
 		/// </summary>
 		/// <seealso cref="PointConverter(int, int)"/>
 		/// <seealso cref="PointConverter(float, float)"/>
-		/// <seealso cref="PointConverter(SizeF)"/>
+		/// <seealso cref="PointConverter(DSizeF)"/>
 		private void InitializePoints()
 		{
 			const int length = 28;

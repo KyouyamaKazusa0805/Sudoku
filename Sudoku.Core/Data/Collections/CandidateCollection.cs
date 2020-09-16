@@ -42,6 +42,12 @@ namespace Sudoku.Data.Collections
 		}
 
 		/// <summary>
+		/// Initializes an instance with the specified sudoku map.
+		/// </summary>
+		/// <param name="candidates">The candidates.</param>
+		public CandidateCollection(ValueSudokuMap candidates) => _map = candidates;
+
+		/// <summary>
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
