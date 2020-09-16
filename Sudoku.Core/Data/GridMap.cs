@@ -137,6 +137,12 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when the specified initialize option is invalid.
 		/// </exception>
+		/// <remarks>
+		/// If you pass <see cref="ProcessPeersWithoutItself"/> in the second parameter,
+		/// you can consider to change the code to <see cref="PeerIntersection"/>.
+		/// </remarks>
+		/// <seealso cref="ProcessPeersWithoutItself"/>
+		/// <seealso cref="PeerIntersection"/>
 		public GridMap(ReadOnlySpan<int> offsets, InitializationOption initializeOption) : this()
 		{
 			switch (initializeOption)
@@ -238,6 +244,12 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when the specified initialize option is invalid.
 		/// </exception>
+		/// <remarks>
+		/// If you pass <see cref="ProcessPeersWithoutItself"/> in the second parameter,
+		/// you can consider to change the code to <see cref="PeerIntersection"/>.
+		/// </remarks>
+		/// <seealso cref="ProcessPeersWithoutItself"/>
+		/// <seealso cref="PeerIntersection"/>
 		public GridMap(IEnumerable<int> offsets, InitializationOption initializeOption) : this()
 		{
 			switch (initializeOption)

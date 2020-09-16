@@ -7,7 +7,6 @@ using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializationOption;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -51,7 +50,7 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					// Check the block that two cells both see.
-					var interMap = new GridMap(stackalloc[] { c1, c2 }, ProcessPeersWithoutItself);
+					var interMap = new GridMap { c1, c2 }.PeerIntersection;
 					var unionMap = new GridMap(c1) | new GridMap(c2);
 					foreach (int interCell in interMap)
 					{

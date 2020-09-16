@@ -1152,7 +1152,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					return;
 				}
 
-				var testMap = new GridMap(stackalloc[] { otherCell1, otherCell2 }, ProcessPeersWithoutItself);
+				var testMap = new GridMap { otherCell1, otherCell2 }.PeerIntersection;
 				short extraDigitsMask = (short)(mask ^ comparer);
 				int[] cells = map.ToArray();
 				for (int i1 = 0, length = cells.Length; i1 < length - size + 1; i1++)
@@ -1202,8 +1202,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							// Now check eliminations.
 							var conclusions = new List<Conclusion>();
 							int elimDigit = m.FindFirstSet();
-							var elimMap =
-								new GridMap(stackalloc[] { c1, c2 }, ProcessPeersWithoutItself) & CandMaps[elimDigit];
+							var elimMap = new GridMap { c1, c2 }.PeerIntersection & CandMaps[elimDigit];
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -1300,9 +1299,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									// Now check eliminations.
 									var conclusions = new List<Conclusion>();
 									int elimDigit = m.FindFirstSet();
-									var elimMap =
-										new GridMap(stackalloc[] { c1, c2, c3 }, ProcessPeersWithoutItself)
-										& CandMaps[elimDigit];
+									var elimMap = new GridMap { c1, c2, c3 }.PeerIntersection & CandMaps[elimDigit];
 									if (elimMap.IsEmpty)
 									{
 										continue;
@@ -1398,9 +1395,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										// Now check eliminations.
 										var conclusions = new List<Conclusion>();
 										int elimDigit = m.FindFirstSet();
-										var elimMap =
-											new GridMap(stackalloc[] { c1, c2, c3, c4 }, ProcessPeersWithoutItself)
-											& CandMaps[elimDigit];
+										var elimMap = new GridMap { c1, c2, c3, c4 }.PeerIntersection & CandMaps[elimDigit];
 										if (elimMap.IsEmpty)
 										{
 											continue;

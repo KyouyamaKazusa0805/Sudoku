@@ -6,7 +6,6 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializationOption;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -20,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		partial void CheckType2(IList<TechniqueInfo> accumulator, IReadOnlyList<int> trueCandidates)
 		{
 			var selection = from Cand in trueCandidates select Cand / 9;
-			var map = new GridMap(selection, ProcessPeersWithoutItself);
+			var map = new GridMap(selection).PeerIntersection;
 			if (map.IsEmpty)
 			{
 				return;
@@ -339,7 +338,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				bool condition = new GridMap { c1, cell }.InOneRegion;
 				int anotherCell = condition ? c2 : c1;
 				int anotherDigit = condition ? d2 : d1;
-				foreach (int peer in new GridMap(stackalloc[] { cell, anotherCell }, ProcessPeersWithoutItself))
+				foreach (int peer in new GridMap { cell, anotherCell }.PeerIntersection)
 				{
 					if (grid.Exists(peer, anotherDigit) is true)
 					{

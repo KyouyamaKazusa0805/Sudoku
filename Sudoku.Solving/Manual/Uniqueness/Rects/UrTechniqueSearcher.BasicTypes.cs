@@ -8,7 +8,6 @@ using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializationOption;
 using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -105,7 +104,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			// Type 2 or 5 found. Now check elimination.
 			int extraDigit = extraMask.FindFirstSet();
-			var elimMap = new GridMap(stackalloc[] { corner1, corner2 }, ProcessPeersWithoutItself) & CandMaps[extraDigit];
+			var elimMap = new GridMap { corner1, corner2 }.PeerIntersection & CandMaps[extraDigit];
 			if (elimMap.IsEmpty)
 			{
 				return;

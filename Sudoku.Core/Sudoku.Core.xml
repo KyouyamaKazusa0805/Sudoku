@@ -1759,6 +1759,12 @@
             <exception cref="T:System.ArgumentException">
             Throws when the specified initialize option is invalid.
             </exception>
+            <remarks>
+            If you pass <see cref="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself"/> in the second parameter,
+            you can consider to change the code to <see cref="P:Sudoku.Data.GridMap.PeerIntersection"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself"/>
+            <seealso cref="P:Sudoku.Data.GridMap.PeerIntersection"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap)">
             <summary>
@@ -1811,6 +1817,12 @@
             <exception cref="T:System.ArgumentException">
             Throws when the specified initialize option is invalid.
             </exception>
+            <remarks>
+            If you pass <see cref="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself"/> in the second parameter,
+            you can consider to change the code to <see cref="P:Sudoku.Data.GridMap.PeerIntersection"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself"/>
+            <seealso cref="P:Sudoku.Data.GridMap.PeerIntersection"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>

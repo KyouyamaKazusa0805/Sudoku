@@ -371,8 +371,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					for (int j = 0; j < 9; j++)
 					{
 						int p = RegionCells[span[i]][j];
-						if (p == pos1 || p == pos2 || grid.GetStatus(p) != Empty
-							|| (grid.GetCandidateMask(p) & mask) == 0)
+						if (p == pos1 || p == pos2 || grid.GetStatus(p) != Empty || (grid.GetCandidateMask(p) & mask) == 0)
 						{
 							continue;
 						}
@@ -541,7 +540,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						targetPairElims.Add(new(Elimination, cell, digit));
 					}
 				}
-				elimMap = new(stackalloc[] { b1, b2 }, ProcessPeersWithoutItself);
+				elimMap = new GridMap { b1, b2 }.PeerIntersection;
 				if (elimMap.IsEmpty)
 				{
 					return true;
