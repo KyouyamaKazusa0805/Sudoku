@@ -428,130 +428,6 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.Grid.GetStatus(System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Data.Collections.CandidateCollection">
-            <summary>
-            Provides a collection with candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Collections.CandidateCollection._map">
-            <summary>
-            The inner map.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified candidates.
-            </summary>
-            <param name="candidate">The candidates.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Initializes an instance with the specified candidates.
-            </summary>
-            <param name="candidates">The candidates.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(Sudoku.Data.ValueSudokuMap)">
-            <summary>
-            Initializes an instance with the specified sudoku map.
-            </summary>
-            <param name="candidates">The candidates.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with the specified candidates.
-            </summary>
-            <param name="candidates">The candidates.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.Equals(Sudoku.Data.Collections.CandidateCollection)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.op_Equality(Sudoku.Data.Collections.CandidateCollection,Sudoku.Data.Collections.CandidateCollection)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.op_Inequality(Sudoku.Data.Collections.CandidateCollection,Sudoku.Data.Collections.CandidateCollection)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="T:Sudoku.Data.Collections.CellCollection">
-            <summary>
-            Indicates the cell collection.
-            </summary>
-            <remarks>
-            Different with <see cref="T:Sudoku.Data.GridMap"/>, the collection is immutable, which means you cannot
-            modify any values in this collection after initialized. In addition, the output text will
-            be different with <see cref="T:Sudoku.Data.GridMap"/> (<see cref="T:Sudoku.Data.GridMap"/>s use digit characters
-            <c>0</c> or <c>1</c> to represent a bit is set or not set; however, this collection will
-            output all cells using RCB-notation, for example, <c>r2c4</c>).
-            </remarks>
-            <seealso cref="T:Sudoku.Data.GridMap"/>
-        </member>
-        <member name="F:Sudoku.Data.Collections.CellCollection._map">
-            <summary>
-            The inner map.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.#ctor(System.Int32[])">
-            <summary>
-            Initializes an instance with the specified cells.
-            </summary>
-            <param name="cells">The cells.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.#ctor(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Initializes an instance with the specified cells.
-            </summary>
-            <param name="cells">The cells.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with the specified cells.
-            </summary>
-            <param name="cells">The cells.</param>
-        </member>
-        <member name="P:Sudoku.Data.Collections.CellCollection.Count">
-            <summary>
-            Indicates the number of cells in this collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.Equals(System.Object)">
-            <inheritdoc/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.Equals(Sudoku.Data.Collections.CellCollection)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.op_Equality(Sudoku.Data.Collections.CellCollection,Sudoku.Data.Collections.CellCollection)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.CellCollection.op_Inequality(Sudoku.Data.Collections.CellCollection,Sudoku.Data.Collections.CellCollection)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
         <member name="T:Sudoku.Data.Collections.ConclusionCollection">
             <summary>
             Provides a collection that contains the conclusions.
@@ -3242,31 +3118,42 @@
         </member>
         <member name="T:Sudoku.Data.SudokuMap">
             <summary>
-            Encapsulates a data structure of a sudoku map that contains 729 bits, which is similar with
-            <see cref="T:Sudoku.Data.GridMap"/>.
+            Encapsulats a map that contains 729 positions to represent a candidate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuMap.BufferLength">
+            <summary>
+            The length of the buffer.
+            </summary>
+            <remarks>
+            Why 12? Because 12 is equals to <c>Ceiling(729 / 64)</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Data.SudokuMap.Shifting">
+            <summary>
+            Indicates the size of each unit.
             </summary>
         </member>
         <member name="F:Sudoku.Data.SudokuMap.Empty">
             <summary>
+            <para>Indicates an empty instance (all bits are 0).</para>
             <para>
-            Indicates an empty instance (all bits are 0).
+            I strongly recommend you <b>should</b> use this instance instead of default constructor
+            <see cref="M:Sudoku.Data.SudokuMap.#ctor"/>.
             </para>
             </summary>
             <seealso cref="M:Sudoku.Data.SudokuMap.#ctor"/>
         </member>
-        <member name="F:Sudoku.Data.SudokuMap._innerArray">
+        <member name="F:Sudoku.Data.SudokuMap._innerBinary">
             <summary>
-            Indicates the inner array.
+            The inner binary values.
             </summary>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.#ctor">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/defaultConstructor" />
         </member>
         <member name="M:Sudoku.Data.SudokuMap.#ctor(Sudoku.Data.SudokuMap)">
             <summary>
-            (Copy constructor) Initializes an instance with another map.
+            (Copy constructor) Initializes an instance with another one.
             </summary>
-            <param name="another">The another map.</param>
+            <param name="another">The another instance.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.#ctor(System.Int32)">
             <summary>
@@ -3290,6 +3177,21 @@
             </summary>
             <param name="candidates">The candidates.</param>
         </member>
+        <member name="M:Sudoku.Data.SudokuMap.#ctor(System.Int64[])">
+            <summary>
+            Initializes an instance with the binary array.
+            </summary>
+            <param name="binary">The array.</param>
+            <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuMap.#ctor(System.Int64*,System.Int32)">
+            <summary>
+            Initializes an instance with the pointer to the binary array and the length.
+            </summary>
+            <param name="binary">The pointer to the binary array.</param>
+            <param name="length">The length.</param>
+            <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
+        </member>
         <member name="M:Sudoku.Data.SudokuMap.#ctor(Sudoku.Data.GridMap,System.Int32)">
             <summary>
             Initializes an instance with the specified <see cref="T:Sudoku.Data.GridMap"/> and the number
@@ -3310,12 +3212,6 @@
             </summary>
             <param name="candidates">The candidates.</param>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.#ctor(System.Collections.BitArray)">
-            <summary>
-            Initializes an instance with the specified <see cref="T:System.Collections.BitArray"/> instance.
-            </summary>
-            <param name="innerArray">The <see cref="T:System.Collections.BitArray"/> instance.</param>
-        </member>
         <member name="P:Sudoku.Data.SudokuMap.IsEmpty">
             <summary>
             Indicates whether the map has no set bits.
@@ -3332,18 +3228,19 @@
         </member>
         <member name="P:Sudoku.Data.SudokuMap.Count">
             <summary>
-            Indicates the total number of all set bits.
+            Indicates how many bits are set <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.SudokuMap.First">
+            <summary>
+            Gets the first set bit position. If the current map is empty,
+            the return value will be <c>-1</c>.
             </summary>
             <remarks>
-            Here, this property contains a set method (setter), because this
-            property has been designed as an instant property in order to get the value
-            as fast as possible.
+            The property will use the same process with <see cref="P:Sudoku.Data.SudokuMap.Offsets"/>,
+            but the <see langword="yield"/> clause will be replaced with normal <see langword="return"/>s.
             </remarks>
-        </member>
-        <member name="P:Sudoku.Data.SudokuMap.Bits">
-            <summary>
-            Indicates the all bits.
-            </summary>
+            <seealso cref="P:Sudoku.Data.SudokuMap.Offsets"/>
         </member>
         <member name="P:Sudoku.Data.SudokuMap.PeerIntersection">
             <summary>
@@ -3373,61 +3270,8 @@
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
             <value>The <see cref="T:System.Boolean"/> value to set.</value>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.AddRange(System.Int32[])">
-            <summary>
-            Set the specified candidates as <see langword="true"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.Add(System.Int32)">
-            <summary>
-            Set the specified candidate as <see langword="true"/> value.
-            </summary>
-            <param name="candidate">The candidate offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.AddRange(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Set the specified candidates as <see langword="true"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Set the specified candidates as <see langword="true"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.Remove(System.Int32)">
-            <summary>
-            Set the specified candidate as <see langword="false"/> value.
-            </summary>
-            <param name="candidate">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.RemoveRange(System.Int32[])">
-            <summary>
-            Set the specified candidates as <see langword="false"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.RemoveRange(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Set the specified candidates as <see langword="false"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Set the specified candidates as <see langword="false"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.Clear">
-            <summary>
-            Clear all bits.
-            </summary>
-        </member>
         <member name="M:Sudoku.Data.SudokuMap.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.Equals(Sudoku.Data.SudokuMap)">
             <inheritdoc/>
@@ -3445,6 +3289,10 @@
             </summary>
             <param name="index">The true bit index order.</param>
             <returns>The real index.</returns>
+            <remarks>
+            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.SudokuMap.First"/> instead.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.SudokuMap.First"/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.SetAt(System.Index)">
             <summary>
@@ -3452,9 +3300,13 @@
             </summary>
             <param name="index">The true bit index order.</param>
             <returns>The real index.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the map cannot find the index.
-            </exception>
+            <remarks>
+            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.SudokuMap.First"/> instead.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.SudokuMap.First"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuMap.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.ToArray">
             <summary>
@@ -3462,8 +3314,13 @@
             </summary>
             <returns>An array of cell offsets.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.GetHashCode">
-            <inheritdoc/>
+        <member name="M:Sudoku.Data.SudokuMap.GetSubviewMask(System.Int32,System.Int32)">
+            <summary>
+            Get the subview mask of this map.
+            </summary>
+            <param name="region">The region.</param>
+            <param name="digit">The digit.</param>
+            <returns>The mask.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.ToString">
             <inheritdoc/>
@@ -3476,28 +3333,85 @@
             <param name="digit">The digit.</param>
             <returns>The map of all cells chosen.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.Clone">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.SudokuMap.GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.CreateInstance(System.Int32[])">
+        <member name="M:Sudoku.Data.SudokuMap.Add(System.Int32)">
             <summary>
-            Get the map of candidates, which is the peer intersections from the specified candidates.
+            Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
             </summary>
-            <param name="candidates">All candidates.</param>
-            <returns>The result map.</returns>
+            <param name="offset">
+            The cell offset. This value can be positive and negative. If 
+            negative, the offset will be assigned <see langword="false"/>
+            into the corresponding bit position of its absolute value.
+            </param>
+            <remarks>
+            <para>
+            For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
+            <code>
+            var map = new GridMap(xxx) { ~1 };
+            </code>
+            which is equivalent to:
+            <code>
+            var map = new GridMap(xxx);
+            map[1] = false;
+            </code>
+            </para>
+            <para>
+            Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
+            to describe the value is a negative one. As the belowing example, -2 is described as <c>~1</c>,
+            so the offset is 1, rather than 2.
+            </para>
+            </remarks>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.CreateInstance(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Data.SudokuMap.AddAnyway(System.Int32)">
             <summary>
-            Get the map of candidates, which is the peer intersections from the specified candidates.
+            Set the specified cell as <see langword="true"/> value.
             </summary>
-            <param name="candidates">All candidates.</param>
-            <returns>The result map.</returns>
+            <param name="offset">The cell offset.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Data.SudokuMap.Add(System.Int32)"/>, the method will process negative values,
+            but this won't.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.SudokuMap.Add(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuMap.Remove(System.Int32)">
+            <summary>
+            Set the specified cell as <see langword="false"/> value.
+            </summary>
+            <param name="offset">The cell offset.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Data.SudokuMap.Add(System.Int32)"/>, this method <b>cannot</b> receive
+            the negative value as the parameter.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.SudokuMap.Add(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuMap.AddRange(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Set the specified candidates as <see langword="true"/> value.
+            </summary>
+            <param name="candidates">The candidate offsets.</param>
+        </member>
+        <member name="M:Sudoku.Data.SudokuMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Set the specified candidates as <see langword="true"/> value.
+            </summary>
+            <param name="candidates">The candidate offsets.</param>
+        </member>
+        <member name="M:Sudoku.Data.SudokuMap.Clear">
+            <summary>
+            Clear all bits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuMap.AssignFixedArray(System.Int32,System.Boolean)">
+            <summary>
+            Calls the method while initializing.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="setItself">Indicates whether the map should set itself.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -3506,37 +3420,20 @@
             <param name="candidates">All candidates.</param>
             <returns>The result map.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.Equals(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
-            <summary>
-            Check whether two instances are equal.
-            </summary>
-            <param name="left">The left map.</param>
-            <param name="right">The right map.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.AssignBitArray(System.Int32,System.Boolean)">
-            <summary>
-            To assign the <see cref="T:System.Collections.BitArray"/> which is used for <see cref="M:Sudoku.Data.SudokuMap.#ctor(System.Int32,System.Boolean)"/>.
-            </summary>
-            <param name="candidate">The candidate.</param>
-            <param name="setItself">The <see cref="T:System.Boolean"/> value.</param>
-            <returns>The result array.</returns>
-            <seealso cref="M:Sudoku.Data.SudokuMap.#ctor(System.Int32,System.Boolean)"/>
-        </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Equality(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Inequality(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_Subtraction(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.op_OnesComplement(Sudoku.Data.SudokuMap)">
             <summary>
-            Get a <see cref="T:Sudoku.Data.SudokuMap"/> that contains all <paramref name="left"/> candidates
-            but not in <paramref name="right"/> candidates.
+            Reverse status for all candidates, which means all <see langword="true"/> bits
+            will be set <see langword="false"/>, and all <see langword="false"/> bits
+            will be set <see langword="true"/>.
             </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
+            <param name="map">The instance to negate.</param>
+            <returns>The negative result.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_BitwiseAnd(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
             <summary>
@@ -3562,32 +3459,26 @@
             <param name="right">The right instance.</param>
             <returns>The symmetrical difference result.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_OnesComplement(Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.op_Subtraction(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
             <summary>
-            Reverse status for all candidates, which means all <see langword="true"/> bits
-            will be set <see langword="false"/>, and all <see langword="false"/> bits
-            will be set <see langword="true"/>.
+            Get a <see cref="T:Sudoku.Data.GridMap"/> that contains all <paramref name="left"/> candidates
+            but not in <paramref name="right"/> candidates.
             </summary>
-            <param name="map">The instance to negate.</param>
-            <returns>The negative result.</returns>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuMap.op_Implicit(Sudoku.Data.SudokuMap)~System.Int32[]">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Data.SudokuMap"/> to <see cref="T:System.Int32"/>[].
+            </summary>
+            <param name="map">The map.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Implicit(System.Int32[])~Sudoku.Data.SudokuMap">
             <summary>
-            Implicite cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Data.SudokuMap"/>.
+            Implicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Data.SudokuMap"/>.
             </summary>
-            <param name="cells">The cells.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_Implicit(System.ReadOnlySpan{System.Int32})~Sudoku.Data.SudokuMap">
-            <summary>
-            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Data.SudokuMap"/>.
-            </summary>
-            <param name="cells">The cells.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_Explicit(Sudoku.Data.SudokuMap)~System.Boolean[]">
-            <summary>
-            Explicit cast from <see cref="T:Sudoku.Data.SudokuMap"/> to <see cref="T:System.Boolean"/>[].
-            </summary>
-            <param name="map">The map.</param>
+            <param name="array">The array.</param>
         </member>
         <member name="T:Sudoku.Data.SymmetryType">
             <summary>
@@ -4220,370 +4111,6 @@
             <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
             <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
             <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
-        </member>
-        <member name="T:Sudoku.Data.ValueSudokuMap">
-            <summary>
-            Encapsulats a map that contains 729 positions to represent a candidate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ValueSudokuMap.BufferLength">
-            <summary>
-            The length of the buffer.
-            </summary>
-            <remarks>
-            Why 12? Because 12 is equals to <c>Ceiling(729 / 64)</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Data.ValueSudokuMap.Shifting">
-            <summary>
-            Indicates the size of each unit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ValueSudokuMap.Empty">
-            <summary>
-            <para>Indicates an empty instance (all bits are 0).</para>
-            <para>
-            I strongly recommend you <b>should</b> use this instance instead of default constructor
-            <see cref="M:Sudoku.Data.ValueSudokuMap.#ctor"/>.
-            </para>
-            </summary>
-            <seealso cref="M:Sudoku.Data.ValueSudokuMap.#ctor"/>
-        </member>
-        <member name="F:Sudoku.Data.ValueSudokuMap._innerBinary">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(Sudoku.Data.ValueSudokuMap)">
-            <summary>
-            (Copy constructor) Initializes an instance with another one.
-            </summary>
-            <param name="another">The another instance.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified candidate and its peers.
-            </summary>
-            <param name="candidate">The candidate.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int32,System.Boolean)">
-            <summary>
-            Inidicates an instance with the peer candidates of the specified candidate and a <see cref="T:System.Boolean"/>
-            value indicating whether the map will process itself with <see langword="true"/> value.
-            </summary>
-            <param name="candidate">The candidate.</param>
-            <param name="setItself">
-            Indicates whether the map will process itself with <see langword="true"/> value.
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int32[])">
-            <summary>
-            Initializes an instance with the specified candidates.
-            </summary>
-            <param name="candidates">The candidates.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int64[])">
-            <summary>
-            Initializes an instance with the binary array.
-            </summary>
-            <param name="binary">The array.</param>
-            <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Int64*,System.Int32)">
-            <summary>
-            Initializes an instance with the pointer to the binary array and the length.
-            </summary>
-            <param name="binary">The pointer to the binary array.</param>
-            <param name="length">The length.</param>
-            <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(Sudoku.Data.GridMap,System.Int32)">
-            <summary>
-            Initializes an instance with the specified <see cref="T:Sudoku.Data.GridMap"/> and the number
-            representing.
-            </summary>
-            <param name="map">The map.</param>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Initializes an instance with the specified candidates.
-            </summary>
-            <param name="candidates">The candidates.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with the specified candidates.
-            </summary>
-            <param name="candidates">The candidates.</param>
-        </member>
-        <member name="P:Sudoku.Data.ValueSudokuMap.IsEmpty">
-            <summary>
-            Indicates whether the map has no set bits.
-            This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
-            </summary>
-            <seealso cref="P:Sudoku.Data.ValueSudokuMap.IsNotEmpty"/>
-        </member>
-        <member name="P:Sudoku.Data.ValueSudokuMap.IsNotEmpty">
-            <summary>
-            Indicates whether the map has at least one set bit.
-            This property is equivalent to code '<c>!this.IsEmpty</c>'.
-            </summary>
-            <seealso cref="P:Sudoku.Data.ValueSudokuMap.IsEmpty"/>
-        </member>
-        <member name="P:Sudoku.Data.ValueSudokuMap.Count">
-            <summary>
-            Indicates how many bits are set <see langword="true"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueSudokuMap.First">
-            <summary>
-            Gets the first set bit position. If the current map is empty,
-            the return value will be <c>-1</c>.
-            </summary>
-            <remarks>
-            The property will use the same process with <see cref="P:Sudoku.Data.ValueSudokuMap.Offsets"/>,
-            but the <see langword="yield"/> clause will be replaced with normal <see langword="return"/>s.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.ValueSudokuMap.Offsets"/>
-        </member>
-        <member name="P:Sudoku.Data.ValueSudokuMap.PeerIntersection">
-            <summary>
-            Indicates the map of cells, which is the peer intersections.
-            </summary>
-            <example>
-            For example, the code
-            <code>
-            var map = testMap.PeerIntersection;
-            </code>
-            is equivalent to the code
-            <code>
-            var map = SudokuMap.CreateInstance(testMap);
-            </code>
-            </example>
-        </member>
-        <member name="P:Sudoku.Data.ValueSudokuMap.Offsets">
-            <summary>
-            Indicates all indices of set bits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueSudokuMap.Candidate(System.Int32)">
-            <summary>
-            Gets or sets the result set case of the specified index.
-            </summary>
-            <param name="candidate">The candidate offset (index).</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-            <value>The <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.Equals(Sudoku.Data.ValueSudokuMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.Overlaps(Sudoku.Data.ValueSudokuMap)">
-            <summary>
-            Indicates whether this map overlaps another one.
-            </summary>
-            <param name="other">The other map.</param>
-            <returns>The <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.SetAt(System.Int32)">
-            <summary>
-            Get a n-th index of the <see langword="true"/> bit in this instance.
-            </summary>
-            <param name="index">The true bit index order.</param>
-            <returns>The real index.</returns>
-            <remarks>
-            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.ValueSudokuMap.First"/> instead.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.ValueSudokuMap.First"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.SetAt(System.Index)">
-            <summary>
-            Get a n-th index of the <see langword="true"/> bit in this instance.
-            </summary>
-            <param name="index">The true bit index order.</param>
-            <returns>The real index.</returns>
-            <remarks>
-            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.ValueSudokuMap.First"/> instead.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.ValueSudokuMap.First"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.ToArray">
-            <summary>
-            Get all cell offsets whose bits are set <see langword="true"/>.
-            </summary>
-            <returns>An array of cell offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.GetSubviewMask(System.Int32,System.Int32)">
-            <summary>
-            Get the subview mask of this map.
-            </summary>
-            <param name="region">The region.</param>
-            <param name="digit">The digit.</param>
-            <returns>The mask.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.Reduce(System.Int32)">
-            <summary>
-            Get the final <see cref="T:Sudoku.Data.GridMap"/> to get all cells that the corresponding indices
-            are set <see langword="true"/>.
-            </summary>
-            <param name="digit">The digit.</param>
-            <returns>The map of all cells chosen.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)">
-            <summary>
-            Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
-            </summary>
-            <param name="offset">
-            The cell offset. This value can be positive and negative. If 
-            negative, the offset will be assigned <see langword="false"/>
-            into the corresponding bit position of its absolute value.
-            </param>
-            <remarks>
-            <para>
-            For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
-            <code>
-            var map = new GridMap(xxx) { ~1 };
-            </code>
-            which is equivalent to:
-            <code>
-            var map = new GridMap(xxx);
-            map[1] = false;
-            </code>
-            </para>
-            <para>
-            Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
-            to describe the value is a negative one. As the belowing example, -2 is described as <c>~1</c>,
-            so the offset is 1, rather than 2.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.AddAnyway(System.Int32)">
-            <summary>
-            Set the specified cell as <see langword="true"/> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)"/>, the method will process negative values,
-            but this won't.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.Remove(System.Int32)">
-            <summary>
-            Set the specified cell as <see langword="false"/> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)"/>, this method <b>cannot</b> receive
-            the negative value as the parameter.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.ValueSudokuMap.Add(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.AddRange(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Set the specified candidates as <see langword="true"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Set the specified candidates as <see langword="true"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.Clear">
-            <summary>
-            Clear all bits.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.AssignFixedArray(System.Int32,System.Boolean)">
-            <summary>
-            Calls the method while initializing.
-            </summary>
-            <param name="candidate">The candidate.</param>
-            <param name="setItself">Indicates whether the map should set itself.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Get the map of candidates, which is the peer intersections from the specified candidates.
-            </summary>
-            <param name="candidates">All candidates.</param>
-            <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.op_Equality(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.op_Inequality(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.op_OnesComplement(Sudoku.Data.ValueSudokuMap)">
-            <summary>
-            Reverse status for all candidates, which means all <see langword="true"/> bits
-            will be set <see langword="false"/>, and all <see langword="false"/> bits
-            will be set <see langword="true"/>.
-            </summary>
-            <param name="map">The instance to negate.</param>
-            <returns>The negative result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.op_BitwiseAnd(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
-            <summary>
-            Get all candidates that two <see cref="T:Sudoku.Data.ValueSudokuMap"/>s both contain.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The intersection result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.op_BitwiseOr(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
-            <summary>
-            Get all candidates from two <see cref="T:Sudoku.Data.ValueSudokuMap"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The union result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.op_ExclusiveOr(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
-            <summary>
-            Get all candidates that only appears once in two <see cref="T:Sudoku.Data.ValueSudokuMap"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The symmetrical difference result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.op_Subtraction(Sudoku.Data.ValueSudokuMap,Sudoku.Data.ValueSudokuMap)">
-            <summary>
-            Get a <see cref="T:Sudoku.Data.GridMap"/> that contains all <paramref name="left"/> candidates
-            but not in <paramref name="right"/> candidates.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.op_Implicit(Sudoku.Data.ValueSudokuMap)~System.Int32[]">
-            <summary>
-            Implicit cast from <see cref="T:Sudoku.Data.ValueSudokuMap"/> to <see cref="T:System.Int32"/>[].
-            </summary>
-            <param name="map">The map.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.op_Implicit(System.Int32[])~Sudoku.Data.ValueSudokuMap">
-            <summary>
-            Implicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Data.ValueSudokuMap"/>.
-            </summary>
-            <param name="array">The array.</param>
         </member>
         <member name="T:Sudoku.Diagnostics.FileCounter">
             <summary>
