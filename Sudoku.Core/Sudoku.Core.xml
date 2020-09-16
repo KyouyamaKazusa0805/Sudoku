@@ -4508,13 +4508,6 @@
             <param name="candidate">The candidate.</param>
             <param name="setItself">Indicates whether the map should set itself.</param>
         </member>
-        <member name="M:Sudoku.Data.ValueSudokuMap.CreateInstance(System.Int32[])">
-            <summary>
-            Get the map of candidates, which is the peer intersections from the specified candidates.
-            </summary>
-            <param name="candidates">All candidates.</param>
-            <returns>The result map.</returns>
-        </member>
         <member name="M:Sudoku.Data.ValueSudokuMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Get the map of candidates, which is the peer intersections from the specified candidates.
