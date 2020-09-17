@@ -1,9 +1,4 @@
-﻿#pragma warning disable CS8618
-#if CSHARP_9_PREVIEW
-#pragma warning disable CS1591
-#endif
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +12,21 @@ namespace Sudoku.Solving
 	/// <summary>
 	/// Provides an analysis result after a puzzle solved.
 	/// </summary>
+	/// <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
+	/// <param name="SolverName">Indicates the solver name.</param>
+	/// <param name="Additional">Indicates the additional texts.</param>
+	/// <param name="ElapsedTime">The elapsed time.</param>
+	/// <param name="Puzzle">Indicates the puzzle.</param>
+	/// <param name="Solution">
+	/// Indicates the solution of the puzzle. If the puzzle doesn't contain non-unique solution,
+	/// the value will be <see langword="null"/>.
+	/// </param>
+	/// <param name="SolvingSteps">The solving steps.</param>
+	/// <param name="StepGrids">The step grids while solving.</param>
 	public sealed record AnalysisResult(
-		bool HasSolved,
-		string SolverName,
-		string? Additional,
-		TimeSpan ElapsedTime,
-		Grid Puzzle,
-		Grid? Solution,
-		IReadOnlyList<TechniqueInfo>? SolvingSteps,
-		IReadOnlyList<Grid>? StepGrids) : IEnumerable<TechniqueInfo>, IFormattable
+		bool HasSolved, string SolverName, string? Additional, TimeSpan ElapsedTime, Grid Puzzle, Grid? Solution,
+		IReadOnlyList<TechniqueInfo>? SolvingSteps, IReadOnlyList<Grid>? StepGrids)
+		: IEnumerable<TechniqueInfo>, IFormattable
 	{
 		/// <summary>
 		/// Initializes an instance with some information.

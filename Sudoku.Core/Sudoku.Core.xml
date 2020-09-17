@@ -4168,6 +4168,26 @@
             </param>
             <param name="fileList">A file list.</param>
         </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.Root">
+            <summary>
+            The root directory.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.Pattern">
+            <summary>
+            The pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.WithBinOrObjDirectory">
+            <summary>
+            Indicates whether the searcher will find directories <c>bin</c> or <c>obj</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.FileList">
+            <summary>
+            The file list.
+            </summary>
+        </member>
         <member name="M:Sudoku.Diagnostics.FileCounter.CountUp">
             <summary>
             Count up for all files in the specified root directory, and return the result.
@@ -4178,23 +4198,33 @@
             <summary>
             Encapsulates a result after <see cref="T:Sudoku.Diagnostics.FileCounter"/>.
             </summary>
-            <remarks>
-            The property <see cref="P:Sudoku.Diagnostics.FileCounterResult.FileList"/> won't be output. If you want to use this property,
+            <param name="ResultLines">The number of lines found.</param>
+            <param name="CommentLines">The number of comment lines found.</param>
+            <param name="FilesCount">The number of files found.</param>
+            <param name="CharactersCount">The number of characters found.</param>
+            <param name="Bytes">All bytes.</param>
+            <param name="Elapsed">The elapsed time during searching.</param>
+            <param name="FileList">
+            The list of files. This property won't be output. If you want to use this property,
             please write this property explicitly.
-            </remarks>
+            </param>
             <seealso cref="T:Sudoku.Diagnostics.FileCounter"/>
-            <seealso cref="P:Sudoku.Diagnostics.FileCounterResult.FileList"/>
         </member>
         <member name="M:Sudoku.Diagnostics.FileCounterResult.#ctor(System.Int32,System.Int32,System.Int32,System.Int64,System.Int64,System.TimeSpan,System.Collections.Generic.IList{System.String})">
             <summary>
             Encapsulates a result after <see cref="T:Sudoku.Diagnostics.FileCounter"/>.
             </summary>
-            <remarks>
-            The property <see cref="P:Sudoku.Diagnostics.FileCounterResult.FileList"/> won't be output. If you want to use this property,
+            <param name="ResultLines">The number of lines found.</param>
+            <param name="CommentLines">The number of comment lines found.</param>
+            <param name="FilesCount">The number of files found.</param>
+            <param name="CharactersCount">The number of characters found.</param>
+            <param name="Bytes">All bytes.</param>
+            <param name="Elapsed">The elapsed time during searching.</param>
+            <param name="FileList">
+            The list of files. This property won't be output. If you want to use this property,
             please write this property explicitly.
-            </remarks>
+            </param>
             <seealso cref="T:Sudoku.Diagnostics.FileCounter"/>
-            <seealso cref="P:Sudoku.Diagnostics.FileCounterResult.FileList"/>
         </member>
         <member name="M:Sudoku.Diagnostics.FileCounterResult.ToString">
             <inheritdoc/>

@@ -1,8 +1,4 @@
-﻿#if CSHARP_9_PREVIEW
-#pragma warning disable CS1591
-#endif
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -77,13 +73,25 @@ namespace Sudoku.Diagnostics
 			(Root, Pattern, WithBinOrObjDirectory, FileList) = (root, $@".+\.{extension}$", withBinOrObjDirectory, fileList);
 
 
-		public string Root { get; init; }
+		/// <summary>
+		/// The root directory.
+		/// </summary>
+		public string Root { get; }
 
-		public string? Pattern { get; init; }
+		/// <summary>
+		/// The pattern.
+		/// </summary>
+		public string? Pattern { get; }
 
-		public bool WithBinOrObjDirectory { get; init; }
+		/// <summary>
+		/// Indicates whether the searcher will find directories <c>bin</c> or <c>obj</c>.
+		/// </summary>
+		public bool WithBinOrObjDirectory { get; }
 
-		public IList<string> FileList { get; init; } = new List<string>();
+		/// <summary>
+		/// The file list.
+		/// </summary>
+		public IList<string> FileList { get; } = new List<string>();
 
 
 		/// <summary>

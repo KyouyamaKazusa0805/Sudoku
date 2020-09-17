@@ -1,8 +1,4 @@
-﻿#if CSHARP_9_PREVIEW
-#pragma warning disable CS1591
-#endif
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -12,6 +8,10 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// Encapsulates a view when displaying the information on forms.
 	/// </summary>
+	/// <param name="CellOffsets">All cells used.</param>
+	/// <param name="CandidateOffsets">All candidates used.</param>
+	/// <param name="RegionOffsets">All regions used.</param>
+	/// <param name="Links">All links used.</param>
 	[DebuggerStepThrough]
 	public sealed record View(
 		IReadOnlyList<(int Id, int CellOffset)>? CellOffsets,

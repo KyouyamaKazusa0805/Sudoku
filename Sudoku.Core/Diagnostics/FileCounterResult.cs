@@ -1,8 +1,4 @@
-﻿#if CSHARP_9_PREVIEW
-#pragma warning disable CS1591
-#endif
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Constants;
@@ -12,13 +8,18 @@ namespace Sudoku.Diagnostics
 	/// <summary>
 	/// Encapsulates a result after <see cref="FileCounter"/>.
 	/// </summary>
-	/// <remarks>
-	/// The property <see cref="FileList"/> won't be output. If you want to use this property,
+	/// <param name="ResultLines">The number of lines found.</param>
+	/// <param name="CommentLines">The number of comment lines found.</param>
+	/// <param name="FilesCount">The number of files found.</param>
+	/// <param name="CharactersCount">The number of characters found.</param>
+	/// <param name="Bytes">All bytes.</param>
+	/// <param name="Elapsed">The elapsed time during searching.</param>
+	/// <param name="FileList">
+	/// The list of files. This property won't be output. If you want to use this property,
 	/// please write this property explicitly.
-	/// </remarks>
+	/// </param>
 	/// <seealso cref="FileCounter"/>
-	/// <seealso cref="FileList"/>
-	public record FileCounterResult(
+	public sealed record FileCounterResult(
 		int ResultLines, int CommentLines, int FilesCount, long CharactersCount, long Bytes,
 		TimeSpan Elapsed, IList<string> FileList)
 	{

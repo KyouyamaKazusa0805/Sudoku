@@ -8,11 +8,33 @@
             <summary>
             Provides an analysis result after a puzzle solved.
             </summary>
+            <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
+            <param name="SolverName">Indicates the solver name.</param>
+            <param name="Additional">Indicates the additional texts.</param>
+            <param name="ElapsedTime">The elapsed time.</param>
+            <param name="Puzzle">Indicates the puzzle.</param>
+            <param name="Solution">
+            Indicates the solution of the puzzle. If the puzzle doesn't contain non-unique solution,
+            the value will be <see langword="null"/>.
+            </param>
+            <param name="SolvingSteps">The solving steps.</param>
+            <param name="StepGrids">The step grids while solving.</param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.Boolean,System.String,System.String,System.TimeSpan,Sudoku.Data.Grid,Sudoku.Data.Grid,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Grid})">
             <summary>
             Provides an analysis result after a puzzle solved.
             </summary>
+            <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
+            <param name="SolverName">Indicates the solver name.</param>
+            <param name="Additional">Indicates the additional texts.</param>
+            <param name="ElapsedTime">The elapsed time.</param>
+            <param name="Puzzle">Indicates the puzzle.</param>
+            <param name="Solution">
+            Indicates the solution of the puzzle. If the puzzle doesn't contain non-unique solution,
+            the value will be <see langword="null"/>.
+            </param>
+            <param name="SolvingSteps">The solving steps.</param>
+            <param name="StepGrids">The step grids while solving.</param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.Grid,Sudoku.Data.Grid,System.Boolean,System.TimeSpan,System.String)">
             <summary>
