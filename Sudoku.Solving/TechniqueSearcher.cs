@@ -112,7 +112,7 @@ namespace Sudoku.Solving
 		public virtual bool Equals(TechniqueSearcher? other) => InternalEquals(this, other);
 
 		/// <inheritdoc/>
-		public sealed override bool Equals(object? obj) => obj is TechniqueSearcher comparer && Equals(comparer);
+		public sealed override bool Equals(object? obj) => Equals(obj as TechniqueSearcher);
 
 		/// <inheritdoc/>
 		public override string ToString() => GetType().Name;

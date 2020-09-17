@@ -911,6 +911,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static byte BitPos(uint map) => MultiplyDeBruijnBitPosition32[map * 0x077CB531U >> 27];
 
+		#region Unsafe methods
 		/// <summary>
 		/// Get the length of the specified string which is represented by a <see cref="char"/>*.
 		/// </summary>
@@ -972,32 +973,12 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 
 			while (size-- != 0)
 			{
-				*(char*)src = (char)value;
-				src = (char*)src + 1;
+				*(byte*)src = (byte)value;
+				src = (byte*)src + 1;
 			}
 
 			return p;
 		}
-
-#if false
-		/// <summary>
-		/// Function <c>memset</c> in C.
-		/// </summary>
-		/// <param name="src">The source pointer.</param>
-		/// <param name="c">The start offset.</param>
-		/// <param name="size">The size of the unit.</param>
-		/// <returns>The pointer.</returns>
-		[DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = Cdecl, SetLastError = false)]
-		private static extern void* Memset([Out] void* src, [In] nint c, [In] nint size);
-
-		/// <summary>
-		/// Function <c>memcpy</c> in C.
-		/// </summary>
-		/// <param name="dest">The destination pointer.</param>
-		/// <param name="src">The source pointer.</param>
-		/// <param name="count">The number of unit you want to copy.</param>
-		[DllImport("msvcrt.dll", EntryPoint = "memcpy", CallingConvention = Cdecl, SetLastError = false)]
-		private static extern void MemCopy([Out] void* dest, [In] void* src, [In] nint count);
-#endif
+		#endregion
 	}
 }

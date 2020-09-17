@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 
 namespace Sudoku.Solving

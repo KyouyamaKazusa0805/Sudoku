@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Solving.BruteForces.Bitwise
 {
-	public sealed partial class UnsafeBitwiseSolver
+	partial class UnsafeBitwiseSolver
 	{
 		/// <summary>
 		/// To describe a state for a current grid using binary values.
