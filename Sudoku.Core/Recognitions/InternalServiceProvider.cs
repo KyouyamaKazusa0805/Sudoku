@@ -41,7 +41,7 @@ namespace Sudoku.Recognitions
 		/// </summary>
 		/// <param name="field">The field.</param>
 		/// <returns>The grid.</returns>
-		/// <exception cref="RecognizingException">
+		/// <exception cref="RecognitionException">
 		/// Throws when the processing is wrong or unhandleable.
 		/// </exception>
 		public Grid RecognizeDigits(Field field)
@@ -63,7 +63,7 @@ namespace Sudoku.Recognitions
 					int cell = x * 9 + y, digit = recognition - 1;
 					if (result[cell, digit])
 					{
-						throw new RecognizingException(
+						throw new RecognitionException(
 							$"Recognition error. Cannot fill the cell r{x + 1}c{y + 1} with the digit {digit + 1}.");
 					}
 

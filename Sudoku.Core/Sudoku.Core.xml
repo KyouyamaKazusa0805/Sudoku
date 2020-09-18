@@ -7160,7 +7160,7 @@
             </summary>
             <param name="field">The field.</param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.Recognitions.RecognizingException">
+            <exception cref="T:Sudoku.Recognitions.RecognitionException">
             Throws when the processing is wrong or unhandleable.
             </exception>
         </member>
@@ -7254,6 +7254,23 @@
             Indicates the ThOcrMax.
             </summary>
         </member>
+        <member name="T:Sudoku.Recognitions.RecognitionException">
+            <summary>
+            Represents an error that the OCR tools cannot work normally.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognitionException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognitionException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognitionException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognitionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Recognitions.RecognitionServiceProvider">
             <summary>
             Define a sudoku recognition service provider.
@@ -7281,7 +7298,7 @@
             </summary>
             <param name="image">The image.</param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.Recognitions.RecognizingException">
+            <exception cref="T:Sudoku.Recognitions.RecognitionException">
             Throws when the tool has not initialized yet.
             </exception>
         </member>
@@ -7291,23 +7308,6 @@
             </summary>
             <param name="image">The image.</param>
             <returns>The task.</returns>
-        </member>
-        <member name="T:Sudoku.Recognitions.RecognizingException">
-            <summary>
-            Represents an error that the OCR tools cannot work normally.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Recognitions.RecognizingException.#ctor">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Recognitions.RecognizingException.#ctor(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Recognitions.RecognizingException.#ctor(System.String,System.Exception)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Recognitions.RecognizingException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.MultipleSolutionsException">
             <summary>
