@@ -66,8 +66,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					var (isEnabled, _, _, disabledReason) = searcher.SearcherProperties!;
-					if (!isEnabled && disabledReason != DisabledReason.TooSlow)
+					if (!searcher.SearcherProperties!.IsEnabled)
 					{
 						continue;
 					}
