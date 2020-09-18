@@ -582,6 +582,13 @@ namespace Sudoku.Windows
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemAnalyzeAnalyze_Click(object sender, RoutedEventArgs e)
 		{
+			if (_puzzle == Grid.Empty)
+			{
+				Messagings.AnalyzeEmptyGrid();
+				e.Handled = true;
+				return;
+			}
+
 			if (!await internalOperation(false) && !await internalOperation(true))
 			{
 				Messagings.FailedToApplyPuzzle();

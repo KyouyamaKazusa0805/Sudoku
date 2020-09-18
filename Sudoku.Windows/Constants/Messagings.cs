@@ -284,6 +284,11 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["InvalidFilter"],
 				(string)LangSource["CaptionInfo"]);
 
+		public static void AnalyzeEmptyGrid() =>
+			MessageBox.Show(
+				(string)LangSource["AnalyzeEmptyGrid"],
+				(string)LangSource["CaptionInfo"]);
+
 		/// <summary>
 		/// Indicates the message while quitting.
 		/// </summary>

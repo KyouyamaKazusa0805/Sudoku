@@ -358,7 +358,8 @@
 	<sys:String x:Key="AskWhileGeneratingWithDatabase">You are now working on the puzzle database. If you click YES button, the generating will start, but the database history will be cleared. A hard decision, isn't it?</sys:String>
 	<sys:String x:Key="CheckFormatString">The format is invalid. Please check the format string you input.</sys:String>
 	<sys:String x:Key="InvalidFilter">The filter is invalid. Please re-confirm your input and try again.</sys:String>
-	
+	<sys:String x:Key="AnalyzeEmptyGrid">The current puzzle is empty, which is invalid.</sys:String>
+
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">time elapsed:</sys:String>
 	<sys:String x:Key="StepSingular">step</sys:String>
