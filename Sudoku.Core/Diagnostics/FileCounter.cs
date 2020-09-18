@@ -123,7 +123,7 @@ namespace Sudoku.Diagnostics
 						charactersCount -= s.Reserve(@"\t").Length;
 
 						// Check whether the current line is comment line.
-						if (CommentLineRegex.Match(s) is Match { Success: true })
+						if (CommentLineRegex.Match(s).Success)
 						{
 							commentLines++;
 						}
@@ -146,8 +146,9 @@ namespace Sudoku.Diagnostics
 			{
 				FileList.AddRange(
 					from file in directory.GetFiles()
-					where Pattern is null || file.FullName.SatisfyPattern(Pattern)
-					select file.FullName);
+					let fullName = file.FullName
+					where Pattern is null || fullName.SatisfyPattern(Pattern)
+					select fullName);
 
 				// Get all files for each folder recursively.
 				foreach (var d in
