@@ -15,6 +15,7 @@
 		<DefineConstants>SUDOKU_RECOGNIZING; CSHARP_9_PREVIEW</DefineConstants>
 		<DocumentationFile>.\Sudoku.Core.xml</DocumentationFile>
 		<Optimize>false</Optimize>
+		<NoWarn>1572;1573;1591;1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
