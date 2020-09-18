@@ -103,10 +103,10 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc/>
 		public virtual int CompareTo(TechniqueSearcher? other) =>
-			GetPriority(this).CompareTo(other is null ? int.MaxValue : GetPriority(other));
+			GetHashCode().CompareTo(other?.GetHashCode() ?? int.MaxValue);
 
 		/// <inheritdoc/>
-		public sealed override int GetHashCode() => GetPriority(this) * 17 + 0xDEAD & 0xC0DE;
+		public sealed override int GetHashCode() => GetPriority(this);
 
 		/// <inheritdoc/>
 		public virtual bool Equals(TechniqueSearcher? other) => InternalEquals(this, other);
@@ -122,8 +122,7 @@ namespace Sudoku.Solving
 		/// Initialize the maps that used later.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public static void InitializeMaps(Grid grid) =>
-			(EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;
+		public static void InitializeMaps(Grid grid) => (EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;
 
 		/// <summary>
 		/// To get the priority of the technique searcher.
@@ -146,7 +145,7 @@ namespace Sudoku.Solving
 			(left, right) switch
 			{
 				(null, null) => true,
-				(not null, not null) => GetPriority(left!) == GetPriority(right!),
+				(not null, not null) => left!.GetHashCode() == right!.GetHashCode(),
 				_ => false
 			};
 
