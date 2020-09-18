@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
-using static Sudoku.Extensions.TypeEx;
 
 namespace Sudoku.Drawing.Extensions
 {
@@ -95,7 +94,7 @@ namespace Sudoku.Drawing.Extensions
 			{
 				case PixelFormat.Format32bppRgb:
 				{
-					if (TypeEquals<TColor, Bgr>() && TypeEquals<TDepth, byte>())
+					if (typeof(TColor) == typeof(Bgr) && typeof(TDepth) == typeof(byte))
 					{
 						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
@@ -116,7 +115,7 @@ namespace Sudoku.Drawing.Extensions
 				}
 				case PixelFormat.Format32bppArgb:
 				{
-					if (TypeEquals<TColor, Bgra>() && TypeEquals<TDepth, byte>())
+					if (typeof(TColor) == typeof(Bgra) && typeof(TDepth) == typeof(byte))
 					{
 						image.CopyFromBitmap(bitmap);
 					}
@@ -135,7 +134,7 @@ namespace Sudoku.Drawing.Extensions
 				}
 				case PixelFormat.Format8bppIndexed:
 				{
-					if (TypeEquals<TColor, Bgra>() && TypeEquals<TDepth, byte>())
+					if (typeof(TColor) == typeof(Bgra) && typeof(TDepth) == typeof(byte))
 					{
 						ColorPaletteToLookupTable(
 							bitmap.Palette, out var bTable, out var gTable, out var rTable, out var aTable);
@@ -146,7 +145,7 @@ namespace Sudoku.Drawing.Extensions
 						using var g = new Mat();
 						using var r = new Mat();
 						using var a = new Mat();
-						using var mv = new VectorOfMat(new Mat[] { b, g, r, a });
+						using var mv = new VectorOfMat(new[] { b, g, r, a });
 						try
 						{
 							CvInvoke.LUT(indexValue, bTable, b);
@@ -175,7 +174,7 @@ namespace Sudoku.Drawing.Extensions
 				}
 				case PixelFormat.Format24bppRgb:
 				{
-					if (TypeEquals<TColor, Bgr>() && TypeEquals<TDepth, byte>())
+					if (typeof(TColor) == typeof(Bgr) && typeof(TDepth) == typeof(byte))
 					{
 						image.CopyFromBitmap(bitmap);
 					}
@@ -191,7 +190,7 @@ namespace Sudoku.Drawing.Extensions
 				}
 				case PixelFormat.Format1bppIndexed:
 				{
-					if (TypeEquals<TColor, Gray>() && TypeEquals<TDepth, byte>())
+					if (typeof(TColor) == typeof(Gray) && typeof(TDepth) == typeof(byte))
 					{
 						int rows = size.Height;
 						int cols = size.Width;
@@ -291,8 +290,8 @@ namespace Sudoku.Drawing.Extensions
 		/// <summary>
 		/// Utility function for converting <see cref="Bitmap"/> to <see cref="Image"/>.
 		/// </summary>
+		/// <param name="image">(<see langword="this"/> parameter) The image to copy data to.</param>
 		/// <param name="bmp">the bitmap to copy data from.</param>
-		/// <param name="image">The image to copy data to.</param>
 		private static void CopyFromBitmap<TColor, TDepth>(this Image<TColor, TDepth> image, Bitmap bmp)
 			where TColor : struct, IColor where TDepth : new()
 		{

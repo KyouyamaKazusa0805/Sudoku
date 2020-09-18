@@ -5352,20 +5352,6 @@
             <param name="this">(<see langword="this"/> parameter) The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Extensions.TypeEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Type"/>.
-            </summary>
-            <seealso cref="T:System.Type"/>
-        </member>
-        <member name="M:Sudoku.Extensions.TypeEx.TypeEquals``2">
-            <summary>
-            Indicates whether two types are same.
-            </summary>
-            <typeparam name="T1">The type 1.</typeparam>
-            <typeparam name="T2">The type 2.</typeparam>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
         <member name="T:Sudoku.Drawing.Extensions.BitmapEx">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
@@ -5404,8 +5390,8 @@
             <summary>
             Utility function for converting <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Drawing.Image"/>.
             </summary>
+            <param name="image">(<see langword="this"/> parameter) The image to copy data to.</param>
             <param name="bmp">the bitmap to copy data from.</param>
-            <param name="image">The image to copy data to.</param>
         </member>
         <member name="T:Sudoku.Solving.Annotations.AliasAttribute">
             <summary>
