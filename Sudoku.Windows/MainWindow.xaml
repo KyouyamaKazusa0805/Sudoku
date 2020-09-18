@@ -256,13 +256,25 @@
 		<!-- Row 1 -->
 		<ToolBar Grid.Row="1" Grid.ColumnSpan="2" Name="_toolBarMain">
 			<Image Source="Resources\ImageIcon-UndoDisable.png" Name="_imageUndoIcon"
-				   MouseLeftButtonDown="ImageUndoIcon_MouseLeftButtonDown"/>
+				   MouseLeftButtonDown="ImageUndoIcon_MouseLeftButtonDown">
+				<Image.ToolTip>
+					<ToolTip Content="{DynamicResource TooltipUndo}"/>
+				</Image.ToolTip>
+			</Image>
 			<Image Source="Resources\ImageIcon-RedoDisable.png" Name="_imageRedoIcon"
-				   MouseLeftButtonDown="ImageRedoIcon_MouseLeftButtonDown"/>
+				   MouseLeftButtonDown="ImageRedoIcon_MouseLeftButtonDown">
+				<Image.ToolTip>
+					<ToolTip Content="{DynamicResource TooltipRedo}"/>
+				</Image.ToolTip>
+			</Image>
 			<Separator/>
 			<Image Source="Resources\ImageIcon-Generate.png" Name="_imageGeneratingIcon"
 				   Cursor="Hand"
-				   MouseLeftButtonDown="ImageGeneratingIcon_MouseLeftButtonDown"/>
+				   MouseLeftButtonDown="ImageGeneratingIcon_MouseLeftButtonDown">
+				<Image.ToolTip>
+					<ToolTip Content="{DynamicResource TooltipGenerate}"/>
+				</Image.ToolTip>
+			</Image>
 			<Label Content="{DynamicResource _labelMode}"
 				   HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			<ComboBox Name="_comboBoxMode" Focusable="False"
@@ -312,7 +324,11 @@
 			<Separator/>
 			<Image Source="Resources\Solve.png" Name="_imageSolve"
 				   Cursor="Hand"
-				   MouseLeftButtonDown="ImageSolve_MouseLeftButtonDown"/>
+				   MouseLeftButtonDown="ImageSolve_MouseLeftButtonDown">
+				<Image.ToolTip>
+					<ToolTip Content="{DynamicResource TooltipAnalyze}"/>
+				</Image.ToolTip>
+			</Image>
 		</ToolBar>
 
 		<!-- Row 2 -->

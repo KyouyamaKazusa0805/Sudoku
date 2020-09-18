@@ -47,11 +47,11 @@
 		<Resource Include="Resources\icon-256.ico" />
 		<Resource Include="Resources\icon-32.ico" />
 		<Resource Include="Resources\icon-64.ico" />
-		<Resource Include="Resources\ImageIcon-Generate.png" />
 		<Resource Include="Resources\ImageIcon-Redo.png" />
 		<Resource Include="Resources\ImageIcon-RedoDisable.png" />
 		<Resource Include="Resources\ImageIcon-Undo.png" />
 		<Resource Include="Resources\ImageIcon-UndoDisable.png" />
+		<Resource Include="Resources\ImageIcon-Generate.png" />
 		<Resource Include="Resources\Solve.png" />
 	</ItemGroup>
 

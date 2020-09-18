@@ -131,6 +131,11 @@
 	<sys:String x:Key="_labelChooseColorForRegions">为区域选择颜色：</sys:String>
 	<sys:String x:Key="_buttonColorReset">重置颜色！</sys:String>
 
+	<sys:String x:Key="TooltipUndo">撤销当前步骤。</sys:String>
+	<sys:String x:Key="TooltipRedo">将后一个步骤还原。</sys:String>
+	<sys:String x:Key="TooltipGenerate">使用当前出题设置来生成一个新的题目。</sys:String>
+	<sys:String x:Key="TooltipAnalyze">分析当前题目。</sys:String>
+
 	<sys:String x:Key="AboutMeTitle">关于我</sys:String>
 	<sys:String x:Key="AboutMeName">英文名</sys:String>
 	<sys:String x:Key="AboutMeRealName">Sunnie</sys:String>

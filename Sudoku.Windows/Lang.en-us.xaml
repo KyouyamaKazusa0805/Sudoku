@@ -131,6 +131,11 @@
 	<sys:String x:Key="_labelChooseColorForRegions">Choose color for regions:</sys:String>
 	<sys:String x:Key="_buttonColorReset">Reset!</sys:String>
 
+	<sys:String x:Key="TooltipUndo">Undo a step.</sys:String>
+	<sys:String x:Key="TooltipRedo">Redo a step.</sys:String>
+	<sys:String x:Key="TooltipGenerate">Generate a puzzle using the current generating settings.</sys:String>
+	<sys:String x:Key="TooltipAnalyze">Analyze the current puzzle.</sys:String>
+
 	<sys:String x:Key="AboutMeTitle">About me</sys:String>
 	<sys:String x:Key="AboutMeName">Name</sys:String>
 	<sys:String x:Key="AboutMeRealName">Sunnie</sys:String>
