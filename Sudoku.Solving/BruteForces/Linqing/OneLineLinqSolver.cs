@@ -56,7 +56,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			static int i(string solution) => solution.IndexOf('0', OrdinalIgnoreCase);
 
 			var result = new List<string> { puzzle };
-			while ((result.Count, i(result[0])) is ( > 0, not -1))
+			while (result.Count > 0 && i(result[0]) != -1)
 			{
 				result = (
 					from Solution in result
