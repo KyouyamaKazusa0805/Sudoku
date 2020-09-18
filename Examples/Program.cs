@@ -2,7 +2,7 @@
  * Here I listed some examples for basic and elementary using for APIs.
  * If you want to use the solution, you can take them to your projects.
  * 
- * Here I use the global-type namepsaces. The reason why so is that
+ * Here I use the global-style namespaces. The reason why so is that
  * I can tell you the details of the classes/structs.
  * 
  * Sunnie
