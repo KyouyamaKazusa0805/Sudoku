@@ -139,22 +139,22 @@ namespace Sudoku.Windows
 		{
 			_listBoxPriority.SetValue(
 				ItemsControl.ItemsSourceProperty,
-				from Type in
-					from Type in Assembly.Load("Sudoku.Solving").GetTypes()
-					where !Type.IsAbstract && Type.IsSubclassOf(typeof(TechniqueSearcher))
-					select Type
-				let AttributeInstance = Type.GetCustomAttribute<SearcherPropertyAttribute>()
-				where AttributeInstance is not null
-				let Priority = AttributeInstance.Priority
-				orderby Priority
+				from @type in
+					from @type in Assembly.Load("Sudoku.Solving").GetTypes()
+					where !@type.IsAbstract && @type.IsSubclassOf(typeof(TechniqueSearcher))
+					select @type
+				let attrInstance = @type.GetCustomAttribute<SearcherPropertyAttribute>()
+				where attrInstance is not null
+				let prior = attrInstance.Priority
+				orderby prior
 				select new ListBoxItem
 				{
 					Content =
 						new KeyedTuple<string, int, Type>(
 							CoreResources.GetValue(
-								$"Progress{Type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}"),
-							Priority,
-							Type)
+								$"Progress{@type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}"),
+							prior,
+							@type)
 				});
 			_listBoxPriority.SelectedIndex = 0;
 			var (_, priority, selectionType, _) =

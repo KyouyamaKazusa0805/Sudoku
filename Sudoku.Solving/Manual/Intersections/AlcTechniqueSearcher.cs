@@ -158,7 +158,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					}
 				}
 
-				var valueCells = from Cell in (cellsMap | ahsCells) - EmptyMap select (0, Cell);
+				var valueCells = from cell in (cellsMap | ahsCells) - EmptyMap select (0, cell);
 				bool hasValueCell = valueCells.Any();
 				result.Add(
 					new AlcTechniqueInfo(

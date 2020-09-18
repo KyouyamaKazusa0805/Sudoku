@@ -304,8 +304,8 @@ namespace Sudoku.Drawing
 			if (Conclusions is not null)
 			{
 				points.AddRange(
-					from Conc in Conclusions
-					select PointConverter.GetMousePointInCenter(Conc.CellOffset, Conc.Digit));
+					from conclusion in Conclusions
+					select PointConverter.GetMousePointInCenter(conclusion.CellOffset, conclusion.Digit));
 			}
 
 			// Iterate on each inference to draw the links and grouped nodes (if so).

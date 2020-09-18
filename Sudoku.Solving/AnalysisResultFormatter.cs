@@ -201,10 +201,10 @@ namespace Sudoku.Solving
 				static bool m(ParameterInfo[] p, MethodInfo m) =>
 					p.Length == 1 && p[0].ParameterType == typeof(Grid) && m.ReturnType == typeof(bool);
 				foreach (var methodInfo in
-					from MethodInfo in typeof(PuzzleAttributeChecker).GetMethods()
-					let Params = MethodInfo.GetParameters()
-					where m(Params, MethodInfo)
-					select MethodInfo)
+					from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
+					let @params = methodInfo.GetParameters()
+					where m(@params, methodInfo)
+					select methodInfo)
 				{
 					bool attributeResult = (bool)methodInfo.Invoke(null, new[] { puzzle })!;
 					sb.AppendLine($"    {methodInfo.Name}: {attributeResult}");
@@ -245,7 +245,7 @@ namespace Sudoku.Solving
 			var solvingSteps = Result.SolvingSteps;
 			return solvingSteps is null
 				? null
-				: from SolvingStep in solvingSteps orderby SolvingStep.Difficulty group SolvingStep by SolvingStep.Name;
+				: from step in solvingSteps orderby step.Difficulty group step by step.Name;
 		}
 
 		/// <summary>

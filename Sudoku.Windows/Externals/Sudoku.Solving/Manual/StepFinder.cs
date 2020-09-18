@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Manual
 			}
 
 			// Return the result.
-			return from Step in bag.Distinct() group Step by Step.Name;
+			return from step in bag.Distinct() group step by step.Name;
 		}
 	}
 }

@@ -94,9 +94,9 @@ namespace Sudoku.Windows
 				var sb = new StringBuilder();
 				foreach (string step in
 					from ListBoxItem item in _listBoxPaths.Items
-					let Content = item.Content as KeyedTuple<string, int, TechniqueInfo>
-					where Content is not null
-					select Content.Item3.ToFullString())
+					let content = item.Content as KeyedTuple<string, int, TechniqueInfo>
+					where content is not null
+					select content.Item3.ToFullString())
 				{
 					sb.AppendLine(step);
 				}

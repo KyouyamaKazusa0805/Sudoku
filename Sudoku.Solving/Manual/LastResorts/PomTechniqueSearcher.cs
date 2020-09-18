@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 				accumulator.Add(
 					new PomTechniqueInfo(
-						(from Cell in template select new Conclusion(Elimination, Cell, digit)).ToArray(),
+						(from cell in template select new Conclusion(Elimination, cell, digit)).ToArray(),
 						View.DefaultViews));
 			}
 		}

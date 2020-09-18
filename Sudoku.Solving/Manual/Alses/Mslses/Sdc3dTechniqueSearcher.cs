@@ -240,10 +240,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 													var cellOffsets = new List<(int, int)>();
 													cellOffsets.AddRange(
-														from Cell in currentRowMap | rbCurrentMap select (0, Cell));
+														from cell in currentRowMap | rbCurrentMap select (0, cell));
 													cellOffsets.AddRange(
-														from Cell in currentColumnMap | cbCurrentMap select (1, Cell));
-													cellOffsets.AddRange(from Cell in currentBlockMap select (2, Cell));
+														from cell in currentColumnMap | cbCurrentMap select (1, cell));
+													cellOffsets.AddRange(from cell in currentBlockMap select (2, cell));
 
 													var candidateOffsets = new List<(int, int)>();
 													foreach (int digit in rowMask.GetAllSets())

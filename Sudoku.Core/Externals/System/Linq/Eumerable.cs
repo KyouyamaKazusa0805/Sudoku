@@ -39,7 +39,7 @@ namespace System.Linq
 		public static TNotNull GetElementByMinSelector<TNotNull, TComparable>(
 			this IEnumerable<TNotNull> @this, Func<TNotNull, IComparable<TComparable>> selector)
 			where TNotNull : notnull =>
-			(from Element in @this orderby selector(Element) select Element).FirstOrDefault();
+			(from element in @this orderby selector(element) select element).FirstOrDefault();
 
 		/// <summary>
 		/// Check whether the specified collection is empty (no elements in it).

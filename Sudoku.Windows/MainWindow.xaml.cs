@@ -593,7 +593,8 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void InitializePointConverter() =>
 			_currentPainter =
-				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings) { Grid = _puzzle };
+				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings)
+		{ Grid = _puzzle };
 
 		/// <summary>
 		/// To load a puzzle with a specified possible puzzle string.
@@ -972,9 +973,7 @@ namespace Sudoku.Windows
 				decimal summary = 0, summaryMax = 0;
 				int summaryCount = 0;
 				foreach (var techniqueGroup in
-					from SolvingStep in _analyisResult.SolvingSteps!
-					orderby SolvingStep.Difficulty
-					group SolvingStep by SolvingStep.Name)
+					from step in _analyisResult.SolvingSteps! orderby step.Difficulty group step by step.Name)
 				{
 					string name = techniqueGroup.Key;
 					int count = techniqueGroup.Count();
@@ -1005,11 +1004,11 @@ namespace Sudoku.Windows
 
 				GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
 					new()
-					{
-						Header = header,
-						DisplayMemberBinding = new Binding(name),
-						Width = _tabControlInfo.ActualWidth * widthScale - 4,
-					};
+				{
+					Header = header,
+					DisplayMemberBinding = new Binding(name),
+					Width = _tabControlInfo.ActualWidth * widthScale - 4,
+				};
 			}
 			else
 			{

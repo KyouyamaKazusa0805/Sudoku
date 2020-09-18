@@ -52,26 +52,26 @@ namespace Sudoku.Solving.BruteForces.Linqing
 		/// <returns>The result strings (i.e. All solutions).</returns>
 		private static List<string> SolveStrings(string puzzle)
 		{
-			const string values = "123456789";
-			static int i(string solution) => solution.IndexOf('0', OrdinalIgnoreCase);
+			const string digitChars = "123456789";
+			static int index(string solution) => solution.IndexOf('0', OrdinalIgnoreCase);
 
 			var result = new List<string> { puzzle };
-			while (result.Count > 0 && i(result[0]) != -1)
+			while (result.Count > 0 && index(result[0]) != -1)
 			{
 				result = (
-					from Solution in result
-					let Index = i(Solution)
-					let Column = Index % 9
-					let Block = Index - Index % 27 + Column - Index % 3
-					from Value in values
+					from solution in result
+					let i = index(solution)
+					let c = i % 9
+					let b = i - i % 27 + c - i % 3
+					from @char in digitChars
 					where (
-						from I in Range(0, 9)
-						let InRow = Solution[Index - Column + I] == Value
-						let InColumn = Solution[Column + I * 9] == Value
-						let InBlock = Solution[Block + I % 3 + (int)Floor(I / 3F) * 9] == Value
-						where InRow || InColumn || InBlock
-						select I).None()
-					select $"{Solution.Substring(0, Index)}{Value}{Solution.Substring(Index + 1)}").ToList();
+						from i in Range(0, 9)
+						let inRow = solution[i - c + i] == @char
+						let inColumn = solution[c + i * 9] == @char
+						let inBlock = solution[b + i % 3 + (int)Floor(i / 3F) * 9] == @char
+						where inRow || inColumn || inBlock
+						select i).None()
+					select $"{solution.Substring(0, i)}{@char}{solution.Substring(i + 1)}").ToList<string>();
 			}
 
 			return result;

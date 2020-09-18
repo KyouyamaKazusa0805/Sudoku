@@ -178,9 +178,9 @@ namespace Sudoku.Windows.Tooling
 		/// </summary>
 		/// <returns>All colors.</returns>
 		public static IReadOnlyList<WColor> GetWebColors() => (
-			from Property in typeof(DColor).GetProperties(Public | Static)
-			where Property.PropertyType == typeof(DColor)
-			select DColor.FromName(Property.Name).ToWColor()).ToArray();
+			from @property in typeof(DColor).GetProperties(Public | Static)
+			where @property.PropertyType == typeof(DColor)
+			select DColor.FromName(@property.Name).ToWColor()).ToArray();
 
 		/// <summary>
 		/// Serialize the specified instance to the specified file.
@@ -203,11 +203,11 @@ namespace Sudoku.Windows.Tooling
 				XmlWriter.Create(
 					sw,
 					new()
-					{
-						Indent = true,
-						IndentChars = "    ",
-						NewLineOnAttributes = false
-					});
+			{
+				Indent = true,
+				IndentChars = "    ",
+				NewLineOnAttributes = false
+			});
 			new XmlSerializer(typeof(T)).Serialize(writer, @this);
 			return sw.ToString();
 		}

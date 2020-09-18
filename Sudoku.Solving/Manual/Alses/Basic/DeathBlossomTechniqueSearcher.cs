@@ -223,7 +223,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				}
 			}
 
-			accumulator.AddRange(from Info in tempAccumulator orderby Info.PetalsCount, Info.Pivot select Info);
+			accumulator.AddRange(from info in tempAccumulator orderby info.PetalsCount, info.Pivot select info);
 		}
 
 		/// <summary>

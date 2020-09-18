@@ -436,10 +436,10 @@ namespace Sudoku.Data
 					var sb = new StringBuilder();
 
 					int[] candidates = ToArray();
-					foreach (var digitGroup in from Candidate in candidates group Candidate by Candidate % 9)
+					foreach (var digitGroup in from candidate in candidates group candidate by candidate % 9)
 					{
 						sb
-							.Append(new GridMap(from Candidate in digitGroup select Candidate / 9))
+							.Append(new GridMap(from candidate in digitGroup select candidate / 9))
 							.Append($"({digitGroup.Key + 1}){separator}");
 					}
 

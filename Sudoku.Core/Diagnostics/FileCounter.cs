@@ -145,21 +145,20 @@ namespace Sudoku.Diagnostics
 			void g(DirectoryInfo directory)
 			{
 				FileList.AddRange(
-					from File in directory.GetFiles()
-					where Pattern is null || File.FullName.SatisfyPattern(Pattern)
-					select File.FullName);
+					from file in directory.GetFiles()
+					where Pattern is null || file.FullName.SatisfyPattern(Pattern)
+					select file.FullName);
 
 				// Get all files for each folder recursively.
 				foreach (var d in
-					from Dir in directory.GetDirectories()
-					let Name = Dir.Name
+					from dir in directory.GetDirectories()
+					let name = dir.Name
 					where
-						Name.Length > 0 && Name[0] is >= 'A' and <= 'Z'
+						name.Length > 0 && name[0] is >= 'A' and <= 'Z'
 						&& (
-							!WithBinOrObjDirectory
-							&& Name is not ("bin" or "Bin" or "obj" or "Obj")
+							!WithBinOrObjDirectory && name is not ("bin" or "Bin" or "obj" or "Obj")
 							|| WithBinOrObjDirectory)
-					select Dir)
+					select dir)
 				{
 					g(d);
 				}

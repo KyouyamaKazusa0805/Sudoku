@@ -107,12 +107,12 @@ namespace Sudoku.Data.Collections
 				}
 				default:
 				{
-					var concs = _collection.ToArray();
+					var conclusions = _collection.ToArray();
 					var sb = new StringBuilder();
 					if (shouldSort)
 					{
 						Array.Sort(
-							concs,
+							conclusions,
 							(a, b) =>
 							{
 								var (t1, c1, d1) = a;
@@ -124,15 +124,15 @@ namespace Sudoku.Data.Collections
 								return 0;
 							});
 
-						var selection = from Conc in concs group Conc by Conc.ConclusionType;
+						var selection = from conclusion in conclusions group conclusion by conclusion.ConclusionType;
 						bool hasOnlyOneType = selection.HasOnlyOneElement();
 						foreach (var typeGroup in selection)
 						{
 							string op = typeGroup.Key == Assignment ? " = " : " <> ";
-							foreach (var digitGroup in from Conc in typeGroup group Conc by Conc.Digit)
+							foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 							{
 								sb
-									.Append(new GridMap(from Conc in digitGroup select Conc.CellOffset))
+									.Append(new GridMap(from conclusion in digitGroup select conclusion.CellOffset))
 									.Append(op)
 									.Append(digitGroup.Key + 1)
 									.Append(separator);
@@ -147,7 +147,7 @@ namespace Sudoku.Data.Collections
 					}
 					else
 					{
-						foreach (var conc in concs)
+						foreach (var conc in conclusions)
 						{
 							sb.Append($"{conc}{separator}");
 						}

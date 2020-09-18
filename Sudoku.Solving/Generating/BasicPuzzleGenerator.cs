@@ -49,9 +49,9 @@ namespace Sudoku.Solving.Generating
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
-			var allTypes = from EachType in EnumEx.GetValues<SymmetryType>()
-						   where EachType != None && symmetricalType.HasFlag(EachType)
-						   select EachType;
+			var allTypes = from @type in EnumEx.GetValues<SymmetryType>()
+						   where @type != None && symmetricalType.HasFlag(@type)
+						   select @type;
 			int count = allTypes.Count();
 			if (count == 0)
 			{

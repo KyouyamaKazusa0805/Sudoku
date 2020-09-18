@@ -80,14 +80,14 @@ namespace Sudoku.Windows
 				{
 					string name = techniqueGroup.Key;
 					collection.AddRange(
-						from Info in techniqueGroup
-						where f(Info)
-						let Pair = Settings.DiffColors[Info.DifficultyLevel]
+						from info in techniqueGroup
+						where f(info)
+						let pair = Settings.DiffColors[info.DifficultyLevel]
 						select new ListBoxItem
 						{
-							Content = new KeyedTuple<string, TechniqueInfo, bool>(Info.ToSimpleString(), Info, true),
-							Foreground = new SolidColorBrush(Pair.Foreground.ToWColor()),
-							Background = new SolidColorBrush(Pair.Background.ToWColor()),
+							Content = new KeyedTuple<string, TechniqueInfo, bool>(info.ToSimpleString(), info, true),
+							Foreground = new SolidColorBrush(pair.Foreground.ToWColor()),
+							Background = new SolidColorBrush(pair.Background.ToWColor()),
 							BorderThickness = default
 						});
 				}

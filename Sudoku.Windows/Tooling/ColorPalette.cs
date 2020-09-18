@@ -123,8 +123,8 @@ namespace Sudoku.Windows.Tooling
 
 			CustomColors.Clear();
 			CustomColors.AddRange(
-				from Color in Enumerable.Repeat(Colors.White, NumColorsCustomSwatch)
-				select new ColorSwatchItem() { Color = Color, HexString = Color.ToHexString() });
+				from color in Enumerable.Repeat(Colors.White, NumColorsCustomSwatch)
+				select new ColorSwatchItem() { Color = color, HexString = color.ToHexString() });
 		}
 
 		/// <summary>
@@ -133,6 +133,6 @@ namespace Sudoku.Windows.Tooling
 		/// <param name="colors">The colors to iterate on.</param>
 		/// <returns>The list of colors.</returns>
 		protected IEnumerable<ColorSwatchItem> GetColorSwatchItems(IReadOnlyList<Color> colors) =>
-			from Color in colors select new ColorSwatchItem() { Color = Color, HexString = Color.ToHexString() };
+			from color in colors select new ColorSwatchItem() { Color = color, HexString = color.ToHexString() };
 	}
 }

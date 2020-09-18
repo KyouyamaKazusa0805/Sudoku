@@ -52,7 +52,7 @@ namespace Sudoku.Windows
 		private void ButtonExport_Click(object sender, RoutedEventArgs e)
 		{
 			var format = new StringBuilder();
-			foreach (char key in from Pair in _dic where Pair.Value select Pair.Key)
+			foreach (char key in from pair in _dic where pair.Value select pair.Key)
 			{
 				format.Append(key);
 			}

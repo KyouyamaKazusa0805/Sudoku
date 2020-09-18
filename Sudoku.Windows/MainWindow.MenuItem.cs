@@ -757,7 +757,7 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_currentPainter.View = new((from Candidate in trueCandidates select (0, Candidate)).ToArray());
+				_currentPainter.View = new((from candidate in trueCandidates select (0, candidate)).ToArray());
 				_currentPainter.Conclusions = null;
 
 				UpdateImageGrid();
@@ -809,9 +809,9 @@ namespace Sudoku.Windows
 				}
 
 				_currentPainter.View = new((
-					from Conclusion in backdoors
-					where Conclusion.ConclusionType == ConclusionType.Assignment
-					select (0, Conclusion.CellOffset * 9 + Conclusion.Digit)).ToArray());
+					from backdoor in backdoors
+					where backdoor.ConclusionType == ConclusionType.Assignment
+					select (0, backdoor.CellOffset * 9 + backdoor.Digit)).ToArray());
 				_currentPainter.Conclusions = backdoors;
 
 				UpdateImageGrid();

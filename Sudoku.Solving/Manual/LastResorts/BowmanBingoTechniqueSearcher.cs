@@ -72,8 +72,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 									new(
 										null,
 										(
-											from Conclusion in _tempConclusions
-											select (0, Conclusion.CellOffset * 9 + Conclusion.Digit)
+											from conclusion in _tempConclusions
+											select (0, conclusion.CellOffset * 9 + conclusion.Digit)
 										).ToArray(),
 										null,
 										GetLinks())
@@ -88,11 +88,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 
 			accumulator.AddRange(
-				from Info in tempAccumulator
-				orderby Info.ContradictionSeries.Count
-				let Conclusion = Info.ContradictionSeries[0]
-				orderby Conclusion.CellOffset * 9 + Conclusion.Digit
-				select Info);
+				from info in tempAccumulator
+				orderby info.ContradictionSeries.Count
+				let conclusion = info.ContradictionSeries[0]
+				orderby conclusion.CellOffset * 9 + conclusion.Digit
+				select info);
 		}
 
 		/// <summary>
@@ -136,8 +136,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 							new(
 								null,
 								(
-									from TempConclusion in _tempConclusions
-									select (0, TempConclusion.CellOffset * 9 + TempConclusion.Digit)
+									from tempConclusion in _tempConclusions
+									select (0, tempConclusion.CellOffset * 9 + tempConclusion.Digit)
 								).ToList(),
 								null,
 								GetLinks())

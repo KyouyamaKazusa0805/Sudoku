@@ -33,16 +33,16 @@ namespace Sudoku.Windows.Tooling
 		/// </summary>
 		private void GetAllTechniques()
 		{
-			var selection = from Technique in EnumEx.GetValues<TechniqueCode>()
-							let NullableCategory = (string)LangSource[$"Group{Technique}"]
-							where NullableCategory is not null
+			var selection = from technique in EnumEx.GetValues<TechniqueCode>()
+							let nullableCategory = (string)LangSource[$"Group{technique}"]
+							where nullableCategory is not null
 							select (
-								_technique: Technique,
-								_id: (int)Technique,
-								_displayName: CoreResources.GetValue(Technique.ToString()),
-								_category: NullableCategory);
+								Technique: technique,
+								Id: (int)technique,
+								DisplayName: CoreResources.GetValue(technique.ToString()),
+								Category: nullableCategory);
 
-			var categories = new List<string>((from Quadruple in selection select Quadruple._category).Distinct());
+			var categories = new List<string>((from quadruple in selection select quadruple.Category).Distinct());
 
 
 		Labal_Start:
@@ -108,7 +108,7 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			// Create nodes.
-			var list = (from Category in parentList select g(Category)).ToList();
+			var list = (from category in parentList select g(category)).ToList();
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static TreeNode<string> g((int Id, int ParentId, string Content) triplet) =>
@@ -161,7 +161,7 @@ namespace Sudoku.Windows.Tooling
 		/// <returns>All sub-nodes.</returns>
 		private ICollection<TreeNode<string>> GetSubnodes(int parentId, ICollection<TreeNode<string>> nodes)
 		{
-			var mainNodes = (from Node in nodes where Node.ParentId == parentId select Node).ToList();
+			var mainNodes = (from node in nodes where node.ParentId == parentId select node).ToList();
 			var otherNodes = nodes.Except(mainNodes).ToList();
 			foreach (var mainNode in mainNodes)
 			{
