@@ -22,7 +22,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Provides a new default view list for initialization.
 		/// </summary>
-		public static readonly View[] DefaultViews = new[] { new View() };
+		public static readonly View[] DefaultViews = new View[] { new() };
 
 
 		/// <summary>
