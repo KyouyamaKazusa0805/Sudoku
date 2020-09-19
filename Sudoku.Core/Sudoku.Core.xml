@@ -6748,7 +6748,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.#ctor">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.#ctor(Sudoku.Solving.Manual.TechniqueCode[])">
             <summary>
@@ -6800,6 +6800,22 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.op_Addition(Sudoku.Solving.Manual.TechniqueCodeFilter,Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            Add the specified technique into the list, and return the reference same as <paramref name="list"/>.
+            </summary>
+            <param name="list">The list.</param>
+            <param name="technique">The technique to add.</param>
+            <returns>The reference same as <paramref name="list"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.op_Subtraction(Sudoku.Solving.Manual.TechniqueCodeFilter,Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            Remove the specified technique in the list, and return the reference same as <paramref name="list"/>.
+            </summary>
+            <param name="list">The list.</param>
+            <param name="technique">The technique to add.</param>
+            <returns>The reference same as <paramref name="list"/>.</returns>
         </member>
         <member name="T:Sudoku.Windows.Resources">
             <summary>

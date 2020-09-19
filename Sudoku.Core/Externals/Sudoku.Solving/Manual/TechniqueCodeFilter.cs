@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual
@@ -16,7 +18,7 @@ namespace Sudoku.Solving.Manual
 		private readonly BitArray _internalList = new(EnumEx.LengthOf<TechniqueCode>());
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public TechniqueCodeFilter()
 		{
 		}
@@ -27,12 +29,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
 		public TechniqueCodeFilter(params TechniqueCode[]? techniqueCodes)
 		{
-			if (techniqueCodes is null)
-			{
-				return;
-			}
-
-			foreach (var techniqueCode in techniqueCodes)
+			foreach (var techniqueCode in techniqueCodes ?? Array.Empty<TechniqueCode>())
 			{
 				_internalList[(int)techniqueCode] = true;
 				Count++;
@@ -118,5 +115,32 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+
+		/// <summary>
+		/// Add the specified technique into the list, and return the reference same as <paramref name="list"/>.
+		/// </summary>
+		/// <param name="list">The list.</param>
+		/// <param name="technique">The technique to add.</param>
+		/// <returns>The reference same as <paramref name="list"/>.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static TechniqueCodeFilter operator +(TechniqueCodeFilter list, TechniqueCode technique)
+		{
+			list.Add(technique);
+			return list;
+		}
+
+		/// <summary>
+		/// Remove the specified technique in the list, and return the reference same as <paramref name="list"/>.
+		/// </summary>
+		/// <param name="list">The list.</param>
+		/// <param name="technique">The technique to add.</param>
+		/// <returns>The reference same as <paramref name="list"/>.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static TechniqueCodeFilter operator -(TechniqueCodeFilter list, TechniqueCode technique)
+		{
+			list.Remove(technique);
+			return list;
+		}
 	}
 }

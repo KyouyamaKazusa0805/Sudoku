@@ -198,7 +198,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 			views.Insert(0, new(null, globalCandidates, null, globalLinks));
 
-			return new BugMultipleWithFcTechniqueInfo(conclusions, views, trueCandidates, chains);
+			return new(conclusions, views, trueCandidates, chains);
 		}
 	}
 }
