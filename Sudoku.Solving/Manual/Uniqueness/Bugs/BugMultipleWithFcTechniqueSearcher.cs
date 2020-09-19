@@ -21,13 +21,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
-			var trueCandidates = new BugChecker(grid).TrueCandidates;
-			if (trueCandidates.Count <= 1)
+			if (new BugChecker(grid).TrueCandidates is { Count: > 1 } trueCandidates)
 			{
-				return;
+				CheckMultipleWithForcingChains(accumulator, grid, trueCandidates);
 			}
-
-			CheckMultipleWithForcingChains(accumulator, grid, trueCandidates);
 		}
 
 		/// <summary>
@@ -108,8 +105,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, Grid, IReadOnlyList{int})"/>
 		private static Node[]? DoChaining(Grid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
-			var pendingOn = new Set<Node>(toOn);
-			var pendingOff = new Set<Node>(toOff);
+			Set<Node> pendingOn = new(toOn), pendingOff = new(toOff);
 			while (pendingOn.Count != 0 || pendingOff.Count != 0)
 			{
 				if (pendingOn.Count != 0)
