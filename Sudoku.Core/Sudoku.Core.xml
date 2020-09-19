@@ -7776,14 +7776,7 @@
             <seealso cref="T:System.ICloneable"/>
         </member>
         <member name="M:System.ICloneable`1.Clone">
-            <summary>
-            Creates a new instance that is a copy of the current instance.
-            </summary>
-            <returns>
-            The instance having the same type with the base one. Because the type is
-            used and defined before using this method, so the return type will never be
-            <see langword="null"/>.
-            </returns>
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
             <remarks>
             Here we hide the inner method <see cref="M:System.ICloneable.Clone"/>, so this method
             should be implemented, but the inner method don't have to.
@@ -7971,7 +7964,7 @@
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>
-            To specify the property which contains <see langword="init"/> setter.
+            To specify the property containing <see langword="init"/> setter.
             </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">

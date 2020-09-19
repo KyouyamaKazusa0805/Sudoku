@@ -14,14 +14,7 @@
 	/// <seealso cref="ICloneable"/>
 	public interface ICloneable<out T> : ICloneable where T : class
 	{
-		/// <summary>
-		/// Creates a new instance that is a copy of the current instance.
-		/// </summary>
-		/// <returns>
-		/// The instance having the same type with the base one. Because the type is
-		/// used and defined before using this method, so the return type will never be
-		/// <see langword="null"/>.
-		/// </returns>
+		/// <inheritdoc cref="ICloneable.Clone"/>
 		/// <remarks>
 		/// Here we hide the inner method <see cref="ICloneable.Clone"/>, so this method
 		/// should be implemented, but the inner method don't have to.
