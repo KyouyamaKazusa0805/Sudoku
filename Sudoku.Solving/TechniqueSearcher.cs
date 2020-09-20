@@ -49,29 +49,45 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// The empty cells map.
 		/// </summary>
-		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
+		/// <remarks>
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
+		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
+		/// </remarks>
 		/// <seealso cref="InitializeMaps(Grid)"/>
+		/// <seealso cref="SingleTechniqueSearcher"/>
 		internal static GridMap EmptyMap { get; set; }
 
 		/// <summary>
 		/// The bi-value cells map.
 		/// </summary>
-		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
+		/// <remarks>
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
+		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
+		/// </remarks>
 		/// <seealso cref="InitializeMaps(Grid)"/>
+		/// <seealso cref="SingleTechniqueSearcher"/>
 		internal static GridMap BivalueMap { get; set; }
 
 		/// <summary>
 		/// The candidate maps.
 		/// </summary>
-		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
+		/// <remarks>
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
+		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
+		/// </remarks>
 		/// <seealso cref="InitializeMaps(Grid)"/>
+		/// <seealso cref="SingleTechniqueSearcher"/>
 		internal static GridMap[] CandMaps { get; set; } = null!;
 
 		/// <summary>
 		/// The digit maps.
 		/// </summary>
-		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
+		/// <remarks>
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
+		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
+		/// </remarks>
 		/// <seealso cref="InitializeMaps(Grid)"/>
+		/// <seealso cref="SingleTechniqueSearcher"/>
 		internal static GridMap[] DigitMaps { get; set; } = null!;
 
 		/// <summary>

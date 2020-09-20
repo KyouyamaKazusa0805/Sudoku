@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Media;
+using Sudoku.DocComments;
 using static Sudoku.Windows.Tooling.ColorPickerOptions;
 
 namespace Sudoku.Windows.Tooling
@@ -21,7 +22,7 @@ namespace Sudoku.Windows.Tooling
 		protected readonly int _widthMin = 342;
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public ColorPicker() => InitializeComponent();
 
 

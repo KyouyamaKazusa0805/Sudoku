@@ -239,7 +239,7 @@
             </param>
         </member>
         <member name="M:Sudoku.Drawing.View.#ctor">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
     </members>
 </doc>

@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Documents;
+using Sudoku.DocComments;
 using Sudoku.Windows.Constants;
 
 namespace Sudoku.Windows
@@ -11,7 +12,7 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class SpecialThanksWindow : Window
 	{
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public SpecialThanksWindow() => InitializeComponent();
 
 

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Sudoku.DocComments;
 
 namespace Sudoku.Windows.Tooling
 {
@@ -12,7 +13,7 @@ namespace Sudoku.Windows.Tooling
 	/// </summary>
 	public partial class Swatch : UserControl
 	{
-		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public Swatch() => InitializeComponent();
 
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Exocets.Eliminations
@@ -15,26 +16,26 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 	/// </summary>
 	public struct TargetPairEliminations : IEnumerable<Conclusion>
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="IEliminations"]'/>
+		/// <inheritdoc cref="ExocetElimination(IList{ExocetElimination.Conclusion})"/>
 		public TargetPairEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
 
 
-		/// <include file='SolvingDocComments.xml' path='comments/property[@name="Count" and @type="IEliminations"]'/>
+		/// <inheritdoc cref="ExocetElimination.Count"/>
 		public readonly int Count => Conclusions?.Count ?? 0;
 
-		/// <include file='SolvingDocComments.xml' path='comments/property[@name="Conclusions" and @type="IEliminations"]'/>
+		/// <inheritdoc cref="ExocetElimination.Conclusions"/>
 		public IList<Conclusion>? Conclusions { readonly get; private set; }
 
 
-		/// <include file='SolvingDocComments.xml' path='comments/method[@name="Add" and @type="IEliminations"]'/>
+		/// <inheritdoc cref="ExocetElimination.Add(ExocetElimination.Conclusion)"/>
 		public void Add(Conclusion conclusion) =>
 			(Conclusions ??= new List<Conclusion>()).AddIfDoesNotContain(conclusion);
 
-		/// <include file='SolvingDocComments.xml' path='comments/method[@name="AddRange" and @type="IEliminations"]'/>
+		/// <inheritdoc cref="ExocetElimination.AddRange(IEnumerable{ExocetElimination.Conclusion})"/>
 		public void AddRange(IEnumerable<Conclusion> conclusions) =>
 			(Conclusions ??= new List<Conclusion>()).AddRange(conclusions, true);
 
-		/// <include file='SolvingDocComments.xml' path='comments/method[@name="Merge" and @type="IEliminations"]'/>
+		/// <inheritdoc cref="ExocetElimination.Merge(ExocetElimination?[])"/>
 		public readonly TargetPairEliminations Merge(params TargetPairEliminations?[] eliminations)
 		{
 			var result = new TargetPairEliminations();
@@ -64,7 +65,7 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
-		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
+		/// <inheritdoc cref="ExocetElimination.MergeAll(IEnumerable{ExocetElimination})"/>
 		public static TargetPairEliminations MergeAll(IEnumerable<TargetPairEliminations> list)
 		{
 			var result = new TargetPairEliminations();
@@ -81,7 +82,7 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 			return result;
 		}
 
-		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
+		/// <inheritdoc cref="ExocetElimination.MergeAll(ExocetElimination[])"/>
 		public static TargetPairEliminations MergeAll(params TargetPairEliminations[] list) =>
 			MergeAll(list.AsEnumerable());
 	}

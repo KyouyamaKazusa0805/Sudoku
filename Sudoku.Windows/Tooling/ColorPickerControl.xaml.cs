@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -10,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using WColor = System.Windows.Media.Color;
@@ -56,7 +56,7 @@ namespace Sudoku.Windows.Tooling
 		private bool _isSettingValues = false;
 
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public ColorPickerControl() => InitializeComponent();
 
 

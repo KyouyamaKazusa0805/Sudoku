@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Sudoku.DocComments;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Windows.Tooling
@@ -10,7 +11,7 @@ namespace Sudoku.Windows.Tooling
 	/// </summary>
 	public partial class TechniqueBox : UserControl
 	{
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public TechniqueBox() => InitializeComponent();
 
 

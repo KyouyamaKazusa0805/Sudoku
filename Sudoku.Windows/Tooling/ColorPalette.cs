@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 
 namespace Sudoku.Windows.Tooling
@@ -32,7 +33,7 @@ namespace Sudoku.Windows.Tooling
 		protected const int NumColorsSecondSwatch = 112;
 
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public ColorPalette()
 		{
 			BuiltInColors = new List<ColorSwatchItem>();

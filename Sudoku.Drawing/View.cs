@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.DocComments;
 
 namespace Sudoku.Drawing
 {
@@ -36,7 +37,7 @@ namespace Sudoku.Drawing
 		{
 		}
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private View() : this(default, default, default, default)
 		{

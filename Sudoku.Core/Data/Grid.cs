@@ -115,7 +115,7 @@ namespace Sudoku.Data
 			ValueChanged += OnValueChanged;
 		}
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		private Grid()
 		{
 			// 512 is equivalent to value '0b001_000_000_000', where the higher 3 bits

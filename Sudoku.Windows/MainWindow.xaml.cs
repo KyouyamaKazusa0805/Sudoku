@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
@@ -39,7 +40,7 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public MainWindow() => InitializeComponent();
 
 

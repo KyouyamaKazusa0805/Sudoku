@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Sudoku.DocComments;
 
 namespace Sudoku.Extensions
 {
@@ -11,15 +12,15 @@ namespace Sudoku.Extensions
 	[DebuggerStepThrough]
 	public static class Int16Ex
 	{
-		/// <include file='CoreDocComments.xml' path='comments/method[@name="IsPowerOfTwo"]'/>
+		/// <inheritdoc cref="Integer.IsPowerOfTwo(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsPowerOfTwo(this short @this) => @this != 0 && (@this & (@this - 1)) == 0;
 
-		/// <include file='CoreDocComments.xml' path='comments/method[@name="FindFirstSet"]'/>
+		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int FindFirstSet(this short @this) => Int32Ex.FindFirstSet(@this);
 
-		/// <include file='CoreDocComments.xml' path='comments/method[@name="CountSet"]'/>
+		/// <inheritdoc cref="Integer.CountSet(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int CountSet(this short @this)
 		{
@@ -34,7 +35,7 @@ namespace Sudoku.Extensions
 			#endregion
 		}
 
-		/// <include file='CoreDocComments.xml' path='comments/method[@name="GetNextSet"]'/>
+		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
 		public static int GetNextSet(this short @this, int index)
 		{
 			for (int i = index + 1; i < 16; i++)
@@ -48,7 +49,7 @@ namespace Sudoku.Extensions
 			return -1;
 		}
 
-		/// <include file='CoreDocComments.xml' path='comments/method[@name="SetAt"]'/>
+		/// <inheritdoc cref="Integer.SetAt(Integer, int)"/>
 		public static int SetAt(this short @this, int order)
 		{
 			for (int i = 0, count = -1; i < 16; i++, @this >>= 1)
@@ -62,7 +63,7 @@ namespace Sudoku.Extensions
 			return -1;
 		}
 
-		/// <include file='CoreDocComments.xml' path='comments/method[@name="GetAllSets"]'/>
+		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
 		public static IEnumerable<int> GetAllSets(this short @this)
 		{
 			if (@this == 0)
@@ -79,11 +80,11 @@ namespace Sudoku.Extensions
 			}
 		}
 
-		/// <include file='CoreDocComments.xml' path='comments/method[@name="GetEnumerator"]'/>
+		/// <inheritdoc cref="Integer.GetEnumerator(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IEnumerator<int> GetEnumerator(this short @this) => @this.GetAllSets().GetEnumerator();
 
-		/// <include file='CoreDocComments.xml' path='comments/method[@name="ReverseBits"]'/>
+		/// <inheritdoc cref="Integer.ReverseBits(ref Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void ReverseBits(this ref short @this)
 		{

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
+using Sudoku.DocComments;
 using Sudoku.Windows.Constants;
 using static Sudoku.Windows.Constants.Processings;
 
@@ -12,7 +13,7 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class AboutMeWindow : Window
 	{
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public AboutMeWindow() => InitializeComponent();
 
 

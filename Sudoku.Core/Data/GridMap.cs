@@ -644,7 +644,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly void Deconstruct(out long high, out long low) => (high, low) = (_high, _low);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <inheritdoc cref="object.Equals(object?)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly bool Equals(object? obj) => obj is GridMap comparer && Equals(comparer);
 
@@ -746,7 +746,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly string ToString() => ToString(null);
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <inheritdoc cref="Formattable.ToString(string?)"/>
 		/// <remarks>
 		/// The format can be <c><see langword="null"/></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>. If the former three,
 		/// the return value will be a cell notation collection; otherwise, the binary representation.

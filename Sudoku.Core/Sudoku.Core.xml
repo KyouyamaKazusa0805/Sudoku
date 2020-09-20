@@ -1046,7 +1046,7 @@
             </exception>
         </member>
         <member name="M:Sudoku.Data.Grid.#ctor">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
         <member name="P:Sudoku.Data.Grid.HasSolved">
             <summary>
@@ -1870,7 +1870,7 @@
             <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
         </member>
         <member name="M:Sudoku.Data.GridMap.Equals(System.Object)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.Equals(Sudoku.Data.GridMap)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
@@ -1934,16 +1934,9 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.ToString(System.String)">
-            <method name="ToString" paramType="string">
-		<summary>
-			Returns a string that represents the current object with the
-			specified format string.
-		</summary>
-		<param name="format">The format.</param>
-		<returns>The string result.</returns>
-	</method>
+            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
             <remarks>
-            The format can be <c><see langword="null" /></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>. If the former three,
+            The format can be <c><see langword="null"/></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>. If the former three,
             the return value will be a cell notation collection; otherwise, the binary representation.
             </remarks>
             <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
@@ -2711,7 +2704,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Data.Node.Equals(System.Object)">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node)">
             <inheritdoc/>
@@ -4355,116 +4348,28 @@
             <seealso cref="T:System.Byte"/>
         </member>
         <member name="M:Sudoku.Extensions.ByteEx.IsPowerOfTwo(System.Byte)">
-            <method name="IsPowerOfTwo">
-		<summary>
-			Indicates whether the specified value is the power of two.
-		</summary>
-		<param name="this">(<see langword="this" /> parameter) The value.</param>
-		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.IsPowerOfTwo(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.ByteEx.FindFirstSet(System.Byte)">
-            <method name="FindFirstSet">
-		<summary>
-			Find the first offset of set bit of the binary representation
-			of the specified value. If the value is 0, this method
-			will always return -1.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>
-			An <see cref="T:System.Int32" /> value indicating that.
-		</returns>
-	</method>
+            <inheritdoc cref="!:Integer.FindFirstSet(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.ByteEx.CountSet(System.Byte)">
-            <method name="CountSet">
-		<summary>
-			Get the total number of set bits of the binary representation of a specified value.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>
-			An <see cref="T:System.Int32" /> value indicating that.
-		</returns>
-	</method>
+            <inheritdoc cref="!:Integer.CountSet(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.ByteEx.GetNextSet(System.Byte,System.Int32)">
-            <method name="GetNextSet">
-		<summary>
-			Find a index of the binary representation of a value
-			after the specified index, whose bit is set <see langword="true" />.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<param name="index">The index.</param>
-		<returns>The index.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.GetNextSet(Integer, int)"/>
         </member>
         <member name="M:Sudoku.Extensions.ByteEx.SetAt(System.Byte,System.Int32)">
-            <method name="SetAt">
-		<summary>
-			Get an <see cref="T:System.Int32" /> value, indicating that the absolute position of
-			all set bits with the specified set bit order.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<param name="order">The number of the order of set bits.</param>
-		<returns>The position.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.SetAt(Integer, int)"/>
         </member>
         <member name="M:Sudoku.Extensions.ByteEx.GetAllSets(System.Byte)">
-            <method name="GetAllSets">
-		<summary>
-			Find all offsets of set bits of the binary representation of a specified value.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>All offsets.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.GetAllSets(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.ByteEx.GetEnumerator(System.Byte)">
-            <method name="GetEnumerator">
-		<summary>
-			<para>Extension get enumerator of this type.</para>
-			<para>
-				This method will allow you to use <see langword="foreach" /> loop to iterate on
-				all indices of set bits.
-			</para>
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>All indices of set bits.</returns>
-		<example>
-			This implementation will allow you use <see langword="foreach" /> loop:
-			<code>
-				foreach (int setIndex in 17)<br />
-				{<br />
-					// Do something...<br />
-				}
-			</code>
-		</example>
-	</method>
+            <inheritdoc cref="!:Integer.GetEnumerator(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.ByteEx.ReverseBits(System.Byte@)">
-            <method name="ReverseBits">
-		<summary>
-			<para>Reverse all bits in a specified value.</para>
-			<para>
-				Note that the value is passed by <b>reference</b> though the
-				method is an extension method, and returns nothing.
-			</para>
-		</summary>
-		<param name="this">
-			(<see langword="this ref" /> parameter) The value.
-		</param>
-	</method>
+            <inheritdoc cref="!:Integer.ReverseBits(ref Integer)"/>
         </member>
         <member name="T:Sudoku.Extensions.CloneableEx">
             <summary>
@@ -4693,116 +4598,28 @@
             <seealso cref="T:System.Int16"/>
         </member>
         <member name="M:Sudoku.Extensions.Int16Ex.IsPowerOfTwo(System.Int16)">
-            <method name="IsPowerOfTwo">
-		<summary>
-			Indicates whether the specified value is the power of two.
-		</summary>
-		<param name="this">(<see langword="this" /> parameter) The value.</param>
-		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.IsPowerOfTwo(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int16Ex.FindFirstSet(System.Int16)">
-            <method name="FindFirstSet">
-		<summary>
-			Find the first offset of set bit of the binary representation
-			of the specified value. If the value is 0, this method
-			will always return -1.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>
-			An <see cref="T:System.Int32" /> value indicating that.
-		</returns>
-	</method>
+            <inheritdoc cref="!:Integer.FindFirstSet(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int16Ex.CountSet(System.Int16)">
-            <method name="CountSet">
-		<summary>
-			Get the total number of set bits of the binary representation of a specified value.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>
-			An <see cref="T:System.Int32" /> value indicating that.
-		</returns>
-	</method>
+            <inheritdoc cref="!:Integer.CountSet(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int16Ex.GetNextSet(System.Int16,System.Int32)">
-            <method name="GetNextSet">
-		<summary>
-			Find a index of the binary representation of a value
-			after the specified index, whose bit is set <see langword="true" />.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<param name="index">The index.</param>
-		<returns>The index.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.GetNextSet(Integer, int)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int16Ex.SetAt(System.Int16,System.Int32)">
-            <method name="SetAt">
-		<summary>
-			Get an <see cref="T:System.Int32" /> value, indicating that the absolute position of
-			all set bits with the specified set bit order.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<param name="order">The number of the order of set bits.</param>
-		<returns>The position.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.SetAt(Integer, int)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int16Ex.GetAllSets(System.Int16)">
-            <method name="GetAllSets">
-		<summary>
-			Find all offsets of set bits of the binary representation of a specified value.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>All offsets.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.GetAllSets(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int16Ex.GetEnumerator(System.Int16)">
-            <method name="GetEnumerator">
-		<summary>
-			<para>Extension get enumerator of this type.</para>
-			<para>
-				This method will allow you to use <see langword="foreach" /> loop to iterate on
-				all indices of set bits.
-			</para>
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>All indices of set bits.</returns>
-		<example>
-			This implementation will allow you use <see langword="foreach" /> loop:
-			<code>
-				foreach (int setIndex in 17)<br />
-				{<br />
-					// Do something...<br />
-				}
-			</code>
-		</example>
-	</method>
+            <inheritdoc cref="!:Integer.GetEnumerator(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int16Ex.ReverseBits(System.Int16@)">
-            <method name="ReverseBits">
-		<summary>
-			<para>Reverse all bits in a specified value.</para>
-			<para>
-				Note that the value is passed by <b>reference</b> though the
-				method is an extension method, and returns nothing.
-			</para>
-		</summary>
-		<param name="this">
-			(<see langword="this ref" /> parameter) The value.
-		</param>
-	</method>
+            <inheritdoc cref="!:Integer.ReverseBits(ref Integer)"/>
         </member>
         <member name="T:Sudoku.Extensions.Int32Ex">
             <summary>
@@ -4817,116 +4634,28 @@
             <seealso cref="M:Sudoku.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.IsPowerOfTwo(System.Int32)">
-            <method name="IsPowerOfTwo">
-		<summary>
-			Indicates whether the specified value is the power of two.
-		</summary>
-		<param name="this">(<see langword="this" /> parameter) The value.</param>
-		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.IsPowerOfTwo(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.FindFirstSet(System.Int32)">
-            <method name="FindFirstSet">
-		<summary>
-			Find the first offset of set bit of the binary representation
-			of the specified value. If the value is 0, this method
-			will always return -1.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>
-			An <see cref="T:System.Int32" /> value indicating that.
-		</returns>
-	</method>
+            <inheritdoc cref="!:Integer.FindFirstSet(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.CountSet(System.Int32)">
-            <method name="CountSet">
-		<summary>
-			Get the total number of set bits of the binary representation of a specified value.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>
-			An <see cref="T:System.Int32" /> value indicating that.
-		</returns>
-	</method>
+            <inheritdoc cref="!:Integer.CountSet(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.GetNextSet(System.Int32,System.Int32)">
-            <method name="GetNextSet">
-		<summary>
-			Find a index of the binary representation of a value
-			after the specified index, whose bit is set <see langword="true" />.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<param name="index">The index.</param>
-		<returns>The index.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.GetNextSet(Integer, int)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.SetAt(System.Int32,System.Int32)">
-            <method name="SetAt">
-		<summary>
-			Get an <see cref="T:System.Int32" /> value, indicating that the absolute position of
-			all set bits with the specified set bit order.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<param name="order">The number of the order of set bits.</param>
-		<returns>The position.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.SetAt(Integer, int)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.GetAllSets(System.Int32)">
-            <method name="GetAllSets">
-		<summary>
-			Find all offsets of set bits of the binary representation of a specified value.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>All offsets.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.GetAllSets(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.GetEnumerator(System.Int32)">
-            <method name="GetEnumerator">
-		<summary>
-			<para>Extension get enumerator of this type.</para>
-			<para>
-				This method will allow you to use <see langword="foreach" /> loop to iterate on
-				all indices of set bits.
-			</para>
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>All indices of set bits.</returns>
-		<example>
-			This implementation will allow you use <see langword="foreach" /> loop:
-			<code>
-				foreach (int setIndex in 17)<br />
-				{<br />
-					// Do something...<br />
-				}
-			</code>
-		</example>
-	</method>
+            <inheritdoc cref="!:Integer.GetEnumerator(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.ReverseBits(System.Int32@)">
-            <method name="ReverseBits">
-		<summary>
-			<para>Reverse all bits in a specified value.</para>
-			<para>
-				Note that the value is passed by <b>reference</b> though the
-				method is an extension method, and returns nothing.
-			</para>
-		</summary>
-		<param name="this">
-			(<see langword="this ref" /> parameter) The value.
-		</param>
-	</method>
+            <inheritdoc cref="!:Integer.ReverseBits(ref Integer)"/>
         </member>
         <member name="T:Sudoku.Extensions.Int64Ex">
             <summary>
@@ -4935,116 +4664,28 @@
             <seealso cref="T:System.Int64"/>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.IsPowerOfTwo(System.Int64)">
-            <method name="IsPowerOfTwo">
-		<summary>
-			Indicates whether the specified value is the power of two.
-		</summary>
-		<param name="this">(<see langword="this" /> parameter) The value.</param>
-		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.IsPowerOfTwo(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.FindFirstSet(System.Int64)">
-            <method name="FindFirstSet">
-		<summary>
-			Find the first offset of set bit of the binary representation
-			of the specified value. If the value is 0, this method
-			will always return -1.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>
-			An <see cref="T:System.Int32" /> value indicating that.
-		</returns>
-	</method>
+            <inheritdoc cref="!:Integer.FindFirstSet(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.CountSet(System.Int64)">
-            <method name="CountSet">
-		<summary>
-			Get the total number of set bits of the binary representation of a specified value.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>
-			An <see cref="T:System.Int32" /> value indicating that.
-		</returns>
-	</method>
+            <inheritdoc cref="!:Integer.CountSet(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.GetNextSet(System.Int64,System.Int32)">
-            <method name="GetNextSet">
-		<summary>
-			Find a index of the binary representation of a value
-			after the specified index, whose bit is set <see langword="true" />.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<param name="index">The index.</param>
-		<returns>The index.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.GetNextSet(Integer, int)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.SetAt(System.Int64,System.Int32)">
-            <method name="SetAt">
-		<summary>
-			Get an <see cref="T:System.Int32" /> value, indicating that the absolute position of
-			all set bits with the specified set bit order.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<param name="order">The number of the order of set bits.</param>
-		<returns>The position.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.SetAt(Integer, int)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.GetAllSets(System.Int64)">
-            <method name="GetAllSets">
-		<summary>
-			Find all offsets of set bits of the binary representation of a specified value.
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>All offsets.</returns>
-	</method>
+            <inheritdoc cref="!:Integer.GetAllSets(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.GetEnumerator(System.Int64)">
-            <method name="GetEnumerator">
-		<summary>
-			<para>Extension get enumerator of this type.</para>
-			<para>
-				This method will allow you to use <see langword="foreach" /> loop to iterate on
-				all indices of set bits.
-			</para>
-		</summary>
-		<param name="this">
-			(<see langword="this" /> parameter) The value.
-		</param>
-		<returns>All indices of set bits.</returns>
-		<example>
-			This implementation will allow you use <see langword="foreach" /> loop:
-			<code>
-				foreach (int setIndex in 17)<br />
-				{<br />
-					// Do something...<br />
-				}
-			</code>
-		</example>
-	</method>
+            <inheritdoc cref="!:Integer.GetEnumerator(Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.ReverseBits(System.Int64@)">
-            <method name="ReverseBits">
-		<summary>
-			<para>Reverse all bits in a specified value.</para>
-			<para>
-				Note that the value is passed by <b>reference</b> though the
-				method is an extension method, and returns nothing.
-			</para>
-		</summary>
-		<param name="this">
-			(<see langword="this ref" /> parameter) The value.
-		</param>
-	</method>
+            <inheritdoc cref="!:Integer.ReverseBits(ref Integer)"/>
         </member>
         <member name="T:Sudoku.Extensions.ListEx">
             <summary>

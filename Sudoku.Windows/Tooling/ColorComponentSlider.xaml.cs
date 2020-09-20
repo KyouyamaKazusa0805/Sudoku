@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Sudoku.DocComments;
 
 namespace Sudoku.Windows.Tooling
 {
@@ -14,7 +15,7 @@ namespace Sudoku.Windows.Tooling
 		protected bool _updatingValues = false;
 
 
-		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public ColorComponentSlider() => InitializeComponent();
 
 

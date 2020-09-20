@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Sudoku.DocComments;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Windows
@@ -8,7 +9,7 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class TechniqueViewWindow : Window
 	{
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public TechniqueViewWindow()
 		{
 			InitializeComponent();

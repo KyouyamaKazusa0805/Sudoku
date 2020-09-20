@@ -167,7 +167,7 @@ namespace Sudoku.Data
 		/// </summary>
 		public void ClearParents() => ParentsCount = 0;
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>

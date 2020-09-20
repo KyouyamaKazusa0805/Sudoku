@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using Sudoku.Solving.Manual;
 using static Sudoku.Windows.Constants.Processings;
@@ -14,7 +15,7 @@ namespace Sudoku.Windows.Tooling
 	/// </summary>
 	public partial class TechniqueView : UserControl
 	{
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public TechniqueView()
 		{
 			InitializeComponent();
