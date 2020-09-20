@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sudoku.Data;
+using Sudoku.DocComments;
 
 namespace Sudoku.Recognitions
 {
@@ -19,11 +20,16 @@ namespace Sudoku.Recognitions
 		private readonly InternalServiceProvider _recognizingServiceProvider;
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public RecognitionServiceProvider()
 		{
+			string folder = $@"{Directory.GetCurrentDirectory()}\tessdata";
 			_recognizingServiceProvider = new();
-			_recognizingServiceProvider.InitTesseractAsync($@"{Directory.GetCurrentDirectory()}\tessdata").Wait();
+#if MUST_DOWNLOAD_TRAINED_DATA
+			_recognizingServiceProvider.InitTesseractAsync(folder).Wait();
+#else
+			_recognizingServiceProvider.InitTesseract(folder);
+#endif
 		}
 
 

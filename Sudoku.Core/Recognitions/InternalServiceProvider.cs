@@ -1,15 +1,16 @@
 ﻿#if SUDOKU_RECOGNIZING
 using System;
-using System.Drawing;
 using System.IO;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.OCR;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
+#if MUST_DOWNLOAD_TRAINED_DATA
+using System.Net.Http;
+using System.Threading.Tasks;
+#endif
 
 namespace Sudoku.Recognitions
 {
@@ -118,6 +119,7 @@ namespace Sudoku.Recognitions
 			return numberText.Length > 1 ? -1 : int.TryParse(numberText, out int resultValue) ? resultValue : -1;
 		}
 
+#if MUST_DOWNLOAD_TRAINED_DATA
 		/// <summary>
 		/// Initializes <see cref="Tesseract"/> instance.
 		/// </summary>
@@ -125,12 +127,27 @@ namespace Sudoku.Recognitions
 		/// <param name="lang">The language. The default value is <c>"eng"</c>.</param>
 		/// <returns>The task.</returns>
 		public async Task<bool> InitTesseractAsync(string dir, string lang = "eng")
+#else
+		/// <summary>
+		/// Initializes <see cref="Tesseract"/> instance.
+		/// </summary>
+		/// <param name="dir">The directory.</param>
+		/// <param name="lang">The language. The default value is <c>"eng"</c>.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		/// <exception cref="FileNotFoundException">Throws when the file doesn't found.</exception>
+		public bool InitTesseract(string dir, string lang = "eng")
+#endif
 		{
 			try
 			{
-				if (!File.Exists($@"{dir}\{lang}.traineddata"))
+				string filePath = $@"{dir}\{lang}.traineddata";
+				if (!File.Exists(filePath))
 				{
+#if MUST_DOWNLOAD_TRAINED_DATA
 					return await TesseractDownloadLangFileAsync(dir, lang);
+#else
+					throw new FileNotFoundException("The specified file path cannot be found.", filePath);
+#endif
 				}
 
 				_ocr = new(dir, lang, OcrEngineMode.TesseractOnly, "123456789");
@@ -142,6 +159,7 @@ namespace Sudoku.Recognitions
 			}
 		}
 
+#if MUST_DOWNLOAD_TRAINED_DATA
 		/// <summary>
 		/// When the trained data is failed to find in the local machine, this method will download
 		/// the file online.
@@ -163,7 +181,9 @@ namespace Sudoku.Recognitions
 				File.WriteAllText(
 					$@"{dir}\{lang}.traineddata",
 					await client.GetStringAsync(
-						new Uri($"https://github.com/tesseract-ocr/tessdata/raw/master/{lang}.traineddata")));
+						new Uri($"https://github.com/tesseract-ocr/tessdata/raw/master/{lang}.traineddata")
+					)
+				);
 
 				return true;
 			}
@@ -176,6 +196,7 @@ namespace Sudoku.Recognitions
 				client?.Dispose();
 			}
 		}
+#endif
 	}
 }
 #endif

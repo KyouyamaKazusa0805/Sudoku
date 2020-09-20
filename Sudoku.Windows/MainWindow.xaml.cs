@@ -67,10 +67,27 @@ namespace Sudoku.Windows
 		}
 
 #if SUDOKU_RECOGNIZING
+		/// <summary>
+		/// Initialize recognizer if worth.
+		/// </summary>
 		private void InitializeRecognizerIfWorth()
 		{
-			try { _recognition = new(); }
-			catch (Exception ex) { Messagings.FailedToLoadRecognitionTool(ex); }
+			try
+			{
+				_recognition = new();
+			}
+#if !MUST_DOWNLOAD_TRAINED_DATA
+			catch (FileNotFoundException ex) when (ex.FileName?.EndsWith("eng.traineddata") ?? false)
+			{
+				// trained data file cannot be found.
+				Messagings.FailedToLoadRecognitionTool(ex);
+			}
+#endif
+			catch (Exception ex)
+			{
+				// Other exceptions.
+				Messagings.FailedToLoadRecognitionTool(ex);
+			}
 		}
 #endif
 

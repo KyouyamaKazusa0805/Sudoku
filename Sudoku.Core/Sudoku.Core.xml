@@ -7179,22 +7179,14 @@
             Throws when the OCR engine error.
             </exception>
         </member>
-        <member name="M:Sudoku.Recognitions.InternalServiceProvider.InitTesseractAsync(System.String,System.String)">
+        <member name="M:Sudoku.Recognitions.InternalServiceProvider.InitTesseract(System.String,System.String)">
             <summary>
             Initializes <see cref="T:Emgu.CV.OCR.Tesseract"/> instance.
             </summary>
             <param name="dir">The directory.</param>
             <param name="lang">The language. The default value is <c>"eng"</c>.</param>
-            <returns>The task.</returns>
-        </member>
-        <member name="M:Sudoku.Recognitions.InternalServiceProvider.TesseractDownloadLangFileAsync(System.String,System.String)">
-            <summary>
-            When the trained data is failed to find in the local machine, this method will download
-            the file online.
-            </summary>
-            <param name="dir">The directory to find.</param>
-            <param name="lang">The language.</param>
-            <returns>The result.</returns>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't found.</exception>
         </member>
         <member name="T:Sudoku.Recognitions.InternalSettings">
             <summary>
@@ -7284,7 +7276,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Recognitions.RecognitionServiceProvider.#ctor">
-            <!-- No matching elements were found for the following include tag --><include file="..\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
         <member name="P:Sudoku.Recognitions.RecognitionServiceProvider.ToolIsInitialized">
             <summary>
