@@ -74,10 +74,10 @@ namespace Sudoku.Solving.Manual
 				new JuniorExocetTechniqueSearcher(CheckAdvancedInExocet),
 				new SeniorExocetTechniqueSearcher(CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
+				new AlsNetTechniqueSearcher(),
 				new PomTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-				new AlsNetTechniqueSearcher(),
 				new BruteForceTechniqueSearcher(solution),
 			};
 
