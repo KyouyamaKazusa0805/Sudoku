@@ -90,7 +90,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 			}
 
-			tempAccumulator.Sort((i1, i2) => i1.Complexity.CompareTo(i2.Complexity));
+			tempAccumulator.Sort(/*static*/ (i1, i2) => i1.Complexity.CompareTo(i2.Complexity));
 			accumulator.AddRange(tempAccumulator);
 		}
 

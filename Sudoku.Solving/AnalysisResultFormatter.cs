@@ -57,17 +57,17 @@ namespace Sudoku.Solving
 			}
 
 			string formatLower = format.ToLower();
-			bool c(char c) => formatLower.Contains(c);
-			bool showSeparator = c('-');
-			bool showStepNum = c('#');
-			bool showSimple = c('@');
-			bool showBottleneck = c('?');
-			bool showDifficulty = c('!');
-			bool showStepsAfterBottleneck = c('.');
-			bool showAttributes = c('a');
-			bool showBackdoors = c('b');
-			bool showTechniqueDetail = c('d');
-			bool showTechniqueSteps = c('l');
+			static bool c(in string formatLower, char c) => formatLower.Contains(c);
+			bool showSeparator = c(in formatLower, '-');
+			bool showStepNum = c(in formatLower, '#');
+			bool showSimple = c(in formatLower, '@');
+			bool showBottleneck = c(in formatLower, '?');
+			bool showDifficulty = c(in formatLower, '!');
+			bool showStepsAfterBottleneck = c(in formatLower, '.');
+			bool showAttributes = c(in formatLower, 'a');
+			bool showBackdoors = c(in formatLower, 'b');
+			bool showTechniqueDetail = c(in formatLower, 'd');
+			bool showTechniqueSteps = c(in formatLower, 'l');
 
 			// Get all information.
 			var (

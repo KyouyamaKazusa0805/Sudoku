@@ -113,7 +113,7 @@ namespace Sudoku.Data.Collections
 					{
 						Array.Sort(
 							conclusions,
-							(a, b) =>
+							/*static*/ (a, b) =>
 							{
 								var (t1, c1, d1) = a;
 								var (t2, c2, d2) = b;

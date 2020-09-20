@@ -75,7 +75,9 @@ namespace Sudoku.Solving.Manual
 
 			if (UseCalculationPriority)
 			{
-				Array.Sort(searchers, (a, b) => a.SearcherProperties!.Priority.CompareTo(b.SearcherProperties!.Priority));
+				Array.Sort(
+					searchers,
+					/*static*/ (a, b) => a.SearcherProperties!.Priority.CompareTo(b.SearcherProperties!.Priority));
 			}
 
 			var bag = new List<TechniqueInfo>();
