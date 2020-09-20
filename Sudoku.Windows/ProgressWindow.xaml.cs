@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
+using Sudoku.DocComments;
 using Sudoku.Models;
 
 namespace Sudoku.Windows
@@ -29,7 +30,7 @@ namespace Sudoku.Windows
 		private bool _closeValue = false;
 
 
-		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public ProgressWindow() => InitializeComponent();
 
 
