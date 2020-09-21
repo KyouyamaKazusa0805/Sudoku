@@ -71,7 +71,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 						let inBlock = solution[b + i % 3 + (int)Floor(i / 3F) * 9] == @char
 						where inRow || inColumn || inBlock
 						select i).None()
-					select $"{solution.Substring(0, i)}{@char}{solution.Substring(i + 1)}").ToList<string>();
+					select $"{solution.Substring(0, i)}{@char}{solution.Substring(i + 1)}").ToList();
 			}
 
 			return result;

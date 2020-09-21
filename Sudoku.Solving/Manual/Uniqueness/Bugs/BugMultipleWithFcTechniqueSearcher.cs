@@ -185,11 +185,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 			// Get views.
 			var views = new List<View>();
-			var globalCandidates = new List<(int, int)>();
+			var globalCandidates = new List<DrawingInfo>();
 			var globalLinks = new List<Link>();
 			foreach (var (candidate, node) in chains)
 			{
-				var candidateOffsets = new List<(int, int)>(GetCandidateOffsets(node)) { (2, candidate) };
+				var candidateOffsets = new List<DrawingInfo>(GetCandidateOffsets(node)) { new(2, candidate) };
 				var links = new List<Link>(GetLinks(node, true));
 				views.Add(new(null, candidateOffsets, null, links));
 				globalCandidates.AddRange(candidateOffsets);

@@ -82,7 +82,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 						{
 							new((
 								from conclusion in conclusions
-								select (0, conclusion.CellOffset * 9 + conclusion.Digit)).ToArray())
+								select new DrawingInfo(0, conclusion.CellOffset * 9 + conclusion.Digit)).ToArray())
 						},
 						false));
 			}

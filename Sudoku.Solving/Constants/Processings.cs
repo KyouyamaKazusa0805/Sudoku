@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Data.LinkType;
 
@@ -97,9 +98,9 @@ namespace Sudoku.Solving.Constants
 		/// </summary>
 		/// <param name="target">The target node.</param>
 		/// <returns>The candidate offsets.</returns>
-		public static IReadOnlyList<(int, int)> GetCandidateOffsets(Node target)
+		public static IReadOnlyList<DrawingInfo> GetCandidateOffsets(Node target)
 		{
-			var result = new List<(int, int)>();
+			var result = new List<DrawingInfo>();
 			var map = new HashSet<(int, bool)>();
 			var chain = target.Chain;
 			for (int i = 0, count = chain.Count; i < count; i++)
@@ -126,7 +127,7 @@ namespace Sudoku.Solving.Constants
 
 			foreach (var (candidate, isOn) in map)
 			{
-				result.Add((isOn ? 0 : 1, candidate));
+				result.Add(new(isOn ? 0 : 1, candidate));
 			}
 
 			return result;

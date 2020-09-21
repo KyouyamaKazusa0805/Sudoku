@@ -182,12 +182,12 @@ namespace Sudoku.Solving.Manual.Exocets
 					CompatibilityTestEliminations compatibilityElims = default;
 					GridMap mir = default;
 					int target = -1;
-					var cellOffsets = new List<(int, int)> { (0, b1), (0, b2) };
+					var cellOffsets = new List<DrawingInfo> { new(0, b1), new(0, b2) };
 					foreach (int cell in tempCrosslineMap)
 					{
-						cellOffsets.Add((cell == combination[0] || cell == combination[1] ? 1 : 2, cell));
+						cellOffsets.Add(new(cell == combination[0] || cell == combination[1] ? 1 : 2, cell));
 					}
-					var candidateOffsets = new List<(int, int)>();
+					var candidateOffsets = new List<DrawingInfo>();
 					if (_checkAdvanced)
 					{
 						for (int k = 0; k < 2; k++)
@@ -266,11 +266,11 @@ namespace Sudoku.Solving.Manual.Exocets
 					short m = (short)(m1 | m2);
 					foreach (int digit in m1.GetAllSets())
 					{
-						candidateOffsets.Add((0, b1 * 9 + digit));
+						candidateOffsets.Add(new(0, b1 * 9 + digit));
 					}
 					foreach (int digit in m2.GetAllSets())
 					{
-						candidateOffsets.Add((0, b2 * 9 + digit));
+						candidateOffsets.Add(new(0, b2 * 9 + digit));
 					}
 
 					// Gather extra region cells (mutant exocets).
@@ -284,11 +284,11 @@ namespace Sudoku.Solving.Manual.Exocets
 								if (/*!tempCrosslineMap[cell] && */b1 != cell && b2 != cell && !extraMap[cell])
 								{
 									extraMap.AddAnyway(cell);
-									cellOffsets.Add((4, cell));
+									cellOffsets.Add(new(4, cell));
 								}
 								if (grid.Exists(cell, digit) is true)
 								{
-									candidateOffsets.Add((2, cell * 9 + digit));
+									candidateOffsets.Add(new(2, cell * 9 + digit));
 								}
 							}
 						}

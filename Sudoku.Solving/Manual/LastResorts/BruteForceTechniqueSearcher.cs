@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					accumulator.Add(
 						new BruteForceTechniqueInfo(
 							new Conclusion[] { new(Assignment, cand) },
-							new View[] { new(new[] { (0, cand) }) }));
+							new View[] { new(new DrawingInfo[] { new(0, cand) }) }));
 				}
 			}
 		}

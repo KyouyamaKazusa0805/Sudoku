@@ -238,20 +238,23 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 														continue;
 													}
 
-													var cellOffsets = new List<(int, int)>();
+													var cellOffsets = new List<DrawingInfo>();
 													cellOffsets.AddRange(
-														from cell in currentRowMap | rbCurrentMap select (0, cell));
+														from cell in currentRowMap | rbCurrentMap
+														select new DrawingInfo(0, cell));
 													cellOffsets.AddRange(
-														from cell in currentColumnMap | cbCurrentMap select (1, cell));
-													cellOffsets.AddRange(from cell in currentBlockMap select (2, cell));
+														from cell in currentColumnMap | cbCurrentMap
+														select new DrawingInfo(1, cell));
+													cellOffsets.AddRange(
+														from cell in currentBlockMap select new DrawingInfo(2, cell));
 
-													var candidateOffsets = new List<(int, int)>();
+													var candidateOffsets = new List<DrawingInfo>();
 													foreach (int digit in rowMask.GetAllSets())
 													{
 														foreach (int cell in
 															(currentRowMap | rbCurrentMap) & CandMaps[digit])
 														{
-															candidateOffsets.Add((0, cell * 9 + digit));
+															candidateOffsets.Add(new(0, cell * 9 + digit));
 														}
 													}
 													foreach (int digit in columnMask.GetAllSets())
@@ -259,7 +262,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 														foreach (int cell in
 															(currentColumnMap | cbCurrentMap) & CandMaps[digit])
 														{
-															candidateOffsets.Add((1, cell * 9 + digit));
+															candidateOffsets.Add(new(1, cell * 9 + digit));
 														}
 													}
 													foreach (int digit in blockMask.GetAllSets())
@@ -268,7 +271,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 															(currentBlockMap | rbCurrentMap | cbCurrentMap) &
 															CandMaps[digit])
 														{
-															candidateOffsets.Add((2, cell * 9 + digit));
+															candidateOffsets.Add(new(2, cell * 9 + digit));
 														}
 													}
 
@@ -280,9 +283,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 																new(
 																	_alsShowRegions ? null : cellOffsets,
 																	_alsShowRegions ? candidateOffsets : null,
-																	_alsShowRegions
-																		? new[] { (0, r), (1, c), (2, b) }
-																		: null,
+																	_alsShowRegions switch
+																	{
+																		true => new DrawingInfo[]
+																		{
+																			new(0, r), new(1, c), new(2, b)
+																		},
+																		false => null
+																	},
 																	null)
 															},
 															rowMask,

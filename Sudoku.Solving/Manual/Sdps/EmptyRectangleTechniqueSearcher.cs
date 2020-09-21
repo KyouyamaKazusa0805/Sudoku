@@ -83,15 +83,15 @@ namespace Sudoku.Solving.Manual.Sdps
 						}
 
 						// Record all highlight candidates.
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						var cpCells = new List<int>(2);
 						foreach (int cell in RegionMaps[block] & CandMaps[digit])
 						{
-							candidateOffsets.Add((1, cell * 9 + digit));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 						foreach (int cell in linkMap)
 						{
-							candidateOffsets.Add((0, cell * 9 + digit));
+							candidateOffsets.Add(new(0, cell * 9 + digit));
 							cpCells.Add(cell);
 						}
 
@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						accumulator.Add(
 							new EmptyRectangleTechniqueInfo(
 								new Conclusion[] { new(Elimination, elimCell, digit) },
-								new View[] { new(null, candidateOffsets, new[] { (0, block) }, null) },
+								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, block) }, null) },
 								digit,
 								block,
 								new(cpCells[0], cpCells[1], digit)));

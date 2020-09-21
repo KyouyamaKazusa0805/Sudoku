@@ -135,30 +135,30 @@ namespace Sudoku.Solving.Manual.Intersections
 				}
 
 				// Gather highlight candidates.
-				var candidateOffsets = new List<(int, int)>();
+				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int digit in digits)
 				{
 					foreach (int cell in cellsMap & CandMaps[digit])
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in c)
 				{
 					foreach (int digit in (mask & grid.GetCandidateMask(cell)).GetAllSets())
 					{
-						candidateOffsets.Add((1, cell * 9 + digit));
+						candidateOffsets.Add(new(1, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in ahsCells)
 				{
 					foreach (int digit in (mask & grid.GetCandidateMask(cell)).GetAllSets())
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 
-				var valueCells = from cell in (cellsMap | ahsCells) - EmptyMap select (0, cell);
+				var valueCells = from cell in (cellsMap | ahsCells) - EmptyMap select new DrawingInfo(0, cell);
 				bool hasValueCell = valueCells.Any();
 				result.Add(
 					new AlcTechniqueInfo(
@@ -168,7 +168,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							new(
 								hasValueCell ? valueCells.ToArray() : null,
 								candidateOffsets,
-								new[] { (0, baseSet), (1, coverSet) },
+								new DrawingInfo[] { new(0, baseSet), new(1, coverSet) },
 								null)
 						},
 						mask,

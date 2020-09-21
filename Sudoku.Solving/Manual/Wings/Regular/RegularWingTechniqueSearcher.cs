@@ -131,17 +131,17 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						}
 
 						// Gather highlight candidates.
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in cells)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((digit == zDigit ? 1 : 0, cell * 9 + digit));
+								candidateOffsets.Add(new(digit == zDigit ? 1 : 0, cell * 9 + digit));
 							}
 						}
 						foreach (int digit in grid.GetCandidates(pivot))
 						{
-							candidateOffsets.Add((digit == zDigit ? 1 : 0, pivot * 9 + digit));
+							candidateOffsets.Add(new(digit == zDigit ? 1 : 0, pivot * 9 + digit));
 						}
 
 						accumulator.Add(

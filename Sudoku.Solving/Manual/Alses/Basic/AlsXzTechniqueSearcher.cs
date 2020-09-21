@@ -183,15 +183,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 					// Now record highlight elements.
 					bool isEsp = als1.IsBivalueCell || als2.IsBivalueCell;
-					var candidateOffsets = new List<(int, int)>();
-					var cellOffsets = new List<(int, int)>();
+					var candidateOffsets = new List<DrawingInfo>();
+					var cellOffsets = new List<DrawingInfo>();
 					if (isEsp)
 					{
 						foreach (int cell in map)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((finalZ >> digit & 1, cell * 9 + digit));
+								candidateOffsets.Add(new(finalZ >> digit & 1, cell * 9 + digit));
 							}
 						}
 					}
@@ -205,15 +205,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							short rccDigitsMask = (short)(mask & rccMask);
 							foreach (int digit in alsDigitsMask.GetAllSets())
 							{
-								candidateOffsets.Add((-1, cell * 9 + digit));
+								candidateOffsets.Add(new(-1, cell * 9 + digit));
 							}
 							foreach (int digit in targetDigitsMask.GetAllSets())
 							{
-								candidateOffsets.Add((2, cell * 9 + digit));
+								candidateOffsets.Add(new(2, cell * 9 + digit));
 							}
 							foreach (int digit in rccDigitsMask.GetAllSets())
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in map2)
@@ -224,15 +224,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							short rccDigitsMask = (short)(mask & rccMask);
 							foreach (int digit in alsDigitsMask.GetAllSets())
 							{
-								candidateOffsets.Add((-2, cell * 9 + digit));
+								candidateOffsets.Add(new(-2, cell * 9 + digit));
 							}
 							foreach (int digit in targetDigitsMask.GetAllSets())
 							{
-								candidateOffsets.Add((2, cell * 9 + digit));
+								candidateOffsets.Add(new(2, cell * 9 + digit));
 							}
 							foreach (int digit in rccDigitsMask.GetAllSets())
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 					}
@@ -247,7 +247,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									_alsShowRegions ? candidateOffsets : null,
 									_alsShowRegions switch
 									{
-										true => isEsp ? null : new[] { (0, region1), (1, region2) },
+										true => isEsp ? null : new DrawingInfo[] { new(0, region1), new(1, region2) },
 										_ => null
 									},
 									null)

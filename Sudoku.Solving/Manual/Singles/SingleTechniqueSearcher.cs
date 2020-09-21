@@ -73,7 +73,14 @@ namespace Sudoku.Solving.Manual.Singles
 					accumulator.Add(
 						new FullHouseTechniqueInfo(
 							new Conclusion[] { new(Assignment, resultCell, digit) },
-							new View[] { new(null, new[] { (0, resultCell * 9 + digit) }, new[] { (0, region) }, null) },
+							new View[]
+							{
+								new(
+									null,
+									new DrawingInfo[] { new(0, resultCell * 9 + digit) },
+									new DrawingInfo[] { new(0, region) },
+									null)
+							},
 							resultCell,
 							digit));
 				}
@@ -105,7 +112,7 @@ namespace Sudoku.Solving.Manual.Singles
 					}
 
 					bool enableAndIsLastDigit = false;
-					var cellOffsets = new List<(int, int)>();
+					var cellOffsets = new List<DrawingInfo>();
 					if (_enableLastDigit)
 					{
 						// Sum up the number of appearing in the grid of 'digit'.
@@ -115,7 +122,7 @@ namespace Sudoku.Solving.Manual.Singles
 							if (grid[i] == digit)
 							{
 								digitCount++;
-								cellOffsets.Add((0, i));
+								cellOffsets.Add(new(0, i));
 							}
 						}
 
@@ -129,8 +136,8 @@ namespace Sudoku.Solving.Manual.Singles
 							{
 								new(
 									enableAndIsLastDigit ? cellOffsets : null,
-									new[] { (0, resultCell * 9 + digit) },
-									enableAndIsLastDigit ? null : new[] { (0, region) },
+									new DrawingInfo[] { new(0, resultCell * 9 + digit) },
+									enableAndIsLastDigit ? null : new DrawingInfo[] { new(0, region) },
 									null)
 							},
 							resultCell,
@@ -150,7 +157,7 @@ namespace Sudoku.Solving.Manual.Singles
 					accumulator.Add(
 						new NakedSingleTechniqueInfo(
 							new Conclusion[] { new(Assignment, cell, digit) },
-							new View[] { new(new[] { (0, cell * 9 + digit) }) },
+							new View[] { new(new DrawingInfo[] { new(0, cell * 9 + digit) }) },
 							cell,
 							digit));
 				}

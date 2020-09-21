@@ -105,16 +105,16 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 									{
 										new(
 											null,
-											new[]
+											new DrawingInfo[]
 											{
-												(1, c1 * 9 + elimDigit),
-												(0, c1 * 9 + digit),
-												(0, bridgeStart * 9 + digit),
-												(0, bridgeEnd * 9 + digit),
-												(0, c2 * 9 + digit),
-												(1, c2 * 9 + elimDigit)
+												new(1, c1 * 9 + elimDigit),
+												new(0, c1 * 9 + digit),
+												new(0, bridgeStart * 9 + digit),
+												new(0, bridgeEnd * 9 + digit),
+												new(0, c2 * 9 + digit),
+												new(1, c2 * 9 + elimDigit)
 											},
-											new[] { (0, region) },
+											new DrawingInfo[] { new(0, region) },
 											null)
 									},
 									c1,

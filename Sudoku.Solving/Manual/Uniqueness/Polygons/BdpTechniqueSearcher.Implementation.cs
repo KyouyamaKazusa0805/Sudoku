@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					conclusions.Add(new(Elimination, elimCell, digit));
 				}
 
-				var candidateOffsets = new List<(int, int)>();
+				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int cell in map)
 				{
 					if (mapContainingThatDigit[cell])
@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 
@@ -106,12 +106,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					conclusions.Add(new(Elimination, cell, otherDigit));
 				}
 
-				var candidateOffsets = new List<(int, int)>();
+				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int cell in map)
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((digit == otherDigit ? 1 : 0, cell * 9 + digit));
+						candidateOffsets.Add(new(digit == otherDigit ? 1 : 0, cell * 9 + digit));
 					}
 				}
 
@@ -190,33 +190,33 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								continue;
 							}
 
-							var candidateOffsets = new List<(int, int)>();
+							var candidateOffsets = new List<DrawingInfo>();
 							foreach (int cell in currentMap)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add(((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in otherCellsMap)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add((0, cell * 9 + digit));
+									candidateOffsets.Add(new(0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in combination)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add((1, cell * 9 + digit));
+									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
 							}
 
 							accumulator.Add(
 								new BdpType3TechniqueInfo(
 									conclusions,
-									new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+									new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 									map,
 									tempMask,
 									combination,
@@ -303,26 +303,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							conclusions.Add(new(Elimination, cell, finalDigit));
 						}
 
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in currentMap)
 						{
 							foreach (int digit in (grid.GetCandidateMask(cell) & combinationMask).GetAllSets())
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in otherCellsMap)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((0, cell * 9 + digit));
+								candidateOffsets.Add(new(0, cell * 9 + digit));
 							}
 						}
 
 						accumulator.Add(
 							new BdpType4TechniqueInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 								map,
 								otherMask,
 								currentMap,

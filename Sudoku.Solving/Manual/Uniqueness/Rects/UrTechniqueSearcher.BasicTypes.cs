@@ -49,12 +49,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in otherCellsMap)
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((0, cell * 9 + digit));
+					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 			}
 
@@ -116,14 +116,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in urCells)
 			{
 				if (grid.GetStatus(cell) == Empty)
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+						candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 					}
 				}
 			}
@@ -215,23 +215,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						var cellOffsets = new List<(int, int)>();
+						var cellOffsets = new List<DrawingInfo>();
 						foreach (int cell in urCells)
 						{
 							if (grid.GetStatus(cell) != Empty)
 							{
-								cellOffsets.Add((0, cell));
+								cellOffsets.Add(new(0, cell));
 							}
 						}
 
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in urCells)
 						{
 							if (grid.GetStatus(cell) == Empty)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add(((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
 						}
@@ -239,7 +239,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 
@@ -248,7 +248,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								conclusions,
 								new View[]
 								{
-									new(arMode ? cellOffsets : null, candidateOffsets, new[] { (0, region) }, null)
+									new(
+										arMode ? cellOffsets : null,
+										candidateOffsets,
+										new DrawingInfo[] { new(0, region) },
+										null)
 								},
 								d1,
 								d2,
@@ -305,7 +309,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						conclusions.Add(new(Elimination, cell, elimDigit));
 					}
 
-					var candidateOffsets = new List<(int, int)>();
+					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in urCells)
 					{
 						if (grid.GetStatus(cell) != Empty)
@@ -320,7 +324,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								if (d != elimDigit && grid.Exists(cell, d) is true)
 								{
-									candidateOffsets.Add((1, cell * 9 + d));
+									candidateOffsets.Add(new(1, cell * 9 + d));
 								}
 							}
 
@@ -332,7 +336,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							// Corner1 and corner2.
 							foreach (int d in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((0, cell * 9 + d));
+								candidateOffsets.Add(new(0, cell * 9 + d));
 							}
 						}
 					}
@@ -349,7 +353,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								new(
 									arMode ? GetHighlightCells(urCells) : null,
-									candidateOffsets, new[] { (0, region) }, null)
+									candidateOffsets,
+									new DrawingInfo[] { new(0, region) },
+									null)
 							},
 							Type4,
 							d1,
@@ -404,7 +410,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in urCells)
 			{
 				if (grid.GetStatus(cell) != Empty)
@@ -414,7 +420,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
 			if (!_allowIncompleteUr && candidateOffsets.Count(CheckHighlightType) != 8)
@@ -487,7 +493,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					conclusions.Add(new(Elimination, cell, digit));
 				}
 
-				var candidateOffsets = new List<(int, int)>();
+				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int cell in urCells)
 				{
 					if (otherCellsMap[cell])
@@ -496,7 +502,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							if (d != digit && grid.Exists(cell, d) is true)
 							{
-								candidateOffsets.Add((0, cell * 9 + d));
+								candidateOffsets.Add(new(0, cell * 9 + d));
 							}
 						}
 
@@ -507,7 +513,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						foreach (int d in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((d == digit ? 1 : 0, cell * 9 + d));
+							candidateOffsets.Add(new(d == digit ? 1 : 0, cell * 9 + d));
 						}
 					}
 				}
@@ -524,7 +530,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							new(
 								arMode ? GetHighlightCells(urCells) : null,
-								candidateOffsets, new[] { (0, region1), (0, region2) }, null)
+								candidateOffsets, new DrawingInfo[] { new(0, region1), new(0, region2) }, null)
 						},
 						Type6,
 						d1,
@@ -574,7 +580,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					continue;
 				}
 
-				var candidateOffsets = new List<(int, int)>();
+				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int cell in urCells)
 				{
 					if (grid.GetStatus(cell) != Empty)
@@ -588,7 +594,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							if ((cell != abzCell || d != elimDigit) && grid.Exists(cell, d) is true)
 							{
-								candidateOffsets.Add((d != elimDigit ? 1 : 0, cell * 9 + d));
+								candidateOffsets.Add(new(d != elimDigit ? 1 : 0, cell * 9 + d));
 							}
 						}
 
@@ -599,7 +605,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						foreach (int d in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((0, cell * 9 + d));
+							candidateOffsets.Add(new(0, cell * 9 + d));
 						}
 					}
 				}
@@ -616,7 +622,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							new(
 								arMode ? GetHighlightCells(urCells) : null,
-								candidateOffsets, new[] { (0, r), (0, c) }, null)
+								candidateOffsets, new DrawingInfo[] { new(0, r), new(0, c) }, null)
 						},
 						d1,
 						d2,

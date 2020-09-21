@@ -118,40 +118,42 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 
 							// Record highlight cell and candidate offsets.
-							var cellOffsets = new List<(int, int)>();
-							cellOffsets.AddRange(from cell in map1 select (-1, cell));
-							cellOffsets.AddRange(from cell in map2 select (-2, cell));
+							var cellOffsets = new List<DrawingInfo>();
+							cellOffsets.AddRange(from cell in map1 select new DrawingInfo(-1, cell));
+							cellOffsets.AddRange(from cell in map2 select new DrawingInfo(-2, cell));
 
-							var candidateOffsets = new List<(int, int)>
+							var candidateOffsets = new List<DrawingInfo>
 							{
-								(0, cpMap.First * 9 + x), (0, cpMap.SetAt(1) * 9 + x)
+								new(0, cpMap.First * 9 + x), new(0, cpMap.SetAt(1) * 9 + x)
 							};
 							foreach (int cell in map1)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add((
-										true switch
-										{
-											_ when digit == x => 1,
-											_ when (wDigitsMask >> digit & 1) != 0 => 2,
-											_ => -1
-										},
-										cell * 9 + digit));
+									candidateOffsets.Add(
+										new(
+											true switch
+											{
+												_ when digit == x => 1,
+												_ when (wDigitsMask >> digit & 1) != 0 => 2,
+												_ => -1
+											},
+											cell * 9 + digit));
 								}
 							}
 							foreach (int cell in map2)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add((
-										true switch
-										{
-											_ when digit == x => 1,
-											_ when (wDigitsMask >> digit & 1) != 0 => 2,
-											_ => -2
-										},
-										cell * 9 + digit));
+									candidateOffsets.Add(
+										new(
+											true switch
+											{
+												_ when digit == x => 1,
+												_ when (wDigitsMask >> digit & 1) != 0 => 2,
+												_ => -2
+											},
+											cell * 9 + digit));
 								}
 							}
 
@@ -165,9 +167,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 											_alsShowRegions ? candidateOffsets : null,
 											_alsShowRegions switch
 											{
-												true => new[]
+												true => new DrawingInfo[]
 												{
-													(-1, region1), (-2, region2), (0, conjugatePair.Region.First())
+													new(-1, region1),
+													new(-2, region2),
+													new(0, conjugatePair.Region.First())
 												},
 												_ => null
 											},

@@ -92,15 +92,15 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// Gather highlight cells and candidates.
-				var cellOffsets = new List<(int, int)> { (0, b1), (0, b2) };
-				var candidateOffsets = new List<(int, int)>();
+				var cellOffsets = new List<DrawingInfo> { new(0, b1), new(0, b2) };
+				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int digit in grid.GetCandidates(b1))
 				{
-					candidateOffsets.Add((0, b1 * 9 + digit));
+					candidateOffsets.Add(new(0, b1 * 9 + digit));
 				}
 				foreach (int digit in grid.GetCandidates(b2))
 				{
-					candidateOffsets.Add((0, b2 * 9 + digit));
+					candidateOffsets.Add(new(0, b2 * 9 + digit));
 				}
 
 				// Check target eliminations.
@@ -114,11 +114,11 @@ namespace Sudoku.Solving.Manual.Exocets
 					int conjugatPairDigit = nonBaseQ.FindFirstSet();
 					if (grid.Exists(tq1, conjugatPairDigit) is true)
 					{
-						candidateOffsets.Add((1, tq1 * 9 + conjugatPairDigit));
+						candidateOffsets.Add(new(1, tq1 * 9 + conjugatPairDigit));
 					}
 					if (grid.Exists(tq2, conjugatPairDigit) is true)
 					{
-						candidateOffsets.Add((1, tq2 * 9 + conjugatPairDigit));
+						candidateOffsets.Add(new(1, tq2 * 9 + conjugatPairDigit));
 					}
 				}
 
@@ -130,11 +130,11 @@ namespace Sudoku.Solving.Manual.Exocets
 					int conjugatPairDigit = nonBaseR.FindFirstSet();
 					if (grid.Exists(tr1, conjugatPairDigit) is true)
 					{
-						candidateOffsets.Add((1, tr1 * 9 + conjugatPairDigit));
+						candidateOffsets.Add(new(1, tr1 * 9 + conjugatPairDigit));
 					}
 					if (grid.Exists(tr2, conjugatPairDigit) is true)
 					{
-						candidateOffsets.Add((1, tr2 * 9 + conjugatPairDigit));
+						candidateOffsets.Add(new(1, tr2 * 9 + conjugatPairDigit));
 					}
 				}
 
@@ -167,13 +167,13 @@ namespace Sudoku.Solving.Manual.Exocets
 					continue;
 				}
 
-				cellOffsets.Add((1, tq1));
-				cellOffsets.Add((1, tq2));
-				cellOffsets.Add((1, tr1));
-				cellOffsets.Add((1, tr2));
+				cellOffsets.Add(new(1, tq1));
+				cellOffsets.Add(new(1, tq2));
+				cellOffsets.Add(new(1, tr1));
+				cellOffsets.Add(new(1, tr2));
 				foreach (int cell in s)
 				{
-					cellOffsets.Add((2, cell));
+					cellOffsets.Add(new(2, cell));
 				}
 
 				accumulator.Add(
@@ -210,8 +210,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>The result.</returns>
 		private (TargetEliminations, MirrorEliminations) GatheringMirrorEliminations(
 			int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2, short lockedNonTarget,
-			int x, Grid grid, short baseCandidatesMask, List<(int, int)> cellOffsets,
-			List<(int, int)> candidateOffsets)
+			int x, Grid grid, short baseCandidatesMask, List<DrawingInfo> cellOffsets,
+			List<DrawingInfo> candidateOffsets)
 		{
 			if ((grid.GetCandidateMask(tq1) & baseCandidatesMask) != 0)
 			{

@@ -38,10 +38,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int candidate in trueCandidates)
 			{
-				candidateOffsets.Add((0, candidate));
+				candidateOffsets.Add(new(0, candidate));
 			}
 
 			// BUG type 2.
@@ -123,23 +123,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cand in trueCandidates)
 						{
-							candidateOffsets.Add((0, cand));
+							candidateOffsets.Add(new(0, cand));
 						}
 						foreach (int cell in cells)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 
 						accumulator.Add(
 							new BugType3TechniqueInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 								trueCandidates,
 								digitsMask.GetAllSets().ToArray(),
 								cells,
@@ -253,15 +253,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							{
 								new(
 									null,
-									new List<(int, int)>(from candidate in trueCandidates select (0, candidate))
+									new List<DrawingInfo>(
+										from candidate in trueCandidates select new DrawingInfo(0, candidate))
 									{
-										(1, c1 * 9 + conjuagtePairDigit),
-										(1, c2 * 9 + conjuagtePairDigit)
+										new(1, c1 * 9 + conjuagtePairDigit),
+										new(1, c2 * 9 + conjuagtePairDigit)
 									},
-									new[] { (0, region) },
+									new DrawingInfo[] { new(0, region) },
 									null)
 							},
-							digits.ToList(),
+							digits.ToArray(),
 							cells,
 							new(c1, c2, conjuagtePairDigit)));
 				}
@@ -306,7 +307,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			accumulator.Add(
 				new BugMultipleTechniqueInfo(
 					conclusions,
-					new View[] { new((from candiadte in trueCandidates select (0, candiadte)).ToList()) },
+					new View[] { new((from candidate in trueCandidates select new DrawingInfo(0, candidate)).ToArray()) },
 					trueCandidates));
 		}
 
@@ -350,8 +351,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					continue;
 				}
 
-				var cellOffsets = new[] { (0, cell) };
-				var candidateOffsets = (from candidate in trueCandidates select (0, candidate)).ToArray();
+				var cellOffsets = new DrawingInfo[] { new(0, cell) };
+				var candidateOffsets = (from candidate in trueCandidates select new DrawingInfo(0, candidate)).ToArray();
 				accumulator.Add(
 					new BugXzTechniqueInfo(
 						conclusions,

@@ -21,6 +21,7 @@ using Sudoku.Windows.Constants;
 using static System.StringSplitOptions;
 using static Sudoku.Windows.Constants.Processings;
 using Grid = Sudoku.Data.Grid;
+using Sudoku.Drawing;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
 #endif
@@ -764,7 +765,8 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_currentPainter.View = new((from candidate in trueCandidates select (0, candidate)).ToArray());
+				_currentPainter.View =
+					new((from candidate in trueCandidates select new DrawingInfo(0, candidate)).ToArray());
 				_currentPainter.Conclusions = null;
 
 				UpdateImageGrid();
@@ -806,11 +808,11 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				var highlightCandidates = new List<(int, int)>();
+				var highlightCandidates = new List<DrawingInfo>();
 				int currentLevel = 0;
 				foreach (var (_, candidate) in backdoors)
 				{
-					highlightCandidates.Add((currentLevel, candidate));
+					highlightCandidates.Add(new(currentLevel, candidate));
 
 					currentLevel++;
 				}
@@ -818,7 +820,7 @@ namespace Sudoku.Windows
 				_currentPainter.View = new((
 					from backdoor in backdoors
 					where backdoor.ConclusionType == ConclusionType.Assignment
-					select (0, backdoor.CellOffset * 9 + backdoor.Digit)).ToArray());
+					select new DrawingInfo(0, backdoor.CellOffset * 9 + backdoor.Digit)).ToArray());
 				_currentPainter.Conclusions = backdoors;
 
 				UpdateImageGrid();
@@ -847,7 +849,7 @@ namespace Sudoku.Windows
 
 			bool[] series = new bool[9];
 			int?[] mapping = info.MappingTable;
-			var cellOffsets = new List<(int, int)>();
+			var cellOffsets = new List<DrawingInfo>();
 			for (int i = 0, p = 0; i < 9; i++)
 			{
 				if (series[i])
@@ -868,7 +870,7 @@ namespace Sudoku.Windows
 					int cellValue = _puzzle[cell];
 					if (cellValue == i || cellValue == j)
 					{
-						cellOffsets.Add((p, cell));
+						cellOffsets.Add(new(p, cell));
 					}
 				}
 

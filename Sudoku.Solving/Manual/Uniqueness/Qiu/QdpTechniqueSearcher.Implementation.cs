@@ -40,19 +40,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				conclusions.Add(new(Elimination, elimCell, digit));
 			}
 
-			var cellOffsets = (from cell in square | pair select (0, cell)).ToArray();
-			var candidateOffsets = new List<(int, int)>();
+			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int digit in comparer.GetAllSets())
 			{
 				foreach (int cell in square & CandMaps[digit])
 				{
-					candidateOffsets.Add((1, cell * 9 + digit));
+					candidateOffsets.Add(new(1, cell * 9 + digit));
 				}
 			}
 			int anotherCellInPair = (pair - map).First;
 			foreach (int digit in grid.GetCandidates(anotherCellInPair))
 			{
-				candidateOffsets.Add((0, anotherCellInPair * 9 + digit));
+				candidateOffsets.Add(new(0, anotherCellInPair * 9 + digit));
 			}
 
 			accumulator.Add(
@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							candidateOffsets,
 							(
 								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-								select (0, pos + (isRow ? 9 : 18))
+								select new DrawingInfo(0, pos + (isRow ? 9 : 18))
 							).ToArray(),
 							null)
 					},
@@ -96,20 +96,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 
-			var cellOffsets = (from cell in square | pair select (0, cell)).ToList();
-			var candidateOffsets = new List<(int, int)>();
+			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int digit in comparer.GetAllSets())
 			{
 				foreach (int cell in square & CandMaps[digit])
 				{
-					candidateOffsets.Add((1, cell * 9 + digit));
+					candidateOffsets.Add(new(1, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in pair)
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
 
@@ -123,7 +123,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							candidateOffsets,
 							(
 								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-								select (0, pos +(isRow ? 9 : 18))
+								select new DrawingInfo(0, pos +(isRow ? 9 : 18))
 							).ToArray(),
 							null)
 					},
@@ -167,27 +167,27 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							continue;
 						}
 
-						var cellOffsets = (from cell in square | pair select (0, cell)).ToList();
-						var candidateOffsets = new List<(int, int)>();
+						var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int digit in comparer.GetAllSets())
 						{
 							foreach (int cell in square & CandMaps[digit])
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in pair)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								candidateOffsets.Add(new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in cells)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 
@@ -201,7 +201,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 										candidateOffsets,
 										(
 											from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-											select (0, pos + (isRow ? 9 : 18))
+											select new DrawingInfo(0, pos + (isRow ? 9 : 18))
 										).ToArray(),
 										null)
 								},
@@ -254,18 +254,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						conclusions.Add(new(Elimination, cell, elimDigit));
 					}
 
-					var cellOffsets = (from cell in square | pair select (0, cell)).ToList();
-					var candidateOffsets = new List<(int, int)>();
+					var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int d in comparer.GetAllSets())
 					{
 						foreach (int cell in square & CandMaps[d])
 						{
-							candidateOffsets.Add((1, cell * 9 + d));
+							candidateOffsets.Add(new(1, cell * 9 + d));
 						}
 					}
 					foreach (int cell in pair)
 					{
-						candidateOffsets.Add((1, cell * 9 + digit));
+						candidateOffsets.Add(new(1, cell * 9 + digit));
 					}
 
 					accumulator.Add(
@@ -278,7 +278,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 									candidateOffsets,
 									(
 										from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-										select (0, pos + (isRow ? 9 : 18))
+										select new DrawingInfo(0, pos + (isRow ? 9 : 18))
 									).ToArray(),
 									null)
 							},
@@ -353,25 +353,25 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				return;
 			}
 
-			var cellOffsets = (from cell in square | pair select (0, cell)).ToList();
-			var candidateOffsets = new List<(int, int)>();
+			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int d in comparer.GetAllSets())
 			{
 				foreach (int cell in square & CandMaps[d])
 				{
-					candidateOffsets.Add((1, cell * 9 + d));
+					candidateOffsets.Add(new(1, cell * 9 + d));
 				}
 			}
 			foreach (int cell in pair)
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((0, cell * 9 + digit));
+					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 			}
 			foreach (int candidate in candidates)
 			{
-				candidateOffsets.Add((2, candidate));
+				candidateOffsets.Add(new(2, candidate));
 			}
 
 			accumulator.Add(
@@ -384,7 +384,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							candidateOffsets,
 							(
 								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-								select (0, pos + (isRow ? 9 : 18))
+								select new DrawingInfo(0, pos + (isRow ? 9 : 18))
 							).ToArray(),
 							null)
 					},

@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					short canF = 0;
 					var canL = new GridMap[9];
 					var conclusions = new List<Conclusion>();
-					var candidateOffsets = new List<(int, int)>();
+					var candidateOffsets = new List<DrawingInfo>();
 					for (int digit = 0; digit < 9; digit++)
 					{
 						var currentMap = linkForEachDigit[digit];
@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 									continue;
 								}
 
-								candidateOffsets.Add((region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
+								candidateOffsets.Add(new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
 							}
 						}
 					}

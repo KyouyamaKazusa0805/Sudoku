@@ -258,19 +258,19 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			// Get views.
 			var views = new List<View>();
-			var globalCandidates = new List<(int, int)>();
+			var globalCandidates = new List<DrawingInfo>();
 			var globalLinks = new List<Link>();
 			foreach (var (digit, node) in chains)
 			{
-				var candidateOffsets = new List<(int, int)>(GetCandidateOffsets(node)) { (2, sourceCell * 9 + digit) };
+				var candidateOffsets = new List<DrawingInfo>(GetCandidateOffsets(node)) { new(2, sourceCell * 9 + digit) };
 				var links = GetLinks(node, true);
-				views.Add(new(new[] { (0, sourceCell) }, candidateOffsets, null, links));
+				views.Add(new(new DrawingInfo[] { new(0, sourceCell) }, candidateOffsets, null, links));
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);
 			}
 
 			// Insert the global view at head.
-			views.Insert(0, new(new[] { (0, sourceCell) }, globalCandidates, null, globalLinks));
+			views.Insert(0, new(new DrawingInfo[] { new(0, sourceCell) }, globalCandidates, null, globalLinks));
 
 			return new CellChainingTechniqueInfo(conclusions, views, sourceCell, chains);
 		}
@@ -296,18 +296,18 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			// Get views.
 			var views = new List<View>();
-			var globalCandidates = new List<(int, int)>();
+			var globalCandidates = new List<DrawingInfo>();
 			var globalLinks = new List<Link>();
 			foreach (var (cell, node) in chains)
 			{
-				var candidateOffsets = new List<(int, int)>(GetCandidateOffsets(node)) { (2, cell * 9 + digit) };
+				var candidateOffsets = new List<DrawingInfo>(GetCandidateOffsets(node)) { new(2, cell * 9 + digit) };
 				var links = GetLinks(node, true);
-				views.Add(new(null, candidateOffsets, new[] { (0, region) }, links));
+				views.Add(new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, links));
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);
 			}
 
-			views.Insert(0, new(null, globalCandidates, new[] { (0, region) }, globalLinks));
+			views.Insert(0, new(null, globalCandidates, new DrawingInfo[] { new(0, region) }, globalLinks));
 
 			return new RegionChainingTechniqueInfo(conclusions, views, region, digit, chains);
 		}

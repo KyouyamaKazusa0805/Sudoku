@@ -279,7 +279,7 @@ namespace Sudoku.Drawing
 					case Elimination:
 					{
 						g.FillEllipse(
-							View?.CandidateOffsets?.Any(pair => pair.CandidateOffset == c * 9 + d) ?? false
+							View?.CandidateOffsets?.Any(pair => pair.Value == c * 9 + d) ?? false
 								? cannibalBrush
 								: eliminationBrush,
 							PointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));
@@ -416,7 +416,7 @@ namespace Sudoku.Drawing
 			}
 		}
 
-		private void DrawRegions(Graphics g, IEnumerable<(int, int)> regionOffsets, float offset)
+		private void DrawRegions(Graphics g, IEnumerable<DrawingInfo> regionOffsets, float offset)
 		{
 			foreach (var (id, region) in regionOffsets)
 			{
@@ -428,7 +428,7 @@ namespace Sudoku.Drawing
 			}
 		}
 
-		private void DrawCandidates(Graphics g, IEnumerable<(int, int)> candidateOffsets, float offset)
+		private void DrawCandidates(Graphics g, IEnumerable<DrawingInfo> candidateOffsets, float offset)
 		{
 			foreach (var (id, candidate) in candidateOffsets)
 			{
@@ -447,7 +447,7 @@ namespace Sudoku.Drawing
 			}
 		}
 
-		private void DrawCells(Graphics g, IEnumerable<(int, int)> cellOffsets)
+		private void DrawCells(Graphics g, IEnumerable<DrawingInfo> cellOffsets)
 		{
 			foreach (var (id, cell) in cellOffsets)
 			{

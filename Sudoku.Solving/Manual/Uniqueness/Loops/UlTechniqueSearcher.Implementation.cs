@@ -40,11 +40,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				return;
 			}
 
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in new GridMap(loop) { ~extraCell })
 			{
-				candidateOffsets.Add((0, cell * 9 + d1));
-				candidateOffsets.Add((0, cell * 9 + d2));
+				candidateOffsets.Add(new(0, cell * 9 + d1));
+				candidateOffsets.Add(new(0, cell * 9 + d2));
 			}
 
 			accumulator.AddIfDoesNotContain(
@@ -95,12 +95,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in loop)
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
 
@@ -188,27 +188,27 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in loop)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
-									((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in cells)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 
 						accumulator.AddIfDoesNotContain(
 							new UlType3TechniqueInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 								d1,
 								d2,
 								loop,
@@ -264,23 +264,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						continue;
 					}
 
-					var candidateOffsets = new List<(int, int)>();
+					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in loop - extraCellsMap)
 					{
 						foreach (int d in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((0, cell * 9 + d));
+							candidateOffsets.Add(new(0, cell * 9 + d));
 						}
 					}
 					foreach (int cell in extraCellsMap)
 					{
-						candidateOffsets.Add((1, cell * 9 + digit));
+						candidateOffsets.Add(new(1, cell * 9 + digit));
 					}
 
 					accumulator.AddIfDoesNotContain(
 						new UlType4TechniqueInfo(
 							conclusions,
-							new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+							new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 							d1,
 							d2,
 							loop,

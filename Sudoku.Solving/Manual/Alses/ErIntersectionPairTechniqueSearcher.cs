@@ -100,14 +100,14 @@ namespace Sudoku.Solving.Manual.Alses
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int digit in grid.GetCandidates(c1))
 						{
-							candidateOffsets.Add((0, c1 * 9 + digit));
+							candidateOffsets.Add(new(0, c1 * 9 + digit));
 						}
 						foreach (int digit in grid.GetCandidates(c2))
 						{
-							candidateOffsets.Add((0, c2 * 9 + digit));
+							candidateOffsets.Add(new(0, c2 * 9 + digit));
 						}
 						foreach (int cell in erCellsMap)
 						{
@@ -118,14 +118,21 @@ namespace Sudoku.Solving.Manual.Alses
 									continue;
 								}
 
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 
 						accumulator.Add(
 							new ErIntersectionPairTechniqueInfo(
 								conclusions,
-								new View[] { new(new[] { (0, c1), (0, c2) }, candidateOffsets, new[] { (0, block) }, null) },
+								new View[]
+								{
+									new(
+										new DrawingInfo[] { new(0, c1), new(0, c2) },
+										candidateOffsets,
+										new DrawingInfo[] { new(0, block) },
+										null)
+								},
 								c1,
 								c2,
 								block,

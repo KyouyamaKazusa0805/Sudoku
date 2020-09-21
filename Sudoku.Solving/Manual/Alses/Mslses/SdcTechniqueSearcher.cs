@@ -201,41 +201,47 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											}
 
 											// Record highlight candidates and cells.
-											var cellOffsets = new List<(int, int)>();
-											cellOffsets.AddRange(from cell in currentBlockMap select (0, cell));
-											cellOffsets.AddRange(from cell in currentLineMap select (1, cell));
-											cellOffsets.AddRange(from cell in currentInterMap select (2, cell));
+											var cellOffsets = new List<DrawingInfo>();
+											cellOffsets.AddRange(
+												from cell in currentBlockMap select new DrawingInfo(0, cell));
+											cellOffsets.AddRange(
+												from cell in currentLineMap select new DrawingInfo(1, cell));
+											cellOffsets.AddRange(
+												from cell in currentInterMap select new DrawingInfo(2, cell));
 
-											var candidateOffsets = new List<(int, int)>();
+											var candidateOffsets = new List<DrawingInfo>();
 											foreach (int cell in currentBlockMap)
 											{
 												foreach (int digit in grid.GetCandidates(cell))
 												{
-													candidateOffsets.Add((
-														!cannibalMode && digit == digitIsolated ? 2 : 0,
-														cell * 9 + digit));
+													candidateOffsets.Add(
+														new(
+															!cannibalMode && digit == digitIsolated ? 2 : 0,
+															cell * 9 + digit));
 												}
 											}
 											foreach (int cell in currentLineMap)
 											{
 												foreach (int digit in grid.GetCandidates(cell))
 												{
-													candidateOffsets.Add((
-														!cannibalMode && digit == digitIsolated ? 2 : 1,
-														cell * 9 + digit));
+													candidateOffsets.Add(
+														new(
+															!cannibalMode && digit == digitIsolated ? 2 : 1,
+															cell * 9 + digit));
 												}
 											}
 											foreach (int cell in currentInterMap)
 											{
 												foreach (int digit in grid.GetCandidates(cell))
 												{
-													candidateOffsets.Add((
-														true switch
-														{
-															_ when digitIsolated == digit => 2,
-															_ when (blockMask >> digit & 1) != 0 => 0,
-															_ => 1
-														}, cell * 9 + digit));
+													candidateOffsets.Add(
+														new(
+															true switch
+															{
+																_ when digitIsolated == digit => 2,
+																_ when (blockMask >> digit & 1) != 0 => 0,
+																_ => 1
+															}, cell * 9 + digit));
 												}
 											}
 
@@ -249,7 +255,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 															_alsShowRegions ? candidateOffsets : null,
 															_alsShowRegions switch
 															{
-																true => new (int, int)[] { (0, coverSet), (1, baseSet) },
+																true => new DrawingInfo[]
+																{
+																	new(0, coverSet), new(1, baseSet)
+																},
 																_ => null
 															},
 															null)

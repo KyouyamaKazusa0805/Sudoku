@@ -51,16 +51,23 @@ namespace Sudoku.Solving.Manual.Intersections
 						conclusions.Add(new(Elimination, cell, digit));
 					}
 
-					var candidateOffsets = new List<(int, int)>();
+					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in c & CandMaps[digit])
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 
 					accumulator.Add(
 						new LcTechniqueInfo(
 							conclusions,
-							new View[] { new(null, candidateOffsets, new[] { (0, r[0]), (1, r[1]) }, null) },
+							new View[]
+							{
+								new(
+									null,
+									candidateOffsets,
+									new DrawingInfo[] { new(0, r[0]), new(1, r[1]) },
+									null)
+							},
 							digit,
 							r[0],
 							r[1]));

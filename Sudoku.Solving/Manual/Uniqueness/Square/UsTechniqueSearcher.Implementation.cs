@@ -48,12 +48,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					conclusions.Add(new(Elimination, elimCell, digit));
 				}
 
-				var candidateOffsets = new List<(int, int)>();
+				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int digit in digits)
 				{
 					foreach (int cell in new GridMap(pattern) { ~elimCell } & CandMaps[digit])
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 
@@ -95,17 +95,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					conclusions.Add(new(Elimination, cell, extraDigit));
 				}
 
-				var candidateOffsets = new List<(int, int)>();
+				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int digit in digits)
 				{
 					foreach (int cell in CandMaps[digit] & pattern)
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in CandMaps[extraDigit] & pattern)
 				{
-					candidateOffsets.Add((1, cell * 9 + extraDigit));
+					candidateOffsets.Add(new(1, cell * 9 + extraDigit));
 				}
 
 				accumulator.Add(
@@ -171,26 +171,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 								continue;
 							}
 
-							var candidateOffsets = new List<(int, int)>();
+							var candidateOffsets = new List<DrawingInfo>();
 							foreach (int cell in pattern)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add(((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in cells)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add((1, cell * 9 + digit));
+									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
 							}
 
 							accumulator.Add(
 								new UsType3TechniqueInfo(
 									conclusions,
-									new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+									new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 									pattern,
 									digitsMask,
 									extraDigitsMask,
@@ -264,27 +264,27 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 						continue;
 					}
 
-					var candidateOffsets = new List<(int, int)>();
+					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in pattern - compareMap)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((0, cell * 9 + digit));
+							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in compareMap & CandMaps[d1])
 					{
-						candidateOffsets.Add((1, cell * 9 + d1));
+						candidateOffsets.Add(new(1, cell * 9 + d1));
 					}
 					foreach (int cell in compareMap & CandMaps[d2])
 					{
-						candidateOffsets.Add((1, cell * 9 + d2));
+						candidateOffsets.Add(new(1, cell * 9 + d2));
 					}
 
 					accumulator.Add(
 						new UsType4TechniqueInfo(
 							conclusions,
-							new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+							new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 							pattern,
 							digitsMask,
 							d1,

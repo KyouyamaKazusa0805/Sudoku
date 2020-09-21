@@ -102,12 +102,12 @@ namespace Sudoku.Solving.Manual.Sdps
 								{
 									new View(
 										null,
-										new[]
+										new DrawingInfo[]
 										{
-											(0, cells1[c1Index] * 9 + digit), (0, cells2[c2Index] * 9 + digit),
-											(0, head * 9 + digit), (0, tail * 9 + digit)
+											new(0, cells1[c1Index] * 9 + digit), new(0, cells2[c2Index] * 9 + digit),
+											new(0, head * 9 + digit), new(0, tail * 9 + digit)
 										},
-										new[] { (0, r1), (0, r2), (1, sameRegion) },
+										new DrawingInfo[] { new(0, r1), new(0, r2), new(1, sameRegion) },
 										null)
 								},
 								digit,

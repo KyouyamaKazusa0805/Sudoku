@@ -2465,22 +2465,22 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination(IList&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Count">
-            <inheritdoc cref="!:ExocetElimination.Count"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Conclusions">
-            <inheritdoc cref="!:ExocetElimination.Conclusions"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Add(Sudoku.Data.Conclusion)">
-            <inheritdoc cref="!:ExocetElimination.Add(ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination.AddRange(IEnumerable&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations}[])">
-            <inheritdoc cref="!:ExocetElimination.Merge(ExocetElimination?[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.GetEnumerator">
             <inheritdoc/>
@@ -2492,10 +2492,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations})">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(IEnumerable&lt;ExocetElimination&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations[])">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(ExocetElimination[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations">
             <summary>
@@ -2503,22 +2503,22 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination(IList&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Count">
-            <inheritdoc cref="!:ExocetElimination.Count"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Conclusions">
-            <inheritdoc cref="!:ExocetElimination.Conclusions"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Add(Sudoku.Data.Conclusion)">
-            <inheritdoc cref="!:ExocetElimination.Add(ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination.AddRange(IEnumerable&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations}[])">
-            <inheritdoc cref="!:ExocetElimination.Merge(ExocetElimination?[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.GetEnumerator">
             <inheritdoc/>
@@ -2530,10 +2530,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations})">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(IEnumerable&lt;ExocetElimination&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations[])">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(ExocetElimination[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations">
             <summary>
@@ -2541,22 +2541,22 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination(IList&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Count">
-            <inheritdoc cref="!:ExocetElimination.Count"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Conclusions">
-            <inheritdoc cref="!:ExocetElimination.Conclusions"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Add(Sudoku.Data.Conclusion)">
-            <inheritdoc cref="!:ExocetElimination.Add(ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination.AddRange(IEnumerable&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations}[])">
-            <inheritdoc cref="!:ExocetElimination.Merge(ExocetElimination?[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.GetEnumerator">
             <inheritdoc/>
@@ -2568,10 +2568,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations})">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(IEnumerable&lt;ExocetElimination&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations[])">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(ExocetElimination[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations">
             <summary>
@@ -2579,22 +2579,22 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination(IList&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Count">
-            <inheritdoc cref="!:ExocetElimination.Count"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Conclusions">
-            <inheritdoc cref="!:ExocetElimination.Conclusions"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Add(Sudoku.Data.Conclusion)">
-            <inheritdoc cref="!:ExocetElimination.Add(ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination.AddRange(IEnumerable&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations}[])">
-            <inheritdoc cref="!:ExocetElimination.Merge(ExocetElimination?[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.GetEnumerator">
             <inheritdoc/>
@@ -2606,10 +2606,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations})">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(IEnumerable&lt;ExocetElimination&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations[])">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(ExocetElimination[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations">
             <summary>
@@ -2617,22 +2617,22 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination(IList&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Count">
-            <inheritdoc cref="!:ExocetElimination.Count"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Conclusions">
-            <inheritdoc cref="!:ExocetElimination.Conclusions"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Add(Sudoku.Data.Conclusion)">
-            <inheritdoc cref="!:ExocetElimination.Add(ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination.AddRange(IEnumerable&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations}[])">
-            <inheritdoc cref="!:ExocetElimination.Merge(ExocetElimination?[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.GetEnumerator">
             <inheritdoc/>
@@ -2644,10 +2644,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations})">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(IEnumerable&lt;ExocetElimination&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations[])">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(ExocetElimination[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations">
             <summary>
@@ -2655,22 +2655,22 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination(IList&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Count">
-            <inheritdoc cref="!:ExocetElimination.Count"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Conclusions">
-            <inheritdoc cref="!:ExocetElimination.Conclusions"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Add(Sudoku.Data.Conclusion)">
-            <inheritdoc cref="!:ExocetElimination.Add(ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination.AddRange(IEnumerable&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations}[])">
-            <inheritdoc cref="!:ExocetElimination.Merge(ExocetElimination?[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.GetEnumerator">
             <inheritdoc/>
@@ -2682,10 +2682,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations})">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(IEnumerable&lt;ExocetElimination&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations[])">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(ExocetElimination[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations">
             <summary>
@@ -2693,22 +2693,22 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination(IList&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Count">
-            <inheritdoc cref="!:ExocetElimination.Count"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Conclusions">
-            <inheritdoc cref="!:ExocetElimination.Conclusions"/>
+            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Add(Sudoku.Data.Conclusion)">
-            <inheritdoc cref="!:ExocetElimination.Add(ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="!:ExocetElimination.AddRange(IEnumerable&lt;ExocetElimination.Conclusion&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations}[])">
-            <inheritdoc cref="!:ExocetElimination.Merge(ExocetElimination?[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.GetEnumerator">
             <inheritdoc/>
@@ -2720,10 +2720,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations})">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(IEnumerable&lt;ExocetElimination&gt;)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations[])">
-            <inheritdoc cref="!:ExocetElimination.MergeAll(ExocetElimination[])"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo">
             <summary>
@@ -2906,7 +2906,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.Grid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.Grid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,System.Int32,System.Int32,System.Collections.Generic.IList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IList{Sudoku.Drawing.DrawingInfo})">
             <summary>
             Check mirror eliminations.
             </summary>
@@ -2988,7 +2988,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringMirrorEliminations(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32,Sudoku.Data.Grid,System.Int16,System.Collections.Generic.List{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.List{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringMirrorEliminations(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32,Sudoku.Data.Grid,System.Int16,System.Collections.Generic.List{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.List{Sudoku.Drawing.DrawingInfo})">
             <summary>
             Gathering mirror eliminations. This method is an entry for the method check mirror in base class.
             </summary>
@@ -6669,7 +6669,7 @@
             <param name="region">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckHighlightType(System.ValueTuple{System.Int32,System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckHighlightType(Sudoku.Drawing.DrawingInfo)">
             <summary>
             Check highlight type.
             </summary>
@@ -7668,8 +7668,11 @@
             <summary>
             The value maps.
             </summary>
-            <!-- Failed to insert some or all of included XML --><include file="SolvingDocComments.xml" path="comments/property[@name=&quot;IMaps&quot;]" />
-            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)" />
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)"/> called, and you<b>'d better</b>
+            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher"/> instance.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.Grid)"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.GetOne(Sudoku.Data.Grid)">
             <summary>

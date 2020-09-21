@@ -15,10 +15,8 @@ namespace Sudoku.Drawing
 	/// <param name="Links">All links used.</param>
 	[DebuggerStepThrough]
 	public sealed record View(
-		IReadOnlyList<(int Id, int CellOffset)>? CellOffsets,
-		IReadOnlyList<(int Id, int CandidateOffset)>? CandidateOffsets,
-		IReadOnlyList<(int Id, int RegionOffset)>? RegionOffsets,
-		IReadOnlyList<Link>? Links)
+		IReadOnlyList<DrawingInfo>? CellOffsets, IReadOnlyList<DrawingInfo>? CandidateOffsets,
+		IReadOnlyList<DrawingInfo>? RegionOffsets, IReadOnlyList<Link>? Links)
 	{
 		/// <summary>
 		/// Provides a new default view list for initialization.
@@ -33,7 +31,7 @@ namespace Sudoku.Drawing
 		/// The list of pairs of identifier and candidate offset.
 		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public View(IReadOnlyList<(int, int)> candidateOffsets) : this(null, candidateOffsets, null, null)
+		public View(IReadOnlyList<DrawingInfo> candidateOffsets) : this(null, candidateOffsets, null, null)
 		{
 		}
 

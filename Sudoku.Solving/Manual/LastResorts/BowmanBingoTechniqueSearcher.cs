@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 										null,
 										(
 											from conclusion in _tempConclusions
-											select (0, conclusion.CellOffset * 9 + conclusion.Digit)
+											select new DrawingInfo(0, conclusion.CellOffset * 9 + conclusion.Digit)
 										).ToArray(),
 										null,
 										GetLinks())
@@ -137,8 +137,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 								null,
 								(
 									from tempConclusion in _tempConclusions
-									select (0, tempConclusion.CellOffset * 9 + tempConclusion.Digit)
-								).ToList(),
+									select new DrawingInfo(0, tempConclusion.CellOffset * 9 + tempConclusion.Digit)
+								).ToArray(),
 								null,
 								GetLinks())
 						},

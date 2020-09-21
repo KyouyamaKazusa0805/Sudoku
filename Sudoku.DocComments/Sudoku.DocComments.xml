@@ -31,6 +31,65 @@
             in <see langword="class"/>es, the default constructor won't be generated automatically.
             </remarks>
         </member>
+        <member name="T:Sudoku.DocComments.ExocetElimination">
+            <summary>
+            Provides with doc comments for exocet eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})">
+            <summary>
+            Initializes an instance with the specified conclusions.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="P:Sudoku.DocComments.ExocetElimination.Count">
+            <summary>
+            Indicates the number of all conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.DocComments.ExocetElimination.Conclusions">
+            <summary>
+            Indicates the conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion)">
+            <summary>
+            Add the conclusion into the collection.
+            </summary>
+            <param name="conclusion">The conclusion.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})">
+            <summary>
+            Add a serial of conclusions into this collection.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])">
+            <summary>
+            Merge all eliminations.
+            </summary>
+            <param name="eliminations">(<see langword="params"/> parameter) All instances to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">(<see langword="params"/> parameter) The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="T:Sudoku.DocComments.ExocetElimination.Conclusion">
+            <summary>
+            Encapsulates a conclusion same as <c>Sudoku.Data.Conclusion</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.DocComments.Formattable">
             <summary>
             Provides with doc comments for <c>ToString</c> methods.
@@ -42,6 +101,91 @@
             </summary>
             <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
             <returns>The string result.</returns>
+        </member>
+        <member name="T:Sudoku.DocComments.Integer">
+            <summary>
+            Provides with doc comments for checking methods around integers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.IsPowerOfTwo(Sudoku.DocComments.Integer)">
+            <summary>
+            Indicates whether the specified value is the power of two.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.FindFirstSet(Sudoku.DocComments.Integer)">
+            <summary>
+            Find the first offset of set bit of the binary representation
+            of the specified value.If the value is 0, this method
+            will always return -1.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.CountSet(Sudoku.DocComments.Integer)">
+            <summary>
+            Get the total number of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value after the specified index,
+            whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.SetAt(Sudoku.DocComments.Integer,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)">
+            <summary>
+            <para>Extension get enumerator of this type.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">
+            (<see langword="this"/> parameter) The value.
+            </param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
         </member>
         <member name="T:Sudoku.DocComments.Operators">
             <summary>

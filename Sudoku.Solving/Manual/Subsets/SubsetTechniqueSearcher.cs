@@ -60,19 +60,19 @@ namespace Sudoku.Solving.Manual.Subsets
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in cells)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((0, cell * 9 + digit));
+								candidateOffsets.Add(new(0, cell * 9 + digit));
 							}
 						}
 
 						accumulator.Add(
 							new NakedSubsetTechniqueInfo(
 								conclusions,
-								new[] { new View(null, candidateOffsets, new[] { (0, region) }, null) },
+								new[] { new View(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 								region,
 								cells,
 								mask.GetAllSets().ToArray(),
@@ -124,19 +124,19 @@ namespace Sudoku.Solving.Manual.Subsets
 						}
 
 						// Gather highlight candidates.
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int digit in digits)
 						{
 							foreach (int cell in map & CandMaps[digit])
 							{
-								candidateOffsets.Add((0, cell * 9 + digit));
+								candidateOffsets.Add(new(0, cell * 9 + digit));
 							}
 						}
 
 						accumulator.Add(
 							new HiddenSubsetTechniqueInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 								region,
 								map.ToArray(),
 								digits));

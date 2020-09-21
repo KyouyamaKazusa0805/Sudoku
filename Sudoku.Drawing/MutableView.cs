@@ -18,17 +18,15 @@ namespace Sudoku.Drawing
 	/// <seealso cref="View"/>
 	[DebuggerStepThrough]
 	public sealed record MutableView(
-		ICollection<(int Id, int CellOffset)>? CellOffsets,
-		ICollection<(int Id, int CandidateOffset)>? CandidateOffsets,
-		ICollection<(int Id, int RegionOffset)>? RegionOffsets,
-		ICollection<Link>? Links)
+		ICollection<DrawingInfo>? CellOffsets, ICollection<DrawingInfo>? CandidateOffsets,
+		ICollection<DrawingInfo>? RegionOffsets, ICollection<Link>? Links)
 	{
 		/// <inheritdoc cref="DefaultConstructor"/>
 		/// <remarks>
 		/// The constructor is equivalent to code '<c>new MutableView(null, null, null, null)</c>'.
 		/// </remarks>
 		public MutableView()
-			: this(new List<(int, int)>(), new List<(int, int)>(), new List<(int, int)>(), new List<Link>())
+			: this(new List<DrawingInfo>(), new List<DrawingInfo>(), new List<DrawingInfo>(), new List<Link>())
 		{
 		}
 
@@ -38,21 +36,21 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="cell">The cell.</param>
-		public void AddCell(int id, int cell) => CellOffsets?.Add((id, cell));
+		public void AddCell(int id, int cell) => CellOffsets?.Add(new(id, cell));
 
 		/// <summary>
 		/// Add the candidate into the list.
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="candidate">The cell.</param>
-		public void AddCandidate(int id, int candidate) => CandidateOffsets?.Add((id, candidate));
+		public void AddCandidate(int id, int candidate) => CandidateOffsets?.Add(new(id, candidate));
 
 		/// <summary>
 		/// Add the region into the list.
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="region">The region.</param>
-		public void AddRegion(int id, int region) => RegionOffsets?.Add((id, region));
+		public void AddRegion(int id, int region) => RegionOffsets?.Add(new(id, region));
 
 		/// <summary>
 		/// Add the link into the list.
@@ -64,21 +62,21 @@ namespace Sudoku.Drawing
 		/// Remove the cell from the list.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
-		public void RemoveCell(int cell) => (CellOffsets as List<(int, int Cell)>)?.RemoveAll(p => p.Cell == cell);
+		public void RemoveCell(int cell) => (CellOffsets as List<DrawingInfo>)?.RemoveAll(p => p.Value == cell);
 
 		/// <summary>
 		/// Remove the candidate from the list.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		public void RemoveCandidate(int candidate) =>
-			(CandidateOffsets as List<(int, int Candidate)>)?.RemoveAll(p => p.Candidate == candidate);
+			(CandidateOffsets as List<DrawingInfo>)?.RemoveAll(p => p.Value == candidate);
 
 		/// <summary>
 		/// Remove the region from the list.
 		/// </summary>
 		/// <param name="region">The region.</param>
 		public void RemoveRegion(int region) =>
-			(RegionOffsets as List<(int, int Region)>)?.RemoveAll(p => p.Region == region);
+			(RegionOffsets as List<DrawingInfo>)?.RemoveAll(p => p.Value == region);
 
 		/// <summary>
 		/// Remove the link from the list.
@@ -102,21 +100,21 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsCell(int cell) => CellOffsets?.Any(p => p.CellOffset == cell) ?? false;
+		public bool ContainsCell(int cell) => CellOffsets?.Any(p => p.Value == cell) ?? false;
 
 		/// <summary>
 		/// Indicates whether the specified list contains the candidate.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsCandidate(int candidate) => CandidateOffsets?.Any(p => p.CandidateOffset == candidate) ?? false;
+		public bool ContainsCandidate(int candidate) => CandidateOffsets?.Any(p => p.Value == candidate) ?? false;
 
 		/// <summary>
 		/// Indicates whether the specified list contains the region.
 		/// </summary>
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsRegion(int region) => RegionOffsets?.Any(p => p.RegionOffset == region) ?? false;
+		public bool ContainsRegion(int region) => RegionOffsets?.Any(p => p.Value == region) ?? false;
 
 		/// <summary>
 		/// Indicates whether the specified list contains the link.

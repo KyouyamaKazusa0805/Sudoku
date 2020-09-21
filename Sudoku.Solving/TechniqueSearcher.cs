@@ -93,7 +93,10 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// The value maps.
 		/// </summary>
-		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
+		/// <remarks>
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
+		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
+		/// </remarks>
 		/// <seealso cref="InitializeMaps(Grid)"/>
 		internal static GridMap[] ValueMaps { get; set; } = null!;
 

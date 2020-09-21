@@ -146,8 +146,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 
 							// Record highlight candidates and cells.
-							var cellOffsets = new List<(int, int)>();
-							var candidateOffsets = new List<(int, int)>();
+							var cellOffsets = new List<DrawingInfo>();
+							var candidateOffsets = new List<DrawingInfo>();
 							foreach (int cell in aMap)
 							{
 								short mask = grid.GetCandidateMask(cell);
@@ -156,15 +156,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								short zDigitsMask = (short)(mask & finalZ);
 								foreach (int digit in alsDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((-1, cell * 9 + digit));
+									candidateOffsets.Add(new(-1, cell * 9 + digit));
 								}
 								foreach (int digit in xDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((1, cell * 9 + digit));
+									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
 								foreach (int digit in zDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((2, cell * 9 + digit));
+									candidateOffsets.Add(new(2, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in bMap)
@@ -175,15 +175,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								short zDigitsMask = (short)(mask & finalZ);
 								foreach (int digit in alsDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((-1, cell * 9 + digit));
+									candidateOffsets.Add(new(-1, cell * 9 + digit));
 								}
 								foreach (int digit in yDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((1, cell * 9 + digit));
+									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
 								foreach (int digit in zDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((2, cell * 9 + digit));
+									candidateOffsets.Add(new(2, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in cMap)
@@ -193,11 +193,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								short xyDigitsMask = (short)(mask & (finalX | finalY));
 								foreach (int digit in alsDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((-3, cell * 9 + digit));
+									candidateOffsets.Add(new(-3, cell * 9 + digit));
 								}
 								foreach (int digit in xyDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((1, cell * 9 + digit));
+									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
 							}
 
@@ -211,7 +211,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 											_alsShowRegions ? candidateOffsets : null,
 											_alsShowRegions switch
 											{
-												true => new[] { (-1, aRegion), (-2, bRegion), (-3, cRegion) },
+												true => new DrawingInfo[]
+												{
+													new(-1, aRegion), new(-2, bRegion), new(-3, cRegion)
+												},
 												_ => null
 											},
 											null)

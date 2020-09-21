@@ -119,14 +119,14 @@ namespace Sudoku.Solving.Manual.Sdps
 										conclusions.Add(new(Elimination, elimCell, digit));
 									}
 
-									var candidateOffsets = new List<(int, int)>();
+									var candidateOffsets = new List<DrawingInfo>();
 									foreach (int loopCell in loop)
 									{
-										candidateOffsets.Add((0, loopCell * 9 + digit));
+										candidateOffsets.Add(new(0, loopCell * 9 + digit));
 									}
 									foreach (int guardianCell in guardians)
 									{
-										candidateOffsets.Add((1, guardianCell * 9 + digit));
+										candidateOffsets.Add(new(1, guardianCell * 9 + digit));
 									}
 
 									accumulator.Add(

@@ -261,28 +261,28 @@ namespace Sudoku.Solving.Manual.Fishes
 									conclusions.Add(new(Elimination, cell, digit));
 								}
 
-								var regionOffsets = new List<(int, int)>();
+								var regionOffsets = new List<DrawingInfo>();
 								foreach (int baseSet in baseSets)
 								{
-									regionOffsets.Add((0, baseSet));
+									regionOffsets.Add(new(0, baseSet));
 								}
 								foreach (int coverSet in coverSets)
 								{
-									regionOffsets.Add((1, coverSet));
+									regionOffsets.Add(new(1, coverSet));
 								}
 
-								var candidateOffsets = new List<(int, int)>();
+								var candidateOffsets = new List<DrawingInfo>();
 								foreach (int cell in exoFinsMap)
 								{
-									candidateOffsets.Add((1, cell * 9 + digit));
+									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
 								foreach (int cell in endoFinsMap)
 								{
-									candidateOffsets.Add((2, cell * 9 + digit));
+									candidateOffsets.Add(new(2, cell * 9 + digit));
 								}
 								foreach (int cell in (baseSetsMap & candMap) - exoFinsMap - endoFinsMap)
 								{
-									candidateOffsets.Add((0, cell * 9 + digit));
+									candidateOffsets.Add(new(0, cell * 9 + digit));
 								}
 
 								bool isSashimi = false;

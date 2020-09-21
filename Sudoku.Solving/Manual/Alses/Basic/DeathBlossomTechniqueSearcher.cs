@@ -163,20 +163,20 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 
 						// Record all highlight cells.
-						var cellOffsets = new List<(int, int)> { (0, pivot) };
+						var cellOffsets = new List<DrawingInfo> { new(0, pivot) };
 						int z = 0;
 						foreach (var (d, a) in dic)
 						{
 							foreach (int c in a.Map)
 							{
-								cellOffsets.Add((-z - 1, c));
+								cellOffsets.Add(new(-z - 1, c));
 							}
 
 							z = (z + 1) % 4;
 						}
 
 						// Record all highlight candidates.
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						z = 0;
 						foreach (var (d, a) in dic)
 						{
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							{
 								foreach (int dd in grid.GetCandidates(c))
 								{
-									candidateOffsets.Add((d == dd ? 1 : -z - 1, c * 9 + dd));
+									candidateOffsets.Add(new(d == dd ? 1 : -z - 1, c * 9 + dd));
 								}
 							}
 
@@ -192,11 +192,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 
 						// Record all highlight regions.
-						var regionOffsets = new List<(int, int)>();
+						var regionOffsets = new List<DrawingInfo>();
 						z = 0;
 						foreach (var als in dic.Values)
 						{
-							regionOffsets.Add((-z - 1, als.Region));
+							regionOffsets.Add(new(-z - 1, als.Region));
 
 							z = (z + 1) % 4;
 						}
@@ -208,7 +208,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								new View[]
 								{
 									new(
-										_alsShowRegions ? new[] { (0, pivot) } : (IReadOnlyList<(int, int)>)cellOffsets,
+										_alsShowRegions
+											? new DrawingInfo[] { new(0, pivot) }
+											: (IReadOnlyList<DrawingInfo>)cellOffsets,
 										_alsShowRegions ? candidateOffsets : null,
 										_alsShowRegions ? regionOffsets : null,
 										null)

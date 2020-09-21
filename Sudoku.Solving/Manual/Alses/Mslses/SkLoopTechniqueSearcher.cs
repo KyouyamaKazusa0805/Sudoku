@@ -140,7 +140,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						continue;
 					}
 
-					var candidateOffsets = new List<(int, int)>();
+					var candidateOffsets = new List<DrawingInfo>();
 					short[] link = new short[27];
 					for (k = 0; k < 8; k++)
 					{
@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 							foreach (int digit in cands.GetAllSets())
 							{
-								candidateOffsets.Add(((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
+								candidateOffsets.Add(new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
 							}
 						}
 					}

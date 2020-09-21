@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			GridMap extraCells, short normalDigits, int extraDigit)
 		{
 			var conclusions = new List<Conclusion>();
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in allCellsMap)
 			{
 				if (cell == extraCells.First)
@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 			}
@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			}
 
 			var conclusions = new List<Conclusion>();
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in elimMap)
 			{
 				conclusions.Add(new(Elimination, cell, extraDigit));
@@ -71,7 +71,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
 
@@ -125,33 +125,33 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, int)>();
+						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in allCellsMap - extraCellsMap)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((0, cell * 9 + digit));
+								candidateOffsets.Add(new(0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in extraCellsMap)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(((mask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								candidateOffsets.Add(new((mask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in cells)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 
 						accumulator.Add(
 							new XrType3TechniqueInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 								allCellsMap,
 								normalDigits,
 								cells,
@@ -188,7 +188,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					}
 
 					// Record all highlight candidates.
-					var candidateOffsets = new List<(int, int)>();
+					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in allCellsMap)
 					{
 						if (cell == extraCell)
@@ -198,7 +198,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((0, cell * 9 + digit));
+							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}
 					}
 
@@ -246,23 +246,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 								continue;
 							}
 
-							var candidateOffsets = new List<(int, int)>();
+							var candidateOffsets = new List<DrawingInfo>();
 							foreach (int cell in allCellsMap - extraCellsMap)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add((0, cell * 9 + digit));
+									candidateOffsets.Add(new(0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in extraCellsMap)
 							{
-								candidateOffsets.Add((1, cell * 9 + conjugateDigit));
+								candidateOffsets.Add(new(1, cell * 9 + conjugateDigit));
 							}
 
 							accumulator.Add(
 								new XrType4TechniqueInfo(
 									conclusions,
-									new View[] { new(null, candidateOffsets, new[] { (0, region) }, null) },
+									new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 									allCellsMap,
 									normalDigits,
 									new(extraCellsMap, conjugateDigit)));

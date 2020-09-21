@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
+using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
 using static Sudoku.Constants.Processings;
@@ -194,7 +195,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>All mirror eliminations.</returns>
 		protected (TargetEliminations, MirrorEliminations) CheckMirror(
 			Grid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
-			GridMap mirror, int x, int onlyOne, IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
+			GridMap mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets, IList<DrawingInfo> candidateOffsets)
 		{
 			var targetElims = new TargetEliminations();
 			var mirrorElims = new MirrorEliminations();
@@ -222,8 +223,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					short candidateMask = (short)(grid.GetCandidateMask(p) & ~commonBase);
 					if (candidateMask != 0 && grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 					{
-						cellOffsets.Add((3, playground[0]));
-						cellOffsets.Add((3, playground[1]));
+						cellOffsets.Add(new(3, playground[0]));
+						cellOffsets.Add(new(3, playground[1]));
 						foreach (int digit in candidateMask.GetAllSets())
 						{
 							mirrorElims.Add(new(Elimination, p, digit));
@@ -283,8 +284,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						// Operator '||' will not execute the second method if the first condition is true.
 						if (g(playground, 0) | g(playground, 1))
 						{
-							cellOffsets.Add((3, playground[0]));
-							cellOffsets.Add((3, playground[1]));
+							cellOffsets.Add(new(3, playground[0]));
+							cellOffsets.Add(new(3, playground[1]));
 						}
 
 						short mask1 = grid.GetCandidateMask(playground[0]);
@@ -319,7 +320,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								{
 									if (grid.Exists(playground[i], digit) is true)
 									{
-										candidateOffsets.Add((1, playground[i] * 9 + digit));
+										candidateOffsets.Add(new(1, playground[i] * 9 + digit));
 									}
 								}
 

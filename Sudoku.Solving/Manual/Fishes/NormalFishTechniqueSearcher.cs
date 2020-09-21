@@ -177,16 +177,16 @@ namespace Sudoku.Solving.Manual.Fishes
 
 										// Eliminations does exist.
 										// Check all highlight candidates.
-										var candidateOffsets = new List<(int, int)>();
+										var candidateOffsets = new List<DrawingInfo>();
 										foreach (int cell in bodyMap)
 										{
-											candidateOffsets.Add((0, cell * 9 + digit));
+											candidateOffsets.Add(new(0, cell * 9 + digit));
 										}
 										if (finCellsMap.IsNotEmpty)
 										{
 											foreach (int cell in finCellsMap)
 											{
-												candidateOffsets.Add((1, cell * 9 + digit));
+												candidateOffsets.Add(new(1, cell * 9 + digit));
 											}
 										}
 
@@ -213,8 +213,13 @@ namespace Sudoku.Solving.Manual.Fishes
 												new View[]
 												{
 													new(
-														null, candidateOffsets,
-														new[] { (0, bs1), (0, bs2), (1, cs1), (1, cs2) }, null),
+														null,
+														candidateOffsets,
+														new DrawingInfo[]
+														{
+															new(0, bs1), new(0, bs2), new(1, cs1), new(1, cs2)
+														},
+														null),
 													GetDirectView(
 														grid, digit, baseSets2, coverSets2, searchRow, finCellsMap)
 												},
@@ -349,16 +354,16 @@ namespace Sudoku.Solving.Manual.Fishes
 
 													// Eliminations does exist.
 													// Check all highlight candidates.
-													var candidateOffsets = new List<(int, int)>();
+													var candidateOffsets = new List<DrawingInfo>();
 													foreach (int cell in bodyMap)
 													{
-														candidateOffsets.Add((0, cell * 9 + digit));
+														candidateOffsets.Add(new(0, cell * 9 + digit));
 													}
 													if (finCellsMap.IsNotEmpty)
 													{
 														foreach (int cell in finCellsMap)
 														{
-															candidateOffsets.Add((1, cell * 9 + digit));
+															candidateOffsets.Add(new(1, cell * 9 + digit));
 														}
 													}
 
@@ -387,10 +392,10 @@ namespace Sudoku.Solving.Manual.Fishes
 																new(
 																	null,
 																	candidateOffsets,
-																	new[]
+																	new DrawingInfo[]
 																	{
-																		(0, bs1), (0, bs2), (0, bs3),
-																		(1, cs1), (1, cs2), (1, cs3)
+																		new(0, bs1), new(0, bs2), new(0, bs3),
+																		new(1, cs1), new(1, cs2), new(1, cs3)
 																	},
 																	null),
 																GetDirectView(
@@ -539,16 +544,16 @@ namespace Sudoku.Solving.Manual.Fishes
 
 															// Eliminations does exist.
 															// Check all highlight candidates.
-															var candidateOffsets = new List<(int, int)>();
+															var candidateOffsets = new List<DrawingInfo>();
 															foreach (int cell in bodyMap)
 															{
-																candidateOffsets.Add((0, cell * 9 + digit));
+																candidateOffsets.Add(new(0, cell * 9 + digit));
 															}
 															if (finCellsMap.IsNotEmpty)
 															{
 																foreach (int cell in finCellsMap)
 																{
-																	candidateOffsets.Add((1, cell * 9 + digit));
+																	candidateOffsets.Add(new(1, cell * 9 + digit));
 																}
 															}
 
@@ -579,12 +584,12 @@ namespace Sudoku.Solving.Manual.Fishes
 																		new(
 																			null,
 																			candidateOffsets,
-																			new[]
+																			new DrawingInfo[]
 																			{
-																				(0, bs1), (0, bs2),
-																				(0, bs3), (0, bs4),
-																				(1, cs1), (1, cs2),
-																				(1, cs3), (1, cs4)
+																				new(0, bs1), new(0, bs2),
+																				new(0, bs3), new(0, bs4),
+																				new(1, cs1), new(1, cs2),
+																				new(1, cs3), new(1, cs4)
 																			},
 																			null),
 																		GetDirectView(
@@ -625,8 +630,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			bool searchRow, GridMap finCellsMap)
 		{
 			// Get the highlight cells (necessary).
-			var cellOffsets = new List<(int, int)>();
-			var candidateOffsets = finCellsMap.IsEmpty ? null : new List<(int, int)>();
+			var cellOffsets = new List<DrawingInfo>();
+			var candidateOffsets = finCellsMap.IsEmpty ? null : new List<DrawingInfo>();
 			foreach (int baseSet in baseSets)
 			{
 				foreach (int cell in RegionMaps[baseSet])
@@ -635,11 +640,10 @@ namespace Sudoku.Solving.Manual.Fishes
 					{
 						case true when finCellsMap[cell]:
 						{
-							cellOffsets.Add((1, cell));
+							cellOffsets.Add(new(1, cell));
 							break;
 						}
-						case false:
-						case null:
+						case false or null:
 						{
 							if (ValueMaps[digit].Any(c => RegionMaps[GetRegion(c, searchRow ? Column : Row)][cell]))
 							{
@@ -662,7 +666,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								continue;
 							}
 
-							cellOffsets.Add((0, cell));
+							cellOffsets.Add(new(0, cell));
 							break;
 						}
 						//default:
@@ -675,12 +679,12 @@ namespace Sudoku.Solving.Manual.Fishes
 			}
 			foreach (int cell in ValueMaps[digit])
 			{
-				cellOffsets.Add((2, cell));
+				cellOffsets.Add(new(2, cell));
 			}
 
 			foreach (int cell in finCellsMap)
 			{
-				candidateOffsets!.Add((1, cell * 9 + digit));
+				candidateOffsets!.Add(new(1, cell * 9 + digit));
 			}
 
 			return new(cellOffsets, candidateOffsets, null, null);

@@ -121,7 +121,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 			}
 
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			var conclusions = new List<Conclusion>();
 			for (int i = 0; i < 9; i++)
 			{
@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				{
 					if (singleDigitList.Contains(digit))
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 						continue;
 					}
 
@@ -246,7 +246,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 			}
 
-			var candidateOffsets = new List<(int, int)>();
+			var candidateOffsets = new List<DrawingInfo>();
 			var conclusions = new List<Conclusion>();
 			for (int i = 0; i < 9; i++)
 			{
@@ -260,7 +260,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				{
 					if (singleDigitList.Contains(digit))
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 						continue;
 					}
 
@@ -355,7 +355,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					result.Add(
 						new GspTechniqueInfo(
 							new Conclusion[] { new(Assignment, 40, digit) },
-							new View[] { new(null, new[] { (0, 360 + digit) }, null, null) },
+							new View[] { new(new DrawingInfo[] { new(0, 360 + digit) }) },
 							SymmetryType.Central,
 							mapping));
 

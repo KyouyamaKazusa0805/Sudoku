@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
@@ -239,7 +240,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="pair">The pair.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool CheckHighlightType((int _id, int) pair) => pair._id == 0;
+		private static bool CheckHighlightType(DrawingInfo pair) => pair.Id == 0;
 
 		/// <summary>
 		/// Get a cell that cannot see each other.
@@ -295,8 +296,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="urCells">The all UR cells used.</param>
 		/// <returns>The list of highlight cells.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static IReadOnlyList<(int, int)> GetHighlightCells(int[] urCells) =>
-			(from cell in urCells select (0, cell)).ToList();
+		private static IReadOnlyList<DrawingInfo> GetHighlightCells(int[] urCells) =>
+			(from cell in urCells select new DrawingInfo(0, cell)).ToArray();
 
 
 		partial void CheckType1(
