@@ -3,27 +3,10 @@
 	/// <summary>
 	/// Encapsulates an anti-elimination step.
 	/// </summary>
-	public sealed class AntiEliminationStep : Step
+	/// <param name="Digit">The digit.</param>
+	/// <param name="Cell">The cell.</param>
+	public sealed record AntiEliminationStep(int Digit, int Cell) : Step
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="digit">The digit.</param>
-		/// <param name="cell">The cell.</param>
-		public AntiEliminationStep(int digit, int cell) => (Digit, Cell) = (digit, cell);
-
-
-		/// <summary>
-		/// Indicates the digit.
-		/// </summary>
-		public int Digit { get; }
-
-		/// <summary>
-		/// Indicates the cell.
-		/// </summary>
-		public int Cell { get; }
-
-
 		/// <inheritdoc/>
 		public override void UndoStepTo(UndoableGrid grid) => grid._masks[Cell] |= (short)(1 << Digit);
 

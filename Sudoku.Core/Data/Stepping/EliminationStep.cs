@@ -3,27 +3,10 @@
 	/// <summary>
 	/// Encapsulates an elimination step.
 	/// </summary>
-	public sealed class EliminationStep : Step
+	/// <param name="Digit">Indicates the digit.</param>
+	/// <param name="Cell">Indicates the cell.</param>
+	public sealed record EliminationStep(int Digit, int Cell) : Step
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="digit">The digit.</param>
-		/// <param name="cell">The cell.</param>
-		public EliminationStep(int digit, int cell) => (Digit, Cell) = (digit, cell);
-
-
-		/// <summary>
-		/// Indicates the digit.
-		/// </summary>
-		public int Digit { get; }
-
-		/// <summary>
-		/// Indicates the cell.
-		/// </summary>
-		public int Cell { get; }
-
-
 		/// <inheritdoc/>
 		public override void UndoStepTo(UndoableGrid grid) => grid._masks[Cell] &= (short)~(1 << Digit);
 

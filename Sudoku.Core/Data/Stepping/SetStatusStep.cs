@@ -3,34 +3,11 @@
 	/// <summary>
 	/// Encapsulates a step for setting a cell status.
 	/// </summary>
-	public sealed class SetStatusStep : Step
+	/// <param name="Cell">The cell.</param>
+	/// <param name="OldStatus">The old status.</param>
+	/// <param name="NewStatus">The new status.</param>
+	public sealed record SetStatusStep(int Cell, CellStatus OldStatus, CellStatus NewStatus) : Step
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="cell">The cell.</param>
-		/// <param name="oldStatus">The old status.</param>
-		/// <param name="newStatus">The new status.</param>
-		public SetStatusStep(int cell, CellStatus oldStatus, CellStatus newStatus) =>
-			(Cell, OldStatus, NewStatus) = (cell, oldStatus, newStatus);
-
-
-		/// <summary>
-		/// Indicates the cell.
-		/// </summary>
-		public int Cell { get; }
-
-		/// <summary>
-		/// Indicates the old status.
-		/// </summary>
-		public CellStatus OldStatus { get; }
-
-		/// <summary>
-		/// Indicates the new status.
-		/// </summary>
-		public CellStatus NewStatus { get; }
-
-
 		/// <inheritdoc/>
 		public override void DoStepTo(UndoableGrid grid)
 		{

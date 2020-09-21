@@ -2732,23 +2732,15 @@
             <summary>
             Encapsulates an anti-elimination step.
             </summary>
+            <param name="Digit">The digit.</param>
+            <param name="Cell">The cell.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.AntiEliminationStep.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes an instance with the specified information.
+            Encapsulates an anti-elimination step.
             </summary>
-            <param name="digit">The digit.</param>
-            <param name="cell">The cell.</param>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.AntiEliminationStep.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.AntiEliminationStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
+            <param name="Digit">The digit.</param>
+            <param name="Cell">The cell.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.AntiEliminationStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
@@ -2760,37 +2752,19 @@
             <summary>
             Encapsulates an assignment step.
             </summary>
+            <param name="Digit">The digit.</param>
+            <param name="Cell">The cell.</param>
+            <param name="Mask">The old mask to undo.</param>
+            <param name="InnerMap">The map which contains all cells that contains the digit.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.AssignmentStep.#ctor(System.Int32,System.Int32,System.Int16,Sudoku.Data.GridMap)">
             <summary>
-            Initializes an instance with the specified information.
+            Encapsulates an assignment step.
             </summary>
-            <param name="digit">The digit.</param>
-            <param name="cell">The cell.</param>
-            <param name="mask">The old mask to undo.</param>
-            <param name="innerMap">
-            The map which contains all cells that contains the digit.
-            </param>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.AssignmentStep.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.AssignmentStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.AssignmentStep.Mask">
-            <summary>
-            Indicates the mask of the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.AssignmentStep.InnerMap">
-            <summary>
-            Indicates the grid map.
-            </summary>
+            <param name="Digit">The digit.</param>
+            <param name="Cell">The cell.</param>
+            <param name="Mask">The old mask to undo.</param>
+            <param name="InnerMap">The map which contains all cells that contains the digit.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.AssignmentStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
@@ -2802,23 +2776,15 @@
             <summary>
             Encapsulates an elimination step.
             </summary>
+            <param name="Digit">Indicates the digit.</param>
+            <param name="Cell">Indicates the cell.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.EliminationStep.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes an instance with the specified information.
+            Encapsulates an elimination step.
             </summary>
-            <param name="digit">The digit.</param>
-            <param name="cell">The cell.</param>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.EliminationStep.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.EliminationStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
+            <param name="Digit">Indicates the digit.</param>
+            <param name="Cell">Indicates the cell.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.EliminationStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
@@ -2830,17 +2796,13 @@
             <summary>
             Encapsulates a fix step.
             </summary>
+            <param name="AllCells">Indicates all cells to fix.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.FixStep.#ctor(Sudoku.Data.GridMap)">
             <summary>
-            Initializes an instance with the specified information.
+            Encapsulates a fix step.
             </summary>
-            <param name="allCells">All cells to fix.</param>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.FixStep.AllCells">
-            <summary>
-            Indicates all cells to fix.
-            </summary>
+            <param name="AllCells">Indicates all cells to fix.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.FixStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
@@ -2867,23 +2829,15 @@
             <summary>
             Encapsulates a reset step.
             </summary>
+            <param name="OldMasks">Indicates the table of new grid masks.</param>
+            <param name="NewMasks">Indicates the table of old grid masks.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.ResetStep.#ctor(System.Int16[],System.Int16[])">
             <summary>
-            Initializes an instance with the specified information.
+            Encapsulates a reset step.
             </summary>
-            <param name="oldMasks">The old grid masks.</param>
-            <param name="newMasks">The new grid masks.</param>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.ResetStep.NewMasks">
-            <summary>
-            Indicates the table of new grid masks.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.ResetStep.OldMasks">
-            <summary>
-            Indicates the table of old grid masks.
-            </summary>
+            <param name="OldMasks">Indicates the table of new grid masks.</param>
+            <param name="NewMasks">Indicates the table of old grid masks.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.ResetStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
@@ -2895,29 +2849,17 @@
             <summary>
             Encapsulates a step of setting mask.
             </summary>
+            <param name="cell">Indicates the cell.</param>
+            <param name="oldMask">Indicates the old mask.</param>
+            <param name="newMask">Indicates the new mask.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.SetMaskStep.#ctor(System.Int32,System.Int16,System.Int16)">
             <summary>
-            Initializes an instance with the specified information.
+            Encapsulates a step of setting mask.
             </summary>
-            <param name="cell">The cell.</param>
-            <param name="oldMask">The old mask.</param>
-            <param name="newMask">The new mask.</param>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.SetMaskStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.SetMaskStep.OldMask">
-            <summary>
-            Indicates the old mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.SetMaskStep.NewMask">
-            <summary>
-            Indicates the new mask.
-            </summary>
+            <param name="cell">Indicates the cell.</param>
+            <param name="oldMask">Indicates the old mask.</param>
+            <param name="newMask">Indicates the new mask.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.SetMaskStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
@@ -2929,29 +2871,17 @@
             <summary>
             Encapsulates a step for setting a cell status.
             </summary>
+            <param name="Cell">The cell.</param>
+            <param name="OldStatus">The old status.</param>
+            <param name="NewStatus">The new status.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.SetStatusStep.#ctor(System.Int32,Sudoku.Data.CellStatus,Sudoku.Data.CellStatus)">
             <summary>
-            Initializes an instance with the specified information.
+            Encapsulates a step for setting a cell status.
             </summary>
-            <param name="cell">The cell.</param>
-            <param name="oldStatus">The old status.</param>
-            <param name="newStatus">The new status.</param>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.SetStatusStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.SetStatusStep.OldStatus">
-            <summary>
-            Indicates the old status.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.SetStatusStep.NewStatus">
-            <summary>
-            Indicates the new status.
-            </summary>
+            <param name="Cell">The cell.</param>
+            <param name="OldStatus">The old status.</param>
+            <param name="NewStatus">The new status.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.SetStatusStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
@@ -2988,12 +2918,12 @@
         </member>
         <member name="F:Sudoku.Data.Stepping.UndoableGrid._undoStack">
             <summary>
-            The undo stack.
+            The undo and redo stack.
             </summary>
         </member>
         <member name="F:Sudoku.Data.Stepping.UndoableGrid._redoStack">
             <summary>
-            The redo stack.
+            The undo and redo stack.
             </summary>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(System.Int16[])">
@@ -3091,17 +3021,13 @@
             <summary>
             Encapsulates an unfix step.
             </summary>
+            <param name="AllCells">Indicates all cells.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.UnfixStep.#ctor(Sudoku.Data.GridMap)">
             <summary>
-            Initializes an instance with the specified information.
+            Encapsulates an unfix step.
             </summary>
-            <param name="allCells">All cells.</param>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.UnfixStep.AllCells">
-            <summary>
-            Indicates all cells.
-            </summary>
+            <param name="AllCells">Indicates all cells.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.UnfixStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>

@@ -6,42 +6,12 @@ namespace Sudoku.Data.Stepping
 	/// <summary>
 	/// Encapsulates an assignment step.
 	/// </summary>
-	public sealed class AssignmentStep : Step
+	/// <param name="Digit">The digit.</param>
+	/// <param name="Cell">The cell.</param>
+	/// <param name="Mask">The old mask to undo.</param>
+	/// <param name="InnerMap">The map which contains all cells that contains the digit.</param>
+	public sealed record AssignmentStep(int Digit, int Cell, short Mask, GridMap InnerMap) : Step
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="digit">The digit.</param>
-		/// <param name="cell">The cell.</param>
-		/// <param name="mask">The old mask to undo.</param>
-		/// <param name="innerMap">
-		/// The map which contains all cells that contains the digit.
-		/// </param>
-		public AssignmentStep(int digit, int cell, short mask, GridMap innerMap) =>
-			(Digit, Cell, Mask, InnerMap) = (digit, cell, mask, innerMap);
-
-
-		/// <summary>
-		/// Indicates the digit.
-		/// </summary>
-		public int Digit { get; }
-
-		/// <summary>
-		/// Indicates the cell.
-		/// </summary>
-		public int Cell { get; }
-
-		/// <summary>
-		/// Indicates the mask of the cell.
-		/// </summary>
-		public short Mask { get; }
-
-		/// <summary>
-		/// Indicates the grid map.
-		/// </summary>
-		public GridMap InnerMap { get; }
-
-
 		/// <inheritdoc/>
 		public override void UndoStepTo(UndoableGrid grid)
 		{
@@ -58,12 +28,9 @@ namespace Sudoku.Data.Stepping
 		{
 			switch (Digit)
 			{
-				case -1:
+				case -1 when grid.GetStatus(Cell) == CellStatus.Modifiable:
 				{
-					if (grid.GetStatus(Cell) == CellStatus.Modifiable)
-					{
-						Array.Copy(grid._initialMasks, grid._masks, 81);
-					}
+					Array.Copy(grid._initialMasks, grid._masks, 81);
 
 					break;
 				}

@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Provides a step used for applying to a sudoku grid.
 	/// </summary>
-	public abstract class Step
+	public abstract record Step
 	{
 		/// <summary>
 		/// Apply the step to the grid.

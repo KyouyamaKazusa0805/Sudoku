@@ -18,14 +18,9 @@ namespace Sudoku.Data.Stepping
 	public sealed class UndoableGrid : Grid, IEquatable<UndoableGrid>, IUndoable
 	{
 		/// <summary>
-		/// The undo stack.
+		/// The undo and redo stack.
 		/// </summary>
-		private readonly Stack<Step> _undoStack = new();
-
-		/// <summary>
-		/// The redo stack.
-		/// </summary>
-		private readonly Stack<Step> _redoStack = new();
+		private readonly Stack<Step> _undoStack = new(), _redoStack = new();
 
 
 		/// <inheritdoc/>

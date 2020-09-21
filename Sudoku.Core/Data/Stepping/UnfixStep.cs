@@ -3,21 +3,9 @@
 	/// <summary>
 	/// Encapsulates an unfix step.
 	/// </summary>
-	public sealed class UnfixStep : Step
+	/// <param name="AllCells">Indicates all cells.</param>
+	public sealed record UnfixStep(GridMap AllCells) : Step
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="allCells">All cells.</param>
-		public UnfixStep(GridMap allCells) => AllCells = allCells;
-
-
-		/// <summary>
-		/// Indicates all cells.
-		/// </summary>
-		public GridMap AllCells { get; }
-
-
 		/// <inheritdoc/>
 		public override void DoStepTo(UndoableGrid grid)
 		{

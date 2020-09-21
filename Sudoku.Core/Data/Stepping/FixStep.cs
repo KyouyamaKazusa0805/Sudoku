@@ -3,21 +3,9 @@
 	/// <summary>
 	/// Encapsulates a fix step.
 	/// </summary>
-	public sealed class FixStep : Step
+	/// <param name="AllCells">Indicates all cells to fix.</param>
+	public sealed record FixStep(GridMap AllCells) : Step
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="allCells">All cells to fix.</param>
-		public FixStep(GridMap allCells) => AllCells = allCells;
-
-
-		/// <summary>
-		/// Indicates all cells to fix.
-		/// </summary>
-		public GridMap AllCells { get; }
-
-
 		/// <inheritdoc/>
 		public override void DoStepTo(UndoableGrid grid)
 		{
