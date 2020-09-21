@@ -49,12 +49,5 @@ namespace Sudoku.Drawing
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(in DrawingInfo left, in DrawingInfo right) => !(left == right);
-
-
-		/// <summary>
-		/// Implicit cast from <see cref="DrawingInfo"/> to <see cref="ValueTuple{T1, T2}"/>.
-		/// </summary>
-		/// <param name="info">The drawing information instance.</param>
-		public static explicit operator (int Id, int Value)(DrawingInfo info) => (info.Id, info.Value);
 	}
 }

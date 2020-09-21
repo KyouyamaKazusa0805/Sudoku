@@ -5037,12 +5037,6 @@
         <member name="M:Sudoku.Drawing.DrawingInfo.op_Inequality(Sudoku.Drawing.DrawingInfo@,Sudoku.Drawing.DrawingInfo@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Drawing.DrawingInfo.op_Explicit(Sudoku.Drawing.DrawingInfo)~System.ValueTuple{System.Int32,System.Int32}">
-            <summary>
-            Implicit cast from <see cref="T:Sudoku.Drawing.DrawingInfo"/> to <see cref="T:System.ValueTuple`2"/>.
-            </summary>
-            <param name="info">The drawing information instance.</param>
-        </member>
         <member name="T:Sudoku.Drawing.Extensions.BitmapEx">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
