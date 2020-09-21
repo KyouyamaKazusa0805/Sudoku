@@ -41,6 +41,8 @@ namespace Sudoku.Drawing
 		public override string ToString() => (Id, Value).ToString();
 
 		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="id">(<see langword="out"/> parameter) The ID.</param>
+		/// <param name="value">(<see langword="out"/> parameter) The value.</param>
 		public void Deconstruct(out int id, out int value) => (id, value) = (Id, Value);
 
 
