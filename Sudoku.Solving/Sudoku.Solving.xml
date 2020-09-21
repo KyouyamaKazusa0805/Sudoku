@@ -3599,7 +3599,7 @@
             Record all cells in the all regions to a <see cref="T:Sudoku.Data.GridMap"/> instance.
             </summary>
             <param name="map">(<see langword="ref"/> parameter) The map.</param>
-            <param name="regionOffsets">All region offsets.</param>
+            <param name="regions">All region offsets.</param>
             <param name="candMap">The candidate map.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.RegionMap">

@@ -694,13 +694,13 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Record all cells in the all regions to a <see cref="GridMap"/> instance.
 		/// </summary>
 		/// <param name="map">(<see langword="ref"/> parameter) The map.</param>
-		/// <param name="regionOffsets">All region offsets.</param>
+		/// <param name="regions">All region offsets.</param>
 		/// <param name="candMap">The candidate map.</param>
-		private static void GetGridMap(ref GridMap map, ReadOnlySpan<int> regionOffsets, GridMap candMap)
+		private static void GetGridMap(ref GridMap map, ReadOnlySpan<int> regions, GridMap candMap)
 		{
-			foreach (int regionOffset in regionOffsets)
+			foreach (int region in regions)
 			{
-				map |= RegionMaps[regionOffset];
+				map |= RegionMaps[region];
 			}
 
 			map &= candMap;
