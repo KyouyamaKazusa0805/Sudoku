@@ -22,7 +22,8 @@ namespace Sudoku.Drawing
 	/// Indicates the grid painter.
 	/// </summary>
 	/// <remarks>
-	/// This data structure is a little bit heavy.
+	/// Please note that eliminations will be colored with red, but all assignments won't be colored,
+	/// because they will be colored using another method (draw candidates).
 	/// </remarks>
 	public sealed class GridPainter
 	{
@@ -270,8 +271,7 @@ namespace Sudoku.Drawing
 			{
 				switch (t)
 				{
-					// Every assignment conclusion will be painted
-					// in its technique information view.
+					// Every assignment conclusion will be painted in its technique information view.
 					//case Assignment:
 					//{
 					//	break;
@@ -313,6 +313,7 @@ namespace Sudoku.Drawing
 			var (cw, ch) = PointConverter.CandidateSize;
 			using var pen = new Pen(Settings.ChainColor, 2F) { CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F) };
 			#region Obsolete code
+			// This brush is used for drawing grouped nodes.
 			//using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
 			#endregion
 			foreach (var link in links)

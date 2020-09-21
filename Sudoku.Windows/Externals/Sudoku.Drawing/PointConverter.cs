@@ -140,8 +140,7 @@ namespace Sudoku.Drawing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public PointF GetMouseCenterOfCandidates(SudokuMap map)
 		{
-			int min = map.SetAt(0);
-			int max = map.SetAt(^1);
+			int min = map.SetAt(0), max = map.SetAt(^1);
 			var (x1, y1) = GetMousePointInCenter(min / 9, min % 9);
 			var (x2, y2) = GetMousePointInCenter(max / 9, max % 9);
 			return new((x1 + x2) / 2, (y1 + y2) / 2);
