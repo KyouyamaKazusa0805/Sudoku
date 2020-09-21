@@ -82,8 +82,8 @@ namespace Sudoku.Solving.Manual
 			{
 				switch (conclusion.ConclusionType)
 				{
-					case Assignment when cloneation.GetStatus(conclusion.CellOffset) == Empty:
-					case Elimination when cloneation.Exists(conclusion.CellOffset, conclusion.Digit) is true:
+					case Assignment when cloneation.GetStatus(conclusion.Cell) == Empty:
+					case Elimination when cloneation.Exists(conclusion.Cell, conclusion.Digit) is true:
 					{
 						step.ApplyTo(cloneation);
 						steps.Add(step);

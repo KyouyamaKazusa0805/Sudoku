@@ -733,7 +733,7 @@
             Initializes an instance with a conclusion type, a cell offset and a digit.
             </summary>
             <param name="conclusionType">The conclusion type.</param>
-            <param name="cellOffset">The cell offset.</param>
+            <param name="cell">The cell offset.</param>
             <param name="digit">The digit.</param>
         </member>
         <member name="M:Sudoku.Data.Conclusion.#ctor(Sudoku.Data.ConclusionType,System.Int32)">
@@ -741,9 +741,9 @@
             Initializes an instance with a conclusion type and a candidate offset.
             </summary>
             <param name="conclusionType">The conclusion type.</param>
-            <param name="candidateOffset">The candidate offset.</param>
+            <param name="candidate">The candidate offset.</param>
         </member>
-        <member name="P:Sudoku.Data.Conclusion.CellOffset">
+        <member name="P:Sudoku.Data.Conclusion.Cell">
             <summary>
             The cell offset.
             </summary>
@@ -837,7 +837,7 @@
             </para>
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="cellOffset">The cell offset.</param>
+            <param name="cell">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>
             A <see cref="T:System.Boolean"/>? value indicating that.
@@ -3532,7 +3532,7 @@
             <summary>
             Initializes the instance with some data.
             </summary>
-            <param name="cellOffset">The cell offset. Must be in range 0 to 80.</param>
+            <param name="cell">The cell offset. Must be in range 0 to 80.</param>
             <param name="oldMask">The old mask before modified.</param>
             <param name="newMask">The mask to modify the cell.</param>
             <param name="setValue">
@@ -3540,7 +3540,7 @@
             this argument should be -1.
             </param>
         </member>
-        <member name="P:Sudoku.Data.ValueChangedEventArgs.CellOffset">
+        <member name="P:Sudoku.Data.ValueChangedEventArgs.Cell">
             <summary>
             The cell offset. Must be in range 0 to 80.
             </summary>
@@ -3562,7 +3562,7 @@
         </member>
         <member name="M:Sudoku.Data.ValueChangedEventArgs.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="cellOffset">(<see langword="out"/> parameter) The cell offset.</param>
+            <param name="cell">(<see langword="out"/> parameter) The cell offset.</param>
             <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
             <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
             <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
@@ -4070,7 +4070,7 @@
             <summary>
             Initializes the instance with some data.
             </summary>
-            <param name="cellOffset">The cell offset. Must be in range 0 to 80.</param>
+            <param name="cell">The cell offset. Must be in range 0 to 80.</param>
             <param name="oldMask">The old mask before modified.</param>
             <param name="newMask">The mask to modify the cell.</param>
             <param name="setValue">
@@ -4078,7 +4078,7 @@
             this argument should be -1.
             </param>
         </member>
-        <member name="P:Sudoku.Data.ValueGrid.ValueChangedValues.CellOffset">
+        <member name="P:Sudoku.Data.ValueGrid.ValueChangedValues.Cell">
             <summary>
             The cell offset. Must be in range 0 to 80.
             </summary>
@@ -4100,7 +4100,7 @@
         </member>
         <member name="M:Sudoku.Data.ValueGrid.ValueChangedValues.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="cellOffset">(<see langword="out"/> parameter) The cell offset.</param>
+            <param name="cell">(<see langword="out"/> parameter) The cell offset.</param>
             <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
             <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
             <param name="setValue">(<see langword="out"/> parameter) the set value.</param>

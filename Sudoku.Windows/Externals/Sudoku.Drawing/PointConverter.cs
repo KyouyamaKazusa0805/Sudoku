@@ -214,27 +214,27 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Get the mouse point of the center of a cell via its offset.
 		/// </summary>
-		/// <param name="cellOffset">The cell offset.</param>
+		/// <param name="cell">The cell offset.</param>
 		/// <returns>The mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PointF GetMousePointInCenter(int cellOffset)
+		public PointF GetMousePointInCenter(int cell)
 		{
 			var (cw, ch) = CellSize;
-			var (x, y) = GridPoints[cellOffset % 9 * 3, cellOffset / 9 * 3];
+			var (x, y) = GridPoints[cell % 9 * 3, cell / 9 * 3];
 			return new(x + cw / 2, y + ch / 2);
 		}
 
 		/// <summary>
 		/// Get the mouse point of the center of a cell via its offset and the digit.
 		/// </summary>
-		/// <param name="cellOffset">The cell offset.</param>
+		/// <param name="cell">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PointF GetMousePointInCenter(int cellOffset, int digit)
+		public PointF GetMousePointInCenter(int cell, int digit)
 		{
 			var (cw, ch) = CandidateSize;
-			var (x, y) = GridPoints[cellOffset % 9 * 3 + digit % 3, cellOffset / 9 * 3 + digit / 3];
+			var (x, y) = GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
 			return new(x + cw / 2, y + ch / 2);
 		}
 

@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 										null,
 										(
 											from conclusion in _tempConclusions
-											select new DrawingInfo(0, conclusion.CellOffset * 9 + conclusion.Digit)
+											select new DrawingInfo(0, conclusion.Cell * 9 + conclusion.Digit)
 										).ToArray(),
 										null,
 										GetLinks())
@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				from info in tempAccumulator
 				orderby info.ContradictionSeries.Count
 				let conclusion = info.ContradictionSeries[0]
-				orderby conclusion.CellOffset * 9 + conclusion.Digit
+				orderby conclusion.Cell * 9 + conclusion.Digit
 				select info);
 		}
 
@@ -137,7 +137,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 								null,
 								(
 									from tempConclusion in _tempConclusions
-									select new DrawingInfo(0, tempConclusion.CellOffset * 9 + tempConclusion.Digit)
+									select new DrawingInfo(0, tempConclusion.Cell * 9 + tempConclusion.Digit)
 								).ToArray(),
 								null,
 								GetLinks())

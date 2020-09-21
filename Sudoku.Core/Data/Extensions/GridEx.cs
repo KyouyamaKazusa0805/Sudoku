@@ -21,7 +21,7 @@ namespace Sudoku.Data.Extensions
 		/// </para>
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="cellOffset">The cell offset.</param>
+		/// <param name="cell">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>
 		/// A <see cref="bool"/>? value indicating that.
@@ -55,7 +55,7 @@ namespace Sudoku.Data.Extensions
 		/// to decide whether a condition is true.
 		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool? Exists(this Grid @this, int cellOffset, int digit) =>
-			@this.GetStatus(cellOffset) == Empty ? !@this[cellOffset, digit] : (bool?)null;
+		public static bool? Exists(this Grid @this, int cell, int digit) =>
+			@this.GetStatus(cell) == Empty && !@this[cell, digit];
 	}
 }

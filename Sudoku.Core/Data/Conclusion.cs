@@ -14,18 +14,18 @@ namespace Sudoku.Data
 		/// Initializes an instance with a conclusion type, a cell offset and a digit.
 		/// </summary>
 		/// <param name="conclusionType">The conclusion type.</param>
-		/// <param name="cellOffset">The cell offset.</param>
+		/// <param name="cell">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
-		public Conclusion(ConclusionType conclusionType, int cellOffset, int digit) =>
-			(ConclusionType, CellOffset, Digit) = (conclusionType, cellOffset, digit);
+		public Conclusion(ConclusionType conclusionType, int cell, int digit) =>
+			(ConclusionType, Cell, Digit) = (conclusionType, cell, digit);
 
 		/// <summary>
 		/// Initializes an instance with a conclusion type and a candidate offset.
 		/// </summary>
 		/// <param name="conclusionType">The conclusion type.</param>
-		/// <param name="candidateOffset">The candidate offset.</param>
-		public Conclusion(ConclusionType conclusionType, int candidateOffset)
-			: this(conclusionType, candidateOffset / 9, candidateOffset % 9)
+		/// <param name="candidate">The candidate offset.</param>
+		public Conclusion(ConclusionType conclusionType, int candidate)
+			: this(conclusionType, candidate / 9, candidate % 9)
 		{
 		}
 
@@ -33,7 +33,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The cell offset.
 		/// </summary>
-		public int CellOffset { get; }
+		public int Cell { get; }
 
 		/// <summary>
 		/// The digit.
@@ -63,12 +63,12 @@ namespace Sudoku.Data
 			{
 				case ConclusionType.Assignment:
 				{
-					grid[CellOffset] = Digit;
+					grid[Cell] = Digit;
 					break;
 				}
 				case ConclusionType.Elimination:
 				{
-					grid[CellOffset, Digit] = true;
+					grid[Cell, Digit] = true;
 					break;
 				}
 				default:
@@ -82,14 +82,14 @@ namespace Sudoku.Data
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
-			(conclusionType, candidate) = (ConclusionType, CellOffset * 9 + Digit);
+			(conclusionType, candidate) = (ConclusionType, Cell * 9 + Digit);
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
 		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit) =>
-			(conclusionType, cell, digit) = (ConclusionType, CellOffset, Digit);
+			(conclusionType, cell, digit) = (ConclusionType, Cell, Digit);
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Conclusion comparer && Equals(comparer);
@@ -98,7 +98,7 @@ namespace Sudoku.Data
 		public bool Equals(Conclusion other) => GetHashCode() == other.GetHashCode();
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		public override int GetHashCode() => ((int)ConclusionType + 1) * (CellOffset * 9 + Digit);
+		public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);
 
 		/// <inheritdoc cref="object.ToString"/>
 		/// <exception cref="InvalidOperationException">
@@ -107,7 +107,7 @@ namespace Sudoku.Data
 		/// </exception>
 		/// <seealso cref="ConclusionType"/>
 		public override string ToString() =>
-			$@"r{CellOffset / 9 + 1}c{CellOffset % 9 + 1} {ConclusionType switch
+			$@"r{Cell / 9 + 1}c{Cell % 9 + 1} {ConclusionType switch
 			{
 				ConclusionType.Assignment => "=",
 				ConclusionType.Elimination => "<>",

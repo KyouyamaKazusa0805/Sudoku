@@ -820,7 +820,7 @@ namespace Sudoku.Windows
 				_currentPainter.View = new((
 					from backdoor in backdoors
 					where backdoor.ConclusionType == ConclusionType.Assignment
-					select new DrawingInfo(0, backdoor.CellOffset * 9 + backdoor.Digit)).ToArray());
+					select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)).ToArray());
 				_currentPainter.Conclusions = backdoors;
 
 				UpdateImageGrid();
