@@ -156,10 +156,8 @@ namespace Sudoku.Drawing
 		public RectangleF GetMouseRectangleOfCandidates(SudokuMap map)
 		{
 			var (cw, ch) = CandidateSize;
-			int min = map.SetAt(0);
-			int max = map.SetAt(^1);
-			var pt1 = GetMousePointInCenter(min / 9, min % 9);
-			var pt2 = GetMousePointInCenter(max / 9, max % 9);
+			int min = map.SetAt(0), max = map.SetAt(^1);
+			PointF pt1 = GetMousePointInCenter(min / 9, min % 9), pt2 = GetMousePointInCenter(max / 9, max % 9);
 			pt1.X -= cw / 2;
 			pt1.Y -= ch / 2;
 			pt2.X += cw / 2;
@@ -202,29 +200,17 @@ namespace Sudoku.Drawing
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Throws when the region is less than 0 or greater than 26.
 		/// </exception>
-		public RectangleF GetMousePointRectangleForRegion(int region)
-		{
-			if (region is >= 0 and < 9)
+		public RectangleF GetMousePointRectangleForRegion(int region) =>
+			region switch
 			{
-				return RectangleEx.CreateInstance(
-					GridPoints[region % 3 * 9, region / 3 * 9],
-					GridPoints[region % 3 * 9 + 9, region / 3 * 9 + 9]);
-			}
-			else if (region is >= 9 and < 18)
-			{
-				region -= 9;
-				return RectangleEx.CreateInstance(GridPoints[0, region * 3], GridPoints[27, region * 3 + 3]);
-			}
-			else if (region is >= 18 and < 27)
-			{
-				region -= 18;
-				return RectangleEx.CreateInstance(GridPoints[region * 3, 0], GridPoints[region * 3 + 3, 27]);
-			}
-			else
-			{
-				throw new ArgumentOutOfRangeException(nameof(region));
-			}
-		}
+				>= 0 and < 9 when (region % 3, region / 3) is (var v1, var v2) =>
+					RectangleEx.CreateInstance(GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
+				>= 9 and < 18 when region - 9 is var v =>
+					RectangleEx.CreateInstance(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
+				>= 18 and < 27 when region - 18 is var v =>
+					RectangleEx.CreateInstance(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
+				_ => throw new ArgumentOutOfRangeException(nameof(region))
+			};
 
 		/// <summary>
 		/// Get the mouse point of the center of a cell via its offset.

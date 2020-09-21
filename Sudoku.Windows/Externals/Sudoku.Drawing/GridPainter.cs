@@ -92,6 +92,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates the <see cref="Drawing.PointConverter"/> instance.
 		/// </summary>
+		/// <value>The converter instance.</value>
 		public PointConverter PointConverter
 		{
 			get => _pointConverter;
