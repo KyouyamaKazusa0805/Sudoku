@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
 		public TechniqueCodeFilter(params TechniqueCode[]? techniqueCodes)
 		{
-			foreach (var techniqueCode in techniqueCodes ?? Array.Empty<TechniqueCode>())
+			foreach (var techniqueCode in techniqueCodes.NullableCollection())
 			{
 				_internalList[(int)techniqueCode] = true;
 				Count++;

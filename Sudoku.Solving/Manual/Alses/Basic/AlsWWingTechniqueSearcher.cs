@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -83,7 +82,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						// Iterate on each conjugate pair.
 						short wDigitsMask = 0;
 						var conclusions = new List<Conclusion>();
-						foreach (var conjugatePair in conjugatePairs[x] ?? Array.Empty<ConjugatePair>())
+						foreach (var conjugatePair in conjugatePairs[x].NullableCollection())
 						{
 							var cpMap = conjugatePair.Map;
 							if (cpMap.Overlaps(map1) || cpMap.Overlaps(map2))

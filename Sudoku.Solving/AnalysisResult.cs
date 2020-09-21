@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
+using Sudoku.Extensions;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
 
@@ -327,7 +328,7 @@ namespace Sudoku.Solving
 		/// <returns>
 		/// An enumerator that can be used to iterate through the collection.
 		/// </returns>
-		public IEnumerator<TechniqueInfo> GetEnumerator() => (SolvingSteps ?? Array.Empty<TechniqueInfo>()).GetEnumerator();
+		public IEnumerator<TechniqueInfo> GetEnumerator() => SolvingSteps.NullableCollection().GetEnumerator();
 
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);

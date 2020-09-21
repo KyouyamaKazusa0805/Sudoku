@@ -1,6 +1,5 @@
 ﻿#pragma warning disable CA1815
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,8 +52,7 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 		}
 
 		/// <inheritdoc/>
-		public readonly IEnumerator<Conclusion> GetEnumerator() =>
-			(Conclusions ?? Array.Empty<Conclusion>()).GetEnumerator();
+		public readonly IEnumerator<Conclusion> GetEnumerator() => Conclusions.NullableCollection().GetEnumerator();
 
 
 		/// <inheritdoc cref="object.ToString"/>
