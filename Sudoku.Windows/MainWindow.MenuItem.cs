@@ -878,7 +878,7 @@ namespace Sudoku.Windows
 			}
 
 			_textBoxInfo.Text = info.ToString();
-			_currentPainter.View = new(cellOffsets, info.Views[0].CandidateOffsets, null, null);
+			_currentPainter.View = new(cellOffsets, info.Views[0].Candidates, null, null);
 			_currentPainter.Conclusions = info.Conclusions;
 
 			UpdateImageGrid();

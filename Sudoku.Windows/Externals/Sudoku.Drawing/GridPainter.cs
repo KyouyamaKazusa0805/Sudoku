@@ -214,9 +214,9 @@ namespace Sudoku.Drawing
 		{
 			if (CustomView is not null)
 			{
-				if (CustomView.CellOffsets is not null) DrawCells(g, CustomView.CellOffsets);
-				if (CustomView.CandidateOffsets is not null) DrawCandidates(g, CustomView.CandidateOffsets, offset);
-				if (CustomView.RegionOffsets is not null) DrawRegions(g, CustomView.RegionOffsets, offset);
+				if (CustomView.Cells is not null) DrawCells(g, CustomView.Cells);
+				if (CustomView.Candidates is not null) DrawCandidates(g, CustomView.Candidates, offset);
+				if (CustomView.Regions is not null) DrawRegions(g, CustomView.Regions, offset);
 				if (CustomView.Links is not null) DrawLinks(g, CustomView.Links, offset);
 			}
 		}
@@ -225,9 +225,9 @@ namespace Sudoku.Drawing
 		{
 			if (View is not null)
 			{
-				if (View.CellOffsets is not null) DrawCells(g, View.CellOffsets);
-				if (View.CandidateOffsets is not null) DrawCandidates(g, View.CandidateOffsets, offset);
-				if (View.RegionOffsets is not null) DrawRegions(g, View.RegionOffsets, offset);
+				if (View.Cells is not null) DrawCells(g, View.Cells);
+				if (View.Candidates is not null) DrawCandidates(g, View.Candidates, offset);
+				if (View.Regions is not null) DrawRegions(g, View.Regions, offset);
 				if (View.Links is not null) DrawLinks(g, View.Links, offset);
 			}
 
@@ -279,7 +279,7 @@ namespace Sudoku.Drawing
 					case Elimination:
 					{
 						g.FillEllipse(
-							View?.CandidateOffsets?.Any(pair => pair.Value == c * 9 + d) ?? false
+							View?.Candidates?.Any(pair => pair.Value == c * 9 + d) ?? false
 								? cannibalBrush
 								: eliminationBrush,
 							PointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));

@@ -9,14 +9,14 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// Encapsulates a view when displaying the information on forms.
 	/// </summary>
-	/// <param name="CellOffsets">All cells used.</param>
-	/// <param name="CandidateOffsets">All candidates used.</param>
-	/// <param name="RegionOffsets">All regions used.</param>
+	/// <param name="Cells">All cells used.</param>
+	/// <param name="Candidates">All candidates used.</param>
+	/// <param name="Regions">All regions used.</param>
 	/// <param name="Links">All links used.</param>
 	[DebuggerStepThrough]
 	public sealed record View(
-		IReadOnlyList<DrawingInfo>? CellOffsets, IReadOnlyList<DrawingInfo>? CandidateOffsets,
-		IReadOnlyList<DrawingInfo>? RegionOffsets, IReadOnlyList<Link>? Links)
+		IReadOnlyList<DrawingInfo>? Cells, IReadOnlyList<DrawingInfo>? Candidates,
+		IReadOnlyList<DrawingInfo>? Regions, IReadOnlyList<Link>? Links)
 	{
 		/// <summary>
 		/// Provides a new default view list for initialization.
