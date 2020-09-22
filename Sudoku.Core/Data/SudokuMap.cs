@@ -423,11 +423,8 @@ namespace Sudoku.Data
 				{
 					return "{ }";
 				}
-				case 1:
+				case 1 when First is var candidate && (candidate / 9, candidate % 9) is (var cell, var digit):
 				{
-					int candidate = First;
-					int cell = candidate / 9;
-					int digit = candidate % 9;
 					return $"r{cell / 9 + 1}c{cell % 9 + 1}({digit + 1})";
 				}
 				default:

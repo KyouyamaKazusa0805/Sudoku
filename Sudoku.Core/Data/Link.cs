@@ -6,7 +6,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a link used for drawing.
 	/// </summary>
-	public readonly struct Link : IEquatable<Link>
+	public /*readonly*/ struct Link : IEquatable<Link>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified start and endcandidate, and a link type.
@@ -21,17 +21,17 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The start candidate.
 		/// </summary>
-		public int StartCandidate { get; }
+		public int StartCandidate { get; init; }
 
 		/// <summary>
 		/// The end candidate.
 		/// </summary>
-		public int EndCandidate { get; }
+		public int EndCandidate { get; init; }
 
 		/// <summary>
 		/// The link type.
 		/// </summary>
-		public LinkType LinkType { get; }
+		public LinkType LinkType { get; init; }
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>

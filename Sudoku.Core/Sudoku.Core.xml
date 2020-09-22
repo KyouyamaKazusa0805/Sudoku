@@ -2045,45 +2045,6 @@
             that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
             </remarks>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_Addition(Sudoku.Data.GridMap,System.Int32)">
-            <summary>
-            Add a cell into the specified map.
-            </summary>
-            <param name="map">The map.</param>
-            <param name="cell">The cell to remove.</param>
-            <returns>The map after adding.</returns>
-            <remarks>
-            This operator can simplify your code but create a new instance.
-            If you want to consider the performance, please <b>don't</b>
-            use this operator.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.op_Addition(System.Int32,Sudoku.Data.GridMap)">
-            <summary>
-            Add a cell into the specified map.
-            </summary>
-            <param name="map">The map.</param>
-            <param name="cell">The cell to remove.</param>
-            <returns>The map after adding.</returns>
-            <remarks>
-            This operator can simplify your code but create a new instance.
-            If you want to consider the performance, please <b>don't</b>
-            use this operator.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,System.Int32)">
-            <summary>
-            Remove a cell from the specified map.
-            </summary>
-            <param name="map">The map.</param>
-            <param name="cell">The cell to remove.</param>
-            <returns>The map after removing.</returns>
-            <remarks>
-            This operator can simplify your code but create a new instance.
-            If you want to consider the performance, please <b>don't</b>
-            use this operator.
-            </remarks>
-        </member>
         <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Get a <see cref="T:Sudoku.Data.GridMap"/> that contains all <paramref name="left"/> cells

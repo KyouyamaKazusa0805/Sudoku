@@ -102,7 +102,7 @@ namespace Sudoku.Data
 		/// </remarks>
 		/// <seealso cref="GridMap(IEnumerable{int}, InitializationOption)"/>
 		public GridMap(int[] offsets, InitializationOption initializeOption)
-			: this((IEnumerable<int>)offsets, initializeOption)
+			: this(offsets.AsEnumerable(), initializeOption)
 		{
 		}
 
@@ -764,9 +764,8 @@ namespace Sudoku.Data
 						{
 							return "{ }";
 						}
-						case 1:
+						case 1 when First is var cell:
 						{
-							int cell = First;
 							return $"r{cell / 9 + 1}c{cell % 9 + 1}";
 						}
 						default:
@@ -1011,60 +1010,6 @@ namespace Sudoku.Data
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator ~(GridMap gridMap) => new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
-
-		/// <summary>
-		/// Add a cell into the specified map.
-		/// </summary>
-		/// <param name="map">The map.</param>
-		/// <param name="cell">The cell to remove.</param>
-		/// <returns>The map after adding.</returns>
-		/// <remarks>
-		/// This operator can simplify your code but create a new instance.
-		/// If you want to consider the performance, please <b>don't</b>
-		/// use this operator.
-		/// </remarks>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator +(GridMap map, int cell)
-		{
-			var result = map;
-			result.AddAnyway(cell);
-
-			return result;
-		}
-
-		/// <summary>
-		/// Add a cell into the specified map.
-		/// </summary>
-		/// <param name="map">The map.</param>
-		/// <param name="cell">The cell to remove.</param>
-		/// <returns>The map after adding.</returns>
-		/// <remarks>
-		/// This operator can simplify your code but create a new instance.
-		/// If you want to consider the performance, please <b>don't</b>
-		/// use this operator.
-		/// </remarks>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator +(int cell, GridMap map) => map + cell;
-
-		/// <summary>
-		/// Remove a cell from the specified map.
-		/// </summary>
-		/// <param name="map">The map.</param>
-		/// <param name="cell">The cell to remove.</param>
-		/// <returns>The map after removing.</returns>
-		/// <remarks>
-		/// This operator can simplify your code but create a new instance.
-		/// If you want to consider the performance, please <b>don't</b>
-		/// use this operator.
-		/// </remarks>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator -(GridMap map, int cell)
-		{
-			var result = map;
-			result.Remove(cell);
-
-			return result;
-		}
 
 		/// <summary>
 		/// Get a <see cref="GridMap"/> that contains all <paramref name="left"/> cells
