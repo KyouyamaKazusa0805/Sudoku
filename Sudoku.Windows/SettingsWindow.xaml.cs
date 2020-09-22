@@ -38,7 +38,7 @@ namespace Sudoku.Windows
 
 
 		/// <summary>
-		/// Initializes an instance with a <see cref="Windows.WindowsSettings"/> instance
+		/// Initializes an instance with a <see cref="WindowsSettings"/> instance
 		/// and a <see cref="ManualSolver"/> instance.
 		/// </summary>
 		/// <param name="settings">The settings instance.</param>
@@ -468,6 +468,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is CheckBox checkBox)
 			{
+				// BUG: Metadata cannot be modified.
 				var type = ((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
 				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
 				attr.IsEnabled = checkBox.IsChecked ?? default;
@@ -478,6 +479,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
 			{
+				// BUG: Metadata cannot be modified.
 				var type = ((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
 				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
 				attr.Priority = value;
