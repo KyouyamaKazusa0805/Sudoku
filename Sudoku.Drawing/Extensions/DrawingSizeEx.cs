@@ -11,7 +11,7 @@ namespace Sudoku.Drawing.Extensions
 	/// <seealso cref="Size"/>
 	/// <seealso cref="SizeF"/>
 	[DebuggerStepThrough]
-	public static class SizeEx
+	public static class DrawingSizeEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="this">(<see langword="this"/> parameter) The size instance.</param>

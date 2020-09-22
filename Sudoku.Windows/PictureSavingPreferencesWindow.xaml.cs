@@ -66,7 +66,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the settings in main window.
 		/// </summary>
-		private readonly Settings _settings;
+		private readonly WindowsSettings _settings;
 
 		/// <summary>
 		/// Indicates the target painter.
@@ -85,7 +85,7 @@ namespace Sudoku.Windows
 		/// <param name="grid">The grid.</param>
 		/// <param name="settings">The settings.</param>
 		/// <param name="targetPainter">The target painter.</param>
-		public PictureSavingPreferencesWindow(Grid grid, Settings settings, GridPainter targetPainter)
+		public PictureSavingPreferencesWindow(Grid grid, WindowsSettings settings, GridPainter targetPainter)
 		{
 			InitializeComponent();
 

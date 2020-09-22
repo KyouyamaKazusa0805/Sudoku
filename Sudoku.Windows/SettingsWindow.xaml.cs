@@ -38,12 +38,12 @@ namespace Sudoku.Windows
 
 
 		/// <summary>
-		/// Initializes an instance with a <see cref="Windows.Settings"/> instance
+		/// Initializes an instance with a <see cref="Windows.WindowsSettings"/> instance
 		/// and a <see cref="ManualSolver"/> instance.
 		/// </summary>
 		/// <param name="settings">The settings instance.</param>
 		/// <param name="manualSolver">The manual solver.</param>
-		public SettingsWindow(Settings settings, ManualSolver manualSolver)
+		public SettingsWindow(WindowsSettings settings, ManualSolver manualSolver)
 		{
 			InitializeComponent();
 
@@ -58,7 +58,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the result settings.
 		/// </summary>
-		public Settings Settings { get; }
+		public WindowsSettings Settings { get; }
 
 
 		/// <summary>
@@ -169,12 +169,12 @@ namespace Sudoku.Windows
 		/// <param name="sender">The object to trigger the event.</param>
 		/// <param name="settings">The setting target instance.</param>
 		/// <param name="colorIndex">The index.</param>
-		private void HandleColor(object sender, Settings settings, int colorIndex)
+		private void HandleColor(object sender, WindowsSettings settings, int colorIndex)
 		{
 			if (sender is Button button && ColorPicker.ShowDialog(out var color) && color.HasValue)
 			{
 				var target = color.Value.ToDColor();
-				typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, target);
+				typeof(WindowsSettings).GetProperty($"Color{colorIndex}")!.SetValue(settings, target);
 				button.Background = new SolidColorBrush(target.ToWColor());
 			}
 		}

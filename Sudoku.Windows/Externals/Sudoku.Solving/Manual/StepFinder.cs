@@ -37,14 +37,14 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// The settings used.
 		/// </summary>
-		private readonly Settings _settings;
+		private readonly WindowsSettings _settings;
 
 
 		/// <summary>
 		/// Initializes an instance with the specified settings.
 		/// </summary>
 		/// <param name="settings">The settings.</param>
-		public StepFinder(Settings settings) => _settings = settings;
+		public StepFinder(WindowsSettings settings) => _settings = settings;
 
 
 		/// <summary>

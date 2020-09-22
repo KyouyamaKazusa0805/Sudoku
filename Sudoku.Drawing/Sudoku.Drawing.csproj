@@ -11,13 +11,13 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>.\Sudoku.Drawing.xml</DocumentationFile>
-		<DefineConstants>DEBUG; SUDOKU_RECOGNIZING; CSHARP_9_PREVIEW</DefineConstants>
+		<DefineConstants>DEBUG; SUDOKU_RECOGNIZING; CSHARP_9_PREVIEW; AUTHOR_RESERVED</DefineConstants>
 		<NoWarn>IDE0060;1572;1573;1591;1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DocumentationFile>.\Sudoku.Drawing.xml</DocumentationFile>
-		<DefineConstants>SUDOKU_RECOGNIZING; CSHARP_9_PREVIEW</DefineConstants>
+		<DefineConstants>SUDOKU_RECOGNIZING; CSHARP_9_PREVIEW; AUTHOR_RESERVED</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

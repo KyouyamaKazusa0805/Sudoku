@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
-using WSize = System.Windows.Size;
 using DSizeF = System.Drawing.SizeF;
 
 namespace Sudoku.Drawing
@@ -46,15 +44,6 @@ namespace Sudoku.Drawing
 		/// <param name="width">The width.</param>
 		/// <param name="height">The height.</param>
 		public PointConverter(float width, float height) : this(new DSizeF(width, height))
-		{
-		}
-
-		/// <summary>
-		/// Initializes an instance with the specified <see cref="WSize"/>.
-		/// </summary>
-		/// <param name="size">The size.</param>
-		/// <seealso cref="WSize"/>
-		public PointConverter(WSize size) : this(new DSizeF((float)size.Width, (float)size.Height))
 		{
 		}
 

@@ -14,7 +14,7 @@ namespace Sudoku.Windows.Constants
 	internal static class Processings
 	{
 		/// <summary>
-		/// The splitter in using <see cref="string.Split(char[]?)"/> or other split methods
+		/// The splitter is used in the method <see cref="string.Split(char[]?)"/> or other split methods
 		/// where the method contain <see cref="char"/>[]? type parameter.
 		/// </summary>
 		/// <seealso cref="string.Split(char[]?)"/>

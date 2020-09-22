@@ -26,6 +26,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the settings used.
 		/// </summary>
-		public Settings Settings { get; private set; } = null!;
+		public WindowsSettings Settings { get; private set; } = null!;
 	}
 }

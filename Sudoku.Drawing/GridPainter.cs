@@ -6,7 +6,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
-using Sudoku.Windows;
 using static System.Drawing.Drawing2D.DashStyle;
 using static System.Drawing.Drawing2D.InterpolationMode;
 using static System.Drawing.FontStyle;
@@ -86,7 +85,7 @@ namespace Sudoku.Drawing
 		public GridMap? FocusedCells { get; set; }
 
 		/// <summary>
-		/// Indicates the <see cref="Windows.Settings"/> instance.
+		/// Indicates the <see cref="Drawing.Settings"/> instance.
 		/// </summary>
 		public Settings Settings { get; }
 

@@ -4,6 +4,72 @@
         <name>Sudoku.Drawing</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Drawing.Extensions.DrawingColorEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Color"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Color"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.DrawingColorEx.Deconstruct(System.Drawing.Color,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The color.</param>
+            <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
+            <param name="r">(<see langword="out"/> parameter) The red value.</param>
+            <param name="g">(<see langword="out"/> parameter) The green value.</param>
+            <param name="b">(<see langword="out"/> parameter) The blue value.</param>
+        </member>
+        <member name="T:Sudoku.Drawing.Extensions.DrawingPointEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Point"/> and <see cref="T:System.Drawing.PointF"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Point"/>
+            <seealso cref="T:System.Drawing.PointF"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.DrawingPointEx.Deconstruct(System.Drawing.Point,System.Int32@,System.Int32@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="x">(<see langword="out"/> parameter) The x component.</param>
+            <param name="y">(<see langword="out"/> parameter) The y component.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.DrawingPointEx.Deconstruct(System.Drawing.PointF,System.Single@,System.Single@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="x">(<see langword="out"/> parameter) The x component.</param>
+            <param name="y">(<see langword="out"/> parameter) The y component.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.DrawingPointEx.Truncate(System.Drawing.PointF)">
+            <summary>
+            To truncate the point.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The point to truncate.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Drawing.Extensions.DrawingSizeEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Size"/> and <see cref="T:System.Drawing.SizeF"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Size"/>
+            <seealso cref="T:System.Drawing.SizeF"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.DrawingSizeEx.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
+            <param name="width">(<see langword="out"/> parameter) The width.</param>
+            <param name="height">(<see langword="out"/> parameter) The height.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.DrawingSizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
+            <param name="width">(<see langword="out"/> parameter) The width.</param>
+            <param name="height">(<see langword="out"/> parameter) The height.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.DrawingSizeEx.Truncate(System.Drawing.SizeF)">
+            <summary>
+            To truncate the size.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The size.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Drawing.Extensions.GraphicsEx">
             <summary>
             Provides extension methods for <see cref="T:System.Drawing.Graphics"/>.
@@ -67,31 +133,149 @@
             <param name="offset">The offset to zoom in or out.</param>
             <returns>The new rectangle.</returns>
         </member>
-        <member name="T:Sudoku.Drawing.Extensions.SizeEx">
+        <member name="T:Sudoku.Drawing.GridPainter">
             <summary>
-            Provides extension methods on <see cref="T:System.Drawing.Size"/> and <see cref="T:System.Drawing.SizeF"/>.
+            Indicates the grid painter.
             </summary>
-            <seealso cref="T:System.Drawing.Size"/>
-            <seealso cref="T:System.Drawing.SizeF"/>
+            <remarks>
+            Please note that eliminations will be colored with red, but all assignments won't be colored,
+            because they will be colored using another method (draw candidates).
+            </remarks>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
-            <param name="width">(<see langword="out"/> parameter) The width.</param>
-            <param name="height">(<see langword="out"/> parameter) The height.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
-            <param name="width">(<see langword="out"/> parameter) The width.</param>
-            <param name="height">(<see langword="out"/> parameter) The height.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.SizeEx.Truncate(System.Drawing.SizeF)">
+        <member name="F:Sudoku.Drawing.GridPainter.SqrtOf2">
             <summary>
-            To truncate the size.
+            The square root of 2.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The size.</param>
-            <returns>The result.</returns>
+        </member>
+        <member name="F:Sudoku.Drawing.GridPainter.RotateAngle">
+            <summary>
+            The rotate angle (45 degrees, i.e. <c><see cref="F:System.Math.PI"/> / 4</c>).
+            This field is used for rotate the chains if some of them are overlapped.
+            </summary>
+            <seealso cref="F:System.Math.PI"/>
+        </member>
+        <member name="F:Sudoku.Drawing.GridPainter._pointConverter">
+            <summary>
+            Indicates the back field of the property <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,Sudoku.Data.Grid,System.Nullable{Sudoku.Data.GridMap},Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="pointConverter">The point converter.</param>
+            <param name="settings">The instance.</param>
+            <param name="grid">The grid.</param>
+            <param name="focusedCells">The focused cells.</param>
+            <param name="view">The view.</param>
+            <param name="customView">The custom view.</param>
+            <param name="conclusions">The conclusions.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.Width">
+            <summary>
+            Indicates the width.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.Height">
+            <summary>
+            Indicates the height.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.FocusedCells">
+            <summary>
+            Indicates the focused cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.Settings">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Drawing.Settings"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.PointConverter">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Drawing.PointConverter"/> instance.
+            </summary>
+            <value>The converter instance.</value>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.Grid">
+            <summary>
+            Indicates the grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.View">
+            <summary>
+            Indicates the view.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.CustomView">
+            <summary>
+            Indicates the custom view.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.Conclusions">
+            <summary>
+            Indicates the conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.Draw">
+            <summary>
+            To draw the image.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.Draw(System.Drawing.Bitmap,System.Drawing.Graphics)">
+            <summary>
+            To draw the image.
+            </summary>
+            <param name="bitmap">The bitmap result.</param>
+            <param name="g">The graphics instance.</param>
+            <returns>
+            The return value is the same as the parameter <paramref name="bitmap"/> when
+            this parameter is not <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.GetFontByScale(System.String,System.Single,System.Decimal)">
+            <summary>
+            Get the font via name, size and the scale.
+            </summary>
+            <param name="fontName">The font name.</param>
+            <param name="size">The size.</param>
+            <param name="scale">The scale.</param>
+            <returns>The font.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.CutLink(System.Drawing.PointF@,System.Drawing.PointF@,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            To cut the link to let the head and the tail is outside the candidate.
+            </summary>
+            <param name="pt1">(<see langword="ref"/> parameter) The point 1.</param>
+            <param name="pt2">(<see langword="ref"/> parameter) The point 2.</param>
+            <param name="offset">The offset.</param>
+            <param name="cw">The candidate width.</param>
+            <param name="ch">The candidate height.</param>
+            <param name="pt1x">The x value of point 1.</param>
+            <param name="pt1y">The y value of point 1.</param>
+            <param name="pt2x">The x value of point 2.</param>
+            <param name="pt2y">The y value of point 2.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.RotatePoint(System.Drawing.PointF,System.Drawing.PointF@,System.Double)">
+            <summary>
+            Rotate the point.
+            </summary>
+            <param name="pt1">The point 1.</param>
+            <param name="pt2">(<see langword="ref"/> parameter) The point 2.</param>
+            <param name="angle">The angle.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.AdjustPoint(System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF@,System.Drawing.PointF@,System.Double,System.Double,System.Single)">
+            <summary>
+            Adjust the end points of an arrow: the arrow should start and end outside
+            the circular background of the candidate.
+            </summary>
+            <param name="pt1">The point 1.</param>
+            <param name="pt2">The point 2.</param>
+            <param name="p1">(<see langword="out"/> parameter) The point 1.</param>
+            <param name="p2">(<see langword="out"/> parameter) The point 2.</param>
+            <param name="alpha">The angle.</param>
+            <param name="candidateSize">The candidate size.</param>
+            <param name="offset">The offset.</param>
         </member>
         <member name="T:Sudoku.Drawing.MutableView">
             <summary>
@@ -206,6 +390,386 @@
             </summary>
             <param name="inference">The link.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Drawing.PointConverter">
+            <summary>
+            Provides converting operations for <see cref="T:System.Drawing.Point"/> and
+            <see cref="T:System.Drawing.PointF"/> usages in the form. For example, this class
+            will calculate and convert between the drawing coordinates and
+            the mouse coordinates.
+            </summary>
+            <seealso cref="T:System.Drawing.Point"/>
+            <seealso cref="T:System.Drawing.PointF"/>
+        </member>
+        <member name="F:Sudoku.Drawing.PointConverter.Offset">
+            <summary>
+            Indicates the width of the gap between the picture box outline
+            and the sudoku grid outline.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.PointConverter.WhatTheHellOffset">
+            <summary>
+            I don't know why the constant exists.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the width and height.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.#ctor(System.Single,System.Single)">
+            <summary>
+            Initializes an instance with the width and height.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)">
+            <summary>
+            Initializes an instance with the specified <see cref="T:System.Drawing.SizeF"/>.
+            </summary>
+            <param name="size">The size.</param>
+            <seealso cref="T:System.Drawing.SizeF"/>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.GridPoints">
+            <summary>
+            Indicates the absolutely points in grid cross-lines.
+            This property will be assigned later (and not <see langword="null"/>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.ControlSize">
+            <summary>
+            Indicates the control size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.GridSize">
+            <summary>
+            Indicates the grid size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.CellSize">
+            <summary>
+            Indicates the cell size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.CandidateSize">
+            <summary>
+            Indicates the candidate size.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetCellOffset(System.Drawing.PointF)">
+            <summary>
+            Get the focus cell offset via a mouse point.
+            </summary>
+            <param name="point">The mouse point.</param>
+            <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetCandidateOffset(System.Drawing.PointF)">
+            <summary>
+            Get the focus candidate offset via a mouse point.
+            </summary>
+            <param name="point">The mouse point.</param>
+            <returns>The candidate offset.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseCenterOfCandidates(Sudoku.Data.SudokuMap)">
+            <summary>
+            Get the center mouse point of all candidates.
+            </summary>
+            <param name="map">The map of candidates.</param>
+            <returns>The center mouse point.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangleOfCandidates(Sudoku.Data.SudokuMap)">
+            <summary>
+            Get the rectangle from all candidates.
+            </summary>
+            <param name="map">The candidates.</param>
+            <returns>The rectangle.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetMousePointRectangle(System.Int32)">
+            <summary>
+            Get the rectangle (4 mouse points) for the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The rectangle.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetMousePointRectangle(System.Int32,System.Int32)">
+            <summary>
+            Get the rectangle (4 mouse points) for the specified cell
+            and digit of a candidate.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The rectangle.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetMousePointRectangleForRegion(System.Int32)">
+            <summary>
+            Get the rectangle (4 mouse points) for the specified region.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>The rectangle.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the region is less than 0 or greater than 26.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetMousePointInCenter(System.Int32)">
+            <summary>
+            Get the mouse point of the center of a cell via its offset.
+            </summary>
+            <param name="cell">The cell offset.</param>
+            <returns>The mouse point.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetMousePointInCenter(System.Int32,System.Int32)">
+            <summary>
+            Get the mouse point of the center of a cell via its offset and the digit.
+            </summary>
+            <param name="cell">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <returns>The mouse point.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.InitializeSizes(System.Drawing.SizeF)">
+            <summary>
+            Bound with the constructor <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>,
+            <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Single,System.Single)"/> and
+            <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)"/>.
+            </summary>
+            <param name="size">The size.</param>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Single,System.Single)"/>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)"/>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.InitializePoints">
+            <summary>
+            Bound with the constructor <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>,
+            <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Single,System.Single)"/> and
+            <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)"/>.
+            </summary>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Single,System.Single)"/>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)"/>
+        </member>
+        <member name="T:Sudoku.Drawing.Settings">
+            <summary>
+            Provides with a base class for program settings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Settings.CoverBy(Sudoku.Drawing.Settings)">
+            <summary>
+            To cover all settings.
+            </summary>
+            <param name="newSetting">The new settings instance.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Settings.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.ShowCandidates">
+            <summary>
+            <para>Indicates whether the form shows candidates.</para>
+            <para>The value is <see langword="true"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.ValueScale">
+            <summary>
+            <para>Indicates the scale of values.</para>
+            <para>The value is <c>0.9M</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.CandidateScale">
+            <summary>
+            <para>Indicates the scale of candidates.</para>
+            <para>The value is <c>0.3M</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.GridLineWidth">
+            <summary>
+            <para>
+            Indicates the grid line width of the sudoku grid to render.
+            </para>
+            <para>The value is <c>1.5F</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.BlockLineWidth">
+            <summary>
+            <para>
+            Indicates the block line width of the sudoku grid to render.
+            </para>
+            <para>The value is <c>3F</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.GivenFontName">
+            <summary>
+            <para>
+            Indicates the font of given digits to render.
+            </para>
+            <para>
+            The value is <c>"Fira Code"</c> in debug environment,
+            <c>"Arial"</c> in release environment.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.ModifiableFontName">
+            <summary>
+            <para>
+            Indicates the font of modifiable digits to render.
+            </para>
+            <para>
+            The value is <c>"Fira Code"</c> in debug environment,
+            <c>"Arial"</c> in release environment.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.CandidateFontName">
+            <summary>
+            <para>
+            Indicates the font of candidate digits to render.
+            </para>
+            <para>
+            The value is <c>"Fira Code"</c> in debug environment,
+            <c>"Arial"</c> in release environment.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.GivenColor">
+            <summary>
+            <para>Indicates the given digits to render.</para>
+            <para>The value is <see cref="P:System.Drawing.Color.Black"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.ModifiableColor">
+            <summary>
+            <para>Indicates the modifiable digits to render.</para>
+            <para>The value is <see cref="P:System.Drawing.Color.Blue"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.CandidateColor">
+            <summary>
+            <para>Indicates the candidate digits to render.</para>
+            <para>The value is <see cref="P:System.Drawing.Color.DimGray"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.FocusedCellColor">
+            <summary>
+            <para>Indicates the color used for painting for focused cells.</para>
+            <para>
+            The value is <c>#20FFFF00</c> (<see cref="P:System.Drawing.Color.Yellow"/>
+            with alpha <c>32</c>) in default case.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.EliminationColor">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.CannibalismColor">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.ChainColor">
+            <summary>
+            Indicates the chain color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.BackgroundColor">
+            <summary>
+            <para>Indicates the background color of the sudoku grid to render.</para>
+            <para>The value is <see cref="P:System.Drawing.Color.White"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.GridLineColor">
+            <summary>
+            <para>Indicates the grid line color of the sudoku grid to render.</para>
+            <para>The value is <see cref="P:System.Drawing.Color.Black"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.BlockLineColor">
+            <summary>
+            <para>
+            Indicates the block line color of the sudoku grid to render.
+            </para>
+            <para>The value is <see cref="P:System.Drawing.Color.Black"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color1">
+            <summary>
+            Indicates the color 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color2">
+            <summary>
+            Indicates the color 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color3">
+            <summary>
+            Indicates the color 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color4">
+            <summary>
+            Indicates the color 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color5">
+            <summary>
+            Indicates the color 5.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color6">
+            <summary>
+            Indicates the color 6.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color7">
+            <summary>
+            Indicates the color 7.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color8">
+            <summary>
+            Indicates the color 8.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color9">
+            <summary>
+            Indicates the color 9.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color10">
+            <summary>
+            Indicates the color 10.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color11">
+            <summary>
+            Indicates the color 11.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color12">
+            <summary>
+            Indicates the color 12.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color13">
+            <summary>
+            Indicates the color 13.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color14">
+            <summary>
+            Indicates the color 14.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.Color15">
+            <summary>
+            Indicates the color 15.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.PaletteColors">
+            <summary>
+            Indicates the palette colors.
+            </summary>
         </member>
         <member name="T:Sudoku.Drawing.View">
             <summary>

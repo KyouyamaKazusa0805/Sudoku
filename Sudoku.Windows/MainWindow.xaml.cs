@@ -100,7 +100,7 @@ namespace Sudoku.Windows
 			_imageGrid.Height = _imageGrid.Width =
 				Math.Min(_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
 			Settings.GridSize = _gridMain.ColumnDefinitions[0].ActualWidth;
-			_currentPainter.PointConverter = new(_imageGrid.RenderSize);
+			_currentPainter.PointConverter = new(_imageGrid.RenderSize.ToDSizeF());
 
 			UpdateImageGrid();
 		}
@@ -422,7 +422,7 @@ namespace Sudoku.Windows
 				try
 				{
 					fs = new(path, FileMode.Open);
-					Settings = (Settings)new BinaryFormatter().Deserialize(fs);
+					Settings = (WindowsSettings)new BinaryFormatter().Deserialize(fs);
 				}
 				catch
 				{
@@ -435,7 +435,7 @@ namespace Sudoku.Windows
 			}
 			else
 			{
-				Settings.CoverBy(Settings.DefaultSetting);
+				Settings.CoverBy(WindowsSettings.DefaultSetting);
 			}
 		}
 
