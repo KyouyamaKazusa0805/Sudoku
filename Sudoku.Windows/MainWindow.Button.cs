@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving;
@@ -57,17 +58,17 @@ namespace Sudoku.Windows
 					_buttonFindAllSteps.IsEnabled = false;
 					DisableSolvingControls();
 
-					dialog = new();
-					dialog.Show();
-					IEnumerable<IGrouping<string, TechniqueInfo>> s() =>
-						new StepFinder(Settings).Search(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
-					_cacheAllSteps = await Task.Run(s);
-					techniqueGroups = _cacheAllSteps;
+					(dialog = new()).Show();
+					techniqueGroups = _cacheAllSteps = await Task.Run(() => s(this, dialog, _puzzle));
 
 					EnableSolvingControls();
 					SwitchOnGeneratingComboBoxesDisplaying();
 					_buttonFindAllSteps.IsEnabled = true;
 					_textBoxInfo.ClearValue(TextBox.TextProperty);
+
+					static IEnumerable<IGrouping<string, TechniqueInfo>> s(
+						MainWindow @this, ProgressWindow dialog, UndoableGrid g) =>
+						new StepFinder(@this.Settings).Search(g, dialog.DefaultReporting, @this.Settings.LanguageCode);
 				}
 				else
 				{

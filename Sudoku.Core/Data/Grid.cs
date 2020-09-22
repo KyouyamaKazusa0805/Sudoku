@@ -19,6 +19,7 @@ namespace Sudoku.Data
 	/// Encapsulates a basic sudoku grid, which uses mask table to store all information for 81 cells.
 	/// </summary>
 	[DebuggerStepThrough]
+	[DebuggerDisplay("{ToString(\"#0\")}")]
 	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid?>, IFormattable
 	{
 		/// <summary>

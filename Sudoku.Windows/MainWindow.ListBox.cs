@@ -10,8 +10,8 @@ namespace Sudoku.Windows
 		{
 			if (_listBoxPaths.SelectedIndex == -1)
 			{
-				_puzzle = new(_initialPuzzle);
-				UpdateImageGrid();
+				//_puzzle = new(_initialPuzzle);
+				//UpdateImageGrid();
 
 				e.Handled = true;
 				return;
