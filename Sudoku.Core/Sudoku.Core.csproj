@@ -25,8 +25,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Emgu.CV" Version="4.2.0.3662" />
-		<PackageReference Include="Emgu.CV.runtime.windows" Version="4.2.0.3662" />
+		<PackageReference Include="Emgu.CV" Version="4.4.0.4061" />
+		<PackageReference Include="Emgu.CV.runtime.windows" Version="4.4.0.4061" />
 		<PackageReference Include="System.Drawing.Common" Version="4.7.0" />
 	</ItemGroup>
 
