@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -15,9 +16,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// Encapsulates a <b>domino loop</b> technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.SkLoop))]
-	[SearcherProperty(96)]
 	public sealed partial class SkLoopTechniqueSearcher : MslsTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(96);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

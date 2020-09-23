@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -8,6 +9,7 @@ using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Solving.Annotations.DisabledReason;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -15,9 +17,12 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// Encapsulates a <b>guardian</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Guardian))]
-	[SearcherProperty(55, IsEnabled = false, DisabledReason = DisabledReason.HasBugs)]
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(55) { IsEnabled = false, DisabledReason = HasBugs };
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

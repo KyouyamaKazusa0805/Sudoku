@@ -258,6 +258,11 @@
             This method is equivalent to the bottom-level method name called <c>op_LessThanOrEqual</c>.
             </remarks>
         </member>
+        <member name="T:Sudoku.DocComments.SearchingProperties">
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+        </member>
         <member name="T:Sudoku.DocComments.StaticConstructor">
             <summary>
             Indicates the static constructor.

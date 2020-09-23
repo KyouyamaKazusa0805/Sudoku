@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Data.ConclusionType;
@@ -11,9 +12,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// Encapsulates a <b>pattern overlay method</b> (POM) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Pom))]
-	[SearcherProperty(80, IsEnabled = false)]
 	public sealed class PomTechniqueSearcher : LastResortTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(55) { IsEnabled = false };
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

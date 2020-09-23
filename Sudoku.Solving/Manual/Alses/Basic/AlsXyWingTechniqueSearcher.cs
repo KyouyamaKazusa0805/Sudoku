@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -12,7 +13,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// Encapsulates an <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.AlsXyWing))]
-	[SearcherProperty(60)]
 	public sealed class AlsXyWingTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -20,6 +20,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{
 		}
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(60);
 
 
 		/// <inheritdoc/>

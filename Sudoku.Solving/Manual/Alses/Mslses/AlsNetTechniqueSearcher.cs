@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -15,9 +16,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// </summary>
 	/// <seealso cref="MslsTechniqueSearcher"/>
 	[TechniqueDisplay(nameof(TechniqueCode.Msls))]
-	[SearcherProperty(96)]
 	public sealed partial class AlsNetTechniqueSearcher : MslsTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(96);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -17,13 +18,16 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Encapsulates a <b>senior exocet</b> (SE) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Se))]
-	[SearcherProperty(96)]
 	public sealed class SeniorExocetTechniqueSearcher : ExocetTechniqueSearcher
 	{
 		/// <inheritdoc/>
 		public SeniorExocetTechniqueSearcher(bool checkAdvanced) : base(checkAdvanced)
 		{
 		}
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(96);
 
 
 		/// <inheritdoc/>

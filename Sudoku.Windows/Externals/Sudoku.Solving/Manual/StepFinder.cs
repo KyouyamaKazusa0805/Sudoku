@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Models;
+using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
@@ -26,6 +27,7 @@ using Sudoku.Solving.Manual.Uniqueness.Square;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
+using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving.Manual
 {
@@ -114,7 +116,8 @@ namespace Sudoku.Solving.Manual
 			var progressResult = new TechniqueProgressResult(searchers.Length, globalizationString ?? "en-us");
 			foreach (var searcher in searchers)
 			{
-				if (!searcher.SearcherProperties!.IsEnabled)
+				var props = g(searcher);
+				if (props is { IsEnabled: false, DisabledReason: not DisabledReason.HighAllocation })
 				{
 					continue;
 				}
@@ -147,6 +150,9 @@ namespace Sudoku.Solving.Manual
 
 			// Return the result.
 			return from step in bag.Distinct() group step by step.Name;
+
+			static TechniqueProperties g(TechniqueSearcher searcher) =>
+				(TechniqueProperties)searcher.GetType().GetProperty("Properties", Public | Static)!.GetValue(null)!;
 		}
 	}
 }

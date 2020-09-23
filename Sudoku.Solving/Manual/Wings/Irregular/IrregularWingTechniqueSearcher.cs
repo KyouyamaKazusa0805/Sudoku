@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -14,9 +15,12 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	/// Encapsulates an <b>irregular wing</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.WWing))]
-	[SearcherProperty(44)]
 	public sealed class IrregularWingTechniqueSearcher : TechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(44);
+
+
 		/// <inheritdoc/>
 		/// <remarks>
 		/// In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can

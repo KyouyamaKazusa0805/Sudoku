@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -13,7 +14,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// Encapsulates an <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.AlsWWing))]
-	[SearcherProperty(62)]
 	public sealed class AlsWWingTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -21,6 +21,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{
 		}
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(62);
 
 
 		/// <inheritdoc/>

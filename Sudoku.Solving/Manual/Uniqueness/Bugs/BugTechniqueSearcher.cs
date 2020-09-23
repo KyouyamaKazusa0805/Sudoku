@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
@@ -11,7 +12,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// Encapsulates a <b>bivalue universal grave</b> (BUG) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.BugType1))]
-	[SearcherProperty(56)]
 	public sealed partial class BugTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
@@ -30,6 +30,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// difficult searching.
 		/// </param>
 		public BugTechniqueSearcher(bool extended) => _extended = extended;
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(56);
 
 
 		/// <inheritdoc/>

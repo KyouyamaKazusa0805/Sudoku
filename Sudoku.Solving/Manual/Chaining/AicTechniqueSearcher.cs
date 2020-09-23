@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -18,9 +19,12 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// the redundant backtracking.
 	/// </remarks>
 	[TechniqueDisplay(nameof(TechniqueCode.Aic))]
-	[SearcherProperty(46)]
 	public sealed class AicTechniqueSearcher : ChainingTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(46);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

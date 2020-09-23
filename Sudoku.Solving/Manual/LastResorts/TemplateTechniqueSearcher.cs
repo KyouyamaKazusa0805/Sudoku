@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
@@ -14,7 +15,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// Encapsulates a <b>template</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.TemplateSet))]
-	[SearcherProperty(80, IsEnabled = false)]
 	public sealed class TemplateTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -30,6 +30,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// Indicates whether the technique searcher checks template deletes only.
 		/// </param>
 		public TemplateTechniqueSearcher(bool templateDeleteOnly) => _templateDeleteOnly = templateDeleteOnly;
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(55) { IsEnabled = false };
 
 
 		/// <inheritdoc/>

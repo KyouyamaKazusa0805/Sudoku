@@ -9,6 +9,7 @@ namespace Sudoku.Solving.Annotations
 	/// after finished. 
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, Inherited = false)]
+	[Obsolete("Please use the property" + nameof(DisabledReason.HighAllocation) + "instead.", true)]
 	public sealed class HighAllocationAttribute : Attribute
 	{
 	}

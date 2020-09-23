@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -15,9 +16,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.BugMultipleFc))]
-	[SearcherProperty(60)]
 	public sealed class BugMultipleWithFcTechniqueSearcher : UniquenessTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(60);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -17,7 +18,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <b>avoidable rectangle</b> (AR) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.UrType1))]
-	[SearcherProperty(45)]
 	public sealed partial class UrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
@@ -43,6 +43,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="searchExtended">A <see cref="bool"/> value indicating that.</param>
 		public UrTechniqueSearcher(bool allowIncomplete, bool searchExtended) =>
 			(_allowIncompleteUr, _searchExtended) = (allowIncomplete, searchExtended);
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(45);
 
 
 		/// <inheritdoc/>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -14,7 +15,6 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 	/// Encapsulates a <b>regular wing</b> technique solver.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.XyWing))]
-	[SearcherProperty(42)]
 	public sealed class RegularWingTechniqueSearcher : WingTechniqueSearcher
 	{
 		/// <summary>
@@ -28,6 +28,10 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// </summary>
 		/// <param name="size">The size.</param>
 		public RegularWingTechniqueSearcher(int size) => _size = size;
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(42);
 
 
 		/// <inheritdoc/>

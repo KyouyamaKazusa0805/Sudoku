@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -14,7 +15,6 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// Encapsulates an <b>almost locked candidates</b> (ALC) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.AlmostLockedPair))]
-	[SearcherProperty(45)]
 	public sealed class AlcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <summary>
@@ -30,6 +30,10 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// Indicates whether the searcher should check almost locked quadruple.
 		/// </param>
 		public AlcTechniqueSearcher(bool checkAlq) => _checkAlq = checkAlq;
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(45);
 
 
 		/// <inheritdoc/>

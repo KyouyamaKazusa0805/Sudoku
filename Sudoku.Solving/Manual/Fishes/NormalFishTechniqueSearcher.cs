@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -17,9 +18,12 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.XWing))]
-	[SearcherProperty(32)]
 	public sealed class NormalFishTechniqueSearcher : FishTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(32);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

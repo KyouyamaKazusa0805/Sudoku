@@ -971,14 +971,14 @@ namespace Sudoku.Windows
 					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
 					pathList.Add(
 						new()
-					{
-						Foreground = new SolidColorBrush(fore.ToWColor()),
-						Background = new SolidColorBrush(back.ToWColor()),
-						Content =
+						{
+							Foreground = new SolidColorBrush(fore.ToWColor()),
+							Background = new SolidColorBrush(back.ToWColor()),
+							Content =
 								new KeyedTuple<string, int, TechniqueInfo>(
 									$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
-						BorderThickness = default
-					});
+							BorderThickness = default
+						});
 				}
 				_listBoxPaths.ItemsSource = pathList;
 
@@ -1022,11 +1022,11 @@ namespace Sudoku.Windows
 
 				GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
 					new()
-				{
-					Header = header,
-					DisplayMemberBinding = new Binding(name),
-					Width = _tabControlInfo.ActualWidth * widthScale - 4,
-				};
+					{
+						Header = header,
+						DisplayMemberBinding = new Binding(name),
+						Width = _tabControlInfo.ActualWidth * widthScale - 4,
+					};
 			}
 			else
 			{

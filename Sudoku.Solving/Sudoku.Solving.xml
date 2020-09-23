@@ -315,6 +315,11 @@
             of the difficulty among them are too big.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Annotations.DisabledReason.HighAllocation">
+            <summary>
+            Indicates the searcher will cause a lot of memory allocation.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Annotations.HighAllocationAttribute">
             <summary>
             Represents a mark on a searcher which should allocate
@@ -379,6 +384,50 @@
             Converts the current object to the quadruple <see cref="T:System.ValueTuple`4"/>.
             </summary>
             <param name="this">The current instance.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Annotations.TechniqueProperties">
+            <summary>
+            Indicates the properties while searching aiming to <see cref="T:Sudoku.Solving.TechniqueSearcher"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.TechniqueSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified priority.
+            </summary>
+            <param name="priority">The priority.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled. The default value is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.IsReadOnly">
+            <summary>
+            Indicates whether the property is read-only, which cannot be modified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.DisabledReason">
+            <summary>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            The default value is <see cref="F:Sudoku.Solving.Annotations.DisabledReason.LastResort"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Annotations.DisabledReason.LastResort"/>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Annotations.DisabledReason@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="isEnabled">(<see langword="out"/> parameter) Indicates whether the technique is enabled.</param>
+            <param name="isReadOnly">
+            (<see langword="out"/> parameter) Indicates whether the technique cannot modify the priority.
+            </param>
+            <param name="priority">(<see langword="out"/> parameter) Indicates the priority of the technique.</param>
+            <param name="disabledReason">(<see langword="out"/> parameter) Indicates why this technique is disabled.</param>
         </member>
         <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
             <summary>
@@ -1477,6 +1526,9 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -1525,6 +1577,9 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -1613,6 +1668,9 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -1674,6 +1732,9 @@
             <param name="maxPetals">
             Indicates the max petals of instance to search.
             </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -1737,6 +1798,9 @@
             Encapsulates an <b>empty rectangle intersection pair</b> technique.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -1774,6 +1838,9 @@
             the real technique, different with the abstract class <see cref="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueSearcher"/>.
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -1855,6 +1922,9 @@
             <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> will not be used here.
             </remarks>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -1917,6 +1987,9 @@
             <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> will not be used here.
             </remarks>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -1952,6 +2025,9 @@
             <summary>
             Encapsulates a <b>domino loop</b> technique.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -2028,6 +2104,9 @@
             I want to use BFS (breadth-first searching) to search for chains, which can avoid
             the redundant backtracking.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -2367,6 +2446,9 @@
             <summary>
             Initializes an instance with the specified information.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -2985,6 +3067,9 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.#ctor(System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -3246,6 +3331,9 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.#ctor(System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -3482,6 +3570,9 @@
             Indicates whether the puzzle will check POM first.
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -3566,6 +3657,9 @@
             <summary>
             Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -3797,6 +3891,9 @@
             Indicates whether the searcher should check almost locked quadruple.
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -3878,6 +3975,9 @@
             Encapsulates a <b>locked candidates</b> (LC) technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -3934,6 +4034,9 @@
             Initializes an instance with the specified length.
             </summary>
             <param name="length">The length.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -4035,6 +4138,9 @@
             </summary>
             <param name="solution">The solution.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -4092,6 +4198,9 @@
             <summary>
             Encapsulates a <b>pattern overlay method</b> (POM) technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -4159,6 +4268,9 @@
             <param name="templateDeleteOnly">
             Indicates whether the technique searcher checks template deletes only.
             </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -4726,6 +4838,9 @@
             forming an empty rectangle.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -4775,6 +4890,9 @@
             <summary>
             Encapsulates a <b>guardian</b> technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -4836,6 +4954,9 @@
             <summary>
             Encapsulates a two strong links technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -4974,6 +5095,9 @@
             Indicates whether the solver enables last digit.
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
             <remarks>
@@ -5075,6 +5199,9 @@
             Encapsulates a <b>subset</b> technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -5115,6 +5242,9 @@
             <summary>
             Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -5249,6 +5379,9 @@
             technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -5302,6 +5435,9 @@
             the extended BUG checker to search for all true candidates no matter how
             difficult searching.
             </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -5559,6 +5695,9 @@
             Encapsulates an <b>extended rectangle</b> technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -5765,6 +5904,9 @@
             Encapsulates a <b>unique loop</b> (UL) technique searcher.
             In fact the unique loop can also search for URs.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -5983,6 +6125,9 @@
             <remarks>
             All possible heptagons and octagons are in here.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -6348,6 +6493,9 @@
             All different patterns.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -6654,6 +6802,9 @@
             A <see cref="T:System.Boolean"/> value indicating that.
             </param>
             <param name="searchExtended">A <see cref="T:System.Boolean"/> value indicating that.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -7174,6 +7325,9 @@
             Indicates the patterns.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
@@ -7342,6 +7496,9 @@
             Encapsulates an <b>irregular wing</b> technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
             <remarks>
@@ -7451,6 +7608,9 @@
             Initializes an instance with the specified size.
             </summary>
             <param name="size">The size.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
@@ -7613,12 +7773,6 @@
             Get the display name of the type <see cref="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute"/>.
             </summary>
             <seealso cref="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute"/>
-        </member>
-        <member name="P:Sudoku.Solving.TechniqueSearcher.SearcherProperties">
-            <summary>
-            Get the searcher properties of type <see cref="T:Sudoku.Solving.Annotations.SearcherPropertyAttribute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Annotations.SearcherPropertyAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.TechniqueSearcher.EmptyMap">
             <summary>

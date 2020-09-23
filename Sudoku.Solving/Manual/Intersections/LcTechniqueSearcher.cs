@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -13,9 +14,12 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// Encapsulates a <b>locked candidates</b> (LC) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Pointing))]
-	[SearcherProperty(26)]
 	public sealed class LcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(26);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

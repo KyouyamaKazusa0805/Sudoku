@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -16,7 +17,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// Encapsulates a <b>Bowman's bingo</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.BowmanBingo))]
-	[SearcherProperty(80, IsReadOnly = true)]
 	public sealed class BowmanBingoTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -40,6 +40,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="length">The length.</param>
 		public BowmanBingoTechniqueSearcher(int length) => _length = length;
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(55) { IsReadOnly = true };
 
 
 		/// <inheritdoc/>

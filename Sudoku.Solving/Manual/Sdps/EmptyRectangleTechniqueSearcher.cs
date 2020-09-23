@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -13,7 +14,6 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// Encapsulates an empty rectangle technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.EmptyRectangle))]
-	[SearcherProperty(46)]
 	public sealed class EmptyRectangleTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <summary>
@@ -32,6 +32,10 @@ namespace Sudoku.Solving.Manual.Sdps
 			{ 9, 10, 11, 12, 13, 14, 18, 19, 20, 24, 25, 26 },
 			{ 9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22, 23 }
 		};
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(46);
 
 
 		/// <inheritdoc/>

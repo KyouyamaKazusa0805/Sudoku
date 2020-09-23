@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 
@@ -9,9 +10,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// Encapsulates an <b>extended rectangle</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.XrType1))]
-	[SearcherProperty(46)]
 	public sealed partial class XrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(46);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

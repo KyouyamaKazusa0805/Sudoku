@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -14,9 +15,12 @@ namespace Sudoku.Solving.Manual.Alses
 	/// Encapsulates an <b>empty rectangle intersection pair</b> technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Erip))]
-	[SearcherProperty(60)]
 	public sealed class ErIntersectionPairTechniqueSearcher : AlsTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(60);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

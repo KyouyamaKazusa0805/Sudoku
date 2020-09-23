@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using Sudoku.Data;
 using Sudoku.Models;
 using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;
+using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving.Manual
 {
@@ -75,9 +75,7 @@ namespace Sudoku.Solving.Manual
 
 			if (UseCalculationPriority)
 			{
-				Array.Sort(
-					searchers,
-					/*static*/ (a, b) => a.SearcherProperties!.Priority.CompareTo(b.SearcherProperties!.Priority));
+				Array.Sort(searchers, /*static*/ (a, b) => g(a).Priority.CompareTo(g(b).Priority));
 			}
 
 			var bag = new List<TechniqueInfo>();
@@ -94,7 +92,8 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				if (!searcher.SearcherProperties!.IsEnabled)
+				var props = g(searcher);
+				if (props is { IsEnabled: false, DisabledReason: not DisabledReason.HighAllocation })
 				{
 					continue;
 				}
@@ -123,8 +122,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly
-							&& searcher.GetType().GetCustomAttribute<HighAllocationAttribute>() is not null)
+						if (EnableGarbageCollectionForcedly && props.DisabledReason.HasFlag(DisabledReason.HighAllocation))
 						{
 							GC.Collect();
 						}
@@ -176,8 +174,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly
-							&& searcher.GetType().GetCustomAttribute<HighAllocationAttribute>() is not null)
+						if (EnableGarbageCollectionForcedly && props.DisabledReason.HasFlag(DisabledReason.HighAllocation))
 						{
 							GC.Collect();
 						}
@@ -205,6 +202,10 @@ namespace Sudoku.Solving.Manual
 				elapsedTime: stopwatch.Elapsed,
 				steps,
 				stepGrids);
+
+
+			static TechniqueProperties g(TechniqueSearcher type) =>
+				(TechniqueProperties)type.GetType().GetProperty("Properties", Public | Static)!.GetValue(null)!;
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -15,7 +16,6 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// Cannibalistic SdCs can be found also.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Sdc))]
-	[SearcherProperty(50)]
 	public sealed class SdcTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -27,6 +27,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{
 		}
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(50);
 
 
 		/// <inheritdoc/>

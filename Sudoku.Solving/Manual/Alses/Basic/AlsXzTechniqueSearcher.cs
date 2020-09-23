@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -13,7 +14,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// Encapsulates an <b>almost locked set XZ rule</b> (ALS-XZ) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.SinglyLinkedAlsXz))]
-	[SearcherProperty(55)]
 	public sealed class AlsXzTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -21,6 +21,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{
 		}
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(55);
 
 
 		/// <inheritdoc/>

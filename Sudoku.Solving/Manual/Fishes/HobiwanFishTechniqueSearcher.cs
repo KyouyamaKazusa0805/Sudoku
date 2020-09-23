@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -10,6 +11,7 @@ using static System.Math;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Solving.Annotations.DisabledReason;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -17,7 +19,6 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// Encapsulates a <b>Hobiwan's fish</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.FrankenSwordfish))]
-	[SearcherProperty(80, IsEnabled = false, DisabledReason = DisabledReason.TooSlow)]
 	public sealed class HobiwanFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <summary>
@@ -54,6 +55,14 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </param>
 		public HobiwanFishTechniqueSearcher(int size, int exofinCount, int endofinCount, bool checkPom) =>
 			(_size, _exofinCount, _endofinCount, _checkPom) = (size, exofinCount, endofinCount, checkPom);
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(80)
+		{
+			IsEnabled = false,
+			DisabledReason = TooSlow
+		};
 
 
 		/// <inheritdoc/>

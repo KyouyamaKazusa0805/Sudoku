@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
@@ -13,9 +14,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// In fact the unique loop can also search for URs.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.UlType1))]
-	[SearcherProperty(46)]
 	public sealed partial class UlTechniqueSearcher : UniquenessTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(46);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

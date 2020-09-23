@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -16,7 +17,6 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Encapsulates a <b>junior exocet</b> (JE) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Je))]
-	[SearcherProperty(94)]
 	public sealed class JuniorExocetTechniqueSearcher : ExocetTechniqueSearcher
 	{
 		/// <summary>
@@ -34,6 +34,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		public JuniorExocetTechniqueSearcher(bool checkAdvanced) : base(checkAdvanced)
 		{
 		}
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(94);
 
 
 		/// <inheritdoc/>

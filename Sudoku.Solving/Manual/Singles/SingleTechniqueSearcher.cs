@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -13,7 +14,6 @@ namespace Sudoku.Solving.Manual.Singles
 	/// Encapsulates a <b>single</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.NakedSingle))]
-	[SearcherProperty(10, IsReadOnly = true)]
 	public sealed class SingleTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>
@@ -33,6 +33,10 @@ namespace Sudoku.Solving.Manual.Singles
 		/// </param>
 		public SingleTechniqueSearcher(bool enableFullHouse, bool enableLastDigit) =>
 			(_enableFullHouse, _enableLastDigit) = (enableFullHouse, enableLastDigit);
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(10) { IsReadOnly = true };
 
 
 		/// <inheritdoc/>

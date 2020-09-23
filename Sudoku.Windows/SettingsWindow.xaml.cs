@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -143,9 +144,7 @@ namespace Sudoku.Windows
 					from @type in Assembly.Load("Sudoku.Solving").GetTypes()
 					where !@type.IsAbstract && @type.IsSubclassOf(typeof(TechniqueSearcher))
 					select @type
-				let attrInstance = @type.GetCustomAttribute<SearcherPropertyAttribute>()
-				where attrInstance is not null
-				let prior = attrInstance.Priority
+				let prior = GetTechniquePropertiesFromType(@type).Priority
 				orderby prior
 				select new ListBoxItem
 				{
@@ -157,9 +156,9 @@ namespace Sudoku.Windows
 							@type)
 				});
 			_listBoxPriority.SelectedIndex = 0;
-			var (_, priority, selectionType, _) =
+			var (_, priority, selectedType, _) =
 				(KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
-			_checkBoxIsEnabled.IsEnabled = !selectionType.GetCustomAttribute<SearcherPropertyAttribute>()!.IsReadOnly;
+			_checkBoxIsEnabled.IsEnabled = !GetTechniquePropertiesFromType(selectedType).IsReadOnly;
 			_textBoxPriority.Text = priority.ToString();
 		}
 
@@ -455,8 +454,8 @@ namespace Sudoku.Windows
 				SelectedItem: ListBoxItem { Content: KeyedTuple<string, int, Type> triplet } listBoxItem
 			} listBox)
 			{
-				var (_, priority, type, _) = triplet;
-				var (isEnabled, isReadOnly, _, _) = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
+				var (_, priority, @type, _) = triplet;
+				var (isEnabled, isReadOnly, _, _) = GetTechniquePropertiesFromType(@type);
 				_checkBoxIsEnabled.IsChecked = isEnabled;
 				_checkBoxIsEnabled.IsEnabled = !isReadOnly;
 				_textBoxPriority.Text = priority.ToString();
@@ -468,10 +467,9 @@ namespace Sudoku.Windows
 		{
 			if (sender is CheckBox checkBox)
 			{
-				// BUG: Metadata cannot be modified.
-				var type = ((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
-				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
-				attr.IsEnabled = checkBox.IsChecked ?? default;
+				GetTechniquePropertiesFromType(
+					((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3).IsEnabled =
+					checkBox.IsChecked ?? false;
 			}
 		}
 
@@ -479,11 +477,20 @@ namespace Sudoku.Windows
 		{
 			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
 			{
-				// BUG: Metadata cannot be modified.
-				var type = ((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
-				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
-				attr.Priority = value;
+				GetTechniquePropertiesFromType(
+					((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3).Priority =
+					value;
 			}
 		}
+
+
+		/// <summary>
+		/// Get the technique properties instance from the specified type.
+		/// </summary>
+		/// <param name="currentType">The currrent type.</param>
+		/// <returns>The technique properties instance.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static TechniqueProperties GetTechniquePropertiesFromType(Type currentType) =>
+			(TechniqueProperties)currentType.GetProperty("Properties")!.GetValue(null)!;
 	}
 }

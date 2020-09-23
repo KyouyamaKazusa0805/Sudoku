@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Data.CellStatus;
@@ -17,7 +18,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// the terminal grid (I mean, the answer grid).
 	/// </remarks>
 	[TechniqueDisplay(nameof(TechniqueCode.BruteForce))]
-	[SearcherProperty(200)]
 	public sealed class BruteForceTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -50,6 +50,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="solution">The solution.</param>
 		public BruteForceTechniqueSearcher(Grid solution) => _solution = solution;
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(200);
 
 
 		/// <inheritdoc/>

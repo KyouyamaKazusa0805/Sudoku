@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Solving.Constants.Processings;
 
@@ -9,7 +10,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// Encapsulates a <b>Borescoper's deadly pattern</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.BdpType1))]
-	[SearcherProperty(53)]
 	public sealed partial class BdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
@@ -19,6 +19,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// All possible heptagons and octagons are in here.
 		/// </remarks>
 		private static readonly Pattern[] Patterns = new Pattern[14580];
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(53);
 
 
 		/// <inheritdoc/>

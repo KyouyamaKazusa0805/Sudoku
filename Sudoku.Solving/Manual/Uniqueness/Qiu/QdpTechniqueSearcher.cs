@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
@@ -32,13 +33,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// </list>
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.QdpType1))]
-	[SearcherProperty(58)]
 	public sealed partial class QdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
 		/// All different patterns.
 		/// </summary>
 		private static readonly Pattern[] Patterns = new Pattern[972];
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(58);
 
 
 		/// <inheritdoc/>

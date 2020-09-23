@@ -8,6 +8,7 @@ namespace Sudoku.Solving.Annotations
 	/// Marks this attribute to a technique searcher to indicate the property of the settings while searching.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, Inherited = false)]
+	[Obsolete("Because of they are read-only in metadata, please use the static property 'SearcherProperties' instead.", true)]
 	public sealed class SearcherPropertyAttribute : Attribute
 	{
 		/// <summary>

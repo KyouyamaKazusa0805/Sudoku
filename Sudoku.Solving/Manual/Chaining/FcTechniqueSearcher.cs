@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -14,7 +15,6 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.RegionFc))]
-	[SearcherProperty(80)]
 	public sealed class FcTechniqueSearcher : ChainingTechniqueSearcher
 	{
 		/// <summary>
@@ -27,6 +27,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Initializes an instance with the specified information.
 		/// </summary>
 		public FcTechniqueSearcher() => _multiple = true;
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(80);
 
 
 		/// <inheritdoc/>

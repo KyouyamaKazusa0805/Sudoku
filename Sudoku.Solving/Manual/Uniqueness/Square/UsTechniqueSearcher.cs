@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Square
@@ -8,13 +9,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// Encapsulates a <b>uniqueness square</b> (US) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.UsType1))]
-	[SearcherProperty(53)]
 	public sealed partial class UsTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
 		/// Indicates the patterns.
 		/// </summary>
 		private static readonly GridMap[] Patterns = new GridMap[162];
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(53);
 
 
 		/// <inheritdoc/>

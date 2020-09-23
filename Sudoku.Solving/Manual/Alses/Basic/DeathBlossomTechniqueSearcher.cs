@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Solving.Annotations.DisabledReason;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -14,8 +16,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// Encapsulates a <b>death blossom</b> technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.DeathBlossom))]
-	[HighAllocation]
-	[SearcherProperty(80, IsEnabled = false, DisabledReason = DisabledReason.TooSlow)]
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
@@ -38,6 +38,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// </param>
 		public DeathBlossomTechniqueSearcher(bool allowOverlapping, bool alsShowRegions, int maxPetals)
 			: base(allowOverlapping, alsShowRegions, true) => _maxPetals = maxPetals;
+
+
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(80)
+		{
+			IsEnabled = false,
+			DisabledReason = TooSlow | HighAllocation
+		};
 
 
 		/// <inheritdoc/>

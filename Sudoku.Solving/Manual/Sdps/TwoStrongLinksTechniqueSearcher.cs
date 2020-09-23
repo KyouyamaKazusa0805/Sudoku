@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -12,9 +13,12 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// Encapsulates a two strong links technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.TurbotFish))]
-	[SearcherProperty(40)]
 	public sealed class TwoStrongLinksTechniqueSearcher : SdpTechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(40);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{

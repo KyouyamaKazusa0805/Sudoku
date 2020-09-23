@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -13,9 +14,12 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// Encapsulates a <b>subset</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.NakedPair))]
-	[SearcherProperty(30)]
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
+		/// <inheritdoc cref="SearchingProperties"/>
+		public static TechniqueProperties Properties { get; } = new(30);
+
+
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
