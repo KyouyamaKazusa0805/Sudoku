@@ -235,6 +235,7 @@
 	<sys:String x:Key="SettingsSolvingFishMaxExofins">Maximum Exo-fins count:</sys:String>
 	<sys:String x:Key="SettingsSolvingFishMaxEndofins">Maximum Endo-fins count:</sys:String>
 	<sys:String x:Key="SettingsSolvingFishCheckTemplates">Check templates</sys:String>
+	<sys:String x:Key="SettingsSolvingShowDirectLines">Show direct logic for hidden singles and naked singles</sys:String>
 	<sys:String x:Key="SettingsDrawing">Drawing</sys:String>
 	<sys:String x:Key="SettingsDrawingGridLineWidth">Grid line width:</sys:String>
 	<sys:String x:Key="SettingsDrawingBlockLineWidth">Block line width:</sys:String>

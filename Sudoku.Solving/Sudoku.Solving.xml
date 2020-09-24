@@ -4692,6 +4692,15 @@
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.ShowDirectLines">
+            <summary>
+            <para>
+            Indicates whether the solver will show cross hatching information single
+            techniques).
+            </para>
+            <para>The value is <see langword="false"/> in default case.</para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumSize">
             <summary>
             <para>
@@ -5084,7 +5093,12 @@
             Indicates the solver enables these options.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
+        <member name="F:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher._showDirectLines">
+            <summary>
+            Indicates the solver enables these options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with enable options.
             </summary>
@@ -5093,6 +5107,9 @@
             </param>
             <param name="enableLastDigit">
             Indicates whether the solver enables last digit.
+            </param>
+            <param name="showDirectLines">
+            Indicates whether the solver shows the direct lines (cross-hatching information).
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.Properties">

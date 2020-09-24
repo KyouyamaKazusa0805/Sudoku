@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual
 		private TechniqueSearcher[] GetSearchersHodokuMode(Grid solution) =>
 			new TechniqueSearcher[]
 			{
-				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
+				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit, ShowDirectLines),
 				new LcTechniqueSearcher(),
 				new SubsetTechniqueSearcher(),
 				new NormalFishTechniqueSearcher(),
@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual
 		private TechniqueSearcher[][] GetSearchersSeMode(Grid solution) =>
 			new TechniqueSearcher[][]
 			{
-				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
+				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit, ShowDirectLines) },
 				new[] { new LcTechniqueSearcher() },
 				new TechniqueSearcher[]
 				{

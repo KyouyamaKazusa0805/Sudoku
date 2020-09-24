@@ -66,6 +66,15 @@ namespace Sudoku.Windows
 #endif
 
 		/// <summary>
+		/// <para>
+		/// Indicates whether the solver will show cross hatching information single
+		/// techniques).
+		/// </para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// </summary>
+		public bool ShowDirectLines { get; set; } = false;
+
+		/// <summary>
 		/// <para>Indicates the size for picture to save as image files.</para>
 		/// <para>The default value is <c>800F</c>.</para>
 		/// </summary>

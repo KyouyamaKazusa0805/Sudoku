@@ -235,6 +235,7 @@
 	<sys:String x:Key="SettingsSolvingFishMaxExofins">外鱼鳍最多搜索个数：</sys:String>
 	<sys:String x:Key="SettingsSolvingFishMaxEndofins">内鱼鳍最多搜索个数：</sys:String>
 	<sys:String x:Key="SettingsSolvingFishCheckTemplates">预先检查模板删数</sys:String>
+	<sys:String x:Key="SettingsSolvingShowDirectLines">显示排除唯余的排除逻辑</sys:String>
 	<sys:String x:Key="SettingsDrawing">绘图</sys:String>
 	<sys:String x:Key="SettingsDrawingGridLineWidth">格线粗细：</sys:String>
 	<sys:String x:Key="SettingsDrawingBlockLineWidth">宫线粗细：</sys:String>

@@ -30,7 +30,7 @@ namespace Sudoku.Data
 		/// <para>Indicates an empty instance (all bits are 0).</para>
 		/// <para>
 		/// I strongly recommend you <b>should</b> use this instance instead of default constructor
-		/// <see cref="GridMap()"/>.
+		/// <see cref="GridMap()"/> and <see langword="default"/>(<see cref="GridMap"/>).
 		/// </para>
 		/// </summary>
 		/// <seealso cref="GridMap()"/>
@@ -329,6 +329,10 @@ namespace Sudoku.Data
 		/// var map = new GridMap(offset) { [offset] = false };
 		/// </code>
 		/// </param>
+		/// <remarks>
+		/// If you want to use this constructor, please use <see cref="PeerMaps"/> instead.
+		/// </remarks>
+		/// <seealso cref="PeerMaps"/>
 		private GridMap(int offset, bool setItself)
 		{
 			this = PeerMaps[offset];

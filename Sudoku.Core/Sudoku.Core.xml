@@ -1543,7 +1543,7 @@
             <para>Indicates an empty instance (all bits are 0).</para>
             <para>
             I strongly recommend you <b>should</b> use this instance instead of default constructor
-            <see cref="M:Sudoku.Data.GridMap.#ctor"/>.
+            <see cref="M:Sudoku.Data.GridMap.#ctor"/> and <see langword="default"/>(<see cref="T:Sudoku.Data.GridMap"/>).
             </para>
             </summary>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor"/>
@@ -1741,6 +1741,10 @@
             var map = new GridMap(offset) { [offset] = false };
             </code>
             </param>
+            <remarks>
+            If you want to use this constructor, please use <see cref="F:Sudoku.Constants.Processings.PeerMaps"/> instead.
+            </remarks>
+            <seealso cref="F:Sudoku.Constants.Processings.PeerMaps"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int64,System.Int64)">
             <summary>

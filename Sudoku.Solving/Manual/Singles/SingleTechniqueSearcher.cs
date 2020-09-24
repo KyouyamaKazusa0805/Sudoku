@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <summary>
 		/// Indicates the solver enables these options.
 		/// </summary>
-		private readonly bool _enableFullHouse, _enableLastDigit;
+		private readonly bool _enableFullHouse, _enableLastDigit, _showDirectLines;
 
 
 		/// <summary>
@@ -31,8 +31,11 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <param name="enableLastDigit">
 		/// Indicates whether the solver enables last digit.
 		/// </param>
-		public SingleTechniqueSearcher(bool enableFullHouse, bool enableLastDigit) =>
-			(_enableFullHouse, _enableLastDigit) = (enableFullHouse, enableLastDigit);
+		/// <param name="showDirectLines">
+		/// Indicates whether the solver shows the direct lines (cross-hatching information).
+		/// </param>
+		public SingleTechniqueSearcher(bool enableFullHouse, bool enableLastDigit, bool showDirectLines) =>
+			(_enableFullHouse, _enableLastDigit, _showDirectLines) = (enableFullHouse, enableLastDigit, showDirectLines);
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -133,6 +136,43 @@ namespace Sudoku.Solving.Manual.Singles
 						enableAndIsLastDigit = digitCount == 8;
 					}
 
+					List<(GridMap, GridMap)>? directLines = null;
+					if (!enableAndIsLastDigit && _showDirectLines)
+					{
+						directLines = new();
+
+						// Step 1: Get all source cells that makes the result cell cannot be filled with the result digit.
+						GridMap crosshatchingCells = GridMap.Empty, tempMap = GridMap.Empty;
+						foreach (int cell in RegionCells[region])
+						{
+							if (cell != resultCell && grid.GetStatus(cell) == CellStatus.Empty)
+							{
+								tempMap.Add(cell);
+							}
+						}
+						foreach (int cell in tempMap)
+						{
+							foreach (int peerCell in PeerMaps[cell])
+							{
+								if (cell != resultCell && grid[peerCell] == digit)
+								{
+									crosshatchingCells.Add(peerCell);
+								}
+							}
+						}
+
+						// Step 2: Get all removed cells in this region.
+						foreach (int cell in crosshatchingCells)
+						{
+							var removableCells = PeerMaps[cell] & tempMap;
+							if (removableCells.IsNotEmpty)
+							{
+								directLines.Add((new() { cell }, removableCells));
+								tempMap -= removableCells;
+							}
+						}
+					}
+
 					accumulator.Add(
 						new HiddenSingleTechniqueInfo(
 							new Conclusion[] { new(Assignment, resultCell, digit) },
@@ -142,7 +182,8 @@ namespace Sudoku.Solving.Manual.Singles
 									enableAndIsLastDigit ? cellOffsets : null,
 									new DrawingInfo[] { new(0, resultCell * 9 + digit) },
 									enableAndIsLastDigit ? null : new DrawingInfo[] { new(0, region) },
-									null)
+									null,
+									directLines)
 							},
 							resultCell,
 							digit,
@@ -158,10 +199,36 @@ namespace Sudoku.Solving.Manual.Singles
 					&& grid.GetCandidateMask(cell) is var mask && mask.IsPowerOfTwo()
 					&& mask.FindFirstSet() is var digit)
 				{
+					List<(GridMap, GridMap)>? directLines = null;
+					if (_showDirectLines)
+					{
+						directLines = new();
+						for (int i = 0; i < 9; i++)
+						{
+							if (digit != i)
+							{
+								bool flag = false;
+								foreach (int peerCell in PeerMaps[cell])
+								{
+									if (grid[peerCell] == i)
+									{
+										directLines.Add((new() { peerCell }, GridMap.Empty));
+										flag = true;
+										break;
+									}
+								}
+								if (flag)
+								{
+									continue;
+								}
+							}
+						}
+					}
+
 					accumulator.Add(
 						new NakedSingleTechniqueInfo(
 							new Conclusion[] { new(Assignment, cell, digit) },
-							new View[] { new(new DrawingInfo[] { new(0, cell * 9 + digit) }) },
+							new View[] { new(null, new DrawingInfo[] { new(0, cell * 9 + digit) }, null, null, directLines) },
 							cell,
 							digit));
 				}

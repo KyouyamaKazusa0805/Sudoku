@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual
 			var cloneation = grid.Clone();
 
 			var steps = new List<TechniqueInfo>();
-			var searcher = new SingleTechniqueSearcher(false, false);
+			var searcher = new SingleTechniqueSearcher(false, false, false);
 			var bag = new List<TechniqueInfo>();
 			while (!cloneation.HasSolved)
 			{

@@ -208,6 +208,11 @@
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Content="{DynamicResource SettingsSolvingMiscExocetsCheckAdvancedElims}"
 									  Click="CheckBoxCheckAdvancedInExocet_Click"/>
+							<CheckBox Grid.Row="4" Grid.Column="0"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Name="_checkBoxShowDirectLines"
+									  Content="{DynamicResource SettingsSolvingShowDirectLines}"
+									  Click="CheckBoxShowDirectLines_Click"/>
 						</Grid>
 					</GroupBox>
 				</Grid>

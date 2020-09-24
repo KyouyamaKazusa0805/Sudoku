@@ -66,7 +66,7 @@ namespace Sudoku.Solving.Manual
 			var solver = _settings.MainManualSolver;
 			var searchers = new TechniqueSearcher[]
 			{
-				new SingleTechniqueSearcher(solver.EnableFullHouse, solver.EnableLastDigit),
+				new SingleTechniqueSearcher(solver.EnableFullHouse, solver.EnableLastDigit, solver.ShowDirectLines),
 				new LcTechniqueSearcher(),
 				new SubsetTechniqueSearcher(),
 				new NormalFishTechniqueSearcher(),
@@ -98,10 +98,8 @@ namespace Sudoku.Solving.Manual
 				new DeathBlossomTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.MaxPetalsOfDeathBlossom),
 				new HobiwanFishTechniqueSearcher(
-					_settings.MainManualSolver.HobiwanFishMaximumSize,
-					_settings.MainManualSolver.HobiwanFishMaximumExofinsCount,
-					_settings.MainManualSolver.HobiwanFishMaximumEndofinsCount,
-					_settings.MainManualSolver.HobiwanFishCheckTemplates),
+					solver.HobiwanFishMaximumSize, solver.HobiwanFishMaximumExofinsCount,
+					solver.HobiwanFishMaximumEndofinsCount, solver.HobiwanFishCheckTemplates),
 				new FcTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(solver.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),

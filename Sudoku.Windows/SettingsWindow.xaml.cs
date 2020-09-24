@@ -463,6 +463,10 @@ namespace Sudoku.Windows
 			}
 		}
 
+		private void CheckBoxShowDirectLines_Click(object sender, RoutedEventArgs e) =>
+			_assigments += () =>
+			_checkBoxShowDirectLines.IsEnabled = _manualSolver.ShowDirectLines ^= true;
+
 		private void CheckBoxIsEnabled_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is CheckBox checkBox)

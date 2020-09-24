@@ -290,6 +290,12 @@ namespace Sudoku.Drawing
 
 		private void DrawDirectLines(Graphics g, IEnumerable<(GridMap, GridMap)> directLines, float offset)
 		{
+			if (Settings.ShowCandidates)
+			{
+				// Non-direct view (without candidates) don't show this function.
+				return;
+			}
+
 			foreach (var (start, end) in directLines)
 			{
 				var (cw, ch) = PointConverter.CellSize;
@@ -297,15 +303,23 @@ namespace Sudoku.Drawing
 				// Draw start cells (may be a capsule-like shape to block them).
 				{
 					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-					var p1 = PointConverter.GetMousePointInCenter(start.SetAt(0));
-					var p2 = PointConverter.GetMousePointInCenter(start.SetAt(^1));
-					var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset / 3);
+					var p1 = PointConverter.GetMousePointInCenter(start.SetAt(0)) - PointConverter.CellSize / 2;
+					var p2 = PointConverter.GetMousePointInCenter(start.SetAt(^1)) + PointConverter.CellSize / 2;
+					var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset / 2);
 
 					// Step 2: Draw capsule.
-					using var pen = new Pen(Color.FromArgb(192, Color.Black));
-					using var brush = new SolidBrush(Color.FromArgb(64, Color.Black));
-					g.DrawCapsule(pen, rect);
-					g.FillCapsule(brush, rect);
+					using var pen = new Pen(Color.SkyBlue);
+					using var brush = new SolidBrush(Color.FromArgb(192, Color.SkyBlue));
+					if (start.Count == 1)
+					{
+						g.DrawEllipse(pen, rect);
+						g.FillEllipse(brush, rect);
+					}
+					else
+					{
+						g.DrawCapsule(pen, rect);
+						g.FillCapsule(brush, rect);
+					}
 				}
 
 				// Draw end cells (may be using cross sign to represent the current cell cannot fill that digit).
@@ -313,10 +327,10 @@ namespace Sudoku.Drawing
 					foreach (int cell in end)
 					{
 						// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-						var rect = PointConverter.GetMousePointRectangle(cell).Zoom(-offset / 3);
+						var rect = PointConverter.GetMousePointRectangle(cell).Zoom(-offset * 2);
 
 						// Step 2: Draw cross sign.
-						using var pen = new Pen(Color.FromArgb(192, Color.Red), 10F);
+						using var pen = new Pen(Color.FromArgb(192, Color.Red), 5F);
 						g.DrawCrossSign(pen, rect);
 					}
 				}

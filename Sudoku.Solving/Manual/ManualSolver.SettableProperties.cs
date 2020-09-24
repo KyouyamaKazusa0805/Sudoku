@@ -290,6 +290,15 @@ namespace Sudoku.Solving.Manual
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver will show cross hatching information single
+		/// techniques).
+		/// </para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// </summary>
+		public bool ShowDirectLines { get; set; } = false;
+
+		/// <summary>
+		/// <para>
 		/// Indicates what size of the Hobiwan's fish will be searched for.
 		/// </para>
 		/// <para>

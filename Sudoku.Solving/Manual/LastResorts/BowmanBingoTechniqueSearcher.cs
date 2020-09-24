@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// The singles searcher.
 		/// </summary>
-		private readonly SingleTechniqueSearcher _searcher = new(true, true);
+		private readonly SingleTechniqueSearcher _searcher = new(true, true, false);
 
 		/// <summary>
 		/// All temporary conclusions.
