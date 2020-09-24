@@ -310,16 +310,8 @@ namespace Sudoku.Drawing
 					// Step 2: Draw capsule.
 					using var pen = new Pen(Settings.CrosshatchingValuesColor);
 					using var brush = new SolidBrush(Settings.CrosshatchingOutlineColor);
-					if (start.Count == 1)
-					{
-						g.DrawEllipse(pen, rect);
-						g.FillEllipse(brush, rect);
-					}
-					else
-					{
-						g.DrawCapsule(pen, rect);
-						g.FillCapsule(brush, rect);
-					}
+					g.DrawEllipse(pen, rect);
+					g.FillEllipse(brush, rect);
 				}
 
 				// Draw end cells (may be using cross sign to represent the current cell cannot fill that digit).

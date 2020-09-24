@@ -105,6 +105,9 @@ namespace Sudoku.Windows
 			_buttonGridLineColor.Background = new SolidColorBrush(Settings.GridLineColor.ToWColor());
 			_buttonBlockLineColor.Background = new SolidColorBrush(Settings.BlockLineColor.ToWColor());
 			_buttonChainColor.Background = new SolidColorBrush(Settings.ChainColor.ToWColor());
+			_buttonCrosshatchingOutlineColor.Background = new SolidColorBrush(Settings.CrosshatchingOutlineColor.ToWColor());
+			_buttonCrosshatchingValuesColor.Background = new SolidColorBrush(Settings.CrosshatchingValuesColor.ToWColor());
+			_buttonCrossSignColor.Background = new SolidColorBrush(Settings.CrossSignColor.ToWColor());
 			_buttonColor1.Background = new SolidColorBrush(Settings.Color1.ToWColor());
 			_buttonColor2.Background = new SolidColorBrush(Settings.Color2.ToWColor());
 			_buttonColor3.Background = new SolidColorBrush(Settings.Color3.ToWColor());

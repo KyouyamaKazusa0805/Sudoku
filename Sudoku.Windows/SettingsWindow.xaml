@@ -313,6 +313,7 @@
 							Click="ButtonChainColor_Click"/>
 					<Label Grid.Row="3" Grid.Column="3" Content="{DynamicResource SettingsDrawingCrosshathcingOutlineColor}"/>
 					<Button Name="_buttonCrosshatchingOutlineColor" Grid.Row="3" Grid.Column="4"
+							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonCrosshatchingOutlineColor_Click"/>
 					<Label Grid.Row="4" Grid.Column="3" Content="{DynamicResource SettingsDrawingCrosshatchingValuesColor}"/>
 					<Button Name="_buttonCrosshatchingValuesColor" Grid.Row="4" Grid.Column="4"
