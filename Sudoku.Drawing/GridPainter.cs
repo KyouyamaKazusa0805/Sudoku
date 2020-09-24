@@ -305,10 +305,10 @@ namespace Sudoku.Drawing
 					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
 					var p1 = PointConverter.GetMousePointInCenter(start.SetAt(0)) - PointConverter.CellSize / 2;
 					var p2 = PointConverter.GetMousePointInCenter(start.SetAt(^1)) + PointConverter.CellSize / 2;
-					var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset / 2);
+					var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset);
 
 					// Step 2: Draw capsule.
-					using var pen = new Pen(Settings.CrosshatchingValuesColor);
+					using var pen = new Pen(Settings.CrosshatchingValuesColor, 3F);
 					using var brush = new SolidBrush(Settings.CrosshatchingOutlineColor);
 					g.DrawEllipse(pen, rect);
 					g.FillEllipse(brush, rect);

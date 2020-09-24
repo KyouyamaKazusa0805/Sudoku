@@ -766,7 +766,7 @@
             <para>
             Indicates the color of the crosshatching outline.
             </para>
-            <para>The value is <see cref="P:System.Drawing.Color.SkyBlue"/> with the alpha 192 in default case.</para>
+            <para>The value is <see cref="P:System.Drawing.Color.Transparent"/> in default case.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.Settings.CrosshatchingValuesColor">

@@ -152,9 +152,9 @@ namespace Sudoku.Drawing
 		/// <para>
 		/// Indicates the color of the crosshatching outline.
 		/// </para>
-		/// <para>The value is <see cref="Color.SkyBlue"/> with the alpha 192 in default case.</para>
+		/// <para>The value is <see cref="Color.Transparent"/> in default case.</para>
 		/// </summary>
-		public Color CrosshatchingOutlineColor { get; set; } = Color.FromArgb(192, Color.SkyBlue);
+		public Color CrosshatchingOutlineColor { get; set; } = Color.Transparent;
 
 		/// <summary>
 		/// <para>
