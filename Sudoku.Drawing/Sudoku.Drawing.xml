@@ -766,15 +766,17 @@
             <para>
             Indicates the color of the crosshatching outline.
             </para>
-            <para>The value is <see cref="P:System.Drawing.Color.Transparent"/> in default case.</para>
+            <para>The value is <see cref="P:System.Drawing.Color.Black"/> with the alpha 192 in debugger mode,
+            <see cref="P:System.Drawing.Color.SkyBlue"/> with the alpha 192 in release mode in default case.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Settings.CrosshatchingValuesColor">
+        <member name="P:Sudoku.Drawing.Settings.CrosshatchingInnerColor">
             <summary>
             <para>
-            Indicates the color of the crosshatching values.
+            Indicates the color of the crosshatching inner.
             </para>
-            <para>The value is <see cref="P:System.Drawing.Color.SkyBlue"/> in default case.</para>
+            <para>The value is <see cref="P:System.Drawing.Color.Transparent"/> in debugger mode,
+            <see cref="P:System.Drawing.Color.SkyBlue"/> in release mode in default case.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.Settings.CrossSignColor">

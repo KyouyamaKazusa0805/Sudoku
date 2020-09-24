@@ -106,8 +106,8 @@ namespace Sudoku.Windows
 			_buttonGridLineColor.Background = new SolidColorBrush(Settings.GridLineColor.ToWColor());
 			_buttonBlockLineColor.Background = new SolidColorBrush(Settings.BlockLineColor.ToWColor());
 			_buttonChainColor.Background = new SolidColorBrush(Settings.ChainColor.ToWColor());
-			_buttonCrosshatchingOutlineColor.Background = new SolidColorBrush(Settings.CrosshatchingOutlineColor.ToWColor());
-			_buttonCrosshatchingValuesColor.Background = new SolidColorBrush(Settings.CrosshatchingValuesColor.ToWColor());
+			_buttonCrosshatchingOutlineColor.Background = new SolidColorBrush(Settings.CrosshatchingInnerColor.ToWColor());
+			_buttonCrosshatchingValuesColor.Background = new SolidColorBrush(Settings.CrosshatchingOutlineColor.ToWColor());
 			_buttonCrossSignColor.Background = new SolidColorBrush(Settings.CrossSignColor.ToWColor());
 			_buttonColor1.Background = new SolidColorBrush(Settings.Color1.ToWColor());
 			_buttonColor2.Background = new SolidColorBrush(Settings.Color2.ToWColor());
@@ -396,7 +396,7 @@ namespace Sudoku.Windows
 				_assigments += () =>
 				{
 					var z = color.Value;
-					Settings.CrosshatchingOutlineColor = z.ToDColor();
+					Settings.CrosshatchingInnerColor = z.ToDColor();
 					_buttonCrosshatchingOutlineColor.Background = new SolidColorBrush(z);
 				};
 			}
@@ -409,7 +409,7 @@ namespace Sudoku.Windows
 				_assigments += () =>
 				{
 					var z = color.Value;
-					Settings.CrosshatchingValuesColor = z.ToDColor();
+					Settings.CrosshatchingOutlineColor = z.ToDColor();
 					_buttonCrosshatchingValuesColor.Background = new SolidColorBrush(z);
 				};
 			}

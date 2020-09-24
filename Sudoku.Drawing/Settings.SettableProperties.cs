@@ -152,17 +152,27 @@ namespace Sudoku.Drawing
 		/// <para>
 		/// Indicates the color of the crosshatching outline.
 		/// </para>
-		/// <para>The value is <see cref="Color.Transparent"/> in default case.</para>
+		/// <para>The value is <see cref="Color.Black"/> with the alpha 192 in debugger mode,
+		/// <see cref="Color.SkyBlue"/> with the alpha 192 in release mode in default case.</para>
 		/// </summary>
-		public Color CrosshatchingOutlineColor { get; set; } = Color.Transparent;
+#if AUTHOR_RESERVED
+		public Color CrosshatchingOutlineColor { get; set; } = Color.FromArgb(192, Color.Black);
+#else
+		public Color CrosshatchingOutlineColor { get; set; } = Color.FromArgb(192, Color.SkyBlue);
+#endif
 
 		/// <summary>
 		/// <para>
-		/// Indicates the color of the crosshatching values.
+		/// Indicates the color of the crosshatching inner.
 		/// </para>
-		/// <para>The value is <see cref="Color.SkyBlue"/> in default case.</para>
+		/// <para>The value is <see cref="Color.Transparent"/> in debugger mode,
+		/// <see cref="Color.SkyBlue"/> in release mode in default case.</para>
 		/// </summary>
-		public Color CrosshatchingValuesColor { get; set; } = Color.SkyBlue;
+#if AUTHOR_RESERVED
+		public Color CrosshatchingInnerColor { get; set; } = Color.Transparent;
+#else
+		public Color CrosshatchingInnerColor { get; set; } = Color.SkyBlue;
+#endif
 
 		/// <summary>
 		/// <para>

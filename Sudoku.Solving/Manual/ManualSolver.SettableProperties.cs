@@ -293,9 +293,14 @@ namespace Sudoku.Solving.Manual
 		/// Indicates whether the solver will show cross hatching information single
 		/// techniques).
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>The value is <see langword="true"/> in debugger mode, and
+		/// <see langword="false"/> in release mode in default case.</para>
 		/// </summary>
+#if AUTHOR_RESERVED
+		public bool ShowDirectLines { get; set; } = true;
+#else
 		public bool ShowDirectLines { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>

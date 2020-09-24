@@ -308,8 +308,8 @@ namespace Sudoku.Drawing
 					var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset);
 
 					// Step 2: Draw capsule.
-					using var pen = new Pen(Settings.CrosshatchingValuesColor, 3F);
-					using var brush = new SolidBrush(Settings.CrosshatchingOutlineColor);
+					using var pen = new Pen(Settings.CrosshatchingOutlineColor, 3F);
+					using var brush = new SolidBrush(Settings.CrosshatchingInnerColor);
 					g.DrawEllipse(pen, rect);
 					g.FillEllipse(brush, rect);
 				}

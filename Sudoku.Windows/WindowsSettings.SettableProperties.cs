@@ -70,9 +70,14 @@ namespace Sudoku.Windows
 		/// Indicates whether the solver will show cross hatching information single
 		/// techniques).
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>The value is <see langword="true"/> in debug environment, and
+		/// <see langword="false"/> in release environment in default case.</para>
 		/// </summary>
+#if AUTHOR_RESERVED
+		public bool ShowDirectLines { get; set; } = true;
+#else
 		public bool ShowDirectLines { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>Indicates the size for picture to save as image files.</para>

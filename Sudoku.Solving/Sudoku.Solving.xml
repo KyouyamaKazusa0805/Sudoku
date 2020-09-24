@@ -4698,7 +4698,8 @@
             Indicates whether the solver will show cross hatching information single
             techniques).
             </para>
-            <para>The value is <see langword="false"/> in default case.</para>
+            <para>The value is <see langword="true"/> in debugger mode, and
+            <see langword="false"/> in release mode in default case.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumSize">
