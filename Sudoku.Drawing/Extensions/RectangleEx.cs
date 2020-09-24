@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
+using Sudoku.DocComments;
 
 namespace Sudoku.Drawing.Extensions
 {
@@ -45,5 +46,29 @@ namespace Sudoku.Drawing.Extensions
 			result.Height += offset * 2;
 			return result;
 		}
+
+		/// <summary>
+		/// Truncate the specified rectangle.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
+		/// <returns>The result.</returns>
+		public static Rectangle Truncate(this RectangleF @this) =>
+			new((int)@this.X, (int)@this.Y, (int)@this.Width, (int)@this.Height);
+
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
+		/// <param name="point">(<see langword="out"/> parameter) The point.</param>
+		/// <param name="size">(<see langword="out"/> parameter) The size.</param>
+		public static void Deconstruct(this RectangleF @this, out PointF point, out SizeF size) =>
+			(point, size) = (new(@this.X, @this.Y), new(@this.Size));
+
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
+		/// <param name="x">(<see langword="out"/> parameter) The x.</param>
+		/// <param name="y">(<see langword="out"/> parameter) The y.</param>
+		/// <param name="width">(<see langword="out"/> parameter) The width.</param>
+		/// <param name="height">(<see langword="out"/> parameter) The height.</param>
+		public static void Deconstruct(this RectangleF @this, out float x, out float y, out float width, out float height) =>
+			(x, y, width, height) = (@this.X, @this.Y, @this.Width, @this.Height);
 	}
 }

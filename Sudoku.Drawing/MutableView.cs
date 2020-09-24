@@ -15,48 +15,56 @@ namespace Sudoku.Drawing
 	/// <param name="Candidates">All candidates used.</param>
 	/// <param name="Regions">All regions used.</param>
 	/// <param name="Links">All links used.</param>
+	/// <param name="DirectLines">All direct lines.</param>
 	/// <seealso cref="View"/>
 	[DebuggerStepThrough]
 	public sealed record MutableView(
 		ICollection<DrawingInfo>? Cells, ICollection<DrawingInfo>? Candidates,
-		ICollection<DrawingInfo>? Regions, ICollection<Link>? Links)
+		ICollection<DrawingInfo>? Regions, ICollection<Link>? Links,
+		ICollection<(GridMap Start, GridMap End)>? DirectLines)
 	{
 		/// <inheritdoc cref="DefaultConstructor"/>
-		/// <remarks>
-		/// The constructor is equivalent to code '<c>new MutableView(null, null, null, null)</c>'.
-		/// </remarks>
 		public MutableView()
-			: this(new List<DrawingInfo>(), new List<DrawingInfo>(), new List<DrawingInfo>(), new List<Link>())
+			: this(
+				new List<DrawingInfo>(), new List<DrawingInfo>(), new List<DrawingInfo>(), new List<Link>(),
+				new List<(GridMap, GridMap)>())
 		{
 		}
 
 
 		/// <summary>
-		/// Add the cell into the list.
+		/// Add a cell into the list.
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="cell">The cell.</param>
 		public void AddCell(int id, int cell) => Cells?.Add(new(id, cell));
 
 		/// <summary>
-		/// Add the candidate into the list.
+		/// Add a candidate into the list.
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="candidate">The cell.</param>
 		public void AddCandidate(int id, int candidate) => Candidates?.Add(new(id, candidate));
 
 		/// <summary>
-		/// Add the region into the list.
+		/// Add a region into the list.
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="region">The region.</param>
 		public void AddRegion(int id, int region) => Regions?.Add(new(id, region));
 
 		/// <summary>
-		/// Add the link into the list.
+		/// Add a link into the list.
 		/// </summary>
 		/// <param name="inference">The link.</param>
 		public void AddLink(Link inference) => Links?.Add(inference);
+
+		/// <summary>
+		/// Add a direct link into the list.
+		/// </summary>
+		/// <param name="start">The start map.</param>
+		/// <param name="end">The end map.</param>
+		public void AddDirectLine(GridMap start, GridMap end) => DirectLines?.Add((start, end));
 
 		/// <summary>
 		/// Remove the cell from the list.
@@ -68,21 +76,26 @@ namespace Sudoku.Drawing
 		/// Remove the candidate from the list.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
-		public void RemoveCandidate(int candidate) =>
-			(Candidates as List<DrawingInfo>)?.RemoveAll(p => p.Value == candidate);
+		public void RemoveCandidate(int candidate) => (Candidates as List<DrawingInfo>)?.RemoveAll(p => p.Value == candidate);
 
 		/// <summary>
 		/// Remove the region from the list.
 		/// </summary>
 		/// <param name="region">The region.</param>
-		public void RemoveRegion(int region) =>
-			(Regions as List<DrawingInfo>)?.RemoveAll(p => p.Value == region);
+		public void RemoveRegion(int region) => (Regions as List<DrawingInfo>)?.RemoveAll(p => p.Value == region);
 
 		/// <summary>
 		/// Remove the link from the list.
 		/// </summary>
 		/// <param name="link">The link.</param>
 		public void RemoveLink(Link link) => Links?.Remove(link);
+
+		/// <summary>
+		/// Remove the direct link from the list.
+		/// </summary>
+		/// <param name="start">The start map.</param>
+		/// <param name="end">The end map.</param>
+		public void RemoveDirectLine(GridMap start, GridMap end) => DirectLines?.Remove((start, end));
 
 		/// <summary>
 		/// Clear all elements.
@@ -93,34 +106,43 @@ namespace Sudoku.Drawing
 			Candidates?.Clear();
 			Regions?.Clear();
 			Links?.Clear();
+			DirectLines?.Clear();
 		}
 
 		/// <summary>
-		/// Indicates whether the specified list contains the cell.
+		/// Indicates whether the list contains the specified cell.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsCell(int cell) => Cells?.Any(p => p.Value == cell) ?? false;
 
 		/// <summary>
-		/// Indicates whether the specified list contains the candidate.
+		/// Indicates whether the list contains the specified candidate.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsCandidate(int candidate) => Candidates?.Any(p => p.Value == candidate) ?? false;
 
 		/// <summary>
-		/// Indicates whether the specified list contains the region.
+		/// Indicates whether the list contains the specified region.
 		/// </summary>
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsRegion(int region) => Regions?.Any(p => p.Value == region) ?? false;
 
 		/// <summary>
-		/// Indicates whether the specified list contains the link.
+		/// Indicates whether the list contains the specified link.
 		/// </summary>
 		/// <param name="inference">The link.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsLink(Link inference) => Links?.Contains(inference) ?? false;
+
+		/// <summary>
+		/// Indicates whether the list contains the specified direct line.
+		/// </summary>
+		/// <param name="start">The start map.</param>
+		/// <param name="end">The end map.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		public bool ContainsDirectLine(GridMap start, GridMap end) => DirectLines?.Contains((start, end)) ?? false;
 	}
 }

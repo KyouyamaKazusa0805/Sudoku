@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Drawing.Extensions
 {
@@ -9,6 +10,46 @@ namespace Sudoku.Drawing.Extensions
 	/// </summary>
 	public static class GraphicsEx
 	{
+		/// <summary>
+		/// Draw a cross sign (<c>x</c>).
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+		/// <param name="pen">The pen.</param>
+		/// <param name="rectangle">The rectangle.</param>
+		/// <remarks>
+		/// This method will draw a cross sign and fill with the specified color, so you don't need
+		/// to find any fill methods.
+		/// </remarks>
+		public static void DrawCrossSign(this Graphics @this, Pen pen, RectangleF rectangle)
+		{
+			var (x, y, w, h) = rectangle;
+			PointF p1 = new PointF(x, y + h), p2 = new PointF(x + w, y);
+			PointF p3 = new PointF(x, y), p4 = new PointF(x + w, y + h);
+
+			@this.DrawLine(pen, p1, p2);
+			@this.DrawLine(pen, p3, p4);
+		}
+
+		/// <summary>
+		/// Draw a capsule.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+		/// <param name="pen">The pen.</param>
+		/// <param name="rectangle">The rectangle.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void DrawCapsule(this Graphics @this, Pen pen, RectangleF rectangle) =>
+			@this.DrawRoundedRectangle(pen, rectangle, 0);
+
+		/// <summary>
+		/// Fill a capsule.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+		/// <param name="brush">The brush.</param>
+		/// <param name="rectangle">The rectangle.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void FillCapsule(this Graphics @this, Brush brush, RectangleF rectangle) =>
+			@this.FillRoundedRectangle(brush, rectangle, 0);
+
 		/// <summary>
 		/// Draw a rounded rectangle.
 		/// </summary>

@@ -700,6 +700,18 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int SetAt(int index) => index == 0 ? First : Offsets.ElementAt(index);
 
+		/// <summary>
+		/// Get a n-th index of the <see langword="true"/> bit in this instance.
+		/// </summary>
+		/// <param name="index">The true bit index order.</param>
+		/// <returns>The real index.</returns>
+		/// <remarks>
+		/// If you want to select the first set bit, please use <see cref="First"/> instead.
+		/// </remarks>
+		/// <seealso cref="First"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly int SetAt(Index index) => SetAt(index.GetOffset(Count));
+
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int CompareTo(GridMap other) =>

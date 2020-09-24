@@ -217,6 +217,7 @@ namespace Sudoku.Drawing
 				if (CustomView.Candidates is not null) DrawCandidates(g, CustomView.Candidates, offset);
 				if (CustomView.Regions is not null) DrawRegions(g, CustomView.Regions, offset);
 				if (CustomView.Links is not null) DrawLinks(g, CustomView.Links, offset);
+				if (CustomView.DirectLines is not null) DrawDirectLines(g, CustomView.DirectLines, offset);
 			}
 		}
 
@@ -228,6 +229,7 @@ namespace Sudoku.Drawing
 				if (View.Candidates is not null) DrawCandidates(g, View.Candidates, offset);
 				if (View.Regions is not null) DrawRegions(g, View.Regions, offset);
 				if (View.Links is not null) DrawLinks(g, View.Links, offset);
+				if (View.DirectLines is not null) DrawDirectLines(g, View.DirectLines, offset);
 			}
 
 			if (Conclusions is not null) DrawEliminations(g, Conclusions, offset);
@@ -278,11 +280,44 @@ namespace Sudoku.Drawing
 					case Elimination:
 					{
 						g.FillEllipse(
-							View?.Candidates?.Any(pair => pair.Value == c * 9 + d) ?? false
-								? cannibalBrush
-								: eliminationBrush,
+							View?.Candidates?.Any(pair => pair.Value == c * 9 + d) ?? false ? cannibalBrush : eliminationBrush,
 							PointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));
 						break;
+					}
+				}
+			}
+		}
+
+		private void DrawDirectLines(Graphics g, IEnumerable<(GridMap, GridMap)> directLines, float offset)
+		{
+			foreach (var (start, end) in directLines)
+			{
+				var (cw, ch) = PointConverter.CellSize;
+
+				// Draw start cells (may be a capsule-like shape to block them).
+				{
+					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
+					var p1 = PointConverter.GetMousePointInCenter(start.SetAt(0));
+					var p2 = PointConverter.GetMousePointInCenter(start.SetAt(^1));
+					var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset / 3);
+
+					// Step 2: Draw capsule.
+					using var pen = new Pen(Color.FromArgb(192, Color.Black));
+					using var brush = new SolidBrush(Color.FromArgb(64, Color.Black));
+					g.DrawCapsule(pen, rect);
+					g.FillCapsule(brush, rect);
+				}
+
+				// Draw end cells (may be using cross sign to represent the current cell cannot fill that digit).
+				{
+					foreach (int cell in end)
+					{
+						// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
+						var rect = PointConverter.GetMousePointRectangle(cell).Zoom(-offset / 3);
+
+						// Step 2: Draw cross sign.
+						using var pen = new Pen(Color.FromArgb(192, Color.Red), 10F);
+						g.DrawCrossSign(pen, rect);
 					}
 				}
 			}
@@ -415,9 +450,9 @@ namespace Sudoku.Drawing
 			}
 		}
 
-		private void DrawRegions(Graphics g, IEnumerable<DrawingInfo> regionOffsets, float offset)
+		private void DrawRegions(Graphics g, IEnumerable<DrawingInfo> regions, float offset)
 		{
-			foreach (var (id, region) in regionOffsets)
+			foreach (var (id, region) in regions)
 			{
 				if (Settings.PaletteColors.TryGetValue(id, out var color))
 				{
@@ -427,28 +462,29 @@ namespace Sudoku.Drawing
 			}
 		}
 
-		private void DrawCandidates(Graphics g, IEnumerable<DrawingInfo> candidateOffsets, float offset)
+		private void DrawCandidates(Graphics g, IEnumerable<DrawingInfo> candidates, float offset)
 		{
-			foreach (var (id, candidate) in candidateOffsets)
+			foreach (var (id, candidate) in candidates)
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				if (!(
-					Conclusions?.Any(c =>
-					{
-						var (ttt, ccc, ddd) = c;
-						return ccc == cell && ddd == digit && ttt == Elimination;
-					}) ?? false)
+				if (!(Conclusions?.Any(conc => c(conc, cell, digit)) ?? false)
 					&& Settings.PaletteColors.TryGetValue(id, out var color))
 				{
 					using var brush = new SolidBrush(color);
 					g.FillEllipse(brush, PointConverter.GetMousePointRectangle(cell, digit).Zoom(-offset / 3));
 				}
 			}
+
+			static bool c(in Conclusion conc, int cell, int digit)
+			{
+				var (ttt, ccc, ddd) = conc;
+				return ccc == cell && ddd == digit && ttt == Elimination;
+			}
 		}
 
-		private void DrawCells(Graphics g, IEnumerable<DrawingInfo> cellOffsets)
+		private void DrawCells(Graphics g, IEnumerable<DrawingInfo> cells)
 		{
-			foreach (var (id, cell) in cellOffsets)
+			foreach (var (id, cell) in cells)
 			{
 				if (Settings.PaletteColors.TryGetValue(id, out var color))
 				{
