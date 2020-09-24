@@ -87,6 +87,7 @@ namespace Sudoku.Windows
 			_numericUpDownMaximumExofinsHobiwanFish.CurrentValue = Settings.MainManualSolver.HobiwanFishMaximumExofinsCount;
 			_numericUpDownMaximumEndofinsHobiwanFish.CurrentValue = Settings.MainManualSolver.HobiwanFishMaximumEndofinsCount;
 			_checkBoxHobiwanFishCheckTemplates.IsChecked = Settings.MainManualSolver.HobiwanFishCheckTemplates;
+			_checkBoxShowDirectLines.IsChecked = Settings.ShowDirectLines;
 			_numericUpDownGridLineWidth.CurrentValue = (decimal)Settings.GridLineWidth;
 			_numericUpDownBlockLineWidth.CurrentValue = (decimal)Settings.BlockLineWidth;
 			_numericUpDownValueScale.CurrentValue = Settings.ValueScale;
@@ -507,7 +508,7 @@ namespace Sudoku.Windows
 
 		private void CheckBoxShowDirectLines_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
-			_checkBoxShowDirectLines.IsEnabled = _manualSolver.ShowDirectLines ^= true;
+			_checkBoxShowDirectLines.IsEnabled = Settings.ShowDirectLines = _manualSolver.ShowDirectLines ^= true;
 
 		private void CheckBoxIsEnabled_Click(object sender, RoutedEventArgs e)
 		{
