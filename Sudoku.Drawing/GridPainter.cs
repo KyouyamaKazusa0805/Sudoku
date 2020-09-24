@@ -308,8 +308,8 @@ namespace Sudoku.Drawing
 					var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset / 2);
 
 					// Step 2: Draw capsule.
-					using var pen = new Pen(Color.SkyBlue);
-					using var brush = new SolidBrush(Color.FromArgb(192, Color.SkyBlue));
+					using var pen = new Pen(Settings.CrosshatchingValuesColor);
+					using var brush = new SolidBrush(Settings.CrosshatchingOutlineColor);
 					if (start.Count == 1)
 					{
 						g.DrawEllipse(pen, rect);
@@ -330,7 +330,7 @@ namespace Sudoku.Drawing
 						var rect = PointConverter.GetMousePointRectangle(cell).Zoom(-offset * 2);
 
 						// Step 2: Draw cross sign.
-						using var pen = new Pen(Color.FromArgb(192, Color.Red), 5F);
+						using var pen = new Pen(Settings.CrossSignColor, 5F);
 						g.DrawCrossSign(pen, rect);
 					}
 				}

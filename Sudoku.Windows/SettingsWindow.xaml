@@ -208,7 +208,7 @@
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Content="{DynamicResource SettingsSolvingMiscExocetsCheckAdvancedElims}"
 									  Click="CheckBoxCheckAdvancedInExocet_Click"/>
-							<CheckBox Grid.Row="4" Grid.Column="0"
+							<CheckBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Name="_checkBoxShowDirectLines"
 									  Content="{DynamicResource SettingsSolvingShowDirectLines}"
@@ -311,6 +311,17 @@
 					<Button Name="_buttonChainColor" Grid.Row="2" Grid.Column="4"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonChainColor_Click"/>
+					<Label Grid.Row="3" Grid.Column="3" Content="{DynamicResource SettingsDrawingCrosshathcingOutlineColor}"/>
+					<Button Name="_buttonCrosshatchingOutlineColor" Grid.Row="3" Grid.Column="4"
+							Click="ButtonCrosshatchingOutlineColor_Click"/>
+					<Label Grid.Row="4" Grid.Column="3" Content="{DynamicResource SettingsDrawingCrosshatchingValuesColor}"/>
+					<Button Name="_buttonCrosshatchingValuesColor" Grid.Row="4" Grid.Column="4"
+							Content="{DynamicResource SettingsPaletteChangeColor}"
+							Click="ButtonCrosshatchingValuesColor_Click"/>
+					<Label Grid.Row="5" Grid.Column="3" Content="{DynamicResource SettingsDrawingCrossSignColor}"/>
+					<Button Name="_buttonCrossSignColor" Grid.Row="5" Grid.Column="4"
+							Content="{DynamicResource SettingsPaletteChangeColor}"
+							Click="ButtonCrossSignColor_Click"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="{DynamicResource SettingsPriority}">

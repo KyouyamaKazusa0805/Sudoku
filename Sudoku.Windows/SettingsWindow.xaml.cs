@@ -385,6 +385,45 @@ namespace Sudoku.Windows
 			}
 		}
 
+		private void ButtonCrosshatchingOutlineColor_Click(object sender, RoutedEventArgs e)
+		{
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			{
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.CrosshatchingOutlineColor = z.ToDColor();
+					_buttonCrosshatchingOutlineColor.Background = new SolidColorBrush(z);
+				};
+			}
+		}
+
+		private void ButtonCrosshatchingValuesColor_Click(object sender, RoutedEventArgs e)
+		{
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			{
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.CrosshatchingValuesColor = z.ToDColor();
+					_buttonCrosshatchingValuesColor.Background = new SolidColorBrush(z);
+				};
+			}
+		}
+
+		private void ButtonCrossSignColor_Click(object sender, RoutedEventArgs e)
+		{
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			{
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.CrossSignColor = z.ToDColor();
+					_buttonCrossSignColor.Background = new SolidColorBrush(z);
+				};
+			}
+		}
+
 		private void ButtonColor1_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 1);
 
 		private void ButtonColor2_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 2);

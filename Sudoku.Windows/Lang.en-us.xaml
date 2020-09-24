@@ -253,6 +253,9 @@
 	<sys:String x:Key="SettingsDrawingBlockLineColor">Block line color:</sys:String>
 	<sys:String x:Key="SettingsDrawingChainColor">Chain color:</sys:String>
 	<sys:String x:Key="SettingsDrawingChangeFont">Change font</sys:String>
+	<sys:String x:Key="SettingsDrawingCrosshathcingOutlineColor">Crosshatching outline color:</sys:String>
+	<sys:String x:Key="SettingsDrawingCrosshatchingValuesColor">Crosshatching values color:</sys:String>
+	<sys:String x:Key="SettingsDrawingCrossSignColor">Cross sign color:</sys:String>
 	<sys:String x:Key="SettingsPriority">Priority</sys:String>
 	<sys:String x:Key="SettingsPriorityIsEnabled">Is enabled</sys:String>
 	<sys:String x:Key="SettingsPriorityValue">Priority value:</sys:String>

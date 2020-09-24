@@ -761,6 +761,30 @@
             <para>The value is <see cref="P:System.Drawing.Color.Black"/> in default case.</para>
             </summary>
         </member>
+        <member name="P:Sudoku.Drawing.Settings.CrosshatchingOutlineColor">
+            <summary>
+            <para>
+            Indicates the color of the crosshatching outline.
+            </para>
+            <para>The value is <see cref="P:System.Drawing.Color.SkyBlue"/> with the alpha 192 in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.CrosshatchingValuesColor">
+            <summary>
+            <para>
+            Indicates the color of the crosshatching values.
+            </para>
+            <para>The value is <see cref="P:System.Drawing.Color.SkyBlue"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Settings.CrossSignColor">
+            <summary>
+            <para>
+            Indicates the color of the cross sign.
+            </para>
+            <para>The value is <see cref="P:System.Drawing.Color.Red"/> with the alpha 192 in default case.</para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Drawing.Settings.Color1">
             <summary>
             Indicates the color 1.

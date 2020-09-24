@@ -149,6 +149,30 @@ namespace Sudoku.Drawing
 		public Color BlockLineColor { get; set; } = Color.Black;
 
 		/// <summary>
+		/// <para>
+		/// Indicates the color of the crosshatching outline.
+		/// </para>
+		/// <para>The value is <see cref="Color.SkyBlue"/> with the alpha 192 in default case.</para>
+		/// </summary>
+		public Color CrosshatchingOutlineColor { get; set; } = Color.FromArgb(192, Color.SkyBlue);
+
+		/// <summary>
+		/// <para>
+		/// Indicates the color of the crosshatching values.
+		/// </para>
+		/// <para>The value is <see cref="Color.SkyBlue"/> in default case.</para>
+		/// </summary>
+		public Color CrosshatchingValuesColor { get; set; } = Color.SkyBlue;
+
+		/// <summary>
+		/// <para>
+		/// Indicates the color of the cross sign.
+		/// </para>
+		/// <para>The value is <see cref="Color.Red"/> with the alpha 192 in default case.</para>
+		/// </summary>
+		public Color CrossSignColor { get; set; } = Color.FromArgb(192, Color.Red);
+
+		/// <summary>
 		/// Indicates the color 1.
 		/// </summary>
 		public Color Color1 { get; set; } = Color.FromArgb(63, 218, 101);
