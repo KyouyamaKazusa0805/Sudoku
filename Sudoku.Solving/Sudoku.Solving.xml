@@ -429,6 +429,17 @@
             <param name="priority">(<see langword="out"/> parameter) Indicates the priority of the technique.</param>
             <param name="disabledReason">(<see langword="out"/> parameter) Indicates why this technique is disabled.</param>
         </member>
+        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.GetPropertiesFrom``1">
+            <summary>
+            Get the specified properties using reflection.
+            </summary>
+            <typeparam name="TTechniqueSearcher">The type of the searcher.</typeparam>
+            <returns>
+            The properties instance. If the searcher is <see langword="abstract"/> type
+            or not <see cref="T:Sudoku.Solving.TechniqueSearcher"/> at all,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
         <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.GetPropertiesFrom(Sudoku.Solving.TechniqueSearcher)">
             <summary>
             Get the specified properties using reflection.

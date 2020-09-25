@@ -58,6 +58,18 @@ namespace Sudoku.Solving.Annotations
 		/// <summary>
 		/// Get the specified properties using reflection.
 		/// </summary>
+		/// <typeparam name="TTechniqueSearcher">The type of the searcher.</typeparam>
+		/// <returns>
+		/// The properties instance. If the searcher is <see langword="abstract"/> type
+		/// or not <see cref="TechniqueSearcher"/> at all,
+		/// the return value will be <see langword="null"/>.
+		/// </returns>
+		public static TechniqueProperties? GetPropertiesFrom<TTechniqueSearcher>()
+			where TTechniqueSearcher : TechniqueSearcher => GetPropertiesFrom(typeof(TTechniqueSearcher));
+
+		/// <summary>
+		/// Get the specified properties using reflection.
+		/// </summary>
 		/// <param name="searcher">The searcher.</param>
 		/// <returns>
 		/// The properties instance. If the searcher is <see langword="abstract"/> type,
