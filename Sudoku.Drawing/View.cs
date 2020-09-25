@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -14,7 +13,6 @@ namespace Sudoku.Drawing
 	/// <param name="Regions">All regions used.</param>
 	/// <param name="Links">All links used.</param>
 	/// <param name="DirectLines">All direct lines.</param>
-	[DebuggerStepThrough]
 	public sealed record View(
 		IReadOnlyList<DrawingInfo>? Cells, IReadOnlyList<DrawingInfo>? Candidates,
 		IReadOnlyList<DrawingInfo>? Regions, IReadOnlyList<Link>? Links,

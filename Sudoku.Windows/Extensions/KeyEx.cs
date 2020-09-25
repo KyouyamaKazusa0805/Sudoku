@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using static System.Windows.Input.Key;
 
@@ -9,7 +8,6 @@ namespace Sudoku.Windows.Extensions
 	/// Provides extension methods on <see cref="Key"/>.
 	/// </summary>
 	/// <seealso cref="Key"/>
-	[DebuggerStepThrough]
 	public static class KeyEx
 	{
 		/// <summary>

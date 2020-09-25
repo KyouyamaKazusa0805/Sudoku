@@ -1,8 +1,13 @@
 ﻿using System.Drawing;
 using Sudoku.DocComments;
 
-namespace Sudoku.Drawing.Extensions
+namespace Sudoku.Recognitions.Extensions
 {
+	/// <summary>
+	/// Provides extension methods for <see cref="Size"/> and <see cref="SizeF"/>.
+	/// </summary>
+	/// <seealso cref="Size"/>
+	/// <seealso cref="SizeF"/>
 	public static class SizeEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>

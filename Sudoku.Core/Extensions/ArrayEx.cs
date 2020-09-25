@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
@@ -9,7 +8,6 @@ namespace Sudoku.Extensions
 	/// Provides extension methods on <see cref="Array"/>.
 	/// </summary>
 	/// <seealso cref="Array"/>
-	[DebuggerStepThrough]
 	public static class ArrayEx
 	{
 		/// <summary>

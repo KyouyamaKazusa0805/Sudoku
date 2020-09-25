@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Diagnostics;
 
 namespace Sudoku.Extensions
 {
@@ -7,7 +6,6 @@ namespace Sudoku.Extensions
 	/// Provides extension methods on <see cref="BitArray"/>.
 	/// </summary>
 	/// <seealso cref="BitArray"/>
-	[DebuggerStepThrough]
 	public static class BitArrayEx
 	{
 		/// <summary>

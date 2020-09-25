@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -14,7 +13,6 @@ namespace Sudoku.Drawing.Extensions
 	/// Provides extension methods on <see cref="Bitmap"/>.
 	/// </summary>
 	/// <seealso cref="Bitmap"/>
-	[DebuggerStepThrough]
 	public static class BitmapEx
 	{
 		/// <summary>

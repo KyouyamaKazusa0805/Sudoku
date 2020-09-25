@@ -4,7 +4,11 @@ using Emgu.CV.Structure;
 
 namespace Sudoku.Recognitions.Extensions
 {
-	public static class PointEx
+	/// <summary>
+	/// Provides the extensions methods for point array <see cref="PointF"/>[].
+	/// </summary>
+	/// <seealso cref="PointF"/>
+	public static class PointArrayEx
 	{
 		/// <summary>
 		/// Get true if contour is rectangle with angles within <c>[lowAngle, upAngle]</c> degree.

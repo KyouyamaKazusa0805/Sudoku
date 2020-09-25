@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
@@ -9,7 +8,6 @@ namespace Sudoku.Extensions
 	/// Provides extension methods on <see cref="long"/>.
 	/// </summary>
 	/// <seealso cref="long"/>
-	[DebuggerStepThrough]
 	public static class Int64Ex
 	{
 		/// <inheritdoc cref="Integer.IsPowerOfTwo(Integer)"/>

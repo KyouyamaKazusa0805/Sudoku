@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -7,7 +6,6 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a conclusion representation while solving in logic.
 	/// </summary>
-	[DebuggerStepThrough]
 	public readonly struct Conclusion : IEquatable<Conclusion>
 	{
 		/// <summary>
@@ -24,8 +22,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="conclusionType">The conclusion type.</param>
 		/// <param name="candidate">The candidate offset.</param>
-		public Conclusion(ConclusionType conclusionType, int candidate)
-			: this(conclusionType, candidate / 9, candidate % 9)
+		public Conclusion(ConclusionType conclusionType, int candidate) : this(conclusionType, candidate / 9, candidate % 9)
 		{
 		}
 

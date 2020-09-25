@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
@@ -10,7 +9,6 @@ namespace Sudoku.Drawing.Extensions
 	/// </summary>
 	/// <seealso cref="Size"/>
 	/// <seealso cref="SizeF"/>
-	[DebuggerStepThrough]
 	public static class DrawingSizeEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>

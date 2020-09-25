@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on generic instance.
 	/// </summary>
-	[DebuggerStepThrough]
 	public static class GenericEx
 	{
 		/// <summary>

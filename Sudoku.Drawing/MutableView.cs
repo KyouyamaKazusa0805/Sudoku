@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -17,7 +16,6 @@ namespace Sudoku.Drawing
 	/// <param name="Links">All links used.</param>
 	/// <param name="DirectLines">All direct lines.</param>
 	/// <seealso cref="View"/>
-	[DebuggerStepThrough]
 	public sealed record MutableView(
 		ICollection<DrawingInfo>? Cells, ICollection<DrawingInfo>? Candidates,
 		ICollection<DrawingInfo>? Regions, ICollection<Link>? Links,

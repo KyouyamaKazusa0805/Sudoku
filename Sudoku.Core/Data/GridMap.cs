@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -23,7 +22,6 @@ namespace Sudoku.Data
 	/// and the <see langword="false"/> bit (0) is for the cell not containing
 	/// the digit.
 	/// </remarks>
-	[DebuggerStepThrough]
 	public partial struct GridMap : IComparable<GridMap>, IEnumerable<int>, IEquatable<GridMap>, IFormattable
 	{
 		/// <summary>

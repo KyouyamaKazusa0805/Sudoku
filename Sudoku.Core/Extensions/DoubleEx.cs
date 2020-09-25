@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace Sudoku.Extensions
 {
@@ -7,7 +6,6 @@ namespace Sudoku.Extensions
 	/// Provides extension methods on <see cref="double"/>.
 	/// </summary>
 	/// <seealso cref="double"/>
-	[DebuggerStepThrough]
 	public static class DoubleEx
 	{
 		/// <summary>

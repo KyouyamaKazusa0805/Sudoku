@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -11,7 +10,6 @@ namespace Sudoku.Extensions
 	/// </summary>
 	/// <seealso cref="ICollection{T}"/>
 	/// <seealso cref="IReadOnlyCollection{T}"/>
-	[DebuggerStepThrough]
 	public static class CollectionEx
 	{
 		/// <summary>

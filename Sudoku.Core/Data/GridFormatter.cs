@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Constants;
@@ -12,7 +11,6 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Provides operations for grid formatting.
 	/// </summary>
-	[DebuggerStepThrough]
 	internal sealed partial class GridFormatter
 	{
 		/// <summary>

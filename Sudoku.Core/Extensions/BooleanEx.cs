@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
 {
@@ -7,7 +6,6 @@ namespace Sudoku.Extensions
 	/// Provides extension methods on <see cref="bool"/>.
 	/// </summary>
 	/// <seealso cref="bool"/>
-	[DebuggerStepThrough]
 	public static class BooleanEx
 	{
 		/// <summary>

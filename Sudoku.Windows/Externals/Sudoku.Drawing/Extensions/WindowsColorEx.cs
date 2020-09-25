@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Sudoku.DocComments;
+﻿using Sudoku.DocComments;
 using DColor = System.Drawing.Color;
 using WColor = System.Windows.Media.Color;
 
@@ -9,7 +8,6 @@ namespace Sudoku.Drawing.Extensions
 	/// Provides extension methods on <see cref="WColor"/>.
 	/// </summary>
 	/// <seealso cref="WColor"/>
-	[DebuggerStepThrough]
 	public static class WindowsColorEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>

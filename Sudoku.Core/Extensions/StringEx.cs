@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -10,7 +9,6 @@ namespace Sudoku.Extensions
 	/// Provides extension methods on <see cref="string"/>.
 	/// </summary>
 	/// <seealso cref="string"/>
-	[DebuggerStepThrough]
 	public static class StringEx
 	{
 		/// <summary>

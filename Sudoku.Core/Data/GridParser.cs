@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Linq;
+using System.Text;
+using Sudoku.Constants;
 using Sudoku.Extensions;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridParsingOption;
-using Sudoku.Constants;
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a grid parser.
 	/// </summary>
-	[DebuggerStepThrough]
 	internal sealed class GridParser
 	{
 		/// <summary>

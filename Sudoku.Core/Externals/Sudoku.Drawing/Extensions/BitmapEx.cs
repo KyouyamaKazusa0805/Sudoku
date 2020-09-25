@@ -1,6 +1,6 @@
 ﻿#if SUDOKU_RECOGNIZING
+
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
@@ -20,7 +20,6 @@ namespace Sudoku.Drawing.Extensions
 	/// </a>.
 	/// </remarks>
 	/// <seealso cref="Bitmap"/>
-	[DebuggerStepThrough]
 	public static class BitmapEx
 	{
 		/// <summary>

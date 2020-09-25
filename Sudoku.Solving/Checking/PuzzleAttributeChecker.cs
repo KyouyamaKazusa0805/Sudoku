@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
@@ -12,7 +11,6 @@ namespace Sudoku.Solving.Checking
 	/// <summary>
 	/// Provides some puzzle attributes validation operations.
 	/// </summary>
-	[DebuggerStepThrough]
 	public static class PuzzleAttributeChecker
 	{
 		/// <summary>

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Drawing;
+﻿using System.Drawing;
 using Sudoku.DocComments;
 
 namespace Sudoku.Drawing.Extensions
@@ -8,7 +7,6 @@ namespace Sudoku.Drawing.Extensions
 	/// Provides extension methods on <see cref="Color"/>.
 	/// </summary>
 	/// <seealso cref="Color"/>
-	[DebuggerStepThrough]
 	public static class DrawingColorEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>

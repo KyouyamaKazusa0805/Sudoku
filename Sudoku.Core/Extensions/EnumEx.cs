@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
@@ -8,7 +7,6 @@ namespace Sudoku.Extensions
 	/// Provides extension methods on <see cref="Enum"/>.
 	/// </summary>
 	/// <seealso cref="Enum"/>
-	[DebuggerStepThrough]
 	public static class EnumEx
 	{
 		/// <summary>

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Data.Extensions
@@ -8,7 +7,6 @@ namespace Sudoku.Data.Extensions
 	/// Provides extension methods on <see cref="Grid"/>.
 	/// </summary>
 	/// <seealso cref="Grid"/>
-	[DebuggerStepThrough]
 	public static class GridEx
 	{
 		/// <summary>
@@ -27,6 +25,7 @@ namespace Sudoku.Data.Extensions
 		/// A <see cref="bool"/>? value indicating that.
 		/// </returns>
 		/// <remarks>
+		/// <para>
 		/// The cases of the return value are below:
 		/// <list type="table">
 		/// <item>
@@ -46,14 +45,15 @@ namespace Sudoku.Data.Extensions
 		/// <description>The cell is <b>not</b> an empty cell.</description>
 		/// </item>
 		/// </list>
-		/// </remarks>
-		/// <example>
+		/// </para>
+		/// <para>
 		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
 		/// <code>grid.Exists(candidate) is true</code>
 		/// or
 		/// <code>grid.Exists(candidate) == true</code>
 		/// to decide whether a condition is true.
-		/// </example>
+		/// </para>
+		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool? Exists(this Grid @this, int cell, int digit) =>
 			@this.GetStatus(cell) == Empty && !@this[cell, digit];

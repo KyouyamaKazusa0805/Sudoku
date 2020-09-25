@@ -843,6 +843,7 @@
             A <see cref="T:System.Boolean"/>? value indicating that.
             </returns>
             <remarks>
+            <para>
             The cases of the return value are below:
             <list type="table">
             <item>
@@ -862,14 +863,15 @@
             <description>The cell is <b>not</b> an empty cell.</description>
             </item>
             </list>
-            </remarks>
-            <example>
+            </para>
+            <para>
             Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
             <code>grid.Exists(candidate) is true</code>
             or
             <code>grid.Exists(candidate) == true</code>
             to decide whether a condition is true.
-            </example>
+            </para>
+            </remarks>
         </member>
         <member name="T:Sudoku.Data.Extensions.GridTransformations">
             <summary>
@@ -4724,6 +4726,7 @@
             <see cref="T:System.Char"/> to <see cref="T:System.Int32"/>. If you want to append everything,
             please use the method <see cref="M:Sudoku.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)"/>.
             </remarks>
+            <seealso cref="P:System.Environment.NewLine"/>
             <seealso cref="M:Sudoku.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)"/>
         </member>
         <member name="M:Sudoku.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)">
@@ -5018,12 +5021,6 @@
             </summary>
             <param name="image">(<see langword="this"/> parameter) The image to copy data to.</param>
             <param name="bmp">the bitmap to copy data from.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
-            <param name="width">(<see langword="out"/> parameter) The width.</param>
-            <param name="height">(<see langword="out"/> parameter) The height.</param>
         </member>
         <member name="T:Sudoku.Solving.Annotations.AliasAttribute">
             <summary>
@@ -6701,7 +6698,13 @@
             The name. Return <see langword="null"/> when the specified field does not mark this attribute.
             </returns>
         </member>
-        <member name="M:Sudoku.Recognitions.Extensions.PointEx.IsRectangle(System.Drawing.PointF[],System.Int32,System.Int32,System.Double)">
+        <member name="T:Sudoku.Recognitions.Extensions.PointArrayEx">
+            <summary>
+            Provides the extensions methods for point array <see cref="T:System.Drawing.PointF"/>[].
+            </summary>
+            <seealso cref="T:System.Drawing.PointF"/>
+        </member>
+        <member name="M:Sudoku.Recognitions.Extensions.PointArrayEx.IsRectangle(System.Drawing.PointF[],System.Int32,System.Int32,System.Double)">
             <summary>
             Get true if contour is rectangle with angles within <c>[lowAngle, upAngle]</c> degree.
             The default case is <c>[75, 105]</c> given by <paramref name="lowerAngle"/> and
@@ -6718,6 +6721,19 @@
             <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
             <param name="center">(<see langword="out"/> parameter) The center.</param>
             <param name="size">(<see langword="out"/> parameter) The size.</param>
+        </member>
+        <member name="T:Sudoku.Recognitions.Extensions.SizeEx">
+            <summary>
+            Provides extension methods for <see cref="T:System.Drawing.Size"/> and <see cref="T:System.Drawing.SizeF"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Size"/>
+            <seealso cref="T:System.Drawing.SizeF"/>
+        </member>
+        <member name="M:Sudoku.Recognitions.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
+            <param name="width">(<see langword="out"/> parameter) The width.</param>
+            <param name="height">(<see langword="out"/> parameter) The height.</param>
         </member>
         <member name="T:Sudoku.Recognitions.GridRecognizer">
             <summary>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -10,7 +9,6 @@ namespace Sudoku.Extensions
 	/// Provides extension methods on <see cref="IList{T}"/>.
 	/// </summary>
 	/// <seealso cref="IList{T}"/>
-	[DebuggerStepThrough]
 	public static class ListEx
 	{
 		/// <summary>

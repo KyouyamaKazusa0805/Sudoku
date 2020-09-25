@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Windows;
 using DSize = System.Drawing.Size;
 using DSizeF = System.Drawing.SizeF;
@@ -10,7 +9,6 @@ namespace Sudoku.Drawing.Extensions
 	/// Provides extension methods on <see cref="Size"/>.
 	/// </summary>
 	/// <seealso cref="Size"/>
-	[DebuggerStepThrough]
 	public static class WindowsSizeEx
 	{
 		/// <summary>

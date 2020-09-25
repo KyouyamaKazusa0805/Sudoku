@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
@@ -9,7 +8,6 @@ namespace Sudoku.Extensions
 	/// Provides extension methods on <see cref="StringBuilder"/>.
 	/// </summary>
 	/// <seealso cref="StringBuilder"/>
-	[DebuggerStepThrough]
 	public static class StringBuilderEx
 	{
 		/// <summary>
@@ -54,6 +52,7 @@ namespace Sudoku.Extensions
 		/// <see cref="char"/> to <see cref="int"/>. If you want to append everything,
 		/// please use the method <see cref="AppendLine{T}(StringBuilder, T)"/>.
 		/// </remarks>
+		/// <seealso cref="Environment.NewLine"/>
 		/// <seealso cref="AppendLine{T}(StringBuilder, T)"/>
 		public static StringBuilder AppendLine(this StringBuilder @this, char value) => @this.Append(value).AppendLine();
 

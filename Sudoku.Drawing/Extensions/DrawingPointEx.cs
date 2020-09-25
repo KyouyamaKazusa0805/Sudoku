@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Sudoku.DocComments;
+﻿using Sudoku.DocComments;
 using DPoint = System.Drawing.Point;
 using DPointF = System.Drawing.PointF;
 
@@ -10,7 +9,6 @@ namespace Sudoku.Drawing.Extensions
 	/// </summary>
 	/// <seealso cref="DPoint"/>
 	/// <seealso cref="DPointF"/>
-	[DebuggerStepThrough]
 	public static class DrawingPointEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>

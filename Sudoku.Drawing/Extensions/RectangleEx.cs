@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Drawing;
+﻿using System.Drawing;
 using Sudoku.DocComments;
 
 namespace Sudoku.Drawing.Extensions
@@ -9,7 +8,6 @@ namespace Sudoku.Drawing.Extensions
 	/// </summary>
 	/// <seealso cref="Rectangle"/>
 	/// <seealso cref="RectangleF"/>
-	[DebuggerStepThrough]
 	public static class RectangleEx
 	{
 		/// <summary>

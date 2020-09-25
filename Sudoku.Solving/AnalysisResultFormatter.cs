@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -16,7 +15,6 @@ namespace Sudoku.Solving
 	/// <summary>
 	/// Provides operations for analysis result formatting.
 	/// </summary>
-	[DebuggerStepThrough]
 	internal sealed class AnalysisResultFormatter : IFormattable
 	{
 		/// <summary>
