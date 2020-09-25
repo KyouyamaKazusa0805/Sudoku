@@ -6,7 +6,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
 using Sudoku.Drawing.Extensions;
-using static System.Math;
+using Sudoku.Recognitions.Extensions;
 using static Sudoku.Recognitions.InternalSettings;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 
@@ -73,9 +73,11 @@ namespace Sudoku.Recognitions
 			var cannyEdges = new UMat();
 			CvInvoke.Canny(uimage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
 
+			#region Obsolete code
 			// Another way to process image, but worse. Use only one!
 			//CvInvoke.Threshold(uimage, cannyEdges, 50.0, 100.0, ThresholdType.Binary);
 			//CvInvoke.AdaptiveThreshold(uimage, cannyEdges, 50, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 7, 1);
+			#endregion
 
 			return cannyEdges;
 		}
@@ -102,10 +104,10 @@ namespace Sudoku.Recognitions
 				}
 
 				var shape = GetFourCornerPoints(contours[i].ToArray());
-				if (IsRectangle(shape))
+				if (shape.IsRectangle())
 				{
-					var rect = CvInvoke.MinAreaRect(shape);
-					float area = rect.Size.Height * rect.Size.Width;
+					var (_, (width, height)) = CvInvoke.MinAreaRect(shape);
+					float area = width * height;
 
 					if (area > maxRectArea)
 					{
@@ -190,56 +192,6 @@ namespace Sudoku.Recognitions
 			}
 
 			return corners;
-		}
-
-		/// <summary>
-		/// Get true if contour is rectangle with angles within <c>[lowAngle, upAngle]</c> degree.
-		/// The default case is <c>[75, 105]</c> given by <paramref name="lowerAngle"/> and
-		/// <paramref name="upperAngle"/>.
-		/// </summary>
-		/// <param name="contour">The contour.</param>
-		/// <param name="lowerAngle">The lower angle. The default value is <c>75</c>.</param>
-		/// <param name="upperAngle">The upper angle. The default value is <c>105</c>.</param>
-		/// <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		private bool IsRectangle(PointF[] contour, int lowerAngle = 75, int upperAngle = 105, double ratio = .35)
-		{
-			if (contour.Length > 4)
-			{
-				return false;
-			}
-
-			var sides = new[]
-			{
-				new(contour[0], contour[1]),
-				new(contour[1], contour[3]),
-				new(contour[2], contour[3]),
-				new LineSegment2DF(contour[0], contour[2])
-			};
-
-			// Check angles between common sides.
-			for (int j = 0; j < 4; j++)
-			{
-				double angle = Abs(sides[(j + 1) % sides.Length].GetExteriorAngleDegree(sides[j]));
-				if (angle < lowerAngle || angle > upperAngle)
-				{
-					return false;
-				}
-			}
-
-			// Check ratio between all sides, it cannot be more than allowed.
-			for (int i = 0; i < 4; i++)
-			{
-				for (int j = 0; j < 4; j++)
-				{
-					if (sides[i].Length / sides[j].Length < ratio || sides[i].Length / sides[j].Length > 1 + ratio)
-					{
-						return false;
-					}
-				}
-			}
-
-			return true;
 		}
 	}
 }

@@ -5019,6 +5019,12 @@
             <param name="image">(<see langword="this"/> parameter) The image to copy data to.</param>
             <param name="bmp">the bitmap to copy data from.</param>
         </member>
+        <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
+            <param name="width">(<see langword="out"/> parameter) The width.</param>
+            <param name="height">(<see langword="out"/> parameter) The height.</param>
+        </member>
         <member name="T:Sudoku.Solving.Annotations.AliasAttribute">
             <summary>
             To mark on a enum field to give an alias.
@@ -6695,6 +6701,24 @@
             The name. Return <see langword="null"/> when the specified field does not mark this attribute.
             </returns>
         </member>
+        <member name="M:Sudoku.Recognitions.Extensions.PointEx.IsRectangle(System.Drawing.PointF[],System.Int32,System.Int32,System.Double)">
+            <summary>
+            Get true if contour is rectangle with angles within <c>[lowAngle, upAngle]</c> degree.
+            The default case is <c>[75, 105]</c> given by <paramref name="lowerAngle"/> and
+            <paramref name="upperAngle"/>.
+            </summary>
+            <param name="contour">The contour.</param>
+            <param name="lowerAngle">The lower angle. The default value is <c>75</c>.</param>
+            <param name="upperAngle">The upper angle. The default value is <c>105</c>.</param>
+            <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Recognitions.Extensions.RotateRectEx.Deconstruct(Emgu.CV.Structure.RotatedRect,System.Drawing.PointF@,System.Drawing.SizeF@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
+            <param name="center">(<see langword="out"/> parameter) The center.</param>
+            <param name="size">(<see langword="out"/> parameter) The size.</param>
+        </member>
         <member name="T:Sudoku.Recognitions.GridRecognizer">
             <summary>
             Provides a grid field recognizer. If you want to know what is a <b>field</b>,
@@ -6748,18 +6772,6 @@
             </summary>
             <param name="points">The points.</param>
             <returns>The points.</returns>
-        </member>
-        <member name="M:Sudoku.Recognitions.GridRecognizer.IsRectangle(System.Drawing.PointF[],System.Int32,System.Int32,System.Double)">
-            <summary>
-            Get true if contour is rectangle with angles within <c>[lowAngle, upAngle]</c> degree.
-            The default case is <c>[75, 105]</c> given by <paramref name="lowerAngle"/> and
-            <paramref name="upperAngle"/>.
-            </summary>
-            <param name="contour">The contour.</param>
-            <param name="lowerAngle">The lower angle. The default value is <c>75</c>.</param>
-            <param name="upperAngle">The upper angle. The default value is <c>105</c>.</param>
-            <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="T:Sudoku.Recognitions.InternalServiceProvider">
             <summary>

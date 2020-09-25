@@ -110,9 +110,9 @@ namespace Sudoku.Recognitions
 			string numberText = string.Empty;
 			foreach (var c in characters)
 			{
-				if (!(c.Text is " "))
+				if (c.Text is var t and not " ")
 				{
-					numberText += c.Text;
+					numberText += t;
 				}
 			}
 
