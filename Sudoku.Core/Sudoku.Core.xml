@@ -4219,7 +4219,7 @@
             <returns>All subsets.</returns>
         </member>
         <member name="M:Sudoku.Extensions.ArrayEx.NullableCollection``1(``0[])">
-            <inheritdoc cref="M:Sudoku.Extensions.CollectionEx.NullableCollection``1(System.Collections.Generic.ICollection{``0})"/>
+            <inheritdoc cref="!:CollectionEx.NullableCollection&lt;TNotNull&gt;(ICollection&lt;TNotNull&gt;?)"/>
         </member>
         <member name="T:Sudoku.Extensions.BitArrayEx">
             <summary>
@@ -4393,7 +4393,7 @@
             <param name="other">Another collection.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Extensions.CollectionEx.NullableCollection``1(System.Collections.Generic.ICollection{``0})">
+        <member name="M:Sudoku.Extensions.CollectionEx.NullableCollection``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Get a result collection from a may-be-<see langword="null"/> collection.
             If the collection is <see langword="null"/>, the method will return an empty array
@@ -4404,27 +4404,6 @@
             </typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <returns>The return collection that cannot be <see langword="null"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Extensions.CollectionEx.NullableCollection``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``0})">
-            <summary>
-            Get a result collection from a may-be-<see langword="null"/> collection.
-            If the collection is <see langword="null"/>, the method will return the specified collection
-            that is not <see langword="null"/>.
-            </summary>
-            <typeparam name="TNotNull">
-            The type of each element. The element should be not <see langword="null"/>.
-            </typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="collectionWhenNull">
-            The collection to guarantee the return value cannot be <see langword="null"/>.
-            </param>
-            <returns>The return collection that cannot be <see langword="null"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Extensions.CollectionEx.NullableCollection``1(System.Collections.Generic.IReadOnlyCollection{``0})">
-            <inheritdoc cref="M:Sudoku.Extensions.CollectionEx.NullableCollection``1(System.Collections.Generic.ICollection{``0})"/>
-        </member>
-        <member name="M:Sudoku.Extensions.CollectionEx.NullableCollection``1(System.Collections.Generic.IReadOnlyCollection{``0},System.Collections.Generic.IReadOnlyCollection{``0})">
-            <inheritdoc cref="M:Sudoku.Extensions.CollectionEx.NullableCollection``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``0})"/>
         </member>
         <member name="T:Sudoku.Extensions.DoubleEx">
             <summary>

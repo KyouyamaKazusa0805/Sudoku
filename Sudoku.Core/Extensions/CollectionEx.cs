@@ -116,38 +116,7 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <returns>The return collection that cannot be <see langword="null"/>.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static ICollection<TNotNull> NullableCollection<TNotNull>(
-			this ICollection<TNotNull>? @this) where TNotNull : notnull =>
-			@this.NullableCollection(Array.Empty<TNotNull>());
-
-		/// <summary>
-		/// Get a result collection from a may-be-<see langword="null"/> collection.
-		/// If the collection is <see langword="null"/>, the method will return the specified collection
-		/// that is not <see langword="null"/>.
-		/// </summary>
-		/// <typeparam name="TNotNull">
-		/// The type of each element. The element should be not <see langword="null"/>.
-		/// </typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
-		/// <param name="collectionWhenNull">
-		/// The collection to guarantee the return value cannot be <see langword="null"/>.
-		/// </param>
-		/// <returns>The return collection that cannot be <see langword="null"/>.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static ICollection<TNotNull> NullableCollection<TNotNull>(
-			this ICollection<TNotNull>? @this, ICollection<TNotNull> collectionWhenNull)
-			where TNotNull : notnull => @this ?? collectionWhenNull;
-
-		/// <inheritdoc cref="NullableCollection{TNotNull}(ICollection{TNotNull}?)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReadOnlyCollection<TNotNull> NullableCollection<TNotNull>(
-			this IReadOnlyCollection<TNotNull>? @this) where TNotNull : notnull =>
-			@this.NullableCollection(Array.Empty<TNotNull>());
-
-		/// <inheritdoc cref="NullableCollection{TNotNull}(ICollection{TNotNull}?, ICollection{TNotNull})"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReadOnlyCollection<TNotNull> NullableCollection<TNotNull>(
-			this IReadOnlyCollection<TNotNull>? @this, IReadOnlyCollection<TNotNull> collectionWhenNull)
-			where TNotNull : notnull => @this ?? collectionWhenNull;
+		public static IEnumerable<TNotNull> NullableCollection<TNotNull>(this IEnumerable<TNotNull>? @this)
+			where TNotNull : notnull => @this ?? Array.Empty<TNotNull>();
 	}
 }

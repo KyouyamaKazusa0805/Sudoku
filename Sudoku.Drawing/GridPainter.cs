@@ -181,10 +181,9 @@ namespace Sudoku.Drawing
 				var status = (CellStatus)(mask >> 9 & (int)All);
 				switch (status)
 				{
-					case Empty when Settings.ShowCandidates:
+					case Empty when Settings.ShowCandidates && (short)(~mask & Grid.MaxCandidatesMask) is var candidateMask:
 					{
 						// Draw candidates.
-						short candidateMask = (short)(~mask & Grid.MaxCandidatesMask);
 						foreach (int digit in candidateMask.GetAllSets())
 						{
 							var point = PointConverter.GetMousePointInCenter(cell, digit);
@@ -194,10 +193,9 @@ namespace Sudoku.Drawing
 
 						break;
 					}
-					case Modifiable or Given:
+					case Modifiable or Given when PointConverter.GetMousePointInCenter(cell) is var point:
 					{
 						// Draw values.
-						var point = PointConverter.GetMousePointInCenter(cell);
 						point.Y += vOffsetValue;
 						g.DrawString(
 							(grid[cell] + 1).ToString(), status == Given ? fGiven : fModifiable,
@@ -223,6 +221,8 @@ namespace Sudoku.Drawing
 
 		private void DrawViewIfNeed(Graphics g, float offset)
 		{
+			if (Conclusions is not null) DrawEliminations(g, Conclusions, offset);
+
 			if (View is not null)
 			{
 				if (View.Cells is not null) DrawCells(g, View.Cells);
@@ -231,8 +231,6 @@ namespace Sudoku.Drawing
 				if (View.Links is not null) DrawLinks(g, View.Links, offset);
 				if (View.DirectLines is not null) DrawDirectLines(g, View.DirectLines, offset);
 			}
-
-			if (Conclusions is not null) DrawEliminations(g, Conclusions, offset);
 		}
 
 		private void DrawFocusedCells(Graphics g, GridMap focusedCells)
@@ -270,20 +268,11 @@ namespace Sudoku.Drawing
 			using var cannibalBrush = new SolidBrush(Settings.CannibalismColor);
 			foreach (var (t, c, d) in conclusions)
 			{
-				switch (t)
+				if (t == Elimination)
 				{
-					// Every assignment conclusion will be painted in its technique information view.
-					//case Assignment:
-					//{
-					//	break;
-					//}
-					case Elimination:
-					{
-						g.FillEllipse(
-							View?.Candidates?.Any(pair => pair.Value == c * 9 + d) ?? false ? cannibalBrush : eliminationBrush,
-							PointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));
-						break;
-					}
+					g.FillEllipse(
+						View?.Candidates?.Any(pair => pair.Value == c * 9 + d) ?? false ? cannibalBrush : eliminationBrush,
+						PointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));
 				}
 			}
 		}
@@ -470,15 +459,48 @@ namespace Sudoku.Drawing
 
 		private void DrawCandidates(Graphics g, IEnumerable<DrawingInfo> candidates, float offset)
 		{
+			float cellWidth = PointConverter.CellSize.Width;
+			float candidateWidth = PointConverter.CandidateSize.Width;
+			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
+
+			using var bCandidate = new SolidBrush(Settings.CandidateColor);
+			using var fCandidate = GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
+			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
+
 			foreach (var (id, candidate) in candidates)
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				if (!(Conclusions?.Any(conc => c(conc, cell, digit)) ?? false)
+				if (!(Conclusions?.Any(conc => c(in conc, cell, digit)) ?? false)
 					&& Settings.PaletteColors.TryGetValue(id, out var color))
 				{
+					// In the normal case, I'll draw these circles.
 					using var brush = new SolidBrush(color);
 					g.FillEllipse(brush, PointConverter.GetMousePointRectangle(cell, digit).Zoom(-offset / 3));
+
+					// In direct view, candidates should be drawn also.
+					if (!Settings.ShowCandidates)
+					{
+						d(cell, digit);
+					}
 				}
+			}
+
+			if (!Settings.ShowCandidates)
+			{
+				foreach (var (type, cell, digit) in Conclusions.NullableCollection())
+				{
+					if (type == Elimination)
+					{
+						d(cell, digit);
+					}
+				}
+			}
+
+			void d(int cell, int digit)
+			{
+				var point = PointConverter.GetMousePointInCenter(cell, digit);
+				point.Y += vOffsetCandidate;
+				g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
 			}
 
 			static bool c(in Conclusion conc, int cell, int digit)
