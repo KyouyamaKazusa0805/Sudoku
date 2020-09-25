@@ -23,14 +23,10 @@ namespace Sudoku.Solving
 		/// Get the display name of the type <see cref="TechniqueDisplayAttribute"/>.
 		/// </summary>
 		/// <seealso cref="TechniqueDisplayAttribute"/>
-		public string? DisplayName
-		{
-			get
-			{
-				var type = GetType();
-				return type.IsAbstract ? null : type.GetCustomAttribute<TechniqueDisplayAttribute>()?.DisplayName;
-			}
-		}
+		public string? DisplayName =>
+			GetType() is var type && type.IsAbstract
+				? null
+				: type.GetCustomAttribute<TechniqueDisplayAttribute>()?.DisplayName;
 
 
 		/// <summary>
@@ -139,7 +135,7 @@ namespace Sudoku.Solving
 		/// This method uses reflection to get the specified value.
 		/// </remarks>
 		private static int GetPriority(TechniqueSearcher instance) =>
-			((TechniqueProperties)instance.GetType().GetProperty("Priority", Static)!.GetValue(null)!).Priority;
+			((TechniqueProperties)instance.GetType().GetProperty("Priority", Static | Public)!.GetValue(null)!).Priority;
 
 		/// <summary>
 		/// Internal equals method.

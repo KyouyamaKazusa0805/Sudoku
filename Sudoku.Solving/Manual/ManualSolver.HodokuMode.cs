@@ -8,7 +8,6 @@ using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;
-using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving.Manual
 {
@@ -75,7 +74,9 @@ namespace Sudoku.Solving.Manual
 
 			if (UseCalculationPriority)
 			{
-				Array.Sort(searchers, /*static*/ (a, b) => g(a).Priority.CompareTo(g(b).Priority));
+				Array.Sort(
+					searchers,
+					/*static*/ (a, b) => TechniqueProperties.GetPropertiesFrom(a)!.Priority.CompareTo(TechniqueProperties.GetPropertiesFrom(b)!.Priority));
 			}
 
 			var bag = new List<TechniqueInfo>();
@@ -92,7 +93,7 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				var props = g(searcher);
+				var props = TechniqueProperties.GetPropertiesFrom(searcher)!;
 				if (props is { IsEnabled: false, DisabledReason: not DisabledReason.HighAllocation })
 				{
 					continue;
@@ -202,10 +203,6 @@ namespace Sudoku.Solving.Manual
 				elapsedTime: stopwatch.Elapsed,
 				steps,
 				stepGrids);
-
-
-			static TechniqueProperties g(TechniqueSearcher type) =>
-				(TechniqueProperties)type.GetType().GetProperty("Properties", Public | Static)!.GetValue(null)!;
 		}
 	}
 }

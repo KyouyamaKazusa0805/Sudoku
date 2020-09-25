@@ -129,8 +129,7 @@ namespace Sudoku.Solving
 			}
 
 			// Print solving step statistics (if worth).
-			var solvingStepsGrouped = GetSolvingStepsGrouped()?.ToList();
-			if (solvingStepsGrouped is { Count: not 0 })
+			if (GetSolvingStepsGrouped()?.ToList() is { Count: not 0 } solvingStepsGrouped)
 			{
 				sb.AppendLine(GetValue("AnalysisResultTechniqueUsed"));
 				if (showTechniqueDetail)

@@ -1,6 +1,8 @@
 ﻿#pragma warning disable CA1815
 
+using System;
 using Sudoku.DocComments;
+using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving.Annotations
 {
@@ -51,5 +53,33 @@ namespace Sudoku.Solving.Annotations
 		public void Deconstruct(
 			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason) =>
 			(isEnabled, isReadOnly, priority, disabledReason) = (IsEnabled, IsReadOnly, Priority, DisabledReason);
+
+
+		/// <summary>
+		/// Get the specified properties using reflection.
+		/// </summary>
+		/// <param name="searcher">The searcher.</param>
+		/// <returns>
+		/// The properties instance. If the searcher is <see langword="abstract"/> type,
+		/// the return value will be <see langword="null"/>.
+		/// </returns>
+		public static TechniqueProperties? GetPropertiesFrom(TechniqueSearcher searcher) =>
+			searcher.GetType() is not { IsAbstract: false } type
+				? null
+				: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
+
+		/// <summary>
+		/// Get the specified properties using reflection.
+		/// </summary>
+		/// <param name="type">The type of the specified searcher.</param>
+		/// <returns>
+		/// The properties instance. If the searcher is <see langword="abstract"/> type
+		/// or not <see cref="TechniqueSearcher"/> at all,
+		/// the return value will be <see langword="null"/>.
+		/// </returns>
+		public static TechniqueProperties? GetPropertiesFrom(Type type) =>
+			!type.IsSubclassOf(typeof(TechniqueSearcher)) || type.IsAbstract
+				? null
+				: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
 	}
 }

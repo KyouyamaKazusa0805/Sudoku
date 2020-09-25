@@ -429,6 +429,27 @@
             <param name="priority">(<see langword="out"/> parameter) Indicates the priority of the technique.</param>
             <param name="disabledReason">(<see langword="out"/> parameter) Indicates why this technique is disabled.</param>
         </member>
+        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.GetPropertiesFrom(Sudoku.Solving.TechniqueSearcher)">
+            <summary>
+            Get the specified properties using reflection.
+            </summary>
+            <param name="searcher">The searcher.</param>
+            <returns>
+            The properties instance. If the searcher is <see langword="abstract"/> type,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.GetPropertiesFrom(System.Type)">
+            <summary>
+            Get the specified properties using reflection.
+            </summary>
+            <param name="type">The type of the specified searcher.</param>
+            <returns>
+            The properties instance. If the searcher is <see langword="abstract"/> type
+            or not <see cref="T:Sudoku.Solving.TechniqueSearcher"/> at all,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
         <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
             <summary>
             Provides a solver using backtracking method.

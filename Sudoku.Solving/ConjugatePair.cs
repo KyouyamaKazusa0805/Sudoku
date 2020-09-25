@@ -23,7 +23,7 @@ namespace Sudoku.Solving
 		/// <param name="to">The to cell.</param>
 		/// <param name="digit">The digit.</param>
 		public ConjugatePair(int from, int to, int digit) =>
-			(Digit, From, To, Map) = (digit, from, to, new GridMap { from, to });
+			(Digit, From, To, Map) = (digit, from, to, new() { from, to });
 
 		/// <summary>
 		/// Initializes an instance with the map and the digit.
@@ -68,7 +68,7 @@ namespace Sudoku.Solving
 		public override bool Equals(object? obj) => obj is ConjugatePair comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(ConjugatePair other) => Map == other.Map && Digit == other.Digit;
+		public bool Equals(ConjugatePair other) => (Map, Digit) == (other.Map, other.Digit);
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => Map.GetHashCode() ^ Digit;
