@@ -105,8 +105,7 @@ namespace Sudoku.Solving.Constants
 			var chain = target.Chain;
 			for (int i = 0, count = chain.Count; i < count; i++)
 			{
-				var p = chain[i];
-				if (p.ParentsCount != 0)
+				if (chain[i] is { ParentsCount: not 0 } p)
 				{
 					var pr = p[0];
 					var linkType = (pr.IsOn, p.IsOn) switch
@@ -115,7 +114,7 @@ namespace Sudoku.Solving.Constants
 						(true, false) => Weak,
 						_ => Default
 					};
-					if ((linkType, i) is (Weak, 0))
+					if (linkType == Weak && i == 0)
 					{
 						// Because of forcing chain, the first node will not be drawn.
 						continue;
@@ -147,7 +146,7 @@ namespace Sudoku.Solving.Constants
 		{
 			var result = new List<Link>();
 			var chain = target.Chain;
-			for (int i = showAllLinks ? 0 : 1; i < chain.Count - (showAllLinks ? 0 : 2); i++)
+			for (int i = showAllLinks ? 0 : 1, count = chain.Count - (showAllLinks ? 0 : 2); i < count; i++)
 			{
 				var p = chain[i];
 				for (int j = 0; j < p.ParentsCount; j++)

@@ -34,17 +34,15 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override TechniqueCode TechniqueCode =>
+			Target.Chain switch
 			{
-				var chain = Target.Chain;
-				return IsXChain switch
+				var chain => IsXChain switch
 				{
 					true => TechniqueCode.XChain,
 					_ => (chain[^2].Digit == chain[1].Digit) switch
 					{
-						true => IsXyChain switch { true => TechniqueCode.XyChain, _ => TechniqueCode.Aic },
+						true => IsXyChain ? TechniqueCode.XyChain : TechniqueCode.Aic,
 						false => Conclusions.Count switch
 						{
 							1 => TechniqueCode.DiscontinuousNiceLoop,
@@ -52,14 +50,13 @@ namespace Sudoku.Solving.Manual.Chaining
 							_ => TechniqueCode.Aic
 						}
 					}
-				};
-			}
-		}
+				}
+			};
 
 		/// <summary>
 		/// Indicates whether the specified chain is an X-Chain.
 		/// </summary>
-		private bool IsXChain => /*Target.Chain.Select(n => n.Digit).Distinct().Count() == 1;*/XEnabled && !YEnabled;
+		private bool IsXChain => XEnabled && !YEnabled;
 
 
 		/// <inheritdoc/>

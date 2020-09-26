@@ -72,10 +72,7 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					if (_listBoxPaths.SelectedItem is ListBoxItem
-					{
-						Content: KeyedTuple<string, int, TechniqueInfo> triplet
-					})
+					if (_listBoxPaths.SelectedItem is ListBoxItem { Content: KeyedTuple<string, int, TechniqueInfo> triplet })
 					{
 						Clipboard.SetText(triplet.Item3.ToFullString());
 					}
@@ -114,10 +111,8 @@ namespace Sudoku.Windows
 
 		private void ContextMenuTechniquesApply_Click(object sender, RoutedEventArgs e)
 		{
-			if (sender is MenuItem && _listBoxTechniques is
-			{
-				SelectedItem: ListBoxItem { Content: KeyedTuple<string, TechniqueInfo, bool> { Item3: true } triplet }
-			})
+			if (sender is MenuItem
+				&& _listBoxTechniques is { SelectedItem: ListBoxItem { Content: KeyedTuple<string, TechniqueInfo, bool> { Item3: true } triplet } })
 			{
 				var info = triplet.Item2;
 				if (!Settings.MainManualSolver.CheckConclusionValidityAfterSearched
