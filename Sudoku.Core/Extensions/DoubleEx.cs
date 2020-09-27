@@ -25,7 +25,6 @@ namespace Sudoku.Extensions
 		/// <param name="other">The other value to compare.</param>
 		/// <param name="epsilon">The epsilon value (the minimal differ).</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool NearlyEquals(this double @this, double other, double epsilon) =>
-			Math.Abs(@this - other) < epsilon;
+		public static bool NearlyEquals(this double @this, double other, double epsilon) => Math.Abs(@this - other) < epsilon;
 	}
 }
