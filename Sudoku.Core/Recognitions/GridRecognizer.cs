@@ -136,7 +136,7 @@ namespace Sudoku.Recognitions
 				resultField,
 				CvInvoke.GetPerspectiveTransform(
 					field,
-					new[] { new(0, 0), new(RSize, 0), new(0, RSize), new PointF(RSize, RSize) }),
+					new PointF[] { new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize) }),
 				new(RSize, RSize));
 
 			return resultField;

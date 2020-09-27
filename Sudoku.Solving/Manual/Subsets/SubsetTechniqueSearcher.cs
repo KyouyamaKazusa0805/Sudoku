@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						accumulator.Add(
 							new NakedSubsetTechniqueInfo(
 								conclusions,
-								new[] { new View(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
 								region,
 								cells,
 								mask.GetAllSets().ToArray(),

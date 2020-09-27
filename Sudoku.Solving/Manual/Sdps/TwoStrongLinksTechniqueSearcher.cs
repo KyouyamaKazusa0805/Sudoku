@@ -102,9 +102,9 @@ namespace Sudoku.Solving.Manual.Sdps
 						accumulator.Add(
 							new TwoStrongLinksTechniqueInfo(
 								conclusions,
-								new[]
+								new View[]
 								{
-									new View(
+									new(
 										null,
 										new DrawingInfo[]
 										{

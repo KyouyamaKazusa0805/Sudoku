@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Checking
 						int z = solution[c];
 						foreach (int d in grid.GetCandidates(c))
 						{
-							result.Add(new[] { new Conclusion(d == z ? Assignment : Elimination, c, d) });
+							result.Add(new Conclusion[] { new(d == z ? Assignment : Elimination, c, d) });
 						}
 					}
 				}
@@ -145,7 +145,7 @@ namespace Sudoku.Solving.Checking
 						if (TestSolver.CanSolve(tempGrid))
 						{
 							// Solve successfully.
-							result.Add(new[] { new Conclusion(Assignment, cell, digit) });
+							result.Add(new Conclusion[] { new(Assignment, cell, digit) });
 						}
 
 						// Restore data.
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Checking
 				{
 					if (TestSolver.CanSolve(tempGrid))
 					{
-						result.Add(new[] { new Conclusion(Elimination, c1) });
+						result.Add(new Conclusion[] { new(Elimination, c1) });
 					}
 				}
 				else // depth > 1
@@ -190,12 +190,7 @@ namespace Sudoku.Solving.Checking
 						{
 							if (TestSolver.CanSolve(tempGrid))
 							{
-								result.Add(
-									new[]
-									{
-										new(Elimination, c1),
-										new Conclusion(Elimination, c2)
-									});
+								result.Add(new Conclusion[] { new(Elimination, c1), new(Elimination, c2) });
 							}
 						}
 						else // depth == 3
@@ -208,12 +203,7 @@ namespace Sudoku.Solving.Checking
 								if (TestSolver.CanSolve(tempGrid))
 								{
 									result.Add(
-										new[]
-										{
-											new(Elimination, c1),
-											new(Elimination, c2),
-											new Conclusion(Elimination, c3)
-										});
+										new Conclusion[] { new(Elimination, c1), new(Elimination, c2), new(Elimination, c3) });
 								}
 
 								tempGrid[c3 / 9, c3 % 9] = false;
