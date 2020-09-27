@@ -8,7 +8,6 @@ using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
-using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving
 {
@@ -135,7 +134,7 @@ namespace Sudoku.Solving
 		/// This method uses reflection to get the specified value.
 		/// </remarks>
 		private static int GetPriority(TechniqueSearcher instance) =>
-			((TechniqueProperties)instance.GetType().GetProperty("Priority", Static | Public)!.GetValue(null)!).Priority;
+			TechniqueProperties.GetPropertiesFrom(instance)?.Priority ?? int.MaxValue;
 
 		/// <summary>
 		/// Internal equals method.
