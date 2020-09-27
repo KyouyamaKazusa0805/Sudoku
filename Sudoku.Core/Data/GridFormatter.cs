@@ -316,15 +316,17 @@ namespace Sudoku.Data
 					}
 
 					// Compares the values.
-					int comparer = Max(candidatesCount, GetCellStatus(value) switch
-					{
-						// The output will be '<digit>' and consist of 3 characters.
-						CellStatus.Given => Max(candidatesCount, 3),
-						// The output will be '*digit*' and consist of 3 characters.
-						CellStatus.Modifiable => Max(candidatesCount, 3),
-						// Normal output: 'series' (at least 1 character).
-						_ => candidatesCount,
-					});
+					int comparer = Max(
+						candidatesCount,
+						GetCellStatus(value) switch
+						{
+							// The output will be '<digit>' and consist of 3 characters.
+							CellStatus.Given => Max(candidatesCount, 3),
+							// The output will be '*digit*' and consist of 3 characters.
+							CellStatus.Modifiable => Max(candidatesCount, 3),
+							// Normal output: 'series' (at least 1 character).
+							_ => candidatesCount,
+						});
 					if (comparer > maxLength)
 					{
 						maxLength = comparer;
@@ -340,100 +342,106 @@ namespace Sudoku.Data
 				{
 					case 0: // Print tabs of the first line.
 					{
-						if (SubtleGridLines) PrintTabLines('.', '.', '-', maxLengths, sb);
-						else PrintTabLines('+', '+', '-', maxLengths, sb);
+						if (SubtleGridLines) printTabLines('.', '.', '-');
+						else printTabLines('+', '+', '-');
 						break;
 					}
 					case 4 or 8: // Print tabs of mediate lines.
 					{
-						if (SubtleGridLines) PrintTabLines(':', '+', '-', maxLengths, sb);
-						else PrintTabLines('+', '+', '-', maxLengths, sb);
+						if (SubtleGridLines) printTabLines(':', '+', '-');
+						else printTabLines('+', '+', '-');
 						break;
 					}
 					case 12: // Print tabs of the foot line.
 					{
-						if (SubtleGridLines) PrintTabLines('\'', '\'', '-', maxLengths, sb);
-						else PrintTabLines('+', '+', '-', maxLengths, sb);
+						if (SubtleGridLines) printTabLines('\'', '\'', '-');
+						else printTabLines('+', '+', '-');
 						break;
 					}
 					default: // Print values and tabs.
 					{
-						PrintValueLines(
+						p(
 							valuesByRow
 							[
 								i switch
 								{
-									>= 1 and < 4 => i - 1,
-									>= 5 and < 8 => i - 2,
-									>= 9 and < 12 => i - 3,
+									1 or 2 or 3 or 4 => i - 1,
+									5 or 7 or 7 or 8 => i - 2,
+									9 or 10 or 11 or 12 => i - 3,
 									_ => throw Throwings.ImpossibleCaseWithMessage("On the border.")
 								}
-							], '|', '|', maxLengths, sb);
+							], '|', '|');
+
 						break;
+
+						void p(IList<short> valuesByRow, char c1, char c2)
+						{
+							sb.Append(c1);
+							printValues(valuesByRow, 0, 2);
+							sb.Append(c2);
+							printValues(valuesByRow, 3, 5);
+							sb.Append(c2);
+							printValues(valuesByRow, 6, 8);
+							sb.AppendLine(c1);
+
+							void printValues(IList<short> valuesByRow, int start, int end)
+							{
+								sb.Append(" ");
+								for (int i = start; i <= end; i++)
+								{
+									// Get digit.
+									short value = valuesByRow[i];
+									var cellStatus = GetCellStatus(value);
+									int digit = cellStatus != CellStatus.Empty ? (~value).FindFirstSet() : -1;
+
+									sb
+										.Append(
+										(
+											(digit + 1) switch
+											{
+												var d => cellStatus switch
+												{
+													CellStatus.Given => $"<{d}>",
+													CellStatus.Modifiable => TreatValueAsGiven ? $"<{d}>" : $"*{d}*",
+													_ => p(value)
+												}
+											}
+										).PadRight(maxLengths[i]))
+										.Append(i != end ? "  " : " ");
+								}
+
+								static string p(short value)
+								{
+									var sb = new StringBuilder();
+									for (int i = 1; i <= 9; i++, value >>= 1)
+									{
+										if ((value & 1) == 0)
+										{
+											sb.Append(i);
+										}
+									}
+
+									return sb.ToString();
+								}
+							}
+						}
 					}
 				}
 			}
 
 			// The last step: returns the value.
 			return sb.ToString();
-		}
 
-		private void PrintValueLines(IList<short> valuesByRow, char c1, char c2, int[] maxLengths, StringBuilder sb)
-		{
-			sb.Append(c1);
-			PrintValues(valuesByRow, 0, 2, maxLengths, sb);
-			sb.Append(c2);
-			PrintValues(valuesByRow, 3, 5, maxLengths, sb);
-			sb.Append(c2);
-			PrintValues(valuesByRow, 6, 8, maxLengths, sb);
-			sb.AppendLine(c1);
-		}
-
-		private void PrintValues(IList<short> valuesByRow, int start, int end, int[] maxLengths, StringBuilder sb)
-		{
-			sb.Append(" ");
-			for (int i = start; i <= end; i++)
-			{
-				// Get digit.
-				short value = valuesByRow[i];
-				var cellStatus = GetCellStatus(value);
-				int digit = cellStatus != CellStatus.Empty ? (~value).FindFirstSet() : -1;
-
+			void printTabLines(char c1, char c2, char fillingChar) =>
 				sb
-					.Append((
-						cellStatus switch
-						{
-							CellStatus.Given => $"<{digit + 1}>",
-							CellStatus.Modifiable => TreatValueAsGiven ? $"<{digit + 1}>" : $"*{digit + 1}*",
-							_ => PrintCandidates(value)
-						}).PadRight(maxLengths[i]))
-					.Append(i != end ? "  " : " ");
-			}
+					.Append(c1)
+					.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar))
+					.Append(c2)
+					.Append(string.Empty.PadRight(maxLengths[3] + maxLengths[4] + maxLengths[5] + 6, fillingChar))
+					.Append(c2)
+					.Append(string.Empty.PadRight(maxLengths[6] + maxLengths[7] + maxLengths[8] + 6, fillingChar))
+					.AppendLine(c1);
 		}
-
-		private static string PrintCandidates(short value)
-		{
-			var sb = new StringBuilder();
-			for (int i = 1; i <= 9; i++, value >>= 1)
-			{
-				if ((value & 1) == 0)
-				{
-					sb.Append(i);
-				}
-			}
-
-			return sb.ToString();
-		}
-
-		private static void PrintTabLines(char c1, char c2, char fillingChar, int[] maxLengths, StringBuilder sb) =>
-			sb
-				.Append(c1)
-				.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar))
-				.Append(c2)
-				.Append(string.Empty.PadRight(maxLengths[3] + maxLengths[4] + maxLengths[5] + 6, fillingChar))
-				.Append(c2)
-				.Append(string.Empty.PadRight(maxLengths[6] + maxLengths[7] + maxLengths[8] + 6, fillingChar))
-				.AppendLine(c1);
 
 		/// <summary>
 		/// Get cell status for a value.
