@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Sudoku.Windows.Constants
 {
@@ -13,19 +12,6 @@ namespace Sudoku.Windows.Constants
 	/// </remarks>
 	internal static class Processings
 	{
-		/// <summary>
-		/// The splitter is used in the method <see cref="string.Split(char[]?)"/> or other split methods
-		/// where the method contain <see cref="char"/>[]? type parameter.
-		/// </summary>
-		/// <seealso cref="string.Split(char[]?)"/>
-		public static readonly char[] Splitter = new[] { '\r', '\n' };
-
-
-		/// <summary>
-		/// Gets a new-line string defined for this environment.
-		/// </summary>
-		public static string NewLine => Environment.NewLine;
-
 		/// <summary>
 		/// The language source dictionary.
 		/// </summary>

@@ -18,10 +18,10 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
-using static System.StringSplitOptions;
 using static Sudoku.Windows.Constants.Processings;
 using Grid = Sudoku.Data.Grid;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
 #endif
@@ -78,13 +78,13 @@ namespace Sudoku.Windows
 			if (dialog.ShowDialog() is true)
 			{
 				using var sr = new StreamReader(Settings.CurrentPuzzleDatabase = _database = dialog.FileName);
-				_puzzlesText = sr.ReadToEnd().Split(Splitter, RemoveEmptyEntries);
+				_puzzlesText = sr.ReadToEnd().SplitByNewLine();
 
 				Messagings.LoadDatabase(_puzzlesText.Length);
 
 				if (_puzzlesText.Length != 0)
 				{
-					LoadPuzzle(_puzzlesText[Settings.CurrentPuzzleNumber = 0].TrimEnd(Splitter));
+					LoadPuzzle(_puzzlesText[Settings.CurrentPuzzleNumber = 0].TrimEndNewLine());
 					UpdateDatabaseControls(false, false, true, true);
 
 					_textBoxJumpTo.IsEnabled = true;

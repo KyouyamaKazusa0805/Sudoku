@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
 {
@@ -51,10 +50,5 @@ namespace Sudoku.Extensions
 				}
 			}
 		}
-
-		/// <inheritdoc cref="CollectionEx.NullableCollection{TNotNull}(ICollection{TNotNull}?)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TNotNull[] NullableCollection<TNotNull>(this TNotNull[]? @this) where TNotNull : notnull =>
-			@this ?? Array.Empty<TNotNull>();
 	}
 }

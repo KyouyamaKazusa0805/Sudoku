@@ -208,5 +208,20 @@ namespace Sudoku.Extensions
 				return false;
 			}
 		}
+
+		/// <summary>
+		/// Trim new-line characters from the tail of the string.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <returns>The result.</returns>
+		public static string TrimEndNewLine(this string @this) => @this.TrimEnd(new[] { '\r', '\n' });
+
+		/// <summary>
+		/// Split the string with the fixed characters (new line).
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <returns>The result.</returns>
+		public static string[] SplitByNewLine(this string @this) =>
+			@this.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 	}
 }

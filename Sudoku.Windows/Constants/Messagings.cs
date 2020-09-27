@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Sudoku.Solving;
+using static System.Environment;
 using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows.Constants

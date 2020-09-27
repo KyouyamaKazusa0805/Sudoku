@@ -20,7 +20,6 @@ using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
-using static System.StringSplitOptions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Windows.Constants.Processings;
 using C = Sudoku.Data.ConclusionType;
@@ -359,11 +358,11 @@ namespace Sudoku.Windows
 			}
 
 			using var sr = new StreamReader(_database = Settings.CurrentPuzzleDatabase);
-			_puzzlesText = sr.ReadToEnd().Split(Splitter, RemoveEmptyEntries);
+			_puzzlesText = sr.ReadToEnd().SplitByNewLine();
 
 			int current = Settings.CurrentPuzzleNumber;
 			int max = _puzzlesText.Length;
-			LoadPuzzle(_puzzlesText[current].TrimEnd(Splitter));
+			LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
 			_textBoxJumpTo.IsEnabled = true;
 			UpdateDatabaseControls(current != 0, current != 0, current != max - 1, current != max - 1);
