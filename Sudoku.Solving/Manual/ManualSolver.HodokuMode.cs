@@ -76,7 +76,12 @@ namespace Sudoku.Solving.Manual
 			{
 				Array.Sort(
 					searchers,
-					/*static*/ (a, b) => TechniqueProperties.GetPropertiesFrom(a)!.Priority.CompareTo(TechniqueProperties.GetPropertiesFrom(b)!.Priority));
+					/*static*/ (a, b) =>
+					{
+						int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
+						int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
+						return (l > r, l < r) switch { (true, _) => 1, (_, true) => -1, _ => 0 };
+					});
 			}
 
 			var bag = new List<TechniqueInfo>();
