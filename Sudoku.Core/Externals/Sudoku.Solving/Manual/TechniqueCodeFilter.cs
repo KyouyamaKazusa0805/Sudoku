@@ -57,38 +57,47 @@ namespace Sudoku.Solving.Manual
 		/// To add a technique code.
 		/// </summary>
 		/// <param name="techniqueCode">The technique code.</param>
-		public void Add(TechniqueCode techniqueCode)
+		/// <returns>The current instance.</returns>
+		public TechniqueCodeFilter Add(TechniqueCode techniqueCode)
 		{
-			if (!_internalList[(int)techniqueCode])
+			if (!Contains(techniqueCode))
 			{
 				_internalList[(int)techniqueCode] = true;
 				Count++;
 			}
+
+			return this;
 		}
 
 		/// <summary>
 		/// Add a serial of technique codes to this list.
 		/// </summary>
 		/// <param name="techniqueCodes">The codes.</param>
-		public void AddRange(IEnumerable<TechniqueCode> techniqueCodes)
+		/// <returns>The current instance.</returns>
+		public TechniqueCodeFilter AddRange(IEnumerable<TechniqueCode> techniqueCodes)
 		{
 			foreach (var techniqueCode in techniqueCodes)
 			{
 				Add(techniqueCode);
 			}
+
+			return this;
 		}
 
 		/// <summary>
 		/// To remove a technique code.
 		/// </summary>
 		/// <param name="techniqueCode">The technique code.</param>
-		public void Remove(TechniqueCode techniqueCode)
+		/// <returns>The current instance.</returns>
+		public TechniqueCodeFilter Remove(TechniqueCode techniqueCode)
 		{
-			if (_internalList[(int)techniqueCode])
+			if (Contains(techniqueCode))
 			{
 				_internalList[(int)techniqueCode] = false;
 				Count--;
 			}
+
+			return this;
 		}
 
 		/// <summary>
@@ -101,7 +110,7 @@ namespace Sudoku.Solving.Manual
 		/// <inheritdoc/>
 		public IEnumerator<TechniqueCode> GetEnumerator()
 		{
-			for (int i = 0; i < _internalList.Count; i++)
+			for (int i = 0, count = _internalList.Count; i < count; i++)
 			{
 				if (_internalList[i])
 				{
@@ -124,11 +133,8 @@ namespace Sudoku.Solving.Manual
 		/// <param name="technique">The technique to add.</param>
 		/// <returns>The reference same as <paramref name="list"/>.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TechniqueCodeFilter operator +(TechniqueCodeFilter list, TechniqueCode technique)
-		{
+		public static TechniqueCodeFilter operator +(TechniqueCodeFilter list, TechniqueCode technique) =>
 			list.Add(technique);
-			return list;
-		}
 
 		/// <summary>
 		/// Remove the specified technique in the list, and return the reference same as <paramref name="list"/>.
@@ -137,10 +143,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="technique">The technique to add.</param>
 		/// <returns>The reference same as <paramref name="list"/>.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TechniqueCodeFilter operator -(TechniqueCodeFilter list, TechniqueCode technique)
-		{
+		public static TechniqueCodeFilter operator -(TechniqueCodeFilter list, TechniqueCode technique) =>
 			list.Remove(technique);
-			return list;
-		}
 	}
 }

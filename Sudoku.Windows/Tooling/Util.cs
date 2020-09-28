@@ -196,18 +196,10 @@ namespace Sudoku.Windows.Tooling
 		/// <typeparam name="T">The type of the element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
 		/// <returns>The string.</returns>
-		public static string GetXmlText<T>(this T @this)
+		internal static string GetXmlText<T>(this T @this)
 		{
 			using var sw = new StringWriter();
-			using var writer =
-				XmlWriter.Create(
-					sw,
-					new()
-			{
-				Indent = true,
-				IndentChars = "    ",
-				NewLineOnAttributes = false
-			});
+			using var writer = XmlWriter.Create(sw, new() { Indent = true, IndentChars = "    ", NewLineOnAttributes = false });
 			new XmlSerializer(typeof(T)).Serialize(writer, @this);
 			return sw.ToString();
 		}
@@ -219,9 +211,9 @@ namespace Sudoku.Windows.Tooling
 		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
 		/// <param name="filename">The file name.</param>
 		/// <returns>The instance.</returns>
-		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+		[method: SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		[return: MaybeNull]
-		public static T LoadFromXml<T>(this T @this, string filename)
+		internal static T LoadFromXml<T>(this T @this, string filename)
 		{
 			T result = default;
 			if (File.Exists(filename))

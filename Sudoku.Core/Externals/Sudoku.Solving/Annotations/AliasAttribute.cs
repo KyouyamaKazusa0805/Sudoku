@@ -30,12 +30,13 @@ namespace Sudoku.Solving.Annotations
 		/// <param name="enumField">The enum field.</param>
 		/// <returns>The result. Return <see langword="null"/> when the conversion is failed.</returns>
 		public static TEnumTarget? Convert<TEnumBase, TEnumTarget>(TEnumBase enumField)
-			where TEnumBase : Enum where TEnumTarget : struct, Enum
-		{
-			var fieldInfo = typeof(TEnumBase).GetField(enumField.ToString());
-			return fieldInfo is not null && fieldInfo.GetCustomAttribute<AliasAttribute>() is AliasAttribute attribute
-				? Enum.Parse<TEnumTarget>(attribute.FieldName)
-				: default;
-		}
+			where TEnumBase : Enum where TEnumTarget : struct, Enum =>
+			typeof(TEnumBase).GetField(enumField.ToString()) switch
+			{
+				var fieldInfo =>
+					fieldInfo is not null && fieldInfo.GetCustomAttribute<AliasAttribute>() is AliasAttribute attribute
+						? Enum.Parse<TEnumTarget>(attribute.FieldName)
+						: default
+			};
 	}
 }

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace System
 {
@@ -15,7 +14,7 @@ namespace System
 		/// <param name="left">The left variable.</param>
 		/// <param name="right">The right variable.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Swap<T>([MaybeNull] ref T left, [MaybeNull] ref T right)
+		public static void Swap<T>(ref T left, ref T right)
 		{
 			var temp = left;
 			left = right;

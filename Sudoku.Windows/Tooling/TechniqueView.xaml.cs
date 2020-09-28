@@ -54,11 +54,11 @@ namespace Sudoku.Windows.Tooling
 				{
 					if (sender is CheckBox { Content: KeyedTuple<string, TechniqueCode> pair } box)
 					{
-						Action<TechniqueCode> f = box.IsChecked switch
+						Func<TechniqueCode, TechniqueCodeFilter?> f = box.IsChecked switch
 						{
 							true => ChosenTechniques.Add,
 							false => ChosenTechniques.Remove,
-							_ => /*static*/ (_) => { }
+							_ => /*static*/ (_) => default
 						};
 
 						f(pair.Item2);

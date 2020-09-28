@@ -39,10 +39,10 @@ namespace Sudoku.Extensions
 		/// <summary>
 		/// Remove duplicate element in the list.
 		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <typeparam name="TNotNull">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Distinct<T>(this IList<T> @this) where T : notnull
+		public static void Distinct<TNotNull>(this IList<TNotNull> @this) where TNotNull : notnull
 		{
 			var tempList = Enumerable.Distinct(@this).ToList(); // Do not forget '.ToList'.
 			@this.Clear();

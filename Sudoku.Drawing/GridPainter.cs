@@ -14,6 +14,7 @@ using static System.Drawing.Text.TextRenderingHint;
 using static System.Math;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.LinkType;
 
 namespace Sudoku.Drawing
 {
@@ -158,6 +159,11 @@ namespace Sudoku.Drawing
 			return bitmap;
 		}
 
+		/// <summary>
+		/// Draw givens, modifiables and candidates, where the values are specified as a grid.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="grid">The grid.</param>
 		private void DrawValue(Graphics g, Grid grid)
 		{
 			float cellWidth = PointConverter.CellSize.Width;
@@ -207,6 +213,12 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// Draw custom view if <see cref="CustomView"/> is not null.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="offset">The drawing offset.</param>
+		/// <seealso cref="CustomView"/>
 		private void DrawCustomViewIfNeed(Graphics g, float offset)
 		{
 			if (CustomView is not null)
@@ -219,6 +231,12 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// Draw custom view if <see cref="View"/> is not null.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="offset">The drawing offset.</param>
+		/// <seealso cref="View"/>
 		private void DrawViewIfNeed(Graphics g, float offset)
 		{
 			if (Conclusions is not null) DrawEliminations(g, Conclusions, offset);
@@ -233,6 +251,11 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// Draw focused cells.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="focusedCells">The focused cells.</param>
 		private void DrawFocusedCells(Graphics g, GridMap focusedCells)
 		{
 			using var b = new SolidBrush(Settings.FocusedCellColor);
@@ -242,8 +265,17 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// Draw the background, where the color is specified in <see cref="Settings.BackgroundColor"/>.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <seealso cref="Settings.BackgroundColor"/>
 		private void DrawBackground(Graphics g) => g.Clear(Settings.BackgroundColor);
 
+		/// <summary>
+		/// Draw grid lines and block lines.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
 		private void DrawGridAndBlockLines(Graphics g)
 		{
 			using var pg = new Pen(Settings.GridLineColor, Settings.GridLineWidth);
@@ -262,21 +294,30 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// Draw eliminations.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="conclusions">The conclusions.</param>
+		/// <param name="offset">The drawing offset.</param>
 		private void DrawEliminations(Graphics g, IEnumerable<Conclusion> conclusions, float offset)
 		{
 			using var eliminationBrush = new SolidBrush(Settings.EliminationColor);
 			using var cannibalBrush = new SolidBrush(Settings.CannibalismColor);
-			foreach (var (t, c, d) in conclusions)
+			foreach (var (t, c, d) in from c in conclusions where c.ConclusionType == Elimination select c)
 			{
-				if (t == Elimination)
-				{
-					g.FillEllipse(
-						View?.Candidates?.Any(pair => pair.Value == c * 9 + d) ?? false ? cannibalBrush : eliminationBrush,
-						PointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));
-				}
+				g.FillEllipse(
+					View?.Candidates?.Any(pair => pair.Value == c * 9 + d) ?? false ? cannibalBrush : eliminationBrush,
+					PointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));
 			}
 		}
 
+		/// <summary>
+		/// Draw direct lines. The direct lines are the information for hidden singles and naked singles.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="directLines">The direct lines.</param>
+		/// <param name="offset">The drawing offset.</param>
 		private void DrawDirectLines(Graphics g, IEnumerable<(GridMap, GridMap)> directLines, float offset)
 		{
 			if (Settings.ShowCandidates)
@@ -318,14 +359,19 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// Draw links.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="links">The links.</param>
+		/// <param name="offset">The offset.</param>
 		private void DrawLinks(Graphics g, IEnumerable<Link> links, float offset)
 		{
 			// Gather all points used.
 			var points = new HashSet<PointF>();
-			foreach (var (startCand, endCand, _) in links)
+			foreach (var (startCand, endCand) in links)
 			{
-				var map1 = new SudokuMap() { startCand };
-				var map2 = new SudokuMap() { endCand };
+				SudokuMap map1 = new() { startCand }, map2 = new() { endCand };
 
 				points.Add(PointConverter.GetMouseCenterOfCandidates(map1));
 				points.Add(PointConverter.GetMouseCenterOfCandidates(map2));
@@ -348,13 +394,7 @@ namespace Sudoku.Drawing
 			foreach (var link in links)
 			{
 				var (start, end, type) = link;
-				pen.DashStyle = type switch
-				{
-					LinkType.Strong => Solid,
-					LinkType.Weak => Dot,
-					LinkType.Default => Dash,
-					_ => Dash
-				};
+				pen.DashStyle = type switch { Strong => Solid, Weak => Dot, LinkType.Default => Dash, _ => Dash };
 
 				var pt1 = PointConverter.GetMouseCenterOfCandidates(new() { start });
 				var pt2 = PointConverter.GetMouseCenterOfCandidates(new() { end });
@@ -423,17 +463,14 @@ namespace Sudoku.Drawing
 
 					// The end points are rotated 45 degrees
 					// (counterclockwise for the start point, clockwise for the end point).
-					var oldPt1 = new PointF(pt1x, pt1y);
-					var oldPt2 = new PointF(pt2x, pt2y);
+					PointF oldPt1 = new(pt1x, pt1y), oldPt2 = new(pt2x, pt2y);
 					RotatePoint(oldPt1, ref pt1, -RotateAngle);
 					RotatePoint(oldPt2, ref pt2, RotateAngle);
 
 					double aAlpha = alpha - RotateAngle;
-					double bx1 = pt1.X + bezierLength * Cos(aAlpha);
-					double by1 = pt1.Y + bezierLength * Sin(aAlpha);
+					double bx1 = pt1.X + bezierLength * Cos(aAlpha), by1 = pt1.Y + bezierLength * Sin(aAlpha);
 					aAlpha = alpha + RotateAngle;
-					double bx2 = pt2.X - bezierLength * Cos(aAlpha);
-					double by2 = pt2.Y - bezierLength * Sin(aAlpha);
+					double bx2 = pt2.X - bezierLength * Cos(aAlpha), by2 = pt2.Y - bezierLength * Sin(aAlpha);
 
 					g.DrawBezier(pen, pt1.X, pt1.Y, (float)bx1, (float)by1, (float)bx2, (float)by2, pt2.X, pt2.Y);
 				}
@@ -445,6 +482,13 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// Draw regions.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="regions">The regions.</param>
+		/// <param name="offset">The drawing offset.</param>
+		/// <remarks>This method is simply implemented, using cell filling.</remarks>
 		private void DrawRegions(Graphics g, IEnumerable<DrawingInfo> regions, float offset)
 		{
 			foreach (var (id, region) in regions)
@@ -457,6 +501,12 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// Draw candidates.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="candidates">The candidates.</param>
+		/// <param name="offset">The drawing offsets.</param>
 		private void DrawCandidates(Graphics g, IEnumerable<DrawingInfo> candidates, float offset)
 		{
 			float cellWidth = PointConverter.CellSize.Width;
@@ -503,13 +553,15 @@ namespace Sudoku.Drawing
 				g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
 			}
 
-			static bool c(in Conclusion conc, int cell, int digit)
-			{
-				var (ttt, ccc, ddd) = conc;
-				return ccc == cell && ddd == digit && ttt == Elimination;
-			}
+			static bool c(in Conclusion conc, int cell, int digit) =>
+				conc is var (ttt, ccc, ddd) && (ttt, ccc, ddd) == (Elimination, cell, digit);
 		}
 
+		/// <summary>
+		/// Draw cells.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="cells">The cells.</param>
 		private void DrawCells(Graphics g, IEnumerable<DrawingInfo> cells)
 		{
 			foreach (var (id, cell) in cells)
@@ -639,8 +691,7 @@ namespace Sudoku.Drawing
 			p1 = pt1;
 			p2 = pt2;
 			double tempDelta = candidateSize / 2 + offset;
-			int px = (int)(tempDelta * Cos(alpha));
-			int py = (int)(tempDelta * Sin(alpha));
+			int px = (int)(tempDelta * Cos(alpha)), py = (int)(tempDelta * Sin(alpha));
 
 			p1.X += px;
 			p1.Y += py;

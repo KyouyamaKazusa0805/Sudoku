@@ -97,10 +97,8 @@ namespace Sudoku.Drawing.Extensions
 					{
 						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
-						using (var mat = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0))
-						{
-							CvInvoke.MixChannels(mat, image, new[] { 0, 0, 1, 1, 2, 2 });
-						}
+						using var mat = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
+						CvInvoke.MixChannels(mat, image, new[] { 0, 0, 1, 1, 2, 2 });
 
 						bitmap.UnlockBits(data);
 					}
@@ -121,10 +119,8 @@ namespace Sudoku.Drawing.Extensions
 					else
 					{
 						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
-						using (var tmp = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0))
-						{
-							image.ConvertFrom(tmp);
-						}
+						using var tmp = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
+						image.ConvertFrom(tmp);
 
 						bitmap.UnlockBits(data);
 					}
@@ -218,7 +214,7 @@ namespace Sudoku.Drawing.Extensions
 									v = row[j >> 3];
 								}
 
-								imagedata[i, j, 0] = (v & mask) == 0 ? (byte)0 : (byte)255;
+								imagedata[i, j, 0] = (v & mask) == 0 ? byte.MinValue : byte.MaxValue;
 							}
 						}
 					}
@@ -270,10 +266,7 @@ namespace Sudoku.Drawing.Extensions
 			gTable = new(256, 1);
 			rTable = new(256, 1);
 			aTable = new(256, 1);
-			byte[,] bData = bTable.Data;
-			byte[,] gData = gTable.Data;
-			byte[,] rData = rTable.Data;
-			byte[,] aData = aTable.Data;
+			byte[,] bData = bTable.Data, gData = gTable.Data, rData = rTable.Data, aData = aTable.Data;
 
 			var colors = palette.Entries;
 			for (int i = 0; i < colors.Length; i++)

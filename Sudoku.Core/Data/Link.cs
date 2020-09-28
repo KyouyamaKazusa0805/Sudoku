@@ -55,8 +55,7 @@ namespace Sudoku.Data
 		/// <param name="linkType">(<see langword="out"/> parameter) The link type.</param>
 		public void Deconstruct(
 			out int startCell, out int startDigit, out int endCell, out int endDigit, out LinkType linkType) =>
-			(startCell, startDigit, endCell, endDigit, linkType) = (
-				StartCandidate / 9, StartCandidate % 9, EndCandidate / 9, EndCandidate % 9, LinkType);
+			(startCell, startDigit, endCell, endDigit, linkType) = (StartCandidate / 9, StartCandidate % 9, EndCandidate / 9, EndCandidate % 9, LinkType);
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
@@ -71,13 +70,11 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Link other)
-		{
-			var (a, b, c) = this;
-			var (d, e, f) = other;
-			return ((int)c << 20 | a << 10 | b) == ((int)f << 20 | d << 10 | e)
-				|| ((int)c << 20 | b << 10 | a) == ((int)f << 20 | e << 10 | d);
-		}
+		public bool Equals(Link other) =>
+			this is var (a, b, c) && other is var (d, e, f)
+			&& (
+			((int)c << 20 | a << 10 | b) == ((int)f << 20 | d << 10 | e)
+			|| ((int)c << 20 | b << 10 | a) == ((int)f << 20 | e << 10 | d));
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;

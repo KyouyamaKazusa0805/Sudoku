@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Sudoku.Extensions
@@ -61,20 +60,6 @@ namespace Sudoku.Extensions
 		/// to the end of the specified string builder instance,
 		/// and then append a <see cref="Environment.NewLine"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
-		/// <param name="obj">
-		/// The <see cref="string"/> representation of an object you want to append.
-		/// </param>
-		/// <returns>The reference of the current instance.</returns>
-		[Obsolete("Please use the method 'AppendLine<T>(StringBuilder, T)' instead.")]
-		public static StringBuilder AppendLine(this StringBuilder @this, object? obj) =>
-			@this.AppendLine(obj.NullableToString());
-
-		/// <summary>
-		/// Append a <see cref="string"/> representation of an object
-		/// to the end of the specified string builder instance,
-		/// and then append a <see cref="Environment.NewLine"/>.
-		/// </summary>
 		/// <typeparam name="T">The type of the instance to add.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
 		/// <param name="obj">
@@ -84,7 +69,7 @@ namespace Sudoku.Extensions
 		/// <remarks>
 		/// This method can solve the problem of boxing and unboxing.
 		/// </remarks>
-		public static StringBuilder AppendLine<T>(this StringBuilder @this, [MaybeNull] T obj) =>
+		public static StringBuilder AppendLine<T>(this StringBuilder @this, T obj) =>
 			@this.AppendLine(obj.NullableToString());
 
 		/// <summary>

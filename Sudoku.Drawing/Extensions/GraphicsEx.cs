@@ -23,8 +23,7 @@ namespace Sudoku.Drawing.Extensions
 		public static void DrawCrossSign(this Graphics @this, Pen pen, RectangleF rectangle)
 		{
 			var (x, y, w, h) = rectangle;
-			PointF p1 = new PointF(x, y + h), p2 = new PointF(x + w, y);
-			PointF p3 = new PointF(x, y), p4 = new PointF(x + w, y + h);
+			PointF p1 = new(x, y + h), p2 = new(x + w, y), p3 = new(x, y), p4 = new(x + w, y + h);
 
 			@this.DrawLine(pen, p1, p2);
 			@this.DrawLine(pen, p3, p4);

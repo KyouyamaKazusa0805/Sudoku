@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using static System.StringSplitOptions;
 
 namespace Sudoku.Extensions
 {
@@ -221,7 +222,6 @@ namespace Sudoku.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
 		/// <returns>The result.</returns>
-		public static string[] SplitByNewLine(this string @this) =>
-			@this.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+		public static string[] SplitByNewLine(this string @this) => @this.Split(new[] { '\r', '\n' }, RemoveEmptyEntries);
 	}
 }

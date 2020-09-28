@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 
@@ -49,7 +48,6 @@ namespace System.Collections.Generic
 		/// </summary>
 		/// <param name="element">The element.</param>
 		/// <returns>The first element to satisfy the condition.</returns>
-		[MaybeNull]
 		public T this[T element] => _list.FirstOrDefault(e => e.Equals(element));
 
 

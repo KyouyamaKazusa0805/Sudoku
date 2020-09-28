@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace System.Linq
@@ -35,7 +34,6 @@ namespace System.Linq
 		/// because each element cannot be <see langword="null"/> (either value types or non-<see langword="null"/>
 		/// reference types).
 		/// </remarks>
-		[return: MaybeNull]
 		public static TNotNull GetElementByMinSelector<TNotNull, TComparable>(
 			this IEnumerable<TNotNull> @this, Func<TNotNull, IComparable<TComparable>> selector)
 			where TNotNull : notnull =>

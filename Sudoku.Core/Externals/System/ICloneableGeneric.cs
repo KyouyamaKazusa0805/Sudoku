@@ -15,10 +15,6 @@
 	public interface ICloneable<out T> : ICloneable where T : class
 	{
 		/// <inheritdoc cref="ICloneable.Clone"/>
-		/// <remarks>
-		/// Here we hide the inner method <see cref="ICloneable.Clone"/>, so this method
-		/// should be implemented, but the inner method don't have to.
-		/// </remarks>
 		new T Clone();
 
 		/// <inheritdoc/>

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Sudoku.DocComments;
+﻿using Sudoku.DocComments;
 
 namespace System.Collections.Generic
 {
@@ -27,7 +26,6 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// Indicates the content.
 		/// </summary>
-		[MaybeNull]
 		public T Content { get; set; } = default!;
 
 		/// <summary>

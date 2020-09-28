@@ -4332,7 +4332,7 @@
             Adds the elements of the specified collection to the end of the
             <see cref="T:System.Collections.Generic.ICollection`1"/>.
             </summary>
-            <typeparam name="T">
+            <typeparam name="TNotNull">
             The type of each element. Should be not <see langword="null"/>.
             </typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
@@ -4345,7 +4345,7 @@
             Adds the elements of the specified collection to the end of the
             <see cref="T:System.Collections.Generic.ICollection`1"/>.
             </summary>
-            <typeparam name="T">
+            <typeparam name="TNotNull">
             The type of each element. Should be not <see langword="null"/>.
             </typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
@@ -4358,7 +4358,7 @@
             Adds the elements of the specified collection to the end of the
             <see cref="T:System.Collections.Generic.ICollection`1"/>.
             </summary>
-            <typeparam name="T">
+            <typeparam name="TNotNull">
             The type of each element. Should be not <see langword="null"/>.
             </typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
@@ -4375,7 +4375,7 @@
             Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when
             the specified list does not contain the specified element.
             </summary>
-            <typeparam name="T">
+            <typeparam name="TNotNull">
             The type of all elements. Should be not <see langword="null"/>.
             </typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
@@ -4637,7 +4637,7 @@
             <summary>
             Remove duplicate element in the list.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TNotNull">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
         </member>
         <member name="T:Sudoku.Extensions.SingleEx">
@@ -4704,18 +4704,6 @@
             </remarks>
             <seealso cref="P:System.Environment.NewLine"/>
             <seealso cref="M:Sudoku.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)"/>
-        </member>
-        <member name="M:Sudoku.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)">
-            <summary>
-            Append a <see cref="T:System.String"/> representation of an object
-            to the end of the specified string builder instance,
-            and then append a <see cref="P:System.Environment.NewLine"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="obj">
-            The <see cref="T:System.String"/> representation of an object you want to append.
-            </param>
-            <returns>The reference of the current instance.</returns>
         </member>
         <member name="M:Sudoku.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)">
             <summary>
@@ -6391,18 +6379,21 @@
             To add a technique code.
             </summary>
             <param name="techniqueCode">The technique code.</param>
+            <returns>The current instance.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.TechniqueCode})">
             <summary>
             Add a serial of technique codes to this list.
             </summary>
             <param name="techniqueCodes">The codes.</param>
+            <returns>The current instance.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Remove(Sudoku.Solving.Manual.TechniqueCode)">
             <summary>
             To remove a technique code.
             </summary>
             <param name="techniqueCode">The technique code.</param>
+            <returns>The current instance.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Contains(Sudoku.Solving.Manual.TechniqueCode)">
             <summary>
@@ -7413,10 +7404,6 @@
         </member>
         <member name="M:System.ICloneable`1.Clone">
             <inheritdoc cref="M:System.ICloneable.Clone"/>
-            <remarks>
-            Here we hide the inner method <see cref="M:System.ICloneable.Clone"/>, so this method
-            should be implemented, but the inner method don't have to.
-            </remarks>
         </member>
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
