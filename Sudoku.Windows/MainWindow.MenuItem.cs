@@ -1,6 +1,7 @@
-﻿using System;
+﻿#pragma warning disable IDE1006
+
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -118,7 +119,6 @@ namespace Sudoku.Windows
 		}
 
 #if SUDOKU_RECOGNIZING
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
 #else
 		private void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
@@ -404,7 +404,6 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateWithSymmetry_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
@@ -442,7 +441,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateHardPattern_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
@@ -487,7 +485,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
@@ -580,7 +577,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemAnalyzeAnalyze_Click(object sender, RoutedEventArgs e)
 		{
 			if (_puzzle == Grid.Empty)
@@ -739,7 +735,6 @@ namespace Sudoku.Windows
 		private unsafe void MenuItemTransformRotatePi_Click(object sender, RoutedEventArgs e) =>
 			Transform(&GridTransformations.RotatePi);
 
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemViewsShowBugN_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
@@ -775,7 +770,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemViewsBackdoorView_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();

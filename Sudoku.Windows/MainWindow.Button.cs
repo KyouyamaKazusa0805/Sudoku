@@ -1,7 +1,8 @@
-﻿using System;
+﻿#pragma warning disable IDE1006
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,7 +23,6 @@ namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void ButtonFindAllSteps_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();

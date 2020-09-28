@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#pragma warning disable IDE1006
+
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,7 +43,6 @@ namespace Sudoku.Windows
 		}
 
 
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();

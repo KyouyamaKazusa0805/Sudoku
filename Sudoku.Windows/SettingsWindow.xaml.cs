@@ -1,5 +1,6 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿#pragma warning disable IDE1006
+
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -17,7 +18,6 @@ namespace Sudoku.Windows
 	/// <summary>
 	/// Indicates the assignment handler.
 	/// </summary>
-	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 	internal delegate void Assignment();
 
 	/// <summary>
