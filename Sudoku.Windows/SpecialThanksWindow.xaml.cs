@@ -16,6 +16,7 @@ namespace Sudoku.Windows
 		public SpecialThanksWindow() => InitializeComponent();
 
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void Hyperlink_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is Hyperlink link)

@@ -6,6 +6,10 @@ using Sudoku.DocComments;
 
 namespace Sudoku.Windows.Tooling
 {
+	/// <summary>
+	/// Indicates the event handler when a color is picking.
+	/// </summary>
+	/// <param name="color">The color.</param>
 	public delegate void PickingColorHandlerEventHandler(Color color);
 
 	/// <summary>
@@ -40,6 +44,7 @@ namespace Sudoku.Windows.Tooling
 		public event PickingColorHandlerEventHandler? PickingColor;
 
 
+		/// <inheritdoc cref="Events.MouseDown(object?, System.EventArgs)"/>
 		private void Border_MouseDown(object sender, MouseButtonEventArgs e)
 		{
 			if (sender is not Border border)
@@ -69,7 +74,10 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
-		internal ICollection<ColorSwatchItem> GetColors() =>
-			SwatchListBox.ItemsSource as List<ColorSwatchItem> ?? new();
+		/// <summary>
+		/// Get all colors.
+		/// </summary>
+		/// <returns>The colors.</returns>
+		internal ICollection<ColorSwatchItem> GetColors() => SwatchListBox.ItemsSource as List<ColorSwatchItem> ?? new();
 	}
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows;
 using Microsoft.Win32;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Windows.Constants;
 using static System.Drawing.StringAlignment;
@@ -127,7 +128,7 @@ namespace Sudoku.Windows
 			return !(text = sb.ToString()).Contains('$');
 		}
 
-
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonSave_Click(object sender, RoutedEventArgs e)
 		{
 			string originalString = _textBoxFormat.Text;
@@ -238,6 +239,12 @@ namespace Sudoku.Windows
 		}
 
 #if ADVANCED_PICTURE_SAVING
+		/// <summary>
+		/// To save the picture.
+		/// </summary>
+		/// <param name="bitmap">The bitmap.</param>
+		/// <param name="selectedIndex">The selected index.</param>
+		/// <param name="fileName">The file name.</param>
 		private static void SavePicture(Bitmap bitmap, int selectedIndex, string fileName) =>
 			bitmap.Save(
 				fileName,
@@ -254,8 +261,12 @@ namespace Sudoku.Windows
 						}).Guid) ?? throw new NullReferenceException("The return value is null."),
 				new EncoderParameters(1) { Param = { [0] = new EncoderParameter(DEncoder.Quality, 100L) } });
 #else
-		private static void SavePicture(Bitmap bitmap, string fileName) =>
-			bitmap.Save(fileName);
+		/// <summary>
+		/// To save the picture.
+		/// </summary>
+		/// <param name="bitmap">The bitmap.</param>
+		/// <param name="fileName">The file name.</param>
+		private static void SavePicture(Bitmap bitmap, string fileName) => bitmap.Save(fileName);
 #endif
 
 

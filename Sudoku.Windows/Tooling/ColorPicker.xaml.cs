@@ -32,18 +32,21 @@ namespace Sudoku.Windows.Tooling
 		protected bool SimpleMode { get; set; }
 
 
+		/// <inheritdoc cref="Events.Click(object?, System.EventArgs)"/>
 		private void OkButton_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = true;
 			Hide();
 		}
 
+		/// <inheritdoc cref="Events.Click(object?, System.EventArgs)"/>
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = false;
 			Hide();
 		}
 
+		/// <inheritdoc cref="Events.Click(object?, System.EventArgs)"/>
 		private void MinMaxViewButton_OnClick(object sender, RoutedEventArgs e)
 		{
 			if (SimpleMode)
@@ -60,6 +63,9 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <summary>
+		/// Toggle simple advanced view.
+		/// </summary>
 		public void ToggleSimpleAdvancedView()
 		{
 			if (SimpleMode)
@@ -93,7 +99,7 @@ namespace Sudoku.Windows.Tooling
 			[NotNullWhen(true)] out Color? color, ColorPickerOptions flags = None,
 			PickingColorEventHandler? customPreviewEventHandler = null)
 		{
-			if ((flags & LoadCustomPalette) == LoadCustomPalette)
+			if (flags.HasFlag(LoadCustomPalette))
 			{
 				ColorPickerSettings.UsingCustomPalette = true;
 			}
@@ -101,7 +107,7 @@ namespace Sudoku.Windows.Tooling
 			var instance = new ColorPicker();
 			color = instance._colorPicker.Color;
 
-			if ((flags & SimpleView) == SimpleView)
+			if (flags.HasFlag(SimpleView))
 			{
 				instance.ToggleSimpleAdvancedView();
 			}

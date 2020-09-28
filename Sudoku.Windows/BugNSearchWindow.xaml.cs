@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
 using static Sudoku.Windows.Constants.Processings;
 using Grid = Sudoku.Data.Grid;
@@ -36,6 +37,7 @@ namespace Sudoku.Windows
 		}
 
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();

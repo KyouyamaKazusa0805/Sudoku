@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
@@ -12,60 +13,79 @@ namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet1_Click(object sender, RoutedEventArgs e) =>
 			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 0);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet2_Click(object sender, RoutedEventArgs e) =>
 			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 1);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet3_Click(object sender, RoutedEventArgs e) =>
 			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 2);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet4_Click(object sender, RoutedEventArgs e) =>
 			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 3);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet5_Click(object sender, RoutedEventArgs e) =>
 			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 4);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet6_Click(object sender, RoutedEventArgs e) =>
 			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 5);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet7_Click(object sender, RoutedEventArgs e) =>
 			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 6);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet8_Click(object sender, RoutedEventArgs e) =>
 			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 7);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet9_Click(object sender, RoutedEventArgs e) =>
 			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 8);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete1_Click(object sender, RoutedEventArgs e) =>
 			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 0);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete2_Click(object sender, RoutedEventArgs e) =>
 			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 1);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete3_Click(object sender, RoutedEventArgs e) =>
 			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 2);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete4_Click(object sender, RoutedEventArgs e) =>
 			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 3);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete5_Click(object sender, RoutedEventArgs e) =>
 			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 4);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete6_Click(object sender, RoutedEventArgs e) =>
 			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 5);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete7_Click(object sender, RoutedEventArgs e) =>
 			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 6);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete8_Click(object sender, RoutedEventArgs e) =>
 			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 7);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete9_Click(object sender, RoutedEventArgs e) =>
 			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 8);
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ContextListBoxPathsCopyCurrentStep_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is MenuItem)
@@ -84,6 +104,7 @@ namespace Sudoku.Windows
 			}
 		}
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ContextListBoxPathsCopyAllSteps_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is MenuItem)
@@ -109,6 +130,7 @@ namespace Sudoku.Windows
 			}
 		}
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ContextMenuTechniquesApply_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is MenuItem

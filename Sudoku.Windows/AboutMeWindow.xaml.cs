@@ -17,6 +17,7 @@ namespace Sudoku.Windows
 		public AboutMeWindow() => InitializeComponent();
 
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void GitHubLink_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is Hyperlink)

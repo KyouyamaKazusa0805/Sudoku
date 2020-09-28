@@ -43,6 +43,7 @@ namespace Sudoku.Windows
 		public MainWindow() => InitializeComponent();
 
 
+		#region Overriden methods
 		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
 		{
@@ -65,31 +66,6 @@ namespace Sudoku.Windows
 			LoadDatabaseIfWorth();
 			UpdateControls();
 		}
-
-#if SUDOKU_RECOGNIZING
-		/// <summary>
-		/// Initialize recognizer if worth.
-		/// </summary>
-		private void InitializeRecognizerIfWorth()
-		{
-			try
-			{
-				_recognition = new();
-			}
-#if !MUST_DOWNLOAD_TRAINED_DATA
-			catch (FileNotFoundException ex) when (ex.FileName?.EndsWith("eng.traineddata") ?? false)
-			{
-				// trained data file cannot be found.
-				Messagings.FailedToLoadRecognitionTool(ex);
-			}
-#endif
-			catch (Exception ex)
-			{
-				// Other exceptions.
-				Messagings.FailedToLoadRecognitionTool(ex);
-			}
-		}
-#endif
 
 		/// <inheritdoc/>
 		protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
@@ -296,6 +272,34 @@ namespace Sudoku.Windows
 				UpdateImageGrid();
 			}
 		}
+		#endregion
+
+
+		#region Other instance methods
+#if SUDOKU_RECOGNIZING
+		/// <summary>
+		/// Initialize recognizer if worth.
+		/// </summary>
+		private void InitializeRecognizerIfWorth()
+		{
+			try
+			{
+				_recognition = new();
+			}
+#if !MUST_DOWNLOAD_TRAINED_DATA
+			catch (FileNotFoundException ex) when (ex.FileName?.EndsWith("eng.traineddata") ?? false)
+			{
+				// trained data file cannot be found.
+				Messagings.FailedToLoadRecognitionTool(ex);
+			}
+#endif
+			catch (Exception ex)
+			{
+				// Other exceptions.
+				Messagings.FailedToLoadRecognitionTool(ex);
+			}
+		}
+#endif
 
 		/// <summary>
 		/// Add short cuts while initializing.
@@ -901,7 +905,7 @@ namespace Sudoku.Windows
 		/// Transform the grid.
 		/// </summary>
 		/// <param name="transformation">The inner function to process the transformation.</param>
-		private unsafe void Transform(delegate*<Grid, Grid> transformation)
+		private unsafe void Transform(delegate* managed<Grid, Grid> transformation)
 		{
 			if (_puzzle != Grid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
 			{
@@ -974,8 +978,8 @@ namespace Sudoku.Windows
 							Foreground = new SolidColorBrush(fore.ToWColor()),
 							Background = new SolidColorBrush(back.ToWColor()),
 							Content =
-								new KeyedTuple<string, int, TechniqueInfo>(
-									$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
+									new KeyedTuple<string, int, TechniqueInfo>(
+										$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
 							BorderThickness = default
 						});
 				}
@@ -1032,11 +1036,16 @@ namespace Sudoku.Windows
 				Messagings.FailedToSolveWithMessage(_analyisResult);
 			}
 		}
+		#endregion
 
 
+		#region Event-delegating methods
+		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void Window_SizeChanged(object sender, SizeChangedEventArgs e) => DisplayDifficultyInfoAfterAnalyzed();
+		#endregion
 
 
+		#region Static methods
 		/// <summary>
 		/// To prevent you opening two same windows.
 		/// </summary>
@@ -1077,5 +1086,6 @@ namespace Sudoku.Windows
 
 			return true;
 		}
+		#endregion
 	}
 }

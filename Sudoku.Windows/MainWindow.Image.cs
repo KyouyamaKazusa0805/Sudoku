@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using static System.Math;
@@ -16,6 +17,7 @@ namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
+		/// <inheritdoc cref="Events.ContextMenuOpening(object?, EventArgs)"/>
 		private void ImageGrid_ContextMenuOpening(object sender, ContextMenuEventArgs e)
 		{
 			if (_imageGridContextMenu.IsOpen = _customDrawingMode == -1)
@@ -24,6 +26,7 @@ namespace Sudoku.Windows
 			}
 		}
 
+		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (sender is Image image)
@@ -125,6 +128,7 @@ namespace Sudoku.Windows
 			}
 		}
 
+		/// <inheritdoc cref="Events.MouseRightButtonDown(object?, EventArgs)"/>
 		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			int cell = _pointConverter.GetCellOffset((_currentRightClickPos = e.GetPosition(_imageGrid)).ToDPointF());
@@ -167,6 +171,7 @@ namespace Sudoku.Windows
 				(MenuItem)@this.GetType().GetField($"_menuItemImageGridDelete{i + 1}", flags)!.GetValue(@this)!;
 		}
 
+		/// <inheritdoc cref="Events.MouseRightButtonUp(object?, EventArgs)"/>
 		private void ImageGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
 		{
 			if ((sender, _customDrawingMode) is not (Image image, not -1))
@@ -238,12 +243,15 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
+		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageUndoIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemEditUndo_Click(sender, e);
 
+		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageRedoIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemEditRedo_Click(sender, e);
 
+		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			Action<object, RoutedEventArgs>
@@ -257,6 +265,7 @@ namespace Sudoku.Windows
 			a(sender, e);
 		}
 
+		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageSolve_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemAnalyzeAnalyze_Click(sender, e);
 	}

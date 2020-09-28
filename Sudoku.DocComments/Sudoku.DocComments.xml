@@ -31,6 +31,109 @@
             in <see langword="class"/>es, the default constructor won't be generated automatically.
             </remarks>
         </member>
+        <member name="T:Sudoku.DocComments.Events">
+            <summary>
+            Provides doc comments on event-delegating methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when a control is clicked.
+            </summary>
+            <param name="sender">The control to trigger <c>Click</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the text in a text box is changed.
+            </summary>
+            <param name="sender">The control to trigger <c>TextChanged</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when a combo box selected to another one.
+            </summary>
+            <param name="sender">The control to trigger <c>SelectionChanged</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.SizeChanged(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the size of a window is changed.
+            </summary>
+            <param name="sender">The control to trigger <c>SizeChanged</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the value is changed.
+            </summary>
+            <param name="sender">The control to trigger <c>ValueChanged</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.DragDelta(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution of this method when a splitter changed its position.
+            </summary>
+            <param name="sender">The control to trigger <c>DragDelta</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.ContextMenuOpening(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when a context menu is opening.
+            </summary>
+            <param name="sender">The control to trigger <c>ContextMenuOpening</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.MouseLeftButtonDown(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the left button in mouse is pressed down.
+            </summary>
+            <param name="sender">The control to trigger <c>MouseLeftButtonDown</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.MouseRightButtonDown(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the right button in mouse is pressed down.
+            </summary>
+            <param name="sender">The control to trigger <c>MouseRightButtonDown</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.MouseRightButtonUp(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the right button in mouse is pressed up.
+            </summary>
+            <param name="sender">The control to trigger <c>MouseRightButtonUp</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.PreviewKeyDown(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the key is down before triggering key down event.
+            </summary>
+            <param name="sender">The control to trigger <c>PreviewKeyDown</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the mouse is pressed down.
+            </summary>
+            <param name="sender">The control to trigger <c>MouseDown</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.MouseUp(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the mouse is pressed up.
+            </summary>
+            <param name="sender">The control to trigger <c>MouseUp</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
+        <member name="M:Sudoku.DocComments.Events.MouseMove(System.Object,System.EventArgs)">
+            <summary>
+            Trigger execution when the mouse cursor is moved.
+            </summary>
+            <param name="sender">The control to trigger <c>MouseMove</c> event.</param>
+            <param name="e">The event information, whose value is specified as a parameter.</param>
+        </member>
         <member name="T:Sudoku.DocComments.ExocetElimination">
             <summary>
             Provides with doc comments for exocet eliminations.

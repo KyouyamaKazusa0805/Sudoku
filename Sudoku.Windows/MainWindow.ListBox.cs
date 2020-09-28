@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Windows.Controls;
+using Sudoku.DocComments;
 using Sudoku.Solving;
 
 namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
+		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxPaths_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (_listBoxPaths.SelectedIndex == -1)
@@ -33,6 +35,7 @@ namespace Sudoku.Windows
 			}
 		}
 
+		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (sender is ListBox { SelectedItem: ListBoxItem { Content: KeyedTuple<string, TechniqueInfo, bool> triplet } })

@@ -1,10 +1,13 @@
-﻿using System;
+﻿#pragma warning disable CA1063 // Managed-resource-only instance don't need to implement complete dispose pattern.
+
+using System;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
 using static System.Drawing.StringAlignment;
 using static System.Drawing.Text.TextRenderingHint;
@@ -36,43 +39,32 @@ namespace Sudoku.Windows.Tooling
 		private bool _isDisposed;
 
 
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public FontDialog() => InitializeComponent();
 
 
 		/// <summary>
-		/// The finalizer of this class.
+		/// Indicates the current selected font.
 		/// </summary>
-		~FontDialog() => Dispose(disposing: false);
-
-
 		public Font SelectedFont { get; private set; } = null!;
 
 
 		/// <inheritdoc/>
 		public void Dispose()
 		{
-			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-			Dispose(disposing: true);
-			GC.SuppressFinalize(this);
-		}
-
-		/// <inheritdoc/>
-		protected virtual void Dispose(bool disposing)
-		{
 			if (!_isDisposed)
 			{
-				if (disposing)
-				{
-					// Dispose managed state (managed objects).
-					_brush.Dispose();
-				}
+				_brush.Dispose();
 
 				// Free unmanaged resources (unmanaged objects) and override finalizer.
 				// Set large fields to null.
 				_isDisposed = true;
+
+				GC.SuppressFinalize(this);
 			}
 		}
 
+		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
 		{
 			base.OnInitialized(e);
@@ -87,6 +79,9 @@ namespace Sudoku.Windows.Tooling
 			DrawString();
 		}
 
+		/// <summary>
+		/// To draw the text.
+		/// </summary>
 		private void DrawString()
 		{
 			var bitmap = new Bitmap((int)_imagePreview.Width, (int)_imagePreview.Height);
@@ -94,13 +89,12 @@ namespace Sudoku.Windows.Tooling
 			g.TextRenderingHint = AntiAlias;
 			g.DrawString(
 				SampleText, SelectedFont, _brush, bitmap.Width >> 1, bitmap.Height >> 1,
-				new()
-			{ Alignment = Center, LineAlignment = Center });
+				new() { Alignment = Center, LineAlignment = Center });
 
 			_imagePreview.Source = bitmap.ToImageSource();
 		}
 
-
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonApply_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = true;
@@ -109,6 +103,7 @@ namespace Sudoku.Windows.Tooling
 			Close();
 		}
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = false;
@@ -117,6 +112,7 @@ namespace Sudoku.Windows.Tooling
 			Close();
 		}
 
+		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// While initializing, 'SelectedFont' is null.
@@ -128,6 +124,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxFonts_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// While initializing, 'SelectedFont' is null.
@@ -139,6 +136,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="Events.TextChanged(object?, EventArgs)"/>
 		private void TextBoxSize_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (sender is TextBox textBox)
@@ -157,6 +155,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="Events.PreviewKeyDown(object?, EventArgs)"/>
 		private void TextBoxSize_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			bool c() => (e.Key, Keyboard.Modifiers) is ( > D0 and <= D9 or > NumPad0 and <= NumPad9, ModifierKeys.None);

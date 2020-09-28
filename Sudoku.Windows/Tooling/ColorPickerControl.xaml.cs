@@ -17,6 +17,10 @@ using WPoint = System.Windows.Point;
 
 namespace Sudoku.Windows.Tooling
 {
+	/// <summary>
+	/// Indicates the event handler triggering when the color is start to pick.
+	/// </summary>
+	/// <param name="color">The color.</param>
 	public delegate void PickingColorEventHandler(WColor color);
 
 	/// <summary>
@@ -87,11 +91,8 @@ namespace Sudoku.Windows.Tooling
 			catch { }
 		}
 
-		public void LoadDefaultCustomPalette()
-		{
-			LoadCustomPalette(
-				Path.Combine(ColorPickerSettings.CustomColorsDirectory, ColorPickerSettings.CustomColorsFilename));
-		}
+		public void LoadDefaultCustomPalette() =>
+			LoadCustomPalette(Path.Combine(ColorPickerSettings.CustomColorsDirectory, ColorPickerSettings.CustomColorsFilename));
 
 		public void LoadCustomPalette(string filename)
 		{
@@ -120,6 +121,9 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <summary>
+		/// Execute when the custom color is changed.
+		/// </summary>
 		internal void CustomColorsChanged()
 		{
 			if (ColorPickerSettings.UsingCustomPalette)
@@ -128,6 +132,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
 		{
 			base.OnInitialized(e);
@@ -225,6 +230,11 @@ namespace Sudoku.Windows.Tooling
 			PickingColor?.Invoke(z);
 		}
 
+		/// <summary>
+		/// Execute when the sample image is clicked.
+		/// </summary>
+		/// <param name="img">The image.</param>
+		/// <param name="pos">The point.</param>
 		private void SampleImageClick(BitmapSource img, WPoint pos)
 		{
 			int stride = (int)img.Width * 4;
@@ -236,6 +246,7 @@ namespace Sudoku.Windows.Tooling
 			SetColor(WColor.FromArgb(pixels[index + 3], pixels[index + 2], pixels[index + 1], pixels[index]));
 		}
 
+		/// <inheritdoc cref="Events.MouseDown(object?, EventArgs)"/>
 		private void SampleImage_MouseDown(object sender, MouseButtonEventArgs e)
 		{
 			Mouse.Capture(this);
@@ -244,6 +255,7 @@ namespace Sudoku.Windows.Tooling
 			MouseUp += ColorPickerControl_MouseUp;
 		}
 
+		/// <inheritdoc cref="Events.MouseMove(object?, EventArgs)"/>
 		private void ColorPickerControl_MouseMove(object sender, MouseEventArgs e)
 		{
 			var pos = e.GetPosition(_sampleImage);
@@ -256,6 +268,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="Events.MouseUp(object?, EventArgs)"/>
 		private void ColorPickerControl_MouseUp(object sender, MouseButtonEventArgs e)
 		{
 			Mouse.Capture(null);
@@ -264,11 +277,14 @@ namespace Sudoku.Windows.Tooling
 			MouseUp -= ColorPickerControl_MouseUp;
 		}
 
+		/// <inheritdoc cref="Events.MouseDown(object?, EventArgs)"/>
 		private void SampleImage2_MouseDown(object sender, MouseButtonEventArgs e) =>
 			SampleImageClick((BitmapSource)_sampleImage2.Source, e.GetPosition(_sampleImage2));
 
+		/// <inheritdoc cref="PickingColorEventHandler"/>
 		private void Swatch_PickColor(WColor color) => SetColor(color);
 
+		/// <inheritdoc cref="ValueChangedEventHandler"/>
 		private void RSlider_ValueChanged(double value)
 		{
 			if (!_isSettingValues)
@@ -278,6 +294,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="ValueChangedEventHandler"/>
 		private void GSlider_ValueChanged(double value)
 		{
 			if (!_isSettingValues)
@@ -287,6 +304,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="ValueChangedEventHandler"/>
 		private void BSlider_ValueChanged(double value)
 		{
 			if (!_isSettingValues)
@@ -296,6 +314,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="ValueChangedEventHandler"/>
 		private void ASlider_ValueChanged(double value)
 		{
 			if (!_isSettingValues)
@@ -305,6 +324,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="ValueChangedEventHandler"/>
 		private void HSlider_ValueChanged(double value)
 		{
 			if (!_isSettingValues)
@@ -315,6 +335,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="ValueChangedEventHandler"/>
 		private void SSlider_ValueChanged(double value)
 		{
 			if (!_isSettingValues)
@@ -324,6 +345,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="ValueChangedEventHandler"/>
 		private void LSlider_ValueChanged(double value)
 		{
 			if (!_isSettingValues)
@@ -334,10 +356,13 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
-
+		/// <inheritdoc cref="Events.ValueChanged(object?, EventArgs)"/>
 		private void PickerHueSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) =>
 			UpdateImageForHSV();
 
+		/// <summary>
+		/// Update the image for HSV.
+		/// </summary>
 		private void UpdateImageForHSV()
 		{
 			var img =

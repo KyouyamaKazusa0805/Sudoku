@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
@@ -60,10 +61,10 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// Indicates the current color chosen (used in coloring mode).
-		/// See <see cref="WindowsSettings.PaletteColors"/> for more. If the value is
+		/// See <see cref="Settings.PaletteColors"/> for more. If the value is
 		/// <see cref="int.MinValue"/>, the current color is unavailable.
 		/// </summary>
-		/// <seealso cref="WindowsSettings.PaletteColors"/>
+		/// <seealso cref="Settings.PaletteColors"/>
 		/// <seealso cref="int.MinValue"/>
 		private int _currentColor = int.MinValue;
 

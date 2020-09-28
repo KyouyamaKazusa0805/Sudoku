@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using Sudoku.DocComments;
 using Sudoku.Solving;
 
 namespace Sudoku.Windows
@@ -35,6 +37,10 @@ namespace Sudoku.Windows
 		};
 
 
+		/// <summary>
+		/// Initializes an instance with the specified analysis result.
+		/// </summary>
+		/// <param name="analysisResult">The analysis result.</param>
 		public ExportAnalysisResultWindow(AnalysisResult analysisResult)
 		{
 			InitializeComponent();
@@ -49,6 +55,7 @@ namespace Sudoku.Windows
 		}
 
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonExport_Click(object sender, RoutedEventArgs e)
 		{
 			var format = new StringBuilder();
@@ -60,24 +67,34 @@ namespace Sudoku.Windows
 			_textBoxAnalysisResult.Text = _analysisResult.ToString(format.ToString());
 		}
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowSeparators_Click(object sender, RoutedEventArgs e) => _dic['-'] ^= true;
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowStepIndices_Click(object sender, RoutedEventArgs e) => _dic['#'] ^= true;
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowLogic_Click(object sender, RoutedEventArgs e) => _dic['@'] ^= true;
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowBottleneck_Click(object sender, RoutedEventArgs e) => _dic['?'] ^= true;
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowDifficulty_Click(object sender, RoutedEventArgs e) => _dic['!'] ^= true;
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckboxShowStepsAfterBottleneck_Click(object sender, RoutedEventArgs e) => _dic['.'] ^= true;
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowAttributesOfPuzzle_Click(object sender, RoutedEventArgs e) => _dic['a'] ^= true;
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowMagicCells_Click(object sender, RoutedEventArgs e) => _dic['b'] ^= true;
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowDifficultyDetail_Click(object sender, RoutedEventArgs e) => _dic['d'] ^= true;
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowTechniqueSteps_Click(object sender, RoutedEventArgs e) => _dic['l'] ^= true;
 	}
 }
