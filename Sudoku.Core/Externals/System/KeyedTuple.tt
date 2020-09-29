@@ -1,0 +1,74 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System" #>
+<#@ output extension=".cs" #>
+#if false
+#pragma warning disable CS1591
+
+using System.Runtime.CompilerServices;
+using Sudoku.Constants;
+using Sudoku.Extensions;
+
+namespace System
+{
+<#
+const int target = 4;
+for (int current = 2; current <= target; current++)
+{#>
+	public sealed record KeyedTuple<#
+	Write("<");
+	for (int i = 1; i <= current; i++)
+	{
+		Write($"T{i}");
+		if (i != current)
+		{
+			Write(", ");
+		}
+	}
+	Write(">");
+	#>(<#
+	for (int i = 1; i <= current; i++)
+	{
+		Write($"T{i} Item{i}, ");
+	}
+	Write("int PriorKey");
+	#>) : ITuple
+	{
+		public KeyedTuple(<#
+		for (int i = 1; i <= current; i++)
+		{
+			Write($"T{i} item{i}");
+			if (i != current)
+			{
+				Write(", ");
+			}
+		}
+		#>) : this(<#
+		for (int i = 1; i <= current; i++)
+		{
+			Write($"item{i}, ");
+		}
+		#>1) { }
+
+
+		int ITuple.Length => <#= current #>;
+
+
+		object? ITuple.this[int index] => PriorKey switch { <#
+		for (int i = 1; i <= current; i++)
+		{
+			Write($"{i} => Item{i}, ");
+		}
+		#>_ => Throwings.ImpossibleCase };
+
+		public override string ToString() => ((ITuple)this)[PriorKey].NullableToString();
+	}<#
+	Write(Environment.NewLine);
+	if (current != target)
+	{
+		Write(Environment.NewLine);
+	}
+	#>
+<#}#>
+}
+#endif

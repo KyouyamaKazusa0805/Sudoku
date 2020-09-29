@@ -25,6 +25,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Include="Externals\System\KeyedTuple.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>KeyedTuple.tt</DependentUpon>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Emgu.CV" Version="4.4.0.4061" />
 		<PackageReference Include="Emgu.CV.runtime.windows" Version="4.4.0.4061" />
 		<PackageReference Include="System.Drawing.Common" Version="4.7.0" />
@@ -36,6 +44,21 @@
 
 	<ItemGroup>
 		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Externals\System\KeyedTuple.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>KeyedTuple.tt</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Externals\System\KeyedTuple.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>KeyedTuple.cs</LastGenOutput>
+		</None>
 	</ItemGroup>
 
 </Project>
