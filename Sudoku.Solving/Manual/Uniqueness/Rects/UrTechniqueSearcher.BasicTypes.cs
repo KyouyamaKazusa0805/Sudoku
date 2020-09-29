@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 			}
 
-			if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) is not (6, 2))
+			if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) != (6, 2))
 			{
 				return;
 			}
@@ -341,7 +341,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 					}
 
-					if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) is not (6, 2))
+					if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) != (6, 2))
 					{
 						continue;
 					}
@@ -518,7 +518,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 				}
 
-				if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) is not (6, 2))
+				if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) != (6, 2))
 				{
 					return;
 				}

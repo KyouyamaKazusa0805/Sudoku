@@ -418,10 +418,9 @@ namespace Sudoku.Data
 
 			// Step 2: eliminates candidates if exist.
 			// If we have met the colon sign ':', this loop would not be executed.
-			if (match.Match(RegularExpressions.ExtendedSusserEliminations) is string elimMatch)
+			if (match.Match(RegularExpressions.ExtendedSusserEliminations) is var elimMatch and not null)
 			{
-				string[] elimBlocks = elimMatch.MatchAll(RegularExpressions.ThreeDigitsCandidate);
-				foreach (string elimBlock in elimBlocks)
+				foreach (string elimBlock in elimMatch.MatchAll(RegularExpressions.ThreeDigitsCandidate))
 				{
 					// Set the candidate true value to eliminate the candidate.
 					result[(elimBlock[1] - '1') * 9 + elimBlock[2] - '1', elimBlock[0] - '1'] = true;

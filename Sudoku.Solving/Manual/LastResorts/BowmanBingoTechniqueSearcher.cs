@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		private static bool IsValidGrid(Grid grid, int cell) =>
 			Peers[cell].All(
 				c =>
-					grid.GetStatus(c) is CellStatus status
+					grid.GetStatus(c) is var status
 					&& (status != Empty && grid[c] != grid[cell] || status == Empty)
 					&& grid.GetCandidateMask(c) != 0);
 	}

@@ -198,8 +198,8 @@ namespace Sudoku.Solving.Manual.Fishes
 									continue;
 								}
 
-								if ((baseRegionMap.Mask & 0x3FFFF, coverRegionMap.Mask & 0x7FC01FF) is (0, 0)
-									|| (baseRegionMap.Mask & 0x7FC01FF, coverRegionMap.Mask & 0x3FFFF) is (0, 0))
+								if ((baseRegionMap.Mask & 0x3FFFF, coverRegionMap.Mask & 0x7FC01FF) == (0, 0)
+									|| (baseRegionMap.Mask & 0x7FC01FF, coverRegionMap.Mask & 0x3FFFF) == (0, 0))
 								{
 									// Basic fish.
 									continue;

@@ -151,8 +151,7 @@ namespace Sudoku.Solving
 				{
 					for (int i = 1, count = SolvingSteps.Count; i < count; i++)
 					{
-						var info = SolvingSteps[i - 1];
-						if (info.ShowDifficulty && SolvingSteps[i] is SingleTechniqueInfo)
+						if (SolvingSteps[i - 1] is { ShowDifficulty: true } info && SolvingSteps[i] is SingleTechniqueInfo)
 						{
 							return info.Difficulty;
 						}
@@ -208,8 +207,7 @@ namespace Sudoku.Solving
 
 				for (int i = SolvingSteps.Count - 1; i >= 0; i--)
 				{
-					var step = SolvingSteps[i];
-					if (step is not SingleTechniqueInfo and { ShowDifficulty: true })
+					if (SolvingSteps[i] is not SingleTechniqueInfo and { ShowDifficulty: true } step)
 					{
 						return step;
 					}

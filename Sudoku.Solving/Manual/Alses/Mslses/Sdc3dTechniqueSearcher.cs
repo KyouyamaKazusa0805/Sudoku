@@ -174,8 +174,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 												}
 												elimMapColumn &= RegionMaps[c] - cbCurrentMap - currentColumnMap;
 
-												if ((blockMask & rowMask, rowMask & columnMask, blockMask & columnMask) is
-													not (0, 0, 0))
+												if ((blockMask & rowMask) != 0 && (rowMask & columnMask) != 0
+													&& (blockMask & columnMask) != 0)
 												{
 													continue;
 												}

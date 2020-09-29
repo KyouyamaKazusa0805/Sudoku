@@ -164,9 +164,9 @@ namespace Sudoku.Solving.Manual.Exocets
 						out targetPairEliminations, out swordfishEliminations);
 				}
 
-				if ((_checkAdvanced, targetEliminations.Count, mirrorEliminations.Count, bibiEliminations.Count) is
+				if ((_checkAdvanced, targetEliminations.Count, mirrorEliminations.Count, bibiEliminations.Count) ==
 					(true, 0, 0, 0)
-					|| (_checkAdvanced, targetEliminations.Count) is (false, 0))
+					|| (_checkAdvanced, targetEliminations.Count) == (false, 0))
 				{
 					continue;
 				}

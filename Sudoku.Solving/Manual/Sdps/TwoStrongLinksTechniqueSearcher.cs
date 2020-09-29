@@ -31,16 +31,14 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Get masks.
 						short mask1 = (RegionMaps[r1] & CandMaps[digit]).GetSubviewMask(r1);
 						short mask2 = (RegionMaps[r2] & CandMaps[digit]).GetSubviewMask(r2);
-						if ((mask1.CountSet(), mask2.CountSet()) is not (2, 2))
+						if ((mask1.CountSet(), mask2.CountSet()) != (2, 2))
 						{
 							continue;
 						}
 
 						// Get all cells.
-						var map1 = GridMap.Empty;
-						var map2 = GridMap.Empty;
-						var cells1 = new List<int>();
-						var cells2 = new List<int>();
+						GridMap map1 = GridMap.Empty, map2 = GridMap.Empty;
+						List<int> cells1 = new(), cells2 = new();
 						foreach (int pos1 in mask1.GetAllSets())
 						{
 							int cell1 = RegionCells[r1][pos1];

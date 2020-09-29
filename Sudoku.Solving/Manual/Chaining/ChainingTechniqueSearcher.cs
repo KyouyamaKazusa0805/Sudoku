@@ -82,8 +82,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				for (var label = Block; label <= Column; label++)
 				{
 					int region = GetRegion(p.Cell, label);
-					var cells = new GridMap(CandMaps[p.Digit] & RegionMaps[region]) { ~p.Cell };
-					if (cells.Count == 1)
+					if (new GridMap(CandMaps[p.Digit] & RegionMaps[region]) { ~p.Cell } is { Count: 1 } cells)
 					{
 						var pOn = new Node(cells.First, p.Digit, true, p);
 						//AddHiddenParentsOfRegion(pOn, region, offNodes);

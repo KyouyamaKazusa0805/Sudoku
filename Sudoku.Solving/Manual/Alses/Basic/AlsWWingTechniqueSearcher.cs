@@ -95,7 +95,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								continue;
 							}
 
-							if (((cpMap & p1).Count, (cpMap & p2).Count, ((p1 | p2) & cpMap).Count) is not (1, 1, 2))
+							if (((cpMap & p1).Count, (cpMap & p2).Count, ((p1 | p2) & cpMap).Count) != (1, 1, 2))
 							{
 								continue;
 							}
