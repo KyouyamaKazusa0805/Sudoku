@@ -7415,8 +7415,6 @@
             </summary>
             <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`2.Item1"/>.</typeparam>
             <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`2.Item2"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
             <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.KeyedTuple`2.#ctor(`0,`1,System.Int32)">
@@ -7426,8 +7424,6 @@
             </summary>
             <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`2.Item1"/>.</typeparam>
             <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`2.Item2"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
             <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.KeyedTuple`2.#ctor(`0,`1)">
@@ -7454,9 +7450,6 @@
             <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`3.Item1"/>.</typeparam>
             <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`3.Item2"/>.</typeparam>
             <typeparam name="T3">The type of the property <see cref="P:System.KeyedTuple`3.Item3"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="Item3">The item 3.</param>
             <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.KeyedTuple`3.#ctor(`0,`1,`2,System.Int32)">
@@ -7467,9 +7460,6 @@
             <typeparam name="T1">The type of the property <see cref="P:System.KeyedTuple`3.Item1"/>.</typeparam>
             <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`3.Item2"/>.</typeparam>
             <typeparam name="T3">The type of the property <see cref="P:System.KeyedTuple`3.Item3"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="Item3">The item 3.</param>
             <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.KeyedTuple`3.#ctor(`0,`1,`2)">
@@ -7498,10 +7488,6 @@
             <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`4.Item2"/>.</typeparam>
             <typeparam name="T3">The type of the property <see cref="P:System.KeyedTuple`4.Item3"/>.</typeparam>
             <typeparam name="T4">The type of the property <see cref="P:System.KeyedTuple`4.Item4"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="Item3">The item 3.</param>
-            <param name="Item4">The item 4.</param>
             <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.KeyedTuple`4.#ctor(`0,`1,`2,`3,System.Int32)">
@@ -7513,10 +7499,6 @@
             <typeparam name="T2">The type of the property <see cref="P:System.KeyedTuple`4.Item2"/>.</typeparam>
             <typeparam name="T3">The type of the property <see cref="P:System.KeyedTuple`4.Item3"/>.</typeparam>
             <typeparam name="T4">The type of the property <see cref="P:System.KeyedTuple`4.Item4"/>.</typeparam>
-            <param name="Item1">The item 1.</param>
-            <param name="Item2">The item 2.</param>
-            <param name="Item3">The item 3.</param>
-            <param name="Item4">The item 4.</param>
             <param name="PriorKey">The prior key.</param>
         </member>
         <member name="M:System.KeyedTuple`4.#ctor(`0,`1,`2,`3)">

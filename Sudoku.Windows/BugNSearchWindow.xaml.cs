@@ -54,8 +54,7 @@ namespace Sudoku.Windows
 					select new KeyedTuple<int, string>(candidate, str, 2)).ToArray();
 
 				_labelStatus.ClearValue(ContentProperty);
-				int count = array.Length;
-				if (count == 0)
+				if (array.Length is var count && count == 0)
 				{
 					_labelStatus.Content = (string)LangSource["BugMultipleFailCase"];
 				}
