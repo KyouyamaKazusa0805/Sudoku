@@ -18,7 +18,6 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Tooling;
-using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows
 {

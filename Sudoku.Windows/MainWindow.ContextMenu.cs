@@ -92,7 +92,8 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					if (_listBoxPaths.SelectedItem is ListBoxItem { Content: KeyedTuple<string, int, TechniqueInfo> triplet })
+					if (_listBoxPaths.SelectedItem
+						is ListBoxItem { Content: KeyedTuple<string, int, TechniqueInfo> triplet })
 					{
 						Clipboard.SetText(triplet.Item3.ToFullString());
 					}

@@ -21,7 +21,6 @@ using Sudoku.Solving;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Windows.Constants.Processings;
 using C = Sudoku.Data.ConclusionType;
 using CoreResources = Sudoku.Windows.Resources;
 using Grid = Sudoku.Data.Grid;
@@ -126,8 +125,7 @@ namespace Sudoku.Windows
 			{
 				case var key when key.IsDigit():
 				{
-					int cell = _pointConverter.GetCellOffset(Mouse.GetPosition(_imageGrid).ToDPointF());
-					if (cell == -1)
+					if (_pointConverter.GetCellOffset(Mouse.GetPosition(_imageGrid).ToDPointF()) is var cell && cell == -1)
 					{
 						return;
 					}

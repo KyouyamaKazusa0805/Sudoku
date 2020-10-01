@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Models;
 using Sudoku.Runtime;
@@ -26,6 +27,17 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid) => Solve(grid, null);
+
+		/// <summary>
+		/// To solve the specified puzzle in asynchronous way.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="progress">The progress.</param>
+		/// <param name="globalizationString">The globalization string.</param>
+		/// <returns>The task of the execution.</returns>
+		public async Task<AnalysisResult> SolveAsync(
+			Grid grid, IProgress<IProgressResult>? progress, string? globalizationString = null) =>
+			await Task.Run(() => Solve(grid, progress, globalizationString));
 
 		/// <summary>
 		/// To solve the puzzle.

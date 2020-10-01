@@ -4395,6 +4395,15 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveAsync(Sudoku.Data.Grid,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+            <summary>
+            To solve the specified puzzle in asynchronous way.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="progress">The progress.</param>
+            <param name="globalizationString">The globalization string.</param>
+            <returns>The task of the execution.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Grid,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
             <summary>
             To solve the puzzle.

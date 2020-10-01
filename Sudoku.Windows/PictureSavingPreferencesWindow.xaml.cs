@@ -12,7 +12,7 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Windows.Constants;
 using static System.Drawing.StringAlignment;
-using static Sudoku.Windows.Constants.Processings;
+using static Sudoku.Windows.MainWindow;
 using DFontStyle = System.Drawing.FontStyle;
 #if ADVANCED_PICTURE_SAVING
 using System.Linq;

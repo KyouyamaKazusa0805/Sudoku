@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 using Sudoku.Solving.Manual;
-using static Sudoku.Windows.Constants.Processings;
+using static Sudoku.Windows.MainWindow;
 using CoreResources = Sudoku.Windows.Resources;
 
 namespace Sudoku.Windows.Tooling

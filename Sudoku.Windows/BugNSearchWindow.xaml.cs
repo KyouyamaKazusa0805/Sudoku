@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
-using static Sudoku.Windows.Constants.Processings;
+using static Sudoku.Windows.MainWindow;
 using Grid = Sudoku.Data.Grid;
 
 namespace Sudoku.Windows

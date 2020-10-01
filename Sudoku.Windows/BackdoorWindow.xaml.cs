@@ -10,7 +10,7 @@ using Sudoku.DocComments;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Windows.Constants;
-using static Sudoku.Windows.Constants.Processings;
+using static Sudoku.Windows.MainWindow;
 using Grid = Sudoku.Data.Grid;
 
 namespace Sudoku.Windows

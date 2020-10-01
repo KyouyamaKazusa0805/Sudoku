@@ -2,7 +2,7 @@
 using System.Windows;
 using Sudoku.Solving;
 using static System.Environment;
-using static Sudoku.Windows.Constants.Processings;
+using static Sudoku.Windows.MainWindow;
 
 namespace Sudoku.Windows.Constants
 {

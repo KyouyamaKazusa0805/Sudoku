@@ -20,7 +20,6 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
-using static Sudoku.Windows.Constants.Processings;
 using Grid = Sudoku.Data.Grid;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -407,7 +406,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemClearStack_Click(object sender, RoutedEventArgs e)
 		{
-			if ((_puzzle.HasUndoSteps || _puzzle.HasRedoSteps)
+			if (_puzzle is { HasUndoSteps: true } or { HasRedoSteps: true }
 				&& Messagings.AskWhileClearingStack() == MessageBoxResult.Yes)
 			{
 				_puzzle.ClearStack();
@@ -665,23 +664,19 @@ namespace Sudoku.Windows
 				var dialog = new ProgressWindow();
 				dialog.Show();
 
-				_analyisResult =
-					await Task.Run(() =>
-					{
-						if (_puzzle.GivensCount == 0)
-						{
-							_puzzle.Fix();
-						}
+				if (_puzzle.GivensCount == 0)
+				{
+					_puzzle.Fix();
+				}
 
-						if (!Settings.SolveFromCurrent && !sukakuMode)
-						{
-							_puzzle.Reset();
-						}
+				if ((Settings.SolveFromCurrent, sukakuMode) == (false, false))
+				{
+					_puzzle.Reset();
+				}
 
-						_puzzle.ClearStack();
+				_puzzle.ClearStack();
 
-						return _manualSolver.Solve(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
-					});
+				_analyisResult = await _manualSolver.SolveAsync(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
 
 				UpdateImageGrid();
 
@@ -864,10 +859,13 @@ namespace Sudoku.Windows
 					currentLevel++;
 				}
 
-				_currentPainter.View = new((
-					from backdoor in backdoors
-					where backdoor.ConclusionType == ConclusionType.Assignment
-					select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)).ToArray());
+				_currentPainter.View =
+					new(
+					(
+						from backdoor in backdoors
+						where backdoor.ConclusionType == ConclusionType.Assignment
+						select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)
+					).ToArray());
 				_currentPainter.Conclusions = backdoors;
 
 				UpdateImageGrid();
@@ -915,8 +913,7 @@ namespace Sudoku.Windows
 				(series[i], series[j]) = (true, true);
 				for (int cell = 0; cell < 81; cell++)
 				{
-					int cellValue = _puzzle[cell];
-					if (cellValue == i || cellValue == j)
+					if (_puzzle[cell] is var cellValue && (cellValue == i || cellValue == j))
 					{
 						cellOffsets.Add(new(p, cell));
 					}

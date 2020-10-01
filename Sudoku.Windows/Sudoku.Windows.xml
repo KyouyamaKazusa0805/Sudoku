@@ -305,21 +305,6 @@
             </summary>
             <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
         </member>
-        <member name="T:Sudoku.Windows.Constants.Processings">
-            <summary>
-            Provides all <see langword="const"/> or <see langword="readonly"/> values
-            for internal processing.
-            </summary>
-            <remarks>
-            Some values should be used after the window initialized, so they cannot be fields
-            (Properties can be used as a method called for specified uses).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Windows.Constants.Processings.LangSource">
-            <summary>
-            The language source dictionary.
-            </summary>
-        </member>
         <member name="T:Sudoku.Windows.DifficultyInfo">
             <summary>
             Indicates the difficulty information used for gather the technique information of a puzzle.
@@ -1025,6 +1010,11 @@
         <member name="M:Sudoku.Windows.MainWindow.MenuItemAboutImplementedTechniques_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
+        <member name="P:Sudoku.Windows.MainWindow.Settings">
+            <summary>
+            Indicates the settings used.
+            </summary>
+        </member>
         <member name="P:Sudoku.Windows.MainWindow.Puzzle">
             <summary>
             Indicates the puzzle, which is equivalent to <see cref="F:Sudoku.Windows.MainWindow._puzzle"/>,
@@ -1034,9 +1024,9 @@
             <value>The new grid.</value>
             <seealso cref="F:Sudoku.Windows.MainWindow._puzzle"/>
         </member>
-        <member name="P:Sudoku.Windows.MainWindow.Settings">
+        <member name="P:Sudoku.Windows.MainWindow.LangSource">
             <summary>
-            Indicates the settings used.
+            The language source dictionary.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.TabControlInfo_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
@@ -2879,6 +2869,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The data.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

@@ -254,8 +254,8 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			Action<object, RoutedEventArgs>
-				a = _comboBoxMode.SelectedIndex switch
+			Action<object, RoutedEventArgs> a =
+				_comboBoxMode.SelectedIndex switch
 				{
 					0 => MenuItemGenerateWithSymmetry_Click,
 					1 => MenuItemGenerateHardPattern_Click,

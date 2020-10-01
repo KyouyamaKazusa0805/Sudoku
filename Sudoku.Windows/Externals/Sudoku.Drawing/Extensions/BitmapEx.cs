@@ -24,24 +24,11 @@ namespace Sudoku.Drawing.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static ImageSource ToImageSource(this Bitmap @this)
 		{
-			IntPtr? hBitmap = default;
-			try
-			{
-				hBitmap = @this.GetHbitmap();
-				var wpfBitmap = Imaging.CreateBitmapSourceFromHBitmap(
-					hBitmap.Value, IntPtr.Zero, Int32Rect.Empty,
-					BitmapSizeOptions.FromEmptyOptions());
-
-				return wpfBitmap;
-			}
-			finally
-			{
-				if (hBitmap is not null)
-				{
-					// Note that 'hBitmap' should be release.
-					DeleteObject(hBitmap.Value);
-				}
-			}
+			var hBitmap = @this.GetHbitmap();
+			var result = Imaging.CreateBitmapSourceFromHBitmap(
+				hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+			DeleteObject(hBitmap);
+			return result;
 		}
 
 		/// <summary>
