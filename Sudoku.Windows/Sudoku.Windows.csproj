@@ -19,7 +19,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; SUDOKU_RECOGNIZING; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
+		<DefineConstants>DEBUG; SUDOKU_RECOGNITION; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>.\Sudoku.Windows.xml</DocumentationFile>
@@ -27,7 +27,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SUDOKU_RECOGNIZING; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
+		<DefineConstants>SUDOKU_RECOGNITION; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>

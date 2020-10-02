@@ -102,7 +102,7 @@ namespace Sudoku.Windows
 		/// <seealso cref="OnKeyUp(KeyEventArgs)"/>
 		private GridMap? _previewMap;
 
-#if SUDOKU_RECOGNIZING
+#if SUDOKU_RECOGNITION
 		/// <summary>
 		/// Indicates an recognition instance.
 		/// </summary>

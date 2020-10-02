@@ -23,7 +23,7 @@ using Sudoku.Windows.Constants;
 using Grid = Sudoku.Data.Grid;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-#if SUDOKU_RECOGNIZING
+#if SUDOKU_RECOGNITION
 using System.Drawing;
 #endif
 
@@ -123,13 +123,13 @@ namespace Sudoku.Windows
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
-#if SUDOKU_RECOGNIZING
+#if SUDOKU_RECOGNITION
 		private async void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
 #else
 		private void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
 #endif
 		{
-#if SUDOKU_RECOGNIZING
+#if SUDOKU_RECOGNITION
 			await internalOperation();
 
 			async Task internalOperation()

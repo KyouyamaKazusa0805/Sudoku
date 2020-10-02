@@ -1,4 +1,5 @@
-﻿#if SUDOKU_RECOGNIZING
+﻿#if SUDOKU_RECOGNITION
+
 using System;
 using System.Drawing;
 using System.IO;

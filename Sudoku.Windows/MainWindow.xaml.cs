@@ -27,7 +27,7 @@ using Grid = Sudoku.Data.Grid;
 using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
-#if SUDOKU_RECOGNIZING
+#if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif
 
@@ -55,7 +55,7 @@ namespace Sudoku.Windows
 
 			PreventYouOpeningTwoSameWindows();
 
-#if SUDOKU_RECOGNIZING
+#if SUDOKU_RECOGNITION
 			InitializeRecognizerIfWorth();
 #endif
 
@@ -92,7 +92,7 @@ namespace Sudoku.Windows
 			// Save configuration.
 			SaveConfig();
 
-#if SUDOKU_RECOGNIZING
+#if SUDOKU_RECOGNITION
 			// Dispose the instance.
 			// If the service provider is not initialized, this value will be null.
 			_recognition?.Dispose();
@@ -102,7 +102,7 @@ namespace Sudoku.Windows
 
 			base.OnClosing(e);
 
-#if SUDOKU_RECOGNIZING
+#if SUDOKU_RECOGNITION
 			if (_recognition is { ToolIsInitialized: true })
 			{
 				// If you don't use this feature, the program will not need to use
@@ -274,7 +274,7 @@ namespace Sudoku.Windows
 
 
 		#region Other instance methods
-#if SUDOKU_RECOGNIZING
+#if SUDOKU_RECOGNITION
 		/// <summary>
 		/// Initialize recognizer if worth.
 		/// </summary>
@@ -514,7 +514,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void UpdateControls()
 		{
-#if !SUDOKU_RECOGNIZING
+#if !SUDOKU_RECOGNITION
 			_menuItemFileLoadPicture.IsEnabled = false;
 #endif
 

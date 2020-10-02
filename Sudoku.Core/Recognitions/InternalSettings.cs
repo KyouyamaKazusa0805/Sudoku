@@ -1,4 +1,5 @@
-﻿#if SUDOKU_RECOGNIZING
+﻿#if SUDOKU_RECOGNITION
+
 using Emgu.CV.CvEnum;
 
 namespace Sudoku.Recognitions
