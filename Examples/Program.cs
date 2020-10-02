@@ -54,7 +54,7 @@ using System;
 		var grid = Sudoku.Data.Grid.Parse(text);
 		var analysisResult = new Sudoku.Solving.Manual.ManualSolver().Solve(grid);
 
-		Console.WriteLine(grid);
+		Console.WriteLine(analysisResult);
 	}
 }
 #endif
