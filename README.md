@@ -1,4 +1,4 @@
-# Sunnie's Sudoku Solution (S^3^)
+# Sunnie's Sudoku Solution (SSS)
 
 标题：**向向的数独解决方案 (SSS)**
 
