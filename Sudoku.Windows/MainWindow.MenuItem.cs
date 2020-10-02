@@ -834,13 +834,17 @@ namespace Sudoku.Windows
 				_textBoxInfo.Text = (string)LangSource["WhileCalculatingBackdoorsLevel0Or1"];
 
 				var backdoors = new List<Conclusion>();
-				for (int level = 0; level <= 1; level++)
+
+				async Task r(int level)
 				{
 					foreach (var backdoor in await new BackdoorSearcher().SearchForBackdoorsExactAsync(_puzzle, level))
 					{
 						backdoors.AddRange(backdoor);
 					}
 				}
+
+				await r(0);
+				await r(1);
 
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
 				if (backdoors.Count == 0)
@@ -898,28 +902,18 @@ namespace Sudoku.Windows
 			var cellOffsets = new List<DrawingInfo>();
 			for (int i = 0, p = 0; i < 9; i++)
 			{
-				if (series[i])
+				if ((series[i], mapping[i]) is (false, int j) && (series[i] = true) & (series[j] = true))
 				{
-					continue;
-				}
-
-				int? value = mapping[i];
-				if (value is null)
-				{
-					continue;
-				}
-
-				int j = value.Value;
-				(series[i], series[j]) = (true, true);
-				for (int cell = 0; cell < 81; cell++)
-				{
-					if (_puzzle[cell] is var cellValue && (cellValue == i || cellValue == j))
+					for (int cell = 0; cell < 81; cell++)
 					{
-						cellOffsets.Add(new(p, cell));
+						if (_puzzle[cell] is var cellValue && (cellValue == i || cellValue == j))
+						{
+							cellOffsets.Add(new(p, cell));
+						}
 					}
-				}
 
-				p++;
+					p++;
+				}
 			}
 
 			_textBoxInfo.Text = info.ToString();

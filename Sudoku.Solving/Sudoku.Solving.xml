@@ -542,6 +542,7 @@
             <summary>
             Nasty global flag telling if <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
             </summary>
+            <seealso cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ApplySingleOrEmptyCells"/>
         </member>
         <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._solution">
             <summary>

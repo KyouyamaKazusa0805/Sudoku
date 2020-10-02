@@ -51,6 +51,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <summary>
 		/// Nasty global flag telling if <see cref="ApplySingleOrEmptyCells"/> found anything.
 		/// </summary>
+		/// <seealso cref="ApplySingleOrEmptyCells"/>
 		private bool _singleApplied;
 
 		/// <summary>
@@ -947,9 +948,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				return null;
 			}
 
-			char* tempDest = (char*)dest;
-			char* tempSrc = (char*)src;
-
+			char* tempDest = (char*)dest, tempSrc = (char*)src;
 			int n = size;
 			while (n-- > 0)
 			{
@@ -970,7 +969,6 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		private static void* Memset(void* src, int value, int size)
 		{
 			void* p = src;
-
 			while (size-- != 0)
 			{
 				*(byte*)src = (byte)value;

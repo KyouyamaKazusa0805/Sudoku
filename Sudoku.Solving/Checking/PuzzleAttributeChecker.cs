@@ -118,21 +118,9 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsPearl(this Grid @this)
-		{
-			// Using a faster solver to check the grid is unique or not.
-			if (@this.IsValid(out _))
-			{
-				var result = new ManualSolver().Solve(@this);
-				var (er, pr) = (result.MaxDifficulty, result.PearlDifficulty);
-				return er == pr;
-			}
-			else
-			{
-				// The puzzle does not have unique solution, neither pearl nor diamond one.
-				return false;
-			}
-		}
+		public static bool IsPearl(this Grid @this) =>
+			@this.IsValid(out _) && new ManualSolver().Solve(@this) is var result
+			&& result.MaxDifficulty == result.PearlDifficulty;
 
 		/// <summary>
 		/// To check if the puzzle is diamond or not.
