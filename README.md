@@ -1,8 +1,4 @@
-> **I have no time to update the project recently... If you find any bugs, please raise a issue or tell me directly. Thx!**
->
-> **我最近没有时间更新项目……如果你找到了 bug，请提 issue 或者直接告诉我。感谢！**
-
-# Sunnie's Sudoku Solution
+# Sunnie's Sudoku Solution (S^3^)
 
 标题：**向向的数独解决方案 (SSS)**
 
@@ -124,9 +120,9 @@ The program supports technique below at present:
 
 标题：**条件编译符号**
 
-Here display all conditional compilation symbols in this solution.
+Here display all conditional compilation symbols (CCS) in this solution. CCSes are the global Boolean values that exist in some projects to indicate whether the code block with these symbols are compiled or not. The block can't be compiled until the specified symbol is set in the project file (`*.csproj`).
 
-这里罗列本解决方案里用到的条件编译符号。
+这里罗列本解决方案里用到的条件编译符号（简称 CCS）。CCS 是全局的布尔量，它们存在于一些项目里，用来表示某段代码块是否需要编译。这段代码块只有当我们在项目文件（`*.csproj`）里配置了符号之后，才会被编译。
 
 > Some of them are unnecessary for you perhaps, you can remove them.
 >
@@ -137,7 +133,7 @@ Here display all conditional compilation symbols in this solution.
 * `ADVANCED_PICTURE_SAVING`: Indicates whether the solution will use another picture saving way to save pictures. This symbol will be used only in the file [`PictureSavingPreferencesWindow.xaml.cs`](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Windows/PictureSavingPreferencesWindow.xaml.cs).<br/>表示是否解决方案使用另外一种保存图片的办法去保存图片。这个符号只用在文件 [`PictureSavingPreferencesWindow.xaml.cs`](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Windows/PictureSavingPreferencesWindow.xaml.cs) 里面。
 * `AUTHOR_RESERVED`: Indicates the method is only used for author himself. You can delete the code surrounded with this symbol.<br/>表示这段代码只对作者来说才有意义。你完全可以删除掉这段代码，或者不使用 `AUTHOR_RESERVED` 符号。
 * `MUST_DOWNLOAD_TRAINED_DATA`: Indicates whether the solution will download the trained data file `eng.traineddata` on GitHub when the local file with the same name cannot be found. Sometimes the file downloading is so slow that we cannot stand with it. If this symbol is undefined, it will offer the user an error message window when local file cannot be found.<br/>表示这个解决方案是否在本地的同名文件不存在的时候，从 GitHub 上下载该文件。有时候这个下载特别慢，以至于我们完全没办法忍受它。如果这个符号没有定义的话，我们就会在文件找不到的时候直接以错误弹窗的形式提示用户不能使用识别功能。
-* `CSHARP_9_PREVIEW`: Indicates the current feature is only used for C# 9 (preview). If the C# 9 is released version, this symbol will be removed.<br/>表示代码只在 C# 9 预览版里存在。当变作 C# 9 的时候，这段代码将会消失。
+* `CSHARP_9_PREVIEW`: Indicates the current feature is only used for C# 9 (preview). If C# 9 is released, this symbol will be removed. For example, `class IsExternalInit` to indicate the property contains `init` setter in metadata.<br/>表示代码只在 C# 9 预览版里存在。当 C# 9 正式版时，这段代码将会消失。比如 `IsExternalInit` 类用来表达属性是否包含 `init` 赋值器，用于元数据里。
 
 
 
