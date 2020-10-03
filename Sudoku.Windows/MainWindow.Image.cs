@@ -31,8 +31,8 @@ namespace Sudoku.Windows
 		{
 			if (sender is Image image)
 			{
-				int getCell() => _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
-				int getCandidate() => _pointConverter.GetCandidateOffset(e.GetPosition(image).ToDPointF());
+				int getCell() => _pointConverter.GetCell(e.GetPosition(image).ToDPointF());
+				int getCandidate() => _pointConverter.GetCandidate(e.GetPosition(image).ToDPointF());
 
 				switch (Keyboard.Modifiers)
 				{
@@ -131,7 +131,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.MouseRightButtonDown(object?, EventArgs)"/>
 		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			int cell = _pointConverter.GetCellOffset((_currentRightClickPos = e.GetPosition(_imageGrid)).ToDPointF());
+			int cell = _pointConverter.GetCell((_currentRightClickPos = e.GetPosition(_imageGrid)).ToDPointF());
 			_selectedCellsWhileDrawingRegions.AddAnyway(cell);
 
 			// Disable all menu items.
@@ -159,7 +159,7 @@ namespace Sudoku.Windows
 			// Then enable some of them.
 			foreach (int i in
 				_puzzle.GetCandidateMask(
-					_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF())).GetAllSets())
+					_pointConverter.GetCell(_currentRightClickPos.ToDPointF())).GetAllSets())
 			{
 				s(this, flags, i).Visibility = Visibility.Visible;
 				d(this, flags, i).Visibility = Visibility.Visible;
@@ -180,7 +180,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			int cell = _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
+			int cell = _pointConverter.GetCell(e.GetPosition(image).ToDPointF());
 			_selectedCellsWhileDrawingRegions.AddAnyway(cell);
 
 			switch (Keyboard.Modifiers)

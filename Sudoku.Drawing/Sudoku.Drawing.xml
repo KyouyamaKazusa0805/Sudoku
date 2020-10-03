@@ -570,7 +570,7 @@
         </member>
         <member name="F:Sudoku.Drawing.PointConverter.WhatTheHellOffset">
             <summary>
-            I don't know why the constant exists.
+            I don't know why the constant exists but it does work!
             </summary>
         </member>
         <member name="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)">
@@ -594,12 +594,6 @@
             <param name="size">The size.</param>
             <seealso cref="T:System.Drawing.SizeF"/>
         </member>
-        <member name="P:Sudoku.Drawing.PointConverter.GridPoints">
-            <summary>
-            Indicates the absolutely points in grid cross-lines.
-            This property will be assigned later (and not <see langword="null"/>).
-            </summary>
-        </member>
         <member name="P:Sudoku.Drawing.PointConverter.ControlSize">
             <summary>
             Indicates the control size.
@@ -620,14 +614,20 @@
             Indicates the candidate size.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetCellOffset(System.Drawing.PointF)">
+        <member name="P:Sudoku.Drawing.PointConverter.GridPoints">
+            <summary>
+            Indicates the absolutely points in grid cross-lines.
+            This property will be assigned later (and not <see langword="null"/>).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetCell(System.Drawing.PointF)">
             <summary>
             Get the focus cell offset via a mouse point.
             </summary>
             <param name="point">The mouse point.</param>
             <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetCandidateOffset(System.Drawing.PointF)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetCandidate(System.Drawing.PointF)">
             <summary>
             Get the focus candidate offset via a mouse point.
             </summary>
@@ -687,27 +687,6 @@
             <param name="cell">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>The mouse point.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.PointConverter.InitializeSizes(System.Drawing.SizeF)">
-            <summary>
-            Bound with the constructor <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>,
-            <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Single,System.Single)"/> and
-            <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)"/>.
-            </summary>
-            <param name="size">The size.</param>
-            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>
-            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Single,System.Single)"/>
-            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)"/>
-        </member>
-        <member name="M:Sudoku.Drawing.PointConverter.InitializePoints">
-            <summary>
-            Bound with the constructor <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>,
-            <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Single,System.Single)"/> and
-            <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)"/>.
-            </summary>
-            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>
-            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Single,System.Single)"/>
-            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)"/>
         </member>
         <member name="T:Sudoku.Drawing.Settings">
             <summary>

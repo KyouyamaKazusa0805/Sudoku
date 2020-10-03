@@ -182,8 +182,6 @@ namespace Sudoku.Drawing
 			for (int cell = 0; cell < 81; cell++)
 			{
 				short mask = grid.GetMask(cell);
-
-				// Firstly, draw values.
 				var status = (CellStatus)(mask >> 9 & (int)All);
 				switch (status)
 				{
@@ -428,11 +426,9 @@ namespace Sudoku.Drawing
 				}
 
 				// Check if another candidate lies on the direct line.
-				double deltaX = pt2x - pt1x;
-				double deltaY = pt2y - pt1y;
+				double deltaX = pt2x - pt1x, deltaY = pt2y - pt1y;
 				double alpha = Atan2(deltaY, deltaX);
-				double dx1 = deltaX;
-				double dy1 = deltaY;
+				double dx1 = deltaX, dy1 = deltaY;
 				bool through = false;
 				AdjustPoint(pt1, pt2, out var p1, out var p2, alpha, cw, offset);
 				foreach (var point in points)
@@ -443,8 +439,7 @@ namespace Sudoku.Drawing
 						continue;
 					}
 
-					double dx2 = point.X - p1.X;
-					double dy2 = point.Y - p1.Y;
+					double dx2 = point.X - p1.X, dy2 = point.Y - p1.Y;
 					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
 						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
 						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, 1E-1)))
@@ -663,10 +658,8 @@ namespace Sudoku.Drawing
 			pt2.Y -= pt1.Y;
 
 			// Rotate.
-			double sinAngle = Sin(angle);
-			double cosAngle = Cos(angle);
-			double xAct = pt2.X;
-			double yAct = pt2.Y;
+			double sinAngle = Sin(angle), cosAngle = Cos(angle);
+			double xAct = pt2.X, yAct = pt2.Y;
 			pt2.X = (float)(xAct * cosAngle - yAct * sinAngle);
 			pt2.Y = (float)(xAct * sinAngle + yAct * cosAngle);
 
@@ -688,8 +681,7 @@ namespace Sudoku.Drawing
 		private static void AdjustPoint(
 			PointF pt1, PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize, float offset)
 		{
-			p1 = pt1;
-			p2 = pt2;
+			(p1, p2) = (pt1, pt2);
 			double tempDelta = candidateSize / 2 + offset;
 			int px = (int)(tempDelta * Cos(alpha)), py = (int)(tempDelta * Sin(alpha));
 

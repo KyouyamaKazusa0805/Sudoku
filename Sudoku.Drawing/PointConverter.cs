@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
-using DSizeF = System.Drawing.SizeF;
 
 namespace Sudoku.Drawing
 {
@@ -24,7 +23,7 @@ namespace Sudoku.Drawing
 		private const int Offset = 10;
 
 		/// <summary>
-		/// I don't know why the constant exists.
+		/// I don't know why the constant exists but it does work!
 		/// </summary>
 		private const int WhatTheHellOffset = 6;
 
@@ -34,7 +33,7 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="width">The width.</param>
 		/// <param name="height">The height.</param>
-		public PointConverter(int width, int height) : this(new DSizeF(width, height))
+		public PointConverter(int width, int height) : this(new(width, height))
 		{
 		}
 
@@ -43,47 +42,66 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="width">The width.</param>
 		/// <param name="height">The height.</param>
-		public PointConverter(float width, float height) : this(new DSizeF(width, height))
+		public PointConverter(float width, float height) : this(new(width, height))
 		{
 		}
 
 		/// <summary>
-		/// Initializes an instance with the specified <see cref="DSizeF"/>.
+		/// Initializes an instance with the specified <see cref="SizeF"/>.
 		/// </summary>
 		/// <param name="size">The size.</param>
-		/// <seealso cref="DSizeF"/>
-		public PointConverter(DSizeF size)
+		/// <seealso cref="SizeF"/>
+		public PointConverter(SizeF size)
 		{
-			InitializeSizes(size);
-			InitializePoints();
+			// Initialize sizes.
+			{
+				var (width, height) = ControlSize = size;
+				var (gridWidth, gridHeight) = GridSize = new(width - (Offset << 1), height - (Offset << 1));
+				CellSize = new(gridWidth / 9, gridHeight / 9);
+				CandidateSize = new(gridWidth / 27, gridHeight / 27);
+			}
+
+			// Initialize points.
+			{
+				const int length = 28;
+				var (cw, ch) = CandidateSize;
+				GridPoints = new PointF[length, length];
+				for (int i = 0; i < length; i++)
+				{
+					for (int j = 0; j < length; j++)
+					{
+						GridPoints[i, j] = new(cw * i + Offset, ch * j + Offset);
+					}
+				}
+			}
 		}
 
+
+		/// <summary>
+		/// Indicates the control size.
+		/// </summary>
+		public SizeF ControlSize { get; }
+
+		/// <summary>
+		/// Indicates the grid size.
+		/// </summary>
+		public SizeF GridSize { get; }
+
+		/// <summary>
+		/// Indicates the cell size.
+		/// </summary>
+		public SizeF CellSize { get; }
+
+		/// <summary>
+		/// Indicates the candidate size.
+		/// </summary>
+		public SizeF CandidateSize { get; }
 
 		/// <summary>
 		/// Indicates the absolutely points in grid cross-lines.
 		/// This property will be assigned later (and not <see langword="null"/>).
 		/// </summary>
-		public PointF[,] GridPoints { get; private set; } = null!;
-
-		/// <summary>
-		/// Indicates the control size.
-		/// </summary>
-		public DSizeF ControlSize { get; private set; }
-
-		/// <summary>
-		/// Indicates the grid size.
-		/// </summary>
-		public DSizeF GridSize { get; private set; }
-
-		/// <summary>
-		/// Indicates the cell size.
-		/// </summary>
-		public DSizeF CellSize { get; private set; }
-
-		/// <summary>
-		/// Indicates the candidate size.
-		/// </summary>
-		public DSizeF CandidateSize { get; private set; }
+		internal PointF[,] GridPoints { get; }
 
 
 		/// <summary>
@@ -92,11 +110,12 @@ namespace Sudoku.Drawing
 		/// <param name="point">The mouse point.</param>
 		/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public int GetCellOffset(PointF point)
+		public int GetCell(PointF point)
 		{
+			const int o = Offset + WhatTheHellOffset;
 			var (x, y) = point.Truncate();
-			x -= Offset + WhatTheHellOffset;
-			y -= Offset + WhatTheHellOffset;
+			x -= o;
+			y -= o;
 			if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
 			{
 				// Invalid case.
@@ -104,8 +123,7 @@ namespace Sudoku.Drawing
 			}
 
 			var (cw, ch) = CellSize.Truncate();
-			int result = y / ch * 9 + x / cw;
-			return result is < 0 or >= 81 ? -1 : result;
+			return y / ch * 9 + x / cw is var result and >= 0 and < 81 ? result : -1;
 		}
 
 		/// <summary>
@@ -114,11 +132,11 @@ namespace Sudoku.Drawing
 		/// <param name="point">The mouse point.</param>
 		/// <returns>The candidate offset.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public int GetCandidateOffset(PointF point)
+		public int GetCandidate(PointF point)
 		{
 			var (x, y) = point;
 			var (cw, ch) = CandidateSize;
-			return GetCellOffset(point) * 9 + (int)((y - Offset) / ch) % 3 * 3 + (int)((x - Offset) / cw) % 3;
+			return GetCell(point) * 9 + (int)((y - Offset) / ch) % 3 * 3 + (int)((x - Offset) / cw) % 3;
 		}
 
 		/// <summary>
@@ -225,46 +243,6 @@ namespace Sudoku.Drawing
 			var (cw, ch) = CandidateSize;
 			var (x, y) = GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
 			return new(x + cw / 2, y + ch / 2);
-		}
-
-		/// <summary>
-		/// Bound with the constructor <see cref="PointConverter(int, int)"/>,
-		/// <see cref="PointConverter(float, float)"/> and
-		/// <see cref="PointConverter(DSizeF)"/>.
-		/// </summary>
-		/// <param name="size">The size.</param>
-		/// <seealso cref="PointConverter(int, int)"/>
-		/// <seealso cref="PointConverter(float, float)"/>
-		/// <seealso cref="PointConverter(DSizeF)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void InitializeSizes(DSizeF size)
-		{
-			var (width, height) = ControlSize = size;
-			var (gridWidth, gridHeight) = GridSize = new(width - (Offset << 1), height - (Offset << 1));
-			CellSize = new(gridWidth / 9, gridHeight / 9);
-			CandidateSize = new(gridWidth / 27, gridHeight / 27);
-		}
-
-		/// <summary>
-		/// Bound with the constructor <see cref="PointConverter(int, int)"/>,
-		/// <see cref="PointConverter(float, float)"/> and
-		/// <see cref="PointConverter(DSizeF)"/>.
-		/// </summary>
-		/// <seealso cref="PointConverter(int, int)"/>
-		/// <seealso cref="PointConverter(float, float)"/>
-		/// <seealso cref="PointConverter(DSizeF)"/>
-		private void InitializePoints()
-		{
-			const int length = 28;
-			var (cw, ch) = CandidateSize;
-			GridPoints = new PointF[length, length];
-			for (int i = 0; i < length; i++)
-			{
-				for (int j = 0; j < length; j++)
-				{
-					GridPoints[i, j] = new(cw * i + Offset, ch * j + Offset);
-				}
-			}
 		}
 	}
 }

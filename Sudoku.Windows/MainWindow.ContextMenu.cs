@@ -15,75 +15,75 @@ namespace Sudoku.Windows
 	{
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet1_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 0);
+			SetADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 0);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet2_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 1);
+			SetADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 1);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet3_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 2);
+			SetADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 2);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet4_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 3);
+			SetADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 3);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet5_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 4);
+			SetADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 4);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet6_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 5);
+			SetADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 5);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet7_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 6);
+			SetADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 6);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet8_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 7);
+			SetADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 7);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridSet9_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 8);
+			SetADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 8);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete1_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 0);
+			DeleteADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 0);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete2_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 1);
+			DeleteADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 1);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete3_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 2);
+			DeleteADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 2);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete4_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 3);
+			DeleteADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 3);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete5_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 4);
+			DeleteADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 4);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete6_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 5);
+			DeleteADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 5);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete7_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 6);
+			DeleteADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 6);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete8_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 7);
+			DeleteADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 7);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemImageGridDelete9_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 8);
+			DeleteADigit(_pointConverter.GetCell(_currentRightClickPos.ToDPointF()), 8);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ContextListBoxPathsCopyCurrentStep_Click(object sender, RoutedEventArgs e)

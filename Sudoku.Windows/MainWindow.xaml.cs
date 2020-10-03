@@ -125,7 +125,7 @@ namespace Sudoku.Windows
 			{
 				case var key when key.IsDigit():
 				{
-					if (_pointConverter.GetCellOffset(Mouse.GetPosition(_imageGrid).ToDPointF()) is var cell && cell == -1)
+					if (_pointConverter.GetCell(Mouse.GetPosition(_imageGrid).ToDPointF()) is var cell && cell == -1)
 					{
 						return;
 					}
