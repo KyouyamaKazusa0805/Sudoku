@@ -291,7 +291,7 @@
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.DrawCustomViewIfNeed(System.Drawing.Graphics,System.Single)">
             <summary>
-            Draw custom view if <see cref="P:Sudoku.Drawing.GridPainter.CustomView"/> is not null.
+            Draw custom view if <see cref="P:Sudoku.Drawing.GridPainter.CustomView"/> is not <see langword="null"/>.
             </summary>
             <param name="g">The graphics.</param>
             <param name="offset">The drawing offset.</param>
@@ -299,11 +299,19 @@
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.DrawViewIfNeed(System.Drawing.Graphics,System.Single)">
             <summary>
-            Draw custom view if <see cref="P:Sudoku.Drawing.GridPainter.View"/> is not null.
+            Draw custom view if <see cref="P:Sudoku.Drawing.GridPainter.View"/> is not <see langword="null"/>.
             </summary>
             <param name="g">The graphics.</param>
             <param name="offset">The drawing offset.</param>
             <seealso cref="P:Sudoku.Drawing.GridPainter.View"/>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.DrawViewIfNeedInternal(System.Drawing.Graphics,System.Single,System.Object)">
+            <summary>
+            Draw custom view if not <see langword="null"/>.
+            </summary>
+            <param name="g">The graphics.</param>
+            <param name="offset">The drawing offset.</param>
+            <param name="view">The view instance.</param>
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.DrawFocusedCells(System.Drawing.Graphics,Sudoku.Data.GridMap)">
             <summary>

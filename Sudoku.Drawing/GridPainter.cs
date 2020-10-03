@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using static System.Drawing.Drawing2D.DashStyle;
-using static System.Drawing.Drawing2D.InterpolationMode;
-using static System.Drawing.FontStyle;
-using static System.Drawing.StringAlignment;
-using static System.Drawing.Text.TextRenderingHint;
 using static System.Math;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
@@ -147,8 +144,8 @@ namespace Sudoku.Drawing
 			DrawGridAndBlockLines(g);
 
 			g.SmoothingMode = SmoothingMode.AntiAlias;
-			g.TextRenderingHint = ClearTypeGridFit;
-			g.InterpolationMode = HighQualityBicubic;
+			g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 			g.CompositingQuality = CompositingQuality.HighQuality;
 			const float offset = 6F;
 			DrawViewIfNeed(g, offset);
@@ -177,7 +174,7 @@ namespace Sudoku.Drawing
 			using var fGiven = GetFontByScale(Settings.GivenFontName, cellWidth / 2F, Settings.ValueScale);
 			using var fModifiable = GetFontByScale(Settings.ModifiableFontName, cellWidth / 2F, Settings.ValueScale);
 			using var fCandidate = GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
-			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
+			using var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
 
 			for (int cell = 0; cell < 81; cell++)
 			{
@@ -212,25 +209,15 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
-		/// Draw custom view if <see cref="CustomView"/> is not null.
+		/// Draw custom view if <see cref="CustomView"/> is not <see langword="null"/>.
 		/// </summary>
 		/// <param name="g">The graphics.</param>
 		/// <param name="offset">The drawing offset.</param>
 		/// <seealso cref="CustomView"/>
-		private void DrawCustomViewIfNeed(Graphics g, float offset)
-		{
-			if (CustomView is not null)
-			{
-				if (CustomView.Cells is not null) DrawCells(g, CustomView.Cells);
-				if (CustomView.Candidates is not null) DrawCandidates(g, CustomView.Candidates, offset);
-				if (CustomView.Regions is not null) DrawRegions(g, CustomView.Regions, offset);
-				if (CustomView.Links is not null) DrawLinks(g, CustomView.Links, offset);
-				if (CustomView.DirectLines is not null) DrawDirectLines(g, CustomView.DirectLines, offset);
-			}
-		}
+		private void DrawCustomViewIfNeed(Graphics g, float offset) => DrawViewIfNeedInternal(g, offset, CustomView);
 
 		/// <summary>
-		/// Draw custom view if <see cref="View"/> is not null.
+		/// Draw custom view if <see cref="View"/> is not <see langword="null"/>.
 		/// </summary>
 		/// <param name="g">The graphics.</param>
 		/// <param name="offset">The drawing offset.</param>
@@ -239,13 +226,24 @@ namespace Sudoku.Drawing
 		{
 			if (Conclusions is not null) DrawEliminations(g, Conclusions, offset);
 
-			if (View is not null)
+			DrawViewIfNeedInternal(g, offset, View);
+		}
+
+		/// <summary>
+		/// Draw custom view if not <see langword="null"/>.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="offset">The drawing offset.</param>
+		/// <param name="view">The view instance.</param>
+		private void DrawViewIfNeedInternal(Graphics g, float offset, dynamic? view)
+		{
+			if (view is not null)
 			{
-				if (View.Cells is not null) DrawCells(g, View.Cells);
-				if (View.Candidates is not null) DrawCandidates(g, View.Candidates, offset);
-				if (View.Regions is not null) DrawRegions(g, View.Regions, offset);
-				if (View.Links is not null) DrawLinks(g, View.Links, offset);
-				if (View.DirectLines is not null) DrawDirectLines(g, View.DirectLines, offset);
+				if (view.Cells is not null) DrawCells(g, view.Cells);
+				if (view.Candidates is not null) DrawCandidates(g, view.Candidates, offset);
+				if (view.Regions is not null) DrawRegions(g, view.Regions, offset);
+				if (view.Links is not null) DrawLinks(g, view.Links, offset);
+				if (view.DirectLines is not null) DrawDirectLines(g, view.DirectLines, offset);
 			}
 		}
 
@@ -392,7 +390,7 @@ namespace Sudoku.Drawing
 			foreach (var link in links)
 			{
 				var (start, end, type) = link;
-				pen.DashStyle = type switch { Strong => Solid, Weak => Dot, LinkType.Default => Dash, _ => Dash };
+				pen.DashStyle = type switch { Strong => Solid, Weak => Dot, Default => Dash, _ => Dash };
 
 				var pt1 = PointConverter.GetMouseCenterOfCandidates(new() { start });
 				var pt2 = PointConverter.GetMouseCenterOfCandidates(new() { end });
@@ -510,7 +508,7 @@ namespace Sudoku.Drawing
 
 			using var bCandidate = new SolidBrush(Settings.CandidateColor);
 			using var fCandidate = GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
-			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
+			using var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
 
 			foreach (var (id, candidate) in candidates)
 			{
@@ -580,7 +578,7 @@ namespace Sudoku.Drawing
 		/// <param name="scale">The scale.</param>
 		/// <returns>The font.</returns>
 		private static Font GetFontByScale(string fontName, float size, decimal scale) =>
-			new(fontName, size * (float)scale, Regular);
+			new(fontName, size * (float)scale, FontStyle.Regular);
 
 		/// <summary>
 		/// To cut the link to let the head and the tail is outside the candidate.
