@@ -74,7 +74,7 @@ namespace Sudoku.Windows
 			_imageGrid.Height = _imageGrid.Width =
 				Math.Min(_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
 			Settings.GridSize = _gridMain.ColumnDefinitions[0].ActualWidth;
-			_currentPainter.PointConverter = new(_imageGrid.RenderSize.ToDSizeF());
+			_currentPainter = _currentPainter with { PointConverter = new(_imageGrid.RenderSize.ToDSizeF()) };
 
 			UpdateImageGrid();
 		}
@@ -185,7 +185,10 @@ namespace Sudoku.Windows
 						return;
 					}
 
-					_currentPainter.View = _currentTechniqueInfo.Views[_currentViewIndex = nextIndex];
+					_currentPainter = _currentPainter with
+					{
+						View = _currentTechniqueInfo.Views[_currentViewIndex = nextIndex]
+					};
 
 					UpdateImageGrid();
 
@@ -206,8 +209,7 @@ namespace Sudoku.Windows
 							_ => throw Throwings.ImpossibleCase
 						});
 
-					_currentPainter.Grid = _puzzle;
-					_currentPainter.FocusedCells = _focusedCells;
+					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
 
 					UpdateImageGrid();
 
@@ -219,8 +221,7 @@ namespace Sudoku.Windows
 					_previewMap = _focusedCells;
 					_focusedCells = _focusedCells.PeerIntersection;
 
-					_currentPainter.Grid = _puzzle;
-					_currentPainter.FocusedCells = _focusedCells;
+					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
 
 					UpdateImageGrid();
 
@@ -233,8 +234,7 @@ namespace Sudoku.Windows
 					_focusedCells.Clear();
 					_focusedCells.AddAnyway((cell + 3) % 81);
 
-					_currentPainter.Grid = _puzzle;
-					_currentPainter.FocusedCells = _focusedCells;
+					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
 
 					UpdateImageGrid();
 
@@ -265,7 +265,7 @@ namespace Sudoku.Windows
 			{
 				_focusedCells = _previewMap.Value;
 
-				_currentPainter.FocusedCells = _focusedCells;
+				_currentPainter = _currentPainter with { FocusedCells = _focusedCells };
 
 				UpdateImageGrid();
 			}
@@ -330,13 +330,16 @@ namespace Sudoku.Windows
 		private void ClearViews()
 		{
 			_focusedCells.Clear();
-			_currentPainter.Grid = _puzzle;
+			_currentPainter = _currentPainter with
+			{
+				Grid = _puzzle,
+				Conclusions = null,
+				CustomView = null,
+				View = null,
+				FocusedCells = null
+			};
 			_currentViewIndex = -1;
 			_currentTechniqueInfo = null;
-			_currentPainter.Conclusions = null;
-			_currentPainter.CustomView = null;
-			_currentPainter.View = null;
-			_currentPainter.FocusedCells = null;
 		}
 
 		/// <summary>
@@ -612,8 +615,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void InitializePointConverter() =>
 			_currentPainter =
-				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings)
-		{ Grid = _puzzle };
+				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings) { Grid = _puzzle };
 
 		/// <summary>
 		/// To load a puzzle with a specified possible puzzle string.

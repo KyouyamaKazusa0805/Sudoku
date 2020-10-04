@@ -231,7 +231,7 @@ namespace Sudoku.Windows
 		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
 		{
 			Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true;
-			_currentPainter.Grid = _puzzle;
+			_currentPainter = _currentPainter with { Grid = _puzzle };
 
 			UpdateImageGrid();
 		}
@@ -395,8 +395,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
 		{
-			_currentPainter.Grid = _puzzle = new(_initialPuzzle);
-			_currentPainter.View = null;
+			_currentPainter = _currentPainter with { Grid = _puzzle = new(_initialPuzzle), View = null };
 
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -807,9 +806,11 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_currentPainter.View =
-					new((from candidate in trueCandidates select new DrawingInfo(0, candidate)).ToArray());
-				_currentPainter.Conclusions = null;
+				_currentPainter = _currentPainter with
+				{
+					View = new((from candidate in trueCandidates select new DrawingInfo(0, candidate)).ToArray()),
+					Conclusions = null
+				};
 
 				UpdateImageGrid();
 
@@ -863,14 +864,17 @@ namespace Sudoku.Windows
 					currentLevel++;
 				}
 
-				_currentPainter.View =
-					new(
-					(
-						from backdoor in backdoors
-						where backdoor.ConclusionType == ConclusionType.Assignment
-						select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)
-					).ToArray());
-				_currentPainter.Conclusions = backdoors;
+				_currentPainter = _currentPainter with
+				{
+					View =
+						new(
+							(
+								from backdoor in backdoors
+								where backdoor.ConclusionType == ConclusionType.Assignment
+								select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)
+							).ToArray()),
+					Conclusions = backdoors
+				};
 
 				UpdateImageGrid();
 
@@ -917,8 +921,11 @@ namespace Sudoku.Windows
 			}
 
 			_textBoxInfo.Text = info.ToString();
-			_currentPainter.View = new(cellOffsets, info.Views[0].Candidates, null, null);
-			_currentPainter.Conclusions = info.Conclusions;
+			_currentPainter = _currentPainter with
+			{
+				View = new(cellOffsets, info.Views[0].Candidates, null, null),
+				Conclusions = info.Conclusions
+			};
 
 			UpdateImageGrid();
 		}

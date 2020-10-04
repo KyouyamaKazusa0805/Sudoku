@@ -186,10 +186,59 @@
             <summary>
             Indicates the grid painter.
             </summary>
+            <param name="PointConverter">Indicates the <see cref="T:Sudoku.Drawing.PointConverter"/> instance.</param>
+            <param name="Settings">Indicates the <see cref="T:Sudoku.Drawing.Settings"/> instance.</param>
+            <param name="Width">Indicates the width.</param>
+            <param name="Height">Indicates the height.</param>
+            <param name="Grid">Indicates the grid.</param>
+            <param name="FocusedCells">Indicates the focused cells.</param>
+            <param name="View">Indicates the view.</param>
+            <param name="CustomView">Indicates the custom view.</param>
+            <param name="Conclusions">All conclusions.</param>
             <remarks>
+            <para>
             Please note that eliminations will be colored with red, but all assignments won't be colored,
             because they will be colored using another method (draw candidates).
+            </para>
+            <para>
+            In addition, please use the constructor <see cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/> instead
+            because the properties <see cref="P:Sudoku.Drawing.GridPainter.Width"/> and <see cref="P:Sudoku.Drawing.GridPainter.Height"/> can be calculated using
+            <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>.
+            </para>
             </remarks>
+            <seealso cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/>
+            <seealso cref="P:Sudoku.Drawing.GridPainter.Width"/>
+            <seealso cref="P:Sudoku.Drawing.GridPainter.Height"/>
+            <seealso cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,System.Single,System.Single,Sudoku.Data.Grid,System.Nullable{Sudoku.Data.GridMap},Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <summary>
+            Indicates the grid painter.
+            </summary>
+            <param name="PointConverter">Indicates the <see cref="T:Sudoku.Drawing.PointConverter"/> instance.</param>
+            <param name="Settings">Indicates the <see cref="T:Sudoku.Drawing.Settings"/> instance.</param>
+            <param name="Width">Indicates the width.</param>
+            <param name="Height">Indicates the height.</param>
+            <param name="Grid">Indicates the grid.</param>
+            <param name="FocusedCells">Indicates the focused cells.</param>
+            <param name="View">Indicates the view.</param>
+            <param name="CustomView">Indicates the custom view.</param>
+            <param name="Conclusions">All conclusions.</param>
+            <remarks>
+            <para>
+            Please note that eliminations will be colored with red, but all assignments won't be colored,
+            because they will be colored using another method (draw candidates).
+            </para>
+            <para>
+            In addition, please use the constructor <see cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/> instead
+            because the properties <see cref="P:Sudoku.Drawing.GridPainter.Width"/> and <see cref="P:Sudoku.Drawing.GridPainter.Height"/> can be calculated using
+            <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/>
+            <seealso cref="P:Sudoku.Drawing.GridPainter.Width"/>
+            <seealso cref="P:Sudoku.Drawing.GridPainter.Height"/>
+            <seealso cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>
         </member>
         <member name="F:Sudoku.Drawing.GridPainter.SqrtOf2">
             <summary>
@@ -203,68 +252,12 @@
             </summary>
             <seealso cref="F:System.Math.PI"/>
         </member>
-        <member name="F:Sudoku.Drawing.GridPainter._pointConverter">
-            <summary>
-            Indicates the back field of the property <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,Sudoku.Data.Grid,System.Nullable{Sudoku.Data.GridMap},Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="pointConverter">The point converter.</param>
             <param name="settings">The instance.</param>
-            <param name="grid">The grid.</param>
-            <param name="focusedCells">The focused cells.</param>
-            <param name="view">The view.</param>
-            <param name="customView">The custom view.</param>
-            <param name="conclusions">The conclusions.</param>
-        </member>
-        <member name="P:Sudoku.Drawing.GridPainter.Width">
-            <summary>
-            Indicates the width.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.GridPainter.Height">
-            <summary>
-            Indicates the height.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.GridPainter.FocusedCells">
-            <summary>
-            Indicates the focused cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.GridPainter.Settings">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Drawing.Settings"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.GridPainter.PointConverter">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Drawing.PointConverter"/> instance.
-            </summary>
-            <value>The converter instance.</value>
-        </member>
-        <member name="P:Sudoku.Drawing.GridPainter.Grid">
-            <summary>
-            Indicates the grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.GridPainter.View">
-            <summary>
-            Indicates the view.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.GridPainter.CustomView">
-            <summary>
-            Indicates the custom view.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.GridPainter.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.Draw">
             <summary>

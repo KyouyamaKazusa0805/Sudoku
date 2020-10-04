@@ -18,11 +18,33 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// Indicates the grid painter.
 	/// </summary>
+	/// <param name="PointConverter">Indicates the <see cref="Drawing.PointConverter"/> instance.</param>
+	/// <param name="Settings">Indicates the <see cref="Drawing.Settings"/> instance.</param>
+	/// <param name="Width">Indicates the width.</param>
+	/// <param name="Height">Indicates the height.</param>
+	/// <param name="Grid">Indicates the grid.</param>
+	/// <param name="FocusedCells">Indicates the focused cells.</param>
+	/// <param name="View">Indicates the view.</param>
+	/// <param name="CustomView">Indicates the custom view.</param>
+	/// <param name="Conclusions">All conclusions.</param>
 	/// <remarks>
+	/// <para>
 	/// Please note that eliminations will be colored with red, but all assignments won't be colored,
 	/// because they will be colored using another method (draw candidates).
+	/// </para>
+	/// <para>
+	/// In addition, please use the constructor <see cref="GridPainter(PointConverter, Settings)"/> instead
+	/// because the properties <see cref="Width"/> and <see cref="Height"/> can be calculated using
+	/// <see cref="PointConverter"/>.
+	/// </para>
 	/// </remarks>
-	public sealed class GridPainter
+	/// <seealso cref="GridPainter(PointConverter, Settings)"/>
+	/// <seealso cref="Width"/>
+	/// <seealso cref="Height"/>
+	/// <seealso cref="PointConverter"/>
+	public sealed record GridPainter(
+		PointConverter PointConverter, Settings Settings, float Width, float Height, Grid? Grid, GridMap? FocusedCells,
+		View? View, MutableView? CustomView, IEnumerable<Conclusion>? Conclusions)
 	{
 		/// <summary>
 		/// The square root of 2.
@@ -38,84 +60,14 @@ namespace Sudoku.Drawing
 
 
 		/// <summary>
-		/// Indicates the back field of the property <see cref="PointConverter"/>.
-		/// </summary>
-		private PointConverter _pointConverter = null!;
-
-
-		/// <summary>
 		/// Initializes an instance with the specified information.
 		/// </summary>
 		/// <param name="pointConverter">The point converter.</param>
 		/// <param name="settings">The instance.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="focusedCells">The focused cells.</param>
-		/// <param name="view">The view.</param>
-		/// <param name="customView">The custom view.</param>
-		/// <param name="conclusions">The conclusions.</param>
-		public GridPainter(
-			PointConverter pointConverter, Settings settings, Grid? grid = null, GridMap? focusedCells = null,
-			View? view = null, MutableView? customView = null, IEnumerable<Conclusion>? conclusions = null)
-		{
-			PointConverter = pointConverter;
-			Settings = settings;
-			Grid = grid;
-			FocusedCells = focusedCells;
-			View = view;
-			CustomView = customView;
-			Conclusions = conclusions;
-		}
+		public GridPainter(PointConverter pointConverter, Settings settings)
+			: this(pointConverter, settings, default, default, null, null, null, null, null) =>
+			(Width, Height) = pointConverter.ControlSize;
 
-
-		/// <summary>
-		/// Indicates the width.
-		/// </summary>
-		public float Width { get; private set; }
-
-		/// <summary>
-		/// Indicates the height.
-		/// </summary>
-		public float Height { get; private set; }
-
-		/// <summary>
-		/// Indicates the focused cells.
-		/// </summary>
-		public GridMap? FocusedCells { get; set; }
-
-		/// <summary>
-		/// Indicates the <see cref="Drawing.Settings"/> instance.
-		/// </summary>
-		public Settings Settings { get; }
-
-		/// <summary>
-		/// Indicates the <see cref="Drawing.PointConverter"/> instance.
-		/// </summary>
-		/// <value>The converter instance.</value>
-		public PointConverter PointConverter
-		{
-			get => _pointConverter;
-			set => (Width, Height) = (_pointConverter = value).ControlSize;
-		}
-
-		/// <summary>
-		/// Indicates the grid.
-		/// </summary>
-		public Grid? Grid { get; set; }
-
-		/// <summary>
-		/// Indicates the view.
-		/// </summary>
-		public View? View { get; set; }
-
-		/// <summary>
-		/// Indicates the custom view.
-		/// </summary>
-		public MutableView? CustomView { get; set; }
-
-		/// <summary>
-		/// Indicates the conclusions.
-		/// </summary>
-		public IEnumerable<Conclusion>? Conclusions { get; set; }
 
 		/// <summary>
 		/// To draw the image.

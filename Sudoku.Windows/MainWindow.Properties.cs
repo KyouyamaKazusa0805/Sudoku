@@ -22,7 +22,7 @@ namespace Sudoku.Windows
 		{
 			set
 			{
-				_currentPainter = new(_pointConverter, Settings, _puzzle = value);
+				_currentPainter = new(_pointConverter, Settings) { Grid = _puzzle = value };
 				_initialPuzzle = value.Clone();
 
 				GC.Collect();

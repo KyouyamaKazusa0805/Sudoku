@@ -77,9 +77,12 @@ namespace Sudoku.Windows
 								}
 							}
 
-							_currentPainter.CustomView = _view;
-							_currentPainter.Conclusions = null;
-							_currentPainter.FocusedCells = null;
+							_currentPainter = _currentPainter with
+							{
+								CustomView = _view,
+								Conclusions = null,
+								FocusedCells = null
+							};
 
 							UpdateImageGrid();
 						}
@@ -122,7 +125,7 @@ namespace Sudoku.Windows
 					//}
 				}
 
-				_currentPainter.FocusedCells = _focusedCells;
+				_currentPainter = _currentPainter with { FocusedCells = _focusedCells };
 
 				UpdateImageGrid();
 			}
@@ -227,9 +230,12 @@ namespace Sudoku.Windows
 							}
 						}
 
-						_currentPainter.FocusedCells = null;
-						_currentPainter.CustomView = _view;
-						_currentPainter.Conclusions = null;
+						_currentPainter = _currentPainter with
+						{
+							FocusedCells = null,
+							CustomView = _view,
+							Conclusions = null
+						};
 
 						UpdateImageGrid();
 					}
@@ -238,7 +244,7 @@ namespace Sudoku.Windows
 				}
 			}
 
-			_currentPainter.FocusedCells = _focusedCells;
+			_currentPainter = _currentPainter with { FocusedCells = _focusedCells };
 
 			UpdateImageGrid();
 		}

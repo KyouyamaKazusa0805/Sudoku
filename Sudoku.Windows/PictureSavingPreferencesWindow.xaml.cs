@@ -154,11 +154,12 @@ namespace Sudoku.Windows
 				}
 
 				var targetPainter =
-					new GridPainter(new(size, size), _settings, conclusions: _targetPainter.Conclusions)
+					new GridPainter(new(size, size), _settings)
 					{
 						Grid = _grid,
 						View = _targetPainter.View, // May be null.
-						CustomView = _targetPainter.CustomView // May be null.
+						CustomView = _targetPainter.CustomView, // May be null.
+						Conclusions = _targetPainter.Conclusions
 					};
 
 				Bitmap? bitmap = null;

@@ -26,9 +26,14 @@ namespace Sudoku.Windows
 				var (_, n, s, _) = triplet;
 				var techniqueInfo = _analyisResult!.SolvingSteps![n];
 				_currentTechniqueInfo = techniqueInfo;
-				_currentPainter.Grid = _puzzle = new(_analyisResult.StepGrids![n]);
-				_currentPainter.View = s.Views[_currentViewIndex = 0];
-				_currentPainter.Conclusions = techniqueInfo.Conclusions;
+
+				_currentPainter = _currentPainter with
+				{
+					Grid = _puzzle = new(_analyisResult.StepGrids![n]),
+					View = s.Views[_currentViewIndex = 0],
+					Conclusions = techniqueInfo.Conclusions
+				};
+
 				_textBoxInfo.Text = techniqueInfo.ToFullString();
 
 				UpdateImageGrid();
@@ -44,8 +49,12 @@ namespace Sudoku.Windows
 				{
 					var info = triplet.Item2;
 					_currentTechniqueInfo = info;
-					_currentPainter.View = info.Views[_currentViewIndex = 0];
-					_currentPainter.Conclusions = info.Conclusions;
+					_currentPainter = _currentPainter with
+					{
+						View = info.Views[_currentViewIndex = 0],
+						Conclusions = info.Conclusions
+					};
+
 					_textBoxInfo.Text = info.ToFullString();
 
 					UpdateImageGrid();
