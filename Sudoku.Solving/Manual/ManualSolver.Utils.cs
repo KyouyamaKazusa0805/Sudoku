@@ -236,5 +236,7 @@ namespace Sudoku.Solving.Manual
 			progressResult.CurrentCellsCount = cloneation.EmptiesCount;
 			progress.Report(progressResult);
 		}
+
+		private static decimal InternalSelector(TechniqueInfo info) => info.Difficulty;
 	}
 }

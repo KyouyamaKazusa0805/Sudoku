@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable IDE0055
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -131,9 +133,9 @@ namespace Sudoku.Solving.Manual
 						throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
 					}
 				}
-				else
+				else unsafe
 				{
-					var step = bag.GetElementByMinSelector(info => info.Difficulty);
+					var step = bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector);
 					if (step is null)
 					{
 						// If current step cannot find any steps,

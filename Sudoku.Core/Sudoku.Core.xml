@@ -7531,7 +7531,7 @@
             <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
             <seealso cref="T:System.Linq.Enumerable"/>
         </member>
-        <member name="M:System.Linq.EnumerableEx.GetElementByMinSelector``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.IComparable{``1}})">
+        <member name="M:System.Linq.EnumerableEx.GetElementByMinSelector``2(System.Collections.Generic.IEnumerable{``0},)">
             <summary>
             Get the element whose selection is the minimal one.
             </summary>

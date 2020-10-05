@@ -24,5 +24,21 @@ namespace Sudoku.Extensions
 		/// <returns>The <see cref="int"/> number indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int LengthOf<TEnum>() where TEnum : Enum => typeof(TEnum).GetFields().Length;
+
+#if false
+		public static unsafe bool HasFlag<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum =>
+#if NON_VS_IDE
+			@this.HasFlag(other);
+#else
+			sizeof(TEnum) switch
+			{
+				1 or 2 or 4 when __refvalue(__makeref(other), int) is var otherValue =>
+					(__refvalue(__makeref(@this), int) & otherValue) == otherValue,
+				8 when __refvalue(__makeref(other), long) is var otherValue =>
+					(__refvalue(__makeref(@this), long) & otherValue) == otherValue,
+				_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4.")
+			};
+#endif
+#endif
 	}
 }
