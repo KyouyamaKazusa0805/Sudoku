@@ -16,30 +16,6 @@ namespace System.Linq
 	/// <seealso cref="Enumerable"/>
 	public static class EnumerableEx
 	{
-#if false
-		/// <summary>
-		/// Get the element whose selection is the minimal one.
-		/// </summary>
-		/// <typeparam name="TNotNull">The element type.</typeparam>
-		/// <typeparam name="TComparable">The comparing type.</typeparam>
-		/// <param name="this">The elements to search the minimal one.</param>
-		/// <param name="selector">The selector.</param>
-		/// <returns>
-		/// The result value. If the collection does not have a minimal element,
-		/// the result will be the default value, where it will be <see langword="null"/>, which
-		/// is decided in the element type.
-		/// </returns>
-		/// <remarks>
-		/// Note that the return value can be <see langword="null"/> if the list cannot be found
-		/// the specified element, but this type parameter is named <typeparamref name="TNotNull"/>
-		/// because each element cannot be <see langword="null"/> (either value types or non-<see langword="null"/>
-		/// reference types).
-		/// </remarks>
-		public static TNotNull GetElementByMinSelector<TNotNull, TComparable>(
-			this IEnumerable<TNotNull> @this, Func<TNotNull, IComparable<TComparable>> selector)
-			where TNotNull : notnull => (from element in @this orderby selector(element) select element).FirstOrDefault();
-#endif
-
 		/// <summary>
 		/// Get the element whose selection is the minimal one.
 		/// </summary>
