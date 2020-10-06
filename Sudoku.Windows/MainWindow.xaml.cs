@@ -46,13 +46,10 @@ namespace Sudoku.Windows
 		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
 		{
-			// Call the base method.
-			base.OnInitialized(e);
+			base.OnInitialized(e); // Call the base method.
 
 			LoadConfigIfWorth();
-
 			ChangeLanguage(Settings.LanguageCode ??= "en-us");
-
 			PreventYouOpeningTwoSameWindows();
 
 #if SUDOKU_RECOGNITION
@@ -60,8 +57,7 @@ namespace Sudoku.Windows
 #endif
 
 			DefineShortCuts();
-
-			InitializePointConverter();
+			InitializeGridPainter();
 			LoadDatabaseIfWorth();
 			UpdateControls();
 		}
@@ -71,12 +67,15 @@ namespace Sudoku.Windows
 		{
 			base.OnRenderSizeChanged(sizeInfo);
 
-			double w = _gridMain.ColumnDefinitions[0].ActualWidth, h = _gridMain.RowDefinitions[0].ActualHeight;
-			_imageGrid.Height = _imageGrid.Width = Math.Min(w, h);
-			Settings.GridSize = w;
-			_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings);
+			if (sizeInfo.NewSize != sizeInfo.PreviousSize)
+			{
+				var (w, h) = (_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
+				_imageGrid.Height = _imageGrid.Width = Math.Min(w, h);
+				Settings.GridSize = w;
+				_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings);
 
-			UpdateImageGrid();
+				UpdateImageGrid();
+			}
 		}
 
 		/// <inheritdoc/>
@@ -611,11 +610,13 @@ namespace Sudoku.Windows
 		}
 
 		/// <summary>
-		/// Initializes point converter.
+		/// Initializes grid painter.
 		/// </summary>
-		private void InitializePointConverter() =>
-			_currentPainter =
-				new(_pointConverter = new((float)_imageGrid.Width, (float)_imageGrid.Height), Settings) { Grid = _puzzle };
+		private void InitializeGridPainter()
+		{
+			var (w, h) = _imageGrid;
+			_currentPainter = new(_pointConverter = new((float)w, (float)h), Settings) { Grid = _puzzle };
+		}
 
 		/// <summary>
 		/// To load a puzzle with a specified possible puzzle string.

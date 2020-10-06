@@ -389,6 +389,18 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.Extensions.ImageEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Controls.Image"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Controls.Image"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.ImageEx.Deconstruct(System.Windows.Controls.Image,System.Double@,System.Double@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The image.</param>
+            <param name="width">(<see langword="out"/> parameter) The width.</param>
+            <param name="height">(<see langword="out"/> parameter) The height.</param>
+        </member>
         <member name="T:Sudoku.Windows.Extensions.KeyEx">
             <summary>
             Provides extension methods on <see cref="T:System.Windows.Input.Key"/>.
@@ -1145,9 +1157,9 @@
             Switch on displaying view of generating combo boxes.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.MainWindow.InitializePointConverter">
+        <member name="M:Sudoku.Windows.MainWindow.InitializeGridPainter">
             <summary>
-            Initializes point converter.
+            Initializes grid painter.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.LoadPuzzle(System.String)">
@@ -2869,6 +2881,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The data.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>
