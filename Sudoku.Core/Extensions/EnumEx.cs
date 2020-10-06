@@ -30,7 +30,11 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The current enumeration type instance.</param>
 		/// <param name="other">The other instance to check.</param>
 		/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
-		public static unsafe bool HasFlag<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum =>
+		/// <remarks>
+		/// This method is same as <see cref="Enum.HasFlag(Enum)"/>, but without boxing and unboxing.
+		/// </remarks>
+		/// <seealso cref="Enum.HasFlag(Enum)"/>
+		public static unsafe bool HasFlagOf<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum =>
 			sizeof(TEnum) switch
 			{
 				1 or 2 or 4 when Unsafe.As<TEnum, int>(ref other) is var otherValue =>

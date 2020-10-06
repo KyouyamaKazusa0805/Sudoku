@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using Sudoku.DocComments;
+using Sudoku.Extensions;
 using static Sudoku.Windows.Tooling.ColorPickerOptions;
 
 namespace Sudoku.Windows.Tooling
@@ -99,7 +100,7 @@ namespace Sudoku.Windows.Tooling
 			[NotNullWhen(true)] out Color? color, ColorPickerOptions flags = None,
 			PickingColorEventHandler? customPreviewEventHandler = null)
 		{
-			if (flags.HasFlag(LoadCustomPalette))
+			if (flags.HasFlagOf(LoadCustomPalette))
 			{
 				ColorPickerSettings.UsingCustomPalette = true;
 			}
@@ -107,7 +108,7 @@ namespace Sudoku.Windows.Tooling
 			var instance = new ColorPicker();
 			color = instance._colorPicker.Color;
 
-			if (flags.HasFlag(SimpleView))
+			if (flags.HasFlagOf(SimpleView))
 			{
 				instance.ToggleSimpleAdvancedView();
 			}

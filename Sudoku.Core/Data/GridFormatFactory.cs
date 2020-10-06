@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.Extensions;
 using static Sudoku.Data.GridOutputOptions;
 
 namespace Sudoku.Data
@@ -21,24 +22,24 @@ namespace Sudoku.Data
 				return new(true) { Excel = true };
 			}
 
-			var formatter = new GridFormatter(gridOutputOption.HasFlag(Multiline));
-			if (gridOutputOption.HasFlag(WithModifiers))
+			var formatter = new GridFormatter(gridOutputOption.HasFlagOf(Multiline));
+			if (gridOutputOption.HasFlagOf(WithModifiers))
 			{
 				formatter.WithModifiables = true;
 			}
-			if (gridOutputOption.HasFlag(WithCandidates))
+			if (gridOutputOption.HasFlagOf(WithCandidates))
 			{
 				formatter.WithCandidates = true;
 			}
-			if (gridOutputOption.HasFlag(TreatValueAsGiven))
+			if (gridOutputOption.HasFlagOf(TreatValueAsGiven))
 			{
 				formatter.TreatValueAsGiven = true;
 			}
-			if (gridOutputOption.HasFlag(SubtleGridLines))
+			if (gridOutputOption.HasFlagOf(SubtleGridLines))
 			{
 				formatter.SubtleGridLines = true;
 			}
-			if (gridOutputOption.HasFlag(HodokuCompatible))
+			if (gridOutputOption.HasFlagOf(HodokuCompatible))
 			{
 				formatter.HodokuCompatible = true;
 			}
@@ -47,7 +48,7 @@ namespace Sudoku.Data
 				formatter.Sukaku = true;
 			}
 
-			formatter.Placeholder = gridOutputOption.HasFlag(DotPlaceholder) ? '.' : '0';
+			formatter.Placeholder = gridOutputOption.HasFlagOf(DotPlaceholder) ? '.' : '0';
 
 			return formatter;
 		}
@@ -86,7 +87,8 @@ namespace Sudoku.Data
 				"@:" => new(true) { WithCandidates = true, SubtleGridLines = true },
 				"@:!" or "@!:" => new(true) { WithCandidates = true, TreatValueAsGiven = true, SubtleGridLines = true },
 				"@*:" or "@:*" => new(true) { WithCandidates = true },
-				"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!" => new(true) { WithCandidates = true, TreatValueAsGiven = true },
+				"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!" =>
+					new(true) { WithCandidates = true, TreatValueAsGiven = true },
 				"~" or "~0" => new(false) { Sukaku = true, Placeholder = '0' },
 				"~." => new(false) { Sukaku = true, Placeholder = '.' },
 				"@~" or "~@" => new(true) { Sukaku = true },

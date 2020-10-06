@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Extensions;
 using Sudoku.Models;
 using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
@@ -74,7 +75,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (EnableGarbageCollectionForcedly && props.DisabledReason.HasFlag(DisabledReason.HighAllocation))
+					if (EnableGarbageCollectionForcedly && props.DisabledReason.HasFlagOf(DisabledReason.HighAllocation))
 					{
 						GC.Collect();
 					}

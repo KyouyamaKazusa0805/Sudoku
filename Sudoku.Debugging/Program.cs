@@ -55,7 +55,7 @@ WriteLine($"{vGrid:.+:}");
 WriteLine($"{iGrid:.+:}");
 #endif
 
-#if FILE_COUNTER || false
+#if FILE_COUNTER || true
 string root = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
 
 WriteLine(new FileCounter(root, "cs", withBinOrObjDirectory: false).CountUp());
