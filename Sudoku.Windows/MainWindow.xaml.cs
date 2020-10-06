@@ -74,7 +74,7 @@ namespace Sudoku.Windows
 			_imageGrid.Height = _imageGrid.Width =
 				Math.Min(_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
 			Settings.GridSize = _gridMain.ColumnDefinitions[0].ActualWidth;
-			_currentPainter = _currentPainter with { PointConverter = new(_imageGrid.RenderSize.ToDSizeF()) };
+			_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings);
 
 			UpdateImageGrid();
 		}
