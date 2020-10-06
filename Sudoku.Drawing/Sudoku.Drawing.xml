@@ -201,9 +201,9 @@
             because they will be colored using another method (draw candidates).
             </para>
             <para>
-            In addition, please use the constructor <see cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/> instead
-            because the properties <see cref="P:Sudoku.Drawing.GridPainter.Width"/> and <see cref="P:Sudoku.Drawing.GridPainter.Height"/> can be calculated using
-            <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>.
+            In addition, please use the constructor <see cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/> instead of
+            <see langword="init"/> <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/> or <see langword="with"/> expression to assign
+            the value on <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>, to ensure the points can be re-calculated.
             </para>
             </remarks>
             <seealso cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/>
@@ -230,9 +230,9 @@
             because they will be colored using another method (draw candidates).
             </para>
             <para>
-            In addition, please use the constructor <see cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/> instead
-            because the properties <see cref="P:Sudoku.Drawing.GridPainter.Width"/> and <see cref="P:Sudoku.Drawing.GridPainter.Height"/> can be calculated using
-            <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>.
+            In addition, please use the constructor <see cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/> instead of
+            <see langword="init"/> <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/> or <see langword="with"/> expression to assign
+            the value on <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>, to ensure the points can be re-calculated.
             </para>
             </remarks>
             <seealso cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings)"/>

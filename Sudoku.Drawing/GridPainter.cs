@@ -33,9 +33,9 @@ namespace Sudoku.Drawing
 	/// because they will be colored using another method (draw candidates).
 	/// </para>
 	/// <para>
-	/// In addition, please use the constructor <see cref="GridPainter(PointConverter, Settings)"/> instead
-	/// because the properties <see cref="Width"/> and <see cref="Height"/> can be calculated using
-	/// <see cref="PointConverter"/>.
+	/// In addition, please use the constructor <see cref="GridPainter(PointConverter, Settings)"/> instead of
+	/// <see langword="init"/> <see cref="PointConverter"/> or <see langword="with"/> expression to assign
+	/// the value on <see cref="PointConverter"/>, to ensure the points can be re-calculated.
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="GridPainter(PointConverter, Settings)"/>

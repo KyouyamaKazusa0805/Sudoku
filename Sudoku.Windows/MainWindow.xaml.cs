@@ -71,9 +71,9 @@ namespace Sudoku.Windows
 		{
 			base.OnRenderSizeChanged(sizeInfo);
 
-			_imageGrid.Height = _imageGrid.Width =
-				Math.Min(_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
-			Settings.GridSize = _gridMain.ColumnDefinitions[0].ActualWidth;
+			double w = _gridMain.ColumnDefinitions[0].ActualWidth, h = _gridMain.RowDefinitions[0].ActualHeight;
+			_imageGrid.Height = _imageGrid.Width = Math.Min(w, h);
+			Settings.GridSize = w;
 			_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings);
 
 			UpdateImageGrid();
@@ -300,7 +300,7 @@ namespace Sudoku.Windows
 #endif
 
 		/// <summary>
-		/// Add short cuts while initializing.
+		/// Add short cuts during initialization.
 		/// </summary>
 		private void DefineShortCuts()
 		{

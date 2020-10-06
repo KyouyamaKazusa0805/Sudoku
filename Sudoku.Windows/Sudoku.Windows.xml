@@ -1060,7 +1060,7 @@
         </member>
         <member name="M:Sudoku.Windows.MainWindow.DefineShortCuts">
             <summary>
-            Add short cuts while initializing.
+            Add short cuts during initialization.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.ClearViews">
