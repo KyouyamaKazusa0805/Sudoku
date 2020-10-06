@@ -287,7 +287,7 @@ namespace Sudoku.Windows
 #if !MUST_DOWNLOAD_TRAINED_DATA
 			catch (FileNotFoundException ex) when (ex.FileName?.EndsWith("eng.traineddata") ?? false)
 			{
-				// trained data file cannot be found.
+				// Trained data file cannot be found.
 				Messagings.FailedToLoadRecognitionTool(ex);
 			}
 #endif
