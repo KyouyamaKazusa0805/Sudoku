@@ -55,8 +55,24 @@ WriteLine($"{vGrid:.+:}");
 WriteLine($"{iGrid:.+:}");
 #endif
 
-#if FILE_COUNTER || true
+#if FILE_COUNTER || false
 string root = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
 
 WriteLine(new FileCounter(root, "cs", withBinOrObjDirectory: false).CountUp());
+#endif
+
+#if VALUE_HAS_FLAG_TESTER || false
+var e = E.Easy | E.Hard;
+bool result = e.HasFlag<E>(E.Moderate);
+Console.WriteLine(result);
+
+[Flags]
+enum E : short
+{
+	Easy = 1,
+	Moderate = 2,
+	Hard = 4,
+	Insane = 8,
+	LastResort = 16
+}
 #endif

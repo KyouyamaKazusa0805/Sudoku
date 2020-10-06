@@ -4447,6 +4447,13 @@
             <typeparam name="TEnum">The type of the enmeration.</typeparam>
             <returns>The <see cref="T:System.Int32"/> number indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Extensions.EnumEx.HasFlag``1(``0,``0)">
+            <inheritdoc cref="M:System.Enum.HasFlag(System.Enum)"/>
+            <typeparam name="TEnum">The type of the enumeration.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The current enumeration type instance.</param>
+            <param name="other">The other instance to check.</param>
+            <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
+        </member>
         <member name="T:Sudoku.Extensions.FormatProviderEx">
             <summary>
             Provides extension methods on <see cref="T:System.IFormatProvider"/>.
