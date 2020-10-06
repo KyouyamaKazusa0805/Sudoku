@@ -209,7 +209,7 @@ namespace Sudoku.Drawing
 			using var b = new SolidBrush(Settings.FocusedCellColor);
 			foreach (int cell in focusedCells)
 			{
-				g.FillRectangle(b, PointConverter.GetMousePointRectangle(cell));
+				g.FillRectangle(b, PointConverter.GetMouseRectangleViaCell(cell));
 			}
 		}
 
@@ -256,7 +256,7 @@ namespace Sudoku.Drawing
 			{
 				g.FillEllipse(
 					View?.Candidates?.Any(pair => pair.Value == c * 9 + d) ?? false ? cannibalBrush : eliminationBrush,
-					PointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));
+					PointConverter.GetMouseRectangle(c, d).Zoom(-offset / 3));
 			}
 		}
 
@@ -297,7 +297,7 @@ namespace Sudoku.Drawing
 					foreach (int cell in end)
 					{
 						// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-						var rect = PointConverter.GetMousePointRectangle(cell).Zoom(-offset * 2);
+						var rect = PointConverter.GetMouseRectangleViaCell(cell).Zoom(-offset * 2);
 
 						// Step 2: Draw cross sign.
 						using var pen = new Pen(Settings.CrossSignColor, 5F);
@@ -321,8 +321,8 @@ namespace Sudoku.Drawing
 			{
 				SudokuMap map1 = new() { startCand }, map2 = new() { endCand };
 
-				points.Add(PointConverter.GetMouseCenterOfCandidates(map1));
-				points.Add(PointConverter.GetMouseCenterOfCandidates(map2));
+				points.Add(PointConverter.GetMouseCenter(map1));
+				points.Add(PointConverter.GetMouseCenter(map2));
 			}
 
 			if (Conclusions is not null)
@@ -344,8 +344,8 @@ namespace Sudoku.Drawing
 				var (start, end, type) = link;
 				pen.DashStyle = type switch { Strong => Solid, Weak => Dot, Default => Dash, _ => Dash };
 
-				var pt1 = PointConverter.GetMouseCenterOfCandidates(new() { start });
-				var pt2 = PointConverter.GetMouseCenterOfCandidates(new() { end });
+				var pt1 = PointConverter.GetMouseCenter(new() { start });
+				var pt2 = PointConverter.GetMouseCenter(new() { end });
 				var (pt1x, pt1y) = pt1;
 				var (pt2x, pt2y) = pt2;
 
@@ -441,7 +441,7 @@ namespace Sudoku.Drawing
 				if (Settings.PaletteColors.TryGetValue(id, out var color))
 				{
 					using var brush = new SolidBrush(Color.FromArgb(32, color));
-					g.FillRectangle(brush, PointConverter.GetMousePointRectangleForRegion(region).Zoom(-offset / 3));
+					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3));
 				}
 			}
 		}
@@ -470,7 +470,7 @@ namespace Sudoku.Drawing
 				{
 					// In the normal case, I'll draw these circles.
 					using var brush = new SolidBrush(color);
-					g.FillEllipse(brush, PointConverter.GetMousePointRectangle(cell, digit).Zoom(-offset / 3));
+					g.FillEllipse(brush, PointConverter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 					// In direct view, candidates should be drawn also.
 					if (!Settings.ShowCandidates)
@@ -516,7 +516,7 @@ namespace Sudoku.Drawing
 					var (cw, ch) = PointConverter.CellSize;
 					var (x, y) = PointConverter.GetMousePointInCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
-					g.FillRectangle(brush, PointConverter.GetMousePointRectangle(cell)/*.Zoom(-offset)*/);
+					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
 				}
 			}
 		}

@@ -145,7 +145,7 @@ namespace Sudoku.Drawing
 		/// <param name="map">The map of candidates.</param>
 		/// <returns>The center mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PointF GetMouseCenterOfCandidates(SudokuMap map)
+		public PointF GetMouseCenter(SudokuMap map)
 		{
 			int min = map.SetAt(0), max = map.SetAt(^1);
 			var (x1, y1) = GetMousePointInCenter(min / 9, min % 9);
@@ -159,7 +159,7 @@ namespace Sudoku.Drawing
 		/// <param name="map">The candidates.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RectangleF GetMouseRectangleOfCandidates(SudokuMap map)
+		public RectangleF GetMouseRectangle(SudokuMap map)
 		{
 			var (cw, ch) = CandidateSize;
 			int min = map.SetAt(0), max = map.SetAt(^1);
@@ -172,12 +172,12 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
-		/// Get the rectangle (4 mouse points) for the specified cell.
+		/// Get the rectangle (4 mouse points) via the specified cell.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RectangleF GetMousePointRectangle(int cell)
+		public RectangleF GetMouseRectangleViaCell(int cell)
 		{
 			var (cw, ch) = CellSize;
 			var (x, y) = GetMousePointInCenter(cell);
@@ -191,7 +191,7 @@ namespace Sudoku.Drawing
 		/// <param name="cell">The cell.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RectangleF GetMousePointRectangle(int cell, int digit)
+		public RectangleF GetMouseRectangle(int cell, int digit)
 		{
 			var (cw, ch) = CandidateSize;
 			var (x, y) = GetMousePointInCenter(cell, digit);
@@ -199,14 +199,14 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
-		/// Get the rectangle (4 mouse points) for the specified region.
+		/// Get the rectangle (4 mouse points) via the specified region.
 		/// </summary>
 		/// <param name="region">The region.</param>
 		/// <returns>The rectangle.</returns>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Throws when the region is less than 0 or greater than 26.
 		/// </exception>
-		public RectangleF GetMousePointRectangleForRegion(int region) =>
+		public RectangleF GetMouseRectangleViaRegion(int region) =>
 			region switch
 			{
 				>= 0 and < 9 when (region % 3, region / 3) is (var v1, var v2) =>

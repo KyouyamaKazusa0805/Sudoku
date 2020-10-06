@@ -635,28 +635,28 @@
             <param name="point">The mouse point.</param>
             <returns>The candidate offset.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetMouseCenterOfCandidates(Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseCenter(Sudoku.Data.SudokuMap)">
             <summary>
             Get the center mouse point of all candidates.
             </summary>
             <param name="map">The map of candidates.</param>
             <returns>The center mouse point.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangleOfCandidates(Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangle(Sudoku.Data.SudokuMap)">
             <summary>
             Get the rectangle from all candidates.
             </summary>
             <param name="map">The candidates.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetMousePointRectangle(System.Int32)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangleViaCell(System.Int32)">
             <summary>
-            Get the rectangle (4 mouse points) for the specified cell.
+            Get the rectangle (4 mouse points) via the specified cell.
             </summary>
             <param name="cell">The cell.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetMousePointRectangle(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangle(System.Int32,System.Int32)">
             <summary>
             Get the rectangle (4 mouse points) for the specified cell
             and digit of a candidate.
@@ -664,9 +664,9 @@
             <param name="cell">The cell.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetMousePointRectangleForRegion(System.Int32)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangleViaRegion(System.Int32)">
             <summary>
-            Get the rectangle (4 mouse points) for the specified region.
+            Get the rectangle (4 mouse points) via the specified region.
             </summary>
             <param name="region">The region.</param>
             <returns>The rectangle.</returns>
