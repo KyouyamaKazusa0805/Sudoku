@@ -39,13 +39,13 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Get all cells.
 						GridMap map1 = GridMap.Empty, map2 = GridMap.Empty;
 						List<int> cells1 = new(), cells2 = new();
-						foreach (int pos1 in mask1.GetAllSets())
+						foreach (int pos1 in mask1)
 						{
 							int cell1 = RegionCells[r1][pos1];
 							cells1.Add(cell1);
 							map1.AddAnyway(cell1);
 						}
-						foreach (int pos2 in mask2.GetAllSets())
+						foreach (int pos2 in mask2)
 						{
 							int cell2 = RegionCells[r2][pos2];
 							cells2.Add(cell2);

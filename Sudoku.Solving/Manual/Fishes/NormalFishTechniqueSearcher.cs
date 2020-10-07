@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									short finMask = (short)(baseMask & ~(1 << i | 1 << j) & Grid.MaxCandidatesMask);
 									foreach (int baseSet in baseSets2)
 									{
-										foreach (int x in finMask.GetAllSets())
+										foreach (int x in finMask)
 										{
 											int possibleFinCellOffset = RegionCells[baseSet][x];
 											if (CandMaps[digit][possibleFinCellOffset])
@@ -307,7 +307,7 @@ namespace Sudoku.Solving.Manual.Fishes
 													baseMask & ~(1 << i | 1 << j | 1 << k) & Grid.MaxCandidatesMask);
 												foreach (int baseSet in baseSets3)
 												{
-													foreach (int x in finMask.GetAllSets())
+													foreach (int x in finMask)
 													{
 														int possibleFinCellOffset = RegionCells[baseSet][x];
 														if (grid.Exists(possibleFinCellOffset, digit) is true)
@@ -497,7 +497,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														// Confirm all fin cells.
 														foreach (int baseSet in baseSets4)
 														{
-															foreach (int x in finMask.GetAllSets())
+															foreach (int x in finMask)
 															{
 																int possibleFinCellOffset = RegionCells[baseSet][x];
 																if (grid.Exists(possibleFinCellOffset, digit) is true)

@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				}
 
 				var conclusions = new List<Conclusion>();
-				foreach (int digit in elimMask.GetAllSets())
+				foreach (int digit in elimMask)
 				{
 					conclusions.Add(new(Elimination, elimCell, digit));
 				}
@@ -171,7 +171,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							// Type 3 found.
 							// Now check eliminations.
 							var conclusions = new List<Conclusion>();
-							foreach (int digit in comparer.GetAllSets())
+							foreach (int digit in comparer)
 							{
 								var cells = iterationCellsMap & CandMaps[digit];
 								if (cells.IsEmpty)
@@ -306,7 +306,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in currentMap)
 						{
-							foreach (int digit in (grid.GetCandidateMask(cell) & combinationMask).GetAllSets())
+							foreach (int digit in grid.GetCandidateMask(cell) & combinationMask)
 							{
 								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}

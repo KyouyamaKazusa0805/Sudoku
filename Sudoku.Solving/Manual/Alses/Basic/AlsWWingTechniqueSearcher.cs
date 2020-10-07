@@ -68,9 +68,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					foreach (int x in mask.GetAllSets())
+					foreach (int x in mask)
 					{
-						if ((conjugatePairs[x]?.Count ?? 0) == 0)
+						if (conjugatePairs[x] is null or { Count: 0 })
 						{
 							continue;
 						}
@@ -100,7 +100,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								continue;
 							}
 
-							foreach (int w in (mask & ~(1 << x)).GetAllSets())
+							foreach (int w in mask & ~(1 << x))
 							{
 								var tempMap = ((map1 | map2) & CandMaps[w]).PeerIntersection & CandMaps[w];
 								if (tempMap.IsEmpty)

@@ -160,9 +160,7 @@ namespace Sudoku.Windows
 			}
 
 			// Then enable some of them.
-			foreach (int i in
-				_puzzle.GetCandidateMask(
-					_pointConverter.GetCell(_currentRightClickPos.ToDPointF())).GetAllSets())
+			foreach (int i in _puzzle.GetCandidateMask(_pointConverter.GetCell(_currentRightClickPos.ToDPointF())))
 			{
 				s(this, flags, i).Visibility = Visibility.Visible;
 				d(this, flags, i).Visibility = Visibility.Visible;

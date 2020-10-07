@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				}
 
 				var conclusions = new List<Conclusion>();
-				foreach (int digit in elimMask.GetAllSets())
+				foreach (int digit in elimMask)
 				{
 					conclusions.Add(new(Elimination, elimCell, digit));
 				}
@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 				short extraDigitsMask = (short)(mask & ~digitsMask);
 				var tempMap = GridMap.Empty;
-				foreach (int digit in extraDigitsMask.GetAllSets())
+				foreach (int digit in extraDigitsMask)
 				{
 					tempMap |= CandMaps[digit];
 				}
@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 							var cellsMap = new GridMap(cells);
 							var conclusions = new List<Conclusion>();
-							foreach (int digit in tempMask.GetAllSets())
+							foreach (int digit in tempMask)
 							{
 								foreach (int cell in (allCells - cellsMap) & CandMaps[digit])
 								{
@@ -213,7 +213,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 				short extraDigitsMask = (short)(mask & ~digitsMask);
 				var tempMap = GridMap.Empty;
-				foreach (int digit in extraDigitsMask.GetAllSets())
+				foreach (int digit in extraDigitsMask)
 				{
 					tempMap |= CandMaps[digit];
 				}
@@ -242,17 +242,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 								{
 									d2 = digit;
 
-									goto Z;
+									goto Finally;
 								}
 							}
 						}
 					}
 
-				Z:
+				Finally:
 					short comparer = (short)(1 << d1 | 1 << d2);
 					short otherDigitsMask = (short)(digitsMask & ~comparer);
 					var conclusions = new List<Conclusion>();
-					foreach (int digit in otherDigitsMask.GetAllSets())
+					foreach (int digit in otherDigitsMask)
 					{
 						foreach (int cell in compareMap & CandMaps[digit])
 						{

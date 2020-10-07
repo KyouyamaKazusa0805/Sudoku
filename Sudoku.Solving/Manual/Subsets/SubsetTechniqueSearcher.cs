@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						// Naked subset found. Now check eliminations.
 						short flagMask = 0;
 						var conclusions = new List<Conclusion>();
-						foreach (int digit in mask.GetAllSets())
+						foreach (int digit in mask)
 						{
 							var map = (cells & CandMaps[digit]).PeerIntersection & CandMaps[digit];
 							flagMask |= map.InOneRegion ? (short)0 : (short)(1 << digit);
@@ -115,7 +115,7 @@ namespace Sudoku.Solving.Manual.Subsets
 
 						// Gather eliminations.
 						var conclusions = new List<Conclusion>();
-						foreach (int digit in tempMask.GetAllSets())
+						foreach (int digit in tempMask)
 						{
 							foreach (int cell in map & CandMaps[digit])
 							{

@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								}
 
 								// Get the elimination map in the block.
-								foreach (int digit in blockMask.GetAllSets())
+								foreach (int digit in blockMask)
 								{
 									elimMapBlock |= CandMaps[digit];
 								}
@@ -144,7 +144,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											rowMask |= grid.GetCandidateMask(cell);
 										}
 
-										foreach (int digit in rowMask.GetAllSets())
+										foreach (int digit in rowMask)
 										{
 											elimMapRow |= CandMaps[digit];
 										}
@@ -168,7 +168,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 													columnMask |= grid.GetCandidateMask(cell);
 												}
 
-												foreach (int digit in columnMask.GetAllSets())
+												foreach (int digit in columnMask)
 												{
 													elimMapColumn |= CandMaps[digit];
 												}
@@ -216,21 +216,21 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 												{
 													// Check eliminations.
 													var conclusions = new List<Conclusion>();
-													foreach (int digit in blockMask.GetAllSets())
+													foreach (int digit in blockMask)
 													{
 														foreach (int cell in elimMapBlock & CandMaps[digit])
 														{
 															conclusions.Add(new(Elimination, cell, digit));
 														}
 													}
-													foreach (int digit in rowMask.GetAllSets())
+													foreach (int digit in rowMask)
 													{
 														foreach (int cell in elimMapRow & CandMaps[digit])
 														{
 															conclusions.Add(new(Elimination, cell, digit));
 														}
 													}
-													foreach (int digit in columnMask.GetAllSets())
+													foreach (int digit in columnMask)
 													{
 														foreach (int cell in elimMapColumn & CandMaps[digit])
 														{
@@ -253,7 +253,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 														from cell in currentBlockMap select new DrawingInfo(2, cell));
 
 													var candidateOffsets = new List<DrawingInfo>();
-													foreach (int digit in rowMask.GetAllSets())
+													foreach (int digit in rowMask)
 													{
 														foreach (int cell in
 															(currentRowMap | rbCurrentMap) & CandMaps[digit])
@@ -261,7 +261,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 															candidateOffsets.Add(new(0, cell * 9 + digit));
 														}
 													}
-													foreach (int digit in columnMask.GetAllSets())
+													foreach (int digit in columnMask)
 													{
 														foreach (int cell in
 															(currentColumnMap | cbCurrentMap) & CandMaps[digit])
@@ -269,7 +269,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 															candidateOffsets.Add(new(1, cell * 9 + digit));
 														}
 													}
-													foreach (int digit in blockMask.GetAllSets())
+													foreach (int digit in blockMask)
 													{
 														foreach (int cell in
 															(currentBlockMap | rbCurrentMap | cbCurrentMap) &

@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 					short rccMask = 0, z = 0;
 					int nh = 0;
-					foreach (int digit in xzMask.GetAllSets())
+					foreach (int digit in xzMask)
 					{
 						if ((map & CandMaps[digit]).AllSetsAreInOneRegion(out region))
 						{
@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					bool? isDoublyLinked = false;
 					short finalZ = 0;
 					var conclusions = new List<Conclusion>();
-					foreach (int elimDigit in z.GetAllSets())
+					foreach (int elimDigit in z)
 					{
 						var elimMap = (CandMaps[elimDigit] & map).PeerIntersection & CandMaps[elimDigit];
 						if (elimMap.IsEmpty)
@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					{
 						// Doubly linked ALS-XZ.
 						isDoublyLinked = true;
-						foreach (int elimDigit in (z & ~rccMask).GetAllSets())
+						foreach (int elimDigit in z & ~rccMask)
 						{
 							var zMap = CandMaps[elimDigit] & map1;
 							if (zMap.IsEmpty)
@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 						// RCC digit 2 eliminations.
 						int k = 0;
-						foreach (int digit in rccMask.GetAllSets())
+						foreach (int digit in rccMask)
 						{
 							var elimMap = (RegionMaps[house[k]] & CandMaps[digit]) - map;
 							if (elimMap.IsNotEmpty)
@@ -156,7 +156,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							foreach (int cell in tempMap)
 							{
-								foreach (int digit in (grid.GetCandidateMask(cell) & (mask1 & ~rccMask)).GetAllSets())
+								foreach (int digit in grid.GetCandidateMask(cell) & (mask1 & ~rccMask))
 								{
 									conclusions.Add(new(Elimination, cell, digit));
 								}
@@ -172,7 +172,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							foreach (int cell in tempMap)
 							{
-								foreach (int digit in (grid.GetCandidateMask(cell) & (mask2 & ~rccMask)).GetAllSets())
+								foreach (int digit in grid.GetCandidateMask(cell) & (mask2 & ~rccMask))
 								{
 									conclusions.Add(new(Elimination, cell, digit));
 								}
@@ -207,15 +207,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
 							short targetDigitsMask = (short)(mask & finalZ);
 							short rccDigitsMask = (short)(mask & rccMask);
-							foreach (int digit in alsDigitsMask.GetAllSets())
+							foreach (int digit in alsDigitsMask)
 							{
 								candidateOffsets.Add(new(-1, cell * 9 + digit));
 							}
-							foreach (int digit in targetDigitsMask.GetAllSets())
+							foreach (int digit in targetDigitsMask)
 							{
 								candidateOffsets.Add(new(2, cell * 9 + digit));
 							}
-							foreach (int digit in rccDigitsMask.GetAllSets())
+							foreach (int digit in rccDigitsMask)
 							{
 								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
@@ -226,15 +226,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
 							short targetDigitsMask = (short)(mask & finalZ);
 							short rccDigitsMask = (short)(mask & rccMask);
-							foreach (int digit in alsDigitsMask.GetAllSets())
+							foreach (int digit in alsDigitsMask)
 							{
 								candidateOffsets.Add(new(-2, cell * 9 + digit));
 							}
-							foreach (int digit in targetDigitsMask.GetAllSets())
+							foreach (int digit in targetDigitsMask)
 							{
 								candidateOffsets.Add(new(2, cell * 9 + digit));
 							}
-							foreach (int digit in rccDigitsMask.GetAllSets())
+							foreach (int digit in rccDigitsMask)
 							{
 								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}

@@ -106,7 +106,7 @@ namespace Sudoku.Solving.Manual.Intersections
 				}
 
 				var ahsCells = GridMap.Empty;
-				foreach (int pos in ahsMask.GetAllSets())
+				foreach (int pos in ahsMask)
 				{
 					ahsCells.AddAnyway(RegionCells[coverSet][pos]);
 				}
@@ -121,12 +121,12 @@ namespace Sudoku.Solving.Manual.Intersections
 						continue;
 					}
 
-					foreach (int digit in (mask & grid.GetCandidateMask(aCell)).GetAllSets())
+					foreach (int digit in mask & grid.GetCandidateMask(aCell))
 					{
 						conclusions.Add(new(Elimination, aCell, digit));
 					}
 				}
-				foreach (int digit in (Grid.MaxCandidatesMask & ~mask).GetAllSets())
+				foreach (int digit in Grid.MaxCandidatesMask & ~mask)
 				{
 					foreach (int ahsCell in ahsCells & CandMaps[digit])
 					{
@@ -149,14 +149,14 @@ namespace Sudoku.Solving.Manual.Intersections
 				}
 				foreach (int cell in c)
 				{
-					foreach (int digit in (mask & grid.GetCandidateMask(cell)).GetAllSets())
+					foreach (int digit in mask & grid.GetCandidateMask(cell))
 					{
 						candidateOffsets.Add(new(1, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in ahsCells)
 				{
-					foreach (int digit in (mask & grid.GetCandidateMask(cell)).GetAllSets())
+					foreach (int digit in mask & grid.GetCandidateMask(cell))
 					{
 						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}

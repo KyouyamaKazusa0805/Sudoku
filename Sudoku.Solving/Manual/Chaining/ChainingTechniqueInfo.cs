@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060 // Unused (public data properties should be used).
+
+using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Solving.Annotations.TechniqueDisplayAttribute;
@@ -172,9 +173,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		private string NestedSuffix => GetNestedSuffix(Level);
 
-
-		/// <inheritdoc/>
-		public override bool Equals(TechniqueInfo? other) => Equals(other as ChainingTechniqueInfo);
 
 		/// <inheritdoc/>
 		public virtual bool Equals(ChainingTechniqueInfo? other) => InternalEquals(this, other);

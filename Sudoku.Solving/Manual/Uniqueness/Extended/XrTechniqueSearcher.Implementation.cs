@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						}
 
 						var conclusions = new List<Conclusion>();
-						foreach (int digit in mask.GetAllSets())
+						foreach (int digit in mask)
 						{
 							foreach (int cell in elimMap & CandMaps[digit])
 							{
@@ -174,7 +174,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					// Check eliminations.
 					var conclusions = new List<Conclusion>();
 					int extraCell = extraCellsMap.First;
-					foreach (int digit in normalDigits.GetAllSets())
+					foreach (int digit in normalDigits)
 					{
 						if (grid.Exists(extraCell, digit) is true)
 						{
@@ -222,7 +222,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						return;
 					}
 
-					foreach (int conjugateDigit in conjugateMask.GetAllSets())
+					foreach (int conjugateDigit in conjugateMask)
 					{
 						foreach (int region in extraCellsMap.CoveredRegions)
 						{
@@ -234,7 +234,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 							short elimDigits = (short)(normalDigits & ~(1 << conjugateDigit));
 							var conclusions = new List<Conclusion>();
-							foreach (int digit in elimDigits.GetAllSets())
+							foreach (int digit in elimDigits)
 							{
 								foreach (int cell in extraCellsMap & CandMaps[digit])
 								{

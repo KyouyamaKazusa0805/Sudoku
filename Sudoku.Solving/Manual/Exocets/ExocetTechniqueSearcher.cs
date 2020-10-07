@@ -206,7 +206,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			short targetElimination = (short)(grid.GetCandidateMask(target) & ~(short)(commonBase | lockedNonTarget));
 			if (targetElimination != 0 && grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 			{
-				foreach (int digit in targetElimination.GetAllSets())
+				foreach (int digit in targetElimination)
 				{
 					targetElims.Add(new(Elimination, target, digit));
 				}
@@ -225,7 +225,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						cellOffsets.Add(new(3, playground[0]));
 						cellOffsets.Add(new(3, playground[1]));
-						foreach (int digit in candidateMask.GetAllSets())
+						foreach (int digit in candidateMask)
 						{
 							mirrorElims.Add(new(Elimination, p, digit));
 						}
@@ -300,7 +300,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								) & grid.GetCandidateMask(target) & baseCandidateMask);
 							if (candidateMask != 0)
 							{
-								foreach (int digit in candidateMask.GetAllSets())
+								foreach (int digit in candidateMask)
 								{
 									mirrorElims.Add(new(Elimination, target, digit));
 								}
@@ -316,7 +316,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								grid.GetCandidateMask(playground[i]) & ~(baseCandidateMask | locked));
 							if (candidateMask != 0)
 							{
-								foreach (int digit in locked.GetAllSets())
+								foreach (int digit in locked)
 								{
 									if (grid.Exists(playground[i], digit) is true)
 									{
@@ -324,7 +324,7 @@ namespace Sudoku.Solving.Manual.Exocets
 									}
 								}
 
-								foreach (int digit in candidateMask.GetAllSets())
+								foreach (int digit in candidateMask)
 								{
 									mirrorElims.Add(new(Elimination, playground[i], digit));
 								}

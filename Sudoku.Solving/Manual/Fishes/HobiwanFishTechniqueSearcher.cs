@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 					mask = candMap.RowMask << 9 | candMap.ColumnMask << 18 | (int)candMap.BlockMask;
 					var coverCombinations = new RegionMap(mask);
-					foreach (int region in mask.GetAllSets())
+					foreach (int region in mask)
 					{
 						if (baseRegionMap[region])
 						{

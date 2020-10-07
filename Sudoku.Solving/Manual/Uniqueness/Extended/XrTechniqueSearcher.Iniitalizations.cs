@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 						var map = GridMap.Empty;
 						var pairs = new List<DrawingInfo>();
-						foreach (int pos in mask.GetAllSets())
+						foreach (int pos in mask)
 						{
 							int cell1 = RegionCells[region1][pos], cell2 = RegionCells[region2][pos];
 							map.AddAnyway(cell1);

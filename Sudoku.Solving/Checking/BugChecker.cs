@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Checking
 				{
 					@continue = true;
 					mask = pairs[currentIndex - 1, i];
-					foreach (int digit in pairs[currentIndex - 1, i].GetAllSets())
+					foreach (int digit in pairs[currentIndex - 1, i])
 					{
 						var temp = stack[currentIndex - 1, digit];
 						temp.AddAnyway(currentCell);

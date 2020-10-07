@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 					}
 				}
-				foreach (int digit in xyMask.GetAllSets())
+				foreach (int digit in xyMask)
 				{
 					candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
 				}
@@ -428,7 +428,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 					}
 				}
-				foreach (int digit in xyMask.GetAllSets())
+				foreach (int digit in xyMask)
 				{
 					candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
 				}
@@ -517,7 +517,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						candidateOffsets.Add(new(1, abzCell * 9 + digit));
 					}
 				}
-				foreach (int digit in comparer.GetAllSets())
+				foreach (int digit in comparer)
 				{
 					candidateOffsets.Add(new(0, cornerCell * 9 + digit));
 				}
@@ -602,7 +602,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					// Step 4: Check highlight candidates.
 					var candidateOffsets = new List<DrawingInfo>();
-					foreach (int d in comparer.GetAllSets())
+					foreach (int d in comparer)
 					{
 						candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
 					}
@@ -704,7 +704,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 
 					var candidateOffsets = new List<DrawingInfo>();
-					foreach (int d in comparer.GetAllSets())
+					foreach (int d in comparer)
 					{
 						candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
 					}
@@ -806,7 +806,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 
 					var candidateOffsets = new List<DrawingInfo>();
-					foreach (int d in comparer.GetAllSets())
+					foreach (int d in comparer)
 					{
 						candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
 					}

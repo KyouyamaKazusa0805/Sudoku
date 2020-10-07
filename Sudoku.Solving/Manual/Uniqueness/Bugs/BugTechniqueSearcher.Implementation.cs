@@ -227,8 +227,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						}
 
 						// Bitwise not.
-						digitMask = (short)(~digitMask & Grid.MaxCandidatesMask);
-						foreach (int d in digitMask.GetAllSets())
+						foreach (int d in digitMask = (short)(~digitMask & Grid.MaxCandidatesMask))
 						{
 							if (conjuagtePairDigit == d || grid.Exists(cell, d) is not true)
 							{

@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					Set<Node>? cellToOn = null, cellToOff = null;
 
 					// Iterate on all candidates that aren't alone.
-					foreach (int digit in mask.GetAllSets())
+					foreach (int digit in mask)
 					{
 						var pOn = new Node(cell, digit, true);
 						var pOff = new Node(cell, digit, false);

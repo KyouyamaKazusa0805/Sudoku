@@ -35,14 +35,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 
 			var conclusions = new List<Conclusion>();
-			foreach (int digit in mask.GetAllSets())
+			foreach (int digit in mask)
 			{
 				conclusions.Add(new(Elimination, elimCell, digit));
 			}
 
 			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
 			var candidateOffsets = new List<DrawingInfo>();
-			foreach (int digit in comparer.GetAllSets())
+			foreach (int digit in comparer)
 			{
 				foreach (int cell in square & CandMaps[digit])
 				{
@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
 			var candidateOffsets = new List<DrawingInfo>();
-			foreach (int digit in comparer.GetAllSets())
+			foreach (int digit in comparer)
 			{
 				foreach (int cell in square & CandMaps[digit])
 				{
@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						}
 
 						var conclusions = new List<Conclusion>();
-						foreach (int digit in mask.GetAllSets())
+						foreach (int digit in mask)
 						{
 							foreach (int cell in allCellsMap - cells & CandMaps[digit])
 							{
@@ -169,7 +169,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 						var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
 						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int digit in comparer.GetAllSets())
+						foreach (int digit in comparer)
 						{
 							foreach (int cell in square & CandMaps[digit])
 							{
@@ -219,7 +219,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		{
 			foreach (int region in pair.CoveredRegions)
 			{
-				foreach (int digit in comparer.GetAllSets())
+				foreach (int digit in comparer)
 				{
 					if ((CandMaps[digit] & RegionMaps[region]) != pair)
 					{
@@ -228,7 +228,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 					short otherDigitsMask = (short)(comparer & ~(1 << digit));
 					bool flag = false;
-					foreach (int d in otherDigitsMask.GetAllSets())
+					foreach (int d in otherDigitsMask)
 					{
 						if (ValueMaps[d].Overlaps(RegionMaps[region]) || (RegionMaps[region] & CandMaps[d]) != square)
 						{
@@ -256,7 +256,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 					var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
 					var candidateOffsets = new List<DrawingInfo>();
-					foreach (int d in comparer.GetAllSets())
+					foreach (int d in comparer)
 					{
 						foreach (int cell in square & CandMaps[d])
 						{
@@ -355,7 +355,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
 			var candidateOffsets = new List<DrawingInfo>();
-			foreach (int d in comparer.GetAllSets())
+			foreach (int d in comparer)
 			{
 				foreach (int cell in square & CandMaps[d])
 				{

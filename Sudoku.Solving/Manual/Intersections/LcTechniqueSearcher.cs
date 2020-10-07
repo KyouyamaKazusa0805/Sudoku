@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
-				foreach (int digit in m.GetAllSets())
+				foreach (int digit in m)
 				{
 					GridMap elimMap;
 					(r[0], r[1], elimMap) =

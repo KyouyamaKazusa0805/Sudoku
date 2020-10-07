@@ -50,14 +50,14 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				int i = 0;
 				int r = GetRegion(b1, Row) - 9, c = GetRegion(b1, Column) - 18;
-				foreach (int pos in (Grid.MaxCandidatesMask & ~(1 << (isRow ? r : c))).GetAllSets())
+				foreach (int pos in Grid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))
 				{
 					cover[i++] = isRow ? pos + 9 : pos + 18;
 				}
 
 				i = 0;
 				GridMap temp = default;
-				foreach (int digit in baseCandidatesMask.GetAllSets())
+				foreach (int digit in baseCandidatesMask)
 				{
 					if (i++ == 0)
 					{
@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					short cands = (short)(elimDigits & grid.GetCandidateMask(combination[0]));
 					if (cands != 0)
 					{
-						foreach (int digit in cands.GetAllSets())
+						foreach (int digit in cands)
 						{
 							targetElims.Add(new(Elimination, combination[0], digit));
 						}
@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					cands = (short)(elimDigits & grid.GetCandidateMask(combination[1]));
 					if (cands != 0)
 					{
-						foreach (int digit in cands.GetAllSets())
+						foreach (int digit in cands)
 						{
 							targetElims.Add(new(Elimination, combination[1], digit));
 						}
@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								continue;
 							}
 
-							foreach (int digit in cands.GetAllSets())
+							foreach (int digit in cands)
 							{
 								trueBaseElims.Add(new(Elimination, combination[j], digit));
 							}
@@ -166,7 +166,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					if (tbCands != 0)
 					{
-						foreach (int digit in tbCands.GetAllSets())
+						foreach (int digit in tbCands)
 						{
 							var elimMap = (baseMap & CandMaps[digit]).PeerIntersection & CandMaps[digit];
 							if (elimMap.IsEmpty)
@@ -246,7 +246,7 @@ namespace Sudoku.Solving.Manual.Exocets
 									continue;
 								}
 
-								foreach (int digit in cands.GetAllSets())
+								foreach (int digit in cands)
 								{
 									compatibilityElims.Add(new(Elimination, compatibleCells[k], digit));
 								}
@@ -268,11 +268,11 @@ namespace Sudoku.Solving.Manual.Exocets
 					int endoTargetCell = combination[s[combination[0]] ? 0 : 1];
 					short m1 = grid.GetCandidateMask(b1), m2 = grid.GetCandidateMask(b2);
 					short m = (short)(m1 | m2);
-					foreach (int digit in m1.GetAllSets())
+					foreach (int digit in m1)
 					{
 						candidateOffsets.Add(new(0, b1 * 9 + digit));
 					}
-					foreach (int digit in m2.GetAllSets())
+					foreach (int digit in m2)
 					{
 						candidateOffsets.Add(new(0, b2 * 9 + digit));
 					}
@@ -281,7 +281,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					var extraMap = GridMap.Empty;
 					for (int digit = 0; digit < 9; digit++)
 					{
-						foreach (int region in extraRegionsMask[digit].GetAllSets())
+						foreach (int region in extraRegionsMask[digit])
 						{
 							foreach (int cell in RegionCells[region])
 							{
@@ -335,7 +335,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var xx = new GridMap { t1, t2 };
 			int[] tempMask = new int[9];
-			foreach (int digit in baseCandidatesMask.GetAllSets())
+			foreach (int digit in baseCandidatesMask)
 			{
 				bool flag = true;
 				var temp = (tempCrossline & DigitMaps[digit]) - xx;
@@ -425,7 +425,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			GridMap baseCellsMap, int t1, int t2)
 		{
 			short result = 0;
-			foreach (int digit in baseCandidatesMask.GetAllSets())
+			foreach (int digit in baseCandidatesMask)
 			{
 				bool flag = false;
 				var baseElimsMap = (baseCellsMap & digitMaps[digit]).PeerIntersection;
@@ -508,7 +508,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				int r = GetRegion(currentTarget, Row);
 				int c = GetRegion(currentTarget, Column);
 				int b = GetRegion(currentTarget, Block);
-				foreach (int digit in baseCandidatesMask.GetAllSets())
+				foreach (int digit in baseCandidatesMask)
 				{
 					if ((grid.GetCandidateMask(currentTarget) >> digit & 1) == 0)
 					{
