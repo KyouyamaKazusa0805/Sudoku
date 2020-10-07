@@ -2,17 +2,14 @@
 
 标题：**向向的数独解决方案 (SSS)**
 
-A sudoku handling SDK using brute forces and logical techniques (update gradually). Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
+A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
-一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
+一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
-> The form may be like the program Hodoku. However, using the program Hodoku is for reference only.
+> The window may be like a program called [Hodoku](http://hodoku.sourceforge.net/en/index.php). However, the base window of Hodoku is only for reference.
 >
-> 这个窗体可能看起来跟 Hodoku 差不多，因为我并不知道什么样子是一个漂亮的界面。使用 Hodoku 仅仅是为了参考。
+> 这个窗体可能看起来跟 [Hodoku](http://hodoku.sourceforge.net/en/index.php) 差不多，因为我并不知道什么样子是一个漂亮的界面。使用 Hodoku 差不多的窗体仅仅是为了参考。
 >
-> In addition, several little bugs will be fixed later.
->
-> 另外，一些比较细小的 bug 会在后续修复。
 
 
 
@@ -21,11 +18,19 @@ A sudoku handling SDK using brute forces and logical techniques (update graduall
 标题：**编程语言和 IDE 使用情况**
 
 * Programming language: C#<br/>编程语言：C#
-* Language version: 9.0<br/>语言版本：9.0
+* Language version: 9.0 Preview<br/>语言版本：9.0 预览版
 * Framework: .NET Core 3.1<br/>框架：.NET Core 3.1
 * Indenting: Tabs（`\t`）<br/>缩进：原生 Tab（`\t`）
-* Integrated development environment: Visual Studio 2019 V16.8 Preview 3.2<br/>集成开发环境：Visual Studio 2019 V16.8 Preview 3.2
+* Integrated development environment: Visual Studio 2019 V16.8 Preview 3.2<br/>集成开发环境：Visual Studio 2019 V16.8 预览版本 3.2
 * Language Support: English, Simplified Chinese<br/>语言支持：英语、简体中文
+
+
+
+## Next
+
+标题：**下一步**
+
+1. Upgrade to C# 9 and .NET 5.<br/>升级到 C# 9 和 .NET 5。
 
 
 
