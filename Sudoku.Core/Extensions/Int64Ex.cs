@@ -36,6 +36,16 @@ namespace Sudoku.Extensions
 		/// <inheritdoc cref="Integer.CountSet(Integer)"/>
 		public static int CountSet(this long @this)
 		{
+#if PREFER_ZERO_BITS
+			if (@this == 0)
+			{
+				return 0;
+			}
+
+			int count;
+			for (count = 0; @this != 0; @this &= @this - 1L, count++) ;
+			return count;
+#else
 			@this = (@this & 0x5555555555555555L) + ((@this >> 1) & 0x5555555555555555L);
 			@this = (@this & 0x3333333333333333L) + ((@this >> 2) & 0x3333333333333333L);
 			@this = (@this & 0x0F0F0F0F0F0F0F0FL) + ((@this >> 4) & 0x0F0F0F0F0F0F0F0FL);
@@ -43,12 +53,7 @@ namespace Sudoku.Extensions
 			@this = (@this & 0x0000FFFF0000FFFFL) + ((@this >> 16) & 0x0000FFFF0000FFFFL);
 			@this = (@this & 0x00000000FFFFFFFFL) + ((@this >> 32) & 0x00000000FFFFFFFFL);
 			return (int)@this;
-
-			#region Obsolete code
-			//int count;
-			//for (count = 0; @this != 0; @this &= @this - 1L, count++) ;
-			//return count;
-			#endregion
+#endif
 		}
 
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>

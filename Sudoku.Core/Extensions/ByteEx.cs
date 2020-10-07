@@ -22,14 +22,21 @@ namespace Sudoku.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int CountSet(this byte @this)
 		{
+#if PREFER_ZERO_BITS
+			if (@this == 0)
+			{
+				return 0;
+			}
+
+			int count = 0;
+			for (; @this != 0; @this &= (byte)(@this - 1), count++) ;
+			return count;
+#else
 			@this = (byte)((@this & 0x55) + ((@this >> 1) & 0x55));
 			@this = (byte)((@this & 0x33) + ((@this >> 2) & 0x33));
 			@this = (byte)((@this & 0x0F) + ((@this >> 4) & 0x0F));
 			return @this;
-
-			#region Obsolete code
-			//return Int32Ex.CountSet(@this);
-			#endregion
+#endif
 		}
 
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>

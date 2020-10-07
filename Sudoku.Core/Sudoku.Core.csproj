@@ -12,14 +12,14 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>SUDOKU_RECOGNITION; CSHARP_9_PREVIEW</DefineConstants>
+		<DefineConstants>SUDOKU_RECOGNITION; CSHARP_9_PREVIEW; PREFER_ZERO_BITS</DefineConstants>
 		<DocumentationFile>.\Sudoku.Core.xml</DocumentationFile>
 		<Optimize>false</Optimize>
 		<NoWarn>1572;1573;1591;1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SUDOKU_RECOGNITION; CSHARP_9_PREVIEW</DefineConstants>
+		<DefineConstants>SUDOKU_RECOGNITION; CSHARP_9_PREVIEW; PREFER_ZERO_BITS</DefineConstants>
 		<DocumentationFile>.\Sudoku.Core.xml</DocumentationFile>
 		<Optimize>false</Optimize>
 	</PropertyGroup>

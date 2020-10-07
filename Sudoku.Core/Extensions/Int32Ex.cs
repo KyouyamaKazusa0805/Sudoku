@@ -43,34 +43,30 @@ namespace Sudoku.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int FindFirstSet(this int @this)
 		{
-			int x = @this & -@this;
-			int a = x <= 0xFFFF ? x <= 0xFF ? 0 : 8 : x <= 0xFFFFFF ? 16 : 24;
+			int x = @this & -@this, a = x <= 0xFFFF ? x <= 0xFF ? 0 : 8 : x <= 0xFFFFFF ? 16 : 24;
 			return Table[x >> a] + a - 1;
 		}
 
 		/// <inheritdoc cref="Integer.CountSet(Integer)"/>
 		public static int CountSet(this int @this)
 		{
-			// The O(1) algorithm to calculate the total count.
-			// If you know the function __builtin_popcount in GCC...
-			// You're excellent!
+#if PREFER_ZERO_BITS
+			if (@this == 0)
+			{
+				return 0;
+			}
+
+			int count = 0;
+			for (; @this != 0; @this &= @this - 1, count++) ;
+			return count;
+#else
 			@this = (@this & 0x55555555) + ((@this >> 1) & 0x55555555);
 			@this = (@this & 0x33333333) + ((@this >> 2) & 0x33333333);
 			@this = (@this & 0x0F0F0F0F) + ((@this >> 4) & 0x0F0F0F0F);
 			@this = (@this & 0x00FF00FF) + ((@this >> 8) & 0x00FF00FF);
 			@this = (@this & 0x0000FFFF) + ((@this >> 16) & 0x0000FFFF);
 			return @this;
-
-			#region Obsolete code
-			//if (@this == 0)
-			//{
-			//	return 0;
-			//}
-			//
-			//int count = 0;
-			//for (; @this != 0; @this &= @this - 1, count++) ;
-			//return count;
-			#endregion
+#endif
 		}
 
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
