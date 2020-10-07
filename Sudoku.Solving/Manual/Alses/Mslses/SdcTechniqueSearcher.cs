@@ -114,7 +114,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								}
 
 								// Get the elimination map in the block.
-								foreach (int digit in blockMask.GetAllSets())
+								foreach (int digit in blockMask)
 								{
 									elimMapBlock |= CandMaps[digit];
 								}
@@ -137,16 +137,16 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 										}
 
 										// Get the elimination map in the line.
-										foreach (int digit in lineMask.GetAllSets())
+										foreach (int digit in lineMask)
 										{
 											elimMapLine |= CandMaps[digit];
 										}
 										elimMapLine &= lineMap - currentLineMap;
 
-										short maskIsolated =
+										short maskIsolated = (short)(
 											cannibalMode
-												? (short)(lineMask & blockMask & selectedInterMask)
-												: (short)(selectedInterMask & ~(blockMask | lineMask));
+												? (lineMask & blockMask & selectedInterMask)
+												: (selectedInterMask & ~(blockMask | lineMask)));
 										short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
 										if (!cannibalMode && (
 											(blockMask & lineMask) != 0

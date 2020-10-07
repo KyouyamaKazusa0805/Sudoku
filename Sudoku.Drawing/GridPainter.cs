@@ -137,7 +137,7 @@ namespace Sudoku.Drawing
 					case Empty when Settings.ShowCandidates && (short)(~mask & Grid.MaxCandidatesMask) is var candidateMask:
 					{
 						// Draw candidates.
-						foreach (int digit in candidateMask.GetAllSets())
+						foreach (int digit in candidateMask)
 						{
 							var point = PointConverter.GetMousePointInCenter(cell, digit);
 							point.Y += vOffsetCandidate;

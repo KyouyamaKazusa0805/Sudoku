@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						if (rMask.CountSet() == temp)
 						{
 							check++;
-							foreach (int i in rMask.GetAllSets())
+							foreach (int i in rMask)
 							{
 								int region = i + 9;
 								linkForEachRegion[region] |= (short)(1 << digit);
@@ -71,7 +71,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						if (cMask.CountSet() == temp)
 						{
 							check++;
-							foreach (int i in cMask.GetAllSets())
+							foreach (int i in cMask)
 							{
 								int region = i + 18;
 								linkForEachRegion[region] |= (short)(1 << digit);
@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						if (bMask.CountSet() == temp)
 						{
 							check++;
-							foreach (int i in bMask.GetAllSets())
+							foreach (int i in bMask)
 							{
 								linkForEachRegion[i] |= (short)(1 << digit);
 								elimMap |= (CandMaps[digit] & RegionMaps[i] & map).PeerIntersection;
@@ -117,21 +117,19 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 					for (int region = 0; region < 27; region++)
 					{
-						short linkMask = linkForEachRegion[region];
-						if (linkMask == 0)
+						if (linkForEachRegion[region] is var linkMask && linkMask == 0)
 						{
 							continue;
 						}
 
 						foreach (int cell in map & RegionMaps[region])
 						{
-							short cands = (short)(grid.GetCandidateMask(cell) & linkMask);
-							if (cands == 0)
+							if ((short)(grid.GetCandidateMask(cell) & linkMask) is var cands && cands == 0)
 							{
 								continue;
 							}
 
-							foreach (int cand in cands.GetAllSets())
+							foreach (int cand in cands)
 							{
 								if (canL[cand][cell])
 								{

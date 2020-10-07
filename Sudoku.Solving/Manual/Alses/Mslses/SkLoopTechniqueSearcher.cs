@@ -131,7 +131,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							short cands = (short)(grid.GetCandidateMask(cell) & tempLink[k]);
 							if (cands != 0)
 							{
-								foreach (int digit in cands.GetAllSets())
+								foreach (int digit in cands)
 								{
 									conclusions.Add(new(Elimination, cell, digit));
 								}
@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								continue;
 							}
 
-							foreach (int digit in cands.GetAllSets())
+							foreach (int digit in cands)
 							{
 								candidateOffsets.Add(new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
 							}

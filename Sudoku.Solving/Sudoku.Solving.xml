@@ -2350,9 +2350,6 @@
             The nested suffix.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.Equals(Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo)">
             <inheritdoc/>
         </member>

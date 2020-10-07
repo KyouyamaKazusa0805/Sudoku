@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						}
 
 						var conclusions = new List<Conclusion>();
-						foreach (int digit in mask.GetAllSets())
+						foreach (int digit in mask)
 						{
 							foreach (int cell in elimMap & CandMaps[digit])
 							{

@@ -1,4 +1,4 @@
-﻿#pragma warning disable CA1815
+﻿using Sudoku.Extensions;
 
 namespace Sudoku.Models
 {
@@ -24,7 +24,7 @@ namespace Sudoku.Models
 		/// <summary>
 		/// Indicates the current technique.
 		/// </summary>
-		public string CurrentTechnique { readonly get; set; }
+		public string? CurrentTechnique { readonly get; set; }
 
 		/// <summary>
 		/// The current index.
@@ -43,6 +43,6 @@ namespace Sudoku.Models
 
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override readonly string ToString() => CurrentTechnique;
+		public override readonly string ToString() => CurrentTechnique.NullableToString();
 	}
 }

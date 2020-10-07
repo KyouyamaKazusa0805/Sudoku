@@ -262,7 +262,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			short candidateMask = (short)(grid.GetCandidateMask(cell) & ~temp);
 			if ((grid.GetStatus(cell), candidateMask, grid.GetCandidateMask(cell) & baseCandidatesMask) is (Empty, not 0, not 0))
 			{
-				foreach (int digit in candidateMask.GetAllSets())
+				foreach (int digit in candidateMask)
 				{
 					targetElims.Add(new(Elimination, cell, digit));
 				}
@@ -285,7 +285,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </returns>
 		private bool CheckCrossline(GridMap crossline, short digitsNeedChecking)
 		{
-			foreach (int digit in digitsNeedChecking.GetAllSets())
+			foreach (int digit in digitsNeedChecking)
 			{
 				var crosslinePerCandidate = crossline & DigitMaps[digit];
 				int r = crosslinePerCandidate.RowMask, c = crosslinePerCandidate.ColumnMask;
@@ -295,9 +295,9 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				bool flag = false;
-				foreach (int d1 in r.GetAllSets())
+				foreach (int d1 in r)
 				{
-					foreach (int d2 in c.GetAllSets())
+					foreach (int d2 in c)
 					{
 						if ((crosslinePerCandidate - (RegionMaps[d1 + 9] | RegionMaps[d2 + 18])).IsEmpty)
 						{
@@ -492,7 +492,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					foreach (int digit in candidateMask.GetAllSets())
+					foreach (int digit in candidateMask)
 					{
 						bibiElims.Add(new(Elimination, pos2, digit));
 						dic[pos2] &= (short)~(1 << digit);
@@ -502,7 +502,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			// Now check all base digits last.
 			short last = (short)(dic[b1] | dic[b2]);
-			foreach (int digit in (Grid.MaxCandidatesMask & ~last & ~lockedQ).GetAllSets())
+			foreach (int digit in Grid.MaxCandidatesMask & ~last & ~lockedQ)
 			{
 				if (grid.Exists(tq1, digit) is true)
 				{
@@ -513,7 +513,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					bibiElims.Add(new(Elimination, tq2, digit));
 				}
 			}
-			foreach (int digit in (Grid.MaxCandidatesMask & ~last & ~lockedR).GetAllSets())
+			foreach (int digit in Grid.MaxCandidatesMask & ~last & ~lockedR)
 			{
 				if (grid.Exists(tr1, digit) is true)
 				{
@@ -528,8 +528,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Then check target pairs if worth.
 			if (last.CountSet() == 2)
 			{
-				var elimMap = (targetMap & EmptyMap).PeerIntersection;
-				if (elimMap.IsEmpty)
+				if ((targetMap & EmptyMap).PeerIntersection is var elimMap && elimMap.IsEmpty)
 				{
 					// Exit the method.
 					return true;
@@ -561,7 +560,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				foreach (int digit in digits)
 				{
 					short mask = isRow ? crossline.RowMask : crossline.ColumnMask;
-					foreach (int offset in mask.GetAllSets())
+					foreach (int offset in mask)
 					{
 						int region = offset + (isRow ? 9 : 18);
 						if ((crossline & RegionMaps[region] & CandMaps[digit]).IsNotEmpty)

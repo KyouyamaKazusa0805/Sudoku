@@ -119,7 +119,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 
 						var conclusions = new List<Conclusion>();
-						foreach (int d in allZ[n].GetAllSets())
+						foreach (int d in allZ[n])
 						{
 							var elimMap = (temp & CandMaps[d]).PeerIntersection & CandMaps[d];
 							if (elimMap.IsEmpty)
@@ -249,13 +249,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		{
 			int max = 0;
 			int i = 0;
-			foreach (var als in alses)
+			foreach (var (_, region, digitsMask, map, _, _) in alses)
 			{
-				var (_, region, digitsMask, map, _, _) = als;
-				foreach (int digit in digitsMask.GetAllSets())
+				foreach (int digit in digitsMask)
 				{
-					var temp = (candMaps[digit] & map).PeerIntersection & candMaps[digit];
-					if (temp.IsEmpty)
+					if (((candMaps[digit] & map).PeerIntersection & candMaps[digit]) is var temp && temp.IsEmpty)
 					{
 						continue;
 					}
@@ -271,8 +269,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						int candidate = cell * 9 + digit;
 						death[candidate, 0]++;
 
-						int value = death[candidate, 0];
-						if (value > max)
+						if (death[candidate, 0] is var value && value > max)
 						{
 							max = value;
 						}

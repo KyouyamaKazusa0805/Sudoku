@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					if ((mask1 & mask2) is var mask and not 0)
 					{
 						short rccMask = 0;
-						foreach (int digit in mask.GetAllSets())
+						foreach (int digit in mask)
 						{
 							if ((map & CandMaps[digit]).InOneRegion)
 							{
@@ -108,9 +108,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					foreach (int digit1 in mask1.GetAllSets())
+					foreach (int digit1 in mask1)
 					{
-						foreach (int digit2 in mask2.GetAllSets())
+						foreach (int digit2 in mask2)
 						{
 							if (digit1 == digit2)
 							{
@@ -128,7 +128,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							// Gather eliminations.
 							short finalZ = 0;
 							var conclusions = new List<Conclusion>();
-							foreach (int digit in digitsMask.GetAllSets())
+							foreach (int digit in digitsMask)
 							{
 								var elimMap = (
 									((aMap | bMap) & CandMaps[digit]).PeerIntersection
@@ -158,15 +158,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								short alsDigitsMask = (short)(mask & ~(finalX | finalZ));
 								short xDigitsMask = (short)(mask & (finalX));
 								short zDigitsMask = (short)(mask & finalZ);
-								foreach (int digit in alsDigitsMask.GetAllSets())
+								foreach (int digit in alsDigitsMask)
 								{
 									candidateOffsets.Add(new(-1, cell * 9 + digit));
 								}
-								foreach (int digit in xDigitsMask.GetAllSets())
+								foreach (int digit in xDigitsMask)
 								{
 									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
-								foreach (int digit in zDigitsMask.GetAllSets())
+								foreach (int digit in zDigitsMask)
 								{
 									candidateOffsets.Add(new(2, cell * 9 + digit));
 								}
@@ -177,15 +177,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								short alsDigitsMask = (short)(mask & ~(finalY | finalZ));
 								short yDigitsMask = (short)(mask & finalY);
 								short zDigitsMask = (short)(mask & finalZ);
-								foreach (int digit in alsDigitsMask.GetAllSets())
+								foreach (int digit in alsDigitsMask)
 								{
 									candidateOffsets.Add(new(-1, cell * 9 + digit));
 								}
-								foreach (int digit in yDigitsMask.GetAllSets())
+								foreach (int digit in yDigitsMask)
 								{
 									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
-								foreach (int digit in zDigitsMask.GetAllSets())
+								foreach (int digit in zDigitsMask)
 								{
 									candidateOffsets.Add(new(2, cell * 9 + digit));
 								}
@@ -195,11 +195,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								short mask = grid.GetCandidateMask(cell);
 								short alsDigitsMask = (short)(mask & ~(finalX | finalY));
 								short xyDigitsMask = (short)(mask & (finalX | finalY));
-								foreach (int digit in alsDigitsMask.GetAllSets())
+								foreach (int digit in alsDigitsMask)
 								{
 									candidateOffsets.Add(new(-3, cell * 9 + digit));
 								}
-								foreach (int digit in xyDigitsMask.GetAllSets())
+								foreach (int digit in xyDigitsMask)
 								{
 									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}

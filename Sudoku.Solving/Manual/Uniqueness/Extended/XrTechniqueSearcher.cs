@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 				short resultMask = (short)(m1 | m2);
 				short normalDigits = 0, extraDigits = 0;
-				foreach (int digit in resultMask.GetAllSets())
+				foreach (int digit in resultMask)
 				{
 					int count = 0;
 					foreach (var (l, r) in pairs)
@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					var extraCellsMap = GridMap.Empty;
 					foreach (int cell in allCellsMap)
 					{
-						foreach (int digit in extraDigits.GetAllSets())
+						foreach (int digit in extraDigits)
 						{
 							if (!grid[cell, digit])
 							{

@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				if (mask.CountSet() >= 2)
 				{
 					// Iterate on all candidates that aren't alone.
-					foreach (int digit in mask.GetAllSets())
+					foreach (int digit in mask)
 					{
 						var pOn = new Node(cell, digit, true);
 						DoUnaryChaining(accumulator, grid, pOn, xEnabled, yEnabled);
