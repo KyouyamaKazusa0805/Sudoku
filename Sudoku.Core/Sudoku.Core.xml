@@ -4385,7 +4385,7 @@
             <summary>
             Check whether two <see cref="T:System.Collections.Generic.ICollection`1"/>s are equal.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TNotNull">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <param name="other">Another collection.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>

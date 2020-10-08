@@ -99,13 +99,13 @@ namespace Sudoku.Extensions
 		/// <summary>
 		/// Check whether two <see cref="ICollection{T}"/>s are equal.
 		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <typeparam name="TNotNull">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <param name="other">Another collection.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool CollectionEquals<T>(this ICollection<T> @this, ICollection<T> other) where T : notnull =>
-			@this.Count == other.Count && @this.All(element => other.Contains(element));
+		public static bool CollectionEquals<TNotNull>(this ICollection<TNotNull> @this, ICollection<TNotNull> other)
+			where TNotNull : notnull => @this.Count == other.Count && @this.All(element => other.Contains(element));
 
 		/// <summary>
 		/// Get a result collection from a may-be-<see langword="null"/> collection.
