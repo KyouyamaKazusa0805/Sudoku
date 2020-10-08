@@ -1097,41 +1097,6 @@
             The names of all regular wings by their sizes.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Constants.Processings.BitwiseOrMasks(Sudoku.Data.Grid,Sudoku.Data.GridMap)">
-            <summary>
-            Get the mask that is a result after the bitwise or operation processed all cells
-            in the specified map.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="map">The map.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Constants.Processings.GetExtraDifficultyByLength(System.Int32)">
-            <summary>
-            Get extra difficulty rating for a chain node sequence.
-            </summary>
-            <param name="length">The length.</param>
-            <returns>The difficulty.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Constants.Processings.GetCandidateOffsets(Sudoku.Data.Node)">
-            <summary>
-            Get highlight candidate offsets through the specified target node.
-            </summary>
-            <param name="target">The target node.</param>
-            <returns>The candidate offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Constants.Processings.GetLinks(Sudoku.Data.Node,System.Boolean)">
-            <summary>
-            Get the links through the specified target node.
-            </summary>
-            <param name="target">The target node.</param>
-            <param name="showAllLinks">
-            Indicates whether the current chain will display all chains (even contains the weak links
-            from the elimination node). The default value is <see langword="false"/>. If you want to
-            draw the AIC, the elimination weak links don't need drawing.
-            </param>
-            <returns>The link.</returns>
-        </member>
         <member name="T:Sudoku.Solving.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.
@@ -1172,6 +1137,84 @@
             Indicates the puzzle cannot be solved
             unless using last resort methods.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Extensions.GridEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.GridEx.BitwiseAndMasks(Sudoku.Data.Grid,Sudoku.Data.GridMap)">
+            <summary>
+            Get the mask that is a result after the bitwise and operation processed all cells
+            in the specified map.
+            </summary>
+            <param name="grid">(<see langword="this"/> parameter) The grid.</param>
+            <param name="map">The map.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.GridEx.BitwiseOrMasks(Sudoku.Data.Grid,Sudoku.Data.GridMap)">
+            <summary>
+            Get the mask that is a result after the bitwise or operation processed all cells
+            in the specified map.
+            </summary>
+            <param name="grid">(<see langword="this"/> parameter) The grid.</param>
+            <param name="map">The map.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Extensions.GridMapEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.GridMap"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.GridMap"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.GridMapEx.IsEmptyRectangle(Sudoku.Data.GridMap,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Check whether the cells form an empty cell.
+            </summary>
+            <param name="blockMap">(<see langword="this"/> parameter) The empty cell grid map.</param>
+            <param name="block">The block.</param>
+            <param name="row">(<see langword="out"/> parameter) The row.</param>
+            <param name="column">(<see langword="out"/> parameter) The column.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Extensions.Int32Ex">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int32"/>.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.Int32Ex.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">(<see langword="this"/> parameter) The length.</param>
+            <returns>The difficulty.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Extensions.NodeEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Node"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Node"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.NodeEx.GetCandidateOffsets(Sudoku.Data.Node)">
+            <summary>
+            Get highlight candidate offsets through the specified target node.
+            </summary>
+            <param name="target">(<see langword="this"/> parameter) The target node.</param>
+            <returns>The candidate offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.NodeEx.GetLinks(Sudoku.Data.Node,System.Boolean)">
+            <summary>
+            Get the links through the specified target node.
+            </summary>
+            <param name="target">(<see langword="this"/> parameter) The target node.</param>
+            <param name="showAllLinks">
+            Indicates whether the current chain will display all chains (even contains the weak links
+            from the elimination node). The default value is <see langword="false"/>. If you want to
+            draw the AIC, the elimination weak links don't need drawing.
+            </param>
+            <returns>The link.</returns>
         </member>
         <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
             <summary>
@@ -4904,16 +4947,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.IsEmptyRectangle(Sudoku.Data.GridMap,System.Int32,System.Int32@,System.Int32@)">
-            <summary>
-            Check whether the cells form an empty cell.
-            </summary>
-            <param name="blockMap">The empty cell grid map.</param>
-            <param name="block">The block.</param>
-            <param name="row">(<see langword="out"/> parameter) The row.</param>
-            <param name="column">(<see langword="out"/> parameter) The column.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.GuardianTechniqueInfo">
             <summary>

@@ -5,8 +5,8 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -151,7 +151,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private ChainingTechniqueInfo? CreateLoopHint(Grid grid, Node destOn, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
-			var links = GetLinks(destOn, true); //! Maybe wrong when adding grouped nodes.
+			var links = destOn.GetLinks(true); //! Maybe wrong when adding grouped nodes.
 			foreach (var (start, end, type) in links)
 			{
 				if (type == LinkType.Weak)
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				? null
 				: new LoopTechniqueInfo(
 					conclusions,
-					new View[] { new(null, GetCandidateOffsets(destOn), null, links) },
+					new View[] { new(null, destOn.GetCandidateOffsets(), null, links) },
 					xEnabled,
 					yEnabled,
 					destOn);
@@ -229,7 +229,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				? null
 				: new AicTechniqueInfo(
 					conclusions,
-					new View[] { new(null, GetCandidateOffsets(target), null, GetLinks(target)) },
+					new View[] { new(null, target.GetCandidateOffsets(), null, target.GetLinks()) },
 					xEnabled,
 					yEnabled,
 					target);

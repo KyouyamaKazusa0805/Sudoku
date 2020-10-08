@@ -5,6 +5,7 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -48,7 +49,7 @@ namespace Sudoku.Solving.Manual.Sdps
 					// Check the empty rectangle occupies more than 2 cells.
 					// and the structure forms an empty rectangle.
 					var erMap = CandMaps[digit] & RegionMaps[block];
-					if (erMap.Count < 2 || !IsEmptyRectangle(erMap, block, out int row, out int column))
+					if (erMap.Count < 2 || !erMap.IsEmptyRectangle(block, out int row, out int column))
 					{
 						continue;
 					}
@@ -110,58 +111,6 @@ namespace Sudoku.Solving.Manual.Sdps
 					}
 				}
 			}
-		}
-
-		/// <summary>
-		/// Check whether the cells form an empty cell.
-		/// </summary>
-		/// <param name="blockMap">The empty cell grid map.</param>
-		/// <param name="block">The block.</param>
-		/// <param name="row">(<see langword="out"/> parameter) The row.</param>
-		/// <param name="column">(<see langword="out"/> parameter) The column.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private bool IsEmptyRectangle(GridMap blockMap, int block, out int row, out int column)
-		{
-			int r = block / 3 * 3 + 9;
-			int c = block % 3 * 3 + 18;
-			for (int i = r, count = 0; i < r + 3; i++)
-			{
-				if ((blockMap & RegionMaps[i]).IsNotEmpty || ++count <= 1)
-				{
-					continue;
-				}
-
-				row = column = -1;
-				return false;
-			}
-
-			for (int i = c, count = 0; i < c + 3; i++)
-			{
-				if ((blockMap & RegionMaps[i]).IsNotEmpty || ++count <= 1)
-				{
-					continue;
-				}
-
-				row = column = -1;
-				return false;
-			}
-
-			for (int i = r; i < r + 3; i++)
-			{
-				for (int j = c; j < c + 3; j++)
-				{
-					if ((blockMap - (RegionMaps[i] | RegionMaps[j])).IsNotEmpty)
-					{
-						continue;
-					}
-
-					(row, column) = (i, j);
-					return true;
-				}
-			}
-
-			row = column = -1;
-			return false;
 		}
 	}
 }

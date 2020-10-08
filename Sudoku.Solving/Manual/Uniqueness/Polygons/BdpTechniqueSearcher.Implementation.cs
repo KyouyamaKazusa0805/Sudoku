@@ -3,9 +3,9 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -134,8 +134,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			{
 				var currentMap = RegionMaps[region] & map;
 				var otherCellsMap = map - currentMap;
-				short currentMask = BitwiseOrMasks(grid, currentMap);
-				short otherMask = BitwiseOrMasks(grid, otherCellsMap);
+				short currentMask = grid.BitwiseOrMasks(currentMap);
+				short otherMask = grid.BitwiseOrMasks(otherCellsMap);
 
 				foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 				{
@@ -238,8 +238,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			{
 				var currentMap = RegionMaps[region] & map;
 				var otherCellsMap = map - currentMap;
-				short currentMask = BitwiseOrMasks(grid, currentMap);
-				short otherMask = BitwiseOrMasks(grid, otherCellsMap);
+				short currentMask = grid.BitwiseOrMasks(currentMap);
+				short otherMask = grid.BitwiseOrMasks(otherCellsMap);
 
 				// Iterate on each possible digit combination.
 				// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values

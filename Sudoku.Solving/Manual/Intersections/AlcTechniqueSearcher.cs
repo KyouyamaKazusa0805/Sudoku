@@ -5,9 +5,9 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -83,7 +83,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		{
 			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{
-				short mask = BitwiseOrMasks(grid, cells);
+				short mask = grid.BitwiseOrMasks(cells);
 				if (mask.CountSet() != size)
 				{
 					continue;

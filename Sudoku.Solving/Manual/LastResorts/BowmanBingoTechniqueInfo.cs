@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using static Sudoku.Solving.Constants.Processings;
+using Sudoku.Solving.Extensions;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -17,7 +19,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		: LastResortTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => 8.0M + GetExtraDifficultyByLength(ContradictionSeries.Count);
+		public override decimal Difficulty => 8.0M + ContradictionSeries.Count.GetExtraDifficultyByLength();
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

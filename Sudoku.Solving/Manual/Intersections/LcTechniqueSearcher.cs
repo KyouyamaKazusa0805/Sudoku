@@ -4,9 +4,9 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
-				short m = (short)(BitwiseOrMasks(grid, c) & (BitwiseOrMasks(grid, a) ^ BitwiseOrMasks(grid, b)));
+				short m = (short)(grid.BitwiseOrMasks(c) & (grid.BitwiseOrMasks(a) ^ grid.BitwiseOrMasks(b)));
 				if (m == 0)
 				{
 					continue;

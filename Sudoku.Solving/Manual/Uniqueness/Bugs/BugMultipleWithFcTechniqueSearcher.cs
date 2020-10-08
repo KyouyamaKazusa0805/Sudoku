@@ -5,9 +5,9 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Chaining;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -193,8 +193,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var globalLinks = new List<Link>();
 			foreach (var (candidate, node) in chains)
 			{
-				var candidateOffsets = new List<DrawingInfo>(GetCandidateOffsets(node)) { new(2, candidate) };
-				var links = new List<Link>(GetLinks(node, true));
+				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets()) { new(2, candidate) };
+				var links = new List<Link>(node.GetLinks(true));
 				views.Add(new(null, candidateOffsets, null, links));
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);

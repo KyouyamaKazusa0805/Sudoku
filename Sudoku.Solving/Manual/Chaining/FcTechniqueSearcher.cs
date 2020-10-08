@@ -4,10 +4,10 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -266,8 +266,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			var globalLinks = new List<Link>();
 			foreach (var (digit, node) in chains)
 			{
-				var candidateOffsets = new List<DrawingInfo>(GetCandidateOffsets(node)) { new(2, sourceCell * 9 + digit) };
-				var links = GetLinks(node, true);
+				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets()) { new(2, sourceCell * 9 + digit) };
+				var links = node.GetLinks(true);
 				views.Add(new(new DrawingInfo[] { new(0, sourceCell) }, candidateOffsets, null, links));
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);
@@ -304,8 +304,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			var globalLinks = new List<Link>();
 			foreach (var (cell, node) in chains)
 			{
-				var candidateOffsets = new List<DrawingInfo>(GetCandidateOffsets(node)) { new(2, cell * 9 + digit) };
-				var links = GetLinks(node, true);
+				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets()) { new(2, cell * 9 + digit) };
+				var links = node.GetLinks(true);
 				views.Add(new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, links));
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);

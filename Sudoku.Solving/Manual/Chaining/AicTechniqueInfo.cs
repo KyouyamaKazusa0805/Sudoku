@@ -1,10 +1,12 @@
-﻿using System;
+﻿#pragma warning disable IDE0060
+
+using System;
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Solving.Extensions;
 using Sudoku.Windows;
-using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -22,7 +24,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			(XEnabled && YEnabled ? 5.0M : 4.6M) + GetExtraDifficultyByLength(FlatComplexity - 2);
+			(XEnabled && YEnabled ? 5.0M : 4.6M) + (FlatComplexity - 2).GetExtraDifficultyByLength();
 
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey => Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());

@@ -113,6 +113,11 @@
 				values for solving a sudoku.
 			</summary>
 		</member>
+		<member name="N:Sudoku.Solving.Extensions">
+			<summary>
+				This namespace contains extension methods to call when a puzzle is solving.
+			</summary>
+		</member>
 		<member name="N:Sudoku.Solving.Generating">
 			<summary>This namespace contains the methods for generating sudokus.</summary>
 		</member>

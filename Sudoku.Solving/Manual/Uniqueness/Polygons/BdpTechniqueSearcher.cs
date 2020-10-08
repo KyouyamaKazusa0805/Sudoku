@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
-using static Sudoku.Solving.Constants.Processings;
+using Sudoku.Solving.Extensions;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -52,9 +52,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						continue;
 					}
 
-					short cornerMask1 = BitwiseOrMasks(grid, pattern.Pair1Map);
-					short cornerMask2 = BitwiseOrMasks(grid, pattern.Pair2Map);
-					short centerMask = BitwiseOrMasks(grid, pattern.CenterCellsMap);
+					short cornerMask1 = grid.BitwiseOrMasks(pattern.Pair1Map);
+					short cornerMask2 = grid.BitwiseOrMasks(pattern.Pair2Map);
+					short centerMask = grid.BitwiseOrMasks(pattern.CenterCellsMap);
 					var map = pattern.Map;
 
 					foreach (var func in funcs)
