@@ -178,7 +178,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The result.</returns>
-		private static (IReadOnlyList<int> _candList, short _mask) RecordUndoInfo(Grid grid, int cell, int digit)
+		private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(Grid grid, int cell, int digit)
 		{
 			var list = new List<int>();
 			foreach (int c in PeerMaps[cell] & CandMaps[digit])
