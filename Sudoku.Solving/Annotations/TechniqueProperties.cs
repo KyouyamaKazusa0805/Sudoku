@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1815
-
-using System;
+﻿using System;
 using Sudoku.DocComments;
 using static System.Reflection.BindingFlags;
 
