@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual
 			{
 				Array.Sort(
 					searchers,
-					/*static*/ (a, b) =>
+					static (a, b) =>
 					{
 						int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
 						int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
