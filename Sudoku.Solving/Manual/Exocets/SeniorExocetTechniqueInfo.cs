@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
@@ -43,6 +45,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => ContainsExtraRegions ? TechniqueCode.ComplexSe : TechniqueCode.Se;
 
+
+		/// <inheritdoc/>
+		public override string ToString() => ToStringInternal();
 
 		/// <inheritdoc/>
 		protected override string? GetAdditional()

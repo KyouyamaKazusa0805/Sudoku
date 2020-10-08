@@ -38,7 +38,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			AliasAttribute.Convert<UrTypeCode, TechniqueCode>(TypeCode)!.Value;
 
 		/// <inheritdoc/>
-		public override string ToString()
+		public override string ToString() => ToStringInternal();
+
+		/// <summary>
+		/// Get additional string.
+		/// </summary>
+		/// <returns>The additional string.</returns>
+		protected abstract string? GetAdditional();
+
+		/// <summary>
+		/// Same as <see cref="ToString"/> but this is implementation part.
+		/// </summary>
+		/// <returns>The result.</returns>
+		protected string ToStringInternal()
 		{
 			int d1 = Digit1 + 1;
 			int d2 = Digit2 + 1;
@@ -49,12 +61,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				$"{Name}: {d1}, {d2} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => " +
 				$"{elimStr}";
 		}
-
-		/// <summary>
-		/// Get additional string.
-		/// </summary>
-		/// <returns>The additional string.</returns>
-		protected abstract string? GetAdditional();
 
 		/// <inheritdoc/>
 		int IComparable<UrTechniqueInfo>.CompareTo(UrTechniqueInfo other) =>

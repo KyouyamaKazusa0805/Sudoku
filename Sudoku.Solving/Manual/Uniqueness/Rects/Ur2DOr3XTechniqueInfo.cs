@@ -35,6 +35,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc/>
+		public override string ToString() => ToStringInternal();
+
+		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
 			string xyCellStr = new GridMap { XyCell }.ToString();

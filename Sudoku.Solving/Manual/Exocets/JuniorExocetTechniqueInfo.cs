@@ -43,6 +43,9 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
+		public override string ToString() => ToStringInternal();
+
+		/// <inheritdoc/>
 		protected override string? GetAdditional() => null;
 	}
 }

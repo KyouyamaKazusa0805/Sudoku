@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable)
 		: UrTechniqueInfo(
-			Conclusions, Views, IsAvoidable ? UrTypeCode.Type1 : UrTypeCode.Type1, Digit1, Digit2, Cells, IsAvoidable)
+			Conclusions, Views, IsAvoidable ? UrTypeCode.AType1 : UrTypeCode.Type1, Digit1, Digit2, Cells, IsAvoidable)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.5M;
@@ -26,6 +26,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
+
+		/// <inheritdoc/>
+		public override string ToString() => ToStringInternal();
 
 		/// <inheritdoc/>
 		protected override string? GetAdditional() => null;

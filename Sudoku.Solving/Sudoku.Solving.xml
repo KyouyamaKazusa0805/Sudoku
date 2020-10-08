@@ -2917,6 +2917,12 @@
             </summary>
             <returns>The additional message.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.ToStringInternal">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.ToString"/> but the implementation part.
+            </summary>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.GatherConclusions(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations)">
             <summary>
             Gather conclusions.
@@ -3079,6 +3085,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.GetAdditional">
@@ -3348,6 +3357,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.GetAdditional">
@@ -6705,6 +6717,9 @@
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
             <param name="ConjugatePairs">All conjugate pairs.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo">
             <summary>
             Provides a usage of <b>unique rectangle + 2D (or 3X)</b> or
@@ -6745,6 +6760,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
@@ -6780,6 +6798,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.GetAdditional">
@@ -6828,6 +6849,12 @@
             Get additional string.
             </summary>
             <returns>The additional string.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.ToStringInternal">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.ToString"/> but this is implementation part.
+            </summary>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.System#IComparable{Sudoku#Solving#Manual#Uniqueness#Rects#UrTechniqueInfo}#CompareTo(Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo)">
             <inheritdoc/>
@@ -6944,6 +6971,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
@@ -6979,6 +7009,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.GetAdditional">
@@ -7020,6 +7053,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.GetAdditional">
@@ -7331,6 +7367,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.GetAdditional">

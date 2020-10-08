@@ -21,5 +21,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<ConjugatePair> ConjugatePairs)
 		: UrPlusTechniqueInfo(
 			Conclusions, Views, IsAvoidable ? UrTypeCode.AHidden : UrTypeCode.Hidden,
-			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs);
+			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs)
+	{
+		/// <inheritdoc/>
+		public override string ToString() => ToStringInternal();
+	}
 }

@@ -34,6 +34,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc/>
+		public override string ToString() => ToStringInternal();
+
+		/// <inheritdoc/>
 		protected sealed override string GetAdditional()
 		{
 			bool singular = ConjugatePairs.Count == 1;

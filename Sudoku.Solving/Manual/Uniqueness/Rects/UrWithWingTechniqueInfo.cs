@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -38,6 +40,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+
+		/// <inheritdoc/>
+		public override string ToString() => ToStringInternal();
 
 		/// <inheritdoc/>
 		protected override string? GetAdditional()

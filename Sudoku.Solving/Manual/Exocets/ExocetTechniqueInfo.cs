@@ -63,7 +63,32 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		public override string ToString()
+		public override string ToString() => ToStringInternal();
+
+		/// <inheritdoc/>
+		public sealed override string ToFullString() =>
+			new StringBuilder(ToString())
+				.AppendLine()
+				.NullableAppendLine(TargetEliminations.ToString())
+				.NullableAppendLine(MirrorEliminations.ToString())
+				.NullableAppendLine(BibiEliminations.ToString())
+				.NullableAppendLine(TargetPairEliminations.ToString())
+				.NullableAppendLine(SwordfishEliminations.ToString())
+				.NullableAppendLine(TrueBaseEliminations.ToString())
+				.NullableAppendLine(CompatibilityEliminations.ToString())
+				.ToString();
+
+		/// <summary>
+		/// Get the additional message.
+		/// </summary>
+		/// <returns>The additional message.</returns>
+		protected abstract string? GetAdditional();
+
+		/// <summary>
+		/// Same as <see cref="ToString"/> but the implementation part.
+		/// </summary>
+		/// <returns>The result.</returns>
+		protected string ToStringInternal()
 		{
 			var (baseMap, targetMap, _) = Exocet;
 			string? addtional = GetAdditional();
@@ -84,25 +109,6 @@ namespace Sudoku.Solving.Manual.Exocets
 				.Append(new ConclusionCollection(Conclusions).ToString())
 				.ToString();
 		}
-
-		/// <inheritdoc/>
-		public sealed override string ToFullString() =>
-			new StringBuilder(ToString())
-				.AppendLine()
-				.NullableAppendLine(TargetEliminations.ToString())
-				.NullableAppendLine(MirrorEliminations.ToString())
-				.NullableAppendLine(BibiEliminations.ToString())
-				.NullableAppendLine(TargetPairEliminations.ToString())
-				.NullableAppendLine(SwordfishEliminations.ToString())
-				.NullableAppendLine(TrueBaseEliminations.ToString())
-				.NullableAppendLine(CompatibilityEliminations.ToString())
-				.ToString();
-
-		/// <summary>
-		/// Get the additional message.
-		/// </summary>
-		/// <returns>The additional message.</returns>
-		protected abstract string? GetAdditional();
 
 
 		/// <summary>
