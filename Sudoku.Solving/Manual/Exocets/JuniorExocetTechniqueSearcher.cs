@@ -222,7 +222,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				short mask1 = grid.GetCandidateMask(tr1), mask2 = grid.GetCandidateMask(tr2);
 				var (target, target2, mirror) = (tq1, tq2, m1);
 				return CheckMirror(
-					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : (short)0,
+					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : 0,
 					baseCandidatesMask, mirror, x,
 					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
 						? tr1
@@ -234,7 +234,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				short mask1 = grid.GetCandidateMask(tq1), mask2 = grid.GetCandidateMask(tq2);
 				var (target, target2, mirror) = (tq2, tq1, m2);
 				return CheckMirror(
-					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : (short)0,
+					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : 0,
 					baseCandidatesMask, mirror, x,
 					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
 						? tr1

@@ -76,8 +76,7 @@ namespace Sudoku.Data.Stepping
 			get => base[offset, digit];
 			set
 			{
-				_undoStack.Push(
-					value ? (Step)new EliminationStep(digit, offset) : new AntiEliminationStep(digit, offset));
+				_undoStack.Push(value ? new EliminationStep(digit, offset) : new AntiEliminationStep(digit, offset));
 
 				// Do step.
 				base[offset, digit] = value;

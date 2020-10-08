@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						foreach (int digit in mask)
 						{
 							var map = (cells & CandMaps[digit]).PeerIntersection & CandMaps[digit];
-							flagMask |= map.InOneRegion ? (short)0 : (short)(1 << digit);
+							flagMask |= (short)(map.InOneRegion ? 0 : (1 << digit));
 
 							foreach (int cell in map)
 							{

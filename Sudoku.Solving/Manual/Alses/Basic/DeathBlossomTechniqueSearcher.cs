@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					for (int i = stack[n] + 1; i <= death[pivot * 9 + digit, 0]; i++)
 					{
 						short value = (short)(alsList[death[pivot * 9 + digit, i]].DigitsMask & ~cands);
-						allZ[n] = n == 0 ? value : (short)(allZ[n - 1] & value);
+						allZ[n] = (short)(n == 0 ? value : (allZ[n - 1] & value));
 
 						if (allZ[n] > 0)
 						{
@@ -218,7 +218,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									new(
 										_alsShowRegions
 											? new DrawingInfo[] { new(0, pivot) }
-											: (IReadOnlyList<DrawingInfo>)cellOffsets,
+											: cellOffsets,
 										_alsShowRegions ? candidateOffsets : null,
 										_alsShowRegions ? regionOffsets : null,
 										null)
