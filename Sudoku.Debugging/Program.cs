@@ -76,3 +76,18 @@ enum E : short
 	LastResort = 16
 }
 #endif
+
+#if RANGE_ITERATION_TESTER || false
+var stopwatch = new Stopwatch();
+stopwatch.Start();
+foreach (int current in 1..2147483647)
+{
+}
+WriteLine($"{"Range iterator",-14}: {stopwatch.Elapsed:hh\\.mm\\.ss\\:ffffff}");
+stopwatch.Restart();
+for (int i = 1; i < 2147483647; i++)
+{
+}
+stopwatch.Stop();
+WriteLine($"{"For loop",-14}: {stopwatch.Elapsed:hh\\.mm\\.ss\\:ffffff}");
+#endif
