@@ -196,7 +196,7 @@ namespace Sudoku.Solving
 				sb.AppendLine(GetValue("AnalysisResultAttributes"));
 
 				static bool m(ParameterInfo[] p, MethodInfo m) =>
-					p.Length == 1 && p[0].ParameterType == typeof(Grid) && m.ReturnType == typeof(bool);
+					(p.Length, p[0].ParameterType, m.ReturnType) == (1, typeof(Grid), typeof(bool));
 				foreach (var methodInfo in
 					from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
 					let @params = methodInfo.GetParameters()
@@ -237,13 +237,10 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <returns>The list grouped and ordered.</returns>
 		/// <seealso cref="AnalysisResult.SolvingSteps"/>
-		private IEnumerable<IGrouping<string, TechniqueInfo>>? GetSolvingStepsGrouped()
-		{
-			var solvingSteps = Result.SolvingSteps;
-			return solvingSteps is null
+		private IEnumerable<IGrouping<string, TechniqueInfo>>? GetSolvingStepsGrouped() =>
+			Result.SolvingSteps is var solvingSteps && solvingSteps is null
 				? null
 				: from step in solvingSteps orderby step.Difficulty group step by step.Name;
-		}
 
 		/// <summary>
 		/// Get the data of bottleneck.
