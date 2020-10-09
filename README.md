@@ -26,14 +26,6 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 
 
-## Next
-
-标题：**下一步**
-
-1. Upgrade to C# 9 and .NET 5.<br/>升级到 C# 9 和 .NET 5。
-
-
-
 ## How to use
 
 标题：**如何使用**
@@ -129,13 +121,13 @@ Here display all conditional compilation symbols (CCS) in this solution. CCSes a
 
 这里罗列本解决方案里用到的条件编译符号（简称 CCS）。CCS 是全局的布尔量，它们存在于一些项目里，用来表示某段代码块是否需要编译。这段代码块只有当我们在项目文件（`*.csproj`）里配置了符号之后，才会被编译。
 
-Some of them are unnecessary for you perhaps, you can remove them.
+Some of them are unnecessary for you perhaps, you can remove them. In addition, if you want to modify any CCSes, please search for ways online on modifying them.
 
-其中的一些对你可能没有必要，所以你可以移除它们。
+其中的一些对你可能没有必要，所以你可以移除它们。另外，如果你要修改这些符号，请上网查阅修改它们的办法。
 
 | CCS<br/>条件编译符号         | Usage<br/>用法                                               |
 | ---------------------------- | ------------------------------------------------------------ |
-| `DEBUG`                      | Indicates the current environment is for debugging. Some features rely on this symbol such as the default values for some instances in settings.<br/>表示当前是调试环境。一些特性会依赖于这个符号，诸如部分设置项的默认数值。 |
+| `DEBUG`                      | Indicates the current environment is for debugging.<br/>表示当前是调试环境。 |
 | `SUDOKU_RECOGNITION`         | Indicates whether your machine can use OCR tools to recognize an image, and convert to a sudoku grid data structure instance. If you want to use this feature, please add this symbol to two projects [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core) and [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows).<br/>表示是否你的电脑上可以使用 OCR 识别工具来识别一个图片，并将其转换为一个数独盘面的实例对象。如果你希望启用这个功能的话，需要你为 [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core) 和 [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows) 这两个项目添加这个编译符号。 |
 | `ADVANCED_PICTURE_SAVING`    | Indicates whether the solution will use another picture saving way to save pictures. This symbol will be used only in the file [`PictureSavingPreferencesWindow.xaml.cs`](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Windows/PictureSavingPreferencesWindow.xaml.cs).<br/>表示是否解决方案使用另外一种保存图片的办法去保存图片。这个符号只用在文件 [`PictureSavingPreferencesWindow.xaml.cs`](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Windows/PictureSavingPreferencesWindow.xaml.cs) 里面。 |
 | `AUTHOR_RESERVED`            | Indicates the method is only used for author himself. You can delete the code surrounded with this symbol.<br/>表示这段代码只对作者来说才有意义。你完全可以删除掉这段代码，或者不使用该符号。 |
