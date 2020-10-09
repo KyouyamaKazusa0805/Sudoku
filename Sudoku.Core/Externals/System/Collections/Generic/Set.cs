@@ -48,7 +48,7 @@ namespace System.Collections.Generic
 		/// </summary>
 		/// <param name="element">The element.</param>
 		/// <returns>The first element to satisfy the condition.</returns>
-		public T this[T element] => _list.FirstOrDefault(e => e.Equals(element));
+		public T? this[T element] => _list.FirstOrDefault(e => e.Equals(element));
 
 
 		/// <inheritdoc/>
@@ -109,7 +109,7 @@ namespace System.Collections.Generic
 		public T RemoveAt(Index index)
 		{
 			var result = _list[index];
-			_list.RemoveAt(index);
+			_list.RemoveAt(index.GetOffset(Count));
 			return result;
 		}
 

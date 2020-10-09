@@ -34,7 +34,7 @@ namespace System.Linq
 		/// because each element cannot be <see langword="null"/> (either value types or non-<see langword="null"/>
 		/// reference types).
 		/// </remarks>
-		public static unsafe TNotNull GetElementByMinSelector<TNotNull, TComparable>(
+		public static unsafe TNotNull? GetElementByMinSelector<TNotNull, TComparable>(
 			this IEnumerable<TNotNull> @this, delegate* managed<TNotNull, TComparable> selector)
 			where TNotNull : notnull where TComparable : IComparable<TComparable> =>
 			(from element in @this orderby selector(element) select element).FirstOrDefault();
@@ -46,7 +46,7 @@ namespace System.Linq
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool None<T>(this IEnumerable<T> @this) => !@this.Any();
+		public static bool None<T>(this IEnumerable<T?> @this) => !@this.Any();
 
 		/// <summary>
 		/// Check whether the specified list has only one element.

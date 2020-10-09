@@ -26,7 +26,7 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// Indicates the content.
 		/// </summary>
-		public T Content { get; set; } = default!;
+		public T? Content { get; set; } = default!;
 
 		/// <summary>
 		/// Indicates its children nodes.

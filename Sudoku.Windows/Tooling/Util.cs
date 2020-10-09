@@ -212,10 +212,9 @@ namespace Sudoku.Windows.Tooling
 		/// <param name="filename">The file name.</param>
 		/// <returns>The instance.</returns>
 		[method: SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-		[return: MaybeNull]
-		internal static T LoadFromXml<T>(this T @this, string filename)
+		internal static T? LoadFromXml<T>(this T? @this, string filename)
 		{
-			T result = default;
+			T? result = default;
 			if (File.Exists(filename))
 			{
 				using var sr = new StreamReader(filename);
