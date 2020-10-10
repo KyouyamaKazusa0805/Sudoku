@@ -321,7 +321,7 @@ namespace Sudoku.Solving
 
 		/// <summary>
 		/// <para>Returns an enumerator that iterates through the collection.</para>
-		/// <para>Note that this method will not return <see langword="null"/> anytime.</para>
+		/// <para>Note that this method won't return <see langword="null"/> anytime.</para>
 		/// </summary>
 		/// <returns>
 		/// An enumerator that can be used to iterate through the collection.

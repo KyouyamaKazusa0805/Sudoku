@@ -20,7 +20,7 @@ namespace Sudoku.Extensions
 		/// <param name="format">The format string.</param>
 		/// <param name="result">
 		/// (<see langword="out"/> parameter) The result. If the format has been defined,
-		/// this value will not be <see langword="null"/>.
+		/// this value won't be <see langword="null"/>.
 		/// </param>
 		/// <returns>The <see cref="bool"/> value indicating that.</returns>
 		/// <remarks>

@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual
 		/// to the grid. The comparer is the solution grid. Computer doesn't know
 		/// which conclusions are correct and which ones are incorrect. Therefore,
 		/// the best plan is to compare to the solution grid. If not, the solver
-		/// will not check the validity of all conclusions. In other words, the solver
+		/// won't check the validity of all conclusions. In other words, the solver
 		/// doesn't stop the searching until the grid is totally invalid (None of
 		/// eliminations or assignments can be searched). However, unfortunately,
 		/// the grid has no solution at present.
@@ -210,7 +210,7 @@ namespace Sudoku.Solving.Manual
 		/// The value is <see langword="true"/> in default case. If the value
 		/// is <see langword="true"/>, the solver will check templates first,
 		/// and get all possible eliminations for each digit. If the digit does
-		/// not contain any elimination, the digit will not exist any fish.
+		/// not contain any elimination, the digit won't exist any fish.
 		/// </para>
 		/// </summary>
 		public bool HobiwanFishCheckTemplates { get; set; } = true;
@@ -218,7 +218,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// <para>
 		/// Indicates whether the step accumulator only records template delete,
-		/// and template set will not be in this collection (if necessary).
+		/// and template set won't be in this collection (if necessary).
 		/// </para>
 		/// <para>
 		/// If the value is <see langword="true"/>, and the solver has checked

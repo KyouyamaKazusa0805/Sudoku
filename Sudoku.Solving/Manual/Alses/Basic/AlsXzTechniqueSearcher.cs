@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					}
 
 					// If the number of digits that both two ALSes contain is only one (or zero),
-					// the ALS-XZ will not be formed.
+					// the ALS-XZ won't be formed.
 					if (xzMask.CountSet() < 2 || map.AllSetsAreInOneRegion(out int region))
 					{
 						continue;

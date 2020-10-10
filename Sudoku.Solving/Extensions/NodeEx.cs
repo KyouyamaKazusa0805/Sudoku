@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Extensions
 					};
 					if (linkType == LinkType.Weak && i == 0)
 					{
-						// Because of forcing chain, the first node will not be drawn.
+						// Because of forcing chain, the first node won't be drawn.
 						continue;
 					}
 

@@ -281,7 +281,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					if (locked != 0)
 					{
 						// Here you should use '|' operator rather than '||'.
-						// Operator '||' will not execute the second method if the first condition is true.
+						// Operator '||' won't execute the second method if the first condition is true.
 						if (g(playground, 0) | g(playground, 1))
 						{
 							cellOffsets.Add(new(3, playground[0]));

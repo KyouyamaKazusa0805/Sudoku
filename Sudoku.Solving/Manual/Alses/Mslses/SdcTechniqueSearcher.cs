@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		/// <remarks>
 		/// The fields <see cref="AlsTechniqueSearcher._allowAlsCycles"/> and
-		/// <see cref="AlsTechniqueSearcher._allowOverlapping"/> will not be used here.
+		/// <see cref="AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
 		/// </remarks>
 		public SdcTechniqueSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles)
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)

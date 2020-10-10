@@ -1030,7 +1030,7 @@
         <member name="F:Sudoku.Data.Grid._initialMasks">
             <summary>
             Same as <see cref="F:Sudoku.Data.Grid._masks"/>, but this field stores the all masks at
-            the initial grid. The field will not be modified until this instance
+            the initial grid. The field won't be modified until this instance
             destructs.
             </summary>
             <permission cref="T:System.Security.PermissionSet">
@@ -1627,7 +1627,7 @@
             <remarks>
             <para>
             Note that all offsets will be set <see langword="true"/>, but their own peers
-            will not be set <see langword="true"/>.
+            won't be set <see langword="true"/>.
             </para>
             <para>
             In some case, you can use object initializer instead.
@@ -1697,7 +1697,7 @@
             <param name="offsets">cell offsets.</param>
             <remarks>
             Note that all offsets will be set <see langword="true"/>, but their own peers
-            will not be set <see langword="true"/>.
+            won't be set <see langword="true"/>.
             </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializationOption)">
@@ -1833,7 +1833,7 @@
             Indicates all regions covered. This property is used to check all regions that all cells
             of this instance covered. For examp;le, if the cells are { 0, 1 }, the property
             <see cref="P:Sudoku.Data.GridMap.CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
-            however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property will not contain
+            however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property won't contain
             any regions.
             </summary>
         </member>
@@ -3557,7 +3557,7 @@
         <member name="F:Sudoku.Data.ValueGrid._initialMasks">
             <summary>
             Same as <see cref="F:Sudoku.Data.ValueGrid._masks"/>, but this field stores the all masks at
-            the initial grid. The field will not be modified until this instance
+            the initial grid. The field won't be modified until this instance
             destructs.
             </summary>
             <seealso cref="F:Sudoku.Data.ValueGrid._masks"/>
@@ -4366,7 +4366,7 @@
             </param>
             <param name="verifyDuplicate">
             Indicates whether the method should check duplicating values first.
-            If so, the value will not add (do nothing).
+            If so, the value won't add (do nothing).
             </param>
         </member>
         <member name="M:Sudoku.Extensions.CollectionEx.AddIfDoesNotContain``1(System.Collections.Generic.ICollection{``0},``0)">
@@ -4474,7 +4474,7 @@
             <param name="format">The format string.</param>
             <param name="result">
             (<see langword="out"/> parameter) The result. If the format has been defined,
-            this value will not be <see langword="null"/>.
+            this value won't be <see langword="null"/>.
             </param>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
             <remarks>

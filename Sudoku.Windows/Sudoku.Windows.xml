@@ -770,7 +770,7 @@
             <para>This field is used for give each step after solved the puzzle.</para>
             <para>
             If you changed the width of the <see cref="F:Sudoku.Windows.MainWindow._tabControlInfo"/> and its width is <c>0</c>
-            or below <c>0</c>, the result will not be shown on the tab control.
+            or below <c>0</c>, the result won't be shown on the tab control.
             </para>
             </remarks>
         </member>
@@ -1444,7 +1444,7 @@
             </returns>
             <remarks>
             <para>
-            Certain window data is cached, so changes you make using SetWindowLong will not take effect
+            Certain window data is cached, so changes you make using SetWindowLong won't take effect
             until you call the SetWindowPos function. Specifically, if you change any of the frame styles,
             you must call SetWindowPos with the SWP_FRAMECHANGED flag for the cache to be updated properly.
             </para>

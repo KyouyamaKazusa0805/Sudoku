@@ -116,7 +116,7 @@ namespace Sudoku.Windows
 		/// <para>This field is used for give each step after solved the puzzle.</para>
 		/// <para>
 		/// If you changed the width of the <see cref="_tabControlInfo"/> and its width is <c>0</c>
-		/// or below <c>0</c>, the result will not be shown on the tab control.
+		/// or below <c>0</c>, the result won't be shown on the tab control.
 		/// </para>
 		/// </remarks>
 		private AnalysisResult? _analyisResult;

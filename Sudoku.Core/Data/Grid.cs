@@ -83,7 +83,7 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// Same as <see cref="_masks"/>, but this field stores the all masks at
-		/// the initial grid. The field will not be modified until this instance
+		/// the initial grid. The field won't be modified until this instance
 		/// destructs.
 		/// </summary>
 		/// <permission cref="PermissionSet">

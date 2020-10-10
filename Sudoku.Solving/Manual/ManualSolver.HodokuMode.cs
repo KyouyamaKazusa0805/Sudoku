@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="progressResult">
 		/// (<see langword="ref"/> parameter)
 		/// The progress result. This parameter is used for modify the state of UI controls.
-		/// The current argument will not be used until <paramref name="progress"/> isn't <see langword="null"/>.
+		/// The current argument won't be used until <paramref name="progress"/> isn't <see langword="null"/>.
 		/// In the default case, this parameter is <see langword="default"/>(<see cref="GridProgressResult"/>) is okay.
 		/// </param>
 		/// <param name="progress">

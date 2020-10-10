@@ -111,7 +111,7 @@ namespace Sudoku.Data
 		/// <remarks>
 		/// <para>
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
-		/// will not be set <see langword="true"/>.
+		/// won't be set <see langword="true"/>.
 		/// </para>
 		/// <para>
 		/// In some case, you can use object initializer instead.
@@ -230,7 +230,7 @@ namespace Sudoku.Data
 		/// <param name="offsets">cell offsets.</param>
 		/// <remarks>
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
-		/// will not be set <see langword="true"/>.
+		/// won't be set <see langword="true"/>.
 		/// </remarks>
 		public GridMap(IEnumerable<int> offsets) : this()
 		{
@@ -529,7 +529,7 @@ namespace Sudoku.Data
 		/// Indicates all regions covered. This property is used to check all regions that all cells
 		/// of this instance covered. For examp;le, if the cells are { 0, 1 }, the property
 		/// <see cref="CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
-		/// however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property will not contain
+		/// however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property won't contain
 		/// any regions.
 		/// </summary>
 		public readonly IEnumerable<int> CoveredRegions

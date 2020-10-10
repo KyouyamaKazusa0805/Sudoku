@@ -59,7 +59,7 @@ namespace Sudoku.Extensions
 		/// </param>
 		/// <param name="verifyDuplicate">
 		/// Indicates whether the method should check duplicating values first.
-		/// If so, the value will not add (do nothing).
+		/// If so, the value won't add (do nothing).
 		/// </param>
 		public static void AddRange<TNotNull>(
 			this ICollection<TNotNull> @this, IEnumerable<TNotNull> values, bool verifyDuplicate) where TNotNull : notnull

@@ -144,7 +144,7 @@ namespace Sudoku.Windows
 		/// </returns>
 		/// <remarks>
 		/// <para>
-		/// Certain window data is cached, so changes you make using SetWindowLong will not take effect
+		/// Certain window data is cached, so changes you make using SetWindowLong won't take effect
 		/// until you call the SetWindowPos function. Specifically, if you change any of the frame styles,
 		/// you must call SetWindowPos with the SWP_FRAMECHANGED flag for the cache to be updated properly.
 		/// </para>

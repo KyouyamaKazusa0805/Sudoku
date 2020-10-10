@@ -222,7 +222,7 @@
         <member name="M:Sudoku.Solving.AnalysisResult.GetEnumerator">
             <summary>
             <para>Returns an enumerator that iterates through the collection.</para>
-            <para>Note that this method will not return <see langword="null"/> anytime.</para>
+            <para>Note that this method won't return <see langword="null"/> anytime.</para>
             </summary>
             <returns>
             An enumerator that can be used to iterate through the collection.
@@ -1313,7 +1313,7 @@
             To generate a sudoku grid with a backdoor filter depth.
             </summary>
             <param name="backdoorFilterDepth">
-            The backdoor filter depth. When the value is -1, the generator will not check
+            The backdoor filter depth. When the value is -1, the generator won't check
             any backdoors.
             </param>
             <param name="progress">The progress.</param>
@@ -1326,7 +1326,7 @@
             To generate a sudoku grid with a backdoor filter depth asynchronizedly.
             </summary>
             <param name="backdoorFilterDepth">
-            The backdoor filter depth. When the value is -1, the generator will not check
+            The backdoor filter depth. When the value is -1, the generator won't check
             any backdoors.
             </param>
             <param name="progress">The progress.</param>
@@ -1995,7 +1995,7 @@
             <inheritdoc/>
             <remarks>
             The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
-            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> will not be used here.
+            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.Properties">
@@ -2060,7 +2060,7 @@
             <inheritdoc/>
             <remarks>
             The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
-            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> will not be used here.
+            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.Properties">
@@ -4480,7 +4480,7 @@
             <param name="progressResult">
             (<see langword="ref"/> parameter)
             The progress result. This parameter is used for modify the state of UI controls.
-            The current argument will not be used until <paramref name="progress"/> isn't <see langword="null"/>.
+            The current argument won't be used until <paramref name="progress"/> isn't <see langword="null"/>.
             In the default case, this parameter is <see langword="default"/>(<see cref="T:Sudoku.Models.GridProgressResult"/>) is okay.
             </param>
             <param name="progress">
@@ -4505,7 +4505,7 @@
             <param name="progressResult">
             (<see langword="ref"/> parameter)
             The progress result. This parameter is used for modify the state of UI controls.
-            The current argument will not be used until <paramref name="progress"/> isn't <see langword="null"/>.
+            The current argument won't be used until <paramref name="progress"/> isn't <see langword="null"/>.
             In the default case, this parameter is <see langword="default"/>(<see cref="T:Sudoku.Models.GridProgressResult"/>) is okay.
             </param>
             <param name="progress">
@@ -4592,7 +4592,7 @@
             to the grid. The comparer is the solution grid. Computer doesn't know
             which conclusions are correct and which ones are incorrect. Therefore,
             the best plan is to compare to the solution grid. If not, the solver
-            will not check the validity of all conclusions. In other words, the solver
+            won't check the validity of all conclusions. In other words, the solver
             doesn't stop the searching until the grid is totally invalid (None of
             eliminations or assignments can be searched). However, unfortunately,
             the grid has no solution at present.
@@ -4713,7 +4713,7 @@
             The value is <see langword="true"/> in default case. If the value
             is <see langword="true"/>, the solver will check templates first,
             and get all possible eliminations for each digit. If the digit does
-            not contain any elimination, the digit will not exist any fish.
+            not contain any elimination, the digit won't exist any fish.
             </para>
             </summary>
         </member>
@@ -4721,7 +4721,7 @@
             <summary>
             <para>
             Indicates whether the step accumulator only records template delete,
-            and template set will not be in this collection (if necessary).
+            and template set won't be in this collection (if necessary).
             </para>
             <para>
             If the value is <see langword="true"/>, and the solver has checked
@@ -7807,7 +7807,7 @@
             is unstable).
             </para>
             <para>
-            If the value is <see langword="true"/>, the analysis result will not show the difficulty
+            If the value is <see langword="true"/>, the analysis result won't show the difficulty
             of this instance.
             </para>
             </summary>
@@ -7870,7 +7870,7 @@
             Returns a string that only contains the name and the basic information. Different with
             <see cref="M:Sudoku.Solving.TechniqueInfo.ToFullString"/>, the method will only contains the basic introduction about the technique.
             For example, in the <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo"/>, the detail will contain the several special
-            eliminations, in this method, those will not be displayed, But the method <see cref="M:Sudoku.Solving.TechniqueInfo.ToFullString"/>
+            eliminations, in this method, those won't be displayed, But the method <see cref="M:Sudoku.Solving.TechniqueInfo.ToFullString"/>
             will.
             </summary>
             <returns>The string instance.</returns>

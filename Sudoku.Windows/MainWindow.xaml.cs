@@ -104,7 +104,7 @@ namespace Sudoku.Windows
 #if SUDOKU_RECOGNITION
 			if (_recognition is { ToolIsInitialized: true })
 			{
-				// If you don't use this feature, the program will not need to use
+				// If you don't use this feature, the program won't need to use
 				// this method to KILL itself... KILL... sounds terrible and dangerous, isn't it?
 				// To be honest, I don't know why the program fails to exit... The background
 				// threads still running after base close method executed completely. If you

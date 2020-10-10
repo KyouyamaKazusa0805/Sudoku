@@ -25,7 +25,7 @@ namespace Sudoku.Solving
 		/// is unstable).
 		/// </para>
 		/// <para>
-		/// If the value is <see langword="true"/>, the analysis result will not show the difficulty
+		/// If the value is <see langword="true"/>, the analysis result won't show the difficulty
 		/// of this instance.
 		/// </para>
 		/// </summary>
@@ -102,7 +102,7 @@ namespace Sudoku.Solving
 		/// Returns a string that only contains the name and the basic information. Different with
 		/// <see cref="ToFullString"/>, the method will only contains the basic introduction about the technique.
 		/// For example, in the <see cref="ExocetTechniqueInfo"/>, the detail will contain the several special
-		/// eliminations, in this method, those will not be displayed, But the method <see cref="ToFullString"/>
+		/// eliminations, in this method, those won't be displayed, But the method <see cref="ToFullString"/>
 		/// will.
 		/// </summary>
 		/// <returns>The string instance.</returns>

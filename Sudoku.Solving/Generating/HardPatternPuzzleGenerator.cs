@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Generating
 		/// To generate a sudoku grid with a backdoor filter depth.
 		/// </summary>
 		/// <param name="backdoorFilterDepth">
-		/// The backdoor filter depth. When the value is -1, the generator will not check
+		/// The backdoor filter depth. When the value is -1, the generator won't check
 		/// any backdoors.
 		/// </param>
 		/// <param name="progress">The progress.</param>
@@ -104,7 +104,7 @@ namespace Sudoku.Solving.Generating
 		/// To generate a sudoku grid with a backdoor filter depth asynchronizedly.
 		/// </summary>
 		/// <param name="backdoorFilterDepth">
-		/// The backdoor filter depth. When the value is -1, the generator will not check
+		/// The backdoor filter depth. When the value is -1, the generator won't check
 		/// any backdoors.
 		/// </param>
 		/// <param name="progress">The progress.</param>
