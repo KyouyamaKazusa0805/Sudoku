@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Checking
 			else
 			{
 				throw new ArgumentException(
-					"The specified grid does not have a unique solution.", nameof(puzzle));
+					"The specified grid doesn't have a unique solution.", nameof(puzzle));
 			}
 		}
 
@@ -198,7 +198,7 @@ namespace Sudoku.Solving.Checking
 						// Iterate on each digit.
 						for (int digit = 0; digit < 9; digit++)
 						{
-							// Take the cell that does not contain in the map above.
+							// Take the cell that doesn't contain in the map above.
 							// Here, the cell is the "true candidate cell".
 							ref var map = ref resultMap[digit];
 							map = _candMaps[digit] - stack[currentIndex, digit];

@@ -407,7 +407,7 @@
         <member name="F:Sudoku.Data.CellStatus.Modifiable">
             <summary>
             Indicates that the cell has already filled a value,
-            but the value does not exist when the puzzle begins.
+            but the value doesn't exist when the puzzle begins.
             </summary>
         </member>
         <member name="F:Sudoku.Data.CellStatus.Given">
@@ -1094,7 +1094,7 @@
             </value>
             <returns>
             An <see cref="T:System.Int32"/> value indicating the result.
-            If the current cell does not have a digit
+            If the current cell doesn't have a digit
             (i.e. The cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>),
             The value will be -1.
             </returns>
@@ -1107,7 +1107,7 @@
             <param name="digit">The digit between 0 and 8.</param>
             <value>
             The case you want to set. <see langword="true"/> means that this candidate
-            does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
+            doesn't exist in this current sudoku grid; otherwise, <see langword="false"/>.
             </value>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -1184,7 +1184,7 @@
             <param name="cell">The cell offset you want to get.</param>
             <returns>
             The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
-            value, where the bit will be <c>0</c> if the corresponding digit <b>does not exist</b> in the cell,
+            value, where the bit will be <c>0</c> if the corresponding digit <b>doesn't exist</b> in the cell,
             and will be <c>1</c> if the corresponding contains this digit (either the cell
             is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
             </returns>
@@ -1598,11 +1598,11 @@
             <remarks>
             This constructor is defined after another constructor with
             <see cref="T:System.ReadOnlySpan`1"/> had defined. Although this constructor
-            does not initialize something (use the other one instead),
+            doesn't initialize something (use the other one instead),
             while initializing with the type <see cref="T:System.Int32"/>[], the complier
             gives me an error without this constructor (ambiguity of two
             constructors). However, unfortunately, <see cref="T:System.ReadOnlySpan`1"/>
-            does not implemented the interface <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            doesn't implemented the interface <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
         </member>
@@ -2470,7 +2470,7 @@
              23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
             </code>
             (Due to the rendering engine of IDE, all spaces will be displayed only once
-            in this table. In addition, this puzzle does not have a unique solution, here it is a
+            in this table. In addition, this puzzle doesn't have a unique solution, here it is a
             model for references only.)
             </para>
             </summary>
@@ -3634,7 +3634,7 @@
             </value>
             <returns>
             An <see cref="T:System.Int32"/> value indicating the result.
-            If the current cell does not have a digit
+            If the current cell doesn't have a digit
             (i.e. The cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>),
             The value will be -1.
             </returns>
@@ -3647,7 +3647,7 @@
             <param name="digit">The digit between 0 and 8.</param>
             <value>
             The case you want to set. <see langword="true"/> means that this candidate
-            does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
+            doesn't exist in this current sudoku grid; otherwise, <see langword="false"/>.
             </value>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -3719,7 +3719,7 @@
             <param name="cell">The cell offset you want to get.</param>
             <returns>
             The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
-            value, where the bit will be <c>0</c> if the corresponding digit <b>does not exist</b> in the cell,
+            value, where the bit will be <c>0</c> if the corresponding digit <b>doesn't exist</b> in the cell,
             and will be <c>1</c> if the corresponding contains this digit (either the cell
             is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
             </returns>
@@ -4372,7 +4372,7 @@
         <member name="M:Sudoku.Extensions.CollectionEx.AddIfDoesNotContain``1(System.Collections.Generic.ICollection{``0},``0)">
             <summary>
             Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when
-            the specified list does not contain the specified element.
+            the specified list doesn't contain the specified element.
             </summary>
             <typeparam name="TNotNull">
             The type of all elements. Should be not <see langword="null"/>.
@@ -4835,7 +4835,7 @@
             <param name="this">The base string builder.</param>
             <param name="to">The target builder.</param>
             <exception cref="T:System.ArgumentException">
-            Throws if the target instance does not have enough space to store all characters
+            Throws if the target instance doesn't have enough space to store all characters
             from the base one.
             </exception>
         </member>
@@ -5136,7 +5136,7 @@
             <typeparam name="TEnum">The type of the enum field.</typeparam>
             <param name="enumField">The enum field to check.</param>
             <returns>
-            The display name. Return <see langword="null"/> when the field does not mark this attribute.
+            The display name. Return <see langword="null"/> when the field doesn't mark this attribute.
             </returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.TechniqueCode">
@@ -6756,7 +6756,7 @@
             <typeparam name="TEnum">The type of the enum field.</typeparam>
             <param name="enumField">The enum field.</param>
             <returns>
-            The name. Return <see langword="null"/> when the specified field does not mark this attribute.
+            The name. Return <see langword="null"/> when the specified field doesn't mark this attribute.
             </returns>
         </member>
         <member name="T:Sudoku.Recognitions.Extensions.PointArrayEx">
@@ -7620,7 +7620,7 @@
             <param name="this">The elements to search the minimal one.</param>
             <param name="selector">The selector.</param>
             <returns>
-            The result value. If the collection does not have a minimal element,
+            The result value. If the collection doesn't have a minimal element,
             the result will be the default value, where it will be <see langword="null"/>, which
             is decided in the element type.
             </returns>

@@ -115,14 +115,14 @@ namespace Sudoku.Extensions
 		/// <param name="this">The base string builder.</param>
 		/// <param name="to">The target builder.</param>
 		/// <exception cref="ArgumentException">
-		/// Throws if the target instance does not have enough space to store all characters
+		/// Throws if the target instance doesn't have enough space to store all characters
 		/// from the base one.
 		/// </exception>
 		public static void CopyTo(this StringBuilder @this, StringBuilder @to)
 		{
 			if (@this.Length > @to.Length)
 			{
-				throw new ArgumentException("The specified string builder does not have enough space to copy.");
+				throw new ArgumentException("The specified string builder doesn't have enough space to copy.");
 			}
 
 			for (int i = 0; i < @this.Length; i++)

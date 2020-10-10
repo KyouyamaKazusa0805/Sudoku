@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 		/// <summary>
 		/// Indicates whether the puzzle will check POM first.
-		/// If so and the digit does not have any eliminations, this digit
+		/// If so and the digit doesn't have any eliminations, this digit
 		/// will be skipped rather than do empty and useless loops.
 		/// </summary>
 		private readonly bool _checkPom;
@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				var candMap = CandMaps[digit];
 				if (_checkPom && conclusionList[digit].IsEmpty || candMap.RowMask.CountSet() <= size)
 				{
-					// This digit does not contain any conclusions or
+					// This digit doesn't contain any conclusions or
 					// No available fish can be found.
 					continue;
 				}

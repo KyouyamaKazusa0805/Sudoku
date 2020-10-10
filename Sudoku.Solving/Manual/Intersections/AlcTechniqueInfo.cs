@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Intersections
 				2 => TechniqueCode.AlmostLockedPair,
 				3 => TechniqueCode.AlmostLockedTriple,
 				4 => TechniqueCode.AlmostLockedQuadruple,
-				_ => throw new NotSupportedException("The current instance does not support.")
+				_ => throw new NotSupportedException("The current instance doesn't support.")
 			};
 
 

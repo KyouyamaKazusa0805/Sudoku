@@ -79,7 +79,7 @@ namespace Sudoku.Extensions
 
 		/// <summary>
 		/// Adds an object to the end of the <see cref="ICollection{T}"/> when
-		/// the specified list does not contain the specified element.
+		/// the specified list doesn't contain the specified element.
 		/// </summary>
 		/// <typeparam name="TNotNull">
 		/// The type of all elements. Should be not <see langword="null"/>.

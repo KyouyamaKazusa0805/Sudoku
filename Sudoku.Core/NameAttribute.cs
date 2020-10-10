@@ -28,7 +28,7 @@ namespace Sudoku
 		/// <typeparam name="TEnum">The type of the enum field.</typeparam>
 		/// <param name="enumField">The enum field.</param>
 		/// <returns>
-		/// The name. Return <see langword="null"/> when the specified field does not mark this attribute.
+		/// The name. Return <see langword="null"/> when the specified field doesn't mark this attribute.
 		/// </returns>
 		public static string? GetName<TEnum>(TEnum enumField) where TEnum : Enum
 		{

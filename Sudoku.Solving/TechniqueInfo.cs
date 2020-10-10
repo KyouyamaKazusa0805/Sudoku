@@ -21,7 +21,7 @@ namespace Sudoku.Solving
 		/// <para>
 		/// Indicates whether the difficulty rating of this technique should be
 		/// shown in the output screen. Some techniques such as <b>Gurth's symmetrical placement</b>
-		/// does not need to show the difficulty (because the difficulty of this technique
+		/// doesn't need to show the difficulty (because the difficulty of this technique
 		/// is unstable).
 		/// </para>
 		/// <para>

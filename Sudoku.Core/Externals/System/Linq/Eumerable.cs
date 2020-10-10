@@ -24,7 +24,7 @@ namespace System.Linq
 		/// <param name="this">The elements to search the minimal one.</param>
 		/// <param name="selector">The selector.</param>
 		/// <returns>
-		/// The result value. If the collection does not have a minimal element,
+		/// The result value. If the collection doesn't have a minimal element,
 		/// the result will be the default value, where it will be <see langword="null"/>, which
 		/// is decided in the element type.
 		/// </returns>

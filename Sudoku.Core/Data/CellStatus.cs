@@ -16,7 +16,7 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// Indicates that the cell has already filled a value,
-		/// but the value does not exist when the puzzle begins.
+		/// but the value doesn't exist when the puzzle begins.
 		/// </summary>
 		Modifiable = 2,
 

@@ -138,7 +138,7 @@ namespace Sudoku.Solving.Checking
 			}
 			else
 			{
-				// The puzzle does not have unique solution, neither pearl nor diamond one.
+				// The puzzle doesn't have unique solution, neither pearl nor diamond one.
 				return false;
 			}
 		}

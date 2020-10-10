@@ -110,7 +110,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="puzzle">The puzzle.</param>
 		/// <param name="solution">
 		/// (<see langword="out"/> parameter) The solution. The value keeps <see langword="null"/>
-		/// if you does not want to use this result.
+		/// if you doesn't want to use this result.
 		/// </param>
 		/// <param name="limit">The limit.</param>
 		/// <returns>The number of all solutions.</returns>

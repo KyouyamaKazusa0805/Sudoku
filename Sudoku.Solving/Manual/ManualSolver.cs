@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Manual
 					solution: null,
 					hasSolved: false,
 					elapsedTime: TimeSpan.Zero,
-					additional: "The puzzle does not have a unique solution (multiple solutions or no solution).");
+					additional: "The puzzle doesn't have a unique solution (multiple solutions or no solution).");
 			}
 		}
 	}

@@ -345,7 +345,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			if ((baseCandidatesMask & m1, baseCandidatesMask & m2) is (0, not 0) or (not 0, 0))
 			{
 				// One cell contains the digit that base candidate holds,
-				// and another one does not contain.
+				// and another one doesn't contain.
 				return true;
 			}
 
@@ -354,7 +354,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				// Two cells don't contain any digits in the base cells neither,
 				// or both contains only digits from base cells,
-				// which is not allowed in the exocet rule (or does not contain
+				// which is not allowed in the exocet rule (or doesn't contain
 				// any eliminations).
 				return false;
 			}

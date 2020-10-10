@@ -570,7 +570,7 @@
             <param name="puzzle">The puzzle.</param>
             <param name="solution">
             (<see langword="out"/> parameter) The solution. The value keeps <see langword="null"/>
-            if you does not want to use this result.
+            if you doesn't want to use this result.
             </param>
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
@@ -3640,7 +3640,7 @@
         <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher._checkPom">
             <summary>
             Indicates whether the puzzle will check POM first.
-            If so and the digit does not have any eliminations, this digit
+            If so and the digit doesn't have any eliminations, this digit
             will be skipped rather than do empty and useless loops.
             </summary>
         </member>
@@ -3913,7 +3913,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_Subtraction(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
             <summary>
-            Get the regions that <paramref name="left"/> contains but the <paramref name="right"/> does not contain.
+            Get the regions that <paramref name="left"/> contains but the <paramref name="right"/> doesn't contain.
             </summary>
             <param name="left">The left map.</param>
             <param name="right">The right map.</param>
@@ -4558,7 +4558,7 @@
             The value is <see langword="false"/> in default case. In addition,
             if this value is <see langword="true"/>, the option
             <see cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/> will be disabled. In other
-            words, this option does not work while solving when the condition
+            words, this option doesn't work while solving when the condition
             is satisfied. However, the time of calculation with this value
             <see langword="true"/> will be <b>much slower</b> than that with the
             value is <see langword="false"/>.
@@ -4589,11 +4589,11 @@
             <para>
             The value is <see langword="true"/> in default case. If the value is
             <see langword="true"/>, all conclusions will be checked before applying
-            to the grid. The comparer is the solution grid. Computer does not know
+            to the grid. The comparer is the solution grid. Computer doesn't know
             which conclusions are correct and which ones are incorrect. Therefore,
             the best plan is to compare to the solution grid. If not, the solver
             will not check the validity of all conclusions. In other words, the solver
-            does not stop the searching until the grid is totally invalid (None of
+            doesn't stop the searching until the grid is totally invalid (None of
             eliminations or assignments can be searched). However, unfortunately,
             the grid has no solution at present.
             </para>
@@ -4612,7 +4612,7 @@
             of the grid at initial. If the grid is symmetrical grid, the solver
             will give you a hint about the technique of symmetrical placement. However,
             the hint will influence the difficulty rating during solving the puzzle.
-            If the puzzle is so easy (in other words, the grid does not need check
+            If the puzzle is so easy (in other words, the grid doesn't need check
             it), this option will make the difficulty rating of the puzzle much more
             higher than that when the option is <see langword="false"/>. In addition,
             if the option <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> is <see langword="true"/>,
@@ -7633,7 +7633,7 @@
             <remarks>
             In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
             be found in another searcher. In addition, these wings are not elementary and necessary techniques
-            so we does not need to list them.
+            so we doesn't need to list them.
             </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo">
@@ -7803,7 +7803,7 @@
             <para>
             Indicates whether the difficulty rating of this technique should be
             shown in the output screen. Some techniques such as <b>Gurth's symmetrical placement</b>
-            does not need to show the difficulty (because the difficulty of this technique
+            doesn't need to show the difficulty (because the difficulty of this technique
             is unstable).
             </para>
             <para>

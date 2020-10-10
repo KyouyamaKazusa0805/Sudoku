@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		public static RegionMap operator ^(RegionMap left, RegionMap right) => new(left.Mask ^ right.Mask);
 
 		/// <summary>
-		/// Get the regions that <paramref name="left"/> contains but the <paramref name="right"/> does not contain.
+		/// Get the regions that <paramref name="left"/> contains but the <paramref name="right"/> doesn't contain.
 		/// </summary>
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>

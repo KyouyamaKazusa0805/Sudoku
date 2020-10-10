@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Generating
 						},
 						None => new[] { r * 9 + c },
 						_ => throw Throwings.ImpossibleCaseWithMessage(
-							"You shouldn't add an option that does not contain in the table of symmetrical types.")
+							"You shouldn't add an option that doesn't contain in the table of symmetrical types.")
 					})
 					{
 						solution[tCell] = '0';

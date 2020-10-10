@@ -182,7 +182,7 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["CaptionWarning"]);
 
 		/// <summary>
-		/// Indicates the message that the puzzle does not exist any BUG digit.
+		/// Indicates the message that the puzzle doesn't exist any BUG digit.
 		/// </summary>
 		public static void DoesNotContainBugMultiple() =>
 			MessageBox.Show(
@@ -190,7 +190,7 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["CaptionInfo"]);
 
 		/// <summary>
-		/// Indicates the message that the puzzle does not exist any backdoors of the level 0 or 1.
+		/// Indicates the message that the puzzle doesn't exist any backdoors of the level 0 or 1.
 		/// </summary>
 		public static void DoesNotContainBackdoor() =>
 			MessageBox.Show(
@@ -249,7 +249,7 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["CaptionInfo"]);
 
 		/// <summary>
-		/// Indicates the message that the puzzle does not exist GSP hint.
+		/// Indicates the message that the puzzle doesn't exist GSP hint.
 		/// </summary>
 		public static void DoesNotContainGsp() =>
 			MessageBox.Show(

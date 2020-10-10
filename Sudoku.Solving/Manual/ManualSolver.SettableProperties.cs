@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual
 		/// The value is <see langword="false"/> in default case. In addition,
 		/// if this value is <see langword="true"/>, the option
 		/// <see cref="OptimizedApplyingOrder"/> will be disabled. In other
-		/// words, this option does not work while solving when the condition
+		/// words, this option doesn't work while solving when the condition
 		/// is satisfied. However, the time of calculation with this value
 		/// <see langword="true"/> will be <b>much slower</b> than that with the
 		/// value is <see langword="false"/>.
@@ -78,11 +78,11 @@ namespace Sudoku.Solving.Manual
 		/// <para>
 		/// The value is <see langword="true"/> in default case. If the value is
 		/// <see langword="true"/>, all conclusions will be checked before applying
-		/// to the grid. The comparer is the solution grid. Computer does not know
+		/// to the grid. The comparer is the solution grid. Computer doesn't know
 		/// which conclusions are correct and which ones are incorrect. Therefore,
 		/// the best plan is to compare to the solution grid. If not, the solver
 		/// will not check the validity of all conclusions. In other words, the solver
-		/// does not stop the searching until the grid is totally invalid (None of
+		/// doesn't stop the searching until the grid is totally invalid (None of
 		/// eliminations or assignments can be searched). However, unfortunately,
 		/// the grid has no solution at present.
 		/// </para>
@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Manual
 		/// of the grid at initial. If the grid is symmetrical grid, the solver
 		/// will give you a hint about the technique of symmetrical placement. However,
 		/// the hint will influence the difficulty rating during solving the puzzle.
-		/// If the puzzle is so easy (in other words, the grid does not need check
+		/// If the puzzle is so easy (in other words, the grid doesn't need check
 		/// it), this option will make the difficulty rating of the puzzle much more
 		/// higher than that when the option is <see langword="false"/>. In addition,
 		/// if the option <see cref="AnalyzeDifficultyStrictly"/> is <see langword="true"/>,

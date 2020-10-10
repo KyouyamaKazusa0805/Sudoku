@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Checking
 		{
 			if (!grid.IsValid(out var solution))
 			{
-				throw new InvalidOperationException("The puzzle does not have unique solution.");
+				throw new InvalidOperationException("The puzzle doesn't have unique solution.");
 			}
 
 			var tempGrid = grid.Clone();

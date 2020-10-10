@@ -397,7 +397,7 @@ namespace Sudoku.Data
 						result[realPos] = c - '1';
 
 						// Set the cell status as 'CellStatus.Given'.
-						// If the code below does not make sense to you,
+						// If the code below doesn't make sense to you,
 						// you can see the comments in method 'OnParsingSusser(string)'
 						// to know the meaning also.
 						result.SetStatus(realPos, Given);

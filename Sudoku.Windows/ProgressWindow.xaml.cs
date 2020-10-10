@@ -135,7 +135,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>
 		/// If the previous value of the specified 32-bit integer is zero, and the function succeeds,
-		/// the return value is zero, but the function does not clear the last error information.
+		/// the return value is zero, but the function doesn't clear the last error information.
 		/// This makes it difficult to determine success or failure.To deal with this,
 		/// you should clear the last error information by calling SetLastError with 0 before calling
 		/// SetWindowLong.Then, function failure will be indicated by a return value of zero and a

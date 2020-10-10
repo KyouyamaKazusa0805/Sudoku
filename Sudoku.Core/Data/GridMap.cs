@@ -77,11 +77,11 @@ namespace Sudoku.Data
 		/// <remarks>
 		/// This constructor is defined after another constructor with
 		/// <see cref="ReadOnlySpan{T}"/> had defined. Although this constructor
-		/// does not initialize something (use the other one instead),
+		/// doesn't initialize something (use the other one instead),
 		/// while initializing with the type <see cref="int"/>[], the complier
 		/// gives me an error without this constructor (ambiguity of two
 		/// constructors). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
-		/// does not implemented the interface <see cref="IEnumerable{T}"/>.
+		/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
 		/// </remarks>
 		/// <seealso cref="GridMap(IEnumerable{int})"/>
 		public GridMap(int[] offsets) : this(offsets.AsEnumerable())
@@ -188,7 +188,7 @@ namespace Sudoku.Data
 				}
 				default:
 				{
-					throw new ArgumentException("The specified option does not exist.");
+					throw new ArgumentException("The specified option doesn't exist.");
 				}
 			}
 		}
@@ -295,7 +295,7 @@ namespace Sudoku.Data
 				}
 				default:
 				{
-					throw new ArgumentException("The specified option does not exist.");
+					throw new ArgumentException("The specified option doesn't exist.");
 				}
 			}
 		}

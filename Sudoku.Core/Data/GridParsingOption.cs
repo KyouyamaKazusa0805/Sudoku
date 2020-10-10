@@ -146,7 +146,7 @@
 		///  23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
 		/// </code>
 		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
-		/// in this table. In addition, this puzzle does not have a unique solution, here it is a
+		/// in this table. In addition, this puzzle doesn't have a unique solution, here it is a
 		/// model for references only.)
 		/// </para>
 		/// </summary>

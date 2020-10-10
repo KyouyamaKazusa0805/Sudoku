@@ -260,7 +260,7 @@ namespace Sudoku.Data
 		/// </value>
 		/// <returns>
 		/// An <see cref="int"/> value indicating the result.
-		/// If the current cell does not have a digit
+		/// If the current cell doesn't have a digit
 		/// (i.e. The cell is <see cref="S.Empty"/>),
 		/// The value will be -1.
 		/// </returns>
@@ -312,7 +312,7 @@ namespace Sudoku.Data
 		/// <param name="digit">The digit between 0 and 8.</param>
 		/// <value>
 		/// The case you want to set. <see langword="true"/> means that this candidate
-		/// does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
+		/// doesn't exist in this current sudoku grid; otherwise, <see langword="false"/>.
 		/// </value>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[IndexerName("Value")]
@@ -492,7 +492,7 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell offset you want to get.</param>
 		/// <returns>
 		/// The candidate mask. The return value is a 9-bit <see cref="short"/>
-		/// value, where the bit will be <c>0</c> if the corresponding digit <b>does not exist</b> in the cell,
+		/// value, where the bit will be <c>0</c> if the corresponding digit <b>doesn't exist</b> in the cell,
 		/// and will be <c>1</c> if the corresponding contains this digit (either the cell
 		/// is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
 		/// </returns>

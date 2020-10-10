@@ -216,12 +216,12 @@
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.DoesNotContainBugMultiple">
             <summary>
-            Indicates the message that the puzzle does not exist any BUG digit.
+            Indicates the message that the puzzle doesn't exist any BUG digit.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.DoesNotContainBackdoor">
             <summary>
-            Indicates the message that the puzzle does not exist any backdoors of the level 0 or 1.
+            Indicates the message that the puzzle doesn't exist any backdoors of the level 0 or 1.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.NotSupportedWhileGeneratingWithFilter">
@@ -257,7 +257,7 @@
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.DoesNotContainGsp">
             <summary>
-            Indicates the message that the puzzle does not exist GSP hint.
+            Indicates the message that the puzzle doesn't exist GSP hint.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.CannotCopyStep">
@@ -1435,7 +1435,7 @@
             </para>
             <para>
             If the previous value of the specified 32-bit integer is zero, and the function succeeds,
-            the return value is zero, but the function does not clear the last error information.
+            the return value is zero, but the function doesn't clear the last error information.
             This makes it difficult to determine success or failure.To deal with this,
             you should clear the last error information by calling SetLastError with 0 before calling
             SetWindowLong.Then, function failure will be indicated by a return value of zero and a

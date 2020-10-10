@@ -311,7 +311,7 @@
 	<sys:String x:Key="CaptionInfo">Info</sys:String>
 	<sys:String x:Key="CaptionWarning">Warning</sys:String>
 	<sys:String x:Key="CaptionError">Error</sys:String>
-	<sys:String x:Key="OnlyOpenOneProgram">This program does not support multiple programs opening at the same time.</sys:String>
+	<sys:String x:Key="OnlyOpenOneProgram">This program doesn't support multiple programs opening at the same time.</sys:String>
 	<sys:String x:Key="FunctionIsUnavailable">The puzzle is invalid, so you cannot use this function.</sys:String>
 	<sys:String x:Key="WrongHandling">The current step is wrong due to wrong calculation. Please contact the author.</sys:String>
 	<sys:String x:Key="FailedToBackupConfig">Configuration file is failed to save due to internal error.</sys:String>
@@ -338,7 +338,7 @@
 	<sys:String x:Key="FailedToPasteText">The specified puzzle pasted from clipboard is invalid.</sys:String>
 	<sys:String x:Key="FailedToCheckDueToInvalidPuzzle">The puzzle is invalid.</sys:String>
 	<sys:String x:Key="DoesNotContainBugMultiple">The puzzle is not a valid BUG pattern.</sys:String>
-	<sys:String x:Key="DoesNotContainBackdoor">The puzzle does not have any backdoors whose level is 0 or 1, which means the puzzle can be solved difficultly with brute forces.</sys:String>
+	<sys:String x:Key="DoesNotContainBackdoor">The puzzle doesn't have any backdoors whose level is 0 or 1, which means the puzzle can be solved difficultly with brute forces.</sys:String>
 	<sys:String x:Key="NotSupportedWhileGeneratingWithFilter">This function is for debugging use now. Sorry. &gt;_&lt;</sys:String>
 	<sys:String x:Key="FailedToApplyPuzzle">The puzzle is invalid. Please check your input and retry.</sys:String>
 	<sys:String x:Key="PuzzleAlreadySolved">The puzzle has already solved.</sys:String>
@@ -346,8 +346,8 @@
 	<sys:String x:Key="FailedToSolveWithMessage2">You should check the puzzle or notify the author.</sys:String>
 	<sys:String x:Key="FailedToSolveWithMessage3">Error technique step: </sys:String>
 	<sys:String x:Key="YouShouldSolveFirst">You should solve the puzzle first.</sys:String>
-	<sys:String x:Key="SukakuCannotUseGspChecking">The sukaku puzzle does not support this function now.</sys:String>
-	<sys:String x:Key="DoesNotContainGsp">The puzzle does not contain any Gurth's symmetrical placement.</sys:String>
+	<sys:String x:Key="SukakuCannotUseGspChecking">The sukaku puzzle doesn't support this function now.</sys:String>
+	<sys:String x:Key="DoesNotContainGsp">The puzzle doesn't contain any Gurth's symmetrical placement.</sys:String>
 	<sys:String x:Key="CannotCopyStep">Cannot copy due to internal error. Please try later.</sys:String>
 	<sys:String x:Key="AskWhileQuitting">Are you sure to quit?</sys:String>
 	<sys:String x:Key="AskWhileLoadingAndCoveringDatabase">You have used a database at the previous time you use the program. Do you want to load now?</sys:String>

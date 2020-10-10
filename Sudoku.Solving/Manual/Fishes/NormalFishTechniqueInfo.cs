@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				"Jellyfish" => TechniqueCode.Jellyfish,
 				"Finned Jellyfish" => TechniqueCode.FinnedJellyfish,
 				"Sashimi Jellyfish" => TechniqueCode.SashimiJellyfish,
-				_ => throw new NotSupportedException("The current instance does not support this kind of fish.")
+				_ => throw new NotSupportedException("The current instance doesn't support this kind of fish.")
 			};
 
 		/// <summary>

@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
 			// To verify all kinds of symmetry.
-			// Note that Gurth's symmetrical placement does not have X-axis and Y-axis type.
+			// Note that Gurth's symmetrical placement doesn't have X-axis and Y-axis type.
 			unsafe
 			{
 				foreach (var act in new delegate*<IList<TechniqueInfo>, Grid, void>[]

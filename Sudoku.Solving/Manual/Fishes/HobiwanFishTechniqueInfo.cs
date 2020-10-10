@@ -145,7 +145,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				"Mutant Leviathan" => TechniqueCode.MutantLeviathan,
 				"Finned Mutant Leviathan" => TechniqueCode.FinnedMutantLeviathan,
 				"Sashimi Mutant Leviathan" => TechniqueCode.SashimiMutantLeviathan,
-				_ => throw new NotSupportedException("The current instance does not support this kind of fish.")
+				_ => throw new NotSupportedException("The current instance doesn't support this kind of fish.")
 			};
 
 		/// <summary>

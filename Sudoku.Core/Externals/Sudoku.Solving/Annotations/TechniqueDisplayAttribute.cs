@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Annotations
 		/// <typeparam name="TEnum">The type of the enum field.</typeparam>
 		/// <param name="enumField">The enum field to check.</param>
 		/// <returns>
-		/// The display name. Return <see langword="null"/> when the field does not mark this attribute.
+		/// The display name. Return <see langword="null"/> when the field doesn't mark this attribute.
 		/// </returns>
 		public static string? GetDisplayName<TEnum>(TEnum enumField) where TEnum : Enum =>
 			typeof(TEnum).GetField(enumField.ToString()) switch
