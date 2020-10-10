@@ -3900,7 +3900,6 @@
             <param name="dest">The pointer to the destination block.</param>
             <param name="src">The pointer to the destination block.</param>
             <param name="size">The number of the size unit.</param>
-            <returns>Same as <paramref name="dest"/>.</returns>
         </member>
         <member name="M:Sudoku.Data.ValueGrid.op_Equality(Sudoku.Data.ValueGrid,Sudoku.Data.ValueGrid)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>

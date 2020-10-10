@@ -574,17 +574,14 @@ namespace Sudoku.Data
 		/// <param name="e">The data.</param>
 		private static void OnValueChanged(ValueGrid sender, ValueChangedValues e)
 		{
-			var (offset, _, _, setValue) = e;
-			if (setValue == -1)
+			if (e is { SetValue: not -1 } and var (offset, _, _, setValue))
 			{
-				return;
-			}
-
-			foreach (int cell in PeerMaps[offset])
-			{
-				if (sender.GetStatus(cell) == S.Empty)
+				foreach (int cell in PeerMaps[offset])
 				{
-					sender._masks[cell] |= (short)(1 << setValue);
+					if (sender.GetStatus(cell) == S.Empty)
+					{
+						sender._masks[cell] |= (short)(1 << setValue);
+					}
 				}
 			}
 		}
@@ -876,13 +873,11 @@ namespace Sudoku.Data
 		/// <param name="dest">The pointer to the destination block.</param>
 		/// <param name="src">The pointer to the destination block.</param>
 		/// <param name="size">The number of the size unit.</param>
-		/// <returns>Same as <paramref name="dest"/>.</returns>
 		private static void Memcpy(void* dest, void* src, int size)
 		{
 			if (src != null && dest != null && size >= 0)
 			{
-				byte* tempDest = (byte*)dest;
-				byte* tempSrc = (byte*)src;
+				byte* tempDest = (byte*)dest, tempSrc = (byte*)src;
 
 				for (int n = size; n-- > 0; *tempDest++ = *tempSrc++) ;
 			}
