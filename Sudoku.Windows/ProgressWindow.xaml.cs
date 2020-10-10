@@ -180,7 +180,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>
 		/// If the window has a class style of CS_CLASSDC or CS_OWNDC,
-		/// do not set the extended window styles WS_EX_COMPOSITED or WS_EX_LAYERED.
+		/// don't set the extended window styles WS_EX_COMPOSITED or WS_EX_LAYERED.
 		/// </para>
 		/// <para>
 		/// Calling SetWindowLong to set the style on a progressbar will reset its position.

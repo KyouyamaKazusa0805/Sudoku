@@ -279,7 +279,7 @@ namespace Sudoku.Data
 				else if (s.SatisfyPattern(RegularExpressions.PmGridCandidates))
 				{
 					// Candidates.
-					// Here do not need to check the length of the string,
+					// Here don't need to check the length of the string,
 					// and also all characters are digit characters.
 					bool[] series = DefaultCheckingArray;
 					foreach (char c in s)

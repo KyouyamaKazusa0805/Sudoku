@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="Map">The cells used.</param>
 	/// <param name="DigitsMask">The digits mask.</param>
 	/// <param name="ConjugateRegion">
-	/// The so-called conjugate region. If you do not know what is a "conjugate region",
+	/// The so-called conjugate region. If you don't know what is a "conjugate region",
 	/// please read the comments in the method
 	/// <see cref="BdpTechniqueSearcher.CheckType4(IList{TechniqueInfo}, Grid, Pattern, short, short, short, GridMap)"/>
 	/// for more details.

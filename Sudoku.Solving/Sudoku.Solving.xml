@@ -6335,7 +6335,7 @@
             <param name="Map">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
             <param name="ConjugateRegion">
-            The so-called conjugate region. If you do not know what is a "conjugate region",
+            The so-called conjugate region. If you don't know what is a "conjugate region",
             please read the comments in the method
             <see cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)"/>
             for more details.
@@ -6352,7 +6352,7 @@
             <param name="Map">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
             <param name="ConjugateRegion">
-            The so-called conjugate region. If you do not know what is a "conjugate region",
+            The so-called conjugate region. If you don't know what is a "conjugate region",
             please read the comments in the method
             <see cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)"/>
             for more details.
