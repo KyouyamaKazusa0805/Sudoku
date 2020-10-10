@@ -199,8 +199,7 @@ namespace Sudoku.Solving
 					(p.Length, p[0].ParameterType, m.ReturnType) == (1, typeof(Grid), typeof(bool));
 				foreach (var methodInfo in
 					from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
-					let @params = methodInfo.GetParameters()
-					where m(@params, methodInfo)
+					where m(methodInfo.GetParameters(), methodInfo)
 					select methodInfo)
 				{
 					bool attributeResult = (bool)methodInfo.Invoke(null, new[] { puzzle })!;

@@ -7,7 +7,6 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
-using Sudoku.Solving.Manual.Singles;
 
 namespace Sudoku.Solving
 {
@@ -16,7 +15,7 @@ namespace Sudoku.Solving
 	/// <see cref="ManualSolver"/>.
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public abstract class TechniqueSearcher : IComparable<TechniqueSearcher?>, IEquatable<TechniqueSearcher?>
+	public abstract partial class TechniqueSearcher : IComparable<TechniqueSearcher?>, IEquatable<TechniqueSearcher?>
 	{
 		/// <summary>
 		/// Get the display name of the type <see cref="TechniqueDisplayAttribute"/>.
@@ -26,61 +25,6 @@ namespace Sudoku.Solving
 			GetType() is var type && type.IsAbstract
 				? null
 				: type.GetCustomAttribute<TechniqueDisplayAttribute>()?.DisplayName;
-
-
-		/// <summary>
-		/// The empty cells map.
-		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
-		/// <seealso cref="SingleTechniqueSearcher"/>
-		internal static GridMap EmptyMap { get; set; }
-
-		/// <summary>
-		/// The bi-value cells map.
-		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
-		/// <seealso cref="SingleTechniqueSearcher"/>
-		internal static GridMap BivalueMap { get; set; }
-
-		/// <summary>
-		/// The candidate maps.
-		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
-		/// <seealso cref="SingleTechniqueSearcher"/>
-		internal static GridMap[] CandMaps { get; set; } = null!;
-
-		/// <summary>
-		/// The digit maps.
-		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
-		/// <seealso cref="SingleTechniqueSearcher"/>
-		internal static GridMap[] DigitMaps { get; set; } = null!;
-
-		/// <summary>
-		/// The value maps.
-		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
-		internal static GridMap[] ValueMaps { get; set; } = null!;
 
 
 		/// <summary>

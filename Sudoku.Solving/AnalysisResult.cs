@@ -144,7 +144,7 @@ namespace Sudoku.Solving
 			{
 				if (SolvingSteps is null)
 				{
-					return 20M;
+					goto NotSolvedOrSolvingStepsIsNull;
 				}
 
 				if (HasSolved)
@@ -158,7 +158,7 @@ namespace Sudoku.Solving
 					}
 				}
 
-				// Not solved.
+			NotSolvedOrSolvingStepsIsNull:
 				return 20M;
 			}
 		}

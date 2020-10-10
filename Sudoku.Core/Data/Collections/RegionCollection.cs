@@ -145,7 +145,7 @@ namespace Sudoku.Data.Collections
 		}
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-		public IEnumerator<int> GetEnumerator() => _mask.GetAllSets().GetEnumerator();
+		public IEnumerator<int> GetEnumerator() => _mask.GetEnumerator();
 
 		/// <summary>
 		/// Get the label of each region.
@@ -153,13 +153,7 @@ namespace Sudoku.Data.Collections
 		/// <param name="index">The index.</param>
 		/// <returns>The label.</returns>
 		private char GetLabel(int index) =>
-			index switch
-			{
-				0 => 'b',
-				1 => 'r',
-				2 => 'c',
-				_ => throw Throwings.ImpossibleCase
-			};
+			index switch { 0 => 'b', 1 => 'r', 2 => 'c', _ => throw Throwings.ImpossibleCase };
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
