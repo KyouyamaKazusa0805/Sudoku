@@ -45,7 +45,7 @@ namespace Sudoku.Recognitions.Extensions
 				}
 			}
 
-			// Check ratio between all sides, it cannot be more than allowed.
+			// Check ratio between all sides, it can't be more than allowed.
 			for (int i = 0; i < 4; i++)
 			{
 				for (int j = 0; j < 4; j++)

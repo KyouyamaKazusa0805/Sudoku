@@ -285,7 +285,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						if (combinationMap != currentMap)
 						{
 							// If not equal, the map may contains other digits in this region.
-							// Therefore the conjugate region cannot form.
+							// Therefore the conjugate region can't form.
 							continue;
 						}
 

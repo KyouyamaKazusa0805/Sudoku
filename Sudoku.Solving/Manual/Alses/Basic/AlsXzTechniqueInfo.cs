@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				if (ZDigitsMask == 0)
 				{
 					string cellsStr = (Als1.Map | Als2.Map).ToString();
-					return $"{Name}: All digits cannot be duplicate in cells {cellsStr} => {elimStr}";
+					return $"{Name}: All digits can't be duplicate in cells {cellsStr} => {elimStr}";
 				}
 				else
 				{

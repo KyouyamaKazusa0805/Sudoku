@@ -29,9 +29,9 @@ namespace System.Linq
 		/// is decided in the element type.
 		/// </returns>
 		/// <remarks>
-		/// Note that the return value can be <see langword="null"/> if the list cannot be found
+		/// Note that the return value can be <see langword="null"/> if the list can't be found
 		/// the specified element, but this type parameter is named <typeparamref name="TNotNull"/>
-		/// because each element cannot be <see langword="null"/> (either value types or non-<see langword="null"/>
+		/// because each element can't be <see langword="null"/> (either value types or non-<see langword="null"/>
 		/// reference types).
 		/// </remarks>
 		public static unsafe TNotNull? GetElementByMinSelector<TNotNull, TComparable>(

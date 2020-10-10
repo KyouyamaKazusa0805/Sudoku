@@ -141,7 +141,7 @@ namespace Sudoku.Solving.Manual.Singles
 					{
 						directLines = new();
 
-						// Step 1: Get all source cells that makes the result cell cannot be filled with the result digit.
+						// Step 1: Get all source cells that makes the result cell can't be filled with the result digit.
 						GridMap crosshatchingCells = GridMap.Empty, tempMap = GridMap.Empty;
 						foreach (int cell in RegionCells[region])
 						{

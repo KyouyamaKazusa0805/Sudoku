@@ -62,6 +62,6 @@ namespace Sudoku.Runtime
 
 		/// <inheritdoc/>
 		public override string Message =>
-			$"The specified message cannot be solved due to: {WrongInfo.NullableToString("<Unknown case>")}.";
+			$"The specified message can't be solved due to: {WrongInfo.NullableToString("<Unknown case>")}.";
 	}
 }

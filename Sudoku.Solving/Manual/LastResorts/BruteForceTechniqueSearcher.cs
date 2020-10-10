@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>brute force</b> technique searcher.
 	/// The searcher is not executed until all searchers whose priority
-	/// is higher than this one cannot find out any technique steps.
+	/// is higher than this one can't find out any technique steps.
 	/// </summary>
 	/// <remarks>
 	/// This searcher is a trick, because it will check the assignments on

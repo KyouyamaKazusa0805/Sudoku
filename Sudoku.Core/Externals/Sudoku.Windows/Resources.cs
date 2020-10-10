@@ -43,7 +43,7 @@ namespace Sudoku.Windows
 		/// <param name="key">The key.</param>
 		/// <returns>The value.</returns>
 		/// <exception cref="KeyNotFoundException">
-		/// Throws when the key cannot be found in neither the current language dictionary
+		/// Throws when the key can't be found in neither the current language dictionary
 		/// nor the default dictionary.
 		/// </exception>
 		public static string GetValue(string key) =>
@@ -56,7 +56,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <param name="key">The key.</param>
 		/// <returns>
-		/// The value. If the key cannot be found in neither the current language dictionary
+		/// The value. If the key can't be found in neither the current language dictionary
 		/// nor the default dictionary, the return value will be <see langword="null"/>.
 		/// </returns>
 		public static string? GetValueWithoutExceptions(string key) =>

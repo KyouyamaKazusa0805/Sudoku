@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual
 
 				if ((sukaku, searcher) is (true, UniquenessTechniqueSearcher))
 				{
-					// Sukaku mode cannot use them.
+					// Sukaku mode can't use them.
 					// In fact, sukaku can use uniqueness tests, but this will make the project
 					// a large modification.
 					continue;

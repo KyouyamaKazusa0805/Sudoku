@@ -5,7 +5,7 @@ using Sudoku.Runtime;
 namespace Sudoku.Recognitions
 {
 	/// <summary>
-	/// Represents an error that the OCR tools cannot work normally.
+	/// Represents an error that the OCR tools can't work normally.
 	/// </summary>
 	[Serializable]
 	public class RecognitionException : SudokuRuntimeException

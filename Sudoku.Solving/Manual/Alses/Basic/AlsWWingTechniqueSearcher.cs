@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						var p2 = (map2 & CandMaps[x]).PeerIntersection & CandMaps[x];
 						if (p1.IsEmpty || p2.IsEmpty)
 						{
-							// At least one of two ALSes cannot see the node of the conjugate pair.
+							// At least one of two ALSes can't see the node of the conjugate pair.
 							continue;
 						}
 
@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							var cpMap = conjugatePair.Map;
 							if (cpMap.Overlaps(map1) || cpMap.Overlaps(map2))
 							{
-								// Conjugate pair cannot overlap with the ALS structure.
+								// Conjugate pair can't overlap with the ALS structure.
 								continue;
 							}
 

@@ -36,7 +36,7 @@
 		Nightmare,
 
 		/// <summary>
-		/// Indicates the puzzle cannot be solved
+		/// Indicates the puzzle can't be solved
 		/// unless using last resort methods.
 		/// </summary>
 		LastResort,

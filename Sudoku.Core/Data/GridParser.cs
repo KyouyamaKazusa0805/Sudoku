@@ -293,7 +293,7 @@ namespace Sudoku.Data
 				}
 				else
 				{
-					// All conditions cannot match.
+					// All conditions can't match.
 					return null;
 				}
 			}
@@ -366,7 +366,7 @@ namespace Sudoku.Data
 								// Why isn't the character a digit character?
 								// Throws an exception to report this case.
 								//throw new ArgumentException(
-								//	message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
+								//	message: $"Argument can't be parsed and converted to target type {typeof(Grid)}.",
 								//	innerException: new ArgumentException(
 								//		message: "The value after the specified argument is not a digit.",
 								//		paramName: nameof(i)));
@@ -462,7 +462,7 @@ namespace Sudoku.Data
 			}
 			else
 			{
-				// You cannot use 'is string[] matches', but 'is var matches'.
+				// You can't use 'is string[] matches', but 'is var matches'.
 				// Don't ask me why.
 				if (ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit) is var matches
 					&& matches is { Length: not 81 })

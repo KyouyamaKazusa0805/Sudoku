@@ -287,7 +287,7 @@
         </member>
         <member name="P:Sudoku.Constants.Throwings.RefStructNotSupported">
             <summary>
-            Indicates all <see langword="ref struct"/>s cannot
+            Indicates all <see langword="ref struct"/>s can't
             use any boxing operations.
             </summary>
         </member>
@@ -2009,7 +2009,7 @@
             </summary>
             <param name="offset">The cell offset.</param>
             <remarks>
-            Different with <see cref="M:Sudoku.Data.GridMap.Add(System.Int32)"/>, this method <b>cannot</b> receive
+            Different with <see cref="M:Sudoku.Data.GridMap.Add(System.Int32)"/>, this method <b>can't</b> receive
             the negative value as the parameter.
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.Add(System.Int32)"/>
@@ -3281,7 +3281,7 @@
             </summary>
             <param name="offset">The cell offset.</param>
             <remarks>
-            Different with <see cref="M:Sudoku.Data.SudokuMap.Add(System.Int32)"/>, this method <b>cannot</b> receive
+            Different with <see cref="M:Sudoku.Data.SudokuMap.Add(System.Int32)"/>, this method <b>can't</b> receive
             the negative value as the parameter.
             </remarks>
             <seealso cref="M:Sudoku.Data.SudokuMap.Add(System.Int32)"/>
@@ -4399,7 +4399,7 @@
             The type of each element. The element should be not <see langword="null"/>.
             </typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <returns>The return collection that cannot be <see langword="null"/>.</returns>
+            <returns>The return collection that can't be <see langword="null"/>.</returns>
         </member>
         <member name="T:Sudoku.Extensions.DoubleEx">
             <summary>
@@ -6541,7 +6541,7 @@
             <param name="key">The key.</param>
             <returns>The value.</returns>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException">
-            Throws when the key cannot be found in neither the current language dictionary
+            Throws when the key can't be found in neither the current language dictionary
             nor the default dictionary.
             </exception>
         </member>
@@ -6551,7 +6551,7 @@
             </summary>
             <param name="key">The key.</param>
             <returns>
-            The value. If the key cannot be found in neither the current language dictionary
+            The value. If the key can't be found in neither the current language dictionary
             nor the default dictionary, the return value will be <see langword="null"/>.
             </returns>
         </member>
@@ -6566,7 +6566,7 @@
             The language source for the globalization string "<c>en-us</c>".
             </summary>
             <remarks>
-            Here we use reflection to call and use this field, which cannot be recognized by
+            Here we use reflection to call and use this field, which can't be recognized by
             Roslyn, so we should suppress the complier warning IDE0052.
             </remarks>
         </member>
@@ -6575,7 +6575,7 @@
             The language source for the globalization string "<c>zh-cn</c>".
             </summary>
             <remarks>
-            Here we use reflection to call and use this field, which cannot be recognized by
+            Here we use reflection to call and use this field, which can't be recognized by
             Roslyn, so we should suppress the complier warning IDE0052.
             </remarks>
         </member>
@@ -6965,7 +6965,7 @@
         </member>
         <member name="T:Sudoku.Recognitions.RecognitionException">
             <summary>
-            Represents an error that the OCR tools cannot work normally.
+            Represents an error that the OCR tools can't work normally.
             </summary>
         </member>
         <member name="M:Sudoku.Recognitions.RecognitionException.#ctor">
@@ -7625,9 +7625,9 @@
             is decided in the element type.
             </returns>
             <remarks>
-            Note that the return value can be <see langword="null"/> if the list cannot be found
+            Note that the return value can be <see langword="null"/> if the list can't be found
             the specified element, but this type parameter is named <typeparamref name="TNotNull"/>
-            because each element cannot be <see langword="null"/> (either value types or non-<see langword="null"/>
+            because each element can't be <see langword="null"/> (either value types or non-<see langword="null"/>
             reference types).
             </remarks>
         </member>

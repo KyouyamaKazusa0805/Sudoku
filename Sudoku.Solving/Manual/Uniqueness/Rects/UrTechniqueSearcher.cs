@@ -247,7 +247,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		private static bool CheckHighlightType(DrawingInfo pair) => pair.Id == 0;
 
 		/// <summary>
-		/// Get a cell that cannot see each other.
+		/// Get a cell that can't see each other.
 		/// </summary>
 		/// <param name="urCells">The UR cells.</param>
 		/// <param name="cell">The current cell.</param>
@@ -273,7 +273,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">The map of other cells.</param>
 		/// <param name="region">
 		/// (<see langword="out"/> parameter) The result regions that both cells lie in.
-		/// If the cell cannot be found, the parameter will be an empty array of type <see cref="int"/>.
+		/// If the cell can't be found, the parameter will be an empty array of type <see cref="int"/>.
 		/// </param>
 		/// <returns>The cell.</returns>
 		private static int GetSameRegionCell(int currentCell, GridMap otherCellsMap, out IEnumerable<int> region)

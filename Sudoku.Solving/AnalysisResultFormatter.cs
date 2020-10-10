@@ -39,7 +39,7 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		/// <exception cref="FormatException">
 		/// Throws when the specified format contains other invalid characters
-		/// and the format provider cannot work.
+		/// and the format provider can't work.
 		/// </exception>
 		public string ToString(string? format, IFormatProvider? formatProvider)
 		{

@@ -147,7 +147,7 @@ namespace Sudoku.Recognitions
 #if MUST_DOWNLOAD_TRAINED_DATA
 					return await TesseractDownloadLangFileAsync(dir, lang);
 #else
-					throw new FileNotFoundException("The specified file path cannot be found.", filePath);
+					throw new FileNotFoundException("The specified file path can't be found.", filePath);
 #endif
 				}
 

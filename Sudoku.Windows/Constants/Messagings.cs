@@ -158,7 +158,7 @@ namespace Sudoku.Windows.Constants
 			MessageBox.Show(ex.Message, (string)LangSource["CaptionWarning"]);
 
 		/// <summary>
-		/// Indicates the message that sukakus cannot use this function.
+		/// Indicates the message that sukakus can't use this function.
 		/// </summary>
 		public static void SukakuCannotUseThisFunction() =>
 			MessageBox.Show(
@@ -241,7 +241,7 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["CaptionInfo"]);
 
 		/// <summary>
-		/// Indicates the message that sukaku cannot use GSP checking.
+		/// Indicates the message that sukaku can't use GSP checking.
 		/// </summary>
 		public static void SukakuCannotUseGspChecking() =>
 			MessageBox.Show(
@@ -257,7 +257,7 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["CaptionInfo"]);
 
 		/// <summary>
-		/// Indicates the message that the step cannot be copied.
+		/// Indicates the message that the step can't be copied.
 		/// </summary>
 		public static void CannotCopyStep() =>
 			MessageBox.Show(

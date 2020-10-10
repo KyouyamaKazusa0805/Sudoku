@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Annotations
 		HasBugs = 2,
 
 		/// <summary>
-		/// Indicates the searcher runs so slowly that the author himself cannot stand to use it.
+		/// Indicates the searcher runs so slowly that the author himself can't stand to use it.
 		/// </summary>
 		TooSlow = 4,
 

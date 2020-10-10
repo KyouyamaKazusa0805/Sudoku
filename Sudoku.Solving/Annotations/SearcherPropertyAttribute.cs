@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Annotations
 		public bool IsEnabled { get; set; } = true;
 
 		/// <summary>
-		/// Indicates whether the property is read-only, which cannot be modified.
+		/// Indicates whether the property is read-only, which can't be modified.
 		/// </summary>
 		public bool IsReadOnly { get; set; } = false;
 

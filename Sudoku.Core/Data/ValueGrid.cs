@@ -803,7 +803,7 @@ namespace Sudoku.Data
 				else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
 				{
 					throw T.FormatErrorWithMessage(
-						"In multi-line environment, '0' and '.' cannot appear with ':' together.",
+						"In multi-line environment, '0' and '.' can't appear with ':' together.",
 						nameof(format));
 				}
 				else if (format.IsMatch(@"\@[^0\!\~\*\.\:]+"))
@@ -830,13 +830,13 @@ namespace Sudoku.Data
 				else if (format.Contains('0') && format.Contains('.'))
 				{
 					throw T.FormatErrorWithMessage(
-						"Placeholder character '0' and '.' cannot appear both.",
+						"Placeholder character '0' and '.' can't appear both.",
 						nameof(format));
 				}
 				else if (format.Contains('+') && format.Contains('!'))
 				{
 					throw T.FormatErrorWithMessage(
-						"Cell status character '+' and '!' cannot appear both.",
+						"Cell status character '+' and '!' can't appear both.",
 						nameof(format));
 				}
 				else if (format.Contains(':') && !format.EndsWith(':'))
@@ -860,7 +860,7 @@ namespace Sudoku.Data
 				if (format.Length > 1)
 				{
 					throw T.FormatErrorWithMessage(
-						"Excel option character '%' cannot be used with other characters together.",
+						"Excel option character '%' can't be used with other characters together.",
 						nameof(format));
 				}
 			}

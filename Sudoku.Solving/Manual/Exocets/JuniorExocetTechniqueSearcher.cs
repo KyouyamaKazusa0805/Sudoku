@@ -48,13 +48,13 @@ namespace Sudoku.Solving.Manual.Exocets
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
 
-				// The base cells cannot be given or modifiable.
+				// The base cells can't be given or modifiable.
 				if ((baseMap - EmptyMap).IsNotEmpty)
 				{
 					continue;
 				}
 
-				// The number of different candidates in base cells cannot be greater than 5.
+				// The number of different candidates in base cells can't be greater than 5.
 				short baseCandidatesMask = (short)(grid.GetCandidateMask(b1) | grid.GetCandidateMask(b2));
 				if (baseCandidatesMask.CountSet() > 5)
 				{

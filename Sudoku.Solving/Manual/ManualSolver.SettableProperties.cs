@@ -337,7 +337,7 @@ namespace Sudoku.Solving.Manual
 		/// The value is <c>32</c> in default case. You can let this value
 		/// be higher because this value take a little influence on the solver.
 		/// However, each unique solution has more than 17 hints (given digits),
-		/// which means you cannot set this value more than <c>64</c> (81 - 17 = 64).
+		/// which means you can't set this value more than <c>64</c> (81 - 17 = 64).
 		/// </para>
 		/// </summary>
 		public int BowmanBingoMaximumLength { get; set; } = 32;

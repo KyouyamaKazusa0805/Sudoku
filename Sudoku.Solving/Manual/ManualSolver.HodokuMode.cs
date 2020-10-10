@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual
 		/// </param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
-		/// Throws when the solver cannot solved due to wrong handling.
+		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
 		private AnalysisResult SolveNaively(
@@ -165,7 +165,7 @@ namespace Sudoku.Solving.Manual
 						: bag.FirstOrDefault();
 					if (step is null)
 					{
-						// If current step cannot find any steps,
+						// If current step can't find any steps,
 						// we will turn to the next step finder to
 						// continue solving puzzle.
 						continue;
@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
-			// All solver cannot finish the puzzle...
+			// All solver can't finish the puzzle...
 			// :(
 			stopwatch.Stop();
 			return new(

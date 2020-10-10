@@ -116,7 +116,7 @@ namespace Sudoku.Extensions
 		/// The type of each element. The element should be not <see langword="null"/>.
 		/// </typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
-		/// <returns>The return collection that cannot be <see langword="null"/>.</returns>
+		/// <returns>The return collection that can't be <see langword="null"/>.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IEnumerable<TNotNull> NullableCollection<TNotNull>(this IEnumerable<TNotNull>? @this)
 			where TNotNull : notnull => @this ?? Array.Empty<TNotNull>();

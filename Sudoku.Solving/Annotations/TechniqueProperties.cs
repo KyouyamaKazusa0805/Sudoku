@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Annotations
 		public bool IsEnabled { get; set; } = true;
 
 		/// <summary>
-		/// Indicates whether the property is read-only, which cannot be modified.
+		/// Indicates whether the property is read-only, which can't be modified.
 		/// </summary>
 		public bool IsReadOnly { get; set; } = false;
 
@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Annotations
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isEnabled">(<see langword="out"/> parameter) Indicates whether the technique is enabled.</param>
 		/// <param name="isReadOnly">
-		/// (<see langword="out"/> parameter) Indicates whether the technique cannot modify the priority.
+		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
 		/// </param>
 		/// <param name="priority">(<see langword="out"/> parameter) Indicates the priority of the technique.</param>
 		/// <param name="disabledReason">(<see langword="out"/> parameter) Indicates why this technique is disabled.</param>

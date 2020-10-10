@@ -11,7 +11,7 @@ namespace Sudoku.Windows
 		/// The language source for the globalization string "<c>zh-cn</c>".
 		/// </summary>
 		/// <remarks>
-		/// Here we use reflection to call and use this field, which cannot be recognized by
+		/// Here we use reflection to call and use this field, which can't be recognized by
 		/// Roslyn, so we should suppress the complier warning IDE0052.
 		/// </remarks>
 		private static readonly IReadOnlyDictionary<string, string> LangSourceZhCn = new Dictionary<string, string>

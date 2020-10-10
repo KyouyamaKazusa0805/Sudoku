@@ -21,10 +21,10 @@ namespace Sudoku.Constants
 		public static SwitchExpressionException ImpossibleCase => new("Impossible case.");
 
 		/// <summary>
-		/// Indicates all <see langword="ref struct"/>s cannot
+		/// Indicates all <see langword="ref struct"/>s can't
 		/// use any boxing operations.
 		/// </summary>
-		public static NotSupportedException RefStructNotSupported => new("Ref structs cannot use any boxing operations.");
+		public static NotSupportedException RefStructNotSupported => new("Ref structs can't use any boxing operations.");
 
 
 		/// <summary>
@@ -44,7 +44,7 @@ namespace Sudoku.Constants
 		/// <returns>The exception.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static ArgumentException ParsingError<TTarget>(string paramName) =>
-			new($"Argument cannot be parsed and converted to target type {typeof(TTarget)}.", paramName);
+			new($"Argument can't be parsed and converted to target type {typeof(TTarget)}.", paramName);
 
 		/// <summary>
 		/// Indicates an exception throwing when the format string is error.

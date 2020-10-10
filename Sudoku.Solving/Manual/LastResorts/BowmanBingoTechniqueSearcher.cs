@@ -112,7 +112,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				// Two cases we don't need to go on.
 				// Case 1: the variable 'length' is 0.
-				// Case 2: The searcher cannot get any new steps, which means the expression
+				// Case 2: The searcher can't get any new steps, which means the expression
 				// always returns the value null. Therefore, this case (grid[cell] = digit)
 				// is a bad try.
 				return;

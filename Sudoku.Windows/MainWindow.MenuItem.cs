@@ -485,7 +485,7 @@ namespace Sudoku.Windows
 
 					DisableGeneratingControls();
 
-					// Here two variables cannot be moved into the lambda expression
+					// Here two variables can't be moved into the lambda expression
 					// because the lambda expression will be executed in asynchornized way.
 					var dialog = new ProgressWindow();
 					dialog.Show();

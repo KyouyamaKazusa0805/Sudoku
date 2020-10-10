@@ -266,7 +266,7 @@
             <inheritdoc/>
             <exception cref="T:System.FormatException">
             Throws when the specified format contains other invalid characters
-            and the format provider cannot work.
+            and the format provider can't work.
             </exception>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResultFormatter.GetSolvingStepsGrouped">
@@ -306,7 +306,7 @@
         </member>
         <member name="F:Sudoku.Solving.Annotations.DisabledReason.TooSlow">
             <summary>
-            Indicates the searcher runs so slowly that the author himself cannot stand to use it.
+            Indicates the searcher runs so slowly that the author himself can't stand to use it.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Annotations.DisabledReason.Unstable">
@@ -347,7 +347,7 @@
         </member>
         <member name="P:Sudoku.Solving.Annotations.SearcherPropertyAttribute.IsReadOnly">
             <summary>
-            Indicates whether the property is read-only, which cannot be modified.
+            Indicates whether the property is read-only, which can't be modified.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Annotations.SearcherPropertyAttribute.Priority">
@@ -404,7 +404,7 @@
         </member>
         <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.IsReadOnly">
             <summary>
-            Indicates whether the property is read-only, which cannot be modified.
+            Indicates whether the property is read-only, which can't be modified.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.Priority">
@@ -424,7 +424,7 @@
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isEnabled">(<see langword="out"/> parameter) Indicates whether the technique is enabled.</param>
             <param name="isReadOnly">
-            (<see langword="out"/> parameter) Indicates whether the technique cannot modify the priority.
+            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
             </param>
             <param name="priority">(<see langword="out"/> parameter) Indicates the priority of the technique.</param>
             <param name="disabledReason">(<see langword="out"/> parameter) Indicates why this technique is disabled.</param>
@@ -1134,7 +1134,7 @@
         </member>
         <member name="F:Sudoku.Solving.DifficultyLevel.LastResort">
             <summary>
-            Indicates the puzzle cannot be solved
+            Indicates the puzzle can't be solved
             unless using last resort methods.
             </summary>
         </member>
@@ -3011,7 +3011,7 @@
             <para>
             In the data structure, all letters will be used as the same one in this exemplar.
             In addition, if senior exocet, one of two target cells will lie on cross-line cells,
-            and the lines of two target cells lying on cannot contain any base digits.
+            and the lines of two target cells lying on can't contain any base digits.
             </para>
             </summary>
         </member>
@@ -4198,7 +4198,7 @@
             <summary>
             Encapsulates a <b>brute force</b> technique searcher.
             The searcher is not executed until all searchers whose priority
-            is higher than this one cannot find out any technique steps.
+            is higher than this one can't find out any technique steps.
             </summary>
             <remarks>
             This searcher is a trick, because it will check the assignments on
@@ -4489,7 +4489,7 @@
             </param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.Runtime.WrongHandlingException">
-            Throws when the solver cannot solved due to wrong handling.
+            Throws when the solver can't solved due to wrong handling.
             </exception>
             <seealso cref="T:Sudoku.Models.GridProgressResult"/>
         </member>
@@ -4514,7 +4514,7 @@
             </param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.Runtime.WrongHandlingException">
-            Throws when the solver cannot solved due to wrong handling.
+            Throws when the solver can't solved due to wrong handling.
             </exception>
             <seealso cref="T:Sudoku.Models.GridProgressResult"/>
         </member>
@@ -4832,7 +4832,7 @@
             The value is <c>32</c> in default case. You can let this value
             be higher because this value take a little influence on the solver.
             However, each unique solution has more than 17 hints (given digits),
-            which means you cannot set this value more than <c>64</c> (81 - 17 = 64).
+            which means you can't set this value more than <c>64</c> (81 - 17 = 64).
             </para>
             </summary>
         </member>
@@ -6946,7 +6946,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetDiagonalCell(System.Int32[],System.Int32)">
             <summary>
-            Get a cell that cannot see each other.
+            Get a cell that can't see each other.
             </summary>
             <param name="urCells">The UR cells.</param>
             <param name="cell">The current cell.</param>
@@ -6963,7 +6963,7 @@
             <param name="otherCellsMap">The map of other cells.</param>
             <param name="region">
             (<see langword="out"/> parameter) The result regions that both cells lie in.
-            If the cell cannot be found, the parameter will be an empty array of type <see cref="T:System.Int32"/>.
+            If the cell can't be found, the parameter will be an empty array of type <see cref="T:System.Int32"/>.
             </param>
             <returns>The cell.</returns>
         </member>
@@ -7603,7 +7603,7 @@
         <member name="F:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueSearcher.UrCellsList">
             <summary>
             <para>The table of all UR cells.</para>
-            <para>You <b>cannot</b> modify any values in this table.</para>
+            <para>You <b>can't</b> modify any values in this table.</para>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueInfo">

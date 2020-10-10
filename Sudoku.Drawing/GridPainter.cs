@@ -292,7 +292,7 @@ namespace Sudoku.Drawing
 					g.FillEllipse(brush, rect);
 				}
 
-				// Draw end cells (may be using cross sign to represent the current cell cannot fill that digit).
+				// Draw end cells (may be using cross sign to represent the current cell can't fill that digit).
 				{
 					foreach (int cell in end)
 					{

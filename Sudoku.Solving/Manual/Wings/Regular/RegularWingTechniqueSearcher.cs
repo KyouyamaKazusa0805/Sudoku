@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 					foreach (int[] cells in map.ToArray().GetSubsets(size - 1))
 					{
 						// Check duplicate.
-						// If two cells contain same candidates, the wing cannot be formed.
+						// If two cells contain same candidates, the wing can't be formed.
 						bool flag = false;
 						for (int i = 0, length = cells.Length; i < length - 1; i++)
 						{

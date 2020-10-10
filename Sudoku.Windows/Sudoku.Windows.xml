@@ -201,7 +201,7 @@
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.SukakuCannotUseThisFunction">
             <summary>
-            Indicates the message that sukakus cannot use this function.
+            Indicates the message that sukakus can't use this function.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.FailedToPasteText">
@@ -252,7 +252,7 @@
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.SukakuCannotUseGspChecking">
             <summary>
-            Indicates the message that sukaku cannot use GSP checking.
+            Indicates the message that sukaku can't use GSP checking.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.DoesNotContainGsp">
@@ -262,7 +262,7 @@
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.CannotCopyStep">
             <summary>
-            Indicates the message that the step cannot be copied.
+            Indicates the message that the step can't be copied.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.Constants.Messagings.CheckInput">
@@ -1274,7 +1274,7 @@
             </summary>
             <remarks>
             Escape characters use the character <c>$</c> as the header because the symbol
-            cannot be used in file names. Supported formats are below:
+            can't be used in file names. Supported formats are below:
             <list type="table">
             <item>
             <term><c>$f</c></term>

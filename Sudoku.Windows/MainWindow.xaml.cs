@@ -143,7 +143,7 @@ namespace Sudoku.Windows
 							// Input or eliminate a digit.
 							if (digit != -1 && PeerMaps[cell].Any(c => _puzzle[c] == digit))
 							{
-								// Input is invalid. We cannot let you fill this cell with this digit.
+								// Input is invalid. We can't let you fill this cell with this digit.
 								return;
 							}
 
@@ -286,7 +286,7 @@ namespace Sudoku.Windows
 #if !MUST_DOWNLOAD_TRAINED_DATA
 			catch (FileNotFoundException ex) when (ex.FileName?.EndsWith("eng.traineddata") ?? false)
 			{
-				// Trained data file cannot be found.
+				// Trained data file can't be found.
 				Messagings.FailedToLoadRecognitionTool(ex);
 			}
 #endif

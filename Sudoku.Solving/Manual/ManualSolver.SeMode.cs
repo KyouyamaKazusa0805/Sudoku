@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual
 		/// </param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
-		/// Throws when the solver cannot solved due to wrong handling.
+		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
 		[Obsolete]
@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual
 				{
 					if ((sukaku, searcher) is (true, UniquenessTechniqueSearcher))
 					{
-						// Sukaku mode cannot use them.
+						// Sukaku mode can't use them.
 						// In fact, sukaku can use uniqueness tests, however the program should
 						// produce a large modification.
 						continue;
@@ -139,7 +139,7 @@ namespace Sudoku.Solving.Manual
 					var step = bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector);
 					if (step is null)
 					{
-						// If current step cannot find any steps,
+						// If current step can't find any steps,
 						// we will turn to the next step finder to
 						// continue solving puzzle.
 						continue;
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
-			// All solver cannot finish the puzzle...
+			// All solver can't finish the puzzle...
 			// :(
 			stopwatch.Stop();
 			return new(

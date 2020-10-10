@@ -539,7 +539,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
 		/// <remarks>
-		/// Different with <see cref="Add(int)"/>, this method <b>cannot</b> receive
+		/// Different with <see cref="Add(int)"/>, this method <b>can't</b> receive
 		/// the negative value as the parameter.
 		/// </remarks>
 		/// <seealso cref="Add(int)"/>

@@ -42,7 +42,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <remarks>
 		/// Escape characters use the character <c>$</c> as the header because the symbol
-		/// cannot be used in file names. Supported formats are below:
+		/// can't be used in file names. Supported formats are below:
 		/// <list type="table">
 		/// <item>
 		/// <term><c>$f</c></term>

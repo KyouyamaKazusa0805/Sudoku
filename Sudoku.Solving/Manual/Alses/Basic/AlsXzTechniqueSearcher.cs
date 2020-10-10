@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					// Remove all digits to satisfy that the RCC digit cannot appear
+					// Remove all digits to satisfy that the RCC digit can't appear
 					// in the intersection of two ALSes.
 					if (overlapMap.IsNotEmpty)
 					{
