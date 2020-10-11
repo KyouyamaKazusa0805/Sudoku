@@ -3,9 +3,9 @@
 	/// <summary>
 	/// Encapsulates a step of setting mask.
 	/// </summary>
-	/// <param name="cell">Indicates the cell.</param>
-	/// <param name="oldMask">Indicates the old mask.</param>
-	/// <param name="newMask">Indicates the new mask.</param>
+	/// <param name="Cell">Indicates the cell.</param>
+	/// <param name="OldMask">Indicates the old mask.</param>
+	/// <param name="NewMask">Indicates the new mask.</param>
 	public sealed record SetMaskStep(int Cell, short OldMask, short NewMask) : Step
 	{
 		/// <inheritdoc/>

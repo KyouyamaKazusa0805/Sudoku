@@ -36,15 +36,13 @@ namespace Sudoku.Data.Stepping
 				}
 				case >= 0 and < 9:
 				{
-					grid._masks[Cell] = (short)((short)CellStatus.Modifiable << 9 | Grid.MaxCandidatesMask & ~(1 << Digit));
+					grid._masks[Cell] = (short)((int)CellStatus.Modifiable << 9 | Grid.MaxCandidatesMask & ~(1 << Digit));
 					foreach (int cell in Peers[Cell])
 					{
-						if (grid.GetStatus(cell) != CellStatus.Empty)
+						if (grid.GetStatus(cell) == CellStatus.Empty)
 						{
-							continue;
+							grid._masks[cell] |= (short)(1 << Digit);
 						}
-
-						grid._masks[cell] |= (short)(1 << Digit);
 					}
 
 					break;

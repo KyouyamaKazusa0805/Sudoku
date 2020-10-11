@@ -2827,17 +2827,17 @@
             <summary>
             Encapsulates a step of setting mask.
             </summary>
-            <param name="cell">Indicates the cell.</param>
-            <param name="oldMask">Indicates the old mask.</param>
-            <param name="newMask">Indicates the new mask.</param>
+            <param name="Cell">Indicates the cell.</param>
+            <param name="OldMask">Indicates the old mask.</param>
+            <param name="NewMask">Indicates the new mask.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.SetMaskStep.#ctor(System.Int32,System.Int16,System.Int16)">
             <summary>
             Encapsulates a step of setting mask.
             </summary>
-            <param name="cell">Indicates the cell.</param>
-            <param name="oldMask">Indicates the old mask.</param>
-            <param name="newMask">Indicates the new mask.</param>
+            <param name="Cell">Indicates the cell.</param>
+            <param name="OldMask">Indicates the old mask.</param>
+            <param name="NewMask">Indicates the new mask.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.SetMaskStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
