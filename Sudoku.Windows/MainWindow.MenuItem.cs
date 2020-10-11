@@ -209,7 +209,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSaveBatch_Click(object sender, RoutedEventArgs e)
 		{
-			if (!_puzzle.IsValid(out _))
+			if (!_puzzle.IsValid())
 			{
 				Messagings.FailedToCheckDueToInvalidPuzzle();
 				e.Handled = true;
@@ -742,7 +742,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAnalyzeBugN_Click(object sender, RoutedEventArgs e)
 		{
-			if (!_puzzle.IsValid(out _))
+			if (!_puzzle.IsValid())
 			{
 				Messagings.FailedToCheckDueToInvalidPuzzle();
 				e.Handled = true;
@@ -787,7 +787,7 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
-				if (!_puzzle.IsValid(out _))
+				if (!_puzzle.IsValid())
 				{
 					Messagings.FailedToCheckDueToInvalidPuzzle();
 					e.Handled = true;
@@ -825,7 +825,7 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
-				if (!_puzzle.IsValid(out _))
+				if (!_puzzle.IsValid())
 				{
 					Messagings.FailedToCheckDueToInvalidPuzzle();
 					e.Handled = true;

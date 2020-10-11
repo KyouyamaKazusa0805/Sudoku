@@ -148,6 +148,21 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		}
 
 		/// <summary>
+		/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
+		/// any <see langword="out"/> parameters.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
+		/// <seealso cref="CheckValidity(string, out string?)"/>
+		public bool CheckValidity(string grid)
+		{
+			fixed (char* puzzle = grid)
+			{
+				return InternalSolve(puzzle, null, 2) == 1;
+			}
+		}
+
+		/// <summary>
 		/// Check the validity of the puzzle.
 		/// </summary>
 		/// <param name="grid">The grid.</param>

@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </exception>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
-			if (!grid.IsValid(out var solution))
+			if (!grid.IsValid(out Grid? solution))
 			{
 				throw new WrongHandlingException(grid);
 			}

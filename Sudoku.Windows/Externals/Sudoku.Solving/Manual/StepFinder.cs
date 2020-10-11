@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual
 		public IEnumerable<IGrouping<string, TechniqueInfo>> Search(
 			Grid grid, IProgress<IProgressResult>? progress, string? globalizationString)
 		{
-			if (grid.HasSolved || !grid.IsValid(out _, out bool? sukaku))
+			if (grid.HasSolved || !grid.IsValid(out bool? sukaku))
 			{
 				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}

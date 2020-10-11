@@ -30,7 +30,7 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
-				if (!_puzzle.IsValid(out _))
+				if (!_puzzle.IsValid())
 				{
 					Messagings.FunctionIsUnavailable();
 

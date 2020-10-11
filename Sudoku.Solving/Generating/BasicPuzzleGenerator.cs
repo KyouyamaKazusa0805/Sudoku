@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Generating
 					progressResult.GeneratingTrial++;
 					progress.Report(progressResult);
 				}
-			} while (!FastSolver.CheckValidity(result = solution.ToString(), out _));
+			} while (!FastSolver.CheckValidity(result = solution.ToString()));
 
 			return Grid.Parse(result);
 		}

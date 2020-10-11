@@ -349,8 +349,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				return true;
 			}
 
-			if ((m1 & baseCandidatesMask, m2 & baseCandidatesMask) is (0, 0)
-				|| (m1 & ~baseCandidatesMask, m2 & ~baseCandidatesMask) is (0, 0))
+			if ((m1 & baseCandidatesMask, m2 & baseCandidatesMask) == (0, 0)
+				|| (m1 & ~baseCandidatesMask, m2 & ~baseCandidatesMask) == (0, 0))
 			{
 				// Two cells don't contain any digits in the base cells neither,
 				// or both contains only digits from base cells,

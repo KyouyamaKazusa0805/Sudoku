@@ -584,6 +584,15 @@
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
         </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.CheckValidity(System.String)">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
+            any <see langword="out"/> parameters.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+            <seealso cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)"/>
+        </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)">
             <summary>
             Check the validity of the puzzle.
@@ -941,6 +950,16 @@
             Indicates the inner solver.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Grid)">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Grid,Sudoku.Data.Grid@)"/> and <see cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Grid,Sudoku.Data.Grid@,System.Nullable{System.Boolean}@)"/>,
+            but doesn't contain any <see langword="out"/> parameters.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
+            <seealso cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Grid,Sudoku.Data.Grid@)"/>
+            <seealso cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Grid,Sudoku.Data.Grid@,System.Nullable{System.Boolean}@)"/>
+        </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Grid,Sudoku.Data.Grid@)">
             <summary>
             To check if a puzzle has only one solution or not.
@@ -949,6 +968,17 @@
             <param name="solutionIfValid">
             (<see langword="out"/> parameter) The solution if the puzzle is valid;
             otherwise, <see langword="null"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Grid,System.Nullable{System.Boolean}@)">
+            <summary>
+            To check if a puzzle has only one solution or not.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+            <param name="sukaku">
+            (<see langword="out"/> parameter) A <see cref="T:System.Boolean"/> value indicating whether the current
+            grid is a sukaku. <see langword="true"/> is for sukaku.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>

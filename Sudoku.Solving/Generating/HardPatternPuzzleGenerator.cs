@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Generating
 						char temp = solution[p];
 						solution[p] = '0';
 
-						if (!FastSolver.CheckValidity(valueOf(solution), out _))
+						if (!FastSolver.CheckValidity(valueOf(solution)))
 						{
 							// Reset the value.
 							solution[p] = temp;
@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Generating
 						progress.Report(progressResult);
 					}
 
-					if (FastSolver.CheckValidity(valueOf(solution), out _))
+					if (FastSolver.CheckValidity(valueOf(solution)))
 					{
 						var grid = Grid.Parse(valueOf(solution));
 						if ((

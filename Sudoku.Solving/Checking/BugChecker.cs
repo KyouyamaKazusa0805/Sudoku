@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Checking
 		/// <param name="puzzle">The current puzzle grid.</param>
 		public BugChecker(Grid puzzle)
 		{
-			if (puzzle.IsValid(out _))
+			if (puzzle.IsValid())
 			{
 				(_emptyMap, _bivalueMap, _candMaps, _, _) = Puzzle = puzzle;
 			}

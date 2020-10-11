@@ -1,4 +1,5 @@
-﻿#pragma warning disable IDE0005
+﻿#pragma warning disable IDE0079 // Unused suppressions.
+#pragma warning disable IDE0005
 #pragma warning disable IDE1006
 
 using System;

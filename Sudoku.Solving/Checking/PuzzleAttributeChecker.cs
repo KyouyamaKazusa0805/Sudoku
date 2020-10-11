@@ -20,6 +20,17 @@ namespace Sudoku.Solving.Checking
 
 
 		/// <summary>
+		/// Same as <see cref="IsValid(Grid, out Grid?)"/> and <see cref="IsValid(Grid, out Grid?, out bool?)"/>,
+		/// but doesn't contain any <see langword="out"/> parameters.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <returns>The <see cref="bool"/> indicating that.</returns>
+		/// <seealso cref="IsValid(Grid, out Grid?)"/>
+		/// <seealso cref="IsValid(Grid, out Grid?, out bool?)"/>
+		public static bool IsValid(this Grid @this) =>
+			Solver.CheckValidity(@this.ToString()) || Solver.CheckValidity($"{@this:~}");
+
+		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
@@ -48,6 +59,34 @@ namespace Sudoku.Solving.Checking
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+		/// <param name="sukaku">
+		/// (<see langword="out"/> parameter) A <see cref="bool"/> value indicating whether the current
+		/// grid is a sukaku. <see langword="true"/> is for sukaku.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsValid(this Grid @this, [NotNullWhen(true)] out bool? sukaku)
+		{
+			if (Solver.CheckValidity(@this.ToString()))
+			{
+				sukaku = false;
+				return true;
+			}
+			else if (Solver.CheckValidity(@this.ToString("~")))
+			{
+				sukaku = true;
+				return true;
+			}
+			else
+			{
+				sukaku = null;
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// To check if a puzzle has only one solution or not.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <param name="solutionIfValid">
 		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
 		/// otherwise, <see langword="null"/>.
@@ -57,8 +96,7 @@ namespace Sudoku.Solving.Checking
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsValid(
-			this Grid @this, [NotNullWhen(true)] out Grid? solutionIfValid,
-			[NotNullWhen(true)] out bool? sukaku)
+			this Grid @this, [NotNullWhen(true)] out Grid? solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
 		{
 			if (Solver.CheckValidity(@this.ToString(), out string? solution))
 			{
@@ -119,7 +157,7 @@ namespace Sudoku.Solving.Checking
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsPearl(this Grid @this) =>
-			@this.IsValid(out _) && new ManualSolver().Solve(@this) is var result
+			@this.IsValid() && new ManualSolver().Solve(@this) is var result
 			&& result.MaxDifficulty == result.PearlDifficulty;
 
 		/// <summary>
@@ -130,7 +168,7 @@ namespace Sudoku.Solving.Checking
 		public static bool IsDiamond(this Grid @this)
 		{
 			// Using a faster solver to check the grid is unique or not.
-			if (@this.IsValid(out _))
+			if (@this.IsValid())
 			{
 				var result = new ManualSolver().Solve(@this);
 				var (er, pr, dr) = (result.MaxDifficulty, result.PearlDifficulty, result.DiamondDifficulty);
@@ -149,7 +187,7 @@ namespace Sudoku.Solving.Checking
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool CanBeSolvedUsingOnlySsts(this Grid @this) =>
-			@this.IsValid(out _) && new ManualSolver().Solve(@this).DifficultyLevel <= DifficultyLevel.Moderate;
+			@this.IsValid() && new ManualSolver().Solve(@this).DifficultyLevel <= DifficultyLevel.Moderate;
 
 		/// <summary>
 		/// Get the difficulty level of this puzzle.
