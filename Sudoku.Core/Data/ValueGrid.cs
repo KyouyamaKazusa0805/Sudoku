@@ -101,7 +101,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The event handler triggering when the value changed.
 		/// </summary>
-		internal delegate* managed<ValueGrid, ValueChangedValues, void> _valueChangedEventHandler;
+		private static readonly delegate* managed<ref ValueGrid, in ValueChangedValues, void> ValueChanged =
+			&OnValueChanged;
 
 
 		/// <summary>
@@ -126,8 +127,6 @@ namespace Sudoku.Data
 			{
 				_masks[i] = _initialMasks[i] = masks[i];
 			}
-
-			_valueChangedEventHandler = &OnValueChanged;
 		}
 
 		/// <summary>
@@ -150,8 +149,6 @@ namespace Sudoku.Data
 			{
 				_masks[i] = _initialMasks[i] = masks[i];
 			}
-
-			_valueChangedEventHandler = &OnValueChanged;
 		}
 
 
@@ -164,13 +161,6 @@ namespace Sudoku.Data
 			{
 				Empty._masks[i] = Empty._initialMasks[i] = DefaultMask;
 			}
-
-			// Initializes the event handler.
-			// Note that the default event initialization hides the back delegate field,
-			// so we should use this field-style event to trigger the event by
-			// 'Event(objectToTrigger, eventArg)', where the variable
-			// 'objectToTrigger' is always 'this'.
-			Empty._valueChangedEventHandler = &OnValueChanged;
 		}
 
 
@@ -297,7 +287,7 @@ namespace Sudoku.Data
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
-						_valueChangedEventHandler(this, new(cell, copy, result, value));
+						ValueChanged(ref this, new(cell, copy, result, value));
 
 						break;
 					}
@@ -333,7 +323,7 @@ namespace Sudoku.Data
 				}
 
 				// To trigger the event.
-				_valueChangedEventHandler(this, new(cell, copy, result, -1));
+				ValueChanged(ref this, new(cell, copy, result, -1));
 			}
 		}
 
@@ -397,7 +387,7 @@ namespace Sudoku.Data
 			short copy = mask;
 			mask = (short)((int)cellStatus << 9 | mask & MaxCandidatesMask);
 
-			_valueChangedEventHandler(this, new(offset, copy, mask, -1));
+			ValueChanged(ref this, new(offset, copy, mask, -1));
 		}
 
 		/// <summary>
@@ -412,7 +402,7 @@ namespace Sudoku.Data
 			short copy = mask;
 			mask = value;
 
-			_valueChangedEventHandler(this, new(offset, copy, mask, -1));
+			ValueChanged(ref this, new(offset, copy, mask, -1));
 		}
 
 		/// <summary>
@@ -570,9 +560,9 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The method, which will be invoked when the mask has changed.
 		/// </summary>
-		/// <param name="sender">The instance triggering the event.</param>
-		/// <param name="e">The data.</param>
-		private static void OnValueChanged(ValueGrid sender, ValueChangedValues e)
+		/// <param name="sender">(<see langword="ref"/> parameter) The instance triggering the event.</param>
+		/// <param name="e">(<see langword="in"/> parameter) The data.</param>
+		private static void OnValueChanged(ref ValueGrid sender, in ValueChangedValues e)
 		{
 			if (e is { SetValue: not -1 } and var (offset, _, _, setValue))
 			{

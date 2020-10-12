@@ -3562,7 +3562,7 @@
             </summary>
             <seealso cref="F:Sudoku.Data.ValueGrid._masks"/>
         </member>
-        <member name="F:Sudoku.Data.ValueGrid._valueChangedEventHandler">
+        <member name="F:Sudoku.Data.ValueGrid.ValueChanged">
             <summary>
             The event handler triggering when the value changed.
             </summary>
@@ -3765,12 +3765,12 @@
         <member name="M:Sudoku.Data.ValueGrid.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.ValueGrid.OnValueChanged(Sudoku.Data.ValueGrid,Sudoku.Data.ValueGrid.ValueChangedValues)">
+        <member name="M:Sudoku.Data.ValueGrid.OnValueChanged(Sudoku.Data.ValueGrid@,Sudoku.Data.ValueGrid.ValueChangedValues@)">
             <summary>
             The method, which will be invoked when the mask has changed.
             </summary>
-            <param name="sender">The instance triggering the event.</param>
-            <param name="e">The data.</param>
+            <param name="sender">(<see langword="ref"/> parameter) The instance triggering the event.</param>
+            <param name="e">(<see langword="in"/> parameter) The data.</param>
         </member>
         <member name="M:Sudoku.Data.ValueGrid.SimplyValidate">
             <summary>
