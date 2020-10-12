@@ -1,7 +1,7 @@
 ﻿#pragma warning disable IDE1006
 
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,36 +48,41 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
 		{
-			await internalOperation();
-
-			async Task internalOperation()
+			var collections = await internalOperation();
+			async Task<IEnumerable<IReadOnlyList<Data.Conclusion>>?> internalOperation()
 			{
 				_listBoxBackdoors.ClearValue(ItemsControl.ItemsSourceProperty);
 				_labelStatus.Content = (string)LangSource["BackdoorWhileSearching"];
 
-				var collections = await Task.Run(() =>
+				return await Task.Run(() =>
 				{
-					try
-					{
-						return new BackdoorSearcher().SearchForBackdoors(_puzzle, _depth);
-					}
-					catch (SudokuRuntimeException)
-					{
-						return null;
-					}
+					try { return new BackdoorSearcher().SearchForBackdoors(_puzzle, _depth); }
+					catch (SudokuRuntimeException) { return null; }
 				});
+			}
 
-				_labelStatus.ClearValue(ContentProperty);
-				if (collections is null)
+			_labelStatus.ClearValue(ContentProperty);
+			if (collections is null)
+			{
+				Messagings.FailedToCheckDueToInvalidPuzzle();
+
+				e.Handled = true;
+				return;
+			}
+
+			// Here one more encapsulation is on purpose, because ref structs cannot be used in the async environment.
+			showBackdoors();
+			void showBackdoors()
+			{
+				var collectionStr = new List<string>();
+				var enumerator = collections.GetEnumerator();
+				foreach (var collection in collections)
 				{
-					Messagings.FailedToCheckDueToInvalidPuzzle();
-
-					e.Handled = true;
-					return;
+					using var concs = new ConclusionCollection(collection);
+					collectionStr.Add(concs.ToString());
 				}
 
-				_listBoxBackdoors.ItemsSource =
-					from collection in collections select new ConclusionCollection(collection).ToString();
+				_listBoxBackdoors.ItemsSource = collectionStr;
 			}
 		}
 

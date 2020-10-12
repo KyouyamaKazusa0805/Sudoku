@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1815
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
@@ -56,8 +54,21 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override readonly string? ToString() =>
-			Conclusions is null ? null : $"  * Compatibility test: {new ConclusionCollection(Conclusions).ToString()}";
+		public override readonly string? ToString()
+		{
+			switch (Conclusions)
+			{
+				case null:
+				{
+					return null;
+				}
+				default:
+				{
+					using var elims = new ConclusionCollection(Conclusions);
+					return $"  * Compatibility test: {elims.ToString()}";
+				}
+			}
+		}
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

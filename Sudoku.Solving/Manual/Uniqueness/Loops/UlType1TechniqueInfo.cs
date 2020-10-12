@@ -25,7 +25,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public override string ToString()
 		{
 			string cellsStr = Loop.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $"{Name}: Digits {Digit1 + 1}, {Digit2 + 1} in cells {cellsStr} => {elimStr}";
 		}
 	}

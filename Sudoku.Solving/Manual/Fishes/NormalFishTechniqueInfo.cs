@@ -96,7 +96,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			string baseSetStr = new RegionCollection(BaseSets).ToString();
 			string coverSetStr = new RegionCollection(CoverSets).ToString();
 			string? finStr = Fins is { Count: not 0 } ? $" f{new GridMap(Fins)}" : string.Empty;
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr}{finStr} => {elimStr}";
 		}
 	}

@@ -339,6 +339,9 @@ dotnet_diagnostic.CS8625.severity = error
 # CS8629: Nullable value type may be null.
 dotnet_diagnostic.CS8629.severity = error
 
+# CS8643: Nullability of reference types in explicit interface specifier doesn't match interface implemented by the type.
+dotnet_diagnostic.CS8643.severity = error
+
 # CS8653: A default expression introduces a null value for a type parameter.
 dotnet_diagnostic.CS8653.severity = error
 

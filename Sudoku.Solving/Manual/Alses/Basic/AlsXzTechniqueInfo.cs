@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -60,7 +62,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			if (IsDoublyLinked is null)
 			{
 				// Extended subset principle.

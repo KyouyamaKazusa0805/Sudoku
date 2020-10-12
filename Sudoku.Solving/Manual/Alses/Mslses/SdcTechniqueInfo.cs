@@ -47,7 +47,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			string lineDigitsStr = new DigitCollection(LineMask.GetAllSets()).ToString(null);
 			string interCellsStr = IntersectionCells.ToString();
 			string interDigitsStr = new DigitCollection(IntersectionMask.GetAllSets()).ToString(null);
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return
 				$"{Name}: {interCellsStr}({interDigitsStr}) - " +
 				$"{blockCellsStr}({blockDigitsStr}) & {lineCellsStr}({lineDigitsStr}) => {elimStr}";

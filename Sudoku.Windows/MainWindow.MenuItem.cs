@@ -878,9 +878,12 @@ namespace Sudoku.Windows
 
 				UpdateImageGrid();
 
-				_textBoxInfo.Text =
-					$"{LangSource["AllBackdoorsAtLevel0Or1"]}" +
-					$"{new ConclusionCollection(backdoors).ToString()}";
+				s();
+				void s()
+				{
+					using var r = new ConclusionCollection(backdoors);
+					_textBoxInfo.Text = $"{LangSource["AllBackdoorsAtLevel0Or1"]}{r.ToString()}";
+				}
 			}
 		}
 

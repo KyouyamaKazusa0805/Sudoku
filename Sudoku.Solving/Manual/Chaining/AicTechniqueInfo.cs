@@ -65,7 +65,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string ToString()
 		{
 			string chainStr = new LinkCollection(Views[0].Links!).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $"{Name}: {chainStr} => {elimStr}";
 		}
 	}

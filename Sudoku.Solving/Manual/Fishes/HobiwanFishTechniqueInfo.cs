@@ -168,7 +168,8 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			string baseSets = new RegionCollection(BaseSets).ToString();
 			string coverSets = new RegionCollection(CoverSets).ToString();
 			string exo = Exofins.IsEmpty ? string.Empty : $"f{Exofins} ";

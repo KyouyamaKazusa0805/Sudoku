@@ -51,7 +51,8 @@ namespace Sudoku.Solving.Manual.Subsets
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string regionStr = new RegionCollection(Region).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $"{Name}: {digitsStr} in {regionStr} => {elimStr}";
 		}
 	}

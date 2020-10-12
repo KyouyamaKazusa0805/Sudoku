@@ -41,7 +41,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		{
 			int digit = Digit + 1;
 			string cellsStr = new GridMap(Cells).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $"{Name}: {digit} with cells {cellsStr} => {elimStr}";
 		}
 	}

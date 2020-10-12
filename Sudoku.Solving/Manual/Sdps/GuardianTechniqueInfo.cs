@@ -32,7 +32,8 @@ namespace Sudoku.Solving.Manual.Sdps
 		{
 			string cellsStr = Loop.ToString();
 			string guardians = Guardians.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			string guardianSingularOrPlural = Guardians.Count == 1 ? "a guardian" : "guardians";
 			return $"{Name}: Cells {cellsStr} with {guardianSingularOrPlural} {guardians} => {elimStr}";
 		}

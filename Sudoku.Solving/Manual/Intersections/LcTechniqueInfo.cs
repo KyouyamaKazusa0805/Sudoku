@@ -33,7 +33,8 @@ namespace Sudoku.Solving.Manual.Intersections
 			int value = Digit + 1;
 			string baseSetStr = new RegionCollection(BaseSet).ToString();
 			string coverSetStr = new RegionCollection(CoverSet).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr} => {elimStr}";
 		}
 	}

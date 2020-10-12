@@ -33,7 +33,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string cellsStr = new GridMap(Cells).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $"{Name}: {digitsStr} in cells {cellsStr} with conjugate pair {ConjugatePair} => {elimStr}";
 		}
 	}

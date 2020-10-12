@@ -25,7 +25,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		{
 			string patternStr = Pattern.FullMap.ToString();
 			string candStr = new SudokuMap(Candidate).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return
 				$"{Name}: Cells {patternStr} will be a deadly pattern " +
 				$"if {candStr} is false => {elimStr}";

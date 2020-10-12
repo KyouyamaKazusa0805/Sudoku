@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -37,7 +39,8 @@ namespace Sudoku.Solving.Manual.Alses
 			int d2 = Digit2 + 1;
 			string sCellStr = new GridMap { StartCell }.ToString();
 			string eCellStr = new GridMap { EndCell }.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			string regionStr = new RegionCollection(Region).ToString();
 			return
 				$"{Name}: Digits {d1}, {d2} in bivalue cells {sCellStr} and {eCellStr} " +

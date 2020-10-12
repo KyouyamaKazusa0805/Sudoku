@@ -31,7 +31,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string cellsStr = Cells.ToString();
 			string conjStr = ConjugateRegion.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return
 				$"{Name}: Digits {digitsStr} in cells {cellsStr} can avoid to form a deadly pattern " +
 				$"if and only if the conjugate region {conjStr} can't set the digit " +

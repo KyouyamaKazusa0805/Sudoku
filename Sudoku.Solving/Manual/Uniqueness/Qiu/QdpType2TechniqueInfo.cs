@@ -27,7 +27,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public override string ToString()
 		{
 			string patternStr = Pattern.FullMap.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return
 				$"{Name}: Cells {patternStr} will be a deadly pattern " +
 				$"if the extra digits {ExtraDigit + 1} in pair cells is both false => {elimStr}";

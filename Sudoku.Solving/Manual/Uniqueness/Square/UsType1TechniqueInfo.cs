@@ -29,7 +29,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			string candStr = new SudokuMap { Candidate }.ToString();
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string cellsStr = Cells.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return
 				$"{Name}: Digits {digitsStr} in cells {cellsStr} will form a deadly pattern if " +
 				$"the candidate {candStr} is false => {elimStr}";

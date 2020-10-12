@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -30,7 +32,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public override string ToString()
 		{
 			string cellsStr = Loop.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			string subsetName = SubsetNames[SubsetCells.Count + 1];
 			string digitsStr = new DigitCollection(SubsetDigitsMask.GetAllSets()).ToString();
 			string subsetCellsStr = new GridMap(SubsetCells).ToString();

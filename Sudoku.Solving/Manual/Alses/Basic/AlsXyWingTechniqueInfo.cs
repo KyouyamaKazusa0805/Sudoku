@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -38,7 +40,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			string xStr = new DigitCollection(XDigitsMask.GetAllSets()).ToString();
 			string yStr = new DigitCollection(YDigitsMask.GetAllSets()).ToString();
 			string zStr = new DigitCollection(ZDigitsMask.GetAllSets()).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $"{Name}: {Als1} -> {Bridge} -> {Als2}, x = {xStr}, y = {yStr}, z = {zStr} => {elimStr}";
 		}
 	}

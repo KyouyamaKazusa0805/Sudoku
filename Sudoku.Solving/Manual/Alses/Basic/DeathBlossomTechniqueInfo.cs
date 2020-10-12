@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -37,7 +39,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override string ToString()
 		{
 			string pivotStr = new GridMap { Pivot }.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $"{Name}: Cell {pivotStr} - {g(this)} => {elimStr}";
 
 			static string g(DeathBlossomTechniqueInfo @this)

@@ -32,7 +32,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override string ToString()
 		{
 			int digit = Digit + 1;
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $"{Name}: Digit {digit} => {elimStr}";
 		}
 	}

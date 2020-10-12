@@ -33,7 +33,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			string patternStr = Pattern.FullMap.ToString();
 			string digitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
 			string cellsStr = new GridMap(ExtraCells).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			string subsetName = SubsetNames[ExtraCells.Count + 1].ToLower();
 			return
 				$"{Name}: Cells {patternStr} won't be a deadly pattern " +

@@ -26,7 +26,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string cellsStr = Map.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string elimStr = elims.ToString();
 			return $"{Name}: {digitsStr} in cells {cellsStr} => {elimStr}";
 		}
 	}

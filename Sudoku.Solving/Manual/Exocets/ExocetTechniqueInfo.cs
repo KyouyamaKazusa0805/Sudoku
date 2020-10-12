@@ -1,6 +1,4 @@
-﻿#if CSHARP_9_PREVIEW
-#pragma warning disable IDE0051 // Unused methods (used actually)
-#endif
+﻿#pragma warning disable IDE0060
 
 using System.Collections.Generic;
 using System.Linq;
@@ -93,6 +91,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			var (baseMap, targetMap, _) = Exocet;
 			string? addtional = GetAdditional();
 
+			using var elims = new ConclusionCollection(Conclusions);
 			return new StringBuilder(Name)
 				.Append(": Digits ")
 				.Append(new DigitCollection(Digits).ToString())
@@ -106,7 +105,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					LockedMemberR is null ? null : $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}")
 				.Append(addtional is null ? string.Empty : $" with {addtional}")
 				.Append(" => ")
-				.Append(new ConclusionCollection(Conclusions).ToString())
+				.Append(elims.ToString())
 				.ToString();
 		}
 

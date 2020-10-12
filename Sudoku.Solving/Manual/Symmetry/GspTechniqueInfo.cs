@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0060
+
+using System.Collections.Generic;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -36,7 +38,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 		{
 			const string separator = ", ";
 
-			string conclusions = new ConclusionCollection(Conclusions).ToString();
+			using var elims = new ConclusionCollection(Conclusions);
+			string conclusions = elims.ToString();
 			var sb = new StringBuilder();
 			for (int i = 0; i < 9; i++)
 			{
