@@ -101,7 +101,7 @@ namespace Sudoku.Data.Collections
 				return (_mask.FindFirstSet() + 1).ToString();
 			}
 
-			string separator = format ?? string.Empty;
+			string separator = format.NullableToString();
 			var sb = new StringBuilder();
 			foreach (int digit in this)
 			{
