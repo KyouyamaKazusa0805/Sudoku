@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		: XrTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => 4.5M + DifficultyExtra[Size] + .1M * ExtraDigitsMask.CountSet();
+		public override decimal Difficulty => 4.5M + DifficultyExtra[Size] + .1M * ExtraDigitsMask.PopCount();
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

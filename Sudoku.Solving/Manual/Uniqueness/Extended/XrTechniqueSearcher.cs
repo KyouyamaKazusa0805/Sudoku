@@ -70,13 +70,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					(count >= 2 ? ref normalDigits : ref extraDigits) |= (short)(1 << digit);
 				}
 
-				if (normalDigits.CountSet() != size)
+				if (normalDigits.PopCount() != size)
 				{
 					// The number of normal digits are not enough.
 					continue;
 				}
 
-				if (resultMask.CountSet() == size + 1)
+				if (resultMask.PopCount() == size + 1)
 				{
 					// Possible type 1 or 2 found.
 					// Now check extra cells.

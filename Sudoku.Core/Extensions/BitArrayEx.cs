@@ -21,7 +21,7 @@ namespace Sudoku.Extensions
 			int result = 0;
 			foreach (int integer in integers)
 			{
-				result += integer.CountSet();
+				result += integer.PopCount();
 			}
 
 			return result;

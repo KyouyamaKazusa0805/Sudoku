@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Get masks.
 						short mask1 = (RegionMaps[r1] & CandMaps[digit]).GetSubviewMask(r1);
 						short mask2 = (RegionMaps[r2] & CandMaps[digit]).GetSubviewMask(r2);
-						if ((mask1.CountSet(), mask2.CountSet()) != (2, 2))
+						if ((mask1.PopCount(), mask2.PopCount()) != (2, 2))
 						{
 							continue;
 						}

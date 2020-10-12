@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <summary>
 		/// Indicates the size of this regular wing.
 		/// </summary>
-		public int Size => DigitsMask.CountSet();
+		public int Size => DigitsMask.PopCount();
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

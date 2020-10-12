@@ -219,7 +219,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							digitsMask |= grid.GetCandidateMask(cell);
 						}
-						if (digitsMask.CountSet() - 1 != size)
+						if (digitsMask.PopCount() - 1 != size)
 						{
 							continue;
 						}

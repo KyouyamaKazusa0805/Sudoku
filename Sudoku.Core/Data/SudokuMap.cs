@@ -106,7 +106,7 @@ namespace Sudoku.Data
 				{
 					long v = binary[i];
 					*p++ = v;
-					count += v.CountSet();
+					count += v.PopCount();
 				}
 			}
 
@@ -130,7 +130,7 @@ namespace Sudoku.Data
 			fixed (long* pThis = _innerBinary)
 			{
 				long* p = pThis;
-				for (int i = 0; i < BufferLength; i++, *p++ = *binary++, count += binary->CountSet()) ;
+				for (int i = 0; i < BufferLength; i++, *p++ = *binary++, count += binary->PopCount()) ;
 			}
 
 			Count = count;

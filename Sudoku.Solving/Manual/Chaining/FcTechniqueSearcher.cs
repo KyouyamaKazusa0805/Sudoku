@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			foreach (int cell in EmptyMap)
 			{
 				short mask = grid.GetCandidateMask(cell);
-				int count = mask.CountSet();
+				int count = mask.PopCount();
 				if (count > 2)
 				{
 					// Prepare storage and accumulator for cell eliminations.

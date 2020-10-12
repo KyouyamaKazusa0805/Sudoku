@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// The number of different candidates in base cells can't be greater than 5.
 				short baseCandidatesMask = (short)(grid.GetCandidateMask(b1) | grid.GetCandidateMask(b2));
-				if (baseCandidatesMask.CountSet() > 5)
+				if (baseCandidatesMask.PopCount() > 5)
 				{
 					continue;
 				}
@@ -156,7 +156,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				BibiPatternEliminations bibiEliminations = default;
 				TargetPairEliminations targetPairEliminations = default;
 				SwordfishEliminations swordfishEliminations = default;
-				if (_checkAdvanced && baseCandidatesMask.CountSet() > 2)
+				if (_checkAdvanced && baseCandidatesMask.PopCount() > 2)
 				{
 					CheckBibiPattern(
 						grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2, s,
@@ -289,7 +289,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var crosslinePerCandidate = crossline & DigitMaps[digit];
 				int r = crosslinePerCandidate.RowMask, c = crosslinePerCandidate.ColumnMask;
-				if ((r.CountSet(), c.CountSet()) is not ( > 2, > 2))
+				if ((r.PopCount(), c.PopCount()) is not ( > 2, > 2))
 				{
 					continue;
 				}
@@ -382,7 +382,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						count++;
 					}
 
-					if (count == mask.CountSet() - 1)
+					if (count == mask.PopCount() - 1)
 					{
 						for (int j = 0; j < 9; j++)
 						{
@@ -526,7 +526,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 
 			// Then check target pairs if worth.
-			if (last.CountSet() == 2)
+			if (last.PopCount() == 2)
 			{
 				if ((targetMap & EmptyMap).PeerIntersection is var elimMap && elimMap.IsEmpty)
 				{

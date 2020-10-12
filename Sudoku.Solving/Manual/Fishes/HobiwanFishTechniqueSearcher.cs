@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var candMap = CandMaps[digit];
-				if (_checkPom && conclusionList[digit].IsEmpty || candMap.RowMask.CountSet() <= size)
+				if (_checkPom && conclusionList[digit].IsEmpty || candMap.RowMask.PopCount() <= size)
 				{
 					// This digit doesn't contain any conclusions or
 					// No available fish can be found.

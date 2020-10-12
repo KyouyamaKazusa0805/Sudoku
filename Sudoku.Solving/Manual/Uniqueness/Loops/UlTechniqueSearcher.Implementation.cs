@@ -154,7 +154,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				}
 
 				int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
-				for (int size = otherDigitsMask.CountSet() - 1, count = otherCells.Length; size < count; size++)
+				for (int size = otherDigitsMask.PopCount() - 1, count = otherCells.Length; size < count; size++)
 				{
 					foreach (int[] cells in otherCells.GetSubsets(size))
 					{
@@ -164,7 +164,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							mask |= grid.GetCandidateMask(cell);
 						}
 
-						if (mask.CountSet() != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
+						if (mask.PopCount() != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;
 						}

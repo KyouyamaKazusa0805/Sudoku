@@ -60,7 +60,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Get the number of digits in the collection.
 		/// </summary>
-		public int Count => _mask.CountSet();
+		public int Count => _mask.PopCount();
 
 
 		/// <inheritdoc/>

@@ -102,7 +102,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					}
 				}
 
-				if (!distinctionMask.IsPowerOfTwo() || appearedParts != appearedDigitsMask.CountSet())
+				if (!distinctionMask.IsPowerOfTwo() || appearedParts != appearedDigitsMask.PopCount())
 				{
 					continue;
 				}
@@ -114,7 +114,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				}
 
 				// Iterate on each combination.
-				for (int size = 2, count = pairMask.CountSet(); size < count; size++)
+				for (int size = 2, count = pairMask.PopCount(); size < count; size++)
 				{
 					foreach (int[] digits in pairMask.GetAllSets().ToArray().GetSubsets(size))
 					{

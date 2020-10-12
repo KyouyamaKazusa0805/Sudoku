@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								short nextCellMask = grid.GetCandidateMask(nextCell);
 								exDigitsMask |= nextCellMask;
 								exDigitsMask &= (short)~((1 << d1) | (1 << d2));
-								int digitsCount = nextCellMask.CountSet();
+								int digitsCount = nextCellMask.PopCount();
 
 								// We can continue if:
 								// - The cell has exactly 2 digits of the loop.

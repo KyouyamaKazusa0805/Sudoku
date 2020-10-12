@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{
 				short mask = grid.BitwiseOrMasks(cells);
-				if (mask.CountSet() != size)
+				if (mask.PopCount() != size)
 				{
 					continue;
 				}
@@ -100,7 +100,7 @@ namespace Sudoku.Solving.Manual.Intersections
 				{
 					ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
 				}
-				if (ahsMask.CountSet() != size - 1)
+				if (ahsMask.PopCount() != size - 1)
 				{
 					continue;
 				}

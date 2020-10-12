@@ -32,7 +32,7 @@ namespace Sudoku.DocComments
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>An <see cref="int"/> value indicating that.</returns>
-		public static int CountSet(Integer @this) => throw new NotImplementedException();
+		public static int PopCount(Integer @this) => throw new NotImplementedException();
 
 
 		/// <summary>

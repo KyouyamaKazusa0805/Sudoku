@@ -139,7 +139,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			{
 				var allCellsMap = (RegionMaps[region] & EmptyMap) - pair;
 				int[] allCells = allCellsMap.ToArray();
-				for (int size = otherDigitsMask.CountSet() - 1; size < allCells.Length; size++)
+				for (int size = otherDigitsMask.PopCount() - 1; size < allCells.Length; size++)
 				{
 					foreach (int[] cells in allCells.GetSubsets(size))
 					{
@@ -149,7 +149,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							mask |= grid.GetCandidateMask(cell);
 						}
 
-						if ((mask & comparer) != comparer || mask.CountSet() != size + 1)
+						if ((mask & comparer) != comparer || mask.PopCount() != size + 1)
 						{
 							continue;
 						}

@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
-				if (grid.GetCandidateMask(b1).CountSet() < 2 || grid.GetCandidateMask(b2).CountSet() < 2)
+				if (grid.GetCandidateMask(b1).PopCount() < 2 || grid.GetCandidateMask(b2).PopCount() < 2)
 				{
 					continue;
 				}
@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					short tbCands = 0;
 					for (int j = 0; j < 2; j++)
 					{
-						if (grid.GetCandidateMask(combination[j]).CountSet() == 1)
+						if (grid.GetCandidateMask(combination[j]).PopCount() == 1)
 						{
 							tbCands |= grid.GetCandidateMask(combination[j]);
 						}
@@ -339,7 +339,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				bool flag = true;
 				var temp = (tempCrossline & DigitMaps[digit]) - xx;
-				if ((isRow ? temp.RowMask : temp.ColumnMask).CountSet() > 2)
+				if ((isRow ? temp.RowMask : temp.ColumnMask).PopCount() > 2)
 				{
 					flag = false;
 				}
@@ -465,7 +465,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						if (combination[i] == t2) n |= 2;
 					}
 
-					if (n.CountSet() == 2)
+					if (n.PopCount() == 2)
 					{
 						continue;
 					}

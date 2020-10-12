@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		: QdpTechniqueInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => base.Difficulty + ExtraDigitsMask.CountSet() * .1M;
+		public override decimal Difficulty => base.Difficulty + ExtraDigitsMask.PopCount() * .1M;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.QdpType3;

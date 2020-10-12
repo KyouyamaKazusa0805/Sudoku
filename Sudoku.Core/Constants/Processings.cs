@@ -177,7 +177,7 @@ namespace Sudoku.Constants
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (@this.GetCandidateMask(cell).CountSet() == 2)
+				if (@this.GetCandidateMask(cell).PopCount() == 2)
 				{
 					result.AddAnyway(cell);
 				}

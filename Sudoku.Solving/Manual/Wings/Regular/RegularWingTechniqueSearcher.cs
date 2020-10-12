@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				foreach (int pivot in EmptyMap)
 				{
 					short mask = grid.GetCandidateMask(pivot);
-					int candsCount = mask.CountSet();
+					int candsCount = mask.PopCount();
 					if (candsCount != size && candsCount != size - 1)
 					{
 						// Candidates are not enough.
@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 							inter &= m;
 						}
 
-						if (union.CountSet() != size || inter != 0 && !inter.IsPowerOfTwo())
+						if (union.PopCount() != size || inter != 0 && !inter.IsPowerOfTwo())
 						{
 							continue;
 						}
@@ -153,7 +153,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								conclusions,
 								new View[] { new(candidateOffsets) },
 								pivot,
-								mask.CountSet(),
+								mask.PopCount(),
 								union,
 								cells));
 					}

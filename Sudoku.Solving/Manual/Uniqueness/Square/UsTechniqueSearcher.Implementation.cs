@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	{
 		private static partial void CheckType1(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask)
 		{
-			if (mask.CountSet() != 5)
+			if (mask.PopCount() != 5)
 			{
 				return;
 			}
@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 		private static partial void CheckType2(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask)
 		{
-			if (mask.CountSet() != 5)
+			if (mask.PopCount() != 5)
 			{
 				return;
 			}
@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				foreach (int region in tempMap.CoveredRegions)
 				{
 					int[] allCells = ((RegionMaps[region] & EmptyMap) - pattern).ToArray();
-					for (int size = extraDigitsMask.CountSet() - 1, count = allCells.Length; size < count; size++)
+					for (int size = extraDigitsMask.PopCount() - 1, count = allCells.Length; size < count; size++)
 					{
 						foreach (int[] cells in allCells.GetSubsets(size))
 						{
@@ -152,7 +152,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 								tempMask |= grid.GetCandidateMask(cell);
 							}
 
-							if (tempMask.CountSet() != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
+							if (tempMask.PopCount() != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
 							{
 								continue;
 							}

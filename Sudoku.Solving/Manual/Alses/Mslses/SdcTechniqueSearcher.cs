@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						{
 							selectedInterMask |= grid.GetCandidateMask(cell);
 						}
-						if (selectedInterMask.CountSet() <= currentInterMap.Count + 1)
+						if (selectedInterMask.PopCount() <= currentInterMap.Count + 1)
 						{
 							// The intersection combination is an ALS or a normal subset,
 							// which is invalid in SdCs.
@@ -169,7 +169,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 										}
 
 										if (currentInterMap.Count + i + j ==
-											blockMask.CountSet() + lineMask.CountSet() + maskOnlyInInter.CountSet()
+											blockMask.PopCount() + lineMask.PopCount() + maskOnlyInInter.PopCount()
 											&& (elimMapBlock.IsNotEmpty || elimMapLine.IsNotEmpty
 												|| elimMapIsolated.IsNotEmpty))
 										{

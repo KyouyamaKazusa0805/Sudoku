@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates how many regions are used now.
 		/// </summary>
-		public readonly int Count => Mask.CountSet();
+		public readonly int Count => Mask.PopCount();
 
 		/// <summary>
 		/// Indicates all regions used.

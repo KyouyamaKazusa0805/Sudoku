@@ -193,7 +193,7 @@ namespace Sudoku.Data
 				{
 					if (GetStatus(i) == S.Empty)
 					{
-						count += GetCandidateMask(i).CountSet();
+						count += GetCandidateMask(i).PopCount();
 					}
 				}
 

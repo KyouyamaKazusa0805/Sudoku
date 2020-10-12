@@ -259,7 +259,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							}
 						}
 
-						if (count == mask.CountSet() - 1)
+						if (count == mask.PopCount() - 1)
 						{
 							for (int j = 0; j < 9; j++)
 							{
@@ -290,7 +290,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						short mask1 = grid.GetCandidateMask(playground[0]);
 						short mask2 = grid.GetCandidateMask(playground[1]);
-						if (locked.CountSet() == 1 && (mask1 & locked) != 0 ^ (mask2 & locked) != 0)
+						if (locked.PopCount() == 1 && (mask1 & locked) != 0 ^ (mask2 & locked) != 0)
 						{
 							short candidateMask = (short)(
 								~(

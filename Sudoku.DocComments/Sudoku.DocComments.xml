@@ -226,7 +226,7 @@
             <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.DocComments.Integer.CountSet(Sudoku.DocComments.Integer)">
+        <member name="M:Sudoku.DocComments.Integer.PopCount(Sudoku.DocComments.Integer)">
             <summary>
             Get the total number of set bits of the binary representation of a specified value.
             </summary>
@@ -371,7 +371,7 @@
             Indicates the static constructor.
             </summary>
             <remarks>
-            Static constructor is commonly appeared while initializing static fields. If the initialization cannot
+            Static constructor is commonly appeared while initializing static fields. If the initialization can't
             be described by a simple value (or a simple expression), the static constructor will be useful.
             </remarks>
         </member>

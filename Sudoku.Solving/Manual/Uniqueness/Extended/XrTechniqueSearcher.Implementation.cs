@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							mask |= grid.GetCandidateMask(cell);
 						}
 
-						if ((mask & extraDigits) != extraDigits || mask.CountSet() != size + 1)
+						if ((mask & extraDigits) != extraDigits || mask.PopCount() != size + 1)
 						{
 							continue;
 						}

@@ -61,13 +61,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			{
 				if (grid.GetStatus(pivot) != Empty
 					|| checkedCandidates[pivot] != grid.GetCandidateMask(pivot)
-					|| checkedCandidates[pivot].CountSet() > _maxPetals)
+					|| checkedCandidates[pivot].PopCount() > _maxPetals)
 				{
 					continue;
 				}
 
 				short cands = grid.GetCandidateMask(pivot);
-				int digitsCount = cands.CountSet();
+				int digitsCount = cands.PopCount();
 				short[] allZ = new short[digitsCount];
 				int[] stack = new int[digitsCount];
 
@@ -316,14 +316,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							cands |= grid.GetCandidateMask(cell);
 						}
-						if (cands.CountSet() != i + 1)
+						if (cands.PopCount() != i + 1)
 						{
 							// Not an ALS.
 							continue;
 						}
 
 						var map = new GridMap(cells);
-						if ((map.BlockMask.CountSet(), region) is (1, >= 9))
+						if ((map.BlockMask.PopCount(), region) is (1, >= 9))
 						{
 							// If the current cells are in the same block and same line (i.e. in mini-line),
 							// we will process them in blocks.

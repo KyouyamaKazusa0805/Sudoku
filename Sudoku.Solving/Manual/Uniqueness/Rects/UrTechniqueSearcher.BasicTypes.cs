@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int extraMask = (grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) ^ comparer;
-			if (extraMask.CountSet() != 1)
+			if (extraMask.PopCount() != 1)
 			{
 				return;
 			}
@@ -187,7 +187,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
-				for (int size = otherDigitsMask.CountSet() - 1; size < iterationMap.Count; size++)
+				for (int size = otherDigitsMask.PopCount() - 1; size < iterationMap.Count; size++)
 				{
 					foreach (int[] iteratedCells in iterationMap.ToArray().GetSubsets(size))
 					{
@@ -196,7 +196,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							tempMask |= grid.GetCandidateMask(cell);
 						}
-						if ((tempMask & comparer) != 0 || tempMask.CountSet() - 1 != size
+						if ((tempMask & comparer) != 0 || tempMask.PopCount() - 1 != size
 							|| (tempMask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;
@@ -387,7 +387,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int extraMask = mask ^ comparer;
-			if (extraMask.CountSet() != 1)
+			if (extraMask.PopCount() != 1)
 			{
 				return;
 			}

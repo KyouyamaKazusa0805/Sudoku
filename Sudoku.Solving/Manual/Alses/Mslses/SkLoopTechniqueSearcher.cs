@@ -56,12 +56,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						pairs[i] |= grid.GetCandidateMask(cells[(i << 1) + 1]);
 					}
 
-					if ((n, pairs[i].CountSet(), pairs[i]) is not ( <= 4, <= 5, not 0))
+					if ((n, pairs[i].PopCount(), pairs[i]) is not ( <= 4, <= 5, not 0))
 					{
 						break;
 					}
 
-					candidateCount += pairs[i].CountSet();
+					candidateCount += pairs[i].PopCount();
 				}
 
 				if (i < 8 || candidateCount > 32 - (n << 1))
@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						tempLink[p] = default;
 					}
 
-					int linkCount = (tempLink[0] = mask).CountSet();
+					int linkCount = (tempLink[0] = mask).PopCount();
 					int k = 1;
 					for (; k < 8; k++)
 					{
@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							break;
 						}
 
-						linkCount += (tempLink[k] = candidateMask).CountSet();
+						linkCount += (tempLink[k] = candidateMask).PopCount();
 					}
 
 					if (k < 8 || linkCount != 16 - n)

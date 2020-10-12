@@ -47,8 +47,8 @@ namespace Sudoku.Extensions
 			return Table[x >> a] + a - 1;
 		}
 
-		/// <inheritdoc cref="Integer.CountSet(Integer)"/>
-		public static int CountSet(this int @this)
+		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
+		public static int PopCount(this int @this)
 		{
 #if PREFER_ZERO_BITS
 			if (@this == 0)

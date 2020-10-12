@@ -96,7 +96,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						{
 							mask |= grid.GetCandidateMask(cell);
 						}
-						if (mask.CountSet() != size + 1)
+						if (mask.PopCount() != size + 1)
 						{
 							continue;
 						}
@@ -195,7 +195,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				{
 					// Check whether forms a conjugate pair.
 					short mask = (RegionMaps[region] & CandMaps[conjuagtePairDigit]).GetSubviewMask(region);
-					if (mask.CountSet() != 2)
+					if (mask.PopCount() != 2)
 					{
 						continue;
 					}

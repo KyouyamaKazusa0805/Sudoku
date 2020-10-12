@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
-			if (orMask.CountSet() != (pattern.IsHeptagon ? 4 : 5))
+			if (orMask.PopCount() != (pattern.IsHeptagon ? 4 : 5))
 			{
 				return;
 			}
@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
-			if (orMask.CountSet() != (pattern.IsHeptagon ? 4 : 5))
+			if (orMask.PopCount() != (pattern.IsHeptagon ? 4 : 5))
 			{
 				return;
 			}
@@ -153,7 +153,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					var iterationCellsMap = (RegionMaps[region] - currentMap) & EmptyMap;
 					int[] iterationCells = iterationCellsMap.ToArray();
 					short otherDigitsMask = (short)(orMask & ~tempMask);
-					for (int size = otherDigitsMask.CountSet() - 1; size < iterationCellsMap.Count; size++)
+					for (int size = otherDigitsMask.PopCount() - 1; size < iterationCellsMap.Count; size++)
 					{
 						foreach (int[] combination in iterationCells.GetSubsets(size))
 						{
@@ -162,7 +162,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							{
 								comparer |= grid.GetCandidateMask(cell);
 							}
-							if ((tempMask & comparer) != 0 || tempMask.CountSet() - 1 != size
+							if ((tempMask & comparer) != 0 || tempMask.PopCount() - 1 != size
 								|| (tempMask & otherDigitsMask) != otherDigitsMask)
 							{
 								continue;

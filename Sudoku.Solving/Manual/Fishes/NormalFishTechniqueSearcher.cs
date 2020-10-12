@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						short baseMask = (short)(baseMap1.GetSubviewMask(bs1) | baseMap2.GetSubviewMask(bs2));
 						if (size == 2)
 						{
-							int finAndBodyCount = baseMask.CountSet();
+							int finAndBodyCount = baseMask.PopCount();
 							if (finAndBodyCount >= 5)
 							{
 								continue;
@@ -250,7 +250,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								baseMask |= baseMap3.GetSubviewMask(bs3);
 								if (size == 3)
 								{
-									int finAndBodyCount = baseMask.CountSet();
+									int finAndBodyCount = baseMask.PopCount();
 									if (finAndBodyCount >= 6)
 									{
 										continue;
@@ -428,7 +428,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										}
 
 										baseMask |= baseMap4.GetSubviewMask(bs4);
-										int finAndBodyCount = baseMask.CountSet();
+										int finAndBodyCount = baseMask.PopCount();
 										if (finAndBodyCount >= 7)
 										{
 											continue;

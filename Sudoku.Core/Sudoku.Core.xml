@@ -4265,8 +4265,8 @@
         <member name="M:Sudoku.Extensions.ByteEx.FindFirstSet(System.Byte)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.FindFirstSet(Sudoku.DocComments.Integer)"/>
         </member>
-        <member name="M:Sudoku.Extensions.ByteEx.CountSet(System.Byte)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.CountSet(Sudoku.DocComments.Integer)"/>
+        <member name="M:Sudoku.Extensions.ByteEx.PopCount(System.Byte)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.PopCount(Sudoku.DocComments.Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.ByteEx.GetNextSet(System.Byte,System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>
@@ -4553,8 +4553,8 @@
         <member name="M:Sudoku.Extensions.Int16Ex.FindFirstSet(System.Int16)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.FindFirstSet(Sudoku.DocComments.Integer)"/>
         </member>
-        <member name="M:Sudoku.Extensions.Int16Ex.CountSet(System.Int16)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.CountSet(Sudoku.DocComments.Integer)"/>
+        <member name="M:Sudoku.Extensions.Int16Ex.PopCount(System.Int16)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.PopCount(Sudoku.DocComments.Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int16Ex.GetNextSet(System.Int16,System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>
@@ -4589,8 +4589,8 @@
         <member name="M:Sudoku.Extensions.Int32Ex.FindFirstSet(System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.FindFirstSet(Sudoku.DocComments.Integer)"/>
         </member>
-        <member name="M:Sudoku.Extensions.Int32Ex.CountSet(System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.CountSet(Sudoku.DocComments.Integer)"/>
+        <member name="M:Sudoku.Extensions.Int32Ex.PopCount(System.Int32)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.PopCount(Sudoku.DocComments.Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.GetNextSet(System.Int32,System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>
@@ -4619,8 +4619,8 @@
         <member name="M:Sudoku.Extensions.Int64Ex.FindFirstSet(System.Int64)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.FindFirstSet(Sudoku.DocComments.Integer)"/>
         </member>
-        <member name="M:Sudoku.Extensions.Int64Ex.CountSet(System.Int64)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.CountSet(Sudoku.DocComments.Integer)"/>
+        <member name="M:Sudoku.Extensions.Int64Ex.PopCount(System.Int64)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.PopCount(Sudoku.DocComments.Integer)"/>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.GetNextSet(System.Int64,System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>

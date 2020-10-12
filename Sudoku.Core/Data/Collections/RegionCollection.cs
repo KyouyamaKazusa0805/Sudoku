@@ -55,7 +55,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Indicates the number of regions that contain in this collection.
 		/// </summary>
-		public int Count => _mask.CountSet();
+		public int Count => _mask.PopCount();
 
 
 		/// <summary>

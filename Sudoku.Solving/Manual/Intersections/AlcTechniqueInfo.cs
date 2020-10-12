@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <summary>
 		/// Indicates the size.
 		/// </summary>
-		public int Size => DigitsMask.CountSet();
+		public int Size => DigitsMask.PopCount();
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

@@ -82,7 +82,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					{
 						rbSelectedInterMask |= grid.GetCandidateMask(cell);
 					}
-					if (rbSelectedInterMask.CountSet() <= rbCurrentMap.Count + 1)
+					if (rbSelectedInterMask.PopCount() <= rbCurrentMap.Count + 1)
 					{
 						continue;
 					}
@@ -94,7 +94,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						{
 							cbSelectedInterMask |= grid.GetCandidateMask(cell);
 						}
-						if (cbSelectedInterMask.CountSet() <= cbCurrentMap.Count + 1)
+						if (cbSelectedInterMask.PopCount() <= cbCurrentMap.Count + 1)
 						{
 							continue;
 						}
@@ -209,8 +209,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 												short rbMaskOnlyInInter = (short)(rbSelectedInterMask & ~mask);
 												short cbMaskOnlyInInter = (short)(cbSelectedInterMask & ~mask);
 												if (cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1 ==
-													blockMask.CountSet() + rowMask.CountSet() + columnMask.CountSet()
-													+ rbMaskOnlyInInter.CountSet() + cbMaskOnlyInInter.CountSet()
+													blockMask.PopCount() + rowMask.PopCount() + columnMask.PopCount()
+													+ rbMaskOnlyInInter.PopCount() + cbMaskOnlyInInter.PopCount()
 													&& (elimMapRow.IsNotEmpty || elimMapColumn.IsNotEmpty
 														|| elimMapBlock.IsNotEmpty))
 												{

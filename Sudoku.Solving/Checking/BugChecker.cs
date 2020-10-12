@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Checking
 			int multivalueCellsCount = 0;
 			foreach (int value in _emptyMap)
 			{
-				int candidatesCount = Puzzle.GetCandidateMask(value).CountSet();
+				int candidatesCount = Puzzle.GetCandidateMask(value).PopCount();
 				switch (candidatesCount)
 				{
 					case 1:

@@ -182,7 +182,7 @@ namespace Sudoku.Data
 						(_low, _high) = i++ == 0 ? (low, high) : (_low & low, _high & high);
 					}
 
-					Count = _low.CountSet() + _high.CountSet();
+					Count = _low.PopCount() + _high.PopCount();
 
 					break;
 				}
@@ -289,7 +289,7 @@ namespace Sudoku.Data
 						(_low, _high) = i++ == 0 ? (low, high) : (_low & low, _high & high);
 					}
 
-					Count = _low.CountSet() + _high.CountSet();
+					Count = _low.PopCount() + _high.PopCount();
 
 					break;
 				}
@@ -342,7 +342,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="high">Higher 40 bits.</param>
 		/// <param name="low">Lower 41 bits.</param>
-		private GridMap(long high, long low) => Count = (_high = high).CountSet() + (_low = low).CountSet();
+		private GridMap(long high, long low) => Count = (_high = high).PopCount() + (_low = low).PopCount();
 
 
 		/// <summary>

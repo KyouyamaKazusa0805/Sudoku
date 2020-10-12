@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 					// If the number of digits that both two ALSes contain is only one (or zero),
 					// the ALS-XZ won't be formed.
-					if (xzMask.CountSet() < 2 || map.AllSetsAreInOneRegion(out int region))
+					if (xzMask.PopCount() < 2 || map.AllSetsAreInOneRegion(out int region))
 					{
 						continue;
 					}
@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						finalZ |= (short)(1 << elimDigit);
 					}
 
-					if (_allowAlsCycles && rccMask.CountSet() == 2)
+					if (_allowAlsCycles && rccMask.PopCount() == 2)
 					{
 						// Doubly linked ALS-XZ.
 						isDoublyLinked = true;
@@ -147,7 +147,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						// Possible eliminations.
 						var tempMap = map;
 						tempMap = CandMaps[mask1.FindFirstSet()];
-						for (k = 1; k < mask1.CountSet(); k++)
+						for (k = 1; k < mask1.PopCount(); k++)
 						{
 							tempMap |= CandMaps[mask1.SetAt(k)];
 						}
@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 						}
 						tempMap = CandMaps[mask2.FindFirstSet()];
-						for (k = 1; k < mask2.CountSet(); k++)
+						for (k = 1; k < mask2.PopCount(); k++)
 						{
 							tempMap |= CandMaps[mask2.SetAt(k)];
 						}

@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		: UsTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => base.Difficulty + ExtraDigitsMask.CountSet() * .1M;
+		public override decimal Difficulty => base.Difficulty + ExtraDigitsMask.PopCount() * .1M;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.UsType3;

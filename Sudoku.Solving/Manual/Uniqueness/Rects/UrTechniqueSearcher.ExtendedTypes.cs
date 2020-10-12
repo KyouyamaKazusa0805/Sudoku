@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short o1 = grid.GetCandidateMask(otherCells[0]);
 			short o2 = grid.GetCandidateMask(otherCells[1]);
 			short o = (short)(o1 | o2);
-			if ((o.CountSet(), o1.CountSet(), o2.CountSet(), o1 & comparer, o2 & comparer) is not (4, <= 3, <= 3, not 0, not 0)
+			if ((o.PopCount(), o1.PopCount(), o2.PopCount(), o1 & comparer, o2 & comparer) is not (4, <= 3, <= 3, not 0, not 0)
 				|| (o & comparer) != comparer)
 			{
 				return;
@@ -367,7 +367,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short m3 = grid.GetCandidateMask(c3);
 			short mask = (short)((short)(m1 | m2) | m3);
 
-			if ((mask.CountSet(), m1.CountSet(), m2.CountSet(), m3.CountSet(), m1 & comparer, m2 & comparer, m3 & comparer)
+			if ((mask.PopCount(), m1.PopCount(), m2.PopCount(), m3.PopCount(), m1 & comparer, m2 & comparer, m3 & comparer)
 				is not (4, <= 3, <= 3, <= 3, not 0, not 0, not 0) || (mask & comparer) != comparer)
 			{
 				return;
@@ -1134,7 +1134,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				short mask2 = grid.GetCandidateMask(otherCell2);
 				short mask = (short)(mask1 | mask2);
 
-				if (mask.CountSet() != 2 + size || (mask & comparer) != comparer
+				if (mask.PopCount() != 2 + size || (mask & comparer) != comparer
 					|| mask1 == comparer || mask2 == comparer)
 				{
 					return;
@@ -1171,7 +1171,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							// Check XY-Wing.
 							short m = (short)((short)(m1 | m2) ^ extraDigitsMask);
-							if ((m.CountSet(), (m1 & m2).CountSet()) != (1, 1))
+							if ((m.PopCount(), (m1 & m2).PopCount()) != (1, 1))
 							{
 								continue;
 							}
@@ -1269,7 +1269,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									// Check XYZ-Wing.
 									short m = (short)(((short)(m1 | m2) | m3) ^ extraDigitsMask);
-									if ((m.CountSet(), (m1 & m2 & m3).CountSet()) != (1, 1))
+									if ((m.PopCount(), (m1 & m2 & m3).PopCount()) != (1, 1))
 									{
 										continue;
 									}
@@ -1365,7 +1365,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 										// Check WXYZ-Wing.
 										short m = (short)((short)((short)((short)(m1 | m2) | m3) | m4) ^ extraDigitsMask);
-										if ((m.CountSet(), (m1 & m2 & m3 & m4).CountSet()) != (1, 1))
+										if ((m.PopCount(), (m1 & m2 & m3 & m4).PopCount()) != (1, 1))
 										{
 											continue;
 										}

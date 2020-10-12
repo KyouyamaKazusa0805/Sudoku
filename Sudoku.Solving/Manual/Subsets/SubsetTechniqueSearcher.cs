@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						{
 							mask |= grid.GetCandidateMask(cell);
 						}
-						if (mask.CountSet() != size)
+						if (mask.PopCount() != size)
 						{
 							continue;
 						}

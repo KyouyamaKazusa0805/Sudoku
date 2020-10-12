@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					}
 
 					short mask = (short)(mask1 & mask2);
-					if (mask.CountSet() < 2)
+					if (mask.PopCount() < 2)
 					{
 						continue;
 					}

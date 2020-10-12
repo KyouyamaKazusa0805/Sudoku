@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							// All possible UR patterns should contain at least one cell
 							// that contains both 'd1' and 'd2'.
 							short comparer = (short)(1 << d1 | 1 << d2);
-							if (!arMode && urCells.All(c => (grid.GetCandidateMask(c) & comparer).CountSet() != 2))
+							if (!arMode && urCells.All(c => (grid.GetCandidateMask(c) & comparer).PopCount() != 2))
 							{
 								continue;
 							}

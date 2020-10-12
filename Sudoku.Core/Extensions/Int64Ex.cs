@@ -33,8 +33,8 @@ namespace Sudoku.Extensions
 			return r;
 		}
 
-		/// <inheritdoc cref="Integer.CountSet(Integer)"/>
-		public static int CountSet(this long @this)
+		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
+		public static int PopCount(this long @this)
 		{
 #if PREFER_ZERO_BITS
 			if (@this == 0)

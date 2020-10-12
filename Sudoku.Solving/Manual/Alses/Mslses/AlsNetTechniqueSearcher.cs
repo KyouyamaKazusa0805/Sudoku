@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				{
 					ref var curMap = ref linkForEachDigit[digit];
 					curMap = CandMaps[digit] & map;
-					n += Min(curMap.RowMask.CountSet(), curMap.ColumnMask.CountSet(), curMap.BlockMask.CountSet());
+					n += Min(curMap.RowMask.PopCount(), curMap.ColumnMask.PopCount(), curMap.BlockMask.PopCount());
 				}
 
 				if (n == count)
@@ -55,10 +55,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						short rMask = currentMap.RowMask;
 						short cMask = currentMap.ColumnMask;
 						short bMask = currentMap.BlockMask;
-						int temp = Min(rMask.CountSet(), cMask.CountSet(), bMask.CountSet());
+						int temp = Min(rMask.PopCount(), cMask.PopCount(), bMask.PopCount());
 						var elimMap = GridMap.Empty;
 						int check = 0;
-						if (rMask.CountSet() == temp)
+						if (rMask.PopCount() == temp)
 						{
 							check++;
 							foreach (int i in rMask)
@@ -68,7 +68,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
-						if (cMask.CountSet() == temp)
+						if (cMask.PopCount() == temp)
 						{
 							check++;
 							foreach (int i in cMask)
@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
-						if (bMask.CountSet() == temp)
+						if (bMask.PopCount() == temp)
 						{
 							check++;
 							foreach (int i in bMask)
