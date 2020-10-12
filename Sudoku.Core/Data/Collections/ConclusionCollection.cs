@@ -111,18 +111,20 @@ namespace Sudoku.Data.Collections
 					var sb = new StringBuilder();
 					if (shouldSort)
 					{
-						Array.Sort(
-							conclusions,
-							static (a, b) =>
+						unsafe
+						{
+							conclusions.Sort(&cmp);
+							static int cmp(in Conclusion left, in Conclusion right)
 							{
-								var (t1, c1, d1) = a;
-								var (t2, c2, d2) = b;
+								var (t1, c1, d1) = left;
+								var (t2, c2, d2) = right;
 								if (t1 > t2) return 1;
 								if (t1 < t2) return -1;
 								if (d1 > d2) return 1;
 								if (d1 < d2) return -1;
 								return 0;
-							});
+							}
+						}
 
 						var selection = from conclusion in conclusions group conclusion by conclusion.ConclusionType;
 						bool hasOnlyOneType = selection.HasOnlyOneElement();

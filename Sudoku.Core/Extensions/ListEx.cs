@@ -37,6 +37,45 @@ namespace Sudoku.Extensions
 		public static void RemoveAt<T>(this IList<T?> @this, Index index) => @this.RemoveAt(index.GetOffset(@this.Count));
 
 		/// <summary>
+		/// Sort the specified list.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="comparer">The method to compare two elements.</param>
+		/// <remarks>
+		/// If you want to use this method, please note that the <typeparamref name="T"/> may not be the built-in
+		/// types such as <see cref="int"/>, <see cref="float"/> or so on, because they can use operators directly.
+		/// </remarks>
+		public static unsafe void Sort<T>(this IList<T> @this, delegate*<in T, in T, int> comparer)
+		{
+			q(0, @this.Count - 1);
+
+			void q(int l, int r)
+			{
+				if (l < r)
+				{
+					int i = l, j = r - 1;
+					var middle = @this[(l + r) / 2];
+					while (true)
+					{
+						while (i < r && comparer(@this[i], middle) < 0) i++;
+						while (j > 0 && comparer(@this[j], middle) > 0) j--;
+						if (i == j) break;
+
+						var temp = @this[i];
+						@this[i] = @this[j];
+						@this[j] = temp;
+
+						if (comparer(@this[i], @this[j]) == 0) j--;
+					}
+
+					q(l, i);
+					q(i + 1, r);
+				}
+			}
+		}
+
+		/// <summary>
 		/// Remove duplicate element in the list.
 		/// </summary>
 		/// <typeparam name="TNotNull">The type of each element.</typeparam>

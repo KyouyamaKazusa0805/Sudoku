@@ -4206,6 +4206,18 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
+        <member name="M:Sudoku.Extensions.ArrayEx.Sort``1(``0[],)">
+            <summary>
+            Sort the specified array.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The array.</param>
+            <param name="comparer">The method to compare two elements.</param>
+            <remarks>
+            If you want to use this method, please note that the <typeparamref name="T"/> may not be the built-in
+            types such as <see cref="T:System.Int32"/>, <see cref="T:System.Single"/> or so on, because they can use operators directly.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Extensions.ArrayEx.GetSubsets``1(``0[],System.Int32)">
             <summary>
             Get all subsets from the specified number of the values to take.
@@ -4653,6 +4665,18 @@
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <param name="index">The index to remove.</param>
+        </member>
+        <member name="M:Sudoku.Extensions.ListEx.Sort``1(System.Collections.Generic.IList{``0},)">
+            <summary>
+            Sort the specified list.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="comparer">The method to compare two elements.</param>
+            <remarks>
+            If you want to use this method, please note that the <typeparamref name="T"/> may not be the built-in
+            types such as <see cref="T:System.Int32"/>, <see cref="T:System.Single"/> or so on, because they can use operators directly.
+            </remarks>
         </member>
         <member name="M:Sudoku.Extensions.ListEx.Distinct``1(System.Collections.Generic.IList{``0})">
             <summary>

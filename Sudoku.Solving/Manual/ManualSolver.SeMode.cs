@@ -44,10 +44,11 @@ namespace Sudoku.Solving.Manual
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution, bool sukaku,
 			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
+			var searchers =
 #if I_CANT_DECIDE_WHETHER_THE_FIELD_SHOULD_BE_REMOVED__IF_THE_FIELD_IS_REMOVED__THIS_METHOD_WILL_BE_CHANGED_SYNCHRONIZEDLY
-			var searchers = GetSearchersHodokuMode(solution);
+				GetSearchersHodokuMode(solution);
 #else
-			var searchers = GetSearchersSeMode(solution);
+				GetSearchersSeMode(solution);
 #endif
 			var stepGrids = new List<Grid>();
 			var bag = new List<TechniqueInfo>();

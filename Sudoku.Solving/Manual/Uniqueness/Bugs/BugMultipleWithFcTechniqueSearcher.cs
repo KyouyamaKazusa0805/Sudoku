@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="accumulator">The result list.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private void CheckMultipleWithForcingChains(
+		private unsafe void CheckMultipleWithForcingChains(
 			IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates)
 		{
 			var tempAccumulator = new List<BugMultipleWithFcTechniqueInfo>();
@@ -94,8 +94,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 			}
 
-			tempAccumulator.Sort(static (i1, i2) => i1.Complexity.CompareTo(i2.Complexity));
+			tempAccumulator.Sort(&cmp);
 			accumulator.AddRange(tempAccumulator);
+
+			static int cmp(in BugMultipleWithFcTechniqueInfo left, in BugMultipleWithFcTechniqueInfo right) =>
+				left.Complexity - right.Complexity;
 		}
 
 		/// <summary>

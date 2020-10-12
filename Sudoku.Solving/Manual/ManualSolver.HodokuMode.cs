@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0055
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -39,7 +37,7 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
-		private AnalysisResult SolveNaively(
+		private unsafe AnalysisResult SolveNaively(
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution, bool sukaku,
 			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
@@ -77,14 +75,13 @@ namespace Sudoku.Solving.Manual
 
 			if (UseCalculationPriority)
 			{
-				Array.Sort(
-					searchers,
-					static (a, b) =>
-					{
-						int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
-						int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
-						return (l > r, l < r) switch { (true, _) => 1, (_, true) => -1, _ => 0 };
-					});
+				searchers.Sort(&cmp);
+				static int cmp(in TechniqueSearcher a, in TechniqueSearcher b)
+				{
+					int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
+					int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
+					return l > r ? 1 : l < r ? -1 : 0;
+				}
 			}
 
 			var bag = new List<TechniqueInfo>();
@@ -158,7 +155,7 @@ namespace Sudoku.Solving.Manual
 						throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
 					}
 				}
-				else unsafe
+				else
 				{
 					var step = OptimizedApplyingOrder
 						? bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector)
