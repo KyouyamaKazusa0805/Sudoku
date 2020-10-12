@@ -3483,11 +3483,7 @@
             Encapsulates a grid same as <see cref="T:Sudoku.Data.Grid"/>
             but use <see langword="struct"/> instead of <see langword="class"/>.
             </summary>
-            <remarks>
-            Please do <b>not</b> use the default constructor <see cref="M:Sudoku.Data.ValueGrid.#ctor"/>.
-            </remarks>
             <seealso cref="T:Sudoku.Data.Grid"/>
-            <seealso cref="M:Sudoku.Data.ValueGrid.#ctor"/>
         </member>
         <member name="F:Sudoku.Data.ValueGrid.EmptyString">
             <summary>
@@ -3496,7 +3492,8 @@
         </member>
         <member name="F:Sudoku.Data.ValueGrid.Empty">
             <summary>
-            Indicates an empty grid, where all values are zero.
+            Indicates an empty grid, where all values are zero. This field is initialized by the static constructor
+            of this structure.
             </summary>
         </member>
         <member name="F:Sudoku.Data.ValueGrid.Undefined">

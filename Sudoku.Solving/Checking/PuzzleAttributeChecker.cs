@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Checking
 		/// <seealso cref="IsValid(Grid, out Grid?)"/>
 		/// <seealso cref="IsValid(Grid, out Grid?, out bool?)"/>
 		public static bool IsValid(this Grid @this) =>
-			Solver.CheckValidity(@this.ToString()) || Solver.CheckValidity($"{@this:~}");
+			Solver.CheckValidity(@this.ToString()) || Solver.CheckValidity(@this.ToString("~"));
 
 		/// <summary>
 		/// To check if a puzzle has only one solution or not.
@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Checking
 			solutionIfValid = null;
 
 			if (Solver.CheckValidity(@this.ToString(), out string? solution)
-				|| Solver.CheckValidity($"{@this:~}", out solution))
+				|| Solver.CheckValidity(@this.ToString("~"), out solution))
 			{
 				solutionIfValid = Grid.Parse(solution);
 				return true;

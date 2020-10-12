@@ -16,11 +16,7 @@ namespace Sudoku.Data
 	/// Encapsulates a grid same as <see cref="Grid"/>
 	/// but use <see langword="struct"/> instead of <see langword="class"/>.
 	/// </summary>
-	/// <remarks>
-	/// Please do <b>not</b> use the default constructor <see cref="ValueGrid()"/>.
-	/// </remarks>
 	/// <seealso cref="Grid"/>
-	/// <seealso cref="ValueGrid()"/>
 	public unsafe partial struct ValueGrid : IEnumerable<short>, IEquatable<ValueGrid>, IFormattable
 	{
 		/// <summary>
@@ -29,7 +25,8 @@ namespace Sudoku.Data
 		public static readonly string EmptyString = new('0', 81);
 
 		/// <summary>
-		/// Indicates an empty grid, where all values are zero.
+		/// Indicates an empty grid, where all values are zero. This field is initialized by the static constructor
+		/// of this structure.
 		/// </summary>
 		public static readonly ValueGrid Empty;
 
