@@ -15,26 +15,8 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// Encapsulates an empty rectangle technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.EmptyRectangle))]
-	public sealed class EmptyRectangleTechniqueSearcher : SdpTechniqueSearcher
+	public sealed partial class EmptyRectangleTechniqueSearcher : SdpTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates all regions iterating on the specified block
-		/// forming an empty rectangle.
-		/// </summary>
-		private static readonly int[,] LinkIds =
-		{
-			{ 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
-			{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
-			{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
-			{ 9, 10, 11, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
-			{ 9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
-			{ 9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
-			{ 9, 10, 11, 12, 13, 14, 21, 22, 23, 24, 25, 26 },
-			{ 9, 10, 11, 12, 13, 14, 18, 19, 20, 24, 25, 26 },
-			{ 9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22, 23 }
-		};
-
-
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(46);
 

@@ -4966,17 +4966,17 @@
             Encapsulates an empty rectangle technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.LinkIds">
-            <summary>
-            Indicates all regions iterating on the specified block
-            forming an empty rectangle.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.LinkIds">
+            <summary>
+            Indicates all regions iterating on the specified block
+            forming an empty rectangle.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.GuardianTechniqueInfo">
             <summary>

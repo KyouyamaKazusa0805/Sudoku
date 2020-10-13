@@ -72,7 +72,7 @@
             </code>
             </para>
             <para>
-            In addition, in this data structure, "<c>_coverSet</c>" is a block and "<c>_baseSet</c>" is a line.
+            In addition, in this data structure, "<c>CoverSet</c>" is a block and "<c>BaseSet</c>" is a line.
             </para>
             </summary>
         </member>

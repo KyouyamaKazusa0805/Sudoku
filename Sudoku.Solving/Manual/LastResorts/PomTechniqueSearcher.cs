@@ -86,6 +86,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <returns>The templates.</returns>
 		private static IEnumerable<GridMap> GetTemplates()
 		{
+#if true
 			for (int i1 = 0; i1 < 9; i1++)
 			{
 				for (int i2 = 0; i2 < 9; i2++)
@@ -147,6 +148,27 @@ namespace Sudoku.Solving.Manual.LastResorts
 					}
 				}
 			}
+#else
+			var values = Enumerable.Range(0, 9);
+			return from i1 in values
+				   from i2 in values
+				   where i2 / 3 != i1 / 3
+				   from i3 in values
+				   where i3 / 3 != i1 / 3 && i3 / 3 != i2 / 3
+				   from i4 in values
+				   where i4 != i1 && i4 != i2 && i4 != i3
+				   from i5 in values
+				   where i5 != i1 && i5 != i2 && i5 != i3 && i5 / 3 != i4 / 3
+				   from i6 in values
+				   where i6 != i1 && i6 != i2 && i6 != i3 && i6 / 3 != i4 / 3 && i6 / 3 != i5 / 3
+				   from i7 in values
+				   where i7 != i1 && i7 != i2 && i7 != i3 && i7 != i4 && i7 != i5 && i7 != i6
+				   from i8 in values
+				   where i8 != i1 && i8 != i2 && i8 != i3 && i8 != i4 && i8 != i5 && i8 != i6 && i8 / 3 != i7 / 3
+				   from i9 in values
+				   where i9 != i1 && i9 != i2 && i9 != i3 && i9 != i4 && i9 != i5 && i9 != i6 && i9 / 3 != i7 / 3 && i9 / 3 != i8 / 3
+				   select new GridMap(1 << i1 | 1 << (i2 + 9) | 1 << (i3 + 18), 1 << i4 | 1 << (i5 + 9) | 1 << (i6 + 18), 1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18));
+#endif
 		}
 	}
 }
