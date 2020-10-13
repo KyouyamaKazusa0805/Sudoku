@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Extensions
 						(true, false) => LinkType.Weak,
 						_ => LinkType.Default
 					};
-					if (linkType == LinkType.Weak && i == 0)
+					if ((linkType, i) == (LinkType.Weak, 0))
 					{
 						// Because of forcing chain, the first node won't be drawn.
 						continue;

@@ -83,7 +83,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						// Collect results for cell chaining.
 						valueToOn.Add(digit, onToOn);
 						valueToOff.Add(digit, onToOff);
-						if (cellToOn is null/* || cellToOff is null*/)
+						if (cellToOn is null || cellToOff is null)
 						{
 							cellToOn = new(onToOn);
 							cellToOff = new(onToOff);
@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						else
 						{
 							cellToOn &= onToOn;
-							cellToOff = cellToOff! & onToOff;
+							cellToOff &= onToOff;
 						}
 					}
 
@@ -169,16 +169,14 @@ namespace Sudoku.Solving.Manual.Chaining
 						// Gather results.
 						foreach (var p in regionToOn)
 						{
-							var hint = CreateRegionEliminationHint(region, digit, p, posToOn);
-							if (hint is not null)
+							if (CreateRegionEliminationHint(region, digit, p, posToOn) is ChainingTechniqueInfo hint)
 							{
 								accumulator.Add(hint);
 							}
 						}
 						foreach (var p in regionToOff)
 						{
-							var hint = CreateRegionEliminationHint(region, digit, p, posToOff);
-							if (hint is not null)
+							if (CreateRegionEliminationHint(region, digit, p, posToOff) is ChainingTechniqueInfo hint)
 							{
 								accumulator.Add(hint);
 							}

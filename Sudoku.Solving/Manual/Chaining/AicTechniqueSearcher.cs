@@ -56,8 +56,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			foreach (int cell in EmptyMap)
 			{
-				short mask = grid.GetCandidateMask(cell);
-				if (mask.PopCount() >= 2)
+				if (grid.GetCandidateMask(cell) is var mask && mask.PopCount() >= 2)
 				{
 					// Iterate on all candidates that aren't alone.
 					foreach (int digit in mask)
@@ -114,22 +113,15 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			foreach (var destOn in loops)
 			{
-				if ((destOn.Chain.Count & 1) == 1)
-				{
-					// Odd length.
-					continue;
-				}
-
-				var result = CreateLoopHint(grid, destOn, xEnabled, yEnabled);
-				if (result is not null)
+				if ((destOn.Chain.Count & 1) != 1
+					&& CreateLoopHint(grid, destOn, xEnabled, yEnabled) is LoopTechniqueInfo result)
 				{
 					accumulator.Add(result);
 				}
 			}
 			foreach (var target in chains)
 			{
-				var result = CreateAicHint(grid, target, xEnabled, yEnabled);
-				if (result is not null)
+				if (CreateAicHint(grid, target, xEnabled, yEnabled) is AicTechniqueInfo result)
 				{
 					accumulator.Add(result);
 				}
@@ -148,20 +140,14 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
 		/// <seealso cref="LoopTechniqueInfo"/>
-		private ChainingTechniqueInfo? CreateLoopHint(Grid grid, Node destOn, bool xEnabled, bool yEnabled)
+		private LoopTechniqueInfo? CreateLoopHint(Grid grid, Node destOn, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
 			var links = destOn.GetLinks(true); //! Maybe wrong when adding grouped nodes.
 			foreach (var (start, end, type) in links)
 			{
-				if (type == LinkType.Weak)
+				if (type == LinkType.Weak && new SudokuMap { start, end }.PeerIntersection is { IsNotEmpty: true } elimMap)
 				{
-					var elimMap = new SudokuMap { start, end }.PeerIntersection;
-					if (elimMap.IsEmpty)
-					{
-						continue;
-					}
-
 					foreach (int candidate in elimMap)
 					{
 						if (grid.Exists(candidate / 9, candidate % 9) is true)
@@ -172,14 +158,15 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 			}
 
-			return conclusions.Count == 0
-				? null
-				: new LoopTechniqueInfo(
-					conclusions,
-					new View[] { new(null, destOn.GetCandidateOffsets(), null, links) },
-					xEnabled,
-					yEnabled,
-					destOn);
+			return conclusions.Count switch
+			{
+				0 => null,
+				_ => new
+				(
+					conclusions, new View[] { new(null, destOn.GetCandidateOffsets(), null, links) },
+					xEnabled, yEnabled, destOn
+				)
+			};
 		}
 
 		/// <summary>
@@ -194,7 +181,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
 		/// <seealso cref="AicTechniqueInfo"/>
-		private ChainingTechniqueInfo? CreateAicHint(Grid grid, Node target, bool xEnabled, bool yEnabled)
+		private AicTechniqueInfo? CreateAicHint(Grid grid, Node target, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
 			if (!target.IsOn)
@@ -225,14 +212,15 @@ namespace Sudoku.Solving.Manual.Chaining
 			//	conclusions.Add(new(Assignment, target._cell, target.Digit));
 			//}
 
-			return conclusions.Count == 0
-				? null
-				: new AicTechniqueInfo(
-					conclusions,
-					new View[] { new(null, target.GetCandidateOffsets(), null, target.GetLinks()) },
-					xEnabled,
-					yEnabled,
-					target);
+			return conclusions.Count switch
+			{
+				0 => null,
+				_ => new
+				(
+					conclusions, new View[] { new(null, target.GetCandidateOffsets(), null, target.GetLinks()) },
+					xEnabled, yEnabled, target
+				)
+			};
 		}
 
 		/// <summary>
@@ -244,9 +232,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <param name="chains">The chain nodes.</param>
 		/// <param name="source">The source node.</param>
-		private void DoAic(
-			Grid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled,
-			IList<Node> chains, Node source)
+		private void DoAic(Grid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled, IList<Node> chains, Node source)
 		{
 			var pendingOn = new List<Node>(onToOn);
 			var pendingOff = new List<Node>(onToOff);
@@ -314,8 +300,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="loops">The loop nodes.</param>
 		/// <param name="source">The source node.</param>
 		private void DoLoops(
-			Grid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool xEnabled, bool yEnabled,
-			IList<Node> loops, Node source)
+			Grid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool xEnabled, bool yEnabled, IList<Node> loops, Node source)
 		{
 			var pendingOn = new List<Node>(onToOn);
 			var pendingOff = new List<Node>(onToOff);

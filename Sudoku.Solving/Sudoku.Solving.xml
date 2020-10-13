@@ -1198,11 +1198,11 @@
             </summary>
             <seealso cref="T:Sudoku.Data.GridMap"/>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridMapEx.IsEmptyRectangle(Sudoku.Data.GridMap,System.Int32,System.Int32@,System.Int32@)">
+        <member name="M:Sudoku.Solving.Extensions.GridMapEx.IsEmptyRectangle(Sudoku.Data.GridMap@,System.Int32,System.Int32@,System.Int32@)">
             <summary>
             Check whether the cells form an empty cell.
             </summary>
-            <param name="blockMap">(<see langword="this"/> parameter) The empty cell grid map.</param>
+            <param name="this">(<see langword="this in"/> parameter) The empty cell grid map.</param>
             <param name="block">The block.</param>
             <param name="row">(<see langword="out"/> parameter) The row.</param>
             <param name="column">(<see langword="out"/> parameter) The column.</param>
