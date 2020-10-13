@@ -5234,9 +5234,31 @@
             <inheritdoc/>
             <remarks>
             Note that this technique searcher will be used in other functions,
-            so we should not use base maps like 'EmptyMap'.
+            so we should not use base maps like '<see cref="P:Sudoku.Solving.TechniqueSearcher.EmptyMap"/>'.
             Those maps will be initialized in the special cases.
             </remarks>
+            <seealso cref="P:Sudoku.Solving.TechniqueSearcher.EmptyMap"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.GetFullHouses(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
+            <summary>
+            Get all full houses.
+            </summary>
+            <param name="accumulator">The current accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.GetHiddenSinglesOrLastDigits(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
+            <summary>
+            Get all hidden singles or last digits.
+            </summary>
+            <param name="accumulator">The current accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.GetNakedSingles(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
+            <summary>
+            Get all naked singles.
+            </summary>
+            <param name="accumulator">The current accumulator.</param>
+            <param name="grid">The grid.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo">
             <summary>

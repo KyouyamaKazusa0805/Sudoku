@@ -45,55 +45,76 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		/// <remarks>
 		/// Note that this technique searcher will be used in other functions,
-		/// so we should not use base maps like 'EmptyMap'.
+		/// so we should not use base maps like '<see cref="TechniqueSearcher.EmptyMap"/>'.
 		/// Those maps will be initialized in the special cases.
 		/// </remarks>
+		/// <seealso cref="TechniqueSearcher.EmptyMap"/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
 		{
-			// Search for full houses.
-			if (_enableFullHouse)
-			{
-				for (int region = 0; region < 27; region++)
-				{
-					var map = RegionMaps[region];
-					int count = 0;
-					bool flag = true;
-					int resultCell = -1;
-					foreach (int cell in map)
-					{
-						if (grid.GetStatus(cell) == CellStatus.Empty)
-						{
-							resultCell = cell;
-							if (++count > 1)
-							{
-								flag.Flip();
-								break;
-							}
-						}
-					}
-					if (!flag || count == 0)
-					{
-						continue;
-					}
+			GetFullHouses(accumulator, grid);
+			GetHiddenSinglesOrLastDigits(accumulator, grid);
+			GetNakedSingles(accumulator, grid);
+		}
 
-					int digit = grid.GetCandidateMask(resultCell).FindFirstSet();
-					accumulator.Add(
-						new FullHouseTechniqueInfo(
-							new Conclusion[] { new(Assignment, resultCell, digit) },
-							new View[]
-							{
-								new(
-									null,
-									new DrawingInfo[] { new(0, resultCell * 9 + digit) },
-									new DrawingInfo[] { new(0, region) },
-									null)
-							},
-							resultCell,
-							digit));
-				}
+		/// <summary>
+		/// Get all full houses.
+		/// </summary>
+		/// <param name="accumulator">The current accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		private void GetFullHouses(IList<TechniqueInfo> accumulator, Grid grid)
+		{
+			if (!_enableFullHouse)
+			{
+				return;
 			}
 
-			// Search for hidden singles & last digits.
+			for (int region = 0; region < 27; region++)
+			{
+				var map = RegionMaps[region];
+				int count = 0;
+				bool flag = true;
+				int resultCell = -1;
+				foreach (int cell in map)
+				{
+					if (grid.GetStatus(cell) == CellStatus.Empty)
+					{
+						resultCell = cell;
+						if (++count > 1)
+						{
+							flag = false;
+							break;
+						}
+					}
+				}
+				if (!flag || count == 0)
+				{
+					continue;
+				}
+
+				int digit = grid.GetCandidateMask(resultCell).FindFirstSet();
+				accumulator.Add(
+					new FullHouseTechniqueInfo(
+						new Conclusion[] { new(Assignment, resultCell, digit) },
+						new View[]
+						{
+							new(
+								null,
+								new DrawingInfo[] { new(0, resultCell * 9 + digit) },
+								new DrawingInfo[] { new(0, region) },
+								null)
+						},
+						resultCell,
+						digit));
+			}
+		}
+
+		/// <summary>
+		/// Get all hidden singles or last digits.
+		/// </summary>
+		/// <param name="accumulator">The current accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		private void GetHiddenSinglesOrLastDigits(IList<TechniqueInfo> accumulator, Grid grid)
+		{
 			for (int digit = 0; digit < 9; digit++)
 			{
 				for (int region = 0; region < 27; region++)
@@ -191,8 +212,15 @@ namespace Sudoku.Solving.Manual.Singles
 							enableAndIsLastDigit));
 				}
 			}
+		}
 
-			// Search for naked singles.
+		/// <summary>
+		/// Get all naked singles.
+		/// </summary>
+		/// <param name="accumulator">The current accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		private void GetNakedSingles(IList<TechniqueInfo> accumulator, Grid grid)
+		{
 			for (int cell = 0; cell < 81; cell++)
 			{
 				if (grid.GetStatus(cell) == CellStatus.Empty
