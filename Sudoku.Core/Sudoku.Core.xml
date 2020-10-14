@@ -3014,6 +3014,206 @@
         <member name="M:Sudoku.Data.Stepping.UnfixStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Data.SudokuGrid">
+            <summary>
+            Encapsulates a sudoku grid using value type instead of reference type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.DefaultMask">
+            <summary>
+            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.MaxCandidatesMask">
+            <summary>
+            Indicates the maximum candidate mask that used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.Length">
+            <summary>
+            Indicates the size of each grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.EmptyString">
+            <summary>
+            Indicates the empty grid string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.Undefined">
+            <summary>
+            Indicates the default grid that all values are initialized 0, which is same as <see cref="M:Sudoku.Data.SudokuGrid.#ctor"/>.
+            </summary>
+            <remarks>
+            We recommend you should use <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/> instead of the default constructor to reduce object
+            creation.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.SudokuGrid.#ctor"/>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.Empty">
+            <summary>
+            The empty grid that is valid during implementation or running the program
+            (all values are 511, i.e. empty cells).
+            </summary>
+            <remarks>
+            This field is initialized by the static constructor of this structure.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.ValueChanged">
+            <summary>
+            Indicates the event triggered when the value is changed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid._values">
+            <summary>
+            Indicates the inner array.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int16*,System.Int32)">
+            <summary>
+            Initializes an instance with the specified mask list and the length.
+            </summary>
+            <param name="masks">The masks.</param>
+            <param name="length">The length of the <paramref name="masks"/>. The value should be 81.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when <paramref name="masks"/> is <see langword="null"/>.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws when <paramref name="length"/> is not 81.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.#cctor">
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.InternalCopy(System.Int16*,System.Int16*)">
+            <summary>
+            Internal copy.
+            </summary>
+            <param name="dest">The destination pointer.</param>
+            <param name="src">The source pointer.</param>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.InternalInitialize(System.Int16*,System.Int16)">
+            <summary>
+            Internal initialize.
+            </summary>
+            <param name="dest">The destination pointer.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.op_Equality(Sudoku.Data.SudokuGrid,Sudoku.Data.SudokuGrid)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.op_Inequality(Sudoku.Data.SudokuGrid,Sudoku.Data.SudokuGrid)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="T:Sudoku.Data.SudokuGrid.Enumerator">
+            <summary>
+            The inner enumerator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.Enumerator._start">
+            <summary>
+            The pointer to the start value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.Enumerator._currentPointer">
+            <summary>
+            The current pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.Enumerator._currentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Enumerator.#ctor(System.Int16*)">
+            <summary>
+            Initializes an instance with the specified pointer to an array to iterate.
+            </summary>
+            <param name="arr">The pointer to an array.</param>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Enumerator.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Enumerator.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.SudokuGrid.ValueChangedArgs">
+            <summary>
+            Provides arguments for the event <see cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.#ctor(System.Int32,System.Int16,System.Int16,System.Int32)">
+            <summary>
+            Initializes the instance with some data.
+            </summary>
+            <param name="cell">The cell offset. Must be in range 0 to 80.</param>
+            <param name="oldMask">The old mask before modified.</param>
+            <param name="newMask">The mask to modify the cell.</param>
+            <param name="setValue">
+            The value to set on the cell. If the action is deletion,
+            this argument should be -1.
+            </param>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.ValueChangedArgs.Cell">
+            <summary>
+            The cell offset. Must be in range 0 to 80.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.ValueChangedArgs.OldMask">
+            <summary>
+            The old mask before modified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.ValueChangedArgs.NewMask">
+            <summary>
+            The new mask after modified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.ValueChangedArgs.SetValue">
+            <summary>
+            The value. -1 when this value is not required.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Int32@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="cell">(<see langword="out"/> parameter) The cell offset.</param>
+            <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
+            <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
+            <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
+        </member>
         <member name="T:Sudoku.Data.SudokuMap">
             <summary>
             Encapsulats a map that contains 729 positions to represent a candidate.
