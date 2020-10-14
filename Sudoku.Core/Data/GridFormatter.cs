@@ -157,45 +157,34 @@ namespace Sudoku.Data
 		{
 			var sb = new StringBuilder();
 			var elims = new StringBuilder();
-			Grid tempGrid = null!; // This assignment is very dangerous (Non-nullable is assigned null)!
-			if (WithCandidates)
-			{
-				// Get a temp grid only used for checking.
-				tempGrid = Grid.Parse($"{grid:.+}");
-			}
+			var tempGrid = WithCandidates ? Grid.Parse($"{grid:.+}") : null;
 
 			int offset = 0;
 			foreach (short value in grid)
 			{
 				switch (GetCellStatus(value))
 				{
-					case CellStatus.Empty:
+					case CellStatus.Empty when tempGrid is not null && WithCandidates:
 					{
-						if (WithCandidates)
+						// Check if the value has been set 'true'
+						// and the value has already deleted at the grid
+						// with only givens and modifiables.
+						foreach (int i in from i in value where !tempGrid[offset, i] select i)
 						{
-							for (int i = 0, temp = value; i < 9; i++, temp >>= 1)
-							{
-								// Check if the value has been set 'true'
-								// and the value has already deleted at the grid
-								// with only givens and modifiables.
-								if ((temp & 1) != 0 && !tempGrid[offset, i])
-								{
-									// The value is 'true', which means that
-									// The digit has been deleted.
-									elims.Append($"{i + 1}{offset / 9 + 1}{offset % 9 + 1} ");
-								}
-							}
+							// The value is 'true', which means the digit has already been deleted.
+							elims.Append($"{i + 1}{offset / 9 + 1}{offset % 9 + 1} ");
 						}
 
+						goto case CellStatus.Empty;
+					}
+					case CellStatus.Empty:
+					{
 						sb.Append(Placeholder);
 						break;
 					}
 					case CellStatus.Modifiable:
 					{
-						sb.Append(
-							WithModifiables
-								? $"+{GetFirstFalseCandidate(value) + 1}"
-								: $"{Placeholder}");
+						sb.Append(WithModifiables ? $"+{GetFirstFalseCandidate(value) + 1}" : $"{Placeholder}");
 
 						break;
 					}
@@ -226,27 +215,7 @@ namespace Sudoku.Data
 		{
 			// To truncate the value to range 0 to 511.
 			value = (short)~(value & Grid.MaxCandidatesMask);
-
-			// Special case: the value is 0.
-			if (value == 0)
-			{
-				return -1;
-			}
-			else
-			{
-				for (int i = 0; i < 9; i++, value >>= 1)
-				{
-					if ((value & 1) != 0)
-					{
-						return i;
-					}
-				}
-
-				// All values are 0, which means the value is 0,
-				// so return -1 is necessary, even though the special case has been
-				// handled before.
-				return -1;
-			}
+			return value != 0 ? value.FindFirstSet() : -1;
 		}
 
 		/// <summary>
@@ -293,7 +262,7 @@ namespace Sudoku.Data
 
 			// Step 2: gets the maximal number of candidates in a cell,
 			// which is used for aligning by columns.
-			int[] maxLengths = new int[9];
+			var maxLengths = (stackalloc int[9]);
 			foreach (var (i, values) in valuesByColumn)
 			{
 				ref int maxLength = ref maxLengths[i];
@@ -342,20 +311,20 @@ namespace Sudoku.Data
 				{
 					case 0: // Print tabs of the first line.
 					{
-						if (SubtleGridLines) printTabLines('.', '.', '-');
-						else printTabLines('+', '+', '-');
+						if (SubtleGridLines) printTabLines('.', '.', '-', maxLengths);
+						else printTabLines('+', '+', '-', maxLengths);
 						break;
 					}
 					case 4 or 8: // Print tabs of mediate lines.
 					{
-						if (SubtleGridLines) printTabLines(':', '+', '-');
-						else printTabLines('+', '+', '-');
+						if (SubtleGridLines) printTabLines(':', '+', '-', maxLengths);
+						else printTabLines('+', '+', '-', maxLengths);
 						break;
 					}
 					case 12: // Print tabs of the foot line.
 					{
-						if (SubtleGridLines) printTabLines('\'', '\'', '-');
-						else printTabLines('+', '+', '-');
+						if (SubtleGridLines) printTabLines('\'', '\'', '-', maxLengths);
+						else printTabLines('+', '+', '-', maxLengths);
 						break;
 					}
 					default: // Print values and tabs.
@@ -370,21 +339,21 @@ namespace Sudoku.Data
 									9 or 10 or 11 or 12 => i - 3,
 									_ => throw Throwings.ImpossibleCaseWithMessage("On the border.")
 								}
-							], '|', '|');
+							], '|', '|', maxLengths);
 
 						break;
 
-						void p(IList<short> valuesByRow, char c1, char c2)
+						void p(IList<short> valuesByRow, char c1, char c2, Span<int> maxLengths)
 						{
 							sb.Append(c1);
-							printValues(valuesByRow, 0, 2);
+							printValues(valuesByRow, 0, 2, maxLengths);
 							sb.Append(c2);
-							printValues(valuesByRow, 3, 5);
+							printValues(valuesByRow, 3, 5, maxLengths);
 							sb.Append(c2);
-							printValues(valuesByRow, 6, 8);
+							printValues(valuesByRow, 6, 8, maxLengths);
 							sb.AppendLine(c1);
 
-							void printValues(IList<short> valuesByRow, int start, int end)
+							void printValues(IList<short> valuesByRow, int start, int end, Span<int> maxLengths)
 							{
 								sb.Append(" ");
 								for (int i = start; i <= end; i++)
@@ -432,7 +401,7 @@ namespace Sudoku.Data
 			// The last step: returns the value.
 			return sb.ToString();
 
-			void printTabLines(char c1, char c2, char fillingChar) =>
+			void printTabLines(char c1, char c2, char fillingChar, Span<int> maxLengths) =>
 				sb
 					.Append(c1)
 					.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar))

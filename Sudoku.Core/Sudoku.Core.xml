@@ -4572,6 +4572,24 @@
         <member name="M:Sudoku.Extensions.Int16Ex.ReverseBits(System.Int16@)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
         </member>
+        <member name="M:Sudoku.Extensions.Int16Ex.Where(System.Int16,System.Predicate{System.Int32})">
+            <summary>
+            <c>Where</c> method on <see cref="T:System.Int16"/> values to enable the usage of <see langword="where"/> clause.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="condition">The condition for each set bits.</param>
+            <returns>
+            All set bits satisfying the specified condition, representing as a <see cref="T:System.Int16"/> value.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Extensions.Int16Ex.Select``1(System.Int16,System.Func{System.Int32,``0})">
+            <summary>
+            <c>Where</c> method on <see cref="T:System.Int16"/> values to enable the usage of <see langword="select"/> clause.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="selector">The selector for each set bits.</param>
+            <returns>The result list using projection.</returns>
+        </member>
         <member name="T:Sudoku.Extensions.Int32Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int32"/>.

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
@@ -97,6 +98,42 @@ namespace Sudoku.Extensions
 			@this = (short)(@this >> 2 & 0x3333 | (@this & 0x3333) << 2);
 			@this = (short)(@this >> 4 & 0x0F0F | (@this & 0x0F0F) << 4);
 			@this = (short)(@this >> 8 | @this << 8);
+		}
+
+		/// <summary>
+		/// <c>Where</c> method on <see cref="short"/> values to enable the usage of <see langword="where"/> clause.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="condition">The condition for each set bits.</param>
+		/// <returns>
+		/// All set bits satisfying the specified condition, representing as a <see cref="short"/> value.
+		/// </returns>
+		public static short Where(this short @this, Predicate<int> condition)
+		{
+			short result = 0;
+			foreach (int i in @this)
+			{
+				if (condition(i))
+				{
+					result |= (short)(1 << i);
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// <c>Where</c> method on <see cref="short"/> values to enable the usage of <see langword="select"/> clause.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="selector">The selector for each set bits.</param>
+		/// <returns>The result list using projection.</returns>
+		public static IEnumerable<TResult?> Select<TResult>(this short @this, Func<int, TResult?> selector)
+		{
+			foreach (int value in @this)
+			{
+				yield return selector(value);
+			}
 		}
 	}
 }
