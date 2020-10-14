@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA2235
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;

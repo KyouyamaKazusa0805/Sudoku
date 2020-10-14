@@ -79,13 +79,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel =>
-			Size switch
-			{
-				2 => DifficultyLevel.Fiendish,
-				3 => DifficultyLevel.Fiendish,
-				4 => DifficultyLevel.Fiendish,
-				_ => DifficultyLevel.Nightmare,
-			};
+			Size is 2 or 3 or 4 ? DifficultyLevel.Fiendish : DifficultyLevel.Nightmare;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>

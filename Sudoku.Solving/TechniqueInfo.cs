@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Exocets;
@@ -15,7 +14,7 @@ namespace Sudoku.Solving
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public abstract record TechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+	public abstract partial record TechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
 	{
 		/// <summary>
 		/// <para>
@@ -52,39 +51,6 @@ namespace Sudoku.Solving
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }
 
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
-		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-		public void Deconstruct(out string name, out decimal difficulty) => (name, difficulty) = (Name, Difficulty);
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
-		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-		public void Deconstruct(out string name, out decimal difficulty, out DifficultyLevel difficultyLevel) =>
-			(name, difficulty, difficultyLevel) = (Name, Difficulty, DifficultyLevel);
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
-		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-		/// <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
-		public void Deconstruct(
-			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
-			out IReadOnlyList<Conclusion> conclusions) =>
-			(name, difficulty, difficultyLevel, conclusions) = (Name, Difficulty, DifficultyLevel, Conclusions);
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
-		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-		/// <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
-		/// <param name="views">(<see langword="out"/> parameter) All views.</param>
-		public void Deconstruct(
-			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
-			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views) =>
-			(name, difficulty, difficultyLevel, conclusions, views) = (Name, Difficulty, DifficultyLevel, Conclusions, Views);
 
 		/// <summary>
 		/// Put this instance into the specified grid.

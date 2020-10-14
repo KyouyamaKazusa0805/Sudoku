@@ -4929,6 +4929,13 @@
             <param name="progress">The progress reporter.</param>
             <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.InternalSelector(Sudoku.Solving.TechniqueInfo)">
+            <summary>
+            The internal selector.
+            </summary>
+            <param name="info">The information.</param>
+            <returns>The decimal selection.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo">
             <summary>
             Provides a usage of empty rectangle technique.
@@ -7885,32 +7892,6 @@
             The difficulty level of this step.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">(<see langword="out"/> parameter) The name.</param>
-            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">(<see langword="out"/> parameter) The name.</param>
-            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">(<see langword="out"/> parameter) The name.</param>
-            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-            <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">(<see langword="out"/> parameter) The name.</param>
-            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-            <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
-            <param name="views">(<see langword="out"/> parameter) All views.</param>
-        </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ApplyTo(Sudoku.Data.Grid)">
             <summary>
             Put this instance into the specified grid.
@@ -7941,6 +7922,32 @@
             This method is used for displaying details in text box control.
             </summary>
             <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="name">(<see langword="out"/> parameter) The name.</param>
+            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="name">(<see langword="out"/> parameter) The name.</param>
+            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="name">(<see langword="out"/> parameter) The name.</param>
+            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
+            <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="name">(<see langword="out"/> parameter) The name.</param>
+            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
+            <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
+            <param name="views">(<see langword="out"/> parameter) All views.</param>
         </member>
         <member name="T:Sudoku.Solving.TechniqueSearcher">
             <summary>

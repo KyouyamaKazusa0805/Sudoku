@@ -237,6 +237,11 @@ namespace Sudoku.Solving.Manual
 			progress.Report(progressResult);
 		}
 
+		/// <summary>
+		/// The internal selector.
+		/// </summary>
+		/// <param name="info">The information.</param>
+		/// <returns>The decimal selection.</returns>
 		private static decimal InternalSelector(TechniqueInfo info) => info.Difficulty;
 	}
 }

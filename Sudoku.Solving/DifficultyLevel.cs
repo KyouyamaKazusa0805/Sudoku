@@ -1,44 +1,47 @@
-﻿namespace Sudoku.Solving
+﻿using System;
+
+namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Provides a difficulty kind for a puzzle.
 	/// </summary>
+	[Flags]
 	public enum DifficultyLevel : short
 	{
 		/// <summary>
 		/// Indicates the difficulty level is unknown.
 		/// </summary>
-		Unknown,
+		Unknown = 0,
 
 		/// <summary>
 		/// Indicates the difficulty is easy.
 		/// </summary>
-		Easy,
+		Easy = 1,
 
 		/// <summary>
 		/// Indicates the difficulty is moderate.
 		/// </summary>
-		Moderate,
+		Moderate = 2,
 
 		/// <summary>
 		/// Indicates the difficulty is hard.
 		/// </summary>
-		Hard,
+		Hard = 4,
 
 		/// <summary>
 		/// Indicates the difficulty is fiendish.
 		/// </summary>
-		Fiendish,
+		Fiendish = 8,
 
 		/// <summary>
 		/// Indicates the difficulty is nightmare.
 		/// </summary>
-		Nightmare,
+		Nightmare = 16,
 
 		/// <summary>
 		/// Indicates the puzzle can't be solved
 		/// unless using last resort methods.
 		/// </summary>
-		LastResort,
+		LastResort = 32,
 	}
 }

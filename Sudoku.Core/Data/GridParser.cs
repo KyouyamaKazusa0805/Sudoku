@@ -106,8 +106,7 @@ namespace Sudoku.Data
 				{
 					case 1:
 					{
-						char match = currentMatch[0];
-						if (match is not ('.' or '0'))
+						if (currentMatch[0] is var match and not ('.' or '0'))
 						{
 							result[i] = match - '1';
 							result.SetStatus(i, Given);
@@ -117,8 +116,7 @@ namespace Sudoku.Data
 					}
 					case 2:
 					{
-						char match = currentMatch[1];
-						if (match is '.' or '0')
+						if (currentMatch[1] is var match && match is '.' or '0')
 						{
 							// '+0' or '+.'? Invalid combination.
 							return null;
@@ -161,8 +159,7 @@ namespace Sudoku.Data
 			var sb = new StringBuilder();
 			foreach (string value in values)
 			{
-				string[] digitStrings = value.Split(new[] { '\t' });
-				foreach (string digitString in digitStrings)
+				foreach (string digitString in value.Split(new[] { '\t' }))
 				{
 					sb.Append(string.IsNullOrEmpty(digitString) ? '.' : digitString[0]);
 				}
@@ -183,8 +180,7 @@ namespace Sudoku.Data
 		{
 			// Older regular expression pattern:
 			// string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit_Old);
-			string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit);
-			if (matches.Length != 81)
+			if (ParsingValue.MatchAll(RegularExpressions.PmGridUnit) is var matches && matches.Length != 81)
 			{
 				return null;
 			}
@@ -330,8 +326,7 @@ namespace Sudoku.Data
 		/// <returns>The result.</returns>
 		private Grid? OnParsingSusser()
 		{
-			string? match = ParsingValue.Match(RegularExpressions.Susser);
-			if (match is not { Length: <= 405 })
+			if (ParsingValue.Match(RegularExpressions.Susser) is var match && match is not { Length: <= 405 })
 			{
 				return null;
 			}
@@ -469,14 +464,6 @@ namespace Sudoku.Data
 				{
 					return null;
 				}
-
-				#region Obsolete code
-				//string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
-				//if (matches.Length != 81)
-				//{
-				//	return null;
-				//}
-				#endregion
 
 				var result = Grid.Empty.Clone();
 				for (int offset = 0; offset < 81; offset++)

@@ -78,12 +78,12 @@ namespace Sudoku.Solving.Manual
 		/// <returns>A <see cref="bool"/> value.</returns>
 		private bool SaveStep(ICollection<TechniqueInfo> steps, TechniqueInfo step, Grid cloneation)
 		{
-			foreach (var conclusion in step.Conclusions)
+			foreach (var (t, c, d) in step.Conclusions)
 			{
-				switch (conclusion.ConclusionType)
+				switch (t)
 				{
-					case Assignment when cloneation.GetStatus(conclusion.Cell) == Empty:
-					case Elimination when cloneation.Exists(conclusion.Cell, conclusion.Digit) is true:
+					case Assignment when cloneation.GetStatus(c) == Empty:
+					case Elimination when cloneation.Exists(c, d) is true:
 					{
 						step.ApplyTo(cloneation);
 						steps.Add(step);
