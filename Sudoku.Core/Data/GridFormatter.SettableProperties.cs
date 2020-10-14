@@ -39,7 +39,8 @@
 
 		/// <summary>
 		/// Indicates whether need to handle all grid outlines while outputting.
-		/// See file "How to use 'Grid' class.md" for more information.
+		/// See <a href="https://github.com/Sunnie-Shine/Sudoku/wiki/Grid-Format-String">this link</a>
+		/// for more information.
 		/// </summary>
 		public bool SubtleGridLines { get; set; }
 
