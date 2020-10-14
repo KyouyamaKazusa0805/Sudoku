@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,13 +11,18 @@ using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using S = Sudoku.Data.CellStatus;
 using T = Sudoku.Constants.Throwings;
+#if DEBUG
+using System.Diagnostics;
+#endif
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a basic sudoku grid, which uses mask table to store all information for 81 cells.
 	/// </summary>
+#if DEBUG
 	[DebuggerDisplay("{ToString(\"#0\")}")]
+#endif
 	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid?>, IFormattable
 	{
 		/// <summary>

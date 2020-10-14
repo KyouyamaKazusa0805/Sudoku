@@ -9,6 +9,9 @@ using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using S = Sudoku.Data.CellStatus;
 using T = Sudoku.Constants.Throwings;
+#if DEBUG
+using System.Diagnostics;
+#endif
 
 namespace Sudoku.Data
 {
@@ -17,6 +20,9 @@ namespace Sudoku.Data
 	/// but use <see langword="struct"/> instead of <see langword="class"/>.
 	/// </summary>
 	/// <seealso cref="Grid"/>
+#if DEBUG
+	[DebuggerDisplay("{ToString(\"#0\")}")]
+#endif
 	public unsafe partial struct ValueGrid : IEnumerable<short>, IEquatable<ValueGrid>, IFormattable
 	{
 		/// <summary>
