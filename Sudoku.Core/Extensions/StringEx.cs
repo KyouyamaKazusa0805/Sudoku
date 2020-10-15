@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.Constants;
 using static System.StringSplitOptions;
 
 namespace Sudoku.Extensions
@@ -209,6 +210,17 @@ namespace Sudoku.Extensions
 				return false;
 			}
 		}
+
+		/// <summary>
+		/// Trim all spaces when they started a new line, or null lines.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <returns>The trimmed result.</returns>
+		/// <remarks>
+		/// Note that all null lines and header spaces are removed.
+		/// </remarks>
+		public static string TrimVerbatim(this string @this) =>
+			Regex.Replace(@this, RegularExpressions.NullLinesOrHeaderSpaces, string.Empty);
 
 		/// <summary>
 		/// Trim new-line characters from the tail of the string.
