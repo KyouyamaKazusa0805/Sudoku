@@ -75,9 +75,6 @@ namespace Sudoku.Data
 		/// </list>
 		/// </para>
 		/// </remarks>
-		/// <permission cref="PermissionSet">
-		/// The current project or the derived class can access this field.
-		/// </permission>
 		/// <seealso cref="S"/>
 		protected internal readonly short[] _masks;
 
@@ -86,9 +83,6 @@ namespace Sudoku.Data
 		/// the initial grid. The field won't be modified until this instance
 		/// destructs.
 		/// </summary>
-		/// <permission cref="PermissionSet">
-		/// The current project or the derived class can access this field.
-		/// </permission>
 		/// <seealso cref="_masks"/>
 		protected internal readonly short[] _initialMasks;
 
