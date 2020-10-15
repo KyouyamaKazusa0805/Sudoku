@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Sudoku.Constants;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 #if DEBUG && false
 using System.Diagnostics;
 #endif
@@ -57,11 +60,6 @@ namespace Sudoku.Data
 		/// </remarks>
 		public static readonly SudokuGrid Empty;
 
-		/// <summary>
-		/// Indicates the event triggered when the value is changed.
-		/// </summary>
-		public static readonly delegate* managed<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
-
 
 		/// <summary>
 		/// Indicates the inner array.
@@ -95,13 +93,214 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="StaticConstructor"/>
 		static SudokuGrid()
 		{
+			// Initializes the empty grid.
 			Empty = new();
 			fixed (short* p = Empty._values)
 			{
 				InternalInitialize(p, DefaultMask);
 			}
+
+			// Initializes events.
+			ValueChanged = &OnValueChanged;
+			RecomputeCandidates = &OnRecomputeCandidates;
 		}
 
+
+		/// <summary>
+		/// Indicates the grid has already solved. If the value is <see langword="true"/>,
+		/// the grid is solved; otherwise, <see langword="false"/>.
+		/// </summary>
+		public readonly bool HasSolved
+		{
+			get
+			{
+				for (int i = 0; i < Length; i++)
+				{
+					if (GetStatus(i) == CellStatus.Empty)
+					{
+						return false;
+					}
+				}
+
+				return SimplyValidate();
+			}
+		}
+
+		/// <summary>
+		/// Indicates the number of total candidates.
+		/// </summary>
+		public readonly int CandidatesCount
+		{
+			get
+			{
+				int count = 0;
+				for (int i = 0; i < Length; i++)
+				{
+					if (GetStatus(i) == CellStatus.Empty)
+					{
+						count += GetCandidateMask(i).PopCount();
+					}
+				}
+
+				return count;
+			}
+		}
+
+		/// <summary>
+		/// Indicates the total number of given cells.
+		/// </summary>
+		public readonly int GivensCount => Triplet.C;
+
+		/// <summary>
+		/// Indicates the total number of modifiable cells.
+		/// </summary>
+		public readonly int ModifiablesCount => Triplet.B;
+
+		/// <summary>
+		/// Indicates the total number of empty cells.
+		/// </summary>
+		public readonly int EmptiesCount => Triplet.A;
+
+		/// <summary>
+		/// The triplet of three main information.
+		/// </summary>
+		private readonly (int A, int B, int C) Triplet
+		{
+			get
+			{
+				int a = 0, b = 0, c = 0;
+				for (int i = 0; i < Length; i++)
+				{
+					(
+						*(
+							GetStatus(i) switch
+							{
+								CellStatus.Empty => &a,
+								CellStatus.Modifiable => &b,
+								CellStatus.Given => &c,
+								_ => throw Throwings.ImpossibleCase
+							}
+						)
+					)++;
+				}
+
+				return (a, b, c);
+			}
+		}
+
+
+		/// <summary>
+		/// Gets or sets the value in the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell you want to get or set a value.</param>
+		/// <value>The value you want to set.</value>
+		/// <returns>The value that the cell filled with.</returns>
+		[IndexerName("Value")]
+		public int this[int cell]
+		{
+			readonly get => GetStatus(cell) switch
+			{
+				CellStatus.Empty => -1,
+				CellStatus.Modifiable or CellStatus.Given => (~_values[cell]).FindFirstSet(),
+				_ => throw Throwings.ImpossibleCase
+			};
+			set
+			{
+				switch (value)
+				{
+					case -1 when GetStatus(cell) == CellStatus.Modifiable:
+					{
+						// If 'value' is -1, we should reset the grid.
+						// Note that reset candidates may not trigger the event.
+						_values[cell] = DefaultMask;
+						RecomputeCandidates(ref this);
+
+						break;
+					}
+					case >= 0 and < 9:
+					{
+						ref short result = ref _values[cell];
+						short copy = result;
+
+						// Set cell status to 'CellStatus.Modifiable'.
+						result = (short)((short)CellStatus.Modifiable << 9 | MaxCandidatesMask & ~(1 << value));
+
+						// To trigger the event, which is used for eliminate
+						// all same candidates in peer cells.
+						ValueChanged(ref this, new(cell, copy, result, value));
+
+						break;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets a candidate existence case with a <see cref="bool"/> value.
+		/// </summary>
+		/// <param name="cell">The cell offset between 0 and 80.</param>
+		/// <param name="digit">The digit between 0 and 8.</param>
+		/// <value>
+		/// The case you want to set. <see langword="true"/> means that this candidate
+		/// doesn't exist in this current sudoku grid; otherwise, <see langword="false"/>.
+		/// </value>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[IndexerName("Value")]
+		public bool this[int cell, int digit]
+		{
+			readonly get => (_values[cell] >> digit & 1) != 0;
+			set
+			{
+				ref short result = ref _values[cell];
+				short copy = result;
+				if (value)
+				{
+					result |= (short)(1 << digit);
+				}
+				else
+				{
+					result &= (short)~(1 << digit);
+				}
+
+				// To trigger the event.
+				ValueChanged(ref this, new(cell, copy, result, -1));
+			}
+		}
+
+
+		/// <summary>
+		/// Check whether the current grid is valid (no duplicate values on same row, column or block).
+		/// </summary>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		public readonly bool SimplyValidate()
+		{
+			for (int i = 0, count = 0; i < Length; i++)
+			{
+				switch (GetStatus(i))
+				{
+					case CellStatus.Given: /*fallthrough*/
+					{
+						count++;
+						goto case CellStatus.Modifiable;
+					}
+					case CellStatus.Modifiable:
+					{
+						int curDigit = this[i];
+						foreach (int cell in PeerMaps[i])
+						{
+							if (curDigit == this[cell])
+							{
+								return false;
+							}
+						}
+
+						break;
+					}
+				}
+			}
+
+			return true;
+		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override readonly bool Equals(object? obj) => obj is SudokuGrid other && Equals(other);
@@ -132,6 +331,53 @@ namespace Sudoku.Data
 				_ => ToString(".+:").GetHashCode()
 			};
 
+		/// <summary>
+		/// Serializes this instance to an array, where all digit value will be stored.
+		/// </summary>
+		/// <returns>
+		/// This array. All elements are between 0 to 9, where 0 means the
+		/// cell is <see cref="CellStatus.Empty"/> now.
+		/// </returns>
+		public readonly int[] ToArray()
+		{
+			var span = (stackalloc int[Length]);
+			for (int i = 0; i < Length; i++)
+			{
+				// 'this[i]' is always in range -1 to 8 (-1 is empty, and 0 to 8 is 1 to 9 for
+				// mankind representation).
+				span[i] = this[i] + 1;
+			}
+
+			return span.ToArray();
+		}
+
+		/// <summary>
+		/// Get a mask at the specified cell.
+		/// </summary>
+		/// <param name="offset">The cell offset you want to get.</param>
+		/// <returns>The mask.</returns>
+		public readonly short GetMask(int offset) => _values[offset];
+
+		/// <summary>
+		/// Get the candidate mask part of the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell offset you want to get.</param>
+		/// <returns>
+		/// <para>The candidate mask.</para>
+		/// <para>
+		/// The return value is a 9-bit <see cref="short"/>
+		/// value, where the bit will be <c>0</c> if the corresponding digit <b>doesn't exist</b> in the cell,
+		/// and will be <c>1</c> if the corresponding contains this digit (either the cell
+		/// is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
+		/// </para>
+		/// </returns>
+		/// <remarks>
+		/// Please note that the grid masks is represented with bits, where 0 is for the digit containing in a
+		/// cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
+		/// 1 is for containing and 0 is for <b>not</b>.
+		/// </remarks>
+		public readonly short GetCandidateMask(int cell) => (short)(~_values[cell] & MaxCandidatesMask);
+
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString() => ToString(null, null);
 
@@ -150,6 +396,20 @@ namespace Sudoku.Data
 			throw new NotImplementedException();
 		}
 
+		/// <summary>
+		/// Get the cell status at the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <returns>The cell status.</returns>
+		public readonly CellStatus GetStatus(int cell) => (CellStatus)(_values[cell] >> 9 & (int)CellStatus.All);
+
+		/// <summary>
+		/// Get all candidates containing in the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell you want to get.</param>
+		/// <returns>All candidates.</returns>
+		public readonly IEnumerable<int> GetCandidates(int cell) => GetCandidateMask(cell).GetAllSets();
+
 		/// <inheritdoc/>
 		public readonly IEnumerator<short> GetEnumerator()
 		{
@@ -162,6 +422,228 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+		/// <summary>
+		/// To fix the current grid (all modifiable values will be changed to given ones).
+		/// </summary>
+		public void Fix()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// To unfix the current grid (all given values will be chanegd to modifiable ones).
+		/// </summary>
+		public void Unfix()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// To reset the grid to iniatial status.
+		/// </summary>
+		public void Reset()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Set the specified cell to the specified status.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <param name="status">The status.</param>
+		public void SetStatus(int cell, CellStatus status)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Set the specified cell to the specified mask.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <param name="mask">The status.</param>
+		public void SetMask(int cell, short mask)
+		{
+			throw new NotImplementedException();
+		}
+
+
+		/// <summary>
+		/// <para>
+		/// Parses a string value and converts to this type.
+		/// </para>
+		/// <para>
+		/// If you want to parse a PM grid, we recommend you use the method
+		/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
+		/// </para>
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
+		/// <seealso cref="Parse(string, GridParsingOption)"/>
+		public static ref SudokuGrid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
+
+		/// <summary>
+		/// <para>
+		/// Parses a string value and converts to this type.
+		/// </para>
+		/// <para>
+		/// If you want to parse a PM grid, we recommend you use the method
+		/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
+		/// </para>
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
+		/// <seealso cref="Parse(string, GridParsingOption)"/>
+		public static ref SudokuGrid Parse(string str) => new GridParser(str).Parse();
+
+		/// <summary>
+		/// <para>
+		/// Parses a string value and converts to this type.
+		/// </para>
+		/// <para>
+		/// If you want to parse a PM grid, you should decide the mode to parse.
+		/// If you use compatible mode to parse, all single values will be treated as
+		/// given values; otherwise, recommended mode, which uses '<c>&lt;d&gt;</c>'
+		/// or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
+		/// will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
+		/// </para>
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <param name="compatibleFirst">
+		/// Indicates whether the parsing operation should use compatible mode to check
+		/// PM grid. See <see cref="GridParser.CompatibleFirst"/> to learn more.
+		/// </param>
+		/// <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
+		/// <seealso cref="GridParser.CompatibleFirst"/>
+		public static ref SudokuGrid Parse(string str, bool compatibleFirst) =>
+			new GridParser(str, compatibleFirst).Parse();
+
+		/// <summary>
+		/// Parses a string value and converts to this type,
+		/// using a specified grid parsing type.
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <param name="gridParsingOption">The grid parsing type.</param>
+		/// <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
+		public static ref SudokuGrid Parse(string str, GridParsingOption gridParsingOption) =>
+			new GridParser(str).Parse(gridParsingOption);
+
+		/// <summary>
+		/// Try to parse a string and converts to this type, and returns a
+		/// <see cref="bool"/> value indicating the result of the conversion.
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <param name="result">
+		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
+		/// this argument will be <see cref="Undefined"/>.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <seealso cref="Undefined"/>
+		public static bool TryParse(string str, out SudokuGrid result)
+		{
+			try
+			{
+				result = Parse(str);
+				return true;
+			}
+			catch
+			{
+				result = Undefined;
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Try to parse a string and converts to this type, and returns a
+		/// <see cref="bool"/> value indicating the result of the conversion.
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <param name="gridParsingOption">The grid parsing type.</param>
+		/// <param name="result">
+		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
+		/// this argument will be <see cref="Undefined"/>.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <seealso cref="Undefined"/>
+		public static bool TryParse(string str, GridParsingOption gridParsingOption, out SudokuGrid result)
+		{
+			try
+			{
+				result = Parse(str, gridParsingOption);
+				return true;
+			}
+			catch
+			{
+				result = Undefined;
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Creates an instance using grid values.
+		/// </summary>
+		/// <param name="gridValues">The array of grid values.</param>
+		/// <returns>The result instance.</returns>
+		public static SudokuGrid CreateInstance(int[] gridValues)
+		{
+			var result = Empty;
+			for (int i = 0; i < Length; i++)
+			{
+				if (gridValues[i] is var value and not 0)
+				{
+					// Calls the indexer to trigger the event
+					// (Clear the candidates in peer cells).
+					result[i] = value - 1;
+
+					// Set the status to 'CellStatus.Given'.
+					result.SetStatus(i, CellStatus.Given);
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Delete or set a value on the specified grid.
+		/// </summary>
+		/// <param name="this">(<see langword="ref"/> parameter) The grid.</param>
+		/// <param name="e">(<see langword="in"/> parameter) The event arguments.</param>
+		private static void OnValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
+		{
+			if ((e.Cell, e.SetValue) is (var cell, var setValue and not -1))
+			{
+				foreach (int peerCell in PeerMaps[cell])
+				{
+					if (@this.GetStatus(peerCell) == CellStatus.Empty)
+					{
+						@this._values[peerCell] |= (short)(1 << setValue);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Re-compute candidates.
+		/// </summary>
+		/// <param name="this">The grid.</param>
+		public static void OnRecomputeCandidates(ref SudokuGrid @this)
+		{
+			for (int i = 0; i < Length; i++)
+			{
+				if (@this.GetStatus(i) == CellStatus.Empty)
+				{
+					short mask = 0;
+					foreach (int cell in PeerMaps[i])
+					{
+						if (@this[cell] is var digit and not -1)
+						{
+							mask |= (short)(1 << digit);
+						}
+					}
+
+					@this._values[i] = (short)(DefaultMask | mask);
+				}
+			}
+		}
 
 		/// <summary>
 		/// Internal copy.
@@ -194,9 +676,9 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(SudokuGrid left, SudokuGrid right) => left.Equals(right);
+		public static bool operator ==(in SudokuGrid left, in SudokuGrid right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(SudokuGrid left, SudokuGrid right) => !(left == right);
+		public static bool operator !=(in SudokuGrid left, in SudokuGrid right) => !(left == right);
 	}
 }
