@@ -479,7 +479,7 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
-		public static ref SudokuGrid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
+		public static ref SudokuGrid Parse(ReadOnlySpan<char> str) => ref new GridParser(str.ToString()).Parse();
 
 		/// <summary>
 		/// <para>
@@ -493,7 +493,7 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
-		public static ref SudokuGrid Parse(string str) => new GridParser(str).Parse();
+		public static ref SudokuGrid Parse(string str) => ref new GridParser(str).Parse();
 
 		/// <summary>
 		/// <para>
@@ -515,7 +515,7 @@ namespace Sudoku.Data
 		/// <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
 		/// <seealso cref="GridParser.CompatibleFirst"/>
 		public static ref SudokuGrid Parse(string str, bool compatibleFirst) =>
-			new GridParser(str, compatibleFirst).Parse();
+			ref new GridParser(str, compatibleFirst).Parse();
 
 		/// <summary>
 		/// Parses a string value and converts to this type,
@@ -525,7 +525,7 @@ namespace Sudoku.Data
 		/// <param name="gridParsingOption">The grid parsing type.</param>
 		/// <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
 		public static ref SudokuGrid Parse(string str, GridParsingOption gridParsingOption) =>
-			new GridParser(str).Parse(gridParsingOption);
+			ref new GridParser(str).Parse(gridParsingOption);
 
 		/// <summary>
 		/// Try to parse a string and converts to this type, and returns a
