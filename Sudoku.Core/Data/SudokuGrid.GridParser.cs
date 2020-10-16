@@ -385,8 +385,7 @@ namespace Sudoku.Data
 							// which is modifiable value in the grid in its corresponding position.
 							if (i < length - 1)
 							{
-								char nextChar = match[i + 1];
-								if (nextChar is >= '1' and <= '9')
+								if (match[i + 1] is var nextChar and >= '1' and <= '9')
 								{
 									// Set value.
 									// Note that the subtracter is character '1', not '0'.
