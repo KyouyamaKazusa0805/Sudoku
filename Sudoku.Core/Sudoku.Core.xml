@@ -3063,6 +3063,11 @@
             Indicates the inner array.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.SudokuGrid._initialValues">
+            <summary>
+            Indicates the inner array suggests the initial grid.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int16*,System.Int32)">
             <summary>
             Initializes an instance with the specified mask list and the length.
@@ -3237,7 +3242,7 @@
             Set the specified cell to the specified mask.
             </summary>
             <param name="cell">The cell.</param>
-            <param name="mask">The status.</param>
+            <param name="mask">The mask to set.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char})">
             <summary>

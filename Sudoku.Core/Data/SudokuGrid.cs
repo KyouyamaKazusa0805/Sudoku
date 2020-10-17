@@ -66,6 +66,11 @@ namespace Sudoku.Data
 		/// </summary>
 		private fixed short _values[Length];
 
+		/// <summary>
+		/// Indicates the inner array suggests the initial grid.
+		/// </summary>
+		private fixed short _initialValues[Length];
+
 
 		/// <summary>
 		/// Initializes an instance with the specified mask list and the length.
@@ -83,9 +88,10 @@ namespace Sudoku.Data
 			_ = masks == null ? throw new ArgumentNullException(nameof(masks)) : masks;
 			_ = length != Length ? throw new ArgumentException($"The specified argument should be {Length}.", nameof(length)) : length;
 
-			fixed (short* arr = _values)
+			fixed (short* pValues = _values, pInitialValues = _initialValues)
 			{
-				InternalCopy(arr, masks);
+				InternalCopy(pValues, masks);
+				InternalCopy(pInitialValues, masks);
 			}
 		}
 
@@ -421,7 +427,18 @@ namespace Sudoku.Data
 		/// </summary>
 		public void Fix()
 		{
-			throw new NotImplementedException();
+			for (int i = 0; i < 81; i++)
+			{
+				if (GetStatus(i) == CellStatus.Modifiable)
+				{
+					SetStatus(i, CellStatus.Given);
+				}
+			}
+
+			fixed (short* pValues = _values, pInitialValues = _initialValues)
+			{
+				InternalCopy(pInitialValues, pValues);
+			}
 		}
 
 		/// <summary>
@@ -429,7 +446,13 @@ namespace Sudoku.Data
 		/// </summary>
 		public void Unfix()
 		{
-			throw new NotImplementedException();
+			for (int i = 0; i < 81; i++)
+			{
+				if (GetStatus(i) == CellStatus.Given)
+				{
+					SetStatus(i, CellStatus.Modifiable);
+				}
+			}
 		}
 
 		/// <summary>
@@ -437,7 +460,10 @@ namespace Sudoku.Data
 		/// </summary>
 		public void Reset()
 		{
-			throw new NotImplementedException();
+			fixed (short* pValues = _values, pInitialValues = _initialValues)
+			{
+				InternalCopy(pValues, pInitialValues);
+			}
 		}
 
 		/// <summary>
@@ -447,17 +473,25 @@ namespace Sudoku.Data
 		/// <param name="status">The status.</param>
 		public void SetStatus(int cell, CellStatus status)
 		{
-			throw new NotImplementedException();
+			ref short mask = ref _values[cell];
+			short copy = mask;
+			mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
+
+			ValueChanged(ref this, new(cell, copy, mask, -1));
 		}
 
 		/// <summary>
 		/// Set the specified cell to the specified mask.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
-		/// <param name="mask">The status.</param>
+		/// <param name="mask">The mask to set.</param>
 		public void SetMask(int cell, short mask)
 		{
-			throw new NotImplementedException();
+			ref short m = ref _values[cell];
+			short copy = m;
+			m = mask;
+
+			ValueChanged(ref this, new(cell, copy, m, -1));
 		}
 
 
