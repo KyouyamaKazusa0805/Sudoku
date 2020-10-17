@@ -12,7 +12,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a bit combination generator.
 	/// </summary>
-	/// <example>
+	/// <remarks>
 	/// You can use this struct like this:
 	/// <code>
 	/// foreach (short mask in new BitCombinationGenerator(9, 3))
@@ -20,7 +20,7 @@ namespace Sudoku.Data
 	///     // Do something to use the mask.
 	/// }
 	/// </code>
-	/// </example>
+	/// </remarks>
 	public ref struct BitCombinationGenerator
 	{
 		/// <summary>

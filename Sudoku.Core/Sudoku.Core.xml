@@ -334,7 +334,7 @@
             <summary>
             Encapsulates a bit combination generator.
             </summary>
-            <example>
+            <remarks>
             You can use this struct like this:
             <code>
             foreach (short mask in new BitCombinationGenerator(9, 3))
@@ -342,7 +342,7 @@
                 // Do something to use the mask.
             }
             </code>
-            </example>
+            </remarks>
         </member>
         <member name="F:Sudoku.Data.BitCombinationGenerator._mask">
             <summary>
