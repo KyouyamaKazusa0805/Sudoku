@@ -6,7 +6,7 @@ using Sudoku.Constants;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
-#if DEBUG && false
+#if DEBUG
 using System.Diagnostics;
 #endif
 
@@ -15,7 +15,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a sudoku grid using value type instead of reference type.
 	/// </summary>
-#if DEBUG && false
+#if DEBUG
 	[DebuggerDisplay("{ToString(\"#0\")}")]
 #endif
 	public unsafe partial struct SudokuGrid : IEnumerable<short>, IEquatable<SudokuGrid>, IFormattable
@@ -102,7 +102,7 @@ namespace Sudoku.Data
 
 			// Initializes events.
 			ValueChanged = &OnValueChanged;
-			RecomputeCandidates = &OnRecomputeCandidates;
+			RefreshingCandidates = &OnRefreshingCandidates;
 		}
 
 
@@ -213,7 +213,7 @@ namespace Sudoku.Data
 						// If 'value' is -1, we should reset the grid.
 						// Note that reset candidates may not trigger the event.
 						_values[cell] = DefaultMask;
-						RecomputeCandidates(ref this);
+						RefreshingCandidates(ref this);
 
 						break;
 					}
@@ -385,16 +385,10 @@ namespace Sudoku.Data
 		public readonly string ToString(string? format) => ToString(format, null);
 
 		/// <inheritdoc/>
-		public readonly string ToString(string? format, IFormatProvider? formatProvider)
-		{
-			if (formatProvider.HasFormatted(this, format, out string? result))
-			{
-				return result;
-			}
-
-			// TODO: Implement this.
-			throw new NotImplementedException();
-		}
+		public readonly string ToString(string? format, IFormatProvider? formatProvider) =>
+			formatProvider.HasFormatted(this, format, out string? result)
+				? result
+				: GridFormatter.Create(format).ToString(this);
 
 		/// <summary>
 		/// Get the cell status at the specified cell.
@@ -625,7 +619,7 @@ namespace Sudoku.Data
 		/// Re-compute candidates.
 		/// </summary>
 		/// <param name="this">The grid.</param>
-		public static void OnRecomputeCandidates(ref SudokuGrid @this)
+		public static void OnRefreshingCandidates(ref SudokuGrid @this)
 		{
 			for (int i = 0; i < Length; i++)
 			{

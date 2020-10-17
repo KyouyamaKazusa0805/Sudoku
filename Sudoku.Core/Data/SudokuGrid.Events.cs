@@ -8,8 +8,8 @@
 		public static delegate* managed<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged { get; }
 
 		/// <summary>
-		/// Indicates the event triggered when should recompute candidates.
+		/// Indicates the event triggered when should re-compute candidates.
 		/// </summary>
-		public static delegate* managed<ref SudokuGrid, void> RecomputeCandidates { get; }
+		public static delegate* managed<ref SudokuGrid, void> RefreshingCandidates { get; }
 	}
 }
