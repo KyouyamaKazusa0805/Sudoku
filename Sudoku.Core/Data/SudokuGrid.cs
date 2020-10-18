@@ -178,17 +178,8 @@ namespace Sudoku.Data
 				int a = 0, b = 0, c = 0;
 				for (int i = 0; i < Length; i++)
 				{
-					(
-						*(
-							GetStatus(i) switch
-							{
-								CellStatus.Empty => &a,
-								CellStatus.Modifiable => &b,
-								CellStatus.Given => &c,
-								_ => throw Throwings.ImpossibleCase
-							}
-						)
-					)++;
+					var s = GetStatus(i);
+					(s == CellStatus.Empty ? ref a : ref s == CellStatus.Modifiable ? ref b : ref c)++;
 				}
 
 				return (a, b, c);
