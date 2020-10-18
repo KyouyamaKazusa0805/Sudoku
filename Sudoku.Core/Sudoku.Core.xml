@@ -4062,6 +4062,14 @@
             <param name="selector">The selector for each set bits.</param>
             <returns>The result list using projection.</returns>
         </member>
+        <member name="M:Sudoku.Extensions.Int16Ex.GetMaskSubsets(System.Int16,System.Int32)">
+            <summary>
+            Simply called <c>.GetAllSets().ToArray().GetSubsets(count)</c>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The mask.</param>
+            <param name="count">The number of set bits you want to take.</param>
+            <returns>The mask subset list.</returns>
+        </member>
         <member name="T:Sudoku.Extensions.Int32Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int32"/>.
@@ -4097,6 +4105,14 @@
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.ReverseBits(System.Int32@)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
+        </member>
+        <member name="M:Sudoku.Extensions.Int32Ex.GetMaskSubsets(System.Int32,System.Int32)">
+            <summary>
+            Simply called <c>.GetAllSets().ToArray().GetSubsets(count)</c>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The mask.</param>
+            <param name="count">The number of set bits you want to take.</param>
+            <returns>The mask subset list.</returns>
         </member>
         <member name="T:Sudoku.Extensions.Int64Ex">
             <summary>

@@ -1,7 +1,6 @@
 ﻿#pragma warning disable IDE0060
 
 using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -19,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				return;
 			}
 
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
+			foreach (int[] digits in mask.GetMaskSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -74,7 +73,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				return;
 			}
 
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
+			foreach (int[] digits in mask.GetMaskSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -120,7 +119,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 		private static partial void CheckType3(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask)
 		{
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
+			foreach (int[] digits in mask.GetMaskSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -203,7 +202,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 		private static partial void CheckType4(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask)
 		{
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
+			foreach (int[] digits in mask.GetMaskSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)

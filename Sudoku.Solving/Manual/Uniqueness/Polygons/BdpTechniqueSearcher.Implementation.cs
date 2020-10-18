@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -32,7 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 
 			// Iterate on each combination.
-			foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
+			foreach (int[] digits in orMask.GetMaskSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
 				foreach (int digit in digits)
@@ -104,7 +103,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 
 			// Iterate on each combination.
-			foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
+			foreach (int[] digits in orMask.GetMaskSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
 				foreach (int digit in digits)
@@ -167,7 +166,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				short currentMask = grid.BitwiseOrMasks(currentMap);
 				short otherMask = grid.BitwiseOrMasks(otherCellsMap);
 
-				foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
+				foreach (int[] digits in orMask.GetMaskSubsets(pattern.IsHeptagon ? 3 : 4))
 				{
 					short tempMask = 0;
 					foreach (int digit in digits)
@@ -284,7 +283,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				// Iterate on each possible digit combination.
 				// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values
 				// are { 1, 2 }, { 2, 3 } and { 1, 3 }.
-				foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
+				foreach (int[] digits in orMask.GetMaskSubsets(pattern.IsHeptagon ? 3 : 4))
 				{
 					short tempMask = 0;
 					foreach (int digit in digits)
@@ -299,8 +298,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					// Iterate on each combination.
 					// Only one digit should be eliminated, and other digits should form a "conjugate region".
 					// In a so-called conjugate region, the digits can only appear in these cells in this region.
-					foreach (int[] combination in
-						(tempMask & orMask).GetAllSets().ToArray().GetSubsets(currentMap.Count - 1))
+					foreach (int[] combination in (tempMask & orMask).GetMaskSubsets(currentMap.Count - 1))
 					{
 						short combinationMask = 0;
 						var combinationMap = GridMap.Empty;

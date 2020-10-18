@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -110,7 +109,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 				var globalElimMap = conclusionList[digit];
 				int mask = candMap.RowMask << 9 | candMap.ColumnMask << 18 | (int)candMap.BlockMask;
-				var baseSetsList = mask.GetAllSets().ToArray().GetSubsets(size);
+				var baseSetsList = mask.GetMaskSubsets(size);
 
 				// Iterate on each combination.
 				foreach (int[] baseSets in baseSetsList)
