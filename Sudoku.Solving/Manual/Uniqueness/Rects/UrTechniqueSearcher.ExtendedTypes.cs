@@ -29,8 +29,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int[] otherCells = otherCellsMap.ToArray();
-			short o1 = grid.GetCandidateMask(otherCells[0]);
-			short o2 = grid.GetCandidateMask(otherCells[1]);
+			short o1 = grid.GetCandidateMask(otherCells[0]), o2 = grid.GetCandidateMask(otherCells[1]);
 			short o = (short)(o1 | o2);
 			if ((o.PopCount(), o1.PopCount(), o2.PopCount(), o1 & comparer, o2 & comparer) is not (4, <= 3, <= 3, not 0, not 0)
 				|| (o & comparer) != comparer)
@@ -263,8 +262,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					foreach (int digit in stackalloc[] { d1, d2 })
 					{
-						if (!IsConjugatePair(digit, new()
-						{ cell, sameRegionCell }, region))
+						if (!IsConjugatePair(digit, new() { cell, sameRegionCell }, region))
 						{
 							continue;
 						}
