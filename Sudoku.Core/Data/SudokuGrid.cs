@@ -16,7 +16,7 @@ namespace Sudoku.Data
 	/// Encapsulates a sudoku grid using value type instead of reference type.
 	/// </summary>
 #if DEBUG
-	[DebuggerDisplay("{ToString(\"#0\")}")]
+	[DebuggerDisplay("{ToString(\"0+:\")}")]
 #endif
 	public unsafe partial struct SudokuGrid : IEnumerable<short>, IEquatable<SudokuGrid>, IFormattable
 	{
@@ -399,7 +399,7 @@ namespace Sudoku.Data
 				return result;
 			}
 
-			var formatter = *GridFormatter.Create(format);
+			var formatter = GridFormatter.Create(format);
 			return format switch
 			{
 				":" => formatter.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations).NullableToString(),

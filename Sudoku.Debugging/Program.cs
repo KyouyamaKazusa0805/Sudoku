@@ -24,9 +24,10 @@ using static System.Console;
 
 #if SUDOKU_GRID_TESTER || true
 var grid = SudokuGrid.Parse("04000900280+91+250600060800+9+5000000+240+6902005073007506+1+90500309+70000+5000200080020+51:711 113 713 317 132 337 437 141 742 143 645 146 156 456 171 473 476 181 782 183 483 185 694");
-WriteLine(grid);
-WriteLine(grid.ToString(".+"));
-WriteLine(grid.ToString("#"));
+WriteLine(grid.CandidatesCount);
+WriteLine(grid.GivensCount);
+WriteLine(grid.ModifiablesCount);
+WriteLine(grid.EmptiesCount);
 #endif
 
 #if FILE_COUNTER || false

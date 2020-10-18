@@ -159,7 +159,7 @@ namespace Sudoku.Data
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <param name="format">The string format.</param>
 			/// <returns>The string.</returns>
-			public readonly string ToString(in SudokuGrid grid, string? format) => Create(format)->ToString(grid);
+			public readonly string ToString(in SudokuGrid grid, string? format) => Create(format).ToString(grid);
 
 			/// <summary>
 			/// To Excel format string.
@@ -168,7 +168,7 @@ namespace Sudoku.Data
 			/// <returns>The string.</returns>
 			private readonly string ToExcelString(in SudokuGrid grid)
 			{
-				var span = $"{grid:0}".AsSpan();
+				var span = grid.ToString("0").AsSpan();
 				var sb = new StringBuilder();
 				for (int i = 0; i < 9; i++)
 				{
@@ -502,7 +502,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="gridOutputOption">The grid output options.</param>
 			/// <returns>The grid formatter.</returns>
-			public static GridFormatter* Create(GridOutputOptions gridOutputOption)
+			public static GridFormatter Create(GridOutputOptions gridOutputOption)
 			{
 				// Special cases.
 				GridFormatter result;
@@ -541,7 +541,7 @@ namespace Sudoku.Data
 				result.Placeholder = gridOutputOption.HasFlagOf(GridOutputOptions.DotPlaceholder) ? '.' : '0';
 
 			Returning:
-				return &result;
+				return result;
 			}
 
 			/// <summary>
@@ -550,7 +550,7 @@ namespace Sudoku.Data
 			/// <param name="format">The format.</param>
 			/// <returns>The grid formatter.</returns>
 			/// <exception cref="FormatException">Throws when the format string is invalid.</exception>
-			public static GridFormatter* Create(string? format)
+			public static GridFormatter Create(string? format)
 			{
 				GridFormatter result = format switch
 				{
@@ -598,7 +598,7 @@ namespace Sudoku.Data
 					_ => throw new FormatException("The specified format is invalid.")
 				};
 
-				return &result;
+				return result;
 			}
 
 			/// <summary>
