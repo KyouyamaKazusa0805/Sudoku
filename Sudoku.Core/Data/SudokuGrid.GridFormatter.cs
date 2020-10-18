@@ -21,8 +21,9 @@ namespace Sudoku.Data
 			/// The multi-line identifier. If the value is <see langword="true"/>, the output will
 			/// be multi-line.
 			/// </param>
-			public GridFormatter(bool multiline) : this('.', false, false, false, false, false, false, false, false) =>
-				Multiline = multiline;
+			public GridFormatter(bool multiline) : this('.', multiline, false, false, false, false, false, false, false)
+			{
+			}
 
 			/// <summary>
 			/// Initialize an instance with the specified information.
@@ -158,7 +159,7 @@ namespace Sudoku.Data
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <param name="format">The string format.</param>
 			/// <returns>The string.</returns>
-			public readonly string ToString(in SudokuGrid grid, string? format) => Create(format).ToString(grid);
+			public readonly string ToString(in SudokuGrid grid, string? format) => Create(format)->ToString(grid);
 
 			/// <summary>
 			/// To Excel format string.
@@ -265,51 +266,36 @@ namespace Sudoku.Data
 			/// <returns>The result.</returns>
 			private readonly string ToSingleLineStringCore(in SudokuGrid grid)
 			{
-				var sb = new StringBuilder();
-				var elims = new StringBuilder();
-				var tempGrid = WithCandidates ? Grid.Parse($"{grid:.+}") : null;
+				StringBuilder sb = new(), elims = new();
+				var tempGrid = WithCandidates ? Parse($"{grid:.+}") : Undefined;
 
-				int offset = 0;
+				int cell = 0;
 				foreach (short value in grid)
 				{
-					switch (GetCellStatus(value))
+					if (GetStatusFromMask(value) is var status && status == CellStatus.Empty
+						&& tempGrid != Undefined && WithCandidates)
 					{
-						case CellStatus.Empty when tempGrid is not null && WithCandidates:
+						// Check if the value has been set 'true'
+						// and the value has already deleted at the grid
+						// with only givens and modifiables.
+						foreach (int i in from i in value where !tempGrid[cell, i] select i)
 						{
-							// Check if the value has been set 'true'
-							// and the value has already deleted at the grid
-							// with only givens and modifiables.
-							foreach (int i in from i in value where !tempGrid[offset, i] select i)
-							{
-								// The value is 'true', which means the digit has already been deleted.
-								elims.Append($"{i + 1}{offset / 9 + 1}{offset % 9 + 1} ");
-							}
-
-							goto case CellStatus.Empty;
-						}
-						case CellStatus.Empty:
-						{
-							sb.Append(Placeholder);
-							break;
-						}
-						case CellStatus.Modifiable:
-						{
-							sb.Append(WithModifiables ? $"+{GetFirstFalseCandidate(value) + 1}" : $"{Placeholder}");
-
-							break;
-						}
-						case CellStatus.Given:
-						{
-							sb.Append($"{GetFirstFalseCandidate(value) + 1}");
-							break;
-						}
-						default:
-						{
-							break;
+							// The value is 'true', which means the digit has already been deleted.
+							elims.Append($"{i + 1}{cell / 9 + 1}{cell % 9 + 1} ");
 						}
 					}
 
-					offset++;
+					sb.Append(
+						status switch
+						{
+							CellStatus.Empty => Placeholder,
+							CellStatus.Modifiable =>
+								WithModifiables ? $"+{GetFirstFalseCandidate(value) + 1}" : $"{Placeholder}",
+							CellStatus.Given => $"{GetFirstFalseCandidate(value) + 1}",
+							_ => throw Throwings.ImpossibleCase
+						});
+
+					cell++;
 				}
 
 				string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFromEnd(1).ToString();
@@ -352,17 +338,18 @@ namespace Sudoku.Data
 						candidatesCount += value.PopCount();
 
 						// Compares the values.
-						int comparer = Math.Max(
-							candidatesCount,
-							GetCellStatus(value) switch
-							{
-								// The output will be '<digit>' and consist of 3 characters.
-								CellStatus.Given => Math.Max(candidatesCount, 3),
-								// The output will be '*digit*' and consist of 3 characters.
-								CellStatus.Modifiable => Math.Max(candidatesCount, 3),
-								// Normal output: 'series' (at least 1 character).
-								_ => candidatesCount,
-							});
+						int comparer =
+							Math.Max(
+								candidatesCount,
+								GetStatusFromMask(value) switch
+								{
+									// The output will be '<digit>' and consist of 3 characters.
+									CellStatus.Given => Math.Max(candidatesCount, 3),
+									// The output will be '*digit*' and consist of 3 characters.
+									CellStatus.Modifiable => Math.Max(candidatesCount, 3),
+									// Normal output: 'series' (at least 1 character).
+									_ => candidatesCount,
+								});
 						if (comparer > maxLength)
 						{
 							maxLength = comparer;
@@ -432,7 +419,7 @@ namespace Sudoku.Data
 									{
 										// Get digit.
 										short value = valuesByRow[i];
-										var cellStatus = GetCellStatus(value);
+										var cellStatus = GetStatusFromMask(value);
 
 										sb
 											.Append(
@@ -514,102 +501,104 @@ namespace Sudoku.Data
 			/// Create a <see cref="GridFormatter"/> according to the specified grid output options.
 			/// </summary>
 			/// <param name="gridOutputOption">The grid output options.</param>
-			/// <returns>(<see langword="ref readonly"/> result) The grid formatter.</returns>
-			public static ref readonly GridFormatter Create(GridOutputOptions gridOutputOption)
+			/// <returns>The grid formatter.</returns>
+			public static GridFormatter* Create(GridOutputOptions gridOutputOption)
 			{
 				// Special cases.
+				GridFormatter result;
 				if (gridOutputOption == GridOutputOptions.Excel)
 				{
-					var span = stackalloc GridFormatter[1] { new(true) { Excel = true } };
-					return ref span[0];
+					result = new(true) { Excel = true };
+					goto Returning;
 				}
 
-				var formatter = new GridFormatter(gridOutputOption.HasFlagOf(GridOutputOptions.Multiline));
-				var resultSpan = stackalloc GridFormatter[1] { formatter };
+				result = new GridFormatter(gridOutputOption.HasFlagOf(GridOutputOptions.Multiline));
 				if (gridOutputOption.HasFlagOf(GridOutputOptions.WithModifiers))
 				{
-					formatter.WithModifiables = true;
+					result.WithModifiables = true;
 				}
 				if (gridOutputOption.HasFlagOf(GridOutputOptions.WithCandidates))
 				{
-					formatter.WithCandidates = true;
+					result.WithCandidates = true;
 				}
 				if (gridOutputOption.HasFlagOf(GridOutputOptions.TreatValueAsGiven))
 				{
-					formatter.TreatValueAsGiven = true;
+					result.TreatValueAsGiven = true;
 				}
 				if (gridOutputOption.HasFlagOf(GridOutputOptions.SubtleGridLines))
 				{
-					formatter.SubtleGridLines = true;
+					result.SubtleGridLines = true;
 				}
 				if (gridOutputOption.HasFlagOf(GridOutputOptions.HodokuCompatible))
 				{
-					formatter.HodokuCompatible = true;
+					result.HodokuCompatible = true;
 				}
 				if (gridOutputOption == GridOutputOptions.Sukaku)
 				{
-					formatter.Sukaku = true;
+					result.Sukaku = true;
 				}
 
-				formatter.Placeholder = gridOutputOption.HasFlagOf(GridOutputOptions.DotPlaceholder) ? '.' : '0';
+				result.Placeholder = gridOutputOption.HasFlagOf(GridOutputOptions.DotPlaceholder) ? '.' : '0';
 
-				return ref resultSpan[0];
+			Returning:
+				return &result;
 			}
 
 			/// <summary>
 			/// Create a <see cref="GridFormatter"/> according to the specified format.
 			/// </summary>
 			/// <param name="format">The format.</param>
-			/// <returns>(<see langword="ref readonly"/> result) The grid formatter.</returns>
-			/// <exception cref="FormatException">
-			/// Throws when the format string is invalid.
-			/// </exception>
-			public static ref readonly GridFormatter Create(string? format)
+			/// <returns>The grid formatter.</returns>
+			/// <exception cref="FormatException">Throws when the format string is invalid.</exception>
+			public static GridFormatter* Create(string? format)
 			{
-				var resultSpan = stackalloc GridFormatter[1]
+				GridFormatter result = format switch
 				{
-					format switch
-					{
-						null or "." => new(false),
-						"+" or ".+" or "+." => new(false) { WithModifiables = true },
-						"0" => new(false) { Placeholder = '0' },
-						":" => new(false) { WithCandidates = true },
-						"!" or ".!" or "!." => new(false) { WithModifiables = true, TreatValueAsGiven = true },
-						"0!" or "!0" => new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
-						".:" => new(false) { WithCandidates = true },
-						"0:" => new(false) { Placeholder = '0', WithCandidates = true },
-						"0+" or "+0" => new(false) { Placeholder = '0', WithModifiables = true },
-						"+:" or "+.:" or ".+:" or "#" or "#." =>
-							new(false) { WithModifiables = true, WithCandidates = true },
-						"0+:" or "+0:" or "#0" =>
-							new(false) { Placeholder = '0', WithModifiables = true, WithCandidates = true },
-						".!:" or "!.:" => new(false) { WithModifiables = true, TreatValueAsGiven = true },
-						"0!:" or "!0:" =>
-							new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
-						"@" or "@." => new(true) { SubtleGridLines = true },
-						"@0" => new(true) { Placeholder = '0', SubtleGridLines = true },
-						"@!" or "@.!" or "@!." => new(true) { TreatValueAsGiven = true, SubtleGridLines = true },
-						"@0!" or "@!0" => new(true) { Placeholder = '0', TreatValueAsGiven = true, SubtleGridLines = true },
-						"@*" or "@.*" or "@*." => new(true),
-						"@0*" or "@*0" => new(true) { Placeholder = '0' },
-						"@!*" or "@*!" => new(true) { TreatValueAsGiven = true },
-						"@:" => new(true) { WithCandidates = true, SubtleGridLines = true },
-						"@:!" or "@!:" =>
-							new(true) { WithCandidates = true, TreatValueAsGiven = true, SubtleGridLines = true },
-						"@*:" or "@:*" => new(true) { WithCandidates = true },
-						"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!" =>
-							new(true) { WithCandidates = true, TreatValueAsGiven = true },
-						"~" or "~0" => new(false) { Sukaku = true, Placeholder = '0' },
-						"~." => new(false) { Sukaku = true },
-						"@~" or "~@" => new(true) { Sukaku = true },
-						"@~0" or "@0~" or "~@0" or "~0@" => new(true) { Sukaku = true, Placeholder = '0' },
-						"@~." or "@.~" or "~@." or "~.@" => new(true) { Sukaku = true },
-						"%" => new(true) { Excel = true },
-						_ => throw new FormatException("The specified format is invalid.")
-					}
+					null or "." => new(false),
+					"+" or ".+" or "+." => new(false) { WithModifiables = true },
+					"0" => new(false) { Placeholder = '0' },
+					":" => new(false) { WithCandidates = true },
+					"!" or ".!" or "!." =>
+						new(false) { WithModifiables = true, TreatValueAsGiven = true },
+					"0!" or "!0" =>
+						new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
+					".:" => new(false) { WithCandidates = true },
+					"0:" => new(false) { Placeholder = '0', WithCandidates = true },
+					"0+" or "+0" => new(false) { Placeholder = '0', WithModifiables = true },
+					"+:" or "+.:" or ".+:" or "#" or "#." =>
+						new(false) { WithModifiables = true, WithCandidates = true },
+					"0+:" or "+0:" or "#0" =>
+						new(false) { Placeholder = '0', WithModifiables = true, WithCandidates = true },
+					".!:" or "!.:" =>
+						new(false) { WithModifiables = true, TreatValueAsGiven = true },
+					"0!:" or "!0:" =>
+						new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
+					"@" or "@." => new(true) { SubtleGridLines = true },
+					"@0" => new(true) { Placeholder = '0', SubtleGridLines = true },
+					"@!" or "@.!" or "@!." =>
+						new(true) { TreatValueAsGiven = true, SubtleGridLines = true },
+					"@0!" or "@!0" =>
+						new(true) { Placeholder = '0', TreatValueAsGiven = true, SubtleGridLines = true },
+					"@*" or "@.*" or "@*." => new(true),
+					"@0*" or "@*0" => new(true) { Placeholder = '0' },
+					"@!*" or "@*!" => new(true) { TreatValueAsGiven = true },
+					"@:" => new(true) { WithCandidates = true, SubtleGridLines = true },
+					"@:!" or "@!:" =>
+						new(true) { WithCandidates = true, TreatValueAsGiven = true, SubtleGridLines = true },
+					"@*:" or "@:*" =>
+						new(true) { WithCandidates = true },
+					"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!" =>
+						new(true) { WithCandidates = true, TreatValueAsGiven = true },
+					"~" or "~0" => new(false) { Sukaku = true, Placeholder = '0' },
+					"~." => new(false) { Sukaku = true },
+					"@~" or "~@" => new(true) { Sukaku = true },
+					"@~0" or "@0~" or "~@0" or "~0@" => new(true) { Sukaku = true, Placeholder = '0' },
+					"@~." or "@.~" or "~@." or "~.@" => new(true) { Sukaku = true },
+					"%" => new(true) { Excel = true },
+					_ => throw new FormatException("The specified format is invalid.")
 				};
 
-				return ref resultSpan[0];
+				return &result;
 			}
 
 			/// <summary>
@@ -625,7 +614,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="value">The value.</param>
 			/// <returns>The cell status.</returns>
-			private static CellStatus GetCellStatus(short value) => (CellStatus)(value >> 9 & (int)CellStatus.All);
+			private static CellStatus GetStatusFromMask(short value) => (CellStatus)(value >> 9 & (int)CellStatus.All);
 		}
 	}
 }

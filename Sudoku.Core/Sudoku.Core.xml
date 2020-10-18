@@ -423,10 +423,11 @@
             </summary>
             <remarks>
             You had better use this field on cases when processing
-            the bitwise operations in a sudoku <see cref="T:Sudoku.Data.Grid"/>.
+            the bitwise operations in a <see cref="T:Sudoku.Data.Grid"/> or <see cref="T:Sudoku.Data.SudokuGrid"/>.
             This field should not be used to process cell status comparison.
             </remarks>
             <seealso cref="M:Sudoku.Data.Grid.GetStatus(System.Int32)"/>
+            <seealso cref="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.ConclusionCollection">
             <summary>
@@ -3255,7 +3256,7 @@
             </para>
             </summary>
             <param name="str">The string.</param>
-            <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
+            <returns>The result instance had converted.</returns>
             <seealso cref="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String)">
@@ -3269,7 +3270,7 @@
             </para>
             </summary>
             <param name="str">The string.</param>
-            <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
+            <returns>The result instance had converted.</returns>
             <seealso cref="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String,System.Boolean)">
@@ -3290,7 +3291,7 @@
             Indicates whether the parsing operation should use compatible mode to check
             PM grid. See <see cref="P:Sudoku.Data.SudokuGrid.GridParser.CompatibleFirst"/> to learn more.
             </param>
-            <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
+            <returns>The result instance had converted.</returns>
             <seealso cref="P:Sudoku.Data.SudokuGrid.GridParser.CompatibleFirst"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)">
@@ -3300,7 +3301,7 @@
             </summary>
             <param name="str">The string.</param>
             <param name="gridParsingOption">The grid parsing type.</param>
-            <returns>(<see langword="ref"/> result) The result instance had converted.</returns>
+            <returns>The result instance had converted.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.TryParse(System.String,Sudoku.Data.SudokuGrid@)">
             <summary>
@@ -3587,17 +3588,15 @@
             Create a <see cref="T:Sudoku.Data.SudokuGrid.GridFormatter"/> according to the specified grid output options.
             </summary>
             <param name="gridOutputOption">The grid output options.</param>
-            <returns>(<see langword="ref readonly"/> result) The grid formatter.</returns>
+            <returns>The grid formatter.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridFormatter.Create(System.String)">
             <summary>
             Create a <see cref="T:Sudoku.Data.SudokuGrid.GridFormatter"/> according to the specified format.
             </summary>
             <param name="format">The format.</param>
-            <returns>(<see langword="ref readonly"/> result) The grid formatter.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the format string is invalid.
-            </exception>
+            <returns>The grid formatter.</returns>
+            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridFormatter.GetFirstFalseCandidate(System.Int16)">
             <summary>
@@ -3606,7 +3605,7 @@
             <param name="value">The value.</param>
             <returns>The first one.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.GridFormatter.GetCellStatus(System.Int16)">
+        <member name="M:Sudoku.Data.SudokuGrid.GridFormatter.GetStatusFromMask(System.Int16)">
             <summary>
             Get cell status for a value.
             </summary>
@@ -3677,14 +3676,14 @@
             Parse the value using multi-line simple grid (without any candidates).
             </summary>
             <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-            <returns>(<see langword="ref"/> result) The result.</returns>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridParser.OnParsingExcel(Sudoku.Data.SudokuGrid.GridParser@)">
             <summary>
             Parse the Excel format.
             </summary>
             <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-            <returns>(<see langword="ref"/> result) The result.</returns>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridParser.OnParsingPencilMarked(Sudoku.Data.SudokuGrid.GridParser@,System.Boolean)">
             <summary>
@@ -3695,28 +3694,28 @@
             The value indicating whether the parsing should treat
             the modifiable values as given ones.
             </param>
-            <returns>(<see langword="ref"/> result) The result.</returns>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridParser.OnParsingSimpleTable(Sudoku.Data.SudokuGrid.GridParser@)">
             <summary>
             Parse the simple table format string (Sudoku explainer format).
             </summary>
             <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-            <returns>(<see langword="ref"/> result) The grid.</returns>
+            <returns>The grid.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridParser.OnParsingSusser(Sudoku.Data.SudokuGrid.GridParser@)">
             <summary>
             Parse the susser format string.
             </summary>
             <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-            <returns>(<see langword="ref"/> result) The result.</returns>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridParser.OnParsingSukaku(Sudoku.Data.SudokuGrid.GridParser@,System.Boolean)">
             <summary>
             Parse the sukaku format string.
             </summary>
             <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-            <returns>(<see langword="ref"/> result) The result.</returns>
+            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.ValueChangedArgs">
             <summary>

@@ -64,10 +64,10 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <returns>(<see langword="ref"/> result) The grid.</returns>
 			/// <exception cref="ArgumentException">Throws when failed to parse.</exception>
-			public ref SudokuGrid Parse()
+			public SudokuGrid Parse()
 			{
 				const int funcsCount = 8;
-				var funcList = stackalloc delegate* managed<ref GridParser, SudokuGrid*>[funcsCount]
+				var funcList = stackalloc delegate* managed<ref GridParser, SudokuGrid>[funcsCount]
 				{
 					&OnParsingSimpleTable,
 					&OnParsingSimpleMultilineGrid,
@@ -80,22 +80,22 @@ namespace Sudoku.Data
 				};
 				for (int trial = 0; trial < funcsCount; trial++)
 				{
-					if (funcList[trial](ref this) is var gridPtr and not null)
+					var grid = funcList[trial](ref this);
+					if (grid != Undefined)
 					{
-						return ref *gridPtr;
+						return grid;
 					}
 				}
 
-				var defaultSpan = stackalloc SudokuGrid[1] { Undefined };
-				return ref defaultSpan[0];
+				return Undefined;
 
-				static SudokuGrid* OnParsingPencilMarked_1(ref GridParser @this) =>
+				static SudokuGrid OnParsingPencilMarked_1(ref GridParser @this) =>
 					OnParsingPencilMarked(ref @this, @this.CompatibleFirst);
-				static SudokuGrid* OnParsingPencilMarked_2(ref GridParser @this) =>
+				static SudokuGrid OnParsingPencilMarked_2(ref GridParser @this) =>
 					OnParsingPencilMarked(ref @this, !@this.CompatibleFirst);
-				static SudokuGrid* OnParsingSukaku_1(ref GridParser @this) =>
+				static SudokuGrid OnParsingSukaku_1(ref GridParser @this) =>
 					OnParsingSukaku(ref @this, @this.CompatibleFirst);
-				static SudokuGrid* OnParsingSukaku_2(ref GridParser @this) =>
+				static SudokuGrid OnParsingSukaku_2(ref GridParser @this) =>
 					OnParsingSukaku(ref @this, !@this.CompatibleFirst);
 			}
 
@@ -104,35 +104,33 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="gridParsingOption">A specified parsing type.</param>
 			/// <returns>(<see langword="ref"/> result) The grid.</returns>
-			public ref SudokuGrid Parse(GridParsingOption gridParsingOption) =>
-				ref *
-				(
-					gridParsingOption switch
-					{
-						GridParsingOption.Susser => OnParsingSusser(ref this),
-						GridParsingOption.Table => OnParsingSimpleMultilineGrid(ref this),
-						GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this, false),
-						GridParsingOption.PencilMarkedTreatSingleAsGiven => OnParsingPencilMarked(ref this, true),
-						GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
-						GridParsingOption.Sukaku => OnParsingSukaku(ref this, false),
-						GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, true),
-						GridParsingOption.Excel => OnParsingExcel(ref this),
-						_ => throw Throwings.ImpossibleCase
-					}
-				);
+			public SudokuGrid Parse(GridParsingOption gridParsingOption) =>
+				gridParsingOption switch
+				{
+					GridParsingOption.Susser => OnParsingSusser(ref this),
+					GridParsingOption.Table => OnParsingSimpleMultilineGrid(ref this),
+					GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this, false),
+					GridParsingOption.PencilMarkedTreatSingleAsGiven => OnParsingPencilMarked(ref this, true),
+					GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
+					GridParsingOption.Sukaku => OnParsingSukaku(ref this, false),
+					GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, true),
+					GridParsingOption.Excel => OnParsingExcel(ref this),
+					_ => throw Throwings.ImpossibleCase
+				};
+
 
 			/// <summary>
 			/// Parse the value using multi-line simple grid (without any candidates).
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-			/// <returns>(<see langword="ref"/> result) The result.</returns>
-			private static SudokuGrid* OnParsingSimpleMultilineGrid(ref GridParser parser)
+			/// <returns>The result.</returns>
+			private static SudokuGrid OnParsingSimpleMultilineGrid(ref GridParser parser)
 			{
 				string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.DigitOrEmptyCell);
 				if (matches.Length is var length && length is not (81 or 85))
 				{
 					// Subtle grid outline will bring 2 '.'s on first line of the grid.
-					return null;
+					return Undefined;
 				}
 
 				var result = Empty;
@@ -153,7 +151,7 @@ namespace Sudoku.Data
 							if (match is '.' or '0')
 							{
 								// '+0' or '+.'? Invalid combination.
-								return null;
+								return Undefined;
 							}
 							else
 							{
@@ -167,31 +165,31 @@ namespace Sudoku.Data
 						{
 							// The sub-match contains more than 2 characters or empty string,
 							// which is invalid.
-							return null;
+							return Undefined;
 						}
 					}
 				}
 
-				return &result;
+				return result;
 			}
 
 			/// <summary>
 			/// Parse the Excel format.
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-			/// <returns>(<see langword="ref"/> result) The result.</returns>
-			private static SudokuGrid* OnParsingExcel(ref GridParser parser)
+			/// <returns>The result.</returns>
+			private static SudokuGrid OnParsingExcel(ref GridParser parser)
 			{
 				string parsingValue = parser.ParsingValue;
 				if (!parsingValue.Contains('\t'))
 				{
-					return null;
+					return Undefined;
 				}
 
 				string[] values = parsingValue.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 				if (values.Length != 9)
 				{
-					return null;
+					return Undefined;
 				}
 
 				var sb = new StringBuilder();
@@ -203,10 +201,7 @@ namespace Sudoku.Data
 					}
 				}
 
-				fixed (SudokuGrid* resultPtr = &SudokuGrid.Parse(sb.ToString()))
-				{
-					return resultPtr;
-				}
+				return SudokuGrid.Parse(sb.ToString());
 			}
 
 			/// <summary>
@@ -217,14 +212,14 @@ namespace Sudoku.Data
 			/// The value indicating whether the parsing should treat
 			/// the modifiable values as given ones.
 			/// </param>
-			/// <returns>(<see langword="ref"/> result) The result.</returns>
-			private static SudokuGrid* OnParsingPencilMarked(ref GridParser parser, bool treatSingleValueAsGiven)
+			/// <returns>The result.</returns>
+			private static SudokuGrid OnParsingPencilMarked(ref GridParser parser, bool treatSingleValueAsGiven)
 			{
 				// Older regular expression pattern:
 				// string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit_Old);
 				if (parser.ParsingValue.MatchAll(RegularExpressions.PmGridUnit) is var matches && matches.Length != 81)
 				{
-					return null;
+					return Undefined;
 				}
 
 				var result = Empty;
@@ -234,7 +229,7 @@ namespace Sudoku.Data
 					if (s.Length is var length && length > 9)
 					{
 						// More than 9 characters.
-						return null;
+						return Undefined;
 					}
 
 					if (treatSingleValueAsGiven)
@@ -280,13 +275,13 @@ namespace Sudoku.Data
 							else
 							{
 								// Illegal characters found.
-								return null;
+								return Undefined;
 							}
 						}
 						else
 						{
 							// The length is not 3.
-							return null;
+							return Undefined;
 						}
 					}
 					else if (s.Contains('*'))
@@ -302,13 +297,13 @@ namespace Sudoku.Data
 							else
 							{
 								// Illegal characters found.
-								return null;
+								return Undefined;
 							}
 						}
 						else
 						{
 							// The length is not 3.
-							return null;
+							return Undefined;
 						}
 					}
 					else if (s.SatisfyPattern(RegularExpressions.PmGridCandidates))
@@ -329,23 +324,23 @@ namespace Sudoku.Data
 					else
 					{
 						// All conditions can't match.
-						return null;
+						return Undefined;
 					}
 				}
 
-				return &result;
+				return result;
 			}
 
 			/// <summary>
 			/// Parse the simple table format string (Sudoku explainer format).
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-			/// <returns>(<see langword="ref"/> result) The grid.</returns>
-			private static SudokuGrid* OnParsingSimpleTable(ref GridParser parser)
+			/// <returns>The grid.</returns>
+			private static SudokuGrid OnParsingSimpleTable(ref GridParser parser)
 			{
 				if (parser.ParsingValue.Match(RegularExpressions.SimpleTable) is var match && match is null)
 				{
-					return null;
+					return Undefined;
 				}
 
 				// Remove all '\r' and '\n'-s.
@@ -363,12 +358,12 @@ namespace Sudoku.Data
 			/// Parse the susser format string.
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-			/// <returns>(<see langword="ref"/> result) The result.</returns>
-			private static SudokuGrid* OnParsingSusser(ref GridParser parser)
+			/// <returns>The result.</returns>
+			private static SudokuGrid OnParsingSusser(ref GridParser parser)
 			{
 				if (parser.ParsingValue.Match(RegularExpressions.Susser) is var match && match is not { Length: <= 405 })
 				{
-					return null;
+					return Undefined;
 				}
 
 				// Step 1: fills all digits.
@@ -404,12 +399,12 @@ namespace Sudoku.Data
 									//	innerException: new ArgumentException(
 									//		message: "The value after the specified argument is not a digit.",
 									//		paramName: nameof(i)));
-									return null;
+									return Undefined;
 								}
 							}
 							else
 							{
-								return null;
+								return Undefined;
 							}
 
 							break;
@@ -445,7 +440,7 @@ namespace Sudoku.Data
 						{
 							// Other invalid characters. Throws an exception.
 							//throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
-							return null;
+							return Undefined;
 						}
 					}
 				}
@@ -461,21 +456,21 @@ namespace Sudoku.Data
 					}
 				}
 
-				return &result;
+				return result;
 			}
 
 			/// <summary>
 			/// Parse the sukaku format string.
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-			/// <returns>(<see langword="ref"/> result) The result.</returns>
-			private static SudokuGrid* OnParsingSukaku(ref GridParser parser, bool compatibleFirst)
+			/// <returns>The result.</returns>
+			private static SudokuGrid OnParsingSukaku(ref GridParser parser, bool compatibleFirst)
 			{
 				if (compatibleFirst)
 				{
 					if (parser.ParsingValue is var parsingValue && parsingValue.Length < 729)
 					{
-						return null;
+						return Undefined;
 					}
 
 					var result = Empty;
@@ -486,7 +481,7 @@ namespace Sudoku.Data
 						{
 							if (*p is var c && c is not (>= '0' and <= '9' or '.'))
 							{
-								return null;
+								return Undefined;
 							}
 
 							if (c is '0' or '.')
@@ -496,14 +491,14 @@ namespace Sudoku.Data
 						}
 					}
 
-					return &result;
+					return result;
 				}
 				else
 				{
 					if (parser.ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit) is var matches
 						&& matches is { Length: not 81 })
 					{
-						return null;
+						return Undefined;
 					}
 
 					var result = Empty;
@@ -512,7 +507,7 @@ namespace Sudoku.Data
 						if (matches[offset].Reserve(RegularExpressions.Digit) is var s && s.Length > 9)
 						{
 							// More than 9 characters.
-							return null;
+							return Undefined;
 						}
 
 						bool[] series = DefaultCheckingArray;
@@ -526,7 +521,7 @@ namespace Sudoku.Data
 						}
 					}
 
-					return &result;
+					return result;
 				}
 			}
 		}
