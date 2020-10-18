@@ -556,8 +556,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="GridParser.CompatibleFirst"/>
-		public static SudokuGrid Parse(string str, bool compatibleFirst) =>
-			new GridParser(str, compatibleFirst).Parse();
+		public static SudokuGrid Parse(string str, bool compatibleFirst) => new GridParser(str, compatibleFirst).Parse();
 
 		/// <summary>
 		/// Parses a string value and converts to this type,

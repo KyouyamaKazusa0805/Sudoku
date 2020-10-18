@@ -62,7 +62,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// To parse the value.
 			/// </summary>
-			/// <returns>(<see langword="ref"/> result) The grid.</returns>
+			/// <returns>The grid.</returns>
 			/// <exception cref="ArgumentException">Throws when failed to parse.</exception>
 			public SudokuGrid Parse()
 			{
@@ -103,7 +103,7 @@ namespace Sudoku.Data
 			/// To parse the value with a specified grid parsing type.
 			/// </summary>
 			/// <param name="gridParsingOption">A specified parsing type.</param>
-			/// <returns>(<see langword="ref"/> result) The grid.</returns>
+			/// <returns>The grid.</returns>
 			public SudokuGrid Parse(GridParsingOption gridParsingOption) =>
 				gridParsingOption switch
 				{
