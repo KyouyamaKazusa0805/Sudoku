@@ -10,6 +10,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
 	partial class XrTechniqueSearcher
 	{
+		/// <summary>
+		/// Check type 1.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">The map of all cells used.</param>
+		/// <param name="extraCells">The extra cells map.</param>
+		/// <param name="normalDigits">The normal digits mask.</param>
+		/// <param name="extraDigit">The extra digit.</param>
 		partial void CheckType1(
 			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			GridMap extraCells, short normalDigits, int extraDigit)
@@ -50,6 +59,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					normalDigits));
 		}
 
+		/// <summary>
+		/// Check type 2.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">The map of all cells used.</param>
+		/// <param name="extraCells">The extra cells map.</param>
+		/// <param name="normalDigits">The normal digits mask.</param>
+		/// <param name="extraDigit">The extra digit.</param>
 		partial void CheckType2(
 			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			GridMap extraCells, short normalDigits, int extraDigit)
@@ -84,6 +102,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					extraDigit));
 		}
 
+		/// <summary>
+		/// Check type 3.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">The map of all cells used.</param>
+		/// <param name="normalDigits">The normal digits mask.</param>
+		/// <param name="extraDigits">The extra digits mask.</param>
+		/// <param name="extraCellsMap">The map of extra cells.</param>
 		partial void CheckType3Naked(
 			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			short normalDigits, short extraDigits, GridMap extraCellsMap)
@@ -162,6 +189,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			}
 		}
 
+		/// <summary>
+		/// Check type 4 and a part of type 1 that
+		/// <see cref="CheckType1(IList{TechniqueInfo}, Grid, GridMap, GridMap, short, int)"/>
+		/// cannot be found.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">The map of all cells used.</param>
+		/// <param name="normalDigits">The normal digits mask.</param>
+		/// <param name="extraCellsMap">The map of extra cells.</param>
 		partial void CheckType14(
 			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
 			short normalDigits, GridMap extraCellsMap)

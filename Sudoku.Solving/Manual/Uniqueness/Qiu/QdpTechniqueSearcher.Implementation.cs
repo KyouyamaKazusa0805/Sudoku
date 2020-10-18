@@ -11,6 +11,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
 	partial class QdpTechniqueSearcher
 	{
+		/// <summary>
+		/// Check type 1.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="isRow">Indicates whether the searching is for rows.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="otherDigitsMask">Other digits mask.</param>
 		partial void CheckType1(
 			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
@@ -73,6 +85,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					elimCell * 9 + extraDigit));
 		}
 
+		/// <summary>
+		/// Check type 2.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="isRow">Indicates whether the searching is for rows.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="otherDigitsMask">Other digits mask.</param>
 		partial void CheckType2(
 			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
@@ -131,6 +155,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					extraDigit));
 		}
 
+		/// <summary>
+		/// Check type 3.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="isRow">Indicates whether the searching is for rows.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="otherDigitsMask">Other digits mask.</param>
 		partial void CheckType3(
 			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
@@ -213,6 +249,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 		}
 
+		/// <summary>
+		/// Check type 4.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="isRow">Indicates whether the searching is for rows.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
+		/// <param name="comparer">The mask comparer.</param>
 		partial void CheckType4(
 			IList<TechniqueInfo> accumulator, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer)
@@ -288,6 +334,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 		}
 
+		/// <summary>
+		/// Check locked type.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="isRow">Indicates whether the searching is for rows.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
+		/// <param name="comparer">The mask comparer.</param>
 		partial void CheckLockedType(
 			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer)

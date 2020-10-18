@@ -5862,6 +5862,51 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="extraCells">The extra cells map.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraDigit">The extra digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="extraCells">The extra cells map.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraDigit">The extra digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Data.GridMap,System.Int16,System.Int16,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraDigits">The extra digits mask.</param>
+            <param name="extraCellsMap">The map of extra cells.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType14(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Data.GridMap,System.Int16,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 4 and a part of type 1 that
+            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32)"/>
+            cannot be found.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraCellsMap">The map of extra cells.</param>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.Regions">
             <summary>
             The table of regions to traverse.
@@ -6293,6 +6338,54 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="cornerMask1">The corner mask 1.</param>
+            <param name="cornerMask2">The corner mask 2.</param>
+            <param name="centerMask">The center mask.</param>
+            <param name="map">The map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="cornerMask1">The corner mask 1.</param>
+            <param name="cornerMask2">The corner mask 2.</param>
+            <param name="centerMask">The center mask.</param>
+            <param name="map">The map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="cornerMask1">The corner mask 1.</param>
+            <param name="cornerMask2">The corner mask 2.</param>
+            <param name="centerMask">The center mask.</param>
+            <param name="map">The map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="cornerMask1">The corner mask 1.</param>
+            <param name="cornerMask2">The corner mask 2.</param>
+            <param name="centerMask">The center mask.</param>
+            <param name="map">The map.</param>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Quads">
             <summary>
             All combinations in a block.
@@ -6659,6 +6752,73 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Boolean,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,System.Int16,System.Int16)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="isRow">Indicates whether the searching is for rows.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="otherDigitsMask">Other digits mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Boolean,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,System.Int16,System.Int16)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="isRow">Indicates whether the searching is for rows.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="otherDigitsMask">Other digits mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Boolean,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,System.Int16,System.Int16)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="isRow">Indicates whether the searching is for rows.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="otherDigitsMask">Other digits mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},System.Boolean,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,System.Int16)">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="isRow">Indicates whether the searching is for rows.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="comparer">The mask comparer.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.CheckLockedType(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Boolean,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,System.Int16)">
+            <summary>
+            Check locked type.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="isRow">Indicates whether the searching is for rows.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="comparer">The mask comparer.</param>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.BaseLineIterator">
             <summary>
@@ -7032,6 +7192,269 @@
             </summary>
             <param name="urCells">The all UR cells used.</param>
             <returns>The list of highlight cells.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell"></param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckType5(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 5.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell"></param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckType6(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check type 6.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckHidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check hidden UR.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell"></param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check2D(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+2D.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check2B1SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+2B/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check2D1SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+2D/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check3X(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+3X.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell"></param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check3X2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+3X/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell"></param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check3N2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+3N/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell"></param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check3U2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+3U/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell"></param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check3E2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+3E/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell"></param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check4X3SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+4X/3SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check4C3SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Check UR+4C/3SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckWing(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Int32)">
+            <summary>
+            Check UR-XY-Wing, UR-XYZ-Wing and UR-WXYZ-Wing.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="size">The size of the wing to search.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo">
             <summary>
