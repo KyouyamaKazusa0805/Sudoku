@@ -158,17 +158,17 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the total number of given cells.
 		/// </summary>
-		public readonly int GivensCount => Triplet.C;
+		public readonly int GivensCount { [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Triplet.C; }
 
 		/// <summary>
 		/// Indicates the total number of modifiable cells.
 		/// </summary>
-		public readonly int ModifiablesCount => Triplet.B;
+		public readonly int ModifiablesCount { [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Triplet.B; }
 
 		/// <summary>
 		/// Indicates the total number of empty cells.
 		/// </summary>
-		public readonly int EmptiesCount => Triplet.A;
+		public readonly int EmptiesCount { [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Triplet.A; }
 
 		/// <summary>
 		/// The triplet of three main information.
