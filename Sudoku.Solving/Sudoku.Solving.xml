@@ -7204,7 +7204,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell"></param>
+            <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
@@ -7263,7 +7263,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell"></param>
+            <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckType6(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
@@ -7292,7 +7292,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell"></param>
+            <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check2D(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
@@ -7351,7 +7351,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell"></param>
+            <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check3X2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
@@ -7365,7 +7365,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell"></param>
+            <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check3N2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
@@ -7379,7 +7379,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell"></param>
+            <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check3U2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
@@ -7393,7 +7393,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell"></param>
+            <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check3E2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
@@ -7407,7 +7407,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell"></param>
+            <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Check4X3SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo},Sudoku.Data.Grid,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">

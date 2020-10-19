@@ -393,7 +393,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
 		/// <param name="d2">The digit 2 used in UR.</param>
-		/// <param name="cornerCell"></param>
+		/// <param name="cornerCell">The corner cell.</param>
 		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3X(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
@@ -511,7 +511,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
 		/// <param name="d2">The digit 2 used in UR.</param>
-		/// <param name="cornerCell"></param>
+		/// <param name="cornerCell">The corner cell.</param>
 		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3X2SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
@@ -621,7 +621,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
 		/// <param name="d2">The digit 2 used in UR.</param>
-		/// <param name="cornerCell"></param>
+		/// <param name="cornerCell">The corner cell.</param>
 		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3N2SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
@@ -741,7 +741,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
 		/// <param name="d2">The digit 2 used in UR.</param>
-		/// <param name="cornerCell"></param>
+		/// <param name="cornerCell">The corner cell.</param>
 		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3U2SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
@@ -855,7 +855,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
 		/// <param name="d2">The digit 2 used in UR.</param>
-		/// <param name="cornerCell"></param>
+		/// <param name="cornerCell">The corner cell.</param>
 		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3E2SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
