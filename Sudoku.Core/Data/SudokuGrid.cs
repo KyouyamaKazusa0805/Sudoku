@@ -6,6 +6,7 @@ using Sudoku.Constants;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
+using System.ComponentModel;
 #if DEBUG
 using System.Diagnostics;
 #endif
@@ -83,6 +84,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when <paramref name="length"/> is not 81.
 		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuGrid(short* masks, int length)
 		{
 			_ = masks == null ? throw new ArgumentNullException(nameof(masks)) : masks;
@@ -196,12 +198,15 @@ namespace Sudoku.Data
 		[IndexerName("Value")]
 		public int this[int cell]
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			readonly get => GetStatus(cell) switch
 			{
 				CellStatus.Empty => -1,
 				CellStatus.Modifiable or CellStatus.Given => (~_values[cell]).FindFirstSet(),
 				_ => throw Throwings.ImpossibleCase
 			};
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				switch (value)
@@ -246,7 +251,10 @@ namespace Sudoku.Data
 		[IndexerName("Value")]
 		public bool this[int cell, int digit]
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			readonly get => (_values[cell] >> digit & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				ref short result = ref _values[cell];
@@ -301,14 +309,20 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override readonly bool Equals(object? obj) => obj is SudokuGrid other && Equals(other);
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public override readonly bool Equals(object? obj) => obj is SudokuGrid other && Equals(in other);
 
 		/// <inheritdoc/>
-		public readonly bool Equals(SudokuGrid other)
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly bool Equals(SudokuGrid other) => Equals(in other);
+
+		/// <inheritdoc cref="Equals(SudokuGrid)"/>
+		public readonly bool Equals(in SudokuGrid other)
 		{
-			fixed (short* arr = _values)
+			fixed (short* pThis = _values, pOther = other._values)
 			{
-				for (short* l = arr, r = other._values, i = (short*)0; (int)i < Length; i = (short*)((int)i + 1), l++, r++)
+				for (short* l = pThis, r = pOther, i = (short*)0; (int)i < Length; i = (short*)((int)i + 1), l++, r++)
 				{
 					if (*l != *r)
 					{
@@ -321,6 +335,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc cref="object.GetHashCode"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly int GetHashCode() =>
 			true switch
 			{
@@ -354,6 +369,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="offset">The cell offset you want to get.</param>
 		/// <returns>The mask.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public readonly short GetMask(int offset) => _values[offset];
 
 		/// <summary>
@@ -374,12 +390,15 @@ namespace Sudoku.Data
 		/// cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
 		/// 1 is for containing and 0 is for <b>not</b>.
 		/// </remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public readonly short GetCandidateMask(int cell) => (short)(~_values[cell] & MaxCandidatesMask);
 
 		/// <inheritdoc cref="object.ToString"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public override readonly string ToString() => ToString(null, null);
 
 		/// <inheritdoc cref="Formattable.ToString(string?)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public readonly string ToString(string? format) => ToString(format, null);
 
 		/// <inheritdoc/>
@@ -406,6 +425,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The cell status.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public readonly CellStatus GetStatus(int cell) => (CellStatus)(_values[cell] >> 9 & (int)CellStatus.All);
 
 		/// <summary>
@@ -413,9 +433,11 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cell">The cell you want to get.</param>
 		/// <returns>All candidates.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public readonly IEnumerable<int> GetCandidates(int cell) => GetCandidateMask(cell).GetAllSets();
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly IEnumerator<short> GetEnumerator()
 		{
 			fixed (short* arr = _values)
@@ -425,6 +447,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 		/// <summary>
@@ -463,6 +486,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// To reset the grid to iniatial status.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Reset()
 		{
 			fixed (short* pValues = _values, pInitialValues = _initialValues)
@@ -476,6 +500,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <param name="status">The status.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void SetStatus(int cell, CellStatus status)
 		{
 			ref short mask = ref _values[cell];
@@ -490,6 +515,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <param name="mask">The mask to set.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void SetMask(int cell, short mask)
 		{
 			ref short m = ref _values[cell];
@@ -512,6 +538,7 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public static SudokuGrid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
 
 		/// <summary>
@@ -526,6 +553,7 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public static SudokuGrid Parse(string str) => new GridParser(str).Parse();
 
 		/// <summary>
@@ -547,6 +575,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="GridParser.CompatibleFirst"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public static SudokuGrid Parse(string str, bool compatibleFirst) => new GridParser(str, compatibleFirst).Parse();
 
 		/// <summary>
@@ -556,6 +585,7 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <param name="gridParsingOption">The grid parsing type.</param>
 		/// <returns>The result instance had converted.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuGrid Parse(string str, GridParsingOption gridParsingOption) =>
 			new GridParser(str).Parse(gridParsingOption);
 
@@ -570,6 +600,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="Undefined"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool TryParse(string str, out SudokuGrid result)
 		{
 			try
@@ -596,6 +627,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="Undefined"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool TryParse(string str, GridParsingOption gridParsingOption, out SudokuGrid result)
 		{
 			try
@@ -677,11 +709,22 @@ namespace Sudoku.Data
 			}
 		}
 
+#if DEBUG
 		/// <summary>
 		/// Internal copy.
 		/// </summary>
 		/// <param name="dest">The destination pointer.</param>
 		/// <param name="src">The source pointer.</param>
+		/// <exception cref="ArgumentNullException">
+		/// Throws when <paramref name="dest"/> or <paramref name="src"/> is <see langword="null"/>.
+		/// </exception>
+#else
+		/// <summary>
+		/// Internal copy.
+		/// </summary>
+		/// <param name="dest">The destination pointer.</param>
+		/// <param name="src">The source pointer.</param>
+#endif
 		private static void InternalCopy(short* dest, short* src)
 		{
 #if DEBUG
@@ -692,11 +735,22 @@ namespace Sudoku.Data
 			for (short* p = dest, q = src, i = (short*)0; (int)i < Length; i = (short*)((int)i + 1), *p++ = *q++) ;
 		}
 
+#if DEBUG
 		/// <summary>
 		/// Internal initialize.
 		/// </summary>
 		/// <param name="dest">The destination pointer.</param>
 		/// <param name="value">The value.</param>
+		/// <exception cref="ArgumentNullException">
+		/// Throws when <paramref name="dest"/> is <see langword="null"/>.
+		/// </exception>
+#else
+		/// <summary>
+		/// Internal initialize.
+		/// </summary>
+		/// <param name="dest">The destination pointer.</param>
+		/// <param name="value">The value.</param>
+#endif
 		private static void InternalInitialize(short* dest, short value)
 		{
 #if DEBUG
@@ -708,9 +762,11 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in SudokuGrid left, in SudokuGrid right) => left.Equals(right);
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		public static bool operator ==(in SudokuGrid left, in SudokuGrid right) => left.Equals(in right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
 		public static bool operator !=(in SudokuGrid left, in SudokuGrid right) => !(left == right);
 	}
 }
