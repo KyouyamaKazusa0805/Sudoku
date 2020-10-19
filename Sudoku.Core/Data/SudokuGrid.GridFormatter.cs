@@ -11,7 +11,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Provides operations for grid formatting.
 		/// </summary>
-		private ref struct GridFormatter
+		private readonly ref struct GridFormatter
 		{
 			/// <summary>
 			/// Initializes an instance with a <see cref="bool"/> value
@@ -60,17 +60,17 @@ namespace Sudoku.Data
 			/// <summary>
 			/// The place holder.
 			/// </summary>
-			public char Placeholder { readonly get; set; }
+			public char Placeholder { get; init; }
 
 			/// <summary>
 			/// Indicates whether the output should be multi-line.
 			/// </summary>
-			public readonly bool Multiline { get; }
+			public bool Multiline { get; }
 
 			/// <summary>
 			/// Indicates the output should be with modifiable values.
 			/// </summary>
-			public bool WithModifiables { readonly get; set; }
+			public bool WithModifiables { get; init; }
 
 			/// <summary>
 			/// <para>
@@ -87,7 +87,7 @@ namespace Sudoku.Data
 			/// 'column offset' in order.
 			/// </para>
 			/// </summary>
-			public bool WithCandidates { readonly get; set; }
+			public bool WithCandidates { get; init; }
 
 			/// <summary>
 			/// Indicates the output will treat modifiable values as given ones.
@@ -95,30 +95,30 @@ namespace Sudoku.Data
 			/// If the output is multi-line, the output will use '<c>&lt;digit&gt;</c>' instead
 			/// of '<c>*digit*</c>'.
 			/// </summary>
-			public bool TreatValueAsGiven { readonly get; set; }
+			public bool TreatValueAsGiven { get; init; }
 
 			/// <summary>
 			/// Indicates whether need to handle all grid outlines while outputting.
 			/// See <a href="https://github.com/Sunnie-Shine/Sudoku/wiki/Grid-Format-String">this link</a>
 			/// for more information.
 			/// </summary>
-			public bool SubtleGridLines { readonly get; set; }
+			public bool SubtleGridLines { get; init; }
 
 			/// <summary>
 			/// Indicates whether the output will be compatible with Hodoku library format.
 			/// </summary>
-			public bool HodokuCompatible { readonly get; set; }
+			public bool HodokuCompatible { get; init; }
 
 			/// <summary>
 			/// Indicates the output will be sukaku format (all single-valued digit will
 			/// be all treated as candidates).
 			/// </summary>
-			public bool Sukaku { readonly get; set; }
+			public bool Sukaku { get; init; }
 
 			/// <summary>
 			/// Indicates the output will be Excel format.
 			/// </summary>
-			public bool Excel { readonly get; set; }
+			public bool Excel { get; init; }
 
 
 			/// <summary>
@@ -144,7 +144,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <returns>The string.</returns>
-			public readonly string ToString(in SudokuGrid grid) =>
+			public string ToString(in SudokuGrid grid) =>
 				Sukaku
 					? ToSukakuString(grid)
 					: Multiline
@@ -159,14 +159,14 @@ namespace Sudoku.Data
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <param name="format">The string format.</param>
 			/// <returns>The string.</returns>
-			public readonly string ToString(in SudokuGrid grid, string? format) => Create(format).ToString(grid);
+			public string ToString(in SudokuGrid grid, string? format) => Create(format).ToString(grid);
 
 			/// <summary>
 			/// To Excel format string.
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <returns>The string.</returns>
-			private readonly string ToExcelString(in SudokuGrid grid)
+			private string ToExcelString(in SudokuGrid grid)
 			{
 				var span = grid.ToString("0").AsSpan();
 				var sb = new StringBuilder();
@@ -188,7 +188,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <returns>The string.</returns>
-			private readonly string ToHodokuLibraryFormatString(in SudokuGrid grid) =>
+			private string ToHodokuLibraryFormatString(in SudokuGrid grid) =>
 				$":0000:x:{ToSingleLineStringCore(grid)}:::";
 
 			/// <summary>
@@ -199,7 +199,7 @@ namespace Sudoku.Data
 			/// <exception cref="ArgumentException">
 			/// Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
 			/// </exception>
-			private readonly string ToSukakuString(in SudokuGrid grid)
+			private string ToSukakuString(in SudokuGrid grid)
 			{
 				if (Multiline)
 				{
@@ -264,7 +264,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <returns>The result.</returns>
-			private readonly string ToSingleLineStringCore(in SudokuGrid grid)
+			private string ToSingleLineStringCore(in SudokuGrid grid)
 			{
 				StringBuilder sb = new(), elims = new();
 				var tempGrid = WithCandidates ? Parse($"{grid:.+}") : Undefined;
@@ -307,7 +307,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <returns>The result.</returns>
-			private readonly string ToMultiLineStringCore(in SudokuGrid grid)
+			private string ToMultiLineStringCore(in SudokuGrid grid)
 			{
 				// Step 1: gets the candidates information grouped by columns.
 				var valuesByColumn = DefaultList;
@@ -476,7 +476,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <returns>The result.</returns>
-			private readonly string ToMultiLineSimpleGridCore(in SudokuGrid grid)
+			private string ToMultiLineSimpleGridCore(in SudokuGrid grid)
 			{
 				string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
 				return new StringBuilder()
@@ -502,47 +502,21 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="gridOutputOption">The grid output options.</param>
 			/// <returns>The grid formatter.</returns>
-			public static GridFormatter Create(GridOutputOptions gridOutputOption)
-			{
-				// Special cases.
-				GridFormatter result;
-				if (gridOutputOption == GridOutputOptions.Excel)
+			public static GridFormatter Create(GridOutputOptions gridOutputOption) =>
+				gridOutputOption switch
 				{
-					result = new(true) { Excel = true };
-					goto Returning;
-				}
-
-				result = new GridFormatter(gridOutputOption.HasFlagOf(GridOutputOptions.Multiline));
-				if (gridOutputOption.HasFlagOf(GridOutputOptions.WithModifiers))
-				{
-					result.WithModifiables = true;
-				}
-				if (gridOutputOption.HasFlagOf(GridOutputOptions.WithCandidates))
-				{
-					result.WithCandidates = true;
-				}
-				if (gridOutputOption.HasFlagOf(GridOutputOptions.TreatValueAsGiven))
-				{
-					result.TreatValueAsGiven = true;
-				}
-				if (gridOutputOption.HasFlagOf(GridOutputOptions.SubtleGridLines))
-				{
-					result.SubtleGridLines = true;
-				}
-				if (gridOutputOption.HasFlagOf(GridOutputOptions.HodokuCompatible))
-				{
-					result.HodokuCompatible = true;
-				}
-				if (gridOutputOption == GridOutputOptions.Sukaku)
-				{
-					result.Sukaku = true;
-				}
-
-				result.Placeholder = gridOutputOption.HasFlagOf(GridOutputOptions.DotPlaceholder) ? '.' : '0';
-
-			Returning:
-				return result;
-			}
+					GridOutputOptions.Excel => new(true) { Excel = true },
+					_ => new GridFormatter(gridOutputOption.HasFlagOf(GridOutputOptions.Multiline))
+					{
+						WithModifiables = gridOutputOption.HasFlagOf(GridOutputOptions.WithModifiers),
+						WithCandidates = gridOutputOption.HasFlagOf(GridOutputOptions.WithCandidates),
+						TreatValueAsGiven = gridOutputOption.HasFlagOf(GridOutputOptions.TreatValueAsGiven),
+						SubtleGridLines = gridOutputOption.HasFlagOf(GridOutputOptions.SubtleGridLines),
+						HodokuCompatible = gridOutputOption.HasFlagOf(GridOutputOptions.HodokuCompatible),
+						Sukaku = gridOutputOption == GridOutputOptions.Sukaku,
+						Placeholder = gridOutputOption.HasFlagOf(GridOutputOptions.DotPlaceholder) ? '.' : '0'
+					}
+				};
 
 			/// <summary>
 			/// Create a <see cref="GridFormatter"/> according to the specified format.
