@@ -1571,8 +1571,6 @@
             which represents 81 bits. <see cref="F:Sudoku.Data.GridMap._high"/> represent the higher
             40 bits and <see cref="F:Sudoku.Data.GridMap._low"/> represents the lower 41 bits.
             </summary>
-            <seealso cref="F:Sudoku.Data.GridMap._low"/>
-            <seealso cref="F:Sudoku.Data.GridMap._high"/>
         </member>
         <member name="F:Sudoku.Data.GridMap._low">
             <summary>
@@ -1580,8 +1578,6 @@
             which represents 81 bits. <see cref="F:Sudoku.Data.GridMap._high"/> represent the higher
             40 bits and <see cref="F:Sudoku.Data.GridMap._low"/> represents the lower 41 bits.
             </summary>
-            <seealso cref="F:Sudoku.Data.GridMap._low"/>
-            <seealso cref="F:Sudoku.Data.GridMap._high"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32)">
             <summary>

@@ -153,103 +153,104 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int cell in stackalloc[] { corner1, corner2 })
 			{
-				int sameRegionCell = GetSameRegionCell(cell, otherCellsMap, out var regions);
-				if (sameRegionCell == -1)
+				foreach (int otherCell in otherCellsMap)
 				{
-					continue;
-				}
-
-				foreach (int region in regions)
-				{
-					if (region < 9)
+					if (!IsSameRegionCell(cell, otherCell, out var regions))
 					{
 						continue;
 					}
 
-					foreach (int digit in stackalloc[] { d1, d2 })
+					foreach (int region in regions)
 					{
-						if (!IsConjugatePair(digit, new()
-						{ cell, sameRegionCell }, region))
+						if (region < 9)
 						{
 							continue;
 						}
 
-						int elimCell = new GridMap(otherCellsMap) { ~sameRegionCell }.First;
-						if (grid.Exists(sameRegionCell, digit) is not true)
+						foreach (int digit in stackalloc[] { d1, d2 })
 						{
-							continue;
-						}
-
-						int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
-						var conclusions = new List<Conclusion>();
-						if (grid.Exists(elimCell, elimDigit) is true)
-						{
-							conclusions.Add(new(Elimination, elimCell, elimDigit));
-						}
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
-
-						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int urCell in urCells)
-						{
-							if (urCell == corner1 || urCell == corner2)
+							if (!IsConjugatePair(digit, new() { cell, otherCell }, region))
 							{
-								if (new GridMap { urCell, sameRegionCell }.CoveredRegions.Contains(region))
-								{
-									foreach (int d in grid.GetCandidates(urCell))
-									{
-										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
-									}
-								}
-								else
-								{
-									foreach (int d in grid.GetCandidates(urCell))
-									{
-										candidateOffsets.Add(new(0, urCell * 9 + d));
-									}
-								}
+								continue;
 							}
-							else if (urCell == sameRegionCell || urCell == elimCell)
+
+							int elimCell = new GridMap(otherCellsMap) { ~otherCell }.First;
+							if (grid.Exists(otherCell, digit) is not true)
 							{
-								void record(int d)
+								continue;
+							}
+
+							int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
+							var conclusions = new List<Conclusion>();
+							if (grid.Exists(elimCell, elimDigit) is true)
+							{
+								conclusions.Add(new(Elimination, elimCell, elimDigit));
+							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							var candidateOffsets = new List<DrawingInfo>();
+							foreach (int urCell in urCells)
+							{
+								if (urCell == corner1 || urCell == corner2)
 								{
-									if (grid.Exists(urCell, d) is true)
+									if (new GridMap { urCell, otherCell }.CoveredRegions.Contains(region))
 									{
-										if (urCell != elimCell || d != elimDigit)
+										foreach (int d in grid.GetCandidates(urCell))
 										{
-											candidateOffsets.Add(
-												new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
+											candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										}
+									}
+									else
+									{
+										foreach (int d in grid.GetCandidates(urCell))
+										{
+											candidateOffsets.Add(new(0, urCell * 9 + d));
 										}
 									}
 								}
-
-								record(d1);
-								record(d2);
-							}
-						}
-
-						if (!_allowIncompleteUr && candidateOffsets.Count != 7)
-						{
-							continue;
-						}
-
-						accumulator.Add(
-							new UrPlusTechniqueInfo(
-								conclusions,
-								new View[]
+								else if (urCell == otherCell || urCell == elimCell)
 								{
-									new(
-										arMode ? GetHighlightCells(urCells) : null,
-										candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
-								},
-								Plus2B1SL,
-								d1,
-								d2,
-								urCells,
-								arMode,
-								new ConjugatePair[] { new(cell, sameRegionCell, digit) }));
+									void record(int d)
+									{
+										if (grid.Exists(urCell, d) is true)
+										{
+											if (urCell != elimCell || d != elimDigit)
+											{
+												candidateOffsets.Add(
+													new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
+											}
+										}
+									}
+
+									record(d1);
+									record(d2);
+								}
+							}
+
+							if (!_allowIncompleteUr && candidateOffsets.Count != 7)
+							{
+								continue;
+							}
+
+							accumulator.Add(
+								new UrPlusTechniqueInfo(
+									conclusions,
+									new View[]
+									{
+										new(
+											arMode ? GetHighlightCells(urCells) : null,
+											candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
+									},
+									Plus2B1SL,
+									d1,
+									d2,
+									urCells,
+									arMode,
+									new ConjugatePair[] { new(cell, otherCell, digit) }));
+						}
 					}
 				}
 			}
@@ -286,98 +287,100 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int cell in stackalloc[] { corner1, corner2 })
 			{
-				int sameRegionCell = GetSameRegionCell(cell, otherCellsMap, out var regions);
-				if (sameRegionCell == -1)
+				foreach (int otherCell in otherCellsMap)
 				{
-					continue;
-				}
-
-				foreach (int region in regions)
-				{
-					if (region < 9)
+					if (!IsSameRegionCell(cell, otherCell, out var regions))
 					{
 						continue;
 					}
 
-					foreach (int digit in stackalloc[] { d1, d2 })
+					foreach (int region in regions)
 					{
-						if (!IsConjugatePair(digit, new() { cell, sameRegionCell }, region))
+						if (region < 9)
 						{
 							continue;
 						}
 
-						int elimCell = new GridMap(otherCellsMap) { ~sameRegionCell }.First;
-						if (grid.Exists(sameRegionCell, digit) is not true)
+						foreach (int digit in stackalloc[] { d1, d2 })
 						{
-							continue;
-						}
-
-						var conclusions = new List<Conclusion>();
-						if (grid.Exists(elimCell, digit) is true)
-						{
-							conclusions.Add(new(Elimination, elimCell, digit));
-						}
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
-
-						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int urCell in urCells)
-						{
-							if (urCell == corner1 || urCell == corner2)
+							if (!IsConjugatePair(digit, new() { cell, otherCell }, region))
 							{
-								if (new GridMap { urCell, sameRegionCell }.CoveredRegions.Any(r => r == region))
+								continue;
+							}
+
+							int elimCell = new GridMap(otherCellsMap) { ~otherCell }.First;
+							if (grid.Exists(otherCell, digit) is not true)
+							{
+								continue;
+							}
+
+							var conclusions = new List<Conclusion>();
+							if (grid.Exists(elimCell, digit) is true)
+							{
+								conclusions.Add(new(Elimination, elimCell, digit));
+							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							var candidateOffsets = new List<DrawingInfo>();
+							foreach (int urCell in urCells)
+							{
+								if (urCell == corner1 || urCell == corner2)
 								{
-									foreach (int d in grid.GetCandidates(urCell))
+									if (new GridMap { urCell, otherCell }.CoveredRegions.Any(r => r == region))
 									{
-										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										foreach (int d in grid.GetCandidates(urCell))
+										{
+											candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										}
+									}
+									else
+									{
+										foreach (int d in grid.GetCandidates(urCell))
+										{
+											candidateOffsets.Add(new(0, urCell * 9 + d));
+										}
 									}
 								}
-								else
+								else if (urCell == otherCell || urCell == elimCell)
 								{
-									foreach (int d in grid.GetCandidates(urCell))
+									void record(int d)
 									{
-										candidateOffsets.Add(new(0, urCell * 9 + d));
+										if ((grid.Exists(urCell, d), urCell != elimCell || d != digit) == (true, true))
+										{
+											candidateOffsets.Add(
+												new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
+										}
 									}
+
+									record(d1);
+									record(d2);
 								}
 							}
-							else if (urCell == sameRegionCell || urCell == elimCell)
+
+							if (!_allowIncompleteUr && candidateOffsets.Count != 7)
 							{
-								void record(int d)
-								{
-									if ((grid.Exists(urCell, d), urCell != elimCell || d != digit) is (true, true))
-									{
-										candidateOffsets.Add(
-											new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
-									}
-								}
-
-								record(d1);
-								record(d2);
+								continue;
 							}
-						}
 
-						if (!_allowIncompleteUr && candidateOffsets.Count != 7)
-						{
-							continue;
+							accumulator.Add(
+								new UrPlusTechniqueInfo(
+									conclusions,
+									new View[]
+									{
+										new(
+											arMode ? GetHighlightCells(urCells) : null,
+											candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
+									},
+									Plus2D1SL,
+									d1,
+									d2,
+									urCells,
+									arMode,
+									new ConjugatePair[] { new(cell, otherCell, digit) }));
 						}
-
-						accumulator.Add(
-							new UrPlusTechniqueInfo(
-								conclusions,
-								new View[]
-								{
-									new(
-										arMode ? GetHighlightCells(urCells) : null,
-										candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
-								},
-								Plus2D1SL,
-								d1,
-								d2,
-								urCells,
-								arMode,
-								new ConjugatePair[] { new(cell, sameRegionCell, digit) }));
 					}
 				}
 			}
