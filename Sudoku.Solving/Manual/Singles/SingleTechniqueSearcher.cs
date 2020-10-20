@@ -168,7 +168,7 @@ namespace Sudoku.Solving.Manual.Singles
 						{
 							if (cell != resultCell && grid.GetStatus(cell) == CellStatus.Empty)
 							{
-								tempMap.Add(cell);
+								tempMap.AddAnyway(cell);
 							}
 						}
 						foreach (int cell in tempMap)
@@ -177,7 +177,7 @@ namespace Sudoku.Solving.Manual.Singles
 							{
 								if (cell != resultCell && grid[peerCell] == digit)
 								{
-									crosshatchingCells.Add(peerCell);
+									crosshatchingCells.AddAnyway(peerCell);
 								}
 							}
 						}
