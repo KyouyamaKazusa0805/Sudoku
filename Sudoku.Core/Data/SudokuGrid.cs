@@ -43,11 +43,12 @@ namespace Sudoku.Data
 		public static readonly string EmptyString = new('0', Length);
 
 		/// <summary>
-		/// Indicates the default grid that all values are initialized 0, which is same as <see cref="SudokuGrid()"/>.
+		/// Indicates the default grid that all values are initialized 0, which is same as
+		/// <see cref="SudokuGrid()"/>.
 		/// </summary>
 		/// <remarks>
-		/// We recommend you should use <see cref="Undefined"/> instead of the default constructor to reduce object
-		/// creation.
+		/// We recommend you should use <see cref="Undefined"/> instead of the default constructor
+		/// to reduce object creation.
 		/// </remarks>
 		/// <seealso cref="SudokuGrid()"/>
 		public static readonly SudokuGrid Undefined = new();
@@ -160,17 +161,29 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the total number of given cells.
 		/// </summary>
-		public readonly int GivensCount { [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Triplet.C; }
+		public readonly int GivensCount
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Triplet.C;
+		}
 
 		/// <summary>
 		/// Indicates the total number of modifiable cells.
 		/// </summary>
-		public readonly int ModifiablesCount { [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Triplet.B; }
+		public readonly int ModifiablesCount
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Triplet.B;
+		}
 
 		/// <summary>
 		/// Indicates the total number of empty cells.
 		/// </summary>
-		public readonly int EmptiesCount { [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Triplet.A; }
+		public readonly int EmptiesCount
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Triplet.A;
+		}
 
 		/// <summary>
 		/// The triplet of three main information.
@@ -324,7 +337,8 @@ namespace Sudoku.Data
 		{
 			fixed (short* pThis = _values, pOther = other._values)
 			{
-				for (short* l = pThis, r = pOther, i = (short*)0; (int)i < Length; i = (short*)((int)i + 1), l++, r++)
+				int i = 0;
+				for (short* l = pThis, r = pOther; i < Length; i++, l++, r++)
 				{
 					if (*l != *r)
 					{
@@ -578,7 +592,8 @@ namespace Sudoku.Data
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="GridParser.CompatibleFirst"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(string str, bool compatibleFirst) => new GridParser(str, compatibleFirst).Parse();
+		public static SudokuGrid Parse(string str, bool compatibleFirst) =>
+			new GridParser(str, compatibleFirst).Parse();
 
 		/// <summary>
 		/// Parses a string value and converts to this type,
@@ -622,7 +637,7 @@ namespace Sudoku.Data
 		/// <see cref="bool"/> value indicating the result of the conversion.
 		/// </summary>
 		/// <param name="str">The string.</param>
-		/// <param name="gridParsingOption">The grid parsing type.</param>
+		/// <param name="option">The grid parsing type.</param>
 		/// <param name="result">
 		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
 		/// this argument will be <see cref="Undefined"/>.
@@ -630,11 +645,11 @@ namespace Sudoku.Data
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="Undefined"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryParse(string str, GridParsingOption gridParsingOption, out SudokuGrid result)
+		public static bool TryParse(string str, GridParsingOption option, out SudokuGrid result)
 		{
 			try
 			{
-				result = Parse(str, gridParsingOption);
+				result = Parse(str, option);
 				return true;
 			}
 			catch

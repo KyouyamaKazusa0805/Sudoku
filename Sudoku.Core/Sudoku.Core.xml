@@ -3042,11 +3042,12 @@
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.Undefined">
             <summary>
-            Indicates the default grid that all values are initialized 0, which is same as <see cref="M:Sudoku.Data.SudokuGrid.#ctor"/>.
+            Indicates the default grid that all values are initialized 0, which is same as
+            <see cref="M:Sudoku.Data.SudokuGrid.#ctor"/>.
             </summary>
             <remarks>
-            We recommend you should use <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/> instead of the default constructor to reduce object
-            creation.
+            We recommend you should use <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/> instead of the default constructor
+            to reduce object creation.
             </remarks>
             <seealso cref="M:Sudoku.Data.SudokuGrid.#ctor"/>
         </member>
@@ -3325,7 +3326,7 @@
             <see cref="T:System.Boolean"/> value indicating the result of the conversion.
             </summary>
             <param name="str">The string.</param>
-            <param name="gridParsingOption">The grid parsing type.</param>
+            <param name="option">The grid parsing type.</param>
             <param name="result">
             (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
             this argument will be <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>.
