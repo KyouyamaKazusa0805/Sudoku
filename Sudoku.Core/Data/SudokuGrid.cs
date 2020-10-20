@@ -105,22 +105,15 @@ namespace Sudoku.Data
 			Empty = new();
 			fixed (short* p = Empty._values, q = Empty._initialValues)
 			{
-				initializer(p, DefaultMask);
-				initializer(q, DefaultMask);
+				int i = 0;
+				for (short* ptr = p; i < Length; i++, *ptr++ = DefaultMask) ;
+				i = 0;
+				for (short* ptr = q; i < Length; i++, *ptr++ = DefaultMask) ;
 			}
 
 			// Initializes events.
 			ValueChanged = &OnValueChanged;
 			RefreshingCandidates = &OnRefreshingCandidates;
-
-			static void initializer(short* dest, short value)
-			{
-#if DEBUG
-				_ = dest == null ? throw new ArgumentNullException(nameof(dest)) : dest;
-#endif
-
-				for (short* p = dest, i = (short*)0; (int)i < Length; i = (short*)((int)i + 1), *p++ = value) ;
-			}
 		}
 
 
@@ -378,7 +371,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="offset">The cell offset you want to get.</param>
 		/// <returns>The mask.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly short GetMask(int offset) => _values[offset];
 
 		/// <summary>
@@ -399,15 +392,15 @@ namespace Sudoku.Data
 		/// cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
 		/// 1 is for containing and 0 is for <b>not</b>.
 		/// </remarks>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly short GetCandidateMask(int cell) => (short)(~_values[cell] & MaxCandidatesMask);
 
 		/// <inheritdoc cref="object.ToString"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly string ToString() => ToString(null, null);
 
 		/// <inheritdoc cref="Formattable.ToString(string?)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly string ToString(string? format) => ToString(format, null);
 
 		/// <inheritdoc/>
@@ -434,7 +427,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The cell status.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly CellStatus GetStatus(int cell) => (CellStatus)(_values[cell] >> 9 & (int)CellStatus.All);
 
 		/// <summary>
@@ -442,7 +435,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cell">The cell you want to get.</param>
 		/// <returns>All candidates.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly IEnumerable<int> GetCandidates(int cell) => GetCandidateMask(cell).GetAllSets();
 
 		/// <inheritdoc/>
@@ -456,7 +449,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 		/// <summary>
@@ -547,7 +540,7 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuGrid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
 
 		/// <summary>
@@ -562,7 +555,7 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuGrid Parse(string str) => new GridParser(str).Parse();
 
 		/// <summary>
@@ -584,7 +577,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="GridParser.CompatibleFirst"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuGrid Parse(string str, bool compatibleFirst) => new GridParser(str, compatibleFirst).Parse();
 
 		/// <summary>
@@ -746,11 +739,11 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(in SudokuGrid left, in SudokuGrid right) => left.Equals(in right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(in SudokuGrid left, in SudokuGrid right) => !(left == right);
 	}
 }
