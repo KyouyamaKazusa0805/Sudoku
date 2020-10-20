@@ -734,7 +734,8 @@ namespace Sudoku.Data
 			_ = src == null ? throw new ArgumentNullException(nameof(src)) : src;
 #endif
 
-			for (short* p = dest, q = src, i = (short*)0; (int)i < Length; i = (short*)((int)i + 1), *p++ = *q++) ;
+			int i = 0;
+			for (short* p = dest, q = src; i < Length; i++, *p++ = *q++) ;
 		}
 
 
