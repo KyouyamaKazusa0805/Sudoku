@@ -105,13 +105,22 @@ namespace Sudoku.Data
 			Empty = new();
 			fixed (short* p = Empty._values, q = Empty._initialValues)
 			{
-				InternalInitialize(p, DefaultMask);
-				InternalInitialize(q, DefaultMask);
+				initializer(p, DefaultMask);
+				initializer(q, DefaultMask);
 			}
 
 			// Initializes events.
 			ValueChanged = &OnValueChanged;
 			RefreshingCandidates = &OnRefreshingCandidates;
+
+			static void initializer(short* dest, short value)
+			{
+#if DEBUG
+				_ = dest == null ? throw new ArgumentNullException(nameof(dest)) : dest;
+#endif
+
+				for (short* p = dest, i = (short*)0; (int)i < Length; i = (short*)((int)i + 1), *p++ = value) ;
+			}
 		}
 
 
@@ -733,31 +742,6 @@ namespace Sudoku.Data
 #endif
 
 			for (short* p = dest, q = src, i = (short*)0; (int)i < Length; i = (short*)((int)i + 1), *p++ = *q++) ;
-		}
-
-#if DEBUG
-		/// <summary>
-		/// Internal initialize.
-		/// </summary>
-		/// <param name="dest">The destination pointer.</param>
-		/// <param name="value">The value.</param>
-		/// <exception cref="ArgumentNullException">
-		/// Throws when <paramref name="dest"/> is <see langword="null"/>.
-		/// </exception>
-#else
-		/// <summary>
-		/// Internal initialize.
-		/// </summary>
-		/// <param name="dest">The destination pointer.</param>
-		/// <param name="value">The value.</param>
-#endif
-		private static void InternalInitialize(short* dest, short value)
-		{
-#if DEBUG
-			_ = dest == null ? throw new ArgumentNullException(nameof(dest)) : dest;
-#endif
-
-			for (short* p = dest, i = (short*)0; (int)i < Length; i = (short*)((int)i + 1), *p++ = value) ;
 		}
 
 
