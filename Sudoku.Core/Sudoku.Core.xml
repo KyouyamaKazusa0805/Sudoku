@@ -1566,6 +1566,26 @@
             The value used for shifting.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.GridMap.BlockOffset">
+            <summary>
+            The value of offsets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridMap.RowOffset">
+            <summary>
+            The value of offsets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridMap.ColumnOffset">
+            <summary>
+            The value of offsets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridMap.Limit">
+            <summary>
+            The value of offsets.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.GridMap._high">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
@@ -1960,6 +1980,17 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.GetFirst(System.Int32,System.Int32)">
+            <summary>
+            Being called by <see cref="P:Sudoku.Data.GridMap.RowMask"/>, <see cref="P:Sudoku.Data.GridMap.ColumnMask"/> and <see cref="P:Sudoku.Data.GridMap.BlockMask"/>.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="end">The end index.</param>
+            <returns>The region mask.</returns>
+            <seealso cref="P:Sudoku.Data.GridMap.RowMask"/>
+            <seealso cref="P:Sudoku.Data.GridMap.ColumnMask"/>
+            <seealso cref="P:Sudoku.Data.GridMap.BlockMask"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.Add(System.Int32)">
             <summary>

@@ -50,6 +50,11 @@ namespace Sudoku.Data
 		/// </summary>
 		private const int Shifting = 41;
 
+		/// <summary>
+		/// The value of offsets.
+		/// </summary>
+		private const int BlockOffset = 0, RowOffset = 9, ColumnOffset = 18, Limit = 27;
+
 
 		/// <summary>
 		/// Indicates the internal two <see cref="long"/> values,
@@ -366,7 +371,7 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				for (int i = 0; i < 27; i++)
+				for (int i = BlockOffset; i < Limit; i++)
 				{
 					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
 					{
@@ -381,62 +386,17 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the mask of block.
 		/// </summary>
-		public readonly short BlockMask
-		{
-			get
-			{
-				short result = 0;
-				for (int i = 0; i < 9; i++)
-				{
-					if (Overlaps(RegionMaps[i]))
-					{
-						result |= (short)(1 << i);
-					}
-				}
-
-				return result;
-			}
-		}
+		public readonly short BlockMask => GetFirst(BlockOffset, RowOffset);
 
 		/// <summary>
 		/// Indicates the mask of row.
 		/// </summary>
-		public readonly short RowMask
-		{
-			get
-			{
-				short result = 0;
-				for (int i = 9; i < 18; i++)
-				{
-					if (Overlaps(RegionMaps[i]))
-					{
-						result |= (short)(1 << i - 9);
-					}
-				}
-
-				return result;
-			}
-		}
+		public readonly short RowMask => GetFirst(RowOffset, ColumnOffset);
 
 		/// <summary>
 		/// Indicates the mask of column.
 		/// </summary>
-		public readonly short ColumnMask
-		{
-			get
-			{
-				short result = 0;
-				for (int i = 18; i < 27; i++)
-				{
-					if (Overlaps(RegionMaps[i]))
-					{
-						result |= (short)(1 << i - 18);
-					}
-				}
-
-				return result;
-			}
-		}
+		public readonly short ColumnMask => GetFirst(ColumnOffset, Limit);
 
 		/// <summary>
 		/// Indicates the covered line.
@@ -445,7 +405,7 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				for (int i = 9; i < 27; i++)
+				for (int i = RowOffset; i < Limit; i++)
 				{
 					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
 					{
@@ -534,7 +494,7 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				for (int i = 0; i < 27; i++)
+				for (int i = BlockOffset; i < Limit; i++)
 				{
 					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
 					{
@@ -550,7 +510,8 @@ namespace Sudoku.Data
 		/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
 		/// and the region 19 (column 2).
 		/// </summary>
-		public readonly IEnumerable<int> Regions => ((int)BlockMask | RowMask << 9 | ColumnMask << 18).GetAllSets();
+		public readonly IEnumerable<int> Regions =>
+			((int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset).GetAllSets();
 
 		/// <summary>
 		/// <para>
@@ -678,7 +639,7 @@ namespace Sudoku.Data
 		/// <seealso cref="InOneRegion"/>
 		public readonly bool AllSetsAreInOneRegion(out int region)
 		{
-			for (int i = 0; i < 27; i++)
+			for (int i = BlockOffset; i < Limit; i++)
 			{
 				if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
 				{
@@ -893,6 +854,29 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+		/// <summary>
+		/// Being called by <see cref="RowMask"/>, <see cref="ColumnMask"/> and <see cref="BlockMask"/>.
+		/// </summary>
+		/// <param name="start">The start index.</param>
+		/// <param name="end">The end index.</param>
+		/// <returns>The region mask.</returns>
+		/// <seealso cref="RowMask"/>
+		/// <seealso cref="ColumnMask"/>
+		/// <seealso cref="BlockMask"/>
+		private readonly short GetFirst(int start, int end)
+		{
+			short result = 0;
+			for (int i = start; i < end; i++)
+			{
+				if (Overlaps(RegionMaps[i]))
+				{
+					result |= (short)(1 << i - start);
+				}
+			}
+
+			return result;
+		}
 
 		/// <summary>
 		/// Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
