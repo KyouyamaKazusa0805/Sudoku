@@ -47,9 +47,8 @@ namespace Sudoku.Windows
 						{
 							switch (_customDrawingMode)
 							{
-								case 0: // Cell.
+								case 0 when getCell() is var cell and not (< 0 or >= 81): // Cell.
 								{
-									int cell = getCell();
 									if (_view.ContainsCell(cell))
 									{
 										_view.RemoveCell(cell);
@@ -61,9 +60,8 @@ namespace Sudoku.Windows
 
 									break;
 								}
-								case 1: // Candidate.
+								case 1 when getCandidate() is var candidate and not (< 0 or >= 729): // Candidate.
 								{
-									int candidate = getCandidate();
 									if (_view.ContainsCandidate(candidate))
 									{
 										_view.RemoveCandidate(candidate);

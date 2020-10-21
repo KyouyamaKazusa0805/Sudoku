@@ -556,7 +556,7 @@
         <member name="T:Sudoku.Drawing.PointConverter">
             <summary>
             Provides converting operations for <see cref="T:System.Drawing.Point"/> and
-            <see cref="T:System.Drawing.PointF"/> usages in the form. For example, this class
+            <see cref="T:System.Drawing.PointF"/> usages in the window. For example, this class
             will calculate and convert between the drawing coordinates and
             the mouse coordinates.
             </summary>

@@ -8,7 +8,7 @@ namespace Sudoku.Drawing
 {
 	/// <summary>
 	/// Provides converting operations for <see cref="Point"/> and
-	/// <see cref="PointF"/> usages in the form. For example, this class
+	/// <see cref="PointF"/> usages in the window. For example, this class
 	/// will calculate and convert between the drawing coordinates and
 	/// the mouse coordinates.
 	/// </summary>
@@ -112,7 +112,7 @@ namespace Sudoku.Drawing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int GetCell(PointF point)
 		{
-			const int o = Offset + WhatTheHellOffset;
+			const int o = Offset;
 			var (x, y) = point.Truncate();
 			x -= o;
 			y -= o;
