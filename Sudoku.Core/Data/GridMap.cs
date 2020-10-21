@@ -730,119 +730,111 @@ namespace Sudoku.Data
 		/// <exception cref="FormatException">Throws when the format is invalid.</exception>
 		public readonly string ToString(string? format)
 		{
-			switch (format)
+			return format switch
 			{
-				case null or "N" or "n":
+				null or "N" or "n" => Count switch
 				{
-					switch (Count)
-					{
-						case 0:
-						{
-							return "{ }";
-						}
-						case 1 when First is var cell:
-						{
-							return $"r{cell / 9 + 1}c{cell % 9 + 1}";
-						}
-						default:
-						{
-							const string separator = ", ";
-							var sbRow = new StringBuilder();
-							var dic = new Dictionary<int, ICollection<int>>();
-							foreach (int cell in this)
-							{
-								if (!dic.ContainsKey(cell / 9))
-								{
-									dic.Add(cell / 9, new List<int>());
-								}
+					0 => "{ }",
+					1 when First is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
+					_ => normalToString(this)
+				},
+				"B" or "b" => binaryToString(this),
+				_ => throw Throwings.FormatErrorWithMessage(null!, nameof(format))
+			};
 
-								dic[cell / 9].Add(cell % 9);
-							}
-							bool addCurlyBraces = dic.Count > 1;
-							if (addCurlyBraces)
-							{
-								sbRow.Append(LeftCurlyBrace);
-							}
-							foreach (int row in dic.Keys)
-							{
-								sbRow.Append($"r{row + 1}c");
-								foreach (int z in dic[row])
-								{
-									sbRow.Append(z + 1);
-								}
-								sbRow.Append(separator);
-							}
-							sbRow.RemoveFromEnd(separator.Length);
-							if (addCurlyBraces)
-							{
-								sbRow.Append(RightCurlyBrace);
-							}
-
-							dic.Clear();
-							var sbColumn = new StringBuilder();
-							foreach (int cell in this)
-							{
-								if (!dic.ContainsKey(cell % 9))
-								{
-									dic.Add(cell % 9, new List<int>());
-								}
-
-								dic[cell % 9].Add(cell / 9);
-							}
-							addCurlyBraces = dic.Count > 1;
-							if (addCurlyBraces)
-							{
-								sbColumn.Append(LeftCurlyBrace);
-							}
-							foreach (int column in dic.Keys)
-							{
-								sbColumn.Append("r");
-								foreach (int z in dic[column])
-								{
-									sbColumn.Append(z + 1);
-								}
-								sbColumn.Append($"c{column + 1}{separator}");
-							}
-							sbColumn.RemoveFromEnd(separator.Length);
-							if (addCurlyBraces)
-							{
-								sbColumn.Append(RightCurlyBrace);
-							}
-
-							return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
-						}
-					}
-				}
-				case "B" or "b":
+			static string normalToString(in GridMap @this)
+			{
+				const string separator = ", ";
+				var sbRow = new StringBuilder();
+				var dic = new Dictionary<int, ICollection<int>>();
+				foreach (int cell in @this)
 				{
-					var sb = new StringBuilder();
-					int i;
-					long value = _low;
-					for (i = 0; i < 27; i++, value >>= 1)
+					if (!dic.ContainsKey(cell / 9))
 					{
-						sb.Append(value & 1);
-					}
-					sb.Append(" ");
-					for (; i < 41; i++, value >>= 1)
-					{
-						sb.Append(value & 1);
-					}
-					for (value = _high; i < 54; i++, value >>= 1)
-					{
-						sb.Append(value & 1);
-					}
-					sb.Append(" ");
-					for (; i < 81; i++, value >>= 1)
-					{
-						sb.Append(value & 1);
+						dic.Add(cell / 9, new List<int>());
 					}
 
-					return sb.Reverse().ToString();
+					dic[cell / 9].Add(cell % 9);
 				}
-				default:
+				bool addCurlyBraces = dic.Count > 1;
+				if (addCurlyBraces)
 				{
-					throw Throwings.FormatErrorWithMessage(null!, nameof(format));
+					sbRow.Append(LeftCurlyBrace);
 				}
+				foreach (int row in dic.Keys)
+				{
+					sbRow.Append($"r{row + 1}c");
+					foreach (int z in dic[row])
+					{
+						sbRow.Append(z + 1);
+					}
+					sbRow.Append(separator);
+				}
+				sbRow.RemoveFromEnd(separator.Length);
+				if (addCurlyBraces)
+				{
+					sbRow.Append(RightCurlyBrace);
+				}
+
+				dic.Clear();
+				var sbColumn = new StringBuilder();
+				foreach (int cell in @this)
+				{
+					if (!dic.ContainsKey(cell % 9))
+					{
+						dic.Add(cell % 9, new List<int>());
+					}
+
+					dic[cell % 9].Add(cell / 9);
+				}
+				addCurlyBraces = dic.Count > 1;
+				if (addCurlyBraces)
+				{
+					sbColumn.Append(LeftCurlyBrace);
+				}
+				foreach (int column in dic.Keys)
+				{
+					sbColumn.Append("r");
+					foreach (int z in dic[column])
+					{
+						sbColumn.Append(z + 1);
+					}
+					sbColumn.Append($"c{column + 1}{separator}");
+				}
+				sbColumn.RemoveFromEnd(separator.Length);
+				if (addCurlyBraces)
+				{
+					sbColumn.Append(RightCurlyBrace);
+				}
+
+				return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
+			}
+
+			static string binaryToString(in GridMap @this)
+			{
+				var sb = new StringBuilder();
+				int i;
+				long value = @this._low;
+				for (i = 0; i < 27; i++, value >>= 1)
+				{
+					sb.Append(value & 1);
+				}
+				sb.Append(" ");
+				for (; i < 41; i++, value >>= 1)
+				{
+					sb.Append(value & 1);
+				}
+				for (value = @this._high; i < 54; i++, value >>= 1)
+				{
+					sb.Append(value & 1);
+				}
+				sb.Append(" ");
+				for (; i < 81; i++, value >>= 1)
+				{
+					sb.Append(value & 1);
+				}
+
+				return sb.Reverse().ToString();
 			}
 		}
 
