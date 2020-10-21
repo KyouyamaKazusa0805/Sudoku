@@ -6,7 +6,6 @@ using Sudoku.Constants;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
-using System.ComponentModel;
 #if DEBUG
 using System.Diagnostics;
 #endif
@@ -19,7 +18,7 @@ namespace Sudoku.Data
 #if DEBUG
 	[DebuggerDisplay("{ToString(\"0+:\")}")]
 #endif
-	public unsafe partial struct SudokuGrid : IEnumerable<short>, IEquatable<SudokuGrid>, IFormattable
+	public unsafe partial struct SudokuGrid : IEnumerable<short>, IValueEquatable<SudokuGrid>, IFormattable
 	{
 		/// <summary>
 		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -328,11 +327,6 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is SudokuGrid other && Equals(in other);
 
 		/// <inheritdoc/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Equals(SudokuGrid other) => Equals(in other);
-
-		/// <inheritdoc cref="Equals(SudokuGrid)"/>
 		public readonly bool Equals(in SudokuGrid other)
 		{
 			fixed (short* pThis = _values, pOther = other._values)

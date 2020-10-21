@@ -13,7 +13,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulats a map that contains 729 positions to represent a candidate.
 	/// </summary>
-	public unsafe struct SudokuMap : IEnumerable<int>, IEquatable<SudokuMap>
+	public unsafe struct SudokuMap : IEnumerable<int>, IValueEquatable<SudokuMap>
 	{
 		/// <summary>
 		/// The length of the buffer.
@@ -310,7 +310,7 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is SudokuMap comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public readonly bool Equals(SudokuMap other)
+		public readonly bool Equals(in SudokuMap other)
 		{
 			for (int i = 0; i < BufferLength; i++)
 			{

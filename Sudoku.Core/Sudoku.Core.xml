@@ -791,8 +791,8 @@
         <member name="M:Sudoku.Data.Conclusion.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -805,10 +805,10 @@
             </exception>
             <seealso cref="P:Sudoku.Data.Conclusion.ConclusionType"/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.op_Equality(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+        <member name="M:Sudoku.Data.Conclusion.op_Equality(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.op_Inequality(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+        <member name="M:Sudoku.Data.Conclusion.op_Inequality(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.ConclusionType">
@@ -1895,9 +1895,6 @@
         <member name="M:Sudoku.Data.GridMap.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.Equals(Sudoku.Data.GridMap)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
         <member name="M:Sudoku.Data.GridMap.Equals(Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
@@ -1944,9 +1941,6 @@
             If you want to select the first set bit, please use <see cref="P:Sudoku.Data.GridMap.First"/> instead.
             </remarks>
             <seealso cref="P:Sudoku.Data.GridMap.First"/>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.CompareTo(Sudoku.Data.GridMap)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.GridMap.CompareTo(Sudoku.Data.GridMap@)">
             <inheritdoc/>
@@ -2594,7 +2588,7 @@
         <member name="M:Sudoku.Data.Link.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link)">
+        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Link.GetHashCode">
@@ -2644,7 +2638,7 @@
             <param name="digit">The digit.</param>
             <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the node is on.</param>
         </member>
-        <member name="M:Sudoku.Data.Node.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Data.Node)">
+        <member name="M:Sudoku.Data.Node.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Data.Node@)">
             <summary>
             Initializes an instance with the specified digit, the cell, a <see cref="T:System.Boolean"/> value
             and the parent node.
@@ -2652,7 +2646,7 @@
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
             <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the specified node is on.</param>
-            <param name="parent">The parent node.</param>
+            <param name="parent">(<see langword="in"/> parameter) The parent node.</param>
         </member>
         <member name="P:Sudoku.Data.Node.Cell">
             <summary>
@@ -2704,11 +2698,11 @@
             </exception>
             <seealso cref="F:Sudoku.Data.Node._parents"/>
         </member>
-        <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node)">
+        <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node@)">
             <summary>
             Add a node into the list.
             </summary>
-            <param name="node">The node.</param>
+            <param name="node">(<see langword="in"/> parameter) The node.</param>
         </member>
         <member name="M:Sudoku.Data.Node.ClearParents">
             <summary>
@@ -2718,14 +2712,14 @@
         <member name="M:Sudoku.Data.Node.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node)">
+        <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Node.IsParentOf(Sudoku.Data.Node)">
+        <member name="M:Sudoku.Data.Node.IsParentOf(Sudoku.Data.Node@)">
             <summary>
             Determine whether the node is the parent of the specified node.
             </summary>
-            <param name="node">The node.</param>
+            <param name="node">(<see langword="in"/> parameter) The node.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.Node.GetHashCode">
@@ -2734,10 +2728,10 @@
         <member name="M:Sudoku.Data.Node.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Data.Node.op_Equality(Sudoku.Data.Node,Sudoku.Data.Node)">
+        <member name="M:Sudoku.Data.Node.op_Equality(Sudoku.Data.Node@,Sudoku.Data.Node@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Node.op_Inequality(Sudoku.Data.Node,Sudoku.Data.Node)">
+        <member name="M:Sudoku.Data.Node.op_Inequality(Sudoku.Data.Node@,Sudoku.Data.Node@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Stepping.AntiEliminationStep">
@@ -3178,11 +3172,8 @@
         <member name="M:Sudoku.Data.SudokuGrid.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid@)">
-            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -3951,7 +3942,7 @@
         <member name="M:Sudoku.Data.SudokuMap.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.Equals(Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.Equals(Sudoku.Data.SudokuMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.Overlaps(Sudoku.Data.SudokuMap@)">
@@ -6944,8 +6935,12 @@
         </member>
         <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="currentCandidatesCount">(<see langword="out"/> parameter) The number of unsolved candidates.</param>
-            <param name="currentCellsCount">(<see langword="out"/> parameter) The number of unsolved cells.</param>
+            <param name="currentCandidatesCount">
+            (<see langword="out"/> parameter) The number of unsolved candidates.
+            </param>
+            <param name="currentCellsCount">
+            (<see langword="out"/> parameter) The number of unsolved cells.
+            </param>
             <param name="initialCandidatesCount">
             (<see langword="out"/> parameter) The number of unsolved candidates in the initial grid.
             </param>
@@ -6956,16 +6951,16 @@
         <member name="M:Sudoku.Models.GridProgressResult.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Models.GridProgressResult.Equals(Sudoku.Models.GridProgressResult)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Models.GridProgressResult.Equals(Sudoku.Models.GridProgressResult@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Models.GridProgressResult.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Models.GridProgressResult.op_Equality(Sudoku.Models.GridProgressResult,Sudoku.Models.GridProgressResult)">
+        <member name="M:Sudoku.Models.GridProgressResult.op_Equality(Sudoku.Models.GridProgressResult@,Sudoku.Models.GridProgressResult@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Models.GridProgressResult.op_Inequality(Sudoku.Models.GridProgressResult,Sudoku.Models.GridProgressResult)">
+        <member name="M:Sudoku.Models.GridProgressResult.op_Inequality(Sudoku.Models.GridProgressResult@,Sudoku.Models.GridProgressResult@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Models.IProgressResult">
@@ -7805,6 +7800,49 @@
             <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.IValueComparable`1">
+            <inheritdoc cref="T:System.IComparable`1"/>
+            <typeparam name="TStruct">
+            The type of objects to compare. Here it should be a <see langword="struct"/>.
+            </typeparam>
+        </member>
+        <member name="M:System.IValueComparable`1.CompareTo(`0@)">
+            <summary>
+            Compares the current instance with another object of the same type and returns
+            an integer that indicates whether the current instance precedes, follows, or
+            occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other">(<see langword="in"/> parameter) An object to compare with this instance.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The
+            return value has these meanings: Value Meaning Less than zero This instance precedes
+            other in the sort order. Zero This instance occurs in the same position in the
+            sort order as other. Greater than zero This instance follows other in the sort
+            order.
+            </returns>
+        </member>
+        <member name="M:System.IValueComparable`1.System#IComparable{TStruct}#CompareTo(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.IValueEquatable`1">
+            <inheritdoc cref="T:System.IEquatable`1"/>
+            <typeparam name="TStruct">
+            The type of objects to compare. Here it should be a <see langword="struct"/>.
+            </typeparam>
+        </member>
+        <member name="M:System.IValueEquatable`1.Equals(`0@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">(<see langword="in"/> parameter) An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:System.IValueEquatable`1.System#IEquatable{TStruct}#Equals(`0)">
             <inheritdoc/>
         </member>
         <member name="T:System.KeyedTuple`2">

@@ -8,7 +8,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a chain node.
 	/// </summary>
-	public struct Node : IEquatable<Node>
+	public struct Node : IValueEquatable<Node>
 	{
 		/// <summary>
 		/// The parent nodes.
@@ -31,8 +31,8 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
-		/// <param name="parent">The parent node.</param>
-		public Node(int cell, int digit, bool isOn, Node parent) : this(cell, digit, isOn) => AddParent(parent);
+		/// <param name="parent">(<see langword="in"/> parameter) The parent node.</param>
+		public Node(int cell, int digit, bool isOn, in Node parent) : this(cell, digit, isOn) => AddParent(parent);
 
 
 		/// <summary>
@@ -159,8 +159,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Add a node into the list.
 		/// </summary>
-		/// <param name="node">The node.</param>
-		public void AddParent(Node node) => (_parents ??= new Node[7])[ParentsCount++] = node;
+		/// <param name="node">(<see langword="in"/> parameter) The node.</param>
+		public void AddParent(in Node node) => (_parents ??= new Node[7])[ParentsCount++] = node;
 
 		/// <summary>
 		/// Clear all parent nodes.
@@ -171,14 +171,15 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public readonly bool Equals(Node other) => Cell == other.Cell && Digit == other.Digit && IsOn == other.IsOn;
+		public readonly bool Equals(in Node other) =>
+			Cell == other.Cell && Digit == other.Digit && IsOn == other.IsOn;
 
 		/// <summary>
 		/// Determine whether the node is the parent of the specified node.
 		/// </summary>
-		/// <param name="node">The node.</param>
+		/// <param name="node">(<see langword="in"/> parameter) The node.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public readonly bool IsParentOf(Node node)
+		public readonly bool IsParentOf(in Node node)
 		{
 			var pTest = node;
 			while (pTest.ParentsCount != 0)
@@ -235,10 +236,10 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(Node left, Node right) => left.Equals(right);
+		public static bool operator ==(in Node left, in Node right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(Node left, Node right) => !(left == right);
+		public static bool operator !=(in Node left, in Node right) => !(left == right);
 	}
 }

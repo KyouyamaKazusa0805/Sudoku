@@ -23,7 +23,7 @@ namespace Sudoku.Data
 	/// and the <see langword="false"/> bit (0) is for the cell not containing
 	/// the digit.
 	/// </remarks>
-	public partial struct GridMap : IComparable<GridMap>, IEnumerable<int>, IEquatable<GridMap>, IFormattable
+	public partial struct GridMap : IValueComparable<GridMap>, IEnumerable<int>, IValueEquatable<GridMap>, IFormattable
 	{
 		/// <summary>
 		/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -615,11 +615,6 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is GridMap comparer && Equals(comparer);
 
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public readonly bool Equals(GridMap other) => Equals(other);
-
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public readonly bool Equals(in GridMap other) => _high == other._high && _low == other._low;
 
 		/// <summary>
@@ -681,11 +676,6 @@ namespace Sudoku.Data
 		/// <seealso cref="First"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int SetAt(Index index) => SetAt(index.GetOffset(Count));
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public readonly int CompareTo(GridMap other) => CompareTo(in other);
 
 		/// <inheritdoc/>
 		public readonly int CompareTo(in GridMap other) =>

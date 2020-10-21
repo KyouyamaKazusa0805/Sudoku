@@ -6,7 +6,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a conclusion representation while solving in logic.
 	/// </summary>
-	public readonly struct Conclusion : IEquatable<Conclusion>
+	public readonly struct Conclusion : IValueEquatable<Conclusion>
 	{
 		/// <summary>
 		/// Initializes an instance with a conclusion type, a cell offset and a digit.
@@ -22,7 +22,8 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="conclusionType">The conclusion type.</param>
 		/// <param name="candidate">The candidate offset.</param>
-		public Conclusion(ConclusionType conclusionType, int candidate) : this(conclusionType, candidate / 9, candidate % 9)
+		public Conclusion(ConclusionType conclusionType, int candidate)
+			: this(conclusionType, candidate / 9, candidate % 9)
 		{
 		}
 
@@ -56,23 +57,19 @@ namespace Sudoku.Data
 		/// </exception>
 		public void ApplyTo(Grid grid)
 		{
-			switch (ConclusionType)
+			unsafe
 			{
-				case ConclusionType.Assignment:
+				delegate* managed<Grid, int, int, void> m = ConclusionType switch
 				{
-					grid[Cell] = Digit;
-					break;
-				}
-				case ConclusionType.Elimination:
-				{
-					grid[Cell, Digit] = true;
-					break;
-				}
-				default:
-				{
-					throw new InvalidOperationException("Cannot apply to grid due to invalid conclusion type.");
-				}
+					ConclusionType.Assignment => &a,
+					ConclusionType.Elimination => &e,
+					_ => throw new InvalidOperationException("Cannot apply to grid due to invalid conclusion type.")
+				};
+				m(grid, Cell, Digit);
 			}
+
+			static void a(Grid grid, int cell, int digit) => grid[cell] = digit;
+			static void e(Grid grid, int cell, int digit) => grid[cell, digit] = true;
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
@@ -91,8 +88,8 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Conclusion comparer && Equals(comparer);
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		public bool Equals(Conclusion other) => GetHashCode() == other.GetHashCode();
+		/// <inheritdoc/>
+		public bool Equals(in Conclusion other) => GetHashCode() == other.GetHashCode();
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);
@@ -113,9 +110,9 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
+		public static bool operator ==(in Conclusion left, in Conclusion right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
+		public static bool operator !=(in Conclusion left, in Conclusion right) => !(left == right);
 	}
 }

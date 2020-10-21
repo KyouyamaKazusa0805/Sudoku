@@ -7,7 +7,7 @@ namespace Sudoku.Models
 	/// <summary>
 	/// Encapsulates a progress result used for report the current state.
 	/// </summary>
-	public struct GridProgressResult : IEquatable<GridProgressResult>, IProgressResult
+	public struct GridProgressResult : IValueEquatable<GridProgressResult>, IProgressResult
 	{
 		/// <summary>
 		/// Initializes an instance with the specified current point and the total point.
@@ -57,8 +57,12 @@ namespace Sudoku.Models
 			(current, unsolvedCells) = (CurrentCandidatesCount, CurrentCellsCount);
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="currentCandidatesCount">(<see langword="out"/> parameter) The number of unsolved candidates.</param>
-		/// <param name="currentCellsCount">(<see langword="out"/> parameter) The number of unsolved cells.</param>
+		/// <param name="currentCandidatesCount">
+		/// (<see langword="out"/> parameter) The number of unsolved candidates.
+		/// </param>
+		/// <param name="currentCellsCount">
+		/// (<see langword="out"/> parameter) The number of unsolved cells.
+		/// </param>
 		/// <param name="initialCandidatesCount">
 		/// (<see langword="out"/> parameter) The number of unsolved candidates in the initial grid.
 		/// </param>
@@ -73,12 +77,15 @@ namespace Sudoku.Models
 			$"{Resources.GetValue("UnsolvedCandidates")}{CurrentCandidatesCount}";
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override readonly bool Equals(object? obj) => obj is GridProgressResult comparer && Equals(comparer);
+		public override readonly bool Equals(object? obj) =>
+			obj is GridProgressResult comparer && Equals(comparer);
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		public readonly bool Equals(GridProgressResult other) =>
-			CurrentCellsCount == other.CurrentCellsCount && CurrentCandidatesCount == other.CurrentCandidatesCount
-			&& InitialCandidatesCount == other.InitialCandidatesCount && GlobalizationString == other.GlobalizationString;
+		/// <inheritdoc/>
+		public readonly bool Equals(in GridProgressResult other) =>
+			CurrentCellsCount == other.CurrentCellsCount
+			&& CurrentCandidatesCount == other.CurrentCandidatesCount
+			&& InitialCandidatesCount == other.InitialCandidatesCount
+			&& GlobalizationString == other.GlobalizationString;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override readonly int GetHashCode() =>
@@ -86,9 +93,9 @@ namespace Sudoku.Models
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(GridProgressResult left, GridProgressResult right) => left.Equals(right);
+		public static bool operator ==(in GridProgressResult left, in GridProgressResult right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(GridProgressResult left, GridProgressResult right) => !(left == right);
+		public static bool operator !=(in GridProgressResult left, in GridProgressResult right) => !(left == right);
 	}
 }

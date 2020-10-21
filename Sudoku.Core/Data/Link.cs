@@ -6,7 +6,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a link used for drawing.
 	/// </summary>
-	public readonly struct Link : IEquatable<Link>
+	public readonly struct Link : IValueEquatable<Link>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified start and endcandidate, and a link type.
@@ -70,7 +70,7 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Link other) =>
+		public bool Equals(in Link other) =>
 			this is var (a, b, c) && other is var (d, e, f)
 			&& (
 			((int)c << 20 | a << 10 | b) == ((int)f << 20 | d << 10 | e)
