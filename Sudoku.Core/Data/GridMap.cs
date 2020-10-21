@@ -616,22 +616,25 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				ref long v = ref cell / Shifting == 0 ? ref _low : ref _high;
-				bool older = this[cell];
-				if (value)
+				if (cell is not (< 0 or >= 81))
 				{
-					v |= 1L << cell % Shifting;
-					if (!older)
+					ref long v = ref cell / Shifting == 0 ? ref _low : ref _high;
+					bool older = this[cell];
+					if (value)
 					{
-						Count++;
+						v |= 1L << cell % Shifting;
+						if (!older)
+						{
+							Count++;
+						}
 					}
-				}
-				else
-				{
-					v &= ~(1L << cell % Shifting);
-					if (older)
+					else
 					{
-						Count--;
+						v &= ~(1L << cell % Shifting);
+						if (older)
+						{
+							Count--;
+						}
 					}
 				}
 			}

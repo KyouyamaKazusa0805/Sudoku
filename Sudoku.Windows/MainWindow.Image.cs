@@ -221,7 +221,6 @@ namespace Sudoku.Windows
 									}
 								}
 
-								_selectedCellsWhileDrawingRegions.Clear();
 								break;
 							}
 						}
@@ -240,6 +239,7 @@ namespace Sudoku.Windows
 				}
 			}
 
+			_selectedCellsWhileDrawingRegions.Clear();
 			_currentPainter = _currentPainter with { FocusedCells = _focusedCells };
 
 			UpdateImageGrid();

@@ -569,11 +569,6 @@
             and the sudoku grid outline.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.PointConverter.WhatTheHellOffset">
-            <summary>
-            I don't know why the constant exists but it does work!
-            </summary>
-        </member>
         <member name="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)">
             <summary>
             Initializes an instance with the width and height.

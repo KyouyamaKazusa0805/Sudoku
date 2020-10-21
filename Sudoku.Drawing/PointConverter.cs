@@ -22,11 +22,6 @@ namespace Sudoku.Drawing
 		/// </summary>
 		private const int Offset = 10;
 
-		/// <summary>
-		/// I don't know why the constant exists but it does work!
-		/// </summary>
-		private const int WhatTheHellOffset = 6;
-
 
 		/// <summary>
 		/// Initializes an instance with the width and height.
