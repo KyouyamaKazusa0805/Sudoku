@@ -107,10 +107,9 @@ namespace Sudoku.Drawing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int GetCell(PointF point)
 		{
-			const int o = Offset;
 			var (x, y) = point.Truncate();
-			x -= o;
-			y -= o;
+			x -= Offset;
+			y -= Offset;
 			if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
 			{
 				// Invalid case.
