@@ -471,7 +471,7 @@ namespace Sudoku.Data
 		/// </summary>
 		public void Fix()
 		{
-			for (int i = 0; i < 81; i++)
+			for (int i = 0; i < Length; i++)
 			{
 				if (GetStatus(i) == CellStatus.Modifiable)
 				{
@@ -490,7 +490,7 @@ namespace Sudoku.Data
 		/// </summary>
 		public void Unfix()
 		{
-			for (int i = 0; i < 81; i++)
+			for (int i = 0; i < Length; i++)
 			{
 				if (GetStatus(i) == CellStatus.Given)
 				{
