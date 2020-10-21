@@ -1636,11 +1636,11 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializationOption)"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Initializes an instance with a series of cell offsets.
             </summary>
-            <param name="offsets">cell offsets.</param>
+            <param name="cells">(<see langword="in"/> parameter) cell offsets.</param>
             <remarks>
             <para>
             Note that all offsets will be set <see langword="true"/>, but their own peers
@@ -1659,11 +1659,11 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32},Sudoku.Data.GridMap.InitializationOption)">
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32}@,Sudoku.Data.GridMap.InitializationOption)">
             <summary>
             Initializes an instance with cell offsets with an initialize option.
             </summary>
-            <param name="offsets">The offsets to be processed.</param>
+            <param name="cells">(<see langword="in"/> parameter) The offsets to be processed.</param>
             <param name="initializeOption">
             Indicates the behavior of the initialization.
             </param>
@@ -1677,11 +1677,11 @@
             <seealso cref="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself"/>
             <seealso cref="P:Sudoku.Data.GridMap.PeerIntersection"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap@)">
             <summary>
             (Copy constructor) To copy an instance with the specified information.
             </summary>
-            <param name="another">Another instance.</param>
+            <param name="another">(<see langword="in"/> parameter) Another instance.</param>
             <remarks>
             <para>
             This constructor is only used for adding or removing some extra cells like:
@@ -1898,11 +1898,14 @@
         <member name="M:Sudoku.Data.GridMap.Equals(Sudoku.Data.GridMap)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.Overlaps(Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.Equals(Sudoku.Data.GridMap@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.Overlaps(Sudoku.Data.GridMap@)">
             <summary>
             Indicates whether this map overlaps another one.
             </summary>
-            <param name="other">The other map.</param>
+            <param name="other">(<see langword="in"/> parameter) The other map.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Data.GridMap.AllSetsAreInOneRegion(System.Int32@)">
@@ -1943,6 +1946,9 @@
             <seealso cref="P:Sudoku.Data.GridMap.First"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.CompareTo(Sudoku.Data.GridMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.CompareTo(Sudoku.Data.GridMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.GridMap.ToArray">
@@ -2047,11 +2053,11 @@
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.GridMap.AddRange(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Data.GridMap.AddRange(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Set the specified cells as <see langword="true"/> value.
             </summary>
-            <param name="offsets">The cells to add.</param>
+            <param name="offsets">(<see langword="in"/> parameter) The cells to add.</param>
         </member>
         <member name="M:Sudoku.Data.GridMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -2059,68 +2065,68 @@
             </summary>
             <param name="offsets">The cells to add.</param>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_Equality(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_Equality(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_Inequality(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_Inequality(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_GreaterThan(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_GreaterThan(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_GreaterThanOrEqual(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_GreaterThanOrEqual(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_LessThan(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_LessThan(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_LessThanOrEqual(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_LessThanOrEqual(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_OnesComplement(Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_OnesComplement(Sudoku.Data.GridMap@)">
             <summary>
             Reverse status for all cells, which means all <see langword="true"/> bits
             will be set <see langword="false"/>, and all <see langword="false"/> bits
             will be set <see langword="true"/>.
             </summary>
-            <param name="gridMap">The instance to negate.</param>
+            <param name="gridMap">(<see langword="in"/> parameter) The instance to negate.</param>
             <returns>The negative result.</returns>
             <remarks>
             While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
             that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
             </remarks>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <summary>
             Get a <see cref="T:Sudoku.Data.GridMap"/> that contains all <paramref name="left"/> cells
             but not in <paramref name="right"/> cells.
             </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
+            <param name="left">(<see langword="in"/> parameter) The left instance.</param>
+            <param name="right">(<see langword="in"/> parameter) The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_BitwiseAnd(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_BitwiseAnd(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <summary>
             Get all cells that two <see cref="T:Sudoku.Data.GridMap"/>s both contain.
             </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
+            <param name="left">(<see langword="in"/> parameter) The left instance.</param>
+            <param name="right">(<see langword="in"/> parameter) The right instance.</param>
             <returns>The intersection result.</returns>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_BitwiseOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_BitwiseOr(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <summary>
             Get all cells from two <see cref="T:Sudoku.Data.GridMap"/>s.
             </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
+            <param name="left">(<see langword="in"/> parameter) The left instance.</param>
+            <param name="right">(<see langword="in"/> parameter) The right instance.</param>
             <returns>The union result.</returns>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_ExclusiveOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_ExclusiveOr(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <summary>
             Get all cells that only appears once in two <see cref="T:Sudoku.Data.GridMap"/>s.
             </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
+            <param name="left">(<see langword="in"/> parameter) The left instance.</param>
+            <param name="right">(<see langword="in"/> parameter) The right instance.</param>
             <returns>The symmetrical difference result.</returns>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Implicit(System.Int32[])~Sudoku.Data.GridMap">
@@ -2129,23 +2135,23 @@
             </summary>
             <param name="cells">The cells.</param>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_Implicit(System.Span{System.Int32})~Sudoku.Data.GridMap">
+        <member name="M:Sudoku.Data.GridMap.op_Implicit(System.Span{System.Int32}@)~Sudoku.Data.GridMap">
             <summary>
             Implicit cast from <see cref="T:System.Span`1"/> to <see cref="T:Sudoku.Data.GridMap"/>.
             </summary>
-            <param name="cells">The cells.</param>
+            <param name="cells">(<see langword="in"/> parameter) The cells.</param>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_Implicit(System.ReadOnlySpan{System.Int32})~Sudoku.Data.GridMap">
+        <member name="M:Sudoku.Data.GridMap.op_Implicit(System.ReadOnlySpan{System.Int32}@)~Sudoku.Data.GridMap">
             <summary>
             Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Data.GridMap"/>.
             </summary>
-            <param name="cells">The cells.</param>
+            <param name="cells">(<see langword="in"/> parameter) The cells.</param>
         </member>
-        <member name="M:Sudoku.Data.GridMap.op_Explicit(Sudoku.Data.GridMap)~System.Int32[]">
+        <member name="M:Sudoku.Data.GridMap.op_Explicit(Sudoku.Data.GridMap@)~System.Int32[]">
             <summary>
             Explicit cast from <see cref="T:Sudoku.Data.GridMap"/> to <see cref="T:System.Int32"/>[].
             </summary>
-            <param name="map">The map.</param>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
         <member name="T:Sudoku.Data.GridMap.InitializationOption">
             <summary>
@@ -3821,11 +3827,11 @@
             The inner binary values.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.#ctor(Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.#ctor(Sudoku.Data.SudokuMap@)">
             <summary>
             (Copy constructor) Initializes an instance with another one.
             </summary>
-            <param name="another">The another instance.</param>
+            <param name="another">(<see langword="in"/> parameter) The another instance.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.#ctor(System.Int32)">
             <summary>
@@ -3864,19 +3870,19 @@
             <param name="length">The length.</param>
             <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.#ctor(Sudoku.Data.GridMap,System.Int32)">
+        <member name="M:Sudoku.Data.SudokuMap.#ctor(Sudoku.Data.GridMap@,System.Int32)">
             <summary>
             Initializes an instance with the specified <see cref="T:Sudoku.Data.GridMap"/> and the number
             representing.
             </summary>
-            <param name="map">The map.</param>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
             <param name="digit">The digit.</param>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.#ctor(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Data.SudokuMap.#ctor(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Initializes an instance with the specified candidates.
             </summary>
-            <param name="candidates">The candidates.</param>
+            <param name="candidates">(<see langword="in"/> parameter) The candidates.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -3948,11 +3954,11 @@
         <member name="M:Sudoku.Data.SudokuMap.Equals(Sudoku.Data.SudokuMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.Overlaps(Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.Overlaps(Sudoku.Data.SudokuMap@)">
             <summary>
             Indicates whether this map overlaps another one.
             </summary>
-            <param name="other">The other map.</param>
+            <param name="other">(<see langword="in"/> parameter) The other map.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.SetAt(System.Int32)">
@@ -4061,11 +4067,11 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.SudokuMap.Add(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.AddRange(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Data.SudokuMap.AddRange(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Set the specified candidates as <see langword="true"/> value.
             </summary>
-            <param name="candidates">The candidate offsets.</param>
+            <param name="candidates">(<see langword="in"/> parameter) The candidate offsets.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -4092,59 +4098,59 @@
             <param name="candidates">All candidates.</param>
             <returns>The result map.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_Equality(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.op_Equality(Sudoku.Data.SudokuMap@,Sudoku.Data.SudokuMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_Inequality(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.op_Inequality(Sudoku.Data.SudokuMap@,Sudoku.Data.SudokuMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_OnesComplement(Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.op_OnesComplement(Sudoku.Data.SudokuMap@)">
             <summary>
             Reverse status for all candidates, which means all <see langword="true"/> bits
             will be set <see langword="false"/>, and all <see langword="false"/> bits
             will be set <see langword="true"/>.
             </summary>
-            <param name="map">The instance to negate.</param>
+            <param name="map">(<see langword="in"/> parameter) The instance to negate.</param>
             <returns>The negative result.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_BitwiseAnd(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.op_BitwiseAnd(Sudoku.Data.SudokuMap@,Sudoku.Data.SudokuMap@)">
             <summary>
             Get all candidates that two <see cref="T:Sudoku.Data.SudokuMap"/>s both contain.
             </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
+            <param name="left">(<see langword="in"/> parameter) The left instance.</param>
+            <param name="right">(<see langword="in"/> parameter) The right instance.</param>
             <returns>The intersection result.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_BitwiseOr(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.op_BitwiseOr(Sudoku.Data.SudokuMap@,Sudoku.Data.SudokuMap@)">
             <summary>
             Get all candidates from two <see cref="T:Sudoku.Data.SudokuMap"/>s.
             </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
+            <param name="left">(<see langword="in"/> parameter) The left instance.</param>
+            <param name="right">(<see langword="in"/> parameter) The right instance.</param>
             <returns>The union result.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_ExclusiveOr(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.op_ExclusiveOr(Sudoku.Data.SudokuMap@,Sudoku.Data.SudokuMap@)">
             <summary>
             Get all candidates that only appears once in two <see cref="T:Sudoku.Data.SudokuMap"/>s.
             </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
+            <param name="left">(<see langword="in"/> parameter) The left instance.</param>
+            <param name="right">(<see langword="in"/> parameter) The right instance.</param>
             <returns>The symmetrical difference result.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_Subtraction(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Data.SudokuMap.op_Subtraction(Sudoku.Data.SudokuMap@,Sudoku.Data.SudokuMap@)">
             <summary>
             Get a <see cref="T:Sudoku.Data.GridMap"/> that contains all <paramref name="left"/> candidates
             but not in <paramref name="right"/> candidates.
             </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
+            <param name="left">(<see langword="in"/> parameter) The left instance.</param>
+            <param name="right">(<see langword="in"/> parameter) The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.op_Implicit(Sudoku.Data.SudokuMap)~System.Int32[]">
+        <member name="M:Sudoku.Data.SudokuMap.op_Implicit(Sudoku.Data.SudokuMap@)~System.Int32[]">
             <summary>
             Implicit cast from <see cref="T:Sudoku.Data.SudokuMap"/> to <see cref="T:System.Int32"/>[].
             </summary>
-            <param name="map">The map.</param>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Implicit(System.Int32[])~Sudoku.Data.SudokuMap">
             <summary>
