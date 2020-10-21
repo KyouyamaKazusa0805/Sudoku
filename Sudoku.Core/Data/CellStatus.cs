@@ -32,10 +32,11 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <remarks>
 		/// You had better use this field on cases when processing
-		/// the bitwise operations in a sudoku <see cref="Grid"/>.
+		/// the bitwise operations in a <see cref="Grid"/> or <see cref="SudokuGrid"/>.
 		/// This field should not be used to process cell status comparison.
 		/// </remarks>
 		/// <seealso cref="Grid.GetStatus(int)"/>
+		/// <seealso cref="SudokuGrid.GetStatus(int)"/>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		All = Empty | Modifiable | Given
 	}
