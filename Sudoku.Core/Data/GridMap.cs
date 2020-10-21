@@ -23,7 +23,7 @@ namespace Sudoku.Data
 	/// and the <see langword="false"/> bit (0) is for the cell not containing
 	/// the digit.
 	/// </remarks>
-	public partial struct GridMap : IValueComparable<GridMap>, IEnumerable<int>, IValueEquatable<GridMap>, IFormattable
+	public partial struct GridMap : IEnumerable<int>, IValueComparable<GridMap>, IValueEquatable<GridMap>, IFormattable
 	{
 		/// <summary>
 		/// <para>Indicates an empty instance (all bits are 0).</para>
