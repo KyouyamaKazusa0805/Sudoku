@@ -15,6 +15,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	partial class UrTechniqueSearcher
 	{
+		/// <summary>
+		/// Check UR+2D.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check2D(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
@@ -29,8 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int[] otherCells = otherCellsMap.ToArray();
-			short o1 = grid.GetCandidateMask(otherCells[0]);
-			short o2 = grid.GetCandidateMask(otherCells[1]);
+			short o1 = grid.GetCandidateMask(otherCells[0]), o2 = grid.GetCandidateMask(otherCells[1]);
 			short o = (short)(o1 | o2);
 			if ((o.PopCount(), o1.PopCount(), o2.PopCount(), o1 & comparer, o2 & comparer) is not (4, <= 3, <= 3, not 0, not 0)
 				|| (o & comparer) != comparer)
@@ -111,6 +123,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check UR+2B/1SL.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check2B1SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
@@ -128,108 +153,122 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int cell in stackalloc[] { corner1, corner2 })
 			{
-				int sameRegionCell = GetSameRegionCell(cell, otherCellsMap, out var regions);
-				if (sameRegionCell == -1)
+				foreach (int otherCell in otherCellsMap)
 				{
-					continue;
-				}
-
-				foreach (int region in regions)
-				{
-					if (region < 9)
+					if (!IsSameRegionCell(cell, otherCell, out var regions))
 					{
 						continue;
 					}
 
-					foreach (int digit in stackalloc[] { d1, d2 })
+					foreach (int region in regions)
 					{
-						if (!IsConjugatePair(digit, new()
-						{ cell, sameRegionCell }, region))
+						if (region < 9)
 						{
 							continue;
 						}
 
-						int elimCell = new GridMap(otherCellsMap) { ~sameRegionCell }.First;
-						if (grid.Exists(sameRegionCell, digit) is not true)
+						foreach (int digit in stackalloc[] { d1, d2 })
 						{
-							continue;
-						}
-
-						int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
-						var conclusions = new List<Conclusion>();
-						if (grid.Exists(elimCell, elimDigit) is true)
-						{
-							conclusions.Add(new(Elimination, elimCell, elimDigit));
-						}
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
-
-						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int urCell in urCells)
-						{
-							if (urCell == corner1 || urCell == corner2)
+							if (!IsConjugatePair(digit, new() { cell, otherCell }, region))
 							{
-								if (new GridMap { urCell, sameRegionCell }.CoveredRegions.Contains(region))
-								{
-									foreach (int d in grid.GetCandidates(urCell))
-									{
-										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
-									}
-								}
-								else
-								{
-									foreach (int d in grid.GetCandidates(urCell))
-									{
-										candidateOffsets.Add(new(0, urCell * 9 + d));
-									}
-								}
+								continue;
 							}
-							else if (urCell == sameRegionCell || urCell == elimCell)
+
+							int elimCell = new GridMap(otherCellsMap) { ~otherCell }.First;
+							if (grid.Exists(otherCell, digit) is not true)
 							{
-								void record(int d)
+								continue;
+							}
+
+							int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
+							var conclusions = new List<Conclusion>();
+							if (grid.Exists(elimCell, elimDigit) is true)
+							{
+								conclusions.Add(new(Elimination, elimCell, elimDigit));
+							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							var candidateOffsets = new List<DrawingInfo>();
+							foreach (int urCell in urCells)
+							{
+								if (urCell == corner1 || urCell == corner2)
 								{
-									if (grid.Exists(urCell, d) is true)
+									if (new GridMap { urCell, otherCell }.CoveredRegions.Contains(region))
 									{
-										if (urCell != elimCell || d != elimDigit)
+										foreach (int d in grid.GetCandidates(urCell))
 										{
-											candidateOffsets.Add(
-												new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
+											candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										}
+									}
+									else
+									{
+										foreach (int d in grid.GetCandidates(urCell))
+										{
+											candidateOffsets.Add(new(0, urCell * 9 + d));
 										}
 									}
 								}
-
-								record(d1);
-								record(d2);
-							}
-						}
-
-						if (!_allowIncompleteUr && candidateOffsets.Count != 7)
-						{
-							continue;
-						}
-
-						accumulator.Add(
-							new UrPlusTechniqueInfo(
-								conclusions,
-								new View[]
+								else if (urCell == otherCell || urCell == elimCell)
 								{
-									new(
-										arMode ? GetHighlightCells(urCells) : null,
-										candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
-								},
-								Plus2B1SL,
-								d1,
-								d2,
-								urCells,
-								arMode,
-								new ConjugatePair[] { new(cell, sameRegionCell, digit) }));
+									void record(int d)
+									{
+										if (grid.Exists(urCell, d) is true)
+										{
+											if (urCell != elimCell || d != elimDigit)
+											{
+												candidateOffsets.Add(
+													new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
+											}
+										}
+									}
+
+									record(d1);
+									record(d2);
+								}
+							}
+
+							if (!_allowIncompleteUr && candidateOffsets.Count != 7)
+							{
+								continue;
+							}
+
+							accumulator.Add(
+								new UrPlusTechniqueInfo(
+									conclusions,
+									new View[]
+									{
+										new(
+											arMode ? GetHighlightCells(urCells) : null,
+											candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
+									},
+									Plus2B1SL,
+									d1,
+									d2,
+									urCells,
+									arMode,
+									new ConjugatePair[] { new(cell, otherCell, digit) }));
+						}
 					}
 				}
 			}
 		}
 
+		/// <summary>
+		/// Check UR+2D/1SL.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check2D1SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
@@ -248,104 +287,117 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int cell in stackalloc[] { corner1, corner2 })
 			{
-				int sameRegionCell = GetSameRegionCell(cell, otherCellsMap, out var regions);
-				if (sameRegionCell == -1)
+				foreach (int otherCell in otherCellsMap)
 				{
-					continue;
-				}
-
-				foreach (int region in regions)
-				{
-					if (region < 9)
+					if (!IsSameRegionCell(cell, otherCell, out var regions))
 					{
 						continue;
 					}
 
-					foreach (int digit in stackalloc[] { d1, d2 })
+					foreach (int region in regions)
 					{
-						if (!IsConjugatePair(digit, new()
-						{ cell, sameRegionCell }, region))
+						if (region < 9)
 						{
 							continue;
 						}
 
-						int elimCell = new GridMap(otherCellsMap) { ~sameRegionCell }.First;
-						if (grid.Exists(sameRegionCell, digit) is not true)
+						foreach (int digit in stackalloc[] { d1, d2 })
 						{
-							continue;
-						}
-
-						var conclusions = new List<Conclusion>();
-						if (grid.Exists(elimCell, digit) is true)
-						{
-							conclusions.Add(new(Elimination, elimCell, digit));
-						}
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
-
-						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int urCell in urCells)
-						{
-							if (urCell == corner1 || urCell == corner2)
+							if (!IsConjugatePair(digit, new() { cell, otherCell }, region))
 							{
-								if (new GridMap { urCell, sameRegionCell }.CoveredRegions.Any(r => r == region))
+								continue;
+							}
+
+							int elimCell = new GridMap(otherCellsMap) { ~otherCell }.First;
+							if (grid.Exists(otherCell, digit) is not true)
+							{
+								continue;
+							}
+
+							var conclusions = new List<Conclusion>();
+							if (grid.Exists(elimCell, digit) is true)
+							{
+								conclusions.Add(new(Elimination, elimCell, digit));
+							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							var candidateOffsets = new List<DrawingInfo>();
+							foreach (int urCell in urCells)
+							{
+								if (urCell == corner1 || urCell == corner2)
 								{
-									foreach (int d in grid.GetCandidates(urCell))
+									if (new GridMap { urCell, otherCell }.CoveredRegions.Any(r => r == region))
 									{
-										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										foreach (int d in grid.GetCandidates(urCell))
+										{
+											candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										}
+									}
+									else
+									{
+										foreach (int d in grid.GetCandidates(urCell))
+										{
+											candidateOffsets.Add(new(0, urCell * 9 + d));
+										}
 									}
 								}
-								else
+								else if (urCell == otherCell || urCell == elimCell)
 								{
-									foreach (int d in grid.GetCandidates(urCell))
+									void record(int d)
 									{
-										candidateOffsets.Add(new(0, urCell * 9 + d));
+										if ((grid.Exists(urCell, d), urCell != elimCell || d != digit) == (true, true))
+										{
+											candidateOffsets.Add(
+												new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
+										}
 									}
+
+									record(d1);
+									record(d2);
 								}
 							}
-							else if (urCell == sameRegionCell || urCell == elimCell)
+
+							if (!_allowIncompleteUr && candidateOffsets.Count != 7)
 							{
-								void record(int d)
-								{
-									if ((grid.Exists(urCell, d), urCell != elimCell || d != digit) is (true, true))
-									{
-										candidateOffsets.Add(
-											new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
-									}
-								}
-
-								record(d1);
-								record(d2);
+								continue;
 							}
-						}
 
-						if (!_allowIncompleteUr && candidateOffsets.Count != 7)
-						{
-							continue;
+							accumulator.Add(
+								new UrPlusTechniqueInfo(
+									conclusions,
+									new View[]
+									{
+										new(
+											arMode ? GetHighlightCells(urCells) : null,
+											candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
+									},
+									Plus2D1SL,
+									d1,
+									d2,
+									urCells,
+									arMode,
+									new ConjugatePair[] { new(cell, otherCell, digit) }));
 						}
-
-						accumulator.Add(
-							new UrPlusTechniqueInfo(
-								conclusions,
-								new View[]
-								{
-									new(
-										arMode ? GetHighlightCells(urCells) : null,
-										candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
-								},
-								Plus2D1SL,
-								d1,
-								d2,
-								urCells,
-								arMode,
-								new ConjugatePair[] { new(cell, sameRegionCell, digit) }));
 					}
 				}
 			}
 		}
 
+		/// <summary>
+		/// Check UR+3X.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="cornerCell">The corner cell.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3X(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
@@ -452,6 +504,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check UR+3X/2SL.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="cornerCell">The corner cell.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3X2SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
@@ -550,6 +614,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check UR+3N/2SL.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="cornerCell">The corner cell.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3N2SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
@@ -658,6 +734,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check UR+3U/2SL.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="cornerCell">The corner cell.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3U2SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
@@ -760,6 +848,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check UR+3E/2SL.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="cornerCell">The corner cell.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check3E2SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
@@ -862,6 +962,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check UR+4X/3SL.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check4X3SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
@@ -977,6 +1090,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check UR+4C/3SL.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void Check4C3SL(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
@@ -1104,10 +1230,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check UR-XY-Wing, UR-XYZ-Wing and UR-WXYZ-Wing.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+		/// <param name="size">The size of the wing to search.</param>
 		partial void CheckWing(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap,
-			int size)
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap, int size)
 		{
 			// Subtype 1:
 			//     ↓ corner1
@@ -1134,8 +1273,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				short mask2 = grid.GetCandidateMask(otherCell2);
 				short mask = (short)(mask1 | mask2);
 
-				if (mask.PopCount() != 2 + size || (mask & comparer) != comparer
-					|| mask1 == comparer || mask2 == comparer)
+				if (mask.PopCount() != 2 + size || (mask & comparer) != comparer || mask1 == comparer || mask2 == comparer)
 				{
 					return;
 				}

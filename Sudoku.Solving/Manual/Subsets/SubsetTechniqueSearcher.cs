@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					{
 						mask &= (short)~(1 << grid[cell]);
 					}
-					foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(size))
+					foreach (int[] digits in mask.GetMaskSubsets(size))
 					{
 						short tempMask = mask;
 						var map = GridMap.Empty;

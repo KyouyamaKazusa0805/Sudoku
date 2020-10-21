@@ -145,8 +145,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		}
 
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
-			GridMap loop, GridMap extraCellsMap);
+			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2, GridMap loop, GridMap extraCellsMap);
 
 		partial void CheckType2(
 			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,

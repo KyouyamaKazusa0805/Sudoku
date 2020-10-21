@@ -270,28 +270,27 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Get a cell that is in the same region of the specified cell lies in.
 		/// </summary>
 		/// <param name="currentCell">The current cell.</param>
-		/// <param name="otherCellsMap">The map of other cells.</param>
+		/// <param name="anotherCell">Another cell to check.</param>
 		/// <param name="region">
 		/// (<see langword="out"/> parameter) The result regions that both cells lie in.
 		/// If the cell can't be found, the parameter will be an empty array of type <see cref="int"/>.
 		/// </param>
-		/// <returns>The cell.</returns>
-		private static int GetSameRegionCell(int currentCell, GridMap otherCellsMap, out IEnumerable<int> region)
+		/// <returns>
+		/// The <see cref="bool"/> value indicating whether the another cell is same region as the current one.
+		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static bool IsSameRegionCell(int currentCell, int anotherCell, out IEnumerable<int> region)
 		{
-			foreach (int c in otherCellsMap)
+			if (new GridMap { anotherCell, currentCell }.CoveredRegions is var coveredRegions && coveredRegions.None())
 			{
-				var coveredRegions = new GridMap { c, currentCell }.CoveredRegions;
-				if (coveredRegions.None())
-				{
-					continue;
-				}
-
-				region = coveredRegions;
-				return c;
+				region = Array.Empty<int>();
+				return false;
 			}
-
-			region = Array.Empty<int>();
-			return -1;
+			else
+			{
+				region = coveredRegions;
+				return true;
+			}
 		}
 
 		/// <summary>

@@ -268,6 +268,11 @@
             Indicates the regular expression to match a digit.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.NullLinesOrHeaderSpaces">
+            <summary>
+            Indicates all null lines and header spaces in their lines.
+            </summary>
+        </member>
         <member name="T:Sudoku.Constants.Throwings">
             <summary>
             Provides operations for throwing exceptions.
@@ -329,7 +334,7 @@
             <summary>
             Encapsulates a bit combination generator.
             </summary>
-            <example>
+            <remarks>
             You can use this struct like this:
             <code>
             foreach (short mask in new BitCombinationGenerator(9, 3))
@@ -337,7 +342,7 @@
                 // Do something to use the mask.
             }
             </code>
-            </example>
+            </remarks>
         </member>
         <member name="F:Sudoku.Data.BitCombinationGenerator._mask">
             <summary>
@@ -1023,9 +1028,6 @@
             </list>
             </para>
             </remarks>
-            <permission cref="T:System.Security.PermissionSet">
-            The current project or the derived class can access this field.
-            </permission>
             <seealso cref="T:Sudoku.Data.CellStatus"/>
         </member>
         <member name="F:Sudoku.Data.Grid._initialMasks">
@@ -1034,9 +1036,6 @@
             the initial grid. The field won't be modified until this instance
             destructs.
             </summary>
-            <permission cref="T:System.Security.PermissionSet">
-            The current project or the derived class can access this field.
-            </permission>
             <seealso cref="F:Sudoku.Data.Grid._masks"/>
         </member>
         <member name="M:Sudoku.Data.Grid.#ctor(System.Int16[])">
@@ -1573,8 +1572,6 @@
             which represents 81 bits. <see cref="F:Sudoku.Data.GridMap._high"/> represent the higher
             40 bits and <see cref="F:Sudoku.Data.GridMap._low"/> represents the lower 41 bits.
             </summary>
-            <seealso cref="F:Sudoku.Data.GridMap._low"/>
-            <seealso cref="F:Sudoku.Data.GridMap._high"/>
         </member>
         <member name="F:Sudoku.Data.GridMap._low">
             <summary>
@@ -1582,8 +1579,6 @@
             which represents 81 bits. <see cref="F:Sudoku.Data.GridMap._high"/> represent the higher
             40 bits and <see cref="F:Sudoku.Data.GridMap._low"/> represents the lower 41 bits.
             </summary>
-            <seealso cref="F:Sudoku.Data.GridMap._low"/>
-            <seealso cref="F:Sudoku.Data.GridMap._high"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32)">
             <summary>
@@ -4227,533 +4222,6 @@
             <param name="sender">The object triggering the event.</param>
             <param name="e">The data while triggering.</param>
         </member>
-        <member name="T:Sudoku.Data.ValueGrid">
-            <summary>
-            Encapsulates a grid same as <see cref="T:Sudoku.Data.Grid"/>
-            but use <see langword="struct"/> instead of <see langword="class"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid.EmptyString">
-            <summary>
-            Indicates the empty grid string.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid.Empty">
-            <summary>
-            Indicates an empty grid, where all values are zero. This field is initialized by the static constructor
-            of this structure.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid.Undefined">
-            <summary>
-            Indicates the undefined grid (All values are 0, uninitialized,
-            i.e. <see langword="default"/>(<see cref="T:Sudoku.Data.ValueGrid"/>)).
-            </summary>
-            <remarks>
-            Please don't use the default constructor <see cref="M:Sudoku.Data.ValueGrid.#ctor"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.ValueGrid.#ctor"/>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid.DefaultMask">
-            <summary>
-            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid.MaxCandidatesMask">
-            <summary>
-            Indicates the maximum candidate mask that used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid._masks">
-            <summary>
-            Binary masks of all cells.
-            </summary>
-            <remarks>
-            <para>This array stores binary representation of decimals.</para>
-            <para>
-            There are 81 cells in a sudoku grid, so this data structure uses
-            an array of size 81. Each element is a <see cref="T:System.Int16"/> value
-            (but only use 12 bits), where the lower 9 bits indicates whether
-            the digit 1 to 9 exists or not. If the corresponding value is
-            <see langword="true"/>, or in other words, the binary representation
-            is 1, this digit will <b>not</b> exist.
-            </para>
-            <para>
-            The higher 3 bits indicates the cell status. The
-            cases are below:
-            <list type="table">
-            <item>
-            <term><c>0b001</c> (1)</term>
-            <description>The cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>.</description>
-            </item>
-            <item>
-            <term><c>0b010</c> (2)</term>
-            <description>The cell is <see cref="F:Sudoku.Data.CellStatus.Modifiable"/>.</description>
-            </item>
-            <item>
-            <term><c>0b100</c> (4)</term>
-            <description>The cell is <see cref="F:Sudoku.Data.CellStatus.Given"/>.</description>
-            </item>
-            </list>
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Data.CellStatus"/>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid._initialMasks">
-            <summary>
-            Same as <see cref="F:Sudoku.Data.ValueGrid._masks"/>, but this field stores the all masks at
-            the initial grid. The field won't be modified until this instance
-            destructs.
-            </summary>
-            <seealso cref="F:Sudoku.Data.ValueGrid._masks"/>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid.ValueChanged">
-            <summary>
-            The event handler triggering when the value changed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.#ctor(System.Int16*,System.Int32)">
-            <summary>
-            Initializes an instance with the binary mask array (represented by a pointer) and a value indicating
-            the length of this array.
-            </summary>
-            <param name="masks">The masks.</param>
-            <param name="length">The length of the mask.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the length of the specified argument is not 81.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.#ctor(System.Int16[])">
-            <summary>
-            Initializes an instance with the binary mask array.
-            </summary>
-            <param name="masks">The mask array.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the length of the specified argument is not 81.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.HasSolved">
-            <summary>
-            Indicates the grid has already solved. If the value is <see langword="true"/>,
-            the grid is solved; otherwise, <see langword="false"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.CandidatesCount">
-            <summary>
-            Indicates the number of total candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.GivensCount">
-            <summary>
-            Indicates the total number of given cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.ModifiablesCount">
-            <summary>
-            Indicates the total number of modifiable cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.EmptiesCount">
-            <summary>
-            Indicates the total number of empty cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.Triplet">
-            <summary>
-            The triplet of three main information.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.Value(System.Int32)">
-            <summary>
-            Gets or sets a digit into a cell.
-            </summary>
-            <param name="cell">The cell offset you want to get or set.</param>
-            <value>
-            The digit you want to set. This value should be between 0 and 8.
-            In addition, if your input is -1, the candidate mask in this cell
-            will be re-computed. If your input is none of them above, this indexer
-            will do nothing.
-            </value>
-            <returns>
-            An <see cref="T:System.Int32"/> value indicating the result.
-            If the current cell doesn't have a digit
-            (i.e. The cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>),
-            The value will be -1.
-            </returns>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.Value(System.Int32,System.Int32)">
-            <summary>
-            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="cell">The cell offset between 0 and 80.</param>
-            <param name="digit">The digit between 0 and 8.</param>
-            <value>
-            The case you want to set. <see langword="true"/> means that this candidate
-            doesn't exist in this current sudoku grid; otherwise, <see langword="false"/>.
-            </value>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Fix">
-            <summary>
-            To fix a grid, which means all modifiable values will be changed
-            to given ones.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Unfix">
-            <summary>
-            To unfix a grid, which means all given values will be changed
-            to modifiable ones.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Reset">
-            <summary>
-            To reset the grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
-            <summary>
-            Set the status in a cell.
-            </summary>
-            <param name="offset">The cell offset you want to change.</param>
-            <param name="cellStatus">The cell status you want to set.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.SetMask(System.Int32,System.Int16)">
-            <summary>
-            Set a mask in a cell.
-            </summary>
-            <param name="offset">The cell offset you want to change.</param>
-            <param name="value">The cell mask you want to set.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.RecomputeCandidates">
-            <summary>
-            Re-compute candidates.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Equals(Sudoku.Data.ValueGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.ToArray">
-            <summary>
-            Serializes this instance to an array, where all digit value will be stored.
-            </summary>
-            <returns>
-            This array. All elements are between 0 to 9, where 0 means the
-            cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/> now.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.GetMask(System.Int32)">
-            <summary>
-            Get a mask of the specified cell.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The mask.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.GetCandidateMask(System.Int32)">
-            <summary>
-            Get the candidate mask part of the specified cell.
-            </summary>
-            <param name="cell">The cell offset you want to get.</param>
-            <returns>
-            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
-            value, where the bit will be <c>0</c> if the corresponding digit <b>doesn't exist</b> in the cell,
-            and will be <c>1</c> if the corresponding contains this digit (either the cell
-            is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
-            </returns>
-            <remarks>
-            Please note that the grid masks is represented with bits, where 0 is for the digit containing in a
-            cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
-            1 is for containing and 0 is for <b>not</b>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.ToString(Sudoku.Data.GridOutputOptions)">
-            <summary>
-            Returns a string that represents the current object with the grid output option.
-            </summary>
-            <param name="gridOutputOption">The grid output option.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.ToString(System.String)">
-            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.GetStatus(System.Int32)">
-            <summary>
-            Get the current status for the specified cell.
-            </summary>
-            <param name="cell">The cell offset you want to get.</param>
-            <returns>The cell status.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.GetCandidates(System.Int32)">
-            <summary>
-            Get all candidates containing in the specified cell.
-            </summary>
-            <param name="cell">The cell you want to get.</param>
-            <returns>All candidates.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.OnValueChanged(Sudoku.Data.ValueGrid@,Sudoku.Data.ValueGrid.ValueChangedValues@)">
-            <summary>
-            The method, which will be invoked when the mask has changed.
-            </summary>
-            <param name="sender">(<see langword="ref"/> parameter) The instance triggering the event.</param>
-            <param name="e">(<see langword="in"/> parameter) The data.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.SimplyValidate">
-            <summary>
-            Simply validate.
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Parse(System.Char*,System.Int32)">
-            <summary>
-            Parses a string value and converts to this type.
-            </summary>
-            <param name="str">The char pointer to a string.</param>
-            <param name="length">The length.</param>
-            <returns>The grid result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Parse(System.ReadOnlySpan{System.Char})">
-            <summary>
-            <para>
-            Parses a string value and converts to this type.
-            </para>
-            <para>
-            If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Data.ValueGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Data.ValueGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Parse(System.String)">
-            <summary>
-            <para>
-            Parses a string value and converts to this type.
-            </para>
-            <para>
-            If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Data.ValueGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Data.ValueGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Parse(System.String,System.Boolean)">
-            <summary>
-            <para>
-            Parses a string value and converts to this type.
-            </para>
-            <para>
-            If you want to parse a PM grid, you should decide the mode to parse.
-            If you use compatible mode to parse, all single values will be treated as
-            given values; otherwise, recommended mode, which uses '<c>&lt;d&gt;</c>'
-            or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
-            will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Data.GridParser.CompatibleFirst"/> to learn more.
-            </param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="P:Sudoku.Data.GridParser.CompatibleFirst"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Parse(System.String,Sudoku.Data.GridParsingOption)">
-            <summary>
-            Parses a string value and converts to this type,
-            using a specified grid parsing type.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="gridParsingOption">The grid parsing type.</param>
-            <returns>The result instance had converted.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.TryParse(System.String,Sudoku.Data.ValueGrid@)">
-            <summary>
-            Try to parse a string and converts to this type, and returns a
-            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="result">
-            (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
-            this argument will be <see langword="default"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.TryParse(System.String,Sudoku.Data.GridParsingOption,Sudoku.Data.ValueGrid@)">
-            <summary>
-            Try to parse a string and converts to this type, and returns a
-            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="gridParsingOption">The grid parsing type.</param>
-            <param name="result">
-            (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
-            this argument will be <see langword="default"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.CreateInstance(System.Int32[])">
-            <summary>
-            Creates an instance using grid values.
-            </summary>
-            <param name="gridValues">The array of grid values.</param>
-            <returns>The result instance.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Equals(Sudoku.Data.ValueGrid,Sudoku.Data.ValueGrid)">
-            <summary>
-            To determine whether two grids are equal.
-            </summary>
-            <param name="left">The left grid.</param>
-            <param name="right">The right grid.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.CheckFormatString(System.String)">
-            <summary>
-            To check the format string, delegated from the method
-            <see cref="M:Sudoku.Data.ValueGrid.ToString(System.String,System.IFormatProvider)"/>.
-            </summary>
-            <param name="format">The format.</param>
-            <seealso cref="M:Sudoku.Data.ValueGrid.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Memcpy(System.Void*,System.Void*,System.Int32)">
-            <summary>
-            Copies the specified memory to the destination memory block,
-            with the specified value indicating the size unit.
-            </summary>
-            <param name="dest">The pointer to the destination block.</param>
-            <param name="src">The pointer to the destination block.</param>
-            <param name="size">The number of the size unit.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.op_Equality(Sudoku.Data.ValueGrid,Sudoku.Data.ValueGrid)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.op_Inequality(Sudoku.Data.ValueGrid,Sudoku.Data.ValueGrid)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.op_Implicit(Sudoku.Data.ValueGrid)~Sudoku.Data.Grid">
-            <summary>
-            Implicit cast from <see cref="T:Sudoku.Data.ValueGrid"/> to <see cref="T:Sudoku.Data.Grid"/>.
-            </summary>
-            <param name="grid">The base grid.</param>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.op_Explicit(Sudoku.Data.Grid)~Sudoku.Data.ValueGrid">
-            <summary>
-            Explicit cast from <see cref="T:Sudoku.Data.Grid"/> to <see cref="T:Sudoku.Data.ValueGrid"/>.
-            </summary>
-            <param name="grid">The base grid.</param>
-        </member>
-        <member name="T:Sudoku.Data.ValueGrid.Enumerator">
-            <summary>
-            Encapsulates an enumerator for <see cref="T:Sudoku.Data.ValueGrid"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid.Enumerator._pInitial">
-            <summary>
-            Indicates the initial pointer to the first element.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid.Enumerator._count">
-            <summary>
-            The number to iterate. If the value is 81, the grid will be end to iterate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ValueGrid.Enumerator._pCurrent">
-            <summary>
-            The pointer to the current element.
-            </summary>
-            <remarks>
-            Please note, if the enumerator <b>must</b> points to <c>[0]</c> to <c>[80]</c>, otherwise
-            it will cause an fatal error for memory leaking.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Enumerator.#ctor(Sudoku.Data.ValueGrid)">
-            <summary>
-            Initializes an instance with the specified grid.
-            </summary>
-            <param name="pointer">The grid.</param>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.Enumerator.Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Enumerator.Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Enumerator.MoveNext">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.Enumerator.Reset">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.ValueGrid.ValueChangedValues">
-            <summary>
-            Encapsulates the arguments for the event value changed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.ValueChangedValues.#ctor(System.Int32,System.Int16,System.Int16,System.Int32)">
-            <summary>
-            Initializes the instance with some data.
-            </summary>
-            <param name="cell">The cell offset. Must be in range 0 to 80.</param>
-            <param name="oldMask">The old mask before modified.</param>
-            <param name="newMask">The mask to modify the cell.</param>
-            <param name="setValue">
-            The value to set on the cell. If the action is deletion,
-            this argument should be -1.
-            </param>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.ValueChangedValues.Cell">
-            <summary>
-            The cell offset. Must be in range 0 to 80.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.ValueChangedValues.OldMask">
-            <summary>
-            The old mask before modified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.ValueChangedValues.NewMask">
-            <summary>
-            The new mask after modified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueGrid.ValueChangedValues.SetValue">
-            <summary>
-            The value. -1 when this value is not required.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueGrid.ValueChangedValues.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="cell">(<see langword="out"/> parameter) The cell offset.</param>
-            <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
-            <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
-            <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
-        </member>
         <member name="T:Sudoku.Diagnostics.FileCounter">
             <summary>
             Encapsulates a file counter.
@@ -5338,6 +4806,14 @@
             <param name="selector">The selector for each set bits.</param>
             <returns>The result list using projection.</returns>
         </member>
+        <member name="M:Sudoku.Extensions.Int16Ex.GetMaskSubsets(System.Int16,System.Int32)">
+            <summary>
+            Simply called <c>.GetAllSets().ToArray().GetSubsets(count)</c>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The mask.</param>
+            <param name="count">The number of set bits you want to take.</param>
+            <returns>The mask subset list.</returns>
+        </member>
         <member name="T:Sudoku.Extensions.Int32Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int32"/>.
@@ -5373,6 +4849,14 @@
         </member>
         <member name="M:Sudoku.Extensions.Int32Ex.ReverseBits(System.Int32@)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
+        </member>
+        <member name="M:Sudoku.Extensions.Int32Ex.GetMaskSubsets(System.Int32,System.Int32)">
+            <summary>
+            Simply called <c>.GetAllSets().ToArray().GetSubsets(count)</c>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The mask.</param>
+            <param name="count">The number of set bits you want to take.</param>
+            <returns>The mask subset list.</returns>
         </member>
         <member name="T:Sudoku.Extensions.Int64Ex">
             <summary>
@@ -5766,6 +5250,16 @@
             </summary>
             <param name="this">(<see langword="this"/> parameter) The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.StringEx.TrimVerbatim(System.String)">
+            <summary>
+            Trim all spaces when they started a new line, or null lines.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The string.</param>
+            <returns>The trimmed result.</returns>
+            <remarks>
+            Note that all null lines and header spaces are removed.
+            </remarks>
         </member>
         <member name="M:Sudoku.Extensions.StringEx.TrimEndNewLine(System.String)">
             <summary>

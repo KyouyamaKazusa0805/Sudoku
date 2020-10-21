@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
@@ -14,6 +15,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	partial class UrTechniqueSearcher
 	{
+		/// <summary>
+		/// Check type 1.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="cornerCell">The corner cell.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void CheckType1(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
@@ -23,13 +36,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ab   ab
 
 			// Get the summary mask.
-			short mask = 0;
-			foreach (int cell in otherCellsMap)
-			{
-				mask |= grid.GetCandidateMask(cell);
-			}
-
-			if (mask != comparer)
+			if (grid.BitwiseOrMasks(otherCellsMap) is var mask && mask != comparer)
 			{
 				return;
 			}
@@ -76,6 +83,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					arMode));
 		}
 
+		/// <summary>
+		/// Check type 2.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void CheckType2(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
@@ -85,13 +105,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ab    ab
 
 			// Get the summary mask.
-			short mask = 0;
-			foreach (int cell in otherCellsMap)
-			{
-				mask |= grid.GetCandidateMask(cell);
-			}
-
-			if (mask != comparer)
+			if (grid.BitwiseOrMasks(otherCellsMap) is var mask && mask != comparer)
 			{
 				return;
 			}
@@ -151,6 +165,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					extraDigit));
 		}
 
+		/// <summary>
+		/// Check type 3.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void CheckType3Naked(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
@@ -161,19 +188,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer
 				|| otherCellsMap.Any(
 					c =>
-						grid.GetCandidateMask(c) is var mask
-						&& (mask & comparer) == 0 || mask == comparer || arMode
-						&& grid.GetStatus(c) != Empty))
+						grid.GetCandidateMask(c) is var mask && (mask & comparer) == 0
+						|| mask == comparer || arMode && grid.GetStatus(c) != Empty))
 			{
 				return;
 			}
 
-			short mask = 0;
-			foreach (int cell in otherCellsMap)
-			{
-				mask |= grid.GetCandidateMask(cell);
-			}
-			if ((mask & comparer) != comparer)
+			if (grid.BitwiseOrMasks(otherCellsMap) is var mask && (mask & comparer) != comparer)
 			{
 				return;
 			}
@@ -267,6 +288,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check type 4.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void CheckType4(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
@@ -367,6 +401,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check type 5.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="cornerCell">The corner cell.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void CheckType5(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
@@ -380,14 +426,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			// Get the summary mask.
-			short mask = 0;
-			foreach (int cell in otherCellsMap)
-			{
-				mask |= grid.GetCandidateMask(cell);
-			}
-
-			int extraMask = mask ^ comparer;
-			if (extraMask.PopCount() != 1)
+			if ((grid.BitwiseOrMasks(otherCellsMap) ^ comparer) is var extraMask && extraMask.PopCount() != 1)
 			{
 				return;
 			}
@@ -440,6 +479,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					extraDigit));
 		}
 
+		/// <summary>
+		/// Check type 6.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void CheckType6(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
@@ -467,15 +519,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			void gather(bool isRow, int digit, int region1, int region2)
 			{
 				if ((!isRow
-					|| !IsConjugatePair(digit, new()
-				{ corner1, o1 }, region1)
-					|| !IsConjugatePair(digit, new()
-				{ corner2, o2 }, region2))
+					|| !IsConjugatePair(digit, new() { corner1, o1 }, region1)
+					|| !IsConjugatePair(digit, new() { corner2, o2 }, region2))
 					&& (isRow
-					|| !IsConjugatePair(digit, new()
-				{ corner1, o2 }, region1)
-					|| !IsConjugatePair(digit, new()
-				{ corner2, o1 }, region2)))
+					|| !IsConjugatePair(digit, new() { corner1, o2 }, region1)
+					|| !IsConjugatePair(digit, new() { corner2, o1 }, region2)))
 				{
 					return;
 				}
@@ -545,6 +593,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		/// <summary>
+		/// Check hidden UR.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="cornerCell">The corner cell.</param>
+		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 		partial void CheckHidden(
 			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
@@ -567,8 +627,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				int abyCell = adjacentCellsMap.SetAt(1);
 				var map1 = new GridMap { abzCell, abxCell };
 				var map2 = new GridMap { abzCell, abyCell };
-				if (!IsConjugatePair(digit, map1, map1.CoveredLine)
-					|| !IsConjugatePair(digit, map2, map2.CoveredLine))
+				if (!IsConjugatePair(digit, map1, map1.CoveredLine) || !IsConjugatePair(digit, map2, map2.CoveredLine))
 				{
 					continue;
 				}

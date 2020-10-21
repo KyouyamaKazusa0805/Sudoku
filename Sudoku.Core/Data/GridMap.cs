@@ -56,8 +56,6 @@ namespace Sudoku.Data
 		/// which represents 81 bits. <see cref="_high"/> represent the higher
 		/// 40 bits and <see cref="_low"/> represents the lower 41 bits.
 		/// </summary>
-		/// <seealso cref="_low"/>
-		/// <seealso cref="_high"/>
 		private long _high, _low;
 
 
