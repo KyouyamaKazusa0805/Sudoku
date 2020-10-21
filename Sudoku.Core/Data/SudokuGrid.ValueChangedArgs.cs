@@ -1,4 +1,5 @@
-﻿using Sudoku.DocComments;
+﻿using System;
+using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
@@ -8,7 +9,7 @@ namespace Sudoku.Data
 		/// Provides arguments for the event <see cref="ValueChanged"/>.
 		/// </summary>
 		/// <seealso cref="ValueChanged"/>
-		public readonly struct ValueChangedArgs
+		public readonly struct ValueChangedArgs : IValueEquatable<ValueChangedArgs>
 		{
 			/// <summary>
 			/// Initializes the instance with some data.
@@ -52,6 +53,10 @@ namespace Sudoku.Data
 			/// <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
 			public void Deconstruct(out int cell, out short oldMask, out short newMask, out int setValue) =>
 				(cell, oldMask, newMask, setValue) = (Cell, OldMask, NewMask, SetValue);
+
+			/// <inheritdoc/>
+			public bool Equals(in ValueChangedArgs other) =>
+				(Cell, OldMask, NewMask, SetValue) == (other.Cell, other.OldMask, other.NewMask, other.SetValue);
 		}
 	}
 }

@@ -7,7 +7,7 @@ namespace Sudoku.Drawing
 	/// Encapsulates a drawing information pair for highlighting cells,
 	/// candidates and regions.
 	/// </summary>
-	public readonly struct DrawingInfo : IEquatable<DrawingInfo>
+	public readonly struct DrawingInfo : IValueEquatable<DrawingInfo>
 	{
 		/// <summary>
 		/// Initializes an instance with ID and value.
@@ -32,7 +32,7 @@ namespace Sudoku.Drawing
 		public override bool Equals(object? obj) => obj is DrawingInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(DrawingInfo other) => (Id, Value) == (other.Id, other.Value);
+		public bool Equals(in DrawingInfo other) => (Id, Value) == (other.Id, other.Value);
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => Id * 10000 + Value;

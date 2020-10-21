@@ -1,5 +1,4 @@
-﻿#pragma warning disable CA1815
-
+﻿using System;
 using Sudoku.Data;
 using Sudoku.DocComments;
 
@@ -8,7 +7,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <summary>
 	/// Encapsulates a pattern for Qiu's deadly pattern (QDP).
 	/// </summary>
-	public readonly struct Pattern
+	public readonly struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified maps.
@@ -48,7 +47,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public void Deconstruct(out GridMap pair, out GridMap square, out GridMap baseLine) =>
 			(pair, square, baseLine) = (Pair, Square, BaseLine);
 
+		/// <inheritdoc/>
+		public override bool Equals(object? obj) => obj is Pattern other && Equals(other);
+
+		/// <inheritdoc/>
+		public bool Equals(in Pattern other) => (Square, BaseLine, Pair) == (other.Square, other.BaseLine, other.Pair);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => FullMap.GetHashCode();
+
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => FullMap.ToString();
+
+
+		/// <inheritdoc cref="Operators.operator =="/>
+		public static bool operator ==(Pattern left, Pattern right) => left.Equals(right);
+
+		/// <inheritdoc cref="Operators.operator !="/>
+		public static bool operator !=(Pattern left, Pattern right) => !(left == right);
 	}
 }

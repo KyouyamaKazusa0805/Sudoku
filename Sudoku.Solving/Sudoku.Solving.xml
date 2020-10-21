@@ -1090,7 +1090,7 @@
         <member name="M:Sudoku.Solving.ConjugatePair.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.Equals(Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.ConjugatePair.Equals(Sudoku.Solving.ConjugatePair@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.ConjugatePair.GetHashCode">
@@ -1099,10 +1099,10 @@
         <member name="M:Sudoku.Solving.ConjugatePair.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.op_Equality(Sudoku.Solving.ConjugatePair,Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.ConjugatePair.op_Equality(Sudoku.Solving.ConjugatePair@,Sudoku.Solving.ConjugatePair@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.op_Inequality(Sudoku.Solving.ConjugatePair,Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.ConjugatePair.op_Inequality(Sudoku.Solving.ConjugatePair@,Sudoku.Solving.ConjugatePair@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Solving.Constants.Processings">
@@ -1562,14 +1562,14 @@
             <param name="result">(<see langword="out"/> parameter) The result.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <remarks>
             If you want to determine the equality of two instance, I recommend you
-            <b>should</b> use method <see cref="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als)"/> instead of this method.
+            <b>should</b> use method <see cref="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als@)"/> instead of this method.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ToString">
@@ -1582,10 +1582,10 @@
             <param name="grid">The grid.</param>
             <returns>All ALSes searched.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Equality(Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Equality(Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo">
@@ -3376,7 +3376,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(Sudoku.Solving.Manual.Exocets.Pattern)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(Sudoku.Solving.Manual.Exocets.Pattern@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.GetHashCode">
@@ -3385,10 +3385,10 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Equality(Sudoku.Solving.Manual.Exocets.Pattern,Sudoku.Solving.Manual.Exocets.Pattern)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Equality(Sudoku.Solving.Manual.Exocets.Pattern@,Sudoku.Solving.Manual.Exocets.Pattern@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Inequality(Sudoku.Solving.Manual.Exocets.Pattern,Sudoku.Solving.Manual.Exocets.Pattern)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Inequality(Sudoku.Solving.Manual.Exocets.Pattern@,Sudoku.Solving.Manual.Exocets.Pattern@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo">
@@ -6598,7 +6598,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.GetHashCode">
@@ -6607,10 +6607,10 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Equality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Equality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern">
@@ -6652,8 +6652,23 @@
             <param name="square">(<see langword="out"/> parameter) The square map.</param>
             <param name="baseLine">(<see langword="out"/> parameter) The base line map.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.op_Equality(Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeTechniqueInfo">
             <summary>

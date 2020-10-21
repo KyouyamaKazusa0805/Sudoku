@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <summary>
 	/// Indicates the borescoper's deadly pattern.
 	/// </summary>
-	public readonly struct Pattern : IEquatable<Pattern>
+	public readonly struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
 		/// Indicates the internal structure.
@@ -93,7 +93,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Pattern other) => _mask == other._mask;
+		public bool Equals(in Pattern other) => _mask == other._mask;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => (int)_mask;
@@ -103,9 +103,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Pattern left, Pattern right) => left.Equals(right);
+		public static bool operator ==(in Pattern left, in Pattern right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Pattern left, Pattern right) => !(left == right);
+		public static bool operator !=(in Pattern left, in Pattern right) => !(left == right);
 	}
 }

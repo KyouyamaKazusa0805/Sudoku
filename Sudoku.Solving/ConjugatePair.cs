@@ -13,7 +13,7 @@ namespace Sudoku.Solving
 	/// these two candidates is in the same region where all cells has only
 	/// two position can fill this candidate.
 	/// </remarks>
-	public readonly struct ConjugatePair : IEquatable<ConjugatePair>
+	public readonly struct ConjugatePair : IValueEquatable<ConjugatePair>
 	{
 		/// <summary>
 		/// Initializes an instance with from and to cell offset
@@ -67,7 +67,7 @@ namespace Sudoku.Solving
 		public override bool Equals(object? obj) => obj is ConjugatePair comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(ConjugatePair other) => (Map, Digit) == (other.Map, other.Digit);
+		public bool Equals(in ConjugatePair other) => (Map, Digit) == (other.Map, other.Digit);
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => Map.GetHashCode() ^ Digit;
@@ -83,9 +83,9 @@ namespace Sudoku.Solving
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(ConjugatePair left, ConjugatePair right) => left.Equals(right);
+		public static bool operator ==(in ConjugatePair left, in ConjugatePair right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(ConjugatePair left, ConjugatePair right) => !(left == right);
+		public static bool operator !=(in ConjugatePair left, in ConjugatePair right) => !(left == right);
 	}
 }

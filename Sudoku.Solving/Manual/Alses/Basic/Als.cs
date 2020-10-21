@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Encapsulates a normal ALS.
 	/// </summary>
-	public readonly struct Als : IEquatable<Als>
+	public readonly struct Als : IValueEquatable<Als>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified digit mask and the map of cells.
@@ -129,13 +129,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			return result.IsNotEmpty;
 		}
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		public bool Equals(Als other) => DigitsMask == other.DigitsMask && Map == other.Map;
+		/// <inheritdoc/>
+		public bool Equals(in Als other) => DigitsMask == other.DigitsMask && Map == other.Map;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <remarks>
 		/// If you want to determine the equality of two instance, I recommend you
-		/// <b>should</b> use method <see cref="Equals(Als)"/> instead of this method.
+		/// <b>should</b> use method <see cref="Equals(in Als)"/> instead of this method.
 		/// </remarks>
 		[SuppressMessage("", "IDE0004")]
 		public override int GetHashCode()
@@ -238,9 +238,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Als left, Als right) => left.Equals(right);
+		public static bool operator ==(in Als left, in Als right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Als left, Als right) => !(left == right);
+		public static bool operator !=(in Als left, in Als right) => !(left == right);
 	}
 }

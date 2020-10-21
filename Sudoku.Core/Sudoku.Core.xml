@@ -3785,6 +3785,9 @@
             <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
             <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
         </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.Equals(Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Data.SudokuMap">
             <summary>
             Encapsulats a map that contains 729 positions to represent a candidate.
@@ -5329,7 +5332,7 @@
         <member name="M:Sudoku.Drawing.DrawingInfo.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Drawing.DrawingInfo.Equals(Sudoku.Drawing.DrawingInfo)">
+        <member name="M:Sudoku.Drawing.DrawingInfo.Equals(Sudoku.Drawing.DrawingInfo@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.DrawingInfo.GetHashCode">

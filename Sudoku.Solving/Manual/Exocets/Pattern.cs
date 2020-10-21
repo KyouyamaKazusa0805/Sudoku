@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Indicates an exocet pattern.
 	/// </summary>
-	public readonly struct Pattern : IEquatable<Pattern>
+	public readonly struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified cells.
@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Pattern other) =>
+		public bool Equals(in Pattern other) =>
 			Base1 == other.Base1 && Base2 == other.Base2
 			&& TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
 			&& TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
@@ -171,9 +171,9 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Pattern left, Pattern right) => left.Equals(right);
+		public static bool operator ==(in Pattern left, in Pattern right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Pattern left, Pattern right) => !(left == right);
+		public static bool operator !=(in Pattern left, in Pattern right) => !(left == right);
 	}
 }
