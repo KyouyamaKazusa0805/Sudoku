@@ -20,7 +20,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(Grid grid)
+		public override AnalysisResult Solve(in SudokuGrid grid)
 		{
 			var stopwatch = new Stopwatch();
 
@@ -35,7 +35,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 				(
 					solverName: SolverName,
 					puzzle: grid,
-					solution: Grid.Parse(results[0]),
+					solution: SudokuGrid.Parse(results[0]),
 					hasSolved: true,
 					elapsedTime: stopwatch.Elapsed,
 					additional: null

@@ -49,6 +49,52 @@ namespace System.Linq
 		public static bool None<T>(this IEnumerable<T?> @this) => !@this.Any();
 
 		/// <summary>
+		/// Determines whether all elements of a sequence satisfy a condition
+		/// specified as <paramref name="selector"/>.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="selector">The selector, specified a function pointer.</param>
+		/// <returns>The result indicating whether all values satisfy the condition.</returns>
+		public static unsafe bool All<T>(this IEnumerable<T> @this, delegate* managed<T, bool> selector)
+		{
+			foreach (var element in @this)
+			{
+				if (!selector(element))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Determines whether all elements of a sequence satisfy a condition
+		/// specified as <paramref name="selector"/>. In addition, the method allows you
+		/// pass another <see langword="in"/> parameter to participate in checking.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <typeparam name="TOther">The type of the another value to participate in checking.</typeparam>
+		/// <param name="this">(<see langword="in"/> parameter) The list.</param>
+		/// <param name="selector">The selector.</param>
+		/// <param name="value">The value to participate in checking.</param>
+		/// <returns>The result indicating whether all values satisfy the condition.</returns>
+		public static unsafe bool All<TElement, TOther>(this IEnumerable<TElement> @this,
+			delegate* managed<TElement, in TOther, bool> selector, in TOther value) where TOther : struct
+		{
+			foreach (var element in @this)
+			{
+				if (!selector(element, value))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
 		/// Check whether the specified list has only one element.
 		/// </summary>
 		/// <typeparam name="TNotNull">The type of the element.</typeparam>

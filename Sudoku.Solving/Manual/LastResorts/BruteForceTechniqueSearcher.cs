@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// The solution.
 		/// </summary>
-		private readonly Grid _solution;
+		private readonly SudokuGrid _solution;
 
 
 		/// <summary>
@@ -48,8 +48,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// This searcher will try to extract a value from the
 		/// solution.
 		/// </summary>
-		/// <param name="solution">The solution.</param>
-		public BruteForceTechniqueSearcher(Grid solution) => _solution = solution;
+		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+		public BruteForceTechniqueSearcher(in SudokuGrid solution) => _solution = solution;
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			foreach (int offset in TryAndErrorOrder)
 			{

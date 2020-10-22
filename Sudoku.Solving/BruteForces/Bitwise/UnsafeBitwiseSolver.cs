@@ -71,10 +71,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="str">The string.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public AnalysisResult Solve(string str) => Solve(new GridParser(str).Parse());
+		public AnalysisResult Solve(string str) => Solve(SudokuGrid.Parse(str));
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(Grid grid)
+		public override AnalysisResult Solve(in SudokuGrid grid)
 		{
 			var stopwatch = new Stopwatch();
 
@@ -94,7 +94,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					(
 						solverName: SolverName,
 						puzzle: grid,
-						solution: Grid.Parse(new Span<char>(solutionStr, BufferLength)),
+						solution: SudokuGrid.Parse(new Span<char>(solutionStr, BufferLength)),
 						hasSolved: true,
 						elapsedTime: stopwatch.Elapsed,
 						additional: null

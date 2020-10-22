@@ -17,10 +17,10 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Solve naively.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="cloneation">The cloneation grid to calculate.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="cloneation">(<see langword="ref"/> parameter) The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
-		/// <param name="solution">The solution.</param>
+		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
 		/// <param name="sukaku">Indicates whether the current mode is sukaku.</param>
 		/// <param name="progressResult">
 		/// (<see langword="ref"/> parameter)
@@ -38,11 +38,11 @@ namespace Sudoku.Solving.Manual
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
 		private unsafe AnalysisResult SolveNaively(
-			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution, bool sukaku,
-			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
+			in SudokuGrid grid, ref SudokuGrid cloneation, List<TechniqueInfo> steps, in SudokuGrid solution,
+			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 			// Check symmetry first.
-			var stepGrids = new List<Grid>();
+			var stepGrids = new List<SudokuGrid>();
 			if (!sukaku && CheckGurthSymmetricalPlacement)
 			{
 				var symmetrySearcher = new GspTechniqueSearcher();
@@ -51,8 +51,8 @@ namespace Sudoku.Solving.Manual
 				{
 					if (CheckConclusionsValidity(solution, tempStep.Conclusions))
 					{
-						stepGrids.Add(cloneation.Clone());
-						tempStep.ApplyTo(cloneation);
+						stepGrids.Add(cloneation);
+						tempStep.ApplyTo(ref cloneation);
 						steps.Add(tempStep);
 
 						if (progress is not null)
@@ -112,12 +112,11 @@ namespace Sudoku.Solving.Manual
 
 				if (FastSearch)
 				{
-					if (!CheckConclusionValidityAfterSearched
-						|| bag.All(info => CheckConclusionsValidity(solution, info.Conclusions)))
+					if (!CheckConclusionValidityAfterSearched || bag.All(&InternalChecking, solution))
 					{
 						foreach (var step in bag)
 						{
-							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
+							if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 							{
 								stopwatch.Stop();
 								return result;
@@ -170,7 +169,7 @@ namespace Sudoku.Solving.Manual
 
 					if (!CheckConclusionValidityAfterSearched || CheckConclusionsValidity(solution, step.Conclusions))
 					{
-						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
+						if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 						{
 							stopwatch.Stop();
 							return result;

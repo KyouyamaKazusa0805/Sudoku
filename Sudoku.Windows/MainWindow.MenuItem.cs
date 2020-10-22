@@ -754,31 +754,31 @@ namespace Sudoku.Windows
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformMirrorLeftRight_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformations.MirrorLeftRight);
+			Transform(&SudokuGridTransformations.MirrorLeftRight);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformMirrorTopBotton_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformations.MirrorTopBottom);
+			Transform(&SudokuGridTransformations.MirrorTopBottom);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformMirrorDiagonal_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformations.MirrorDiagonal);
+			Transform(&SudokuGridTransformations.MirrorDiagonal);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformMirrorAntidiagonal_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformations.MirrorAntidiagonal);
+			Transform(&SudokuGridTransformations.MirrorAntidiagonal);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformRotateClockwise_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformations.RotateClockwise);
+			Transform(&SudokuGridTransformations.RotateClockwise);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformRotateCounterclockwise_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformations.RotateCounterclockwise);
+			Transform(&SudokuGridTransformations.RotateCounterclockwise);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformRotatePi_Click(object sender, RoutedEventArgs e) =>
-			Transform(&GridTransformations.RotatePi);
+			Transform(&SudokuGridTransformations.RotatePi);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemViewsShowBugN_Click(object sender, RoutedEventArgs e)

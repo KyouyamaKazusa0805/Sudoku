@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(Grid grid) => Solve(grid, null);
+		public override AnalysisResult Solve(in SudokuGrid grid) => Solve(grid, null);
 
 		/// <summary>
 		/// To solve the specified puzzle in asynchronous way.
@@ -36,19 +36,20 @@ namespace Sudoku.Solving.Manual
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The task of the execution.</returns>
 		public async Task<AnalysisResult> SolveAsync(
-			Grid grid, IProgress<IProgressResult>? progress, string? globalizationString = null) =>
+			SudokuGrid grid, IProgress<IProgressResult>? progress, string? globalizationString = null) =>
 			await Task.Run(() => Solve(grid, progress, globalizationString));
 
 		/// <summary>
 		/// To solve the puzzle.
 		/// </summary>
-		/// <param name="grid">The puzzle.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
 		/// <param name="progress">The progress instance to report the state.</param>
 		/// <param name="globalizationString">
 		/// The globalization string. The default value is <see langword="null"/>.
 		/// </param>
 		/// <returns>The analysis result.</returns>
-		public AnalysisResult Solve(Grid grid, IProgress<IProgressResult>? progress, string? globalizationString = null)
+		public AnalysisResult Solve(
+			in SudokuGrid grid, IProgress<IProgressResult>? progress, string? globalizationString = null)
 		{
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{
@@ -63,9 +64,10 @@ namespace Sudoku.Solving.Manual
 					ref var pr = ref progress is null ? ref defaultValue : ref defaultPr;
 					progress?.Report(defaultPr);
 
+					var copied = grid;
 					return AnalyzeDifficultyStrictly
-						? SolveSeMode(grid, grid.Clone(), TempList, solution, sukaku.Value, ref pr, progress)
-						: SolveNaively(grid, grid.Clone(), TempList, solution, sukaku.Value, ref pr, progress);
+						? SolveSeMode(grid, ref copied, TempList, solution, sukaku.Value, ref pr, progress)
+						: SolveNaively(grid, ref copied, TempList, solution, sukaku.Value, ref pr, progress);
 #pragma warning restore CS0612
 				}
 				catch (WrongHandlingException ex)

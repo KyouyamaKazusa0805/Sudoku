@@ -18,10 +18,10 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// To solve the specified puzzle.
 		/// </summary>
-		/// <param name="grid">The puzzle.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
 		/// <returns>
 		/// An <see cref="AnalysisResult"/> displaying all information of solving.
 		/// </returns>
-		public abstract AnalysisResult Solve(Grid grid);
+		public abstract AnalysisResult Solve(in SudokuGrid grid);
 	}
 }
