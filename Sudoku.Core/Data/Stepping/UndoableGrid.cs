@@ -34,6 +34,12 @@ namespace Sudoku.Data.Stepping
 		/// <param name="masks">The mask array.</param>
 		public UndoableGrid(short[] masks) => _innerGrid = new(masks);
 
+		/// <summary>
+		/// Initializes an instance with the specified sudoku grid (value type).
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		public UndoableGrid(in SudokuGrid grid) => _innerGrid = grid;
+
 
 		/// <summary>
 		/// Indicates whether the grid has any undo steps available.
@@ -252,5 +258,20 @@ namespace Sudoku.Data.Stepping
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(UndoableGrid left, in SudokuGrid right) => !(left == right);
+
+
+		/// <summary>
+		/// Explicit cast from <see cref="UndoableGrid"/> to <see cref="SudokuGrid"/>.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <remarks>The cast won't use neither box nor unbox operations.</remarks>
+		public static explicit operator SudokuGrid(UndoableGrid grid) => grid._innerGrid;
+
+		/// <summary>
+		/// Implicit cast from <see cref="SudokuGrid"/> to <see cref="UndoableGrid"/>.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <remarks>The cast won't use neither box nor unbox operations.</remarks>
+		public static implicit operator UndoableGrid(in SudokuGrid grid) => new(grid);
 	}
 }

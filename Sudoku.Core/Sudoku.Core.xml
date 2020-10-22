@@ -2838,7 +2838,7 @@
             <param name="OldMasks">Indicates the table of new grid masks.</param>
             <param name="NewMasks">Indicates the table of old grid masks.</param>
         </member>
-        <member name="M:Sudoku.Data.Stepping.ResetStep.#ctor(System.Int16[],System.Int16[])">
+        <member name="M:Sudoku.Data.Stepping.ResetStep.#ctor(System.Int16*,System.Int16*)">
             <summary>
             Encapsulates a reset step.
             </summary>
@@ -2915,10 +2915,10 @@
         <member name="T:Sudoku.Data.Stepping.UndoableGrid">
             <summary>
             Provides an undoable sudoku grid. This data structure is nearly same
-            as <see cref="T:Sudoku.Data.Grid"/>, but only add two methods <see cref="M:Sudoku.Data.Stepping.UndoableGrid.Undo"/>
+            as <see cref="T:Sudoku.Data.SudokuGrid"/>, but only add two methods <see cref="M:Sudoku.Data.Stepping.UndoableGrid.Undo"/>
             and <see cref="M:Sudoku.Data.Stepping.UndoableGrid.Redo"/>.
             </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
             <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Undo"/>
             <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Redo"/>
         </member>
@@ -2932,15 +2932,16 @@
             The undo and redo stack.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(System.Int16[])">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(Sudoku.Data.Grid)">
+        <member name="F:Sudoku.Data.Stepping.UndoableGrid._innerGrid">
             <summary>
-            Initializes an instance with the specified grid (to convert to
-            an undoable grid).
+            The inner sudoku grid.
             </summary>
-            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(System.Int16[])">
+            <summary>
+            Initializes an instance with the specified mask array.
+            </summary>
+            <param name="masks">The mask array.</param>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.HasUndoSteps">
             <summary>
@@ -2967,17 +2968,17 @@
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Reset">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetStatus(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)"/>
+        </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetMask(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetMask(System.Int32)"/>
+        </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetMask(System.Int32,System.Int16)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetGrid(Sudoku.Data.Stepping.UndoableGrid)">
-            <summary>
-            Set the specified grid to cover the current grid.
-            </summary>
-            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Redo">
             <inheritdoc/>
@@ -3002,25 +3003,28 @@
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Equals(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.Equals(Sudoku.Data.SudokuGrid@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.Stepping.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.SudokuGrid@,Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.SudokuGrid@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.Stepping.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.SudokuGrid@,Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.SudokuGrid@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Stepping.UnfixStep">
@@ -3107,6 +3111,15 @@
             </exception>
             <exception cref="T:System.ArgumentException">
             Throws when <paramref name="length"/> is not 81.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int16[])">
+            <summary>
+            Initializes an instance with the specified mask array.
+            </summary>
+            <param name="masks">The masks.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when <see cref="P:System.Array.Length"/> is not 81.
             </exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.#cctor">

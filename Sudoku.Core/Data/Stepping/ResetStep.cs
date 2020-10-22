@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Data.Stepping
+﻿namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates a reset step.
@@ -10,11 +8,21 @@ namespace Sudoku.Data.Stepping
 	public sealed unsafe record ResetStep(short* OldMasks, short* NewMasks) : Step
 	{
 		/// <inheritdoc/>
-		public override void DoStepTo(UndoableGrid grid) =>
-			SudokuGrid.InternalCopy(grid._innerGrid._values, OldMasks);
+		public override void DoStepTo(UndoableGrid grid)
+		{
+			fixed (short* pValues = grid._innerGrid._values)
+			{
+				SudokuGrid.InternalCopy(pValues, OldMasks);
+			}
+		}
 
 		/// <inheritdoc/>
-		public override void UndoStepTo(UndoableGrid grid) =>
-			SudokuGrid.InternalCopy(grid._innerGrid._values, NewMasks);
+		public override void UndoStepTo(UndoableGrid grid)
+		{
+			fixed (short* pValues = grid._innerGrid._values)
+			{
+				SudokuGrid.InternalCopy(pValues, NewMasks);
+			}
+		}
 	}
 }

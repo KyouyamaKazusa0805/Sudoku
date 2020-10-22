@@ -4,7 +4,7 @@
 	/// Encapsulates an unfix step.
 	/// </summary>
 	/// <param name="AllCells">Indicates all cells.</param>
-	public sealed record UnfixStep(GridMap AllCells) : Step
+	public sealed unsafe record UnfixStep(GridMap AllCells) : Step
 	{
 		/// <inheritdoc/>
 		public override void DoStepTo(UndoableGrid grid)
@@ -12,8 +12,8 @@
 			foreach (int cell in AllCells)
 			{
 				// To prevent the event re-invoke.
-				ref short mask = ref grid._masks[cell];
-				mask = (short)((int)CellStatus.Modifiable << 9 | mask & Grid.MaxCandidatesMask);
+				ref short mask = ref grid._innerGrid._values[cell];
+				mask = (short)((int)CellStatus.Modifiable << 9 | mask & SudokuGrid.MaxCandidatesMask);
 			}
 		}
 
@@ -23,8 +23,8 @@
 			foreach (int cell in AllCells)
 			{
 				// To prevent the event re-invoke.
-				ref short mask = ref grid._masks[cell];
-				mask = (short)((int)CellStatus.Given << 9 | mask & Grid.MaxCandidatesMask);
+				ref short mask = ref grid._innerGrid._values[cell];
+				mask = (short)((int)CellStatus.Given << 9 | mask & SudokuGrid.MaxCandidatesMask);
 			}
 		}
 	}
