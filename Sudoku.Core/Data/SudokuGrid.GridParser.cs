@@ -6,12 +6,12 @@ using Sudoku.Extensions;
 
 namespace Sudoku.Data
 {
-	public unsafe partial struct SudokuGrid
+	partial struct SudokuGrid
 	{
 		/// <summary>
 		/// Encapsulates a grid parser.
 		/// </summary>
-		private ref struct GridParser
+		private unsafe ref struct GridParser
 		{
 			/// <summary>
 			/// Initializes an instance with parsing data.

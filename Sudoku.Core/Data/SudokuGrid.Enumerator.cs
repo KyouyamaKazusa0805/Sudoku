@@ -4,12 +4,12 @@ using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data
 {
-	public unsafe partial struct SudokuGrid
+	partial struct SudokuGrid
 	{
 		/// <summary>
 		/// The inner enumerator.
 		/// </summary>
-		private struct Enumerator : IEnumerator<short>
+		private unsafe struct Enumerator : IEnumerator<short>
 		{
 			/// <summary>
 			/// The pointer to the start value.

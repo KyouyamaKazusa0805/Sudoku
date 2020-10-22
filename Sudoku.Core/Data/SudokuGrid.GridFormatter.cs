@@ -6,7 +6,7 @@ using Sudoku.Extensions;
 
 namespace Sudoku.Data
 {
-	public unsafe partial struct SudokuGrid
+	partial struct SudokuGrid
 	{
 		/// <summary>
 		/// Provides operations for grid formatting.

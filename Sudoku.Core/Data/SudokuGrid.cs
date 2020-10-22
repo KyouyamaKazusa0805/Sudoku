@@ -65,12 +65,12 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the inner array.
 		/// </summary>
-		private fixed short _values[Length];
+		internal fixed short _values[Length];
 
 		/// <summary>
 		/// Indicates the inner array suggests the initial grid.
 		/// </summary>
-		private fixed short _initialValues[Length];
+		internal fixed short _initialValues[Length];
 
 
 		/// <summary>
@@ -94,6 +94,24 @@ namespace Sudoku.Data
 			{
 				InternalCopy(pValues, masks);
 				InternalCopy(pInitialValues, masks);
+			}
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified mask array.
+		/// </summary>
+		/// <param name="masks">The masks.</param>
+		/// <exception cref="ArgumentException">
+		/// Throws when <see cref="Array.Length"/> is not 81.
+		/// </exception>
+		public SudokuGrid(short[] masks)
+		{
+			_ = masks.Length != Length ? throw new ArgumentException($"The length of the array argument should be {Length}.", nameof(masks)) : masks;
+
+			fixed (short* pArray = masks, pValues = _values, pInitialValues = _initialValues)
+			{
+				InternalCopy(pValues, pArray);
+				InternalCopy(pInitialValues, pArray);
 			}
 		}
 
@@ -736,7 +754,7 @@ namespace Sudoku.Data
 		/// <param name="dest">The destination pointer.</param>
 		/// <param name="src">The source pointer.</param>
 #endif
-		private static void InternalCopy(short* dest, short* src)
+		internal static void InternalCopy(short* dest, short* src)
 		{
 #if DEBUG
 			_ = dest == null ? throw new ArgumentNullException(nameof(dest)) : dest;
