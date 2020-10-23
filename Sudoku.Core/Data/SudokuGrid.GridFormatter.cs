@@ -21,7 +21,8 @@ namespace Sudoku.Data
 			/// The multi-line identifier. If the value is <see langword="true"/>, the output will
 			/// be multi-line.
 			/// </param>
-			public GridFormatter(bool multiline) : this('.', multiline, false, false, false, false, false, false, false)
+			public GridFormatter(bool multiline)
+				: this('.', multiline, false, false, false, false, false, false, false)
 			{
 			}
 
@@ -422,23 +423,24 @@ namespace Sudoku.Data
 										var cellStatus = GetStatusFromMask(value);
 
 										sb
-											.Append(
+											.Append
 											(
-												((cellStatus != CellStatus.Empty ? (~value).FindFirstSet() : -1) + 1) switch
-												{
-													var d => cellStatus switch
+												(
+													((cellStatus != CellStatus.Empty ? (~value).FindFirstSet() : -1) + 1) switch
 													{
-														CellStatus.Given => $"<{d}>",
-														CellStatus.Modifiable => formatter.TreatValueAsGiven switch
+														var d => cellStatus switch
 														{
-															true => $"<{d}>",
-															_ => $"*{d}*"
-														},
-														_ => p(value)
+															CellStatus.Given => $"<{d}>",
+															CellStatus.Modifiable => formatter.TreatValueAsGiven switch
+															{
+																true => $"<{d}>",
+																_ => $"*{d}*"
+															},
+															_ => p(value)
+														}
 													}
-												}
-											).PadRight(maxLengths[i]))
-											.Append(i != end ? "  " : " ");
+												).PadRight(maxLengths[i])
+											).Append(i != end ? "  " : " ");
 									}
 
 									static string p(short value)
@@ -460,7 +462,7 @@ namespace Sudoku.Data
 				// The last step: returns the value.
 				return sb.ToString();
 
-				void printTabLines(char c1, char c2, char fillingChar, Span<int> maxLengths) =>
+				void printTabLines(char c1, char c2, char fillingChar, in Span<int> maxLengths) =>
 					sb
 						.Append(c1)
 						.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar))
@@ -506,15 +508,15 @@ namespace Sudoku.Data
 				gridOutputOption switch
 				{
 					GridFormattingOptions.Excel => new(true) { Excel = true },
-					_ => new GridFormatter(gridOutputOption.HasFlagOf(GridFormattingOptions.Multiline))
+					_ => new GridFormatter(gridOutputOption.Flags(GridFormattingOptions.Multiline))
 					{
-						WithModifiables = gridOutputOption.HasFlagOf(GridFormattingOptions.WithModifiers),
-						WithCandidates = gridOutputOption.HasFlagOf(GridFormattingOptions.WithCandidates),
-						TreatValueAsGiven = gridOutputOption.HasFlagOf(GridFormattingOptions.TreatValueAsGiven),
-						SubtleGridLines = gridOutputOption.HasFlagOf(GridFormattingOptions.SubtleGridLines),
-						HodokuCompatible = gridOutputOption.HasFlagOf(GridFormattingOptions.HodokuCompatible),
+						WithModifiables = gridOutputOption.Flags(GridFormattingOptions.WithModifiers),
+						WithCandidates = gridOutputOption.Flags(GridFormattingOptions.WithCandidates),
+						TreatValueAsGiven = gridOutputOption.Flags(GridFormattingOptions.TreatValueAsGiven),
+						SubtleGridLines = gridOutputOption.Flags(GridFormattingOptions.SubtleGridLines),
+						HodokuCompatible = gridOutputOption.Flags(GridFormattingOptions.HodokuCompatible),
 						Sukaku = gridOutputOption == GridFormattingOptions.Sukaku,
-						Placeholder = gridOutputOption.HasFlagOf(GridFormattingOptions.DotPlaceholder) ? '.' : '0'
+						Placeholder = gridOutputOption.Flags(GridFormattingOptions.DotPlaceholder) ? '.' : '0'
 					}
 				};
 
@@ -573,7 +575,8 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="value">The value.</param>
 			/// <returns>The cell status.</returns>
-			private static CellStatus GetStatusFromMask(short value) => (CellStatus)(value >> 9 & (int)CellStatus.All);
+			private static CellStatus GetStatusFromMask(short value) =>
+				(CellStatus)(value >> 9 & (int)CellStatus.All);
 		}
 	}
 }

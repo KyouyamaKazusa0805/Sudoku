@@ -127,7 +127,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly && props.DisabledReason.HasFlagOf(DisabledReason.HighAllocation))
+						if (EnableGarbageCollectionForcedly && props.DisabledReason.Flags(DisabledReason.HighAllocation))
 						{
 							GC.Collect();
 						}
@@ -179,7 +179,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly && props.DisabledReason.HasFlagOf(DisabledReason.HighAllocation))
+						if (EnableGarbageCollectionForcedly && props.DisabledReason.Flags(DisabledReason.HighAllocation))
 						{
 							GC.Collect();
 						}

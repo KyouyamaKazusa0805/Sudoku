@@ -77,7 +77,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (EnableGarbageCollectionForcedly && props.DisabledReason.HasFlagOf(DisabledReason.HighAllocation))
+					if (EnableGarbageCollectionForcedly && props.DisabledReason.Flags(DisabledReason.HighAllocation))
 					{
 						GC.Collect();
 					}

@@ -100,7 +100,7 @@ namespace Sudoku.Windows.Tooling
 			[NotNullWhen(true)] out Color? color, ColorPickerOptions flags = None,
 			PickingColorEventHandler? customPreviewEventHandler = null)
 		{
-			if (flags.HasFlagOf(LoadCustomPalette))
+			if (flags.Flags(LoadCustomPalette))
 			{
 				ColorPickerSettings.UsingCustomPalette = true;
 			}
@@ -108,7 +108,7 @@ namespace Sudoku.Windows.Tooling
 			var instance = new ColorPicker();
 			color = instance._colorPicker.Color;
 
-			if (flags.HasFlagOf(SimpleView))
+			if (flags.Flags(SimpleView))
 			{
 				instance.ToggleSimpleAdvancedView();
 			}

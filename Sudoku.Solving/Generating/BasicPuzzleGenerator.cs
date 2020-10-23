@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Generating
 
 			// Now we remove some digits from the grid.
 			var allTypes = from @type in EnumEx.GetValues<SymmetryType>()
-						   where @type != None && symmetricalType.HasFlagOf(@type)
+						   where @type != None && symmetricalType.Flags(@type)
 						   select @type;
 			int count = allTypes.Count();
 			if (count == 0)
