@@ -165,7 +165,7 @@ namespace Sudoku.Data
 			{
 				switch (GetCellStatus(value))
 				{
-					case CellStatus.Empty when tempGrid is not null && WithCandidates:
+					case CellStatus.Empty when tempGrid is not null && WithCandidates: /*fallthrough*/
 					{
 						// Check if the value has been set 'true'
 						// and the value has already deleted at the grid

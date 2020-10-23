@@ -561,7 +561,7 @@ namespace Sudoku.Data
 			{
 				switch (GetStatus(i))
 				{
-					case S.Given:
+					case S.Given: /*fallthrough*/
 					{
 						count++;
 						goto case S.Modifiable;
