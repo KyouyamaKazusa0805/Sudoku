@@ -9,7 +9,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The inner enumerator.
 		/// </summary>
-		private unsafe struct Enumerator : IEnumerator<short>
+		public unsafe struct Enumerator : IEnumerator<short>
 		{
 			/// <summary>
 			/// The pointer to the start value.

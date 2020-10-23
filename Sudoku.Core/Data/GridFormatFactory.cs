@@ -7,6 +7,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Provides a factory to create a <see cref="GridFormatter"/>.
 	/// </summary>
+	[Obsolete("Please use '" + nameof(SudokuGrid.GridFormatter) + "' instead.", true)]
 	internal static class GridFormatFactory
 	{
 		/// <summary>

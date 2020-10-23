@@ -11,7 +11,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Provides operations for grid formatting.
 		/// </summary>
-		private readonly ref struct GridFormatter
+		public readonly ref struct GridFormatter
 		{
 			/// <summary>
 			/// Initializes an instance with a <see cref="bool"/> value

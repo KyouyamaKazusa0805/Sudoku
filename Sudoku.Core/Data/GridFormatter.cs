@@ -11,6 +11,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Provides operations for grid formatting.
 	/// </summary>
+	[Obsolete("Please use '" + nameof(SudokuGrid.GridFormatter) + "' instead.", true)]
 	internal sealed partial class GridFormatter
 	{
 		/// <summary>

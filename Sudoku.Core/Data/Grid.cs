@@ -22,6 +22,7 @@ namespace Sudoku.Data
 #if DEBUG
 	[DebuggerDisplay("{ToString(\"#0\")}")]
 #endif
+	[Obsolete("Please use '" + nameof(SudokuGrid) + "' instead.", true)]
 	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid?>, IFormattable
 	{
 		/// <summary>

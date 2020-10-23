@@ -12,6 +12,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a grid parser.
 	/// </summary>
+	[Obsolete("Please use '" + nameof(SudokuGrid.GridParser) + "' instead.", true)]
 	internal sealed class GridParser
 	{
 		/// <summary>

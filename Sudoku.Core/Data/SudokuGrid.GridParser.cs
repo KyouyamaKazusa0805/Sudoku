@@ -11,7 +11,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Encapsulates a grid parser.
 		/// </summary>
-		private unsafe ref struct GridParser
+		public unsafe ref struct GridParser
 		{
 			/// <summary>
 			/// Initializes an instance with parsing data.
