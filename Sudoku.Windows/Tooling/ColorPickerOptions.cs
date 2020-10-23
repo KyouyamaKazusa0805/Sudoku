@@ -6,6 +6,7 @@ namespace Sudoku.Windows.Tooling
 	/// Indicates the option using in initialization for a <see cref="ColorPicker"/>.
 	/// </summary>
 	[Flags]
+	/*closed*/
 	public enum ColorPickerOptions
 	{
 		/// <summary>

@@ -3,6 +3,7 @@
 	/// <summary>
 	/// Indicates a link type.
 	/// </summary>
+	/*closed*/
 	public enum LinkType : byte
 	{
 		/// <summary>

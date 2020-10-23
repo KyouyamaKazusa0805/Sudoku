@@ -3,6 +3,7 @@
 	/// <summary>
 	/// Indicates a unit for a file size.
 	/// </summary>
+	/*closed*/
 	public enum SizeUnit : byte
 	{
 		/// <summary>

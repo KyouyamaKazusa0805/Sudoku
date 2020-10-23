@@ -1,7 +1,4 @@
-﻿#pragma warning disable CA1815
-#pragma warning disable CA2231
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;

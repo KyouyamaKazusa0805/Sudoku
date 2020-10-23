@@ -10,6 +10,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// All types can be found in
 	/// <a href="https://github.com/Sunnie-Shine/Sudoku/wiki/The-gallery-of-Unique-Rectangles">this link</a>.
 	/// </remarks>
+	/*closed*/
 	public enum UrTypeCode : byte
 	{
 		/// <summary>

@@ -6,6 +6,7 @@ namespace Sudoku.Data
 	/// Provides a grid format option.
 	/// </summary>
 	[Flags]
+	/*closed*/
 	public enum GridFormattingOptions : short
 	{
 		/// <summary>

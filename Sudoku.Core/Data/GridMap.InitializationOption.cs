@@ -5,6 +5,7 @@
 		/// <summary>
 		/// Provides an option for initialization of the base type <see cref="GridMap"/>.
 		/// </summary>
+		/*closed*/
 		public enum InitializationOption : byte
 		{
 			/// <summary>

@@ -7,6 +7,7 @@ namespace Sudoku.Data
 	/// Represents a cell status.
 	/// </summary>
 	[Flags]
+	/*closed*/
 	public enum CellStatus : byte
 	{
 		/// <summary>

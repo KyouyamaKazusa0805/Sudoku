@@ -3,6 +3,7 @@
 	/// <summary>
 	/// Indicates a type code for a chain.
 	/// </summary>
+	/*closed*/
 	public enum ChainingTypeCode : byte
 	{
 		/// <summary>

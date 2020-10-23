@@ -6,6 +6,7 @@ namespace Sudoku.Solving.Annotations
 	/// Indicates a reason why the searcher is disabled.
 	/// </summary>
 	[Flags]
+	/*closed*/
 	public enum DisabledReason : byte
 	{
 		/// <summary>

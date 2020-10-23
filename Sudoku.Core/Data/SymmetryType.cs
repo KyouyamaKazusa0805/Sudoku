@@ -6,6 +6,7 @@ namespace Sudoku.Data
 	/// Define a symmetry type.
 	/// </summary>
 	[Flags]
+	/*closed*/
 	public enum SymmetryType : byte
 	{
 		/// <summary>
