@@ -3598,57 +3598,6 @@
             Indicates all symmetry types should be satisfied.
             </summary>
         </member>
-        <member name="T:Sudoku.Data.ValueChangedEventArgs">
-            <summary>
-            Provides the data for the event 'ValueChanged'.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueChangedEventArgs.#ctor(System.Int32,System.Int16,System.Int16,System.Int32)">
-            <summary>
-            Initializes the instance with some data.
-            </summary>
-            <param name="cell">The cell offset. Must be in range 0 to 80.</param>
-            <param name="oldMask">The old mask before modified.</param>
-            <param name="newMask">The mask to modify the cell.</param>
-            <param name="setValue">
-            The value to set on the cell. If the action is deletion,
-            this argument should be -1.
-            </param>
-        </member>
-        <member name="P:Sudoku.Data.ValueChangedEventArgs.Cell">
-            <summary>
-            The cell offset. Must be in range 0 to 80.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueChangedEventArgs.OldMask">
-            <summary>
-            The old mask before modified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueChangedEventArgs.NewMask">
-            <summary>
-            The new mask after modified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ValueChangedEventArgs.SetValue">
-            <summary>
-            The value. -1 when this value is not required.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ValueChangedEventArgs.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="cell">(<see langword="out"/> parameter) The cell offset.</param>
-            <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
-            <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
-            <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
-        </member>
-        <member name="T:Sudoku.Data.ValueChangedEventHandler">
-            <summary>
-            The event handler used when the value changed.
-            </summary>
-            <param name="sender">The object triggering the event.</param>
-            <param name="e">The data while triggering.</param>
-        </member>
         <member name="T:Sudoku.Diagnostics.FileCounter">
             <summary>
             Encapsulates a file counter.
