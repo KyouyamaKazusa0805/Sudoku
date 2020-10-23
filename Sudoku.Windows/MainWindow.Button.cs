@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
-using Sudoku.Data.Stepping;
+using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
@@ -30,7 +30,8 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
-				if (!_puzzle.IsValid())
+				var valueGrid = (SudokuGrid)_puzzle;
+				if (!valueGrid.IsValid())
 				{
 					Messagings.FunctionIsUnavailable();
 
@@ -60,7 +61,7 @@ namespace Sudoku.Windows
 					DisableSolvingControls();
 
 					(dialog = new()).Show();
-					techniqueGroups = _cacheAllSteps = await Task.Run(() => s(this, dialog, _puzzle));
+					techniqueGroups = _cacheAllSteps = await Task.Run(() => s(this, dialog, valueGrid));
 
 					EnableSolvingControls();
 					SwitchOnGeneratingComboBoxesDisplaying();
@@ -68,8 +69,9 @@ namespace Sudoku.Windows
 					_textBoxInfo.ClearValue(TextBox.TextProperty);
 
 					static IEnumerable<IGrouping<string, TechniqueInfo>> s(
-						MainWindow @this, ProgressWindow dialog, UndoableGrid g) =>
-						new StepFinder(@this.Settings).Search(g, dialog.DefaultReporting, @this.Settings.LanguageCode);
+						MainWindow @this, ProgressWindow dialog, in SudokuGrid g) =>
+						new StepFinder(@this.Settings).Search(g, dialog.DefaultReporting,
+						@this.Settings.LanguageCode);
 				}
 				else
 				{

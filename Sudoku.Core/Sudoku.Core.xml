@@ -100,9 +100,9 @@
             <param name="mask">The mask.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="M:Sudoku.Constants.Processings.Deconstruct(Sudoku.Data.Grid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
+        <member name="M:Sudoku.Constants.Processings.Deconstruct(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
             <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
             <param name="candidates">
@@ -117,45 +117,45 @@
             and the digit is the specified one.
             </param>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetEmptyCellsMap(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Constants.Processings.GetEmptyCellsMap(Sudoku.Data.SudokuGrid@)">
             <summary>
             Get the map of all empty cells in this grid.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The map.</returns>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetBivalueCellsMap(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Constants.Processings.GetBivalueCellsMap(Sudoku.Data.SudokuGrid@)">
             <summary>
             Get the map of all bi-value cells in this grid.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The map.</returns>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.SudokuGrid@)">
             <summary>
             Get the map of all distributions for digits.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The map.</returns>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetDigitsMap(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Constants.Processings.GetDigitsMap(Sudoku.Data.SudokuGrid@)">
             <summary>
             <para>Get the map of all distributions for digits.</para>
             <para>
-            Different with <see cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.Grid)"/>,
+            Different with <see cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.SudokuGrid@)"/>,
             this method will get all cells that contain the digit or fill this digit
             (given or modifiable).
             </para>
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The map.</returns>
-            <seealso cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.Grid)"/>
+            <seealso cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.SudokuGrid@)"/>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetValuesMap(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Constants.Processings.GetValuesMap(Sudoku.Data.SudokuGrid@)">
             <summary>
             Get the map of all distributions for digits.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The map.</returns>
         </member>
         <member name="M:Sudoku.Constants.Processings.#cctor">
@@ -428,10 +428,9 @@
             </summary>
             <remarks>
             You had better use this field on cases when processing
-            the bitwise operations in a <see cref="T:Sudoku.Data.Grid"/> or <see cref="T:Sudoku.Data.SudokuGrid"/>.
+            the bitwise operations in a <see cref="T:Sudoku.Data.SudokuGrid"/>.
             This field should not be used to process cell status comparison.
             </remarks>
-            <seealso cref="M:Sudoku.Data.Grid.GetStatus(System.Int32)"/>
             <seealso cref="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.ConclusionCollection">
@@ -767,11 +766,11 @@
             otherwise, a candidate will be removed.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.ApplyTo(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Conclusion.ApplyTo(Sudoku.Data.SudokuGrid@)">
             <summary>
             Put this instance into the specified grid.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
             <exception cref="T:System.InvalidOperationException">
             Throws when the specified conclusion type is neither <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>
             nor <see cref="F:Sudoku.Data.ConclusionType.Elimination"/>.
@@ -826,13 +825,13 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Data.Extensions.GridEx">
+        <member name="T:Sudoku.Data.Extensions.SudokuGridEx">
             <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Grid"/>.
+            Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
             </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridEx.Exists(Sudoku.Data.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridEx.Exists(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
             <summary>
             <para>
             Indicates whether the specified grid contains the digit in the specified cell.
@@ -842,7 +841,7 @@
             the cell is empty and contains that digit.
             </para>
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <param name="cell">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>
@@ -879,89 +878,89 @@
             </para>
             </remarks>
         </member>
-        <member name="T:Sudoku.Data.Extensions.GridTransformations">
+        <member name="T:Sudoku.Data.Extensions.SudokuGridTransformations">
             <summary>
-            Provides a series of methods for <see cref="T:Sudoku.Data.Grid"/>
+            Provides a series of methods for <see cref="T:Sudoku.Data.SudokuGrid"/>
             using in transformations.
             </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformations.ClockwiseTable">
+        <member name="F:Sudoku.Data.Extensions.SudokuGridTransformations.ClockwiseTable">
             <summary>
             The table of clockwise rotation.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformations.CounterClockwiseTable">
+        <member name="F:Sudoku.Data.Extensions.SudokuGridTransformations.CounterClockwiseTable">
             <summary>
             The table of counter-clockwise rotation.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformations.PiRotateTable">
+        <member name="F:Sudoku.Data.Extensions.SudokuGridTransformations.PiRotateTable">
             <summary>
             The table of pi-rotation.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorLeftRight(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.MirrorLeftRight(Sudoku.Data.SudokuGrid@)">
             <summary>
             Mirror left-right the grid.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorTopBottom(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.MirrorTopBottom(Sudoku.Data.SudokuGrid@)">
             <summary>
             Mirror top-bottom the grid.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorDiagonal(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.MirrorDiagonal(Sudoku.Data.SudokuGrid@)">
             <summary>
             Mirror diagonal the grid.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.Transpose(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.Transpose(Sudoku.Data.SudokuGrid@)">
             <summary>
             Transpose the grid.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.MirrorAntidiagonal(Sudoku.Data.SudokuGrid@)">
             <summary>
             Mirror anti-diagonal the grid.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateClockwise(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.RotateClockwise(Sudoku.Data.SudokuGrid@)">
             <summary>
             Rotate the grid clockwise.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateCounterclockwise(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.RotateCounterclockwise(Sudoku.Data.SudokuGrid@)">
             <summary>
             Rotate the grid counterclockwise.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotatePi(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.RotatePi(Sudoku.Data.SudokuGrid@)">
             <summary>
             Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.SwapTwoRegions(Sudoku.Data.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.SwapTwoRegions(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
             <summary>
             Swap to regions.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <param name="region1">The region 1.</param>
             <param name="region2">The region 2.</param>
             <returns>The result.</returns>
@@ -2922,6 +2921,11 @@
             <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Undo"/>
             <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Redo"/>
         </member>
+        <member name="F:Sudoku.Data.Stepping.UndoableGrid._innerGrid">
+            <summary>
+            The inner sudoku grid.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.Stepping.UndoableGrid._undoStack">
             <summary>
             The undo and redo stack.
@@ -2932,16 +2936,17 @@
             The undo and redo stack.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Stepping.UndoableGrid._innerGrid">
-            <summary>
-            The inner sudoku grid.
-            </summary>
-        </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(System.Int16[])">
             <summary>
             Initializes an instance with the specified mask array.
             </summary>
             <param name="masks">The mask array.</param>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Initializes an instance with the specified sudoku grid (value type).
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.HasUndoSteps">
             <summary>
@@ -2952,6 +2957,12 @@
             <summary>
             Indicates whether the grid has any redo steps available.
             </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.UndoableGrid.HasSolved">
+            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.HasSolved"/>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.UndoableGrid.GivensCount">
+            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.GivensCount"/>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.Item(System.Int32)">
             <inheritdoc/>
@@ -2968,6 +2979,9 @@
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Reset">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.RecomputeCandidates">
+            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>
+        </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetStatus(System.Int32)">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)"/>
         </member>
@@ -2976,6 +2990,9 @@
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetMask(System.Int32)">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetMask(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetCandidateMask(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetCandidateMask(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetMask(System.Int32,System.Int16)">
             <inheritdoc/>
@@ -3009,6 +3026,15 @@
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetHashCode">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
@@ -3026,6 +3052,20 @@
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.SudokuGrid@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Explicit(Sudoku.Data.Stepping.UndoableGrid)~Sudoku.Data.SudokuGrid">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Data.Stepping.UndoableGrid"/> to <see cref="T:Sudoku.Data.SudokuGrid"/>.
+            </summary>
+            <param name="grid">The grid.</param>
+            <remarks>The cast won't use neither box nor unbox operations.</remarks>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Implicit(Sudoku.Data.SudokuGrid@)~Sudoku.Data.Stepping.UndoableGrid">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Data.SudokuGrid"/> to <see cref="T:Sudoku.Data.Stepping.UndoableGrid"/>.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <remarks>The cast won't use neither box nor unbox operations.</remarks>
         </member>
         <member name="T:Sudoku.Data.Stepping.UnfixStep">
             <summary>
@@ -3284,6 +3324,11 @@
             </summary>
             <param name="cell">The cell.</param>
             <param name="mask">The mask to set.</param>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.UpdateInitialMasks">
+            <summary>
+            To update initial masks.
+            </summary>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char})">
             <summary>
@@ -7353,33 +7398,33 @@
             Represents an error that the puzzle has multiple solutions while solving.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
             Initializes an instance with a grid.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Grid,System.String)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Grid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="info">The streaming information.</param>
             <param name="context">The streaming context.</param>
         </member>
@@ -7398,33 +7443,33 @@
             Represents an error that the puzzle has no solution while solving.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
             Initializes an instance with a grid.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Grid,System.String)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Grid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="info">The streaming information.</param>
             <param name="context">The streaming context.</param>
         </member>
@@ -7464,33 +7509,33 @@
             manual logic tools.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
             Initializes an instance with a grid.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Grid,System.String)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.SudokuGrid@,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="wrongInfo">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Grid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.SudokuGrid@,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="wrongInfo">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.SudokuGrid@,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="info">The streaming information.</param>
             <param name="context">The streaming context.</param>
         </member>
@@ -8012,6 +8057,113 @@
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:System.Linq.EnumerableEx.All``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Determines whether all elements of a sequence satisfy a condition
+            specified as <paramref name="selector"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="selector">The selector, specified a function pointer.</param>
+            <returns>The result indicating whether all values satisfy the condition.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.All``2(System.Collections.Generic.IEnumerable{``0},,``1@)">
+            <summary>
+            Determines whether all elements of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass another <see langword="in"/> parameter to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="TOther">The type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
+            <returns>The result indicating whether all values satisfy the condition.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.All``3(System.Collections.Generic.IEnumerable{``0},,``1@,``2@)">
+            <summary>
+            Determines whether all elements of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass 2 <see langword="in"/> parameters to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
+            <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value1">
+            (<see langword="in"/> parameter) The first value to participate in checking.
+            </param>
+            <param name="value2">
+            (<see langword="in"/> parameter) The second value to participate in checking.
+            </param>
+            <returns>The result indicating whether all values satisfy the condition.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Any``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Determines whether any an element of a sequence satisfy a condition
+            specified as <paramref name="selector"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <returns>The result indicating whether any an element satisfy the condition.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Any``2(System.Collections.Generic.IEnumerable{``0},,``1@)">
+            <summary>
+            Determines whether any an element of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass another <see langword="in"/> parameter to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="TOther">The type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
+            <returns>The result indicating whether any an element satisfy the condition.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Any``3(System.Collections.Generic.IEnumerable{``0},,``1@,``2@)">
+            <summary>
+            Determines whether any an element of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass 2 <see langword="in"/> parameters to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
+            <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value1">
+            (<see langword="in"/> parameter) The first value to participate in checking.
+            </param>
+            <param name="value2">
+            (<see langword="in"/> parameter) The second value to participate in checking.
+            </param>
+            <returns>The result indicating whether any an element satisfy the condition.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Any``4(System.Collections.Generic.IEnumerable{``0},,``1@,``2@,``3@)">
+            <summary>
+            Determines whether any an element of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass 3 <see langword="in"/> parameters to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
+            <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
+            <typeparam name="T3">The third type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value1">
+            (<see langword="in"/> parameter) The first value to participate in checking.
+            </param>
+            <param name="value2">
+            (<see langword="in"/> parameter) The second value to participate in checking.
+            </param>
+            <param name="value3">
+            (<see langword="in"/> parameter) The third value to participate in checking.
+            </param>
+            <returns>The result indicating whether any an element satisfy the condition.</returns>
+        </member>
         <member name="M:System.Linq.EnumerableEx.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Check whether the specified list has only one element.
@@ -8019,6 +8171,15 @@
             <typeparam name="TNotNull">The type of the element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Count``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Count up all elements satisfying the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="selector">The condition to check, specified as a function pointer.</param>
+            <returns>The number of all elements satisfying the condition.</returns>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>

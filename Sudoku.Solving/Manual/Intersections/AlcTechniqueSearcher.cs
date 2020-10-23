@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						conclusions.Add(new(Elimination, aCell, digit));
 					}
 				}
-				foreach (int digit in Grid.MaxCandidatesMask & ~mask)
+				foreach (int digit in SudokuGrid.MaxCandidatesMask & ~mask)
 				{
 					foreach (int ahsCell in ahsCells & CandMaps[digit])
 					{

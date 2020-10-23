@@ -491,10 +491,7 @@ namespace Sudoku.Data
 				}
 			}
 
-			fixed (short* pValues = _values, pInitialValues = _initialValues)
-			{
-				InternalCopy(pInitialValues, pValues);
-			}
+			UpdateInitialMasks();
 		}
 
 		/// <summary>
@@ -551,6 +548,17 @@ namespace Sudoku.Data
 			m = mask;
 
 			ValueChanged(ref this, new(cell, copy, m, -1));
+		}
+
+		/// <summary>
+		/// To update initial masks.
+		/// </summary>
+		private void UpdateInitialMasks()
+		{
+			fixed (short* pValues = _values, pInitialValues = _initialValues)
+			{
+				InternalCopy(pInitialValues, pValues);
+			}
 		}
 
 
@@ -762,7 +770,7 @@ namespace Sudoku.Data
 #endif
 
 			int i = 0;
-			for (short* p = dest, q = src; i < Length; i++, *p++ = *q++) ;
+			for (short* p = dest, q = src; i < Length; *p++ = *q++, i++) ;
 		}
 
 

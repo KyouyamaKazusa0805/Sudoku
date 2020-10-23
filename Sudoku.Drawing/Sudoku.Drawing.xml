@@ -211,7 +211,7 @@
             <seealso cref="P:Sudoku.Drawing.GridPainter.Height"/>
             <seealso cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,System.Single,System.Single,Sudoku.Data.Grid,System.Nullable{Sudoku.Data.GridMap},Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,System.Single,System.Single,Sudoku.Data.SudokuGrid,System.Nullable{Sudoku.Data.GridMap},Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Indicates the grid painter.
             </summary>
@@ -275,12 +275,12 @@
             this parameter is not <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.DrawValue(System.Drawing.Graphics,Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Drawing.GridPainter.DrawValue(System.Drawing.Graphics,Sudoku.Data.SudokuGrid@)">
             <summary>
             Draw givens, modifiables and candidates, where the values are specified as a grid.
             </summary>
             <param name="g">The graphics.</param>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.DrawCustomViewIfNeed(System.Drawing.Graphics,System.Single)">
             <summary>

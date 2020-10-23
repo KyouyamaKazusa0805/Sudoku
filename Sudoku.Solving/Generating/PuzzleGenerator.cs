@@ -19,12 +19,12 @@ namespace Sudoku.Solving.Generating
 		/// Generates a puzzle.
 		/// </summary>
 		/// <returns>The puzzle.</returns>
-		public abstract Grid Generate();
+		public abstract SudokuGrid Generate();
 
 		/// <summary>
 		/// Generates a puzzle asynchronizedly.
 		/// </summary>
 		/// <returns>The task.</returns>
-		public async Task<Grid> GenerateAsync() => await Task.Run(Generate);
+		public async Task<SudokuGrid> GenerateAsync() => await Task.Run(Generate);
 	}
 }

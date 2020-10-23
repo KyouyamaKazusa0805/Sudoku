@@ -20,10 +20,10 @@ using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
+using static System.Math;
 using static Sudoku.Constants.Processings;
 using C = Sudoku.Data.ConclusionType;
 using CoreResources = Sudoku.Windows.Resources;
-using Grid = Sudoku.Data.Grid;
 using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
@@ -70,7 +70,7 @@ namespace Sudoku.Windows
 			if (sizeInfo.NewSize != sizeInfo.PreviousSize)
 			{
 				var (w, h) = (_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
-				_imageGrid.Height = _imageGrid.Width = Math.Min(w, h);
+				_imageGrid.Height = _imageGrid.Width = Min(w, h);
 				Settings.GridSize = w;
 				_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings);
 
@@ -124,7 +124,8 @@ namespace Sudoku.Windows
 			{
 				case var key when key.IsDigit():
 				{
-					if (_pointConverter.GetCell(Mouse.GetPosition(_imageGrid).ToDPointF()) is var cell && cell == -1)
+					if (_pointConverter.GetCell(Mouse.GetPosition(_imageGrid).ToDPointF()) is var cell
+						&& cell == -1)
 					{
 						return;
 					}
@@ -208,7 +209,11 @@ namespace Sudoku.Windows
 							_ => throw Throwings.ImpossibleCase
 						});
 
-					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
+					_currentPainter = _currentPainter with
+					{
+						Grid = (SudokuGrid)_puzzle,
+						FocusedCells = _focusedCells
+					};
 
 					UpdateImageGrid();
 
@@ -220,7 +225,11 @@ namespace Sudoku.Windows
 					_previewMap = _focusedCells;
 					_focusedCells = _focusedCells.PeerIntersection;
 
-					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
+					_currentPainter = _currentPainter with
+					{
+						Grid = (SudokuGrid)_puzzle,
+						FocusedCells = _focusedCells
+					};
 
 					UpdateImageGrid();
 
@@ -233,7 +242,11 @@ namespace Sudoku.Windows
 					_focusedCells.Clear();
 					_focusedCells.AddAnyway((cell + 3) % 81);
 
-					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
+					_currentPainter = _currentPainter with
+					{
+						Grid = (SudokuGrid)_puzzle,
+						FocusedCells = _focusedCells
+					};
 
 					UpdateImageGrid();
 
@@ -331,7 +344,7 @@ namespace Sudoku.Windows
 			_focusedCells.Clear();
 			_currentPainter = _currentPainter with
 			{
-				Grid = _puzzle,
+				Grid = (SudokuGrid)_puzzle,
 				Conclusions = null,
 				CustomView = null,
 				View = null,
@@ -481,7 +494,9 @@ namespace Sudoku.Windows
 			var command = new RoutedCommand();
 			command.InputGestures.Add(new KeyGesture(key, modifierKeys));
 			CommandBindings.Add(
-				new(command, (sender, e) => ((matchControl?.IsEnabled ?? true) ? executed : null)?.Invoke(sender, e)));
+				new(
+					command,
+					(sender, e) => ((matchControl?.IsEnabled ?? true) ? executed : null)?.Invoke(sender, e)));
 		}
 
 		/// <summary>
@@ -615,7 +630,10 @@ namespace Sudoku.Windows
 		private void InitializeGridPainter()
 		{
 			var (w, h) = _imageGrid;
-			_currentPainter = new(_pointConverter = new((float)w, (float)h), Settings) { Grid = _puzzle };
+			_currentPainter = new(_pointConverter = new((float)w, (float)h), Settings)
+			{
+				Grid = (SudokuGrid)_puzzle
+			};
 		}
 
 		/// <summary>
@@ -626,7 +644,7 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-				Puzzle = new(Grid.Parse(puzzleStr, Settings.PmGridCompatible));
+				Puzzle = new(SudokuGrid.Parse(puzzleStr, Settings.PmGridCompatible));
 
 				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 				UpdateImageGrid();
@@ -906,11 +924,11 @@ namespace Sudoku.Windows
 		/// Transform the grid.
 		/// </summary>
 		/// <param name="transformation">The inner function to process the transformation.</param>
-		private unsafe void Transform(delegate* managed<Grid, Grid> transformation)
+		private unsafe void Transform(delegate* managed<in SudokuGrid, SudokuGrid> transformation)
 		{
-			if (_puzzle != Grid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
+			if (_puzzle != SudokuGrid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
 			{
-				Puzzle = new(transformation(_puzzle));
+				Puzzle = new(transformation((SudokuGrid)_puzzle));
 
 				UpdateUndoRedoControls();
 				UpdateImageGrid();
@@ -979,8 +997,8 @@ namespace Sudoku.Windows
 							Foreground = new SolidColorBrush(fore.ToWColor()),
 							Background = new SolidColorBrush(back.ToWColor()),
 							Content =
-									new KeyedTuple<string, int, TechniqueInfo>(
-										$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
+								new KeyedTuple<string, int, TechniqueInfo>(
+									$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
 							BorderThickness = default
 						});
 				}
@@ -1005,8 +1023,8 @@ namespace Sudoku.Windows
 						summary += step.Difficulty;
 						summaryCount++;
 						total += step.Difficulty;
-						maximum = Math.Max(step.Difficulty, maximum);
-						summaryMax = Math.Max(step.Difficulty, maximum);
+						maximum = Max(step.Difficulty, maximum);
+						summaryMax = Max(step.Difficulty, maximum);
 					}
 
 					collection.Add(new(name, count, total, maximum));
@@ -1067,10 +1085,10 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// To check the validity of all conclusions.
 		/// </summary>
-		/// <param name="solution">The solution.</param>
+		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		private static bool CheckConclusionsValidity(Grid solution, IEnumerable<Conclusion> conclusions)
+		private static bool CheckConclusionsValidity(in SudokuGrid solution, IEnumerable<Conclusion> conclusions)
 		{
 			foreach (var (t, c, d) in conclusions)
 			{

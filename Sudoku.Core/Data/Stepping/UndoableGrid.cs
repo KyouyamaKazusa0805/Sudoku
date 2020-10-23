@@ -14,7 +14,7 @@ namespace Sudoku.Data.Stepping
 	/// <seealso cref="SudokuGrid"/>
 	/// <seealso cref="Undo"/>
 	/// <seealso cref="Redo"/>
-	public sealed class UndoableGrid : IEquatable<UndoableGrid>, IUndoable
+	public sealed class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable
 	{
 		/// <summary>
 		/// The inner sudoku grid.
@@ -49,6 +49,12 @@ namespace Sudoku.Data.Stepping
 		/// Indicates whether the grid has any redo steps available.
 		/// </summary>
 		public bool HasRedoSteps => _redoStack.Count != 0;
+
+		/// <inheritdoc cref="SudokuGrid.HasSolved"/>
+		public bool HasSolved => _innerGrid.HasSolved;
+
+		/// <inheritdoc cref="SudokuGrid.GivensCount"/>
+		public int GivensCount => _innerGrid.GivensCount;
 
 
 		/// <inheritdoc/>
@@ -156,6 +162,10 @@ namespace Sudoku.Data.Stepping
 			_innerGrid.Reset();
 		}
 
+		/// <inheritdoc cref="SudokuGrid.RefreshingCandidates"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public unsafe void RecomputeCandidates() => SudokuGrid.RefreshingCandidates(ref _innerGrid);
+
 		/// <inheritdoc cref="SudokuGrid.GetStatus(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public CellStatus GetStatus(int cell) => _innerGrid.GetStatus(cell);
@@ -171,6 +181,10 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc cref="SudokuGrid.GetMask(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public short GetMask(int offset) => _innerGrid.GetMask(offset);
+
+		/// <inheritdoc cref="SudokuGrid.GetCandidateMask(int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public short GetCandidateMask(int cell) => _innerGrid.GetCandidateMask(cell);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -238,6 +252,19 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override int GetHashCode() => _innerGrid.GetHashCode();
+
+		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public override string ToString() => _innerGrid.ToString();
+
+		/// <inheritdoc cref="Formattable.ToString(string?)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public string ToString(string? format) => _innerGrid.ToString(format);
+
+		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public string ToString(string? format, IFormatProvider? formatProvider) =>
+			_innerGrid.ToString(format, formatProvider);
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

@@ -94,7 +94,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						continue;
 					}
 
-					short mask = Grid.MaxCandidatesMask;
+					short mask = SudokuGrid.MaxCandidatesMask;
 					foreach (int cell in traversingMap)
 					{
 						mask &= (short)~(1 << grid[cell]);

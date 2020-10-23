@@ -59,11 +59,11 @@
             Indicates the searching depth.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.BackdoorWindow.#ctor(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Windows.BackdoorWindow.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
             Initializes an instance with the specified puzzle.
             </summary>
-            <param name="puzzle">The puzzle.</param>
+            <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
         </member>
         <member name="M:Sudoku.Windows.BackdoorWindow.ButtonStartSearching_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
@@ -89,11 +89,11 @@
             The puzzle.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.BugNSearchWindow.#ctor(Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Windows.BugNSearchWindow.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
             Initializes an instance with the specified puzzle.
             </summary>
-            <param name="puzzle">The puzzle.</param>
+            <param name="puzzle">(<see langword="in"/> paramter) The puzzle.</param>
         </member>
         <member name="M:Sudoku.Windows.BugNSearchWindow.ButtonStartSearching_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
@@ -757,6 +757,11 @@
             <seealso cref="M:Sudoku.Windows.MainWindow.OnKeyDown(System.Windows.Input.KeyEventArgs)"/>
             <seealso cref="M:Sudoku.Windows.MainWindow.OnKeyUp(System.Windows.Input.KeyEventArgs)"/>
         </member>
+        <member name="F:Sudoku.Windows.MainWindow._initialPuzzle">
+            <summary>
+            The initial grid.
+            </summary>
+        </member>
         <member name="F:Sudoku.Windows.MainWindow._recognition">
             <summary>
             Indicates an recognition instance.
@@ -800,11 +805,6 @@
         <member name="F:Sudoku.Windows.MainWindow._pointConverter">
             <summary>
             The point converter.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.MainWindow._initialPuzzle">
-            <summary>
-            The initial grid.
             </summary>
         </member>
         <member name="F:Sudoku.Windows.MainWindow._cacheAllSteps">
@@ -1238,11 +1238,11 @@
             To prevent you opening two same windows.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.MainWindow.CheckConclusionsValidity(Sudoku.Data.Grid,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Windows.MainWindow.CheckConclusionsValidity(Sudoku.Data.SudokuGrid@,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             To check the validity of all conclusions.
             </summary>
-            <param name="solution">The solution.</param>
+            <param name="solution">(<see langword="in"/> parameter) The solution.</param>
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
@@ -1310,11 +1310,11 @@
             Indicates the grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.#ctor(Sudoku.Data.Grid,Sudoku.Windows.WindowsSettings,Sudoku.Drawing.GridPainter)">
+        <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.#ctor(Sudoku.Data.SudokuGrid@,Sudoku.Windows.WindowsSettings,Sudoku.Drawing.GridPainter)">
             <summary>
             Initializes an instance with the specified size.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="settings">The settings.</param>
             <param name="targetPainter">The target painter.</param>
         </member>
@@ -2856,11 +2856,11 @@
             </summary>
             <param name="settings">The settings.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.StepFinder.Search(Sudoku.Data.Grid,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Manual.StepFinder.Search(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
             <summary>
             Search for all possible steps in a grid.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="progress">The progress.</param>
             <param name="globalizationString">The globalization string.</param>
         </member>

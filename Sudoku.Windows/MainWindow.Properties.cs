@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Sudoku.Data;
 using Sudoku.Data.Stepping;
 
 namespace Sudoku.Windows
@@ -22,8 +23,10 @@ namespace Sudoku.Windows
 		{
 			set
 			{
-				_currentPainter = new(_pointConverter, Settings) { Grid = _puzzle = value };
-				_initialPuzzle = value.Clone();
+				var valueGrid = value._innerGrid;
+				_puzzle = new(valueGrid);
+				_currentPainter = new(_pointConverter, Settings) { Grid = valueGrid };
+				_initialPuzzle = valueGrid;
 
 				GC.Collect();
 			}

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
@@ -137,13 +138,15 @@ namespace Sudoku.Windows
 			if (sender is MenuItem
 				&& _listBoxTechniques is { SelectedItem: ListBoxItem { Content: KeyedTuple<string, TechniqueInfo, bool> { Item3: true } triplet } })
 			{
+				var valueGrid = (SudokuGrid)_puzzle;
 				var info = triplet.Item2;
 				if (!Settings.MainManualSolver.CheckConclusionValidityAfterSearched
-					|| CheckConclusionsValidity(new UnsafeBitwiseSolver().Solve(_puzzle).Solution!, info.Conclusions))
+					|| CheckConclusionsValidity(
+						new UnsafeBitwiseSolver().Solve(valueGrid).Solution!.Value, info.Conclusions))
 				{
-					info.ApplyTo(_puzzle);
+					info.ApplyTo(ref valueGrid);
 
-					_currentPainter = _currentPainter with { Conclusions = null, View = null, Grid = _puzzle };
+					_currentPainter = _currentPainter with { Conclusions = null, View = null, Grid = valueGrid };
 
 					_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 					_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);

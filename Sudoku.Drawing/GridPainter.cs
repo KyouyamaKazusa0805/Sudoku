@@ -43,8 +43,8 @@ namespace Sudoku.Drawing
 	/// <seealso cref="Height"/>
 	/// <seealso cref="PointConverter"/>
 	public sealed record GridPainter(
-		PointConverter PointConverter, Settings Settings, float Width, float Height, Grid? Grid, GridMap? FocusedCells,
-		View? View, MutableView? CustomView, IEnumerable<Conclusion>? Conclusions)
+		PointConverter PointConverter, Settings Settings, float Width, float Height, SudokuGrid Grid,
+		GridMap? FocusedCells, View? View, MutableView? CustomView, IEnumerable<Conclusion>? Conclusions)
 	{
 		/// <summary>
 		/// The square root of 2.
@@ -65,7 +65,7 @@ namespace Sudoku.Drawing
 		/// <param name="pointConverter">The point converter.</param>
 		/// <param name="settings">The instance.</param>
 		public GridPainter(PointConverter pointConverter, Settings settings)
-			: this(pointConverter, settings, default, default, null, null, null, null, null) =>
+			: this(pointConverter, settings, default, default, SudokuGrid.Undefined, null, null, null, null) =>
 			(Width, Height) = pointConverter.ControlSize;
 
 
@@ -103,7 +103,7 @@ namespace Sudoku.Drawing
 			DrawViewIfNeed(g, offset);
 			DrawCustomViewIfNeed(g, offset);
 			if (FocusedCells.HasValue) DrawFocusedCells(g, FocusedCells.Value);
-			if (Grid is not null) DrawValue(g, Grid);
+			if (Grid != SudokuGrid.Undefined) DrawValue(g, Grid);
 
 			return bitmap;
 		}
@@ -112,8 +112,8 @@ namespace Sudoku.Drawing
 		/// Draw givens, modifiables and candidates, where the values are specified as a grid.
 		/// </summary>
 		/// <param name="g">The graphics.</param>
-		/// <param name="grid">The grid.</param>
-		private void DrawValue(Graphics g, Grid grid)
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		private void DrawValue(Graphics g, in SudokuGrid grid)
 		{
 			float cellWidth = PointConverter.CellSize.Width;
 			float candidateWidth = PointConverter.CandidateSize.Width;
@@ -134,7 +134,7 @@ namespace Sudoku.Drawing
 				var status = (CellStatus)(mask >> 9 & (int)All);
 				switch (status)
 				{
-					case Empty when Settings.ShowCandidates && (short)(~mask & Grid.MaxCandidatesMask) is var candidateMask:
+					case Empty when Settings.ShowCandidates && (short)(~mask & SudokuGrid.MaxCandidatesMask) is var candidateMask:
 					{
 						// Draw candidates.
 						foreach (int digit in candidateMask)

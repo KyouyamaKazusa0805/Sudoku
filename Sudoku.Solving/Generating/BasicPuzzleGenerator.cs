@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Generating
 	public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 	{
 		/// <inheritdoc/>
-		public override Grid Generate() => Generate(28, Central, null);
+		public override SudokuGrid Generate() => Generate(28, Central, null);
 
 		/// <summary>
 		/// Generate a puzzle with the specified information.
@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The grid.</returns>
 		/// <seealso cref="SymmetryType"/>
-		public Grid Generate(
+		public SudokuGrid Generate(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult>? progress,
 			string? globalizationString = null)
 		{
@@ -44,8 +44,8 @@ namespace Sudoku.Solving.Generating
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			progress?.Report(defaultValue);
 
-			var puzzle = new StringBuilder(Grid.EmptyString);
-			var solution = new StringBuilder(Grid.EmptyString);
+			var puzzle = new StringBuilder(SudokuGrid.EmptyString);
+			var solution = new StringBuilder(SudokuGrid.EmptyString);
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Generating
 				}
 			} while (!FastSolver.CheckValidity(result = solution.ToString()));
 
-			return Grid.Parse(result);
+			return SudokuGrid.Parse(result);
 		}
 
 		/// <summary>
@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="globalzationString">The globalization string.</param>
 		/// <returns>The task.</returns>
 		/// <seealso cref="SymmetryType"/>
-		public async Task<Grid> GenerateAsync(
+		public async Task<SudokuGrid> GenerateAsync(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult> progress,
 			string? globalzationString = null) =>
 			await Task.Run(() => Generate(max, symmetricalType, progress, globalzationString));

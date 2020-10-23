@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 							continue;
 						}
 
-						short union = mask, inter = (short)(Grid.MaxCandidatesMask & mask);
+						short union = mask, inter = (short)(SudokuGrid.MaxCandidatesMask & mask);
 						foreach (int cell in cells)
 						{
 							short m = grid.GetCandidateMask(cell);

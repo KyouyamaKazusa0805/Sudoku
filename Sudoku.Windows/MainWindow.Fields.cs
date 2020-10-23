@@ -7,7 +7,6 @@ using Sudoku.Drawing;
 using Sudoku.Recognitions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
-using Grid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
 
 namespace Sudoku.Windows
@@ -102,6 +101,11 @@ namespace Sudoku.Windows
 		/// <seealso cref="OnKeyUp(KeyEventArgs)"/>
 		private GridMap? _previewMap;
 
+		/// <summary>
+		/// The initial grid.
+		/// </summary>
+		private SudokuGrid _initialPuzzle = SudokuGrid.Undefined;
+
 #if SUDOKU_RECOGNITION
 		/// <summary>
 		/// Indicates an recognition instance.
@@ -136,7 +140,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		private UndoableGrid _puzzle = new(Grid.Empty);
+		private UndoableGrid _puzzle = new(SudokuGrid.Empty);
 
 		/// <summary>
 		/// Indicates the internal manual solver.
@@ -148,11 +152,6 @@ namespace Sudoku.Windows
 		/// The point converter.
 		/// </summary>
 		private PointConverter _pointConverter = null!;
-
-		/// <summary>
-		/// The initial grid.
-		/// </summary>
-		private Grid _initialPuzzle = null!;
 
 		/// <summary>
 		/// The steps searched. This field stores the previous group that searched before.

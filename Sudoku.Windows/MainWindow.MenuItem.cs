@@ -14,15 +14,14 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
+using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
-using Grid = Sudoku.Data.Grid;
-using Sudoku.Drawing;
-using Sudoku.Extensions;
 #if SUDOKU_RECOGNITION
 using System.Drawing;
 #endif
@@ -191,7 +190,7 @@ namespace Sudoku.Windows
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog();
+			new PictureSavingPreferencesWindow((SudokuGrid)_puzzle, Settings, _currentPainter).ShowDialog();
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
@@ -209,7 +208,8 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSaveBatch_Click(object sender, RoutedEventArgs e)
 		{
-			if (!_puzzle.IsValid())
+			var valueGrid = (SudokuGrid)_puzzle;
+			if (!valueGrid.IsValid())
 			{
 				Messagings.FailedToCheckDueToInvalidPuzzle();
 				e.Handled = true;
@@ -217,10 +217,10 @@ namespace Sudoku.Windows
 			}
 
 			// Batch.
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog(); // Save puzzle picture.
+			new PictureSavingPreferencesWindow(valueGrid, Settings, _currentPainter).ShowDialog(); // Save puzzle picture.
 			MenuItemFileSave_Click(sender, e); // Save puzzle text.
 			MenuItemAnalyzeSolve_Click(sender, e); // Solve the puzzle.
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog(); // Save solution picture.
+			new PictureSavingPreferencesWindow(valueGrid, Settings, _currentPainter).ShowDialog(); // Save solution picture.
 			MenuItemFileSave_Click(sender, e); // Save solution text.
 		}
 
@@ -231,7 +231,7 @@ namespace Sudoku.Windows
 		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
 		{
 			Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true;
-			_currentPainter = _currentPainter with { Grid = _puzzle };
+			_currentPainter = _currentPainter with { Grid = (SudokuGrid)_puzzle };
 
 			UpdateImageGrid();
 		}
@@ -284,7 +284,7 @@ namespace Sudoku.Windows
 				z[cell] = _puzzle[cell] + 1;
 			}
 
-			var grid = Grid.CreateInstance(z);
+			var grid = SudokuGrid.CreateInstance(z);
 			if (new UnsafeBitwiseSolver().Solve(grid.ToString(), null, 2) == 0)
 			{
 				Messagings.SukakuCannotUseThisFunction();
@@ -356,7 +356,7 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					Puzzle = new(Grid.Parse(puzzleStr, GridParsingOption.Sukaku));
+					Puzzle = new(SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku));
 
 					_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 					UpdateImageGrid();
@@ -395,7 +395,8 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
 		{
-			_currentPainter = _currentPainter with { Grid = _puzzle = new(_initialPuzzle), View = null };
+			var valueGrid = (SudokuGrid)(_puzzle = new(_initialPuzzle));
+			_currentPainter = _currentPainter with { Grid = valueGrid, View = null };
 
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -417,7 +418,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
 		{
-			Puzzle = new(Grid.Empty);
+			Puzzle = new(SudokuGrid.Empty);
 			_analyisResult = null;
 
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -565,14 +566,14 @@ namespace Sudoku.Windows
 
 			bool applySukaku()
 			{
-				var sb = new StringBuilder(Grid.EmptyString);
+				var sb = new StringBuilder(SudokuGrid.EmptyString);
 				if (new UnsafeBitwiseSolver().Solve(
 					_puzzle.ToString($"~{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}"), sb, 2) != 1)
 				{
 					return !(e.Handled = true);
 				}
 
-				var grid = Grid.Parse(sb.ToString());
+				var grid = SudokuGrid.Parse(sb.ToString());
 				grid.Unfix();
 
 				Puzzle = new(grid);
@@ -601,7 +602,7 @@ namespace Sudoku.Windows
 					};
 				}
 
-				Puzzle = new(Grid.Parse(newSb.ToString()));
+				Puzzle = new(SudokuGrid.Parse(newSb.ToString()));
 				UpdateImageGrid();
 				return true;
 			}
@@ -610,7 +611,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemAnalyzeAnalyze_Click(object sender, RoutedEventArgs e)
 		{
-			if (_puzzle == Grid.Empty)
+			if (_puzzle == SudokuGrid.Empty)
 			{
 				Messagings.AnalyzeEmptyGrid();
 				e.Handled = true;
@@ -632,7 +633,7 @@ namespace Sudoku.Windows
 					return !(e.Handled = true);
 				}
 
-				var sb = new StringBuilder(Grid.EmptyString);
+				var sb = new StringBuilder(SudokuGrid.EmptyString);
 				if (sukakuMode)
 				{
 					string puzzleString = $"{_puzzle:~}";
@@ -675,7 +676,8 @@ namespace Sudoku.Windows
 
 				_puzzle.ClearStack();
 
-				_analyisResult = await _manualSolver.SolveAsync(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
+				_analyisResult = await _manualSolver.SolveAsync(
+					(SudokuGrid)_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
 
 				UpdateImageGrid();
 
@@ -737,19 +739,20 @@ namespace Sudoku.Windows
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAnalyzeBackdoor_Click(object sender, RoutedEventArgs e) =>
-			new BackdoorWindow(_puzzle).ShowDialog();
+			new BackdoorWindow((SudokuGrid)_puzzle).ShowDialog();
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAnalyzeBugN_Click(object sender, RoutedEventArgs e)
 		{
-			if (!_puzzle.IsValid())
+			var valueGrid = (SudokuGrid)_puzzle;
+			if (!valueGrid.IsValid())
 			{
 				Messagings.FailedToCheckDueToInvalidPuzzle();
 				e.Handled = true;
 				return;
 			}
 
-			new BugNSearchWindow(_puzzle).ShowDialog();
+			new BugNSearchWindow(valueGrid).ShowDialog();
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -787,7 +790,8 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
-				if (!_puzzle.IsValid())
+				var valueGrid = (SudokuGrid)_puzzle;
+				if (!valueGrid.IsValid())
 				{
 					Messagings.FailedToCheckDueToInvalidPuzzle();
 					e.Handled = true;
@@ -796,7 +800,7 @@ namespace Sudoku.Windows
 
 				_textBoxInfo.Text = (string)LangSource["WhileCalculatingTrueCandidates"];
 
-				var trueCandidates = await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64);
+				var trueCandidates = await new BugChecker(valueGrid).GetAllTrueCandidatesAsync(64);
 
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
 				if (trueCandidates.Count == 0)
@@ -825,7 +829,8 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
-				if (!_puzzle.IsValid())
+				var valueGrid = (SudokuGrid)_puzzle;
+				if (!valueGrid.IsValid())
 				{
 					Messagings.FailedToCheckDueToInvalidPuzzle();
 					e.Handled = true;
@@ -838,7 +843,8 @@ namespace Sudoku.Windows
 
 				async Task r(int level)
 				{
-					foreach (var backdoor in await new BackdoorSearcher().SearchForBackdoorsExactAsync(_puzzle, level))
+					foreach (var backdoor in
+						await new BackdoorSearcher().SearchForBackdoorsExactAsync(valueGrid, level))
 					{
 						backdoors.AddRange(backdoor);
 					}
@@ -897,7 +903,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (new GspTechniqueSearcher().GetOne(_puzzle) is not GspTechniqueInfo info)
+			if (new GspTechniqueSearcher().GetOne((SudokuGrid)_puzzle) is not GspTechniqueInfo info)
 			{
 				Messagings.DoesNotContainGsp();
 				e.Handled = true;

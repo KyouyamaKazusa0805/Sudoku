@@ -52,11 +52,11 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Search for all possible steps in a grid.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		public IEnumerable<IGrouping<string, TechniqueInfo>> Search(
-			Grid grid, IProgress<IProgressResult>? progress, string? globalizationString)
+			in SudokuGrid grid, IProgress<IProgressResult>? progress, string? globalizationString)
 		{
 			if (grid.HasSolved || !grid.IsValid(out bool? sukaku))
 			{

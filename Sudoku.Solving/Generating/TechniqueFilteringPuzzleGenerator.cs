@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Generating
 
 
 		/// <inheritdoc/>
-		public override Grid Generate() => Generate(DefaultFilter, null, null);
+		public override SudokuGrid Generate() => Generate(DefaultFilter, null, null);
 
 
 		/// <summary>
@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="progress">The progress.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The puzzle.</returns>
-		public Grid Generate(
+		public SudokuGrid Generate(
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
 			string? globalizationString = null)
 		{
@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="progress">The progress.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The task.</returns>
-		public async Task<Grid> GenerateAsync(
+		public async Task<SudokuGrid> GenerateAsync(
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
 			string? globalizationString = null) =>
 			await Task.Run(() => Generate(techniqueCodeFilter, progress, globalizationString));

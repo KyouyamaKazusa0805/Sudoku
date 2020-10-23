@@ -46,11 +46,10 @@ namespace Sudoku.Recognitions
 		/// <exception cref="RecognitionException">
 		/// Throws when the processing is wrong or unhandleable.
 		/// </exception>
-		public Grid RecognizeDigits(Field field)
+		public SudokuGrid RecognizeDigits(Field field)
 		{
-			var result = Grid.Empty.Clone();
-			int w = field.Width / 9;
-			int o = w / 6;
+			var result = SudokuGrid.Empty;
+			int w = field.Width / 9, o = w / 6;
 			for (int x = 0; x < 9; x++)
 			{
 				for (int y = 0; y < 9; y++)

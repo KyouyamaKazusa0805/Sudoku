@@ -161,6 +161,10 @@ namespace Sudoku.Data
 
 							break;
 						}
+						case 1:
+						{
+							continue;
+						}
 						default:
 						{
 							// The sub-match contains more than 2 characters or empty string,
@@ -170,6 +174,7 @@ namespace Sudoku.Data
 					}
 				}
 
+				result.UpdateInitialMasks();
 				return result;
 			}
 
@@ -328,6 +333,7 @@ namespace Sudoku.Data
 					}
 				}
 
+				result.UpdateInitialMasks();
 				return result;
 			}
 
@@ -456,6 +462,7 @@ namespace Sudoku.Data
 					}
 				}
 
+				result.UpdateInitialMasks();
 				return result;
 			}
 
@@ -491,6 +498,7 @@ namespace Sudoku.Data
 						}
 					}
 
+					result.UpdateInitialMasks();
 					return result;
 				}
 				else
@@ -521,6 +529,7 @@ namespace Sudoku.Data
 						}
 					}
 
+					result.UpdateInitialMasks();
 					return result;
 				}
 			}
