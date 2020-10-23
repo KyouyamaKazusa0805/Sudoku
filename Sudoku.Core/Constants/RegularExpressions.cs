@@ -18,12 +18,12 @@
 		/// <summary>
 		/// Indicates the normal sudoku grid table (with only blank cells and numbers).
 		/// </summary>
-		public const string SimpleTable = @"([\d\.\+]{9}(\n|\r)){8}[\d\.\+]{9}";
+		public const string SimpleTable = @"([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}";
 
 		/// <summary>
 		/// Indicates the susser format.
 		/// </summary>
-		public const string Susser = @"[\d\.\+]{81,}(\:(\d{3}\s+)*\d{3})?";
+		public const string Susser = @"[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?";
 
 		/// <summary>
 		/// Indicates the regular expression of a digit or empty cell placeholder.

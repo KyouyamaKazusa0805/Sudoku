@@ -77,16 +77,17 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the grid.
 		/// </summary>
-		private readonly Grid _grid;
+		private readonly SudokuGrid _grid;
 
 
 		/// <summary>
 		/// Initializes an instance with the specified size.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="settings">The settings.</param>
 		/// <param name="targetPainter">The target painter.</param>
-		public PictureSavingPreferencesWindow(Grid grid, WindowsSettings settings, GridPainter targetPainter)
+		public PictureSavingPreferencesWindow(
+			in SudokuGrid grid, WindowsSettings settings, GridPainter targetPainter)
 		{
 			InitializeComponent();
 

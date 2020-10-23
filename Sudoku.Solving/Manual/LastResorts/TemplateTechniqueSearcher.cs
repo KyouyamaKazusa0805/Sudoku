@@ -40,9 +40,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the puzzle is not unique.
 		/// </exception>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
-			if (!grid.IsValid(out Grid? solution))
+			if (!grid.IsValid(out SudokuGrid solution))
 			{
 				throw new WrongHandlingException(grid);
 			}
@@ -59,10 +59,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Get all template sets.
 		/// </summary>
-		/// <param name="result">The result.</param>
+		/// <param name="result">(<see langword="in"/> parameter) The result.</param>
 		/// <param name="solution">The solution.</param>
 		/// <returns>All template sets.</returns>
-		private static void GetAllTemplateSet(IList<TechniqueInfo> result, Grid solution)
+		private static void GetAllTemplateSet(IList<TechniqueInfo> result, in SudokuGrid solution)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -95,10 +95,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Get all template deletes.
 		/// </summary>
-		/// <param name="result">The result.</param>
+		/// <param name="result">(<see langword="in"/> parameter) The result.</param>
 		/// <param name="solution">The solution.</param>
 		/// <returns>All template deletes.</returns>
-		private static void GetAllTemplateDelete(IList<TechniqueInfo> result, Grid solution)
+		private static void GetAllTemplateDelete(IList<TechniqueInfo> result, in SudokuGrid solution)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// If the puzzle has been solved, this method will create a grid map of
 		/// distribution of a single digit in this solution.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="digit">The digit to search.</param>
 		/// <returns>
 		/// The grid map that contains all cells of a digit appearing
@@ -133,7 +133,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <exception cref="ArgumentException">
 		/// Throws when the puzzle has not been solved.
 		/// </exception>
-		private static GridMap CreateInstance(Grid grid, int digit)
+		private static GridMap CreateInstance(in SudokuGrid grid, int digit)
 		{
 			if (!grid.HasSolved)
 			{

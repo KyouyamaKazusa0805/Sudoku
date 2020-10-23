@@ -19,16 +19,17 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Solve the puzzle with <see cref="AnalyzeDifficultyStrictly"/> option.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="cloneation">The cloneation grid to calculate.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="cloneation">(<see langword="ref"/> parameter) The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
-		/// <param name="solution">The solution.</param>
+		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
 		/// <param name="sukaku">Indicates whether the current mode is sukaku mode.</param>
 		/// <param name="progressResult">
 		/// (<see langword="ref"/> parameter)
 		/// The progress result. This parameter is used for modify the state of UI controls.
 		/// The current argument won't be used until <paramref name="progress"/> isn't <see langword="null"/>.
-		/// In the default case, this parameter is <see langword="default"/>(<see cref="GridProgressResult"/>) is okay.
+		/// In the default case, this parameter is
+		/// <see langword="default"/>(<see cref="GridProgressResult"/>) is okay.
 		/// </param>
 		/// <param name="progress">
 		/// The progress used for report the current state. If we don't need, the value should
@@ -40,9 +41,9 @@ namespace Sudoku.Solving.Manual
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
 		[Obsolete]
-		private AnalysisResult SolveSeMode(
-			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution, bool sukaku,
-			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
+		private unsafe AnalysisResult SolveSeMode(
+			in SudokuGrid grid, ref SudokuGrid cloneation, List<TechniqueInfo> steps, in SudokuGrid solution,
+			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 			var searchers =
 #if I_CANT_DECIDE_WHETHER_THE_FIELD_SHOULD_BE_REMOVED__IF_THE_FIELD_IS_REMOVED__THIS_METHOD_WILL_BE_CHANGED_SYNCHRONIZEDLY
@@ -50,7 +51,7 @@ namespace Sudoku.Solving.Manual
 #else
 				GetSearchersSeMode(solution);
 #endif
-			var stepGrids = new List<Grid>();
+			var stepGrids = new List<SudokuGrid>();
 			var bag = new List<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
@@ -97,12 +98,11 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (!CheckConclusionValidityAfterSearched
-						|| selection.All(info => CheckConclusionsValidity(solution, info.Conclusions)))
+					if (!CheckConclusionValidityAfterSearched || selection.All(&InternalChecking, solution))
 					{
 						foreach (var step in selection)
 						{
-							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
+							if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 							{
 								stopwatch.Stop();
 								return result;
@@ -148,7 +148,7 @@ namespace Sudoku.Solving.Manual
 
 					if (!CheckConclusionValidityAfterSearched || CheckConclusionsValidity(solution, step.Conclusions))
 					{
-						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
+						if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 						{
 							// The puzzle has been solved.
 							// :)

@@ -4,12 +4,12 @@ using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data
 {
-	public unsafe partial struct SudokuGrid
+	partial struct SudokuGrid
 	{
 		/// <summary>
 		/// The inner enumerator.
 		/// </summary>
-		private struct Enumerator : IEnumerator<short>
+		private unsafe struct Enumerator : IEnumerator<short>
 		{
 			/// <summary>
 			/// The pointer to the start value.
@@ -34,8 +34,8 @@ namespace Sudoku.Data
 			/// <param name="arr">The pointer to an array.</param>
 			public Enumerator(short* arr)
 			{
-				_start = arr;
-				_currentPointer = arr;
+				// Note here we should point at the one-unit-lengthed memory before the array start.
+				_currentPointer = _start = arr - 1;
 				_currentIndex = 0;
 			}
 
@@ -55,7 +55,7 @@ namespace Sudoku.Data
 			public bool MoveNext()
 			{
 				_currentPointer++;
-				return ++_currentIndex != 81;
+				return ++_currentIndex != 82;
 			}
 
 			/// <inheritdoc/>

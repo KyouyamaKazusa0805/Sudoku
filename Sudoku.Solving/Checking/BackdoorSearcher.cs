@@ -30,14 +30,14 @@ namespace Sudoku.Solving.Checking
 		/// Search all backdoors whose level is lower or equals than the
 		/// specified depth.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="depth">
 		/// The depth you want to search for. The depth value must be between 0 and 3.
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
 		/// <exception cref="SudokuRuntimeException">Throws when the specified grid is invalid.</exception>
-		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoors(Grid grid, int depth)
+		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoors(in SudokuGrid grid, int depth)
 		{
 			if (depth is < 0 or > 3)
 			{
@@ -61,13 +61,13 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// Search all backdoors whose depth is exactly same as the argument.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="depth">
 		/// The depth you want to search for. The depth value must be between 0 and 3.
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
-		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoorsExact(Grid grid, int depth)
+		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoorsExact(in SudokuGrid grid, int depth)
 		{
 			if (depth is < 0 or > 3)
 			{
@@ -88,7 +88,8 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>The task to calculate all conclusions.</returns>
-		public async Task<IEnumerable<IReadOnlyList<Conclusion>>> SearchForBackdoorsExactAsync(Grid grid, int depth) =>
+		public async Task<IEnumerable<IReadOnlyList<Conclusion>>> SearchForBackdoorsExactAsync(
+			SudokuGrid grid, int depth) =>
 			await Task.Run(() => SearchForBackdoorsExact(grid, depth));
 
 
@@ -96,19 +97,19 @@ namespace Sudoku.Solving.Checking
 		/// To find all backdoors in a sudoku grid.
 		/// </summary>
 		/// <param name="result">The result list.</param>
-		/// <param name="grid">A sudoku grid to search backdoors.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) A sudoku grid to search backdoors.</param>
 		/// <param name="depth">The depth to search.</param>
 		/// <exception cref="InvalidOperationException">
 		/// Throws when the grid is invalid (has no solution or multiple solutions).
 		/// </exception>
-		private static void SearchForBackdoors(IList<IReadOnlyList<Conclusion>> result, Grid grid, int depth)
+		private static void SearchForBackdoors(IList<IReadOnlyList<Conclusion>> result, in SudokuGrid grid, int depth)
 		{
-			if (!grid.IsValid(out Grid? solution))
+			if (!grid.IsValid(out SudokuGrid solution))
 			{
 				throw new InvalidOperationException("The puzzle doesn't have unique solution.");
 			}
 
-			var tempGrid = grid.Clone();
+			var tempGrid = grid;
 
 			if (depth == 0)
 			{
@@ -158,12 +159,13 @@ namespace Sudoku.Solving.Checking
 			}
 
 			// Store all incorrect candidates to prepare for search elimination backdoors.
+			var temp = grid;
 			int[] incorrectCandidates = (
 				from cell in Enumerable.Range(0, 81)
-				where grid.GetStatus(cell) == Empty
+				where temp.GetStatus(cell) == Empty
 				let value = solution[cell]
 				from digit in Enumerable.Range(0, 9)
-				where !grid[cell, digit] && value != digit
+				where !temp[cell, digit] && value != digit
 				select cell * 9 + digit).ToArray();
 
 			// Search backdoors (Eliminations).

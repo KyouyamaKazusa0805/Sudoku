@@ -49,6 +49,200 @@ namespace System.Linq
 		public static bool None<T>(this IEnumerable<T?> @this) => !@this.Any();
 
 		/// <summary>
+		/// Determines whether all elements of a sequence satisfy a condition
+		/// specified as <paramref name="selector"/>.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="selector">The selector, specified a function pointer.</param>
+		/// <returns>The result indicating whether all values satisfy the condition.</returns>
+		public static unsafe bool All<T>(this IEnumerable<T> @this, delegate* managed<T, bool> selector)
+		{
+			foreach (var element in @this)
+			{
+				if (!selector(element))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Determines whether all elements of a sequence satisfy a condition
+		/// specified as <paramref name="selector"/>. In addition, the method allows you
+		/// pass another <see langword="in"/> parameter to participate in checking.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <typeparam name="TOther">The type of the another value to participate in checking.</typeparam>
+		/// <param name="this">(<see langword="in"/> parameter) The list.</param>
+		/// <param name="selector">The selector.</param>
+		/// <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
+		/// <returns>The result indicating whether all values satisfy the condition.</returns>
+		public static unsafe bool All<TElement, TOther>(
+			this IEnumerable<TElement> @this, delegate* managed<TElement, in TOther, bool> selector,
+			in TOther value) where TOther : struct
+		{
+			foreach (var element in @this)
+			{
+				if (!selector(element, value))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Determines whether all elements of a sequence satisfy a condition
+		/// specified as <paramref name="selector"/>. In addition, the method allows you
+		/// pass 2 <see langword="in"/> parameters to participate in checking.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
+		/// <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
+		/// <param name="this">(<see langword="in"/> parameter) The list.</param>
+		/// <param name="selector">The selector.</param>
+		/// <param name="value1">
+		/// (<see langword="in"/> parameter) The first value to participate in checking.
+		/// </param>
+		/// <param name="value2">
+		/// (<see langword="in"/> parameter) The second value to participate in checking.
+		/// </param>
+		/// <returns>The result indicating whether all values satisfy the condition.</returns>
+		public static unsafe bool All<TElement, T1, T2>(
+			this IEnumerable<TElement> @this, delegate* managed<TElement, in T1, in T2, bool> selector,
+			in T1 value1, in T2 value2) where T1 : struct where T2 : struct
+		{
+			foreach (var element in @this)
+			{
+				if (!selector(element, value1, value2))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Determines whether any an element of a sequence satisfy a condition
+		/// specified as <paramref name="selector"/>.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="in"/> parameter) The list.</param>
+		/// <param name="selector">The selector.</param>
+		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
+		public static unsafe bool Any<T>(this IEnumerable<T> @this, delegate* managed<T, bool> selector)
+		{
+			foreach (var element in @this)
+			{
+				if (selector(element))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Determines whether any an element of a sequence satisfy a condition
+		/// specified as <paramref name="selector"/>. In addition, the method allows you
+		/// pass another <see langword="in"/> parameter to participate in checking.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <typeparam name="TOther">The type of the another value to participate in checking.</typeparam>
+		/// <param name="this">(<see langword="in"/> parameter) The list.</param>
+		/// <param name="selector">The selector.</param>
+		/// <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
+		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
+		public static unsafe bool Any<TElement, TOther>(
+			this IEnumerable<TElement> @this, delegate* managed<TElement, in TOther, bool> selector,
+			in TOther value) where TOther : struct
+		{
+			foreach (var element in @this)
+			{
+				if (selector(element, value))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Determines whether any an element of a sequence satisfy a condition
+		/// specified as <paramref name="selector"/>. In addition, the method allows you
+		/// pass 2 <see langword="in"/> parameters to participate in checking.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
+		/// <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
+		/// <param name="this">(<see langword="in"/> parameter) The list.</param>
+		/// <param name="selector">The selector.</param>
+		/// <param name="value1">
+		/// (<see langword="in"/> parameter) The first value to participate in checking.
+		/// </param>
+		/// <param name="value2">
+		/// (<see langword="in"/> parameter) The second value to participate in checking.
+		/// </param>
+		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
+		public static unsafe bool Any<TElement, T1, T2>(
+			this IEnumerable<TElement> @this, delegate* managed<TElement, in T1, in T2, bool> selector,
+			in T1 value1, in T2 value2) where T1 : struct where T2 : struct
+		{
+			foreach (var element in @this)
+			{
+				if (selector(element, value1, value2))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Determines whether any an element of a sequence satisfy a condition
+		/// specified as <paramref name="selector"/>. In addition, the method allows you
+		/// pass 3 <see langword="in"/> parameters to participate in checking.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
+		/// <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
+		/// <typeparam name="T3">The third type of the another value to participate in checking.</typeparam>
+		/// <param name="this">(<see langword="in"/> parameter) The list.</param>
+		/// <param name="selector">The selector.</param>
+		/// <param name="value1">
+		/// (<see langword="in"/> parameter) The first value to participate in checking.
+		/// </param>
+		/// <param name="value2">
+		/// (<see langword="in"/> parameter) The second value to participate in checking.
+		/// </param>
+		/// <param name="value3">
+		/// (<see langword="in"/> parameter) The third value to participate in checking.
+		/// </param>
+		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
+		public static unsafe bool Any<TElement, T1, T2, T3>(
+			this IEnumerable<TElement> @this, delegate* managed<TElement, in T1, in T2, in T3, bool> selector,
+			in T1 value1, in T2 value2, in T3 value3) where T1 : struct where T2 : struct where T3 : struct
+		{
+			foreach (var element in @this)
+			{
+				if (selector(element, value1, value2, value3))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Check whether the specified list has only one element.
 		/// </summary>
 		/// <typeparam name="TNotNull">The type of the element.</typeparam>
@@ -72,6 +266,28 @@ namespace System.Linq
 			}
 
 			return true;
+		}
+
+		/// <summary>
+		/// Count up all elements satisfying the specified condition.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="selector">The condition to check, specified as a function pointer.</param>
+		/// <returns>The number of all elements satisfying the condition.</returns>
+		public static unsafe int Count<T>(this IEnumerable<T> @this, delegate* managed<in T, bool> selector)
+			where T : struct
+		{
+			int count = 0;
+			foreach (var element in @this)
+			{
+				if (selector(element))
+				{
+					count++;
+				}
+			}
+
+			return count;
 		}
 	}
 }

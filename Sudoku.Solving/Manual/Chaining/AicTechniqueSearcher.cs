@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var tempAccumulator = new List<ChainingTechniqueInfo>();
 			GetAll(tempAccumulator, grid, true, false);
@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Search for chains of each type.
 		/// </summary>
-		/// <param name="accumulator">The accumulator.</param>
+		/// <param name="accumulator">(<see langword="in"/> parameter) The accumulator.</param>
 		/// <param name="grid">Thr grid.</param>
 		/// <param name="xEnabled">
 		/// Indicates whether the strong links in regions are enabled to search for.
@@ -52,7 +52,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="yEnabled">
 		/// Indicates whether the strong links in cells are enabled to search for.
 		/// </param>
-		private void GetAll(IList<ChainingTechniqueInfo> accumulator, Grid grid, bool xEnabled, bool yEnabled)
+		private void GetAll(
+			IList<ChainingTechniqueInfo> accumulator, in SudokuGrid grid, bool xEnabled, bool yEnabled)
 		{
 			foreach (int cell in EmptyMap)
 			{
@@ -72,7 +73,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Do unary chaining.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">Thr grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pOn">The node set on.</param>
 		/// <param name="xEnabled">
 		/// Indicates whether the strong links in regions are enabled to search for.
@@ -81,7 +82,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates whether the strong links in cells are enabled to search for.
 		/// </param>
 		private void DoUnaryChaining(
-			IList<ChainingTechniqueInfo> accumulator, Grid grid, Node pOn, bool xEnabled, bool yEnabled)
+			IList<ChainingTechniqueInfo> accumulator, in SudokuGrid grid, Node pOn,
+			bool xEnabled, bool yEnabled)
 		{
 			if (grid.GetCandidateMask(pOn.Cell).PopCount() > 2 && !xEnabled)
 			{
@@ -131,7 +133,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Create a loop hint (i.e. a <see cref="LoopTechniqueInfo"/>).
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="destOn">The start node.</param>
 		/// <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
@@ -140,7 +142,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
 		/// <seealso cref="LoopTechniqueInfo"/>
-		private LoopTechniqueInfo? CreateLoopHint(Grid grid, Node destOn, bool xEnabled, bool yEnabled)
+		private LoopTechniqueInfo? CreateLoopHint(in SudokuGrid grid, Node destOn, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
 			var links = destOn.GetLinks(true); //! Maybe wrong when adding grouped nodes.
@@ -172,7 +174,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Create an AIC hint (i.e. a <see cref="AicTechniqueInfo"/>).
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="target">The elimination node (which is used for searching the whole chain).</param>
 		/// <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
@@ -181,7 +183,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
 		/// <seealso cref="AicTechniqueInfo"/>
-		private AicTechniqueInfo? CreateAicHint(Grid grid, Node target, bool xEnabled, bool yEnabled)
+		private AicTechniqueInfo? CreateAicHint(in SudokuGrid grid, Node target, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
 			if (!target.IsOn)
@@ -226,13 +228,15 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Simulate the passing strong and weak links in AICs.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="onToOn">The nodes that the end candidates are currently on.</param>
 		/// <param name="onToOff">The nodes the end candidates are currently off.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <param name="chains">The chain nodes.</param>
 		/// <param name="source">The source node.</param>
-		private void DoAic(Grid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled, IList<Node> chains, Node source)
+		private void DoAic(
+			in SudokuGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled, IList<Node> chains,
+			Node source)
 		{
 			var pendingOn = new List<Node>(onToOn);
 			var pendingOff = new List<Node>(onToOff);
@@ -292,7 +296,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Simulate the passing strong and weak links in CNLs.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="onToOn">The nodes that the end candidates are currently on.</param>
 		/// <param name="onToOff">The nodes the end candidates are currently off.</param>
 		/// <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
@@ -300,7 +304,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="loops">The loop nodes.</param>
 		/// <param name="source">The source node.</param>
 		private void DoLoops(
-			Grid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool xEnabled, bool yEnabled, IList<Node> loops, Node source)
+			in SudokuGrid grid, ISet<Node> onToOn, ISet<Node> onToOff,
+			bool xEnabled, bool yEnabled, IList<Node> loops, Node source)
 		{
 			var pendingOn = new List<Node>(onToOn);
 			var pendingOff = new List<Node>(onToOff);

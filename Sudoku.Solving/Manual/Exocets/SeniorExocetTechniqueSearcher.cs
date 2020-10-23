@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var compatibleCells = (stackalloc int[4]);
 			var cover = (stackalloc int[8]);
@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				int i = 0;
 				int r = GetRegion(b1, Row) - 9, c = GetRegion(b1, Column) - 18;
-				foreach (int pos in Grid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))
+				foreach (int pos in SudokuGrid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))
 				{
 					cover[i++] = isRow ? pos + 9 : pos + 18;
 				}
@@ -317,8 +317,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Check the cross-line cells.
 		/// </summary>
-		/// <param name="baseMap">The base cells map.</param>
-		/// <param name="tempCrossline">The cross-line map.</param>
+		/// <param name="baseMap">(<see langword="in"/> parameter) The base cells map.</param>
+		/// <param name="tempCrossline">(<see langword="in"/> parameter) The cross-line map.</param>
 		/// <param name="baseCandidatesMask">The base candidate mask.</param>
 		/// <param name="t1">The target cell 1.</param>
 		/// <param name="t2">The target cell 2.</param>
@@ -330,7 +330,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private bool CheckCrossline(
-			GridMap baseMap, GridMap tempCrossline, short baseCandidatesMask,
+			in GridMap baseMap, in GridMap tempCrossline, short baseCandidatesMask,
 			int t1, int t2, bool isRow, [NotNullWhen(true)] out int[]? extraRegionsMask)
 		{
 			var xx = new GridMap { t1, t2 };
@@ -370,12 +370,12 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// Deeply check of cross-line cells (franken/mutant exocets can be searched here).
 		/// </summary>
 		/// <param name="digit">The digit.</param>
-		/// <param name="baseElimMap">The base elimination map.</param>
-		/// <param name="tempCrossline">The cross-line map.</param>
+		/// <param name="baseElimMap">(<see langword="in"/> parameter) The base elimination map.</param>
+		/// <param name="tempCrossline">(<see langword="in"/> parameter) The cross-line map.</param>
 		/// <param name="extraRegionsMask">The extra regions.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private bool DeepCrosslineCheck(
-			int digit, GridMap baseElimMap, GridMap tempCrossline, int[] extraRegionsMask)
+			int digit, in GridMap baseElimMap, in GridMap tempCrossline, int[] extraRegionsMask)
 		{
 			int region = default, p;
 			foreach (int[] combination in tempCrossline.ToArray().GetSubsets(3))
@@ -415,14 +415,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		/// <param name="baseCandidatesMask">The base candidates mask.</param>
 		/// <param name="digitMaps">The digit distributions.</param>
-		/// <param name="tempCrossline">The cross-line map.</param>
-		/// <param name="baseCellsMap">The base cells map.</param>
+		/// <param name="tempCrossline">(<see langword="in"/> parameter) The cross-line map.</param>
+		/// <param name="baseCellsMap">(<see langword="in"/> parameter) The base cells map.</param>
 		/// <param name="t1">The target cell 1.</param>
 		/// <param name="t2">The target cell 2.</param>
 		/// <returns>The mask of all incompatible values.</returns>
 		private short CompatibilityTest(
-			short baseCandidatesMask, GridMap[] digitMaps, GridMap tempCrossline,
-			GridMap baseCellsMap, int t1, int t2)
+			short baseCandidatesMask, GridMap[] digitMaps, in GridMap tempCrossline,
+			in GridMap baseCellsMap, int t1, int t2)
 		{
 			short result = 0;
 			foreach (int digit in baseCandidatesMask)
@@ -485,18 +485,18 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <summary>
 		/// The compatibility testing after the method
-		/// <see cref="CompatibilityTest(short, GridMap[], GridMap, GridMap, int, int)"/>.
+		/// <see cref="CompatibilityTest(short, GridMap[], in GridMap, in GridMap, int, int)"/>.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="compatibilityElims">The compatibility eliminations.</param>
-		/// <param name="baseCellsMap">The base cells map.</param>
+		/// <param name="baseCellsMap">(<see langword="in"/> parameter) The base cells map.</param>
 		/// <param name="baseCandidatesMask">The base candidates mask.</param>
 		/// <param name="t1">The target cell 1.</param>
 		/// <param name="t2">The target cell 2.</param>
-		/// <seealso cref="CompatibilityTest(short, GridMap[], GridMap, GridMap, int, int)"/>
+		/// <seealso cref="CompatibilityTest(short, GridMap[], in GridMap, in GridMap, int, int)"/>
 		private void CompatibilityTest2(
-			Grid grid, ref CompatibilityTestEliminations compatibilityElims,
-			GridMap baseCellsMap, short baseCandidatesMask, int t1, int t2)
+			in SudokuGrid grid, ref CompatibilityTestEliminations compatibilityElims,
+			in GridMap baseCellsMap, short baseCandidatesMask, int t1, int t2)
 		{
 			if ((grid.GetStatus(t1), grid.GetStatus(t2)) is (not Empty, not Empty))
 			{

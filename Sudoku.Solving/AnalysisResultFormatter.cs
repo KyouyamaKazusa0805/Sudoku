@@ -196,13 +196,13 @@ namespace Sudoku.Solving
 				sb.AppendLine(GetValue("AnalysisResultAttributes"));
 
 				static bool m(ParameterInfo[] p, MethodInfo m) =>
-					(p.Length, p[0].ParameterType, m.ReturnType) == (1, typeof(Grid), typeof(bool));
+					(p.Length, p[0].ParameterType, m.ReturnType) == (1, typeof(SudokuGrid), typeof(bool));
 				foreach (var methodInfo in
 					from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
 					where m(methodInfo.GetParameters(), methodInfo)
 					select methodInfo)
 				{
-					bool attributeResult = (bool)methodInfo.Invoke(null, new[] { puzzle })!;
+					bool attributeResult = (bool)methodInfo.Invoke(null, new object[] { puzzle })!;
 					sb.AppendLine($"    {methodInfo.Name}: {attributeResult}");
 				}
 				a();

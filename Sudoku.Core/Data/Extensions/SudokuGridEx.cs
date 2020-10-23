@@ -4,10 +4,10 @@ using static Sudoku.Data.CellStatus;
 namespace Sudoku.Data.Extensions
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="Grid"/>.
+	/// Provides extension methods on <see cref="SudokuGrid"/>.
 	/// </summary>
-	/// <seealso cref="Grid"/>
-	public static class GridEx
+	/// <seealso cref="SudokuGrid"/>
+	public static class SudokuGridEx
 	{
 		/// <summary>
 		/// <para>
@@ -18,7 +18,7 @@ namespace Sudoku.Data.Extensions
 		/// the cell is empty and contains that digit.
 		/// </para>
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <param name="cell">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>
@@ -55,7 +55,7 @@ namespace Sudoku.Data.Extensions
 		/// </para>
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool? Exists(this Grid @this, int cell, int digit) =>
+		public static bool? Exists(this in SudokuGrid @this, int cell, int digit) =>
 			@this.GetStatus(cell) == Empty && !@this[cell, digit];
 	}
 }

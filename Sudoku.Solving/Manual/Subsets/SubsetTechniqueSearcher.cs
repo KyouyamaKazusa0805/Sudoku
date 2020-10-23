@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			for (int size = 2; size <= 4; size++)
 			{
@@ -94,7 +94,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						continue;
 					}
 
-					short mask = Grid.MaxCandidatesMask;
+					short mask = SudokuGrid.MaxCandidatesMask;
 					foreach (int cell in traversingMap)
 					{
 						mask &= (short)~(1 << grid[cell]);

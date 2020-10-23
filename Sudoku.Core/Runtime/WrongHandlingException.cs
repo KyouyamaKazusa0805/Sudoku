@@ -1,7 +1,4 @@
-﻿#pragma warning disable CA1032
-#pragma warning disable CA2229
-
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 using Sudoku.Data;
@@ -19,34 +16,34 @@ namespace Sudoku.Runtime
 		/// <summary>
 		/// Initializes an instance with a grid.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
-		public WrongHandlingException(Grid grid) => Grid = grid;
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		public WrongHandlingException(in SudokuGrid grid) => Grid = grid;
 
 		/// <summary>
 		/// Initializes an instance with a grid and an error message.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="wrongInfo">The error message.</param>
-		public WrongHandlingException(Grid grid, string wrongInfo) : base(wrongInfo) =>
+		public WrongHandlingException(in SudokuGrid grid, string wrongInfo) : base(wrongInfo) =>
 			(Grid, WrongInfo) = (grid, wrongInfo);
 
 		/// <summary>
 		/// Initializes an instance with a grid, an error message and an inner exception.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="wrongInfo">The error message.</param>
 		/// <param name="inner">The inner exception.</param>
-		public WrongHandlingException(Grid grid, string wrongInfo, Exception inner) : base(wrongInfo, inner) =>
-			(Grid, WrongInfo) = (grid, wrongInfo);
+		public WrongHandlingException(in SudokuGrid grid, string wrongInfo, Exception inner)
+			: base(wrongInfo, inner) => (Grid, WrongInfo) = (grid, wrongInfo);
 
 		/// <summary>
 		/// Initializes an instance with a grid, a serialization information instance and
 		/// a streaming context instance.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="info">The streaming information.</param>
 		/// <param name="context">The streaming context.</param>
-		protected WrongHandlingException(Grid grid, SerializationInfo info, StreamingContext context)
+		protected WrongHandlingException(in SudokuGrid grid, SerializationInfo info, StreamingContext context)
 			: base(info, context) => Grid = grid;
 
 
@@ -58,7 +55,7 @@ namespace Sudoku.Runtime
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		public Grid Grid { get; }
+		public SudokuGrid Grid { get; }
 
 		/// <inheritdoc/>
 		public override string Message =>

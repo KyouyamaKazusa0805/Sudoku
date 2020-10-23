@@ -13,9 +13,9 @@ namespace Sudoku.Solving.Extensions
 		/// <summary>
 		/// Get highlight candidate offsets through the specified target node.
 		/// </summary>
-		/// <param name="target">(<see langword="this"/> parameter) The target node.</param>
+		/// <param name="target">(<see langword="this in"/> parameter) The target node.</param>
 		/// <returns>The candidate offsets.</returns>
-		public static IReadOnlyList<DrawingInfo> GetCandidateOffsets(this Node target)
+		public static IReadOnlyList<DrawingInfo> GetCandidateOffsets(this in Node target)
 		{
 			var result = new List<DrawingInfo>();
 			var map = new HashSet<(int, bool)>();
@@ -52,14 +52,14 @@ namespace Sudoku.Solving.Extensions
 		/// <summary>
 		/// Get the links through the specified target node.
 		/// </summary>
-		/// <param name="target">(<see langword="this"/> parameter) The target node.</param>
+		/// <param name="target">(<see langword="this in"/> parameter) The target node.</param>
 		/// <param name="showAllLinks">
 		/// Indicates whether the current chain will display all chains (even contains the weak links
 		/// from the elimination node). The default value is <see langword="false"/>. If you want to
 		/// draw the AIC, the elimination weak links don't need drawing.
 		/// </param>
 		/// <returns>The link.</returns>
-		public static IReadOnlyList<Link> GetLinks(this Node target, bool showAllLinks = false)
+		public static IReadOnlyList<Link> GetLinks(this in Node target, bool showAllLinks = false)
 		{
 			var result = new List<Link>();
 			var chain = target.Chain;

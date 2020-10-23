@@ -35,10 +35,10 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Get all searchers using in Hodoku-like mode.
 		/// </summary>
-		/// <param name="solution">The solution used for brute forces.</param>
+		/// <param name="solution">(<see langword="in"/> parameter) The solution used for brute forces.</param>
 		/// <returns>The searchers.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private TechniqueSearcher[] GetSearchersHodokuMode(Grid solution) =>
+		private TechniqueSearcher[] GetSearchersHodokuMode(in SudokuGrid solution) =>
 			new TechniqueSearcher[]
 			{
 				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit, ShowDirectLines),
@@ -84,11 +84,11 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Get all searchers using in Sudoku Explainer-like mode.
 		/// </summary>
-		/// <param name="solution">The solution used for brute forces.</param>
+		/// <param name="solution">(<see langword="in"/> parameter) The solution used for brute forces.</param>
 		/// <returns>The searchers.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[Obsolete("Because of some unstable techniques, please use the another field instead.")]
-		private TechniqueSearcher[][] GetSearchersSeMode(Grid solution) =>
+		private TechniqueSearcher[][] GetSearchersSeMode(in SudokuGrid solution) =>
 			new TechniqueSearcher[][]
 			{
 				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit, ShowDirectLines) },
@@ -146,16 +146,16 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <param name="steps">The steps.</param>
 		/// <param name="step">The step.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="cloneation">The cloneation (playground).</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="cloneation">(<see langword="ref"/> parameter) The cloneation (playground).</param>
 		/// <param name="stopwatch">The stopwatch.</param>
 		/// <param name="stepGrids">The step grids.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
-			List<TechniqueInfo> steps, TechniqueInfo step, Grid grid,
-			Grid cloneation, Stopwatch stopwatch, List<Grid> stepGrids,
+			List<TechniqueInfo> steps, TechniqueInfo step, in SudokuGrid grid,
+			ref SudokuGrid cloneation, Stopwatch stopwatch, List<SudokuGrid> stepGrids,
 			[NotNullWhen(true)] out AnalysisResult? result)
 		{
 			bool needAdd = false;
@@ -176,8 +176,8 @@ namespace Sudoku.Solving.Manual
 		FinalCheck:
 			if (needAdd)
 			{
-				stepGrids.Add(cloneation.Clone());
-				step.ApplyTo(cloneation);
+				stepGrids.Add(cloneation);
+				step.ApplyTo(ref cloneation);
 				steps.Add(step);
 
 				if (cloneation.HasSolved)
@@ -202,10 +202,10 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// To check the validity of all conclusions.
 		/// </summary>
-		/// <param name="solution">The solution.</param>
+		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		private static bool CheckConclusionsValidity(Grid solution, IEnumerable<Conclusion> conclusions)
+		private static bool CheckConclusionsValidity(in SudokuGrid solution, IEnumerable<Conclusion> conclusions)
 		{
 			foreach (var (t, c, d) in conclusions)
 			{
@@ -226,11 +226,11 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// To report the progress.
 		/// </summary>
-		/// <param name="cloneation">The cloneation grid.</param>
+		/// <param name="cloneation">(<see langword="in"/> parameter) The cloneation grid.</param>
 		/// <param name="progress">The progress reporter.</param>
 		/// <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
 		private static void ReportProgress(
-			Grid cloneation, IProgress<IProgressResult> progress, ref GridProgressResult progressResult)
+			in SudokuGrid cloneation, IProgress<IProgressResult> progress, ref GridProgressResult progressResult)
 		{
 			progressResult.CurrentCandidatesCount = cloneation.CandidatesCount;
 			progressResult.CurrentCellsCount = cloneation.EmptiesCount;
@@ -243,5 +243,14 @@ namespace Sudoku.Solving.Manual
 		/// <param name="info">The information.</param>
 		/// <returns>The decimal selection.</returns>
 		private static decimal InternalSelector(TechniqueInfo info) => info.Difficulty;
+
+		/// <summary>
+		/// Internal checking.
+		/// </summary>
+		/// <param name="info">The technique information.</param>
+		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+		/// <returns>The result.</returns>
+		private static bool InternalChecking(TechniqueInfo info, in SudokuGrid solution) =>
+			CheckConclusionsValidity(solution, info.Conclusions);
 	}
 }

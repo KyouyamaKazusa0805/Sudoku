@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			// Iterate on mode (whether use AR or UR mode to search).
 			var tempList = new List<UrTechniqueInfo>();
@@ -83,8 +83,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							// All possible UR patterns should contain at least one cell
 							// that contains both 'd1' and 'd2'.
+							static bool internalChecking(int c, in short comparer, in SudokuGrid grid) =>
+								(grid.GetCandidateMask(c) & comparer).PopCount() != 2;
+
 							short comparer = (short)(1 << d1 | 1 << d2);
-							if (!arMode && urCells.All(c => (grid.GetCandidateMask(c) & comparer).PopCount() != 2))
+							if (!arMode && urCells.All(&internalChecking, comparer, grid))
 							{
 								continue;
 							}
@@ -93,7 +96,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							for (int c1 = 0; c1 < 4; c1++)
 							{
 								int corner1 = urCells[c1];
-								var otherCellsMap = new GridMap(urCells) { [corner1] = false };
+								var otherCellsMap = new GridMap(urCells) { ~corner1 };
 
 								CheckType1(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
 								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
@@ -195,7 +198,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				accumulator.AddRange(tempList);
 			}
 
-			static bool checkPreconditions(Grid grid, IEnumerable<int> urCells, bool arMode)
+			static bool checkPreconditions(in SudokuGrid grid, IEnumerable<int> urCells, bool arMode)
 			{
 				byte emptyCountWhenArMode = 0, modifiableCount = 0;
 				foreach (int urCell in urCells)
@@ -231,20 +234,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// is same as the given map contains.
 		/// </summary>
 		/// <param name="digit">The digit.</param>
-		/// <param name="map">The map.</param>
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool IsConjugatePair(int digit, GridMap map, int region) =>
+		private static bool IsConjugatePair(int digit, in GridMap map, int region) =>
 			(RegionMaps[region] & CandMaps[digit]) == map;
 
 		/// <summary>
 		/// Check highlight type.
 		/// </summary>
-		/// <param name="pair">The pair.</param>
+		/// <param name="pair">(<see langword="in"/> parameter) The pair.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool CheckHighlightType(DrawingInfo pair) => pair.Id == 0;
+		private static bool CheckHighlightType(in DrawingInfo pair) => pair.Id == 0;
 
 		/// <summary>
 		/// Get a cell that can't see each other.
@@ -281,7 +284,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static bool IsSameRegionCell(int currentCell, int anotherCell, out IEnumerable<int> region)
 		{
-			if (new GridMap { anotherCell, currentCell }.CoveredRegions is var coveredRegions && coveredRegions.None())
+			if (new GridMap { anotherCell, currentCell }.CoveredRegions is var coveredRegions
+				&& coveredRegions.None())
 			{
 				region = Array.Empty<int>();
 				return false;
@@ -304,75 +308,75 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		partial void CheckType1(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
 
-		partial void CheckType2(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+		unsafe partial void CheckType2(
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
-		partial void CheckType3Naked(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+		unsafe partial void CheckType3Naked(
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
 		partial void CheckType4(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
-		partial void CheckType5(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+		unsafe partial void CheckType5(
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
 
 		partial void CheckType6(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
 		partial void CheckHidden(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
 
-		partial void Check2D(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+		unsafe partial void Check2D(
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
 		partial void Check2B1SL(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
 		partial void Check2D1SL(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
-		partial void Check3X(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+		unsafe partial void Check3X(
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
 
 		partial void Check3X2SL(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
 
 		partial void Check3N2SL(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
 
 		partial void Check3U2SL(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
 
 		partial void Check3E2SL(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
 
 		partial void Check4X3SL(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
 		partial void Check4C3SL(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
-		partial void CheckWing(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap, int size);
+		unsafe partial void CheckWing(
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int size);
 	}
 }

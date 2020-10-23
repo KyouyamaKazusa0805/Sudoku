@@ -16,11 +16,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Get all available weak links.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="p">The current node.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <returns>All possible weak links.</returns>
-		protected internal static ISet<Node> GetOnToOff(Grid grid, Node p, bool yEnabled)
+		protected internal static ISet<Node> GetOnToOff(in SudokuGrid grid, Node p, bool yEnabled)
 		{
 			var result = new Set<Node>();
 
@@ -56,12 +56,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Get all available strong links.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="p">The current node.</param>
 		/// <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <returns>All possible strong links.</returns>
-		protected internal static ISet<Node> GetOffToOn(Grid grid, Node p, bool xEnabled, bool yEnabled)
+		protected internal static ISet<Node> GetOffToOn(in SudokuGrid grid, Node p, bool xEnabled, bool yEnabled)
 		{
 			var result = new Set<Node>();
 			if (yEnabled)

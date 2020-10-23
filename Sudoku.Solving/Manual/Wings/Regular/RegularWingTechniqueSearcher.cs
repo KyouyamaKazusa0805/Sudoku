@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			// Iterate on the size.
 			// Note that the greatest size is determined by two factors: the size that you specified
@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 							continue;
 						}
 
-						short union = mask, inter = (short)(Grid.MaxCandidatesMask & mask);
+						short union = mask, inter = (short)(SudokuGrid.MaxCandidatesMask & mask);
 						foreach (int cell in cells)
 						{
 							short m = grid.GetCandidateMask(cell);

@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Generating
 
 
 		/// <inheritdoc/>
-		public override Grid Generate() => Generate(-1, null, Unknown, null);
+		public override SudokuGrid Generate() => Generate(-1, null, Unknown, null);
 
 		/// <summary>
 		/// To generate a sudoku grid with a backdoor filter depth.
@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="difficultyLevel">The difficulty level.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The grid.</returns>
-		public Grid Generate(
+		public SudokuGrid Generate(
 			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
 			DifficultyLevel difficultyLevel = Unknown, string? globalizationString = null)
 		{
@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Generating
 
 			var puzzle = new StringBuilder() { Length = 81 };
 			var solution = new StringBuilder() { Length = 81 };
-			var emptyGridStr = new StringBuilder(Grid.EmptyString);
+			var emptyGridStr = new StringBuilder(SudokuGrid.EmptyString);
 			static string valueOf(StringBuilder solution) => solution.ToString();
 
 			while (true)
@@ -82,7 +82,7 @@ namespace Sudoku.Solving.Generating
 
 					if (FastSolver.CheckValidity(valueOf(solution)))
 					{
-						var grid = Grid.Parse(valueOf(solution));
+						var grid = SudokuGrid.Parse(valueOf(solution));
 						if ((
 							backdoorFilterDepth != -1
 							&& BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).None()
@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="difficultyLevel">The difficulty level.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The task.</returns>
-		public async Task<Grid> GenerateAsync(
+		public async Task<SudokuGrid> GenerateAsync(
 			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
 			DifficultyLevel difficultyLevel = Unknown, string? globalizationString = null) =>
 			await Task.Run(() => Generate(backdoorFilterDepth, progress, difficultyLevel, globalizationString));

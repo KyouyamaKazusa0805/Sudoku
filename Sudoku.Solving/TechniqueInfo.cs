@@ -55,12 +55,12 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Put this instance into the specified grid.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
-		public void ApplyTo(Grid grid)
+		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+		public void ApplyTo(ref SudokuGrid grid)
 		{
 			foreach (var conclusion in Conclusions)
 			{
-				conclusion.ApplyTo(grid);
+				conclusion.ApplyTo(ref grid);
 			}
 		}
 

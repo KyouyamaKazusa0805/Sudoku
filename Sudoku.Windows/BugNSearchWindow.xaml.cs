@@ -9,7 +9,6 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
 using static Sudoku.Windows.MainWindow;
-using Grid = Sudoku.Data.Grid;
 
 namespace Sudoku.Windows
 {
@@ -21,14 +20,14 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The puzzle.
 		/// </summary>
-		private readonly Grid _puzzle;
+		private readonly SudokuGrid _puzzle;
 
 
 		/// <summary>
 		/// Initializes an instance with the specified puzzle.
 		/// </summary>
-		/// <param name="puzzle">The puzzle.</param>
-		public BugNSearchWindow(Grid puzzle)
+		/// <param name="puzzle">(<see langword="in"/> paramter) The puzzle.</param>
+		public BugNSearchWindow(in SudokuGrid puzzle)
 		{
 			InitializeComponent();
 

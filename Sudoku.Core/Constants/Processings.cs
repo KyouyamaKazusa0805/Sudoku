@@ -129,7 +129,7 @@ namespace Sudoku.Constants
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
 		/// <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
 		/// <param name="candidates">
@@ -144,7 +144,7 @@ namespace Sudoku.Constants
 		/// and the digit is the specified one.
 		/// </param>
 		public static void Deconstruct(
-			this Grid @this, out GridMap empty, out GridMap bivalue,
+			this in SudokuGrid @this, out GridMap empty, out GridMap bivalue,
 			out GridMap[] candidates, out GridMap[] digits, out GridMap[] values) =>
 			(empty, bivalue, candidates, digits, values) = (
 				@this.GetEmptyCellsMap(), @this.GetBivalueCellsMap(),
@@ -153,9 +153,9 @@ namespace Sudoku.Constants
 		/// <summary>
 		/// Get the map of all empty cells in this grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		private static GridMap GetEmptyCellsMap(this Grid @this)
+		private static GridMap GetEmptyCellsMap(this in SudokuGrid @this)
 		{
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
@@ -172,9 +172,9 @@ namespace Sudoku.Constants
 		/// <summary>
 		/// Get the map of all bi-value cells in this grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		private static GridMap GetBivalueCellsMap(this Grid @this)
+		private static GridMap GetBivalueCellsMap(this in SudokuGrid @this)
 		{
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
@@ -191,9 +191,9 @@ namespace Sudoku.Constants
 		/// <summary>
 		/// Get the map of all distributions for digits.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		private static GridMap[] GetCandidatesMap(this Grid @this)
+		private static GridMap[] GetCandidatesMap(this in SudokuGrid @this)
 		{
 			var result = new GridMap[9];
 			for (int digit = 0; digit < 9; digit++)
@@ -214,15 +214,15 @@ namespace Sudoku.Constants
 		/// <summary>
 		/// <para>Get the map of all distributions for digits.</para>
 		/// <para>
-		/// Different with <see cref="GetCandidatesMap(Grid)"/>,
+		/// Different with <see cref="GetCandidatesMap(in SudokuGrid)"/>,
 		/// this method will get all cells that contain the digit or fill this digit
 		/// (given or modifiable).
 		/// </para>
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		/// <seealso cref="GetCandidatesMap(Grid)"/>
-		private static GridMap[] GetDigitsMap(this Grid @this)
+		/// <seealso cref="GetCandidatesMap(in SudokuGrid)"/>
+		private static GridMap[] GetDigitsMap(this in SudokuGrid @this)
 		{
 			var result = new GridMap[9];
 			for (int digit = 0; digit < 9; digit++)
@@ -243,9 +243,9 @@ namespace Sudoku.Constants
 		/// <summary>
 		/// Get the map of all distributions for digits.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		private static GridMap[] GetValuesMap(this Grid @this)
+		private static GridMap[] GetValuesMap(this in SudokuGrid @this)
 		{
 			var result = new GridMap[9];
 			for (int digit = 0; digit < 9; digit++)

@@ -5,11 +5,11 @@ using static Sudoku.Constants.Processings;
 namespace Sudoku.Data.Extensions
 {
 	/// <summary>
-	/// Provides a series of methods for <see cref="Grid"/>
+	/// Provides a series of methods for <see cref="SudokuGrid"/>
 	/// using in transformations.
 	/// </summary>
-	/// <seealso cref="Grid"/>
-	public static class GridTransformations
+	/// <seealso cref="SudokuGrid"/>
+	public static class SudokuGridTransformations
 	{
 		/// <summary>
 		/// The table of clockwise rotation.
@@ -63,18 +63,16 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Mirror left-right the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorLeftRight(this Grid @this)
+		public static unsafe SudokuGrid MirrorLeftRight(this in SudokuGrid @this)
 		{
-			var result = @this.Clone();
+			var result = @this;
 			for (int i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < 4; j++)
+				for (int j = 0; j < 9; j++)
 				{
-					short temp = result.GetMask(i * 9 + j);
-					result.SetMask(i * 9 + j, result.GetMask(i * 9 + (8 - j)));
-					result.SetMask(i * 9 + (8 - j), temp);
+					result._values[i * 9 + j] = @this._values[i * 9 + (8 - j)];
 				}
 			}
 
@@ -84,18 +82,16 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Mirror top-bottom the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorTopBottom(this Grid @this)
+		public static unsafe SudokuGrid MirrorTopBottom(this in SudokuGrid @this)
 		{
-			var result = @this.Clone();
-			for (int i = 0; i < 4; i++)
+			var result = @this;
+			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					short temp = result.GetMask(i * 9 + j);
-					result.SetMask(i * 9 + j, result.GetMask((8 - i) * 9 + j));
-					result.SetMask((8 - i) * 9 + j, temp);
+					result._values[i * 9 + j] = @this._values[(8 - i) * 9 + j];
 				}
 			}
 
@@ -105,18 +101,16 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Mirror diagonal the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorDiagonal(this Grid @this)
+		public static unsafe SudokuGrid MirrorDiagonal(this in SudokuGrid @this)
 		{
-			var result = @this.Clone();
-			for (int i = 1; i < 9; i++)
+			var result = @this;
+			for (int i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < i; j++)
+				for (int j = 0; j < 9; j++)
 				{
-					short temp = result.GetMask(i * 9 + j);
-					result.SetMask(i * 9 + j, result.GetMask(j * 9 + i));
-					result.SetMask(j * 9 + i, temp);
+					result._values[i * 9 + j] = @this._values[j * 9 + i];
 				}
 			}
 
@@ -126,26 +120,24 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Transpose the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Grid Transpose(this Grid @this) => @this.MirrorDiagonal();
+		public static SudokuGrid Transpose(this in SudokuGrid @this) => @this.MirrorDiagonal();
 
 		/// <summary>
 		/// Mirror anti-diagonal the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorAntidiagonal(this Grid @this)
+		public static unsafe SudokuGrid MirrorAntidiagonal(this in SudokuGrid @this)
 		{
-			var result = @this.Clone();
+			var result = @this;
 			for (int i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < 8 - i; j++)
+				for (int j = 0; j < 9; j++)
 				{
-					short temp = result.GetMask(i * 9 + j);
-					result.SetMask(i * 9 + j, result.GetMask((8 - j) * 9 + (8 - i)));
-					result.SetMask((8 - j) * 9 + (8 - i), temp);
+					result._values[i * 9 + j] = @this._values[(8 - j) * 9 + (8 - i)];
 				}
 			}
 
@@ -155,17 +147,14 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Rotate the grid clockwise.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotateClockwise(this Grid @this)
+		public static unsafe SudokuGrid RotateClockwise(this in SudokuGrid @this)
 		{
-			var result = @this.Clone();
+			var result = @this;
 			for (int i = 0; i < 81; i++)
 			{
-				int z = ClockwiseTable[i];
-				short temp = result.GetMask(i);
-				result.SetMask(i, result.GetMask(z));
-				result.SetMask(z, temp);
+				result._values[i] = @this._values[ClockwiseTable[i]];
 			}
 			return result;
 		}
@@ -173,17 +162,14 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Rotate the grid counterclockwise.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotateCounterclockwise(this Grid @this)
+		public static unsafe SudokuGrid RotateCounterclockwise(this in SudokuGrid @this)
 		{
-			var result = @this.Clone();
+			var result = @this;
 			for (int i = 0; i < 81; i++)
 			{
-				int z = CounterClockwiseTable[i];
-				short temp = result.GetMask(i);
-				result.SetMask(i, result.GetMask(z));
-				result.SetMask(z, temp);
+				result._values[i] = @this._values[CounterClockwiseTable[i]];
 			}
 			return result;
 		}
@@ -191,17 +177,14 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Rotate the grid <c><see cref="Math.PI"/></c> degrees.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotatePi(this Grid @this)
+		public static unsafe SudokuGrid RotatePi(this in SudokuGrid @this)
 		{
-			var result = @this.Clone();
+			var result = @this;
 			for (int i = 0; i < 81; i++)
 			{
-				int z = PiRotateTable[i];
-				short temp = result.GetMask(i);
-				result.SetMask(i, result.GetMask(z));
-				result.SetMask(z, temp);
+				result._values[i] = @this._values[PiRotateTable[i]];
 			}
 			return result;
 		}
@@ -209,7 +192,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Swap to regions.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <param name="region1">The region 1.</param>
 		/// <param name="region2">The region 2.</param>
 		/// <returns>The result.</returns>
@@ -217,7 +200,7 @@ namespace Sudoku.Data.Extensions
 		/// Throws when two specified region argument is not in valid range (0..27)
 		/// or two regions are not in same region type.
 		/// </exception>
-		public static Grid SwapTwoRegions(this Grid @this, int region1, int region2)
+		public static unsafe SudokuGrid SwapTwoRegions(this in SudokuGrid @this, int region1, int region2)
 		{
 			if (region1 is < 0 or >= 18)
 			{
@@ -232,14 +215,12 @@ namespace Sudoku.Data.Extensions
 				throw new ArgumentException("Two region should be the same region type.");
 			}
 
-			var result = @this.Clone();
+			var result = @this;
 			for (int i = 0; i < 9; i++)
 			{
 				int c1 = RegionCells[region1][i];
 				int c2 = RegionCells[region2][i];
-				short temp = result.GetMask(c1);
-				result.SetMask(c1, result.GetMask(c2));
-				result.SetMask(c2, temp);
+				result._values[c1] = @this._values[c2];
 			}
 
 			return result;

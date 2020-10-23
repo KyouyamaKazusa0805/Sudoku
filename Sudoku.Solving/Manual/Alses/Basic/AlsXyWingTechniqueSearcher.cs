@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var rccs = new List<(Als Left, Als Right, short Mask)>();
 			var alses = Als.GetAllAlses(grid).ToArray();

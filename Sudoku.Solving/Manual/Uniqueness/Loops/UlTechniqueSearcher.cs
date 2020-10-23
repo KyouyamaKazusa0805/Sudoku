@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			if (BivalueMap.Count < 6)
 			{
@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				loops.Clear();
 				tempLoop.Clear();
 
-				f(d1, d2, cell, (RegionLabel)(-1), default, 2);
+				f(grid, d1, d2, cell, (RegionLabel)(-1), default, 2);
 
 				if (loops.Count == 0)
 				{
@@ -82,7 +82,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					}
 				}
 
-				void f(int d1, int d2, int cell, RegionLabel lastLabel, short exDigitsMask, int allowedExtraCellsCount)
+				void f(
+					in SudokuGrid grid,
+					int d1, int d2, int cell, RegionLabel lastLabel, short exDigitsMask,
+					int allowedExtraCellsCount)
 				{
 					loopMap.AddAnyway(cell);
 					tempLoop.Add(cell);
@@ -131,7 +134,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								}
 
 								f(
-									d1, d2, nextCell, label, exDigitsMask,
+									grid, d1, d2, nextCell, label, exDigitsMask,
 									digitsCount > 2 ? allowedExtraCellsCount - 1 : allowedExtraCellsCount);
 							}
 						}
@@ -145,18 +148,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		}
 
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2, GridMap loop, GridMap extraCellsMap);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop,
+			in GridMap extraCellsMap);
 
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
-			GridMap loop, GridMap extraCellsMap, short comparer);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, in GridMap extraCellsMap, short comparer);
 
-		partial void CheckType3(
-			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
-			GridMap loop, GridMap extraCellsMap, short comparer);
+		unsafe partial void CheckType3(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, in GridMap extraCellsMap, short comparer);
 
 		partial void CheckType4(
-			IList<TechniqueInfo> accumulator, Grid grid, int d1, int d2,
-			GridMap loop, GridMap extraCellsMap, short comparer);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, in GridMap extraCellsMap, short comparer);
 	}
 }

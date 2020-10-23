@@ -3,7 +3,7 @@ using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
-	public unsafe partial struct SudokuGrid
+	partial struct SudokuGrid
 	{
 		/// <summary>
 		/// Provides arguments for the event <see cref="ValueChanged"/>.

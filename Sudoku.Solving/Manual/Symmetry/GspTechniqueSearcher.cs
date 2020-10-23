@@ -19,13 +19,13 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			// To verify all kinds of symmetry.
 			// Note that Gurth's symmetrical placement doesn't have X-axis and Y-axis type.
 			unsafe
 			{
-				foreach (var act in new delegate*<IList<TechniqueInfo>, Grid, void>[]
+				foreach (var act in new delegate* managed<IList<TechniqueInfo>, in SudokuGrid, void>[]
 				{
 					&CheckCentral, &CheckDiagonal, &CheckAntiDiagonal
 				})
@@ -39,8 +39,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// Check diagonal symmetry.
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		private static void CheckDiagonal(IList<TechniqueInfo> result, Grid grid)
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		private static void CheckDiagonal(IList<TechniqueInfo> result, in SudokuGrid grid)
 		{
 			bool diagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -164,8 +164,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// Check anti-diagonal symmetry.
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		private static void CheckAntiDiagonal(IList<TechniqueInfo> result, Grid grid)
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		private static void CheckAntiDiagonal(IList<TechniqueInfo> result, in SudokuGrid grid)
 		{
 			bool antiDiagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -289,8 +289,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// Check central symmetry.
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		private static void CheckCentral(IList<TechniqueInfo> result, Grid grid)
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		private static void CheckCentral(IList<TechniqueInfo> result, in SudokuGrid grid)
 		{
 			if (grid.GetStatus(40) != Empty)
 			{

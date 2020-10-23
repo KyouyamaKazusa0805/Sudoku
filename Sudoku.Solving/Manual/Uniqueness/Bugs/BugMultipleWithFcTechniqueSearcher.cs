@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			if (new BugChecker(grid).TrueCandidates is { Count: > 1 } trueCandidates)
 			{
@@ -35,10 +35,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check BUG + n with forcing chains.
 		/// </summary>
 		/// <param name="accumulator">The result list.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private unsafe void CheckMultipleWithForcingChains(
-			IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates)
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			var tempAccumulator = new List<BugMultipleWithFcTechniqueInfo>();
 
@@ -49,8 +49,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			foreach (int candidate in trueCandidates)
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				var onToOn = new Set<Node>();
-				var onToOff = new Set<Node>();
+				Set<Node> onToOn = new(), onToOff = new();
 
 				onToOn.Add(new(cell, digit, true));
 				DoChaining(grid, onToOn, onToOff);
@@ -58,7 +57,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				// Collect results for cell chaining.
 				valueToOn.Add(candidate, onToOn);
 				valueToOff.Add(candidate, onToOff);
-				if (cellToOn is null/* || cellToOff is null*/)
+				if (cellToOn is null || cellToOff is null)
 				{
 					cellToOn = new(onToOn);
 					cellToOff = new(onToOff);
@@ -66,7 +65,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				else
 				{
 					cellToOn &= onToOn;
-					cellToOff = cellToOff! & onToOff;
+					cellToOff &= onToOff;
 				}
 			}
 
@@ -75,8 +74,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			{
 				foreach (var p in cellToOn)
 				{
-					var hint = CreateEliminationHint(trueCandidates, p, valueToOn);
-					if (hint is not null)
+					if (CreateEliminationHint(trueCandidates, p, valueToOn) is BugMultipleWithFcTechniqueInfo hint)
 					{
 						tempAccumulator.Add(hint);
 					}
@@ -86,8 +84,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			{
 				foreach (var p in cellToOff)
 				{
-					var hint = CreateEliminationHint(trueCandidates, p, valueToOff);
-					if (hint is not null)
+					if (CreateEliminationHint(trueCandidates, p, valueToOff) is BugMultipleWithFcTechniqueInfo hint)
 					{
 						tempAccumulator.Add(hint);
 					}
@@ -103,14 +100,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		/// <summary>
 		/// Do chaining. This method is only called by
-		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, Grid, IReadOnlyList{int})"/>.
+		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, in SudokuGrid, IReadOnlyList{int})"/>.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="toOn">All nodes to on.</param>
 		/// <param name="toOff">All nodes to off.</param>
 		/// <returns>The result nodes.</returns>
-		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, Grid, IReadOnlyList{int})"/>
-		private static Node[]? DoChaining(Grid grid, ISet<Node> toOn, ISet<Node> toOff)
+		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, in SudokuGrid, IReadOnlyList{int})"/>
+		private static Node[]? DoChaining(in SudokuGrid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
 			Set<Node> pendingOn = new(toOn), pendingOff = new(toOff);
 			while (pendingOn.Count != 0 || pendingOff.Count != 0)
@@ -139,7 +136,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				else
 				{
 					var p = pendingOff.Remove();
-
 					var makeOn = ChainingTechniqueSearcher.GetOffToOn(grid, p, true, true);
 
 					foreach (var pOn in makeOn)
@@ -165,13 +161,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		/// <summary>
 		/// Create the elimination hint. This method is only called by
-		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, Grid, IReadOnlyList{int})"/>.
+		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, in SudokuGrid, IReadOnlyList{int})"/>.
 		/// </summary>
 		/// <param name="trueCandidates">The true candidates.</param>
 		/// <param name="target">The target node.</param>
 		/// <param name="outcomes">All outcomes.</param>
 		/// <returns>The result information instance.</returns>
-		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, Grid, IReadOnlyList{int})"/>
+		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, in SudokuGrid, IReadOnlyList{int})"/>
 		private static BugMultipleWithFcTechniqueInfo? CreateEliminationHint(
 			IReadOnlyList<int> trueCandidates, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
 		{

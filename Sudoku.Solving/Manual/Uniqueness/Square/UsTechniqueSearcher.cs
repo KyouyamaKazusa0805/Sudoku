@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			foreach (var pattern in Patterns)
 			{
@@ -37,25 +37,31 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					mask |= grid.GetCandidateMask(cell);
 				}
 
-				unsafe
+				var funcs = stackalloc delegate* managed<
+					IList<TechniqueInfo>, in SudokuGrid, in GridMap, short, void>[]
 				{
-					foreach (var f in new delegate*<IList<TechniqueInfo>, Grid, GridMap, short, void>[]
-					{
-						&CheckType1, &CheckType2, &CheckType3, &CheckType4
-					})
-					{
-						f(accumulator, grid, pattern, mask);
-					}
+					&CheckType1,
+					&CheckType2,
+					&CheckType3,
+					&CheckType4
+				};
+				for (int i = 0; i < 4; i++)
+				{
+					funcs[i](accumulator, grid, pattern, mask);
 				}
 			}
 		}
 
-		private static partial void CheckType1(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask);
+		private static partial void CheckType1(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
 
-		private static partial void CheckType2(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask);
+		private static partial void CheckType2(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
 
-		private static partial void CheckType3(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask);
+		private static partial void CheckType3(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
 
-		private static partial void CheckType4(IList<TechniqueInfo> accumulator, Grid grid, GridMap pattern, short mask);
+		private static partial void CheckType4(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
 	}
 }

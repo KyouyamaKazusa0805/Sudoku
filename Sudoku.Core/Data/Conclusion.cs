@@ -50,26 +50,26 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Put this instance into the specified grid.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
 		/// <exception cref="InvalidOperationException">
 		/// Throws when the specified conclusion type is neither <see cref="ConclusionType.Assignment"/>
 		/// nor <see cref="ConclusionType.Elimination"/>.
 		/// </exception>
-		public void ApplyTo(Grid grid)
+		public void ApplyTo(ref SudokuGrid grid)
 		{
 			unsafe
 			{
-				delegate* managed<Grid, int, int, void> m = ConclusionType switch
+				delegate* managed<ref SudokuGrid, int, int, void> m = ConclusionType switch
 				{
 					ConclusionType.Assignment => &a,
 					ConclusionType.Elimination => &e,
 					_ => throw new InvalidOperationException("Cannot apply to grid due to invalid conclusion type.")
 				};
-				m(grid, Cell, Digit);
+				m(ref grid, Cell, Digit);
 			}
 
-			static void a(Grid grid, int cell, int digit) => grid[cell] = digit;
-			static void e(Grid grid, int cell, int digit) => grid[cell, digit] = true;
+			static void a(ref SudokuGrid grid, int cell, int digit) => grid[cell] = digit;
+			static void e(ref SudokuGrid grid, int cell, int digit) => grid[cell, digit] = true;
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>

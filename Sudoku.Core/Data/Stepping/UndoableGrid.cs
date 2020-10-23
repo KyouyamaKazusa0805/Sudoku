@@ -2,40 +2,42 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Provides an undoable sudoku grid. This data structure is nearly same
-	/// as <see cref="Grid"/>, but only add two methods <see cref="Undo"/>
+	/// as <see cref="SudokuGrid"/>, but only add two methods <see cref="Undo"/>
 	/// and <see cref="Redo"/>.
 	/// </summary>
-	/// <seealso cref="Grid"/>
+	/// <seealso cref="SudokuGrid"/>
 	/// <seealso cref="Undo"/>
 	/// <seealso cref="Redo"/>
-	public sealed class UndoableGrid : Grid, IEquatable<UndoableGrid>, IUndoable
+	public sealed class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable
 	{
+		/// <summary>
+		/// The inner sudoku grid.
+		/// </summary>
+		internal SudokuGrid _innerGrid;
+
 		/// <summary>
 		/// The undo and redo stack.
 		/// </summary>
 		private readonly Stack<Step> _undoStack = new(), _redoStack = new();
 
 
-		/// <inheritdoc/>
-		public UndoableGrid(short[] masks) : base(masks)
-		{
-		}
+		/// <summary>
+		/// Initializes an instance with the specified mask array.
+		/// </summary>
+		/// <param name="masks">The mask array.</param>
+		public UndoableGrid(short[] masks) => _innerGrid = new(masks);
 
 		/// <summary>
-		/// Initializes an instance with the specified grid (to convert to
-		/// an undoable grid).
+		/// Initializes an instance with the specified sudoku grid (value type).
 		/// </summary>
-		/// <param name="grid">The grid.</param>
-		public UndoableGrid(Grid grid) : this(grid._masks.CloneAs<short[]>())
-		{
-		}
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		public UndoableGrid(in SudokuGrid grid) => _innerGrid = grid;
 
 
 		/// <summary>
@@ -48,11 +50,17 @@ namespace Sudoku.Data.Stepping
 		/// </summary>
 		public bool HasRedoSteps => _redoStack.Count != 0;
 
+		/// <inheritdoc cref="SudokuGrid.HasSolved"/>
+		public bool HasSolved => _innerGrid.HasSolved;
+
+		/// <inheritdoc cref="SudokuGrid.GivensCount"/>
+		public int GivensCount => _innerGrid.GivensCount;
+
 
 		/// <inheritdoc/>
-		public override int this[int offset]
+		public int this[int offset]
 		{
-			get => base[offset];
+			get => _innerGrid[offset];
 			set
 			{
 				var map = GridMap.Empty;
@@ -63,29 +71,34 @@ namespace Sudoku.Data.Stepping
 						map.AddAnyway(cell);
 					}
 				}
-				_undoStack.Push(new AssignmentStep(value, offset, _masks[offset], map));
+
+				unsafe
+				{
+					_undoStack.Push(new AssignmentStep(value, offset, _innerGrid._values[offset], map));
+				}
 
 				// Do step.
-				base[offset] = value;
+				_innerGrid[offset] = value;
 			}
 		}
 
 		/// <inheritdoc/>
-		public override bool this[int offset, int digit]
+		public bool this[int offset, int digit]
 		{
-			get => base[offset, digit];
+			get => _innerGrid[offset, digit];
 			set
 			{
-				_undoStack.Push(value ? new EliminationStep(digit, offset) : new AntiEliminationStep(digit, offset));
+				_undoStack.Push(
+					value ? new EliminationStep(digit, offset) : new AntiEliminationStep(digit, offset));
 
 				// Do step.
-				base[offset, digit] = value;
+				_innerGrid[offset, digit] = value;
 			}
 		}
 
 
 		/// <inheritdoc/>
-		public override void Fix()
+		public void Fix()
 		{
 			var map = GridMap.Empty;
 			for (int i = 0; i < 81; i++)
@@ -97,17 +110,23 @@ namespace Sudoku.Data.Stepping
 			}
 
 			_undoStack.Push(new FixStep(map));
-			foreach (int cell in map)
+			unsafe
 			{
-				ref short mask = ref _masks[cell];
-				mask = (short)((int)CellStatus.Given << 9 | mask & MaxCandidatesMask);
-			}
+				foreach (int cell in map)
+				{
+					ref short mask = ref _innerGrid._values[cell];
+					mask = (short)((int)CellStatus.Given << 9 | mask & SudokuGrid.MaxCandidatesMask);
+				}
 
-			Array.Copy(_masks, _initialMasks, 81);
+				fixed (short* pInitialValues = _innerGrid._initialValues, pValues = _innerGrid._values)
+				{
+					SudokuGrid.InternalCopy(pInitialValues, pValues);
+				}
+			}
 		}
 
 		/// <inheritdoc/>
-		public override void Unfix()
+		public void Unfix()
 		{
 			var map = GridMap.Empty;
 			for (int i = 0; i < 81; i++)
@@ -119,47 +138,60 @@ namespace Sudoku.Data.Stepping
 			}
 
 			_undoStack.Push(new UnfixStep(map));
-			foreach (int cell in map)
+			unsafe
 			{
-				ref short mask = ref _masks[cell];
-				mask = (short)((int)CellStatus.Modifiable << 9 | mask & MaxCandidatesMask);
+				foreach (int cell in map)
+				{
+					ref short mask = ref _innerGrid._values[cell];
+					mask = (short)((int)CellStatus.Modifiable << 9 | mask & SudokuGrid.MaxCandidatesMask);
+				}
 			}
 		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override void Reset()
+		public void Reset()
 		{
-			_undoStack.Push(new ResetStep(_initialMasks, _masks));
-			base.Reset();
+			unsafe
+			{
+				fixed (short* pInitialValues = _innerGrid._initialValues, pValues = _innerGrid._values)
+				{
+					_undoStack.Push(new ResetStep(pInitialValues, pValues));
+				}
+			}
+			_innerGrid.Reset();
 		}
+
+		/// <inheritdoc cref="SudokuGrid.RefreshingCandidates"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public unsafe void RecomputeCandidates() => SudokuGrid.RefreshingCandidates(ref _innerGrid);
+
+		/// <inheritdoc cref="SudokuGrid.GetStatus(int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public CellStatus GetStatus(int cell) => _innerGrid.GetStatus(cell);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override void SetStatus(int offset, CellStatus cellStatus)
+		public void SetStatus(int offset, CellStatus cellStatus)
 		{
 			_undoStack.Push(new SetStatusStep(offset, GetStatus(offset), cellStatus));
-			base.SetStatus(offset, cellStatus);
+			_innerGrid.SetStatus(offset, cellStatus);
 		}
+
+		/// <inheritdoc cref="SudokuGrid.GetMask(int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public short GetMask(int offset) => _innerGrid.GetMask(offset);
+
+		/// <inheritdoc cref="SudokuGrid.GetCandidateMask(int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public short GetCandidateMask(int cell) => _innerGrid.GetCandidateMask(cell);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override void SetMask(int offset, short value)
+		public void SetMask(int offset, short value)
 		{
 			_undoStack.Push(new SetMaskStep(offset, GetMask(offset), value));
-			base.SetMask(offset, value);
-		}
-
-		/// <summary>
-		/// Set the specified grid to cover the current grid.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		public void SetGrid(UndoableGrid grid)
-		{
-			for (int cell = 0; cell < 81; cell++)
-			{
-				_masks[cell] = grid._masks[cell];
-			}
+			_innerGrid.SetMask(offset, value);
 		}
 
 		/// <inheritdoc/>
@@ -212,29 +244,60 @@ namespace Sudoku.Data.Stepping
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(UndoableGrid? other) => Equals(other as Grid);
+		public bool Equals(UndoableGrid? other) => Equals(other?._innerGrid ?? SudokuGrid.Undefined);
+
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+		public bool Equals(in SudokuGrid other) => _innerGrid == other;
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override int GetHashCode() => base.GetHashCode();
+		public override int GetHashCode() => _innerGrid.GetHashCode();
+
+		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public override string ToString() => _innerGrid.ToString();
+
+		/// <inheritdoc cref="Formattable.ToString(string?)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public string ToString(string? format) => _innerGrid.ToString(format);
+
+		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public string ToString(string? format, IFormatProvider? formatProvider) =>
+			_innerGrid.ToString(format, formatProvider);
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(UndoableGrid left, UndoableGrid right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Grid left, UndoableGrid right) => left.Equals(right);
+		public static bool operator ==(in SudokuGrid left, UndoableGrid right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(UndoableGrid left, Grid right) => left.Equals(right);
+		public static bool operator ==(UndoableGrid left, in SudokuGrid right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(UndoableGrid left, UndoableGrid right) => !(left == right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Grid left, UndoableGrid right) => !(left == right);
+		public static bool operator !=(in SudokuGrid left, UndoableGrid right) => !(left == right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(UndoableGrid left, Grid right) => !(left == right);
+		public static bool operator !=(UndoableGrid left, in SudokuGrid right) => !(left == right);
+
+
+		/// <summary>
+		/// Explicit cast from <see cref="UndoableGrid"/> to <see cref="SudokuGrid"/>.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <remarks>The cast won't use neither box nor unbox operations.</remarks>
+		public static explicit operator SudokuGrid(UndoableGrid grid) => grid._innerGrid;
+
+		/// <summary>
+		/// Implicit cast from <see cref="SudokuGrid"/> to <see cref="UndoableGrid"/>.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <remarks>The cast won't use neither box nor unbox operations.</remarks>
+		public static implicit operator UndoableGrid(in SudokuGrid grid) => new(grid);
 	}
 }

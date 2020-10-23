@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var tempAccumulator = new List<DeathBlossomTechniqueInfo>();
 			short[] checkedCandidates = new short[81];
@@ -245,7 +245,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="death">The death table.</param>
 		/// <param name="alses">The ALS list.</param>
 		private static void ProcessDeathAlsInfo(
-			Grid grid, GridMap[] candMaps, short[] checkedCandidates, int[,] death, IReadOnlyList<Als> alses)
+			in SudokuGrid grid, GridMap[] candMaps, short[] checkedCandidates,
+			int[,] death, IReadOnlyList<Als> alses)
 		{
 			int max = 0;
 			int i = 0;
@@ -285,10 +286,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <summary>
 		/// To preprocess and record all ALSes.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="emptyMap">The map of all empty cells.</param>
 		/// <returns>All ALSes.</returns>
-		private IReadOnlyList<Als> PreprocessAndRecordAlses(Grid grid, GridMap emptyMap)
+		private IReadOnlyList<Als> PreprocessAndRecordAlses(in SudokuGrid grid, GridMap emptyMap)
 		{
 			var list = new List<Als>();
 			GridMap tempEmptyCells;

@@ -12,7 +12,7 @@ namespace Sudoku.Solving
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
+		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleTechniqueSearcher"/>
 		internal static GridMap EmptyMap { get; set; }
 
@@ -23,7 +23,7 @@ namespace Sudoku.Solving
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
+		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleTechniqueSearcher"/>
 		internal static GridMap BivalueMap { get; set; }
 
@@ -34,7 +34,7 @@ namespace Sudoku.Solving
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
+		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleTechniqueSearcher"/>
 		internal static GridMap[] CandMaps { get; set; } = null!;
 
@@ -45,7 +45,7 @@ namespace Sudoku.Solving
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
+		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleTechniqueSearcher"/>
 		internal static GridMap[] DigitMaps { get; set; } = null!;
 
@@ -56,7 +56,7 @@ namespace Sudoku.Solving
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
-		/// <seealso cref="InitializeMaps(Grid)"/>
+		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		internal static GridMap[] ValueMaps { get; set; } = null!;
 	}
 }

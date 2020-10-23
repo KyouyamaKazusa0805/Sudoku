@@ -6,7 +6,7 @@ using Sudoku.Extensions;
 
 namespace Sudoku.Data
 {
-	public unsafe partial struct SudokuGrid
+	partial struct SudokuGrid
 	{
 		/// <summary>
 		/// Provides operations for grid formatting.
@@ -267,7 +267,7 @@ namespace Sudoku.Data
 			private string ToSingleLineStringCore(in SudokuGrid grid)
 			{
 				StringBuilder sb = new(), elims = new();
-				var tempGrid = WithCandidates ? Parse($"{grid:.+}") : Undefined;
+				var tempGrid = WithCandidates ? Parse(grid.ToString(".+")) : Undefined;
 
 				int cell = 0;
 				foreach (short value in grid)

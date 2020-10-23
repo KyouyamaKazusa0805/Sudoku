@@ -111,11 +111,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <summary>
 		/// Indicates whether the specified grid contains the digit.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The result.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsDigit(Grid grid, int digit, out GridMap result)
+		public bool ContainsDigit(in SudokuGrid grid, int digit, out GridMap result)
 		{
 			result = GridMap.Empty;
 			foreach (int cell in Map)
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All ALSes searched.</returns>
-		public static IEnumerable<Als> GetAllAlses(Grid grid)
+		public static IEnumerable<Als> GetAllAlses(SudokuGrid grid)
 		{
 			var bivalueMap = TechniqueSearcher.BivalueMap;
 			var emptyMap = TechniqueSearcher.EmptyMap;

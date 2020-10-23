@@ -52,7 +52,7 @@ namespace Sudoku.Recognitions
 		/// Throws when the tool has not initialized yet.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Grid Recorgnize(Bitmap image)
+		public SudokuGrid Recorgnize(Bitmap image)
 		{
 			if (ToolIsInitialized)
 			{
@@ -71,7 +71,7 @@ namespace Sudoku.Recognitions
 		/// <param name="image">The image.</param>
 		/// <returns>The task.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public async Task<Grid> RecorgnizeAsync(Bitmap image) => await Task.Run(() => Recorgnize(image));
+		public async Task<SudokuGrid> RecorgnizeAsync(Bitmap image) => await Task.Run(() => Recorgnize(image));
 	}
 }
 #endif

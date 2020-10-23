@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			if (EmptyMap.Count < 4)
 			{

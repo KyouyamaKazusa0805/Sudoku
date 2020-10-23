@@ -15,7 +15,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 		/// <summary>
 		/// The temporary grid to solve.
 		/// </summary>
-		private Grid _grid = null!;
+		private SudokuGrid _grid = SudokuGrid.Undefined;
 
 
 		/// <inheritdoc/>
@@ -23,7 +23,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(Grid grid)
+		public override AnalysisResult Solve(in SudokuGrid grid)
 		{
 			_grid = grid;
 
@@ -41,7 +41,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				return new(
 					solverName: SolverName,
 					puzzle: grid,
-					solution: Grid.CreateInstance(result ?? throw new NoSolutionException(grid)),
+					solution: SudokuGrid.CreateInstance(result ?? throw new NoSolutionException(grid)),
 					hasSolved: true,
 					elapsedTime: stopwatch.Elapsed,
 					additional: null);

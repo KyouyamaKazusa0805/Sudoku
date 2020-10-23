@@ -22,17 +22,17 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="TechniqueDisplayAttribute"/>
 		public string? DisplayName =>
-			GetType() is var type && type.IsAbstract
-				? null
-				: type.GetCustomAttribute<TechniqueDisplayAttribute>()?.DisplayName;
+			GetType() is { IsAbstract: false } type
+				? type.GetCustomAttribute<TechniqueDisplayAttribute>()?.DisplayName
+				: null;
 
 
 		/// <summary>
 		/// Take a technique step after searched all solving steps.
 		/// </summary>
-		/// <param name="grid">The grid to search steps.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid to search steps.</param>
 		/// <returns>A technique information.</returns>
-		public TechniqueInfo? GetOne(Grid grid)
+		public TechniqueInfo? GetOne(in SudokuGrid grid)
 		{
 			var bag = new List<TechniqueInfo>();
 			GetAll(bag, grid);
@@ -43,8 +43,8 @@ namespace Sudoku.Solving
 		/// Accumulate all technique information instances into the specified accumulator.
 		/// </summary>
 		/// <param name="accumulator">The accumulator to store technique information.</param>
-		/// <param name="grid">The grid to search for techniques.</param>
-		public abstract void GetAll(IList<TechniqueInfo> accumulator, Grid grid);
+		/// <param name="grid">(<see langword="in"/> parameter) The grid to search for techniques.</param>
+		public abstract void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid);
 
 		/// <inheritdoc/>
 		public virtual int CompareTo(TechniqueSearcher? other) =>
@@ -66,8 +66,9 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Initialize the maps that used later.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
-		public static void InitializeMaps(Grid grid) => (EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		public static void InitializeMaps(in SudokuGrid grid) =>
+			(EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;
 
 		/// <summary>
 		/// To get the priority of the technique searcher.

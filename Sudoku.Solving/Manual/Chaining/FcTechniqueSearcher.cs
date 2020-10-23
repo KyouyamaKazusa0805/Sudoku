@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var tempAccumulator = new List<ChainingTechniqueInfo>();
 			GetAll(tempAccumulator, grid);
@@ -51,8 +51,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Search for chains of each type.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">Thr grid.</param>
-		private void GetAll(IList<ChainingTechniqueInfo> accumulator, Grid grid)
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		private void GetAll(IList<ChainingTechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			// Iterate on all empty cells.
 			foreach (int cell in EmptyMap)
@@ -125,8 +125,17 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
+		/// <summary>
+		/// Do region chaining.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) </param>
+		/// <param name="cell">The cell.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
+		/// <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
 		private void DoRegionChaining(
-			IList<ChainingTechniqueInfo> accumulator, Grid grid, int cell, int digit,
+			IList<ChainingTechniqueInfo> accumulator, in SudokuGrid grid, int cell, int digit,
 			Set<Node> onToOn, Set<Node> onToOff)
 		{
 			for (var label = Block; label <= Column; label++)
@@ -186,7 +195,14 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
-		private Node[]? DoChaining(Grid grid, ISet<Node> toOn, ISet<Node> toOff)
+		/// <summary>
+		/// Do chaining (i.e. multiple chaining).
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="toOn">The list to <c>on</c> nodes.</param>
+		/// <param name="toOff">The list to <c>off</c> nodes.</param>
+		/// <returns>The result.</returns>
+		private Node[]? DoChaining(in SudokuGrid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
 			var pendingOn = new Set<Node>(toOn);
 			var pendingOff = new Set<Node>(toOff);
@@ -240,8 +256,16 @@ namespace Sudoku.Solving.Manual.Chaining
 			return null;
 		}
 
+		/// <summary>
+		/// Create the hint for cell forcing chains.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="sourceCell">The source cell.</param>
+		/// <param name="target">(<see langword="in"/> parameter) The target elimination node.</param>
+		/// <param name="outcomes">All outcomes (conclusions).</param>
+		/// <returns>The information instance.</returns>
 		private ChainingTechniqueInfo? CreateCellEliminationHint(
-			Grid grid, int sourceCell, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
+			in SudokuGrid grid, int sourceCell, in Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
 		{
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>
@@ -277,8 +301,16 @@ namespace Sudoku.Solving.Manual.Chaining
 			return new CellChainingTechniqueInfo(conclusions, views, sourceCell, chains);
 		}
 
+		/// <summary>
+		/// Create a hint of region forcing chains.
+		/// </summary>
+		/// <param name="region">The region.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="target">(<see langword="in"/> parameter) The target node.</param>
+		/// <param name="outcomes">All outcomes (conclusions).</param>
+		/// <returns>The technique information instance.</returns>
 		private ChainingTechniqueInfo? CreateRegionEliminationHint(
-			int region, int digit, Node target, IDictionary<int, Set<Node>> outcomes)
+			int region, int digit, in Node target, IDictionary<int, Set<Node>> outcomes)
 		{
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>

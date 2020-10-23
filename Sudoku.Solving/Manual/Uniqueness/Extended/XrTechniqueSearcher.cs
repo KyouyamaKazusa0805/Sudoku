@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			foreach (var (allCellsMap, pairs, size) in Combinations)
 			{
@@ -121,19 +121,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		}
 
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
-			GridMap extraCells, short normalDigits, int extraDigit);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
+			in GridMap extraCells, short normalDigits, int extraDigit);
 
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
-			GridMap extraCells, short normalDigits, int extraDigit);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
+			in GridMap extraCells, short normalDigits, int extraDigit);
 
 		partial void CheckType3Naked(
-			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
-			short normalDigits, short extraDigits, GridMap extraCellsMap);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
+			short normalDigits, short extraDigits, in GridMap extraCellsMap);
 
 		partial void CheckType14(
-			IList<TechniqueInfo> accumulator, Grid grid, GridMap allCellsMap,
-			short normalDigits, GridMap extraCellsMap);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
+			short normalDigits, in GridMap extraCellsMap);
 	}
 }

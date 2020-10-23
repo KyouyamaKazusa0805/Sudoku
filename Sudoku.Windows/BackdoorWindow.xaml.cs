@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Windows.Constants;
 using static Sudoku.Windows.MainWindow;
-using Grid = Sudoku.Data.Grid;
 
 namespace Sudoku.Windows
 {
@@ -23,7 +23,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The puzzle.
 		/// </summary>
-		private readonly Grid _puzzle;
+		private readonly SudokuGrid _puzzle;
 
 
 		/// <summary>
@@ -35,8 +35,8 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Initializes an instance with the specified puzzle.
 		/// </summary>
-		/// <param name="puzzle">The puzzle.</param>
-		public BackdoorWindow(Grid puzzle)
+		/// <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
+		public BackdoorWindow(in SudokuGrid puzzle)
 		{
 			InitializeComponent();
 
@@ -49,7 +49,7 @@ namespace Sudoku.Windows
 		private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
 		{
 			var collections = await internalOperation();
-			async Task<IEnumerable<IReadOnlyList<Data.Conclusion>>?> internalOperation()
+			async Task<IEnumerable<IReadOnlyList<Conclusion>>?> internalOperation()
 			{
 				_listBoxBackdoors.ClearValue(ItemsControl.ItemsSourceProperty);
 				_labelStatus.Content = (string)LangSource["BackdoorWhileSearching"];
@@ -70,7 +70,8 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			// Here one more encapsulation is on purpose, because ref structs cannot be used in the async environment.
+			// Here one more encapsulation is on purpose,
+			// because ref structs cannot be used in the async environment.
 			showBackdoors();
 			void showBackdoors()
 			{
