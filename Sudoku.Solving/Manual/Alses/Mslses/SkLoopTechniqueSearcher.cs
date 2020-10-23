@@ -23,6 +23,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 
 		/// <inheritdoc/>
+		/*skiplocalsinit*/
 		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var pairs = (stackalloc short[8]);

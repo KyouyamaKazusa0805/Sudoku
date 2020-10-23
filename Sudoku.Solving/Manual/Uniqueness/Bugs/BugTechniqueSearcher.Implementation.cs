@@ -371,6 +371,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// </summary>
 		/// <param name="list">The list of all true candidates.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
+		/*skiplocalsinit*/
 		private static bool CheckSingleDigit(IReadOnlyList<int> list)
 		{
 			int i = 0;

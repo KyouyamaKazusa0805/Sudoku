@@ -48,6 +48,7 @@ namespace Sudoku.Solving.Manual
 		/// The globalization string. The default value is <see langword="null"/>.
 		/// </param>
 		/// <returns>The analysis result.</returns>
+		/*skiplocalsinit*/
 		public AnalysisResult Solve(
 			in SudokuGrid grid, IProgress<IProgressResult>? progress, string? globalizationString = null)
 		{

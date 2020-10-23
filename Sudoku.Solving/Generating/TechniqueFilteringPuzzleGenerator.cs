@@ -44,6 +44,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="progress">The progress.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The puzzle.</returns>
+		/*skiplocalsinit*/
 		public SudokuGrid Generate(
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
 			string? globalizationString = null)

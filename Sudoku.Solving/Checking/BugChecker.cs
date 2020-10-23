@@ -76,6 +76,7 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
 		/// <returns>All true candidates.</returns>
+		/*skiplocalsinit*/
 		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
 			// Get the number of multivalue cells.

@@ -35,6 +35,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The grid.</returns>
 		/// <seealso cref="SymmetryType"/>
+		/*skiplocalsinit*/
 		public SudokuGrid Generate(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult>? progress,
 			string? globalizationString = null)

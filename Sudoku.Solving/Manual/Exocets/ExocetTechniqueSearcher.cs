@@ -120,6 +120,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
+		/*skiplocalsinit*/
 		static ExocetTechniqueSearcher()
 		{
 			var t = (stackalloc int[3]);

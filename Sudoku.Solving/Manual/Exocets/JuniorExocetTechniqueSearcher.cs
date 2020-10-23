@@ -41,6 +41,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
+		/*skiplocalsinit*/
 		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			foreach (var exocet in Patterns)

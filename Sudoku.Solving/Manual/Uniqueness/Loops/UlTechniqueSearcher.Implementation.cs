@@ -296,6 +296,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// </summary>
 		/// <param name="loop">The loop.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
+		/*skiplocalsinit*/
 		private static bool LoopIsValid(IReadOnlyList<int> loop)
 		{
 			int visitedOddRegions = 0, visitedEvenRegions = 0;

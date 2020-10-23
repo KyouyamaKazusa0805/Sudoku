@@ -211,7 +211,7 @@ namespace Sudoku.Windows.Tooling
 		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
 		/// <param name="filename">The file name.</param>
 		/// <returns>The instance.</returns>
-		[method: SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		internal static T? LoadFromXml<T>(this T? @this, string filename)
 		{
 			T? result = default;

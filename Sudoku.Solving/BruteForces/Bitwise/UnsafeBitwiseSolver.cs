@@ -348,6 +348,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// Core of fast processing.
 		/// </summary>
 		/// <returns>The <see cref="bool"/> value.</returns>
+		/*skiplocalsinit*/
 		private bool Update()
 		{
 			uint shrink = 1, s = default, a, b, c, cl;
