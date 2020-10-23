@@ -47,8 +47,8 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with the specified collection.
 		/// </summary>
-		/// <param name="collection">The collection.</param>
-		public ConclusionCollection(Span<Conclusion> collection) : this() => _collection = collection;
+		/// <param name="collection">(<see langword="in"/> parameter) The collection.</param>
+		public ConclusionCollection(in Span<Conclusion> collection) : this() => _collection = collection;
 
 		/// <summary>
 		/// Initializes an instance with the specified collection.
@@ -75,8 +75,8 @@ namespace Sudoku.Data.Collections
 		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		public bool Equals(ConclusionCollection other) => _collection == other._collection;
+		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
+		public bool Equals(in ConclusionCollection other) => _collection == other._collection;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
@@ -93,80 +93,74 @@ namespace Sudoku.Data.Collections
 		/// <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
 		/// <param name="separator">The separator.</param>
 		/// <returns>The string result.</returns>
-		public string ToString(bool shouldSort, string separator)
+		public unsafe string ToString(bool shouldSort, string separator)
 		{
-			switch (_collection.Length)
+			return _collection.Length switch
 			{
-				case 0:
+				0 => string.Empty,
+				1 => _collection[0].ToString(),
+				_ => internalToString(_collection)
+			};
+
+			unsafe string internalToString(in Span<Conclusion> collection)
+			{
+				var conclusions = collection.ToArray();
+				var sb = new StringBuilder();
+				if (shouldSort)
 				{
-					return string.Empty;
-				}
-				case 1:
-				{
-					return _collection[0].ToString();
-				}
-				default:
-				{
-					var conclusions = _collection.ToArray();
-					var sb = new StringBuilder();
-					if (shouldSort)
+					static int cmp(in Conclusion left, in Conclusion right)
 					{
-						unsafe
-						{
-							conclusions.Sort(&cmp);
-							static int cmp(in Conclusion left, in Conclusion right)
-							{
-								var (t1, c1, d1) = left;
-								var (t2, c2, d2) = right;
-								if (t1 > t2) return 1;
-								if (t1 < t2) return -1;
-								if (d1 > d2) return 1;
-								if (d1 < d2) return -1;
-								return 0;
-							}
-						}
-
-						var selection = from conclusion in conclusions group conclusion by conclusion.ConclusionType;
-						bool hasOnlyOneType = selection.HasOnlyOneElement();
-						foreach (var typeGroup in selection)
-						{
-							string op = typeGroup.Key == Assignment ? " = " : " <> ";
-							foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
-							{
-								sb
-									.Append(new GridMap(from conclusion in digitGroup select conclusion.Cell))
-									.Append(op)
-									.Append(digitGroup.Key + 1)
-									.Append(separator);
-							}
-
-							sb.RemoveFromEnd(separator.Length);
-							if (!hasOnlyOneType)
-							{
-								sb.Append(separator);
-							}
-						}
+						var (t1, c1, d1) = left;
+						var (t2, c2, d2) = right;
+						if (t1 > t2) return 1;
+						if (t1 < t2) return -1;
+						if (d1 > d2) return 1;
+						if (d1 < d2) return -1;
+						return 0;
 					}
-					else
+					conclusions.Sort(&cmp);
+
+					var selection = from conclusion in conclusions
+									group conclusion by conclusion.ConclusionType;
+					bool hasOnlyOneType = selection.HasOnlyOneElement();
+					foreach (var typeGroup in selection)
 					{
-						foreach (var conc in conclusions)
+						string op = typeGroup.Key == Assignment ? " = " : " <> ";
+						foreach (var digitGroup in
+							from conclusion in typeGroup group conclusion by conclusion.Digit)
 						{
-							sb.Append($"{conc}{separator}");
+							sb
+								.Append(new GridMap(from conclusion in digitGroup select conclusion.Cell))
+								.Append(op)
+								.Append(digitGroup.Key + 1)
+								.Append(separator);
 						}
 
 						sb.RemoveFromEnd(separator.Length);
+						if (!hasOnlyOneType)
+						{
+							sb.Append(separator);
+						}
 					}
-
-					return sb.ToString();
 				}
+				else
+				{
+					static string? converter(in Conclusion conc, in string? separator) => $"{conc}{separator}";
+
+					sb
+						.AppendRange<Conclusion, string?, string?>(conclusions, &converter, separator)
+						.RemoveFromEnd(separator.Length);
+				}
+
+				return sb.ToString();
 			}
 		}
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(ConclusionCollection left, ConclusionCollection right) => left.Equals(right);
+		public static bool operator ==(in ConclusionCollection left, in ConclusionCollection right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(ConclusionCollection left, ConclusionCollection right) => !(left == right);
+		public static bool operator !=(in ConclusionCollection left, in ConclusionCollection right) => !(left == right);
 	}
 }

@@ -741,8 +741,9 @@ namespace Sudoku.Data
 				_ => throw Throwings.FormatErrorWithMessage(null!, nameof(format))
 			};
 
-			static string normalToString(in GridMap @this)
+			static unsafe string normalToString(in GridMap @this)
 			{
+				static int converter(in int v) => v + 1;
 				const string separator = ", ";
 				var sbRow = new StringBuilder();
 				var dic = new Dictionary<int, ICollection<int>>();
@@ -762,12 +763,12 @@ namespace Sudoku.Data
 				}
 				foreach (int row in dic.Keys)
 				{
-					sbRow.Append($"r{row + 1}c");
-					foreach (int z in dic[row])
-					{
-						sbRow.Append(z + 1);
-					}
-					sbRow.Append(separator);
+					sbRow
+						.Append('r')
+						.Append(row + 1)
+						.Append('c')
+						.AppendRange<int, int>(dic[row], &converter)
+						.Append(separator);
 				}
 				sbRow.RemoveFromEnd(separator.Length);
 				if (addCurlyBraces)
@@ -791,14 +792,15 @@ namespace Sudoku.Data
 				{
 					sbColumn.Append(LeftCurlyBrace);
 				}
+
 				foreach (int column in dic.Keys)
 				{
-					sbColumn.Append("r");
-					foreach (int z in dic[column])
-					{
-						sbColumn.Append(z + 1);
-					}
-					sbColumn.Append($"c{column + 1}{separator}");
+					sbColumn
+						.Append('r')
+						.AppendRange<int, int>(dic[column], &converter)
+						.Append('c')
+						.Append(column + 1)
+						.Append(separator);
 				}
 				sbColumn.RemoveFromEnd(separator.Length);
 				if (addCurlyBraces)
@@ -809,7 +811,7 @@ namespace Sudoku.Data
 				return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
 			}
 
-			static string binaryToString(in GridMap @this)
+			static unsafe string binaryToString(in GridMap @this)
 			{
 				var sb = new StringBuilder();
 				int i;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Sudoku.Extensions
@@ -53,7 +54,8 @@ namespace Sudoku.Extensions
 		/// </remarks>
 		/// <seealso cref="Environment.NewLine"/>
 		/// <seealso cref="AppendLine{T}(StringBuilder, T)"/>
-		public static StringBuilder AppendLine(this StringBuilder @this, char value) => @this.Append(value).AppendLine();
+		public static StringBuilder AppendLine(this StringBuilder @this, char value) =>
+			@this.Append(value).AppendLine();
 
 		/// <summary>
 		/// Append a <see cref="string"/> representation of an object
@@ -69,7 +71,7 @@ namespace Sudoku.Extensions
 		/// <remarks>
 		/// This method can solve the problem of boxing and unboxing.
 		/// </remarks>
-		public static StringBuilder AppendLine<T>(this StringBuilder @this, T obj) =>
+		public static StringBuilder AppendLine<T>(this StringBuilder @this, T? obj) =>
 			@this.AppendLine(obj.NullableToString());
 
 		/// <summary>
@@ -108,6 +110,74 @@ namespace Sudoku.Extensions
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder NullableAppendLine(this StringBuilder @this, string? text) =>
 			text is null ? @this : @this.AppendLine(text);
+
+		/// <summary>
+		/// Append a series of elements, and convert them to a <see cref="string"/> representation.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="contentList">All contents.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static StringBuilder AppendRange<T>(this StringBuilder @this, IEnumerable<T?> contentList)
+		{
+			foreach (var content in contentList)
+			{
+				@this.Append(content.NullableToString());
+			}
+
+			return @this;
+		}
+
+		/// <summary>
+		/// Append a series of elements, and convert them to a <see cref="string"/> representation.
+		/// This method allows you defining a custom converter to convert the specified value into
+		/// a new value.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <typeparam name="TOther">The return type after converted.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="contentList">All contents.</param>
+		/// <param name="converter">The converter method specified as a function pointer.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static unsafe StringBuilder AppendRange<TElement, TOther>(
+			this StringBuilder @this, IEnumerable<TElement?> contentList,
+			delegate* managed<in TElement?, TOther?> converter)
+		{
+			foreach (var content in contentList)
+			{
+				@this.Append(converter(content).NullableToString());
+			}
+
+			return @this;
+		}
+
+		/// <summary>
+		/// Append a series of elements, and convert them to a <see cref="string"/> representation.
+		/// This method allows you defining a custom converter to convert the specified value into
+		/// a new value. In addition, this method can be with another value specified as
+		/// <paramref name="value"/>.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <typeparam name="TAuxiliary">
+		/// The type of that auxiliary value (i.e. type of <paramref name="value"/>).
+		/// </typeparam>
+		/// <typeparam name="TResult">The return type.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="contentList">All contents.</param>
+		/// <param name="converter">The converter method specified as a function pointer.</param>
+		/// <param name="value">The auxiliary value.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static unsafe StringBuilder AppendRange<TElement, TAuxiliary, TResult>(
+			this StringBuilder @this, IEnumerable<TElement?> contentList,
+			delegate* managed<in TElement?, in TAuxiliary?, TResult?> converter, in TAuxiliary value)
+		{
+			foreach (var content in contentList)
+			{
+				@this.Append(converter(content, value).NullableToString());
+			}
+
+			return @this;
+		}
 
 		/// <summary>
 		/// Copy the specified string builder to the specified target.

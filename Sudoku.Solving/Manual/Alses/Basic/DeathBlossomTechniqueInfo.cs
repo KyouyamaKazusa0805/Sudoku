@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0060
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -17,8 +15,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <param name="Pivot">The pivot cell.</param>
 	/// <param name="Alses">All ALSes used.</param>
 	public sealed record DeathBlossomTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot, IReadOnlyDictionary<int, Als> Alses)
-		: AlsTechniqueInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot,
+		IReadOnlyDictionary<int, Als> Alses) : AlsTechniqueInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// Indicates how many petals used.
@@ -36,7 +34,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc/>
-		public override string ToString()
+		public override unsafe string ToString()
 		{
 			string pivotStr = new GridMap { Pivot }.ToString();
 			using var elims = new ConclusionCollection(Conclusions);
@@ -46,13 +44,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			static string g(DeathBlossomTechniqueInfo @this)
 			{
 				const string separator = ", ";
-				var sb = new StringBuilder();
-				foreach (var (digit, als) in @this.Alses)
+				static string? converter(in KeyValuePair<int, Als> pair)
 				{
-					sb.Append($"{digit + 1} - {als}{separator}");
+					var (digit, als) = pair;
+					return $"{digit + 1} - {als}{separator}";
 				}
-
-				return sb.RemoveFromEnd(separator.Length).ToString();
+				return new StringBuilder()
+					.AppendRange<KeyValuePair<int, Als>, string?>(@this.Alses, &converter)
+					.RemoveFromEnd(separator.Length)
+					.ToString();
 			}
 		}
 	}

@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0060
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -42,16 +40,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			bool singular = ConjugatePairs.Count == 1;
 			return $"{(singular ? "a " : string.Empty)}conjugate pair{(singular ? string.Empty : "s")} {getStr()}";
 
-			string getStr()
+			unsafe string getStr()
 			{
 				const string separator = ", ";
-				var sb = new StringBuilder();
-				foreach (var cp in ConjugatePairs)
-				{
-					sb.Append($"{cp}{separator}");
-				}
-
-				return sb.RemoveFromEnd(separator.Length).ToString();
+				static string? converter(in ConjugatePair cp) => $"{cp}{separator}";
+				return new StringBuilder()
+					.AppendRange<ConjugatePair, string?>(ConjugatePairs, &converter)
+					.RemoveFromEnd(separator.Length)
+					.ToString();
 			}
 		}
 	}

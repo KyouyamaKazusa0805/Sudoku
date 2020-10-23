@@ -459,11 +459,11 @@
             </summary>
             <param name="conclusion">The conclusion.</param>
         </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Span{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Span{Sudoku.Data.Conclusion}@)">
             <summary>
             Initializes an instance with the specified collection.
             </summary>
-            <param name="collection">The collection.</param>
+            <param name="collection">(<see langword="in"/> parameter) The collection.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
@@ -480,8 +480,8 @@
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(Sudoku.Data.Collections.ConclusionCollection)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(Sudoku.Data.Collections.ConclusionCollection@)">
+            <inheritdoc cref="M:System.IValueEquatable`1.Equals(`0@)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -498,10 +498,10 @@
             <param name="separator">The separator.</param>
             <returns>The string result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Equality(Sudoku.Data.Collections.ConclusionCollection,Sudoku.Data.Collections.ConclusionCollection)">
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Equality(Sudoku.Data.Collections.ConclusionCollection@,Sudoku.Data.Collections.ConclusionCollection@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Inequality(Sudoku.Data.Collections.ConclusionCollection,Sudoku.Data.Collections.ConclusionCollection)">
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Inequality(Sudoku.Data.Collections.ConclusionCollection@,Sudoku.Data.Collections.ConclusionCollection@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.DigitCollection">
@@ -4474,6 +4474,46 @@
             </summary>
             <param name="this">(<see langword="this"/> parameter) The string builder.</param>
             <param name="text">The text to add.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.StringBuilderEx.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="contentList">All contents.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.StringBuilderEx.AppendRange``2(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
+            This method allows you defining a custom converter to convert the specified value into
+            a new value.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="TOther">The return type after converted.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="contentList">All contents.</param>
+            <param name="converter">The converter method specified as a function pointer.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.StringBuilderEx.AppendRange``3(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},,``1@)">
+            <summary>
+            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
+            This method allows you defining a custom converter to convert the specified value into
+            a new value. In addition, this method can be with another value specified as
+            <paramref name="value"/>.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="TAuxiliary">
+            The type of that auxiliary value (i.e. type of <paramref name="value"/>).
+            </typeparam>
+            <typeparam name="TResult">The return type.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="contentList">All contents.</param>
+            <param name="converter">The converter method specified as a function pointer.</param>
+            <param name="value">The auxiliary value.</param>
             <returns>The reference of the current instance.</returns>
         </member>
         <member name="M:Sudoku.Extensions.StringBuilderEx.CopyTo(System.Text.StringBuilder,System.Text.StringBuilder)">
