@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			for (int size = 2; size <= 4; size++)
 			{
@@ -41,13 +41,14 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Searches all basic fish of the specified size.
 		/// </summary>
 		/// <param name="accumulator">The result accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="searchRow">
 		/// Indicates the solver will searching rows or columns.
 		/// </param>
 		/// <returns>The result.</returns>
-		private static void GetAll(IList<TechniqueInfo> accumulator, Grid grid, int size, bool searchRow)
+		private static void GetAll(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int size, bool searchRow)
 		{
 			int baseSetStart = searchRow ? 9 : 18;
 			int coverSetStart = searchRow ? 18 : 9;
@@ -622,16 +623,16 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Get the direct fish view with the specified grid and the base sets.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="digit">The digit.</param>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="coverSets">The cover sets.</param>
+		/// <param name="baseSets">(<see langword="in"/> parameter) The base sets.</param>
+		/// <param name="coverSets">(<see langword="in"/> parameter) The cover sets.</param>
 		/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
-		/// <param name="finCellsMap">The fins map.</param>
+		/// <param name="finCellsMap">(<see langword="in"/> parameter) The fins map.</param>
 		/// <returns>The view.</returns>
 		private static View GetDirectView(
-			Grid grid, int digit, ReadOnlySpan<int> baseSets, ReadOnlySpan<int> coverSets,
-			bool searchRow, GridMap finCellsMap)
+			in SudokuGrid grid, int digit, in ReadOnlySpan<int> baseSets, in ReadOnlySpan<int> coverSets,
+			bool searchRow, in GridMap finCellsMap)
 		{
 			// Get the highlight cells (necessary).
 			var cellOffsets = new List<DrawingInfo>();
@@ -698,9 +699,9 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Record all cells in the all regions to a <see cref="GridMap"/> instance.
 		/// </summary>
 		/// <param name="map">(<see langword="ref"/> parameter) The map.</param>
-		/// <param name="regions">All region offsets.</param>
-		/// <param name="candMap">The candidate map.</param>
-		private static void GetGridMap(ref GridMap map, ReadOnlySpan<int> regions, GridMap candMap)
+		/// <param name="regions">(<see langword="in"/> parameter) All region offsets.</param>
+		/// <param name="candMap">(<see langword="in"/> parameter) The candidate map.</param>
+		private static void GetGridMap(ref GridMap map, in ReadOnlySpan<int> regions, in GridMap candMap)
 		{
 			foreach (int region in regions)
 			{

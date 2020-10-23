@@ -19,17 +19,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check type 1.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
 		/// <param name="d2">The digit 2 used in UR.</param>
 		/// <param name="cornerCell">The corner cell.</param>
-		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+		/// <param name="otherCellsMap">
+		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// </param>
 		partial void CheckType1(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap)
 		{
 			//   ↓ cornerCell
 			// (abc) ab
@@ -75,7 +77,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					conclusions,
 					new View[]
 					{
-						new(arMode ? GetHighlightCells(urCells) : null, arMode ? null : candidateOffsets, null, null)
+						new(
+							arMode ? GetHighlightCells(urCells) : null,
+							arMode ? null : candidateOffsets,
+							null,
+							null)
 					},
 					d1,
 					d2,
@@ -87,7 +93,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check type 2.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
@@ -95,10 +101,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="d2">The digit 2 used in UR.</param>
 		/// <param name="corner1">The corner cell 1.</param>
 		/// <param name="corner2">The corner cell 2.</param>
-		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-		partial void CheckType2(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+		/// <param name="otherCellsMap">
+		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// </param>
+		unsafe partial void CheckType2(
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
 		{
 			//   ↓ corner1 and corner2
 			// (abc) (abc)
@@ -141,7 +149,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 				}
 			}
-			if (!_allowIncompleteUr && candidateOffsets.Count(CheckHighlightType) != 8)
+			if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
 			{
 				return;
 			}
@@ -169,7 +177,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check type 3.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
@@ -177,19 +185,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="d2">The digit 2 used in UR.</param>
 		/// <param name="corner1">The corner cell 1.</param>
 		/// <param name="corner2">The corner cell 2.</param>
-		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-		partial void CheckType3Naked(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+		/// <param name="otherCellsMap">
+		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// </param>
+		unsafe partial void CheckType3Naked(
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
 		{
 			//  ↓ corner1, corner2
 			// (ab ) (ab )
 			//  abx   aby
+			static bool internalChecking(int cell, in short comparer, in bool arMode, in SudokuGrid grid) =>
+				grid.GetCandidateMask(cell) is var mask && (mask & comparer) == 0
+				|| mask == comparer || arMode && grid.GetStatus(cell) != Empty;
+
 			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer
-				|| otherCellsMap.Any(
-					c =>
-						grid.GetCandidateMask(c) is var mask && (mask & comparer) == 0
-						|| mask == comparer || arMode && grid.GetStatus(c) != Empty))
+				|| otherCellsMap.Any(&internalChecking, comparer, arMode, grid))
 			{
 				return;
 			}
@@ -292,7 +303,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check type 4.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
@@ -300,10 +311,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="d2">The digit 2 used in UR.</param>
 		/// <param name="corner1">The corner cell 1.</param>
 		/// <param name="corner2">The corner cell 2.</param>
-		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+		/// <param name="otherCellsMap">
+		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// </param>
 		partial void CheckType4(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
 		{
 			//  ↓ corner1, corner2
 			// (ab ) ab
@@ -353,8 +366,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						if (otherCellsMap[cell])
 						{
-							// Cells that contain the eliminations.
-							void record(int d)
+							void record(in SudokuGrid grid, int d)
 							{
 								if (d != elimDigit && grid.Exists(cell, d) is true)
 								{
@@ -362,8 +374,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								}
 							}
 
-							record(d1);
-							record(d2);
+							record(grid, d1);
+							record(grid, d2);
 						}
 						else
 						{
@@ -405,17 +417,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check type 5.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
 		/// <param name="d2">The digit 2 used in UR.</param>
 		/// <param name="cornerCell">The corner cell.</param>
-		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-		partial void CheckType5(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
+		/// <param name="otherCellsMap">
+		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// </param>
+		unsafe partial void CheckType5(
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap)
 		{
 			//  ↓ cornerCell
 			// (ab ) abc
@@ -462,7 +476,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
-			if (!_allowIncompleteUr && candidateOffsets.Count(CheckHighlightType) != 8)
+			if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
 			{
 				return;
 			}
@@ -483,7 +497,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check type 6.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
@@ -491,10 +505,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="d2">The digit 2 used in UR.</param>
 		/// <param name="corner1">The corner cell 1.</param>
 		/// <param name="corner2">The corner cell 2.</param>
-		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+		/// <param name="otherCellsMap">
+		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// </param>
 		partial void CheckType6(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
 		{
 			//  ↓ corner1
 			// (ab )  aby
@@ -512,11 +528,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				foreach (var (region1, region2) in stackalloc[] { (r1, r2), (c1, c2) })
 				{
-					gather(region1 is >= 9 and < 18, digit, region1, region2);
+					gather(grid, otherCellsMap, region1 is >= 9 and < 18, digit, region1, region2);
 				}
 			}
 
-			void gather(bool isRow, int digit, int region1, int region2)
+			void gather(
+				in SudokuGrid grid, in GridMap otherCellsMap, bool isRow, int digit, int region1, int region2)
 			{
 				if ((!isRow
 					|| !IsConjugatePair(digit, new() { corner1, o1 }, region1)
@@ -546,7 +563,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					if (otherCellsMap[cell])
 					{
-						void record(int d)
+						void record(in SudokuGrid grid, int d)
 						{
 							if (d != digit && grid.Exists(cell, d) is true)
 							{
@@ -554,8 +571,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							}
 						}
 
-						record(d1);
-						record(d2);
+						record(grid, d1);
+						record(grid, d2);
 					}
 					else
 					{
@@ -597,17 +614,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check hidden UR.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
 		/// <param name="d2">The digit 2 used in UR.</param>
 		/// <param name="cornerCell">The corner cell.</param>
-		/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+		/// <param name="otherCellsMap">
+		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// </param>
 		partial void CheckHidden(
-			IList<UrTechniqueInfo> accumulator, Grid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
+			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap)
 		{
 			//  ↓ cornerCell
 			// (ab ) abx
@@ -649,7 +668,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					if (otherCellsMap[cell])
 					{
-						void record(int d)
+						void record(in SudokuGrid grid, int d)
 						{
 							if ((cell != abzCell || d != elimDigit) && grid.Exists(cell, d) is true)
 							{
@@ -657,8 +676,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							}
 						}
 
-						record(d1);
-						record(d2);
+						record(grid, d1);
+						record(grid, d2);
 					}
 					else
 					{

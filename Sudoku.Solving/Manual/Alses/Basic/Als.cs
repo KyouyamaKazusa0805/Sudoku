@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All ALSes searched.</returns>
-		public static IEnumerable<Als> GetAllAlses(Grid grid)
+		public static IEnumerable<Als> GetAllAlses(SudokuGrid grid)
 		{
 			var bivalueMap = TechniqueSearcher.BivalueMap;
 			var emptyMap = TechniqueSearcher.EmptyMap;

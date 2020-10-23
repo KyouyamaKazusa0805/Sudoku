@@ -15,17 +15,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// Check type 1.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">The pair cells.</param>
-		/// <param name="square">The square cells.</param>
-		/// <param name="baseLine">The base line cells.</param>
-		/// <param name="pattern">The pattern.</param>
+		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
+		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
+		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
+		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="otherDigitsMask">Other digits mask.</param>
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
+			in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask)
 		{
 			if (!otherDigitsMask.IsPowerOfTwo())
 			{
@@ -89,17 +89,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// Check type 2.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">The pair cells.</param>
-		/// <param name="square">The square cells.</param>
-		/// <param name="baseLine">The base line cells.</param>
-		/// <param name="pattern">The pattern.</param>
+		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
+		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
+		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
+		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="otherDigitsMask">Other digits mask.</param>
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair,
+			in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask)
 		{
 			if (!otherDigitsMask.IsPowerOfTwo())
 			{
@@ -159,17 +159,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// Check type 3.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">The pair cells.</param>
-		/// <param name="square">The square cells.</param>
-		/// <param name="baseLine">The base line cells.</param>
-		/// <param name="pattern">The pattern.</param>
+		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
+		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
+		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
+		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="otherDigitsMask">Other digits mask.</param>
 		partial void CheckType3(
-			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair,
+			in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask)
 		{
 			foreach (int region in pair.CoveredRegions)
 			{
@@ -254,14 +254,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">The pair cells.</param>
-		/// <param name="square">The square cells.</param>
-		/// <param name="baseLine">The base line cells.</param>
-		/// <param name="pattern">The pattern.</param>
+		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
+		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
+		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
+		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		partial void CheckType4(
-			IList<TechniqueInfo> accumulator, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer)
+			IList<TechniqueInfo> accumulator, bool isRow, in GridMap pair, in GridMap square,
+			in GridMap baseLine, in Pattern pattern, short comparer)
 		{
 			foreach (int region in pair.CoveredRegions)
 			{
@@ -338,16 +338,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// Check locked type.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">The pair cells.</param>
-		/// <param name="square">The square cells.</param>
-		/// <param name="baseLine">The base line cells.</param>
-		/// <param name="pattern">The pattern.</param>
+		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
+		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
+		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
+		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		partial void CheckLockedType(
-			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer)
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
+			in GridMap baseLine, in Pattern pattern, short comparer)
 		{
 			// Firstly, we should check the cells in the block that the square cells lying on.
 			int block = square.BlockMask.FindFirstSet();

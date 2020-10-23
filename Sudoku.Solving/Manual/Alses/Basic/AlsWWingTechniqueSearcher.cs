@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var alses = Als.GetAllAlses(grid).ToArray();
 
@@ -38,8 +38,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			{
 				for (int region = 0; region < 27; region++)
 				{
-					var temp = RegionMaps[region] & CandMaps[digit];
-					if (temp.Count != 2)
+					if ((RegionMaps[region] & CandMaps[digit]) is var temp && temp.Count != 2)
 					{
 						continue;
 					}
@@ -62,8 +61,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					short mask = (short)(mask1 & mask2);
-					if (mask.PopCount() < 2)
+					if ((short)(mask1 & mask2) is var mask && mask.PopCount() < 2)
 					{
 						continue;
 					}

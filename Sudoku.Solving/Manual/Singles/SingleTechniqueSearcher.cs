@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// Those maps will be initialized in the special cases.
 		/// </remarks>
 		/// <seealso cref="TechniqueSearcher.EmptyMap"/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			GetFullHouses(accumulator, grid);
 			GetHiddenSinglesOrLastDigits(accumulator, grid);
@@ -60,8 +60,8 @@ namespace Sudoku.Solving.Manual.Singles
 		/// Get all full houses.
 		/// </summary>
 		/// <param name="accumulator">The current accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		private void GetFullHouses(IList<TechniqueInfo> accumulator, Grid grid)
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		private void GetFullHouses(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			if (!_enableFullHouse)
 			{
@@ -112,8 +112,8 @@ namespace Sudoku.Solving.Manual.Singles
 		/// Get all hidden singles or last digits.
 		/// </summary>
 		/// <param name="accumulator">The current accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		private void GetHiddenSinglesOrLastDigits(IList<TechniqueInfo> accumulator, Grid grid)
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		private void GetHiddenSinglesOrLastDigits(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -218,8 +218,8 @@ namespace Sudoku.Solving.Manual.Singles
 		/// Get all naked singles.
 		/// </summary>
 		/// <param name="accumulator">The current accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		private void GetNakedSingles(IList<TechniqueInfo> accumulator, Grid grid)
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		private void GetNakedSingles(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			for (int cell = 0; cell < 81; cell++)
 			{
@@ -256,7 +256,15 @@ namespace Sudoku.Solving.Manual.Singles
 					accumulator.Add(
 						new NakedSingleTechniqueInfo(
 							new Conclusion[] { new(Assignment, cell, digit) },
-							new View[] { new(null, new DrawingInfo[] { new(0, cell * 9 + digit) }, null, null, directLines) },
+							new View[]
+							{
+								new(
+									null,
+									new DrawingInfo[] { new(0, cell * 9 + digit) },
+									null,
+									null,
+									directLines)
+							},
 							cell,
 							digit));
 				}

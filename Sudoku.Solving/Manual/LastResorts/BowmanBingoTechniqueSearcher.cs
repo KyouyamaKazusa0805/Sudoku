@@ -47,10 +47,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var tempAccumulator = new List<BowmanBingoTechniqueInfo>();
-			var tempGrid = grid.Clone();
+			var tempGrid = grid;
 			for (int digit = 0; digit < 9; digit++)
 			{
 				foreach (int cell in CandMaps[digit])
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 					if (IsValidGrid(grid, cell))
 					{
-						GetAll(tempAccumulator, tempGrid, startCandidate, _length - 1);
+						GetAll(tempAccumulator, ref tempGrid, startCandidate, _length - 1);
 					}
 					else
 					{
@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 					// Undo the operation.
 					_tempConclusions.RemoveLastElement();
-					UndoGrid(tempGrid, candList, cell, mask);
+					UndoGrid(ref tempGrid, candList, cell, mask);
 				}
 			}
 
@@ -103,10 +103,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// Take all information recursively.
 		/// </summary>
 		/// <param name="result">The result.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
 		/// <param name="startCandidate">The start candidate.</param>
 		/// <param name="length">The length.</param>
-		private void GetAll(IList<BowmanBingoTechniqueInfo> result, Grid grid, int startCandidate, int length)
+		private void GetAll(
+			IList<BowmanBingoTechniqueInfo> result, ref SudokuGrid grid, int startCandidate, int length)
 		{
 			if (length == 0 || _searcher.GetOne(grid) is not SingleTechniqueInfo singleInfo)
 			{
@@ -128,7 +129,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			if (IsValidGrid(grid, c))
 			{
 				// Sounds good.
-				GetAll(result, grid, startCandidate, length - 1);
+				GetAll(result, ref grid, startCandidate, length - 1);
 			}
 			else
 			{
@@ -151,7 +152,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 			// Undo grid.
 			_tempConclusions.RemoveLastElement();
-			UndoGrid(grid, candList, c, mask);
+			UndoGrid(ref grid, candList, c, mask);
 		}
 
 		/// <summary>
@@ -174,11 +175,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Record all information to be used in undo grid.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The result.</returns>
-		private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(Grid grid, int cell, int digit)
+		private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(
+			in SudokuGrid grid, int cell, int digit)
 		{
 			var list = new List<int>();
 			foreach (int c in PeerMaps[cell] & CandMaps[digit])
@@ -192,11 +194,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Undo the grid.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
 		/// <param name="list">The list.</param>
 		/// <param name="cell">The cell.</param>
 		/// <param name="mask">The mask.</param>
-		private static void UndoGrid(Grid grid, IReadOnlyList<int> list, int cell, short mask)
+		private static void UndoGrid(ref SudokuGrid grid, IReadOnlyList<int> list, int cell, short mask)
 		{
 			foreach (int cand in list)
 			{
@@ -206,6 +208,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			grid.SetMask(cell, mask);
 		}
 
+#if TEMPORARY_SOLUTION || true
 		/// <summary>
 		/// To check the specified cell has a same digit filled in a cell
 		/// which is same region with the current one.
@@ -213,11 +216,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="grid">The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
-		private static bool IsValidGrid(Grid grid, int cell) =>
+		private static unsafe bool IsValidGrid(SudokuGrid grid, int cell) =>
 			Peers[cell].All(
 				c =>
 					grid.GetStatus(c) is var status
 					&& (status != Empty && grid[c] != grid[cell] || status == Empty)
 					&& grid.GetCandidateMask(c) != 0);
+#endif
 	}
 }

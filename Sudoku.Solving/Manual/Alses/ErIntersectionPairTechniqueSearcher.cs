@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			int[] bivalueCells = BivalueMap.ToArray();
 			for (int i = 0, length = bivalueCells.Length; i < length - 1; i++)

@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var r = (stackalloc int[2]);
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)

@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			List<GridMap> rbList = new(3), cbList = new(3);
 			foreach (int pivot in EmptyMap)
@@ -250,7 +250,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 														from cell in currentColumnMap | cbCurrentMap
 														select new DrawingInfo(1, cell));
 													cellOffsets.AddRange(
-														from cell in currentBlockMap select new DrawingInfo(2, cell));
+														from cell in currentBlockMap
+														select new DrawingInfo(2, cell));
 
 													var candidateOffsets = new List<DrawingInfo>();
 													foreach (int digit in rowMask)

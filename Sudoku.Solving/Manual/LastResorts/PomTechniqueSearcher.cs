@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var templates = GetInvalidPos(grid);
 			for (int digit = 0; digit < 9; digit++)
@@ -40,9 +40,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Get all invalid positions.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <returns>The 9 maps for invalid positions of each digit.</returns>
-		private static GridMap[] GetInvalidPos(Grid grid)
+		private static GridMap[] GetInvalidPos(in SudokuGrid grid)
 		{
 			var result = new GridMap[9];
 			var invalidPos = new GridMap[9];

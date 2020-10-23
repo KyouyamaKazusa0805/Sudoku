@@ -23,14 +23,15 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var linkForEachRegion = (stackalloc short[27]);
 			var linkForEachDigit = (stackalloc GridMap[9]);
 			foreach (var pattern in Patterns)
 			{
-				var map = EmptyMap & pattern;
-				if (pattern.Count < 12 && (pattern.Count - map.Count, pattern.Count - map.Count) is not ( <= 1, <= 2))
+				if ((EmptyMap & pattern) is var map
+					&& pattern.Count < 12
+					&& (pattern.Count - map.Count, pattern.Count - map.Count) is not ( <= 1, <= 2))
 				{
 					continue;
 				}
@@ -136,7 +137,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 									continue;
 								}
 
-								candidateOffsets.Add(new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
+								candidateOffsets.Add(
+									new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
 							}
 						}
 					}

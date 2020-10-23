@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			foreach (var exocet in Patterns)
 			{
@@ -207,14 +207,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="m2">The mirror 2 cell.</param>
 		/// <param name="lockedNonTarget">The locked digits that is not the target digits.</param>
 		/// <param name="x">The X digit.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="baseCandidatesMask">The base candidates mask.</param>
 		/// <param name="cellOffsets">The highlight cells.</param>
 		/// <param name="candidateOffsets">The highliht candidates.</param>
 		/// <returns>The result.</returns>
 		private (TargetEliminations, MirrorEliminations) GatheringMirrorEliminations(
 			int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2, short lockedNonTarget,
-			int x, Grid grid, short baseCandidatesMask, List<DrawingInfo> cellOffsets,
+			int x, in SudokuGrid grid, short baseCandidatesMask, List<DrawingInfo> cellOffsets,
 			List<DrawingInfo> candidateOffsets)
 		{
 			if ((grid.GetCandidateMask(tq1) & baseCandidatesMask) != 0)
@@ -251,13 +251,16 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// The method for gathering target eliminations.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="baseCandidatesMask">The base candidates mask.</param>
 		/// <param name="temp">The temp mask.</param>
 		/// <param name="targetElims">(<see langword="ref"/> parameter) The target eliminations.</param>
-		/// <returns>A <see cref="bool"/> value indicating whether this method has been found eliminations.</returns>
+		/// <returns>
+		/// A <see cref="bool"/> value indicating whether this method has been found eliminations.
+		/// </returns>
 		private static bool GatheringTargetEliminations(
-			int cell, Grid grid, short baseCandidatesMask, short temp, ref TargetEliminations targetElims)
+			int cell, in SudokuGrid grid, short baseCandidatesMask, short temp,
+			ref TargetEliminations targetElims)
 		{
 			short candidateMask = (short)(grid.GetCandidateMask(cell) & ~temp);
 			if ((grid.GetStatus(cell), candidateMask, grid.GetCandidateMask(cell) & baseCandidatesMask) is (Empty, not 0, not 0))
@@ -324,7 +327,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Check the target cells.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pos1">The cell 1 to determine.</param>
 		/// <param name="pos2">The cell 2 to determine.</param>
 		/// <param name="baseCandidatesMask">The base candidate mask.</param>
@@ -334,7 +337,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		private bool CheckTarget(
-			Grid grid, int pos1, int pos2, int baseCandidatesMask,
+			in SudokuGrid grid, int pos1, int pos2, int baseCandidatesMask,
 			out short otherCandidatesMask, out int otherRegion)
 		{
 			otherRegion = -1;
@@ -407,7 +410,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Check Bi-bi pattern eliminations.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="baseCandidatesMask">The base candidate mask.</param>
 		/// <param name="b1">The base cell 1.</param>
 		/// <param name="b2">The base cell 2.</param>
@@ -415,13 +418,13 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="tq2">The target Q2 cell.</param>
 		/// <param name="tr1">The target R1 cell.</param>
 		/// <param name="tr2">The target R2 cell.</param>
-		/// <param name="crossline">The cross-line cells.</param>
+		/// <param name="crossline">(<see langword="in"/> parameter) The cross-line cells.</param>
 		/// <param name="isRow">
 		/// Indicates whether the specified exocet is in the horizontal direction.
 		/// </param>
 		/// <param name="lockedQ">The locked member Q.</param>
 		/// <param name="lockedR">The locked member R.</param>
-		/// <param name="targetMap">The target map.</param>
+		/// <param name="targetMap">(<see langword="in"/> parameter) The target map.</param>
 		/// <param name="bibiElims">
 		/// (<see langword="out"/> parameter) The Bi-bi pattern eliminations.
 		/// </param>
@@ -433,9 +436,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating whether the pattern exists.</returns>
 		private bool CheckBibiPattern(
-			Grid grid, short baseCandidatesMask, int b1, int b2,
-			int tq1, int tq2, int tr1, int tr2, GridMap crossline, bool isRow,
-			short lockedQ, short lockedR, GridMap targetMap,
+			in SudokuGrid grid, short baseCandidatesMask, int b1, int b2,
+			int tq1, int tq2, int tr1, int tr2, in GridMap crossline, bool isRow,
+			short lockedQ, short lockedR, in GridMap targetMap,
 			out BibiPatternEliminations bibiElims, out TargetPairEliminations targetPairElims,
 			out SwordfishEliminations swordfishElims)
 		{
@@ -513,7 +516,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					bibiElims.Add(new(Elimination, tq2, digit));
 				}
 			}
-			foreach (int digit in Grid.MaxCandidatesMask & ~last & ~lockedR)
+			foreach (int digit in SudokuGrid.MaxCandidatesMask & ~last & ~lockedR)
 			{
 				if (grid.Exists(tr1, digit) is true)
 				{

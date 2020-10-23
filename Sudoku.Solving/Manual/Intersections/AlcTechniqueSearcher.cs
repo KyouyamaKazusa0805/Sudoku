@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			for (int size = 2, maxSize = _checkAlq ? 4 : 3; size <= maxSize; size++)
 			{
@@ -50,10 +50,10 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// Get all technique information instances by size.
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>The result.</returns>
-		private static void GetAll(IList<TechniqueInfo> result, Grid grid, int size)
+		private static void GetAll(IList<TechniqueInfo> result, in SudokuGrid grid, int size)
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 			{
@@ -70,16 +70,16 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// Process the calculation.
 		/// </summary>
 		/// <param name="result">The result.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="baseSet">The base set.</param>
 		/// <param name="coverSet">The cover set.</param>
-		/// <param name="a">The left grid map.</param>
-		/// <param name="b">The right grid map.</param>
-		/// <param name="c">The intersection.</param>
+		/// <param name="a">(<see langword="in"/> parameter) The left grid map.</param>
+		/// <param name="b">(<see langword="in"/> parameter) The right grid map.</param>
+		/// <param name="c">(<see langword="in"/> parameter) The intersection.</param>
 		private static void GetAll(
-			IList<TechniqueInfo> result, Grid grid, int size, int baseSet, int coverSet,
-			GridMap a, GridMap b, GridMap c)
+			IList<TechniqueInfo> result, in SudokuGrid grid, int size, int baseSet, int coverSet,
+			in GridMap a, in GridMap b, in GridMap c)
 		{
 			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{

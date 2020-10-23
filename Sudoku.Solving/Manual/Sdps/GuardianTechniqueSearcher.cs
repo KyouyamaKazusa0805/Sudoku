@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			// Check POM eliminations first.
 			bool[] elimKeys = { false, false, false, false, false, false, false, false, false };

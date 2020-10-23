@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var trueCandidates = new BugChecker(grid).TrueCandidates;
 			switch (trueCandidates.Count)
@@ -80,12 +80,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		partial void CheckType2(IList<TechniqueInfo> accumulator, IReadOnlyList<int> trueCandidates);
 
-		partial void CheckType3Naked(IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates);
+		partial void CheckType3Naked(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates);
 
-		partial void CheckType4(IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates);
+		partial void CheckType4(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates);
 
-		partial void CheckMultiple(IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates);
+		partial void CheckMultiple(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates);
 
-		partial void CheckXz(IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates);
+		partial void CheckXz(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates);
 	}
 }

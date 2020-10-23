@@ -57,9 +57,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check type 3 (with naked subsets).
 		/// </summary>
 		/// <param name="accumulator">The result.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		partial void CheckType3Naked(IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates)
+		partial void CheckType3Naked(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Check whether all true candidates lie on a same region.
 			var map = new GridMap(from c in trueCandidates group c by c / 9 into z select z.Key);
@@ -153,9 +154,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check type 4.
 		/// </summary>
 		/// <param name="accumulator">The result.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		partial void CheckType4(IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates)
+		partial void CheckType4(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Conjugate pairs should lie on two cells.
 			var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -272,9 +274,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check BUG + n.
 		/// </summary>
 		/// <param name="accumulator">The result list.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		partial void CheckMultiple(IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates)
+		partial void CheckMultiple(
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			if (trueCandidates.Count > 18)
 			{
@@ -314,9 +317,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check BUG-XZ.
 		/// </summary>
 		/// <param name="accumulator">The result list.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		partial void CheckXz(IList<TechniqueInfo> accumulator, Grid grid, IReadOnlyList<int> trueCandidates)
+		partial void CheckXz(IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			if (trueCandidates.Count > 2)
 			{

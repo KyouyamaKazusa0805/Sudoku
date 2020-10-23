@@ -180,7 +180,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Check mirror eliminations.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="target">The target cell.</param>
 		/// <param name="target2">
 		/// The another target cell that is adjacent with <paramref name="target"/>.
@@ -194,7 +194,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		/// <returns>All mirror eliminations.</returns>
 		protected (TargetEliminations, MirrorEliminations) CheckMirror(
-			Grid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
+			in SudokuGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
 			GridMap mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets, IList<DrawingInfo> candidateOffsets)
 		{
 			var targetElims = new TargetEliminations();
@@ -282,7 +282,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						// Here you should use '|' operator rather than '||'.
 						// Operator '||' won't execute the second method if the first condition is true.
-						if (g(playground, 0) | g(playground, 1))
+						if (g(grid, playground, 0) | g(grid, playground, 1))
 						{
 							cellOffsets.Add(new(3, playground[0]));
 							cellOffsets.Add(new(3, playground[1]));
@@ -310,7 +310,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						break;
 
 						// Gathering.
-						bool g(Span<int> playground, int i)
+						bool g(in SudokuGrid grid, Span<int> playground, int i)
 						{
 							short candidateMask = (short)(
 								grid.GetCandidateMask(playground[i]) & ~(baseCandidateMask | locked));

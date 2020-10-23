@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, Grid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			for (int i = 0, length = Patterns.Length; i < length; i++)
 			{
@@ -68,15 +68,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					var tempMap = baseLine & regionMap;
 					if (tempMap.IsNotEmpty)
 					{
-						f(tempMap);
+						f(grid, tempMap);
 					}
 					else if ((square & regionMap) is { IsNotEmpty: true } squareMap)
 					{
 						// Don't forget to record the square cells.
-						f(squareMap);
+						f(grid, squareMap);
 					}
 
-					void f(GridMap map)
+					void f(in SudokuGrid grid, in GridMap map)
 					{
 						bool flag = false;
 						int c1 = map.First, c2 = map.SetAt(1);
@@ -167,23 +167,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
+			in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
 
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
+			in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
 
 		partial void CheckType3(
-			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
+			in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
 
 		partial void CheckType4(
-			IList<TechniqueInfo> accumulator, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer);
+			IList<TechniqueInfo> accumulator, bool isRow, in GridMap pair, in GridMap square,
+			in GridMap baseLine, in Pattern pattern, short comparer);
 
 		partial void CheckLockedType(
-			IList<TechniqueInfo> accumulator, Grid grid, bool isRow, GridMap pair, GridMap square,
-			GridMap baseLine, Pattern pattern, short comparer);
+			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
+			in GridMap baseLine, in Pattern pattern, short comparer);
 	}
 }
