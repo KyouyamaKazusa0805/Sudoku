@@ -554,7 +554,7 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(System.String)">
             <summary>
-            To call <see cref="T:Sudoku.Data.GridParser"/> to parse the current puzzle code string
+            To call <see cref="!:GridParser"/> to parse the current puzzle code string
             and solve it.
             </summary>
             <param name="str">The string.</param>
