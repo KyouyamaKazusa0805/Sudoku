@@ -3,10 +3,10 @@
 namespace Sudoku.Data
 {
 	/// <summary>
-	/// Provides a grid output option.
+	/// Provides a grid format option.
 	/// </summary>
 	[Flags]
-	public enum GridOutputOptions : short
+	public enum GridFormattingOptions : short
 	{
 		/// <summary>
 		/// Indicates the default settings (a single-line string text).

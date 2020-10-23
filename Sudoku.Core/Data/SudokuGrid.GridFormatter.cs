@@ -502,19 +502,19 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="gridOutputOption">The grid output options.</param>
 			/// <returns>The grid formatter.</returns>
-			public static GridFormatter Create(GridOutputOptions gridOutputOption) =>
+			public static GridFormatter Create(GridFormattingOptions gridOutputOption) =>
 				gridOutputOption switch
 				{
-					GridOutputOptions.Excel => new(true) { Excel = true },
-					_ => new GridFormatter(gridOutputOption.HasFlagOf(GridOutputOptions.Multiline))
+					GridFormattingOptions.Excel => new(true) { Excel = true },
+					_ => new GridFormatter(gridOutputOption.HasFlagOf(GridFormattingOptions.Multiline))
 					{
-						WithModifiables = gridOutputOption.HasFlagOf(GridOutputOptions.WithModifiers),
-						WithCandidates = gridOutputOption.HasFlagOf(GridOutputOptions.WithCandidates),
-						TreatValueAsGiven = gridOutputOption.HasFlagOf(GridOutputOptions.TreatValueAsGiven),
-						SubtleGridLines = gridOutputOption.HasFlagOf(GridOutputOptions.SubtleGridLines),
-						HodokuCompatible = gridOutputOption.HasFlagOf(GridOutputOptions.HodokuCompatible),
-						Sukaku = gridOutputOption == GridOutputOptions.Sukaku,
-						Placeholder = gridOutputOption.HasFlagOf(GridOutputOptions.DotPlaceholder) ? '.' : '0'
+						WithModifiables = gridOutputOption.HasFlagOf(GridFormattingOptions.WithModifiers),
+						WithCandidates = gridOutputOption.HasFlagOf(GridFormattingOptions.WithCandidates),
+						TreatValueAsGiven = gridOutputOption.HasFlagOf(GridFormattingOptions.TreatValueAsGiven),
+						SubtleGridLines = gridOutputOption.HasFlagOf(GridFormattingOptions.SubtleGridLines),
+						HodokuCompatible = gridOutputOption.HasFlagOf(GridFormattingOptions.HodokuCompatible),
+						Sukaku = gridOutputOption == GridFormattingOptions.Sukaku,
+						Placeholder = gridOutputOption.HasFlagOf(GridFormattingOptions.DotPlaceholder) ? '.' : '0'
 					}
 				};
 

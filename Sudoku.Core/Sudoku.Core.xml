@@ -969,6 +969,79 @@
             or two regions are not in same region type.
             </exception>
         </member>
+        <member name="T:Sudoku.Data.GridFormattingOptions">
+            <summary>
+            Provides a grid format option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.None">
+            <summary>
+            Indicates the default settings (a single-line string text).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.WithModifiers">
+            <summary>
+            Indicates the output should be with modifiable values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.WithCandidates">
+            <summary>
+            <para>
+            Indicates the output should be with candidates.
+            If the output is single line, the candidates will indicate
+            the candidates-have-eliminated before the current grid status;
+            if the output is multi-line, the candidates will indicate
+            the real candidate at the current grid status.
+            </para>
+            <para>
+            If the output is single line, the output will append the candidates
+            value at the tail of the string in ':candidate list'. In addition,
+            candidates will be represented as 'digit', 'row offset' and
+            'column offset' in order.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.TreatValueAsGiven">
+            <summary>
+            Indicates the output will treat modifiable values as given ones.
+            If the output is single line, the output will remove all plus marks '+'.
+            If the output is multi-line, the output will use '<c>&lt;digit&gt;</c>'
+            instead of '<c>*digit*</c>'.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.SubtleGridLines">
+            <summary>
+            Indicates whether need to handle all grid outlines while outputting.
+            See file <i><a href="#">How to use 'Grid' class.md</a></i> for more information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.HodokuCompatible">
+            <summary>
+            Indicates whether the output will be compatible with Hodoku library format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.DotPlaceholder">
+            <summary>
+            Indicates the placeholder must be '.' instead of '0'.
+            If the value is <see langword="true"/>, the placeholder will be '.';
+            otherwise, '0'.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.Multiline">
+            <summary>
+            Indicates the output should be multi-line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.Sukaku">
+            <summary>
+            Indicates the output will be sukaku format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.Excel">
+            <summary>
+            Indicates the output will be Excel format.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.GridMap">
             <summary>
             Encapsulates a binary series of cell status table.
@@ -1613,79 +1686,6 @@
         <member name="F:Sudoku.Data.GridMap.CoverTable">
             <summary>
             The cover table.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Data.GridOutputOptions">
-            <summary>
-            Provides a grid output option.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.None">
-            <summary>
-            Indicates the default settings (a single-line string text).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.WithModifiers">
-            <summary>
-            Indicates the output should be with modifiable values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.WithCandidates">
-            <summary>
-            <para>
-            Indicates the output should be with candidates.
-            If the output is single line, the candidates will indicate
-            the candidates-have-eliminated before the current grid status;
-            if the output is multi-line, the candidates will indicate
-            the real candidate at the current grid status.
-            </para>
-            <para>
-            If the output is single line, the output will append the candidates
-            value at the tail of the string in ':candidate list'. In addition,
-            candidates will be represented as 'digit', 'row offset' and
-            'column offset' in order.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.TreatValueAsGiven">
-            <summary>
-            Indicates the output will treat modifiable values as given ones.
-            If the output is single line, the output will remove all plus marks '+'.
-            If the output is multi-line, the output will use '<c>&lt;digit&gt;</c>'
-            instead of '<c>*digit*</c>'.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.SubtleGridLines">
-            <summary>
-            Indicates whether need to handle all grid outlines while outputting.
-            See file <i><a href="#">How to use 'Grid' class.md</a></i> for more information.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.HodokuCompatible">
-            <summary>
-            Indicates whether the output will be compatible with Hodoku library format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.DotPlaceholder">
-            <summary>
-            Indicates the placeholder must be '.' instead of '0'.
-            If the value is <see langword="true"/>, the placeholder will be '.';
-            otherwise, '0'.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.Multiline">
-            <summary>
-            Indicates the output should be multi-line.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.Sukaku">
-            <summary>
-            Indicates the output will be sukaku format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridOutputOptions.Excel">
-            <summary>
-            Indicates the output will be Excel format.
             </summary>
         </member>
         <member name="T:Sudoku.Data.GridParsingOption">
@@ -3002,7 +3002,7 @@
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.GridFormatter.Create(Sudoku.Data.GridOutputOptions)">
+        <member name="M:Sudoku.Data.SudokuGrid.GridFormatter.Create(Sudoku.Data.GridFormattingOptions)">
             <summary>
             Create a <see cref="T:Sudoku.Data.SudokuGrid.GridFormatter"/> according to the specified grid output options.
             </summary>
