@@ -65,7 +65,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 
 
 		/// <summary>
-		/// To call <see cref="GridParser"/> to parse the current puzzle code string
+		/// To call <see cref="SudokuGrid.GridParser(string)"/> to parse the current puzzle code string
 		/// and solve it.
 		/// </summary>
 		/// <param name="str">The string.</param>

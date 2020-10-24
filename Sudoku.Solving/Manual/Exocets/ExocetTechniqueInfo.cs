@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0060
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;

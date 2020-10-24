@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0060
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -17,8 +15,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// <param name="SymmetryType">The symmetry type used.</param>
 	/// <param name="MappingTable">The mapping table.</param>
 	public sealed record GspTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, SymmetryType SymmetryType, int?[] MappingTable)
-		: SymmetryTechniqueInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, SymmetryType SymmetryType,
+		int?[] MappingTable) : SymmetryTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override bool ShowDifficulty => false;
@@ -44,7 +42,10 @@ namespace Sudoku.Solving.Manual.Symmetry
 			for (int i = 0; i < 9; i++)
 			{
 				int? value = MappingTable[i];
-				sb.Append($"{i + 1}{(!value.HasValue || value == i ? "" : $" -> {value.Value + 1}")}{separator}");
+				sb
+					.Append(i + 1)
+					.Append(value.HasValue && value != i ? $" -> {value.Value + 1}" : string.Empty)
+					.Append(separator);
 			}
 
 			string customName = NameAttribute.GetName(SymmetryType)!.ToLower();

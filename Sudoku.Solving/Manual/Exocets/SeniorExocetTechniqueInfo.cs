@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0060
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
@@ -60,17 +58,20 @@ namespace Sudoku.Solving.Manual.Exocets
 				int count = 0;
 				for (int digit = 0; digit < 9; digit++)
 				{
-					int mask = ExtraRegionsMask[digit];
-					if (mask != 0)
+					if (ExtraRegionsMask[digit] is var mask and not 0)
 					{
-						sb.Append($"{digit + 1}{new RegionCollection(mask.GetAllSets()).ToString()}{separator}");
+						sb
+							.Append(digit + 1)
+							.Append(new RegionCollection(mask.GetAllSets()).ToString())
+							.Append(separator);
 						count++;
 					}
 				}
 
 				if (count != 0)
 				{
-					return $"{endoTargetStr}. Extra regions will be included: {sb.RemoveFromEnd(separator.Length)}";
+					return
+						$"{endoTargetStr}. Extra regions will be included: {sb.RemoveFromEnd(separator.Length)}";
 				}
 			}
 

@@ -23,7 +23,7 @@
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>.\Sudoku.Windows.xml</DocumentationFile>
-		<NoWarn>1572;1573;1591;1701;1702</NoWarn>
+		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

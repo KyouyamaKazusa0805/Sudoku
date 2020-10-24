@@ -126,7 +126,11 @@ namespace Sudoku.Drawing
 			using var fGiven = GetFontByScale(Settings.GivenFontName, cellWidth / 2F, Settings.ValueScale);
 			using var fModifiable = GetFontByScale(Settings.ModifiableFontName, cellWidth / 2F, Settings.ValueScale);
 			using var fCandidate = GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
-			using var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+			using var sf = new StringFormat
+			{
+				Alignment = StringAlignment.Center,
+				LineAlignment = StringAlignment.Center
+			};
 
 			for (int cell = 0; cell < 81; cell++)
 			{

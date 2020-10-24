@@ -1,6 +1,6 @@
-﻿#pragma warning disable 0660 // Equals
-#pragma warning disable 0661 // GetHashCode
-#pragma warning disable IDE0060 // Unused parameters
+﻿#pragma warning disable CS0660
+#pragma warning disable CS0661
+#pragma warning disable IDE0060
 
 using System;
 

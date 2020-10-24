@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0060
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -15,8 +13,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <param name="Views">All views.</param>
 	/// <param name="ContradictionSeries">Indicates all conclusions that occurs a contradict.</param>
 	public sealed record BowmanBingoTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<Conclusion> ContradictionSeries)
-		: LastResortTechniqueInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		IReadOnlyList<Conclusion> ContradictionSeries) : LastResortTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 8.0M + ContradictionSeries.Count.GetExtraDifficultyByLength();

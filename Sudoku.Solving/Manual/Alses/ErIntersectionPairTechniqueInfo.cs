@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0060
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -19,8 +17,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <param name="Digit2">The digit 2.</param>
 	public sealed record ErIntersectionPairTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int StartCell, int EndCell,
-		int Region, int Digit1, int Digit2)
-		: AlsTechniqueInfo(Conclusions, Views)
+		int Region, int Digit1, int Digit2) : AlsTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 6.0M;

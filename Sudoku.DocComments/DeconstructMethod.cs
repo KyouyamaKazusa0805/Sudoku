@@ -1,8 +1,4 @@
-﻿#pragma warning disable 0660 // Equals
-#pragma warning disable 0661 // GetHashCode
-#pragma warning disable IDE0060 // Unused parameters
-
-using System;
+﻿using System;
 
 namespace Sudoku.DocComments
 {

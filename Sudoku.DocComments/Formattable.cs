@@ -1,7 +1,6 @@
 ﻿#nullable enable annotations
 
-#pragma warning disable IDE0060 // Unused parameters
-#pragma warning disable CA1822 // Make static
+#pragma warning disable IDE0060
 
 using System;
 

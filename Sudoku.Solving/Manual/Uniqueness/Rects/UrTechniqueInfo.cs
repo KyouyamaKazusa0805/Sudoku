@@ -1,5 +1,4 @@
 ﻿#nullable disable warnings
-#pragma warning disable IDE0060
 
 using System;
 using System.Collections.Generic;
@@ -59,8 +58,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			string elimStr = elims.ToString();
 			string? additional = GetAdditional();
 			return
-				$"{Name}: {d1}, {d2} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => " +
-				$"{elimStr}";
+				$"{Name}: {d1}, {d2} in " +
+				$"{cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => {elimStr}";
 		}
 
 		/// <inheritdoc/>

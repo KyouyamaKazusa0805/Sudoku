@@ -15,7 +15,7 @@
 		<DefineConstants>DEBUG; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<NoWarn>1572;1573;1591;1701;1702</NoWarn>
+		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
