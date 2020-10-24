@@ -404,6 +404,11 @@
             Represents a cell status.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.CellStatus.Undefined">
+            <summary>
+            Indicates the cell status is invalid.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.CellStatus.Empty">
             <summary>
             Indicates that the cell is empty.
@@ -2303,19 +2308,19 @@
             <inheritdoc cref="P:Sudoku.Data.SudokuGrid.GivensCount"/>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.Item(System.Int32)">
-            <inheritdoc/>
+            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.Value(System.Int32)"/>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.Item(System.Int32,System.Int32)">
-            <inheritdoc/>
+            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.Value(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Fix">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.Fix"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Unfix">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.Unfix"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Reset">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.Reset"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.RecomputeCandidates">
             <inheritdoc cref="P:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>
@@ -2324,7 +2329,7 @@
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.SetStatus(System.Int32,Sudoku.Data.CellStatus)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetMask(System.Int32)">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetMask(System.Int32)"/>
@@ -2333,7 +2338,7 @@
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetCandidateMask(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetMask(System.Int32,System.Int16)">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.SetMask(System.Int32,System.Int16)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Redo">
             <inheritdoc/>
@@ -2359,7 +2364,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Equals(Sudoku.Data.SudokuGrid@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+            <inheritdoc cref="M:System.IValueEquatable`1.Equals(`0@)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetHashCode">
             <inheritdoc/>
@@ -2454,7 +2459,7 @@
             <see cref="M:Sudoku.Data.SudokuGrid.#ctor"/>.
             </summary>
             <remarks>
-            We recommend you should use <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/> instead of the default constructor
+            We recommend you should use this static field instead of the default constructor
             to reduce object creation.
             </remarks>
             <seealso cref="M:Sudoku.Data.SudokuGrid.#ctor"/>

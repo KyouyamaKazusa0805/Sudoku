@@ -17,6 +17,6 @@
 		bool Equals(in TStruct other);
 
 		/// <inheritdoc/>
-		bool IEquatable<TStruct>.Equals(TStruct other) => Equals(in other);
+		bool IEquatable<TStruct>.Equals(TStruct other) => Equals(other);
 	}
 }

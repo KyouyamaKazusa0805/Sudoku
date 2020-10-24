@@ -23,6 +23,6 @@
 
 
 		/// <inheritdoc/>
-		int IComparable<TStruct>.CompareTo(TStruct other) => CompareTo(in other);
+		int IComparable<TStruct>.CompareTo(TStruct other) => CompareTo(other);
 	}
 }

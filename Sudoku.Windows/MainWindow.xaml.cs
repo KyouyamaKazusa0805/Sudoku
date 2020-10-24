@@ -115,7 +115,7 @@ namespace Sudoku.Windows
 		}
 
 		/// <inheritdoc/>
-		protected override void OnKeyDown(KeyEventArgs e)
+		protected override unsafe void OnKeyDown(KeyEventArgs e)
 		{
 			base.OnKeyDown(e);
 
@@ -142,7 +142,10 @@ namespace Sudoku.Windows
 						{
 							// Input a digit.
 							// Input or eliminate a digit.
-							if (digit != -1 && PeerMaps[cell].Any(c => _puzzle[c] == digit))
+							static bool internalChecking(int c, in int digit, in MainWindow @this) =>
+								@this._puzzle[c] == digit;
+
+							if (digit != -1 && PeerMaps[cell].Any(&internalChecking, digit, this))
 							{
 								// Input is invalid. We can't let you fill this cell with this digit.
 								return;
@@ -359,7 +362,8 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void LoadDatabaseIfWorth()
 		{
-			if (Settings.CurrentPuzzleDatabase is null || Messagings.AskWhileLoadingAndCoveringDatabase() != R.Yes)
+			if (Settings.CurrentPuzzleDatabase is null
+				|| Messagings.AskWhileLoadingAndCoveringDatabase() != R.Yes)
 			{
 				return;
 			}

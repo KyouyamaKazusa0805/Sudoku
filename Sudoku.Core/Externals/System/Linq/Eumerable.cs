@@ -193,7 +193,7 @@ namespace System.Linq
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
 		public static unsafe bool Any<TElement, T1, T2>(
 			this IEnumerable<TElement> @this, delegate* managed<TElement, in T1, in T2, bool> selector,
-			in T1 value1, in T2 value2) where T1 : struct where T2 : struct
+			in T1 value1, in T2 value2)
 		{
 			foreach (var element in @this)
 			{

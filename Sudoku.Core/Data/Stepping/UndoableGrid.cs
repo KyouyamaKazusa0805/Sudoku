@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
@@ -14,6 +15,9 @@ namespace Sudoku.Data.Stepping
 	/// <seealso cref="SudokuGrid"/>
 	/// <seealso cref="Undo"/>
 	/// <seealso cref="Redo"/>
+#if DEBUG
+	[DebuggerDisplay("{ToString(\"#.\")}")]
+#endif
 	public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable
 	{
 		/// <summary>
@@ -57,44 +61,43 @@ namespace Sudoku.Data.Stepping
 		public int GivensCount => _innerGrid.GivensCount;
 
 
-		/// <inheritdoc/>
-		public int this[int offset]
+		/// <inheritdoc cref="SudokuGrid.this[int]"/>
+		public int this[int cell]
 		{
-			get => _innerGrid[offset];
+			get => _innerGrid[cell];
 			set
 			{
 				var map = GridMap.Empty;
-				foreach (int cell in PeerMaps[offset])
+				foreach (int peerCell in PeerMaps[cell])
 				{
-					if (GetStatus(cell) == CellStatus.Empty)
+					if (GetStatus(peerCell) == CellStatus.Empty)
 					{
-						map.AddAnyway(cell);
+						map.AddAnyway(peerCell);
 					}
 				}
 
-				_undoStack.Push(new AssignmentStep(value, offset, _innerGrid._values[offset], map));
+				_undoStack.Push(new AssignmentStep(value, cell, _innerGrid._values[cell], map));
 
 				// Do step.
-				_innerGrid[offset] = value;
+				_innerGrid[cell] = value;
 			}
 		}
 
-		/// <inheritdoc/>
-		public bool this[int offset, int digit]
+		/// <inheritdoc cref="SudokuGrid.this[int, int]"/>
+		public bool this[int cell, int digit]
 		{
-			get => _innerGrid[offset, digit];
+			get => _innerGrid[cell, digit];
 			set
 			{
-				_undoStack.Push(
-					value ? new EliminationStep(digit, offset) : new AntiEliminationStep(digit, offset));
+				_undoStack.Push(value ? new EliminationStep(digit, cell) : new AntiEliminationStep(digit, cell));
 
 				// Do step.
-				_innerGrid[offset, digit] = value;
+				_innerGrid[cell, digit] = value;
 			}
 		}
 
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="SudokuGrid.Fix"/>
 		public void Fix()
 		{
 			var map = GridMap.Empty;
@@ -119,7 +122,7 @@ namespace Sudoku.Data.Stepping
 			}
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="SudokuGrid.Unfix"/>
 		public void Unfix()
 		{
 			var map = GridMap.Empty;
@@ -139,7 +142,7 @@ namespace Sudoku.Data.Stepping
 			}
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="SudokuGrid.Reset"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Reset()
 		{
@@ -158,7 +161,7 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public CellStatus GetStatus(int cell) => _innerGrid.GetStatus(cell);
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="SudokuGrid.SetStatus(int, CellStatus)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void SetStatus(int offset, CellStatus cellStatus)
 		{
@@ -174,7 +177,7 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public short GetCandidateMask(int cell) => _innerGrid.GetCandidateMask(cell);
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="SudokuGrid.SetMask(int, short)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void SetMask(int offset, short value)
 		{
@@ -228,7 +231,7 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Equals(UndoableGrid? other) => other is { _innerGrid: var grid } && Equals(grid);
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		public bool Equals(in SudokuGrid other) => _innerGrid == other;
 
 		/// <inheritdoc/>

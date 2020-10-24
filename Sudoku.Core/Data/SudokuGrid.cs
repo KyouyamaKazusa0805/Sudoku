@@ -16,7 +16,7 @@ namespace Sudoku.Data
 	/// Encapsulates a sudoku grid using value type instead of reference type.
 	/// </summary>
 #if DEBUG
-	[DebuggerDisplay("{ToString(\"0+:\")}")]
+	[DebuggerDisplay("{ToString(\".+:\")}")]
 #endif
 	public unsafe partial struct SudokuGrid : IEnumerable<short>, IValueEquatable<SudokuGrid>, IFormattable
 	{
@@ -46,7 +46,7 @@ namespace Sudoku.Data
 		/// <see cref="SudokuGrid()"/>.
 		/// </summary>
 		/// <remarks>
-		/// We recommend you should use <see cref="Undefined"/> instead of the default constructor
+		/// We recommend you should use this static field instead of the default constructor
 		/// to reduce object creation.
 		/// </remarks>
 		/// <seealso cref="SudokuGrid()"/>
@@ -236,6 +236,7 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			readonly get => GetStatus(cell) switch
 			{
+				CellStatus.Undefined => -2,
 				CellStatus.Empty => -1,
 				CellStatus.Modifiable or CellStatus.Given => (~_values[cell]).FindFirstSet(),
 				_ => throw Throwings.ImpossibleCase
@@ -345,7 +346,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly bool Equals(object? obj) => obj is SudokuGrid other && Equals(in other);
+		public override readonly bool Equals(object? obj) => obj is SudokuGrid other && Equals(other);
 
 		/// <inheritdoc/>
 		public readonly bool Equals(in SudokuGrid other)
@@ -768,8 +769,8 @@ namespace Sudoku.Data
 		internal static void InternalCopy(short* dest, short* src)
 		{
 #if DEBUG
-			_ = dest == null ? throw new ArgumentNullException(nameof(dest)) : dest;
-			_ = src == null ? throw new ArgumentNullException(nameof(src)) : src;
+			_ = dest == null ? throw new ArgumentNullException(nameof(dest)) : 0;
+			_ = src == null ? throw new ArgumentNullException(nameof(src)) : 0;
 #endif
 
 			int i = 0;

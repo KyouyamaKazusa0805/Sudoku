@@ -11,6 +11,12 @@ namespace Sudoku.Data
 	public enum CellStatus : byte
 	{
 		/// <summary>
+		/// Indicates the cell status is invalid.
+		/// </summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		Undefined = 0,
+
+		/// <summary>
 		/// Indicates that the cell is empty.
 		/// </summary>
 		Empty = 1,
