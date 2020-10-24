@@ -1,0 +1,36 @@
+/*
+	This file stores all file nesting rules based on this whole solution.
+
+	For more information, please visit this website:
+	https://docs.microsoft.com/en-us/visualstudio/ide/file-nesting-solution-explorer?view=vs-2019
+	for details.
+
+	Visual Studio 16.8 starts to support custom file nesting.
+*/
+{
+	"dependentFileProviders": {
+		"add": {
+			"fileToFile": {
+				"add": {
+					"MainWindow.Button.cs": [ "MainWindow.xaml" ],
+					"MainWindow.ComboBox.cs": [ "MainWindow.xaml" ],
+					"MainWindow.ContextMenu.cs": [ "MainWindow.xaml" ],
+					"MainWindow.Fields.cs": [ "MainWindow.xaml" ],
+					"MainWindow.GridSplitter.cs": [ "MainWindow.xaml" ],
+					"MainWindow.Image.cs": [ "MainWindow.xaml" ],
+					"MainWindow.ListBox.cs": [ "MainWindow.xaml" ],
+					"MainWindow.MenuItem.cs": [ "MainWindow.xaml" ],
+					"MainWindow.Properties.cs": [ "MainWindow.xaml" ],
+					"MainWindow.TabControl.cs": [ "MainWindow.xaml" ],
+					"MainWindow.TextBox.cs": [ "MainWindow.xaml" ],
+					"MainWindow.xaml.cs": [ "MainWindow.xaml" ]
+				}
+			},
+			"pathSegment": {
+				"add": {
+					".cs": [ ".cs" ]
+				}
+			}
+		}
+	}
+}
