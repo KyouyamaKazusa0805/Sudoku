@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using Sudoku.Constants;
+using Sudoku.DocComments;
 using Sudoku.Extensions;
 
 namespace Sudoku.Data
@@ -13,6 +14,12 @@ namespace Sudoku.Data
 		/// </summary>
 		public unsafe ref struct GridParser
 		{
+			/// <summary>
+			/// The list of all methods to parse.
+			/// </summary>
+			private static readonly delegate* managed<ref GridParser, SudokuGrid>[] ParseFunctions;
+
+
 			/// <summary>
 			/// Initializes an instance with parsing data.
 			/// </summary>
@@ -33,6 +40,32 @@ namespace Sudoku.Data
 			/// <seealso cref="CompatibleFirst"/>
 			public GridParser(string parsingValue, bool compatibleFirst) =>
 				(ParsingValue, CompatibleFirst) = (parsingValue, compatibleFirst);
+
+
+			/// <inheritdoc cref="StaticConstructor"/>
+			static GridParser()
+			{
+				ParseFunctions = new delegate* managed<ref GridParser, SudokuGrid>[]
+				{
+					&OnParsingSimpleTable,
+					&OnParsingSimpleMultilineGrid,
+					&OnParsingPencilMarked_1,
+					&OnParsingPencilMarked_2,
+					&OnParsingSusser,
+					&OnParsingExcel,
+					&OnParsingSukaku_1,
+					&OnParsingSukaku_2
+				};
+
+				static SudokuGrid OnParsingPencilMarked_1(ref GridParser @this) =>
+					OnParsingPencilMarked(ref @this, @this.CompatibleFirst);
+				static SudokuGrid OnParsingPencilMarked_2(ref GridParser @this) =>
+					OnParsingPencilMarked(ref @this, !@this.CompatibleFirst);
+				static SudokuGrid OnParsingSukaku_1(ref GridParser @this) =>
+					OnParsingSukaku(ref @this, @this.CompatibleFirst);
+				static SudokuGrid OnParsingSukaku_2(ref GridParser @this) =>
+					OnParsingSukaku(ref @this, !@this.CompatibleFirst);
+			}
 
 
 			/// <summary>
@@ -56,7 +89,8 @@ namespace Sudoku.Data
 			/// Here must use method instead of property or field.
 			/// Because the return value should be mutable.
 			/// </remarks>
-			private static bool[] DefaultCheckingArray => new[] { true, true, true, true, true, true, true, true, true };
+			private static bool[] DefaultCheckingArray =>
+				new[] { true, true, true, true, true, true, true, true, true };
 
 
 			/// <summary>
@@ -66,37 +100,15 @@ namespace Sudoku.Data
 			/// <exception cref="ArgumentException">Throws when failed to parse.</exception>
 			public SudokuGrid Parse()
 			{
-				const int funcsCount = 8;
-				var funcList = stackalloc delegate* managed<ref GridParser, SudokuGrid>[funcsCount]
+				for (int trial = 0; trial < 8; trial++)
 				{
-					&OnParsingSimpleTable,
-					&OnParsingSimpleMultilineGrid,
-					&OnParsingPencilMarked_1,
-					&OnParsingPencilMarked_2,
-					&OnParsingSusser,
-					&OnParsingExcel,
-					&OnParsingSukaku_1,
-					&OnParsingSukaku_2
-				};
-				for (int trial = 0; trial < funcsCount; trial++)
-				{
-					var grid = funcList[trial](ref this);
-					if (grid != Undefined)
+					if (ParseFunctions[trial](ref this) is var grid && grid != Undefined)
 					{
 						return grid;
 					}
 				}
 
 				return Undefined;
-
-				static SudokuGrid OnParsingPencilMarked_1(ref GridParser @this) =>
-					OnParsingPencilMarked(ref @this, @this.CompatibleFirst);
-				static SudokuGrid OnParsingPencilMarked_2(ref GridParser @this) =>
-					OnParsingPencilMarked(ref @this, !@this.CompatibleFirst);
-				static SudokuGrid OnParsingSukaku_1(ref GridParser @this) =>
-					OnParsingSukaku(ref @this, @this.CompatibleFirst);
-				static SudokuGrid OnParsingSukaku_2(ref GridParser @this) =>
-					OnParsingSukaku(ref @this, !@this.CompatibleFirst);
 			}
 
 			/// <summary>

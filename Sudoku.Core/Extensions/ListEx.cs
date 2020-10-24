@@ -34,7 +34,8 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="index">The index to remove.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void RemoveAt<T>(this IList<T?> @this, Index index) => @this.RemoveAt(index.GetOffset(@this.Count));
+		public static void RemoveAt<T>(this IList<T?> @this, Index index) =>
+			@this.RemoveAt(index.GetOffset(@this.Count));
 
 		/// <summary>
 		/// Sort the specified list.
@@ -46,7 +47,7 @@ namespace Sudoku.Extensions
 		/// If you want to use this method, please note that the <typeparamref name="T"/> may not be the built-in
 		/// types such as <see cref="int"/>, <see cref="float"/> or so on, because they can use operators directly.
 		/// </remarks>
-		public static unsafe void Sort<T>(this IList<T> @this, delegate*<in T, in T, int> comparer)
+		public static unsafe void Sort<T>(this IList<T> @this, delegate* managed<in T, in T, int> comparer)
 		{
 			q(0, @this.Count - 1);
 
