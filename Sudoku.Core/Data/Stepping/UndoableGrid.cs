@@ -14,7 +14,7 @@ namespace Sudoku.Data.Stepping
 	/// <seealso cref="SudokuGrid"/>
 	/// <seealso cref="Undo"/>
 	/// <seealso cref="Redo"/>
-	public sealed class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable
+	public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable
 	{
 		/// <summary>
 		/// The inner sudoku grid.
@@ -72,10 +72,7 @@ namespace Sudoku.Data.Stepping
 					}
 				}
 
-				unsafe
-				{
-					_undoStack.Push(new AssignmentStep(value, offset, _innerGrid._values[offset], map));
-				}
+				_undoStack.Push(new AssignmentStep(value, offset, _innerGrid._values[offset], map));
 
 				// Do step.
 				_innerGrid[offset] = value;
@@ -110,18 +107,15 @@ namespace Sudoku.Data.Stepping
 			}
 
 			_undoStack.Push(new FixStep(map));
-			unsafe
+			foreach (int cell in map)
 			{
-				foreach (int cell in map)
-				{
-					ref short mask = ref _innerGrid._values[cell];
-					mask = (short)((int)CellStatus.Given << 9 | mask & SudokuGrid.MaxCandidatesMask);
-				}
+				ref short mask = ref _innerGrid._values[cell];
+				mask = (short)((int)CellStatus.Given << 9 | mask & SudokuGrid.MaxCandidatesMask);
+			}
 
-				fixed (short* pInitialValues = _innerGrid._initialValues, pValues = _innerGrid._values)
-				{
-					SudokuGrid.InternalCopy(pInitialValues, pValues);
-				}
+			fixed (short* pInitialValues = _innerGrid._initialValues, pValues = _innerGrid._values)
+			{
+				SudokuGrid.InternalCopy(pInitialValues, pValues);
 			}
 		}
 
@@ -138,13 +132,10 @@ namespace Sudoku.Data.Stepping
 			}
 
 			_undoStack.Push(new UnfixStep(map));
-			unsafe
+			foreach (int cell in map)
 			{
-				foreach (int cell in map)
-				{
-					ref short mask = ref _innerGrid._values[cell];
-					mask = (short)((int)CellStatus.Modifiable << 9 | mask & SudokuGrid.MaxCandidatesMask);
-				}
+				ref short mask = ref _innerGrid._values[cell];
+				mask = (short)((int)CellStatus.Modifiable << 9 | mask & SudokuGrid.MaxCandidatesMask);
 			}
 		}
 
@@ -152,19 +143,16 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Reset()
 		{
-			unsafe
+			fixed (short* pInitialValues = _innerGrid._initialValues, pValues = _innerGrid._values)
 			{
-				fixed (short* pInitialValues = _innerGrid._initialValues, pValues = _innerGrid._values)
-				{
-					_undoStack.Push(new ResetStep(pInitialValues, pValues));
-				}
+				_undoStack.Push(new ResetStep(pInitialValues, pValues));
 			}
 			_innerGrid.Reset();
 		}
 
 		/// <inheritdoc cref="SudokuGrid.RefreshingCandidates"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public unsafe void RecomputeCandidates() => SudokuGrid.RefreshingCandidates(ref _innerGrid);
+		public void RecomputeCandidates() => SudokuGrid.RefreshingCandidates(ref _innerGrid);
 
 		/// <inheritdoc cref="SudokuGrid.GetStatus(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -244,7 +232,7 @@ namespace Sudoku.Data.Stepping
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(UndoableGrid? other) => Equals(other?._innerGrid ?? SudokuGrid.Undefined);
+		public bool Equals(UndoableGrid? other) => other is { _innerGrid: var grid } && Equals(grid);
 
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public bool Equals(in SudokuGrid other) => _innerGrid == other;
@@ -271,7 +259,7 @@ namespace Sudoku.Data.Stepping
 		public static bool operator ==(UndoableGrid left, UndoableGrid right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in SudokuGrid left, UndoableGrid right) => left.Equals(right);
+		public static bool operator ==(in SudokuGrid left, UndoableGrid right) => right.Equals(left);
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(UndoableGrid left, in SudokuGrid right) => left.Equals(right);
