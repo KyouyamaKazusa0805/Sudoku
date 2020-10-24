@@ -96,10 +96,7 @@ namespace Sudoku.Extensions
 		/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 		public static string? Match(this string @this, string pattern, RegexOptions regexOption)
 		{
-			if (!pattern.IsRegexPattern())
-			{
-				throw new InvalidRegexStringException();
-			}
+			_ = pattern.IsRegexPattern() ? 0 : throw new InvalidRegexStringException();
 
 			var match = Regex.Match(@this, pattern, regexOption);
 			return match.Success ? match.Value : null;
@@ -152,13 +149,11 @@ namespace Sudoku.Extensions
 		/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 		public static string[] MatchAll(this string @this, string pattern, RegexOptions regexOption)
 		{
-			if (!pattern.IsRegexPattern())
-			{
-				throw new InvalidRegexStringException();
-			}
+			_ = pattern.IsRegexPattern() ? 0 : throw new InvalidRegexStringException();
 
+			// Do not use 'var' ('var' is 'object?').
 			var result = new List<string>();
-			foreach (Match? match in Regex.Matches(@this, pattern, regexOption)) // Do not use 'var' ('var' is 'object?').
+			foreach (Match? match in Regex.Matches(@this, pattern, regexOption))
 			{
 				if (match is not null)
 				{

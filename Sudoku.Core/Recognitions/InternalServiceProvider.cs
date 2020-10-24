@@ -62,11 +62,7 @@ namespace Sudoku.Recognitions
 					}
 
 					int cell = x * 9 + y, digit = recognition - 1;
-					if (result[cell, digit])
-					{
-						throw new RecognitionException(
-							$"Recognition error. Cannot fill the cell r{x + 1}c{y + 1} with the digit {digit + 1}.");
-					}
+					_ = result[cell, digit] ? throw new RecognitionException($"Recognition error. Cannot fill the cell r{x + 1}c{y + 1} with the digit {digit + 1}.") : 0;
 
 					result[cell] = digit;
 				}
@@ -101,10 +97,7 @@ namespace Sudoku.Recognitions
 				ThresholdType.Binary);
 
 			_ocr!.SetImage(imgThresholded);
-			if (_ocr.Recognize() != 0)
-			{
-				throw new InvalidOperationException("Tessaract Error. Cannot to recognize cell image.");
-			}
+			_ = _ocr.Recognize() != 0 ? throw new InvalidOperationException("Tessaract Error. Cannot to recognize cell image.") : 0;
 
 			var characters = _ocr.GetCharacters();
 			string numberText = string.Empty;

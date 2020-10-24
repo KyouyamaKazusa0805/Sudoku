@@ -44,10 +44,7 @@ namespace Sudoku.Solving.Checking
 				return Array.Empty<IReadOnlyList<Conclusion>>();
 			}
 
-			if (!grid.IsValid())
-			{
-				throw new SudokuRuntimeException();
-			}
+			_ = !grid.IsValid() ? throw new SudokuRuntimeException() : 0;
 
 			var result = new List<IReadOnlyList<Conclusion>>();
 			for (int dep = 0; dep <= depth; dep++)
@@ -104,13 +101,9 @@ namespace Sudoku.Solving.Checking
 		/// </exception>
 		private static void SearchForBackdoors(IList<IReadOnlyList<Conclusion>> result, in SudokuGrid grid, int depth)
 		{
-			if (!grid.IsValid(out SudokuGrid solution))
-			{
-				throw new InvalidOperationException("The puzzle doesn't have unique solution.");
-			}
+			_ = !grid.IsValid(out SudokuGrid solution) ? throw new InvalidOperationException("The puzzle doesn't have unique solution.") : 0;
 
 			var tempGrid = grid;
-
 			if (depth == 0)
 			{
 				// Search backdoors (Assignments).

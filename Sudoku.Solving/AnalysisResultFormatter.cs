@@ -49,10 +49,7 @@ namespace Sudoku.Solving
 			}
 
 			format ??= ".-!l";
-			if (format.IsMatch(@"[^\^\-\.\?#@!abdl]"))
-			{
-				throw new FormatException("The specified format is invalid due to with invalid characters.");
-			}
+			_ = format.IsMatch(@"[^\^\-\.\?#@!abdl]") ? throw new FormatException("The specified format is invalid due to with invalid characters.") : 0;
 
 			string formatLower = format.ToLower();
 			static bool c(in string formatLower, char c) => formatLower.Contains(c);

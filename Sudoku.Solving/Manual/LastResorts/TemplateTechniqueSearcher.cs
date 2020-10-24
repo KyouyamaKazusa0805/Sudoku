@@ -42,10 +42,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </exception>
 		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
-			if (!grid.IsValid(out SudokuGrid solution))
-			{
-				throw new WrongHandlingException(grid);
-			}
+			_ = !grid.IsValid(out SudokuGrid solution) ? throw new WrongHandlingException(grid) : 0;
 
 			if (!_templateDeleteOnly)
 			{
@@ -135,10 +132,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </exception>
 		private static GridMap CreateInstance(in SudokuGrid grid, int digit)
 		{
-			if (!grid.HasSolved)
-			{
-				throw new ArgumentException("The specified sudoku grid has not been solved.");
-			}
+			_ = grid.HasSolved ? 0 : throw new ArgumentException("The specified sudoku grid has not been solved.");
 
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)

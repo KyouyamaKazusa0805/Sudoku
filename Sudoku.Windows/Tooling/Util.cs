@@ -115,24 +115,10 @@ namespace Sudoku.Windows.Tooling
 		/// <returns>The <see cref="WColor"/>.</returns>
 		public static WColor FromAhsb(int alpha, float hue, float saturation, float brightness)
 		{
-			if (alpha is < 0 or > 255)
-			{
-				throw new ArgumentOutOfRangeException(nameof(alpha), alpha, "Value must be within a range of 0 - 255.");
-			}
-			if (hue is < 0 or > 360F)
-			{
-				throw new ArgumentOutOfRangeException(nameof(hue), hue, "Value must be within a range of 0 - 360.");
-			}
-			if (saturation is < 0 or > 1F)
-			{
-				throw new ArgumentOutOfRangeException(
-					nameof(saturation), saturation, "Value must be within a range of 0 - 1.");
-			}
-			if (brightness is < 0 or > 1F)
-			{
-				throw new ArgumentOutOfRangeException(
-					nameof(brightness), brightness, "Value must be within a range of 0 - 1.");
-			}
+			_ = alpha is < 0 or > 255 ? throw new ArgumentOutOfRangeException(nameof(alpha), alpha, "Value must be within a range of 0 - 255.") : 0;
+			_ = hue is < 0 or > 360F ? throw new ArgumentOutOfRangeException(nameof(hue), hue, "Value must be within a range of 0 - 360.") : 0;
+			_ = saturation is < 0 or > 1F ? throw new ArgumentOutOfRangeException(nameof(saturation), saturation, "Value must be within a range of 0 - 1.") : 0;
+			_ = brightness is < 0 or > 1F ? throw new ArgumentOutOfRangeException(nameof(brightness), brightness, "Value must be within a range of 0 - 1.") : 0;
 
 			if (saturation == 0)
 			{

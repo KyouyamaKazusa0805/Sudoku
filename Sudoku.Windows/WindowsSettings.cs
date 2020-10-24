@@ -26,11 +26,7 @@ namespace Sudoku.Windows
 		/// </exception>
 		public override void CoverBy(Settings newSetting)
 		{
-			if (newSetting is not WindowsSettings @new)
-			{
-				throw new ArgumentException(
-					"The specified argument is invalid due to its invalid type.", nameof(newSetting));
-			}
+			_ = newSetting is not WindowsSettings @new ? throw new ArgumentException("The specified argument is invalid due to its invalid type.", nameof(newSetting)) : 0;
 
 			foreach (var property in from Property in GetType().GetProperties() where Property.CanWrite select Property)
 			{

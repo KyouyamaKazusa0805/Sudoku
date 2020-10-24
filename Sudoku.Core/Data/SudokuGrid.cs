@@ -779,7 +779,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in SudokuGrid left, in SudokuGrid right) => left.Equals(in right);
+		public static bool operator ==(in SudokuGrid left, in SudokuGrid right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

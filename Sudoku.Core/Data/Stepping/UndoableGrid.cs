@@ -189,10 +189,7 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Redo()
 		{
-			if (!HasRedoSteps)
-			{
-				throw new InvalidOperationException("The redo stack is already empty.");
-			}
+			_ = HasRedoSteps ? 0 : throw new InvalidOperationException("The redo stack is already empty.");
 
 			var step = _redoStack.Pop();
 			_undoStack.Push(step);
@@ -206,10 +203,7 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Undo()
 		{
-			if (!HasUndoSteps)
-			{
-				throw new InvalidOperationException("The undo stack is already empty.");
-			}
+			_ = HasUndoSteps ? 0 : throw new InvalidOperationException("The undo stack is already empty.");
 
 			var step = _undoStack.Pop();
 			_redoStack.Push(step);

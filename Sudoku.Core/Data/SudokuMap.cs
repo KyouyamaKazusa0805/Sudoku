@@ -93,10 +93,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
 		public SudokuMap(long[] binary)
 		{
-			if (binary.Length != BufferLength)
-			{
-				throw new ArgumentException("The specified argument is invalid due to its length.");
-			}
+			_ = binary.Length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.") : 0;
 
 			int count = 0;
 			fixed (long* pThis = _innerBinary)
@@ -121,10 +118,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
 		public SudokuMap(long* binary, int length)
 		{
-			if (length != BufferLength)
-			{
-				throw new ArgumentException("The specified argument is invalid due to its length.");
-			}
+			_ = length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.") : 0;
 
 			int count = 0;
 			fixed (long* pThis = _innerBinary)

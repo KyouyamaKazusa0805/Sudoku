@@ -77,19 +77,14 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 			if (finishedCellsCount == 81)
 			{
 				// Solution found.
-				if (++solutionsCount > 1)
-				{
-					throw new MultipleSolutionsException(_grid);
-				}
-				else // solutionCount <= 1
-				{
-					// We should catch the result.
-					// If we use normal assignment, we well get the
-					// initial grid rather a solution, because
-					// this is a recursive function!!!
-					result = gridValues.CloneAs<int[]>();
-					return; // Exit the recursion.
-				}
+				_ = ++solutionsCount > 1 ? throw new MultipleSolutionsException(_grid) : 0;
+
+				// We should catch the result.
+				// If we use normal assignment, we well get the
+				// initial grid rather a solution, because
+				// this is a recursive function!!!
+				result = gridValues.CloneAs<int[]>();
+				return; // Exit the recursion.
 			}
 
 			if (gridValues[finishedCellsCount] != 0)
