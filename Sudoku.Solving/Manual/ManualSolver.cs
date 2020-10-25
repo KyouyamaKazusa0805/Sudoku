@@ -48,7 +48,6 @@ namespace Sudoku.Solving.Manual
 		/// The globalization string. The default value is <see langword="null"/>.
 		/// </param>
 		/// <returns>The analysis result.</returns>
-		/*skiplocalsinit*/
 		public AnalysisResult Solve(
 			in SudokuGrid grid, IProgress<IProgressResult>? progress, string? globalizationString = null)
 		{
@@ -60,7 +59,7 @@ namespace Sudoku.Solving.Manual
 				try
 				{
 #pragma warning disable CS0612
-					GridProgressResult defaultValue = default;
+					var defaultValue = new GridProgressResult();
 					var defaultPr = new GridProgressResult(candsCount, emptyCellsCount, candsCount, globalizationString);
 					ref var pr = ref progress is null ? ref defaultValue : ref defaultPr;
 					progress?.Report(defaultPr);

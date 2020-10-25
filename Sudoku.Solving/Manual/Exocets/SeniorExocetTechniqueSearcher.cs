@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -31,8 +32,8 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		/*skiplocalsinit*/
-		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		[SkipLocalsInit]
+		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var compatibleCells = (stackalloc int[4]);
 			var cover = (stackalloc int[8]);
@@ -57,19 +58,19 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				i = 0;
-				GridMap temp = default;
+				GridMap temp;
 				foreach (int digit in baseCandidatesMask)
 				{
 					if (i++ == 0)
 					{
-						temp = DigitMaps[digit];
+						*&temp = DigitMaps[digit];
 					}
 					else
 					{
-						temp |= DigitMaps[digit];
+						*&temp |= DigitMaps[digit];
 					}
 				}
-				temp &= tempCrosslineMap;
+				*&temp &= tempCrosslineMap;
 
 				var tempTarget = new List<int>();
 				for (i = 0; i < 8; i++)
@@ -114,7 +115,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					// Get all target eliminations.
-					TargetEliminations targetElims = default;
+					var targetElims = new TargetEliminations();
 					short cands = (short)(elimDigits & grid.GetCandidateMask(combination[0]));
 					if (cands != 0)
 					{
@@ -142,7 +143,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					// Get all true base eliminations.
-					TrueBaseEliminations trueBaseElims = default;
+					var trueBaseElims = new TrueBaseEliminations();
 					if (tbCands != 0
 						&& (grid.GetStatus(combination[0]), grid.GetStatus(combination[1])) != (Empty, Empty))
 					{
@@ -183,9 +184,9 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					// Get mirror and compatibility test eliminations.
-					MirrorEliminations mirrorElims = default;
-					CompatibilityTestEliminations compatibilityElims = default;
-					GridMap mir = default;
+					var mirrorElims = new MirrorEliminations();
+					var compatibilityElims = new CompatibilityTestEliminations();
+					GridMap mir;
 					int target = -1;
 					var cellOffsets = new List<DrawingInfo> { new(0, b1), new(0, b2) };
 					foreach (int cell in tempCrosslineMap)
@@ -224,14 +225,15 @@ namespace Sudoku.Solving.Manual.Exocets
 							var (tempTargetElims, tempMirrorElims) =
 								CheckMirror(
 									grid, target, combination[target == combination[0] ? 1 : 0], 0,
-									baseCandidatesMask, mir, 0, -1, cellOffsets, candidateOffsets);
+									baseCandidatesMask, *&mir, 0, -1, cellOffsets, candidateOffsets);
 							targetElims = TargetEliminations.MergeAll(targetElims, tempTargetElims);
 							mirrorElims = MirrorEliminations.MergeAll(mirrorElims, tempMirrorElims);
 						}
 
 						short incompatible =
 							CompatibilityTest(
-								baseCandidatesMask, DigitMaps, tempCrosslineMap, baseMap, combination[0], combination[1]);
+								baseCandidatesMask, DigitMaps, tempCrosslineMap, baseMap,
+								combination[0], combination[1]);
 						if (incompatible != 0)
 						{
 							compatibleCells[0] = b1;

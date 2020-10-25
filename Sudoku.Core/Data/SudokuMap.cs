@@ -635,6 +635,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The instance to negate.</param>
 		/// <returns>The negative result.</returns>
+		[SkipLocalsInit]
 		public static SudokuMap operator ~(in SudokuMap map)
 		{
 			long* result = stackalloc long[BufferLength];
@@ -652,6 +653,7 @@ namespace Sudoku.Data
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The intersection result.</returns>
+		[SkipLocalsInit]
 		public static SudokuMap operator &(in SudokuMap left, in SudokuMap right)
 		{
 			long* result = stackalloc long[BufferLength];
@@ -669,6 +671,7 @@ namespace Sudoku.Data
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The union result.</returns>
+		[SkipLocalsInit]
 		public static SudokuMap operator |(in SudokuMap left, in SudokuMap right)
 		{
 			long* result = stackalloc long[BufferLength];
@@ -686,6 +689,7 @@ namespace Sudoku.Data
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The symmetrical difference result.</returns>
+		[SkipLocalsInit]
 		public static SudokuMap operator ^(in SudokuMap left, in SudokuMap right)
 		{
 			long* result = stackalloc long[BufferLength];
@@ -704,6 +708,7 @@ namespace Sudoku.Data
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The result.</returns>
+		[SkipLocalsInit]
 		public static SudokuMap operator -(in SudokuMap left, in SudokuMap right)
 		{
 			long* result = stackalloc long[BufferLength];

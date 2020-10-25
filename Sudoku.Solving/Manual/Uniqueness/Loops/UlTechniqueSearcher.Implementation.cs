@@ -7,6 +7,7 @@ using Sudoku.Data.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -281,7 +282,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					accumulator.AddIfDoesNotContain(
 						new UlType4TechniqueInfo(
 							conclusions,
-							new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+							new View[]
+							{
+								new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
+							},
 							d1,
 							d2,
 							loop,
@@ -296,17 +300,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// </summary>
 		/// <param name="loop">The loop.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
-		/*skiplocalsinit*/
-		private static bool LoopIsValid(IReadOnlyList<int> loop)
+		[SkipLocalsInit]
+		private static unsafe bool LoopIsValid(IReadOnlyList<int> loop)
 		{
 			int visitedOddRegions = 0, visitedEvenRegions = 0;
-			bool isOdd = default;
+			bool isOdd;
 			foreach (int cell in loop)
 			{
 				for (var label = Block; label <= Column; label++)
 				{
 					int region = GetRegion(cell, label);
-					if (isOdd)
+					if (*&isOdd)
 					{
 						if ((visitedOddRegions >> region & 1) != 0)
 						{
@@ -330,7 +334,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					}
 				}
 
-				isOdd.Flip();
+				(&isOdd)->Flip();
 			}
 
 			return visitedEvenRegions == visitedOddRegions;

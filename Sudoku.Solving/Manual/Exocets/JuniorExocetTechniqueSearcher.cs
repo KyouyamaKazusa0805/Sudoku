@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -41,7 +42,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		/*skiplocalsinit*/
+		[SkipLocalsInit]
 		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			foreach (var exocet in Patterns)
@@ -110,7 +111,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// Check target eliminations.
 				// '|' first, '&&' second. (Do you know my meaning?)
-				TargetEliminations targetElims = default;
+				var targetElims = new TargetEliminations();
 				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
 				if (GatheringTargetEliminations(tq1, grid, baseCandidatesMask, temp, ref targetElims)
 					| GatheringTargetEliminations(tq2, grid, baseCandidatesMask, temp, ref targetElims)
@@ -154,9 +155,9 @@ namespace Sudoku.Solving.Manual.Exocets
 						baseCandidatesMask, cellOffsets, candidateOffsets);
 				var targetEliminations = TargetEliminations.MergeAll(targetElims, tar1, tar2);
 				var mirrorEliminations = MirrorEliminations.MergeAll(mir1, mir2);
-				BibiPatternEliminations bibiEliminations = default;
-				TargetPairEliminations targetPairEliminations = default;
-				SwordfishEliminations swordfishEliminations = default;
+				var bibiEliminations = new BibiPatternEliminations();
+				var targetPairEliminations = new TargetPairEliminations();
+				var swordfishEliminations = new SwordfishEliminations();
 				if (_checkAdvanced && baseCandidatesMask.PopCount() > 2)
 				{
 					CheckBibiPattern(
@@ -337,6 +338,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
+		[SkipLocalsInit]
 		private bool CheckTarget(
 			in SudokuGrid grid, int pos1, int pos2, int baseCandidatesMask,
 			out short otherCandidatesMask, out int otherRegion)
@@ -344,8 +346,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			otherRegion = -1;
 			otherCandidatesMask = -1;
 
-			short m1 = grid.GetCandidateMask(pos1);
-			short m2 = grid.GetCandidateMask(pos2);
+			short m1 = grid.GetCandidateMask(pos1), m2 = grid.GetCandidateMask(pos2);
 			if ((baseCandidatesMask & m1, baseCandidatesMask & m2) is (0, not 0) or (not 0, 0))
 			{
 				// One cell contains the digit that base candidate holds,
@@ -369,7 +370,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			// covers only one of two last cells; otherwise, false.
 			short candidatesMask = (short)((m1 | m2) & ~baseCandidatesMask);
 			int r1 = GetRegion(pos1, Row);
-			var span = (stackalloc[] { GetRegion(pos1, Block), r1 == GetRegion(pos2, Row) ? r1 : GetRegion(pos1, Column) });
+			var span = ( stackalloc[] { GetRegion(pos1, Block), r1 == GetRegion(pos2, Row) ? r1 : GetRegion(pos1, Column) });
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
 				for (int i = 0; i < 2; i++)
@@ -436,6 +437,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// (<see langword="out"/> parameter) The swordfish eliminations.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating whether the pattern exists.</returns>
+		[SkipLocalsInit]
 		private bool CheckBibiPattern(
 			in SudokuGrid grid, short baseCandidatesMask, int b1, int b2,
 			int tq1, int tq2, int tr1, int tr2, in GridMap crossline, bool isRow,
@@ -443,9 +445,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			out BibiPatternEliminations bibiElims, out TargetPairEliminations targetPairElims,
 			out SwordfishEliminations swordfishElims)
 		{
-			bibiElims = default;
-			targetPairElims = default;
-			swordfishElims = default;
+			bibiElims = new();
+			targetPairElims = new();
+			swordfishElims = new();
 			var playground = (stackalloc short[3]);
 			int block = GetRegion(b1, Block);
 			short[] temp = new short[4];

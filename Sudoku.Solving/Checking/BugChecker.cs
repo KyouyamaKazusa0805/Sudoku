@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sudoku.Constants;
 using Sudoku.Data;
@@ -76,8 +77,8 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
 		/// <returns>All true candidates.</returns>
-		/*skiplocalsinit*/
-		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
+		[SkipLocalsInit]
+		public unsafe IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
 			// Get the number of multivalue cells.
 			// If the number of that is greater than the specified number,
@@ -127,7 +128,7 @@ namespace Sudoku.Solving.Checking
 			// Store all multivalue cells.
 			// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
 			// The comments will help you to understand the processing.
-			short mask = default;
+			short mask;
 			short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
 			int[] multivalueCells = (_emptyMap - _bivalueMap).ToArray();
 			for (int i = 0, length = multivalueCells.Length; i < length; i++)
@@ -191,7 +192,7 @@ namespace Sudoku.Solving.Checking
 					}
 
 					chosen[currentIndex] = i;
-					int pos1 = mask.FindFirstSet();
+					int pos1 = (&mask)->FindFirstSet();
 					stack[currentIndex, pos1].AddAnyway(currentCell);
 					stack[currentIndex, mask.GetNextSet(pos1)].AddAnyway(currentCell);
 					if (currentIndex == multivalueCellsCount)

@@ -44,8 +44,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="progress">The progress.</param>
 		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The puzzle.</returns>
-		/*skiplocalsinit*/
-		public SudokuGrid Generate(
+		public unsafe SudokuGrid Generate(
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
 			string? globalizationString = null)
 		{
@@ -55,20 +54,18 @@ namespace Sudoku.Solving.Generating
 			progress?.Report(progressResult);
 
 			techniqueCodeFilter ??= DefaultFilter;
-			unsafe
-			{
-				while (true)
-				{
-					var puzzle = Generate(-1, progress, globalizationString: globalizationString);
-					if (ManualSolver.Solve(puzzle).Any(&internalChecking, techniqueCodeFilter))
-					{
-						return puzzle;
-					}
-				}
 
-				static bool internalChecking(TechniqueInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
-					techniqueCodeFilter.Contains(step.TechniqueCode);
+			while (true)
+			{
+				var puzzle = Generate(-1, progress, globalizationString: globalizationString);
+				if (ManualSolver.Solve(puzzle).Any(&internalChecking, techniqueCodeFilter))
+				{
+					return puzzle;
+				}
 			}
+
+			static bool internalChecking(TechniqueInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
+				techniqueCodeFilter.Contains(step.TechniqueCode);
 		}
 
 		/// <summary>

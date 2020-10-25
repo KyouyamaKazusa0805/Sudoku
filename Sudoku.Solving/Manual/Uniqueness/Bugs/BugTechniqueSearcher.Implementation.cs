@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -371,11 +372,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// </summary>
 		/// <param name="list">The list of all true candidates.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		/*skiplocalsinit*/
-		private static bool CheckSingleDigit(IReadOnlyList<int> list)
+		[SkipLocalsInit]
+		private static unsafe bool CheckSingleDigit(IReadOnlyList<int> list)
 		{
-			int i = 0;
-			int comparer = default;
+			int i = 0, comparer;
 			foreach (int cand in list)
 			{
 				if (i++ == 0)
@@ -384,7 +384,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					continue;
 				}
 
-				if (comparer != cand % 9)
+				if (*&comparer != cand % 9)
 				{
 					return false;
 				}

@@ -6377,6 +6377,11 @@
             Encapsulates a <b>Borescoper's deadly pattern</b> technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.FunctionsList">
+            <summary>
+            The function list.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Patterns">
             <summary>
             All different patterns.

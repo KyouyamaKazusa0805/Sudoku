@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -47,6 +48,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Indicates the solver will searching rows or columns.
 		/// </param>
 		/// <returns>The result.</returns>
+		[SkipLocalsInit]
 		private static void GetAll(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int size, bool searchRow)
 		{

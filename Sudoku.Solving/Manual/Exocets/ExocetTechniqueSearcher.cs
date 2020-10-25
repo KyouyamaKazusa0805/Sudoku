@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -120,7 +121,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
-		/*skiplocalsinit*/
+		[SkipLocalsInit]
 		static ExocetTechniqueSearcher()
 		{
 			var t = (stackalloc int[3]);
@@ -194,13 +195,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		/// <returns>All mirror eliminations.</returns>
+		[SkipLocalsInit]
 		protected (TargetEliminations, MirrorEliminations) CheckMirror(
 			in SudokuGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
 			GridMap mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets, IList<DrawingInfo> candidateOffsets)
 		{
 			var targetElims = new TargetEliminations();
 			var mirrorElims = new MirrorEliminations();
-			var playground = (Span<int>)stackalloc[] { mirror.First, mirror.SetAt(1) };
+			var playground = (stackalloc[] { mirror.First, mirror.SetAt(1) });
 			short mirrorCandidatesMask = (short)(
 				grid.GetCandidateMask(playground[0]) | grid.GetCandidateMask(playground[1]));
 			short commonBase = (short)(mirrorCandidatesMask & baseCandidateMask & grid.GetCandidateMask(target));

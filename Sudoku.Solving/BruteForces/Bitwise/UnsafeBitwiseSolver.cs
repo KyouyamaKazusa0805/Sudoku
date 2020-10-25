@@ -15,6 +15,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 	/// This solver is implemented by Zhou Yundong, but he wrote this solver using C.
 	/// I change the programming language to C# to decrease the native calling.
 	/// </remarks>
+	[SkipLocalsInit]
 	public sealed unsafe partial class UnsafeBitwiseSolver : Solver
 	{
 		/// <summary>
@@ -74,6 +75,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		public AnalysisResult Solve(string str) => Solve(SudokuGrid.Parse(str));
 
 		/// <inheritdoc/>
+		[SkipLocalsInit]
 		public override AnalysisResult Solve(in SudokuGrid grid)
 		{
 			var stopwatch = new Stopwatch();
@@ -114,6 +116,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// </param>
 		/// <param name="limit">The limit.</param>
 		/// <returns>The number of all solutions.</returns>
+		[SkipLocalsInit]
 		public long Solve(string puzzle, out string solution, int limit)
 		{
 			fixed (char* p = puzzle)
@@ -134,6 +137,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
 		/// <param name="limit">The limit.</param>
 		/// <returns>The number of all solutions.</returns>
+		[SkipLocalsInit]
 		public long Solve(string puzzle, StringBuilder? solution, int limit)
 		{
 			fixed (char* p = puzzle)
@@ -168,6 +172,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <param name="grid">The grid.</param>
 		/// <param name="solutionIfUnique">(<see langword="out"/> parameter) The solution if the puzzle is unique.</param>
 		/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
+		[SkipLocalsInit]
 		public bool CheckValidity(string grid, [NotNullWhen(true)] out string? solutionIfUnique)
 		{
 			fixed (char* puzzle = grid)
@@ -348,89 +353,89 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// Core of fast processing.
 		/// </summary>
 		/// <returns>The <see cref="bool"/> value.</returns>
-		/*skiplocalsinit*/
 		private bool Update()
 		{
-			uint shrink = 1, s = default, a, b, c, cl;
+			uint shrink = 1, a, b, c, cl;
 			while (shrink != 0)
 			{
+				uint s;
 				shrink = 0;
 				if (_g->UnsolvedRows[0] == 0) goto Digit3;
 				{
 					uint ar = _g->UnsolvedRows[0];  // valid for Digits 0,1,2
 					if ((ar & 0x1FF) == 0) goto Digit1;
 					if (_g->Bands[0 * 3 + 0] == _g->PrevBands[0 * 3 + 0]) goto Digit0b;
-					if (!updn(0, 0, 1, 2)) return false;
-					if ((ar & 7) != s)
+					if (!updn(&s, 0, 0, 1, 2)) return false;
+					if ((ar & 7) != *&s)
 					{
 						ar &= 0x7FFFFF8 | s;
-						upwcl(0, 3, 6, 9, 12, 15, 18, 21, 24);
+						upwcl(&s, 0, 3, 6, 9, 12, 15, 18, 21, 24);
 					}
 				Digit0b:
 					if (_g->Bands[0 * 3 + 1] == _g->PrevBands[0 * 3 + 1]) goto Digit0c;
-					if (!updn(0, 1, 0, 2)) return false;
-					if (((ar >> 3) & 7) != s)
+					if (!updn(&s, 0, 1, 0, 2)) return false;
+					if (((ar >> 3) & 7) != *&s)
 					{
 						ar &= 0x7FFFFC7 | (s << 3);
-						upwcl(1, 4, 7, 10, 13, 16, 19, 22, 25);
+						upwcl(&s, 1, 4, 7, 10, 13, 16, 19, 22, 25);
 					}
 				Digit0c:
 					if (_g->Bands[0 * 3 + 2] == _g->PrevBands[0 * 3 + 2]) goto Digit1;
-					if (!updn(0, 2, 0, 1)) return false;
-					if (((ar >> 6) & 7) != s)
+					if (!updn(&s, 0, 2, 0, 1)) return false;
+					if (((ar >> 6) & 7) != *&s)
 					{
 						ar &= 0x7FFFE3F | (s << 6);
-						upwcl(2, 5, 8, 11, 14, 17, 20, 23, 26);
+						upwcl(&s, 2, 5, 8, 11, 14, 17, 20, 23, 26);
 					}
 				Digit1:
 					if (((ar >> 9) & 0x1FF) == 0) goto Digit2;
 					if (_g->Bands[1 * 3 + 0] == _g->PrevBands[1 * 3 + 0]) goto Digit1b;
-					if (!updn(1, 0, 1, 2)) return false;
-					if (((ar >> 9) & 7) != s)
+					if (!updn(&s, 1, 0, 1, 2)) return false;
+					if (((ar >> 9) & 7) != *&s)
 					{
 						ar &= 0x7FFF1FF | (s << 9);
-						upwcl(0, 0, 6, 9, 12, 15, 18, 21, 24);
+						upwcl(&s, 0, 0, 6, 9, 12, 15, 18, 21, 24);
 					}
 				Digit1b:
 					if (_g->Bands[1 * 3 + 1] == _g->PrevBands[1 * 3 + 1]) goto Digit1c;
-					if (!updn(1, 1, 0, 2)) return false;
-					if (((ar >> 12) & 7) != s)
+					if (!updn(&s, 1, 1, 0, 2)) return false;
+					if (((ar >> 12) & 7) != *&s)
 					{
 						ar &= 0x7FF8FFF | (s << 12);
-						upwcl(1, 1, 7, 10, 13, 16, 19, 22, 25);
+						upwcl(&s, 1, 1, 7, 10, 13, 16, 19, 22, 25);
 					}
 				Digit1c:
 					if (_g->Bands[1 * 3 + 2] == _g->PrevBands[1 * 3 + 2]) goto Digit2;
-					if (!updn(1, 2, 0, 1)) return false;
-					if (((ar >> 15) & 7) != s)
+					if (!updn(&s, 1, 2, 0, 1)) return false;
+					if (((ar >> 15) & 7) != *&s)
 					{
 						ar &= 0x7FC7FFF | (s << 15);
-						upwcl(2, 2, 8, 11, 14, 17, 20, 23, 26);
+						upwcl(&s, 2, 2, 8, 11, 14, 17, 20, 23, 26);
 					}
 				Digit2:
 					if (((ar >> 18) & 0x1FF) == 0) goto End012;
 					if (_g->Bands[2 * 3 + 0] == _g->PrevBands[2 * 3 + 0]) goto Digit2b;
-					if (!updn(2, 0, 1, 2)) return false;
-					if (((ar >> 18) & 7) != s)
+					if (!updn(&s, 2, 0, 1, 2)) return false;
+					if (((ar >> 18) & 7) != *&s)
 					{
 						ar &= 0x7E3FFFF | (s << 18);
-						upwcl(0, 0, 3, 9, 12, 15, 18, 21, 24);
+						upwcl(&s, 0, 0, 3, 9, 12, 15, 18, 21, 24);
 					}
 				Digit2b:
 					if (_g->Bands[2 * 3 + 1] == _g->PrevBands[2 * 3 + 1]) goto Digit2c;
-					if (!updn(2, 1, 0, 2)) return false;
-					if (((ar >> 21) & 7) != s)
+					if (!updn(&s, 2, 1, 0, 2)) return false;
+					if (((ar >> 21) & 7) != *&s)
 					{
 						ar &= 0x71FFFFF | (s << 21);
-						upwcl(1, 1, 4, 10, 13, 16, 19, 22, 25);
+						upwcl(&s, 1, 1, 4, 10, 13, 16, 19, 22, 25);
 					}
 				Digit2c:
 					if (_g->Bands[2 * 3 + 2] == _g->PrevBands[2 * 3 + 2]) goto End012;
-					if (!updn(2, 2, 0, 1)) return false;
-					if (((ar >> 24) & 7) != s)
+					if (!updn(&s, 2, 2, 0, 1)) return false;
+					if (((ar >> 24) & 7) != *&s)
 					{
 						ar &= 0xFFFFFF | (s << 24);
-						upwcl(2, 2, 5, 11, 14, 17, 20, 23, 26);
+						upwcl(&s, 2, 2, 5, 11, 14, 17, 20, 23, 26);
 					}
 				End012:
 					_g->UnsolvedRows[0] = ar;
@@ -441,77 +446,77 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					uint ar = _g->UnsolvedRows[1];  // valid for Digits 3,4,5
 					if ((ar & 0x1FF) == 0) goto Digit4;
 					if (_g->Bands[3 * 3 + 0] == _g->PrevBands[3 * 3 + 0]) goto Digit3b;
-					if (!updn(3, 0, 1, 2)) return false;
-					if ((ar & 7) != s)
+					if (!updn(&s, 3, 0, 1, 2)) return false;
+					if ((ar & 7) != *&s)
 					{
 						ar &= 0x7FFFFF8 | s;
-						upwcl(0, 0, 3, 6, 12, 15, 18, 21, 24);
+						upwcl(&s, 0, 0, 3, 6, 12, 15, 18, 21, 24);
 					}
 				Digit3b:
 					if (_g->Bands[3 * 3 + 1] == _g->PrevBands[3 * 3 + 1]) goto Digit3c;
-					if (!updn(3, 1, 0, 2)) return false;
-					if (((ar >> 3) & 7) != s)
+					if (!updn(&s, 3, 1, 0, 2)) return false;
+					if (((ar >> 3) & 7) != *&s)
 					{
 						ar &= 0x7FFFFC7 | (s << 3);
-						upwcl(1, 1, 4, 7, 13, 16, 19, 22, 25);
+						upwcl(&s, 1, 1, 4, 7, 13, 16, 19, 22, 25);
 					}
 				Digit3c:
 					if (_g->Bands[3 * 3 + 2] == _g->PrevBands[3 * 3 + 2]) goto Digit4;
-					if (!updn(3, 2, 0, 1)) return false;
-					if (((ar >> 6) & 7) != s)
+					if (!updn(&s, 3, 2, 0, 1)) return false;
+					if (((ar >> 6) & 7) != *&s)
 					{
 						ar &= 0x7FFFE3F | (s << 6);
-						upwcl(2, 2, 5, 8, 14, 17, 20, 23, 26);
+						upwcl(&s, 2, 2, 5, 8, 14, 17, 20, 23, 26);
 					}
 				Digit4:
 					if (((ar >> 9) & 0x1FF) == 0) goto Digit5;
 					if (_g->Bands[4 * 3 + 0] == _g->PrevBands[4 * 3 + 0]) goto Digit4b;
-					if (!updn(4, 0, 1, 2)) return false;
-					if (((ar >> 9) & 7) != s)
+					if (!updn(&s, 4, 0, 1, 2)) return false;
+					if (((ar >> 9) & 7) != *&s)
 					{
 						ar &= 0x7FFF1FF | (s << 9);
-						upwcl(0, 0, 3, 6, 9, 15, 18, 21, 24);
+						upwcl(&s, 0, 0, 3, 6, 9, 15, 18, 21, 24);
 					}
 				Digit4b:
 					if (_g->Bands[4 * 3 + 1] == _g->PrevBands[4 * 3 + 1]) goto Digit4c;
-					if (!updn(4, 1, 0, 2)) return false;
-					if (((ar >> 12) & 7) != s)
+					if (!updn(&s, 4, 1, 0, 2)) return false;
+					if (((ar >> 12) & 7) != *&s)
 					{
 						ar &= 0x7FF8FFF | (s << 12);
-						upwcl(1, 1, 4, 7, 10, 16, 19, 22, 25);
+						upwcl(&s, 1, 1, 4, 7, 10, 16, 19, 22, 25);
 					}
 				Digit4c:
 					if (_g->Bands[4 * 3 + 2] == _g->PrevBands[4 * 3 + 2]) goto Digit5;
-					if (!updn(4, 2, 0, 1)) return false;
-					if (((ar >> 15) & 7) != s)
+					if (!updn(&s, 4, 2, 0, 1)) return false;
+					if (((ar >> 15) & 7) != *&s)
 					{
 						ar &= 0x7FC7FFF | (s << 15);
-						upwcl(2, 2, 5, 8, 11, 17, 20, 23, 26);
+						upwcl(&s, 2, 2, 5, 8, 11, 17, 20, 23, 26);
 					}
 				Digit5:
 					if (((ar >> 18) & 0x1FF) == 0) goto End345;
 					if (_g->Bands[5 * 3 + 0] == _g->PrevBands[5 * 3 + 0]) goto Digit5b;
-					if (!updn(5, 0, 1, 2)) return false;
-					if (((ar >> 18) & 7) != s)
+					if (!updn(&s, 5, 0, 1, 2)) return false;
+					if (((ar >> 18) & 7) != *&s)
 					{
 						ar &= 0x7E3FFFF | (s << 18);
-						upwcl(0, 0, 3, 6, 9, 12, 18, 21, 24);
+						upwcl(&s, 0, 0, 3, 6, 9, 12, 18, 21, 24);
 					}
 				Digit5b:
 					if (_g->Bands[5 * 3 + 1] == _g->PrevBands[5 * 3 + 1]) goto Digit5c;
-					if (!updn(5, 1, 0, 2)) return false;
-					if (((ar >> 21) & 7) != s)
+					if (!updn(&s, 5, 1, 0, 2)) return false;
+					if (((ar >> 21) & 7) != *&s)
 					{
 						ar &= 0x71FFFFF | (s << 21);
-						upwcl(1, 1, 4, 7, 10, 13, 19, 22, 25);
+						upwcl(&s, 1, 1, 4, 7, 10, 13, 19, 22, 25);
 					}
 				Digit5c:
 					if (_g->Bands[5 * 3 + 2] == _g->PrevBands[5 * 3 + 2]) goto End345;
-					if (!updn(5, 2, 0, 1)) return false;
-					if (((ar >> 24) & 7) != s)
+					if (!updn(&s, 5, 2, 0, 1)) return false;
+					if (((ar >> 24) & 7) != *&s)
 					{
 						ar &= 0xFFFFFF | (s << 24);
-						upwcl(2, 2, 5, 8, 11, 14, 20, 23, 26);
+						upwcl(&s, 2, 2, 5, 8, 11, 14, 20, 23, 26);
 					}
 				End345:
 					_g->UnsolvedRows[1] = ar;
@@ -522,77 +527,77 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					uint ar = _g->UnsolvedRows[2];  // valid for Digits 6,7,8
 					if ((ar & 0x1FF) == 0) goto Digit7;
 					if (_g->Bands[6 * 3 + 0] == _g->PrevBands[6 * 3 + 0]) goto Digit6b;
-					if (!updn(6, 0, 1, 2)) return false;
-					if ((ar & 7) != s)
+					if (!updn(&s, 6, 0, 1, 2)) return false;
+					if ((ar & 7) != *&s)
 					{
 						ar &= 0x7FFFFF8 | s;
-						upwcl(0, 0, 3, 6, 9, 12, 15, 21, 24);
+						upwcl(&s, 0, 0, 3, 6, 9, 12, 15, 21, 24);
 					}
 				Digit6b:
 					if (_g->Bands[6 * 3 + 1] == _g->PrevBands[6 * 3 + 1]) goto Digit6c;
-					if (!updn(6, 1, 0, 2)) return false;
-					if (((ar >> 3) & 7) != s)
+					if (!updn(&s, 6, 1, 0, 2)) return false;
+					if (((ar >> 3) & 7) != *&s)
 					{
 						ar &= 0x7FFFFC7 | (s << 3);
-						upwcl(1, 1, 4, 7, 10, 13, 16, 22, 25);
+						upwcl(&s, 1, 1, 4, 7, 10, 13, 16, 22, 25);
 					}
 				Digit6c:
 					if (_g->Bands[6 * 3 + 2] == _g->PrevBands[6 * 3 + 2]) goto Digit7;
-					if (!updn(6, 2, 0, 1)) return false;
-					if (((ar >> 6) & 7) != s)
+					if (!updn(&s, 6, 2, 0, 1)) return false;
+					if (((ar >> 6) & 7) != *&s)
 					{
 						ar &= 0x7FFFE3F | (s << 6);
-						upwcl(2, 2, 5, 8, 11, 14, 17, 23, 26);
+						upwcl(&s, 2, 2, 5, 8, 11, 14, 17, 23, 26);
 					}
 				Digit7:
 					if (((ar >> 9) & 0x1FF) == 0) goto Digit8;
 					if (_g->Bands[7 * 3 + 0] == _g->PrevBands[7 * 3 + 0]) goto Digit7b;
-					if (!updn(7, 0, 1, 2)) return false;
-					if (((ar >> 9) & 7) != s)
+					if (!updn(&s, 7, 0, 1, 2)) return false;
+					if (((ar >> 9) & 7) != *&s)
 					{
 						ar &= 0x7FFF1FF | (s << 9);
-						upwcl(0, 0, 3, 6, 9, 12, 15, 18, 24);
+						upwcl(&s, 0, 0, 3, 6, 9, 12, 15, 18, 24);
 					}
 				Digit7b:
 					if (_g->Bands[7 * 3 + 1] == _g->PrevBands[7 * 3 + 1]) goto Digit7c;
-					if (!updn(7, 1, 0, 2)) return false;
-					if (((ar >> 12) & 7) != s)
+					if (!updn(&s, 7, 1, 0, 2)) return false;
+					if (((ar >> 12) & 7) != *&s)
 					{
 						ar &= 0x7FF8FFF | (s << 12);
-						upwcl(1, 1, 4, 7, 10, 13, 16, 19, 25);
+						upwcl(&s, 1, 1, 4, 7, 10, 13, 16, 19, 25);
 					}
 				Digit7c:
 					if (_g->Bands[7 * 3 + 2] == _g->PrevBands[7 * 3 + 2]) goto Digit8;
-					if (!updn(7, 2, 0, 1)) return false;
-					if (((ar >> 15) & 7) != s)
+					if (!updn(&s, 7, 2, 0, 1)) return false;
+					if (((ar >> 15) & 7) != *&s)
 					{
 						ar &= 0x7FC7FFF | (s << 15);
-						upwcl(2, 2, 5, 8, 11, 14, 17, 20, 26);
+						upwcl(&s, 2, 2, 5, 8, 11, 14, 17, 20, 26);
 					}
 				Digit8:
 					if (((ar >> 18) & 0x1FF) == 0) goto End678;
 					if (_g->Bands[8 * 3 + 0] == _g->PrevBands[8 * 3 + 0]) goto Digit8b;
-					if (!updn(8, 0, 1, 2)) return false;
-					if (((ar >> 18) & 7) != s)
+					if (!updn(&s, 8, 0, 1, 2)) return false;
+					if (((ar >> 18) & 7) != *&s)
 					{
 						ar &= 0x7E3FFFF | (s << 18);
-						upwcl(0, 0, 3, 6, 9, 12, 15, 18, 21);
+						upwcl(&s, 0, 0, 3, 6, 9, 12, 15, 18, 21);
 					}
 				Digit8b:
 					if (_g->Bands[8 * 3 + 1] == _g->PrevBands[8 * 3 + 1]) goto Digit8c;
-					if (!updn(8, 1, 0, 2)) return false;
-					if (((ar >> 21) & 7) != s)
+					if (!updn(&s, 8, 1, 0, 2)) return false;
+					if (((ar >> 21) & 7) != *&s)
 					{
 						ar &= 0x71FFFFF | (s << 21);
-						upwcl(1, 1, 4, 7, 10, 13, 16, 19, 22);
+						upwcl(&s, 1, 1, 4, 7, 10, 13, 16, 19, 22);
 					}
 				Digit8c:
 					if (_g->Bands[8 * 3 + 2] == _g->PrevBands[8 * 3 + 2]) goto End678;
-					if (!updn(8, 2, 0, 1)) return false;
-					if (((ar >> 24) & 7) != s)
+					if (!updn(&s, 8, 2, 0, 1)) return false;
+					if (((ar >> 24) & 7) != *&s)
 					{
 						ar &= 0xFFFFFF | (s << 24);
-						upwcl(2, 2, 5, 8, 11, 14, 17, 20, 23);
+						upwcl(&s, 2, 2, 5, 8, 11, 14, 17, 20, 23);
 					}
 				End678:
 					_g->UnsolvedRows[2] = ar;
@@ -603,7 +608,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			// The core Update routine from zhouyundong.
 			// This copy has been optimized by champagne and JasonLion in minor ways.
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			bool updn(uint i, uint j, uint k, uint l)
+			bool updn(uint* s, uint i, uint j, uint k, uint l)
 			{
 				a = _g->Bands[i * 3 + j];
 				shrink = (uint)(TblShrinkMask[a & 0x1FF] | TblShrinkMask[(a >> 9) & 0x1FF] << 3 | TblShrinkMask[a >> 18] << 6);
@@ -614,19 +619,19 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 
 				b = _g->Bands[i * 3 + k];
 				c = _g->Bands[i * 3 + l];
-				s = (a | a >> 9 | a >> 18) & 0x1FF;
-				_g->Bands[i * 3 + l] &= (uint)TblMaskSingle[s];
-				_g->Bands[i * 3 + k] &= (uint)TblMaskSingle[s];
-				s = TblRowUniq[TblShrinkSingle[shrink] & TblColumnSingle[s]];
+				*s = (a | a >> 9 | a >> 18) & 0x1FF;
+				_g->Bands[i * 3 + l] &= (uint)TblMaskSingle[*s];
+				_g->Bands[i * 3 + k] &= (uint)TblMaskSingle[*s];
+				*s = TblRowUniq[TblShrinkSingle[shrink] & TblColumnSingle[*s]];
 				_g->PrevBands[i * 3 + j] = _g->Bands[i * 3 + j] = a;
 
 				return true;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			void upwcl(uint i, uint p, uint q, uint r, uint t, uint u, uint v, uint w, uint x)
+			void upwcl(uint* s, uint i, uint p, uint q, uint r, uint t, uint u, uint v, uint w, uint x)
 			{
-				cl = ~(a & TblRowMask[s]);
+				cl = ~(a & TblRowMask[*s]);
 				_g->UnsolvedCells[i] &= cl;
 				_g->Bands[p] &= cl;
 				_g->Bands[q] &= cl;

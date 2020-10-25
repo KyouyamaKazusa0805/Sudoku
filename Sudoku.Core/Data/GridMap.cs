@@ -32,7 +32,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// </summary>
 		/// <seealso cref="GridMap()"/>
-		public static readonly GridMap Empty = default;
+		public static readonly GridMap Empty;
 
 		/// <summary>
 		/// The left curly brace.
@@ -820,7 +820,7 @@ namespace Sudoku.Data
 				{
 					sb.Append(value & 1);
 				}
-				sb.Append(" ");
+				sb.Append(' ');
 				for (; i < 41; i++, value >>= 1)
 				{
 					sb.Append(value & 1);
@@ -829,7 +829,7 @@ namespace Sudoku.Data
 				{
 					sb.Append(value & 1);
 				}
-				sb.Append(" ");
+				sb.Append(' ');
 				for (; i < 81; i++, value >>= 1)
 				{
 					sb.Append(value & 1);

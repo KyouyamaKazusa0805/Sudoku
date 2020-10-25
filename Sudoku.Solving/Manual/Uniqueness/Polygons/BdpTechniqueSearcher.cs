@@ -13,6 +13,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	public sealed partial class BdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
+		/// The function list.
+		/// </summary>
+		private static readonly unsafe delegate* managed<IList<TechniqueInfo>, in SudokuGrid, in Pattern, short, short, short, in GridMap, void>[] FunctionsList =
+		{
+			&CheckType1,
+			&CheckType2,
+			&CheckType3,
+			&CheckType4
+		};
+
+		/// <summary>
 		/// All different patterns.
 		/// </summary>
 		/// <remarks>
@@ -26,41 +37,29 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			if (EmptyMap.Count < 7)
 			{
 				return;
 			}
 
-			unsafe
+			for (int i = 0, end = EmptyMap.Count == 7 ? 14580 : 11664; i < end; i++)
 			{
-				var funcs = stackalloc delegate* managed<
-					IList<TechniqueInfo>, in SudokuGrid, in Pattern, short, short, short, in GridMap, void>[]
+				var pattern = Patterns[i];
+				if ((EmptyMap | pattern.Map) != EmptyMap)
 				{
-					&CheckType1,
-					&CheckType2,
-					&CheckType3,
-					&CheckType4
-				};
+					// The pattern contains non-empty cells.
+					continue;
+				}
 
-				for (int i = 0, end = EmptyMap.Count == 7 ? 14580 : 11664; i < end; i++)
+				short cornerMask1 = grid.BitwiseOrMasks(pattern.Pair1Map);
+				short cornerMask2 = grid.BitwiseOrMasks(pattern.Pair2Map);
+				short centerMask = grid.BitwiseOrMasks(pattern.CenterCellsMap);
+				var map = pattern.Map;
+				for (int j = 0; j < 4; j++)
 				{
-					var pattern = Patterns[i];
-					if ((EmptyMap | pattern.Map) != EmptyMap)
-					{
-						// The pattern contains non-empty cells.
-						continue;
-					}
-
-					short cornerMask1 = grid.BitwiseOrMasks(pattern.Pair1Map);
-					short cornerMask2 = grid.BitwiseOrMasks(pattern.Pair2Map);
-					short centerMask = grid.BitwiseOrMasks(pattern.CenterCellsMap);
-					var map = pattern.Map;
-					for (int j = 0; j < 4; j++)
-					{
-						funcs[j](accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
-					}
+					FunctionsList[j](accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
 				}
 			}
 		}

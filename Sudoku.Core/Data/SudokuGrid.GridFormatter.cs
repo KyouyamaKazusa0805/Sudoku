@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Extensions;
@@ -200,6 +201,7 @@ namespace Sudoku.Data
 			/// <exception cref="ArgumentException">
 			/// Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
 			/// </exception>
+			[SkipLocalsInit]
 			private string ToSukakuString(in SudokuGrid grid)
 			{
 				if (Multiline)
@@ -308,6 +310,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <returns>The result.</returns>
+			[SkipLocalsInit]
 			private string ToMultiLineStringCore(in SudokuGrid grid)
 			{
 				// Step 1: gets the candidates information grouped by columns.
@@ -415,7 +418,7 @@ namespace Sudoku.Data
 									in GridFormatter formatter, IList<short> valuesByRow,
 									int start, int end, Span<int> maxLengths)
 								{
-									sb.Append(" ");
+									sb.Append(' ');
 									for (int i = start; i <= end; i++)
 									{
 										// Get digit.

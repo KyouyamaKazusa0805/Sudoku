@@ -172,13 +172,10 @@ namespace Sudoku.Extensions
 		/// <returns>The result string.</returns>
 		public static string Reserve(this string @this, string reservePattern)
 		{
-			var span = (stackalloc char[1]);
-
 			var sb = new StringBuilder();
 			foreach (char c in @this)
 			{
-				span[0] = c;
-				if (span.ToString().SatisfyPattern(reservePattern))
+				if (c.ToString().SatisfyPattern(reservePattern))
 				{
 					sb.Append(c);
 				}

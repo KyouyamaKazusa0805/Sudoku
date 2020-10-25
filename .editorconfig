@@ -385,6 +385,9 @@ dotnet_diagnostic.CA1819.severity = none
 # CA1822: Mark members as static
 dotnet_diagnostic.CA1822.severity = none
 
+# CA2208: Instantiate argument exceptions correctly
+dotnet_diagnostic.CA2208.severity = silent
+
 
 # Other custom disabled cases.
 # May be deleted later in the future.
