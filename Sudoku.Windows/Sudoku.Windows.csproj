@@ -2,7 +2,8 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
+		<TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
 		<UseWPF>true</UseWPF>
 		<Nullable>enable</Nullable>
 		<PackageId>Sunnie's sudoku solution</PackageId>

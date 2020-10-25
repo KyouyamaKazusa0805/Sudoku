@@ -53,7 +53,7 @@ namespace Sudoku.Data
 		/// to reduce object creation.
 		/// </remarks>
 		/// <seealso cref="SudokuGrid()"/>
-		public static readonly SudokuGrid Undefined = new();
+		public static readonly SudokuGrid Undefined;
 
 		/// <summary>
 		/// The empty grid that is valid during implementation or running the program

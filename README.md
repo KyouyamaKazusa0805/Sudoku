@@ -19,9 +19,9 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 * Programming language: C#<br/>编程语言：C#
 * Language version: 9.0 Preview<br/>语言版本：9.0 预览版
-* Framework: .NET Core 3.1<br/>框架：.NET Core 3.1
+* Framework: .NET 5<br/>框架：.NET 5
 * Indenting: Tabs（`\t`）<br/>缩进：原生 Tab（`\t`）
-* Integrated development environment: Visual Studio 2019 V16.8 Preview 3.2<br/>集成开发环境：Visual Studio 2019 V16.8 预览版本 3.2
+* Integrated development environment: Visual Studio 2019 V16.8 Preview 5<br/>集成开发环境：Visual Studio 2019 V16.8 预览版本 5
 * Language Support: English, Simplified Chinese<br/>语言支持：英语、简体中文
 
 
@@ -133,7 +133,6 @@ Some of them are unnecessary for you perhaps, you can remove them. In addition, 
 | `AUTHOR_RESERVED`            | Indicates the method is only used for author himself. You can delete the code surrounded with this symbol.<br/>表示这段代码只对作者来说才有意义。你完全可以删除掉这段代码，或者不使用该符号。 |
 | `MUST_DOWNLOAD_TRAINED_DATA` | Indicates whether the solution will download the trained data file `eng.traineddata` on GitHub when the local file with the same name cannot be found. Sometimes the file downloading is too slow to stand with it. If this symbol is undefined, it'll offer the user an error message window,  saying local file cannot be found.<br/>表示这个解决方案是否在本地的同名文件不存在的时候，从 GitHub 上下载该文件。有时候这个下载特别慢，以至于我们完全没办法忍受它。如果这个符号没有定义的话，我们就会在文件找不到的时候直接以错误弹窗的形式提示用户不能使用识别功能。 |
 | `PREFER_ZERO_BITS`           | Indicates whether the integer handling prefers zero bits (unset bits). This symbol is defined when the integer contains more unset bits than set bits in order to optimize the performance. This symbol is only used in extension methods named `CountSet` about integers.<br/>表示是否整数处理的时候更偏好未置位的比特（也就是 0 而不是 1 的比特位）。当整数包含的 0 比特位比 1 比特位要多的话，可以考虑使用这个符号，以便优化性能。这个符号只用于有关整数的 `CountSet` 扩展方法。 |
-| `CSHARP_9_PREVIEW`           | Indicates the current feature is only used for C# 9 (preview). If C# 9 is released, this symbol will be removed. For example, `class IsExternalInit` to indicate the property contains `init` setter in metadata.<br/>表示代码只在 C# 9 预览版里存在。当 C# 9 正式版时，这段代码将会消失。比如 `IsExternalInit` 类用来表达属性是否包含 `init` 赋值器，用于元数据里。 |
 
 
 

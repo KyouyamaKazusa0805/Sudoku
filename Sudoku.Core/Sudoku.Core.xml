@@ -7528,11 +7528,6 @@
             <param name="selector">The condition to check, specified as a function pointer.</param>
             <returns>The number of all elements satisfying the condition.</returns>
         </member>
-        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
-            <summary>
-            To specify the property containing <see langword="init"/> setter.
-            </summary>
-        </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
             <summary>
             Indicates an error for reporting a string is an invalid regular expression.
