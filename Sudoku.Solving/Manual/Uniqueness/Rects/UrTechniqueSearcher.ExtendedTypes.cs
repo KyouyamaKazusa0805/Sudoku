@@ -275,7 +275,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
-		partial void Check2D1SL(
+		unsafe partial void Check2D1SL(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
 		{
@@ -335,7 +335,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								if (urCell == corner1 || urCell == corner2)
 								{
-									if (new GridMap { urCell, otherCell }.CoveredRegions.Any(r => r == region))
+									static bool internalChecking(int r, in int region) => r == region;
+									if (new GridMap { urCell, otherCell }.CoveredRegions
+										.Any(&internalChecking, region))
 									{
 										foreach (int d in grid.GetCandidates(urCell))
 										{

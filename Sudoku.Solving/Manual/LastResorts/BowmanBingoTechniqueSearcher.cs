@@ -216,12 +216,15 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="grid">The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
-		private static unsafe bool IsValidGrid(SudokuGrid grid, int cell) =>
-			Peers[cell].All(
-				c =>
-					grid.GetStatus(c) is var status
-					&& (status != Empty && grid[c] != grid[cell] || status == Empty)
-					&& grid.GetCandidateMask(c) != 0);
+		private static unsafe bool IsValidGrid(SudokuGrid grid, int cell)
+		{
+			return Peers[cell].All(&internalChecking, grid, cell);
+
+			static bool internalChecking(int c, in SudokuGrid grid, in int cell) =>
+				grid.GetStatus(c) is var status
+				&& (status != Empty && grid[c] != grid[cell] || status == Empty)
+				&& grid.GetCandidateMask(c) != 0;
+		}
 #endif
 	}
 }

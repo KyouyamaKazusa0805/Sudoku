@@ -77,7 +77,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="a">(<see langword="in"/> parameter) The left grid map.</param>
 		/// <param name="b">(<see langword="in"/> parameter) The right grid map.</param>
 		/// <param name="c">(<see langword="in"/> parameter) The intersection.</param>
-		private static void GetAll(
+		private static unsafe void GetAll(
 			IList<TechniqueInfo> result, in SudokuGrid grid, int size, int baseSet, int coverSet,
 			in GridMap a, in GridMap b, in GridMap c)
 		{
@@ -89,8 +89,9 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
+				static bool internalChecking(int d, in int coverSet) => ValueMaps[d].Overlaps(RegionMaps[coverSet]);
 				var digits = mask.GetAllSets();
-				if (digits.Any(d => ValueMaps[d].Overlaps(RegionMaps[coverSet])))
+				if (digits.Any(&internalChecking, coverSet))
 				{
 					continue;
 				}

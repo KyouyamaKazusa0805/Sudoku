@@ -35,13 +35,21 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates whether the specified instance contains any extra regions.
 		/// </summary>
-		public bool ContainsExtraRegions => ExtraRegionsMask?.Any(m => m != 0) ?? false;
+		public unsafe bool ContainsExtraRegions
+		{
+			get
+			{
+				static bool internalChecking(int m) => m != 0;
+				return ExtraRegionsMask?.Any(&internalChecking) ?? false;
+			}
+		}
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => 9.6M + (ContainsExtraRegions ? 0 : .2M);
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => ContainsExtraRegions ? TechniqueCode.ComplexSe : TechniqueCode.Se;
+		public override TechniqueCode TechniqueCode =>
+			ContainsExtraRegions ? TechniqueCode.ComplexSe : TechniqueCode.Se;
 
 
 		/// <inheritdoc/>

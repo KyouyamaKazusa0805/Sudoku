@@ -82,7 +82,7 @@ namespace System.Linq
 		/// <returns>The result indicating whether all values satisfy the condition.</returns>
 		public static unsafe bool All<TElement, TOther>(
 			this IEnumerable<TElement> @this, delegate* managed<TElement, in TOther, bool> selector,
-			in TOther value) where TOther : struct
+			in TOther value)
 		{
 			foreach (var element in @this)
 			{
@@ -161,7 +161,7 @@ namespace System.Linq
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
 		public static unsafe bool Any<TElement, TOther>(
 			this IEnumerable<TElement> @this, delegate* managed<TElement, in TOther, bool> selector,
-			in TOther value) where TOther : struct
+			in TOther value)
 		{
 			foreach (var element in @this)
 			{
@@ -271,12 +271,12 @@ namespace System.Linq
 		/// <summary>
 		/// Count up all elements satisfying the specified condition.
 		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <typeparam name="TStruct">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="selector">The condition to check, specified as a function pointer.</param>
 		/// <returns>The number of all elements satisfying the condition.</returns>
-		public static unsafe int Count<T>(this IEnumerable<T> @this, delegate* managed<in T, bool> selector)
-			where T : struct
+		public static unsafe int Count<TStruct>(
+			this IEnumerable<TStruct> @this, delegate* managed<in TStruct, bool> selector) where TStruct : struct
 		{
 			int count = 0;
 			foreach (var element in @this)

@@ -343,7 +343,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 
-		partial void Check2D1SL(
+		unsafe partial void Check2D1SL(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
 

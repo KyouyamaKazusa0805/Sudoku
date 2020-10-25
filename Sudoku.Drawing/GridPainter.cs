@@ -261,16 +261,18 @@ namespace Sudoku.Drawing
 		/// <param name="g">The graphics.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <param name="offset">The drawing offset.</param>
-		private void DrawEliminations(Graphics g, IEnumerable<Conclusion> conclusions, float offset)
+		private unsafe void DrawEliminations(Graphics g, IEnumerable<Conclusion> conclusions, float offset)
 		{
 			using var eliminationBrush = new SolidBrush(Settings.EliminationColor);
 			using var cannibalBrush = new SolidBrush(Settings.CannibalismColor);
 			foreach (var (t, c, d) in from c in conclusions where c.ConclusionType == Elimination select c)
 			{
 				g.FillEllipse(
-					View?.Candidates?.Any(pair => pair.Value == c * 9 + d) ?? false ? cannibalBrush : eliminationBrush,
+					View?.Candidates?.Any(&internalChecking, c, d) ?? false ? cannibalBrush : eliminationBrush,
 					PointConverter.GetMouseRectangle(c, d).Zoom(-offset / 3));
 			}
+
+			static bool internalChecking(DrawingInfo pair, in int c, in int d) => pair.Value == c * 9 + d;
 		}
 
 		/// <summary>
@@ -465,7 +467,7 @@ namespace Sudoku.Drawing
 		/// <param name="g">The graphics.</param>
 		/// <param name="candidates">The candidates.</param>
 		/// <param name="offset">The drawing offsets.</param>
-		private void DrawCandidates(Graphics g, IEnumerable<DrawingInfo> candidates, float offset)
+		private unsafe void DrawCandidates(Graphics g, IEnumerable<DrawingInfo> candidates, float offset)
 		{
 			float cellWidth = PointConverter.CellSize.Width;
 			float candidateWidth = PointConverter.CandidateSize.Width;
@@ -478,7 +480,7 @@ namespace Sudoku.Drawing
 			foreach (var (id, candidate) in candidates)
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				if (!(Conclusions?.Any(conc => c(in conc, cell, digit)) ?? false)
+				if (!(Conclusions?.Any(&internalChecking, cell, digit) ?? false)
 					&& Settings.PaletteColors.TryGetValue(id, out var color))
 				{
 					// In the normal case, I'll draw these circles.
@@ -511,7 +513,7 @@ namespace Sudoku.Drawing
 				g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
 			}
 
-			static bool c(in Conclusion conc, int cell, int digit) =>
+			static bool internalChecking(Conclusion conc, in int cell, in int digit) =>
 				conc is var (ttt, ccc, ddd) && (ttt, ccc, ddd) == (Elimination, cell, digit);
 		}
 

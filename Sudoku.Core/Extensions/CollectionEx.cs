@@ -104,8 +104,14 @@ namespace Sudoku.Extensions
 		/// <param name="other">Another collection.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool CollectionEquals<TNotNull>(this ICollection<TNotNull> @this, ICollection<TNotNull> other)
-			where TNotNull : notnull => @this.Count == other.Count && @this.All(element => other.Contains(element));
+		public static unsafe bool CollectionEquals<TNotNull>(
+			this ICollection<TNotNull> @this, ICollection<TNotNull> other) where TNotNull : notnull
+		{
+			return @this.Count == other.Count && @this.All(&internalEquals, other);
+
+			static bool internalEquals(TNotNull element, in ICollection<TNotNull> other) =>
+				other.Contains(element);
+		}
 
 		/// <summary>
 		/// Get a result collection from a may-be-<see langword="null"/> collection.

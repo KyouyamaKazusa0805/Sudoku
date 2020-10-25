@@ -112,21 +112,33 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsCell(int cell) => Cells?.Any(p => p.Value == cell) ?? false;
+		public unsafe bool ContainsCell(int cell)
+		{
+			static bool internalChecking(DrawingInfo p, in int cell) => p.Value == cell;
+			return Cells?.Any(&internalChecking, cell) ?? false;
+		}
 
 		/// <summary>
 		/// Indicates whether the list contains the specified candidate.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsCandidate(int candidate) => Candidates?.Any(p => p.Value == candidate) ?? false;
+		public unsafe bool ContainsCandidate(int candidate)
+		{
+			static bool internalChecking(DrawingInfo p, in int candidate) => p.Value == candidate;
+			return Candidates?.Any(&internalChecking, candidate) ?? false;
+		}
 
 		/// <summary>
 		/// Indicates whether the list contains the specified region.
 		/// </summary>
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsRegion(int region) => Regions?.Any(p => p.Value == region) ?? false;
+		public unsafe bool ContainsRegion(int region)
+		{
+			static bool internalChecking(DrawingInfo p, in int region) => p.Value == region;
+			return Regions?.Any(&internalChecking, region) ?? false;
+		}
 
 		/// <summary>
 		/// Indicates whether the list contains the specified link.
@@ -141,6 +153,7 @@ namespace Sudoku.Drawing
 		/// <param name="start">The start map.</param>
 		/// <param name="end">The end map.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsDirectLine(GridMap start, GridMap end) => DirectLines?.Contains((start, end)) ?? false;
+		public bool ContainsDirectLine(GridMap start, GridMap end) =>
+			DirectLines?.Contains((start, end)) ?? false;
 	}
 }

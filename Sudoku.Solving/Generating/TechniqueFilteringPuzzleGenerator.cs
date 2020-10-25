@@ -55,13 +55,19 @@ namespace Sudoku.Solving.Generating
 			progress?.Report(progressResult);
 
 			techniqueCodeFilter ??= DefaultFilter;
-			while (true)
+			unsafe
 			{
-				var puzzle = Generate(-1, progress, globalizationString: globalizationString);
-				if (ManualSolver.Solve(puzzle).Any(step => techniqueCodeFilter.Contains(step.TechniqueCode)))
+				while (true)
 				{
-					return puzzle;
+					var puzzle = Generate(-1, progress, globalizationString: globalizationString);
+					if (ManualSolver.Solve(puzzle).Any(&internalChecking, techniqueCodeFilter))
+					{
+						return puzzle;
+					}
 				}
+
+				static bool internalChecking(TechniqueInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
+					techniqueCodeFilter.Contains(step.TechniqueCode);
 			}
 		}
 
