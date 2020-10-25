@@ -8,6 +8,7 @@ using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 #if DEBUG
 using System.Diagnostics;
+using System.Text;
 #endif
 
 namespace Sudoku.Data
@@ -15,8 +16,10 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a sudoku grid using value type instead of reference type.
 	/// </summary>
-#if DEBUG
-	[DebuggerDisplay("{ToString(\".+:\")}")]
+#if AUTHOR_RESERVED
+	[DebuggerDisplay("{" + nameof(ToMaskString) + "()}")]
+#elif DEBUG
+	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\")}")]
 #endif
 	public unsafe partial struct SudokuGrid : IEnumerable<short>, IValueEquatable<SudokuGrid>, IFormattable
 	{
@@ -54,11 +57,12 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// The empty grid that is valid during implementation or running the program
-		/// (all values are 511, i.e. empty cells).
+		/// (all values are <see cref="DefaultMask"/>, i.e. empty cells).
 		/// </summary>
 		/// <remarks>
 		/// This field is initialized by the static constructor of this structure.
 		/// </remarks>
+		/// <seealso cref="DefaultMask"/>
 		public static readonly SudokuGrid Empty;
 
 
@@ -131,6 +135,10 @@ namespace Sudoku.Data
 				int i = 0;
 				for (short* ptr = p; i < Length; i++, *ptr++ = DefaultMask) ;
 			}
+
+#if DEBUG
+			_ = Empty.ToMaskString();
+#endif
 
 			// Initializes events.
 			ValueChanged = &OnValueChanged;
@@ -425,6 +433,30 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly short GetCandidateMask(int cell) => (short)(~_values[cell] & MaxCandidatesMask);
 
+		/// <summary>
+		/// Get all masks and print them.
+		/// </summary>
+		/// <returns>The result.</returns>
+		public readonly string ToMaskString()
+		{
+			const string separator = ", ";
+#if DEBUG
+			var sb = new StringBuilder();
+			foreach (short mask in this)
+			{
+				sb.Append(mask).Append(separator);
+			}
+			return sb.RemoveFromEnd(separator.Length).ToString();
+#else
+			return new StringBuilder()
+				.AppendRange<short, string>(this, &appender)
+				.RemoveFromEnd(separator.Length)
+				.ToString();
+
+			static string appender(in short mask) => $"{mask}{separator}";
+#endif
+		}
+
 		/// <inheritdoc cref="object.ToString"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly string ToString() => ToString(null, null);
@@ -434,23 +466,21 @@ namespace Sudoku.Data
 		public readonly string ToString(string? format) => ToString(format, null);
 
 		/// <inheritdoc/>
-		public readonly string ToString(string? format, IFormatProvider? formatProvider)
-		{
-			if (formatProvider.HasFormatted(this, format, out string? result))
+		public readonly string ToString(string? format, IFormatProvider? formatProvider) =>
+			true switch
 			{
-				return result;
-			}
-
-			var formatter = GridFormatter.Create(format);
-			return format switch
-			{
-				":" => formatter.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations).NullableToString(),
-				"!" => formatter.ToString(this).Replace("+", string.Empty),
-				".!" or "!." or "0!" or "!0" => formatter.ToString(this).Replace("+", string.Empty),
-				".!:" or "!.:" or "0!:" => formatter.ToString(this).Replace("+", string.Empty),
-				_ => formatter.ToString(this)
+				_ when this == Undefined => "<Undefined>",
+				_ when formatProvider.HasFormatted(this, format, out string? result) => result,
+				_ when GridFormatter.Create(format) is var formatter => format switch
+				{
+					":" => formatter.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations).NullableToString(),
+					"!" => formatter.ToString(this).Replace("+", string.Empty),
+					".!" or "!." or "0!" or "!0" => formatter.ToString(this).Replace("+", string.Empty),
+					".!:" or "!.:" or "0!:" => formatter.ToString(this).Replace("+", string.Empty),
+					_ => formatter.ToString(this)
+				},
+				_ => throw Throwings.ImpossibleCase
 			};
-		}
 
 		/// <summary>
 		/// Get the cell status at the specified cell.

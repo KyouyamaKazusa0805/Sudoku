@@ -66,7 +66,8 @@ namespace Sudoku.Drawing.Extensions
 		/// <param name="y">(<see langword="out"/> parameter) The y.</param>
 		/// <param name="width">(<see langword="out"/> parameter) The width.</param>
 		/// <param name="height">(<see langword="out"/> parameter) The height.</param>
-		public static void Deconstruct(this RectangleF @this, out float x, out float y, out float width, out float height) =>
+		public static void Deconstruct(
+			this RectangleF @this, out float x, out float y, out float width, out float height) =>
 			(x, y, width, height) = (@this.X, @this.Y, @this.Width, @this.Height);
 	}
 }

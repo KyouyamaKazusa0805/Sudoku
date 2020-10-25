@@ -2467,11 +2467,12 @@
         <member name="F:Sudoku.Data.SudokuGrid.Empty">
             <summary>
             The empty grid that is valid during implementation or running the program
-            (all values are 511, i.e. empty cells).
+            (all values are <see cref="F:Sudoku.Data.SudokuGrid.DefaultMask"/>, i.e. empty cells).
             </summary>
             <remarks>
             This field is initialized by the static constructor of this structure.
             </remarks>
+            <seealso cref="F:Sudoku.Data.SudokuGrid.DefaultMask"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid._values">
             <summary>
@@ -2609,6 +2610,12 @@
             cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
             1 is for containing and 0 is for <b>not</b>.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ToMaskString">
+            <summary>
+            Get all masks and print them.
+            </summary>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

@@ -138,9 +138,10 @@ namespace Sudoku.Drawing
 				var status = (CellStatus)(mask >> 9 & (int)All);
 				switch (status)
 				{
-					case Empty when Settings.ShowCandidates && (short)(~mask & SudokuGrid.MaxCandidatesMask) is var candidateMask:
+					case Empty when Settings.ShowCandidates:
 					{
 						// Draw candidates.
+						short candidateMask = (short)(~mask & SudokuGrid.MaxCandidatesMask);
 						foreach (int digit in candidateMask)
 						{
 							var point = PointConverter.GetMousePointInCenter(cell, digit);
@@ -170,7 +171,13 @@ namespace Sudoku.Drawing
 		/// <param name="g">The graphics.</param>
 		/// <param name="offset">The drawing offset.</param>
 		/// <seealso cref="CustomView"/>
-		private void DrawCustomViewIfNeed(Graphics g, float offset) => DrawViewIfNeedInternal(g, offset, CustomView);
+		private void DrawCustomViewIfNeed(Graphics g, float offset)
+		{
+			if (CustomView is not null)
+			{
+				DrawViewIfNeedInternal(g, offset, CustomView);
+			}
+		}
 
 		/// <summary>
 		/// Draw custom view if <see cref="View"/> is not <see langword="null"/>.
@@ -180,27 +187,29 @@ namespace Sudoku.Drawing
 		/// <seealso cref="View"/>
 		private void DrawViewIfNeed(Graphics g, float offset)
 		{
-			if (Conclusions is not null) DrawEliminations(g, Conclusions, offset);
-
-			DrawViewIfNeedInternal(g, offset, View);
+			if (Conclusions is not null)
+			{
+				DrawEliminations(g, Conclusions, offset);
+			}
+			if (View is not null)
+			{
+				DrawViewIfNeedInternal(g, offset, View);
+			}
 		}
 
 		/// <summary>
-		/// Draw custom view if not <see langword="null"/>.
+		/// Draw the specified view.
 		/// </summary>
 		/// <param name="g">The graphics.</param>
 		/// <param name="offset">The drawing offset.</param>
 		/// <param name="view">The view instance.</param>
-		private void DrawViewIfNeedInternal(Graphics g, float offset, dynamic? view)
+		private void DrawViewIfNeedInternal(Graphics g, float offset, dynamic view)
 		{
-			if (view is not null)
-			{
-				if (view.Cells is not null) DrawCells(g, view.Cells);
-				if (view.Candidates is not null) DrawCandidates(g, view.Candidates, offset);
-				if (view.Regions is not null) DrawRegions(g, view.Regions, offset);
-				if (view.Links is not null) DrawLinks(g, view.Links, offset);
-				if (view.DirectLines is not null) DrawDirectLines(g, view.DirectLines, offset);
-			}
+			if (view.Cells is IEnumerable<DrawingInfo> cells) DrawCells(g, cells);
+			if (view.Candidates is IEnumerable<DrawingInfo> candidates) DrawCandidates(g, candidates, offset);
+			if (view.Regions is IEnumerable<DrawingInfo> regions) DrawRegions(g, regions, offset);
+			if (view.Links is IEnumerable<Link> links) DrawLinks(g, links, offset);
+			if (view.DirectLines is IEnumerable<(GridMap, GridMap)> directLines) DrawDirectLines(g, directLines, offset);
 		}
 
 		/// <summary>

@@ -41,10 +41,10 @@ namespace Sudoku.Data
 
 
 			/// <inheritdoc/>
-			public short Current => *_currentPointer;
+			public readonly short Current => *_currentPointer;
 
 			/// <inheritdoc/>
-			object? IEnumerator.Current => Current;
+			readonly object? IEnumerator.Current => Current;
 
 
 			/// <inheritdoc/>

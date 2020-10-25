@@ -300,7 +300,7 @@
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.DrawViewIfNeedInternal(System.Drawing.Graphics,System.Single,System.Object)">
             <summary>
-            Draw custom view if not <see langword="null"/>.
+            Draw the specified view.
             </summary>
             <param name="g">The graphics.</param>
             <param name="offset">The drawing offset.</param>
