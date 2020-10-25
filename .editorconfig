@@ -282,7 +282,7 @@ dotnet_diagnostic.IDE0002.severity = suggestion
 dotnet_diagnostic.IDE0005.severity = suggestion
 
 # IDE0010: Add missing cases
-dotnet_diagnostic.IDE0010.severity = silent
+dotnet_diagnostic.IDE0010.severity = none
 
 # IDE0058: Expression value is never used
 csharp_style_unused_value_expression_statement_preference = discard_variable:none
@@ -371,7 +371,7 @@ dotnet_diagnostic.CS8777.severity = error
 
 
 # CA1027: Mark enums with FlagsAttribute
-dotnet_diagnostic.CA1027.severity = silent
+dotnet_diagnostic.CA1027.severity = none
 
 # CA1031: Do not catch general exception types
 dotnet_diagnostic.CA1031.severity = none
@@ -383,4 +383,11 @@ dotnet_diagnostic.CA1810.severity = none
 dotnet_diagnostic.CA1819.severity = none
 
 # CA1822: Mark members as static
-dotnet_diagnostic.CA1822.severity = silent
+dotnet_diagnostic.CA1822.severity = none
+
+
+# Other custom disabled cases.
+# May be deleted later in the future.
+dotnet_diagnostic.CS1572.severity = none
+dotnet_diagnostic.CS1573.severity = none
+dotnet_diagnostic.CS1591.severity = none
