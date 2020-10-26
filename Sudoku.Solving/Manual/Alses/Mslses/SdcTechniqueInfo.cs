@@ -24,8 +24,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	public sealed record SdcTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
-		bool IsCannibalistic, short IsolatedDigitsMask, GridMap BlockCells, GridMap LineCells,
-		GridMap IntersectionCells)
+		bool IsCannibalistic, short IsolatedDigitsMask, in GridMap BlockCells, in GridMap LineCells,
+		in GridMap IntersectionCells)
 		: MslsTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 				rbList.Clear(); cbList.Clear();
 
-				static void a(IList<GridMap> list, GridMap emptyMap)
+				static void a(IList<GridMap> list, in GridMap emptyMap)
 				{
 					switch (emptyMap.Count)
 					{

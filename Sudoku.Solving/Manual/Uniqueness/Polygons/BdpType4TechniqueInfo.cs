@@ -22,9 +22,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="ExtraMask">Indicates the mask of digits that is the combination.</param>
 	/// <seealso cref="BdpTechniqueSearcher.CheckType4(IList{TechniqueInfo}, in SudokuGrid, in Pattern, short, short, short, in GridMap)"/>
 	public sealed record BdpType4TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Map, short DigitsMask,
-		GridMap ConjugateRegion, short ExtraMask)
-		: BdpTechniqueInfo(Conclusions, Views, Map, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Map, short DigitsMask,
+		in GridMap ConjugateRegion, short ExtraMask) : BdpTechniqueInfo(Conclusions, Views, Map, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M;

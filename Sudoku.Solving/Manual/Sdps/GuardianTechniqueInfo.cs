@@ -14,8 +14,8 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <param name="Loop">The loop.</param>
 	/// <param name="Guardians">All guardians.</param>
 	public sealed record GuardianTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, GridMap Loop, GridMap Guardians)
-		: SdpTechniqueInfo(Conclusions, Views, Digit)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, in GridMap Loop,
+		in GridMap Guardians) : SdpTechniqueInfo(Conclusions, Views, Digit)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M + .1M * (Loop.Count >> 1);

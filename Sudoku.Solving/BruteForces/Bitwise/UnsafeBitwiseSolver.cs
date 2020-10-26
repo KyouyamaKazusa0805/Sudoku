@@ -760,7 +760,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// Extract solution as a character string.
 		/// </summary>
 		/// <param name="solution">
-		/// The solution pointer. <b>The buffer should be at least <see cref="BufferLength"/> of value of length.</b>
+		/// The solution pointer. <b>The buffer should be at least <see cref="BufferLength"/>
+		/// of value of length.</b>
 		/// </param>
 		private void ExtractSolution(char* solution)
 		{
@@ -803,8 +804,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						{
 							if (--tries != 0)
 							{
-								// First of pair
-								//MemCopy(_g + 1, _g, sizeof(State));
+								// First of pair.
 								Memcpy(_g + 1, _g, sizeof(State));
 								_g->Bands[band] ^= map;
 								_g++;
@@ -814,7 +814,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 							}
 							else
 							{
-								// Second of pair
+								// Second of pair.
 								SetSolvedMask(band, map);
 								if (FullUpdate() != 0) Guess();
 								return true;
@@ -832,7 +832,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// </summary>
 		private void GuessFirstCell()
 		{
-			// Kind of dumb, but _way_ fast code
+			// Kind of dumb, but _way_ fast code.
 			for (int subBand = 0; subBand < 3; subBand++)
 			{
 				if (_g->UnsolvedCells[subBand] == 0) continue;
@@ -843,11 +843,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				{
 					if ((_g->Bands[band] & cellMask) != 0)
 					{
-						//MemCopy(_g + 1, _g, sizeof(State)); // Eliminate option in the current stack entry.
 						Memcpy(_g + 1, _g, sizeof(State)); // Eliminate option in the current stack entry.
 						_g->Bands[band] ^= cellMask;
 						_g++;
-						SetSolvedMask(band, cellMask);      // And try it out in a nested stack entry.
+						SetSolvedMask(band, cellMask);     // And try it out in a nested stack entry.
 						if (FullUpdate() != 0) Guess();
 						_g--;
 					}

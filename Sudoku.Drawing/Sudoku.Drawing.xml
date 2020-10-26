@@ -309,12 +309,12 @@
             <param name="offset">The drawing offset.</param>
             <param name="view">The view instance.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.DrawFocusedCells(System.Drawing.Graphics,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Drawing.GridPainter.DrawFocusedCells(System.Drawing.Graphics,Sudoku.Data.GridMap@)">
             <summary>
             Draw focused cells.
             </summary>
             <param name="g">The graphics.</param>
-            <param name="focusedCells">The focused cells.</param>
+            <param name="focusedCells">(<see langword="in"/> parameter) The focused cells.</param>
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.DrawBackground(System.Drawing.Graphics)">
             <summary>
@@ -471,18 +471,18 @@
             <param name="id">The color ID.</param>
             <param name="region">The region.</param>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.AddLink(Sudoku.Data.Link)">
+        <member name="M:Sudoku.Drawing.MutableView.AddLink(Sudoku.Data.Link@)">
             <summary>
             Add a link into the list.
             </summary>
             <param name="inference">The link.</param>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.AddDirectLine(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Drawing.MutableView.AddDirectLine(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <summary>
             Add a direct link into the list.
             </summary>
-            <param name="start">The start map.</param>
-            <param name="end">The end map.</param>
+            <param name="start">(<see langword="in"/> parameter) The start map.</param>
+            <param name="end">(<see langword="in"/> parameter) The end map.</param>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.RemoveCell(System.Int32)">
             <summary>
@@ -502,18 +502,18 @@
             </summary>
             <param name="region">The region.</param>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.RemoveLink(Sudoku.Data.Link)">
+        <member name="M:Sudoku.Drawing.MutableView.RemoveLink(Sudoku.Data.Link@)">
             <summary>
             Remove the link from the list.
             </summary>
-            <param name="link">The link.</param>
+            <param name="link">(<see langword="in"/> parameter) The link.</param>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.RemoveDirectLine(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Drawing.MutableView.RemoveDirectLine(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <summary>
             Remove the direct link from the list.
             </summary>
-            <param name="start">The start map.</param>
-            <param name="end">The end map.</param>
+            <param name="start">(<see langword="in"/> parameter) The start map.</param>
+            <param name="end">(<see langword="in"/> parameter) The end map.</param>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.Clear">
             <summary>
@@ -541,19 +541,19 @@
             <param name="region">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.ContainsLink(Sudoku.Data.Link)">
+        <member name="M:Sudoku.Drawing.MutableView.ContainsLink(Sudoku.Data.Link@)">
             <summary>
             Indicates whether the list contains the specified link.
             </summary>
-            <param name="inference">The link.</param>
+            <param name="inference">(<see langword="in"/> parameter) The link.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.ContainsDirectLine(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Drawing.MutableView.ContainsDirectLine(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <summary>
             Indicates whether the list contains the specified direct line.
             </summary>
-            <param name="start">The start map.</param>
-            <param name="end">The end map.</param>
+            <param name="start">(<see langword="in"/> parameter) The start map.</param>
+            <param name="end">(<see langword="in"/> parameter) The end map.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="T:Sudoku.Drawing.PointConverter">

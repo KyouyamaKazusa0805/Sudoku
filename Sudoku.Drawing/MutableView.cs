@@ -55,14 +55,14 @@ namespace Sudoku.Drawing
 		/// Add a link into the list.
 		/// </summary>
 		/// <param name="inference">The link.</param>
-		public void AddLink(Link inference) => Links?.Add(inference);
+		public void AddLink(in Link inference) => Links?.Add(inference);
 
 		/// <summary>
 		/// Add a direct link into the list.
 		/// </summary>
-		/// <param name="start">The start map.</param>
-		/// <param name="end">The end map.</param>
-		public void AddDirectLine(GridMap start, GridMap end) => DirectLines?.Add((start, end));
+		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
+		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
+		public void AddDirectLine(in GridMap start, in GridMap end) => DirectLines?.Add((start, end));
 
 		/// <summary>
 		/// Remove the cell from the list.
@@ -74,26 +74,28 @@ namespace Sudoku.Drawing
 		/// Remove the candidate from the list.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
-		public void RemoveCandidate(int candidate) => (Candidates as List<DrawingInfo>)?.RemoveAll(p => p.Value == candidate);
+		public void RemoveCandidate(int candidate) =>
+			(Candidates as List<DrawingInfo>)?.RemoveAll(p => p.Value == candidate);
 
 		/// <summary>
 		/// Remove the region from the list.
 		/// </summary>
 		/// <param name="region">The region.</param>
-		public void RemoveRegion(int region) => (Regions as List<DrawingInfo>)?.RemoveAll(p => p.Value == region);
+		public void RemoveRegion(int region) =>
+			(Regions as List<DrawingInfo>)?.RemoveAll(p => p.Value == region);
 
 		/// <summary>
 		/// Remove the link from the list.
 		/// </summary>
-		/// <param name="link">The link.</param>
-		public void RemoveLink(Link link) => Links?.Remove(link);
+		/// <param name="link">(<see langword="in"/> parameter) The link.</param>
+		public void RemoveLink(in Link link) => Links?.Remove(link);
 
 		/// <summary>
 		/// Remove the direct link from the list.
 		/// </summary>
-		/// <param name="start">The start map.</param>
-		/// <param name="end">The end map.</param>
-		public void RemoveDirectLine(GridMap start, GridMap end) => DirectLines?.Remove((start, end));
+		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
+		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
+		public void RemoveDirectLine(in GridMap start, in GridMap end) => DirectLines?.Remove((start, end));
 
 		/// <summary>
 		/// Clear all elements.
@@ -143,17 +145,17 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates whether the list contains the specified link.
 		/// </summary>
-		/// <param name="inference">The link.</param>
+		/// <param name="inference">(<see langword="in"/> parameter) The link.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsLink(Link inference) => Links?.Contains(inference) ?? false;
+		public bool ContainsLink(in Link inference) => Links?.Contains(inference) ?? false;
 
 		/// <summary>
 		/// Indicates whether the list contains the specified direct line.
 		/// </summary>
-		/// <param name="start">The start map.</param>
-		/// <param name="end">The end map.</param>
+		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
+		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsDirectLine(GridMap start, GridMap end) =>
+		public bool ContainsDirectLine(in GridMap start, in GridMap end) =>
 			DirectLines?.Contains((start, end)) ?? false;
 	}
 }

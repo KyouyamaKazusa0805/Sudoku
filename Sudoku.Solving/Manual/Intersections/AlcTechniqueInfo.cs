@@ -18,8 +18,8 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <param name="TargetCells">All target cells.</param>
 	/// <param name="HasValueCell">Indicates whether the current ALC contains value cells.</param>
 	public sealed record AlcTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, short DigitsMask, GridMap BaseCells,
-		GridMap TargetCells, bool HasValueCell)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, short DigitsMask,
+		in GridMap BaseCells, in GridMap TargetCells, bool HasValueCell)
 		: IntersectionTechniqueInfo(Conclusions, Views)
 	{
 		/// <summary>

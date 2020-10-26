@@ -13,9 +13,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <param name="DigitsMask">All digits mask.</param>
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record XrType4TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
-		ConjugatePair ConjugatePair)
-		: XrTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask,
+		in ConjugatePair ConjugatePair) : XrTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.6M + DifficultyExtra[Cells.Count];

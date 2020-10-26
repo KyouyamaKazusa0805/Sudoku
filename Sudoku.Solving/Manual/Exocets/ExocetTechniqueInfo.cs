@@ -37,13 +37,18 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </param>
 	public abstract record ExocetTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		Pattern Exocet, IEnumerable<int> Digits,
+		in Pattern Exocet, IEnumerable<int> Digits,
 		IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
-		TargetEliminations TargetEliminations, MirrorEliminations MirrorEliminations,
-		BibiPatternEliminations BibiEliminations, TargetPairEliminations TargetPairEliminations,
-		SwordfishEliminations SwordfishEliminations, TrueBaseEliminations TrueBaseEliminations,
-		CompatibilityTestEliminations CompatibilityEliminations)
-		: TechniqueInfo(GatherConclusions(Conclusions, TargetEliminations, MirrorEliminations, BibiEliminations, TargetPairEliminations, SwordfishEliminations, TrueBaseEliminations, CompatibilityEliminations), Views)
+		in TargetEliminations TargetEliminations, in MirrorEliminations MirrorEliminations,
+		in BibiPatternEliminations BibiEliminations, in TargetPairEliminations TargetPairEliminations,
+		in SwordfishEliminations SwordfishEliminations, in TrueBaseEliminations TrueBaseEliminations,
+		in CompatibilityTestEliminations CompatibilityEliminations)
+		: TechniqueInfo(
+			GatherConclusions(
+				Conclusions, TargetEliminations, MirrorEliminations, BibiEliminations,
+				TargetPairEliminations, SwordfishEliminations, TrueBaseEliminations,
+				CompatibilityEliminations),
+			Views)
 	{
 		/// <inheritdoc/>
 		public sealed override string Name => base.Name;
@@ -112,20 +117,30 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// Gather conclusions.
 		/// </summary>
 		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="targetEliminations">The target eliminations.</param>
-		/// <param name="mirrorEliminations">The mirror eliminations.</param>
-		/// <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
-		/// <param name="targetPairEliminations">The target pair eliminations.</param>
-		/// <param name="swordfishEliminations">The swordfish eliminations.</param>
-		/// <param name="trueBaseEliminations">The true base eliminations.</param>
-		/// <param name="compatibilityEliminations">The compatibility eliminations.</param>
+		/// <param name="targetEliminations">(<see langword="in"/> parameter) The target eliminations.</param>
+		/// <param name="mirrorEliminations">(<see langword="in"/> parameter) The mirror eliminations.</param>
+		/// <param name="bibiEliminations">
+		/// (<see langword="in"/> parameter) The Bi-bi pattern eliminations.
+		/// </param>
+		/// <param name="targetPairEliminations">
+		/// (<see langword="in"/> parameter) The target pair eliminations.
+		/// </param>
+		/// <param name="swordfishEliminations">
+		/// (<see langword="in"/> parameter) The swordfish eliminations.
+		/// </param>
+		/// <param name="trueBaseEliminations">
+		/// (<see langword="in"/> parameter) The true base eliminations.
+		/// </param>
+		/// <param name="compatibilityEliminations">
+		/// (<see langword="in"/> parameter) The compatibility eliminations.
+		/// </param>
 		/// <returns>The gathered result.</returns>
 		private static IReadOnlyList<Conclusion> GatherConclusions(
 			IReadOnlyList<Conclusion> conclusions,
-			TargetEliminations targetEliminations, MirrorEliminations mirrorEliminations,
-			BibiPatternEliminations bibiEliminations, TargetPairEliminations targetPairEliminations,
-			SwordfishEliminations swordfishEliminations, TrueBaseEliminations trueBaseEliminations,
-			CompatibilityTestEliminations compatibilityEliminations)
+			in TargetEliminations targetEliminations, in MirrorEliminations mirrorEliminations,
+			in BibiPatternEliminations bibiEliminations, in TargetPairEliminations targetPairEliminations,
+			in SwordfishEliminations swordfishEliminations, in TrueBaseEliminations trueBaseEliminations,
+			in CompatibilityTestEliminations compatibilityEliminations)
 		{
 			var list = (List<Conclusion>)conclusions;
 			if (targetEliminations.Conclusions is not null)

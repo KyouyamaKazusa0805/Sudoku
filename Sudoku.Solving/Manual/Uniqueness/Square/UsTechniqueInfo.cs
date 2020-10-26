@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="Cells">The cells.</param>
 	/// <param name="DigitsMask">The digits mask.</param>
 	public abstract record UsTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask)
 		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

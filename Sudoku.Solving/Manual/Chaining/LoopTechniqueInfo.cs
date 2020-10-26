@@ -17,7 +17,8 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="yEnabled">Indicates whether the chain is enabled Y strong relations.</param>
 	/// <param name="Target">The target.</param>
 	public sealed record LoopTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool XEnabled, bool YEnabled, Node Target)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool XEnabled, bool YEnabled,
+		in Node Target)
 		: ChainingTechniqueInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
 	{
 		/// <inheritdoc/>

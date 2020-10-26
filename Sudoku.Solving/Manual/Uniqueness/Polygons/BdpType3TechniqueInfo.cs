@@ -16,8 +16,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="ExtraCells">The extra cells.</param>
 	/// <param name="ExtraDigitsMask">The extra digits mask.</param>
 	public sealed record BdpType3TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Map, short DigitsMask,
-		GridMap ExtraCells, short ExtraDigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Map, short DigitsMask,
+		in GridMap ExtraCells, short ExtraDigitsMask)
 		: BdpTechniqueInfo(Conclusions, Views, Map, DigitsMask)
 	{
 		/// <inheritdoc/>

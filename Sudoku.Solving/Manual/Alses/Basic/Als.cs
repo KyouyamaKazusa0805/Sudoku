@@ -20,8 +20,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// Initializes an instance with the specified digit mask and the map of cells.
 		/// </summary>
 		/// <param name="digitMask">The digit mask.</param>
-		/// <param name="map">The map.</param>
-		public Als(short digitMask, GridMap map) : this(digitMask, map, default)
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		public Als(short digitMask, in GridMap map) : this(digitMask, map, default)
 		{
 		}
 
@@ -29,9 +29,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// Initializes an instance with the specified digit mask and the map of cells.
 		/// </summary>
 		/// <param name="digitMask">The digit mask.</param>
-		/// <param name="map">The map.</param>
-		/// <param name="possibleEliminationSet">The possible elimination set.</param>
-		public Als(short digitMask, GridMap map, GridMap possibleEliminationSet)
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="possibleEliminationSet">
+		/// (<see langword="in"/> parameter) The possible elimination set.
+		/// </param>
+		public Als(short digitMask, in GridMap map, in GridMap possibleEliminationSet)
 		{
 			(DigitsMask, Map, IsBivalueCell, PossibleEliminationSet) = (digitMask, map, map.Count == 1, possibleEliminationSet);
 			Map.AllSetsAreInOneRegion(out int region);
@@ -160,12 +162,12 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			IsBivalueCell
 				? new StringBuilder()
 					.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
-					.Append("/")
+					.Append('/')
 					.Append(Map)
 					.ToString()
 				: new StringBuilder()
 					.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
-					.Append("/")
+					.Append('/')
 					.Append(Map)
 					.Append($" in {new RegionCollection(Region).ToString()}")
 					.ToString();

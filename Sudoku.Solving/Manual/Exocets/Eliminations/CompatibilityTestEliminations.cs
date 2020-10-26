@@ -24,8 +24,8 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 		public IList<Conclusion>? Conclusions { readonly get; private set; }
 
 
-		/// <inheritdoc cref="ExocetElimination.Add(ExocetElimination.Conclusion)"/>
-		public void Add(Conclusion conclusion) =>
+		/// <inheritdoc cref="ExocetElimination.Add(in ExocetElimination.Conclusion)"/>
+		public void Add(in Conclusion conclusion) =>
 			(Conclusions ??= new List<Conclusion>()).AddIfDoesNotContain(conclusion);
 
 		/// <inheritdoc cref="ExocetElimination.AddRange(IEnumerable{ExocetElimination.Conclusion})"/>

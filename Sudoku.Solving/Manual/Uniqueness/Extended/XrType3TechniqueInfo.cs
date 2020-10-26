@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <param name="ExtraDigitsMask">All extra digits mask.</param>
 	/// <param name="Region">The region.</param>
 	public sealed record XrType3TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask,
 		IReadOnlyList<int> ExtraCells, short ExtraDigitsMask, int Region)
 		: XrTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{

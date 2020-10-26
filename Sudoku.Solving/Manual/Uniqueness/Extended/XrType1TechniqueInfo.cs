@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <param name="Cells">All cells.</param>
 	/// <param name="DigitsMask">All digits mask.</param>
 	public sealed record XrType1TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask)
 		: XrTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>

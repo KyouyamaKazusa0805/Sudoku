@@ -14,8 +14,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Loop">The loop.</param>
 	public sealed record UlType1TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2, GridMap Loop)
-		: UlTechniqueInfo(Conclusions, Views, Digit1, Digit2, Loop)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
+		in GridMap Loop) : UlTechniqueInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
 		/// <inheritdoc/>
 		public override int Type => 1;

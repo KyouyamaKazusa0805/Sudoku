@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="pOn">The node set on.</param>
+		/// <param name="pOn">(<see langword="in"/> parameter) The node set on.</param>
 		/// <param name="xEnabled">
 		/// Indicates whether the strong links in regions are enabled to search for.
 		/// </param>
@@ -82,7 +82,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates whether the strong links in cells are enabled to search for.
 		/// </param>
 		private void DoUnaryChaining(
-			IList<ChainingTechniqueInfo> accumulator, in SudokuGrid grid, Node pOn,
+			IList<ChainingTechniqueInfo> accumulator, in SudokuGrid grid, in Node pOn,
 			bool xEnabled, bool yEnabled)
 		{
 			if (grid.GetCandidateMask(pOn.Cell).PopCount() > 2 && !xEnabled)
@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Create a loop hint (i.e. a <see cref="LoopTechniqueInfo"/>).
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="destOn">The start node.</param>
+		/// <param name="destOn">(<see langword="in"/> parameter) The start node.</param>
 		/// <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
 		/// <returns>
@@ -142,7 +142,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
 		/// <seealso cref="LoopTechniqueInfo"/>
-		private LoopTechniqueInfo? CreateLoopHint(in SudokuGrid grid, Node destOn, bool xEnabled, bool yEnabled)
+		private LoopTechniqueInfo? CreateLoopHint(
+			in SudokuGrid grid, in Node destOn, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
 			var links = destOn.GetLinks(true); //! Maybe wrong when adding grouped nodes.
@@ -175,7 +176,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Create an AIC hint (i.e. a <see cref="AicTechniqueInfo"/>).
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="target">The elimination node (which is used for searching the whole chain).</param>
+		/// <param name="target">(<see langword="in"/> parameter) The elimination node (which is used for searching the whole chain).</param>
 		/// <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
 		/// <returns>
@@ -183,7 +184,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
 		/// <seealso cref="AicTechniqueInfo"/>
-		private AicTechniqueInfo? CreateAicHint(in SudokuGrid grid, Node target, bool xEnabled, bool yEnabled)
+		private AicTechniqueInfo? CreateAicHint(in SudokuGrid grid, in Node target, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
 			if (!target.IsOn)
@@ -233,10 +234,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="onToOff">The nodes the end candidates are currently off.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <param name="chains">The chain nodes.</param>
-		/// <param name="source">The source node.</param>
+		/// <param name="source">(<see langword="in"/> parameter) The source node.</param>
 		private void DoAic(
 			in SudokuGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled, IList<Node> chains,
-			Node source)
+			in Node source)
 		{
 			var pendingOn = new List<Node>(onToOn);
 			var pendingOff = new List<Node>(onToOff);
@@ -302,10 +303,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <param name="loops">The loop nodes.</param>
-		/// <param name="source">The source node.</param>
+		/// <param name="source">(<see langword="in"/> parameter) The source node.</param>
 		private void DoLoops(
 			in SudokuGrid grid, ISet<Node> onToOn, ISet<Node> onToOff,
-			bool xEnabled, bool yEnabled, IList<Node> loops, Node source)
+			bool xEnabled, bool yEnabled, IList<Node> loops, in Node source)
 		{
 			var pendingOn = new List<Node>(onToOn);
 			var pendingOff = new List<Node>(onToOff);

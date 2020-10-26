@@ -164,12 +164,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, in SudokuGrid, IReadOnlyList{int})"/>.
 		/// </summary>
 		/// <param name="trueCandidates">The true candidates.</param>
-		/// <param name="target">The target node.</param>
+		/// <param name="target">(<see langword="in"/> parameter) The target node.</param>
 		/// <param name="outcomes">All outcomes.</param>
 		/// <returns>The result information instance.</returns>
 		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, in SudokuGrid, IReadOnlyList{int})"/>
 		private static BugMultipleWithFcTechniqueInfo? CreateEliminationHint(
-			IReadOnlyList<int> trueCandidates, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
+			IReadOnlyList<int> trueCandidates, in Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
 		{
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>

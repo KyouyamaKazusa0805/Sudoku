@@ -15,8 +15,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Loop">The loop.</param>
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record UlType4TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2, GridMap Loop,
-		ConjugatePair ConjugatePair)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
+		in GridMap Loop, in ConjugatePair ConjugatePair)
 		: UlTechniqueInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
 		/// <inheritdoc/>

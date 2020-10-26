@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="Pattern">The pattern.</param>
 	/// <param name="Candidate">The candidate.</param>
 	public sealed record QdpType1TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Pattern, int Candidate)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern, int Candidate)
 		: QdpTechniqueInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>

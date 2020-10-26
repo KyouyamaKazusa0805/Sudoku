@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record EmptyRectangleTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, int Block,
-		ConjugatePair ConjugatePair)
+		in ConjugatePair ConjugatePair)
 		: SdpTechniqueInfo(Conclusions, Views, Digit)
 	{
 		/// <inheritdoc/>

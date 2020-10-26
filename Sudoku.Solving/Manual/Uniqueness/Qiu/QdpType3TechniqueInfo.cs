@@ -16,9 +16,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="ExtraDigitsMask">The extra digits mask.</param>
 	/// <param name="ExtraCells">The extra cells.</param>
 	public sealed record QdpType3TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Pattern,
-		short ExtraDigitsMask, IReadOnlyList<int> ExtraCells)
-		: QdpTechniqueInfo(Conclusions, Views, Pattern)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern,
+		short ExtraDigitsMask, IReadOnlyList<int> ExtraCells) : QdpTechniqueInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + ExtraDigitsMask.PopCount() * .1M;

@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="Pattern">The pattern.</param>
 	/// <param name="ExtraDigit">The extra digit.</param>
 	public sealed record QdpType2TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Pattern, int ExtraDigit)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern, int ExtraDigit)
 		: QdpTechniqueInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>

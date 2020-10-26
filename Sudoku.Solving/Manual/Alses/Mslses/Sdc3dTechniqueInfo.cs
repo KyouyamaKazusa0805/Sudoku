@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	public sealed record Sdc3dTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		short RowDigitsMask, short ColumnDigitsMask, short BlockDigitsMask,
-		GridMap RowCells, GridMap ColumnCells, GridMap BlockCells)
+		in GridMap RowCells, in GridMap ColumnCells, in GridMap BlockCells)
 		: MslsTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

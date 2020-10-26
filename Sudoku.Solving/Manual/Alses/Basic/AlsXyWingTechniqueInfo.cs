@@ -18,8 +18,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <param name="YDigitsMask">The Y digits mask.</param>
 	/// <param name="ZDigitsMask">The Z digits mask.</param>
 	public sealed record AlsXyWingTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Als Als1, Als Als2,
-		Als Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
+		in Als Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask)
 		: AlsTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

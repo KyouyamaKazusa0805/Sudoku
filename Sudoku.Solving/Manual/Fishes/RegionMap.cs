@@ -33,8 +33,8 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Initializes a map with the specified regions.
 		/// </summary>
-		/// <param name="regions">The regions.</param>
-		public RegionMap(ReadOnlySpan<int> regions) : this()
+		/// <param name="regions">(<see langword="in"/> parameter) The regions.</param>
+		public RegionMap(in ReadOnlySpan<int> regions) : this()
 		{
 			foreach (int region in regions)
 			{
@@ -85,9 +85,9 @@ namespace Sudoku.Solving.Manual.Fishes
 		[DoesNotReturn]
 		public override readonly bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Equals(RegionMap other) => Mask == other.Mask;
+		public readonly bool Equals(in RegionMap other) => Mask == other.Mask;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -140,11 +140,11 @@ namespace Sudoku.Solving.Manual.Fishes
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(RegionMap left, RegionMap right) => left.Equals(right);
+		public static bool operator ==(in RegionMap left, in RegionMap right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(RegionMap left, RegionMap right) => !(left == right);
+		public static bool operator !=(in RegionMap left, in RegionMap right) => !(left == right);
 
 		/// <summary>
 		/// Negate the map.
@@ -152,7 +152,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="map"> The map.</param>
 		/// <returns>The map after being negated.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator ~(RegionMap map) => new(~map.Mask);
+		public static RegionMap operator ~(in RegionMap map) => new(~map.Mask);
 
 		/// <summary>
 		/// Get the regions that two maps both contain.
@@ -161,7 +161,8 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="right">The right map.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator &(RegionMap left, RegionMap right) => new(left.Mask & right.Mask);
+		public static RegionMap operator &(in RegionMap left, in RegionMap right) =>
+			new(left.Mask & right.Mask);
 
 		/// <summary>
 		/// Get all regions that comes from two maps.
@@ -170,7 +171,8 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="right">The right map.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator |(RegionMap left, RegionMap right) => new(left.Mask | right.Mask);
+		public static RegionMap operator |(in RegionMap left, in RegionMap right) =>
+			new(left.Mask | right.Mask);
 
 		/// <summary>
 		/// Get the regions that two maps contain but don't overlap with each other.
@@ -179,15 +181,18 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="right">The right map.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator ^(RegionMap left, RegionMap right) => new(left.Mask ^ right.Mask);
+		public static RegionMap operator ^(in RegionMap left, in RegionMap right) =>
+			new(left.Mask ^ right.Mask);
 
 		/// <summary>
-		/// Get the regions that <paramref name="left"/> contains but the <paramref name="right"/> doesn't contain.
+		/// Get the regions that <paramref name="left"/> contains but the <paramref name="right"/>
+		/// doesn't contain.
 		/// </summary>
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RegionMap operator -(RegionMap left, RegionMap right) => new(left.Mask & ~right.Mask);
+		public static RegionMap operator -(in RegionMap left, in RegionMap right) =>
+			new(left.Mask & ~right.Mask);
 	}
 }

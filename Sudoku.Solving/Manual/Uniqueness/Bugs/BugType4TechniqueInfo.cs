@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record BugType4TechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		IReadOnlyList<int> Digits, IReadOnlyList<int> Cells, ConjugatePair ConjugatePair)
+		IReadOnlyList<int> Digits, IReadOnlyList<int> Cells, in ConjugatePair ConjugatePair)
 		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

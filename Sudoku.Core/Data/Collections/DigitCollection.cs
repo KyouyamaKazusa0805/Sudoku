@@ -29,8 +29,8 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with the specified digits.
 		/// </summary>
-		/// <param name="digits">The digits.</param>
-		public DigitCollection(ReadOnlySpan<int> digits) : this()
+		/// <param name="digits">(<see langword="in"/> parameter) The digits.</param>
+		public DigitCollection(in ReadOnlySpan<int> digits) : this()
 		{
 			foreach (int digit in digits)
 			{
@@ -69,8 +69,8 @@ namespace Sudoku.Data.Collections
 		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		public bool Equals(DigitCollection other) => _mask == other._mask;
+		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
+		public bool Equals(in DigitCollection other) => _mask == other._mask;
 
 		/// <summary>
 		/// Indicates whether the specified collection contains the digit.
@@ -125,12 +125,12 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		/// <param name="collection">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
-		public static DigitCollection operator ~(DigitCollection collection) => new((short)~collection._mask);
+		public static DigitCollection operator ~(in DigitCollection collection) => new((short)~collection._mask);
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(DigitCollection left, DigitCollection right) => left.Equals(right);
+		public static bool operator ==(in DigitCollection left, in DigitCollection right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(DigitCollection left, DigitCollection right) => !(left == right);
+		public static bool operator !=(in DigitCollection left, in DigitCollection right) => !(left == right);
 	}
 }

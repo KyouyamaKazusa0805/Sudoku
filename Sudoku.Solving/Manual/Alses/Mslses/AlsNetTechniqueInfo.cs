@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <param name="Views">All views.</param>
 	/// <param name="Cells">Indicates the cells used.</param>
 	public sealed record AlsNetTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells)
 		: MslsTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

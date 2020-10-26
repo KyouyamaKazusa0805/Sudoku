@@ -17,8 +17,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <param name="WDigitsMask">The W digit mask.</param>
 	/// <param name="X">The digit X.</param>
 	public sealed record AlsWWingTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Als Als1, Als Als2,
-		ConjugatePair ConjugatePair, short WDigitsMask, int X)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
+		in ConjugatePair ConjugatePair, short WDigitsMask, int X)
 		: AlsTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

@@ -37,9 +37,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// </para>
 	/// </param>
 	public sealed record AlsXzTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Als Als1,
-		Als Als2, short XDigitsMask, short ZDigitsMask, bool? IsDoublyLinked)
-		: AlsTechniqueInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
+		short XDigitsMask, short ZDigitsMask, bool? IsDoublyLinked) : AlsTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;

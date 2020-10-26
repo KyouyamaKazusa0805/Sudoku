@@ -31,8 +31,8 @@ namespace Sudoku.DocComments
 		/// <summary>
 		/// Add the conclusion into the collection.
 		/// </summary>
-		/// <param name="conclusion">The conclusion.</param>
-		public void Add(Conclusion conclusion) => throw new NotImplementedException();
+		/// <param name="conclusion">(<see langword="in"/> parameter) The conclusion.</param>
+		public void Add(in Conclusion conclusion) => throw new NotImplementedException();
 
 		/// <summary>
 		/// Add a serial of conclusions into this collection.

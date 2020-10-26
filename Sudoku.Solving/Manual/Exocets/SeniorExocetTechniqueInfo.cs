@@ -23,10 +23,10 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <param name="MirrorEliminations">The mirror eliminations.</param>
 	/// <param name="CompatibilityEliminations">The compatibility eliminations.</param>
 	public sealed record SeniorExocetTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Exocet,
-		IEnumerable<int> Digits, int EndoTargetCell, int[]? ExtraRegionsMask, TargetEliminations TargetEliminations,
-		TrueBaseEliminations TrueBaseEliminations, MirrorEliminations MirrorEliminations,
-		CompatibilityTestEliminations CompatibilityEliminations)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Exocet,
+		IEnumerable<int> Digits, int EndoTargetCell, int[]? ExtraRegionsMask,
+		in TargetEliminations TargetEliminations, in TrueBaseEliminations TrueBaseEliminations,
+		in MirrorEliminations MirrorEliminations, in CompatibilityTestEliminations CompatibilityEliminations)
 		: ExocetTechniqueInfo(
 			Conclusions, Views, Exocet, Digits, null, null,
 			TargetEliminations, MirrorEliminations, default, default, default,

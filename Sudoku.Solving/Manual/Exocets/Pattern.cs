@@ -18,14 +18,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="tq2">The target Q2 cell.</param>
 		/// <param name="tr1">The target R1 cell.</param>
 		/// <param name="tr2">The target R2 cell.</param>
-		/// <param name="crossline">The cross line cells.</param>
-		/// <param name="mq1">The mirror Q1 cell.</param>
-		/// <param name="mq2">The mirror Q2 cell.</param>
-		/// <param name="mr1">The mirror R1 cell.</param>
-		/// <param name="mr2">The mirror R2 cell.</param>
+		/// <param name="crossline">(<see langword="in"/> parameter) The cross line cells.</param>
+		/// <param name="mq1">(<see langword="in"/> parameter) The mirror Q1 cell.</param>
+		/// <param name="mq2">(<see langword="in"/> parameter) The mirror Q2 cell.</param>
+		/// <param name="mr1">(<see langword="in"/> parameter) The mirror R1 cell.</param>
+		/// <param name="mr2">(<see langword="in"/> parameter) The mirror R2 cell.</param>
 		public Pattern(
-			int base1, int base2, int tq1, int tq2, int tr1, int tr2, GridMap crossline,
-			GridMap mq1, GridMap mq2, GridMap mr1, GridMap mr2)
+			int base1, int base2, int tq1, int tq2, int tr1, int tr2, in GridMap crossline,
+			in GridMap mq1, in GridMap mq2, in GridMap mr1, in GridMap mr2)
 		{
 			CrossLine = crossline;
 			(Base1, Base2) = (base1, base2);
@@ -94,7 +94,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
 		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
 		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
-		public void Deconstruct(out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap) =>
+		public void Deconstruct(
+			out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap) =>
 			(baseCellsMap, targetCellsMap, crosslineMap) = (
 				new() { Base1, Base2 },
 				new() { TargetQ1, TargetQ2, TargetR1, TargetR2 },

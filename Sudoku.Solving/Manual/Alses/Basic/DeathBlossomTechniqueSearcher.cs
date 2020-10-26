@@ -287,9 +287,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// To preprocess and record all ALSes.
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="emptyMap">The map of all empty cells.</param>
+		/// <param name="emptyMap">(<see langword="in"/> parameter) The map of all empty cells.</param>
 		/// <returns>All ALSes.</returns>
-		private IReadOnlyList<Als> PreprocessAndRecordAlses(in SudokuGrid grid, GridMap emptyMap)
+		private IReadOnlyList<Als> PreprocessAndRecordAlses(in SudokuGrid grid, in GridMap emptyMap)
 		{
 			var list = new List<Als>();
 			GridMap tempEmptyCells;

@@ -14,8 +14,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Loop">The loop.</param>
 	public abstract record UlTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2, GridMap Loop)
-		: UniquenessTechniqueInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
+		in GridMap Loop) : UniquenessTechniqueInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty extra.

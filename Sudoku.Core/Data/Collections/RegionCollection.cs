@@ -30,8 +30,8 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with the specified regions.
 		/// </summary>
-		/// <param name="regions">The regions.</param>
-		public RegionCollection(ReadOnlySpan<int> regions) : this()
+		/// <param name="regions">(<see langword="in"/> parameter) The regions.</param>
+		public RegionCollection(in ReadOnlySpan<int> regions) : this()
 		{
 			foreach (int region in regions)
 			{
@@ -74,8 +74,8 @@ namespace Sudoku.Data.Collections
 		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		public bool Equals(RegionCollection other) => _mask == other._mask;
+		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
+		public bool Equals(in RegionCollection other) => _mask == other._mask;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
@@ -157,9 +157,11 @@ namespace Sudoku.Data.Collections
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(RegionCollection left, RegionCollection right) => left.Equals(right);
+		public static bool operator ==(in RegionCollection left, in RegionCollection right) =>
+			left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(RegionCollection left, RegionCollection right) => !(left == right);
+		public static bool operator !=(in RegionCollection left, in RegionCollection right) =>
+			!(left == right);
 	}
 }

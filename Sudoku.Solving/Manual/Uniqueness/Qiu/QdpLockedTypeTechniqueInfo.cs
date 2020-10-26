@@ -13,9 +13,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="Pattern">The pattern.</param>
 	/// <param name="Candidates">The candidates.</param>
 	public sealed record QdpLockedTypeTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Pattern,
-		IReadOnlyList<int> Candidates)
-		: QdpTechniqueInfo(Conclusions, Views, Pattern)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern,
+		IReadOnlyList<int> Candidates) : QdpTechniqueInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .2M;

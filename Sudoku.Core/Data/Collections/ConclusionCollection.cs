@@ -19,11 +19,11 @@ namespace Sudoku.Data.Collections
 	{
 		/// <summary>
 		/// The pointer to point <see cref="_collection"/>.
-		/// If the constructor isn't <see cref="ConclusionCollection(Conclusion)"/>,
+		/// If the constructor isn't <see cref="ConclusionCollection(in Conclusion)"/>,
 		/// the field is keep the value <see cref="IntPtr.Zero"/>.
 		/// </summary>
 		/// <seealso cref="_collection"/>
-		/// <seealso cref="ConclusionCollection(Conclusion)"/>
+		/// <seealso cref="ConclusionCollection(in Conclusion)"/>
 		/// <seealso cref="IntPtr.Zero"/>
 		private readonly IntPtr _ptr;
 
@@ -36,8 +36,8 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with one conclusion.
 		/// </summary>
-		/// <param name="conclusion">The conclusion.</param>
-		public unsafe ConclusionCollection(Conclusion conclusion)
+		/// <param name="conclusion">(<see langword="in"/> parameter) The conclusion.</param>
+		public unsafe ConclusionCollection(in Conclusion conclusion)
 		{
 			var tempSpan = new Span<Conclusion>((_ptr = Marshal.AllocHGlobal(sizeof(Conclusion))).ToPointer(), 1);
 			tempSpan[0] = conclusion;
@@ -158,9 +158,11 @@ namespace Sudoku.Data.Collections
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in ConclusionCollection left, in ConclusionCollection right) => left.Equals(right);
+		public static bool operator ==(in ConclusionCollection left, in ConclusionCollection right) =>
+			left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in ConclusionCollection left, in ConclusionCollection right) => !(left == right);
+		public static bool operator !=(in ConclusionCollection left, in ConclusionCollection right) =>
+			!(left == right);
 	}
 }

@@ -205,8 +205,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="tq2">The target Q2 cell.</param>
 		/// <param name="tr1">The target R1 cell.</param>
 		/// <param name="tr2">The target R2 cell.</param>
-		/// <param name="m1">The mirror 1 cell.</param>
-		/// <param name="m2">The mirror 2 cell.</param>
+		/// <param name="m1">(<see langword="in"/> parameter) The mirror 1 cell.</param>
+		/// <param name="m2">(<see langword="in"/> parameter) The mirror 2 cell.</param>
 		/// <param name="lockedNonTarget">The locked digits that is not the target digits.</param>
 		/// <param name="x">The X digit.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
@@ -215,7 +215,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="candidateOffsets">The highliht candidates.</param>
 		/// <returns>The result.</returns>
 		private (TargetEliminations, MirrorEliminations) GatheringMirrorEliminations(
-			int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2, short lockedNonTarget,
+			int tq1, int tq2, int tr1, int tr2, in GridMap m1, in GridMap m2, short lockedNonTarget,
 			int x, in SudokuGrid grid, short baseCandidatesMask, List<DrawingInfo> cellOffsets,
 			List<DrawingInfo> candidateOffsets)
 		{
@@ -283,12 +283,12 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Check the cross-line cells.
 		/// </summary>
-		/// <param name="crossline">The cross line cells.</param>
+		/// <param name="crossline">(<see langword="in"/> parameter) The cross line cells.</param>
 		/// <param name="digitsNeedChecking">The digits that need checking.</param>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the structure passed the validation.
 		/// </returns>
-		private bool CheckCrossline(GridMap crossline, short digitsNeedChecking)
+		private bool CheckCrossline(in GridMap crossline, short digitsNeedChecking)
 		{
 			foreach (int digit in digitsNeedChecking)
 			{

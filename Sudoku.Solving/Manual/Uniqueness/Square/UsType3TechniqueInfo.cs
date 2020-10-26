@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="ExtraDigitsMask">The extra digits mask.</param>
 	/// <param name="ExtraCells">The extra cells.</param>
 	public sealed record UsType3TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask,
 		short ExtraDigitsMask, IReadOnlyList<int> ExtraCells)
 		: UsTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{

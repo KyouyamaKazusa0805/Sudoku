@@ -446,11 +446,11 @@
         <member name="F:Sudoku.Data.Collections.ConclusionCollection._ptr">
             <summary>
             The pointer to point <see cref="F:Sudoku.Data.Collections.ConclusionCollection._collection"/>.
-            If the constructor isn't <see cref="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(Sudoku.Data.Conclusion)"/>,
+            If the constructor isn't <see cref="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(Sudoku.Data.Conclusion@)"/>,
             the field is keep the value <see cref="F:System.IntPtr.Zero"/>.
             </summary>
             <seealso cref="F:Sudoku.Data.Collections.ConclusionCollection._collection"/>
-            <seealso cref="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(Sudoku.Data.Conclusion)"/>
+            <seealso cref="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(Sudoku.Data.Conclusion@)"/>
             <seealso cref="F:System.IntPtr.Zero"/>
         </member>
         <member name="F:Sudoku.Data.Collections.ConclusionCollection._collection">
@@ -458,11 +458,11 @@
             The internal collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(Sudoku.Data.Conclusion)">
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(Sudoku.Data.Conclusion@)">
             <summary>
             Initializes an instance with one conclusion.
             </summary>
-            <param name="conclusion">The conclusion.</param>
+            <param name="conclusion">(<see langword="in"/> parameter) The conclusion.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Span{Sudoku.Data.Conclusion}@)">
             <summary>
@@ -525,11 +525,11 @@
             </summary>
             <param name="digit">The digit.</param>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Initializes an instance with the specified digits.
             </summary>
-            <param name="digits">The digits.</param>
+            <param name="digits">(<see langword="in"/> parameter) The digits.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -552,8 +552,8 @@
             <inheritdoc/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.Equals(Sudoku.Data.Collections.DigitCollection)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Data.Collections.DigitCollection.Equals(Sudoku.Data.Collections.DigitCollection@)">
+            <inheritdoc cref="M:System.IValueEquatable`1.Equals(`0@)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.Contains(System.Int32)">
             <summary>
@@ -578,7 +578,7 @@
             </summary>
             <returns>The enumerator.</returns>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_OnesComplement(Sudoku.Data.Collections.DigitCollection)">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.op_OnesComplement(Sudoku.Data.Collections.DigitCollection@)">
             <summary>
             Reverse all statuses, which means all <see langword="true"/> bits
             will be set <see langword="false"/>, and all <see langword="false"/> bits
@@ -587,10 +587,10 @@
             <param name="collection">The instance to negate.</param>
             <returns>The negative result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_Equality(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.op_Equality(Sudoku.Data.Collections.DigitCollection@,Sudoku.Data.Collections.DigitCollection@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_Inequality(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.op_Inequality(Sudoku.Data.Collections.DigitCollection@,Sudoku.Data.Collections.DigitCollection@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.LinkCollection">
@@ -601,11 +601,11 @@
         <member name="F:Sudoku.Data.Collections.LinkCollection._ptr">
             <summary>
             The pointer to point <see cref="F:Sudoku.Data.Collections.LinkCollection._collection"/>.
-            If the constructor isn't <see cref="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link)"/>,
+            If the constructor isn't <see cref="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link@)"/>,
             the field is keep the value <see cref="F:System.IntPtr.Zero"/>.
             </summary>
             <seealso cref="F:Sudoku.Data.Collections.LinkCollection._collection"/>
-            <seealso cref="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link)"/>
+            <seealso cref="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link@)"/>
             <seealso cref="F:System.IntPtr.Zero"/>
         </member>
         <member name="F:Sudoku.Data.Collections.LinkCollection._collection">
@@ -613,17 +613,17 @@
             The internal collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link)">
+        <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link@)">
             <summary>
             Initializes an instance with one link.
             </summary>
-            <param name="link">The chain link.</param>
+            <param name="link">(<see langword="in"/> parameter) The chain link.</param>
         </member>
-        <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(System.Span{Sudoku.Data.Link})">
+        <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(System.Span{Sudoku.Data.Link}@)">
             <summary>
             Initializes an instance with the specified collection.
             </summary>
-            <param name="collection">The collection.</param>
+            <param name="collection">(<see langword="in"/> parameter) The collection.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Link})">
             <summary>
@@ -640,8 +640,8 @@
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(Sudoku.Data.Collections.LinkCollection)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(Sudoku.Data.Collections.LinkCollection@)">
+            <inheritdoc cref="M:System.IValueEquatable`1.Equals(`0@)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -650,10 +650,10 @@
         <member name="M:Sudoku.Data.Collections.LinkCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Data.Collections.LinkCollection.op_Equality(Sudoku.Data.Collections.LinkCollection,Sudoku.Data.Collections.LinkCollection)">
+        <member name="M:Sudoku.Data.Collections.LinkCollection.op_Equality(Sudoku.Data.Collections.LinkCollection@,Sudoku.Data.Collections.LinkCollection@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Collections.LinkCollection.op_Inequality(Sudoku.Data.Collections.LinkCollection,Sudoku.Data.Collections.LinkCollection)">
+        <member name="M:Sudoku.Data.Collections.LinkCollection.op_Inequality(Sudoku.Data.Collections.LinkCollection@,Sudoku.Data.Collections.LinkCollection@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Collections.RegionCollection">
@@ -672,11 +672,11 @@
             </summary>
             <param name="region">The region.</param>
         </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Initializes an instance with the specified regions.
             </summary>
-            <param name="regions">The regions.</param>
+            <param name="regions">(<see langword="in"/> parameter) The regions.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -701,8 +701,8 @@
             <inheritdoc/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(Sudoku.Data.Collections.RegionCollection)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(Sudoku.Data.Collections.RegionCollection@)">
+            <inheritdoc cref="M:System.IValueEquatable`1.Equals(`0@)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -727,10 +727,10 @@
             <param name="index">The index.</param>
             <returns>The label.</returns>
         </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.op_Equality(Sudoku.Data.Collections.RegionCollection,Sudoku.Data.Collections.RegionCollection)">
+        <member name="M:Sudoku.Data.Collections.RegionCollection.op_Equality(Sudoku.Data.Collections.RegionCollection@,Sudoku.Data.Collections.RegionCollection@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.op_Inequality(Sudoku.Data.Collections.RegionCollection,Sudoku.Data.Collections.RegionCollection)">
+        <member name="M:Sudoku.Data.Collections.RegionCollection.op_Inequality(Sudoku.Data.Collections.RegionCollection@,Sudoku.Data.Collections.RegionCollection@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.Conclusion">
@@ -2105,7 +2105,7 @@
             <param name="Mask">The old mask to undo.</param>
             <param name="InnerMap">The map which contains all cells that contains the digit.</param>
         </member>
-        <member name="M:Sudoku.Data.Stepping.AssignmentStep.#ctor(System.Int32,System.Int32,System.Int16,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.#ctor(System.Int32,System.Int32,System.Int16,Sudoku.Data.GridMap@)">
             <summary>
             Encapsulates an assignment step.
             </summary>
@@ -2146,7 +2146,7 @@
             </summary>
             <param name="AllCells">Indicates all cells to fix.</param>
         </member>
-        <member name="M:Sudoku.Data.Stepping.FixStep.#ctor(Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.Stepping.FixStep.#ctor(Sudoku.Data.GridMap@)">
             <summary>
             Encapsulates a fix step.
             </summary>
@@ -2416,7 +2416,7 @@
             </summary>
             <param name="AllCells">Indicates all cells.</param>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UnfixStep.#ctor(Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.Stepping.UnfixStep.#ctor(Sudoku.Data.GridMap@)">
             <summary>
             Encapsulates an unfix step.
             </summary>
@@ -2680,7 +2680,7 @@
             To update initial masks.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char})">
+        <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char}@)">
             <summary>
             <para>
             Parses a string value and converts to this type.
@@ -2690,7 +2690,7 @@
             <see cref="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
             </para>
             </summary>
-            <param name="str">The string.</param>
+            <param name="str">(<see langword="in"/> parameter) The string.</param>
             <returns>The result instance had converted.</returns>
             <seealso cref="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
         </member>

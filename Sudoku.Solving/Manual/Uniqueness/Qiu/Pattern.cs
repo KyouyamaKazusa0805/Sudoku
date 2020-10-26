@@ -12,10 +12,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <summary>
 		/// Initializes an instance with the specified maps.
 		/// </summary>
-		/// <param name="square">The square.</param>
-		/// <param name="baseLine">The base line.</param>
-		/// <param name="pair">The pair.</param>
-		public Pattern(GridMap square, GridMap baseLine, GridMap pair) =>
+		/// <param name="square">(<see langword="in"/> parameter) The square.</param>
+		/// <param name="baseLine">(<see langword="in"/> parameter) The base line.</param>
+		/// <param name="pair">(<see langword="in"/> parameter) The pair.</param>
+		public Pattern(in GridMap square, in GridMap baseLine, in GridMap pair) =>
 			(Square, BaseLine, Pair) = (square, baseLine, pair);
 
 
@@ -51,7 +51,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public override bool Equals(object? obj) => obj is Pattern other && Equals(other);
 
 		/// <inheritdoc/>
-		public bool Equals(in Pattern other) => (Square, BaseLine, Pair) == (other.Square, other.BaseLine, other.Pair);
+		public bool Equals(in Pattern other) =>
+			(Square, BaseLine, Pair) == (other.Square, other.BaseLine, other.Pair);
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => FullMap.GetHashCode();
@@ -61,9 +62,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Pattern left, Pattern right) => left.Equals(right);
+		public static bool operator ==(in Pattern left, in Pattern right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Pattern left, Pattern right) => !(left == right);
+		public static bool operator !=(in Pattern left, in Pattern right) => !(left == right);
 	}
 }

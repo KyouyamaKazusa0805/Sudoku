@@ -4,7 +4,7 @@
 	/// Encapsulates a fix step.
 	/// </summary>
 	/// <param name="AllCells">Indicates all cells to fix.</param>
-	public sealed unsafe record FixStep(GridMap AllCells) : Step
+	public sealed unsafe record FixStep(in GridMap AllCells) : Step
 	{
 		/// <inheritdoc/>
 		public override void DoStepTo(UndoableGrid grid)

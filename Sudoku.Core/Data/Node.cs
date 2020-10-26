@@ -32,7 +32,8 @@ namespace Sudoku.Data
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
 		/// <param name="parent">(<see langword="in"/> parameter) The parent node.</param>
-		public Node(int cell, int digit, bool isOn, in Node parent) : this(cell, digit, isOn) => AddParent(parent);
+		public Node(int cell, int digit, bool isOn, in Node parent) : this(cell, digit, isOn) =>
+			AddParent(parent);
 
 
 		/// <summary>

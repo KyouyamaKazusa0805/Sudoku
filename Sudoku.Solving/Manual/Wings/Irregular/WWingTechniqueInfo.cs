@@ -15,8 +15,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record WWingTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int StartCell, int EndCell,
-		ConjugatePair ConjugatePair)
-		: IrregularWingTechniqueInfo(Conclusions, Views)
+		in ConjugatePair ConjugatePair) : IrregularWingTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.4M;

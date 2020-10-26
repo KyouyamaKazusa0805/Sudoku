@@ -17,11 +17,11 @@ namespace Sudoku.Data.Collections
 	{
 		/// <summary>
 		/// The pointer to point <see cref="_collection"/>.
-		/// If the constructor isn't <see cref="LinkCollection(Link)"/>,
+		/// If the constructor isn't <see cref="LinkCollection(in Link)"/>,
 		/// the field is keep the value <see cref="IntPtr.Zero"/>.
 		/// </summary>
 		/// <seealso cref="_collection"/>
-		/// <seealso cref="LinkCollection(Link)"/>
+		/// <seealso cref="LinkCollection(in Link)"/>
 		/// <seealso cref="IntPtr.Zero"/>
 		private readonly IntPtr _ptr;
 
@@ -34,8 +34,8 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with one link.
 		/// </summary>
-		/// <param name="link">The chain link.</param>
-		public unsafe LinkCollection(Link link)
+		/// <param name="link">(<see langword="in"/> parameter) The chain link.</param>
+		public unsafe LinkCollection(in Link link)
 		{
 			var tempSpan = new Span<Link>((_ptr = Marshal.AllocHGlobal(sizeof(Link))).ToPointer(), 1);
 			tempSpan[0] = link;
@@ -45,14 +45,15 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with the specified collection.
 		/// </summary>
-		/// <param name="collection">The collection.</param>
-		public LinkCollection(Span<Link> collection) : this() => _collection = collection;
+		/// <param name="collection">(<see langword="in"/> parameter) The collection.</param>
+		public LinkCollection(in Span<Link> collection) : this() => _collection = collection;
 
 		/// <summary>
 		/// Initializes an instance with the specified collection.
 		/// </summary>
 		/// <param name="collection">The collection.</param>
-		public LinkCollection(IEnumerable<Link> collection) : this() => _collection = collection.ToArray().AsSpan();
+		public LinkCollection(IEnumerable<Link> collection) : this() =>
+			_collection = collection.ToArray().AsSpan();
 
 		/// <summary>
 		/// To dispose this link (frees the unmanaged memory).
@@ -71,8 +72,8 @@ namespace Sudoku.Data.Collections
 		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		public bool Equals(LinkCollection other) => _collection == other._collection;
+		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
+		public bool Equals(in LinkCollection other) => _collection == other._collection;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
@@ -136,9 +137,9 @@ namespace Sudoku.Data.Collections
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(LinkCollection left, LinkCollection right) => left.Equals(right);
+		public static bool operator ==(in LinkCollection left, in LinkCollection right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(LinkCollection left, LinkCollection right) => !(left == right);
+		public static bool operator !=(in LinkCollection left, in LinkCollection right) => !(left == right);
 	}
 }

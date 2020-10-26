@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="DigitsMask">The digits mask.</param>
 	/// <param name="ExtraDigit">The extra digit.</param>
 	public sealed record BdpType2TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Map, short DigitsMask,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Map, short DigitsMask,
 		int ExtraDigit)
 		: BdpTechniqueInfo(Conclusions, Views, Map, DigitsMask)
 	{

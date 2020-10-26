@@ -603,11 +603,11 @@ namespace Sudoku.Data
 		/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
 		/// </para>
 		/// </summary>
-		/// <param name="str">The string.</param>
+		/// <param name="str">(<see langword="in"/> parameter) The string.</param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
+		public static SudokuGrid Parse(in ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
 
 		/// <summary>
 		/// <para>

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="DigitsMask">The digits mask.</param>
 	/// <param name="Candidate">Indicates the true candidate.</param>
 	public sealed record UsType1TechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, GridMap Cells, short DigitsMask,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask,
 		int Candidate)
 		: UsTechniqueInfo(Conclusions, Views, Cells, DigitsMask)
 	{

@@ -22,14 +22,16 @@ namespace Sudoku.Solving
 		/// <param name="from">The from cell.</param>
 		/// <param name="to">The to cell.</param>
 		/// <param name="digit">The digit.</param>
-		public ConjugatePair(int from, int to, int digit) => (Digit, From, To, Map) = (digit, from, to, new() { from, to });
+		public ConjugatePair(int from, int to, int digit) =>
+			(Digit, From, To, Map) = (digit, from, to, new() { from, to });
 
 		/// <summary>
 		/// Initializes an instance with the map and the digit.
 		/// </summary>
-		/// <param name="map">The map.</param>
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <param name="digit">The digit.</param>
-		public ConjugatePair(GridMap map, int digit) => (Digit, From, To, Map) = (digit, map.First, map.SetAt(1), map);
+		public ConjugatePair(in GridMap map, int digit) =>
+			(Digit, From, To, Map) = (digit, map.First, map.SetAt(1), map);
 
 
 		/// <summary>

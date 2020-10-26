@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="Views">All views.</param>
 	/// <param name="Pattern">The pattern.</param>
 	public abstract record QdpTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Pattern)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern)
 		: UniquenessTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

@@ -189,7 +189,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <param name="lockedNonTarget">The locked member that is non-target digits.</param>
 		/// <param name="baseCandidateMask">The base candidate mask.</param>
-		/// <param name="mirror">The mirror map.</param>
+		/// <param name="mirror">(<see langword="in"/> parameter) The mirror map.</param>
 		/// <param name="x">The x.</param>
 		/// <param name="onlyOne">The only one cell.</param>
 		/// <param name="cellOffsets">The cell offsets.</param>
@@ -198,7 +198,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		[SkipLocalsInit]
 		protected (TargetEliminations, MirrorEliminations) CheckMirror(
 			in SudokuGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
-			GridMap mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets, IList<DrawingInfo> candidateOffsets)
+			in GridMap mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets,
+			IList<DrawingInfo> candidateOffsets)
 		{
 			var targetElims = new TargetEliminations();
 			var mirrorElims = new MirrorEliminations();
@@ -313,7 +314,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						break;
 
 						// Gathering.
-						bool g(in SudokuGrid grid, Span<int> playground, int i)
+						bool g(in SudokuGrid grid, in Span<int> playground, int i)
 						{
 							short candidateMask = (short)(
 								grid.GetCandidateMask(playground[i]) & ~(baseCandidateMask | locked));

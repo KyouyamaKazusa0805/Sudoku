@@ -20,11 +20,11 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <param name="TargetPairEliminations">The target pair eliminations.</param>
 	/// <param name="SwordfishEliminations">The swordfish pattern eliminations.</param>
 	public sealed record JuniorExocetTechniqueInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Pattern Exocet,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Exocet,
 		IEnumerable<int> Digits, IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
-		TargetEliminations TargetEliminations, MirrorEliminations MirrorEliminations,
-		BibiPatternEliminations BibiEliminations, TargetPairEliminations TargetPairEliminations,
-		SwordfishEliminations SwordfishEliminations)
+		in TargetEliminations TargetEliminations, in MirrorEliminations MirrorEliminations,
+		in BibiPatternEliminations BibiEliminations, in TargetPairEliminations TargetPairEliminations,
+		in SwordfishEliminations SwordfishEliminations)
 		: ExocetTechniqueInfo(
 			Conclusions, Views, Exocet, Digits,
 			LockedMemberQ, LockedMemberR, TargetEliminations, MirrorEliminations,
