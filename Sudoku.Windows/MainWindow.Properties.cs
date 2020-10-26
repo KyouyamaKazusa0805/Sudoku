@@ -22,10 +22,9 @@ namespace Sudoku.Windows
 		{
 			set
 			{
-				var valueGrid = value._innerGrid;
-				_puzzle = new(valueGrid);
-				_currentPainter = new(_pointConverter, Settings) { Grid = valueGrid };
-				_initialPuzzle = valueGrid;
+				_puzzle = value;
+				_currentPainter = new(_pointConverter, Settings, value);
+				_initialPuzzle = value._innerGrid;
 
 				GC.Collect();
 			}

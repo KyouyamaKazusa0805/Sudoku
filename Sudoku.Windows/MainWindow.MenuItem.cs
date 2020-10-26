@@ -208,8 +208,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSaveBatch_Click(object sender, RoutedEventArgs e)
 		{
-			var valueGrid = (SudokuGrid)_puzzle;
-			if (!valueGrid.IsValid())
+			if (!((SudokuGrid)_puzzle).IsValid())
 			{
 				Messagings.FailedToCheckDueToInvalidPuzzle();
 				e.Handled = true;
@@ -217,10 +216,10 @@ namespace Sudoku.Windows
 			}
 
 			// Batch.
-			new PictureSavingPreferencesWindow(valueGrid, Settings, _currentPainter).ShowDialog(); // Save puzzle picture.
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog(); // Save puzzle picture.
 			MenuItemFileSave_Click(sender, e); // Save puzzle text.
 			MenuItemAnalyzeSolve_Click(sender, e); // Solve the puzzle.
-			new PictureSavingPreferencesWindow(valueGrid, Settings, _currentPainter).ShowDialog(); // Save solution picture.
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog(); // Save solution picture.
 			MenuItemFileSave_Click(sender, e); // Save solution text.
 		}
 
@@ -231,7 +230,7 @@ namespace Sudoku.Windows
 		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
 		{
 			Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true;
-			_currentPainter = _currentPainter with { Grid = _puzzle };
+			//_currentPainter = _currentPainter with { Grid = _puzzle };
 
 			UpdateImageGrid();
 		}

@@ -155,14 +155,12 @@ namespace Sudoku.Windows
 					return !(e.Handled = true);
 				}
 
-				var targetPainter =
-					new GridPainter(new(size, size), _settings)
-					{
-						Grid = _grid,
-						View = _targetPainter.View, // May be null.
-						CustomView = _targetPainter.CustomView, // May be null.
-						Conclusions = _targetPainter.Conclusions
-					};
+				var targetPainter = new GridPainter(new(size, size), _settings, _grid)
+				{
+					View = _targetPainter.View, // May be null.
+					CustomView = _targetPainter.CustomView, // May be null.
+					Conclusions = _targetPainter.Conclusions
+				};
 
 				Bitmap? bitmap = null;
 				try

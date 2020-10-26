@@ -73,7 +73,7 @@ namespace Sudoku.Windows
 				double h = _gridMain.RowDefinitions[0].ActualHeight;
 				_imageGrid.Height = _imageGrid.Width = Min(w, h);
 				Settings.GridSize = w;
-				_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings) { Grid = _puzzle };
+				_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings, _puzzle);
 
 				UpdateImageGrid();
 			}
@@ -635,7 +635,7 @@ namespace Sudoku.Windows
 		private void InitializeGridPainter()
 		{
 			var (w, h) = _imageGrid;
-			_currentPainter = new(_pointConverter = new((float)w, (float)h), Settings) { Grid = _puzzle };
+			_currentPainter = new(_pointConverter = new((float)w, (float)h), Settings, _puzzle);
 		}
 
 		/// <summary>

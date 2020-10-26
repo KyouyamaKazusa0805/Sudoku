@@ -34,12 +34,13 @@ namespace Sudoku.Drawing
 	/// because they will be colored using another method (draw candidates).
 	/// </para>
 	/// <para>
-	/// In addition, please use the constructor <see cref="GridPainter(PointConverter, Settings)"/> instead of
-	/// <see langword="init"/> <see cref="PointConverter"/> or <see langword="with"/> expression to assign
-	/// the value on <see cref="PointConverter"/>, to ensure the points can be re-calculated.
+	/// In addition, please use the constructor <see cref="GridPainter(PointConverter, Settings, UndoableGrid)"/>
+	/// instead of <see langword="init"/> <see cref="PointConverter"/> or <see langword="with"/>
+	/// expression to assign the value on <see cref="PointConverter"/>, to ensure the points
+	/// can be re-calculated.
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="GridPainter(PointConverter, Settings)"/>
+	/// <seealso cref="GridPainter(PointConverter, Settings, UndoableGrid)"/>
 	/// <seealso cref="Width"/>
 	/// <seealso cref="Height"/>
 	/// <seealso cref="PointConverter"/>
@@ -65,8 +66,9 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="pointConverter">The point converter.</param>
 		/// <param name="settings">The instance.</param>
-		public GridPainter(PointConverter pointConverter, Settings settings)
-			: this(pointConverter, settings, default, default, SudokuGrid.Undefined, null, null, null, null) =>
+		/// <param name="grid">The grid.</param>
+		public GridPainter(PointConverter pointConverter, Settings settings, UndoableGrid grid)
+			: this(pointConverter, settings, default, default, grid, null, null, null, null) =>
 			(Width, Height) = pointConverter.ControlSize;
 
 

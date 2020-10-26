@@ -144,7 +144,7 @@ namespace Sudoku.Windows
 						new UnsafeBitwiseSolver().Solve(valueGrid).Solution!.Value, info.Conclusions))
 				{
 					info.ApplyTo(ref valueGrid);
-					_currentPainter = _currentPainter with { Conclusions = null, View = null, Grid = _puzzle };
+					_currentPainter = _currentPainter with { Conclusions = null, View = null/*, Grid = _puzzle*/ };
 
 					_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 					_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
