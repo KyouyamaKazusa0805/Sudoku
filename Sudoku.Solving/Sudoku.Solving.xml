@@ -6010,6 +6010,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
@@ -6040,6 +6043,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.GetAdditional">
@@ -6078,6 +6084,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
@@ -6108,6 +6117,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.GetAdditional">
