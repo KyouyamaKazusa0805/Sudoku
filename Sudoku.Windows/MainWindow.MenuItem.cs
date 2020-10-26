@@ -190,7 +190,7 @@ namespace Sudoku.Windows
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>
-			new PictureSavingPreferencesWindow((SudokuGrid)_puzzle, Settings, _currentPainter).ShowDialog();
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog();
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
@@ -231,7 +231,7 @@ namespace Sudoku.Windows
 		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
 		{
 			Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true;
-			_currentPainter = _currentPainter with { Grid = (SudokuGrid)_puzzle };
+			_currentPainter = _currentPainter with { Grid = _puzzle };
 
 			UpdateImageGrid();
 		}
@@ -395,8 +395,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
 		{
-			var valueGrid = (SudokuGrid)(_puzzle = new(_initialPuzzle));
-			_currentPainter = _currentPainter with { Grid = valueGrid, View = null };
+			_currentPainter = _currentPainter with { Grid = _puzzle = new(_initialPuzzle), View = null };
 
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);

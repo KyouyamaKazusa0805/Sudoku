@@ -7,9 +7,10 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using Microsoft.Win32;
-using Sudoku.Data;
+using Sudoku.Data.Stepping;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Windows.Constants;
 using static System.Drawing.StringAlignment;
 using static Sudoku.Windows.MainWindow;
@@ -77,23 +78,23 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the grid.
 		/// </summary>
-		private readonly SudokuGrid _grid;
+		private readonly UndoableGrid _grid;
 
 
 		/// <summary>
 		/// Initializes an instance with the specified size.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="settings">The settings.</param>
 		/// <param name="targetPainter">The target painter.</param>
 		public PictureSavingPreferencesWindow(
-			in SudokuGrid grid, WindowsSettings settings, GridPainter targetPainter)
+			UndoableGrid grid, WindowsSettings settings, GridPainter targetPainter)
 		{
 			InitializeComponent();
 
 			(_settings, _grid, _targetPainter) = (settings, grid, targetPainter);
 			_numericUpDownSize.CurrentValue = (decimal)_settings.SavingPictureSize;
-			_textBoxFormat.Text = _settings.OutputPictureFormatText ?? string.Empty;
+			_textBoxFormat.Text = _settings.OutputPictureFormatText.NullableToString();
 		}
 
 

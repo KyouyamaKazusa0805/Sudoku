@@ -211,7 +211,7 @@
             <seealso cref="P:Sudoku.Drawing.GridPainter.Height"/>
             <seealso cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,System.Single,System.Single,Sudoku.Data.SudokuGrid,System.Nullable{Sudoku.Data.GridMap},Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,System.Single,System.Single,Sudoku.Data.Stepping.UndoableGrid,System.Nullable{Sudoku.Data.GridMap},Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Indicates the grid painter.
             </summary>
@@ -275,12 +275,12 @@
             this parameter is not <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.DrawValue(System.Drawing.Graphics,Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Drawing.GridPainter.DrawValue(System.Drawing.Graphics,Sudoku.Data.Stepping.UndoableGrid)">
             <summary>
             Draw givens, modifiables and candidates, where the values are specified as a grid.
             </summary>
             <param name="g">The graphics.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.DrawCustomViewIfNeed(System.Drawing.Graphics,System.Single)">
             <summary>
@@ -397,21 +397,21 @@
             <param name="pt2x">The x value of point 2.</param>
             <param name="pt2y">The y value of point 2.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.RotatePoint(System.Drawing.PointF,System.Drawing.PointF@,System.Double)">
+        <member name="M:Sudoku.Drawing.GridPainter.RotatePoint(System.Drawing.PointF@,System.Drawing.PointF@,System.Double)">
             <summary>
             Rotate the point.
             </summary>
-            <param name="pt1">The point 1.</param>
+            <param name="pt1">(<see langword="in"/> parameter) The point 1.</param>
             <param name="pt2">(<see langword="ref"/> parameter) The point 2.</param>
             <param name="angle">The angle.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.AdjustPoint(System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF@,System.Drawing.PointF@,System.Double,System.Double,System.Single)">
+        <member name="M:Sudoku.Drawing.GridPainter.AdjustPoint(System.Drawing.PointF@,System.Drawing.PointF@,System.Drawing.PointF@,System.Drawing.PointF@,System.Double,System.Double,System.Single)">
             <summary>
             Adjust the end points of an arrow: the arrow should start and end outside
             the circular background of the candidate.
             </summary>
-            <param name="pt1">The point 1.</param>
-            <param name="pt2">The point 2.</param>
+            <param name="pt1">(<see langword="in"/> parameter) The point 1.</param>
+            <param name="pt2">(<see langword="in"/> parameter) The point 2.</param>
             <param name="p1">(<see langword="out"/> parameter) The point 1.</param>
             <param name="p2">(<see langword="out"/> parameter) The point 2.</param>
             <param name="alpha">The angle.</param>

@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using static System.Drawing.Drawing2D.DashStyle;
@@ -43,7 +44,7 @@ namespace Sudoku.Drawing
 	/// <seealso cref="Height"/>
 	/// <seealso cref="PointConverter"/>
 	public sealed record GridPainter(
-		PointConverter PointConverter, Settings Settings, float Width, float Height, SudokuGrid Grid,
+		PointConverter PointConverter, Settings Settings, float Width, float Height, UndoableGrid Grid,
 		GridMap? FocusedCells, View? View, MutableView? CustomView, IEnumerable<Conclusion>? Conclusions)
 	{
 		/// <summary>
@@ -112,8 +113,8 @@ namespace Sudoku.Drawing
 		/// Draw givens, modifiables and candidates, where the values are specified as a grid.
 		/// </summary>
 		/// <param name="g">The graphics.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		private void DrawValue(Graphics g, in SudokuGrid grid)
+		/// <param name="grid">The grid.</param>
+		private void DrawValue(Graphics g, UndoableGrid grid)
 		{
 			float cellWidth = PointConverter.CellSize.Width;
 			float candidateWidth = PointConverter.CandidateSize.Width;
@@ -407,7 +408,7 @@ namespace Sudoku.Drawing
 					double dx2 = point.X - p1.X, dy2 = point.Y - p1.Y;
 					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
 						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, 1E-1)))
+						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
 					{
 						through = true;
 						break;
@@ -613,10 +614,10 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Rotate the point.
 		/// </summary>
-		/// <param name="pt1">The point 1.</param>
+		/// <param name="pt1">(<see langword="in"/> parameter) The point 1.</param>
 		/// <param name="pt2">(<see langword="ref"/> parameter) The point 2.</param>
 		/// <param name="angle">The angle.</param>
-		private static void RotatePoint(PointF pt1, ref PointF pt2, double angle)
+		private static void RotatePoint(in PointF pt1, ref PointF pt2, double angle)
 		{
 			// Translate 'pt2' to (0, 0).
 			pt2.X -= pt1.X;
@@ -636,15 +637,16 @@ namespace Sudoku.Drawing
 		/// Adjust the end points of an arrow: the arrow should start and end outside
 		/// the circular background of the candidate.
 		/// </summary>
-		/// <param name="pt1">The point 1.</param>
-		/// <param name="pt2">The point 2.</param>
+		/// <param name="pt1">(<see langword="in"/> parameter) The point 1.</param>
+		/// <param name="pt2">(<see langword="in"/> parameter) The point 2.</param>
 		/// <param name="p1">(<see langword="out"/> parameter) The point 1.</param>
 		/// <param name="p2">(<see langword="out"/> parameter) The point 2.</param>
 		/// <param name="alpha">The angle.</param>
 		/// <param name="candidateSize">The candidate size.</param>
 		/// <param name="offset">The offset.</param>
 		private static void AdjustPoint(
-			PointF pt1, PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize, float offset)
+			in PointF pt1, in PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize,
+			float offset)
 		{
 			(p1, p2) = (pt1, pt2);
 			double tempDelta = candidateSize / 2 + offset;

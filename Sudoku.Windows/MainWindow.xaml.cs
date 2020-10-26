@@ -69,10 +69,11 @@ namespace Sudoku.Windows
 
 			if (sizeInfo.NewSize != sizeInfo.PreviousSize)
 			{
-				var (w, h) = (_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
+				double w = _gridMain.ColumnDefinitions[0].ActualWidth;
+				double h = _gridMain.RowDefinitions[0].ActualHeight;
 				_imageGrid.Height = _imageGrid.Width = Min(w, h);
 				Settings.GridSize = w;
-				_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings);
+				_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings) { Grid = _puzzle };
 
 				UpdateImageGrid();
 			}
@@ -214,7 +215,7 @@ namespace Sudoku.Windows
 
 					_currentPainter = _currentPainter with
 					{
-						Grid = (SudokuGrid)_puzzle,
+						Grid = _puzzle,
 						FocusedCells = _focusedCells
 					};
 
@@ -230,7 +231,7 @@ namespace Sudoku.Windows
 
 					_currentPainter = _currentPainter with
 					{
-						Grid = (SudokuGrid)_puzzle,
+						Grid = _puzzle,
 						FocusedCells = _focusedCells
 					};
 
@@ -247,7 +248,7 @@ namespace Sudoku.Windows
 
 					_currentPainter = _currentPainter with
 					{
-						Grid = (SudokuGrid)_puzzle,
+						Grid = _puzzle,
 						FocusedCells = _focusedCells
 					};
 
@@ -347,7 +348,7 @@ namespace Sudoku.Windows
 			_focusedCells.Clear();
 			_currentPainter = _currentPainter with
 			{
-				Grid = (SudokuGrid)_puzzle,
+				Grid = _puzzle,
 				Conclusions = null,
 				CustomView = null,
 				View = null,
@@ -634,10 +635,7 @@ namespace Sudoku.Windows
 		private void InitializeGridPainter()
 		{
 			var (w, h) = _imageGrid;
-			_currentPainter = new(_pointConverter = new((float)w, (float)h), Settings)
-			{
-				Grid = (SudokuGrid)_puzzle
-			};
+			_currentPainter = new(_pointConverter = new((float)w, (float)h), Settings) { Grid = _puzzle };
 		}
 
 		/// <summary>
@@ -648,7 +646,7 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-				Puzzle = new(SudokuGrid.Parse(puzzleStr, Settings.PmGridCompatible));
+				Puzzle = SudokuGrid.Parse(puzzleStr, Settings.PmGridCompatible);
 
 				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 				UpdateImageGrid();

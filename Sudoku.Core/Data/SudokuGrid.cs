@@ -136,10 +136,6 @@ namespace Sudoku.Data
 				for (short* ptr = p; i < Length; i++, *ptr++ = DefaultMask) ;
 			}
 
-#if DEBUG
-			_ = Empty.ToMaskString();
-#endif
-
 			// Initializes events.
 			ValueChanged = &OnValueChanged;
 			RefreshingCandidates = &OnRefreshingCandidates;
@@ -470,6 +466,7 @@ namespace Sudoku.Data
 		public readonly string ToString(string? format, IFormatProvider? formatProvider) =>
 			true switch
 			{
+				_ when this == Empty => "<Empty>",
 				_ when this == Undefined => "<Undefined>",
 				_ when formatProvider.HasFormatted(this, format, out string? result) => result,
 				_ when GridFormatter.Create(format) is var formatter => format switch

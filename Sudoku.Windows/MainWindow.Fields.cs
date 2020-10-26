@@ -140,7 +140,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		private UndoableGrid _puzzle = new(SudokuGrid.Empty);
+		private UndoableGrid _puzzle = SudokuGrid.Empty;
 
 		/// <summary>
 		/// Indicates the internal manual solver.

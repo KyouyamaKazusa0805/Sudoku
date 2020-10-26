@@ -443,6 +443,18 @@
             <param name="this">(<see langword="this"/> parameter) The key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Windows.Extensions.WindowsSizeEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Size"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Size"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.Deconstruct(System.Windows.Size@,System.Double@,System.Double@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this in"/> parameter) The size.</param>
+            <param name="width">(<see langword="out"/> parameter) The width.</param>
+            <param name="height">(<see langword="out"/> parameter) The height.</param>
+        </member>
         <member name="T:Sudoku.Windows.MainWindow">
             <summary>
             Interaction logic for <c>MainWindow.xaml</c>.
@@ -1310,11 +1322,11 @@
             Indicates the grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.#ctor(Sudoku.Data.SudokuGrid@,Sudoku.Windows.WindowsSettings,Sudoku.Drawing.GridPainter)">
+        <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.#ctor(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Windows.WindowsSettings,Sudoku.Drawing.GridPainter)">
             <summary>
             Initializes an instance with the specified size.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="settings">The settings.</param>
             <param name="targetPainter">The target painter.</param>
         </member>
@@ -2881,6 +2893,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The data.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

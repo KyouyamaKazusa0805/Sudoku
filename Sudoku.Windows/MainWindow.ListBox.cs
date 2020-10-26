@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Controls;
-using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving;
 
@@ -27,11 +26,10 @@ namespace Sudoku.Windows
 				var (_, n, s, _) = triplet;
 				var techniqueInfo = _analyisResult!.SolvingSteps![n];
 				_currentTechniqueInfo = techniqueInfo;
-				_puzzle = new(_analyisResult.StepGrids![n]);
 
 				_currentPainter = _currentPainter with
 				{
-					Grid = _puzzle._innerGrid,
+					Grid = _puzzle = new(_analyisResult.StepGrids![n]),
 					View = s.Views[_currentViewIndex = 0],
 					Conclusions = techniqueInfo.Conclusions
 				};
