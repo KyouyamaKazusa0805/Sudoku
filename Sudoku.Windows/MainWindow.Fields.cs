@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Windows.Input;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
@@ -24,6 +25,12 @@ namespace Sudoku.Windows
 		/// <seealso cref="ImageGrid_MouseRightButtonUp"/>
 		/// <seealso cref="ButtonCellReset_Click"/>
 		private readonly MutableView _view = new();
+
+		/// <summary>
+		/// The JSON serializer options. It'll be initialized in <see cref="MainWindow()"/>.
+		/// </summary>
+		/// <seealso cref="MainWindow()"/>
+		private readonly JsonSerializerOptions _serializerOptions;
 
 
 		/// <summary>

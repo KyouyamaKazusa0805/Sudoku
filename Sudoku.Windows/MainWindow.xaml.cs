@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +26,11 @@ using CoreResources = Sudoku.Windows.Resources;
 using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
+#if JSON_SERIALIZER
+using System.Text.Json;
+#else
+using System.Runtime.Serialization.Formatters.Binary;
+#endif
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif
@@ -39,7 +43,13 @@ namespace Sudoku.Windows
 	public partial class MainWindow : Window
 	{
 		/// <inheritdoc cref="DefaultConstructor"/>
-		public MainWindow() => InitializeComponent();
+		public MainWindow()
+		{
+			InitializeComponent();
+
+			_serializerOptions = new() { WriteIndented = true };
+			_serializerOptions.Converters.Add(new ColorJsonConverter());
+		}
 
 
 		#region Overriden methods
@@ -428,31 +438,64 @@ namespace Sudoku.Windows
 			_buttonLast.IsEnabled = last;
 		}
 
+#if JSON_SERIALIZER
+		/// <summary>
+		/// Save configurations if worth.
+		/// </summary>
+		/// <param name="path">
+		/// The path of the configuration file. The default value is <c>"configurations.json"</c>.
+		/// </param>
+#else
 		/// <summary>
 		/// Save configurations if worth.
 		/// </summary>
 		/// <param name="path">
 		/// The path of the configuration file. The default value is <c>"configurations.scfg"</c>.
 		/// </param>
-		private void LoadConfigIfWorth(string path = "configurations.scfg")
+#endif
+		private void LoadConfigIfWorth(
+			string path =
+#if JSON_SERIALIZER
+			"configurations.json"
+#else
+			"configurations.scfg"
+#endif
+			)
 		{
 			Settings = new();
 			if (File.Exists(path))
 			{
+#if !JSON_SERIALIZER
 				FileStream? fs = null;
+#endif
 				try
 				{
+#if JSON_SERIALIZER
+					string s = File.ReadAllText(path);
+					if (JsonSerializer.Deserialize<WindowsSettings>(s, _serializerOptions)
+						is WindowsSettings settingsResult)
+					{
+						Settings = settingsResult;
+					}
+					else
+					{
+						Settings.CoverBy(WindowsSettings.DefaultSetting);
+					}
+#else
 					fs = new(path, FileMode.Open);
 					Settings = (WindowsSettings)new BinaryFormatter().Deserialize(fs);
+#endif
 				}
 				catch
 				{
 					Messagings.FailedToLoadSettings();
 				}
+#if !JSON_SERIALIZER
 				finally
 				{
 					fs?.Close();
 				}
+#endif
 			}
 			else
 			{
@@ -460,26 +503,48 @@ namespace Sudoku.Windows
 			}
 		}
 
+#if JSON_SERIALIZER
 		/// <summary>
 		/// Save configurations.
 		/// </summary>
-		private void SaveConfig(string path = "configurations.scfg")
+		/// <param name="path">The path to save. The default value is <c>"configurations.json"</c>.</param>
+#else
+		/// <summary>
+		/// Save configurations.
+		/// </summary>
+		/// <param name="path">The path to save. The default value is <c>"configurations.scfg"</c>.</param>
+#endif
+		private void SaveConfig(
+			string path =
+#if JSON_SERIALIZER
+			"configurations.json"
+#else
+			"configurations.scfg"
+#endif
+			)
 		{
+#if !JSON_SERIALIZER
 			FileStream? fs = null;
+#endif
 			try
 			{
+#if JSON_SERIALIZER
+				File.WriteAllText(path, JsonSerializer.Serialize(Settings, _serializerOptions));
+#else
 				fs = new(path, FileMode.Create);
-				var formatter = new BinaryFormatter();
-				formatter.Serialize(fs, Settings);
+				new BinaryFormatter().Serialize(fs, Settings);
+#endif
 			}
 			catch (Exception ex)
 			{
 				Messagings.FailedToSaveConfig(ex);
 			}
+#if !JSON_SERIALIZER
 			finally
 			{
 				fs?.Close();
 			}
+#endif
 		}
 
 		/// <summary>
@@ -494,7 +559,8 @@ namespace Sudoku.Windows
 		/// </param>
 		/// <param name="executed">The execution.</param>
 		/// <seealso cref="UIElement.IsEnabled"/>
-		private void AddShortCut(K key, M modifierKeys, UIElement? matchControl, ExecutedRoutedEventHandler executed)
+		private void AddShortCut(
+			K key, M modifierKeys, UIElement? matchControl, ExecutedRoutedEventHandler executed)
 		{
 			var command = new RoutedCommand();
 			command.InputGestures.Add(new KeyGesture(key, modifierKeys));

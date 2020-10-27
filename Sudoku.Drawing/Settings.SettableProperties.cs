@@ -1,7 +1,6 @@
-﻿#pragma warning disable CA2235
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Text.Json.Serialization;
 
 namespace Sudoku.Drawing
 {
@@ -50,10 +49,11 @@ namespace Sudoku.Drawing
 		/// <c>"Arial"</c> in release environment.
 		/// </para>
 		/// </summary>
+		public string GivenFontName { get; set; }
 #if AUTHOR_RESERVED
-		public string GivenFontName { get; set; } = "Fira Code";
+		= "Fira Code";
 #else
-		public string GivenFontName { get; set; } = "Arial";
+		= "Arial";
 #endif
 
 		/// <summary>
@@ -65,10 +65,11 @@ namespace Sudoku.Drawing
 		/// <c>"Arial"</c> in release environment.
 		/// </para>
 		/// </summary>
+		public string ModifiableFontName { get; set; }
 #if AUTHOR_RESERVED
-		public string ModifiableFontName { get; set; } = "Fira Code";
+		= "Fira Code";
 #else
-		public string ModifiableFontName { get; set; } = "Arial";
+		= "Arial";
 #endif
 
 		/// <summary>
@@ -80,10 +81,11 @@ namespace Sudoku.Drawing
 		/// <c>"Arial"</c> in release environment.
 		/// </para>
 		/// </summary>
+		public string CandidateFontName { get; set; }
 #if AUTHOR_RESERVED
-		public string CandidateFontName { get; set; } = "Fira Code";
+		= "Fira Code";
 #else
-		public string CandidateFontName { get; set; } = "Arial";
+		= "Arial";
 #endif
 
 		/// <summary>
@@ -155,10 +157,11 @@ namespace Sudoku.Drawing
 		/// <para>The value is <see cref="Color.Black"/> with the alpha 192 in debugger mode,
 		/// <see cref="Color.SkyBlue"/> with the alpha 192 in release mode in default case.</para>
 		/// </summary>
+		public Color CrosshatchingOutlineColor { get; set; }
 #if AUTHOR_RESERVED
-		public Color CrosshatchingOutlineColor { get; set; } = Color.FromArgb(192, Color.Black);
+		= Color.FromArgb(192, Color.Black);
 #else
-		public Color CrosshatchingOutlineColor { get; set; } = Color.FromArgb(192, Color.SkyBlue);
+		= Color.FromArgb(192, Color.SkyBlue);
 #endif
 
 		/// <summary>
@@ -168,10 +171,11 @@ namespace Sudoku.Drawing
 		/// <para>The value is <see cref="Color.Transparent"/> in debugger mode,
 		/// <see cref="Color.SkyBlue"/> in release mode in default case.</para>
 		/// </summary>
+		public Color CrosshatchingInnerColor { get; set; }
 #if AUTHOR_RESERVED
-		public Color CrosshatchingInnerColor { get; set; } = Color.Transparent;
+		= Color.Transparent;
 #else
-		public Color CrosshatchingInnerColor { get; set; } = Color.SkyBlue;
+		= Color.SkyBlue;
 #endif
 
 		/// <summary>
@@ -260,6 +264,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates the palette colors.
 		/// </summary>
+		[JsonIgnore]
 		public IReadOnlyDictionary<int, Color> PaletteColors =>
 			new Dictionary<int, Color>
 			{

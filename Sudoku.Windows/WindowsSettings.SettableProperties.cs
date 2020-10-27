@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Text.Json.Serialization;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using static Sudoku.Solving.DifficultyLevel;
@@ -19,9 +20,9 @@ namespace Sudoku.Windows
 		/// </para>
 		/// </summary>
 #if AUTHOR_RESERVED
-		public bool AskWhileQuitting { get; set; } = false;
+		public bool AskWhileQuitting { get; set; }
 #else
-		public bool AskWhileQuitting { get; set; } = true;
+		= true;
 #endif
 
 		/// <summary>
@@ -31,7 +32,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>The value is <see langword="false"/> in default case.</para>
 		/// </summary>
-		public bool SolveFromCurrent { get; set; } = false;
+		public bool SolveFromCurrent { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -57,10 +58,9 @@ namespace Sudoku.Windows
 		/// <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
+		public bool PmGridCompatible { get; set; }
 #if AUTHOR_RESERVED
-		public bool PmGridCompatible { get; set; } = true;
-#else
-		public bool PmGridCompatible { get; set; } = false;
+		= true;
 #endif
 
 		/// <summary>
@@ -71,10 +71,9 @@ namespace Sudoku.Windows
 		/// <para>The value is <see langword="true"/> in debug environment, and
 		/// <see langword="false"/> in release environment in default case.</para>
 		/// </summary>
+		public bool ShowDirectLines { get; set; }
 #if AUTHOR_RESERVED
-		public bool ShowDirectLines { get; set; } = true;
-#else
-		public bool ShowDirectLines { get; set; } = false;
+		= true;
 #endif
 
 		/// <summary>
@@ -95,7 +94,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>The default value is <c>0</c>.</para>
 		/// </summary>
-		public int GeneratingModeComboBoxSelectedIndex { get; set; } = 0;
+		public int GeneratingModeComboBoxSelectedIndex { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -103,7 +102,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>The default value is <c>0</c>.</para>
 		/// </summary>
-		public int GeneratingSymmetryModeComboBoxSelectedIndex { get; set; } = 0;
+		public int GeneratingSymmetryModeComboBoxSelectedIndex { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -111,7 +110,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>The default value is <c>0</c>.</para>
 		/// </summary>
-		public int GeneratingDifficultyLevelSelectedIndex { get; set; } = 0;
+		public int GeneratingDifficultyLevelSelectedIndex { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -119,7 +118,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>The default value is <c>0</c>.</para>
 		/// </summary>
-		public int GeneratingBackdoorSelectedIndex { get; set; } = 0;
+		public int GeneratingBackdoorSelectedIndex { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -135,11 +134,13 @@ namespace Sudoku.Windows
 		/// <para>Indicates the current puzzle database used.</para>
 		/// <para>The default value is <c><see langword="null"/></c>.</para>
 		/// </summary>
-		public string? CurrentPuzzleDatabase { get; set; } = null;
+		public string? CurrentPuzzleDatabase { get; set; }
 
 		/// <summary>
 		/// <para>Indicates the language code string (i.e. globalization string).</para>
-		/// <para>The default value is <c><see langword="null"/></c>, which is equivalent to "<c>en-us</c>".</para>
+		/// <para>
+		/// The default value is <c><see langword="null"/></c>, which is equivalent to "<c>en-us</c>".
+		/// </para>
 		/// </summary>
 		public string? LanguageCode { get; set; } = "en-us";
 
@@ -147,7 +148,7 @@ namespace Sudoku.Windows
 		/// <para>Indicates the format text while saving picture.</para>
 		/// <para>The default value is <see langword="null"/>.</para>
 		/// </summary>
-		public string? OutputPictureFormatText { get; set; } = null;
+		public string? OutputPictureFormatText { get; set; }
 
 		/// <summary>
 		/// The main manual solver.
@@ -157,6 +158,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The color table for each difficulty level.
 		/// </summary>
+		[JsonIgnore]
 		public IReadOnlyDictionary<DifficultyLevel, (Color Foreground, Color Background)> DiffColors =>
 			new Dictionary<DifficultyLevel, (Color, Color)>
 			{

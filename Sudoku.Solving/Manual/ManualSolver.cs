@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Models;
@@ -12,16 +13,17 @@ namespace Sudoku.Solving.Manual
 	/// <summary>
 	/// Provides a solver that use logical methods to solve a specified sudoku puzzle.
 	/// </summary>
-	[Serializable]
 	public sealed partial class ManualSolver : Solver
 	{
 		/// <inheritdoc/>
+		[JsonIgnore]
 		public override string SolverName => Resources.GetValue("Manual");
 
 
 		/// <summary>
 		/// Indicates the list that used as a cache.
 		/// </summary>
+		[JsonIgnore]
 		private static List<TechniqueInfo> TempList => new();
 
 

@@ -4,6 +4,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -22,9 +23,14 @@ using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Windows;
 using static System.Console;
 
-#if SUDOKU_GRID_TESTER || true
-var grid = SudokuGrid.Empty;
-WriteLine(grid.ToMaskString());
+#if DRAWING || true
+var a = Color.FromName("Red");
+var b = Color.FromKnownColor(KnownColor.Red);
+var c = Color.FromArgb(1, 2, 3, 4);
+
+Console.WriteLine(a);
+Console.WriteLine(b);
+Console.WriteLine(c);
 #endif
 
 #if FILE_COUNTER || false

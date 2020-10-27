@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual
 		/// </para>
 		/// </summary>
 		/// <seealso cref="OptimizedApplyingOrder"/>
-		public bool AnalyzeDifficultyStrictly { get; set; } = false;
+		public bool AnalyzeDifficultyStrictly { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -62,10 +62,9 @@ namespace Sudoku.Solving.Manual
 		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
+		public bool CheckAlmostLockedQuadruple { get; set; }
 #if AUTHOR_RESERVED
-		public bool CheckAlmostLockedQuadruple { get; set; } = true;
-#else
-		public bool CheckAlmostLockedQuadruple { get; set; } = false;
+		= true;
 #endif
 
 		/// <summary>
@@ -109,7 +108,7 @@ namespace Sudoku.Solving.Manual
 		/// </para>
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
-		public bool CheckGurthSymmetricalPlacement { get; set; } = false;
+		public bool CheckGurthSymmetricalPlacement { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -120,10 +119,9 @@ namespace Sudoku.Solving.Manual
 		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
+		public bool CheckIncompleteUniquenessPatterns { get; set; }
 #if AUTHOR_RESERVED
-		public bool CheckIncompleteUniquenessPatterns { get; set; } = true;
-#else
-		public bool CheckIncompleteUniquenessPatterns { get; set; } = false;
+		= true;
 #endif
 
 		/// <summary>
@@ -136,10 +134,9 @@ namespace Sudoku.Solving.Manual
 		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
+		public bool SearchExtendedUniqueRectangles { get; set; } 
 #if AUTHOR_RESERVED
-		public bool SearchExtendedUniqueRectangles { get; set; } = true;
-#else
-		public bool SearchExtendedUniqueRectangles { get; set; } = false;
+		= true;
 #endif
 
 		/// <summary>
@@ -199,7 +196,7 @@ namespace Sudoku.Solving.Manual
 		/// more than when the value is <see langword="false"/>.
 		/// </para>
 		/// </summary>
-		public bool FastSearch { get; set; } = false;
+		public bool FastSearch { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -244,7 +241,7 @@ namespace Sudoku.Solving.Manual
 		/// </para>
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
-		public bool OptimizedApplyingOrder { get; set; } = false;
+		public bool OptimizedApplyingOrder { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -260,7 +257,7 @@ namespace Sudoku.Solving.Manual
 		/// </para>
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
-		public bool UseCalculationPriority { get; set; } = false;
+		public bool UseCalculationPriority { get; set; }
 
 		/// <summary>
 		/// <para>
@@ -273,10 +270,9 @@ namespace Sudoku.Solving.Manual
 		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
+		public bool UseExtendedBugSearcher { get; set; }
 #if AUTHOR_RESERVED
-		public bool UseExtendedBugSearcher { get; set; } = true;
-#else
-		public bool UseExtendedBugSearcher { get; set; } = false;
+		= true;
 #endif
 
 		/// <summary>
@@ -296,10 +292,9 @@ namespace Sudoku.Solving.Manual
 		/// <para>The value is <see langword="true"/> in debugger mode, and
 		/// <see langword="false"/> in release mode in default case.</para>
 		/// </summary>
+		public bool ShowDirectLines { get; set; }
 #if AUTHOR_RESERVED
-		public bool ShowDirectLines { get; set; } = true;
-#else
-		public bool ShowDirectLines { get; set; } = false;
+		= true;
 #endif
 
 		/// <summary>

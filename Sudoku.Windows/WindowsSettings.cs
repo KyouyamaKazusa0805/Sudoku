@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.Json.Serialization;
 using Sudoku.Drawing;
 
 namespace Sudoku.Windows
@@ -7,13 +8,12 @@ namespace Sudoku.Windows
 	/// <summary>
 	/// To encapsulates a series of setting options for <see cref="MainWindow"/> utility.
 	/// </summary>
-	[Serializable]
 	public sealed partial class WindowsSettings : Settings
 	{
 		/// <summary>
 		/// To provides a default setting instance.
 		/// </summary>
-		[NonSerialized]
+		[JsonIgnore]
 		public static readonly WindowsSettings DefaultSetting = new();
 
 
@@ -28,7 +28,10 @@ namespace Sudoku.Windows
 		{
 			_ = newSetting is not WindowsSettings @new ? throw new ArgumentException("The specified argument is invalid due to its invalid type.", nameof(newSetting)) : 0;
 
-			foreach (var property in from Property in GetType().GetProperties() where Property.CanWrite select Property)
+			foreach (var property in
+				from prop in GetType().GetProperties()
+				where prop.CanWrite
+				select prop)
 			{
 				property.SetValue(this, property.GetValue(@new));
 			}

@@ -103,6 +103,15 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="M:Sudoku.Windows.ColorJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.ColorJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Windows.Constants.Messagings">
             <summary>
             Provides all messages used for <see cref="T:System.Windows.MessageBox"/> instance.
@@ -694,6 +703,12 @@
             <seealso cref="M:Sudoku.Windows.MainWindow.ImageGrid_MouseRightButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)"/>
             <seealso cref="M:Sudoku.Windows.MainWindow.ButtonCellReset_Click(System.Object,System.Windows.RoutedEventArgs)"/>
         </member>
+        <member name="F:Sudoku.Windows.MainWindow._serializerOptions">
+            <summary>
+            The JSON serializer options. It'll be initialized in <see cref="M:Sudoku.Windows.MainWindow.#ctor"/>.
+            </summary>
+            <seealso cref="M:Sudoku.Windows.MainWindow.#ctor"/>
+        </member>
         <member name="F:Sudoku.Windows.MainWindow._customDrawingMode">
             <summary>
             The current custom drawing mode. The values are:
@@ -1131,13 +1146,14 @@
             Save configurations if worth.
             </summary>
             <param name="path">
-            The path of the configuration file. The default value is <c>"configurations.scfg"</c>.
+            The path of the configuration file. The default value is <c>"configurations.json"</c>.
             </param>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.SaveConfig(System.String)">
             <summary>
             Save configurations.
             </summary>
+            <param name="path">The path to save. The default value is <c>"configurations.json"</c>.</param>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.AddShortCut(System.Windows.Input.Key,System.Windows.Input.ModifierKeys,System.Windows.UIElement,System.Windows.Input.ExecutedRoutedEventHandler)">
             <summary>
@@ -2721,7 +2737,9 @@
         <member name="P:Sudoku.Windows.WindowsSettings.LanguageCode">
             <summary>
             <para>Indicates the language code string (i.e. globalization string).</para>
-            <para>The default value is <c><see langword="null"/></c>, which is equivalent to "<c>en-us</c>".</para>
+            <para>
+            The default value is <c><see langword="null"/></c>, which is equivalent to "<c>en-us</c>".
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Windows.WindowsSettings.OutputPictureFormatText">
@@ -2893,6 +2911,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The data.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

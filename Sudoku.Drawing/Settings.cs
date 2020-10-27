@@ -5,7 +5,6 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// Provides with a base class for program settings.
 	/// </summary>
-	[Serializable]
 	public abstract partial class Settings : ICloneable<Settings>
 	{
 		/// <summary>
