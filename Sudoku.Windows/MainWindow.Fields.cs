@@ -30,7 +30,7 @@ namespace Sudoku.Windows
 		/// The JSON serializer options. It'll be initialized in <see cref="MainWindow()"/>.
 		/// </summary>
 		/// <seealso cref="MainWindow()"/>
-		private readonly JsonSerializerOptions _serializerOptions;
+		private readonly JsonSerializerOptions _serializerOptions = CreateDefaultJsonSerializerOptionsInstance();
 
 
 		/// <summary>

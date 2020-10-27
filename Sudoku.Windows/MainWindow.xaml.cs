@@ -43,15 +43,9 @@ namespace Sudoku.Windows
 	public partial class MainWindow : Window
 	{
 		/// <inheritdoc cref="DefaultConstructor"/>
-		public MainWindow()
-		{
-			InitializeComponent();
+		public MainWindow() => InitializeComponent();
 
-			_serializerOptions = new() { WriteIndented = true };
-			_serializerOptions.Converters.Add(new ColorJsonConverter());
-		}
-
-
+		
 		#region Overriden methods
 		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
@@ -1172,6 +1166,19 @@ namespace Sudoku.Windows
 			}
 
 			return true;
+		}
+
+		/// <summary>
+		/// Create a default JSON serializer options instance while initializing
+		/// the field <see cref="_serializerOptions"/>.
+		/// </summary>
+		/// <returns>The instance.</returns>
+		/// <seealso cref="_serializerOptions"/>
+		private static JsonSerializerOptions CreateDefaultJsonSerializerOptionsInstance()
+		{
+			var result = new JsonSerializerOptions() { WriteIndented = true };
+			result.Converters.Add(new ColorJsonConverter());
+			return result;
 		}
 		#endregion
 	}

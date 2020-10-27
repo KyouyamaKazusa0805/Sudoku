@@ -1274,6 +1274,14 @@
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Windows.MainWindow.CreateDefaultJsonSerializerOptionsInstance">
+            <summary>
+            Create a default JSON serializer options instance while initializing
+            the field <see cref="F:Sudoku.Windows.MainWindow._serializerOptions"/>.
+            </summary>
+            <returns>The instance.</returns>
+            <seealso cref="F:Sudoku.Windows.MainWindow._serializerOptions"/>
+        </member>
         <member name="M:Sudoku.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent
