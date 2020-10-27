@@ -80,35 +80,31 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// The nested complexity.
 		/// </summary>
-		public int NestedComplexity
-		{
-			get
-			{
-				return 0;
+		public int NestedComplexity =>
+#if OBSOLETE
+				int result = 0;
+				var processed = new HashSet<FullChain>();
+				foreach (var target in ChainsTargets)
+				{
+					foreach (var p in ChainingTechniqueSearcher.GetChain(target))
+					{
+						if (p.NestedChain is not null)
+						{
+							var f = new FullChain(p.NestedChain);
+							if (!processed.Contains(f))
+							{
+								result += p.NestedChain.Complexity;
+								processed.Add(f);
+							}
+						}
+					}
+				}
 
-				#region Obsolete code
-				//int result = 0;
-				//var processed = new HashSet<FullChain>();
-				//foreach (var target in ChainsTargets)
-				//{
-				//	foreach (var p in ChainingTechniqueSearcher.GetChain(target))
-				//	{
-				//		if (p.NestedChain is not null)
-				//		{
-				//			var f = new FullChain(p.NestedChain);
-				//			if (!processed.Contains(f))
-				//			{
-				//				result += p.NestedChain.Complexity;
-				//				processed.Add(f);
-				//			}
-				//		}
-				//	}
-				//}
-				//
-				//return result;
-				#endregion
-			}
-		}
+				return result;
+#else
+				0;
+#endif
+
 
 		/// <summary>
 		/// The prefix.

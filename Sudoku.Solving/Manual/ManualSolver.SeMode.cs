@@ -1,5 +1,6 @@
 ﻿#pragma warning disable IDE0055
 
+#if OBSOLETE || true
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,11 +12,13 @@ using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Uniqueness;
 using static System.Reflection.BindingFlags;
+#endif
 
 namespace Sudoku.Solving.Manual
 {
 	partial class ManualSolver
 	{
+#if OBSOLETE || true
 		/// <summary>
 		/// Solve the puzzle with <see cref="AnalyzeDifficultyStrictly"/> option.
 		/// </summary>
@@ -40,7 +43,6 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
-		[Obsolete]
 		private unsafe AnalysisResult SolveSeMode(
 			in SudokuGrid grid, ref SudokuGrid cloneation, List<TechniqueInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
@@ -136,45 +138,45 @@ namespace Sudoku.Solving.Manual
 					}
 				}
 				else unsafe
-				{
-					var step = bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector);
-					if (step is null)
 					{
-						// If current step can't find any steps,
-						// we will turn to the next step finder to
-						// continue solving puzzle.
-						continue;
-					}
-
-					if (!CheckConclusionValidityAfterSearched || CheckConclusionsValidity(solution, step.Conclusions))
-					{
-						if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+						var step = bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector);
+						if (step is null)
 						{
-							// The puzzle has been solved.
-							// :)
-							stopwatch.Stop();
-							return result;
+							// If current step can't find any steps,
+							// we will turn to the next step finder to
+							// continue solving puzzle.
+							continue;
+						}
+
+						if (!CheckConclusionValidityAfterSearched || CheckConclusionsValidity(solution, step.Conclusions))
+						{
+							if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+							{
+								// The puzzle has been solved.
+								// :)
+								stopwatch.Stop();
+								return result;
+							}
+							else
+							{
+								// The puzzle has not been finished,
+								// we should turn to the first step finder
+								// to continue solving puzzle.
+								bag.Clear();
+
+								if (progress is not null)
+								{
+									ReportProgress(cloneation, progress, ref progressResult);
+								}
+
+								goto Restart;
+							}
 						}
 						else
 						{
-							// The puzzle has not been finished,
-							// we should turn to the first step finder
-							// to continue solving puzzle.
-							bag.Clear();
-
-							if (progress is not null)
-							{
-								ReportProgress(cloneation, progress, ref progressResult);
-							}
-
-							goto Restart;
+							throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
 						}
 					}
-					else
-					{
-						throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
-					}
-				}
 			}
 
 			// All solver can't finish the puzzle...
@@ -192,5 +194,6 @@ namespace Sudoku.Solving.Manual
 			static TechniqueProperties g(TechniqueSearcher searcher) =>
 				(TechniqueProperties)searcher.GetType().GetProperty("Properties", Public | Static)!.GetValue(null)!;
 		}
+#endif
 	}
 }

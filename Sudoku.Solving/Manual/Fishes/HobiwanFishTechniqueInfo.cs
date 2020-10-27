@@ -175,16 +175,15 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// To check whether the specified structure is basic.
 		/// </summary>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		private bool IsBasic()
-		{
-			return false;
+		private bool IsBasic() =>
+#if OBSOLETE
+			static bool r(int region) => region / 9 == 1;
+			static bool c(int region) => region / 9 == 2;
+			return BaseSets.All(r) && CoverSets.All(c) || BaseSets.All(c) && CoverSets.All(r);
+#else
+			false;
+#endif
 
-			#region Obsolete code
-			//static bool r(int region) => region / 9 == 1;
-			//static bool c(int region) => region / 9 == 2;
-			//return BaseSets.All(r) && CoverSets.All(c) || BaseSets.All(c) && CoverSets.All(r);
-			#endregion
-		}
 
 		/// <summary>
 		/// To check whether the specified structure is Franken.

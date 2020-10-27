@@ -28,7 +28,7 @@ using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
 #if JSON_SERIALIZER
 using System.Text.Json;
-#else
+#elif OBSOLETE
 using System.Runtime.Serialization.Formatters.Binary;
 #endif
 #if SUDOKU_RECOGNITION
@@ -45,7 +45,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="DefaultConstructor"/>
 		public MainWindow() => InitializeComponent();
 
-		
+
 		#region Overriden methods
 		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
@@ -439,7 +439,7 @@ namespace Sudoku.Windows
 		/// <param name="path">
 		/// The path of the configuration file. The default value is <c>"configurations.json"</c>.
 		/// </param>
-#else
+#elif OBSOLETE
 		/// <summary>
 		/// Save configurations if worth.
 		/// </summary>
@@ -448,18 +448,18 @@ namespace Sudoku.Windows
 		/// </param>
 #endif
 		private void LoadConfigIfWorth(
-			string path =
+			string path
 #if JSON_SERIALIZER
-			"configurations.json"
-#else
-			"configurations.scfg"
+			= "configurations.json"
+#elif OBSOLETE
+			= "configurations.scfg"
 #endif
 			)
 		{
 			Settings = new();
 			if (File.Exists(path))
 			{
-#if !JSON_SERIALIZER
+#if !JSON_SERIALIZER && OBSOLETE
 				FileStream? fs = null;
 #endif
 				try
@@ -475,16 +475,19 @@ namespace Sudoku.Windows
 					{
 						Settings.CoverBy(WindowsSettings.DefaultSetting);
 					}
-#else
+#elif OBSOLETE
 					fs = new(path, FileMode.Open);
 					Settings = (WindowsSettings)new BinaryFormatter().Deserialize(fs);
+#else
+					throw new InvalidOperationException(
+						"The current operation cannot be executed because of its obsoleteness.");
 #endif
 				}
 				catch
 				{
 					Messagings.FailedToLoadSettings();
 				}
-#if !JSON_SERIALIZER
+#if !JSON_SERIALIZER && OBSOLETE
 				finally
 				{
 					fs?.Close();
@@ -502,38 +505,41 @@ namespace Sudoku.Windows
 		/// Save configurations.
 		/// </summary>
 		/// <param name="path">The path to save. The default value is <c>"configurations.json"</c>.</param>
-#else
+#elif OBSOLETE
 		/// <summary>
 		/// Save configurations.
 		/// </summary>
 		/// <param name="path">The path to save. The default value is <c>"configurations.scfg"</c>.</param>
 #endif
 		private void SaveConfig(
-			string path =
+			string path
 #if JSON_SERIALIZER
-			"configurations.json"
-#else
-			"configurations.scfg"
+			= "configurations.json"
+#elif OBSOLETE
+			= "configurations.scfg"
 #endif
 			)
 		{
-#if !JSON_SERIALIZER
+#if !JSON_SERIALIZER && OBSOLETE
 			FileStream? fs = null;
 #endif
 			try
 			{
 #if JSON_SERIALIZER
 				File.WriteAllText(path, JsonSerializer.Serialize(Settings, _serializerOptions));
-#else
+#elif OBSOLETE
 				fs = new(path, FileMode.Create);
 				new BinaryFormatter().Serialize(fs, Settings);
+#else
+				throw new InvalidOperationException(
+					"The current operation cannot be executed because of its obsoleteness.");
 #endif
 			}
 			catch (Exception ex)
 			{
 				Messagings.FailedToSaveConfig(ex);
 			}
-#if !JSON_SERIALIZER
+#if !JSON_SERIALIZER && OBSOLETE
 			finally
 			{
 				fs?.Close();

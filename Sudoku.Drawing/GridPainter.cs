@@ -353,10 +353,11 @@ namespace Sudoku.Drawing
 			// Iterate on each inference to draw the links and grouped nodes (if so).
 			var (cw, ch) = PointConverter.CandidateSize;
 			using var pen = new Pen(Settings.ChainColor, 2F) { CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F) };
-			#region Obsolete code
+
+#if OBSOLETE
 			// This brush is used for drawing grouped nodes.
-			//using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
-			#endregion
+			using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
+#endif
 			foreach (var link in links)
 			{
 				var (start, end, type) = link;
@@ -367,23 +368,23 @@ namespace Sudoku.Drawing
 				var (pt1x, pt1y) = pt1;
 				var (pt2x, pt2y) = pt2;
 
-				#region Obsolete code
+#if OBSOLETE
 				// Draw grouped node regions.
-				//if (startMap.Count != 1)
-				//{
-				//	g.FillRoundedRectangle(
-				//		groupedNodeBrush,
-				//		PointConverter.GetMouseRectangleOfCandidates(startFullMap),
-				//		offset);
-				//}
-				//if (endMap.Count != 1)
-				//{
-				//	g.FillRoundedRectangle(
-				//		groupedNodeBrush,
-				//		PointConverter.GetMouseRectangleOfCandidates(endFullMap),
-				//		offset);
-				//}
-				#endregion
+				if (startMap.Count != 1)
+				{
+					g.FillRoundedRectangle(
+						groupedNodeBrush,
+						PointConverter.GetMouseRectangleOfCandidates(startFullMap),
+						offset);
+				}
+				if (endMap.Count != 1)
+				{
+					g.FillRoundedRectangle(
+						groupedNodeBrush,
+						PointConverter.GetMouseRectangleOfCandidates(endFullMap),
+						offset);
+				}
+#endif
 
 				// If the distance of two points is lower than the one of two adjacent candidates,
 				// the link will be emitted to draw because of too narrow.

@@ -81,13 +81,13 @@ namespace Sudoku.Solving.Manual
 				new BruteForceTechniqueSearcher(solution),
 			};
 
+#if OBSOLETE || true
 		/// <summary>
 		/// Get all searchers using in Sudoku Explainer-like mode.
 		/// </summary>
 		/// <param name="solution">(<see langword="in"/> parameter) The solution used for brute forces.</param>
 		/// <returns>The searchers.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete("Because of some unstable techniques, please use the another field instead.")]
 		private TechniqueSearcher[][] GetSearchersSeMode(in SudokuGrid solution) =>
 			new TechniqueSearcher[][]
 			{
@@ -140,6 +140,7 @@ namespace Sudoku.Solving.Manual
 				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
 			};
+#endif
 
 		/// <summary>
 		/// Bound with on-solving methods returns the solving state.

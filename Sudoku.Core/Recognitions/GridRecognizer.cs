@@ -72,13 +72,13 @@ namespace Sudoku.Recognitions
 			CvInvoke.PyrUp(pyrDown, uimage);
 
 			var cannyEdges = new UMat();
+#if OBSOLETE
+			//Another way to process image, but worse. Use only one!
+			CvInvoke.Threshold(uimage, cannyEdges, 50.0, 100.0, ThresholdType.Binary);
+			CvInvoke.AdaptiveThreshold(uimage, cannyEdges, 50, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 7, 1);
+#else
 			CvInvoke.Canny(uimage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
-
-			#region Obsolete code
-			// Another way to process image, but worse. Use only one!
-			//CvInvoke.Threshold(uimage, cannyEdges, 50.0, 100.0, ThresholdType.Binary);
-			//CvInvoke.AdaptiveThreshold(uimage, cannyEdges, 50, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 7, 1);
-			#endregion
+#endif
 
 			return cannyEdges;
 		}
