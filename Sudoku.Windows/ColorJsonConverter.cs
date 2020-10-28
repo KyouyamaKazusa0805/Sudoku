@@ -22,31 +22,28 @@ namespace Sudoku.Windows
 		/// <inheritdoc/>
 		public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
-			var colorValueSpan = (stackalloc byte[4]);
-			for (int index = -1; reader.Read();)
+			const int length = 4;
+			var span = (stackalloc byte[length]);
+			for (int index = -1, i = 0; reader.Read() && i < length << 1; i++)
 			{
 				switch (reader.TokenType)
 				{
-					case JsonTokenType.PropertyName or JsonTokenType.String when reader.GetString() is var s:
+					case JsonTokenType.PropertyName or JsonTokenType.String
+					when reader.GetString() is "A" or "R" or "G" or "B":
 					{
-						if (s is null or not ("A" or "R" or "G" or "B"))
-						{
-							break;
-						}
-
 						index++;
 						break;
 					}
 					case JsonTokenType.Number:
 					{
-						colorValueSpan[index] = reader.GetByte();
+						span[index] = reader.GetByte();
 
 						break;
 					}
 				}
 			}
 
-			return Color.FromArgb(colorValueSpan[0], colorValueSpan[1], colorValueSpan[2], colorValueSpan[3]);
+			return Color.FromArgb(span[0], span[1], span[2], span[3]);
 		}
 
 		/// <inheritdoc/>
