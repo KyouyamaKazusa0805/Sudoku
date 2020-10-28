@@ -125,7 +125,7 @@ namespace Sudoku.Windows
 		{
 			int current = --Settings.CurrentPuzzleNumber;
 			int max = _puzzlesText!.Length;
-			LoadPuzzle(_puzzlesText![current].TrimEndNewLine());
+			LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 
 			bool condition = Settings.CurrentPuzzleNumber != 0;
 			UpdateDatabaseControls(condition, condition, true, true);
@@ -138,7 +138,7 @@ namespace Sudoku.Windows
 		{
 			int current = ++Settings.CurrentPuzzleNumber;
 			int max = _puzzlesText!.Length;
-			LoadPuzzle(_puzzlesText![current].TrimEndNewLine());
+			LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 
 			bool condition = Settings.CurrentPuzzleNumber != _puzzlesText.Length - 1;
 			UpdateDatabaseControls(true, true, condition, condition);
@@ -151,7 +151,7 @@ namespace Sudoku.Windows
 		{
 			int current = Settings.CurrentPuzzleNumber = _puzzlesText!.Length - 1;
 			int max = _puzzlesText.Length;
-			LoadPuzzle(_puzzlesText![current].TrimEndNewLine());
+			LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 			UpdateDatabaseControls(true, true, false, false);
 
 			_labelPuzzleNumber.Content = $"{current + 1}/{max}";

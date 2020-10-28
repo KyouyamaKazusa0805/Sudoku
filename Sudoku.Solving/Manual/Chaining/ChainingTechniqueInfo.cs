@@ -201,6 +201,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			};
 
 
+#nullable disable warnings
 		/// <summary>
 		/// Determine whether two <see cref="ChainingTechniqueInfo"/> instances are same.
 		/// </summary>
@@ -211,8 +212,9 @@ namespace Sudoku.Solving.Manual.Chaining
 			(left, right) switch
 			{
 				(null, null) => true,
-				(not null, not null) => left!.GetHashCode() == right!.GetHashCode(),
+				(not null, not null) => left.GetHashCode() == right.GetHashCode(),
 				_ => false
 			};
+#nullable restore warnings
 	}
 }

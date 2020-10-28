@@ -253,6 +253,7 @@ namespace System.Collections.Generic
 				_ => false
 			};
 
+#nullable disable warnings
 		/// <summary>
 		/// Determine whether two <see cref="Set{T}"/>s contain the same elements.
 		/// </summary>
@@ -269,9 +270,9 @@ namespace System.Collections.Generic
 				}
 				case (not null, not null):
 				{
-					foreach (var element in left!._list)
+					foreach (var element in left._list)
 					{
-						if (!right!._list.Contains(element))
+						if (!right._list.Contains(element))
 						{
 							return false;
 						}
@@ -285,6 +286,7 @@ namespace System.Collections.Generic
 				}
 			}
 		}
+#nullable restore warnings
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

@@ -150,7 +150,11 @@ namespace Sudoku.Solving.Manual
 			return from step in bag.Distinct() group step by step.Name;
 
 			static TechniqueProperties g(TechniqueSearcher searcher) =>
-				(TechniqueProperties)searcher.GetType().GetProperty("Properties", Public | Static)!.GetValue(null)!;
+				(TechniqueProperties)
+					searcher
+					.GetType()
+					.GetProperty("Properties", Public | Static)!
+					.GetValue(null)!;
 		}
 	}
 }

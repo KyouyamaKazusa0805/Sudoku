@@ -1,6 +1,7 @@
 ﻿#if SUDOKU_RECOGNITION
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
@@ -85,6 +86,8 @@ namespace Sudoku.Recognitions
 		/// </exception>
 		private int RecognizeCellNumber(Field cellImg)
 		{
+			_ = _ocr is null ? throw new NullReferenceException($"{nameof(_ocr)} cannot be null here.") : 0;
+
 			// Convert the image to gray-scale and filter out the noise
 			var imgGray = new Mat();
 			CvInvoke.CvtColor(cellImg, imgGray, ColorConversion.Bgr2Gray);
@@ -96,8 +99,10 @@ namespace Sudoku.Recognitions
 				imgGray, imgThresholded, InternalSettings.ThOcrMin, InternalSettings.ThOcrMax,
 				ThresholdType.Binary);
 
-			_ocr!.SetImage(imgThresholded);
-			_ = _ocr.Recognize() != 0 ? throw new InvalidOperationException("Tessaract Error. Cannot to recognize cell image.") : 0;
+			_ocr.SetImage(imgThresholded);
+			_ = _ocr.Recognize() != 0
+				? throw new InvalidOperationException("Tessaract Error. Cannot to recognize cell image.")
+				: 0;
 
 			var characters = _ocr.GetCharacters();
 			string numberText = string.Empty;
@@ -119,6 +124,7 @@ namespace Sudoku.Recognitions
 		/// <param name="dir">The directory.</param>
 		/// <param name="lang">The language. The default value is <c>"eng"</c>.</param>
 		/// <returns>The task.</returns>
+		[MemberNotNullWhen(true, nameof(_ocr))]
 		public async Task<bool> InitTesseractAsync(string dir, string lang = "eng")
 #else
 		/// <summary>
@@ -128,6 +134,7 @@ namespace Sudoku.Recognitions
 		/// <param name="lang">The language. The default value is <c>"eng"</c>.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		/// <exception cref="FileNotFoundException">Throws when the file doesn't found.</exception>
+		[MemberNotNullWhen(true, nameof(_ocr))]
 		public bool InitTesseract(string dir, string lang = "eng")
 #endif
 		{
