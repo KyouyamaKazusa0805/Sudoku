@@ -155,11 +155,11 @@
             Indicates the conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion)">
+        <member name="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)">
             <summary>
             Add the conclusion into the collection.
             </summary>
-            <param name="conclusion">The conclusion.</param>
+            <param name="conclusion">(<see langword="in"/> parameter) The conclusion.</param>
         </member>
         <member name="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})">
             <summary>

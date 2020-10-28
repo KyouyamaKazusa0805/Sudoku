@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if JSON_SERIALIZER
+
+using System;
 using System.Drawing;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -7,6 +9,9 @@ using Sudoku.Extensions;
 
 namespace Sudoku.Windows
 {
+	/// <summary>
+	/// Indicates a color JSON converter.
+	/// </summary>
 	[JsonConverter(typeof(Color))]
 	public sealed class ColorJsonConverter : JsonConverter<Color>
 	{
@@ -18,7 +23,7 @@ namespace Sudoku.Windows
 		public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
 			var colorValueSpan = (stackalloc byte[4]);
-			for (int index = -1; reader.Read(); )
+			for (int index = -1; reader.Read();)
 			{
 				switch (reader.TokenType)
 				{
@@ -57,3 +62,5 @@ namespace Sudoku.Windows
 		}
 	}
 }
+
+#endif

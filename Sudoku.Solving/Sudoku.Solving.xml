@@ -2639,7 +2639,7 @@
             <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="!:ExocetElimination.Add(in ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
@@ -2677,7 +2677,7 @@
             <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="!:ExocetElimination.Add(in ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
@@ -2715,7 +2715,7 @@
             <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="!:ExocetElimination.Add(in ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
@@ -2753,7 +2753,7 @@
             <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="!:ExocetElimination.Add(in ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
@@ -2791,7 +2791,7 @@
             <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="!:ExocetElimination.Add(in ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
@@ -2829,7 +2829,7 @@
             <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="!:ExocetElimination.Add(in ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
@@ -2867,7 +2867,7 @@
             <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="!:ExocetElimination.Add(in ExocetElimination.Conclusion)"/>
+            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
