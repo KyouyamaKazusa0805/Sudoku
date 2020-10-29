@@ -4170,9 +4170,9 @@
             </summary>
             <seealso cref="T:System.Index"/>
         </member>
-        <member name="M:Sudoku.Extensions.IndexEx.Deconstruct(System.Index,System.Boolean@,System.Int32@)">
+        <member name="M:Sudoku.Extensions.IndexEx.Deconstruct(System.Index@,System.Boolean@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The index.</param>
+            <param name="this">(<see langword="this in"/> parameter) The index.</param>
             <param name="isFromEnd">
             (<see langword="out"/> parameter) Indicates whether the current index is from end.
             </param>
@@ -4362,54 +4362,54 @@
             </summary>
             <seealso cref="T:System.Range"/>
         </member>
-        <member name="M:Sudoku.Extensions.RangeEx.GetEnumerator(System.Range)">
+        <member name="M:Sudoku.Extensions.RangeEx.GetEnumerator(System.Range@)">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <param name="this">(<see langword="this"/> parameter) The range.</param>
+            <param name="this">(<see langword="this in"/> parameter) The range.</param>
             <exception cref="T:System.ArgumentException">
             Throws when the index is from end, or the start index is greater than end one.
             </exception>
         </member>
-        <member name="M:Sudoku.Extensions.RangeEx.Deconstruct(System.Range,System.Index@,System.Index@)">
+        <member name="M:Sudoku.Extensions.RangeEx.Deconstruct(System.Range@,System.Index@,System.Index@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The range.</param>
+            <param name="this">(<see langword="this in"/> parameter) The range.</param>
             <param name="start">(<see langword="out"/> parameter) The start index.</param>
             <param name="end">(<see langword="out"/> parameter) The end index.</param>
         </member>
-        <member name="T:Sudoku.Extensions.RangeEx.RangeIterator">
+        <member name="T:Sudoku.Extensions.RangeEx.RangeEnumerator">
             <summary>
             Defines a range iterator.
             </summary>
         </member>
-        <member name="F:Sudoku.Extensions.RangeEx.RangeIterator._end">
+        <member name="F:Sudoku.Extensions.RangeEx.RangeEnumerator._end">
             <summary>
             Indicates the end index, read-only.
             </summary>
         </member>
-        <member name="F:Sudoku.Extensions.RangeEx.RangeIterator._current">
+        <member name="F:Sudoku.Extensions.RangeEx.RangeEnumerator._current">
             <summary>
             Indicates the current value.
             </summary>
         </member>
-        <member name="P:Sudoku.Extensions.RangeEx.RangeIterator.System#Collections#Generic#IEnumerator{System#Int32}#Current">
+        <member name="P:Sudoku.Extensions.RangeEx.RangeEnumerator.System#Collections#Generic#IEnumerator{System#Int32}#Current">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Extensions.RangeEx.RangeIterator.System#Collections#IEnumerator#Current">
+        <member name="P:Sudoku.Extensions.RangeEx.RangeEnumerator.System#Collections#IEnumerator#Current">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Extensions.RangeEx.RangeIterator.#ctor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Extensions.RangeEx.RangeEnumerator.#ctor(System.Int32,System.Int32)">
             <summary>
             Initializes an instance with start and end index value.
             </summary>
             <param name="start">The start index value.</param>
             <param name="end">The end index value.</param>
         </member>
-        <member name="M:Sudoku.Extensions.RangeEx.RangeIterator.System#Collections#IEnumerator#MoveNext">
+        <member name="M:Sudoku.Extensions.RangeEx.RangeEnumerator.System#Collections#IEnumerator#MoveNext">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Extensions.RangeEx.RangeIterator.System#IDisposable#Dispose">
+        <member name="M:Sudoku.Extensions.RangeEx.RangeEnumerator.System#IDisposable#Dispose">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Extensions.RangeEx.RangeIterator.System#Collections#IEnumerator#Reset">
+        <member name="M:Sudoku.Extensions.RangeEx.RangeEnumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Extensions.SingleEx">

@@ -62,7 +62,8 @@ namespace Sudoku.Extensions
 		/// If so, the value won't add (do nothing).
 		/// </param>
 		public static void AddRange<TNotNull>(
-			this ICollection<TNotNull> @this, IEnumerable<TNotNull> values, bool verifyDuplicate) where TNotNull : notnull
+			this ICollection<TNotNull> @this, IEnumerable<TNotNull> values, bool verifyDuplicate)
+			where TNotNull : notnull
 		{
 			foreach (var value in values)
 			{

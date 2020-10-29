@@ -36,6 +36,7 @@ namespace Sudoku.Extensions
 		/// <paramref name="defaultValue"/>.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string NullableToString<T>(this T? @this, string defaultValue) => @this?.ToString() ?? defaultValue;
+		public static string NullableToString<T>(this T? @this, string defaultValue) =>
+			@this?.ToString() ?? defaultValue;
 	}
 }

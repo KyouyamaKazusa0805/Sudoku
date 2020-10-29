@@ -23,7 +23,8 @@ namespace Sudoku.Extensions
 		/// <see langword="null"/>.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TClass? TryCloneAs<TClass>(this ICloneable @this) where TClass : class => @this.Clone() as TClass;
+		public static TClass? TryCloneAs<TClass>(this ICloneable @this) where TClass : class =>
+			@this.Clone() as TClass;
 
 		/// <summary>
 		/// Clone this object and cast to the specified type no matter how.
@@ -39,7 +40,8 @@ namespace Sudoku.Extensions
 		/// Throws when the cast is invalid.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TClass CloneAs<TClass>(this ICloneable @this) where TClass : class => (TClass)@this.Clone();
+		public static TClass CloneAs<TClass>(this ICloneable @this) where TClass : class =>
+			(TClass)@this.Clone();
 
 		/// <summary>
 		/// Try to cast the current instance to the generic cloneable type <see cref="ICloneable{T}"/>.

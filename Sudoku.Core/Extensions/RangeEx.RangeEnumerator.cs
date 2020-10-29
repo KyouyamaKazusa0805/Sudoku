@@ -9,7 +9,7 @@ namespace Sudoku.Extensions
 		/// <summary>
 		/// Defines a range iterator.
 		/// </summary>
-		private struct RangeIterator : IEnumerator<int>
+		private struct RangeEnumerator : IEnumerator<int>
 		{
 			/// <summary>
 			/// Indicates the end index, read-only.
@@ -34,7 +34,7 @@ namespace Sudoku.Extensions
 			/// </summary>
 			/// <param name="start">The start index value.</param>
 			/// <param name="end">The end index value.</param>
-			public RangeIterator(int start, int end) => (_current, _end) = (start, end);
+			public RangeEnumerator(int start, int end) => (_current, _end) = (start, end);
 
 
 			/// <inheritdoc/>
