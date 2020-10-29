@@ -344,19 +344,9 @@
             </code>
             </remarks>
         </member>
-        <member name="F:Sudoku.Data.BitCombinationGenerator._mask">
+        <member name="F:Sudoku.Data.BitCombinationGenerator._enumerator">
             <summary>
-            The mask.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.BitCombinationGenerator._value">
-            <summary>
-            The value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.BitCombinationGenerator._isLast">
-            <summary>
-            Indicates whether that the value is the last one.
+            The inner enumerator.
             </summary>
         </member>
         <member name="M:Sudoku.Data.BitCombinationGenerator.#ctor(System.Int32,System.Int32)">
@@ -390,14 +380,48 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Data.BitCombinationGenerator.HasNext">
-            <summary>
-            Indicates whether the generator has the next combination number to iterate.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Data.BitCombinationGenerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:Sudoku.Data.BitCombinationGenerator.Enumerator">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.BitCombinationGenerator.Enumerator._mask">
+            <summary>
+            The mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.BitCombinationGenerator.Enumerator._isLast">
+            <summary>
+            Indicates whether that the value is the last one.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.BitCombinationGenerator.Enumerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the specified number of bits
+            and <see langword="true"/> bits.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="P:Sudoku.Data.BitCombinationGenerator.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.BitCombinationGenerator.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.BitCombinationGenerator.Enumerator.Dispose">
+            <inheritdoc/>
+            <remarks>Here will do nothing.</remarks>
+        </member>
+        <member name="M:Sudoku.Data.BitCombinationGenerator.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.BitCombinationGenerator.Enumerator.Reset">
+            <inheritdoc/>
+            <remarks>Here will do nothing.</remarks>
         </member>
         <member name="T:Sudoku.Data.CellStatus">
             <summary>
