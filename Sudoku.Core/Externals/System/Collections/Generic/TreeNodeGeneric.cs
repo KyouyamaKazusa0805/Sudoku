@@ -26,7 +26,7 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// Indicates the content.
 		/// </summary>
-		public T? Content { get; set; } = default!;
+		public T? Content { get; set; }
 
 		/// <summary>
 		/// Indicates its children nodes.
@@ -78,21 +78,26 @@ namespace System.Collections.Generic
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) == 0;
+		public static bool operator ==(TreeNode<T>? left, TreeNode<T>? right) =>
+			InternalCompare(left, right) == 0;
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(TreeNode<T>? left, TreeNode<T>? right) => !(left == right);
 
 		/// <inheritdoc cref="Operators.operator &gt;"/>
-		public static bool operator >(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) > 0;
+		public static bool operator >(TreeNode<T>? left, TreeNode<T>? right) =>
+			InternalCompare(left, right) > 0;
 
 		/// <inheritdoc cref="Operators.operator &gt;="/>
-		public static bool operator >=(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) >= 0;
+		public static bool operator >=(TreeNode<T>? left, TreeNode<T>? right) =>
+			InternalCompare(left, right) >= 0;
 
 		/// <inheritdoc cref="Operators.operator &lt;"/>
-		public static bool operator <(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) < 0;
+		public static bool operator <(TreeNode<T>? left, TreeNode<T>? right) =>
+			InternalCompare(left, right) < 0;
 
 		/// <inheritdoc cref="Operators.operator &lt;="/>
-		public static bool operator <=(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) <= 0;
+		public static bool operator <=(TreeNode<T>? left, TreeNode<T>? right) =>
+			InternalCompare(left, right) <= 0;
 	}
 }
