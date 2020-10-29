@@ -62,17 +62,18 @@ namespace Sudoku.Extensions
 			}
 
 			var result = new List<T[]>();
-			g(@this.Length, count, count, new int[count], in @this, in result);
+			g(@this.Length, count, count, stackalloc int[count], @this, result);
 			return result;
 
-			static void g(int last, int count, int index, int[] tempArray, in T[] @this, in List<T[]> resultList)
+			static void g(
+				int last, int count, int index, in Span<int> tempArray, in T[] @this, in IList<T[]> resultList)
 			{
 				for (int i = last; i >= index; i--)
 				{
 					tempArray[index - 1] = i - 1;
 					if (index > 1)
 					{
-						g(i - 1, count, index - 1, tempArray, in @this, in resultList);
+						g(i - 1, count, index - 1, tempArray, @this, resultList);
 					}
 					else
 					{
