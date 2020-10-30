@@ -166,8 +166,9 @@ namespace Sudoku.Solving.Manual.Exocets
 						out targetPairEliminations, out swordfishEliminations);
 				}
 
-				if ((_checkAdvanced, targetEliminations.Count, mirrorEliminations.Count, bibiEliminations.Count) ==
-					(true, 0, 0, 0)
+				if (
+					_checkAdvanced
+					&& (targetEliminations.Count, mirrorEliminations.Count, bibiEliminations.Count) == (0, 0, 0)
 					|| (_checkAdvanced, targetEliminations.Count) == (false, 0))
 				{
 					continue;
@@ -354,7 +355,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				return true;
 			}
 
-			if ((m1 & baseCandidatesMask, m2 & baseCandidatesMask) == (0, 0)
+			if (
+				(m1 & baseCandidatesMask, m2 & baseCandidatesMask) == (0, 0)
 				|| (m1 & ~baseCandidatesMask, m2 & ~baseCandidatesMask) == (0, 0))
 			{
 				// Two cells don't contain any digits in the base cells neither,
@@ -370,7 +372,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			// covers only one of two last cells; otherwise, false.
 			short candidatesMask = (short)((m1 | m2) & ~baseCandidatesMask);
 			int r1 = GetRegion(pos1, Row);
-			var span = ( stackalloc[] { GetRegion(pos1, Block), r1 == GetRegion(pos2, Row) ? r1 : GetRegion(pos1, Column) });
+			var span = (stackalloc[] { GetRegion(pos1, Block), r1 == GetRegion(pos2, Row) ? r1 : GetRegion(pos1, Column) });
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
 				for (int i = 0; i < 2; i++)

@@ -261,16 +261,17 @@ namespace Sudoku.Solving.Manual.Exocets
 							combination[0], combination[1]);
 					}
 
-					if (_checkAdvanced
-					? (mirrorElims.Count, compatibilityElims.Count, targetElims.Count, trueBaseElims.Count) == (0, 0, 0, 0)
-					: (mirrorElims.Count, compatibilityElims.Count) == (0, 0))
+					if (
+						(mirrorElims.Count, compatibilityElims.Count) == (0, 0)
+						&& (
+						_checkAdvanced && (targetElims.Count, trueBaseElims.Count) == (0, 0)
+						|| !_checkAdvanced))
 					{
 						continue;
 					}
 
 					int endoTargetCell = combination[s[combination[0]] ? 0 : 1];
-					short m1 = grid.GetCandidateMask(b1), m2 = grid.GetCandidateMask(b2);
-					short m = (short)(m1 | m2);
+					short m1 = grid.GetCandidateMask(b1), m2 = grid.GetCandidateMask(b2), m = (short)(m1 | m2);
 					foreach (int digit in m1)
 					{
 						candidateOffsets.Add(new(0, b1 * 9 + digit));
