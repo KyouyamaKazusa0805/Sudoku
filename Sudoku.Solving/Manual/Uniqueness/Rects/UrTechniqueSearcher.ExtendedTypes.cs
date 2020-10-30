@@ -430,18 +430,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short m3 = grid.GetCandidateMask(c3);
 			short mask = (short)((short)(m1 | m2) | m3);
 
-			if ((mask.PopCount(), m1.PopCount(), m2.PopCount(), m3.PopCount(), m1 & comparer, m2 & comparer, m3 & comparer)
-				is not (4, <= 3, <= 3, <= 3, not 0, not 0, not 0) || (mask & comparer) != comparer)
+			if (
+				(
+					mask.PopCount(), m1.PopCount(), m2.PopCount(), m3.PopCount(),
+					m1 & comparer, m2 & comparer, m3 & comparer
+				) is not (4, <= 3, <= 3, <= 3, not 0, not 0, not 0)
+				|| (mask & comparer) != comparer)
 			{
 				return;
 			}
-
-			//if (mask.CountSet() != 4 || m1.CountSet() > 3 || m2.CountSet() > 3 || m3.CountSet() > 3
-			//	|| (mask & comparer) != comparer
-			//	|| (m1 & comparer) == 0 || (m2 & comparer) == 0 || (m3 & comparer) == 0)
-			//{
-			//	return;
-			//}
 
 			short xyMask = (short)(mask ^ comparer);
 			int x = xyMask.FindFirstSet();

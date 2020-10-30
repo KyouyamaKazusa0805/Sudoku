@@ -93,8 +93,7 @@ namespace Sudoku.Windows
 
 			_dicPointer =
 				typeof(Resources).GetField($"LangSource{sb}", StaticNonpublic)?.GetValue(null)
-				as IReadOnlyDictionary<string, string>
-				?? LangSourceEnUs;
+				as IReadOnlyDictionary<string, string> ?? LangSourceEnUs;
 		}
 	}
 }

@@ -12,9 +12,12 @@ namespace Sudoku.Windows
 			// While initializing, the selection index will be changed to 0.
 			// During changing, the label or combo box may be null in this case.
 			// So here need null checking.
-			if (sender is ComboBox comboBox
-				&& (_labelSymmetry, _comboBoxSymmetry, _labelBackdoorFilteringDepth, _comboBoxBackdoorFilteringDepth)
-				is (not null, not null, not null, not null))
+			if (
+				sender is ComboBox comboBox
+				&& _labelSymmetry is not null
+				&& _comboBoxSymmetry is not null
+				&& _labelBackdoorFilteringDepth is not null
+				&& _comboBoxBackdoorFilteringDepth is not null)
 			{
 				Settings.GeneratingModeComboBoxSelectedIndex = comboBox.SelectedIndex;
 				SwitchOnGeneratingComboBoxesDisplaying();
