@@ -169,7 +169,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
 				.Append('/')
 				.Append(Map)
-				.Append($" in {new RegionCollection(Region).ToString()}")
+				.Append(' ')
+				.Append("in")
+				.Append(' ')
+				.Append(new RegionCollection(Region).ToString())
 				.ToString();
 
 

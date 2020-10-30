@@ -37,7 +37,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// </summary>
 		/// <seealso cref="SudokuMap()"/>
-		public static readonly SudokuMap Empty = default;
+		public static readonly SudokuMap Empty;
 
 
 		/// <summary>
@@ -431,7 +431,10 @@ namespace Sudoku.Data
 					{
 						sb
 							.Append(new GridMap(from candidate in digitGroup select candidate / 9))
-							.Append($"({digitGroup.Key + 1}){separator}");
+							.Append('(')
+							.Append(digitGroup.Key + 1)
+							.Append(')')
+							.Append(separator);
 					}
 
 					return sb.RemoveFromEnd(separator.Length).ToString();

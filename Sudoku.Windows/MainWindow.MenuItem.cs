@@ -594,8 +594,8 @@ namespace Sudoku.Windows
 					char c = solutionSb[cell];
 					_ = puzzleStr[i] switch
 					{
-						'+' => (newSb.Append($"+{c}"), i += 2),
-						'0' => (newSb.Append($"+{c}"), i++),
+						'+' => (newSb.Append('+').Append(c), i += 2),
+						'0' => (newSb.Append('+').Append(c), i++),
 						_ => (newSb.Append(c), i++)
 					};
 				}

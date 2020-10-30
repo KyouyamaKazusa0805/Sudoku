@@ -235,7 +235,7 @@ namespace Sudoku.Data
 						for (int column = 0; column < 9; column++)
 						{
 							int cell = row * 9 + column;
-							sb.Append($"{builders[cell].ToString().PadLeft(span[column])} ");
+							sb.Append(builders[cell].ToString().PadLeft(span[column])).Append(' ');
 						}
 						sb.RemoveFromEnd(1).AppendLine(); // Remove last whitespace.
 					}
@@ -284,7 +284,11 @@ namespace Sudoku.Data
 						foreach (int i in from i in value where !tempGrid[cell, i] select i)
 						{
 							// The value is 'true', which means the digit has already been deleted.
-							elims.Append($"{i + 1}{cell / 9 + 1}{cell % 9 + 1} ");
+							elims
+								.Append(i + 1)
+								.Append(cell / 9 + 1)
+								.Append(cell % 9 + 1)
+								.Append(' ');
 						}
 					}
 
