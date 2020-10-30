@@ -81,9 +81,9 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Link left, Link right) => left.Equals(right);
+		public static bool operator ==(in Link left, in Link right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Link left, Link right) => !(left == right);
+		public static bool operator !=(in Link left, in Link right) => !(left == right);
 	}
 }

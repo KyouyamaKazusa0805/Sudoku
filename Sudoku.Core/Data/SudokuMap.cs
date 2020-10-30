@@ -235,12 +235,12 @@ namespace Sudoku.Data
 		/// var map = SudokuMap.CreateInstance(testMap);
 		/// </code>
 		/// </example>
-		public SudokuMap PeerIntersection => CreateInstance(Offsets);
+		public readonly SudokuMap PeerIntersection => CreateInstance(Offsets);
 
 		/// <summary>
 		/// Indicates all indices of set bits.
 		/// </summary>
-		private IEnumerable<int> Offsets
+		private readonly IEnumerable<int> Offsets
 		{
 			get
 			{
@@ -335,32 +335,19 @@ namespace Sudoku.Data
 		/// </remarks>
 		/// <seealso cref="First"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int SetAt(int index)
-		{
-			// To avoid the implicitly copy, we use the pointer to point to the same memory.
-			fixed (SudokuMap* @this = &this)
-			{
-				return index == 0 ? First : @this->Offsets.ElementAt(index);
-			}
-		}
+		public readonly int SetAt(int index) => index == 0 ? First : Offsets.ElementAt(index);
 
 		/// <summary>
 		/// Get a n-th index of the <see langword="true"/> bit in this instance.
 		/// </summary>
-		/// <param name="index">The true bit index order.</param>
+		/// <param name="index">(<see langword="in"/> parameter) The true bit index order.</param>
 		/// <returns>The real index.</returns>
 		/// <remarks>
 		/// If you want to select the first set bit, please use <see cref="First"/> instead.
 		/// </remarks>
 		/// <seealso cref="First"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int SetAt(Index index)
-		{
-			fixed (SudokuMap* @this = &this)
-			{
-				return @this->Offsets.ElementAt(index.GetOffset(Count));
-			}
-		}
+		public readonly int SetAt(in Index index) => Offsets.ElementAt(index.GetOffset(Count));
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override readonly int GetHashCode()
@@ -463,14 +450,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
-		public readonly IEnumerator<int> GetEnumerator()
-		{
-			// To avoid the implicitly copy, we use the pointer to point to the same memory.
-			fixed (SudokuMap* @this = &this)
-			{
-				return @this->Offsets.GetEnumerator();
-			}
-		}
+		public readonly IEnumerator<int> GetEnumerator() => Offsets.GetEnumerator();
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

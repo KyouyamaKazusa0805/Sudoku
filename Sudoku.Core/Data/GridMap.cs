@@ -667,14 +667,14 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get a n-th index of the <see langword="true"/> bit in this instance.
 		/// </summary>
-		/// <param name="index">The true bit index order.</param>
+		/// <param name="index">(<see langword="in"/> parameter) The true bit index order.</param>
 		/// <returns>The real index.</returns>
 		/// <remarks>
 		/// If you want to select the first set bit, please use <see cref="First"/> instead.
 		/// </remarks>
 		/// <seealso cref="First"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int SetAt(Index index) => SetAt(index.GetOffset(Count));
+		public readonly int SetAt(in Index index) => SetAt(index.GetOffset(Count));
 
 		/// <inheritdoc/>
 		public readonly int CompareTo(in GridMap other) =>
@@ -715,7 +715,8 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly int GetHashCode() => GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
+		public override readonly int GetHashCode() =>
+			GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
 
 		/// <inheritdoc cref="object.ToString"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -723,8 +724,9 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="Formattable.ToString(string?)"/>
 		/// <remarks>
-		/// The format can be <c><see langword="null"/></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>. If the former three,
-		/// the return value will be a cell notation collection; otherwise, the binary representation.
+		/// The format can be <c><see langword="null"/></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>.
+		/// If the former three, the return value will be a cell notation collection;
+		/// otherwise, the binary representation.
 		/// </remarks>
 		/// <exception cref="FormatException">Throws when the format is invalid.</exception>
 		public readonly string ToString(string? format)
@@ -1001,7 +1003,8 @@ namespace Sudoku.Data
 		/// that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator ~(in GridMap gridMap) => new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
+		public static GridMap operator ~(in GridMap gridMap) =>
+			new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
 
 		/// <summary>
 		/// Get a <see cref="GridMap"/> that contains all <paramref name="left"/> cells

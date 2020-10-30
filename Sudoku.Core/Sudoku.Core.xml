@@ -1472,11 +1472,11 @@
             </remarks>
             <seealso cref="P:Sudoku.Data.GridMap.First"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.SetAt(System.Index)">
+        <member name="M:Sudoku.Data.GridMap.SetAt(System.Index@)">
             <summary>
             Get a n-th index of the <see langword="true"/> bit in this instance.
             </summary>
-            <param name="index">The true bit index order.</param>
+            <param name="index">(<see langword="in"/> parameter) The true bit index order.</param>
             <returns>The real index.</returns>
             <remarks>
             If you want to select the first set bit, please use <see cref="P:Sudoku.Data.GridMap.First"/> instead.
@@ -1511,8 +1511,9 @@
         <member name="M:Sudoku.Data.GridMap.ToString(System.String)">
             <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
             <remarks>
-            The format can be <c><see langword="null"/></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>. If the former three,
-            the return value will be a cell notation collection; otherwise, the binary representation.
+            The format can be <c><see langword="null"/></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>.
+            If the former three, the return value will be a cell notation collection;
+            otherwise, the binary representation.
             </remarks>
             <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
         </member>
@@ -1960,10 +1961,10 @@
         <member name="M:Sudoku.Data.Link.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Data.Link.op_Equality(Sudoku.Data.Link,Sudoku.Data.Link)">
+        <member name="M:Sudoku.Data.Link.op_Equality(Sudoku.Data.Link@,Sudoku.Data.Link@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Data.Link.op_Inequality(Sudoku.Data.Link,Sudoku.Data.Link)">
+        <member name="M:Sudoku.Data.Link.op_Inequality(Sudoku.Data.Link@,Sudoku.Data.Link@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.LinkType">
@@ -3406,11 +3407,11 @@
             </remarks>
             <seealso cref="P:Sudoku.Data.SudokuMap.First"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuMap.SetAt(System.Index)">
+        <member name="M:Sudoku.Data.SudokuMap.SetAt(System.Index@)">
             <summary>
             Get a n-th index of the <see langword="true"/> bit in this instance.
             </summary>
-            <param name="index">The true bit index order.</param>
+            <param name="index">(<see langword="in"/> parameter) The true bit index order.</param>
             <returns>The real index.</returns>
             <remarks>
             If you want to select the first set bit, please use <see cref="P:Sudoku.Data.SudokuMap.First"/> instead.

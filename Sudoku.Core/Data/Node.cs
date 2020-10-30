@@ -173,7 +173,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		public readonly bool Equals(in Node other) =>
-			Cell == other.Cell && Digit == other.Digit && IsOn == other.IsOn;
+			(Cell, Digit, IsOn) == (other.Cell, other.Digit, other.IsOn);
 
 		/// <summary>
 		/// Determine whether the node is the parent of the specified node.
