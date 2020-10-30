@@ -113,8 +113,8 @@ namespace Sudoku.Solving
 							$"{GetValue("AnalysisResultBottleneckStep")}" +
 							$@"{(
 								showStepNum
-									? $"{GetValue("AnalysisResultInStep")}{bIndex + 1}{GetValue("Colon")}"
-									: string.Empty
+								? $"{GetValue("AnalysisResultInStep")}{bIndex + 1}{GetValue("Colon")}"
+								: string.Empty
 							)}" +
 							$" {bInfo}");
 					}
@@ -234,9 +234,9 @@ namespace Sudoku.Solving
 		/// <returns>The list grouped and ordered.</returns>
 		/// <seealso cref="AnalysisResult.SolvingSteps"/>
 		private IEnumerable<IGrouping<string, TechniqueInfo>>? GetSolvingStepsGrouped() =>
-			Result.SolvingSteps is var solvingSteps && solvingSteps is null
-				? null
-				: from step in solvingSteps orderby step.Difficulty group step by step.Name;
+			Result.SolvingSteps is IReadOnlyList<TechniqueInfo> solvingSteps
+			? from step in solvingSteps orderby step.Difficulty group step by step.Name
+			: null;
 
 		/// <summary>
 		/// Get the data of bottleneck.

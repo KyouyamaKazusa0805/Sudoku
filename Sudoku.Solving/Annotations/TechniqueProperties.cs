@@ -75,8 +75,8 @@ namespace Sudoku.Solving.Annotations
 		/// </returns>
 		public static TechniqueProperties? GetPropertiesFrom(TechniqueSearcher searcher) =>
 			searcher.GetType() is not { IsAbstract: false } type
-				? null
-				: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
+			? null
+			: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
 
 		/// <summary>
 		/// Get the specified properties using reflection.
@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Annotations
 		/// </returns>
 		public static TechniqueProperties? GetPropertiesFrom(Type type) =>
 			!type.IsSubclassOf(typeof(TechniqueSearcher)) || type.IsAbstract
-				? null
-				: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
+			? null
+			: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
 	}
 }

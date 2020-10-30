@@ -55,8 +55,8 @@ namespace Sudoku.Solving.Manual.Sdps
 						int[] t = (linkMap - (i < 6 ? RegionMaps[column] : RegionMaps[row])).ToArray();
 						int elimRegion = i < 6 ? t[0] % 9 + 18 : t[0] / 9 + 9;
 						var elimCellMap = i < 6
-							? CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[row]
-							: CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[column];
+						? CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[row]
+						: CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[column];
 
 						if (elimCellMap.IsEmpty)
 						{

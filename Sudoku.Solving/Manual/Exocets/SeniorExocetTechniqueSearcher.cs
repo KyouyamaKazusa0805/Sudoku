@@ -91,8 +91,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				foreach (int[] combination in tempTarget.ToArray().GetSubsets(2))
 				{
 					if (isRow
-						? combination[0] / 9 / 3 == borT && combination[1] / 9 / 3 == borT
-						: combination[0] % 9 / 3 == borT && combination[1] % 9 / 3 == borT)
+					? combination[0] / 9 / 3 == borT && combination[1] / 9 / 3 == borT
+					: combination[0] % 9 / 3 == borT && combination[1] % 9 / 3 == borT)
 					{
 						continue;
 					}
@@ -262,8 +262,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					if (_checkAdvanced
-						? (mirrorElims.Count, compatibilityElims.Count, targetElims.Count, trueBaseElims.Count) == (0, 0, 0, 0)
-						: (mirrorElims.Count, compatibilityElims.Count) == (0, 0))
+					? (mirrorElims.Count, compatibilityElims.Count, targetElims.Count, trueBaseElims.Count) == (0, 0, 0, 0)
+					: (mirrorElims.Count, compatibilityElims.Count) == (0, 0))
 					{
 						continue;
 					}

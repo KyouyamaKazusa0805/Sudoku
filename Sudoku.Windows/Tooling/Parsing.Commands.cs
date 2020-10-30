@@ -17,8 +17,8 @@ namespace Sudoku.Windows.Tooling
 			return $@"elimination\s+contains\s+({RegularExpressions.Candidate})" is var pattern
 				&& Regex.Match(s, pattern, IgnoreCase) is { Success: true } match
 				&& AsCandidate(match.Groups[1].Value) is var candidate
-					? info => info.Conclusions.Any(&internalChecking, candidate)
-					: null;
+				? info => info.Conclusions.Any(&internalChecking, candidate)
+				: null;
 
 			static bool internalChecking(Conclusion c, in int candidate) =>
 				c is var (type, cell, digit) && (cell * 9 + digit, type) == (candidate, CT.Elimination);
@@ -28,27 +28,27 @@ namespace Sudoku.Windows.Tooling
 			$@"assignment\s+is\s+({RegularExpressions.Candidate})" is var pattern
 			&& Regex.Match(s, pattern, IgnoreCase) is { Success: true } match
 			&& AsCandidate(match.Groups[1].Value) is var candidate
-				? info =>
-					info.Conclusions is { Count: 1 } conc && conc[0] is var (type, cell, digit)
-					&& (cell * 9 + digit, type) == (candidate, CT.Assignment)
-				: null;
+			? info =>
+				info.Conclusions is { Count: 1 } conc && conc[0] is var (type, cell, digit)
+				&& (cell * 9 + digit, type) == (candidate, CT.Assignment)
+			: null;
 
 		private static Predicate<TechniqueInfo>? Parse_EliminationIsCandidate(string s) =>
 			$@"elimination\s+is\s+({RegularExpressions.Candidate})" is var pattern
 			&& Regex.Match(s, pattern, IgnoreCase) is { Success: true } match
 			&& AsCandidate(match.Groups[1].Value) is var candidate
-				? info =>
-					info.Conclusions is { Count: 1 } conc && conc[0] is var (type, cell, digit)
-					&& (cell * 9 + digit, type) == (candidate, CT.Elimination)
-				: null;
+			? info =>
+				info.Conclusions is { Count: 1 } conc && conc[0] is var (type, cell, digit)
+				&& (cell * 9 + digit, type) == (candidate, CT.Elimination)
+			: null;
 
 		private static unsafe Predicate<TechniqueInfo>? Parse_TechniqueUsesCandidate(string s)
 		{
 			return $@"technique\s+uses\s+({RegularExpressions.Candidate})" is var pattern
 				&& Regex.Match(s, pattern, IgnoreCase) is { Success: true } match
 				&& AsCandidate(match.Groups[1].Value) is var candidate
-					? i => i.Views.Any(&internalCheckingOuter, candidate)
-					: null;
+				? i => i.Views.Any(&internalCheckingOuter, candidate)
+				: null;
 
 			static bool internalCheckingInner(DrawingInfo p, in int candidate) => p.Value == candidate;
 
@@ -61,8 +61,8 @@ namespace Sudoku.Windows.Tooling
 			return $@"technique\s+uses\s+({RegularExpressions.Cell})" is var pattern
 				&& Regex.Match(s, pattern, IgnoreCase) is { Success: true } match
 				&& AsCell(match.Groups[1].Value) is var cell
-					? i => i.Views.Any(&internalCheckingOuter, cell)
-					: null;
+				? i => i.Views.Any(&internalCheckingOuter, cell)
+				: null;
 
 			static bool internalCheckingInner(DrawingInfo p, in int cell) => p.Value == cell;
 
@@ -75,8 +75,8 @@ namespace Sudoku.Windows.Tooling
 			return $@"technique\s+uses\s+({RegularExpressions.Region})" is var pattern
 				&& Regex.Match(s, pattern, IgnoreCase) is { Success: true } match
 				&& AsRegion(match.Groups[1].Value) is var region
-					? i => i.Views.Any(&internalCheckingOuter, region)
-					: null;
+				? i => i.Views.Any(&internalCheckingOuter, region)
+				: null;
 
 			static bool internalCheckingInner(DrawingInfo p, in int region) => p.Value == region;
 

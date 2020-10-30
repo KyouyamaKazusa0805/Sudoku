@@ -148,12 +148,12 @@ namespace Sudoku.Data
 			/// <returns>The string.</returns>
 			public string ToString(in SudokuGrid grid) =>
 				Sukaku
-					? ToSukakuString(grid)
-					: Multiline
-						? WithCandidates
-							? ToMultiLineStringCore(grid)
-							: Excel ? ToExcelString(grid) : ToMultiLineSimpleGridCore(grid)
-						: HodokuCompatible ? ToHodokuLibraryFormatString(grid) : ToSingleLineStringCore(grid);
+				? ToSukakuString(grid)
+				: Multiline
+				? WithCandidates
+				? ToMultiLineStringCore(grid)
+				: Excel ? ToExcelString(grid) : ToMultiLineSimpleGridCore(grid)
+				: HodokuCompatible ? ToHodokuLibraryFormatString(grid) : ToSingleLineStringCore(grid);
 
 			/// <summary>
 			/// Represents a string value indicating this instance, with the specified format string.

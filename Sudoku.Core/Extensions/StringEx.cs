@@ -26,8 +26,8 @@ namespace Sudoku.Extensions
 		/// </exception>
 		public static bool SatisfyPattern(this string @this, string pattern) =>
 			pattern.IsRegexPattern()
-				? @this.Match(pattern) == @this
-				: throw new InvalidRegexStringException();
+			? @this.Match(pattern) == @this
+			: throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Check whether the specified string instance can match the value
@@ -47,8 +47,8 @@ namespace Sudoku.Extensions
 		/// </exception>
 		public static bool IsMatch(this string @this, string pattern) =>
 			pattern.IsRegexPattern()
-				? Regex.IsMatch(@this, pattern)
-				: throw new InvalidRegexStringException();
+			? Regex.IsMatch(@this, pattern)
+			: throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Searches the specified input string for the first occurrence of
@@ -71,8 +71,8 @@ namespace Sudoku.Extensions
 		/// </exception>
 		public static string? Match(this string @this, string pattern) =>
 			pattern.IsRegexPattern()
-				? @this.Match(pattern, RegexOptions.None)
-				: throw new InvalidRegexStringException();
+			? @this.Match(pattern, RegexOptions.None)
+			: throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Searches the input string for the first occurrence of the specified regular
@@ -123,8 +123,8 @@ namespace Sudoku.Extensions
 		/// <seealso cref="Regex.Matches(string, string)"/>
 		public static string[] MatchAll(this string @this, string pattern) =>
 			pattern.IsRegexPattern()
-				? @this.MatchAll(pattern, RegexOptions.None)
-				: throw new InvalidRegexStringException();
+			? @this.MatchAll(pattern, RegexOptions.None)
+			: throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Searches the specified input string for all occurrences of a

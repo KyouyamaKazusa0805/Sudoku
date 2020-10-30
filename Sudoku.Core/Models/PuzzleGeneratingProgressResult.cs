@@ -33,7 +33,7 @@ namespace Sudoku.Models
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() =>
 			GeneratingTrial == 1
-				? Resources.GetValue("GeneratingProgressSingular")
-				: $"{GeneratingTrial} {Resources.GetValue("GeneratingProgressPlural")}";
+			? Resources.GetValue("GeneratingProgressSingular")
+			: $"{GeneratingTrial} {Resources.GetValue("GeneratingProgressPlural")}";
 	}
 }

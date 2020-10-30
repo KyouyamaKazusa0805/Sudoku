@@ -157,8 +157,8 @@ namespace Sudoku.Solving.Manual
 				else
 				{
 					var step = OptimizedApplyingOrder
-						? bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector)
-						: bag.FirstOrDefault();
+					? bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector)
+					: bag.FirstOrDefault();
 					if (step is null)
 					{
 						// If current step can't find any steps,

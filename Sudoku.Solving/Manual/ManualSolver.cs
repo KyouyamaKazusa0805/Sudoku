@@ -60,7 +60,6 @@ namespace Sudoku.Solving.Manual
 				int candsCount = grid.CandidatesCount;
 				try
 				{
-#pragma warning disable CS0612
 					var defaultValue = new GridProgressResult();
 					var defaultPr = new GridProgressResult(candsCount, emptyCellsCount, candsCount, globalizationString);
 					ref var pr = ref progress is null ? ref defaultValue : ref defaultPr;
@@ -68,9 +67,8 @@ namespace Sudoku.Solving.Manual
 
 					var copied = grid;
 					return AnalyzeDifficultyStrictly
-						? SolveSeMode(grid, ref copied, TempList, solution, sukaku.Value, ref pr, progress)
-						: SolveNaively(grid, ref copied, TempList, solution, sukaku.Value, ref pr, progress);
-#pragma warning restore CS0612
+					? SolveSeMode(grid, ref copied, TempList, solution, sukaku.Value, ref pr, progress)
+					: SolveNaively(grid, ref copied, TempList, solution, sukaku.Value, ref pr, progress);
 				}
 				catch (WrongHandlingException ex)
 				{

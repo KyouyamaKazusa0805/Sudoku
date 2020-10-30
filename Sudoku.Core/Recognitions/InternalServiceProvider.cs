@@ -100,9 +100,7 @@ namespace Sudoku.Recognitions
 				ThresholdType.Binary);
 
 			_ocr.SetImage(imgThresholded);
-			_ = _ocr.Recognize() != 0
-				? throw new InvalidOperationException("Tessaract Error. Cannot to recognize cell image.")
-				: 0;
+			_ = _ocr.Recognize() != 0 ? throw new InvalidOperationException("Tessaract Error. Cannot to recognize cell image.") : 0;
 
 			var characters = _ocr.GetCharacters();
 			string numberText = string.Empty;

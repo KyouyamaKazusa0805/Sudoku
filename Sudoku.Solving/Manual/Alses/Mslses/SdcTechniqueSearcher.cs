@@ -145,9 +145,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 										short maskIsolated = (short)(
 											cannibalMode
-												? (lineMask & blockMask & selectedInterMask)
-												: (selectedInterMask & ~(blockMask | lineMask)));
-										short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
+											? (lineMask & blockMask & selectedInterMask)
+											: (selectedInterMask & ~(blockMask | lineMask)));
+										short maskOnlyInInter = (short)(
+											selectedInterMask & ~(blockMask | lineMask));
 										if (!cannibalMode && (
 											(blockMask & lineMask) != 0
 											|| maskIsolated != 0 && !maskIsolated.IsPowerOfTwo())
@@ -163,8 +164,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											elimMapIsolated =
 											(
 												cannibalMode
-													? (currentBlockMap | currentLineMap) & CandMaps[digitIsolated]
-													: currentInterMap & CandMaps[digitIsolated]
+												? (currentBlockMap | currentLineMap) & CandMaps[digitIsolated]
+												: currentInterMap & CandMaps[digitIsolated]
 											).PeerIntersection & CandMaps[digitIsolated] & EmptyMap;
 										}
 

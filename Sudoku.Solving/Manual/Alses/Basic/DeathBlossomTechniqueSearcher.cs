@@ -216,9 +216,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								new View[]
 								{
 									new(
-										_alsShowRegions
-											? new DrawingInfo[] { new(0, pivot) }
-											: cellOffsets,
+										_alsShowRegions ? new DrawingInfo[] { new(0, pivot) } : cellOffsets,
 										_alsShowRegions ? candidateOffsets : null,
 										_alsShowRegions ? regionOffsets : null,
 										null)

@@ -44,8 +44,8 @@ namespace Sudoku.Solving.Manual.Intersections
 					GridMap elimMap;
 					(r[0], r[1], elimMap) =
 						a.Overlaps(CandMaps[digit])
-							? (coverSet, baseSet, a & CandMaps[digit])
-							: (baseSet, coverSet, b & CandMaps[digit]);
+						? (coverSet, baseSet, a & CandMaps[digit])
+						: (baseSet, coverSet, b & CandMaps[digit]);
 					if (elimMap.IsEmpty)
 					{
 						continue;

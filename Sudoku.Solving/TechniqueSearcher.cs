@@ -23,8 +23,8 @@ namespace Sudoku.Solving
 		/// <seealso cref="TechniqueDisplayAttribute"/>
 		public string? DisplayName =>
 			GetType() is { IsAbstract: false } type
-				? type.GetCustomAttribute<TechniqueDisplayAttribute>()?.DisplayName
-				: null;
+			? type.GetCustomAttribute<TechniqueDisplayAttribute>()?.DisplayName
+			: null;
 
 
 		/// <summary>

@@ -33,10 +33,10 @@ namespace Sudoku.Solving.Annotations
 			where TEnumBase : Enum where TEnumTarget : struct, Enum =>
 			typeof(TEnumBase).GetField(enumField.ToString()) switch
 			{
-				var fieldInfo =>
-					fieldInfo is not null && fieldInfo.GetCustomAttribute<AliasAttribute>() is AliasAttribute attribute
-						? Enum.Parse<TEnumTarget>(attribute.FieldName)
-						: default
+				var fieldInfo and not null
+				when fieldInfo.GetCustomAttribute<AliasAttribute>() is AliasAttribute attribute =>
+					Enum.Parse<TEnumTarget>(attribute.FieldName),
+				_ => default
 			};
 	}
 }

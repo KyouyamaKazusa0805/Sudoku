@@ -227,8 +227,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : 0,
 					baseCandidatesMask, mirror, x,
 					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
-						? tr1
-						: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
+					? tr1
+					: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
 					cellOffsets, candidateOffsets);
 			}
 			else if ((grid.GetCandidateMask(tq2) & baseCandidatesMask) != 0)
@@ -239,8 +239,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : 0,
 					baseCandidatesMask, mirror, x,
 					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
-						? tr1
-						: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
+					? tr1
+					: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
 					cellOffsets, candidateOffsets);
 			}
 			else

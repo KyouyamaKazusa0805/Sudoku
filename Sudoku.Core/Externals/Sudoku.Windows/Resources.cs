@@ -48,8 +48,8 @@ namespace Sudoku.Windows
 		/// </exception>
 		public static string GetValue(string key) =>
 			_dicPointer.TryGetValue(key, out string? result) || LangSourceEnUs.TryGetValue(key, out result)
-				? result
-				: throw new KeyNotFoundException();
+			? result
+			: throw new KeyNotFoundException();
 
 		/// <summary>
 		/// Get the value with the specified key, without any exception throws.
@@ -61,8 +61,8 @@ namespace Sudoku.Windows
 		/// </returns>
 		public static string? GetValueWithoutExceptions(string key) =>
 			_dicPointer.TryGetValue(key, out string? result) || LangSourceEnUs.TryGetValue(key, out result)
-				? result
-				: null;
+			? result
+			: null;
 
 		/// <summary>
 		/// Get the dictionary with the specified globalization string.
@@ -92,8 +92,8 @@ namespace Sudoku.Windows
 			}
 
 			_dicPointer =
-				typeof(Resources).GetField($"LangSource{sb}", StaticNonpublic)?
-					.GetValue(null) as IReadOnlyDictionary<string, string>
+				typeof(Resources).GetField($"LangSource{sb}", StaticNonpublic)?.GetValue(null)
+				as IReadOnlyDictionary<string, string>
 				?? LangSourceEnUs;
 		}
 	}

@@ -160,17 +160,17 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override string ToString() =>
 			IsBivalueCell
-				? new StringBuilder()
-					.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
-					.Append('/')
-					.Append(Map)
-					.ToString()
-				: new StringBuilder()
-					.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
-					.Append('/')
-					.Append(Map)
-					.Append($" in {new RegionCollection(Region).ToString()}")
-					.ToString();
+			? new StringBuilder()
+				.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
+				.Append('/')
+				.Append(Map)
+				.ToString()
+			: new StringBuilder()
+				.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
+				.Append('/')
+				.Append(Map)
+				.Append($" in {new RegionCollection(Region).ToString()}")
+				.ToString();
 
 
 		/// <summary>
@@ -231,8 +231,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							digitsMask,
 							map,
 							(region, coveredLine) is ( < 9, >= 9)
-								? ((regionMap | RegionMaps[coveredLine]) & emptyMap) - map
-								: tempMap - map);
+							? ((regionMap | RegionMaps[coveredLine]) & emptyMap) - map
+							: tempMap - map);
 					}
 				}
 			}
