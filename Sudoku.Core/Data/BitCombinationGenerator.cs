@@ -50,20 +50,17 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
 		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
 
 		/// <inheritdoc cref="object.ToString"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
 		public override string ToString() => throw Throwings.RefStructNotSupported;
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
