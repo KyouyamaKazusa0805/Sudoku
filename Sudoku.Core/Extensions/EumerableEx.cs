@@ -1,16 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace System.Linq
+namespace Sudoku.Extensions
 {
 	/// <summary>
 	/// Provides a set of static methods for querying objects that implement
 	/// <see cref="IEnumerable"/> and <see cref="IEnumerable{T}"/>.
 	/// </summary>
-	/// <remarks>
-	/// This class has the same function and status with <see cref="Enumerable"/>.
-	/// </remarks>
+	/// <remarks>This class has the same function and status with <see cref="Enumerable"/>.</remarks>
 	/// <seealso cref="IEnumerable"/>
 	/// <seealso cref="IEnumerable{T}"/>
 	/// <seealso cref="Enumerable"/>
@@ -31,8 +31,8 @@ namespace System.Linq
 		/// <remarks>
 		/// Note that the return value can be <see langword="null"/> if the list can't be found
 		/// the specified element, but this type parameter is named <typeparamref name="T"/>
-		/// because each element can't be <see langword="null"/> (either value types or non-<see langword="null"/>
-		/// reference types).
+		/// because each element can't be <see langword="null"/>
+		/// (either value types or non-<see langword="null"/> reference types).
 		/// </remarks>
 		public static unsafe T? GetElementByMinSelector<T, TComparable>(
 			this IEnumerable<T> @this, delegate* managed<T, TComparable> selector)
@@ -114,7 +114,7 @@ namespace System.Linq
 		/// <returns>The result indicating whether all values satisfy the condition.</returns>
 		public static unsafe bool All<TElement, T1, T2>(
 			this IEnumerable<TElement> @this, delegate* managed<TElement, in T1, in T2, bool> selector,
-			in T1 value1, in T2 value2) where T1 : struct where T2 : struct
+			in T1 value1, in T2 value2)
 		{
 			foreach (var element in @this)
 			{
@@ -229,7 +229,7 @@ namespace System.Linq
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
 		public static unsafe bool Any<TElement, T1, T2, T3>(
 			this IEnumerable<TElement> @this, delegate* managed<TElement, in T1, in T2, in T3, bool> selector,
-			in T1 value1, in T2 value2, in T3 value3) where T1 : struct where T2 : struct where T3 : struct
+			in T1 value1, in T2 value2, in T3 value3)
 		{
 			foreach (var element in @this)
 			{
@@ -271,12 +271,11 @@ namespace System.Linq
 		/// <summary>
 		/// Count up all elements satisfying the specified condition.
 		/// </summary>
-		/// <typeparam name="TStruct">The type of each element.</typeparam>
+		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="selector">The condition to check, specified as a function pointer.</param>
 		/// <returns>The number of all elements satisfying the condition.</returns>
-		public static unsafe int Count<TStruct>(
-			this IEnumerable<TStruct> @this, delegate* managed<in TStruct, bool> selector) where TStruct : struct
+		public static unsafe int Count<T>(this IEnumerable<T> @this, delegate* managed<in T, bool> selector)
 		{
 			int count = 0;
 			foreach (var element in @this)

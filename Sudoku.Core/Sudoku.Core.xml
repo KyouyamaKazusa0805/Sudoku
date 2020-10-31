@@ -4094,6 +4094,198 @@
             </remarks>
             <seealso cref="M:System.Enum.HasFlag(System.Enum)"/>
         </member>
+        <member name="T:Sudoku.Extensions.EnumerableEx">
+            <summary>
+            Provides a set of static methods for querying objects that implement
+            <see cref="T:System.Collections.IEnumerable"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <remarks>This class has the same function and status with <see cref="T:System.Linq.Enumerable"/>.</remarks>
+            <seealso cref="T:System.Collections.IEnumerable"/>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+            <seealso cref="T:System.Linq.Enumerable"/>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.GetElementByMinSelector``2(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Get the element whose selection is the minimal one.
+            </summary>
+            <typeparam name="T">The element type.</typeparam>
+            <typeparam name="TComparable">The comparing type.</typeparam>
+            <param name="this">The elements to search the minimal one.</param>
+            <param name="selector">The selector.</param>
+            <returns>
+            The result value. If the collection doesn't have a minimal element,
+            the result will be the default value, where it will be <see langword="null"/>, which
+            is decided in the element type.
+            </returns>
+            <remarks>
+            Note that the return value can be <see langword="null"/> if the list can't be found
+            the specified element, but this type parameter is named <typeparamref name="T"/>
+            because each element can't be <see langword="null"/>
+            (either value types or non-<see langword="null"/> reference types).
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.None``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check whether the specified collection is empty (no elements in it).
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.All``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Determines whether all elements of a sequence satisfy a condition
+            specified as <paramref name="selector"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="selector">The selector, specified a function pointer.</param>
+            <returns>The result indicating whether all values satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.All``2(System.Collections.Generic.IEnumerable{``0},,``1@)">
+            <summary>
+            Determines whether all elements of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass another <see langword="in"/> parameter to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="TOther">The type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
+            <returns>The result indicating whether all values satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.All``3(System.Collections.Generic.IEnumerable{``0},,``1@,``2@)">
+            <summary>
+            Determines whether all elements of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass 2 <see langword="in"/> parameters to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
+            <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value1">
+            (<see langword="in"/> parameter) The first value to participate in checking.
+            </param>
+            <param name="value2">
+            (<see langword="in"/> parameter) The second value to participate in checking.
+            </param>
+            <returns>The result indicating whether all values satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.Any``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Determines whether any an element of a sequence satisfy a condition
+            specified as <paramref name="selector"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <returns>The result indicating whether any an element satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.Any``2(System.Collections.Generic.IEnumerable{``0},,``1@)">
+            <summary>
+            Determines whether any an element of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass another <see langword="in"/> parameter to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="TOther">The type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
+            <returns>The result indicating whether any an element satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.Any``3(System.Collections.Generic.IEnumerable{``0},,``1@,``2@)">
+            <summary>
+            Determines whether any an element of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass 2 <see langword="in"/> parameters to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
+            <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value1">
+            (<see langword="in"/> parameter) The first value to participate in checking.
+            </param>
+            <param name="value2">
+            (<see langword="in"/> parameter) The second value to participate in checking.
+            </param>
+            <returns>The result indicating whether any an element satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.Any``4(System.Collections.Generic.IEnumerable{``0},,``1@,``2@,``3@)">
+            <summary>
+            Determines whether any an element of a sequence satisfy a condition
+            specified as <paramref name="selector"/>. In addition, the method allows you
+            pass 3 <see langword="in"/> parameters to participate in checking.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
+            <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
+            <typeparam name="T3">The third type of the another value to participate in checking.</typeparam>
+            <param name="this">(<see langword="in"/> parameter) The list.</param>
+            <param name="selector">The selector.</param>
+            <param name="value1">
+            (<see langword="in"/> parameter) The first value to participate in checking.
+            </param>
+            <param name="value2">
+            (<see langword="in"/> parameter) The second value to participate in checking.
+            </param>
+            <param name="value3">
+            (<see langword="in"/> parameter) The third value to participate in checking.
+            </param>
+            <returns>The result indicating whether any an element satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check whether the specified list has only one element.
+            </summary>
+            <typeparam name="TNotNull">The type of the element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.Count``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Count up all elements satisfying the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="selector">The condition to check, specified as a function pointer.</param>
+            <returns>The number of all elements satisfying the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Get the first element or default value.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="predicate">The predicate.</param>
+            <returns>
+            The result. The value is <see langword="default"/> when the collection cannot found any
+            elements satisfying the condition.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Get the total number of elements that are different.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="selector">The selector.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.Max``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Get the maximum value in this collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="selector">The selector.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Extensions.FormatProviderEx">
             <summary>
             Provides extension methods on <see cref="T:System.IFormatProvider"/>.
@@ -7378,200 +7570,6 @@
         </member>
         <member name="M:System.KeyedTuple`4.ToString">
             <inheritdoc/>
-        </member>
-        <member name="T:System.Linq.EnumerableEx">
-            <summary>
-            Provides a set of static methods for querying objects that implement
-            <see cref="T:System.Collections.IEnumerable"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </summary>
-            <remarks>
-            This class has the same function and status with <see cref="T:System.Linq.Enumerable"/>.
-            </remarks>
-            <seealso cref="T:System.Collections.IEnumerable"/>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
-            <seealso cref="T:System.Linq.Enumerable"/>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.GetElementByMinSelector``2(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Get the element whose selection is the minimal one.
-            </summary>
-            <typeparam name="T">The element type.</typeparam>
-            <typeparam name="TComparable">The comparing type.</typeparam>
-            <param name="this">The elements to search the minimal one.</param>
-            <param name="selector">The selector.</param>
-            <returns>
-            The result value. If the collection doesn't have a minimal element,
-            the result will be the default value, where it will be <see langword="null"/>, which
-            is decided in the element type.
-            </returns>
-            <remarks>
-            Note that the return value can be <see langword="null"/> if the list can't be found
-            the specified element, but this type parameter is named <typeparamref name="T"/>
-            because each element can't be <see langword="null"/> (either value types or non-<see langword="null"/>
-            reference types).
-            </remarks>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.None``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Check whether the specified collection is empty (no elements in it).
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.All``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Determines whether all elements of a sequence satisfy a condition
-            specified as <paramref name="selector"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="selector">The selector, specified a function pointer.</param>
-            <returns>The result indicating whether all values satisfy the condition.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.All``2(System.Collections.Generic.IEnumerable{``0},,``1@)">
-            <summary>
-            Determines whether all elements of a sequence satisfy a condition
-            specified as <paramref name="selector"/>. In addition, the method allows you
-            pass another <see langword="in"/> parameter to participate in checking.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <typeparam name="TOther">The type of the another value to participate in checking.</typeparam>
-            <param name="this">(<see langword="in"/> parameter) The list.</param>
-            <param name="selector">The selector.</param>
-            <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
-            <returns>The result indicating whether all values satisfy the condition.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.All``3(System.Collections.Generic.IEnumerable{``0},,``1@,``2@)">
-            <summary>
-            Determines whether all elements of a sequence satisfy a condition
-            specified as <paramref name="selector"/>. In addition, the method allows you
-            pass 2 <see langword="in"/> parameters to participate in checking.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
-            <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
-            <param name="this">(<see langword="in"/> parameter) The list.</param>
-            <param name="selector">The selector.</param>
-            <param name="value1">
-            (<see langword="in"/> parameter) The first value to participate in checking.
-            </param>
-            <param name="value2">
-            (<see langword="in"/> parameter) The second value to participate in checking.
-            </param>
-            <returns>The result indicating whether all values satisfy the condition.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.Any``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Determines whether any an element of a sequence satisfy a condition
-            specified as <paramref name="selector"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="in"/> parameter) The list.</param>
-            <param name="selector">The selector.</param>
-            <returns>The result indicating whether any an element satisfy the condition.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.Any``2(System.Collections.Generic.IEnumerable{``0},,``1@)">
-            <summary>
-            Determines whether any an element of a sequence satisfy a condition
-            specified as <paramref name="selector"/>. In addition, the method allows you
-            pass another <see langword="in"/> parameter to participate in checking.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <typeparam name="TOther">The type of the another value to participate in checking.</typeparam>
-            <param name="this">(<see langword="in"/> parameter) The list.</param>
-            <param name="selector">The selector.</param>
-            <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
-            <returns>The result indicating whether any an element satisfy the condition.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.Any``3(System.Collections.Generic.IEnumerable{``0},,``1@,``2@)">
-            <summary>
-            Determines whether any an element of a sequence satisfy a condition
-            specified as <paramref name="selector"/>. In addition, the method allows you
-            pass 2 <see langword="in"/> parameters to participate in checking.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
-            <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
-            <param name="this">(<see langword="in"/> parameter) The list.</param>
-            <param name="selector">The selector.</param>
-            <param name="value1">
-            (<see langword="in"/> parameter) The first value to participate in checking.
-            </param>
-            <param name="value2">
-            (<see langword="in"/> parameter) The second value to participate in checking.
-            </param>
-            <returns>The result indicating whether any an element satisfy the condition.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.Any``4(System.Collections.Generic.IEnumerable{``0},,``1@,``2@,``3@)">
-            <summary>
-            Determines whether any an element of a sequence satisfy a condition
-            specified as <paramref name="selector"/>. In addition, the method allows you
-            pass 3 <see langword="in"/> parameters to participate in checking.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <typeparam name="T1">The first type of the another value to participate in checking.</typeparam>
-            <typeparam name="T2">The second type of the another value to participate in checking.</typeparam>
-            <typeparam name="T3">The third type of the another value to participate in checking.</typeparam>
-            <param name="this">(<see langword="in"/> parameter) The list.</param>
-            <param name="selector">The selector.</param>
-            <param name="value1">
-            (<see langword="in"/> parameter) The first value to participate in checking.
-            </param>
-            <param name="value2">
-            (<see langword="in"/> parameter) The second value to participate in checking.
-            </param>
-            <param name="value3">
-            (<see langword="in"/> parameter) The third value to participate in checking.
-            </param>
-            <returns>The result indicating whether any an element satisfy the condition.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Check whether the specified list has only one element.
-            </summary>
-            <typeparam name="TNotNull">The type of the element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.Count``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Count up all elements satisfying the specified condition.
-            </summary>
-            <typeparam name="TStruct">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="selector">The condition to check, specified as a function pointer.</param>
-            <returns>The number of all elements satisfying the condition.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Get the first element or default value.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="predicate">The predicate.</param>
-            <returns>
-            The result. The value is <see langword="default"/> when the collection cannot found any
-            elements satisfying the condition.
-            </returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Get the total number of elements that are different.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="selector">The selector.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.Max``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Get the maximum value in this collection.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="selector">The selector.</param>
-            <returns>The result.</returns>
         </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
             <summary>

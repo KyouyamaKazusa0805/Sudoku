@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Extensions;
 using Sudoku.Runtime;
 using Sudoku.Windows;
 using static System.Linq.Enumerable;
@@ -70,7 +71,8 @@ namespace Sudoku.Solving.BruteForces.Linqing
 						let inColumn = solution[c + i * 9] == @char
 						let inBlock = solution[b + i % 3 + (int)Floor(i / 3F) * 9] == @char
 						where inRow || inColumn || inBlock
-						select i).None()
+						select i
+					).None()
 					select $"{solution.Substring(0, i)}{@char}{solution[(i + 1)..]}").ToList();
 			}
 

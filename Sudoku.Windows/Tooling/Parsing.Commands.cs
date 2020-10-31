@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving;
 using static System.Text.RegularExpressions.RegexOptions;
 using CT = Sudoku.Data.ConclusionType;

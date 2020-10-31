@@ -2,6 +2,7 @@
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
+using Sudoku.Extensions;
 
 namespace Sudoku.Drawing
 {

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
+using Sudoku.Extensions;
 using Sudoku.Models;
 using Sudoku.Solving.Manual;
 using static Sudoku.Solving.Manual.TechniqueCode;
