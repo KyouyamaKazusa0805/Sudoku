@@ -3978,9 +3978,7 @@
             Adds the elements of the specified collection to the end of the
             <see cref="T:System.Collections.Generic.ICollection`1"/>.
             </summary>
-            <typeparam name="TNotNull">
-            The type of each element. Should be not <see langword="null"/>.
-            </typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <param name="values">
             (<see langword="params"/> parameter) The values you want to add to the end of the collection.
@@ -3991,9 +3989,7 @@
             Adds the elements of the specified collection to the end of the
             <see cref="T:System.Collections.Generic.ICollection`1"/>.
             </summary>
-            <typeparam name="TNotNull">
-            The type of each element. Should be not <see langword="null"/>.
-            </typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <param name="values">
             The values you want to add to the end of the collection.
@@ -4004,9 +4000,7 @@
             Adds the elements of the specified collection to the end of the
             <see cref="T:System.Collections.Generic.ICollection`1"/>.
             </summary>
-            <typeparam name="TNotNull">
-            The type of each element. Should be not <see langword="null"/>.
-            </typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <param name="values">
             The values you want to add to the end of the collection.
@@ -4021,9 +4015,7 @@
             Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when
             the specified list doesn't contain the specified element.
             </summary>
-            <typeparam name="TNotNull">
-            The type of all elements. Should be not <see langword="null"/>.
-            </typeparam>
+            <typeparam name="T">The type of all elements.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <param name="item">The item to add.</param>
         </member>
@@ -4031,7 +4023,7 @@
             <summary>
             Check whether two <see cref="T:System.Collections.Generic.ICollection`1"/>s are equal.
             </summary>
-            <typeparam name="TNotNull">The type of each element.</typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <param name="other">Another collection.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
@@ -4040,11 +4032,9 @@
             <summary>
             Get a result collection from a may-be-<see langword="null"/> collection.
             If the collection is <see langword="null"/>, the method will return an empty array
-            of type <typeparamref name="TNotNull"/>.
+            of type <typeparamref name="T"/>.
             </summary>
-            <typeparam name="TNotNull">
-            The type of each element. The element should be not <see langword="null"/>.
-            </typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <returns>The return collection that can't be <see langword="null"/>.</returns>
         </member>
@@ -4328,15 +4318,15 @@
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <seealso cref="M:Sudoku.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index)"/>
+            <seealso cref="M:Sudoku.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index@)"/>
         </member>
-        <member name="M:Sudoku.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index)">
+        <member name="M:Sudoku.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index@)">
             <summary>
             Remove at the element in the specified index.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="index">The index to remove.</param>
+            <param name="index">(<see langword="in"/> parameter) The index to remove.</param>
         </member>
         <member name="M:Sudoku.Extensions.ListEx.Sort``1(System.Collections.Generic.IList{``0},)">
             <summary>
@@ -4354,7 +4344,7 @@
             <summary>
             Remove duplicate element in the list.
             </summary>
-            <typeparam name="TNotNull">The type of each element.</typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
         </member>
         <member name="T:Sudoku.Extensions.RangeEx">
@@ -7405,7 +7395,7 @@
             <summary>
             Get the element whose selection is the minimal one.
             </summary>
-            <typeparam name="TNotNull">The element type.</typeparam>
+            <typeparam name="T">The element type.</typeparam>
             <typeparam name="TComparable">The comparing type.</typeparam>
             <param name="this">The elements to search the minimal one.</param>
             <param name="selector">The selector.</param>
@@ -7416,7 +7406,7 @@
             </returns>
             <remarks>
             Note that the return value can be <see langword="null"/> if the list can't be found
-            the specified element, but this type parameter is named <typeparamref name="TNotNull"/>
+            the specified element, but this type parameter is named <typeparamref name="T"/>
             because each element can't be <see langword="null"/> (either value types or non-<see langword="null"/>
             reference types).
             </remarks>
@@ -7552,6 +7542,36 @@
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <param name="selector">The condition to check, specified as a function pointer.</param>
             <returns>The number of all elements satisfying the condition.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Get the first element or default value.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="predicate">The predicate.</param>
+            <returns>
+            The result. The value is <see langword="default"/> when the collection cannot found any
+            elements satisfying the condition.
+            </returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Get the total number of elements that are different.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="selector">The selector.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Max``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Get the maximum value in this collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="selector">The selector.</param>
+            <returns>The result.</returns>
         </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
             <summary>

@@ -25,9 +25,9 @@ namespace Sudoku.Solving
 	/// <param name="SolvingSteps">The solving steps.</param>
 	/// <param name="StepGrids">The step grids while solving.</param>
 	public sealed record AnalysisResult(
-		bool HasSolved, string SolverName, string? Additional, TimeSpan ElapsedTime, SudokuGrid Puzzle,
-		SudokuGrid? Solution, IReadOnlyList<TechniqueInfo>? SolvingSteps, IReadOnlyList<SudokuGrid>? StepGrids)
-		: IEnumerable<TechniqueInfo>, IFormattable
+		bool HasSolved, string SolverName, string? Additional, in TimeSpan ElapsedTime, in SudokuGrid Puzzle,
+		in SudokuGrid? Solution, IReadOnlyList<TechniqueInfo>? SolvingSteps,
+		IReadOnlyList<SudokuGrid>? StepGrids) : IEnumerable<TechniqueInfo>, IFormattable
 	{
 		/// <summary>
 		/// Initializes an instance with some information.
@@ -36,11 +36,11 @@ namespace Sudoku.Solving
 		/// <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
 		/// <param name="solution">(<see langword="in"/> parameter) The solution grid.</param>
 		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-		/// <param name="elapsedTime">The elapsed time while solving.</param>
+		/// <param name="elapsedTime">(<see langword="in"/> parameter) The elapsed time while solving.</param>
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
 			string solverName, in SudokuGrid puzzle, in SudokuGrid? solution, bool hasSolved,
-			TimeSpan elapsedTime, string? additional)
+			in TimeSpan elapsedTime, string? additional)
 			: this(solverName, puzzle, solution, hasSolved, elapsedTime, null, null, additional)
 		{
 		}
@@ -52,12 +52,12 @@ namespace Sudoku.Solving
 		/// <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
 		/// <param name="solution">(<see langword="in"/> parameter) The solution grid.</param>
 		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-		/// <param name="elapsedTime">The elapsed time while solving.</param>
+		/// <param name="elapsedTime">(<see langword="in"/> parameter) The elapsed time while solving.</param>
 		/// <param name="steps">All steps produced in solving.</param>
 		/// <param name="stepGrids">All intermediate grids.</param>
 		public AnalysisResult(
 			string solverName, in SudokuGrid puzzle, in SudokuGrid? solution, bool hasSolved,
-			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids)
+			in TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids)
 			: this(solverName, puzzle, solution, hasSolved, elapsedTime, steps, stepGrids, null)
 		{
 		}
@@ -69,13 +69,13 @@ namespace Sudoku.Solving
 		/// <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
 		/// <param name="solution">(<see langword="in"/> parameter) The solution grid.</param>
 		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-		/// <param name="elapsedTime">The elapsed time while solving.</param>
+		/// <param name="elapsedTime">(<see langword="in"/> parameter) The elapsed time while solving.</param>
 		/// <param name="steps">All steps produced in solving.</param>
 		/// <param name="stepGrids">All intermediate grids.</param>
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
 			string solverName, in SudokuGrid puzzle, in SudokuGrid? solution, bool hasSolved,
-			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids,
+			in TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids,
 			string? additional)
 			: this(hasSolved, solverName, additional, elapsedTime, puzzle, solution, steps, stepGrids)
 		{
@@ -93,8 +93,14 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal MaxDifficulty =>
-			SolvingSteps?.None() ?? true ? 20.0M : SolvingSteps.Max(info => info.ShowDifficulty ? info.Difficulty : 0);
+		public unsafe decimal MaxDifficulty
+		{
+			get
+			{
+				static decimal g(in TechniqueInfo info) => info.ShowDifficulty ? info.Difficulty : 0;
+				return SolvingSteps?.None() ?? true ? 20.0M : SolvingSteps.Max(&g);
+			}
+		}
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -109,7 +115,14 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		/// <seealso cref="SolvingSteps"/>
-		public decimal TotalDifficulty => SolvingSteps?.Sum(info => info.ShowDifficulty ? info.Difficulty : 0) ?? 0;
+		public unsafe decimal TotalDifficulty
+		{
+			get
+			{
+				static decimal g(in TechniqueInfo info) => info.ShowDifficulty ? info.Difficulty : 0;
+				return SolvingSteps?.Sum(&g) ?? 0;
+			}
+		}
 
 		/// <summary>
 		/// <para>
@@ -123,7 +136,14 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal PearlDifficulty => SolvingSteps?.FirstOrDefault(info => info.ShowDifficulty)?.Difficulty ?? 0;
+		public unsafe decimal PearlDifficulty
+		{
+			get
+			{
+				static bool p(in TechniqueInfo info) => info.ShowDifficulty;
+				return SolvingSteps?.FirstOrDefault(&p)?.Difficulty ?? 0;
+			}
+		}
 
 		/// <summary>
 		/// <para>

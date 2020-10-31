@@ -23,7 +23,7 @@ namespace Sudoku.Extensions
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
-		/// <seealso cref="RemoveAt{T}(IList{T}, Index)"/>
+		/// <seealso cref="RemoveAt{T}(IList{T}, in Index)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void RemoveLastElement<T>(this IList<T?> @this) => @this.RemoveAt(@this.Count - 1);
 
@@ -32,9 +32,9 @@ namespace Sudoku.Extensions
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
-		/// <param name="index">The index to remove.</param>
+		/// <param name="index">(<see langword="in"/> parameter) The index to remove.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void RemoveAt<T>(this IList<T?> @this, Index index) =>
+		public static void RemoveAt<T>(this IList<T?> @this, in Index index) =>
 			@this.RemoveAt(index.GetOffset(@this.Count));
 
 		/// <summary>
@@ -79,10 +79,10 @@ namespace Sudoku.Extensions
 		/// <summary>
 		/// Remove duplicate element in the list.
 		/// </summary>
-		/// <typeparam name="TNotNull">The type of each element.</typeparam>
+		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Distinct<TNotNull>(this IList<TNotNull> @this) where TNotNull : notnull
+		public static void Distinct<T>(this IList<T> @this)
 		{
 			var tempList = Enumerable.Distinct(@this).ToList(); // Do not forget '.ToList'.
 			@this.Clear();

@@ -19,7 +19,7 @@ namespace System.Linq
 		/// <summary>
 		/// Get the element whose selection is the minimal one.
 		/// </summary>
-		/// <typeparam name="TNotNull">The element type.</typeparam>
+		/// <typeparam name="T">The element type.</typeparam>
 		/// <typeparam name="TComparable">The comparing type.</typeparam>
 		/// <param name="this">The elements to search the minimal one.</param>
 		/// <param name="selector">The selector.</param>
@@ -30,13 +30,13 @@ namespace System.Linq
 		/// </returns>
 		/// <remarks>
 		/// Note that the return value can be <see langword="null"/> if the list can't be found
-		/// the specified element, but this type parameter is named <typeparamref name="TNotNull"/>
+		/// the specified element, but this type parameter is named <typeparamref name="T"/>
 		/// because each element can't be <see langword="null"/> (either value types or non-<see langword="null"/>
 		/// reference types).
 		/// </remarks>
-		public static unsafe TNotNull? GetElementByMinSelector<TNotNull, TComparable>(
-			this IEnumerable<TNotNull> @this, delegate* managed<TNotNull, TComparable> selector)
-			where TNotNull : notnull where TComparable : IComparable<TComparable> =>
+		public static unsafe T? GetElementByMinSelector<T, TComparable>(
+			this IEnumerable<T> @this, delegate* managed<T, TComparable> selector)
+			where TComparable : IComparable<TComparable> =>
 			(from element in @this orderby selector(element) select element).FirstOrDefault();
 
 		/// <summary>
@@ -248,7 +248,7 @@ namespace System.Linq
 		/// <typeparam name="TNotNull">The type of the element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool HasOnlyOneElement<TNotNull>(this IEnumerable<TNotNull> @this) where TNotNull : notnull
+		public static bool HasOnlyOneElement<TNotNull>(this IEnumerable<TNotNull> @this)
 		{
 			if (@this.None())
 			{
@@ -288,6 +288,63 @@ namespace System.Linq
 			}
 
 			return count;
+		}
+
+		/// <summary>
+		/// Get the first element or default value.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
+		/// <param name="predicate">The predicate.</param>
+		/// <returns>
+		/// The result. The value is <see langword="default"/> when the collection cannot found any
+		/// elements satisfying the condition.
+		/// </returns>
+		public static unsafe T? FirstOrDefault<T>(
+			this IEnumerable<T> @this, delegate* managed<in T, bool> predicate)
+		{
+			foreach (var element in @this)
+			{
+				if (predicate(element))
+				{
+					return element;
+				}
+			}
+
+			return default;
+		}
+
+		/// <summary>
+		/// Get the total number of elements that are different.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
+		/// <param name="selector">The selector.</param>
+		/// <returns>The result.</returns>
+		public static unsafe int Sum<T>(
+			this IEnumerable<T> @this, delegate* managed<in T, decimal> selector) =>
+			new Set<decimal>(from element in @this select selector(element)).Count;
+
+		/// <summary>
+		/// Get the maximum value in this collection.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
+		/// <param name="selector">The selector.</param>
+		/// <returns>The result.</returns>
+		public static unsafe decimal Max<T>(this IEnumerable<T> @this, delegate* managed<in T, decimal> selector)
+		{
+			decimal? result = null;
+			foreach (var element in @this)
+			{
+				var current = selector(element);
+				if (!result.HasValue || current > result.Value)
+				{
+					result = current;
+				}
+			}
+
+			return result.GetValueOrDefault();
 		}
 	}
 }

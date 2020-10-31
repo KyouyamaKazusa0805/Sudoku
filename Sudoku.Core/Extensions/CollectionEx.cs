@@ -16,29 +16,24 @@ namespace Sudoku.Extensions
 		/// Adds the elements of the specified collection to the end of the
 		/// <see cref="ICollection{T}"/>.
 		/// </summary>
-		/// <typeparam name="TNotNull">
-		/// The type of each element. Should be not <see langword="null"/>.
-		/// </typeparam>
+		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <param name="values">
 		/// (<see langword="params"/> parameter) The values you want to add to the end of the collection.
 		/// </param>
-		public static void AddRange<TNotNull>(this ICollection<TNotNull> @this, params TNotNull[] values)
-			where TNotNull : notnull => @this.AddRange(values.AsEnumerable());
+		public static void AddRange<T>(this ICollection<T> @this, params T[] values) =>
+			@this.AddRange(values.AsEnumerable());
 
 		/// <summary>
 		/// Adds the elements of the specified collection to the end of the
 		/// <see cref="ICollection{T}"/>.
 		/// </summary>
-		/// <typeparam name="TNotNull">
-		/// The type of each element. Should be not <see langword="null"/>.
-		/// </typeparam>
+		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <param name="values">
 		/// The values you want to add to the end of the collection.
 		/// </param>
-		public static void AddRange<TNotNull>(this ICollection<TNotNull> @this, IEnumerable<TNotNull> values)
-			where TNotNull : notnull
+		public static void AddRange<T>(this ICollection<T> @this, IEnumerable<T> values)
 		{
 			foreach (var value in values)
 			{
@@ -50,9 +45,7 @@ namespace Sudoku.Extensions
 		/// Adds the elements of the specified collection to the end of the
 		/// <see cref="ICollection{T}"/>.
 		/// </summary>
-		/// <typeparam name="TNotNull">
-		/// The type of each element. Should be not <see langword="null"/>.
-		/// </typeparam>
+		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <param name="values">
 		/// The values you want to add to the end of the collection.
@@ -61,9 +54,8 @@ namespace Sudoku.Extensions
 		/// Indicates whether the method should check duplicating values first.
 		/// If so, the value won't add (do nothing).
 		/// </param>
-		public static void AddRange<TNotNull>(
-			this ICollection<TNotNull> @this, IEnumerable<TNotNull> values, bool verifyDuplicate)
-			where TNotNull : notnull
+		public static void AddRange<T>(
+			this ICollection<T> @this, IEnumerable<T> values, bool verifyDuplicate)
 		{
 			foreach (var value in values)
 			{
@@ -82,14 +74,11 @@ namespace Sudoku.Extensions
 		/// Adds an object to the end of the <see cref="ICollection{T}"/> when
 		/// the specified list doesn't contain the specified element.
 		/// </summary>
-		/// <typeparam name="TNotNull">
-		/// The type of all elements. Should be not <see langword="null"/>.
-		/// </typeparam>
+		/// <typeparam name="T">The type of all elements.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="item">The item to add.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void AddIfDoesNotContain<TNotNull>(this ICollection<TNotNull> @this, TNotNull item)
-			where TNotNull : notnull
+		public static void AddIfDoesNotContain<T>(this ICollection<T> @this, T item)
 		{
 			if (!@this.Contains(item))
 			{
@@ -100,32 +89,27 @@ namespace Sudoku.Extensions
 		/// <summary>
 		/// Check whether two <see cref="ICollection{T}"/>s are equal.
 		/// </summary>
-		/// <typeparam name="TNotNull">The type of each element.</typeparam>
+		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <param name="other">Another collection.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static unsafe bool CollectionEquals<TNotNull>(
-			this ICollection<TNotNull> @this, ICollection<TNotNull> other) where TNotNull : notnull
+		public static unsafe bool CollectionEquals<T>(this ICollection<T> @this, ICollection<T> other)
 		{
+			static bool internalEquals(T element, in ICollection<T> other) => other.Contains(element);
 			return @this.Count == other.Count && @this.All(&internalEquals, other);
-
-			static bool internalEquals(TNotNull element, in ICollection<TNotNull> other) =>
-				other.Contains(element);
 		}
 
 		/// <summary>
 		/// Get a result collection from a may-be-<see langword="null"/> collection.
 		/// If the collection is <see langword="null"/>, the method will return an empty array
-		/// of type <typeparamref name="TNotNull"/>.
+		/// of type <typeparamref name="T"/>.
 		/// </summary>
-		/// <typeparam name="TNotNull">
-		/// The type of each element. The element should be not <see langword="null"/>.
-		/// </typeparam>
+		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <returns>The return collection that can't be <see langword="null"/>.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IEnumerable<TNotNull> NullableCollection<TNotNull>(this IEnumerable<TNotNull>? @this)
-			where TNotNull : notnull => @this ?? Array.Empty<TNotNull>();
+		public static IEnumerable<T> NullableCollection<T>(this IEnumerable<T>? @this) =>
+			@this ?? Array.Empty<T>();
 	}
 }

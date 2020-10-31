@@ -8,7 +8,7 @@ namespace System.Collections.Generic
 	/// Indicates a set which contains the different elements.
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
-	public sealed class Set<T> : IEnumerable<T>, IEquatable<Set<T>?>, ISet<T> where T : notnull, IEquatable<T>
+	public sealed class Set<T> : IEnumerable<T>, IEquatable<Set<T>?>, ISet<T> where T : IEquatable<T>
 	{
 		/// <summary>
 		/// The inner list.

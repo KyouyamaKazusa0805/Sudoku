@@ -116,7 +116,9 @@ namespace Sudoku.Solving.Manual
 					{
 						foreach (var step in bag)
 						{
-							if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+							if (
+								RecordTechnique(
+									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 							{
 								stopwatch.Stop();
 								return result;
@@ -127,7 +129,8 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly && props.DisabledReason.Flags(DisabledReason.HighAllocation))
+						if (EnableGarbageCollectionForcedly
+							&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
 						{
 							GC.Collect();
 						}
@@ -167,9 +170,12 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (!CheckConclusionValidityAfterSearched || CheckConclusionsValidity(solution, step.Conclusions))
+					if (!CheckConclusionValidityAfterSearched
+						|| CheckConclusionsValidity(solution, step.Conclusions))
 					{
-						if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+						if (
+							RecordTechnique(
+								steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 						{
 							stopwatch.Stop();
 							return result;
@@ -179,7 +185,8 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly && props.DisabledReason.Flags(DisabledReason.HighAllocation))
+						if (EnableGarbageCollectionForcedly
+							&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
 						{
 							GC.Collect();
 						}

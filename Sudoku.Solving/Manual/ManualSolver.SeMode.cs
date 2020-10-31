@@ -79,7 +79,8 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (EnableGarbageCollectionForcedly && props.DisabledReason.Flags(DisabledReason.HighAllocation))
+					if (EnableGarbageCollectionForcedly
+						&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
 					{
 						GC.Collect();
 					}
@@ -104,7 +105,9 @@ namespace Sudoku.Solving.Manual
 					{
 						foreach (var step in selection)
 						{
-							if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+							if (
+								RecordTechnique(
+									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 							{
 								stopwatch.Stop();
 								return result;
@@ -148,9 +151,12 @@ namespace Sudoku.Solving.Manual
 							continue;
 						}
 
-						if (!CheckConclusionValidityAfterSearched || CheckConclusionsValidity(solution, step.Conclusions))
+						if (!CheckConclusionValidityAfterSearched
+							|| CheckConclusionsValidity(solution, step.Conclusions))
 						{
-							if (RecordTechnique(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+							if (
+								RecordTechnique(
+									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 							{
 								// The puzzle has been solved.
 								// :)
