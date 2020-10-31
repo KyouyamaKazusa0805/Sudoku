@@ -8,7 +8,7 @@
 		<Authors>Sunnie</Authors>
 		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
-		<LangVersion>preview</LangVersion>
+		<LangVersion>9.0</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
