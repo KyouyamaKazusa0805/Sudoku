@@ -732,7 +732,11 @@ namespace Sudoku.Windows
 				return;
 			}
 
+#if DEBUG
+			new ExportAnalysisResultWindow(_analyisResult, Settings).Show();
+#else
 			new ExportAnalysisResultWindow(_analyisResult).Show();
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>

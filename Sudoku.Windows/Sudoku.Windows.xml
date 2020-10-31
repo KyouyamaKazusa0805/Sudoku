@@ -354,16 +354,22 @@
             The analysis result.
             </summary>
         </member>
+        <member name="F:Sudoku.Windows.ExportAnalysisResultWindow._settings">
+            <summary>
+            The settings.
+            </summary>
+        </member>
         <member name="F:Sudoku.Windows.ExportAnalysisResultWindow._dic">
             <summary>
             The internal dictionary of all format characters.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.#ctor(Sudoku.Solving.AnalysisResult)">
+        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.#ctor(Sudoku.Solving.AnalysisResult,Sudoku.Drawing.Settings)">
             <summary>
             Initializes an instance with the specified analysis result.
             </summary>
             <param name="analysisResult">The analysis result.</param>
+            <param name="settings">The settings.</param>
         </member>
         <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.ButtonExport_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
@@ -2924,6 +2930,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The data.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

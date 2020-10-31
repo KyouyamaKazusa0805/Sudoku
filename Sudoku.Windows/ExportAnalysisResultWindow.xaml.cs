@@ -6,6 +6,14 @@ using System.Windows;
 using System.Windows.Controls;
 using Sudoku.DocComments;
 using Sudoku.Solving;
+using Sudoku.Data;
+#if DEBUG
+using System.IO;
+using NPOI.XWPF.UserModel;
+using Sudoku.Drawing;
+using PointConverter = Sudoku.Drawing.PointConverter;
+using Image = System.Drawing.Image;
+#endif
 
 namespace Sudoku.Windows
 {
@@ -18,6 +26,11 @@ namespace Sudoku.Windows
 		/// The analysis result.
 		/// </summary>
 		private readonly AnalysisResult _analysisResult;
+
+		/// <summary>
+		/// The settings.
+		/// </summary>
+		private readonly Settings _settings;
 
 		/// <summary>
 		/// The internal dictionary of all format characters.
@@ -37,11 +50,23 @@ namespace Sudoku.Windows
 		};
 
 
+#if DEBUG
 		/// <summary>
 		/// Initializes an instance with the specified analysis result.
 		/// </summary>
 		/// <param name="analysisResult">The analysis result.</param>
-		public ExportAnalysisResultWindow(AnalysisResult analysisResult)
+		/// <param name="settings">The settings.</param>
+#else
+		/// <summary>
+		/// Initializes an instance with the specified analysis result.
+		/// </summary>
+		/// <param name="analysisResult">The analysis result.</param>
+#endif
+		public ExportAnalysisResultWindow(AnalysisResult analysisResult
+#if DEBUG
+			, Settings settings
+#endif
+			)
 		{
 			InitializeComponent();
 
@@ -52,6 +77,7 @@ namespace Sudoku.Windows
 			}
 
 			_analysisResult = analysisResult;
+			_settings = settings;
 		}
 
 
@@ -65,6 +91,59 @@ namespace Sudoku.Windows
 			}
 
 			_textBoxAnalysisResult.Text = _analysisResult.ToString(format.ToString());
+
+#if DEBUG
+			exportWordFile($@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\Output.docx");
+
+			void exportWordFile(string path)
+			{
+				const int size = 600;
+				string directoryPath = $@"{path[..path.LastIndexOf('\\')]}\Assets";
+				if (!Directory.Exists(directoryPath))
+				{
+					Directory.CreateDirectory(directoryPath);
+				}
+
+				var doc = new XWPFDocument();
+				var stepGrids = _analysisResult.StepGrids;
+				var steps = _analysisResult.SolvingSteps;
+				if ((steps, stepGrids) is (not null, not null))
+				{
+#nullable disable warnings
+					for (int i = 0; i < steps.Count; i++)
+					{
+						var (step, grid) = (steps[i], stepGrids[i]);
+
+						string curPictureName = $"{i + 1}.png";
+						string curPicturePath = $@"{directoryPath}\{curPictureName}";
+						saveTo(curPicturePath, getImage(grid, step));
+
+						using var curPictureStream = new FileStream(curPicturePath, FileMode.Open, FileAccess.Read);
+
+						var p1 = doc.CreateParagraph();
+						p1.Alignment = ParagraphAlignment.CENTER;
+						var graphRun = p1.CreateRun();
+						graphRun.AddPicture(curPictureStream, (int)PictureType.PNG, curPictureName, size * 9525, size * 9525);
+						graphRun.SetText(step.ToString());
+
+						var inline = graphRun.GetCTR().GetDrawingList()[0].inline[0];
+						inline.docPr.id = 1;
+					}
+#nullable restore warnings
+				}
+
+				using var resultDocumentStream = new FileStream(path, FileMode.Create);
+				doc.Write(resultDocumentStream);
+
+				static void saveTo(string path, Image image) => image.Save(path);
+				Image getImage(in SudokuGrid grid, TechniqueInfo info) =>
+					new GridPainter(new PointConverter(size, size), _settings, new(grid))
+					{
+						View = info.Views[0],
+						Conclusions = info.Conclusions
+					}.Draw();
+			}
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
