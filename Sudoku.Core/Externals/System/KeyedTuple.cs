@@ -35,7 +35,8 @@ namespace System
 
 
 		/// <inheritdoc/>
-		object? ITuple.this[int index] => PriorKey switch { 1 => Item1, 2 => Item2, _ => Throwings.ImpossibleCase };
+		object? ITuple.this[int index] =>
+			PriorKey switch { 1 => Item1, 2 => Item2, _ => Throwings.ImpossibleCase };
 
 
 		/// <inheritdoc/>
@@ -68,7 +69,7 @@ namespace System
 
 
 		/// <inheritdoc/>
-		object? ITuple.this[int index] =>		
+		object? ITuple.this[int index] =>
 			PriorKey switch { 1 => Item1, 2 => Item2, 3 => Item3, _ => Throwings.ImpossibleCase };
 
 
@@ -104,7 +105,7 @@ namespace System
 
 
 		/// <inheritdoc/>
-		object? ITuple.this[int index] =>		
+		object? ITuple.this[int index] =>
 			PriorKey switch { 1 => Item1, 2 => Item2, 3 => Item3, 4 => Item4, _ => Throwings.ImpossibleCase };
 
 
