@@ -2,6 +2,7 @@
 
 using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Drawing.Extensions;
@@ -20,6 +21,7 @@ namespace Sudoku.Windows
 
 
 		/// <inheritdoc/>
+		[SkipLocalsInit]
 		public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
 			const int length = 4;
