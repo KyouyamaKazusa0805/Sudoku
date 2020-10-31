@@ -44,8 +44,9 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="comparer">The method to compare two elements.</param>
 		/// <remarks>
-		/// If you want to use this method, please note that the <typeparamref name="T"/> may not be the built-in
-		/// types such as <see cref="int"/>, <see cref="float"/> or so on, because they can use operators directly.
+		/// If you want to use this method, please note that the <typeparamref name="T"/>
+		/// may not be the built-in types such as <see cref="int"/>, <see cref="float"/> or so on,
+		/// because they can use operators directly.
 		/// </remarks>
 		public static unsafe void Sort<T>(this IList<T> @this, delegate*<in T, in T, int> comparer)
 		{

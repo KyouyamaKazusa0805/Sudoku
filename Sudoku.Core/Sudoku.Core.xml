@@ -4528,8 +4528,9 @@
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <param name="comparer">The method to compare two elements.</param>
             <remarks>
-            If you want to use this method, please note that the <typeparamref name="T"/> may not be the built-in
-            types such as <see cref="T:System.Int32"/>, <see cref="T:System.Single"/> or so on, because they can use operators directly.
+            If you want to use this method, please note that the <typeparamref name="T"/>
+            may not be the built-in types such as <see cref="T:System.Int32"/>, <see cref="T:System.Single"/> or so on,
+            because they can use operators directly.
             </remarks>
         </member>
         <member name="M:Sudoku.Extensions.ListEx.Distinct``1(System.Collections.Generic.IList{``0})">
