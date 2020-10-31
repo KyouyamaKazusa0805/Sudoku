@@ -59,7 +59,7 @@ namespace Sudoku.Data
 		{
 			unsafe
 			{
-				delegate* managed<ref SudokuGrid, int, int, void> m = ConclusionType switch
+				delegate*<ref SudokuGrid, int, int, void> m = ConclusionType switch
 				{
 					ConclusionType.Assignment => &a,
 					ConclusionType.Elimination => &e,

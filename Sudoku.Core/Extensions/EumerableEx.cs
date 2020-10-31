@@ -35,7 +35,7 @@ namespace Sudoku.Extensions
 		/// (either value types or non-<see langword="null"/> reference types).
 		/// </remarks>
 		public static unsafe T? GetElementByMinSelector<T, TComparable>(
-			this IEnumerable<T> @this, delegate* managed<T, TComparable> selector)
+			this IEnumerable<T> @this, delegate*<T, TComparable> selector)
 			where TComparable : IComparable<TComparable> =>
 			(from element in @this orderby selector(element) select element).FirstOrDefault();
 
@@ -56,7 +56,7 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="selector">The selector, specified a function pointer.</param>
 		/// <returns>The result indicating whether all values satisfy the condition.</returns>
-		public static unsafe bool All<T>(this IEnumerable<T> @this, delegate* managed<T, bool> selector)
+		public static unsafe bool All<T>(this IEnumerable<T> @this, delegate*<T, bool> selector)
 		{
 			foreach (var element in @this)
 			{
@@ -81,8 +81,7 @@ namespace Sudoku.Extensions
 		/// <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
 		/// <returns>The result indicating whether all values satisfy the condition.</returns>
 		public static unsafe bool All<TElement, TOther>(
-			this IEnumerable<TElement> @this, delegate* managed<TElement, in TOther, bool> selector,
-			in TOther value)
+			this IEnumerable<TElement> @this, delegate*<TElement, in TOther, bool> selector, in TOther value)
 		{
 			foreach (var element in @this)
 			{
@@ -113,7 +112,7 @@ namespace Sudoku.Extensions
 		/// </param>
 		/// <returns>The result indicating whether all values satisfy the condition.</returns>
 		public static unsafe bool All<TElement, T1, T2>(
-			this IEnumerable<TElement> @this, delegate* managed<TElement, in T1, in T2, bool> selector,
+			this IEnumerable<TElement> @this, delegate*<TElement, in T1, in T2, bool> selector,
 			in T1 value1, in T2 value2)
 		{
 			foreach (var element in @this)
@@ -135,7 +134,7 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="in"/> parameter) The list.</param>
 		/// <param name="selector">The selector.</param>
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
-		public static unsafe bool Any<T>(this IEnumerable<T> @this, delegate* managed<T, bool> selector)
+		public static unsafe bool Any<T>(this IEnumerable<T> @this, delegate*<T, bool> selector)
 		{
 			foreach (var element in @this)
 			{
@@ -160,8 +159,7 @@ namespace Sudoku.Extensions
 		/// <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
 		public static unsafe bool Any<TElement, TOther>(
-			this IEnumerable<TElement> @this, delegate* managed<TElement, in TOther, bool> selector,
-			in TOther value)
+			this IEnumerable<TElement> @this, delegate*<TElement, in TOther, bool> selector, in TOther value)
 		{
 			foreach (var element in @this)
 			{
@@ -192,7 +190,7 @@ namespace Sudoku.Extensions
 		/// </param>
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
 		public static unsafe bool Any<TElement, T1, T2>(
-			this IEnumerable<TElement> @this, delegate* managed<TElement, in T1, in T2, bool> selector,
+			this IEnumerable<TElement> @this, delegate*<TElement, in T1, in T2, bool> selector,
 			in T1 value1, in T2 value2)
 		{
 			foreach (var element in @this)
@@ -228,7 +226,7 @@ namespace Sudoku.Extensions
 		/// </param>
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
 		public static unsafe bool Any<TElement, T1, T2, T3>(
-			this IEnumerable<TElement> @this, delegate* managed<TElement, in T1, in T2, in T3, bool> selector,
+			this IEnumerable<TElement> @this, delegate*<TElement, in T1, in T2, in T3, bool> selector,
 			in T1 value1, in T2 value2, in T3 value3)
 		{
 			foreach (var element in @this)
@@ -245,10 +243,10 @@ namespace Sudoku.Extensions
 		/// <summary>
 		/// Check whether the specified list has only one element.
 		/// </summary>
-		/// <typeparam name="TNotNull">The type of the element.</typeparam>
+		/// <typeparam name="T">The type of the element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool HasOnlyOneElement<TNotNull>(this IEnumerable<TNotNull> @this)
+		public static bool HasOnlyOneElement<T>(this IEnumerable<T> @this)
 		{
 			if (@this.None())
 			{
@@ -275,7 +273,7 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="selector">The condition to check, specified as a function pointer.</param>
 		/// <returns>The number of all elements satisfying the condition.</returns>
-		public static unsafe int Count<T>(this IEnumerable<T> @this, delegate* managed<in T, bool> selector)
+		public static unsafe int Count<T>(this IEnumerable<T> @this, delegate*<in T, bool> selector)
 		{
 			int count = 0;
 			foreach (var element in @this)
@@ -299,8 +297,7 @@ namespace Sudoku.Extensions
 		/// The result. The value is <see langword="default"/> when the collection cannot found any
 		/// elements satisfying the condition.
 		/// </returns>
-		public static unsafe T? FirstOrDefault<T>(
-			this IEnumerable<T> @this, delegate* managed<in T, bool> predicate)
+		public static unsafe T? FirstOrDefault<T>(this IEnumerable<T> @this, delegate*<in T, bool> predicate)
 		{
 			foreach (var element in @this)
 			{
@@ -320,8 +317,7 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <param name="selector">The selector.</param>
 		/// <returns>The result.</returns>
-		public static unsafe int Sum<T>(
-			this IEnumerable<T> @this, delegate* managed<in T, decimal> selector) =>
+		public static unsafe int Sum<T>(this IEnumerable<T> @this, delegate*<in T, decimal> selector) =>
 			new Set<decimal>(from element in @this select selector(element)).Count;
 
 		/// <summary>
@@ -331,7 +327,7 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <param name="selector">The selector.</param>
 		/// <returns>The result.</returns>
-		public static unsafe decimal Max<T>(this IEnumerable<T> @this, delegate* managed<in T, decimal> selector)
+		public static unsafe decimal Max<T>(this IEnumerable<T> @this, delegate*<in T, decimal> selector)
 		{
 			decimal? result = null;
 			foreach (var element in @this)

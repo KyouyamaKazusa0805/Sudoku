@@ -141,7 +141,7 @@ namespace Sudoku.Extensions
 		/// <returns>The reference of the current instance.</returns>
 		public static unsafe StringBuilder AppendRange<TElement, TOther>(
 			this StringBuilder @this, IEnumerable<TElement?> contentList,
-			delegate* managed<in TElement?, TOther?> converter)
+			delegate*<in TElement?, TOther?> converter)
 		{
 			foreach (var content in contentList)
 			{
@@ -169,7 +169,7 @@ namespace Sudoku.Extensions
 		/// <returns>The reference of the current instance.</returns>
 		public static unsafe StringBuilder AppendRange<TElement, TAuxiliary, TResult>(
 			this StringBuilder @this, IEnumerable<TElement?> contentList,
-			delegate* managed<in TElement?, in TAuxiliary?, TResult?> converter, in TAuxiliary value)
+			delegate*<in TElement?, in TAuxiliary?, TResult?> converter, in TAuxiliary value)
 		{
 			foreach (var content in contentList)
 			{

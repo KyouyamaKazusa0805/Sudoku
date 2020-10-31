@@ -11,14 +11,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	[TechniqueDisplay(nameof(TechniqueCode.UsType1))]
 	public sealed partial class UsTechniqueSearcher : UniquenessTechniqueSearcher
 	{
-		private static readonly unsafe delegate* managed<IList<TechniqueInfo>, in SudokuGrid, in GridMap, short, void>[] FunctionList =
-			new delegate* managed<IList<TechniqueInfo>, in SudokuGrid, in GridMap, short, void>[]
-			{
-				&CheckType1,
-				&CheckType2,
-				&CheckType3,
-				&CheckType4
-			};
+		/// <summary>
+		/// The function list.
+		/// </summary>
+		private static readonly unsafe delegate*<IList<TechniqueInfo>, in SudokuGrid, in GridMap, short, void>[] FunctionList =
+		{
+			&CheckType1,
+			&CheckType2,
+			&CheckType3,
+			&CheckType4
+		};
 
 		/// <summary>
 		/// Indicates the patterns.

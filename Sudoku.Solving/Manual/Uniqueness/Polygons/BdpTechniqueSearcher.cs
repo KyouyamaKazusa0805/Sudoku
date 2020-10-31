@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <summary>
 		/// The function list.
 		/// </summary>
-		private static readonly unsafe delegate* managed<IList<TechniqueInfo>, in SudokuGrid, in Pattern, short, short, short, in GridMap, void>[] FunctionsList =
+		private static readonly unsafe delegate*<IList<TechniqueInfo>, in SudokuGrid, in Pattern, short, short, short, in GridMap, void>[] FunctionsList =
 		{
 			&CheckType1,
 			&CheckType2,

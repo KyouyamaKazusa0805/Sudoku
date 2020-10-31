@@ -3,8 +3,6 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Symmetry
 {
@@ -14,24 +12,29 @@ namespace Sudoku.Solving.Manual.Symmetry
 	[TechniqueDisplay(nameof(TechniqueCode.Gsp))]
 	public sealed class GspTechniqueSearcher : SymmetryTechniqueSearcher
 	{
+		/// <summary>
+		/// The function list.
+		/// </summary>
+		/// <remarks>Note that Gurth's symmetrical placement doesn't have X-axis and Y-axis type.</remarks>
+		private static readonly unsafe delegate*<IList<TechniqueInfo>, in SudokuGrid, void>[] FunctionList =
+		{
+			&CheckCentral,
+			&CheckDiagonal,
+			&CheckAntiDiagonal
+		};
+
+
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(default) { IsReadOnly = true };
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			// To verify all kinds of symmetry.
-			// Note that Gurth's symmetrical placement doesn't have X-axis and Y-axis type.
-			unsafe
+			foreach (var act in FunctionList)
 			{
-				foreach (var act in new delegate* managed<IList<TechniqueInfo>, in SudokuGrid, void>[]
-				{
-					&CheckCentral, &CheckDiagonal, &CheckAntiDiagonal
-				})
-				{
-					act(accumulator, grid);
-				}
+				act(accumulator, grid);
 			}
 		}
 
@@ -45,7 +48,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			bool diagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
 			{
-				if (grid.GetStatus(i * 9 + i) == Empty)
+				if (grid.GetStatus(i * 9 + i) == CellStatus.Empty)
 				{
 					diagonalHasEmptyCell = true;
 					break;
@@ -64,8 +67,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 				{
 					int c1 = i * 9 + j;
 					int c2 = j * 9 + i;
-					bool condition = grid.GetStatus(c1) == Empty;
-					if (condition ^ grid.GetStatus(c2) == Empty)
+					bool condition = grid.GetStatus(c1) == CellStatus.Empty;
+					if (condition ^ grid.GetStatus(c2) == CellStatus.Empty)
 					{
 						// One of two cells is empty. Not this symmetry.
 						return;
@@ -130,7 +133,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			for (int i = 0; i < 9; i++)
 			{
 				int cell = i * 9 + i;
-				if (grid.GetStatus(cell) != Empty)
+				if (grid.GetStatus(cell) != CellStatus.Empty)
 				{
 					continue;
 				}
@@ -143,7 +146,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 						continue;
 					}
 
-					conclusions.Add(new(Elimination, cell, digit));
+					conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 				}
 			}
 
@@ -170,7 +173,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			bool antiDiagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
 			{
-				if (grid.GetStatus(i * 9 + (8 - i)) == Empty)
+				if (grid.GetStatus(i * 9 + (8 - i)) == CellStatus.Empty)
 				{
 					antiDiagonalHasEmptyCell = true;
 					break;
@@ -189,8 +192,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 				{
 					int c1 = i * 9 + j;
 					int c2 = (8 - j) * 9 + (8 - i);
-					bool condition = grid.GetStatus(c1) == Empty;
-					if (condition ^ grid.GetStatus(c2) == Empty)
+					bool condition = grid.GetStatus(c1) == CellStatus.Empty;
+					if (condition ^ grid.GetStatus(c2) == CellStatus.Empty)
 					{
 						// One of two cells is empty. Not this symmetry.
 						return;
@@ -255,7 +258,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			for (int i = 0; i < 9; i++)
 			{
 				int cell = i * 9 + (8 - i);
-				if (grid.GetStatus(cell) != Empty)
+				if (grid.GetStatus(cell) != CellStatus.Empty)
 				{
 					continue;
 				}
@@ -268,7 +271,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 						continue;
 					}
 
-					conclusions.Add(new(Elimination, cell, digit));
+					conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 				}
 			}
 
@@ -292,7 +295,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		private static void CheckCentral(IList<TechniqueInfo> result, in SudokuGrid grid)
 		{
-			if (grid.GetStatus(40) != Empty)
+			if (grid.GetStatus(40) != CellStatus.Empty)
 			{
 				// Has no conclusion even though the grid may be symmetrical.
 				return;
@@ -302,8 +305,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 			for (int cell = 0; cell < 40; cell++)
 			{
 				int anotherCell = 80 - cell;
-				bool condition = grid.GetStatus(cell) == Empty;
-				if (condition ^ grid.GetStatus(anotherCell) == Empty)
+				bool condition = grid.GetStatus(cell) == CellStatus.Empty;
+				if (condition ^ grid.GetStatus(anotherCell) == CellStatus.Empty)
 				{
 					// One of two cell is empty, not central symmetry type.
 					return;
@@ -358,7 +361,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				{
 					result.Add(
 						new GspTechniqueInfo(
-							new Conclusion[] { new(Assignment, 40, digit) },
+							new Conclusion[] { new(ConclusionType.Assignment, 40, digit) },
 							new View[] { new(new DrawingInfo[] { new(0, 360 + digit) }) },
 							SymmetryType.Central,
 							mapping));

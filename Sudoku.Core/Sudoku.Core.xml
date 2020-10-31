@@ -4243,7 +4243,7 @@
             <summary>
             Check whether the specified list has only one element.
             </summary>
-            <typeparam name="TNotNull">The type of the element.</typeparam>
+            <typeparam name="T">The type of the element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
