@@ -18,10 +18,10 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 标题：**编程语言和 IDE 使用情况**
 
 * Programming language: C#<br/>编程语言：C#
-* Language version: 9.0 Preview<br/>语言版本：9.0 预览版
+* Language version: 9.0<br/>语言版本：9.0
 * Framework: .NET 5 RC 2<br/>框架：.NET 5 正式版候选（第 2 个）
 * Indenting: Tabs（`\t`）<br/>缩进：原生 Tab（`\t`）
-* Integrated development environment: Visual Studio 2019 V16.8 Preview 5<br/>集成开发环境：Visual Studio 2019 V16.8 预览版本 5
+* Integrated development environment: Visual Studio 2019 V16.8 Preview 6<br/>集成开发环境：Visual Studio 2019 V16.8 预览版本 6
 * Language Support: English, Simplified Chinese<br/>语言支持：英语、简体中文
 
 
