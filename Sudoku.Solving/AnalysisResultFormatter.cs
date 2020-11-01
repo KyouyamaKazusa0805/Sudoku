@@ -198,7 +198,7 @@ namespace Sudoku.Solving
 				.Append('/')
 				.Append(pearl.ToString("0.0"))
 				.Append('/')
-				.Append(diamond.ToString("0.0"));
+				.AppendLine(diamond.ToString("0.0"));
 
 			// Print the solution (if not null).
 			if (solution.HasValue)
