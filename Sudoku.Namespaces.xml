@@ -69,6 +69,9 @@
 		<member name="N:Sudoku.Extensions">
 			<summary>This namespace contains extension methods for .NET basic types (i.e. built-in types).</summary>
 		</member>
+		<member name="N:Sudoku.IO">
+			<summary>This namespace contains IO operations on handling sudokus.</summary>
+		</member>
 		<member name="N:Sudoku.Models">
 			<summary>This namespace contains the models for displaying sudoku information while generating or solving a puzzle, as a status recorder.</summary>
 		</member>
