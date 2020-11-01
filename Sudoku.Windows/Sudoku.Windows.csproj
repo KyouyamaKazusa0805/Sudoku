@@ -34,13 +34,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NPOI" Version="2.5.1" />
 		<PackageReference Include="WriteableBitmapEx" Version="1.6.7" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
+		<ProjectReference Include="..\Sudoku.IO\Sudoku.IO.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 	</ItemGroup>
 

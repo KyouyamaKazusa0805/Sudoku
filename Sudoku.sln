@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.DocComments", "Sudok
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "Examples\Examples.csproj", "{42830130-65C9-4D20-9F92-E716AC0BC823}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.IO", "Sudoku.IO\Sudoku.IO.csproj", "{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,18 @@ Global
 		{42830130-65C9-4D20-9F92-E716AC0BC823}.Release|x64.Build.0 = Release|Any CPU
 		{42830130-65C9-4D20-9F92-E716AC0BC823}.Release|x86.ActiveCfg = Release|Any CPU
 		{42830130-65C9-4D20-9F92-E716AC0BC823}.Release|x86.Build.0 = Release|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Debug|x64.Build.0 = Debug|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Debug|x86.Build.0 = Debug|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Release|x64.ActiveCfg = Release|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Release|x64.Build.0 = Release|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Release|x86.ActiveCfg = Release|Any CPU
+		{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
-using NPOI.XWPF.UserModel;
-using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.IO;
 using Sudoku.Solving;
 using Sudoku.Windows.Constants;
+using IOHorizontalAlignment = Sudoku.IO.HorizontalAlignment;
 
 namespace Sudoku.Windows
 {
@@ -21,12 +20,6 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class ExportAnalysisResultWindow : Window
 	{
-		/// <summary>
-		/// The converter from pixels to real output size.
-		/// </summary>
-		private const int Emu = 9525;
-
-
 		/// <summary>
 		/// The analysis result.
 		/// </summary>
@@ -138,100 +131,21 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonOutputAnalysisResult_Click(object sender, RoutedEventArgs e)
 		{
-			var sfd = new SaveFileDialog
-			{
-				Filter = "Word document|*.docx|Text file|*.txt",
-				FilterIndex = 0,
-				Title = (string)Application.Current.Resources["TitleSavingPuzzles"]
-			};
-
-			if (sfd.ShowDialog() is true)
-			{
-				exportFile(sfd.FileName, 500);
-			}
-
-			void exportFile(string path, int size)
-			{
-				bool chooseDocx = sfd.FilterIndex == 1, chooseTxt = sfd.FilterIndex == 2;
-
-				XWPFDocument? doc = chooseDocx ? new() : null;
-#nullable disable warnings
-				if (_analysisResult.SolvingSteps is IReadOnlyList<TechniqueInfo> steps
-					&& _analysisResult.StepGrids is IReadOnlyList<SudokuGrid> stepGrids
-					&& chooseDocx)
+			if (
+				new SaveFileDialog
 				{
-					// If the directory cannot be found, create it.
-					string directoryPath = $@"{path[..path.LastIndexOf('\\')]}\Assets";
-					if (!Directory.Exists(directoryPath))
-					{
-						Directory.CreateDirectory(directoryPath);
-					}
-
-					// Get all pictures, and input into the document.
-					for (int i = 0; i < steps.Count; i++)
-					{
-						var (step, grid) = (steps[i], stepGrids[i]);
-
-						string curPictureName = $"{i + 1}.png";
-						string curPicturePath = $@"{directoryPath}\{curPictureName}";
-						using var image = new GridPainter(new(size, size), _settings, new(grid))
-						{
-							View = step.Views[0],
-							Conclusions = step.Conclusions
-						}.Draw();
-
-						image.Save(curPicturePath);
-
-						using var picStream = new FileStream(curPicturePath, FileMode.Open, FileAccess.Read);
-
-						var para = doc.CreateParagraph();
-						para.Alignment = ParagraphAlignment.CENTER;
-						var r = para.CreateRun();
-						r.AddPicture(picStream, (int)PictureType.PNG, curPictureName, size * Emu, size * Emu);
-						r.SetText(step.ToString());
-
-						// Bug fix: The document cannot be opened due to NPOI inserts pictures.
-						r.GetCTR().GetDrawingList()[0].inline[0].docPr.id = 1;
-					}
-
-					// Output the document.
-					using var resultDocumentStream = new FileStream(path, FileMode.Create);
-					doc.Write(resultDocumentStream);
-
-					// If we don't need to save pictures, just delete them.
-					if (!(_checkBoxOutputStepGrids.IsChecked ?? false))
-					{
-						bool dirExists = true;
-						foreach (var file in Directory.GetFiles(directoryPath))
-						{
-							try
-							{
-								File.Delete(file);
-							}
-							catch when (!(dirExists = Directory.Exists(directoryPath)))
-							{
-								break;
-							}
-							catch
-							{
-							}
-						}
-
-						// If something is wrong occurred above, check it.
-						if (dirExists && Directory.GetFiles(directoryPath).None())
-						{
-							Directory.Delete(directoryPath);
-						}
-					}
-				}
-#nullable restore warnings
-
-				if (chooseTxt)
-				{
-					// Save text file.
-					File.WriteAllText(sfd.FileName, _analysisResult.ToString(CreateFormatString()));
-				}
-
+					Filter = "Word document|*.docx|Text file|*.txt",
+					FilterIndex = 0,
+					Title = (string)Application.Current.Resources["TitleSavingPuzzles"]
+				} is var sfd && sfd.ShowDialog() is true
+				&& new AnalysisResultFileOutput(_analysisResult, _settings).Export(
+					sfd.FileName,
+					500,
+					_checkBoxOutputStepGrids.IsChecked.GetValueOrDefault(),
+					CreateFormatString(),
+					(AnalysisResultOutputType)(sfd.FilterIndex - 1),
+					IOHorizontalAlignment.Middle))
+			{
 				Messagings.SaveSuccess();
 			}
 		}
