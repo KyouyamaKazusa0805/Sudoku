@@ -9,19 +9,17 @@
 		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 		<LangVersion>9.0</LangVersion>
+		<DocumentationFile>.\Sudoku.Core.xml</DocumentationFile>
+		<Optimize>false</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DefineConstants>SUDOKU_RECOGNITION; CSHARP_9_PREVIEW; PREFER_ZERO_BITS; AUTHOR_RESERVED</DefineConstants>
-		<DocumentationFile>.\Sudoku.Core.xml</DocumentationFile>
-		<Optimize>false</Optimize>
 		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DefineConstants>SUDOKU_RECOGNITION; CSHARP_9_PREVIEW; PREFER_ZERO_BITS; AUTHOR_RESERVED</DefineConstants>
-		<DocumentationFile>.\Sudoku.Core.xml</DocumentationFile>
-		<Optimize>false</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>

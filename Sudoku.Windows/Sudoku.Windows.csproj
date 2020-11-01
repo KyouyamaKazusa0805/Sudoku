@@ -17,20 +17,18 @@
 		<FileVersion>0.1.0.0</FileVersion>
 		<PackageIcon>ImageIcon-Generate.png</PackageIcon>
 		<LangVersion>9.0</LangVersion>
+		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DocumentationFile>.\Sudoku.Windows.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DefineConstants>DEBUG; SUDOKU_RECOGNITION; AUTHOR_RESERVED; CSHARP_9_PREVIEW; JSON_SERIALIZER</DefineConstants>
-		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<DocumentationFile>.\Sudoku.Windows.xml</DocumentationFile>
 		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DefineConstants>SUDOKU_RECOGNITION; AUTHOR_RESERVED; CSHARP_9_PREVIEW; JSON_SERIALIZER</DefineConstants>
-		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>

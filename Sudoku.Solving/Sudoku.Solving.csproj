@@ -8,22 +8,19 @@
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 		<LangVersion>9.0</LangVersion>
+		<DocumentationFile>.\Sudoku.Solving.xml</DocumentationFile>
+		<Optimize>false</Optimize>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>.\Sudoku.Solving.xml</DocumentationFile>
 		<DefineConstants>DEBUG; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
-		<PlatformTarget>AnyCPU</PlatformTarget>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<Optimize>false</Optimize>
-		<DocumentationFile>.\Sudoku.Solving.xml</DocumentationFile>
 		<DefineConstants>AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
-		<PlatformTarget>AnyCPU</PlatformTarget>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
