@@ -52,7 +52,7 @@ namespace Sudoku.IO
 		public bool Export(
 			string path, int size, bool saveStepGridPictures,
 			string format, AnalysisResultOutputType outputType = AnalysisResultOutputType.Text,
-			HorizontalAlignment alignment = HorizontalAlignment.Middle)
+			Alignment alignment = Alignment.Middle)
 		{
 			try
 			{

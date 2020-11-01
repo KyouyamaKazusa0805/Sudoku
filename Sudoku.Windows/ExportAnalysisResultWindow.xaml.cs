@@ -11,7 +11,6 @@ using Sudoku.Extensions;
 using Sudoku.IO;
 using Sudoku.Solving;
 using Sudoku.Windows.Constants;
-using IOHorizontalAlignment = Sudoku.IO.HorizontalAlignment;
 
 namespace Sudoku.Windows
 {
@@ -144,7 +143,7 @@ namespace Sudoku.Windows
 					_checkBoxOutputStepGrids.IsChecked.GetValueOrDefault(),
 					CreateFormatString(),
 					(AnalysisResultOutputType)(sfd.FilterIndex - 1),
-					IOHorizontalAlignment.Middle))
+					Alignment.Middle))
 			{
 				Messagings.SaveSuccess();
 			}

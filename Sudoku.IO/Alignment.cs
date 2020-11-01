@@ -1,9 +1,9 @@
 ﻿namespace Sudoku.IO
 {
 	/// <summary>
-	/// Indicates a horizontal alignment type.
+	/// Indicates an alignment type.
 	/// </summary>
-	public enum HorizontalAlignment : byte
+	public enum Alignment : byte
 	{
 		/// <summary>
 		/// Indicates the left alignment.

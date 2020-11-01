@@ -4,6 +4,26 @@
         <name>Sudoku.IO</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.IO.Alignment">
+            <summary>
+            Indicates an alignment type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.Alignment.Left">
+            <summary>
+            Indicates the left alignment.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.Alignment.Middle">
+            <summary>
+            Indicates the middle alignment.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.Alignment.Right">
+            <summary>
+            Indicates the right alignment.
+            </summary>
+        </member>
         <member name="T:Sudoku.IO.AnalysisResultFileOutput">
             <summary>
             Encapsulates a instance for saving analysis result.
@@ -31,7 +51,7 @@
             Indicates the settings.
             </summary>
         </member>
-        <member name="M:Sudoku.IO.AnalysisResultFileOutput.Export(System.String,System.Int32,System.Boolean,System.String,Sudoku.IO.AnalysisResultOutputType,Sudoku.IO.HorizontalAlignment)">
+        <member name="M:Sudoku.IO.AnalysisResultFileOutput.Export(System.String,System.Int32,System.Boolean,System.String,Sudoku.IO.AnalysisResultOutputType,Sudoku.IO.Alignment)">
             <summary>
             Export the analysis result.
             </summary>
@@ -56,46 +76,6 @@
         <member name="F:Sudoku.IO.AnalysisResultOutputType.Text">
             <summary>
             Indicates the text file format (<c>*.txt</c>).
-            </summary>
-        </member>
-        <member name="T:Sudoku.IO.HorizontalAlignment">
-            <summary>
-            Indicates a horizontal alignment type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.IO.HorizontalAlignment.Left">
-            <summary>
-            Indicates the left alignment.
-            </summary>
-        </member>
-        <member name="F:Sudoku.IO.HorizontalAlignment.Middle">
-            <summary>
-            Indicates the middle alignment.
-            </summary>
-        </member>
-        <member name="F:Sudoku.IO.HorizontalAlignment.Right">
-            <summary>
-            Indicates the right alignment.
-            </summary>
-        </member>
-        <member name="T:Sudoku.IO.VerticalAlignment">
-            <summary>
-            Indicates a vertical alignment.
-            </summary>
-        </member>
-        <member name="F:Sudoku.IO.VerticalAlignment.Top">
-            <summary>
-            Indicates the top alignment.
-            </summary>
-        </member>
-        <member name="F:Sudoku.IO.VerticalAlignment.Middle">
-            <summary>
-            Indicates the middle alignment.
-            </summary>
-        </member>
-        <member name="F:Sudoku.IO.VerticalAlignment.Bottom">
-            <summary>
-            Indicates the bottom alignment.
             </summary>
         </member>
     </members>
