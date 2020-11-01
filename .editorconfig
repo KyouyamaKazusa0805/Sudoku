@@ -376,6 +376,9 @@ dotnet_diagnostic.CA1027.severity = none
 # CA1031: Do not catch general exception types
 dotnet_diagnostic.CA1031.severity = none
 
+# CA1305: Specify IFormatProvider
+dotnet_diagnostic.CA1305.severity = none
+
 # CA1810: Initialize reference type static fields inline
 dotnet_diagnostic.CA1810.severity = none
 

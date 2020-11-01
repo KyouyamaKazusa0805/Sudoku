@@ -166,6 +166,14 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["CaptionInfo"]);
 
 		/// <summary>
+		/// Indicates the message that succeed to save a file.
+		/// </summary>
+		public static void SaveSuccess() =>
+			MessageBox.Show(
+				(string)LangSource["SaveSuccess"],
+				(string)LangSource["CaptionInfo"]);
+
+		/// <summary>
 		/// Indicates the message for failed to load sukaku text.
 		/// </summary>
 		public static void FailedToPasteText() =>

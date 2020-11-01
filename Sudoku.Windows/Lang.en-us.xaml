@@ -177,6 +177,8 @@
 	<sys:String x:Key="ExportAnalysisResultShowTechniqueSteps">Show technique steps</sys:String>
 	<sys:String x:Key="ExportAnalysisResultLabelAnalysisResult">Analysis result:</sys:String>
 	<sys:String x:Key="ExportAnalysisResultButtonExport">Export</sys:String>
+	<sys:String x:Key="_buttonOutputAnalysisResult">Export analysis result...</sys:String>
+	<sys:String x:Key="_checkBoxOutputStepGrids">Export step grids at the same time</sys:String>
 
 	<sys:String x:Key="PictureSavingTitle">Saving picture...</sys:String>
 	<sys:String x:Key="PictureSavingLabelSize">Size:</sys:String>
@@ -363,6 +365,7 @@
 	<sys:String x:Key="CheckFormatString">The format is invalid. Please check the format string you input.</sys:String>
 	<sys:String x:Key="InvalidFilter">The filter is invalid. Please re-confirm your input and try again.</sys:String>
 	<sys:String x:Key="AnalyzeEmptyGrid">The current puzzle is empty, which is invalid.</sys:String>
+	<sys:String x:Key="SaveSuccess">Save success.</sys:String>
 
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">time elapsed:</sys:String>

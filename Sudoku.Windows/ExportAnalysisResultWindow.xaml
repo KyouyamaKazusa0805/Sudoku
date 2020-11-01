@@ -4,13 +4,14 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
-		Title="{DynamicResource ExportAnalysisResultTitle}" Height="450" Width="800">
+		Title="{DynamicResource ExportAnalysisResultTitle}" Height="480" Width="800">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30"/>
 			<RowDefinition/>
 			<RowDefinition Height="30"/>
 			<RowDefinition Height="2*"/>
+			<RowDefinition Height="30"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
@@ -86,7 +87,14 @@
 				HorizontalAlignment="Right" VerticalAlignment="Bottom"
 				Content="{DynamicResource ExportAnalysisResultButtonExport}"
 				Click="ButtonExport_Click"/>
-		<TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="_textBoxAnalysisResult"
+		<TextBox Grid.Row="3" Grid.ColumnSpan="2" Name="_textBoxAnalysisResult"
 				 IsReadOnly="True" FontFamily="Consolas"/>
+		<CheckBox Name="_checkBoxOutputStepGrids" Grid.Row="4" Grid.Column="1"
+				  Content="{DynamicResource _checkBoxOutputStepGrids}"
+				  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+		<Button Name="_buttonOutputAnalysisResult" Grid.Row="4" Grid.Column="1"
+				Content="{DynamicResource _buttonOutputAnalysisResult}"
+				HorizontalAlignment="Right" VerticalAlignment="Center"
+				Click="ButtonOutputAnalysisResult_Click"/>
 	</Grid>
 </Window>

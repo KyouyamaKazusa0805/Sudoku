@@ -177,6 +177,8 @@
 	<sys:String x:Key="ExportAnalysisResultShowTechniqueSteps">显示技巧步骤</sys:String>
 	<sys:String x:Key="ExportAnalysisResultLabelAnalysisResult">分析结果：</sys:String>
 	<sys:String x:Key="ExportAnalysisResultButtonExport">导出</sys:String>
+	<sys:String x:Key="_buttonOutputAnalysisResult">导出结果……</sys:String>
+	<sys:String x:Key="_checkBoxOutputStepGrids">同时导出每一步的图片</sys:String>
 
 	<sys:String x:Key="PictureSavingTitle">保存图片…</sys:String>
 	<sys:String x:Key="PictureSavingLabelSize">大小：</sys:String>
@@ -363,6 +365,7 @@
 	<sys:String x:Key="CheckFormatString">格式化字符串不合法。请检查你的输入。</sys:String>
 	<sys:String x:Key="InvalidFilter">输入的筛选器不合法，请检查你的输入后重试。</sys:String>
 	<sys:String x:Key="AnalyzeEmptyGrid">当前盘面是空盘，无法分析空盘。</sys:String>
+	<sys:String x:Key="SaveSuccess">保存成功。</sys:String>
 
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">耗时：</sys:String>
