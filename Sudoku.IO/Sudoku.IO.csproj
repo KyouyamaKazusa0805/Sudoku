@@ -6,6 +6,9 @@
 		<LangVersion>9.0</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>.\Sudoku.IO.xml</DocumentationFile>
+		<Authors>Sunnie</Authors>
+		<Description>The IO operations for sudoku.</Description>
+		<Copyright>Copyright (c) Sunnie 2020</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>
