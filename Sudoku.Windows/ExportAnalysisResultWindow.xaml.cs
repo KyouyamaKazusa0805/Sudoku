@@ -141,8 +141,9 @@ namespace Sudoku.Windows
 					sfd.FileName,
 					500,
 					_checkBoxOutputStepGrids.IsChecked.GetValueOrDefault(),
-					(AnalysisResultOutputType)(sfd.FilterIndex - 1),
 					CreateFormatString(),
+					PictureFileType.Png,
+					(AnalysisResultOutputType)(sfd.FilterIndex - 1),
 					Alignment.Middle))
 			{
 				Messagings.SaveSuccess();

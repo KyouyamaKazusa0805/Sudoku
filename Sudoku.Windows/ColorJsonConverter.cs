@@ -1,6 +1,4 @@
-﻿#if JSON_SERIALIZER
-
-using System;
+﻿using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -61,5 +59,3 @@ namespace Sudoku.Windows
 		}
 	}
 }
-
-#endif

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,9 +27,7 @@ using CoreResources = Sudoku.Windows.Resources;
 using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
-#if JSON_SERIALIZER
-using System.Text.Json;
-#elif OBSOLETE
+#if OBSOLETE
 using System.Runtime.Serialization.Formatters.Binary;
 #endif
 #if SUDOKU_RECOGNITION
@@ -432,39 +431,19 @@ namespace Sudoku.Windows
 			_buttonLast.IsEnabled = last;
 		}
 
-#if JSON_SERIALIZER
 		/// <summary>
 		/// Save configurations if worth.
 		/// </summary>
 		/// <param name="path">
 		/// The path of the configuration file. The default value is <c>"configurations.json"</c>.
 		/// </param>
-#elif OBSOLETE
-		/// <summary>
-		/// Save configurations if worth.
-		/// </summary>
-		/// <param name="path">
-		/// The path of the configuration file. The default value is <c>"configurations.scfg"</c>.
-		/// </param>
-#endif
-		private void LoadConfigIfWorth(
-			string path
-#if JSON_SERIALIZER
-			= "configurations.json"
-#elif OBSOLETE
-			= "configurations.scfg"
-#endif
-			)
+		private void LoadConfigIfWorth(string path = "configurations.json")
 		{
 			Settings = new();
 			if (File.Exists(path))
 			{
-#if !JSON_SERIALIZER && OBSOLETE
-				FileStream? fs = null;
-#endif
 				try
 				{
-#if JSON_SERIALIZER
 					string s = File.ReadAllText(path);
 					if (
 						JsonSerializer.Deserialize<WindowsSettings>(s, _serializerOptions)
@@ -476,24 +455,11 @@ namespace Sudoku.Windows
 					{
 						Settings.CoverBy(WindowsSettings.DefaultSetting);
 					}
-#elif OBSOLETE
-					fs = new(path, FileMode.Open);
-					Settings = (WindowsSettings)new BinaryFormatter().Deserialize(fs);
-#else
-					throw new InvalidOperationException(
-						"The current operation cannot be executed because of its obsoleteness.");
-#endif
 				}
 				catch
 				{
 					Messagings.FailedToLoadSettings();
 				}
-#if !JSON_SERIALIZER && OBSOLETE
-				finally
-				{
-					fs?.Close();
-				}
-#endif
 			}
 			else
 			{
@@ -501,51 +467,20 @@ namespace Sudoku.Windows
 			}
 		}
 
-#if JSON_SERIALIZER
 		/// <summary>
 		/// Save configurations.
 		/// </summary>
 		/// <param name="path">The path to save. The default value is <c>"configurations.json"</c>.</param>
-#elif OBSOLETE
-		/// <summary>
-		/// Save configurations.
-		/// </summary>
-		/// <param name="path">The path to save. The default value is <c>"configurations.scfg"</c>.</param>
-#endif
-		private void SaveConfig(
-			string path
-#if JSON_SERIALIZER
-			= "configurations.json"
-#elif OBSOLETE
-			= "configurations.scfg"
-#endif
-			)
+		private void SaveConfig(string path = "configurations.json")
 		{
-#if !JSON_SERIALIZER && OBSOLETE
-			FileStream? fs = null;
-#endif
 			try
 			{
-#if JSON_SERIALIZER
 				File.WriteAllText(path, JsonSerializer.Serialize(Settings, _serializerOptions));
-#elif OBSOLETE
-				fs = new(path, FileMode.Create);
-				new BinaryFormatter().Serialize(fs, Settings);
-#else
-				throw new InvalidOperationException(
-					"The current operation cannot be executed because of its obsoleteness.");
-#endif
 			}
 			catch (Exception ex)
 			{
 				Messagings.FailedToSaveConfig(ex);
 			}
-#if !JSON_SERIALIZER && OBSOLETE
-			finally
-			{
-				fs?.Close();
-			}
-#endif
 		}
 
 		/// <summary>
@@ -579,11 +514,11 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-#if !COPY_SYNC
-				Clipboard.SetDataObject(_puzzle.ToString(format));
-#else
+#if COPY_SYNC
 				// This may throw exceptions being called while solving and generating puzzles.
 				Clipboard.SetText(_puzzle.ToString(format));
+#else
+				Clipboard.SetDataObject(_puzzle.ToString(format));
 #endif
 			}
 			catch (ArgumentNullException ex)

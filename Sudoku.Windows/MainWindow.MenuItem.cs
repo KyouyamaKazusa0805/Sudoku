@@ -355,7 +355,7 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					Puzzle = new(SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku));
+					Puzzle = SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku);
 
 					_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 					UpdateImageGrid();
