@@ -23,6 +23,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Sudoku.Core.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="Externals\System\KeyedTuple.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>

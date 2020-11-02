@@ -32,6 +32,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Sudoku.Windows.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="WriteableBitmapEx" Version="1.6.7" />
 	</ItemGroup>
 

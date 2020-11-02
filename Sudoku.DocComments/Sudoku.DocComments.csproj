@@ -10,4 +10,8 @@
 		<DocumentationFile>.\Sudoku.DocComments.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="Sudoku.DocComments.xml" />
+	</ItemGroup>
+
 </Project>
