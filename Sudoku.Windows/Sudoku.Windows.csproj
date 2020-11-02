@@ -32,7 +32,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Sudoku.Windows.xml" />
+		<None Remove="Sudoku.Windows.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

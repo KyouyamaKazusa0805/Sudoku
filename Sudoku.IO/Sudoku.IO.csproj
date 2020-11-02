@@ -12,7 +12,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Sudoku.IO.xml" />
+		<None Remove="Sudoku.IO.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

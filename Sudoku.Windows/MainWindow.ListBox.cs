@@ -23,17 +23,16 @@ namespace Sudoku.Windows
 				sender is ListBox
 				{
 					SelectedItem: ListBoxItem { Content: KeyedTuple<string, int, TechniqueInfo> triplet }
-				})
+				} && _analyisResult is { SolvingSteps: not null } and { StepGrids: not null })
 			{
 				_cacheAllSteps = null; // Remove older steps cache while updating paths.
 
 				var (_, n, s, _) = triplet;
-				var techniqueInfo = _analyisResult!.SolvingSteps![n];
+				var techniqueInfo = _analyisResult.SolvingSteps[n];
 				_currentTechniqueInfo = techniqueInfo;
-
 				_currentPainter = _currentPainter with
 				{
-					Grid = _puzzle = new(_analyisResult.StepGrids![n]),
+					Grid = _puzzle = _analyisResult.StepGrids[n],
 					View = s.Views[_currentViewIndex = 0],
 					Conclusions = techniqueInfo.Conclusions
 				};

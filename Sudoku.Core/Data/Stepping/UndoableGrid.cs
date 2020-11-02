@@ -41,7 +41,7 @@ namespace Sudoku.Data.Stepping
 		/// Initializes an instance with the specified sudoku grid (value type).
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		public UndoableGrid(in SudokuGrid grid) => _innerGrid = grid;
+		private UndoableGrid(in SudokuGrid grid) => _innerGrid = grid;
 
 
 		/// <summary>

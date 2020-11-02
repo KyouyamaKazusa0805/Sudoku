@@ -932,7 +932,7 @@ namespace Sudoku.Windows
 		{
 			if (_puzzle != SudokuGrid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
 			{
-				Puzzle = new(transformation((SudokuGrid)_puzzle));
+				Puzzle = transformation((SudokuGrid)_puzzle);
 
 				UpdateUndoRedoControls();
 				UpdateImageGrid();

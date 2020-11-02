@@ -23,7 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Sudoku.Core.xml" />
+		<None Remove="Sudoku.Core.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

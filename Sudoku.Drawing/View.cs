@@ -45,7 +45,8 @@ namespace Sudoku.Drawing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public View(
 			IReadOnlyList<DrawingInfo>? cells, IReadOnlyList<DrawingInfo>? candidates,
-			IReadOnlyList<DrawingInfo>? regions, IReadOnlyList<Link>? links) : this(cells, candidates, regions, links, null)
+			IReadOnlyList<DrawingInfo>? regions, IReadOnlyList<Link>? links)
+			: this(cells, candidates, regions, links, null)
 		{
 		}
 

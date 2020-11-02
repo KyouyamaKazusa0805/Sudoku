@@ -163,7 +163,7 @@ namespace Sudoku.Windows
 								{
 									var grid = await _recognition.RecorgnizeAsync(bitmap);
 									grid.Fix();
-									Puzzle = new(grid);
+									Puzzle = grid;
 								}
 
 								UpdateUndoRedoControls();
@@ -292,7 +292,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_puzzle = new(grid);
+			_puzzle = grid;
 			_puzzle.Unfix();
 			_puzzle.ClearStack();
 
@@ -394,7 +394,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
 		{
-			_currentPainter = _currentPainter with { Grid = _puzzle = new(_initialPuzzle), View = null };
+			_currentPainter = _currentPainter with { Grid = _puzzle = _initialPuzzle, View = null };
 
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -416,7 +416,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
 		{
-			Puzzle = new(SudokuGrid.Empty);
+			Puzzle = SudokuGrid.Empty;
 			_analyisResult = null;
 
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -453,9 +453,10 @@ namespace Sudoku.Windows
 					int si = _comboBoxSymmetry.SelectedIndex;
 					var symmetry = si == 0 ? SymmetryType.None : (SymmetryType)(1 << si - 1);
 					//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
-					Puzzle = new(
+					Puzzle =
 						await new BasicPuzzleGenerator().GenerateAsync(
-							33, symmetry, dialog.DefaultReporting, Settings.LanguageCode));
+							33, symmetry, dialog.DefaultReporting, Settings.LanguageCode
+						);
 
 					dialog.CloseAnyway();
 
@@ -493,13 +494,11 @@ namespace Sudoku.Windows
 					Settings.GeneratingDifficultyLevelSelectedIndex = _comboBoxDifficulty.SelectedIndex;
 
 					Puzzle =
-						new(
-							await new HardPatternPuzzleGenerator().GenerateAsync(
-								index - 1,
-								dialog.DefaultReporting,
-								(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex,
-								Settings.LanguageCode
-							)
+						await new HardPatternPuzzleGenerator().GenerateAsync(
+							index - 1,
+							dialog.DefaultReporting,
+							(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex,
+							Settings.LanguageCode
 						);
 
 					dialog.CloseAnyway();
@@ -535,10 +534,8 @@ namespace Sudoku.Windows
 					}
 
 					Puzzle =
-						new(
-							await new TechniqueFilteringPuzzleGenerator().GenerateAsync(
-								filter, dialog.DefaultReporting, Settings.LanguageCode
-							)
+						await new TechniqueFilteringPuzzleGenerator().GenerateAsync(
+							filter, dialog.DefaultReporting, Settings.LanguageCode
 						);
 				}
 
@@ -574,7 +571,7 @@ namespace Sudoku.Windows
 				var grid = SudokuGrid.Parse(sb.ToString());
 				grid.Unfix();
 
-				Puzzle = new(grid);
+				Puzzle = grid;
 				UpdateImageGrid();
 				return true;
 			}
@@ -600,7 +597,7 @@ namespace Sudoku.Windows
 					};
 				}
 
-				Puzzle = new(SudokuGrid.Parse(newSb.ToString()));
+				Puzzle = SudokuGrid.Parse(newSb.ToString());
 				UpdateImageGrid();
 				return true;
 			}

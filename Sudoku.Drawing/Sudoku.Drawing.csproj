@@ -21,7 +21,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Sudoku.Drawing.xml" />
+		<None Remove="Sudoku.Drawing.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

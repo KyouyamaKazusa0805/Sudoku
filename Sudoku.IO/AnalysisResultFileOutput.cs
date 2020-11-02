@@ -78,7 +78,7 @@ namespace Sudoku.IO
 
 						string curPictureName = $"{i + 1}.png";
 						string curPicturePath = $@"{directoryPath}\{curPictureName}";
-						using var image = new GridPainter(new(size, size), Settings, new(grid))
+						using var image = new GridPainter(new(size, size), Settings, grid)
 						{
 							View = step.Views[0],
 							Conclusions = step.Conclusions
