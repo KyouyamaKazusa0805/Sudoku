@@ -141,8 +141,8 @@ namespace Sudoku.Windows
 					sfd.FileName,
 					500,
 					_checkBoxOutputStepGrids.IsChecked.GetValueOrDefault(),
-					CreateFormatString(),
 					(AnalysisResultOutputType)(sfd.FilterIndex - 1),
+					CreateFormatString(),
 					Alignment.Middle))
 			{
 				Messagings.SaveSuccess();

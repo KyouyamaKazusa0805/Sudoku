@@ -51,7 +51,7 @@
             Indicates the settings.
             </summary>
         </member>
-        <member name="M:Sudoku.IO.AnalysisResultFileOutput.Export(System.String,System.Int32,System.Boolean,System.String,Sudoku.IO.AnalysisResultOutputType,Sudoku.IO.Alignment)">
+        <member name="M:Sudoku.IO.AnalysisResultFileOutput.Export(System.String,System.Int32,System.Boolean,System.String,Sudoku.IO.PictureFileType,Sudoku.IO.AnalysisResultOutputType,Sudoku.IO.Alignment)">
             <summary>
             Export the analysis result.
             </summary>
@@ -59,6 +59,7 @@
             <param name="size">The size of pixels.</param>
             <param name="saveStepGridPictures">Indicates whether we also save step grid pictures.</param>
             <param name="format">The format.</param>
+            <param name="pictureFileType">Indicates a picture file type.</param>
             <param name="outputType">The output type.</param>
             <param name="alignment">The alignment.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
@@ -76,6 +77,31 @@
         <member name="F:Sudoku.IO.AnalysisResultOutputType.Text">
             <summary>
             Indicates the text file format (<c>*.txt</c>).
+            </summary>
+        </member>
+        <member name="T:Sudoku.IO.PictureFileType">
+            <summary>
+            Encapsulates a picture type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.PictureFileType.Jpg">
+            <summary>
+            Indictaes the JPG format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.PictureFileType.Png">
+            <summary>
+            Indicates the PNG format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.PictureFileType.Gif">
+            <summary>
+            Indicates the GIF format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.PictureFileType.Bmp">
+            <summary>
+            Indicate the BMP format.
             </summary>
         </member>
     </members>

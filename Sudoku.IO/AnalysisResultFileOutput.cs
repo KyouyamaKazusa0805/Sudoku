@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving;
+using Sudoku.Solving.Annotations;
 
 namespace Sudoku.IO
 {
@@ -46,23 +47,22 @@ namespace Sudoku.IO
 		/// <param name="size">The size of pixels.</param>
 		/// <param name="saveStepGridPictures">Indicates whether we also save step grid pictures.</param>
 		/// <param name="format">The format.</param>
+		/// <param name="pictureFileType">Indicates a picture file type.</param>
 		/// <param name="outputType">The output type.</param>
 		/// <param name="alignment">The alignment.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		public bool Export(
 			string path, int size, bool saveStepGridPictures,
-			string format, AnalysisResultOutputType outputType = AnalysisResultOutputType.Text,
+			string format, PictureFileType pictureFileType = PictureFileType.Png,
+			AnalysisResultOutputType outputType = AnalysisResultOutputType.Text,
 			Alignment alignment = Alignment.Middle)
 		{
 			try
 			{
-				bool chooseTxt = outputType == AnalysisResultOutputType.Text;
-				bool chooseDocx = outputType == AnalysisResultOutputType.WordDocument;
-				XWPFDocument? doc = chooseDocx ? new() : null;
-#nullable disable warnings
+				XWPFDocument? doc = outputType == AnalysisResultOutputType.WordDocument ? new() : null;
 				if (AnalysisResult.SolvingSteps is IReadOnlyList<TechniqueInfo> steps
 					&& AnalysisResult.StepGrids is IReadOnlyList<SudokuGrid> stepGrids
-					&& chooseDocx)
+					&& doc is not null)
 				{
 					// If the directory cannot be found, create it.
 					string directoryPath = $@"{path[..path.LastIndexOf('\\')]}\Assets";
@@ -91,7 +91,10 @@ namespace Sudoku.IO
 						var para = doc.CreateParagraph();
 						para.Alignment = (ParagraphAlignment)(int)(alignment + 1);
 						var r = para.CreateRun();
-						r.AddPicture(picStream, (int)PictureType.PNG, curPictureName, size * Emu, size * Emu);
+						r.AddPicture(
+							picStream,
+							(int)AliasAttribute.Convert<PictureFileType, PictureType>(pictureFileType)!.Value,
+							curPictureName, size * Emu, size * Emu);
 						r.SetText(step.ToString());
 
 						// Bug fix: The document cannot be opened due to NPOI inserting pictures.
@@ -128,9 +131,8 @@ namespace Sudoku.IO
 						}
 					}
 				}
-#nullable restore warnings
 
-				if (chooseTxt)
+				if (outputType == AnalysisResultOutputType.Text)
 				{
 					// Save text file.
 					File.WriteAllText(path, AnalysisResult.ToString(format));
