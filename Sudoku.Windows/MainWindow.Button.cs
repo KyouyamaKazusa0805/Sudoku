@@ -70,8 +70,8 @@ namespace Sudoku.Windows
 
 					static IEnumerable<IGrouping<string, TechniqueInfo>> s(
 						MainWindow @this, ProgressWindow dialog, in SudokuGrid g) =>
-						new StepFinder(@this.Settings).Search(g, dialog.DefaultReporting,
-						@this.Settings.LanguageCode);
+						new StepFinder(@this.Settings)
+						.Search(g, dialog.DefaultReporting, @this.Settings.LanguageCode);
 				}
 				else
 				{
