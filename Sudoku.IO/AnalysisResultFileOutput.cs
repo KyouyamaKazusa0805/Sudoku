@@ -94,7 +94,7 @@ namespace Sudoku.IO
 						r.AddPicture(picStream, (int)PictureType.PNG, curPictureName, size * Emu, size * Emu);
 						r.SetText(step.ToString());
 
-						// Bug fix: The document cannot be opened due to NPOI inserts pictures.
+						// Bug fix: The document cannot be opened due to NPOI inserting pictures.
 						r.GetCTR().GetDrawingList()[0].inline[0].docPr.id = 1;
 					}
 
