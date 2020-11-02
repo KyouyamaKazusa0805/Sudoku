@@ -65,6 +65,7 @@ namespace Sudoku.Data.Stepping
 		public int this[int cell]
 		{
 			get => _innerGrid[cell];
+
 			set
 			{
 				var map = GridMap.Empty;
@@ -87,6 +88,7 @@ namespace Sudoku.Data.Stepping
 		public bool this[int cell, int digit]
 		{
 			get => _innerGrid[cell, digit];
+
 			set
 			{
 				_undoStack.Push(value ? new EliminationStep(digit, cell) : new AntiEliminationStep(digit, cell));

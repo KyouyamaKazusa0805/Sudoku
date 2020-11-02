@@ -26,6 +26,7 @@ namespace Sudoku.Windows.Tooling
 		public decimal CurrentValue
 		{
 			get => _currentValue;
+
 			set
 			{
 				if (value >= MinValue && value <= MaxValue)
