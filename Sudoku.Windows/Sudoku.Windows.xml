@@ -2937,13 +2937,16 @@
             Gets or sets <see cref="F:System.Windows.DataFormats.UnicodeText"/> data
             on the clipboard.
             </summary>
-            <value>The data.</value>
+        </member>
+        <member name="P:System.SystemClipboard.DataObject">
+            <summary>
+            Sets the data object on the clipboard.
+            </summary>
         </member>
         <member name="P:System.SystemClipboard.Image">
             <summary>
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
-            <value>The data.</value>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>

@@ -96,7 +96,7 @@ namespace Sudoku.Windows
 						_listBoxPaths.SelectedItem
 						is ListBoxItem { Content: KeyedTuple<string, int, TechniqueInfo> triplet })
 					{
-						Clipboard.SetText(triplet.Item3.ToFullString());
+						SystemClipboard.Text = triplet.Item3.ToFullString();
 					}
 				}
 				catch
@@ -123,7 +123,7 @@ namespace Sudoku.Windows
 
 				try
 				{
-					Clipboard.SetText(sb.ToString());
+					SystemClipboard.Text = sb.ToString();
 				}
 				catch
 				{

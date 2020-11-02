@@ -516,9 +516,9 @@ namespace Sudoku.Windows
 			{
 #if COPY_SYNC
 				// This may throw exceptions being called while solving and generating puzzles.
-				Clipboard.SetText(_puzzle.ToString(format));
+				SystemClipboard.Text = _puzzle.ToString(format);
 #else
-				Clipboard.SetDataObject(_puzzle.ToString(format));
+				SystemClipboard.DataObject = _puzzle.ToString(format);
 #endif
 			}
 			catch (ArgumentNullException ex)
