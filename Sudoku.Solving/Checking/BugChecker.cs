@@ -254,7 +254,7 @@ namespace Sudoku.Solving.Checking
 		private static short[] GetAllCombinations(short mask, int oneCount)
 		{
 			var result = new List<short>();
-			foreach (short z in new BitCombinationGenerator(9, oneCount))
+			foreach (short z in new BitSubsetsGenerator(9, oneCount))
 			{
 				if ((mask | z) == mask)
 				{

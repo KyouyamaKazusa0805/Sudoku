@@ -355,7 +355,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			for (int i = 0; i < 9; i++)
 			{
-				foreach (short mask in new BitCombinationGenerator(9, i))
+				foreach (short mask in new BitSubsetsGenerator(9, i))
 				{
 					if ((mask & seed) == mask)
 					{

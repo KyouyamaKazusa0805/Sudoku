@@ -18,7 +18,7 @@ namespace Sudoku.Data
 	/// }
 	/// </code>
 	/// </remarks>
-	public readonly ref partial struct BitCombinationGenerator
+	public readonly ref partial struct BitSubsetsGenerator
 	{
 		/// <summary>
 		/// The inner enumerator.
@@ -32,20 +32,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="bitCount">The number of bits.</param>
 		/// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-		public BitCombinationGenerator(int bitCount, int oneCount) =>
-			_enumerator = new(BitCount = bitCount, OneCount = oneCount);
-
-
-		/// <summary>
-		/// Indicates how many bits should be generated.
-		/// </summary>
-		public int BitCount { get; }
-
-		/// <summary>
-		/// Indicates how many <see langword="true"/> bits (1) are in
-		/// the number.
-		/// </summary>
-		public int OneCount { get; }
+		public BitSubsetsGenerator(int bitCount, int oneCount) => _enumerator = new(bitCount, oneCount);
 
 
 		/// <inheritdoc/>

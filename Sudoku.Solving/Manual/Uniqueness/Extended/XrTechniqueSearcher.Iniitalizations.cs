@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				for (int i = 0, length = Regions.Length >> 1; i < length; i++)
 				{
 					int region1 = Regions[i, 0], region2 = Regions[i, 1];
-					foreach (short mask in new BitCombinationGenerator(9, size))
+					foreach (short mask in new BitSubsetsGenerator(9, size))
 					{
 						// Check whether all cells are in same region.
 						// If so, continue the loop immediately.
