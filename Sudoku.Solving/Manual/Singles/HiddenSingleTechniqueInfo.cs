@@ -79,18 +79,13 @@ namespace Sudoku.Solving.Manual.Singles
 				string cellStr = new GridMap { Cell }.ToString();
 				string regionStr = new RegionCollection(Region).ToString();
 				int v = Digit + 1;
-				if (EnableAndIsLastDigit)
-				{
-					return
-						$"{Name}：全盘仅剩下唯一一个需要填入 {v} 的机会，由于只有 {regionStr} 没有填入 {v} 了，" +
-						$"所以可以确定 {cellStr} = {v}。";
-				}
-				else
-				{
-					return
-						$"{Name}：在 {regionStr} 里，只有 {cellStr} 是可以填入 {v} 的地方，" +
-						$"所以可以确定 {cellStr} = {v}。";
-				}
+				return EnableAndIsLastDigit
+					?
+					$"{Name}：全盘仅剩下唯一一个需要填入 {v} 的机会，由于只有 {regionStr} 没有填入 {v} 了，" +
+					$"所以可以确定 {cellStr} = {v}。"
+					:
+					$"{Name}：在 {regionStr} 里，只有 {cellStr} 是可以填入 {v} 的地方，" +
+					$"所以可以确定 {cellStr} = {v}。";
 			}
 		}
 	}
