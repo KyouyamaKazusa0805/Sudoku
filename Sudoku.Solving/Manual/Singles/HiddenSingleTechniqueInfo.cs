@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -22,7 +23,8 @@ namespace Sudoku.Solving.Manual.Singles
 		int Region, bool EnableAndIsLastDigit) : SingleTechniqueInfo(Conclusions, Views, Cell, Digit)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : Region < 9 ? 1.2M : 1.5M;
+		public override decimal Difficulty =>
+			EnableAndIsLastDigit switch { true => 1.1M, _ => Region switch { < 9 => 1.2M, _ => 1.5M } };
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
@@ -43,9 +45,28 @@ namespace Sudoku.Solving.Manual.Singles
 		public override string ToString()
 		{
 			string cellStr = new GridMap { Cell }.ToString();
-			string regionStr = new RegionCollection(Region).ToString();
 			int v = Digit + 1;
-			return EnableAndIsLastDigit ? $"{Name}: {cellStr} = {v}" : $"{Name}: {cellStr} = {v} in {regionStr}";
+			return EnableAndIsLastDigit switch
+			{
+				true =>
+					new StringBuilder()
+					.Append(Name)
+					.Append('：')
+					.Append(cellStr)
+					.Append(" = ")
+					.Append(v)
+					.ToString(),
+				_ =>
+					new StringBuilder()
+					.Append(Name)
+					.Append('：')
+					.Append(cellStr)
+					.Append(" = ")
+					.Append(v)
+					.Append(" in ")
+					.Append(new RegionCollection(Region).ToString())
+					.ToString()
+			};
 		}
 
 		/// <inheritdoc/>
@@ -53,19 +74,35 @@ namespace Sudoku.Solving.Manual.Singles
 		{
 			switch (countryCode)
 			{
-				default:
-				case CountryCode.EnUs:
-				{
-					return ToString();
-				}
 				case CountryCode.ZhCn:
 				{
 					string cellStr = new GridMap { Cell }.ToString();
-					string regionStr = new RegionCollection(Region).ToString();
 					int v = Digit + 1;
-					return EnableAndIsLastDigit
-						? $"{Name}: {cellStr} = {v}"
-						: $"{Name}: 在 {regionStr} 里，{cellStr} = {v}";
+					return EnableAndIsLastDigit switch
+					{
+						true =>
+							new StringBuilder()
+							.Append(Name)
+							.Append('：')
+							.Append(cellStr)
+							.Append(" = ")
+							.Append(v)
+							.ToString(),
+						_ =>
+							new StringBuilder()
+							.Append(Name)
+							.Append(": 在 ")
+							.Append(new RegionCollection(Region).ToString())
+							.Append(" 里，")
+							.Append(cellStr)
+							.Append(" = ")
+							.Append(v)
+							.ToString()
+					};
+				}
+				default:
+				{
+					return ToString();
 				}
 			}
 		}
@@ -73,19 +110,50 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override string ToFullString(CountryCode countryCode)
 		{
-			return countryCode == CountryCode.ZhCn ? toChinese() : ToString();
+			return countryCode switch
+			{
+				CountryCode.ZhCn => toChinese(),
+				_ => ToString()
+			};
+
 			string toChinese()
 			{
 				string cellStr = new GridMap { Cell }.ToString();
 				string regionStr = new RegionCollection(Region).ToString();
 				int v = Digit + 1;
-				return EnableAndIsLastDigit
-					?
-					$"{Name}：全盘仅剩下唯一一个需要填入 {v} 的机会，由于只有 {regionStr} 没有填入 {v} 了，" +
-					$"所以可以确定 {cellStr} = {v}。"
-					:
-					$"{Name}：在 {regionStr} 里，只有 {cellStr} 是可以填入 {v} 的地方，" +
-					$"所以可以确定 {cellStr} = {v}。";
+				return EnableAndIsLastDigit switch
+				{
+					true =>
+						new StringBuilder()
+						.Append(Name)
+						.Append("：全盘仅剩下唯一一个需要填入 ")
+						.Append(v)
+						.Append(" 的机会，由于只有 ")
+						.Append(regionStr)
+						.Append(" 没有填入 ")
+						.Append(v)
+						.Append(" 了，所以可以确定 ")
+						.Append(cellStr)
+						.Append(" = ")
+						.Append(v)
+						.Append('。')
+						.ToString(),
+					_ =>
+						new StringBuilder()
+						.Append(Name)
+						.Append("：在 ")
+						.Append(regionStr)
+						.Append(" 里，只有 ")
+						.Append(cellStr)
+						.Append(" 是可以填入 ")
+						.Append(v)
+						.Append(" 的地方，所以可以确定 ")
+						.Append(cellStr)
+						.Append(" = ")
+						.Append(v)
+						.Append('。')
+						.ToString()
+				};
 			}
 		}
 	}

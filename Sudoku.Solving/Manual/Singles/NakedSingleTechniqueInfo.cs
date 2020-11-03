@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
@@ -24,24 +25,33 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cellStr = new GridMap { Cell }.ToString();
-			int v = Digit + 1;
-			return $"{Name}: {cellStr} = {v}";
-		}
+		public override string ToString() => $"{Name}: {new GridMap { Cell }} = {Digit + 1}";
 
 		/// <inheritdoc/>
 		public override string ToFullString(CountryCode countryCode)
 		{
-			return countryCode == CountryCode.ZhCn ? toChinese() : ToString();
+			return countryCode switch
+			{
+				CountryCode.ZhCn => toChinese(),
+				_ => ToString()
+			};
+
 			string toChinese()
 			{
 				string cellStr = new GridMap { Cell }.ToString();
 				int v = Digit + 1;
-				return
-					$"{Name}：{cellStr} 仅可以填入数字 {v}，因为别的情况都可从外部给出的确定值信息所排除，" +
-					$"所以可以确定 {cellStr} = {v}。";
+				return new StringBuilder()
+					.Append(Name)
+					.Append('：')
+					.Append(cellStr)
+					.Append(" 仅可以填入数字 ")
+					.Append(v)
+					.Append("，因为别的情况都可从外部给出的确定值信息所排除，所以可以确定 ")
+					.Append(cellStr)
+					.Append(" = ")
+					.Append(v)
+					.Append('。')
+					.ToString();
 			}
 		}
 	}
