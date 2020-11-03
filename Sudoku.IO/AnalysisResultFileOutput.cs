@@ -95,7 +95,7 @@ namespace Sudoku.IO
 							picStream,
 							(int)AliasAttribute.Convert<PictureFileType, PictureType>(pictureFileType)!.Value,
 							curPictureName, size * Emu, size * Emu);
-						r.SetText(step.ToString());
+						r.SetText(step.ToFullString());
 
 						// Bug fix: The document cannot be opened due to NPOI inserting pictures.
 						r.GetCTR().GetDrawingList()[0].inline[0].docPr.id = 1;
