@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data
 {
@@ -33,6 +34,7 @@ namespace Sudoku.Data
 
 
 			/// <inheritdoc/>
+			[SkipLocalsInit]
 			public long Current { readonly get; private set; }
 
 			/// <inheritdoc/>
@@ -45,17 +47,10 @@ namespace Sudoku.Data
 			{
 			}
 
-			private bool HasNext()
-			{
-				bool result = !_isLast;
-				_isLast = (Current & -Current & _mask) == 0;
-				return result;
-			}
-
 			/// <inheritdoc/>
 			public bool MoveNext()
 			{
-				if (HasNext() is var result && result && !_isLast)
+				if (hasNext(ref this) is var result && result && !_isLast)
 				{
 					long smallest = Current & -Current;
 					long ripple = Current + smallest;
@@ -65,6 +60,14 @@ namespace Sudoku.Data
 				}
 
 				return result;
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				static bool hasNext(ref Enumerator @this)
+				{
+					bool result = !@this._isLast;
+					@this._isLast = (@this.Current & -@this.Current & @this._mask) == 0;
+					return result;
+				}
 			}
 
 			/// <inheritdoc/>
