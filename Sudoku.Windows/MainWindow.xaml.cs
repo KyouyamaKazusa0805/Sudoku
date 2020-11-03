@@ -1071,7 +1071,7 @@ namespace Sudoku.Windows
 		#endregion
 
 
-		#region Event-delegating methods
+		#region Event-delegated methods
 		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void Window_SizeChanged(object sender, SizeChangedEventArgs e) => DisplayDifficultyInfoAfterAnalyzed();
 		#endregion
