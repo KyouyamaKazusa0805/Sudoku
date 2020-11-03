@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.DocComments", "Sudok
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "Examples\Examples.csproj", "{42830130-65C9-4D20-9F92-E716AC0BC823}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.IO", "Sudoku.IO\Sudoku.IO.csproj", "{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.IO", "Sudoku.IO\Sudoku.IO.csproj", "{FD5051C4-5E9C-4296-99E9-EDD884F2FE18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

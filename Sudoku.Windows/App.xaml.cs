@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Sudoku.Windows
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
+	/// <summary>Interaction logic for <c>App.xaml</c>.</summary>
+	/// <remarks>Nothing is here.</remarks>
 	public partial class App : Application
 	{
 	}
