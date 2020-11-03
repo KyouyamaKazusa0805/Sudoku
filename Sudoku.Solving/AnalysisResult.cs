@@ -172,7 +172,8 @@ namespace Sudoku.Solving
 				{
 					for (int i = 1, count = SolvingSteps.Count; i < count; i++)
 					{
-						if (SolvingSteps[i - 1] is { ShowDifficulty: true } info && SolvingSteps[i] is SingleTechniqueInfo)
+						if (SolvingSteps[i - 1] is { ShowDifficulty: true } info
+							&& SolvingSteps[i] is SingleTechniqueInfo)
 						{
 							return info.Difficulty;
 						}
@@ -300,7 +301,8 @@ namespace Sudoku.Solving
 		public void Deconstruct(
 			out SudokuGrid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
 			out SudokuGrid? solution, out DifficultyLevel difficultyLevel) =>
-			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
+			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (
+				Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="solverName">(<see langword="out"/> parameter) The solver name.</param>
@@ -316,7 +318,9 @@ namespace Sudoku.Solving
 		/// <param name="elasped">(<see langword="out"/> parameter) The time elapsed.</param>
 		/// <param name="stepCount">(<see langword="out"/> parameter) The number of all steps.</param>
 		/// <param name="steps">(<see langword="out"/> parameter) The steps.</param>
-		/// <param name="stepGrids">(<see langword="out"/> parameter) The grids corresponding to the steps.</param>
+		/// <param name="stepGrids">
+		/// (<see langword="out"/> parameter) The grids corresponding to the steps.
+		/// </param>
 		/// <param name="additional">(<see langword="out"/> parameter) The additional message.</param>
 		public void Deconstruct(
 			out string solverName, out bool hasSolved, out decimal total, out decimal max, out decimal pearl,
