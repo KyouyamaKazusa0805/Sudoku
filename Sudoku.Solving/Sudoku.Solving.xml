@@ -5121,6 +5121,9 @@
         <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo">
             <summary>
             Indicates a using of <b>hidden single</b> technique.
@@ -5152,6 +5155,9 @@
         <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo">
             <summary>
             Indicates a usage of <b>naked single</b> technique.
@@ -5177,6 +5183,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo">
@@ -8443,7 +8452,8 @@
         <member name="M:Sudoku.Solving.TechniqueInfo.ToString">
             <summary>
             Returns a string that only contains the name and the basic information. Different with
-            <see cref="M:Sudoku.Solving.TechniqueInfo.ToFullString"/>, the method will only contains the basic introduction about the technique.
+            <see cref="M:Sudoku.Solving.TechniqueInfo.ToFullString"/>, the method will only contains the basic introduction
+            about the technique.
             For example, in the <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo"/>, the detail will contain the several special
             eliminations, in this method, those won't be displayed, But the method <see cref="M:Sudoku.Solving.TechniqueInfo.ToFullString"/>
             will.
@@ -8464,6 +8474,15 @@
             This method is used for displaying details in text box control.
             </summary>
             <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.ToFullString(Sudoku.Globalization.CountryCode)">
+            <summary>
+            Returns a string that contains the name, the conclusions and its all details; with
+            a specified country as a parameter of type <see cref="T:Sudoku.Globalization.CountryCode"/>.
+            This method is used for displaying details in text box control.
+            </summary>
+            <returns>The string instance.</returns>
+            <seealso cref="T:Sudoku.Globalization.CountryCode"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
             <summary>

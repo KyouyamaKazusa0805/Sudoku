@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Globalization;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -23,11 +24,18 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override string ToString()
+		public override string ToString() => $"{Name}: {new GridMap { Cell }} = {Digit + 1}";
+
+		/// <inheritdoc/>
+		public override string ToString(CountryCode countryCode)
 		{
-			string cellStr = new GridMap { Cell }.ToString();
-			int value = Digit + 1;
-			return $"{Name}: {cellStr} = {value}";
+			return countryCode == CountryCode.ZhCn ? toChinese() : ToString();
+			string toChinese()
+			{
+				string cellStr = new GridMap { Cell }.ToString();
+				int digit = Digit + 1;
+				return $"{Name}：{cellStr} 是当前区域唯一一个空格，所以可以确定是数字 {digit}，即 {cellStr} = {digit}。";
+			}
 		}
 	}
 }

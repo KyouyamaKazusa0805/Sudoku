@@ -3,6 +3,7 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Globalization;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Singles
@@ -18,8 +19,7 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <param name="EnableAndIsLastDigit">Indicates whether the current technique is a last digit.</param>
 	public sealed record HiddenSingleTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit,
-		int Region, bool EnableAndIsLastDigit)
-		: SingleTechniqueInfo(Conclusions, Views, Cell, Digit)
+		int Region, bool EnableAndIsLastDigit) : SingleTechniqueInfo(Conclusions, Views, Cell, Digit)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : Region < 9 ? 1.2M : 1.5M;
@@ -46,6 +46,21 @@ namespace Sudoku.Solving.Manual.Singles
 			string regionStr = new RegionCollection(Region).ToString();
 			int v = Digit + 1;
 			return EnableAndIsLastDigit ? $"{Name}: {cellStr} = {v}" : $"{Name}: {cellStr} = {v} in {regionStr}";
+		}
+
+		/// <inheritdoc/>
+		public override string ToString(CountryCode countryCode)
+		{
+			return countryCode == CountryCode.ZhCn ? toChinese() : ToString();
+			string toChinese()
+			{
+				string cellStr = new GridMap { Cell }.ToString();
+				string regionStr = new RegionCollection(Region).ToString();
+				int v = Digit + 1;
+				return
+					$"{Name}：在 {regionStr} 里，只有 {cellStr} 是可以填入 {v} 的地方，" +
+					$"所以可以确定 {cellStr} = {v}。";
+			}
 		}
 	}
 }

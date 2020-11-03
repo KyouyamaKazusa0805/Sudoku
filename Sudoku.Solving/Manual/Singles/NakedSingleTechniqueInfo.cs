@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Globalization;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -26,8 +27,22 @@ namespace Sudoku.Solving.Manual.Singles
 		public override string ToString()
 		{
 			string cellStr = new GridMap { Cell }.ToString();
-			int value = Digit + 1;
-			return $"{Name}: {cellStr} = {value}";
+			int v = Digit + 1;
+			return $"{Name}: {cellStr} = {v}";
+		}
+
+		/// <inheritdoc/>
+		public override string ToString(CountryCode countryCode)
+		{
+			return countryCode == CountryCode.ZhCn ? toChinese() : ToString();
+			string toChinese()
+			{
+				string cellStr = new GridMap { Cell }.ToString();
+				int v = Digit + 1;
+				return
+					$"{Name}：{cellStr} 仅可以填入数字 {v}，因为别的情况都可从外部给出的确定值信息所排除，" +
+					$"所以可以确定 {cellStr} = {v}。";
+			}
 		}
 	}
 }
