@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Text.Json.Serialization;
+using Sudoku.Globalization;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using static Sudoku.Solving.DifficultyLevel;
@@ -139,10 +140,11 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// <para>Indicates the language code string (i.e. globalization string).</para>
 		/// <para>
-		/// The default value is <c><see langword="null"/></c>, which is equivalent to "<c>en-us</c>".
+		/// The default value is <see cref="CountryCode.EnUs"/>.
 		/// </para>
 		/// </summary>
-		public string? LanguageCode { get; set; } = "en-us";
+		/// <seealso cref="CountryCode.EnUs"/>
+		public CountryCode LanguageCode { get; set; } = CountryCode.EnUs;
 
 		/// <summary>
 		/// <para>Indicates the format text while saving picture.</para>

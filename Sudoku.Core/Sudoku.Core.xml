@@ -6438,16 +6438,16 @@
             Indicates the current source.
             </summary>
         </member>
-        <member name="P:Sudoku.Windows.Resources.GlobalizationString">
+        <member name="P:Sudoku.Windows.Resources.CountryCode">
             <summary>
-            Indicates the current globalization string.
+            Indicates the current country code.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.Resources.ChangeLanguage(System.String)">
+        <member name="M:Sudoku.Windows.Resources.ChangeLanguage(Sudoku.Globalization.CountryCode)">
             <summary>
-            To change the current language with the specified globalization string.
+            To change the current language with the specified country code.
             </summary>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
         </member>
         <member name="M:Sudoku.Windows.Resources.GetValue(System.String)">
             <summary>
@@ -6470,11 +6470,11 @@
             nor the default dictionary, the return value will be <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Windows.Resources.GetDictionary(System.String)">
+        <member name="M:Sudoku.Windows.Resources.GetDictionary(Sudoku.Globalization.CountryCode)">
             <summary>
             Get the dictionary with the specified globalization string.
             </summary>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
         </member>
         <member name="F:Sudoku.Windows.Resources.LangSourceEnUs">
             <summary>
@@ -6494,19 +6494,43 @@
             Roslyn, so we should suppress the complier warning IDE0052.
             </remarks>
         </member>
+        <member name="T:Sudoku.Globalization.CountryCode">
+            <summary>
+            Encapsulates a country code to tell different countries.
+            </summary>
+            <remarks>
+            This <see langword="enum"/> is used for some formatted string output, i.e. a
+            multi-language string.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Globalization.CountryCode.Default">
+            <summary>
+            Indicates the language is none of them, which is the default value of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Globalization.CountryCode.EnUs">
+            <summary>
+            Indicates the American English.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Globalization.CountryCode.ZhCn">
+            <summary>
+            Indicates the Chinese (Mainland).
+            </summary>
+        </member>
         <member name="T:Sudoku.Models.GridProgressResult">
             <summary>
             Encapsulates a progress result used for report the current state.
             </summary>
         </member>
-        <member name="M:Sudoku.Models.GridProgressResult.#ctor(System.Int32,System.Int32,System.Int32,System.String)">
+        <member name="M:Sudoku.Models.GridProgressResult.#ctor(System.Int32,System.Int32,System.Int32,Sudoku.Globalization.CountryCode)">
             <summary>
             Initializes an instance with the specified current point and the total point.
             </summary>
             <param name="currentCandidatesCount">The current point.</param>
             <param name="currentCellsCount">The number of unsolved cells.</param>
             <param name="initialCandidatesCount">The number of unsolved candidates in the initial grid.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
         </member>
         <member name="P:Sudoku.Models.GridProgressResult.CurrentCellsCount">
             <summary>
@@ -6523,9 +6547,9 @@
             Indicates the number of unsolved candidates in the initial grid.
             </summary>
         </member>
-        <member name="P:Sudoku.Models.GridProgressResult.GlobalizationString">
+        <member name="P:Sudoku.Models.GridProgressResult.CountryCode">
             <summary>
-            The globalization string.
+            The country code.
             </summary>
         </member>
         <member name="P:Sudoku.Models.GridProgressResult.Percentage">
@@ -6578,9 +6602,9 @@
             Indicates the current percentage.
             </summary>
         </member>
-        <member name="P:Sudoku.Models.IProgressResult.GlobalizationString">
+        <member name="P:Sudoku.Models.IProgressResult.CountryCode">
             <summary>
-            The globalization string.
+            The country code.
             </summary>
         </member>
         <member name="M:Sudoku.Models.IProgressResult.ToString">
@@ -6591,12 +6615,12 @@
             Indicates a puzzle generating progress result.
             </summary>
         </member>
-        <member name="M:Sudoku.Models.PuzzleGeneratingProgressResult.#ctor(System.Int32,System.String)">
+        <member name="M:Sudoku.Models.PuzzleGeneratingProgressResult.#ctor(System.Int32,Sudoku.Globalization.CountryCode)">
             <summary>
             Initializes an instance with the specified trial times and globalization string.
             </summary>
             <param name="generatingTrial">The number of the trial times.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
         </member>
         <member name="P:Sudoku.Models.PuzzleGeneratingProgressResult.GeneratingTrial">
             <summary>
@@ -6606,7 +6630,7 @@
         <member name="P:Sudoku.Models.PuzzleGeneratingProgressResult.Percentage">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Models.PuzzleGeneratingProgressResult.GlobalizationString">
+        <member name="P:Sudoku.Models.PuzzleGeneratingProgressResult.CountryCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Models.PuzzleGeneratingProgressResult.ToString">
@@ -6617,17 +6641,15 @@
             Indicates a technique progress result.
             </summary>
         </member>
-        <member name="M:Sudoku.Models.TechniqueProgressResult.#ctor(System.Int32,System.String)">
+        <member name="M:Sudoku.Models.TechniqueProgressResult.#ctor(System.Int32,Sudoku.Globalization.CountryCode)">
             <summary>
             Initializes an instance with the specified technique count.
             </summary>
             <param name="totalSearchers">The total number of searchers.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
         </member>
         <member name="P:Sudoku.Models.TechniqueProgressResult.Percentage">
-            <summary>
-            Indicates the current percentage finished.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Models.TechniqueProgressResult.CurrentTechnique">
             <summary>
@@ -6639,10 +6661,8 @@
             The current index.
             </summary>
         </member>
-        <member name="P:Sudoku.Models.TechniqueProgressResult.GlobalizationString">
-            <summary>
-            The globalization string.
-            </summary>
+        <member name="P:Sudoku.Models.TechniqueProgressResult.CountryCode">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Models.TechniqueProgressResult.TotalSearchers">
             <summary>

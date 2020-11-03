@@ -1271,11 +1271,11 @@
             </summary>
             <param name="transformation">The inner function to process the transformation.</param>
         </member>
-        <member name="M:Sudoku.Windows.MainWindow.ChangeLanguage(System.String)">
+        <member name="M:Sudoku.Windows.MainWindow.ChangeLanguage(Sudoku.Globalization.CountryCode)">
             <summary>
             Change the language.
             </summary>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.DisplayDifficultyInfoAfterAnalyzed">
             <summary>
@@ -2770,9 +2770,10 @@
             <summary>
             <para>Indicates the language code string (i.e. globalization string).</para>
             <para>
-            The default value is <c><see langword="null"/></c>, which is equivalent to "<c>en-us</c>".
+            The default value is <see cref="F:Sudoku.Globalization.CountryCode.EnUs"/>.
             </para>
             </summary>
+            <seealso cref="F:Sudoku.Globalization.CountryCode.EnUs"/>
         </member>
         <member name="P:Sudoku.Windows.WindowsSettings.OutputPictureFormatText">
             <summary>
@@ -2918,13 +2919,13 @@
             </summary>
             <param name="settings">The settings.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.StepFinder.Search(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Manual.StepFinder.Search(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
             <summary>
             Search for all possible steps in a grid.
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="progress">The progress.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
         </member>
         <member name="T:System.SystemClipboard">
             <summary>

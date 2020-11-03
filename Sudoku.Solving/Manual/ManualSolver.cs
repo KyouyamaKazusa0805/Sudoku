@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Sudoku.Data;
+using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
@@ -35,23 +36,23 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="progress">The progress.</param>
-		/// <param name="globalizationString">The globalization string.</param>
+		/// <param name="countryCode">The country code.</param>
 		/// <returns>The task of the execution.</returns>
 		public async Task<AnalysisResult> SolveAsync(
-			SudokuGrid grid, IProgress<IProgressResult>? progress, string? globalizationString = null) =>
-			await Task.Run(() => Solve(grid, progress, globalizationString));
+			SudokuGrid grid, IProgress<IProgressResult>? progress,
+			CountryCode countryCode = CountryCode.Default) =>
+			await Task.Run(() => Solve(grid, progress, countryCode));
 
 		/// <summary>
 		/// To solve the puzzle.
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
 		/// <param name="progress">The progress instance to report the state.</param>
-		/// <param name="globalizationString">
-		/// The globalization string. The default value is <see langword="null"/>.
-		/// </param>
+		/// <param name="countryCode">The country code.</param>
 		/// <returns>The analysis result.</returns>
 		public AnalysisResult Solve(
-			in SudokuGrid grid, IProgress<IProgressResult>? progress, string? globalizationString = null)
+			in SudokuGrid grid, IProgress<IProgressResult>? progress,
+			CountryCode countryCode = CountryCode.Default)
 		{
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{
@@ -61,7 +62,7 @@ namespace Sudoku.Solving.Manual
 				try
 				{
 					var defaultValue = new GridProgressResult();
-					var defaultPr = new GridProgressResult(candsCount, emptyCellsCount, candsCount, globalizationString);
+					var defaultPr = new GridProgressResult(candsCount, emptyCellsCount, candsCount, countryCode);
 					ref var pr = ref progress is null ? ref defaultValue : ref defaultPr;
 					progress?.Report(defaultPr);
 

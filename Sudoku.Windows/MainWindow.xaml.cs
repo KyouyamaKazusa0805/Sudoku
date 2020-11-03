@@ -17,6 +17,7 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
+using Sudoku.Globalization;
 using Sudoku.Solving;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
@@ -52,7 +53,7 @@ namespace Sudoku.Windows
 			base.OnInitialized(e); // Call the base method.
 
 			LoadConfigIfWorth();
-			ChangeLanguage(Settings.LanguageCode ??= "en-us");
+			ChangeLanguage(Settings.LanguageCode);
 			PreventYouOpeningTwoSameWindows();
 
 #if SUDOKU_RECOGNITION
@@ -942,10 +943,15 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Change the language.
 		/// </summary>
-		/// <param name="globalizationString">The globalization string.</param>
-		private void ChangeLanguage(string globalizationString)
+		/// <param name="countryCode">The country code.</param>
+		private void ChangeLanguage(CountryCode countryCode)
 		{
-			Settings.LanguageCode = globalizationString;
+			if (countryCode == CountryCode.Default)
+			{
+				return;
+			}
+
+			Settings.LanguageCode = countryCode;
 
 			// Get all possible resource dictionaries.
 			var dictionaries = new List<ResourceDictionary>();
@@ -957,7 +963,10 @@ namespace Sudoku.Windows
 
 			// Get the specified dictionary.
 			ResourceDictionary? g(string p) => dictionaries.FirstOrDefault(d => d.Source.OriginalString == p);
-			if ((g($"Lang.{globalizationString}.xaml") ?? g("Lang.en-us.xaml")) is not ResourceDictionary resourceDictionary)
+			static string s(CountryCode code) => NameAttribute.GetName(code)!;
+			if (
+				(g($"Lang.{s(countryCode)}.xaml") ?? g("Lang.en-us.xaml"))
+				is not ResourceDictionary resourceDictionary)
 			{
 				Messagings.FailedToLoadGlobalizationFile();
 				return;
@@ -967,7 +976,7 @@ namespace Sudoku.Windows
 			mergedDic.Add(resourceDictionary);
 
 			// Then change the language of the library 'Sudoku.Core'.
-			CoreResources.ChangeLanguage(globalizationString);
+			CoreResources.ChangeLanguage(countryCode);
 		}
 
 		/// <summary>

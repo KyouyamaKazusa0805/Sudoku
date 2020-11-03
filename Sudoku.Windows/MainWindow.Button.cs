@@ -70,8 +70,8 @@ namespace Sudoku.Windows
 
 					static IEnumerable<IGrouping<string, TechniqueInfo>> s(
 						MainWindow @this, ProgressWindow dialog, in SudokuGrid g) =>
-						new StepFinder(@this.Settings)
-						.Search(g, dialog.DefaultReporting, @this.Settings.LanguageCode);
+						new StepFinder(@this.Settings).Search(
+							g, dialog.DefaultReporting, @this.Settings.LanguageCode);
 				}
 				else
 				{
@@ -89,7 +89,9 @@ namespace Sudoku.Windows
 						let pair = Settings.DiffColors[info.DifficultyLevel]
 						select new ListBoxItem
 						{
-							Content = new KeyedTuple<string, TechniqueInfo, bool>(info.ToSimpleString(), info, true),
+							Content = new KeyedTuple<string, TechniqueInfo, bool>(
+								info.ToSimpleString(), info, true
+							),
 							Foreground = new SolidColorBrush(pair.Foreground.ToWColor()),
 							Background = new SolidColorBrush(pair.Background.ToWColor()),
 							BorderThickness = default

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Extensions;
+using Sudoku.Globalization;
 using Sudoku.Models;
 using static Sudoku.Data.SymmetryType;
 
@@ -19,7 +20,7 @@ namespace Sudoku.Solving.Generating
 	public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 	{
 		/// <inheritdoc/>
-		public override SudokuGrid Generate() => Generate(28, Central, null);
+		public override SudokuGrid Generate() => Generate(28, Central, null, CountryCode.Default);
 
 		/// <summary>
 		/// Generate a puzzle with the specified information.
@@ -33,16 +34,17 @@ namespace Sudoku.Solving.Generating
 		/// diagonal type puzzles.
 		/// </param>
 		/// <param name="progress">The progress.</param>
-		/// <param name="globalizationString">The globalization string.</param>
+		/// <param name="countryCode">The country code.</param>
 		/// <returns>The grid.</returns>
 		/// <seealso cref="SymmetryType"/>
 		[SkipLocalsInit]
 		public SudokuGrid Generate(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult>? progress,
-			string? globalizationString = null)
+			CountryCode countryCode = CountryCode.Default)
 		{
 			PuzzleGeneratingProgressResult defaultValue = default;
-			var pr = new PuzzleGeneratingProgressResult(default, globalizationString ?? "en-us");
+			var pr = new PuzzleGeneratingProgressResult(
+				default, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			progress?.Report(defaultValue);
 
@@ -124,13 +126,13 @@ namespace Sudoku.Solving.Generating
 		/// diagonal type puzzles.
 		/// </param>
 		/// <param name="progress">The progress.</param>
-		/// <param name="globalzationString">The globalization string.</param>
+		/// <param name="countryCode">The country code.</param>
 		/// <returns>The task.</returns>
 		/// <seealso cref="SymmetryType"/>
 		public async Task<SudokuGrid> GenerateAsync(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult> progress,
-			string? globalzationString = null) =>
-			await Task.Run(() => Generate(max, symmetricalType, progress, globalzationString));
+			CountryCode countryCode = CountryCode.Default) =>
+			await Task.Run(() => Generate(max, symmetricalType, progress, countryCode));
 
 		/// <inheritdoc/>
 		/// <exception cref="NotImplementedException">Always throws.</exception>

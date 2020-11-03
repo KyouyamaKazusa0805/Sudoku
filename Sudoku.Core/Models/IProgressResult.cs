@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Models
+﻿using Sudoku.Globalization;
+
+namespace Sudoku.Models
 {
 	/// <summary>
 	/// Encapsulates and provides with a progress result instance.
@@ -11,9 +13,9 @@
 		double Percentage { get; }
 
 		/// <summary>
-		/// The globalization string.
+		/// The country code.
 		/// </summary>
-		string GlobalizationString { get; }
+		CountryCode CountryCode { get; }
 
 
 		/// <inheritdoc cref="object.ToString"/>

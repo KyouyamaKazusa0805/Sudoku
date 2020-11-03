@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using Sudoku.Globalization;
 using static System.Reflection.BindingFlags;
 using static System.StringSplitOptions;
 
@@ -25,17 +26,16 @@ namespace Sudoku.Windows
 
 
 		/// <summary>
-		/// Indicates the current globalization string.
+		/// Indicates the current country code.
 		/// </summary>
-		public static string GlobalizationString { get; private set; } = "en-us";
+		public static CountryCode CountryCode { get; private set; } = CountryCode.EnUs;
 
 
 		/// <summary>
-		/// To change the current language with the specified globalization string.
+		/// To change the current language with the specified country code.
 		/// </summary>
-		/// <param name="globalizationString">The globalization string.</param>
-		public static void ChangeLanguage(string globalizationString) =>
-			GetDictionary(GlobalizationString = globalizationString);
+		/// <param name="countryCode">The country code.</param>
+		public static void ChangeLanguage(CountryCode countryCode) => GetDictionary(CountryCode = countryCode);
 
 		/// <summary>
 		/// Get the value with the specified key.
@@ -67,12 +67,17 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Get the dictionary with the specified globalization string.
 		/// </summary>
-		/// <param name="globalizationString">The globalization string.</param>
-		private static void GetDictionary(string globalizationString)
+		/// <param name="countryCode">The country code.</param>
+		private static void GetDictionary(CountryCode countryCode)
 		{
+			if (countryCode == CountryCode.Default)
+			{
+				return;
+			}
+
 			// The implementation of the merged dictionary that is the same as the windows
 			// is too difficult... Here we use reflection to implement this.
-			string[] z = globalizationString.Split('-', RemoveEmptyEntries);
+			string[] z = NameAttribute.GetName(countryCode)!.Split('-', RemoveEmptyEntries);
 			var sb = new StringBuilder();
 			for (int i = 0; i < z.Length; i++)
 			{

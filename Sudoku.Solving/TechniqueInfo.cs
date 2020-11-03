@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Globalization;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Windows;
@@ -92,5 +93,14 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <returns>The string instance.</returns>
 		public virtual string ToFullString() => ToString();
+
+		/// <summary>
+		/// Returns a string that only contains the name and the basic information with
+		/// the specified <see cref="CountryCode"/> to tell different country.
+		/// </summary>
+		/// <param name="countryCode">The country code.</param>
+		/// <returns>The string instance.</returns>
+		/// <seealso cref="CountryCode"/>
+		public virtual string ToString(CountryCode countryCode) => ToString();
 	}
 }

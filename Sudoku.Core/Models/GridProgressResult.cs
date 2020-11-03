@@ -1,5 +1,6 @@
 ﻿using System;
 using Sudoku.DocComments;
+using Sudoku.Globalization;
 using Sudoku.Windows;
 
 namespace Sudoku.Models
@@ -15,12 +16,14 @@ namespace Sudoku.Models
 		/// <param name="currentCandidatesCount">The current point.</param>
 		/// <param name="currentCellsCount">The number of unsolved cells.</param>
 		/// <param name="initialCandidatesCount">The number of unsolved candidates in the initial grid.</param>
-		/// <param name="globalizationString">The globalization string.</param>
+		/// <param name="countryCode">The country code.</param>
 		public GridProgressResult(
 			int currentCandidatesCount, int currentCellsCount, int initialCandidatesCount,
-			string? globalizationString) =>
-			(CurrentCandidatesCount, CurrentCellsCount, InitialCandidatesCount, GlobalizationString) =
-			(currentCandidatesCount, currentCellsCount, initialCandidatesCount, globalizationString ?? "en-us");
+			CountryCode countryCode) =>
+			(CurrentCandidatesCount, CurrentCellsCount, InitialCandidatesCount, CountryCode) = (
+				currentCandidatesCount, currentCellsCount,
+				initialCandidatesCount,
+				countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 
 
 		/// <summary>
@@ -39,9 +42,9 @@ namespace Sudoku.Models
 		public readonly int InitialCandidatesCount { get; }
 
 		/// <summary>
-		/// The globalization string.
+		/// The country code.
 		/// </summary>
-		public readonly string GlobalizationString { get; }
+		public readonly CountryCode CountryCode { get; }
 
 		/// <summary>
 		/// Indicates the current percentage.
@@ -85,17 +88,20 @@ namespace Sudoku.Models
 			CurrentCellsCount == other.CurrentCellsCount
 			&& CurrentCandidatesCount == other.CurrentCandidatesCount
 			&& InitialCandidatesCount == other.InitialCandidatesCount
-			&& GlobalizationString == other.GlobalizationString;
+			&& CountryCode == other.CountryCode;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override readonly int GetHashCode() =>
-			CurrentCellsCount * 729 + CurrentCandidatesCount ^ InitialCandidatesCount ^ GlobalizationString.GetHashCode();
+			CurrentCellsCount * 729 + CurrentCandidatesCount ^ InitialCandidatesCount
+			^ CountryCode.GetHashCode();
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in GridProgressResult left, in GridProgressResult right) => left.Equals(right);
+		public static bool operator ==(in GridProgressResult left, in GridProgressResult right) =>
+			left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in GridProgressResult left, in GridProgressResult right) => !(left == right);
+		public static bool operator !=(in GridProgressResult left, in GridProgressResult right) =>
+			!(left == right);
 	}
 }

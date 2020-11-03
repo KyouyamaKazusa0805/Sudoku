@@ -1195,7 +1195,7 @@
         <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.Generate(System.Int32,Sudoku.Data.SymmetryType,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.Generate(System.Int32,Sudoku.Data.SymmetryType,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
             <summary>
             Generate a puzzle with the specified information.
             </summary>
@@ -1208,11 +1208,11 @@
             diagonal type puzzles.
             </param>
             <param name="progress">The progress.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
             <returns>The grid.</returns>
             <seealso cref="T:Sudoku.Data.SymmetryType"/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.GenerateAsync(System.Int32,Sudoku.Data.SymmetryType,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.GenerateAsync(System.Int32,Sudoku.Data.SymmetryType,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
             <summary>
             Generate a puzzle with the specified information asynchronizedly.
             </summary>
@@ -1225,7 +1225,7 @@
             diagonal type puzzles.
             </param>
             <param name="progress">The progress.</param>
-            <param name="globalzationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
             <returns>The task.</returns>
             <seealso cref="T:Sudoku.Data.SymmetryType"/>
         </member>
@@ -1278,7 +1278,7 @@
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate(System.Int32,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Solving.DifficultyLevel,System.String)">
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate(System.Int32,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Solving.DifficultyLevel,Sudoku.Globalization.CountryCode)">
             <summary>
             To generate a sudoku grid with a backdoor filter depth.
             </summary>
@@ -1288,10 +1288,10 @@
             </param>
             <param name="progress">The progress.</param>
             <param name="difficultyLevel">The difficulty level.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
             <returns>The grid.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.GenerateAsync(System.Int32,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Solving.DifficultyLevel,System.String)">
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.GenerateAsync(System.Int32,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Solving.DifficultyLevel,Sudoku.Globalization.CountryCode)">
             <summary>
             To generate a sudoku grid with a backdoor filter depth asynchronizedly.
             </summary>
@@ -1301,7 +1301,7 @@
             </param>
             <param name="progress">The progress.</param>
             <param name="difficultyLevel">The difficulty level.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
             <returns>The task.</returns>
         </member>
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32[])">
@@ -1353,7 +1353,7 @@
         <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate(Sudoku.Solving.Manual.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate(Sudoku.Solving.Manual.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
             <summary>
             To generate a puzzle that contains the specified technique code.
             </summary>
@@ -1362,10 +1362,10 @@
             the process will use the default filter.
             </param>
             <param name="progress">The progress.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
             <returns>The puzzle.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.GenerateAsync(Sudoku.Solving.Manual.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.GenerateAsync(Sudoku.Solving.Manual.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
             <summary>
             To generate a puzzle that contains the specified technique code asynchronizedly.
             </summary>
@@ -1374,7 +1374,7 @@
             the process will use the default filter.
             </param>
             <param name="progress">The progress.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The globalization string.</param>
             <returns>The task.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsTechniqueInfo">
@@ -4473,24 +4473,22 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveAsync(Sudoku.Data.SudokuGrid,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveAsync(Sudoku.Data.SudokuGrid,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
             <summary>
             To solve the specified puzzle in asynchronous way.
             </summary>
             <param name="grid">The grid.</param>
             <param name="progress">The progress.</param>
-            <param name="globalizationString">The globalization string.</param>
+            <param name="countryCode">The country code.</param>
             <returns>The task of the execution.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
             <summary>
             To solve the puzzle.
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
             <param name="progress">The progress instance to report the state.</param>
-            <param name="globalizationString">
-            The globalization string. The default value is <see langword="null"/>.
-            </param>
+            <param name="countryCode">The country code.</param>
             <returns>The analysis result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult})">
@@ -8466,6 +8464,15 @@
             This method is used for displaying details in text box control.
             </summary>
             <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+            <summary>
+            Returns a string that only contains the name and the basic information with
+            the specified <see cref="T:Sudoku.Globalization.CountryCode"/> to tell different country.
+            </summary>
+            <param name="countryCode">The country code.</param>
+            <returns>The string instance.</returns>
+            <seealso cref="T:Sudoku.Globalization.CountryCode"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>

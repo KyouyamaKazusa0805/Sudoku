@@ -1,5 +1,4 @@
-﻿#pragma warning disable CA1815
-
+﻿using Sudoku.Globalization;
 using Sudoku.Windows;
 
 namespace Sudoku.Models
@@ -13,9 +12,9 @@ namespace Sudoku.Models
 		/// Initializes an instance with the specified trial times and globalization string.
 		/// </summary>
 		/// <param name="generatingTrial">The number of the trial times.</param>
-		/// <param name="globalizationString">The globalization string.</param>
-		public PuzzleGeneratingProgressResult(int generatingTrial, string globalizationString) : this() =>
-			(GeneratingTrial, GlobalizationString) = (generatingTrial, globalizationString);
+		/// <param name="countryCode">The country code.</param>
+		public PuzzleGeneratingProgressResult(int generatingTrial, CountryCode countryCode) : this() =>
+			(GeneratingTrial, CountryCode) = (generatingTrial, countryCode);
 
 
 		/// <summary>
@@ -27,7 +26,7 @@ namespace Sudoku.Models
 		public readonly double Percentage => 0;
 
 		/// <inheritdoc/>
-		public readonly string GlobalizationString { get; }
+		public readonly CountryCode CountryCode { get; }
 
 
 		/// <inheritdoc cref="object.ToString"/>

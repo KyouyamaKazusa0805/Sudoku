@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
@@ -54,9 +55,9 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="progress">The progress.</param>
-		/// <param name="globalizationString">The globalization string.</param>
+		/// <param name="countryCode">The country code.</param>
 		public IEnumerable<IGrouping<string, TechniqueInfo>> Search(
-			in SudokuGrid grid, IProgress<IProgressResult>? progress, string? globalizationString)
+			in SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode)
 		{
 			if (grid.HasSolved || !grid.IsValid(out bool? sukaku))
 			{
@@ -111,7 +112,8 @@ namespace Sudoku.Solving.Manual
 
 			TechniqueSearcher.InitializeMaps(grid);
 			var bag = new List<TechniqueInfo>();
-			var progressResult = new TechniqueProgressResult(searchers.Length, globalizationString ?? "en-us");
+			var progressResult = new TechniqueProgressResult(
+				searchers.Length, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			foreach (var searcher in searchers)
 			{
 				var props = g(searcher);

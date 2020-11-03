@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Extensions;
+using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Manual;
 using static Sudoku.Solving.Manual.TechniqueCode;
@@ -32,7 +33,7 @@ namespace Sudoku.Solving.Generating
 
 
 		/// <inheritdoc/>
-		public override SudokuGrid Generate() => Generate(DefaultFilter, null, null);
+		public override SudokuGrid Generate() => Generate(DefaultFilter, null, CountryCode.Default);
 
 
 		/// <summary>
@@ -43,14 +44,15 @@ namespace Sudoku.Solving.Generating
 		/// the process will use the default filter.
 		/// </param>
 		/// <param name="progress">The progress.</param>
-		/// <param name="globalizationString">The globalization string.</param>
+		/// <param name="countryCode">The country code.</param>
 		/// <returns>The puzzle.</returns>
 		public unsafe SudokuGrid Generate(
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
-			string? globalizationString = null)
+			CountryCode countryCode = CountryCode.Default)
 		{
 			PuzzleGeneratingProgressResult defaultValue = default;
-			var pr = new PuzzleGeneratingProgressResult(0, globalizationString ?? "en-us");
+			var pr = new PuzzleGeneratingProgressResult(
+				0, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			progress?.Report(progressResult);
 
@@ -58,7 +60,7 @@ namespace Sudoku.Solving.Generating
 
 			while (true)
 			{
-				var puzzle = Generate(-1, progress, globalizationString: globalizationString);
+				var puzzle = Generate(-1, progress, countryCode: countryCode);
 				if (ManualSolver.Solve(puzzle).Any(&internalChecking, techniqueCodeFilter))
 				{
 					return puzzle;
@@ -77,11 +79,11 @@ namespace Sudoku.Solving.Generating
 		/// the process will use the default filter.
 		/// </param>
 		/// <param name="progress">The progress.</param>
-		/// <param name="globalizationString">The globalization string.</param>
+		/// <param name="countryCode">The globalization string.</param>
 		/// <returns>The task.</returns>
 		public async Task<SudokuGrid> GenerateAsync(
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
-			string? globalizationString = null) =>
-			await Task.Run(() => Generate(techniqueCodeFilter, progress, globalizationString));
+			CountryCode countryCode = CountryCode.Default) =>
+			await Task.Run(() => Generate(techniqueCodeFilter, progress, countryCode));
 	}
 }

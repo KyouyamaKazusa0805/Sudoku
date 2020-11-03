@@ -16,6 +16,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Globalization;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
@@ -671,8 +672,10 @@ namespace Sudoku.Windows
 
 				_puzzle.ClearStack();
 
-				_analyisResult = await _manualSolver.SolveAsync(
-					(SudokuGrid)_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
+				_analyisResult =
+					await _manualSolver.SolveAsync(
+						(SudokuGrid)_puzzle, dialog.DefaultReporting, Settings.LanguageCode
+					);
 
 				UpdateImageGrid();
 
@@ -938,10 +941,12 @@ namespace Sudoku.Windows
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
-		private void MenuItemLanguagesChinese_Click(object sender, RoutedEventArgs e) => ChangeLanguage("zh-cn");
+		private void MenuItemLanguagesChinese_Click(object sender, RoutedEventArgs e) =>
+			ChangeLanguage(CountryCode.ZhCn);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
-		private void MenuItemLanguagesEnglish_Click(object sender, RoutedEventArgs e) => ChangeLanguage("en-us");
+		private void MenuItemLanguagesEnglish_Click(object sender, RoutedEventArgs e) =>
+			ChangeLanguage(CountryCode.EnUs);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) => new AboutMeWindow().Show();
