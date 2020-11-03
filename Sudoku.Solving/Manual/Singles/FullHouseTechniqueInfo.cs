@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Singles
 		public override string ToString() => $"{Name}: {new GridMap { Cell }} = {Digit + 1}";
 
 		/// <inheritdoc/>
-		public override string ToString(CountryCode countryCode)
+		public override string ToFullString(CountryCode countryCode)
 		{
 			return countryCode == CountryCode.ZhCn ? toChinese() : ToString();
 			string toChinese()

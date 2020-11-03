@@ -96,15 +96,6 @@ namespace Sudoku.Solving
 		public virtual string ToFullString() => ToString();
 
 		/// <summary>
-		/// Returns a string that contains the name, the conclusions and its all details; with
-		/// a specified country as a parameter of type <see cref="CountryCode"/>.
-		/// This method is used for displaying details in text box control.
-		/// </summary>
-		/// <returns>The string instance.</returns>
-		/// <seealso cref="CountryCode"/>
-		public virtual string ToFullString(CountryCode countryCode) => ToString();
-
-		/// <summary>
 		/// Returns a string that only contains the name and the basic information with
 		/// the specified <see cref="CountryCode"/> to tell different country.
 		/// </summary>
@@ -112,5 +103,15 @@ namespace Sudoku.Solving
 		/// <returns>The string instance.</returns>
 		/// <seealso cref="CountryCode"/>
 		public virtual string ToString(CountryCode countryCode) => ToString();
+
+		/// <summary>
+		/// Returns a string that contains the name, the conclusions and its all details; with
+		/// a specified country as a parameter of type <see cref="CountryCode"/>.
+		/// This method is used for displaying details in text box control.
+		/// </summary>
+		/// <param name="countryCode">The country code.</param>
+		/// <returns>The string instance.</returns>
+		/// <seealso cref="CountryCode"/>
+		public virtual string ToFullString(CountryCode countryCode) => ToString();
 	}
 }

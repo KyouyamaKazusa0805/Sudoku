@@ -5121,7 +5121,7 @@
         <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+        <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.ToFullString(Sudoku.Globalization.CountryCode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo">
@@ -5158,6 +5158,9 @@
         <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.ToFullString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo">
             <summary>
             Indicates a usage of <b>naked single</b> technique.
@@ -5185,7 +5188,7 @@
         <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+        <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.ToFullString(Sudoku.Globalization.CountryCode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo">
@@ -8475,19 +8478,20 @@
             </summary>
             <returns>The string instance.</returns>
         </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+            <summary>
+            Returns a string that only contains the name and the basic information with
+            the specified <see cref="T:Sudoku.Globalization.CountryCode"/> to tell different country.
+            </summary>
+            <param name="countryCode">The country code.</param>
+            <returns>The string instance.</returns>
+            <seealso cref="T:Sudoku.Globalization.CountryCode"/>
+        </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ToFullString(Sudoku.Globalization.CountryCode)">
             <summary>
             Returns a string that contains the name, the conclusions and its all details; with
             a specified country as a parameter of type <see cref="T:Sudoku.Globalization.CountryCode"/>.
             This method is used for displaying details in text box control.
-            </summary>
-            <returns>The string instance.</returns>
-            <seealso cref="T:Sudoku.Globalization.CountryCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
-            <summary>
-            Returns a string that only contains the name and the basic information with
-            the specified <see cref="T:Sudoku.Globalization.CountryCode"/> to tell different country.
             </summary>
             <param name="countryCode">The country code.</param>
             <returns>The string instance.</returns>

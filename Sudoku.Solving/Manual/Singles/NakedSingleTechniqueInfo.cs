@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Singles
 		}
 
 		/// <inheritdoc/>
-		public override string ToString(CountryCode countryCode)
+		public override string ToFullString(CountryCode countryCode)
 		{
 			return countryCode == CountryCode.ZhCn ? toChinese() : ToString();
 			string toChinese()

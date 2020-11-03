@@ -51,15 +51,46 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override string ToString(CountryCode countryCode)
 		{
+			switch (countryCode)
+			{
+				default:
+				case CountryCode.EnUs:
+				{
+					return ToString();
+				}
+				case CountryCode.ZhCn:
+				{
+					string cellStr = new GridMap { Cell }.ToString();
+					string regionStr = new RegionCollection(Region).ToString();
+					int v = Digit + 1;
+					return EnableAndIsLastDigit
+						? $"{Name}: {cellStr} = {v}"
+						: $"{Name}: 在 {regionStr} 里，{cellStr} = {v}";
+				}
+			}
+		}
+
+		/// <inheritdoc/>
+		public override string ToFullString(CountryCode countryCode)
+		{
 			return countryCode == CountryCode.ZhCn ? toChinese() : ToString();
 			string toChinese()
 			{
 				string cellStr = new GridMap { Cell }.ToString();
 				string regionStr = new RegionCollection(Region).ToString();
 				int v = Digit + 1;
-				return
-					$"{Name}：在 {regionStr} 里，只有 {cellStr} 是可以填入 {v} 的地方，" +
-					$"所以可以确定 {cellStr} = {v}。";
+				if (EnableAndIsLastDigit)
+				{
+					return
+						$"{Name}：全盘仅剩下唯一一个需要填入 {v} 的机会，由于只有 {regionStr} 没有填入 {v} 了，" +
+						$"所以可以确定 {cellStr} = {v}。";
+				}
+				else
+				{
+					return
+						$"{Name}：在 {regionStr} 里，只有 {cellStr} 是可以填入 {v} 的地方，" +
+						$"所以可以确定 {cellStr} = {v}。";
+				}
 			}
 		}
 	}
