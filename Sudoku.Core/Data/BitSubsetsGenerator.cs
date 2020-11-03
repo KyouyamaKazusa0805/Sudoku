@@ -12,7 +12,7 @@ namespace Sudoku.Data
 	/// <remarks>
 	/// You can use this struct like this:
 	/// <code>
-	/// foreach (short mask in new BitCombinationGenerator(9, 3))
+	/// foreach (short mask in new BitSubsetsGenerator(9, 3))
 	/// {
 	///     // Do something to use the mask.
 	/// }
