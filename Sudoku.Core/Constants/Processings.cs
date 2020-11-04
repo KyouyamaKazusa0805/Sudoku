@@ -34,12 +34,12 @@ namespace Sudoku.Constants
 		)[cell];
 
 		/// <summary>
-		/// Get the name in the specified region.
+		/// Get the label in the specified region.
 		/// </summary>
 		/// <param name="region">The region.</param>
-		/// <returns>The name.</returns>
+		/// <returns>The region label.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string GetLabel(int region) => ((RegionLabel)(region / 9)).ToString();
+		public static RegionLabel GetLabel(int region) => (RegionLabel)(region / 9);
 
 		/// <summary>
 		/// Get cells with the specified mask, which consist of 9 bits and 1 is

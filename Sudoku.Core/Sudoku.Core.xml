@@ -30,10 +30,10 @@
         </member>
         <member name="M:Sudoku.Constants.Processings.GetLabel(System.Int32)">
             <summary>
-            Get the name in the specified region.
+            Get the label in the specified region.
             </summary>
             <param name="region">The region.</param>
-            <returns>The name.</returns>
+            <returns>The region label.</returns>
         </member>
         <member name="M:Sudoku.Constants.Processings.GetCells(System.Int32,System.Int16)">
             <summary>

@@ -3,6 +3,7 @@ using System.Text;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
+using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -42,15 +43,15 @@ namespace Sudoku.Solving.Manual.Singles
 				int v = Digit + 1;
 				return new StringBuilder()
 					.Append(Name)
-					.Append('：')
+					.Append(Resources.GetValue("Colon"))
 					.Append(cellStr)
-					.Append(" 仅可以填入数字 ")
+					.Append(Resources.GetValue("_NakedSingle1"))
 					.Append(v)
-					.Append("，因为别的情况都可从外部给出的确定值信息所排除，所以可以确定 ")
+					.Append(Resources.GetValue("_NakedSingle2"))
 					.Append(cellStr)
-					.Append(" = ")
+					.Append(Resources.GetValue("Equals"))
 					.Append(v)
-					.Append('。')
+					.Append(Resources.GetValue("Period"))
 					.ToString();
 			}
 		}

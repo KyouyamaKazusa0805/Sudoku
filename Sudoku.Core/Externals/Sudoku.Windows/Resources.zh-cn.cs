@@ -17,6 +17,7 @@ namespace Sudoku.Windows
 			// Punctuation marks
 			["Ellipsis"] = "……",
 			["Colon"] = "：",
+			["Period"] = "。",
 
 #line 2000
 			// GridProgressResult
@@ -363,6 +364,23 @@ namespace Sudoku.Windows
 			["TemplateDelete"] = "模板删数",
 			["BowmanBingo"] = "试数",
 			["BruteForce"] = "计算机试数",
+
+#line 7000
+			["Equals"] = " = ",
+			["_FullHouse1"] = " 是当前区域唯一一个空格，所以可以确定是数字 ",
+			["_FullHouse2"] = "，即 ",
+			["_LastDigit1"] = "：全盘仅剩下唯一一个需要填入 ",
+			["_LastDigit2"] = " 的机会，由于只有 ",
+			["_LastDigit3"] = " 没有填入 ",
+			["_LastDigit4"] = " 了，所以可以确定 ",
+			["_HiddenSingle1"] = "：在 ",
+			["_HiddenSingle2"] = " 里，只有 ",
+			["_HiddenSingle3"] = " 是可以填入 ",
+			["_HiddenSingle4"] = " 的地方，所以可以确定 ",
+			["_HiddenSingleSimple1"] = ": 在 ",
+			["_HiddenSingleSimple2"] = " 里，",
+			["_NakedSingle1"] = " 仅可以填入数字 ",
+			["_NakedSingle2"] = "，因为别的情况都可从外部给出的确定值信息所排除，所以可以确定 ",
 		};
 	}
 }

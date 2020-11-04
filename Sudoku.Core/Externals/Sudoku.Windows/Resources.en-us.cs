@@ -363,6 +363,9 @@ namespace Sudoku.Windows
 			["TemplateDelete"] = "Template Delete",
 			["BowmanBingo"] = "Bowman's Bingo",
 			["BruteForce"] = "Brute Force",
+
+#line 7000
+			["_HiddenSingleSimple1"] = " in ",
 		};
 	}
 }

@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
+using Sudoku.Windows;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Singles
@@ -33,9 +34,9 @@ namespace Sudoku.Solving.Manual.Singles
 				true => TechniqueCode.LastDigit,
 				_ => GetLabel(Region) switch
 				{
-					"Row" => TechniqueCode.HiddenSingleRow,
-					"Column" => TechniqueCode.HiddenSingleColumn,
-					"Block" => TechniqueCode.HiddenSingleBlock,
+					RegionLabel.Row => TechniqueCode.HiddenSingleRow,
+					RegionLabel.Column => TechniqueCode.HiddenSingleColumn,
+					RegionLabel.Block => TechniqueCode.HiddenSingleBlock,
 					_ => throw Throwings.ImpossibleCase
 				}
 			};
@@ -51,19 +52,19 @@ namespace Sudoku.Solving.Manual.Singles
 				true =>
 					new StringBuilder()
 					.Append(Name)
-					.Append('：')
+					.Append(Resources.GetValue("Colon"))
 					.Append(cellStr)
-					.Append(" = ")
+					.Append(Resources.GetValue("Equals"))
 					.Append(v)
 					.ToString(),
 				_ =>
 					new StringBuilder()
 					.Append(Name)
-					.Append('：')
+					.Append(Resources.GetValue("Colon"))
 					.Append(cellStr)
-					.Append(" = ")
+					.Append(Resources.GetValue("Equals"))
 					.Append(v)
-					.Append(" in ")
+					.Append(Resources.GetValue("_HiddenSingleSimple1"))
 					.Append(new RegionCollection(Region).ToString())
 					.ToString()
 			};
@@ -83,17 +84,17 @@ namespace Sudoku.Solving.Manual.Singles
 						true =>
 							new StringBuilder()
 							.Append(Name)
-							.Append('：')
+							.Append(Resources.GetValue("Colon"))
 							.Append(cellStr)
-							.Append(" = ")
+							.Append(Resources.GetValue("Equals"))
 							.Append(v)
 							.ToString(),
 						_ =>
 							new StringBuilder()
 							.Append(Name)
-							.Append(": 在 ")
+							.Append(Resources.GetValue("_HiddenSingleSimple1"))
 							.Append(new RegionCollection(Region).ToString())
-							.Append(" 里，")
+							.Append(Resources.GetValue("_HiddenSingleSimple2"))
 							.Append(cellStr)
 							.Append(" = ")
 							.Append(v)
@@ -126,32 +127,32 @@ namespace Sudoku.Solving.Manual.Singles
 					true =>
 						new StringBuilder()
 						.Append(Name)
-						.Append("：全盘仅剩下唯一一个需要填入 ")
+						.Append(Resources.GetValue("_LastDigit1"))
 						.Append(v)
-						.Append(" 的机会，由于只有 ")
+						.Append(Resources.GetValue("_LastDigit2"))
 						.Append(regionStr)
-						.Append(" 没有填入 ")
+						.Append(Resources.GetValue("_LastDigit3"))
 						.Append(v)
-						.Append(" 了，所以可以确定 ")
+						.Append(Resources.GetValue("_LastDigit4"))
 						.Append(cellStr)
-						.Append(" = ")
+						.Append(Resources.GetValue("Equals"))
 						.Append(v)
-						.Append('。')
+						.Append(Resources.GetValue("Period"))
 						.ToString(),
 					_ =>
 						new StringBuilder()
 						.Append(Name)
-						.Append("：在 ")
+						.Append(Resources.GetValue("_HiddenSingle1"))
 						.Append(regionStr)
-						.Append(" 里，只有 ")
+						.Append(Resources.GetValue("_HiddenSingle2"))
 						.Append(cellStr)
-						.Append(" 是可以填入 ")
+						.Append(Resources.GetValue("_HiddenSingle3"))
 						.Append(v)
-						.Append(" 的地方，所以可以确定 ")
+						.Append(Resources.GetValue("_HiddenSingle4"))
 						.Append(cellStr)
-						.Append(" = ")
+						.Append(Resources.GetValue("Equals"))
 						.Append(v)
-						.Append('。')
+						.Append(Resources.GetValue("Period"))
 						.ToString()
 				};
 			}
