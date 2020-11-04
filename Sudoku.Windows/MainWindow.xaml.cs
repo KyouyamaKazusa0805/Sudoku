@@ -323,8 +323,15 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void SaveCoreResources()
 		{
-			File.WriteAllText("Resources.en-us.json", JsonSerializer.Serialize(CoreResources.LangSourceEnUs));
-			File.WriteAllText("Resources.zh-cn.json", JsonSerializer.Serialize(CoreResources.LangSourceZhCn));
+			if (!Directory.Exists("lang"))
+			{
+				Directory.CreateDirectory("lang");
+			}
+
+			File.WriteAllText(
+				@"lang\Resources.en-us.dic", JsonSerializer.Serialize(CoreResources.LangSourceEnUs));
+			File.WriteAllText(
+				@"lang\Resources.zh-cn.dic", JsonSerializer.Serialize(CoreResources.LangSourceZhCn));
 		}
 
 		/// <summary>

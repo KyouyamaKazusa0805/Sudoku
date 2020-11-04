@@ -18,13 +18,13 @@ namespace Sudoku
 		[ModuleInitializer]
 		public static void Initialize()
 		{
-			string path = "Resources.en-us.json";
+			string path = @"lang\Resources.en-us.dic";
 			if (File.Exists(path) && g(path, out var obj1))
 			{
 				Resources.LangSourceEnUs = obj1;
 			}
 
-			path = "Resources.zh-cn.json";
+			path = @"lang\Resources.zh-cn.dic";
 			if (File.Exists(path) && g(path, out var obj2))
 			{
 				Resources.LangSourceZhCn = obj2;
