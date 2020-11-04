@@ -1121,6 +1121,11 @@
             Initialize recognizer if worth.
             </summary>
         </member>
+        <member name="M:Sudoku.Windows.MainWindow.SaveCoreResources">
+            <summary>
+            Save core resources.
+            </summary>
+        </member>
         <member name="M:Sudoku.Windows.MainWindow.DefineShortCuts">
             <summary>
             Add short cuts during initialization.

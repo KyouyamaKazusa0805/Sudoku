@@ -93,12 +93,11 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			// Save configuration.
 			SaveConfig();
 
+			SaveCoreResources();
+
 #if SUDOKU_RECOGNITION
-			// Dispose the instance.
-			// If the service provider is not initialized, this value will be null.
 			_recognition?.Dispose();
 #endif
 
@@ -107,13 +106,13 @@ namespace Sudoku.Windows
 			base.OnClosing(e);
 
 #if SUDOKU_RECOGNITION
+			// If you don't use this feature, the program won't need to use
+			// this method to KILL itself... KILL... sounds terrible and dangerous, isn't it?
+			// To be honest, I don't know why the program fails to exit... The background
+			// threads still running after base close method executed completely. If you
+			// know the detail of Emgu.CV, please tell me, thx!
 			if (_recognition is { ToolIsInitialized: true })
 			{
-				// If you don't use this feature, the program won't need to use
-				// this method to KILL itself... KILL... sounds terrible and dangerous, isn't it?
-				// To be honest, I don't know why the program fails to exit... The background
-				// threads still running after base close method executed completely. If you
-				// know the detail of Emgu.CV, please tell me, thx!
 				Process.GetCurrentProcess().Kill();
 			}
 #endif
@@ -318,6 +317,15 @@ namespace Sudoku.Windows
 			}
 		}
 #endif
+
+		/// <summary>
+		/// Save core resources.
+		/// </summary>
+		private void SaveCoreResources()
+		{
+			File.WriteAllText("Resources.en-us.json", JsonSerializer.Serialize(CoreResources.LangSourceEnUs));
+			File.WriteAllText("Resources.zh-cn.json", JsonSerializer.Serialize(CoreResources.LangSourceZhCn));
+		}
 
 		/// <summary>
 		/// Add short cuts during initialization.

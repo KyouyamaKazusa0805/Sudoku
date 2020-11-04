@@ -1,7 +1,4 @@
-﻿#pragma warning disable IDE0052
-
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
 
 namespace Sudoku.Windows
 {
@@ -11,10 +8,10 @@ namespace Sudoku.Windows
 		/// The language source for the globalization string "<c>zh-cn</c>".
 		/// </summary>
 		/// <remarks>
-		/// Here we use reflection to call and use this field, which can't be recognized by
-		/// Roslyn, so we should suppress the complier warning IDE0052.
+		/// This field is not <see langword="readonly"/> because it can be initialized by the
+		/// module initializer.
 		/// </remarks>
-		private static readonly IReadOnlyDictionary<string, string> LangSourceZhCn = new Dictionary<string, string>
+		internal static IDictionary<string, string> LangSourceZhCn = new Dictionary<string, string>
 		{
 #line 1000
 			// Punctuation marks
