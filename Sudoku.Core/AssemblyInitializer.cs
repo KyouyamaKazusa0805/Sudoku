@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using Sudoku.Windows;
+using ResourceDictionary = System.Collections.Generic.IDictionary<string, string>;
 
 namespace Sudoku
 {
@@ -31,12 +31,15 @@ namespace Sudoku
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static bool g(string path, [NotNullWhen(true)] out IDictionary<string, string>? result)
+			static bool g(string path, [NotNullWhen(true)] out ResourceDictionary? result)
 			{
-				if (JsonSerializer.Deserialize<IDictionary<string, string>>(File.ReadAllText(path))
-					is IDictionary<string, string> obj)
+				ResourceDictionary? r;
+				try { r = JsonSerializer.Deserialize<ResourceDictionary>(File.ReadAllText(path)); }
+				catch { r = null; }
+
+				if (r is not null)
 				{
-					result = obj;
+					result = r;
 					return true;
 				}
 				else
