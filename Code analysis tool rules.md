@@ -1,4 +1,4 @@
-# Sudoku Analysis Tool Rules
+# Code Analysis Tool Rules
 
 ## Description
 
