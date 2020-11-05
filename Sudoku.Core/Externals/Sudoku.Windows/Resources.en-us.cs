@@ -17,6 +17,8 @@ namespace Sudoku.Windows
 			// Punctuation marks
 			["Ellipsis"] = "......",
 			["Colon"] = ":",
+			["Space"] = " ",
+			["GoesTo"] = " => ",
 
 #line 2000
 			// GridProgressResult
@@ -366,6 +368,7 @@ namespace Sudoku.Windows
 
 #line 7000
 			["_HiddenSingleSimple1"] = " in ",
+			["_LcSimple1"] = " in ",
 		};
 	}
 }

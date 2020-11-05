@@ -18,6 +18,8 @@ namespace Sudoku.Windows
 			["Ellipsis"] = "……",
 			["Colon"] = "：",
 			["Period"] = "。",
+			["GoesTo"] = " => ",
+			["Backslash"] = "\\",
 
 #line 2000
 			// GridProgressResult
@@ -87,6 +89,9 @@ namespace Sudoku.Windows
 			["Unique"] = "唯一",
 			["Hidden"] = "隐性",
 			["Category"] = "分组：",
+			["Row"] = "行",
+			["Column"] = "列",
+			["Block"] = "宫",
 			["AnalysisResultPuzzle"] = "题目：",
 			["AnalysisResultSolvingTool"] = "解题工具：",
 			["AnalysisResultSolvingSteps"] = "解题步骤：",
@@ -381,6 +386,16 @@ namespace Sudoku.Windows
 			["_HiddenSingleSimple2"] = " 里，",
 			["_NakedSingle1"] = " 仅可以填入数字 ",
 			["_NakedSingle2"] = "，因为别的情况都可从外部给出的确定值信息所排除，所以可以确定 ",
+			["_LcSimple1"] = "在 ",
+			["_LcSimple2"] = " 有关于 ",
+			["_LcSimple3"] = " 的区块",
+			["_Lc1"] = "可以发现数字 ",
+			["_Lc2"] = " 只能出现在 ",
+			["_Lc3"] = " 的固定几格上，而同时我们又可以发现，此时它们恰好处于同一个",
+			["_Lc4"] = "（即 ",
+			["_Lc5"] = "），因此我们可以知道，当前",
+			["_Lc6"] = "里的其它单元格就不能再填入 ",
+			["_Lc7"] = " 了，所以我们可以得到 ",
 		};
 	}
 }

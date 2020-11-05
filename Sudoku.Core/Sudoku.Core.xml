@@ -499,6 +499,16 @@
             </summary>
             <param name="collection">The collection.</param>
         </member>
+        <member name="P:Sudoku.Data.Collections.ConclusionCollection.Cells">
+            <summary>
+            Indicates all cells used in this conclusions list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Collections.ConclusionCollection.Digits">
+            <summary>
+            Indicates all digits used in this conclusions list, represented as a mask.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.Dispose">
             <summary>
             To dispose this instance (frees the unmanaged memory).

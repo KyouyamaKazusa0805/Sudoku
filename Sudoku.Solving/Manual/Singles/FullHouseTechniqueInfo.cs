@@ -26,7 +26,15 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {new GridMap { Cell }} = {Digit + 1}";
+		public override string ToString() =>
+			new StringBuilder()
+			.Append(Name)
+			.Append(Resources.GetValue("Colon"))
+			.Append(Resources.GetValue("Space"))
+			.Append(new GridMap { Cell })
+			.Append(Resources.GetValue("Equals"))
+			.Append(Digit + 1)
+			.ToString();
 
 		/// <inheritdoc/>
 		public override string ToFullString(CountryCode countryCode)

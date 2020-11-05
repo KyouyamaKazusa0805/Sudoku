@@ -4080,6 +4080,12 @@
         <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.ToFullString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher">
             <summary>
             Encapsulates a <b>locked candidates</b> (LC) technique searcher.

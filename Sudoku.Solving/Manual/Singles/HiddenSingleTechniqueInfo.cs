@@ -53,6 +53,7 @@ namespace Sudoku.Solving.Manual.Singles
 					new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))
+					.Append(Resources.GetValue("Space"))
 					.Append(cellStr)
 					.Append(Resources.GetValue("Equals"))
 					.Append(v)
@@ -61,6 +62,7 @@ namespace Sudoku.Solving.Manual.Singles
 					new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))
+					.Append(Resources.GetValue("Space"))
 					.Append(cellStr)
 					.Append(Resources.GetValue("Equals"))
 					.Append(v)
@@ -73,38 +75,37 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override string ToString(CountryCode countryCode)
 		{
-			switch (countryCode)
+			return countryCode switch
 			{
-				case CountryCode.ZhCn:
+				CountryCode.ZhCn => toChinese(),
+				_ => ToString()
+			};
+
+			string toChinese()
+			{
+				string cellStr = new GridMap { Cell }.ToString();
+				int v = Digit + 1;
+				return EnableAndIsLastDigit switch
 				{
-					string cellStr = new GridMap { Cell }.ToString();
-					int v = Digit + 1;
-					return EnableAndIsLastDigit switch
-					{
-						true =>
-							new StringBuilder()
-							.Append(Name)
-							.Append(Resources.GetValue("Colon"))
-							.Append(cellStr)
-							.Append(Resources.GetValue("Equals"))
-							.Append(v)
-							.ToString(),
-						_ =>
-							new StringBuilder()
-							.Append(Name)
-							.Append(Resources.GetValue("_HiddenSingleSimple1"))
-							.Append(new RegionCollection(Region).ToString())
-							.Append(Resources.GetValue("_HiddenSingleSimple2"))
-							.Append(cellStr)
-							.Append(" = ")
-							.Append(v)
-							.ToString()
-					};
-				}
-				default:
-				{
-					return ToString();
-				}
+					true =>
+						new StringBuilder()
+						.Append(Name)
+						.Append(Resources.GetValue("Colon"))
+						.Append(cellStr)
+						.Append(Resources.GetValue("Equals"))
+						.Append(v)
+						.ToString(),
+					_ =>
+						new StringBuilder()
+						.Append(Name)
+						.Append(Resources.GetValue("_HiddenSingleSimple1"))
+						.Append(new RegionCollection(Region).ToString())
+						.Append(Resources.GetValue("_HiddenSingleSimple2"))
+						.Append(cellStr)
+						.Append(Resources.GetValue("Equals"))
+						.Append(v)
+						.ToString()
+				};
 			}
 		}
 
