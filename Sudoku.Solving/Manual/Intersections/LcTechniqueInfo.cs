@@ -92,14 +92,6 @@ namespace Sudoku.Solving.Manual.Intersections
 				using var elims = new ConclusionCollection(Conclusions);
 				string regionChineseName = Resources.GetValue(Processings.GetLabel(CoverSet).ToString());
 				int digit = Digit + 1;
-#if OBSOLETE
-				return
-					$"{Name}：可以发现数字 {digit} 只出现在 {new RegionCollection(BaseSet).ToString()}" +
-					$" 的固定几格上，而同时我们又可以发现，此时它们恰好处于同一个{regionChineseName}" +
-					$"（即 {new RegionCollection(CoverSet).ToString()}），因此我们可以知道，" +
-					$"当前{regionChineseName}里的其它单元格就不能再填入 {digit} 了，" +
-					$"所以我们可以得到 {elims.ToString()}。";
-#else
 				return new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))
@@ -120,7 +112,6 @@ namespace Sudoku.Solving.Manual.Intersections
 					.Append(elims.ToString())
 					.Append(Resources.GetValue("Period"))
 					.ToString();
-#endif
 			}
 		}
 	}
