@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		.filenesting.json = .filenesting.json
 		LICENSE = LICENSE
 		README.md = README.md
+		Sudoku analysis tool rules.md = Sudoku analysis tool rules.md
 		Sudoku.Namespaces.xml = Sudoku.Namespaces.xml
 		Supported grid texts.txt = Supported grid texts.txt
 		User Manual.md = User Manual.md
