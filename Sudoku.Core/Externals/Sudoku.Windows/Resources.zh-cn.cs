@@ -13,29 +13,25 @@ namespace Sudoku.Windows
 		/// </remarks>
 		internal static IDictionary<string, string> LangSourceZhCn = new Dictionary<string, string>
 		{
-#line 1000
-			// Punctuation marks
+#line 1000 "Punctuation marks"
 			["Ellipsis"] = "……",
 			["Colon"] = "：",
 			["Period"] = "。",
 			["GoesTo"] = " => ",
 			["Backslash"] = "\\",
 
-#line 2000
-			// GridProgressResult
+#line 2000 "Grid progress result"
 			["UnsolvedCells"] = "剩余空格总数：",
 			["UnsolvedCandidates"] = "，剩余候选数总数：",
 
-#line 3000
-			// Solver
+#line 3000 "Solver"
 			["Manual"] = "人工",
 			["ManualLight"] = "人工 (轻量级)",
 			["Backtracking"] = "回溯",
 			["Bitwise"] = "位运算",
 			["OneLineLinq"] = "单行 LINQ",
 
-#line 4000
-			// StepFinder
+#line 4000 "Step finder"
 			["ProgressAlsWWing"] = "待定数组-W-Wing",
 			["ProgressAlsXyWing"] = "待定数组-XY-Wing",
 			["ProgressSinglyLinkedAlsXz"] = "待定数组-双强链/环",
@@ -79,8 +75,7 @@ namespace Sudoku.Windows
 			["GeneratingProgressSingular"] = "1 次盘面尝试",
 			["GeneratingProgressPlural"] = "次盘面尝试",
 
-#line 5000
-			// Separate words
+#line 5000 "Separate words"
 			["Petal"] = "个花瓣",
 			["Grouped"] = "区块",
 			["Bug"] = "全双值格致死解法",
@@ -112,8 +107,7 @@ namespace Sudoku.Windows
 			["AnalysisResultAttributes"] = "题目特性：",
 			["AnalysisResultBackdoors"] = "后门：",
 
-#line 6000
-			// Techniques
+#line 6000 "Techniques"
 			["FullHouse"] = "同区剩余",
 			["LastDigit"] = "同数剩余",
 			["HiddenSingleRow"] = "行排除",
@@ -370,7 +364,7 @@ namespace Sudoku.Windows
 			["BowmanBingo"] = "试数",
 			["BruteForce"] = "计算机试数",
 
-#line 7000
+#line 7000 "Technique info details"
 			["Equals"] = " = ",
 			["_FullHouse1"] = " 是当前区域唯一一个空格，所以可以确定是数字 ",
 			["_FullHouse2"] = "，即 ",

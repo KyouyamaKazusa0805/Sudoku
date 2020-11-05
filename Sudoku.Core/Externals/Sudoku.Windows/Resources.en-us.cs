@@ -13,28 +13,24 @@ namespace Sudoku.Windows
 		/// </remarks>
 		internal static IDictionary<string, string> LangSourceEnUs = new Dictionary<string, string>
 		{
-#line 1000
-			// Punctuation marks
+#line 1000 "Punctuation marks"
 			["Ellipsis"] = "......",
 			["Colon"] = ":",
 			["Space"] = " ",
 			["GoesTo"] = " => ",
 
-#line 2000
-			// GridProgressResult
+#line 2000 "Grid progress result"
 			["UnsolvedCells"] = "Unsolved cells: ",
 			["UnsolvedCandidates"] = ", candidates: ",
 
-#line 3000
-			// Solver
+#line 3000 "Solver"
 			["Manual"] = "Manual",
 			["ManualLight"] = "Manual (Light)",
 			["Backtracking"] = "Backtracking",
 			["Bitwise"] = "Bitwise",
 			["OneLineLinq"] = "One line LINQ",
 
-#line 4000
-			// StepFinder
+#line 4000 "Step finder"
 			["ProgressAlsWWing"] = "Almost Locked Sets W-Wing",
 			["ProgressAlsXyWing"] = "Almost Locked Sets XY-Wing",
 			["ProgressSinglyLinkedAlsXz"] = "Almost Locked Sets XZ Rule",
@@ -78,8 +74,7 @@ namespace Sudoku.Windows
 			["GeneratingProgressSingular"] = "1 time tried",
 			["GeneratingProgressPlural"] = "times tried",
 
-#line 5000
-			// Separate words
+#line 5000 "Separate words"
 			["Petal"] = "Petals",
 			["Grouped"] = "Grouped ",
 			["Bug"] = "Bivalue Universal Grave",
@@ -108,8 +103,7 @@ namespace Sudoku.Windows
 			["AnalysisResultAttributes"] = "Attributes:",
 			["AnalysisResultBackdoors"] = "Backdoors:",
 
-#line 6000
-			// Techniques
+#line 6000 "Techniques"
 			["FullHouse"] = "Full House",
 			["LastDigit"] = "Last Digit",
 			["HiddenSingleRow"] = "Hidden Single in Row",
@@ -366,7 +360,7 @@ namespace Sudoku.Windows
 			["BowmanBingo"] = "Bowman's Bingo",
 			["BruteForce"] = "Brute Force",
 
-#line 7000
+#line 7000 "Technique info details"
 			["_HiddenSingleSimple1"] = " in ",
 			["_LcSimple1"] = " in ",
 		};
