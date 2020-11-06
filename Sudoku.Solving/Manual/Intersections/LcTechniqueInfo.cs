@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			return countryCode switch
 			{
 				CountryCode.ZhCn => toChinese(),
-				_ => ToString()
+				_ => base.ToString(countryCode)
 			};
 
 			string toChinese()
@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			return countryCode switch
 			{
 				CountryCode.ZhCn => toChinese(),
-				_ => ToString()
+				_ => base.ToFullString(countryCode)
 			};
 
 			string toChinese()

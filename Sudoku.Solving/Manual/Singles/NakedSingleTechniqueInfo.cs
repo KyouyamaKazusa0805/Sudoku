@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Singles
 			return countryCode switch
 			{
 				CountryCode.ZhCn => toChinese(),
-				_ => ToString()
+				_ => base.ToFullString(countryCode)
 			};
 
 			string toChinese()
