@@ -363,6 +363,8 @@ namespace Sudoku.Windows
 #line 7000 "Technique info details"
 			["_HiddenSingleSimple1"] = " in ",
 			["_LcSimple1"] = " in ",
+			["_NakedSubsetSimple1"] = " in ",
+			["_HiddenSubsetSimple1"] = " in ",
 		};
 	}
 }

@@ -5316,6 +5316,12 @@
         <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.ToFullString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo">
             <summary>
             Provides a usage of <b>naked subset</b> technique.
@@ -5345,6 +5351,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.ToFullString(Sudoku.Globalization.CountryCode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo">
