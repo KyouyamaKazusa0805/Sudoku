@@ -13,4 +13,6 @@ Sometime I found that some little bugs are too hard to find, so now I'm going to
 | SUDOKU003 | suggestion | Redundant switch checking on closed `enum`s if they are marked `'/*closed*/'`. |          |
 | SUDOKU004 | warning    | Unnecessary pattern matching on basic types.                 |          |
 | SUDOKU005 | warning    | `in` parameters cannot call non-`readonly` instance members because they may cause side effect to create a new copy. |          |
+| SUDOKU006 | suggestion | Type implemented `IDisposable` shouldn't be initialized without `using`. |          |
+| SUDOKU007 | suggestion | Avoid using interpolated strings, and replace them with `new StringBuilder().Append` pattern. |          |
 
