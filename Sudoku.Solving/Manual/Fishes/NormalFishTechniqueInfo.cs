@@ -144,7 +144,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				var cells = Views[0].Cells!;
 				int digit = Digit + 1, regionsCount = BaseSets.Count;
 				using var elims = new ConclusionCollection(Conclusions);
-				static bool internalChecking(in DrawingInfo info) => info is { Id: 0 };
+				static bool finChecking(in DrawingInfo info) => info is { Id: 0 };
 				var sb = new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))
@@ -153,7 +153,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					.Append(" 在 ")
 					.Append(new RegionCollection(BaseSets).ToString())
 					.Append(" 里能填入的位置一共有 ")
-					.Append(cells.Count(&internalChecking))
+					.Append(cells.Count(&finChecking))
 					.Append(" 格（")
 					.Append(cells)
 					.Append("）。数独规则要求一个区域（行、列、宫）只能填入一次数字 ")
