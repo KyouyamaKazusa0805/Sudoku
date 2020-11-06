@@ -3762,6 +3762,12 @@
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.ToString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.ToFullString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher">
             <summary>
             Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.

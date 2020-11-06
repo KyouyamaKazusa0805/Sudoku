@@ -365,6 +365,7 @@ namespace Sudoku.Windows
 			["_LcSimple1"] = " in ",
 			["_NakedSubsetSimple1"] = " in ",
 			["_HiddenSubsetSimple1"] = " in ",
+			["_NormalFishSimple1"] = " in ",
 		};
 	}
 }

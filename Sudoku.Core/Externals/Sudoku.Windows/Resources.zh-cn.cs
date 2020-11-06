@@ -420,6 +420,8 @@ namespace Sudoku.Windows
 			["_HiddenSubsetSimple1"] = "在 ",
 			["_HiddenSubsetSimple2"] = " 里，数字 ",
 			["_HiddenSubsetSimple3"] = "的所有填数位置构成隐性数组",
+			["_NormalFishSimple1"] = "数字 ",
+			["_NormalFishSimple2"] = " 存在普通鱼结构——",
 		};
 	}
 }
