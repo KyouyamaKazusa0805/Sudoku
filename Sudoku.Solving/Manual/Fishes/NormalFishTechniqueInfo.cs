@@ -141,28 +141,28 @@ namespace Sudoku.Solving.Manual.Fishes
 
 			unsafe string toChinese()
 			{
-				var cells = Views[0].Cells!;
+				var candidates = Views[0].Candidates!;
 				int digit = Digit + 1, regionsCount = BaseSets.Count;
-				using var elims = new ConclusionCollection(Conclusions);
 				static bool finChecking(in DrawingInfo info) => info is { Id: 0 };
+				using var elims = new ConclusionCollection(Conclusions);
 				var sb = new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))
-					.Append("首先我们可以确定，数字 ")
+					.Append(Resources.GetValue("_NormalFish1"))
 					.Append(digit)
-					.Append(" 在 ")
+					.Append(Resources.GetValue("_NormalFish2"))
 					.Append(new RegionCollection(BaseSets).ToString())
-					.Append(" 里能填入的位置一共有 ")
-					.Append(cells.Count(&finChecking))
-					.Append(" 格（")
-					.Append(cells)
-					.Append("）。数独规则要求一个区域（行、列、宫）只能填入一次数字 ")
+					.Append(Resources.GetValue("_NormalFish3"))
+					.Append(candidates.Count(&finChecking))
+					.Append(Resources.GetValue("_NormalFish4"))
+					.Append(new SudokuMap(from candidate in candidates select candidate.Value))
+					.Append(Resources.GetValue("_NormalFish5"))
 					.Append(digit)
-					.Append("，因此，")
+					.Append(Resources.GetValue("_NormalFish6"))
 					.Append(regionsCount)
-					.Append(" 个区域就要填入")
+					.Append(Resources.GetValue("_NormalFish7"))
 					.Append(regionsCount)
-					.Append(" 个数字 ")
+					.Append(Resources.GetValue("_NormalFish8"))
 					.Append(digit)
 					.AppendLine(Resources.GetValue("Period"))
 					.AppendLine();
@@ -171,40 +171,35 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					null or { Count: 0 } when BaseSets[0] is >= 9 and < 18 is var isRowDirection =>
 						sb
-						.Append("我们刚才的这些单元格可以用一个长方形框起来，这意味着格子是行列交叉对应起来的。")
-						.Append("现在我们尝试随意往里面填入数字 ")
+						.Append(Resources.GetValue("_NormalFish9"))
 						.Append(digit)
-						.Append("。但由于这个长方形的约束，格子的行和列上都不能再填入这个数字，")
-						.AppendLine("因此我们使用这一点可以随意完成其中一种合适的填法。")
+						.AppendLine(Resources.GetValue("_NormalFish10"))
 						.AppendLine()
-						.Append("事实上，所有的填法都能够映射到一个相同的结论：由于结构是以")
+						.Append(Resources.GetValue("_NormalFish11"))
 						.Append(Resources.GetValue(isRowDirection ? "Row" : "Column"))
-						.Append("作为假设，所以结构可覆盖到的这些")
+						.Append(Resources.GetValue("_NormalFish12"))
 						.Append(Resources.GetValue(isRowDirection ? "Column" : "Row"))
-						.Append("上都能保证出现一次数字 ")
+						.Append(Resources.GetValue("_NormalFish13"))
 						.Append(digit)
-						.AppendLine("，位于刚才所谓的长方形上。")
+						.AppendLine(Resources.GetValue("_NormalFish14"))
 						.AppendLine()
-						.Append("因此，这些")
+						.Append(Resources.GetValue("_NormalFish15"))
 						.Append(Resources.GetValue(isRowDirection ? "Column" : "Row"))
-						.Append("上的其余单元格就不能填入数字 ")
+						.Append(Resources.GetValue("_NormalFish16"))
 						.Append(digit)
-						.Append(" 了，因此把它们都删除掉，是安全的，所以结论就是 ")
+						.Append(Resources.GetValue("_NormalFish17"))
 						.Append(elims.ToString())
 						.Append(Resources.GetValue("Period"))
 						.ToString(),
 					_ =>
 						sb
-						.Append("我们刚才的这些单元格可以用一个长方形框起来，这意味着格子是行列交叉对应起来的，不过 ")
+						.Append(Resources.GetValue("_NormalFish18"))
 						.Append(new GridMap(Fins))
-						.Append(" 是例外。如果我们直接忽略它们的话，逻辑将退化为一个普通的鱼，就可以确定删除的位置了；")
-						.Append("但由于现在出现了这些位置会影响到整体结构的推理，那么我们此时假设为真后，可以得到的是，")
-						.AppendLine("这些位置可以通过简单的、直接的排除法得到删数的位置。")
+						.AppendLine(Resources.GetValue("_NormalFish19"))
 						.AppendLine()
-						.Append("逻辑需要保证完整性，所以两种不同的情况都能排除到的位置，则一定是题目的结论。")
-						.Append("所以，通过逻辑推导，可以得到的是 ")
+						.Append(Resources.GetValue("_NormalFish20"))
 						.Append(elims.ToString())
-						.Append(" 即是题目的结论。")
+						.Append(Resources.GetValue("_NormalFish21"))
 						.ToString()
 				};
 			}
