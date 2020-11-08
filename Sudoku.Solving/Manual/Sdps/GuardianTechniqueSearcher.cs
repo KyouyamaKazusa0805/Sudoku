@@ -76,7 +76,10 @@ namespace Sudoku.Solving.Manual.Sdps
 
 							resultAccumulator.Add(
 								new GuardianTechniqueInfo(
-									new Conclusion[] { new(Elimination, elimination, digit) },
+									(
+										from c in guardians.PeerIntersection & CandMaps[digit]
+										select new Conclusion(Elimination, c, digit)
+									).ToArray(),
 									new View[]
 									{
 										new View(
