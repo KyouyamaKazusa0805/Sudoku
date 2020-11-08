@@ -166,18 +166,8 @@ namespace Sudoku.Solving.Manual.Sdps
 			resultAccumulator.Sort(&cmp);
 			accumulator.AddRange(resultAccumulator);
 
-			static int cmp(in GuardianTechniqueInfo l, in GuardianTechniqueInfo r)
-			{
-				GridMap lMap = l.Loop, lGuardians = l.Guardians, rMap = r.Loop, rGuardians = r.Guardians;
-				return true switch
-				{
-					_ when lMap.Count > rMap.Count => 1,
-					_ when lMap.Count < rMap.Count => -1,
-					_ when lGuardians.Count > rGuardians.Count => 1,
-					_ when lGuardians.Count < rGuardians.Count => -1,
-					_ => 0
-				};
-			}
+			static int cmp(in GuardianTechniqueInfo l, in GuardianTechniqueInfo r) =>
+				(l.Loop.Count + l.Guardians.Count).CompareTo(r.Loop.Count + r.Guardians.Count);
 		}
 	}
 }
