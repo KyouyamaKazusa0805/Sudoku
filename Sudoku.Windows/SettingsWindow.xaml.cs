@@ -98,32 +98,46 @@ namespace Sudoku.Windows
 			_labelModifiableFontName.FontFamily = new(Settings.ModifiableFontName);
 			_labelCandidateFontName.Content = Settings.CandidateFontName;
 			_labelCandidateFontName.FontFamily = new(Settings.CandidateFontName);
-			_buttonBackgroundColor.Background = new SolidColorBrush(Settings.BackgroundColor.ToWColor());
-			_buttonGivenColor.Background = new SolidColorBrush(Settings.GivenColor.ToWColor());
-			_buttonModifiableColor.Background = new SolidColorBrush(Settings.ModifiableColor.ToWColor());
-			_buttonCandidateColor.Background = new SolidColorBrush(Settings.CandidateColor.ToWColor());
-			_buttonFocusColor.Background = new SolidColorBrush(Settings.FocusedCellColor.ToWColor());
-			_buttonGridLineColor.Background = new SolidColorBrush(Settings.GridLineColor.ToWColor());
-			_buttonBlockLineColor.Background = new SolidColorBrush(Settings.BlockLineColor.ToWColor());
-			_buttonChainColor.Background = new SolidColorBrush(Settings.ChainColor.ToWColor());
-			_buttonCrosshatchingOutlineColor.Background = new SolidColorBrush(Settings.CrosshatchingInnerColor.ToWColor());
-			_buttonCrosshatchingValuesColor.Background = new SolidColorBrush(Settings.CrosshatchingOutlineColor.ToWColor());
-			_buttonCrossSignColor.Background = new SolidColorBrush(Settings.CrossSignColor.ToWColor());
-			_buttonColor1.Background = new SolidColorBrush(Settings.Color1.ToWColor());
-			_buttonColor2.Background = new SolidColorBrush(Settings.Color2.ToWColor());
-			_buttonColor3.Background = new SolidColorBrush(Settings.Color3.ToWColor());
-			_buttonColor4.Background = new SolidColorBrush(Settings.Color4.ToWColor());
-			_buttonColor5.Background = new SolidColorBrush(Settings.Color5.ToWColor());
-			_buttonColor6.Background = new SolidColorBrush(Settings.Color6.ToWColor());
-			_buttonColor7.Background = new SolidColorBrush(Settings.Color7.ToWColor());
-			_buttonColor8.Background = new SolidColorBrush(Settings.Color8.ToWColor());
-			_buttonColor9.Background = new SolidColorBrush(Settings.Color9.ToWColor());
-			_buttonColor10.Background = new SolidColorBrush(Settings.Color10.ToWColor());
-			_buttonColor11.Background = new SolidColorBrush(Settings.Color11.ToWColor());
-			_buttonColor12.Background = new SolidColorBrush(Settings.Color12.ToWColor());
-			_buttonColor13.Background = new SolidColorBrush(Settings.Color13.ToWColor());
-			_buttonColor14.Background = new SolidColorBrush(Settings.Color14.ToWColor());
-			_buttonColor15.Background = new SolidColorBrush(Settings.Color15.ToWColor());
+			ChangeColor(_buttonBackgroundColor, Settings.BackgroundColor.ToWColor());
+			ChangeColor(_buttonGivenColor, Settings.GivenColor.ToWColor());
+			ChangeColor(_buttonModifiableColor, Settings.ModifiableColor.ToWColor());
+			ChangeColor(_buttonCandidateColor, Settings.CandidateColor.ToWColor());
+			ChangeColor(_buttonFocusColor, Settings.FocusedCellColor.ToWColor());
+			ChangeColor(_buttonGridLineColor, Settings.GridLineColor.ToWColor());
+			ChangeColor(_buttonBlockLineColor, Settings.BlockLineColor.ToWColor());
+			ChangeColor(_buttonChainColor, Settings.ChainColor.ToWColor());
+			ChangeColor(_buttonCrosshatchingOutlineColor, Settings.CrosshatchingInnerColor.ToWColor());
+			ChangeColor(_buttonCrosshatchingValuesColor, Settings.CrosshatchingOutlineColor.ToWColor());
+			ChangeColor(_buttonCrossSignColor, Settings.CrossSignColor.ToWColor());
+			ChangeColor(_buttonColor1, Settings.Color1.ToWColor());
+			ChangeColor(_buttonColor2, Settings.Color2.ToWColor());
+			ChangeColor(_buttonColor3, Settings.Color3.ToWColor());
+			ChangeColor(_buttonColor4, Settings.Color4.ToWColor());
+			ChangeColor(_buttonColor5, Settings.Color5.ToWColor());
+			ChangeColor(_buttonColor6, Settings.Color6.ToWColor());
+			ChangeColor(_buttonColor7, Settings.Color7.ToWColor());
+			ChangeColor(_buttonColor8, Settings.Color8.ToWColor());
+			ChangeColor(_buttonColor9, Settings.Color9.ToWColor());
+			ChangeColor(_buttonColor10, Settings.Color10.ToWColor());
+			ChangeColor(_buttonColor11, Settings.Color11.ToWColor());
+			ChangeColor(_buttonColor12, Settings.Color12.ToWColor());
+			ChangeColor(_buttonColor13, Settings.Color13.ToWColor());
+			ChangeColor(_buttonColor14, Settings.Color14.ToWColor());
+			ChangeColor(_buttonColor15, Settings.Color15.ToWColor());
+		}
+
+		/// <summary>
+		/// Change the button's background and foreground color.
+		/// </summary>
+		/// <param name="button">The button.</param>
+		/// <param name="color">(<see langword="in"/> parameter) The color.</param>
+		private void ChangeColor(Button button, in Color color)
+		{
+			button.Background = new SolidColorBrush(color);
+			button.Foreground = new SolidColorBrush(getReverseForegroundColor(color));
+
+			static Color getReverseForegroundColor(in Color color) =>
+				(.299 * color.R + .587 * color.G + .114 * color.B) / 255 > .5 ? Colors.Black : Colors.White;
 		}
 
 		/// <summary>
@@ -150,14 +164,11 @@ namespace Sudoku.Windows
 					select @type
 				let prior = TechniqueProperties.GetPropertiesFrom(@type)!.Priority
 				orderby prior
+				let v = @type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName
 				select new ListBoxItem
 				{
 					Content =
-						new KeyedTuple<string, int, Type>(
-							CoreResources.GetValue(
-								$"Progress{@type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}"),
-							prior,
-							@type)
+						new KeyedTuple<string, int, Type>(CoreResources.GetValue($"Progress{v}"), prior, @type)
 				});
 			_listBoxPriority.SelectedIndex = 0;
 			var (_, priority, selectedType, _) =
@@ -178,7 +189,7 @@ namespace Sudoku.Windows
 			{
 				var target = color.Value.ToDColor();
 				typeof(WindowsSettings).GetProperty($"Color{colorIndex}")!.SetValue(settings, target);
-				button.Background = new SolidColorBrush(target.ToWColor());
+				ChangeColor(button, target.ToWColor());
 			}
 		}
 
@@ -314,7 +325,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.BackgroundColor = z.ToDColor();
-					_buttonBackgroundColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonBackgroundColor, z);
 				};
 			}
 		}
@@ -328,7 +339,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.GivenColor = z.ToDColor();
-					_buttonGivenColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonGivenColor, z);
 				};
 			}
 		}
@@ -342,7 +353,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.ModifiableColor = z.ToDColor();
-					_buttonModifiableColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonModifiableColor, z);
 				};
 			}
 		}
@@ -356,7 +367,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.CandidateColor = z.ToDColor();
-					_buttonCandidateColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonCandidateColor, z);
 				};
 			}
 		}
@@ -370,7 +381,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.FocusedCellColor = z.ToDColor();
-					_buttonFocusColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonFocusColor, z);
 				};
 			}
 		}
@@ -384,7 +395,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.GridLineColor = z.ToDColor();
-					_buttonGridLineColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonGridLineColor, z);
 				};
 			}
 		}
@@ -398,7 +409,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.BlockLineColor = z.ToDColor();
-					_buttonBlockLineColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonBlockLineColor, z);
 				};
 			}
 		}
@@ -412,7 +423,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.ChainColor = z.ToDColor();
-					_buttonChainColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonChainColor, z);
 				};
 			}
 		}
@@ -426,7 +437,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.CrosshatchingInnerColor = z.ToDColor();
-					_buttonCrosshatchingOutlineColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonCrosshatchingOutlineColor, z);
 				};
 			}
 		}
@@ -440,7 +451,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.CrosshatchingOutlineColor = z.ToDColor();
-					_buttonCrosshatchingValuesColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonCrosshatchingValuesColor, z);
 				};
 			}
 		}
@@ -454,7 +465,7 @@ namespace Sudoku.Windows
 				{
 					var z = color.Value;
 					Settings.CrossSignColor = z.ToDColor();
-					_buttonCrossSignColor.Background = new SolidColorBrush(z);
+					ChangeColor(_buttonCrossSignColor, z);
 				};
 			}
 		}

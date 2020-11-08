@@ -1654,6 +1654,13 @@
             Initialize setting controls.
             </summary>
         </member>
+        <member name="M:Sudoku.Windows.SettingsWindow.ChangeColor(System.Windows.Controls.Button,System.Windows.Media.Color@)">
+            <summary>
+            Change the button's background and foreground color.
+            </summary>
+            <param name="button">The button.</param>
+            <param name="color">(<see langword="in"/> parameter) The color.</param>
+        </member>
         <member name="M:Sudoku.Windows.SettingsWindow.CloseWindow(System.Boolean)">
             <summary>
             Close the window using the specified <see cref="T:System.Boolean"/> value indicating
