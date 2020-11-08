@@ -22,6 +22,12 @@
 		/// Indicates the strong link (<c>off</c> -&gt; <c>on</c>).
 		/// </summary>
 		[Name(" == ")]
-		Strong
+		Strong,
+
+		/// <summary>
+		/// Indicates the link is used for rendering as a normal line (without start and end node).
+		/// </summary>
+		[Name(" -- ")]
+		Line,
 	}
 }

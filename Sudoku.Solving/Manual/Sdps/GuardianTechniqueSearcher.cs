@@ -120,13 +120,10 @@ namespace Sudoku.Solving.Manual.Sdps
 											new(
 												tempLoop[i] * 9 + digit,
 												tempLoop[i + 1] * 9 + digit,
-												LinkType.Default));
+												LinkType.Line));
 									}
 									links.Add(
-										new(
-											tempLoop[^1] * 9 + digit,
-											tempLoop[0] * 9 + digit,
-											LinkType.Default));
+										new(tempLoop[^1] * 9 + digit, tempLoop[0] * 9 + digit, LinkType.Line));
 
 									loops.Add((
 										loopMap,

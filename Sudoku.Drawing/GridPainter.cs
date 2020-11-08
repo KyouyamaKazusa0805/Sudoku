@@ -352,7 +352,11 @@ namespace Sudoku.Drawing
 
 			// Iterate on each inference to draw the links and grouped nodes (if so).
 			var (cw, ch) = PointConverter.CandidateSize;
-			using var pen = new Pen(Settings.ChainColor, 2F) { CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F) };
+			using var arrowPen = new Pen(Settings.ChainColor, 2F)
+			{
+				CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F)
+			};
+			using var linePen = new Pen(Settings.ChainColor, 2F);
 
 #if OBSOLETE
 			// This brush is used for drawing grouped nodes.
@@ -361,7 +365,7 @@ namespace Sudoku.Drawing
 			foreach (var link in links)
 			{
 				var (start, end, type) = link;
-				pen.DashStyle = type switch { Strong => Solid, Weak => Dot, Default => Dash, _ => Dash };
+				arrowPen.DashStyle = type switch { Strong => Solid, Weak => Dot, Default => Dash, _ => Dash };
 
 				var pt1 = PointConverter.GetMouseCenter(new() { start });
 				var pt2 = PointConverter.GetMouseCenter(new() { end });
@@ -421,6 +425,7 @@ namespace Sudoku.Drawing
 				// Now cut the link.
 				CutLink(ref pt1, ref pt2, offset, cw, ch, pt1x, pt1y, pt2x, pt2y);
 
+				var penToDraw = type != Line ? arrowPen : linePen;
 				if (through)
 				{
 					double bezierLength = 20;
@@ -436,12 +441,13 @@ namespace Sudoku.Drawing
 					aAlpha = alpha + RotateAngle;
 					double bx2 = pt2.X - bezierLength * Cos(aAlpha), by2 = pt2.Y - bezierLength * Sin(aAlpha);
 
-					g.DrawBezier(pen, pt1.X, pt1.Y, (float)bx1, (float)by1, (float)bx2, (float)by2, pt2.X, pt2.Y);
+					g.DrawBezier(
+						penToDraw, pt1.X, pt1.Y, (float)bx1, (float)by1, (float)bx2, (float)by2, pt2.X, pt2.Y);
 				}
 				else
 				{
 					// Draw the link.
-					g.DrawLine(pen, pt1, pt2);
+					g.DrawLine(penToDraw, pt1, pt2);
 				}
 			}
 		}
@@ -478,8 +484,13 @@ namespace Sudoku.Drawing
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 
 			using var bCandidate = new SolidBrush(Settings.CandidateColor);
-			using var fCandidate = GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
-			using var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+			using var fCandidate =
+				GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
+			using var sf = new StringFormat
+			{
+				Alignment = StringAlignment.Center,
+				LineAlignment = StringAlignment.Center
+			};
 
 			foreach (var (id, candidate) in candidates)
 			{

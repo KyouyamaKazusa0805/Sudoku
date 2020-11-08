@@ -1996,6 +1996,11 @@
             Indicates the strong link (<c>off</c> -&gt; <c>on</c>).
             </summary>
         </member>
+        <member name="F:Sudoku.Data.LinkType.Line">
+            <summary>
+            Indicates the link is used for rendering as a normal line (without start and end node).
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.Node">
             <summary>
             Encapsulates a chain node.
