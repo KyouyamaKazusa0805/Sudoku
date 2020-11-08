@@ -20,7 +20,11 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55) { IsEnabled = false, DisabledReason = HasBugs };
+		public static TechniqueProperties Properties { get; } = new(55)
+		{
+			IsEnabled = false,
+			DisabledReason = HasBugs
+		};
 
 
 		/// <inheritdoc/>
