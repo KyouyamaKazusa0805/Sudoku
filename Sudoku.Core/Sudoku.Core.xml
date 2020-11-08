@@ -4,6 +4,16 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.AssemblyInitializer">
+            <summary>
+            Indicates the assembly initializer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.AssemblyInitializer.Initialize">
+            <summary>
+            The initialize method.
+            </summary>
+        </member>
         <member name="T:Sudoku.Constants.Processings">
             <summary>
             The tables for grid processing. All fields will be initialized in
@@ -20,10 +30,10 @@
         </member>
         <member name="M:Sudoku.Constants.Processings.GetLabel(System.Int32)">
             <summary>
-            Get the name in the specified region.
+            Get the label in the specified region.
             </summary>
             <param name="region">The region.</param>
-            <returns>The name.</returns>
+            <returns>The region label.</returns>
         </member>
         <member name="M:Sudoku.Constants.Processings.GetCells(System.Int32,System.Int16)">
             <summary>
@@ -488,6 +498,16 @@
             Initializes an instance with the specified collection.
             </summary>
             <param name="collection">The collection.</param>
+        </member>
+        <member name="P:Sudoku.Data.Collections.ConclusionCollection.Cells">
+            <summary>
+            Indicates all cells used in this conclusions list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Collections.ConclusionCollection.Digits">
+            <summary>
+            Indicates all digits used in this conclusions list, represented as a mask.
+            </summary>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.Dispose">
             <summary>
@@ -6481,8 +6501,8 @@
             The language source for the globalization string "<c>en-us</c>".
             </summary>
             <remarks>
-            Here we use reflection to call and use this field, which can't be recognized by
-            Roslyn, so we should suppress the complier warning IDE0052.
+            This field is not <see langword="readonly"/> because it can be initialized by the
+            module initializer.
             </remarks>
         </member>
         <member name="F:Sudoku.Windows.Resources.LangSourceZhCn">
@@ -6490,8 +6510,8 @@
             The language source for the globalization string "<c>zh-cn</c>".
             </summary>
             <remarks>
-            Here we use reflection to call and use this field, which can't be recognized by
-            Roslyn, so we should suppress the complier warning IDE0052.
+            This field is not <see langword="readonly"/> because it can be initialized by the
+            module initializer.
             </remarks>
         </member>
         <member name="T:Sudoku.Globalization.CountryCode">

@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Text;
 using Sudoku.Constants;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
-#if DEBUG
-using System.Diagnostics;
-using System.Text;
-#endif
 
 namespace Sudoku.Data
 {

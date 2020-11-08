@@ -1,7 +1,4 @@
-﻿#pragma warning disable IDE0052
-
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
 
 namespace Sudoku.Windows
 {
@@ -11,31 +8,30 @@ namespace Sudoku.Windows
 		/// The language source for the globalization string "<c>zh-cn</c>".
 		/// </summary>
 		/// <remarks>
-		/// Here we use reflection to call and use this field, which can't be recognized by
-		/// Roslyn, so we should suppress the complier warning IDE0052.
+		/// This field is not <see langword="readonly"/> because it can be initialized by the
+		/// module initializer.
 		/// </remarks>
-		private static readonly IReadOnlyDictionary<string, string> LangSourceZhCn = new Dictionary<string, string>
+		internal static IDictionary<string, string> LangSourceZhCn = new Dictionary<string, string>
 		{
-#line 1000
-			// Punctuation marks
+#line 1000 "Punctuation marks"
 			["Ellipsis"] = "……",
 			["Colon"] = "：",
+			["Period"] = "。",
+			["GoesTo"] = " => ",
+			["Backslash"] = "\\",
 
-#line 2000
-			// GridProgressResult
+#line 2000 "Grid progress result"
 			["UnsolvedCells"] = "剩余空格总数：",
 			["UnsolvedCandidates"] = "，剩余候选数总数：",
 
-#line 3000
-			// Solver
+#line 3000 "Solver"
 			["Manual"] = "人工",
 			["ManualLight"] = "人工 (轻量级)",
 			["Backtracking"] = "回溯",
 			["Bitwise"] = "位运算",
 			["OneLineLinq"] = "单行 LINQ",
 
-#line 4000
-			// StepFinder
+#line 4000 "Step finder"
 			["ProgressAlsWWing"] = "待定数组-W-Wing",
 			["ProgressAlsXyWing"] = "待定数组-XY-Wing",
 			["ProgressSinglyLinkedAlsXz"] = "待定数组-双强链/环",
@@ -79,8 +75,7 @@ namespace Sudoku.Windows
 			["GeneratingProgressSingular"] = "1 次盘面尝试",
 			["GeneratingProgressPlural"] = "次盘面尝试",
 
-#line 5000
-			// Separate words
+#line 5000 "Separate words"
 			["Petal"] = "个花瓣",
 			["Grouped"] = "区块",
 			["Bug"] = "全双值格致死解法",
@@ -89,6 +84,9 @@ namespace Sudoku.Windows
 			["Unique"] = "唯一",
 			["Hidden"] = "隐性",
 			["Category"] = "分组：",
+			["Row"] = "行",
+			["Column"] = "列",
+			["Block"] = "宫",
 			["AnalysisResultPuzzle"] = "题目：",
 			["AnalysisResultSolvingTool"] = "解题工具：",
 			["AnalysisResultSolvingSteps"] = "解题步骤：",
@@ -109,8 +107,7 @@ namespace Sudoku.Windows
 			["AnalysisResultAttributes"] = "题目特性：",
 			["AnalysisResultBackdoors"] = "后门：",
 
-#line 6000
-			// Techniques
+#line 6000 "Techniques"
 			["FullHouse"] = "同区剩余",
 			["LastDigit"] = "同数剩余",
 			["HiddenSingleRow"] = "行排除",
@@ -366,6 +363,86 @@ namespace Sudoku.Windows
 			["TemplateDelete"] = "模板删数",
 			["BowmanBingo"] = "试数",
 			["BruteForce"] = "计算机试数",
+
+#line 7000 "Technique info details"
+			["Equals"] = " = ",
+			["_FullHouse1"] = " 是当前区域唯一一个空格，所以可以确定是数字 ",
+			["_FullHouse2"] = "，即 ",
+			["_LastDigit1"] = "：全盘仅剩下唯一一个需要填入 ",
+			["_LastDigit2"] = " 的机会，由于只有 ",
+			["_LastDigit3"] = " 没有填入 ",
+			["_LastDigit4"] = " 了，所以可以确定 ",
+			["_HiddenSingle1"] = "：在 ",
+			["_HiddenSingle2"] = " 里，只有 ",
+			["_HiddenSingle3"] = " 是可以填入 ",
+			["_HiddenSingle4"] = " 的地方，所以可以确定 ",
+			["_HiddenSingleSimple1"] = ": 在 ",
+			["_HiddenSingleSimple2"] = " 里，",
+			["_NakedSingle1"] = " 仅可以填入数字 ",
+			["_NakedSingle2"] = "，因为别的情况都可从外部给出的确定值信息所排除，所以可以确定 ",
+			["_LcSimple1"] = "在 ",
+			["_LcSimple2"] = " 有关于 ",
+			["_LcSimple3"] = " 的区块",
+			["_Lc1"] = "可以发现数字 ",
+			["_Lc2"] = " 只能出现在 ",
+			["_Lc3"] = " 的固定几格上，而同时我们又可以发现，此时它们恰好处于同一个",
+			["_Lc4"] = "（即 ",
+			["_Lc5"] = "），因此我们可以知道，当前",
+			["_Lc6"] = "里的其它单元格就不能再填入 ",
+			["_Lc7"] = " 了，所以我们可以得到 ",
+			["_NakedSubset1"] = "在 ",
+			["_NakedSubset2"] = " 里，可以观察到 ",
+			["_NakedSubset3"] = " 全部都只能填入数字 ",
+			["_NakedSubset4"] = "。从细节上讲，就 ",
+			["_NakedSubset5"] = " 而言，",
+			["_NakedSubset6"] = " 一共是 ",
+			["_NakedSubset7"] = " 个单元格，在这些单元格里又恰好只能放 ",
+			["_NakedSubset8"] = "（一共是 ",
+			["_NakedSubset9"] = " 种不同的数字），这意味着数字如何变换顺序，格子内总是会出现一个 ",
+			["_NakedSubset10"] = "、一个 ",
+			["_NakedSubset11"] = " 的。因此，此",
+			["_NakedSubset12"] = "的其它单元格就不再可以填入数字是 ",
+			["_NakedSubset13"] = " 的其一了；否则，这其中的某个（或某些）数字必定会在 ",
+			["_NakedSubset14"] = " 里产生重复。因此，这个技巧的结论是 ",
+			["_NakedSubsetSimple1"] = "在 ",
+			["_NakedSubsetSimple2"] = " 里，数字 ",
+			["_NakedSubsetSimple3"] = " 构成了显性数组",
+			["_HiddenSubset1"] = "在 ",
+			["_HiddenSubset2"] = " 里，数字 ",
+			["_HiddenSubset3"] = " 只有 ",
+			["_HiddenSubset4"] = " 几个单元格里可以填。而又因为",
+			["_HiddenSubset5"] = " 一共是 ",
+			["_HiddenSubset6"] = " 个单元格，所以里面必须要放置 ",
+			["_HiddenSubset7"] = " 个数字。而 ",
+			["_HiddenSubset8"] = " 这 ",
+			["_HiddenSubset9"] = " 个数又必须填入到此",
+			["_HiddenSubset10"] = "里，所以刚好一个数字对应一个格子，不多不少。因此，这几个格子是没有机会填入别的数字的。因此结论就是 ",
+			["_HiddenSubsetSimple1"] = "在 ",
+			["_HiddenSubsetSimple2"] = " 里，数字 ",
+			["_HiddenSubsetSimple3"] = "的所有填数位置构成隐性数组",
+			["_NormalFish1"] = "首先我们可以确定，数字 ",
+			["_NormalFish2"] = " 在 ",
+			["_NormalFish3"] = " 里能填入的位置一共有 ",
+			["_NormalFish4"] = " 格（",
+			["_NormalFish5"] = "）。数独规则要求一个区域（行、列、宫）只能填入一次数字 ",
+			["_NormalFish6"] = "，因此，",
+			["_NormalFish7"] = " 个区域就要填入 ",
+			["_NormalFish8"] = " 个数字 ",
+			["_NormalFish9"] = "我们刚才的这些单元格可以用一个长方形框起来，这意味着格子是行列交叉对应起来的。现在我们尝试随意往里面填入数字 ",
+			["_NormalFish10"] = "。但由于这个长方形的约束，格子的行和列上都不能再填入这个数字，因此我们使用这一点可以随意完成其中一种合适的填法。",
+			["_NormalFish11"] = "事实上，所有的填法都能够映射到一个相同的结论：由于结构是以",
+			["_NormalFish12"] = "作为假设，所以结构可覆盖到的这些",
+			["_NormalFish13"] = "上都能保证出现一次数字 ",
+			["_NormalFish14"] = "，位于刚才所谓的长方形上。",
+			["_NormalFish15"] = "因此，这些",
+			["_NormalFish16"] = "上的其余单元格就不能填入数字 ",
+			["_NormalFish17"] = " 了，因此把它们都删除掉，是安全的，所以结论就是 ",
+			["_NormalFish18"] = "我们刚才的这些单元格可以用一个长方形框起来，这意味着格子是行列交叉对应起来的，不过 ",
+			["_NormalFish19"] = " 是例外。如果我们直接忽略它们的话，逻辑将退化为一个普通的鱼，就可以确定删除的位置了；但由于现在出现了这些位置会影响到整体结构的推理，那么我们此时假设为真后，可以得到的是，这些位置可以通过简单的、直接的排除法得到删数的位置。",
+			["_NormalFish20"] = "逻辑需要保证完整性，所以两种不同的情况都能排除到的位置，则一定是题目的结论。所以，通过逻辑推导，可以得到的是 ",
+			["_NormalFish21"] = " 即是题目的结论。",
+			["_NormalFishSimple1"] = "数字 ",
+			["_NormalFishSimple2"] = " 存在普通鱼结构——",
 		};
 	}
 }

@@ -59,6 +59,41 @@ namespace Sudoku.Data.Collections
 
 
 		/// <summary>
+		/// Indicates all cells used in this conclusions list.
+		/// </summary>
+		public GridMap Cells
+		{
+			get
+			{
+				var result = GridMap.Empty;
+				foreach (var conclusion in _collection)
+				{
+					result.AddAnyway(conclusion.Cell);
+				}
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Indicates all digits used in this conclusions list, represented as a mask.
+		/// </summary>
+		public short Digits
+		{
+			get
+			{
+				short result = 0;
+				foreach (var conclusion in _collection)
+				{
+					result |= (short)(1 << conclusion.Digit);
+				}
+
+				return result;
+			}
+		}
+
+
+		/// <summary>
 		/// To dispose this instance (frees the unmanaged memory).
 		/// </summary>
 		public void Dispose()
@@ -71,8 +106,7 @@ namespace Sudoku.Data.Collections
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
@@ -80,8 +114,7 @@ namespace Sudoku.Data.Collections
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
 		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
 
 		/// <inheritdoc cref="object.ToString"/>

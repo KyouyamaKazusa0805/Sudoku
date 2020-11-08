@@ -37,7 +37,12 @@ namespace Sudoku.Windows
 					Conclusions = techniqueInfo.Conclusions
 				};
 
+#if OBSOLETE
 				_textBoxInfo.Text = techniqueInfo.ToFullString();
+#else
+
+				_textBoxInfo.Text = techniqueInfo.ToFullString(Settings.LanguageCode);
+#endif
 
 				UpdateImageGrid();
 			}
@@ -62,7 +67,11 @@ namespace Sudoku.Windows
 						Conclusions = info.Conclusions
 					};
 
+#if OBSOLETE
 					_textBoxInfo.Text = info.ToFullString();
+#else
+					_textBoxInfo.Text = info.ToFullString(Settings.LanguageCode);
+#endif
 
 					UpdateImageGrid();
 				}

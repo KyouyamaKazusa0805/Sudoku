@@ -67,14 +67,15 @@ namespace Sudoku.Solving
 
 		/// <summary>
 		/// Returns a string that only contains the name and the basic information. Different with
-		/// <see cref="ToFullString"/>, the method will only contains the basic introduction about the technique.
+		/// <see cref="ToFullString()"/>, the method will only contains the basic introduction
+		/// about the technique.
 		/// For example, in the <see cref="ExocetTechniqueInfo"/>, the detail will contain the several special
-		/// eliminations, in this method, those won't be displayed, But the method <see cref="ToFullString"/>
+		/// eliminations, in this method, those won't be displayed, But the method <see cref="ToFullString()"/>
 		/// will.
 		/// </summary>
 		/// <returns>The string instance.</returns>
 		/// <seealso cref="ExocetTechniqueInfo"/>
-		/// <seealso cref="ToFullString"/>
+		/// <seealso cref="ToFullString()"/>
 		public abstract override string ToString();
 
 		/// <summary>
@@ -102,5 +103,15 @@ namespace Sudoku.Solving
 		/// <returns>The string instance.</returns>
 		/// <seealso cref="CountryCode"/>
 		public virtual string ToString(CountryCode countryCode) => ToString();
+
+		/// <summary>
+		/// Returns a string that contains the name, the conclusions and its all details; with
+		/// a specified country as a parameter of type <see cref="CountryCode"/>.
+		/// This method is used for displaying details in text box control.
+		/// </summary>
+		/// <param name="countryCode">The country code.</param>
+		/// <returns>The string instance.</returns>
+		/// <seealso cref="CountryCode"/>
+		public virtual string ToFullString(CountryCode countryCode) => ToString();
 	}
 }

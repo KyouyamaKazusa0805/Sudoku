@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Globalization;
+using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -23,11 +26,42 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override string ToString()
+		public override string ToString() =>
+			new StringBuilder()
+			.Append(Name)
+			.Append(Resources.GetValue("Colon"))
+			.Append(Resources.GetValue("Space"))
+			.Append(new GridMap { Cell })
+			.Append(Resources.GetValue("Equals"))
+			.Append(Digit + 1)
+			.ToString();
+
+		/// <inheritdoc/>
+		public override string ToFullString(CountryCode countryCode)
 		{
-			string cellStr = new GridMap { Cell }.ToString();
-			int value = Digit + 1;
-			return $"{Name}: {cellStr} = {value}";
+			return countryCode switch
+			{
+				CountryCode.ZhCn => toChinese(),
+				_ => base.ToFullString(countryCode)
+			};
+
+			string toChinese()
+			{
+				string cellStr = new GridMap { Cell }.ToString();
+				int digit = Digit + 1;
+				return new StringBuilder()
+					.Append(Name)
+					.Append(Resources.GetValue("Colon"))
+					.Append(cellStr)
+					.Append(Resources.GetValue("_FullHouse1"))
+					.Append(digit)
+					.Append(Resources.GetValue("_FullHouse2"))
+					.Append(cellStr)
+					.Append(Resources.GetValue("Equals"))
+					.Append(digit)
+					.Append(Resources.GetValue("Period"))
+					.ToString();
+			}
 		}
 	}
 }

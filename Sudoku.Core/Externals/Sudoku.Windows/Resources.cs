@@ -22,7 +22,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the current source.
 		/// </summary>
-		private static IReadOnlyDictionary<string, string> _dicPointer = null!;
+		private static IDictionary<string, string> _dicPointer = null!;
 
 
 		/// <summary>
@@ -98,7 +98,7 @@ namespace Sudoku.Windows
 
 			_dicPointer =
 				typeof(Resources).GetField($"LangSource{sb}", StaticNonpublic)?.GetValue(null)
-				as IReadOnlyDictionary<string, string> ?? LangSourceEnUs;
+				as IDictionary<string, string> ?? LangSourceEnUs;
 		}
 	}
 }
