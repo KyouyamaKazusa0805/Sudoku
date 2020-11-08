@@ -10,6 +10,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	/// <param name="Digit">The digit used.</param>
-	public abstract record SdpTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit)
+	public abstract record SdpTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit)
 		: TechniqueInfo(Conclusions, Views);
 }

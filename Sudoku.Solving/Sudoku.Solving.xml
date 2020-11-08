@@ -5028,6 +5028,12 @@
         <member name="P:Sudoku.Solving.Manual.Sdps.GuardianTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueInfo.Equals(Sudoku.Solving.Manual.Sdps.GuardianTechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueInfo.ToString">
             <inheritdoc/>
         </member>

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -9,7 +11,6 @@ using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Annotations.DisabledReason;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -20,146 +21,165 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55)
-		{
-			IsEnabled = false,
-			DisabledReason = HasBugs
-		};
+		public static TechniqueProperties Properties { get; } = new(55);
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public unsafe override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			// Check POM eliminations first.
-			bool[] elimKeys = { false, false, false, false, false, false, false, false, false };
+			var eliminationMaps = (stackalloc GridMap[9]);
 			var infos = new List<TechniqueInfo>();
 			new PomTechniqueSearcher().GetAll(infos, grid);
 			foreach (PomTechniqueInfo info in infos)
 			{
-				elimKeys[info.Digit] = true;
+				ref var map = ref eliminationMaps[info.Digit];
+				foreach (var conclusion in info.Conclusions)
+				{
+					map.AddAnyway(conclusion.Cell);
+				}
 			}
 
-			var tempList = new List<int>();
-			var tempGuardians = new List<GridMap>();
+			var resultAccumulator = new List<GuardianTechniqueInfo>();
 			for (int digit = 0; digit < 9; digit++)
 			{
-				var candMap = CandMaps[digit];
-				if (candMap.IsEmpty || !elimKeys[digit])
+				var eliminations = eliminationMaps[digit];
+				if (eliminations.IsEmpty)
 				{
 					continue;
 				}
 
-				foreach (int cell in candMap)
+				foreach (int elimination in eliminations)
 				{
-					tempList.Clear();
-					tempGuardians.Clear();
-					var loop = GridMap.Empty;
-
-					f(cell, (RegionLabel)(-1), -1);
-
-					void f(int cell, RegionLabel lastLabel, int lastRegion)
+					var loops = new List<(GridMap Map, GridMap Guardians, IReadOnlyList<Link> Links)>();
+					var tempLoop = new List<int>();
+					var globalMap = CandMaps[digit] - new GridMap(elimination);
+					foreach (int cell in globalMap)
 					{
-						tempList.Add(cell);
-						loop.AddAnyway(cell);
-						if (lastRegion != -1)
+						var loopMap = GridMap.Empty;
+						loops.Clear();
+						tempLoop.Clear();
+						f(cell, (RegionLabel)(-1), GridMap.Empty);
+
+						if (loops.Count == 0)
 						{
-							tempGuardians.Add((RegionMaps[lastRegion] & candMap) - loop);
+							continue;
 						}
 
-						bool flag = false;
-						foreach (int tempRegion in loop.Regions)
+						foreach (var (map, guardians, links) in loops)
 						{
-							if ((RegionMaps[tempRegion] & loop).Count >= 3)
-							{
-								flag = true;
-								break;
-							}
-						}
-						if (flag)
-						{
-							return;
+							var candidateOffsets = new List<DrawingInfo>();
+							candidateOffsets.AddRange(
+								from c in map select new DrawingInfo(0, c * 9 + digit));
+							candidateOffsets.AddRange(
+								from c in guardians select new DrawingInfo(1, c * 9 + digit));
+
+							resultAccumulator.Add(
+								new GuardianTechniqueInfo(
+									new Conclusion[] { new(Elimination, elimination, digit) },
+									new View[]
+									{
+										new View(
+											null,
+											candidateOffsets,
+											null,
+											links)
+									},
+									digit,
+									map,
+									guardians));
 						}
 
-						for (var label = Block; label <= Column; label++)
+						void f(int cell, RegionLabel lastLabel, GridMap guardians)
 						{
-							if (label == lastLabel)
-							{
-								continue;
-							}
+							loopMap.AddAnyway(cell);
+							tempLoop.Add(cell);
 
-							int region = GetRegion(cell, label);
-							foreach (int nextCell in RegionMaps[region] & candMap)
+							for (var label = Block; label <= Column; label++)
 							{
-								if (nextCell == cell)
+								if (label == lastLabel)
 								{
 									continue;
 								}
 
-								if (tempList[0] == nextCell && loop.Count >= 5 && (loop.Count & 1) == 1)
+								int region = GetRegion(cell, label);
+								var otherCellsMap = RegionMaps[region] & new GridMap(globalMap) { ~cell };
+								if (otherCellsMap.Count != 1)
 								{
-									tempGuardians.Add((RegionMaps[region] & candMap) - loop);
-
-									// Check eliminations.
-									var guardians = GridMap.Empty;
-									foreach (var guardian in tempGuardians)
-									{
-										guardians |= guardian;
-									}
-									if (guardians.Count > 20)
-									{
-										continue;
-									}
-
-									var peerMap = guardians.PeerIntersection;
-									if (peerMap.IsEmpty)
-									{
-										continue;
-									}
-
-									var elimMap = peerMap & candMap;
-									if (elimMap.IsEmpty)
-									{
-										continue;
-									}
-
-									var conclusions = new List<Conclusion>();
-									foreach (int elimCell in elimMap)
-									{
-										conclusions.Add(new(Elimination, elimCell, digit));
-									}
-
-									var candidateOffsets = new List<DrawingInfo>();
-									foreach (int loopCell in loop)
-									{
-										candidateOffsets.Add(new(0, loopCell * 9 + digit));
-									}
-									foreach (int guardianCell in guardians)
-									{
-										candidateOffsets.Add(new(1, guardianCell * 9 + digit));
-									}
-
-									accumulator.Add(
-										new GuardianTechniqueInfo(
-											conclusions,
-											new View[] { new(candidateOffsets) },
-											digit,
-											loop,
-											guardians));
-
-									return;
+									continue;
 								}
-								else if (!loop[nextCell])
-								{
-									f(nextCell, label, region);
 
-									loop.Remove(nextCell);
-									tempList.RemoveLastElement();
-									tempGuardians.RemoveLastElement();
+								int anotherCell = otherCellsMap.First;
+								if (tempLoop.Count is var count and >= 5 && (count & 1) != 0
+									&& tempLoop[0] == anotherCell)
+								{
+									var links = new List<Link>();
+									for (int i = 0; i < tempLoop.Count - 1; i++)
+									{
+										links.Add(
+											new(
+												tempLoop[i] * 9 + digit,
+												tempLoop[i + 1] * 9 + digit,
+												LinkType.Default));
+									}
+									links.Add(
+										new(
+											tempLoop[^1] * 9 + digit,
+											tempLoop[0] * 9 + digit,
+											LinkType.Default));
+
+									loops.Add((
+										loopMap,
+										new GridMap(
+											RegionMaps[new GridMap { cell, anotherCell }.CoveredRegions.First()]
+											& CandMaps[digit]
+											| guardians)
+										{
+											~cell,
+											~anotherCell
+										},
+										links));
+								}
+								else if (!loopMap[anotherCell])
+								{
+									f(
+										anotherCell,
+										label,
+										new GridMap(
+											RegionMaps[new GridMap { cell, anotherCell }.CoveredRegions.First()]
+											& CandMaps[digit]
+											| guardians)
+										{
+											~cell,
+											~anotherCell
+										});
 								}
 							}
+
+							loopMap.Remove(cell);
+							tempLoop.RemoveLastElement();
 						}
 					}
 				}
+			}
+
+			var set = new Set<GuardianTechniqueInfo>(resultAccumulator);
+			resultAccumulator.Clear();
+			resultAccumulator.AddRange(set);
+			resultAccumulator.Sort(&cmp);
+			accumulator.AddRange(resultAccumulator);
+
+			static int cmp(in GuardianTechniqueInfo l, in GuardianTechniqueInfo r)
+			{
+				GridMap lMap = l.Loop, lGuardians = l.Guardians, rMap = r.Loop, rGuardians = r.Guardians;
+				return true switch
+				{
+					_ when lMap.Count > rMap.Count => 1,
+					_ when lMap.Count < rMap.Count => -1,
+					_ when lGuardians.Count > rGuardians.Count => 1,
+					_ when lGuardians.Count < rGuardians.Count => -1,
+					_ => 0
+				};
 			}
 		}
 	}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -25,6 +26,14 @@ namespace Sudoku.Solving.Manual.Sdps
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+
+		/// <inheritdoc/>
+		public bool Equals(GuardianTechniqueInfo? other) =>
+			other is not null && (Loop, Guardians, Digit) == (other.Loop, other.Guardians, other.Digit);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => HashCode.Combine(Loop, Guardians, Digit);
 
 
 		/// <inheritdoc/>
