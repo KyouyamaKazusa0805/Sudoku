@@ -19,13 +19,13 @@ namespace Sudoku.Solving.Manual.Sdps
 		in GridMap Guardians) : SdpTechniqueInfo(Conclusions, Views, Digit)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.5M + .1M * (Loop.Count >> 1);
+		public override decimal Difficulty => 5.5M + .1M * (Loop.Count + (Guardians.Count >> 1) >> 1);
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.Guardian;
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 
 		/// <inheritdoc/>
