@@ -23,14 +23,8 @@ using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Windows;
 using static System.Console;
 
-#if DRAWING || true
-var a = Color.FromName("Red");
-var b = Color.FromKnownColor(KnownColor.Red);
-var c = Color.FromArgb(1, 2, 3, 4);
-
-Console.WriteLine(a);
-Console.WriteLine(b);
-Console.WriteLine(c);
+#if ANALYZER_AND_CODE_FIXER_TEST || true
+WriteLine(Resources.GetValue("Hell"));
 #endif
 
 #if FILE_COUNTER || false
