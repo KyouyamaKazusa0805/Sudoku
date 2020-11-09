@@ -8,8 +8,8 @@ Sometime I found that some little bugs are too hard to find, so now I'm going to
 
 | Label     | Type       | Description                                                  | Finished |
 | --------- | ---------- | ------------------------------------------------------------ | -------- |
-| SUDOKU001 | error      | Missing value on `Sudoku.Windows.Resource` resource dictionary. |          |
-| SUDOKU002 | suggestion | Chinese characters aren't friendly in the coding UI (may be unreadable), please extract them to `Sudoku.Windows.Resource` resource dictionary to create a new field. |          |
+| SUDOKU001 | error      | Missing value on resource dictionary.                        |          |
+| SUDOKU002 | suggestion | Chinese characters aren't friendly in the coding UI (may be unreadable), please extract them to resource dictionary to create a new field. |          |
 | SUDOKU003 | suggestion | Redundant switch checking on closed `enum`s if they are marked `'/*closed*/'`. |          |
 | SUDOKU004 | warning    | Unnecessary pattern matching on basic types.                 |          |
 | SUDOKU005 | warning    | `in` parameters cannot call non-`readonly` instance members because they may cause side effect to create a new copy. |          |
@@ -19,7 +19,8 @@ Sometime I found that some little bugs are too hard to find, so now I'm going to
 | SUDOKU009 | error      | Should explicitly specify `Properties`, a public, read-only and static property. |          |
 | SUDOKU010 | error      | Should explicitly specify `TechniqueSearcher` attribute.     |          |
 | SUDOKU011 | suggestion | Avoid unnecessary and unmeaningful `StringBuilder` output: `new StringBuilder().ToString()`. Try to replace with `string.Empty`. |          |
-| SUDOKU012 | suggestion | Avoid discard:  Use `grid.IsValid()` instead of `grid.IsValid(out _)`. |          |
+| SUDOKU012 | suggestion | Avoid discard:  Use `IsValid()` instead of `IsValid(out _)`. |          |
+| SUDOKU013 | suggestion | Avoid discard: Use `IsInOneRegion` instead of `AllSetsAreInOneRegion(out _)`. |          |
 
 
 
