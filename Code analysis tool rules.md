@@ -19,6 +19,7 @@ Sometime I found that some little bugs are too hard to find, so now I'm going to
 | SUDOKU009 | error      | Should explicitly specify `Properties`, a public, read-only and static property. |          |
 | SUDOKU010 | error      | Should explicitly specify `TechniqueSearcher` attribute.     |          |
 | SUDOKU011 | suggestion | Avoid unnecessary and unmeaningful `StringBuilder` output: `new StringBuilder().ToString()`. Try to replace with `string.Empty`. |          |
+| SUDOKU012 | suggestion | Avoid discard:  Use `grid.IsValid()` instead of `grid.IsValid(out _)`. |          |
 
 
 
