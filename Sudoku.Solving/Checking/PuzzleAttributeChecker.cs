@@ -20,7 +20,8 @@ namespace Sudoku.Solving.Checking
 
 
 		/// <summary>
-		/// Same as <see cref="IsValid(in SudokuGrid, out SudokuGrid)"/> and <see cref="IsValid(in SudokuGrid, out SudokuGrid, out bool?)"/>,
+		/// Same as <see cref="IsValid(in SudokuGrid, out SudokuGrid)"/> and
+		/// <see cref="IsValid(in SudokuGrid, out SudokuGrid, out bool?)"/>,
 		/// but doesn't contain any <see langword="out"/> parameters.
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
@@ -122,7 +123,7 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsMinimal(this in SudokuGrid @this)
+		public static unsafe bool IsMinimal(this in SudokuGrid @this)
 		{
 			int hintCount = 0;
 			int[] array = @this.ToArray();
@@ -147,7 +148,10 @@ namespace Sudoku.Solving.Checking
 				tempArrays[i][r * 9 + c] = 0;
 			}
 
-			return tempArrays.All(gridValues => !Solver.Solve(SudokuGrid.CreateInstance(gridValues)).HasSolved);
+			return tempArrays.All(&internalChecking);
+
+			static bool internalChecking(int[] gridValues) =>
+				!Solver.Solve(SudokuGrid.CreateInstance(gridValues)).HasSolved;
 		}
 
 		/// <summary>

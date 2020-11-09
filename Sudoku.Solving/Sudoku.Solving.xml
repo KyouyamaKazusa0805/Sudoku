@@ -890,7 +890,8 @@
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.SudokuGrid@)">
             <summary>
-            Same as <see cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)"/> and <see cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Nullable{System.Boolean}@)"/>,
+            Same as <see cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)"/> and
+            <see cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Nullable{System.Boolean}@)"/>,
             but doesn't contain any <see langword="out"/> parameters.
             </summary>
             <param name="this">(<see langword="this in"/> parameter) The grid.</param>
