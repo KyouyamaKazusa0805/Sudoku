@@ -65,6 +65,9 @@
 	<sys:String x:Key="_menuItemAnalyzeBackdoorView">（0 到 1 级）后门显示！</sys:String>
 	<sys:String x:Key="_menuItemViewsGspView">宇宙法检测显示！</sys:String>
 
+	<sys:String x:Key="_menuItemTools">工具</sys:String>
+	<sys:String x:Key="_menuItemToolsBatch">批量命令处理……</sys:String>
+
 	<sys:String x:Key="_menuItemTransform">变换</sys:String>
 	<sys:String x:Key="_menuItemTransformMirrorLeftRight">左右翻折</sys:String>
 	<sys:String x:Key="_menuItemTransformMirrorTopBotton">上下翻折</sys:String>
@@ -285,6 +288,9 @@
 	<sys:String x:Key="TechniqueViewWindowTitle">选择技巧</sys:String>
 	<sys:String x:Key="TechniqueViewWindowButtonSelect">选择</sys:String>
 	<sys:String x:Key="TechniqueViewWindowButtonCancel">取消</sys:String>
+
+	<sys:String x:Key="BatchWindowTitle">批量命令处理……</sys:String>
+	<sys:String x:Key="BatchWindowButtonBatch">开始处理！</sys:String>
 
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>

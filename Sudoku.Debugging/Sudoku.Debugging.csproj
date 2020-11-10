@@ -11,6 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.IO\Sudoku.IO.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 	</ItemGroup>

@@ -294,9 +294,8 @@ namespace Sudoku.Drawing
 
 			foreach (var (start, end) in directLines)
 			{
-				var (cw, ch) = PointConverter.CellSize;
-
 				// Draw start cells (may be a capsule-like shape to block them).
+				if (start.IsNotEmpty)
 				{
 					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
 					var p1 = PointConverter.GetMousePointInCenter(start.SetAt(0)) - PointConverter.CellSize / 2;
@@ -311,6 +310,7 @@ namespace Sudoku.Drawing
 				}
 
 				// Draw end cells (may be using cross sign to represent the current cell can't fill that digit).
+				if (end.IsNotEmpty)
 				{
 					foreach (int cell in end)
 					{
@@ -463,7 +463,22 @@ namespace Sudoku.Drawing
 		{
 			foreach (var (id, region) in regions)
 			{
-				if (Settings.PaletteColors.TryGetValue(id, out var color))
+				// A new rule:
+				// Here ID can save a color value quadruple if the higher 16 bits are all 1.
+				// The last 16 bits are A, R, G, B value from one color.
+				// Otherwise the ID value is only between -4 and 10 (at present, who knows
+				// whether the range will be extended larger or not).
+				if ((id >> 16 & 65535) == 65535)
+				{
+					int aWeight = id >> 12 & 255;
+					int rWeight = id >> 8 & 255;
+					int gWeight = id >> 4 & 255;
+					int bWeight = id & 255;
+
+					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
+					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3));
+				}
+				else if (Settings.PaletteColors.TryGetValue(id, out var color))
 				{
 					using var brush = new SolidBrush(Color.FromArgb(32, color));
 					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3));
@@ -495,17 +510,40 @@ namespace Sudoku.Drawing
 			foreach (var (id, candidate) in candidates)
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				if (!(Conclusions?.Any(&internalChecking, cell, digit) ?? false)
-					&& Settings.PaletteColors.TryGetValue(id, out var color))
+				if (!(Conclusions?.Any(&internalChecking, cell, digit) ?? false))
 				{
-					// In the normal case, I'll draw these circles.
-					using var brush = new SolidBrush(color);
-					g.FillEllipse(brush, PointConverter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
-
-					// In direct view, candidates should be drawn also.
-					if (!Settings.ShowCandidates)
+					// A new rule:
+					// Here ID can save a color value quadruple if the higher 16 bits are all 1.
+					// The last 16 bits are A, R, G, B value from one color.
+					// Otherwise the ID value is only between -4 and 10 (at present, who knows
+					// whether the range will be extended larger or not).
+					if ((id >> 16 & 65535) == 65535)
 					{
-						d(cell, digit);
+						int aWeight = id >> 12 & 255;
+						int rWeight = id >> 8 & 255;
+						int gWeight = id >> 4 & 255;
+						int bWeight = id & 255;
+
+						using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
+						g.FillEllipse(brush, PointConverter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+
+						// In direct view, candidates should be drawn also.
+						if (!Settings.ShowCandidates)
+						{
+							d(cell, digit);
+						}
+					}
+					else if (Settings.PaletteColors.TryGetValue(id, out var color))
+					{
+						// In the normal case, I'll draw these circles.
+						using var brush = new SolidBrush(color);
+						g.FillEllipse(brush, PointConverter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+
+						// In direct view, candidates should be drawn also.
+						if (!Settings.ShowCandidates)
+						{
+							d(cell, digit);
+						}
 					}
 				}
 			}
@@ -541,7 +579,24 @@ namespace Sudoku.Drawing
 		{
 			foreach (var (id, cell) in cells)
 			{
-				if (Settings.PaletteColors.TryGetValue(id, out var color))
+				// A new rule:
+				// Here ID can save a color value quadruple if the higher 16 bits are all 1.
+				// The last 16 bits are A, R, G, B value from one color.
+				// Otherwise the ID value is only between -4 and 10 (at present, who knows
+				// whether the range will be extended larger or not).
+				if ((id >> 16 & 65535) == 65535)
+				{
+					int aWeight = id >> 12 & 255;
+					int rWeight = id >> 8 & 255;
+					int gWeight = id >> 4 & 255;
+					int bWeight = id & 255;
+
+					var (cw, ch) = PointConverter.CellSize;
+					var (x, y) = PointConverter.GetMousePointInCenter(cell);
+					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
+					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
+				}
+				else if (Settings.PaletteColors.TryGetValue(id, out var color))
 				{
 					var (cw, ch) = PointConverter.CellSize;
 					var (x, y) = PointConverter.GetMousePointInCenter(cell);

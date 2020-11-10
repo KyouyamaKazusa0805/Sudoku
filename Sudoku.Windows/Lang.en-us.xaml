@@ -65,6 +65,9 @@
 	<sys:String x:Key="_menuItemAnalyzeBackdoorView">Backdoor (level 0 &amp; 1) view!</sys:String>
 	<sys:String x:Key="_menuItemViewsGspView">Gurth's Symmetrical Placement view!</sys:String>
 
+	<sys:String x:Key="_menuItemTools">Tools</sys:String>
+	<sys:String x:Key="_menuItemToolsBatch">Batch...</sys:String>
+
 	<sys:String x:Key="_menuItemTransform">Transform</sys:String>
 	<sys:String x:Key="_menuItemTransformMirrorLeftRight">Mirror left &amp; right</sys:String>
 	<sys:String x:Key="_menuItemTransformMirrorTopBotton">Mirror top &amp; bottom</sys:String>
@@ -285,6 +288,9 @@
     <sys:String x:Key="TechniqueViewWindowTitle">Choose the techniques</sys:String>
 	<sys:String x:Key="TechniqueViewWindowButtonSelect">Select</sys:String>
 	<sys:String x:Key="TechniqueViewWindowButtonCancel">Cancel</sys:String>
+
+	<sys:String x:Key="BatchWindowTitle">Batch...</sys:String>
+	<sys:String x:Key="BatchWindowButtonBatch">Start to batch!</sys:String>
 
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>

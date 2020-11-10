@@ -188,7 +188,7 @@
 						  Name="_menuItemAnalyzeBackdoor"
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
 			</MenuItem>
-
+			
 			<!-- Views -->
 			<MenuItem Header="{DynamicResource _menuItemViews}">
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowBugN}"
@@ -200,6 +200,12 @@
 				<MenuItem Header="{DynamicResource _menuItemViewsGspView}"
 						  Name="_menuItemViewsGspView"
 						  Click="MenuItemViewsGspView_Click"/>
+			</MenuItem>
+
+			<!-- Tools -->
+			<MenuItem Header="{DynamicResource _menuItemTools}">
+				<MenuItem Header="{DynamicResource _menuItemToolsBatch}" Name="_menuItemToolsBatch"
+						  Click="MenuItemToolsBatch_Click"/>
 			</MenuItem>
 
 			<!-- Transform -->

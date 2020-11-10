@@ -75,6 +75,30 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.BatchWindow">
+            <summary>
+            Interaction logic for <c>BatchWindow.xaml</c>.
+            </summary>
+            <summary>
+            BatchWindow
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.BatchWindow._settings">
+            <summary>
+            The internal settings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.BatchWindow.#ctor(Sudoku.Windows.WindowsSettings)">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="M:Sudoku.Windows.BatchWindow.ButtonBatch_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.BatchWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Sudoku.Windows.BugNSearchWindow">
             <summary>
             Interaction logic for <c>BugNSearchWindow.xaml</c>.
@@ -1026,6 +1050,9 @@
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.MenuItemAnalyzeBugN_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.MainWindow.MenuItemToolsBatch_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.MenuItemTransformMirrorLeftRight_Click(System.Object,System.Windows.RoutedEventArgs)">

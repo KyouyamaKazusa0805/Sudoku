@@ -79,6 +79,261 @@
             Indicates the text file format (<c>*.txt</c>).
             </summary>
         </member>
+        <member name="T:Sudoku.IO.BatchExecutingEventHandler">
+            <summary>
+            Indicates the event handler that is sued for batch executing.
+            </summary>
+        </member>
+        <member name="T:Sudoku.IO.BatchExecutor">
+            <summary>
+            Encapsulates a batch code executor. This class stands for a instance
+            that can execute a specified step, such as draw a picture, save a picture, etc..
+            </summary>
+            <remarks>
+            All available batches are below:
+            <list type="table">
+            <item>
+            <term><c>Create workspace with width &lt;width&gt; height &lt;height&gt;</c></term>
+            <description>
+            Create an empty and new picture workspace with the specified width and height.
+            </description>
+            </item>
+            <item>
+            <term><c>Fill given &lt;digit&gt; in &lt;cell&gt;</c></term>
+            <description>Draw a specified given in a specified cell.</description>
+            </item>
+            <item>
+            <term><c>Fill modifiable &lt;digit&gt; in &lt;cell&gt;</c></term>
+            <description>Draw a specified modifiable in a specified cell.</description>
+            </item>
+            <item>
+            <term><c>Fill candidate &lt;digit&gt; in &lt;cell&gt;</c></term>
+            <description>Draw a specified candidate in a specified cell.</description>
+            </item>
+            <item>
+            <term><c>Draw cell &lt;cell&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c></term>
+            <description>Paint a color for a specified cell.</description>
+            </item>
+            <item>
+            <term>
+            <c>Draw candidate &lt;cell&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            </term>
+            <description>Paint a color for a specified candidate.</description>
+            </item>
+            <item>
+            <term>
+            <c>Draw region &lt;region&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            </term>
+            <description>Draw a color for a specified region.</description>
+            </item>
+            <item>
+            <term>
+            <c>Draw row &lt;row&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            </term>
+            <description>Draw a color for a specified row.</description>
+            </item>
+            <item>
+            <term>
+            <c>Draw column &lt;column&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            </term>
+            <description>Draw a color for a specified column.</description>
+            </item>
+            <item>
+            <term>
+            <c>Draw block &lt;block&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            </term>
+            <description>Draw a color for a specified block.</description>
+            </item>
+            <item>
+            <term>
+            <c>Draw chain from &lt;candidate1&gt; to &lt;candidate2&gt; type (line|chain)</c>
+            </term>
+            <description>Draw a chain.</description>
+            </item>
+            <item>
+            <term>
+            <c>Draw cross &lt;cell&gt;</c>
+            </term>
+            <description>Draw a cross sign (used for direct lines).</description>
+            </item>
+            <item>
+            <term>
+            <c>Draw circle &lt;cell&gt;</c>
+            </term>
+            <description>Draw a circle sign (used for direct lines).</description>
+            </item>
+            <item>
+            <term><c>Save to &lt;path&gt;</c></term>
+            <description>
+            Save the current picture to the specified path. If the current memory doesn't contain
+            any pictures here, it'll do nothing.
+            </description>
+            </item>
+            <item>
+            <term><c>Close</c></term>
+            <description>
+            Close the current workspace. If the current memory doesn't contain any pictures here,
+            it'll do nothing.
+            </description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.IO.BatchExecutor.EmptyHandler">
+            <summary>
+            Indicates the empty handler.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.BatchExecutor._settings">
+            <summary>
+            The settings.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.BatchExecutor._pointConverter">
+            <summary>
+            The internal point converter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.BatchExecutor._painter">
+            <summary>
+            Indicates the inner grid painter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.BatchExecutor._batchExecuting">
+            <summary>
+            The list of methods that should be executed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.#ctor(Sudoku.Drawing.Settings)">
+            <summary>
+            Initializes an instance with the specified settings.
+            </summary>
+            <param name="settings">The settings.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.Execute">
+            <summary>
+            Execute the batch.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.Clear">
+            <summary>
+            Clear all executions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.Create(System.String[])">
+            <summary>
+            Create a workspace.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.Close">
+            <summary>
+            Close the workspace.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawCell(System.String[])">
+            <summary>
+            Draw a color for a cell.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawCandidate(System.String[])">
+            <summary>
+            Draw a color for a candidate.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawRegion(System.String[])">
+            <summary>
+            Draw a color for a region.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawRow(System.String[])">
+            <summary>
+            Draw a color for a row.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawColumn(System.String[])">
+            <summary>
+            Draw a color for a column.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawBlock(System.String[])">
+            <summary>
+            Draw a color for a block.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawChain(System.String[])">
+            <summary>
+            Draw a chain.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawCross(System.String[])">
+            <summary>
+            Draw cross sign.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawCircle(System.String[])">
+            <summary>
+            Draw circle sign.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.DrawInternal(System.String[],System.Int32,System.Int32,System.Action{System.Int32,System.Int32})">
+            <summary>
+            The internal drawing method.
+            </summary>
+            <param name="args">The arguments.</param>
+            <param name="min">The minimum value to check.</param>
+            <param name="max">The maximum value to check.</param>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.FillGiven(System.String[])">
+            <summary>
+            Draw given values.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.FillModifiable(System.String[])">
+            <summary>
+            Draw modifiable values.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.FillCandidate(System.String[])">
+            <summary>
+            Draw candidates.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.SavePictureToSpecifiedPath(System.String[])">
+            <summary>
+            Save the current drawed picture to the specified path.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.FillValueInternal(System.String[],System.Action{System.Int32,System.Int32})">
+            <summary>
+            The internal method for filling a value.
+            </summary>
+            <param name="args">The arguments.</param>
+            <param name="valueFill">The value filling method.</param>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.TryParse(System.String,Sudoku.Drawing.Settings,Sudoku.IO.BatchExecutor@)">
+            <summary>
+            Try to parse batch codes and convert to the 
+            </summary>
+            <param name="batch">The batch code.</param>
+            <param name="settings">The settings.</param>
+            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.IO.PictureFileType">
             <summary>
             Encapsulates a picture type.

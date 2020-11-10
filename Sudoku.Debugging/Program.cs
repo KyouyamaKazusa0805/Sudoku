@@ -14,7 +14,9 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Diagnostics;
+using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.IO;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Manual;
@@ -23,12 +25,8 @@ using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Windows;
 using static System.Console;
 
-#if ANALYZER_AND_CODE_FIXER_TEST || true
-WriteLine(Resources.GetValue("Hell"));
-#endif
-
-#if FILE_COUNTER || false
-string root = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
+#if FILE_COUNTER || true
+string root = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName;
 
 WriteLine(new FileCounter(root, "cs", withBinOrObjDirectory: false).CountUp());
 #endif

@@ -754,6 +754,10 @@ namespace Sudoku.Windows
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void MenuItemToolsBatch_Click(object sender, RoutedEventArgs e) =>
+			new BatchWindow(Settings).Show();
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformMirrorLeftRight_Click(object sender, RoutedEventArgs e) =>
 			Transform(&SudokuGridTransformations.MirrorLeftRight);
 
