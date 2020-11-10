@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE1006
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -16,11 +14,6 @@ using CoreResources = Sudoku.Windows.Resources;
 
 namespace Sudoku.Windows
 {
-	/// <summary>
-	/// Indicates the assignment handler.
-	/// </summary>
-	internal delegate void Assignment();
-
 	/// <summary>
 	/// Interaction logic for <c>SettingsWindow.xaml</c>.
 	/// </summary>
@@ -165,11 +158,8 @@ namespace Sudoku.Windows
 				let prior = TechniqueProperties.GetPropertiesFrom(@type)!.Priority
 				orderby prior
 				let v = @type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName
-				select new ListBoxItem
-				{
-					Content =
-						new KeyedTuple<string, int, Type>(CoreResources.GetValue($"Progress{v}"), prior, @type)
-				});
+				let c = new KeyedTuple<string, int, Type>(CoreResources.GetValue($"Progress{v}"), prior, @type)
+				select new ListBoxItem { Content = c });
 			_listBoxPriority.SelectedIndex = 0;
 			var (_, priority, selectedType, _) =
 				(KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
