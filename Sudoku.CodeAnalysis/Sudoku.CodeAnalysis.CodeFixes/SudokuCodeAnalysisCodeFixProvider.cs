@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
+using System;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -28,13 +29,23 @@ namespace Sudoku.CodeAnalysis
 		public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{
 			var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
+			if (root is null)
+			{
+				return;
+			}
 
 			// TODO: Replace the following code with your own analysis, generating a CodeAction for each fix to suggest
 			var diagnostic = context.Diagnostics.First();
 			var diagnosticSpan = diagnostic.Location.SourceSpan;
 
 			// Find the type declaration identified by the diagnostic.
-			var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
+			var parent = root.FindToken(diagnosticSpan.Start).Parent;
+			if (parent is null)
+			{
+				return;
+			}
+
+			var declaration = parent.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
 
 			// Register a code action that will invoke the fix.
 			context.RegisterCodeFix(
@@ -54,6 +65,10 @@ namespace Sudoku.CodeAnalysis
 			// Get the symbol representing the type to be renamed.
 			var semanticModel = await document.GetSemanticModelAsync(cancellationToken);
 			var typeSymbol = semanticModel.GetDeclaredSymbol(typeDecl, cancellationToken);
+			if (typeSymbol is null)
+			{
+				throw new Exception();
+			}
 
 			// Produce a new solution that has all references to that type renamed, including the declaration.
 			var originalSolution = document.Project.Solution;

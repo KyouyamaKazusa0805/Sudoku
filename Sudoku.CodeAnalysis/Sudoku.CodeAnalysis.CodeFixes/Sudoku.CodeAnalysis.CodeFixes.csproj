@@ -5,6 +5,11 @@
 		<LangVersion>9.0</LangVersion>
 		<IsPackable>false</IsPackable>
 		<RootNamespace>Sudoku.CodeAnalysis</RootNamespace>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DefineConstants>DEBUG;TRACE</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

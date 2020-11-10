@@ -17,8 +17,8 @@ namespace Sudoku.CodeAnalysis
 			id: "SUDOKU001",
 			title: "Missing value on resource dictionary",
 			messageFormat: "Missing value on resource dictionary",
-			category: "Naming",
-			defaultSeverity: DiagnosticSeverity.Warning,
+			category: "Other",
+			defaultSeverity: DiagnosticSeverity.Error,
 			isEnabledByDefault: true,
 			description: "Missing value on resource dictionary.");
 
