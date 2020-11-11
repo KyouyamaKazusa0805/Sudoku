@@ -17,13 +17,23 @@ namespace Sudoku.Solving.Generating
 	public class HardPatternPuzzleGenerator : DiggingPuzzleGenerator
 	{
 		/// <summary>
+		/// The block factor.
+		/// </summary>
+		private static readonly int[] BlockFactor = { 0, 6, 54, 60, 3, 27, 33, 57, 30 };
+
+		/// <summary>
+		/// Indicates the swapping factor.
+		/// </summary>
+		private static readonly int[,] SwappingFactor = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
+
+		/// <summary>
 		/// The backdoor searcher.
 		/// </summary>
 		private static readonly BackdoorSearcher BackdoorSearcher = new();
 
 
 		/// <inheritdoc/>
-		public override SudokuGrid Generate() => Generate(-1, null, DifficultyLevel.Unknown, CountryCode.Default);
+		public override SudokuGrid Generate() => Generate(-1, null);
 
 		/// <summary>
 		/// To generate a sudoku grid with a backdoor filter depth.
@@ -41,9 +51,9 @@ namespace Sudoku.Solving.Generating
 			DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
 			CountryCode countryCode = CountryCode.Default)
 		{
-			PuzzleGeneratingProgressResult defaultValue = default;
-			var pr = new PuzzleGeneratingProgressResult(
-				0, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
+			PuzzleGeneratingProgressResult
+				defaultValue = default,
+				pr = new(0, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			progress?.Report(defaultValue);
 
@@ -125,9 +135,6 @@ namespace Sudoku.Solving.Generating
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static double rnd() => Rng.NextDouble();
 
-			int[] box = { 0, 6, 54, 60, 3, 27, 33, 57, 30 };
-			int[,] t = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
-
 			int a = 54, b = 0;
 			for (int i = 0; i < 9; i++)
 			{
@@ -136,7 +143,7 @@ namespace Sudoku.Solving.Generating
 				{
 					for (int k = 0; k < 3; k++)
 					{
-						pattern[(k == t[n, j] ? ref a : ref b)++] = box[i] + j * 9 + k;
+						pattern[(k == SwappingFactor[n, j] ? ref a : ref b)++] = BlockFactor[i] + j * 9 + k;
 					}
 				}
 			}
@@ -166,7 +173,8 @@ namespace Sudoku.Solving.Generating
 		/// <param name="pattern">The pattern array.</param>
 		private static void RecreatePattern(int[] pattern)
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)] static double rnd() => Rng.NextDouble();
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static double rnd() => Rng.NextDouble();
 
 			for (int i = 23; i >= 0; i--)
 			{

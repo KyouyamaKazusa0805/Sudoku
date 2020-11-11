@@ -1271,6 +1271,16 @@
             Provides an extended puzzle generator.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.BlockFactor">
+            <summary>
+            The block factor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.SwappingFactor">
+            <summary>
+            Indicates the swapping factor.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.BackdoorSearcher">
             <summary>
             The backdoor searcher.
