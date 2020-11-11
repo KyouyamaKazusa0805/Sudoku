@@ -76,10 +76,8 @@ Please download [this](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/Su
 
 This whole solution consists of several folders below:<br/>这个解决方案由如下文件夹构成：
 
-* [`Examples`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Examples): The project providing with examples you may use.<br/>这个项目陈列的是一些你可能会用到的例子。
 * [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core): The main data structure implementation of the sudoku elementary.<br/>对数独基本元素的主要数据结构的实现。
 * [`Sudoku.DocComments`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.DocComments): I just want to say this project is useless but for providing other projects with document comments. Due to some reason hard to say, I've deleted the XML files used for providing with comments and using real instances to offer comments.<br/>我只想说，这个项目除了给别的项目提供文档注释以外，就没别的用了。由于一些比较难说的原因，我把用来提供文档注释的 XML 文件都删掉了，改成了真正的实体对象。
-* [`Sudoku.Documents`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Documents): The project for parsing doc comment files and generating Markdown files.<br/>解析文档注释文件并生成 Markdown 的项目。
 * [`Sudoku.Drawing`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Drawing): The project that can be used for drawing and rendering sudoku grids.<br/>这个项目用于绘制和渲染数独盘面。
 * [`Sudoku.IO`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.IO): The project handling IO operations over sudoku.<br/>这个项目用于处理数独相关的 IO 操作。
 * [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving): The generating and solving project.<br/>解题和题目生成的项目。
