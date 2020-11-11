@@ -431,7 +431,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-			action(-65536 | a << 12 | r << 8 | g << 4 | b, c - 1);
+			const int z = -559087616; // 0xDEAD << 16
+			action(z | a << 12 | r << 8 | g << 4 | b, c - 1);
 		}
 
 		/// <summary>
