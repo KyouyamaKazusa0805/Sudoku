@@ -2,7 +2,7 @@
 using System.Drawing;
 using Emgu.CV.Structure;
 
-namespace Sudoku.Recognitions.Extensions
+namespace Sudoku.Recognition.Extensions
 {
 	/// <summary>
 	/// Provides the extensions methods for point array <see cref="PointF"/>[].

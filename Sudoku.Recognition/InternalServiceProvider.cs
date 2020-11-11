@@ -14,7 +14,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 #endif
 
-namespace Sudoku.Recognitions
+namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Define a recognizer.

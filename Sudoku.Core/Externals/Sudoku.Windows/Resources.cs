@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using Sudoku.Globalization;
-using static System.Reflection.BindingFlags;
-using static System.StringSplitOptions;
 
 namespace Sudoku.Windows
 {
@@ -13,12 +10,6 @@ namespace Sudoku.Windows
 	/// <seealso cref="Windows"/>
 	public static partial class Resources
 	{
-		/// <summary>
-		/// The field that means the field is <see langword="static"/> and non-<see langword="public"/>.
-		/// </summary>
-		private const BindingFlags StaticNonpublic = NonPublic | Static;
-
-
 		/// <summary>
 		/// Indicates the current source.
 		/// </summary>
@@ -68,37 +59,13 @@ namespace Sudoku.Windows
 		/// Get the dictionary with the specified globalization string.
 		/// </summary>
 		/// <param name="countryCode">The country code.</param>
-		private static void GetDictionary(CountryCode countryCode)
-		{
-			if (countryCode == CountryCode.Default)
-			{
-				return;
-			}
-
-			// The implementation of the merged dictionary that is the same as the windows
-			// is too difficult... Here we use reflection to implement this.
-			string[] z = NameAttribute.GetName(countryCode)!.Split('-', RemoveEmptyEntries);
-			var sb = new StringBuilder();
-			for (int i = 0; i < z.Length; i++)
-			{
-				unsafe
-				{
-					fixed (char* c = z[i])
-					{
-						if (*c is >= 'a' and <= 'z')
-						{
-							// To upper case.
-							*c &= (char)0x5F;
-						}
-					}
-				}
-
-				sb.Append(z[i]);
-			}
-
+		private static void GetDictionary(CountryCode countryCode) =>
 			_dicPointer =
-				typeof(Resources).GetField($"LangSource{sb}", StaticNonpublic)?.GetValue(null)
-				as IDictionary<string, string> ?? LangSourceEnUs;
-		}
+				countryCode != CountryCode.Default
+				&& typeof(Resources)
+				.GetField($"LangSource{countryCode}", BindingFlags.NonPublic | BindingFlags.Static)?
+				.GetValue(null) is IDictionary<string, string> r
+				? r
+				: LangSourceEnUs;
 	}
 }

@@ -978,17 +978,14 @@ namespace Sudoku.Windows
 
 			// Get the specified dictionary.
 			ResourceDictionary? g(string p) => dictionaries.FirstOrDefault(d => d.Source.OriginalString == p);
-			static string s(CountryCode code) => NameAttribute.GetName(code)!;
-			if (
-				(g($"Lang.{s(countryCode)}.xaml") ?? g("Lang.en-us.xaml"))
-				is not ResourceDictionary resourceDictionary)
+			if ((g($"Lang{countryCode}.xaml") ?? g("LangEnUs.xaml")) is not ResourceDictionary rd)
 			{
 				Messagings.FailedToLoadGlobalizationFile();
 				return;
 			}
 
-			mergedDic.Remove(resourceDictionary);
-			mergedDic.Add(resourceDictionary);
+			mergedDic.Remove(rd);
+			mergedDic.Add(rd);
 
 			// Then change the language of the library 'Sudoku.Core'.
 			CoreResources.ChangeLanguage(countryCode);

@@ -1,8 +1,10 @@
-﻿using System;
+﻿#if SUDOKU_RECOGNITION
+
+using System;
 using System.Runtime.Serialization;
 using Sudoku.Runtime;
 
-namespace Sudoku.Recognitions
+namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Represents an error that the OCR tools can't work normally.
@@ -27,3 +29,4 @@ namespace Sudoku.Recognitions
 		}
 	}
 }
+#endif

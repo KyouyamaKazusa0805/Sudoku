@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<Authors>Sunnie</Authors>
+		<Description>This project encapsulates the operation and constants for globalization interactions.</Description>
+		<Copyright>Copyright (c) Sunnie 2020</Copyright>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>.\Sudoku.Globalization.xml</DocumentationFile>
+	</PropertyGroup>
+
+</Project>

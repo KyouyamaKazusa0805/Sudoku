@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.DocComments;
 
-namespace Sudoku.Recognitions
+namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Define a sudoku recognition service provider.

@@ -5,7 +5,7 @@ using System.Windows.Input;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
-using Sudoku.Recognitions;
+using Sudoku.Recognition;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using WPoint = System.Windows.Point;

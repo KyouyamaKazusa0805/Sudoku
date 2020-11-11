@@ -2,7 +2,7 @@
 using Emgu.CV.Structure;
 using Sudoku.DocComments;
 
-namespace Sudoku.Recognitions.Extensions
+namespace Sudoku.Recognition.Extensions
 {
 	public static class RotateRectEx
 	{

@@ -75,7 +75,7 @@
 		<member name="N:Sudoku.Models">
 			<summary>This namespace contains the models for displaying sudoku information while generating or solving a puzzle, as a status recorder.</summary>
 		</member>
-		<member name="N:Sudoku.Recognitions">
+		<member name="N:Sudoku.Recognition">
 			<summary>This namespace contains the OCR tool APIs.</summary>
 		</member>
 		<member name="N:Sudoku.Runtime">

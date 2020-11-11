@@ -14,12 +14,12 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>SUDOKU_RECOGNITION; CSHARP_9_PREVIEW; PREFER_ZERO_BITS; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>DEBUG; CSHARP_9_PREVIEW; PREFER_ZERO_BITS; AUTHOR_RESERVED</DefineConstants>
 		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SUDOKU_RECOGNITION; CSHARP_9_PREVIEW; PREFER_ZERO_BITS; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>CSHARP_9_PREVIEW; PREFER_ZERO_BITS; AUTHOR_RESERVED</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -35,13 +35,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Emgu.CV" Version="4.4.0.4099" />
-		<PackageReference Include="Emgu.CV.runtime.windows" Version="4.4.0.4099" />
-		<PackageReference Include="System.Drawing.Common" Version="4.7.0" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
+		<ProjectReference Include="..\Sudoku.Globalization\Sudoku.Globalization.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -61,6 +56,74 @@
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>KeyedTuple.cs</LastGenOutput>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x64\vcruntime140_1.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x64\vcruntime140.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x64\opencv_videoio_ffmpeg440_64.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x64\msvcp140_codecvt_ids.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x64\msvcp140_2.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x64\msvcp140_1.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x64\msvcp140.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x64\cvextern.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x64\concrt140.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x86\vcruntime140.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x86\opencv_videoio_ffmpeg440.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x86\msvcp140_codecvt_ids.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x86\msvcp140_2.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x86\msvcp140_1.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x86\msvcp140.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x86\cvextern.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\Howdy\.nuget\packages\emgu.cv.runtime.windows\4.4.0.4099\build\x86\concrt140.dll" />
 	</ItemGroup>
 
 </Project>

@@ -6,12 +6,11 @@ using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
-using Sudoku.Drawing.Extensions;
-using Sudoku.Recognitions.Extensions;
-using static Sudoku.Recognitions.InternalSettings;
+using Sudoku.Recognition.Extensions;
+using static Sudoku.Recognition.InternalSettings;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 
-namespace Sudoku.Recognitions
+namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Provides a grid field recognizer. If you want to know what is a <b>field</b>,

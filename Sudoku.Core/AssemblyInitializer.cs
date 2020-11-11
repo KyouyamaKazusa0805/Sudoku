@@ -30,7 +30,6 @@ namespace Sudoku
 				Resources.LangSourceZhCn = obj2;
 			}
 
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static bool g(string path, [NotNullWhen(true)] out ResourceDictionary? result)
 			{
 				ResourceDictionary? r;

@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1063 // Managed-resource-only instance don't need to implement complete dispose pattern.
-
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
@@ -72,7 +70,7 @@ namespace Sudoku.Windows.Tooling
 			_listBoxFonts.ItemsSource = from font in new InstalledFontCollection().Families select font.Name;
 			_listBoxFonts.SelectedIndex = 0;
 
-			SelectedFont = new(_listBoxFonts.Items[0].ToString(), (float)FontSize, DFontStyle.Regular);
+			SelectedFont = new(_listBoxFonts.Items[0].ToString()!, (float)FontSize, DFontStyle.Regular);
 
 			_textBoxSize.Text = FontSize.ToString();
 
@@ -130,7 +128,7 @@ namespace Sudoku.Windows.Tooling
 			// While initializing, 'SelectedFont' is null.
 			if ((sender, SelectedFont) is (ListBox listBox, not null))
 			{
-				SelectedFont = new(listBox.SelectedItem.ToString(), SelectedFont.Size, SelectedFont.Style);
+				SelectedFont = new(listBox.SelectedItem.ToString()!, SelectedFont.Size, SelectedFont.Style);
 
 				DrawString();
 			}

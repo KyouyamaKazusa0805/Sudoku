@@ -8,7 +8,7 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
 
-namespace Sudoku.Drawing.Extensions
+namespace Sudoku.Recognition.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Bitmap"/>.
@@ -30,7 +30,7 @@ namespace Sudoku.Drawing.Extensions
 		{
 			if (Array.IndexOf(@this.PropertyIdList, 274) > -1)
 			{
-				switch (@this.GetPropertyItem(274).Value[0])
+				switch (@this.GetPropertyItem(274)!.Value![0])
 				{
 					case 1:
 					{

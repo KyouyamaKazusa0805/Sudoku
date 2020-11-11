@@ -12,19 +12,16 @@
 		/// <summary>
 		/// Indicates the language is none of them, which is the default value of this type.
 		/// </summary>
-		[Name("")]
 		Default = 0,
 
 		/// <summary>
 		/// Indicates the American English.
 		/// </summary>
-		[Name("en-us")]
 		EnUs = 1033,
 
 		/// <summary>
 		/// Indicates the Chinese (Mainland).
 		/// </summary>
-		[Name("zh-cn")]
 		ZhCn = 2052,
 	}
 }

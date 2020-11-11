@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<DefineConstants>SUDOKU_RECOGNITION</DefineConstants>
+		<Authors>Sunnie</Authors>
+		<Description>This project encapsulates the operations about recognitions of a sudoku picture.</Description>
+		<Copyright>Copyright (c) Sunnie 2020</Copyright>
+		<PackageId>Sudoku.Recognition</PackageId>
+		<Product>Sudoku.Recognition</Product>
+		<DocumentationFile>.\Sudoku.Recognition.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Emgu.CV" Version="4.4.0.4099" />
+		<PackageReference Include="Emgu.CV.runtime.windows" Version="4.4.0.4099" />
+		<PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	</ItemGroup>
+
+</Project>
