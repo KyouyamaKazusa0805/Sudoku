@@ -578,7 +578,7 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				if (cell is not (< 0 or >= 81))
+				if (cell is >= 0 and < 81)
 				{
 					ref long v = ref cell / Shifting == 0 ? ref _low : ref _high;
 					bool older = this[cell];
