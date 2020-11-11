@@ -14,6 +14,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Sudoku.Diagnostics.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 	</ItemGroup>
 

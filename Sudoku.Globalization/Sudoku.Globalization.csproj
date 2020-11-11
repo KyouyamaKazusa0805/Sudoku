@@ -13,4 +13,8 @@
 	  <DocumentationFile>.\Sudoku.Globalization.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="Sudoku.Globalization.xml" />
+	</ItemGroup>
+
 </Project>
