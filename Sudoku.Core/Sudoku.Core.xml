@@ -2830,6 +2830,9 @@
             </summary>
             <param name="dest">The destination pointer.</param>
             <param name="src">The source pointer.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when <paramref name="dest"/> or <paramref name="src"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.op_Equality(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>

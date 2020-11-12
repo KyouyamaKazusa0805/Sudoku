@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
@@ -22,25 +23,7 @@ namespace Sudoku.Extensions
 
 		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int PopCount(this short @this)
-		{
-#if PREFER_ZERO_BITS
-			if (@this == 0)
-			{
-				return 0;
-			}
-
-			int count = 0;
-			for (; @this != 0; @this &= (short)(@this - 1), count++) ;
-			return count;
-#else
-			@this = (short)((@this & 0x5555) + ((@this >> 1) & 0x5555));
-			@this = (short)((@this & 0x3333) + ((@this >> 2) & 0x3333));
-			@this = (short)((@this & 0x0F0F) + ((@this >> 4) & 0x0F0F));
-			@this = (short)((@this & 0x00FF) + ((@this >> 8) & 0x00FF));
-			return @this;
-#endif
-		}
+		public static int PopCount(this short @this) => BitOperations.PopCount((uint)@this);
 
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
 		public static int GetNextSet(this short @this, int index)

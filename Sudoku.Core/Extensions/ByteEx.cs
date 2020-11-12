@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
@@ -20,24 +21,7 @@ namespace Sudoku.Extensions
 
 		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int PopCount(this byte @this)
-		{
-#if PREFER_ZERO_BITS
-			if (@this == 0)
-			{
-				return 0;
-			}
-
-			int count = 0;
-			for (; @this != 0; @this &= (byte)(@this - 1), count++) ;
-			return count;
-#else
-			@this = (byte)((@this & 0x55) + ((@this >> 1) & 0x55));
-			@this = (byte)((@this & 0x33) + ((@this >> 2) & 0x33));
-			@this = (byte)((@this & 0x0F) + ((@this >> 4) & 0x0F));
-			return @this;
-#endif
-		}
+		public static int PopCount(this byte @this) => BitOperations.PopCount(@this);
 
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
 		public static int GetNextSet(this byte @this, int index)
