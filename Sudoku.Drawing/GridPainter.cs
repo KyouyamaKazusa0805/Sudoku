@@ -102,10 +102,12 @@ namespace Sudoku.Drawing
 			g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
 			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 			g.CompositingQuality = CompositingQuality.HighQuality;
+
 			const float offset = 6F;
 			DrawViewIfNeed(g, offset);
 			DrawCustomViewIfNeed(g, offset);
 			if (FocusedCells.HasValue) DrawFocusedCells(g, FocusedCells.Value);
+			if (Conclusions is not null) DrawEliminations(g, Conclusions, offset);
 			if (Grid != SudokuGrid.Undefined) DrawValue(g, Grid);
 
 			return bitmap;
@@ -190,10 +192,6 @@ namespace Sudoku.Drawing
 		/// <seealso cref="View"/>
 		private void DrawViewIfNeed(Graphics g, float offset)
 		{
-			if (Conclusions is not null)
-			{
-				DrawEliminations(g, Conclusions, offset);
-			}
 			if (View is not null)
 			{
 				DrawViewIfNeedInternal(g, offset, View);
@@ -208,9 +206,9 @@ namespace Sudoku.Drawing
 		/// <param name="view">The view instance.</param>
 		private void DrawViewIfNeedInternal(Graphics g, float offset, dynamic view)
 		{
+			if (view.Regions is IEnumerable<DrawingInfo> regions) DrawRegions(g, regions, offset);
 			if (view.Cells is IEnumerable<DrawingInfo> cells) DrawCells(g, cells);
 			if (view.Candidates is IEnumerable<DrawingInfo> candidates) DrawCandidates(g, candidates, offset);
-			if (view.Regions is IEnumerable<DrawingInfo> regions) DrawRegions(g, regions, offset);
 			if (view.Links is IEnumerable<Link> links) DrawLinks(g, links, offset);
 			if (view.DirectLines is IEnumerable<(GridMap, GridMap)> directLines) DrawDirectLines(g, directLines, offset);
 		}
