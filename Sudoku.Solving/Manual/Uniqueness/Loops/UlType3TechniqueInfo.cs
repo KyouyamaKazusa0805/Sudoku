@@ -42,7 +42,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		}
 
 		/// <inheritdoc/>
-		public bool Equals(UlType3TechniqueInfo? other) => base.Equals(other);
+		public bool Equals(UlType3TechniqueInfo? other) =>
+			base.Equals(other) && SubsetDigitsMask == other.SubsetDigitsMask;
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => base.GetHashCode();

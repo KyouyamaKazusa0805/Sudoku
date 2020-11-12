@@ -35,7 +35,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		}
 
 		/// <inheritdoc/>
-		public bool Equals(UlType4TechniqueInfo? other) => base.Equals(other);
+		public bool Equals(UlType4TechniqueInfo? other) =>
+			base.Equals(other) && ConjugatePair == other.ConjugatePair;
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => base.GetHashCode();
