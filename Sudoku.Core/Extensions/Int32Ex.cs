@@ -12,42 +12,14 @@ namespace Sudoku.Extensions
 	/// <seealso cref="int"/>
 	public static class Int32Ex
 	{
-		/// <summary>
-		/// The return value table used in <see cref="FindFirstSet(int)"/>.
-		/// </summary>
-		/// <seealso cref="FindFirstSet(int)"/>
-		private static readonly byte[] Table =
-		{
-			0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4,
-			5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-			6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-			6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
-			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
-			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
-			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
-			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8
-		};
-
-
 		/// <inheritdoc cref="Integer.IsPowerOfTwo(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsPowerOfTwo(this int @this) => @this != 0 && (@this & (@this - 1)) == 0;
 
 		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int FindFirstSet(this int @this)
-		{
-			int x = @this & -@this, a = x <= 0xFFFF ? x <= 0xFF ? 0 : 8 : x <= 0xFFFFFF ? 16 : 24;
-			return Table[x >> a] + a - 1;
-		}
+		public static int FindFirstSet(this int @this) =>
+			@this == 0 ? -1 : BitOperations.TrailingZeroCount(@this);
 
 		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
 		public static int PopCount(this int @this) => BitOperations.PopCount((uint)@this);

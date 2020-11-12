@@ -16,23 +16,8 @@ namespace Sudoku.Extensions
 		public static bool IsPowerOfTwo(this long @this) => @this != 0 && (@this & (@this - 1L)) == 0;
 
 		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
-		public static int FindFirstSet(this long @this)
-		{
-			if (@this == 0)
-			{
-				return 0;
-			}
-
-			int r = 0;
-			if ((@this & 0xFFFFFFFFL) == 0) { @this >>= 32; r += 32; }
-			if ((@this & 0xFFFFL) == 0) { @this >>= 16; r += 16; }
-			if ((@this & 0xFFL) == 0) { @this >>= 8; r += 8; }
-			if ((@this & 0xFL) == 0) { @this >>= 4; r += 4; }
-			if ((@this & 3L) == 0) { @this >>= 2; r += 2; }
-			if ((@this & 1L) == 0) { /*@this >>= 1;*/ r++; }
-
-			return r;
-		}
+		public static int FindFirstSet(this long @this) =>
+			@this == 0 ? -1 : BitOperations.TrailingZeroCount(@this);
 
 		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
 		public static int PopCount(this long @this) => BitOperations.PopCount((ulong)@this);

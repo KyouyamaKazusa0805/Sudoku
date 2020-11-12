@@ -4242,12 +4242,6 @@
             </summary>
             <seealso cref="T:System.Int32"/>
         </member>
-        <member name="F:Sudoku.Extensions.Int32Ex.Table">
-            <summary>
-            The return value table used in <see cref="M:Sudoku.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>.
-            </summary>
-            <seealso cref="M:Sudoku.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
-        </member>
         <member name="M:Sudoku.Extensions.Int32Ex.IsPowerOfTwo(System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.IsPowerOfTwo(Sudoku.DocComments.Integer)"/>
         </member>
