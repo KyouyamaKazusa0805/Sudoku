@@ -33,5 +33,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				$"{Name}: Digits {Digit1 + 1}, {Digit2 + 1} in cells {cellsStr} " +
 				$"with the conjugate pair {ConjugatePair} => {elimStr}";
 		}
+
+		/// <inheritdoc/>
+		public bool Equals(UlType4TechniqueInfo? other) => base.Equals(other);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => base.GetHashCode();
 	}
 }

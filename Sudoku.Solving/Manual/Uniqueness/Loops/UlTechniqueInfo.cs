@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -59,5 +60,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 		/// <inheritdoc/>
 		public abstract override string ToString();
+
+		/// <inheritdoc/>
+		public virtual bool Equals(UlTechniqueInfo? other) =>
+			other is not null
+			&& (Type, Loop) == (other.Type, other.Loop)
+			&& (
+			(Digit1, Digit2) == (other.Digit1, other.Digit2)
+			|| (Digit1, Digit2) == (other.Digit2, other.Digit1));
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => HashCode.Combine(Type, Loop, Digit1, Digit2);
 	}
 }

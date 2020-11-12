@@ -21,14 +21,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			if (BivalueMap.Count < 6)
 			{
 				return;
 			}
 
-			var loops = new List<GridMap>();
+			var resultAccumulator = new List<UlTechniqueInfo>();
+			var loops = new List<(GridMap Map, IReadOnlyList<Link> Links)>();
 			var tempLoop = new List<int>();
 			foreach (int cell in BivalueMap)
 			{
@@ -47,7 +48,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				}
 
 				short comparer = (short)(1 << d1 | 1 << d2);
-				foreach (var currentLoop in loops)
+				foreach (var (currentLoop, links) in loops)
 				{
 					var extraCellsMap = currentLoop - BivalueMap;
 					switch (extraCellsMap.Count)
@@ -60,7 +61,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						case 1:
 						{
 							// Type 1.
-							CheckType1(accumulator, grid, d1, d2, currentLoop, extraCellsMap);
+							CheckType1(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap);
 
 							break;
 						}
@@ -69,18 +70,32 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							// Type 2, 3, 4.
 							// Here use default label to ensure the order of
 							// the handling will be 1->2->3->4.
-							CheckType2(accumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer);
+							CheckType2(
+								resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer);
 
 							if (extraCellsMap.Count == 2)
 							{
-								CheckType3(accumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer);
-								CheckType4(accumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer);
+								CheckType3(
+									resultAccumulator, grid, d1, d2, currentLoop, links,
+									extraCellsMap, comparer);
+								CheckType4(
+									resultAccumulator, grid, d1, d2, currentLoop, links,
+									extraCellsMap, comparer);
 							}
 
 							break;
 						}
 					}
 				}
+
+				var set = new Set<UlTechniqueInfo>(resultAccumulator);
+				resultAccumulator.Clear();
+				resultAccumulator.AddRange(set);
+				resultAccumulator.Sort(&cmp);
+				accumulator.AddRange(resultAccumulator);
+
+				static int cmp(in UlTechniqueInfo l, in UlTechniqueInfo r) =>
+					l.Loop.Count.CompareTo(r.Loop.Count);
 
 				void f(
 					in SudokuGrid grid,
@@ -106,11 +121,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 						foreach (int nextCell in cellsMap)
 						{
-							if (tempLoop[0] == nextCell && tempLoop.Count >= 6 && LoopIsValid(tempLoop)
-								&& !loops.Contains(loopMap))
+							if (tempLoop[0] == nextCell && tempLoop.Count >= 6 && LoopIsValid(tempLoop))
 							{
-								// The loop is closed.
-								loops.Add(loopMap);
+								// The loop is closed. Now construct the result pair.
+								var links = new List<Link>();
+								for (int i = 0; i < tempLoop.Count - 1; i++)
+								{
+									links.Add(new(tempLoop[i] * 9 + d1, tempLoop[i + 1] * 9 + d1, LinkType.Line));
+								}
+								links.Add(new(tempLoop[^1] * 9 + d1, tempLoop[0] * 9 + d1, LinkType.Line));
+
+								loops.Add((loopMap, links));
 							}
 							else if (!loopMap[nextCell] && !grid[nextCell, d1] && !grid[nextCell, d2])
 							{
@@ -128,7 +149,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								// with an extra digit (for type 2 only).
 								// - The cell has extra digits and the maximum number of cells
 								// with extra digits, 2, is not reached.
-								if (digitsCount != 2 && !exDigitsMask.IsPowerOfTwo() && allowedExtraCellsCount <= 0)
+								if (digitsCount != 2 && !exDigitsMask.IsPowerOfTwo()
+									&& allowedExtraCellsCount <= 0)
 								{
 									continue;
 								}
@@ -148,19 +170,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		}
 
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop,
-			in GridMap extraCellsMap);
+			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop,
+			IReadOnlyList<Link> links, in GridMap extraCellsMap);
 
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, in GridMap extraCellsMap, short comparer);
+			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
 
 		unsafe partial void CheckType3(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, in GridMap extraCellsMap, short comparer);
+			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
 
 		partial void CheckType4(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, in GridMap extraCellsMap, short comparer);
+			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
 	}
 }

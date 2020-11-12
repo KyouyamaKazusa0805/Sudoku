@@ -6178,6 +6178,12 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher">
             <summary>
             Encapsulates a <b>unique loop</b> (UL) technique searcher.
@@ -6190,7 +6196,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.GridMap@)">
             <summary>
             Check type 1.
             </summary>
@@ -6199,9 +6205,10 @@
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="links">The links.</param>
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.GridMap@,System.Int16)">
             <summary>
             Check type 2.
             </summary>
@@ -6210,10 +6217,11 @@
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="links">The links.</param>
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.GridMap@,System.Int16)">
             <summary>
             Check type 3.
             </summary>
@@ -6222,10 +6230,11 @@
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="links">The links.</param>
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.GridMap@,System.Int16)">
             <summary>
             Check type 4.
             </summary>
@@ -6234,6 +6243,7 @@
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="links">The links.</param>
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
@@ -6270,6 +6280,12 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType1TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType1TechniqueInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UlType1TechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType1TechniqueInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlType2TechniqueInfo">
             <summary>
             Provides a usage of <b>unique loop type 2</b> technique.
@@ -6296,6 +6312,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType2TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType2TechniqueInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UlType2TechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType2TechniqueInfo.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlType3TechniqueInfo">
@@ -6328,6 +6350,12 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType3TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType3TechniqueInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UlType3TechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType3TechniqueInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4TechniqueInfo">
             <summary>
             Provides a usage of <b>unique loop type 4</b> technique.
@@ -6354,6 +6382,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4TechniqueInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UlType4TechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4TechniqueInfo.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo">

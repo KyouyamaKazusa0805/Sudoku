@@ -29,5 +29,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			string elimStr = elims.ToString();
 			return $"{Name}: Digits {Digit1 + 1}, {Digit2 + 1} in cells {cellsStr} => {elimStr}";
 		}
+
+		/// <inheritdoc/>
+		public bool Equals(UlType1TechniqueInfo? other) => base.Equals(other);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => base.GetHashCode();
 	}
 }

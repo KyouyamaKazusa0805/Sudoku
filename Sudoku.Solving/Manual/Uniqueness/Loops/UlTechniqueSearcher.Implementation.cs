@@ -21,10 +21,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="d1">The digit 1.</param>
 		/// <param name="d2">The digit 2.</param>
 		/// <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+		/// <param name="links">The links.</param>
 		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
 		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, in GridMap extraCellsMap)
+			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap)
 		{
 			int extraCell = extraCellsMap.First;
 			var conclusions = new List<Conclusion>();
@@ -51,7 +52,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			accumulator.AddIfDoesNotContain(
 				new UlType1TechniqueInfo(
 					conclusions,
-					new View[] { new(candidateOffsets) },
+					new View[]
+					{
+						new(
+							null,
+							candidateOffsets,
+							null,
+							links)
+					},
 					d1,
 					d2,
 					loop));
@@ -65,11 +73,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="d1">The digit 1.</param>
 		/// <param name="d2">The digit 2.</param>
 		/// <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+		/// <param name="links">The links.</param>
 		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, in GridMap extraCellsMap, short comparer)
+			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer)
 		{
 			short mask = 0;
 			foreach (int cell in extraCellsMap)
@@ -108,7 +117,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			accumulator.AddIfDoesNotContain(
 				new UlType2TechniqueInfo(
 					conclusions,
-					new View[] { new(candidateOffsets) },
+					new View[]
+					{
+						new(
+							null,
+							candidateOffsets,
+							null,
+							links)
+					},
 					d1,
 					d2,
 					loop,
@@ -123,11 +139,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="d1">The digit 1.</param>
 		/// <param name="d2">The digit 2.</param>
 		/// <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+		/// <param name="links">The links.</param>
 		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		unsafe partial void CheckType3(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, in GridMap extraCellsMap, short comparer)
+			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer)
 		{
 			static bool internalChecking(int cell, in short comparer, in SudokuGrid grid) =>
 				grid.GetCandidateMask(cell) is var mask && (mask & comparer) == 0 || mask == comparer;
@@ -210,7 +227,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						accumulator.AddIfDoesNotContain(
 							new UlType3TechniqueInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+								new View[]
+								{
+									new(
+										null,
+										candidateOffsets,
+										new DrawingInfo[] { new(0, region) },
+										links)
+								},
 								d1,
 								d2,
 								loop,
@@ -229,11 +253,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="d1">The digit 1.</param>
 		/// <param name="d2">The digit 2.</param>
 		/// <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+		/// <param name="links">The links.</param>
 		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		partial void CheckType4(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, in GridMap extraCellsMap, short comparer)
+			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
+			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer)
 		{
 			if (!extraCellsMap.InOneRegion)
 			{
@@ -284,7 +309,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							conclusions,
 							new View[]
 							{
-								new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
+								new(
+									null,
+									candidateOffsets,
+									new DrawingInfo[] { new(0, region) },
+									links)
 							},
 							d1,
 							d2,

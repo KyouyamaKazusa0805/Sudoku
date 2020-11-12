@@ -40,5 +40,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				$"with the naked {subsetName} with extra digits {digitsStr} " +
 				$"in cells {subsetCellsStr} => {elimStr}";
 		}
+
+		/// <inheritdoc/>
+		public bool Equals(UlType3TechniqueInfo? other) => base.Equals(other);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => base.GetHashCode();
 	}
 }
