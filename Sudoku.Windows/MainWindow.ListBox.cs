@@ -25,8 +25,6 @@ namespace Sudoku.Windows
 					SelectedItem: ListBoxItem { Content: KeyedTuple<string, int, TechniqueInfo> triplet }
 				} && _analyisResult is { SolvingSteps: not null } and { StepGrids: not null })
 			{
-				_cacheAllSteps = null; // Remove older steps cache while updating paths.
-
 				var (_, n, s, _) = triplet;
 				var techniqueInfo = _analyisResult.SolvingSteps[n];
 				_currentTechniqueInfo = techniqueInfo;

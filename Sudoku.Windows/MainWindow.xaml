@@ -481,8 +481,7 @@
 																<DockPanel>
 																	<TextBlock FontWeight="Bold" Text="{Binding Name}"/>
 																	<TextBlock Text="        ("/>
-																	<TextBlock FontWeight="Bold"
-																			   Text="{Binding ItemCount}"/>
+																	<TextBlock FontWeight="Bold" Text="{Binding ItemCount}"/>
 																	<TextBlock Text=")"/>
 																</DockPanel>
 															</Expander.Header>

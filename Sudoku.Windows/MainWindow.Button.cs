@@ -52,31 +52,24 @@ namespace Sudoku.Windows
 				IEnumerable<IGrouping<string, TechniqueInfo>> techniqueGroups;
 				ProgressWindow? dialog = null;
 				var list = new List<ListBoxItem>();
-				if (_cacheAllSteps is null)
-				{
-					_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-					//_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-					_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
-					_buttonFindAllSteps.IsEnabled = false;
-					DisableSolvingControls();
+				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				//_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
+				_buttonFindAllSteps.IsEnabled = false;
+				DisableSolvingControls();
 
-					(dialog = new()).Show();
-					techniqueGroups = _cacheAllSteps = await Task.Run(() => s(this, dialog, valueGrid));
+				(dialog = new()).Show();
+				techniqueGroups = await Task.Run(() => s(this, dialog, valueGrid));
 
-					EnableSolvingControls();
-					SwitchOnGeneratingComboBoxesDisplaying();
-					_buttonFindAllSteps.IsEnabled = true;
-					_textBoxInfo.ClearValue(TextBox.TextProperty);
+				EnableSolvingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
+				_buttonFindAllSteps.IsEnabled = true;
+				_textBoxInfo.ClearValue(TextBox.TextProperty);
 
-					static IEnumerable<IGrouping<string, TechniqueInfo>> s(
-						MainWindow @this, ProgressWindow dialog, in SudokuGrid g) =>
-						new StepFinder(@this.Settings).Search(
-							g, dialog.DefaultReporting, @this.Settings.LanguageCode);
-				}
-				else
-				{
-					techniqueGroups = _cacheAllSteps;
-				}
+				static IEnumerable<IGrouping<string, TechniqueInfo>> s(
+					MainWindow @this, ProgressWindow dialog, in SudokuGrid g) =>
+					new StepFinder(@this.Settings).Search(
+						g, dialog.DefaultReporting, @this.Settings.LanguageCode);
 
 				// The boolean value stands for whether the technique is enabled.
 				var collection = new ObservableCollection<ListBoxItem>();

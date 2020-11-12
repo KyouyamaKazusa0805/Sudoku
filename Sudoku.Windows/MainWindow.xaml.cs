@@ -702,7 +702,6 @@ namespace Sudoku.Windows
 		private void DisableGeneratingControls()
 		{
 			_analyisResult = null;
-			_cacheAllSteps = null;
 
 			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -799,7 +798,6 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void DisableSolvingControls()
 		{
-			_cacheAllSteps = null;
 			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 

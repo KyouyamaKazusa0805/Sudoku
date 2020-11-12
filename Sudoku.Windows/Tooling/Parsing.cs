@@ -17,7 +17,7 @@ namespace Sudoku.Windows.Tooling
 		/// <returns>The predicate.</returns>
 		public static Predicate<TechniqueInfo>? ToCondition(string? s) =>
 			string.IsNullOrWhiteSpace(s)
-			? _ => true
+			? static _ => true
 			: Parse_EliminationContainsCandidate(s)
 			?? Parse_AssignmentIsCandidates(s)
 			?? Parse_EliminationIsCandidate(s)

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Windows.Input;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
@@ -159,10 +157,5 @@ namespace Sudoku.Windows
 		/// The point converter.
 		/// </summary>
 		private PointConverter _pointConverter = null!;
-
-		/// <summary>
-		/// The steps searched. This field stores the previous group that searched before.
-		/// </summary>
-		private IEnumerable<IGrouping<string, TechniqueInfo>>? _cacheAllSteps;
 	}
 }
