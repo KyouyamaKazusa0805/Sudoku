@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
@@ -28,7 +29,6 @@ using Sudoku.Solving.Manual.Uniqueness.Square;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
-using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving.Manual
 {
@@ -98,6 +98,7 @@ namespace Sudoku.Solving.Manual
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new DeathBlossomTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.MaxPetalsOfDeathBlossom),
+				new ComplexFishTechniqueSearcher(solver.HobiwanFishMaximumSize),
 				new HobiwanFishTechniqueSearcher(
 					solver.HobiwanFishMaximumSize, solver.HobiwanFishMaximumExofinsCount,
 					solver.HobiwanFishMaximumEndofinsCount, solver.HobiwanFishCheckTemplates),
@@ -155,7 +156,7 @@ namespace Sudoku.Solving.Manual
 				(TechniqueProperties)
 					searcher
 					.GetType()
-					.GetProperty("Properties", Public | Static)!
+					.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)!
 					.GetValue(null)!;
 		}
 	}
