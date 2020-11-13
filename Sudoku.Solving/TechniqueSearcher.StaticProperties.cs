@@ -14,7 +14,7 @@ namespace Sudoku.Solving
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleTechniqueSearcher"/>
-		internal static GridMap EmptyMap { get; set; }
+		internal static GridMap EmptyMap { get; private set; }
 
 		/// <summary>
 		/// The bi-value cells map.
@@ -25,7 +25,7 @@ namespace Sudoku.Solving
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleTechniqueSearcher"/>
-		internal static GridMap BivalueMap { get; set; }
+		internal static GridMap BivalueMap { get; private set; }
 
 		/// <summary>
 		/// The candidate maps.
@@ -36,7 +36,7 @@ namespace Sudoku.Solving
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleTechniqueSearcher"/>
-		internal static GridMap[] CandMaps { get; set; } = null!;
+		internal static GridMap[] CandMaps { get; private set; } = null!;
 
 		/// <summary>
 		/// The digit maps.
@@ -47,7 +47,7 @@ namespace Sudoku.Solving
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleTechniqueSearcher"/>
-		internal static GridMap[] DigitMaps { get; set; } = null!;
+		internal static GridMap[] DigitMaps { get; private set; } = null!;
 
 		/// <summary>
 		/// The value maps.
@@ -57,6 +57,6 @@ namespace Sudoku.Solving
 		/// not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
-		internal static GridMap[] ValueMaps { get; set; } = null!;
+		internal static GridMap[] ValueMaps { get; private set; } = null!;
 	}
 }

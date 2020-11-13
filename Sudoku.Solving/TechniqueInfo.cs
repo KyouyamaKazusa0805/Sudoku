@@ -112,6 +112,11 @@ namespace Sudoku.Solving
 		/// <param name="countryCode">The country code.</param>
 		/// <returns>The string instance.</returns>
 		/// <seealso cref="CountryCode"/>
-		public virtual string ToFullString(CountryCode countryCode) => ToString();
+		public virtual string ToFullString(CountryCode countryCode) =>
+			countryCode switch
+			{
+				CountryCode.EnUs => ToFullString(),
+				_ => ToString()
+			};
 	}
 }
