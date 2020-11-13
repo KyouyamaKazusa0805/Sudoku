@@ -15,7 +15,7 @@ namespace Sudoku.Extensions
 		/// <exception cref="ArgumentException">
 		/// Throws when the index is from end, or the start index is greater than end one.
 		/// </exception>
-		public static IEnumerator<int> GetEnumerator(this in Range @this)
+		public static RangeEnumerator GetEnumerator(this in Range @this)
 		{
 			var ((sIsFromEnd, sValue), (eIsFromEnd, eValue)) = @this;
 			_ = sIsFromEnd || eIsFromEnd ? throw new ArgumentException("The index should be from start.") : 0;
