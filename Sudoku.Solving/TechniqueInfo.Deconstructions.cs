@@ -10,7 +10,8 @@ namespace Sudoku.Solving
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-		public void Deconstruct(out string name, out decimal difficulty) => (name, difficulty) = (Name, Difficulty);
+		public void Deconstruct(out string name, out decimal difficulty) =>
+			(name, difficulty) = (Name, Difficulty);
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
@@ -38,6 +39,7 @@ namespace Sudoku.Solving
 		public void Deconstruct(
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
 			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views) =>
-			(name, difficulty, difficultyLevel, conclusions, views) = (Name, Difficulty, DifficultyLevel, Conclusions, Views);
+			(name, difficulty, difficultyLevel, conclusions, views) = (
+				Name, Difficulty, DifficultyLevel, Conclusions, Views);
 	}
 }

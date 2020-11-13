@@ -632,7 +632,7 @@ namespace Sudoku.Windows
 				var sb = new StringBuilder(SudokuGrid.EmptyString);
 				if (sukakuMode)
 				{
-					string puzzleString = $"{_puzzle:~}";
+					string puzzleString = _puzzle.ToString("~");
 					if (new UnsafeBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
 					{
 						return !(e.Handled = true);
