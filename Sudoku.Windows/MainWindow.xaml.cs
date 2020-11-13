@@ -18,7 +18,6 @@ using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Globalization;
-using Sudoku.Solving;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using static System.Math;
@@ -28,6 +27,7 @@ using CoreResources = Sudoku.Windows.Resources;
 using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
+using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.TechniqueInfo>;
 #if OBSOLETE
 using System.Runtime.Serialization.Formatters.Binary;
 #endif
@@ -1004,7 +1004,9 @@ namespace Sudoku.Windows
 				_textBoxInfo.Text =
 					$"{_analyisResult.SolvingStepsCount} " +
 					$@"{(LangSource[_analyisResult.SolvingStepsCount == 1 ? "StepSingular" : "StepPlural"])}" +
+					$"{(Settings.LanguageCode == CountryCode.EnUs ? " " : string.Empty)}" +
 					$"{LangSource["Comma"]}" +
+					$"{(Settings.LanguageCode == CountryCode.EnUs ? " " : string.Empty)}" +
 					$"{LangSource["TimeElapsed"]}" +
 					$"{_analyisResult.ElapsedTime:hh\\:mm\\.ss\\.fff}" +
 					$"{LangSource["Period"]}";
@@ -1020,9 +1022,11 @@ namespace Sudoku.Windows
 							Foreground = new SolidColorBrush(fore.ToWColor()),
 							Background = new SolidColorBrush(back.ToWColor()),
 							Content =
-								new KeyedTuple<string, int, TechniqueInfo>(
+								new StepTriplet(
 									$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
-							BorderThickness = default
+							BorderThickness = default,
+							HorizontalContentAlignment = HorizontalAlignment.Left,
+							VerticalContentAlignment = VerticalAlignment.Center
 						});
 				}
 				_listBoxPaths.ItemsSource = pathList;

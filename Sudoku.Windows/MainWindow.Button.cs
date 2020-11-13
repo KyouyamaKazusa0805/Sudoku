@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,8 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Tooling;
+using TechniqueInfos = System.Collections.Generic.IEnumerable<System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>>;
+using TechniqueTriplet = System.KeyedTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
 
 namespace Sudoku.Windows
 {
@@ -40,8 +43,7 @@ namespace Sudoku.Windows
 				}
 
 				// Filtering.
-				var f = Parsing.ToCondition(_textBoxPathFilter.Text);
-				if (f is null)
+				if (Parsing.ToCondition(_textBoxPathFilter.Text) is var f && f is null)
 				{
 					Messagings.InvalidFilter();
 
@@ -49,27 +51,20 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				IEnumerable<IGrouping<string, TechniqueInfo>> techniqueGroups;
 				ProgressWindow? dialog = null;
 				var list = new List<ListBoxItem>();
 				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-				//_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 				_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
 				_buttonFindAllSteps.IsEnabled = false;
 				DisableSolvingControls();
 
 				(dialog = new()).Show();
-				techniqueGroups = await Task.Run(() => s(this, dialog, valueGrid));
+				var techniqueGroups = await Task.Run(() => s(this, dialog, valueGrid));
 
 				EnableSolvingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();
 				_buttonFindAllSteps.IsEnabled = true;
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
-
-				static IEnumerable<IGrouping<string, TechniqueInfo>> s(
-					MainWindow @this, ProgressWindow dialog, in SudokuGrid g) =>
-					new StepFinder(@this.Settings).Search(
-						g, dialog.DefaultReporting, @this.Settings.LanguageCode);
 
 				// The boolean value stands for whether the technique is enabled.
 				var collection = new ObservableCollection<ListBoxItem>();
@@ -82,12 +77,12 @@ namespace Sudoku.Windows
 						let pair = Settings.DiffColors[info.DifficultyLevel]
 						select new ListBoxItem
 						{
-							Content = new KeyedTuple<string, TechniqueInfo, bool>(
-								info.ToSimpleString(), info, true
-							),
+							Content = new TechniqueTriplet(info.ToSimpleString(), info, true),
 							Foreground = new SolidColorBrush(pair.Foreground.ToWColor()),
 							Background = new SolidColorBrush(pair.Background.ToWColor()),
-							BorderThickness = default
+							BorderThickness = default,
+							HorizontalContentAlignment = HorizontalAlignment.Left,
+							VerticalContentAlignment = VerticalAlignment.Center
 						});
 				}
 
@@ -95,13 +90,20 @@ namespace Sudoku.Windows
 				var srcView = new ListCollectionView(collection);
 				srcView.GroupDescriptions.Add(
 					new PropertyGroupDescription(
-						$"{nameof(Content)}." +
-						$"{nameof(KeyedTuple<string, TechniqueInfo, bool>.Item2)}." +
-						nameof(TechniqueInfo.Name)));
+						new StringBuilder()
+						.Append(nameof(Content))
+						.Append('.')
+						.Append(nameof(TechniqueTriplet.Item2))
+						.Append('.')
+						.Append(nameof(TechniqueInfo.Name))
+						.ToString()));
 				_listBoxTechniques.ItemsSource = srcView;
 
 				dialog?.CloseAnyway();
 			}
+
+			static TechniqueInfos s(MainWindow @this, ProgressWindow dialog, in SudokuGrid g) =>
+				new StepFinder(@this.Settings).Search(g, dialog.DefaultReporting, @this.Settings.LanguageCode);
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>

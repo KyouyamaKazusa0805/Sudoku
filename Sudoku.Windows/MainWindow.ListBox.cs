@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Controls;
 using Sudoku.DocComments;
-using Sudoku.Solving;
+using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.TechniqueInfo>;
+using TechniqueTriplet = System.KeyedTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
 
 namespace Sudoku.Windows
 {
@@ -19,10 +20,7 @@ namespace Sudoku.Windows
 			if (
 				sender is ListBox
 				{
-					SelectedItem: ListBoxItem
-					{
-						Content: KeyedTuple<string, int, TechniqueInfo> { Item2: var n, Item3: var s }
-					}
+					SelectedItem: ListBoxItem { Content: StepTriplet { Item2: var n, Item3: var s } }
 				} && _analyisResult is { SolvingSteps: not null, StepGrids: not null })
 			{
 				var techniqueInfo = _analyisResult.SolvingSteps[n];
@@ -47,7 +45,7 @@ namespace Sudoku.Windows
 			if (
 				sender is ListBox
 				{
-					SelectedItem: ListBoxItem { Content: KeyedTuple<string, TechniqueInfo, bool> triplet }
+					SelectedItem: ListBoxItem { Content: TechniqueTriplet triplet }
 				})
 			{
 				if (triplet.Item3 && triplet.Item2 is var info and var (_, _, _, conclusions, views))

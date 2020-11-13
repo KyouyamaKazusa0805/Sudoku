@@ -13,6 +13,10 @@
 			<Setter Property="HorizontalContentAlignment" Value="Right"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 		</Style>
+		<Style TargetType="ListBoxItem">
+			<Setter Property="HorizontalContentAlignment" Value="Left" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
 	</Window.Resources>
 	<Grid Name="_gridWindow">
 		<Grid.RowDefinitions>
@@ -468,7 +472,9 @@
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 						<ListBox Grid.Row="0" Name="_listBoxTechniques"
-								  SelectionChanged="ListBoxTechniques_SelectionChanged">
+								 HorizontalContentAlignment="Left"
+								 VerticalContentAlignment="Center"
+								 SelectionChanged="ListBoxTechniques_SelectionChanged">
 							<ListBox.GroupStyle>
 								<GroupStyle>
 									<GroupStyle.ContainerStyle>
