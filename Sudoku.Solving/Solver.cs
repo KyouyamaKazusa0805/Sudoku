@@ -6,7 +6,6 @@ namespace Sudoku.Solving
 	/// <summary>
 	/// Indicates an instance used for solving a sudoku puzzle.
 	/// </summary>
-	[Serializable]
 	public abstract class Solver
 	{
 		/// <summary>

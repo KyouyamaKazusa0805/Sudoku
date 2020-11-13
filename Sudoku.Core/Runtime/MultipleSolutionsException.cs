@@ -8,7 +8,7 @@ namespace Sudoku.Runtime
 	/// <summary>
 	/// Represents an error that the puzzle has multiple solutions while solving.
 	/// </summary>
-	[Serializable, DebuggerStepThrough]
+	[Serializable]
 	public class MultipleSolutionsException : SudokuRuntimeException
 	{
 		/// <summary>

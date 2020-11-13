@@ -8,7 +8,7 @@ namespace Sudoku.Runtime
 	/// <summary>
 	/// Represents an error that the puzzle has no solution while solving.
 	/// </summary>
-	[Serializable, DebuggerStepThrough]
+	[Serializable]
 	public class NoSolutionException : SudokuRuntimeException
 	{
 		/// <summary>

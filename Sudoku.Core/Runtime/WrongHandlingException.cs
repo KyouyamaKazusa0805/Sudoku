@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Runtime.Serialization;
 using Sudoku.Data;
 using Sudoku.Extensions;
@@ -10,7 +9,7 @@ namespace Sudoku.Runtime
 	/// Represents an error that the puzzle has wrong handling while solving with
 	/// manual logic tools.
 	/// </summary>
-	[Serializable, DebuggerStepThrough]
+	[Serializable]
 	public class WrongHandlingException : SudokuRuntimeException
 	{
 		/// <summary>
