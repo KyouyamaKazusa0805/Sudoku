@@ -435,21 +435,12 @@ namespace Sudoku.Data
 		public readonly string ToMaskString()
 		{
 			const string separator = ", ";
-#if DEBUG
-			var sb = new StringBuilder();
-			foreach (short mask in this)
-			{
-				sb.Append(mask).Append(separator);
-			}
-			return sb.RemoveFromEnd(separator.Length).ToString();
-#else
 			return new StringBuilder()
 				.AppendRange<short, string>(this, &appender)
 				.RemoveFromEnd(separator.Length)
 				.ToString();
 
 			static string appender(in short mask) => $"{mask}{separator}";
-#endif
 		}
 
 		/// <inheritdoc cref="object.ToString"/>

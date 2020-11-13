@@ -12,12 +12,12 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; SUDOKU_RECOGNITION; CSHARP_9_PREVIEW; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>DEBUG; SUDOKU_RECOGNITION; AUTHOR_RESERVED</DefineConstants>
 		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SUDOKU_RECOGNITION; CSHARP_9_PREVIEW; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>SUDOKU_RECOGNITION; AUTHOR_RESERVED</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

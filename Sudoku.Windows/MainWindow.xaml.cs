@@ -28,9 +28,6 @@ using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.TechniqueInfo>;
-#if OBSOLETE
-using System.Runtime.Serialization.Formatters.Binary;
-#endif
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif
@@ -530,7 +527,7 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-#if COPY_SYNC
+#if COPY_SYNC && OBSOLETE
 				// This may throw exceptions being called while solving and generating puzzles.
 				SystemClipboard.Text = _puzzle.ToString(format);
 #else
@@ -541,7 +538,7 @@ namespace Sudoku.Windows
 			{
 				Messagings.FailedToSaveToClipboardDueToArgumentNullException(ex);
 			}
-#if COPY_SYNC
+#if COPY_SYNC && OBSOLETE
 			catch (COMException ex) when (ex.HResult == unchecked((int)2147746256))
 			{
 				Messagings.FailedToSaveToClipboardDueToAsyncCalling();
@@ -1087,7 +1084,8 @@ namespace Sudoku.Windows
 
 		#region Event-delegated methods
 		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
-		private void Window_SizeChanged(object sender, SizeChangedEventArgs e) => DisplayDifficultyInfoAfterAnalyzed();
+		private void Window_SizeChanged(object sender, SizeChangedEventArgs e) =>
+			DisplayDifficultyInfoAfterAnalyzed();
 		#endregion
 
 
