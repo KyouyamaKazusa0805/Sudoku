@@ -5,6 +5,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
+using Sudoku.Globalization;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
 
@@ -358,6 +359,15 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc cref="Formattable.ToString(string)"/>
 		public string ToString(string format) => ToString(format, null);
+
+		/// <summary>
+		/// Get the analysis result string using the specified format and the country code.
+		/// </summary>
+		/// <param name="format">The format.</param>
+		/// <param name="countryCode">The country code.</param>
+		/// <returns>The result string.</returns>
+		public string ToString(string format, CountryCode countryCode) =>
+			new AnalysisResultFormatter(this).ToString(format, null, countryCode);
 
 		/// <inheritdoc/>
 		public string ToString(string? format, IFormatProvider? formatProvider) =>

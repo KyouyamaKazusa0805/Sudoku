@@ -38,7 +38,8 @@ namespace Sudoku.Windows
 		/// nor the default dictionary.
 		/// </exception>
 		public static string GetValue(string key) =>
-			_dicPointer.TryGetValue(key, out string? result) || LangSourceEnUs.TryGetValue(key, out result)
+			_dicPointer is not null && _dicPointer.TryGetValue(key, out string? result)
+			|| LangSourceEnUs.TryGetValue(key, out result)
 			? result
 			: throw new KeyNotFoundException();
 

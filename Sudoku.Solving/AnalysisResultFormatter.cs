@@ -6,6 +6,7 @@ using System.Text;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
+using Sudoku.Globalization;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Singles;
 using static Sudoku.Windows.Resources;
@@ -37,11 +38,21 @@ namespace Sudoku.Solving
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>
+		public string ToString(string? format, IFormatProvider? formatProvider) =>
+			ToString(format, formatProvider, Globalization.CountryCode.EnUs);
+
+		/// <summary>
+		/// Get the string result.
+		/// </summary>
+		/// <param name="format">The format.</param>
+		/// <param name="formatProvider">The format provider.</param>
+		/// <param name="countryCode">The country code.</param>
+		/// <returns>The result.</returns>
 		/// <exception cref="FormatException">
 		/// Throws when the specified format contains other invalid characters
 		/// and the format provider can't work.
 		/// </exception>
-		public string ToString(string? format, IFormatProvider? formatProvider)
+		public string ToString(string? format, IFormatProvider? formatProvider, CountryCode countryCode)
 		{
 			if (formatProvider.HasFormatted(this, format, out string? result))
 			{
@@ -63,6 +74,8 @@ namespace Sudoku.Solving
 			bool showBackdoors = c(in formatLower, 'b');
 			bool showTechniqueDetail = c(in formatLower, 'd');
 			bool showTechniqueSteps = c(in formatLower, 'l');
+
+			ChangeLanguage(countryCode);
 
 			// Get all information.
 			var (

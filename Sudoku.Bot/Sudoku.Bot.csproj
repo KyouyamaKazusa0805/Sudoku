@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="HuajiTech.Mirai" Version="0.9.1-ci.272" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
+	</ItemGroup>
+
+</Project>

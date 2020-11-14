@@ -236,6 +236,14 @@
         <member name="M:Sudoku.Solving.AnalysisResult.ToString(System.String)">
             <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
         </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.ToString(System.String,Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the analysis result string using the specified format and the country code.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="countryCode">The country code.</param>
+            <returns>The result string.</returns>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -266,6 +274,15 @@
         </member>
         <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(System.String,System.IFormatProvider,Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the string result.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="formatProvider">The format provider.</param>
+            <param name="countryCode">The country code.</param>
+            <returns>The result.</returns>
             <exception cref="T:System.FormatException">
             Throws when the specified format contains other invalid characters
             and the format provider can't work.
@@ -1109,30 +1126,6 @@
             unless using last resort methods.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Extensions.SudokuGridEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseAndMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@)">
-            <summary>
-            Get the mask that is a result after the bitwise and operation processed all cells
-            in the specified map.
-            </summary>
-            <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseOrMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@)">
-            <summary>
-            Get the mask that is a result after the bitwise or operation processed all cells
-            in the specified map.
-            </summary>
-            <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Extensions.GridMapEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.GridMap"/>.
@@ -1186,6 +1179,50 @@
             draw the AIC, the elimination weak links don't need drawing.
             </param>
             <returns>The link.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Extensions.SudokuGridEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
+        </member>
+        <member name="F:Sudoku.Solving.Extensions.SudokuGridEx.SstsSearchers">
+            <summary>
+            All available SSTS searchers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.Clean(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            To clean the grid.
+            </summary>
+            <param name="this">(<see langword="this ref"/> parameter) The grid.</param>
+            <remarks>
+            "To clean a grid" means we process this grid to fill with singles that is found
+            in <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher"/>, and remove eliminations that is found
+            in <see cref="T:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher"/>.
+            The process won't stop until the puzzle cannot use these techniques.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseAndMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@)">
+            <summary>
+            Get the mask that is a result after the bitwise and operation processed all cells
+            in the specified map.
+            </summary>
+            <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseOrMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@)">
+            <summary>
+            Get the mask that is a result after the bitwise or operation processed all cells
+            in the specified map.
+            </summary>
+            <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
             <summary>

@@ -18,6 +18,8 @@ namespace Sudoku.Windows
 			["Colon"] = ":",
 			["Space"] = " ",
 			["GoesTo"] = " => ",
+			["Equals"] = " = ",
+			["Backslash"] = @"\",
 
 #line 2000 "Grid progress result"
 			["UnsolvedCells"] = "Unsolved cells: ",
