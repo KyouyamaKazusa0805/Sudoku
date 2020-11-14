@@ -12,6 +12,7 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
 using HImage = HuajiTech.Mirai.Messaging.Image;
+using R = Sudoku.Bot.ResourceDictionary;
 
 namespace Sudoku.Bot
 {
@@ -48,27 +49,27 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			if (info.ToLower().Trim() == ResourceDictionary.GetValue("HelpCommand"))
+			if (info.ToLower().Trim() == R.GetValue("HelpCommand"))
 			{
 				await ShowHelperTextAsync(e);
 			}
-			else if (info.Trim() == ResourceDictionary.GetValue("IntroducingCommand"))
+			else if (info.Trim() == R.GetValue("IntroducingCommand"))
 			{
 				await IntroduceAsync(e);
 			}
-			else if (info.StartsWith(ResourceDictionary.GetValue("AnalysisCommand")))
+			else if (info.StartsWith(R.GetValue("AnalysisCommand")))
 			{
 				await AnalysisAsync(info, e);
 			}
-			else if (info.StartsWith(ResourceDictionary.GetValue("DrawingCommand")))
+			else if (info.StartsWith(R.GetValue("DrawingCommand")))
 			{
 				await DrawImageAsync(info, e);
 			}
-			else if (info.StartsWith(ResourceDictionary.GetValue("GenerateEmptyGridCommand")))
+			else if (info.StartsWith(R.GetValue("GenerateEmptyGridCommand")))
 			{
 				await GenerateEmptyGridAsync(e);
 			}
-			else if (info.StartsWith(ResourceDictionary.GetValue("CleaningGridCommand")))
+			else if (info.StartsWith(R.GetValue("CleaningGridCommand")))
 			{
 				await CleanGridAsync(info, e);
 			}
@@ -81,18 +82,18 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task ShowHelperTextAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
-				new StringBuilder(ResourceDictionary.GetValue("Help1"))
+				new StringBuilder(R.GetValue("Help1"))
 				.AppendLine()
-				.AppendLine(ResourceDictionary.GetValue("Help2"))
+				.AppendLine(R.GetValue("Help2"))
 				.AppendLine()
-				.AppendLine(ResourceDictionary.GetValue("HelpHelp"))
-				.AppendLine(ResourceDictionary.GetValue("HelpAnalyze"))
-				.AppendLine(ResourceDictionary.GetValue("HelpGeneratePicture"))
-				.AppendLine(ResourceDictionary.GetValue("HelpClean"))
-				.AppendLine(ResourceDictionary.GetValue("HelpEmpty"))
-				.AppendLine(ResourceDictionary.GetValue("HelpIntroduceMyself"))
+				.AppendLine(R.GetValue("HelpHelp"))
+				.AppendLine(R.GetValue("HelpAnalyze"))
+				.AppendLine(R.GetValue("HelpGeneratePicture"))
+				.AppendLine(R.GetValue("HelpClean"))
+				.AppendLine(R.GetValue("HelpEmpty"))
+				.AppendLine(R.GetValue("HelpIntroduceMyself"))
 				.AppendLine()
-				.AppendLine(ResourceDictionary.GetValue("Help3"))
+				.AppendLine(R.GetValue("Help3"))
 				.AppendLine()
 				.ToString());
 
@@ -103,9 +104,9 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task IntroduceAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
-				new StringBuilder(ResourceDictionary.GetValue("Introduce1"))
+				new StringBuilder(R.GetValue("Introduce1"))
 				.AppendLine()
-				.Append(ResourceDictionary.GetValue("Introduce2"))
+				.Append(R.GetValue("Introduce2"))
 				.ToString());
 
 		/// <summary>
@@ -116,7 +117,7 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task AnalysisAsync(string info, MessageReceivedEventArgs e)
 		{
-			string analysisCommand = ResourceDictionary.GetValue("AnalysisCommand");
+			string analysisCommand = R.GetValue("AnalysisCommand");
 			if (!SudokuGrid.TryParse(info[analysisCommand.Length..].Trim(), out var grid)
 				|| !grid.IsValid())
 			{
@@ -143,7 +144,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			string drawingCommand = ResourceDictionary.GetValue("DrawingCommand");
+			string drawingCommand = R.GetValue("DrawingCommand");
 			if (!SudokuGrid.TryParse(info[drawingCommand.Length..].Trim(), out var grid) || !grid.IsValid())
 			{
 				return;
@@ -172,7 +173,7 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task CleanGridAsync(string info, MessageReceivedEventArgs e)
 		{
-			string cleanCommand = ResourceDictionary.GetValue("CleaningGridCommand");
+			string cleanCommand = R.GetValue("CleaningGridCommand");
 			if (!SudokuGrid.TryParse(info[cleanCommand.Length..].Trim(), out var grid) || !grid.IsValid())
 			{
 				return;
