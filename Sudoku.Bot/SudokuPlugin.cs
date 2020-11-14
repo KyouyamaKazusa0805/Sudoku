@@ -12,7 +12,7 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
 using HImage = HuajiTech.Mirai.Messaging.Image;
-using R = Sudoku.Bot.ResourceDictionary;
+using R = Sudoku.Bot.Resources;
 
 namespace Sudoku.Bot
 {
@@ -25,6 +25,12 @@ namespace Sudoku.Bot
 		/// Indicates the drawing size.
 		/// </summary>
 		private const int Size = 800;
+
+
+		///// <summary>
+		///// The inner grid painter.
+		///// </summary>
+		//private GridPainter? _painter;
 
 
 		/// <summary>
@@ -49,7 +55,7 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			if (info.ToLower().Trim() == R.GetValue("HelpCommand"))
+			if (info.Trim() == R.GetValue("HelpCommand"))
 			{
 				await ShowHelperTextAsync(e);
 			}
@@ -73,6 +79,10 @@ namespace Sudoku.Bot
 			{
 				await CleanGridAsync(info, e);
 			}
+			//else if (info.Trim() == R.GetValue("StartDrawing"))
+			//{
+			//	await StartDrawingAsync(info, e);
+			//}
 		}
 
 		/// <summary>
@@ -91,9 +101,24 @@ namespace Sudoku.Bot
 				.AppendLine(R.GetValue("HelpGeneratePicture"))
 				.AppendLine(R.GetValue("HelpClean"))
 				.AppendLine(R.GetValue("HelpEmpty"))
+				.AppendLine(R.GetValue("HelpStartDrawing"))
+				.AppendLine(R.GetValue("HelpFillGiven"))
+				.AppendLine(R.GetValue("HelpFillModifiable"))
+				.AppendLine(R.GetValue("HelpFillCandidate"))
+				.AppendLine(R.GetValue("HelpDrawCell"))
+				.AppendLine(R.GetValue("HelpDrawCandidate"))
+				.AppendLine(R.GetValue("HelpDrawRegion"))
+				.AppendLine(R.GetValue("HelpDrawRow"))
+				.AppendLine(R.GetValue("HelpDrawColumn"))
+				.AppendLine(R.GetValue("HelpDrawBlock"))
+				.AppendLine(R.GetValue("HelpDrawChain"))
+				.AppendLine(R.GetValue("HelpDrawCross"))
+				.AppendLine(R.GetValue("HelpDrawCircle"))
+				.AppendLine(R.GetValue("HelpClose"))
 				.AppendLine(R.GetValue("HelpIntroduceMyself"))
 				.AppendLine()
 				.AppendLine(R.GetValue("Help3"))
+				.AppendLine(R.GetValue("Help4"))
 				.AppendLine()
 				.ToString());
 
@@ -128,7 +153,7 @@ namespace Sudoku.Bot
 			await e.Reply(analysisResult.ToString("-!", CountryCode.ZhCn));
 
 			var painter = new GridPainter(new(Size, Size), new(), analysisResult.Solution!);
-			await ReplyPictureAsync(painter, e, $"答案盘：{Environment.NewLine}");
+			await ReplyPictureAsync(painter, e, $"{R.GetValue("Analysis1")}{Environment.NewLine}");
 		}
 
 		/// <summary>
@@ -183,6 +208,17 @@ namespace Sudoku.Bot
 			var painter = new GridPainter(new(Size, Size), new(), grid);
 			await ReplyPictureAsync(painter, e, null);
 		}
+
+		///// <summary>
+		///// Start drawing picture.
+		///// </summary>
+		///// <param name="info">The command arguments.</param>
+		///// <param name="e">The event arguments.</param>
+		///// <returns>The task of this method.</returns>
+		//private static async Task StartDrawingAsync(string info, MessageReceivedEventArgs e)
+		//{
+
+		//}
 
 		/// <summary>
 		/// Reply picture.
