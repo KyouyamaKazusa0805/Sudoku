@@ -111,11 +111,12 @@ namespace Sudoku.Bot
 				.AppendLine("-帮助：显示此帮助信息。")
 				.AppendLine("-分析 <盘面>：显示题目的分析结果。")
 				.AppendLine("-生成图片 <盘面>：将题目文本转为图片显示。")
+				.AppendLine("-清盘 <盘面>：将盘面前期的排除、唯一余数、区块和数组技巧全部应用。")
 				.AppendLine("-生成空盘：给一个空盘的图片。")
 				.AppendLine("小蛋蛋，介绍一下你吧：我 介 绍 我 自 己")
 				.AppendLine()
-				.Append("时间：")
-				.Append(DateTime.Now.ToString())
+				.AppendLine("注：指令前面减号也是命令的一部分。")
+				.AppendLine()
 				.ToString());
 
 		private static async Task IntroduceAsync(MessageReceivedEventArgs e) =>
