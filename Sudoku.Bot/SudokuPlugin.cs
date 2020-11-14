@@ -104,6 +104,11 @@ namespace Sudoku.Bot
 			}
 		}
 
+		/// <summary>
+		/// Show helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task ShowHelperTextAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder("帮助：")
@@ -119,6 +124,11 @@ namespace Sudoku.Bot
 				.AppendLine()
 				.ToString());
 
+		/// <summary>
+		/// Introduce myself.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task IntroduceAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder("Hello 大家好！我是一个机器人，叫小蛋蛋，是女孩子哦 (✿◡‿◡)")
@@ -126,6 +136,12 @@ namespace Sudoku.Bot
 				.Append("我爸还在给我加别的功能，所以我现在还需要大家的鼓励和支持哦，蟹蟹~")
 				.ToString());
 
+		/// <summary>
+		/// Analyze the puzzle.
+		/// </summary>
+		/// <param name="info">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task AnalysisAsync(string info, MessageReceivedEventArgs e)
 		{
 			if (!SudokuGrid.TryParse(info[AnalysisCommand.Length..].Trim(), out var grid)
@@ -141,6 +157,12 @@ namespace Sudoku.Bot
 			await ReplyPictureAsync(painter, e, $"答案盘：{Environment.NewLine}");
 		}
 
+		/// <summary>
+		/// Draw the image.
+		/// </summary>
+		/// <param name="info">The information.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawImageAsync(string info, MessageReceivedEventArgs e)
 		{
 			if (e.Message.Content.Count != 1)
@@ -157,12 +179,23 @@ namespace Sudoku.Bot
 			await ReplyPictureAsync(painter, e, null);
 		}
 
+		/// <summary>
+		/// Generate an empty grid.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task GenerateEmptyGridAsync(MessageReceivedEventArgs e)
 		{
 			var painter = new GridPainter(new(Size, Size), new(), SudokuGrid.Undefined);
 			await ReplyPictureAsync(painter, e, null);
 		}
 
+		/// <summary>
+		/// Clean the grid, and send the grid picture.
+		/// </summary>
+		/// <param name="info">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task CleanGridAsync(string info, MessageReceivedEventArgs e)
 		{
 			if (!SudokuGrid.TryParse(info[CleaningGridCommand.Length..].Trim(), out var grid) || !grid.IsValid())
@@ -175,6 +208,13 @@ namespace Sudoku.Bot
 			await ReplyPictureAsync(painter, e, null);
 		}
 
+		/// <summary>
+		/// Reply picture.
+		/// </summary>
+		/// <param name="painter">The painter.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="otherMessage">Othe message to add.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task ReplyPictureAsync(
 			GridPainter painter, MessageReceivedEventArgs e, string? otherMessage)
 		{

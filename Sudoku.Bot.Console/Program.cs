@@ -5,9 +5,6 @@ using HuajiTech.Mirai;
 using HuajiTech.Mirai.Events;
 using Sudoku.Bot;
 
-// See the link for more information.
-// https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/snippets/2
-
 const long myQQ = (long)(222 * 1E7M) + (1 << 21);
 
 var sessionSettings = new SessionSettings("127.0.0.1", 8080, "1234567890");
