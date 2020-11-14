@@ -25,36 +25,6 @@ namespace Sudoku.Bot
 		/// </summary>
 		private const int Size = 800;
 
-		/// <summary>
-		/// Indicates the analysis command.
-		/// </summary>
-		private const string AnalysisCommand = "-分析";
-
-		/// <summary>
-		/// Indicates the drawing command.
-		/// </summary>
-		private const string DrawingCommand = "-生成图片";
-
-		/// <summary>
-		/// Indicates the generating empty grid command.
-		/// </summary>
-		private const string GenerateEmptyGridCommand = "-生成空盘";
-
-		/// <summary>
-		/// Indicates the cleaning grid command.
-		/// </summary>
-		private const string CleaningGridCommand = "-清盘";
-
-		/// <summary>
-		/// Indicates the introducing command.
-		/// </summary>
-		private const string IntroducingCommand = "小蛋蛋，介绍一下你吧";
-
-		/// <summary>
-		/// Indicates the help command.
-		/// </summary>
-		private const string HelpCommand = "-帮助";
-
 
 		/// <summary>
 		/// Initializes an instance with the specified user event source.
@@ -78,27 +48,27 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			if (info.ToLower().Trim() == HelpCommand)
+			if (info.ToLower().Trim() == ResourceDictionary.GetValue("HelpCommand"))
 			{
 				await ShowHelperTextAsync(e);
 			}
-			else if (info.Trim() == IntroducingCommand)
+			else if (info.Trim() == ResourceDictionary.GetValue("IntroducingCommand"))
 			{
 				await IntroduceAsync(e);
 			}
-			else if (info.StartsWith(AnalysisCommand))
+			else if (info.StartsWith(ResourceDictionary.GetValue("AnalysisCommand")))
 			{
 				await AnalysisAsync(info, e);
 			}
-			else if (info.StartsWith(DrawingCommand))
+			else if (info.StartsWith(ResourceDictionary.GetValue("DrawingCommand")))
 			{
 				await DrawImageAsync(info, e);
 			}
-			else if (info.StartsWith(GenerateEmptyGridCommand))
+			else if (info.StartsWith(ResourceDictionary.GetValue("GenerateEmptyGridCommand")))
 			{
 				await GenerateEmptyGridAsync(e);
 			}
-			else if (info.StartsWith(CleaningGridCommand))
+			else if (info.StartsWith(ResourceDictionary.GetValue("CleaningGridCommand")))
 			{
 				await CleanGridAsync(info, e);
 			}
@@ -111,16 +81,18 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task ShowHelperTextAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
-				new StringBuilder("帮助：")
+				new StringBuilder(ResourceDictionary.GetValue("Help1"))
 				.AppendLine()
-				.AppendLine("-帮助：显示此帮助信息。")
-				.AppendLine("-分析 <盘面>：显示题目的分析结果。")
-				.AppendLine("-生成图片 <盘面>：将题目文本转为图片显示。")
-				.AppendLine("-清盘 <盘面>：将盘面前期的排除、唯一余数、区块和数组技巧全部应用。")
-				.AppendLine("-生成空盘：给一个空盘的图片。")
-				.AppendLine("小蛋蛋，介绍一下你吧：我 介 绍 我 自 己")
+				.AppendLine(ResourceDictionary.GetValue("Help2"))
 				.AppendLine()
-				.AppendLine("注：指令前面减号也是命令的一部分。")
+				.AppendLine(ResourceDictionary.GetValue("HelpHelp"))
+				.AppendLine(ResourceDictionary.GetValue("HelpAnalyze"))
+				.AppendLine(ResourceDictionary.GetValue("HelpGeneratePicture"))
+				.AppendLine(ResourceDictionary.GetValue("HelpClean"))
+				.AppendLine(ResourceDictionary.GetValue("HelpEmpty"))
+				.AppendLine(ResourceDictionary.GetValue("HelpIntroduceMyself"))
+				.AppendLine()
+				.AppendLine(ResourceDictionary.GetValue("Help3"))
 				.AppendLine()
 				.ToString());
 
@@ -131,9 +103,9 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task IntroduceAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
-				new StringBuilder("Hello 大家好！我是一个机器人，叫小蛋蛋，是女孩子哦 (✿◡‿◡)")
+				new StringBuilder(ResourceDictionary.GetValue("Introduce1"))
 				.AppendLine()
-				.Append("我爸还在给我加别的功能，所以我现在还需要大家的鼓励和支持哦，蟹蟹~")
+				.Append(ResourceDictionary.GetValue("Introduce2"))
 				.ToString());
 
 		/// <summary>
@@ -144,7 +116,8 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task AnalysisAsync(string info, MessageReceivedEventArgs e)
 		{
-			if (!SudokuGrid.TryParse(info[AnalysisCommand.Length..].Trim(), out var grid)
+			string analysisCommand = ResourceDictionary.GetValue("AnalysisCommand");
+			if (!SudokuGrid.TryParse(info[analysisCommand.Length..].Trim(), out var grid)
 				|| !grid.IsValid())
 			{
 				return;
@@ -170,7 +143,8 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!SudokuGrid.TryParse(info[DrawingCommand.Length..].Trim(), out var grid) || !grid.IsValid())
+			string drawingCommand = ResourceDictionary.GetValue("DrawingCommand");
+			if (!SudokuGrid.TryParse(info[drawingCommand.Length..].Trim(), out var grid) || !grid.IsValid())
 			{
 				return;
 			}
@@ -198,7 +172,8 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task CleanGridAsync(string info, MessageReceivedEventArgs e)
 		{
-			if (!SudokuGrid.TryParse(info[CleaningGridCommand.Length..].Trim(), out var grid) || !grid.IsValid())
+			string cleanCommand = ResourceDictionary.GetValue("CleaningGridCommand");
+			if (!SudokuGrid.TryParse(info[cleanCommand.Length..].Trim(), out var grid) || !grid.IsValid())
 			{
 				return;
 			}
