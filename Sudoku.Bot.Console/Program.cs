@@ -8,8 +8,10 @@ using Sudoku.Bot;
 // See the link for more information.
 // https://gitlab.huajitech.net/huajitech/mirai-http-dotnet-sdk/snippets/2
 
-var sessionSettings = new SessionSettings(address: "127.0.0.1", port: 8080, authKey: "1234567890");
-await using var session = new Session(sessionSettings, number: 2222097152L);
+const long myQQ = (long)(222 * 1E7M) + (1 << 21);
+
+var sessionSettings = new SessionSettings("127.0.0.1", 8080, "1234567890");
+await using var session = new Session(sessionSettings, myQQ);
 await session.ConnectAsync();
 
 var currentUserEventSource = new CurrentUserEventSource();
