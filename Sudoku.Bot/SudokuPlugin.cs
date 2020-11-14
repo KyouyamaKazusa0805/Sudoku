@@ -145,7 +145,7 @@ namespace Sudoku.Bot
 			}
 
 			grid.Clean();
-			var painter = new GridPainter(new(Size, Size), new() { CandidateFontName = "Tahoma" }, grid);
+			var painter = new GridPainter(new(Size, Size), new(), grid);
 			await ReplyPictureAsync(painter, e, null);
 		}
 

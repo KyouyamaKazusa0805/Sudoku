@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
@@ -39,11 +38,14 @@ namespace Sudoku.Solving.Extensions
 		/// <seealso cref="SubsetTechniqueSearcher"/>
 		public static void Clean(this ref SudokuGrid @this)
 		{
-		AtStart:
-			for (int i = 0; i < SstsSearchers.Length; i++)
+			var steps = new List<TechniqueInfo>();
+
+		Start:
+			steps.Clear();
+			TechniqueSearcher.InitializeMaps(@this);
+			for (int i = 0, length = SstsSearchers.Length; i < length; i++)
 			{
 				var searcher = SstsSearchers[i];
-				var steps = new List<TechniqueInfo>();
 				searcher.GetAll(steps, @this);
 				if (steps.Count == 0)
 				{
@@ -52,28 +54,10 @@ namespace Sudoku.Solving.Extensions
 
 				foreach (var step in steps)
 				{
-					bool needAdd = false;
-					foreach (var (t, c, d) in step.Conclusions)
-					{
-						switch (t)
-						{
-							case ConclusionType.Assignment when @this.GetStatus(c) == CellStatus.Empty:
-							case ConclusionType.Elimination when @this.Exists(c, d) is true:
-							{
-								needAdd = true;
-
-								goto FinalCheck;
-							}
-						}
-					}
-
-				FinalCheck:
-					if (needAdd)
-					{
-						step.ApplyTo(ref @this);
-						goto AtStart;
-					}
+					step.ApplyTo(ref @this);
 				}
+
+				goto Start;
 			}
 		}
 

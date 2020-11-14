@@ -19,6 +19,7 @@ using Sudoku.Extensions;
 using Sudoku.IO;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.BruteForces.Bitwise;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.LastResorts;
