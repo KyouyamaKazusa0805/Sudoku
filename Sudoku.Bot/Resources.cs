@@ -12,12 +12,24 @@ namespace Sudoku.Bot
 		/// </summary>
 		private static readonly IDictionary<string, string> InnerDictionary = new Dictionary<string, string>
 		{
+			["MyName"] = "小蛋蛋",
+			["Morning"] = "早上好",
+			["MorningToo"] = "你也早鸭",
+			["Size"] = "边长",
+			["To"] = "到",
+			["Success"] = "成功。",
+
 			["AnalysisCommand"] = "-分析",
 			["DrawingCommand"] = "-生成图片",
 			["GenerateEmptyGridCommand"] = "-生成空盘",
 			["CleaningGridCommand"] = "-清盘",
 			["IntroducingCommand"] = "小蛋蛋，介绍一下你吧",
 			["HelpCommand"] = "-帮助",
+			["StartDrawingCommand"] = "-开始绘图",
+			["FillCommand"] = "-填入",
+			["EndDrawingCommand"] = "-结束绘图",
+			["Given"] = "提示数",
+			["Modifiable"] = "填入数",
 
 			["Help1"] = "帮助：",
 			["Help2"] = "下面提示一些文字。",

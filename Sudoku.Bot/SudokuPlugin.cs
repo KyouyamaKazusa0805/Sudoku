@@ -27,10 +27,10 @@ namespace Sudoku.Bot
 		private const int Size = 800;
 
 
-		///// <summary>
-		///// The inner grid painter.
-		///// </summary>
-		//private GridPainter? _painter;
+		/// <summary>
+		/// The inner grid painter.
+		/// </summary>
+		private static GridPainter? _painter;
 
 
 		/// <summary>
@@ -55,7 +55,11 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			if (info.Trim() == R.GetValue("HelpCommand"))
+			if (info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning")))
+			{
+				await GreetingAsync(e);
+			}
+			else if (info.Trim() == R.GetValue("HelpCommand"))
 			{
 				await ShowHelperTextAsync(e);
 			}
@@ -79,11 +83,43 @@ namespace Sudoku.Bot
 			{
 				await CleanGridAsync(info, e);
 			}
-			//else if (info.Trim() == R.GetValue("StartDrawing"))
-			//{
-			//	await StartDrawingAsync(info, e);
-			//}
+			else
+			{
+				string[] s = info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+				if (s.Length < 1)
+				{
+					return;
+				}
+
+				if (s[0] == R.GetValue("StartDrawingCommand"))
+				{
+					await StartDrawingAsync(s, e);
+				}
+				else if (s[0] == R.GetValue("EndDrawingCommand"))
+				{
+					await DisposePainterAsync(e);
+				}
+				else if (s[0] == R.GetValue("FillCommand") && s.Length >= 2)
+				{
+					if (s[1] == R.GetValue("Given"))
+					{
+						await FillAsync(s, e, true);
+					}
+					else if (s[1] == R.GetValue("Modifiable"))
+					{
+						await FillAsync(s, e, false);
+					}
+				}
+			}
 		}
+
+		/// <summary>
+		/// Greet with somebody.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of the method.</returns>
+		private static async Task GreetingAsync(MessageReceivedEventArgs e) =>
+			await e.Reply(R.GetValue("MorningToo"));
 
 		/// <summary>
 		/// Show helper text.
@@ -104,16 +140,16 @@ namespace Sudoku.Bot
 				.AppendLine(R.GetValue("HelpStartDrawing"))
 				.AppendLine(R.GetValue("HelpFillGiven"))
 				.AppendLine(R.GetValue("HelpFillModifiable"))
-				.AppendLine(R.GetValue("HelpFillCandidate"))
-				.AppendLine(R.GetValue("HelpDrawCell"))
-				.AppendLine(R.GetValue("HelpDrawCandidate"))
-				.AppendLine(R.GetValue("HelpDrawRegion"))
-				.AppendLine(R.GetValue("HelpDrawRow"))
-				.AppendLine(R.GetValue("HelpDrawColumn"))
-				.AppendLine(R.GetValue("HelpDrawBlock"))
-				.AppendLine(R.GetValue("HelpDrawChain"))
-				.AppendLine(R.GetValue("HelpDrawCross"))
-				.AppendLine(R.GetValue("HelpDrawCircle"))
+				//.AppendLine(R.GetValue("HelpFillCandidate"))
+				//.AppendLine(R.GetValue("HelpDrawCell"))
+				//.AppendLine(R.GetValue("HelpDrawCandidate"))
+				//.AppendLine(R.GetValue("HelpDrawRegion"))
+				//.AppendLine(R.GetValue("HelpDrawRow"))
+				//.AppendLine(R.GetValue("HelpDrawColumn"))
+				//.AppendLine(R.GetValue("HelpDrawBlock"))
+				//.AppendLine(R.GetValue("HelpDrawChain"))
+				//.AppendLine(R.GetValue("HelpDrawCross"))
+				//.AppendLine(R.GetValue("HelpDrawCircle"))
 				.AppendLine(R.GetValue("HelpClose"))
 				.AppendLine(R.GetValue("HelpIntroduceMyself"))
 				.AppendLine()
@@ -209,16 +245,102 @@ namespace Sudoku.Bot
 			await ReplyPictureAsync(painter, e, null);
 		}
 
-		///// <summary>
-		///// Start drawing picture.
-		///// </summary>
-		///// <param name="info">The command arguments.</param>
-		///// <param name="e">The event arguments.</param>
-		///// <returns>The task of this method.</returns>
-		//private static async Task StartDrawingAsync(string info, MessageReceivedEventArgs e)
-		//{
+		/// <summary>
+		/// Start drawing picture.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
+		private static async Task StartDrawingAsync(string[] s, MessageReceivedEventArgs e)
+		{
+			if (s[1] != R.GetValue("Size"))
+			{
+				return;
+			}
 
-		//}
+			if (!uint.TryParse(s[2], out uint result) || result > 1000U)
+			{
+				return;
+			}
+
+			var pointConverter = new PointConverter(result, result);
+			_painter = new(pointConverter, new(), SudokuGrid.Undefined);
+
+			await ReplyPictureAsync(_painter, e, null);
+		}
+
+		private static async Task FillAsync(string[] s, MessageReceivedEventArgs e, bool appendGiven)
+		{
+			if (_painter is null)
+			{
+				return;
+			}
+
+			if (s.Length != 5)
+			{
+				return;
+			}
+
+			if (s[3] != R.GetValue("To"))
+			{
+				return;
+			}
+
+			if (!byte.TryParse(s[2], out byte digit) || digit is <= 0 or > 9)
+			{
+				return;
+			}
+
+			string str = s[4];
+			switch (str.Length)
+			{
+				case 2
+				when str[0] is var a && a is >= 'A' and <= 'I' or >= 'a' and <= 'i'
+				&& str[1] is var b and >= '1' and <= '9': // A-I 1-9
+				{
+					int row, column;
+					row = a is >= 'A' and <= 'I' ? a - 'A' : a - 'a';
+					column = b - '1';
+
+					int cell = row * 9 + column;
+
+					_painter.Grid[cell] = digit - 1;
+					if (appendGiven)
+					{
+						_painter.Grid.SetStatus(cell, CellStatus.Given);
+					}
+
+					await ReplyPictureAsync(_painter, e, null);
+
+					break;
+				}
+				case 4
+				when str[0] is 'r' or 'R' && str[2] is 'c' or 'C'
+				&& str[1] is var r and >= '1' and <= '9'
+				&& str[3] is var c and >= '1' and <= '9': // rxcy
+				{
+					int row = r - '1', column = c - '1';
+					int cell = row * 9 + column;
+
+					_painter.Grid[cell] = digit - 1;
+					if (appendGiven)
+					{
+						_painter.Grid.SetStatus(cell, CellStatus.Given);
+					}
+
+					await ReplyPictureAsync(_painter, e, null);
+
+					break;
+				}
+			}
+		}
+
+		private static async Task DisposePainterAsync(MessageReceivedEventArgs e)
+		{
+			_painter = null;
+
+			await e.Reply(R.GetValue("Success"));
+		}
 
 		/// <summary>
 		/// Reply picture.
