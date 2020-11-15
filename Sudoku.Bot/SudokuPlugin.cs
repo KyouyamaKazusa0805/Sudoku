@@ -58,17 +58,17 @@ namespace Sudoku.Bot
 			string info = pl.ToString();
 			BatchExecutingEventHandler? handler = info switch
 			{
-				"-帮助" => async () => await ShowHelperTextAsync(e),
-				"-分析" => async () => await AnalysisAsync(info, e),
-				"-生成图片" => async () => await DrawImageAsync(info, e),
-				"-生成空盘" => async () => await GenerateEmptyGridAsync(e),
-				"-清盘" => async () => await CleanGridAsync(info, e),
-				"小蛋蛋，介绍一下你吧" => async () => await IntroduceAsync(e),
 				_ when sayHello(info) => async () => await GreetingAsync(e),
 				_ => info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries) switch
 				{
 					{ Length: >= 1 } s => s[0] switch
 					{
+						"-帮助" => async () => await ShowHelperTextAsync(e),
+						"-分析" => async () => await AnalysisAsync(info, e),
+						"-生成图片" => async () => await DrawImageAsync(info, e),
+						"-生成空盘" => async () => await GenerateEmptyGridAsync(e),
+						"-清盘" => async () => await CleanGridAsync(info, e),
+						"小蛋蛋，介绍一下你吧" => async () => await IntroduceAsync(e),
 						"-开始绘图" => async () => await StartDrawingAsync(s, e),
 						"-结束绘图" => async () => await DisposePainterAsync(e),
 						"-填入" when s.Length >= 2 => s[1] switch
