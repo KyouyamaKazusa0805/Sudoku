@@ -1,6 +1,5 @@
 ﻿using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Drawing;
 using Sudoku.Extensions;
 using System.Collections.Generic;
 using static Sudoku.Constants.Processings;
@@ -52,13 +51,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <summary>
 		/// All combinations.
 		/// </summary>
-		private static readonly IReadOnlyList<(GridMap, IReadOnlyList<DrawingInfo>, int)> Combinations;
+		private static readonly IReadOnlyList<(GridMap, IReadOnlyList<(int, int)>, int)> Combinations;
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
 		static XrTechniqueSearcher()
 		{
-			var combinations = new List<(GridMap, IReadOnlyList<DrawingInfo>, int)>();
+			var combinations = new List<(GridMap, IReadOnlyList<(int, int)>, int)>();
 
 			// Fit type. e.g.
 			// ab | ab
@@ -73,7 +72,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					int c13 = c11 + 18, c23 = c21 + 18;
 					combinations.Add((
 						new() { c11, c12, c13, c21, c22, c23 },
-						new DrawingInfo[] { new(c11, c21), new(c12, c22), new(c13, c23) },
+						new[] { (c11, c21), (c12, c22), (c13, c23) },
 						3));
 				}
 			}
@@ -86,7 +85,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					int c13 = c11 + 2, c23 = c21 + 2;
 					combinations.Add((
 						new() { c11, c12, c13, c21, c22, c23 },
-						new DrawingInfo[] { new(c11, c21), new(c12, c22), new(c13, c23) },
+						new[] { (c11, c21), (c12, c22), (c13, c23) },
 						3));
 				}
 			}
@@ -110,13 +109,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						}
 
 						var map = GridMap.Empty;
-						var pairs = new List<DrawingInfo>();
+						var pairs = new List<(int, int)>();
 						foreach (int pos in mask)
 						{
 							int cell1 = RegionCells[region1][pos], cell2 = RegionCells[region2][pos];
 							map.AddAnyway(cell1);
 							map.AddAnyway(cell2);
-							pairs.Add(new(cell1, cell2));
+							pairs.Add((cell1, cell2));
 						}
 
 						combinations.Add((map, pairs, size));

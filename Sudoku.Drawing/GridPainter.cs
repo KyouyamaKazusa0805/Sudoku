@@ -466,12 +466,12 @@ namespace Sudoku.Drawing
 				// The last 16 bits are A, R, G, B value from one color.
 				// Otherwise the ID value is only between -4 and 10 (at present, who knows
 				// whether the range will be extended larger or not).
-				if ((id >> 16 & 65535) == 0xDEAD)
+				if ((id >> 32 & 65535) == 0xDEAD)
 				{
-					int aWeight = id >> 12 & 255;
-					int rWeight = id >> 8 & 255;
-					int gWeight = id >> 4 & 255;
-					int bWeight = id & 255;
+					int aWeight = (int)(id >> 24 & 255);
+					int rWeight = (int)(id >> 16 & 255);
+					int gWeight = (int)(id >> 8 & 255);
+					int bWeight = (int)(id & 255);
 
 					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
 					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3));
@@ -515,12 +515,12 @@ namespace Sudoku.Drawing
 					// The last 16 bits are A, R, G, B value from one color.
 					// Otherwise the ID value is only between -4 and 10 (at present, who knows
 					// whether the range will be extended larger or not).
-					if ((id >> 16 & 65535) == 0xDEAD)
+					if ((id >> 32 & 65535) == 0xDEAD)
 					{
-						int aWeight = id >> 12 & 255;
-						int rWeight = id >> 8 & 255;
-						int gWeight = id >> 4 & 255;
-						int bWeight = id & 255;
+						int aWeight = (int)(id >> 24 & 255);
+						int rWeight = (int)(id >> 16 & 255);
+						int gWeight = (int)(id >> 8 & 255);
+						int bWeight = (int)(id & 255);
 
 						using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
 						g.FillEllipse(brush, PointConverter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
@@ -582,12 +582,12 @@ namespace Sudoku.Drawing
 				// The last 16 bits are A, R, G, B value from one color.
 				// Otherwise the ID value is only between -4 and 10 (at present, who knows
 				// whether the range will be extended larger or not).
-				if ((id >> 16 & 65535) == 0xDEAD)
+				if ((id >> 32 & 65535) == 0xDEAD)
 				{
-					int aWeight = id >> 12 & 255;
-					int rWeight = id >> 8 & 255;
-					int gWeight = id >> 4 & 255;
-					int bWeight = id & 255;
+					int aWeight = (int)(id >> 24 & 255);
+					int rWeight = (int)(id >> 16 & 255);
+					int gWeight = (int)(id >> 8 & 255);
+					int bWeight = (int)(id & 255);
 
 					var (cw, ch) = PointConverter.CellSize;
 					var (x, y) = PointConverter.GetMousePointInCenter(cell);

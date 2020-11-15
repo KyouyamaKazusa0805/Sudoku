@@ -407,7 +407,7 @@ namespace Sudoku.IO
 		/// <param name="min">The minimum value to check.</param>
 		/// <param name="max">The maximum value to check.</param>
 		/// <param name="action">The action.</param>
-		private void DrawInternal(string[] args, int min, int max, Action<int, int> action)
+		private void DrawInternal(string[] args, int min, int max, Action<long, int> action)
 		{
 			if (args.Length != 13)
 			{
@@ -431,8 +431,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-			const int z = -559087616; // 0xDEAD << 16
-			action(z | a << 12 | r << 8 | g << 4 | b, c - 1);
+			action(0xDEAD << 32 | a << 24 | r << 16 | g << 8 | b, c - 1);
 		}
 
 		/// <summary>

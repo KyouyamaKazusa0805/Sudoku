@@ -4738,7 +4738,7 @@
             candidates and regions.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.DrawingInfo.#ctor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.DrawingInfo.#ctor(System.Int64,System.Int32)">
             <summary>
             Initializes an instance with ID and value.
             </summary>
@@ -4767,7 +4767,7 @@
         <member name="M:Sudoku.Drawing.DrawingInfo.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Drawing.DrawingInfo.Deconstruct(System.Int32@,System.Int32@)">
+        <member name="M:Sudoku.Drawing.DrawingInfo.Deconstruct(System.Int64@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="id">(<see langword="out"/> parameter) The ID.</param>
             <param name="value">(<see langword="out"/> parameter) The value.</param>

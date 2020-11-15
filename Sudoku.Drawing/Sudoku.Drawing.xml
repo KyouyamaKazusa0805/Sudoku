@@ -450,21 +450,21 @@
         <member name="M:Sudoku.Drawing.MutableView.#ctor">
             <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.AddCell(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.MutableView.AddCell(System.Int64,System.Int32)">
             <summary>
             Add a cell into the list.
             </summary>
             <param name="id">The color ID.</param>
             <param name="cell">The cell.</param>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.AddCandidate(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.MutableView.AddCandidate(System.Int64,System.Int32)">
             <summary>
             Add a candidate into the list.
             </summary>
             <param name="id">The color ID.</param>
             <param name="candidate">The cell.</param>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.AddRegion(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.MutableView.AddRegion(System.Int64,System.Int32)">
             <summary>
             Add a region into the list.
             </summary>

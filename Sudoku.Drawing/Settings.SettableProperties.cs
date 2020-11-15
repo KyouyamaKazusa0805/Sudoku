@@ -265,8 +265,8 @@ namespace Sudoku.Drawing
 		/// Indicates the palette colors.
 		/// </summary>
 		[JsonIgnore]
-		public IReadOnlyDictionary<int, Color> PaletteColors =>
-			new Dictionary<int, Color>
+		public IReadOnlyDictionary<long, Color> PaletteColors =>
+			new Dictionary<long, Color>
 			{
 				[-4] = Color8,
 				[-3] = Color7,

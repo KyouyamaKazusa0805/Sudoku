@@ -5,9 +5,11 @@ using HuajiTech.Mirai;
 using HuajiTech.Mirai.Events;
 using HuajiTech.Mirai.Messaging;
 using Sudoku.Bot.Extensions;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
+using Sudoku.IO;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
@@ -54,62 +56,66 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			if (info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning")))
+			BatchExecutingEventHandler? handler = true switch
 			{
-				await GreetingAsync(e);
-			}
-			else if (info.Trim() == R.GetValue("HelpCommand"))
-			{
-				await ShowHelperTextAsync(e);
-			}
-			else if (info.Trim() == R.GetValue("IntroducingCommand"))
-			{
-				await IntroduceAsync(e);
-			}
-			else if (info.StartsWith(R.GetValue("AnalysisCommand")))
-			{
-				await AnalysisAsync(info, e);
-			}
-			else if (info.StartsWith(R.GetValue("DrawingCommand")))
-			{
-				await DrawImageAsync(info, e);
-			}
-			else if (info.StartsWith(R.GetValue("GenerateEmptyGridCommand")))
-			{
-				await GenerateEmptyGridAsync(e);
-			}
-			else if (info.StartsWith(R.GetValue("CleaningGridCommand")))
-			{
-				await CleanGridAsync(info, e);
-			}
-			else
-			{
-				string[] s = info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-				if (s.Length < 1)
+				_ when sayHello(info) => async () => await GreetingAsync(e),
+				_ when help(info) => async () => await ShowHelperTextAsync(e),
+				_ when introduceMyself(info) => async () => await IntroduceAsync(e),
+				_ when analyze(info) => async () => await AnalysisAsync(info, e),
+				_ when generatePicture(info) => async () => await DrawImageAsync(info, e),
+				_ when generateEmptyGrid(info) => async () => await GenerateEmptyGridAsync(e),
+				_ when cleanGrid(info) => async () => await CleanGridAsync(info, e),
+				_ => info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries) switch
 				{
-					return;
+					{ Length: >= 1 } s => s[0] switch
+					{
+						"-开始绘图" => async () => await StartDrawingAsync(s, e),
+						"-结束绘图" => async () => await DisposePainterAsync(e),
+						"-填入" when s.Length >= 2 => s[1] switch
+						{
+							"提示数" => async () => await FillAsync(s, e, true),
+							"填入数" => async () => await FillAsync(s, e, false),
+							_ => null
+						},
+						"-画" when s.Length >= 2 => s[1] switch
+						{
+							"单元格" => async () => await DrawCellAsync(s, e, false),
+							"候选数" => async () => await DrawCandidateAsync(s, e, false),
+							"行" => async () => await DrawRowAsync(s, e, false),
+							"列" => async () => await DrawColumnAsync(s, e, false),
+							"宫" => async () => await DrawBlockAsync(s, e, false),
+							"链" => async () => await DrawChainAsync(s, e, false),
+							"叉叉" => async () => await DrawCrossAsync(s, e, false),
+							"圆圈" => async () => await DrawCircleAsync(s, e, false),
+							_ => null
+						},
+						"-去除" when s.Length >= 2 => s[1] switch
+						{
+							"单元格" => async () => await DrawCellAsync(s, e, true),
+							"候选数" => async () => await DrawCandidateAsync(s, e, true),
+							"行" => async () => await DrawRowAsync(s, e, true),
+							"列" => async () => await DrawColumnAsync(s, e, true),
+							"宫" => async () => await DrawBlockAsync(s, e, true),
+							"链" => async () => await DrawChainAsync(s, e, true),
+							"叉叉" => async () => await DrawCrossAsync(s, e, true),
+							"圆圈" => async () => await DrawCircleAsync(s, e, true),
+							_ => null
+						},
+						_ => null
+					},
+					_ => null
 				}
+			};
 
-				if (s[0] == R.GetValue("StartDrawingCommand"))
-				{
-					await StartDrawingAsync(s, e);
-				}
-				else if (s[0] == R.GetValue("EndDrawingCommand"))
-				{
-					await DisposePainterAsync(e);
-				}
-				else if (s[0] == R.GetValue("FillCommand") && s.Length >= 2)
-				{
-					if (s[1] == R.GetValue("Given"))
-					{
-						await FillAsync(s, e, true);
-					}
-					else if (s[1] == R.GetValue("Modifiable"))
-					{
-						await FillAsync(s, e, false);
-					}
-				}
-			}
+			await Task.Run(() => handler?.Invoke());
+
+			static bool sayHello(string info) => info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning"));
+			static bool help(string info) => info == R.GetValue("HelpCommand");
+			static bool introduceMyself(string info) => info == R.GetValue("IntroducingCommand");
+			static bool analyze(string info) => info.StartsWith(R.GetValue("AnalysisCommand"));
+			static bool generatePicture(string info) => info.StartsWith(R.GetValue("GeneratePictureCommand"));
+			static bool generateEmptyGrid(string info) => info.StartsWith(R.GetValue("GenerateEmptyGridCommand"));
+			static bool cleanGrid(string info) => info.StartsWith(R.GetValue("CleaningGridCommand"));
 		}
 
 		/// <summary>
@@ -137,24 +143,13 @@ namespace Sudoku.Bot
 				.AppendLine(R.GetValue("HelpClean"))
 				.AppendLine(R.GetValue("HelpEmpty"))
 				.AppendLine(R.GetValue("HelpStartDrawing"))
-				.AppendLine(R.GetValue("HelpFillGiven"))
-				.AppendLine(R.GetValue("HelpFillModifiable"))
-				//.AppendLine(R.GetValue("HelpFillCandidate"))
-				//.AppendLine(R.GetValue("HelpDrawCell"))
-				//.AppendLine(R.GetValue("HelpDrawCandidate"))
-				//.AppendLine(R.GetValue("HelpDrawRegion"))
-				//.AppendLine(R.GetValue("HelpDrawRow"))
-				//.AppendLine(R.GetValue("HelpDrawColumn"))
-				//.AppendLine(R.GetValue("HelpDrawBlock"))
-				//.AppendLine(R.GetValue("HelpDrawChain"))
-				//.AppendLine(R.GetValue("HelpDrawCross"))
-				//.AppendLine(R.GetValue("HelpDrawCircle"))
-				.AppendLine(R.GetValue("HelpClose"))
+				.AppendLine(R.GetValue("HelpEndDrawing"))
 				.AppendLine(R.GetValue("HelpIntroduceMyself"))
 				.AppendLine()
 				.AppendLine(R.GetValue("Help3"))
 				.AppendLine(R.GetValue("Help4"))
 				.AppendLine()
+				.AppendLine(R.GetValue("MyName"))
 				.ToString());
 
 		/// <summary>
@@ -204,8 +199,9 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			string drawingCommand = R.GetValue("DrawingCommand");
-			if (!SudokuGrid.TryParse(info[drawingCommand.Length..].Trim(), out var grid) || !grid.IsValid())
+			string GeneratePictureCommand = R.GetValue("GeneratePictureCommand");
+			if (!SudokuGrid.TryParse(info[GeneratePictureCommand.Length..].Trim(), out var grid)
+				|| !grid.IsValid())
 			{
 				return;
 			}
@@ -256,6 +252,11 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task StartDrawingAsync(string[] s, MessageReceivedEventArgs e)
 		{
+			if (s.Length != 3)
+			{
+				return;
+			}
+
 			if (s[1] != R.GetValue("Size"))
 			{
 				return;
@@ -273,6 +274,13 @@ namespace Sudoku.Bot
 			await e.ReplyImageAsync(image);
 		}
 
+		/// <summary>
+		/// Fill the given and modifiable.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="appendGiven">Indicates whether we should add given values.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task FillAsync(string[] s, MessageReceivedEventArgs e, bool appendGiven)
 		{
 			if (_painter is null)
@@ -295,52 +303,324 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			string str = s[4];
-			switch (str.Length)
+			if (!Parser.TryParseCell(s[4], out byte row, out byte column))
 			{
-				case 2
-				when str[0] is var a && a is >= 'A' and <= 'I' or >= 'a' and <= 'i'
-				&& str[1] is var b and >= '1' and <= '9': // A-I 1-9
-				{
-					int row, column;
-					row = a is >= 'A' and <= 'I' ? a - 'A' : a - 'a';
-					column = b - '1';
-
-					int cell = row * 9 + column;
-
-					_painter.Grid[cell] = digit - 1;
-					if (appendGiven)
-					{
-						_painter.Grid.SetStatus(cell, CellStatus.Given);
-					}
-
-					using var image = _painter.Draw();
-					await e.ReplyImageAsync(image);
-
-					break;
-				}
-				case 4
-				when str[0] is 'r' or 'R' && str[2] is 'c' or 'C'
-				&& str[1] is var r and >= '1' and <= '9'
-				&& str[3] is var c and >= '1' and <= '9': // rxcy
-				{
-					int row = r - '1', column = c - '1';
-					int cell = row * 9 + column;
-
-					_painter.Grid[cell] = digit - 1;
-					if (appendGiven)
-					{
-						_painter.Grid.SetStatus(cell, CellStatus.Given);
-					}
-
-					using var image = _painter.Draw();
-					await e.ReplyImageAsync(image);
-
-					break;
-				}
+				return;
 			}
+
+			int cell = row * 9 + column;
+			_painter.Grid[cell] = digit - 1;
+			if (appendGiven)
+			{
+				_painter.Grid.SetStatus(cell, CellStatus.Given);
+			}
+
+			using var image = _painter.Draw();
+			await e.ReplyImageAsync(image);
 		}
 
+		private static async Task DrawCellAsync(string[] s, MessageReceivedEventArgs e, bool remove)
+		{
+			if (_painter is null)
+			{
+				return;
+			}
+
+			if (s.Length != 4 - (remove ? 1 : 0))
+			{
+				return;
+			}
+
+			if (!Parser.TryParseCell(s[2], out byte row, out byte column))
+			{
+				return;
+			}
+
+			long colorId = default;
+			if (!remove && !Parser.TryParseColorId(s[3], out colorId))
+			{
+				return;
+			}
+
+			if (_painter.CustomView is null)
+			{
+				_painter = _painter with { CustomView = new() };
+			}
+
+			int cell = row * 9 + column;
+			if (remove)
+			{
+				_painter.CustomView.RemoveCell(cell);
+			}
+			else
+			{
+				_painter.CustomView.AddCell(colorId, cell);
+			}
+
+			using var image = _painter.Draw();
+			await e.ReplyImageAsync(image);
+		}
+
+		private static async Task DrawCandidateAsync(string[] s, MessageReceivedEventArgs e, bool remove)
+		{
+			if (_painter is null)
+			{
+				return;
+			}
+
+			if (s.Length != 5 - (remove ? 1 : 0))
+			{
+				return;
+			}
+
+			if (!Parser.TryParseCell(s[2], out byte row, out byte column))
+			{
+				return;
+			}
+
+			if (!byte.TryParse(s[3], out byte digit) || digit is <= 0 or > 9)
+			{
+				return;
+			}
+
+			long colorId = default;
+			if (!remove && !Parser.TryParseColorId(s[4], out colorId))
+			{
+				return;
+			}
+
+			if (_painter.CustomView is null)
+			{
+				_painter = _painter with { CustomView = new() };
+			}
+
+			int candidate = row * 81 + column * 9 + digit - 1;
+			if (remove)
+			{
+				_painter.CustomView.RemoveCandidate(candidate);
+			}
+			else
+			{
+				_painter.CustomView.AddCandidate(colorId, candidate);
+			}
+
+			using var image = _painter.Draw();
+			await e.ReplyImageAsync(image);
+		}
+
+		private static async Task DrawRowAsync(string[] s, MessageReceivedEventArgs e, bool remove)
+		{
+			if (s.Length != 4 - (remove ? 1 : 0))
+			{
+				return;
+			}
+
+			if (!byte.TryParse(s[2], out byte region) || region is <= 0 or > 9)
+			{
+				return;
+			}
+
+			long colorId = default;
+			if (!remove && !Parser.TryParseColorId(s[3], out colorId))
+			{
+				return;
+			}
+
+			await DrawRegionAsync(RegionLabel.Row, region - 1, colorId, e, remove);
+		}
+
+		private static async Task DrawColumnAsync(string[] s, MessageReceivedEventArgs e, bool remove)
+		{
+			if (s.Length != 4 - (remove ? 1 : 0))
+			{
+				return;
+			}
+
+			if (!byte.TryParse(s[2], out byte region) || region is <= 0 or > 9)
+			{
+				return;
+			}
+
+			long colorId = default;
+			if (!remove && !Parser.TryParseColorId(s[3], out colorId))
+			{
+				return;
+			}
+
+			await DrawRegionAsync(RegionLabel.Column, region - 1, colorId, e, remove);
+		}
+
+		private static async Task DrawBlockAsync(string[] s, MessageReceivedEventArgs e, bool remove)
+		{
+			if (s.Length != 4 - (remove ? 1 : 0))
+			{
+				return;
+			}
+
+			if (!byte.TryParse(s[2], out byte region) || region is <= 0 or > 9)
+			{
+				return;
+			}
+
+			long colorId = default;
+			if (!remove && !Parser.TryParseColorId(s[3], out colorId))
+			{
+				return;
+			}
+
+			await DrawRegionAsync(RegionLabel.Block, region - 1, colorId, e, remove);
+		}
+
+		private static async Task DrawRegionAsync(
+			RegionLabel label, int region, long colorId, MessageReceivedEventArgs e, bool remove)
+		{
+			if (_painter is null)
+			{
+				return;
+			}
+
+			if (_painter.CustomView is null)
+			{
+				_painter = _painter with { CustomView = new() };
+			}
+
+			int r = (int)label * 9 + region;
+			if (remove)
+			{
+				_painter.CustomView.RemoveRegion(r);
+			}
+			else
+			{
+				_painter.CustomView.AddRegion(colorId, r);
+			}
+
+			using var image = _painter.Draw();
+			await e.ReplyImageAsync(image);
+		}
+
+		private static async Task DrawChainAsync(string[] s, MessageReceivedEventArgs e, bool remove)
+		{
+			if (_painter is null)
+			{
+				return;
+			}
+
+			if (s.Length != 8)
+			{
+				return;
+			}
+
+			if (s[2] != R.GetValue("From"))
+			{
+				return;
+			}
+
+			if (!Parser.TryParseCell(s[3], out byte r1, out byte c1)
+				|| !Parser.TryParseCell(s[6], out byte r2, out byte c2))
+			{
+				return;
+			}
+
+			if (!byte.TryParse(s[4], out byte d1) || !byte.TryParse(s[7], out byte d2)
+				|| d1 is <= 0 or > 9 || d2 is <= 0 or > 9)
+			{
+				return;
+			}
+
+			if (_painter.CustomView is null)
+			{
+				_painter = _painter with { CustomView = new() };
+			}
+
+			var link = new Link(r1 * 81 + c1 * 9 + (d1 - 1), r2 * 81 + c2 * 9 + (d2 - 1), LinkType.Default);
+			if (remove)
+			{
+				_painter.CustomView.RemoveLink(link);
+			}
+			else
+			{
+				_painter.CustomView.AddLink(link);
+			}
+
+			using var image = _painter.Draw();
+			await e.ReplyImageAsync(image);
+		}
+
+		private static async Task DrawCrossAsync(string[] s, MessageReceivedEventArgs e, bool remove)
+		{
+			if (_painter is null)
+			{
+				return;
+			}
+
+			if (s.Length != 3)
+			{
+				return;
+			}
+
+			if (!Parser.TryParseCell(s[2], out byte row, out byte column))
+			{
+				return;
+			}
+
+			if (_painter.CustomView is null)
+			{
+				_painter = _painter with { CustomView = new() };
+			}
+
+			if (remove)
+			{
+				_painter.CustomView.RemoveDirectLine(GridMap.Empty, new() { row * 9 + column });
+			}
+			else
+			{
+				_painter.CustomView.AddDirectLine(GridMap.Empty, new() { row * 9 + column });
+			}
+
+			using var image = _painter.Draw();
+			await e.ReplyImageAsync(image);
+		}
+
+		private static async Task DrawCircleAsync(string[] s, MessageReceivedEventArgs e, bool remove)
+		{
+			if (_painter is null)
+			{
+				return;
+			}
+
+			if (s.Length != 3)
+			{
+				return;
+			}
+
+			if (!Parser.TryParseCell(s[2], out byte row, out byte column))
+			{
+				return;
+			}
+
+			if (_painter.CustomView is null)
+			{
+				_painter = _painter with { CustomView = new() };
+			}
+
+			if (remove)
+			{
+				_painter.CustomView.RemoveDirectLine(new() { row * 9 + column }, GridMap.Empty);
+			}
+			else
+			{
+				_painter.CustomView.AddDirectLine(new() { row * 9 + column }, GridMap.Empty);
+			}
+
+			using var image = _painter.Draw();
+			await e.ReplyImageAsync(image);
+		}
+
+		/// <summary>
+		/// Dispose the painter.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DisposePainterAsync(MessageReceivedEventArgs e)
 		{
 			_painter = null;

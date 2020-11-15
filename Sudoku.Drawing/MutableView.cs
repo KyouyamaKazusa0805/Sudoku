@@ -36,21 +36,21 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="cell">The cell.</param>
-		public void AddCell(int id, int cell) => Cells?.Add(new(id, cell));
+		public void AddCell(long id, int cell) => Cells?.Add(new(id, cell));
 
 		/// <summary>
 		/// Add a candidate into the list.
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="candidate">The cell.</param>
-		public void AddCandidate(int id, int candidate) => Candidates?.Add(new(id, candidate));
+		public void AddCandidate(long id, int candidate) => Candidates?.Add(new(id, candidate));
 
 		/// <summary>
 		/// Add a region into the list.
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="region">The region.</param>
-		public void AddRegion(int id, int region) => Regions?.Add(new(id, region));
+		public void AddRegion(long id, int region) => Regions?.Add(new(id, region));
 
 		/// <summary>
 		/// Add a link into the list.

@@ -14,13 +14,13 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="id">The ID.</param>
 		/// <param name="value">The value.</param>
-		public DrawingInfo(int id, int value) => (Id, Value) = (id, value);
+		public DrawingInfo(long id, int value) => (Id, Value) = (id, value);
 
 
 		/// <summary>
 		/// Indicates the ID value. The ID is the unique key corresponding to one color.
 		/// </summary>
-		public int Id { get; }
+		public long Id { get; }
 
 		/// <summary>
 		/// Indicates the value.
@@ -35,7 +35,7 @@ namespace Sudoku.Drawing
 		public bool Equals(in DrawingInfo other) => (Id, Value) == (other.Id, other.Value);
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		public override int GetHashCode() => Id * 10000 + Value;
+		public override int GetHashCode() => (int)((Id * 10000L + Value) % int.MaxValue);
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => (Id, Value).ToString();
@@ -43,7 +43,7 @@ namespace Sudoku.Drawing
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="id">(<see langword="out"/> parameter) The ID.</param>
 		/// <param name="value">(<see langword="out"/> parameter) The value.</param>
-		public void Deconstruct(out int id, out int value) => (id, value) = (Id, Value);
+		public void Deconstruct(out long id, out int value) => (id, value) = (Id, Value);
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

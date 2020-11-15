@@ -285,7 +285,7 @@
             </summary>
             <param name="args">The arguments.</param>
         </member>
-        <member name="M:Sudoku.IO.BatchExecutor.DrawInternal(System.String[],System.Int32,System.Int32,System.Action{System.Int32,System.Int32})">
+        <member name="M:Sudoku.IO.BatchExecutor.DrawInternal(System.String[],System.Int32,System.Int32,System.Action{System.Int64,System.Int32})">
             <summary>
             The internal drawing method.
             </summary>
