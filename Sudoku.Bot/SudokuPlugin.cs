@@ -56,15 +56,15 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			BatchExecutingEventHandler? handler = true switch
+			BatchExecutingEventHandler? handler = info switch
 			{
+				"-帮助" => async () => await ShowHelperTextAsync(e),
+				"小蛋蛋，介绍一下你吧" => async () => await IntroduceAsync(e),
+				"-分析" => async () => await AnalysisAsync(info, e),
+				"-生成图片" => async () => await DrawImageAsync(info, e),
+				"-生成空盘" => async () => await GenerateEmptyGridAsync(e),
+				"-清盘" => async () => await CleanGridAsync(info, e),
 				_ when sayHello(info) => async () => await GreetingAsync(e),
-				_ when help(info) => async () => await ShowHelperTextAsync(e),
-				_ when introduceMyself(info) => async () => await IntroduceAsync(e),
-				_ when analyze(info) => async () => await AnalysisAsync(info, e),
-				_ when generatePicture(info) => async () => await DrawImageAsync(info, e),
-				_ when generateEmptyGrid(info) => async () => await GenerateEmptyGridAsync(e),
-				_ when cleanGrid(info) => async () => await CleanGridAsync(info, e),
 				_ => info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries) switch
 				{
 					{ Length: >= 1 } s => s[0] switch
@@ -110,12 +110,6 @@ namespace Sudoku.Bot
 			await Task.Run(() => handler?.Invoke());
 
 			static bool sayHello(string info) => info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning"));
-			static bool help(string info) => info == R.GetValue("HelpCommand");
-			static bool introduceMyself(string info) => info == R.GetValue("IntroducingCommand");
-			static bool analyze(string info) => info.StartsWith(R.GetValue("AnalysisCommand"));
-			static bool generatePicture(string info) => info.StartsWith(R.GetValue("GeneratePictureCommand"));
-			static bool generateEmptyGrid(string info) => info.StartsWith(R.GetValue("GenerateEmptyGridCommand"));
-			static bool cleanGrid(string info) => info.StartsWith(R.GetValue("CleaningGridCommand"));
 		}
 
 		/// <summary>
@@ -252,26 +246,40 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task StartDrawingAsync(string[] s, MessageReceivedEventArgs e)
 		{
-			if (s.Length != 3)
+			switch (s.Length)
 			{
-				return;
+				case 1:
+				{
+					await g(600);
+
+					break;
+				}
+				case 3:
+				{
+					if (s[1] != R.GetValue("Size"))
+					{
+						return;
+					}
+
+					if (!uint.TryParse(s[2], out uint result) || result > 1000U)
+					{
+						return;
+					}
+
+					await g(result);
+
+					break;
+				}
 			}
 
-			if (s[1] != R.GetValue("Size"))
+			async Task g(uint result)
 			{
-				return;
+				var pointConverter = new PointConverter(result, result);
+				_painter = new(pointConverter, new(), SudokuGrid.Undefined);
+
+				using var image = _painter.Draw();
+				await e.ReplyImageAsync(image);
 			}
-
-			if (!uint.TryParse(s[2], out uint result) || result > 1000U)
-			{
-				return;
-			}
-
-			var pointConverter = new PointConverter(result, result);
-			_painter = new(pointConverter, new(), SudokuGrid.Undefined);
-
-			using var image = _painter.Draw();
-			await e.ReplyImageAsync(image);
 		}
 
 		/// <summary>
@@ -319,6 +327,13 @@ namespace Sudoku.Bot
 			await e.ReplyImageAsync(image);
 		}
 
+		/// <summary>
+		/// Draw a cell.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawCellAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)
@@ -361,6 +376,13 @@ namespace Sudoku.Bot
 			await e.ReplyImageAsync(image);
 		}
 
+		/// <summary>
+		/// Draw a candidate.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawCandidateAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)
@@ -408,6 +430,13 @@ namespace Sudoku.Bot
 			await e.ReplyImageAsync(image);
 		}
 
+		/// <summary>
+		/// Draw a row.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawRowAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (s.Length != 4 - (remove ? 1 : 0))
@@ -429,6 +458,13 @@ namespace Sudoku.Bot
 			await DrawRegionAsync(RegionLabel.Row, region - 1, colorId, e, remove);
 		}
 
+		/// <summary>
+		/// Draw a column.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawColumnAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (s.Length != 4 - (remove ? 1 : 0))
@@ -450,6 +486,13 @@ namespace Sudoku.Bot
 			await DrawRegionAsync(RegionLabel.Column, region - 1, colorId, e, remove);
 		}
 
+		/// <summary>
+		/// Draw a block.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawBlockAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (s.Length != 4 - (remove ? 1 : 0))
@@ -471,6 +514,15 @@ namespace Sudoku.Bot
 			await DrawRegionAsync(RegionLabel.Block, region - 1, colorId, e, remove);
 		}
 
+		/// <summary>
+		/// Draw a region.
+		/// </summary>
+		/// <param name="label">The region label.</param>
+		/// <param name="region">The region.</param>
+		/// <param name="colorId">The color ID.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawRegionAsync(
 			RegionLabel label, int region, long colorId, MessageReceivedEventArgs e, bool remove)
 		{
@@ -498,6 +550,13 @@ namespace Sudoku.Bot
 			await e.ReplyImageAsync(image);
 		}
 
+		/// <summary>
+		/// Draw a chain.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawChainAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)
@@ -546,6 +605,13 @@ namespace Sudoku.Bot
 			await e.ReplyImageAsync(image);
 		}
 
+		/// <summary>
+		/// Draw a cross sign.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawCrossAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)
@@ -581,6 +647,13 @@ namespace Sudoku.Bot
 			await e.ReplyImageAsync(image);
 		}
 
+		/// <summary>
+		/// Draw a circle sign.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawCircleAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)

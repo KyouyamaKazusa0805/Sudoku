@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Bot
 {
@@ -47,8 +46,9 @@ namespace Sudoku.Bot
 				}
 			}
 
-			[SuppressMessage("", "CS0675")]
+#pragma warning disable 675
 			static long cid(byte a, byte r, byte g, byte b) => 0xDEADL << 32 | a << 24 | r << 16 | g << 8 | b;
+#pragma warning restore 675
 		}
 
 		/// <summary>

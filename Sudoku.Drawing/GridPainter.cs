@@ -462,8 +462,8 @@ namespace Sudoku.Drawing
 			foreach (var (id, region) in regions)
 			{
 				// A new rule:
-				// Here ID can save a color value quadruple if the higher 16 bits are 0xDEAD.
-				// The last 16 bits are A, R, G, B value from one color.
+				// Here ID can save a color value quadruple if the higher 32 bits are 0xDEAD.
+				// The last 32 bits are A, R, G, B value from one color.
 				// Otherwise the ID value is only between -4 and 10 (at present, who knows
 				// whether the range will be extended larger or not).
 				if ((id >> 32 & 65535) == 0xDEAD)
@@ -511,8 +511,8 @@ namespace Sudoku.Drawing
 				if (!(Conclusions?.Any(&internalChecking, cell, digit) ?? false))
 				{
 					// A new rule:
-					// Here ID can save a color value quadruple if the higher 16 bits are 0xDEAD.
-					// The last 16 bits are A, R, G, B value from one color.
+					// Here ID can save a color value quadruple if the higher 32 bits are 0xDEAD.
+					// The last 32 bits are A, R, G, B value from one color.
 					// Otherwise the ID value is only between -4 and 10 (at present, who knows
 					// whether the range will be extended larger or not).
 					if ((id >> 32 & 65535) == 0xDEAD)
@@ -578,8 +578,8 @@ namespace Sudoku.Drawing
 			foreach (var (id, cell) in cells)
 			{
 				// A new rule:
-				// Here ID can save a color value quadruple if the higher 16 bits are 0xDEAD.
-				// The last 16 bits are A, R, G, B value from one color.
+				// Here ID can save a color value quadruple if the higher 32 bits are 0xDEAD.
+				// The last 32 bits are A, R, G, B value from one color.
 				// Otherwise the ID value is only between -4 and 10 (at present, who knows
 				// whether the range will be extended larger or not).
 				if ((id >> 32 & 65535) == 0xDEAD)
