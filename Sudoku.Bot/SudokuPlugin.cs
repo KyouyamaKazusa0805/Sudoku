@@ -59,11 +59,11 @@ namespace Sudoku.Bot
 			BatchExecutingEventHandler? handler = info switch
 			{
 				"-帮助" => async () => await ShowHelperTextAsync(e),
-				"小蛋蛋，介绍一下你吧" => async () => await IntroduceAsync(e),
 				"-分析" => async () => await AnalysisAsync(info, e),
 				"-生成图片" => async () => await DrawImageAsync(info, e),
 				"-生成空盘" => async () => await GenerateEmptyGridAsync(e),
 				"-清盘" => async () => await CleanGridAsync(info, e),
+				"小蛋蛋，介绍一下你吧" => async () => await IntroduceAsync(e),
 				_ when sayHello(info) => async () => await GreetingAsync(e),
 				_ => info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries) switch
 				{
@@ -109,7 +109,8 @@ namespace Sudoku.Bot
 
 			await Task.Run(() => handler?.Invoke());
 
-			static bool sayHello(string info) => info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning"));
+			static bool sayHello(string info) =>
+				info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning"));
 		}
 
 		/// <summary>
@@ -250,7 +251,18 @@ namespace Sudoku.Bot
 			{
 				case 1:
 				{
-					await g(600);
+					await g(600, SudokuGrid.Undefined);
+
+					break;
+				}
+				case 2:
+				{
+					if (!SudokuGrid.TryParse(s[1], out var grid))
+					{
+						return;
+					}
+
+					await g(600, grid);
 
 					break;
 				}
@@ -261,21 +273,42 @@ namespace Sudoku.Bot
 						return;
 					}
 
-					if (!uint.TryParse(s[2], out uint result) || result > 1000U)
+					if (!uint.TryParse(s[2], out uint size) || size > 1000U)
 					{
 						return;
 					}
 
-					await g(result);
+					await g(size, SudokuGrid.Undefined);
+
+					break;
+				}
+				case 4:
+				{
+					if (!SudokuGrid.TryParse(s[1], out var grid))
+					{
+						return;
+					}
+
+					if (s[2] != R.GetValue("Size"))
+					{
+						return;
+					}
+
+					if (!uint.TryParse(s[3], out uint size) || size > 1000U)
+					{
+						return;
+					}
+
+					await g(size, grid);
 
 					break;
 				}
 			}
 
-			async Task g(uint result)
+			async Task g(uint result, SudokuGrid grid)
 			{
 				var pointConverter = new PointConverter(result, result);
-				_painter = new(pointConverter, new(), SudokuGrid.Undefined);
+				_painter = new(pointConverter, new(), grid);
 
 				using var image = _painter.Draw();
 				await e.ReplyImageAsync(image);
