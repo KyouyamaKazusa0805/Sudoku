@@ -9,7 +9,6 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
-using Sudoku.IO;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
@@ -56,61 +55,75 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			BatchExecutingEventHandler? handler = info switch
+			switch (info)
 			{
-				_ when sayHello(info) => async () => await GreetingAsync(e),
-				_ => info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries) switch
+				case var _ when info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning")):
 				{
-					{ Length: >= 1 } s => s[0] switch
-					{
-						"-帮助" => async () => await ShowHelperTextAsync(e),
-						"-分析" => async () => await AnalysisAsync(info, e),
-						"-生成图片" => async () => await DrawImageAsync(info, e),
-						"-生成空盘" => async () => await GenerateEmptyGridAsync(e),
-						"-清盘" => async () => await CleanGridAsync(info, e),
-						"小蛋蛋，介绍一下你吧" => async () => await IntroduceAsync(e),
-						"-开始绘图" => async () => await StartDrawingAsync(s, e),
-						"-结束绘图" => async () => await DisposePainterAsync(e),
-						"-填入" when s.Length >= 2 => s[1] switch
-						{
-							"提示数" => async () => await FillAsync(s, e, true),
-							"填入数" => async () => await FillAsync(s, e, false),
-							_ => null
-						},
-						"-画" when s.Length >= 2 => s[1] switch
-						{
-							"单元格" => async () => await DrawCellAsync(s, e, false),
-							"候选数" => async () => await DrawCandidateAsync(s, e, false),
-							"行" => async () => await DrawRowAsync(s, e, false),
-							"列" => async () => await DrawColumnAsync(s, e, false),
-							"宫" => async () => await DrawBlockAsync(s, e, false),
-							"链" => async () => await DrawChainAsync(s, e, false),
-							"叉叉" => async () => await DrawCrossAsync(s, e, false),
-							"圆圈" => async () => await DrawCircleAsync(s, e, false),
-							_ => null
-						},
-						"-去除" when s.Length >= 2 => s[1] switch
-						{
-							"单元格" => async () => await DrawCellAsync(s, e, true),
-							"候选数" => async () => await DrawCandidateAsync(s, e, true),
-							"行" => async () => await DrawRowAsync(s, e, true),
-							"列" => async () => await DrawColumnAsync(s, e, true),
-							"宫" => async () => await DrawBlockAsync(s, e, true),
-							"链" => async () => await DrawChainAsync(s, e, true),
-							"叉叉" => async () => await DrawCrossAsync(s, e, true),
-							"圆圈" => async () => await DrawCircleAsync(s, e, true),
-							_ => null
-						},
-						_ => null
-					},
-					_ => null
+					await GreetingAsync(e);
+					break;
 				}
-			};
-
-			await Task.Run(() => handler?.Invoke());
-
-			static bool sayHello(string info) =>
-				info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning"));
+				default:
+				{
+					switch (info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+					{
+						case { Length: >= 1 } s:
+						{
+							switch (s[0])
+							{
+								case "-帮助": await ShowHelperTextAsync(e); break;
+								case "-分析": await AnalysisAsync(info, e); break;
+								case "-生成图片": await DrawImageAsync(info, e); break;
+								case "-生成空盘": await GenerateEmptyGridAsync(e); break;
+								case "-清盘": await CleanGridAsync(info, e); break;
+								case "小蛋蛋，介绍一下你吧": await IntroduceAsync(e); break;
+								case "-开始绘图": await StartDrawingAsync(s, e); break;
+								case "-结束绘图": await DisposePainterAsync(e); break;
+								case "-填入" when s.Length >= 2:
+								{
+									switch (s[1])
+									{
+										case "提示数": await FillAsync(s, e, true); break;
+										case "填入数": await FillAsync(s, e, false); break;
+									}
+									break;
+								}
+								case "-画" when s.Length >= 2:
+								{
+									switch (s[1])
+									{
+										case "单元格": await DrawCellAsync(s, e, false); break;
+										case "候选数": await DrawCandidateAsync(s, e, false); break;
+										case "行": await DrawRowAsync(s, e, false); break;
+										case "列": await DrawColumnAsync(s, e, false); break;
+										case "宫": await DrawBlockAsync(s, e, false); break;
+										case "链": await DrawChainAsync(s, e, false); break;
+										case "叉叉": await DrawCrossAsync(s, e, false); break;
+										case "圆圈": await DrawCircleAsync(s, e, false); break;
+									}
+									break;
+								}
+								case "-去除" when s.Length >= 2:
+								{
+									switch (s[1])
+									{
+										case "单元格": await DrawCellAsync(s, e, true); break;
+										case "候选数": await DrawCandidateAsync(s, e, true); break;
+										case "行": await DrawRowAsync(s, e, true); break;
+										case "列": await DrawColumnAsync(s, e, true); break;
+										case "宫": await DrawBlockAsync(s, e, true); break;
+										case "链": await DrawChainAsync(s, e, true); break;
+										case "叉叉": await DrawCrossAsync(s, e, true); break;
+										case "圆圈": await DrawCircleAsync(s, e, true); break;
+									}
+									break;
+								}
+							}
+							break;
+						}
+					}
+					break;
+				}
+			}
 		}
 
 		/// <summary>
@@ -174,7 +187,7 @@ namespace Sudoku.Bot
 			}
 
 			var analysisResult = await new ManualSolver().SolveAsync(grid, null);
-			await e.Reply(analysisResult.ToString("-!", CountryCode.ZhCn));
+			await e.Source.SendAsync(analysisResult.ToString("-!", CountryCode.ZhCn));
 
 			var painter = new GridPainter(new(Size, Size), new(), analysisResult.Solution!);
 			using var image = painter.Draw();
