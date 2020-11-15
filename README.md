@@ -147,7 +147,7 @@ Some of them are unnecessary for you perhaps, you can remove them. In addition, 
 
 标题：**作者**
 
-Sunnie, from Chengdu, is an original undergraduate.
+Sunnie, from Chengdu, is an normal undergraduate from normal university.
 
 小向，来自成都的一名普通大学生。
 
