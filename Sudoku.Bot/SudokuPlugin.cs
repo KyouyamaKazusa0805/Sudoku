@@ -1,17 +1,16 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using HuajiTech.Mirai;
 using HuajiTech.Mirai.Events;
 using HuajiTech.Mirai.Messaging;
+using Sudoku.Bot.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
-using HImage = HuajiTech.Mirai.Messaging.Image;
 using R = Sudoku.Bot.Resources;
 
 namespace Sudoku.Bot
@@ -179,8 +178,7 @@ namespace Sudoku.Bot
 		private static async Task AnalysisAsync(string info, MessageReceivedEventArgs e)
 		{
 			string analysisCommand = R.GetValue("AnalysisCommand");
-			if (!SudokuGrid.TryParse(info[analysisCommand.Length..].Trim(), out var grid)
-				|| !grid.IsValid())
+			if (!SudokuGrid.TryParse(info[analysisCommand.Length..].Trim(), out var grid) || !grid.IsValid())
 			{
 				return;
 			}
@@ -189,7 +187,8 @@ namespace Sudoku.Bot
 			await e.Reply(analysisResult.ToString("-!", CountryCode.ZhCn));
 
 			var painter = new GridPainter(new(Size, Size), new(), analysisResult.Solution!);
-			await ReplyPictureAsync(painter, e, $"{R.GetValue("Analysis1")}{Environment.NewLine}");
+			using var image = painter.Draw();
+			await e.ReplyImageWithTextAsync(image, $"{R.GetValue("Analysis1")}{Environment.NewLine}");
 		}
 
 		/// <summary>
@@ -212,7 +211,8 @@ namespace Sudoku.Bot
 			}
 
 			var painter = new GridPainter(new(Size, Size), new(), grid);
-			await ReplyPictureAsync(painter, e, null);
+			using var image = painter.Draw();
+			await e.ReplyImageAsync(image);
 		}
 
 		/// <summary>
@@ -223,7 +223,8 @@ namespace Sudoku.Bot
 		private static async Task GenerateEmptyGridAsync(MessageReceivedEventArgs e)
 		{
 			var painter = new GridPainter(new(Size, Size), new(), SudokuGrid.Undefined);
-			await ReplyPictureAsync(painter, e, null);
+			using var image = painter.Draw();
+			await e.ReplyImageAsync(image);
 		}
 
 		/// <summary>
@@ -242,7 +243,9 @@ namespace Sudoku.Bot
 
 			grid.Clean();
 			var painter = new GridPainter(new(Size, Size), new(), grid);
-			await ReplyPictureAsync(painter, e, null);
+
+			using var image = painter.Draw();
+			await e.ReplyImageAsync(image);
 		}
 
 		/// <summary>
@@ -266,7 +269,8 @@ namespace Sudoku.Bot
 			var pointConverter = new PointConverter(result, result);
 			_painter = new(pointConverter, new(), SudokuGrid.Undefined);
 
-			await ReplyPictureAsync(_painter, e, null);
+			using var image = _painter.Draw();
+			await e.ReplyImageAsync(image);
 		}
 
 		private static async Task FillAsync(string[] s, MessageReceivedEventArgs e, bool appendGiven)
@@ -310,7 +314,8 @@ namespace Sudoku.Bot
 						_painter.Grid.SetStatus(cell, CellStatus.Given);
 					}
 
-					await ReplyPictureAsync(_painter, e, null);
+					using var image = _painter.Draw();
+					await e.ReplyImageAsync(image);
 
 					break;
 				}
@@ -328,7 +333,8 @@ namespace Sudoku.Bot
 						_painter.Grid.SetStatus(cell, CellStatus.Given);
 					}
 
-					await ReplyPictureAsync(_painter, e, null);
+					using var image = _painter.Draw();
+					await e.ReplyImageAsync(image);
 
 					break;
 				}
@@ -340,30 +346,6 @@ namespace Sudoku.Bot
 			_painter = null;
 
 			await e.Reply(R.GetValue("Success"));
-		}
-
-		/// <summary>
-		/// Reply picture.
-		/// </summary>
-		/// <param name="painter">The painter.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="otherMessage">Othe message to add.</param>
-		/// <returns>The task of this method.</returns>
-		private static async Task ReplyPictureAsync(
-			GridPainter painter, MessageReceivedEventArgs e, string? otherMessage)
-		{
-			var image = painter.Draw();
-
-			const string tempPath = @"C:\Users\Howdy\Desktop\Temp.png";
-			image.Save(tempPath);
-
-			var hImage = new HImage(new Uri(tempPath));
-			await e.Reply((otherMessage ?? string.Empty) + hImage);
-
-			if (File.Exists(tempPath))
-			{
-				File.Delete(tempPath);
-			}
 		}
 	}
 }
