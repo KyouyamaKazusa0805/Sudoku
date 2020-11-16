@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,30 @@ namespace Sudoku.Bot
 	/// </summary>
 	public sealed class SudokuPlugin
 	{
+#if AUTHOR_RESERVED
+		/// <summary>
+		/// Indicates the directory of the puzzle library.
+		/// </summary>
+		private const string PuzzleLibDir = @"S:\题库\机器人题库";
+
+		/// <summary>
+		/// Indicates the directory of the puzzle that is finished.
+		/// </summary>
+		private const string FinishedPuzzleDir = @"S:\题库\机器人题库_已完成";
+
+		/// <summary>
+		/// Indicates the path of the puzzle that is finished.
+		/// </summary>
+		private const string FinishedPuzzlePath = FinishedPuzzleDir + @"\Finished.txt";
+
+
+		/// <summary>
+		/// The random number generator (RNG).
+		/// </summary>
+		private static readonly Random Rng = new();
+#endif
+
+
 		/// <summary>
 		/// Indicates the drawing size.
 		/// </summary>
@@ -198,6 +223,17 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
+#if AUTHOR_RESERVED
+								case "抽题":
+								{
+									switch (s.Length)
+									{
+										case >= 2 when s[1] == "？": await ExtractPuzzleHelpAsync(e); break;
+										default: await ExtractPuzzleAsync(s, e); break;
+									}
+									break;
+								}
+#endif
 							}
 							break;
 						}
@@ -206,6 +242,104 @@ namespace Sudoku.Bot
 				}
 			}
 		}
+
+#if AUTHOR_RESERVED
+		/// <summary>
+		/// Extract a puzzle.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
+		private static async Task ExtractPuzzleAsync(string[] s, GroupMessageReceivedEventArgs e)
+		{
+			if (!Directory.Exists(PuzzleLibDir))
+			{
+				return;
+			}
+
+			string[] files = Directory.GetFiles(PuzzleLibDir);
+			if (files.Length is var length && length == 0)
+			{
+				return;
+			}
+
+			switch (s.Length)
+			{
+				case 1:
+				{
+					await outputPuzzlePictureAsync(true);
+					break;
+				}
+				case 2:
+				{
+					await outputPuzzlePictureAsync(s[1] switch
+					{
+						"带候选数" => true,
+						"不带候选数" => false,
+						_ => null
+					});
+					break;
+				}
+			}
+
+			async Task outputPuzzlePictureAsync(bool? withCandidates)
+			{
+				if (!withCandidates.HasValue)
+				{
+					return;
+				}
+
+				int indexChosen = Rng.Next(0, length);
+				string filePath = files[indexChosen];
+				string[] fileLines = File.ReadAllLines(filePath);
+
+				SudokuGrid grid;
+				int trial = 0;
+				for (; trial < 10; trial++)
+				{
+					int lineChosen = Rng.Next(0, fileLines.Length);
+					string puzzle = fileLines[lineChosen];
+					if (SudokuGrid.TryParse(puzzle, out grid)
+						&& (File.Exists(FinishedPuzzlePath), grid.ToString()) is (var exists, var str)
+						&& (
+						File.ReadLines(FinishedPuzzlePath).All(l => !string.IsNullOrEmpty(l) && l != str)
+						&& exists || !exists))
+					{
+						break;
+					}
+				}
+
+				if (trial == 10)
+				{
+					await e.Reply("随机抽题失败，可能是脸不好；请重试一次。");
+				}
+				else
+				{
+					// Clean the grid if the puzzle should show candidates.
+					if (withCandidates.Value is var b && b)
+					{
+						grid.Clean();
+					}
+
+					// Save the puzzle to finished directory.
+					if (!Directory.Exists(FinishedPuzzleDir))
+					{
+						Directory.CreateDirectory(FinishedPuzzleDir);
+					}
+					File.AppendAllText(FinishedPuzzlePath, $"{grid}{Environment.NewLine}");
+
+#if DEBUG
+					// Output puzzle text.
+					await e.Reply($"题目文本：{grid}");
+#endif
+
+					// Output the picture.
+					var painter = new GridPainter(new(Size, Size), new() { ShowCandidates = b }, grid);
+					await e.ReplyImageAsync(painter.Draw());
+				}
+			}
+		}
+#endif
 
 		/// <summary>
 		/// Jinx the current group.
@@ -448,6 +582,21 @@ namespace Sudoku.Bot
 				.AppendLine("“颜色”同样支持 ARGB 颜色序列（透明分量、红色度、绿色度、蓝色度）。")
 				.ToString());
 
+#if AUTHOR_RESERVED
+		/// <summary>
+		/// Extract puzzle helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
+		private static async Task ExtractPuzzleHelpAsync(GroupMessageReceivedEventArgs e) =>
+			await e.Source.SendAsync(
+				new StringBuilder()
+				.AppendLine("格式：！抽题 [不带候选数|带候选数]。")
+				.AppendLine(R.GetValue("OptionalArg"))
+				.Append("默认为带候选数。")
+				.ToString());
+#endif
+
 		/// <summary>
 		/// Show helper text.
 		/// </summary>
@@ -465,6 +614,7 @@ namespace Sudoku.Bot
 				.AppendLine("！生成空盘：给一个空盘的图片。")
 				.AppendLine("！开始绘图[ 大小 <图片大小>][ 盘面 <盘面>]：开始从空盘画盘面图，随后可以添加其它的操作，例如添加候选数涂色等。")
 				.AppendLine("！结束绘图：指定画图过程结束，清除画板。")
+				.AppendLine("！抽题：抽取一道题库里的题目。")
 				.AppendLine("！关于：我 介 绍 我 自 己")
 				.AppendLine()
 				.AppendLine("注：为和普通聊天信息作区分，命令前面的叹号“！”也是命令的一部分；")
