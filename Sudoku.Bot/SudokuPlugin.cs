@@ -38,8 +38,10 @@ namespace Sudoku.Bot
 		/// Initializes an instance with the specified user event source.
 		/// </summary>
 		/// <param name="currentUserEventSource">The current user event source.</param>
-		public SudokuPlugin(CurrentUserEventSource currentUserEventSource) =>
-			currentUserEventSource.AddMessageReceivedEventHandler(OnReceivingMessageAsync);
+		public SudokuPlugin(CurrentUserEventSource currentUserEventSource)
+		{
+			currentUserEventSource.GroupMessageReceivedEvent += OnReceivingMessageAsync;
+		}
 
 		/// <summary>
 		/// The method that invoked on receiving messages.
@@ -47,7 +49,7 @@ namespace Sudoku.Bot
 		/// <param name="session">The current session.</param>
 		/// <param name="e">The event arguments.</param>
 		/// <returns>The task of this method.</returns>
-		private static async Task OnReceivingMessageAsync(Session session, MessageReceivedEventArgs e)
+		private static async Task OnReceivingMessageAsync(Session session, GroupMessageReceivedEventArgs e)
 		{
 			var complexStr = e.Message.Content;
 			if (complexStr is not { Count: not 0 } || complexStr[0] is not PlainText pl)
@@ -56,23 +58,41 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			switch (info)
+			if (info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning")))
 			{
-				case var _ when info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning")):
+				await GreetingAsync(e);
+				return;
+			}
+
+			string[] splits = info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+			switch (info[0])
+			{
+				case '#':
 				{
-					await GreetingAsync(e);
-					break;
-				}
-				default:
-				{
-					switch (info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+					switch (splits)
 					{
 						case { Length: >= 1 } s:
 						{
-							switch (s[0])
+							switch (s[0][1..])
 							{
-								case "！帮助": await ShowHelperTextAsync(e); break;
-								case "！分析" when s.Length == 2:
+								case "禁言": await JinxSomeoneAsync(e); break;
+								case "解除禁言" or "取消禁言": await UnjinxSomeoneAsync(e); break;
+							}
+							break;
+						}
+					}
+					break;
+				}
+				case '！' or '!':
+				{
+					switch (splits)
+					{
+						case { Length: >= 1 } s:
+						{
+							switch (s[0][1..])
+							{
+								case "帮助": await ShowHelperTextAsync(e); break;
+								case "分析" when s.Length == 2:
 								{
 									switch (s[1])
 									{
@@ -81,7 +101,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！生成图片" when s.Length == 2:
+								case "生成图片" when s.Length == 2:
 								{
 									switch (s[1])
 									{
@@ -90,7 +110,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！生成空盘":
+								case "生成空盘":
 								{
 									switch (s.Length)
 									{
@@ -99,7 +119,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！清盘" when s.Length == 2:
+								case "清盘" when s.Length == 2:
 								{
 									switch (s[1])
 									{
@@ -108,7 +128,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！关于":
+								case "关于":
 								{
 									switch (s.Length)
 									{
@@ -117,7 +137,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！开始绘图" when s.Length >= 2:
+								case "开始绘图" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
@@ -126,7 +146,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！结束绘图":
+								case "结束绘图":
 								{
 									switch (s.Length)
 									{
@@ -135,7 +155,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！填入" when s.Length >= 2:
+								case "填入" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
@@ -145,7 +165,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！画" when s.Length >= 2:
+								case "画" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
@@ -161,7 +181,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！去掉" when s.Length >= 2:
+								case "去掉" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
@@ -183,6 +203,46 @@ namespace Sudoku.Bot
 					}
 					break;
 				}
+			}
+		}
+
+		/// <summary>
+		/// Jinx someone.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
+		private static async Task JinxSomeoneAsync(GroupMessageReceivedEventArgs e)
+		{
+			try
+			{
+				await (
+					e.Sender is { Role: MemberRole.Administrator or MemberRole.Owner }
+					? e.Source.MuteAsync()
+					: e.Reply("您没有权限使用此功能。"));
+			}
+			catch (ApiException ex) when (ex.ErrorCode == 10)
+			{
+				await e.Reply("我没有管理员权限，无法使用禁言功能。");
+			}
+		}
+
+		/// <summary>
+		/// Unjinx someone.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
+		private static async Task UnjinxSomeoneAsync(GroupMessageReceivedEventArgs e)
+		{
+			try
+			{
+				await (
+					e.Sender is { Role: MemberRole.Administrator or MemberRole.Owner }
+					? e.Source.UnmuteAsync()
+					: e.Reply("您没有权限使用此功能。"));
+			}
+			catch (ApiException ex) when (ex.ErrorCode == 10)
+			{
+				await e.Reply("我没有管理员权限，无法使用解除禁言功能。");
 			}
 		}
 
@@ -423,7 +483,6 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task StartDrawingAsync(string info, string[] s, MessageReceivedEventArgs e)
 		{
-			// 开始绘图 [大小 <大小>] [盘面 <盘面>]
 			int size = Size;
 			var grid = SudokuGrid.Undefined;
 			int pos = info.IndexOf(R.GetValue("Size"));
