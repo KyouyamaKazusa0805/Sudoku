@@ -70,15 +70,15 @@ namespace Sudoku.Bot
 						{
 							switch (s[0])
 							{
-								case "-帮助": await ShowHelperTextAsync(e); break;
-								case "-分析": await AnalysisAsync(info, e); break;
-								case "-生成图片": await DrawImageAsync(info, e); break;
-								case "-生成空盘": await GenerateEmptyGridAsync(e); break;
-								case "-清盘": await CleanGridAsync(info, e); break;
-								case "小蛋蛋，介绍一下你吧": await IntroduceAsync(e); break;
-								case "-开始绘图": await StartDrawingAsync(info, s, e); break;
-								case "-结束绘图": await DisposePainterAsync(e); break;
-								case "-填入" when s.Length >= 2:
+								case "！帮助": await ShowHelperTextAsync(e); break;
+								case "！分析": await AnalysisAsync(info, e); break;
+								case "！生成图片": await DrawImageAsync(info, e); break;
+								case "！生成空盘": await GenerateEmptyGridAsync(e); break;
+								case "！清盘": await CleanGridAsync(info, e); break;
+								case "！关于": await IntroduceAsync(e); break;
+								case "！开始绘图": await StartDrawingAsync(info, s, e); break;
+								case "！结束绘图": await DisposePainterAsync(e); break;
+								case "！填入" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
@@ -87,7 +87,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "-画" when s.Length >= 2:
+								case "！画" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
@@ -102,7 +102,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "-去除" when s.Length >= 2:
+								case "！去除" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
@@ -156,8 +156,9 @@ namespace Sudoku.Bot
 				.AppendLine()
 				.AppendLine(R.GetValue("Help3"))
 				.AppendLine(R.GetValue("Help4"))
+				.AppendLine(R.GetValue("Help5"))
 				.AppendLine()
-				.AppendLine(R.GetValue("MyName"))
+				.Append(R.GetValue("MyName"))
 				.ToString());
 
 		/// <summary>
