@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -236,12 +235,11 @@ namespace Sudoku.Solving
 			if (showAttributes)
 			{
 				sb.AppendLine(GetValue("AnalysisResultAttributes"));
-
-				static bool m(ParameterInfo[] p, MethodInfo m) =>
-					(p.Length, p[0].ParameterType, m.ReturnType) == (1, typeof(SudokuGrid), typeof(bool));
 				foreach (var methodInfo in
 					from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
-					where m(methodInfo.GetParameters(), methodInfo)
+					where methodInfo.ReturnType == typeof(bool)
+					let @params = methodInfo.GetParameters()
+					where @params.Length == 1 && @params[0].ParameterType == typeof(SudokuGrid)
 					select methodInfo)
 				{
 					bool attributeResult = (bool)methodInfo.Invoke(null, new object[] { puzzle })!;

@@ -194,6 +194,11 @@ namespace Sudoku.Bot
 		private static async Task GreetingAsync(MessageReceivedEventArgs e) =>
 			await e.Reply(R.GetValue("MorningToo"));
 
+		/// <summary>
+		/// Analyze helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task AnalyzeHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -201,6 +206,11 @@ namespace Sudoku.Bot
 				.Append("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
 				.ToString());
 
+		/// <summary>
+		/// Generate picture helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task GeneratePictureHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -208,9 +218,19 @@ namespace Sudoku.Bot
 				.Append("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
 				.ToString());
 
+		/// <summary>
+		/// Generate empty grid picture helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task GenerateEmptyGridHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync("格式：！生成空盘。");
 
+		/// <summary>
+		/// Clean grid helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task CleanGridHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -218,28 +238,53 @@ namespace Sudoku.Bot
 				.Append("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
 				.ToString());
 
+		/// <summary>
+		/// Introduce the program helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task IntroduceHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync("格式：！关于。");
 
+		/// <summary>
+		/// Start drawing helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task StartDrawingHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
 				.AppendLine("格式：！开始绘图[ 大小 <大小>][ 盘面 <题目>]。")
 				.AppendLine("图片大小需要是一个不超过 1000 的正整数，表示多大的图片，以像素为单位；")
 				.AppendLine("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
-				.Append("中括号项为可选内容，可以不写。")
+				.Append(R.GetValue("OptionalArg"))
 				.ToString());
 
+		/// <summary>
+		/// Dispose painter helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DisposePainterHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync("格式：！结束绘图。");
 
+		/// <summary>
+		/// Fill digits helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task FillHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
 				.AppendLine("格式：！填入 (提示数|填入数) <数字> 到 <单元格>。")
-				.AppendLine("小括号里的内容是可选项，但必须从小括号里以竖线分隔的项里选择一个。")
+				.AppendLine(R.GetValue("RequiredArg"))
 				.ToString());
 
+		/// <summary>
+		/// Draw something helper text.
+		/// </summary>
+		/// <param name="e">The event arguments.</param>
+		/// <returns>The task of this method.</returns>
 		private static async Task DrawHelpAsync(MessageReceivedEventArgs e, bool remove) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -255,7 +300,6 @@ namespace Sudoku.Bot
 				.AppendLine("其中“颜色”项可设置为红、橙、黄、绿、青、蓝、紫七种颜色以及对应的浅色；但黄色除外。")
 				.AppendLine("“颜色”同样支持 ARGB 颜色序列（透明分量、红色度、绿色度、蓝色度）。")
 				.ToString());
-
 
 		/// <summary>
 		/// Show helper text.

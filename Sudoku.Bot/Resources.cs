@@ -35,6 +35,9 @@ namespace Sudoku.Bot
 			["FillCommand"] = "！填入",
 			["DrawCommand"] = "！画",
 			["EndDrawingCommand"] = "！结束绘图",
+
+			["OptionalArg"] = "中括号项为可选内容，可以不写。",
+			["RequiredArg"] = "小括号里的内容是可选项，但必须从小括号里以竖线分隔的项里选择一个。",
 		};
 
 
