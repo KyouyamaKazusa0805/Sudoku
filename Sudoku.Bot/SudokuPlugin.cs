@@ -8,14 +8,11 @@ using Sudoku.Bot.Extensions;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
-using static Sudoku.Constants.Processings;
 using R = Sudoku.Bot.Resources;
 
 namespace Sudoku.Bot
@@ -75,17 +72,74 @@ namespace Sudoku.Bot
 							switch (s[0])
 							{
 								case "！帮助": await ShowHelperTextAsync(e); break;
-								case "！分析": await AnalysisAsync(info, e); break;
-								case "！生成图片": await DrawImageAsync(info, e); break;
-								case "！生成空盘": await GenerateEmptyGridAsync(e); break;
-								case "！清盘": await CleanGridAsync(info, e); break;
-								case "！关于": await IntroduceAsync(e); break;
-								case "！开始绘图": await StartDrawingAsync(info, s, e); break;
-								case "！结束绘图": await DisposePainterAsync(e); break;
+								case "！分析" when s.Length == 2:
+								{
+									switch (s[1])
+									{
+										case "？": await AnalyzeHelpAsync(e); break;
+										default: await AnalysisAsync(info, e); break;
+									}
+									break;
+								}
+								case "！生成图片" when s.Length == 2:
+								{
+									switch (s[1])
+									{
+										case "？": await GeneratePictureHelpAsync(e); break;
+										default: await DrawImageAsync(info, e); break;
+									}
+									break;
+								}
+								case "！生成空盘":
+								{
+									switch (s.Length)
+									{
+										case 1: await GenerateEmptyGridAsync(e); break;
+										case >= 2 when s[1] is "？": await GenerateEmptyGridHelpAsync(e); break;
+									}
+									break;
+								}
+								case "！清盘" when s.Length == 2:
+								{
+									switch (s[1])
+									{
+										case "？": await CleanGridHelpAsync(e); break;
+										default: await CleanGridAsync(info, e); break;
+									}
+									break;
+								}
+								case "！关于":
+								{
+									switch (s.Length)
+									{
+										case 1: await IntroduceAsync(e); break;
+										case 2 when s[1] == "？": await IntroduceHelpAsync(e); break;
+									}
+									break;
+								}
+								case "！开始绘图" when s.Length >= 2:
+								{
+									switch (s[1])
+									{
+										case "？": await StartDrawingHelpAsync(e); break;
+										default: await StartDrawingAsync(info, s, e); break;
+									}
+									break;
+								}
+								case "！结束绘图":
+								{
+									switch (s.Length)
+									{
+										case 1: await DisposePainterAsync(e); break;
+										case 2 when s[1] == "？": await DisposePainterHelpAsync(e); break;
+									}
+									break;
+								}
 								case "！填入" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
+										case "？": await FillHelpAsync(e); break;
 										case "提示数": await FillAsync(s, e, true); break;
 										case "填入数": await FillAsync(s, e, false); break;
 									}
@@ -95,6 +149,7 @@ namespace Sudoku.Bot
 								{
 									switch (s[1])
 									{
+										case "？": await DrawHelpAsync(e, false); break;
 										case "单元格": await DrawCellAsync(s, e, false); break;
 										case "候选数": await DrawCandidateAsync(s, e, false); break;
 										case "行": await DrawRowAsync(s, e, false); break;
@@ -106,10 +161,11 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "！去除" when s.Length >= 2:
+								case "！去掉" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
+										case "？": await DrawHelpAsync(e, true); break;
 										case "单元格": await DrawCellAsync(s, e, true); break;
 										case "候选数": await DrawCandidateAsync(s, e, true); break;
 										case "行": await DrawRowAsync(s, e, true); break;
@@ -138,6 +194,69 @@ namespace Sudoku.Bot
 		private static async Task GreetingAsync(MessageReceivedEventArgs e) =>
 			await e.Reply(R.GetValue("MorningToo"));
 
+		private static async Task AnalyzeHelpAsync(MessageReceivedEventArgs e) =>
+			await e.Source.SendAsync(
+				new StringBuilder()
+				.AppendLine("格式：！分析 <题目>。")
+				.Append("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
+				.ToString());
+
+		private static async Task GeneratePictureHelpAsync(MessageReceivedEventArgs e) =>
+			await e.Source.SendAsync(
+				new StringBuilder()
+				.AppendLine("格式：！生成图片 <题目>。")
+				.Append("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
+				.ToString());
+
+		private static async Task GenerateEmptyGridHelpAsync(MessageReceivedEventArgs e) =>
+			await e.Source.SendAsync("格式：！生成空盘。");
+
+		private static async Task CleanGridHelpAsync(MessageReceivedEventArgs e) =>
+			await e.Source.SendAsync(
+				new StringBuilder()
+				.AppendLine("格式：！清盘 <题目>。")
+				.Append("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
+				.ToString());
+
+		private static async Task IntroduceHelpAsync(MessageReceivedEventArgs e) =>
+			await e.Source.SendAsync("格式：！关于。");
+
+		private static async Task StartDrawingHelpAsync(MessageReceivedEventArgs e) =>
+			await e.Source.SendAsync(
+				new StringBuilder()
+				.AppendLine("格式：！开始绘图[ 大小 <大小>][ 盘面 <题目>]。")
+				.AppendLine("图片大小需要是一个不超过 1000 的正整数，表示多大的图片，以像素为单位；")
+				.AppendLine("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
+				.Append("中括号项为可选内容，可以不写。")
+				.ToString());
+
+		private static async Task DisposePainterHelpAsync(MessageReceivedEventArgs e) =>
+			await e.Source.SendAsync("格式：！结束绘图。");
+
+		private static async Task FillHelpAsync(MessageReceivedEventArgs e) =>
+			await e.Source.SendAsync(
+				new StringBuilder()
+				.AppendLine("格式：！填入 (提示数|填入数) <数字> 到 <单元格>。")
+				.AppendLine("小括号里的内容是可选项，但必须从小括号里以竖线分隔的项里选择一个。")
+				.ToString());
+
+		private static async Task DrawHelpAsync(MessageReceivedEventArgs e, bool remove) =>
+			await e.Source.SendAsync(
+				new StringBuilder()
+				.AppendLine("格式：")
+				.AppendLine($"！{(remove ? "去掉" : "画")} 单元格 <单元格> <颜色>；")
+				.AppendLine($"！{(remove ? "去掉" : "画")} 候选数 <单元格> <数字> <颜色>；")
+				.AppendLine($"！{(remove ? "去掉" : "画")} 行 <行编号> <颜色>；")
+				.AppendLine($"！{(remove ? "去掉" : "画")} 列 <列编号> <颜色>；")
+				.AppendLine($"！{(remove ? "去掉" : "画")} 宫 <宫编号> <颜色>；")
+				.AppendLine($"！{(remove ? "去掉" : "画")} 链 从 <单元格> <数字> 到 <单元格> <数字>")
+				.AppendLine($"！{(remove ? "去掉" : "画")} 叉叉 <单元格>；")
+				.AppendLine($"！{(remove ? "去掉" : "画")} 圆圈 <单元格>。")
+				.AppendLine("其中“颜色”项可设置为红、橙、黄、绿、青、蓝、紫七种颜色以及对应的浅色；但黄色除外。")
+				.AppendLine("“颜色”同样支持 ARGB 颜色序列（透明分量、红色度、绿色度、蓝色度）。")
+				.ToString());
+
+
 		/// <summary>
 		/// Show helper text.
 		/// </summary>
@@ -145,22 +264,20 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task ShowHelperTextAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
-				new StringBuilder(R.GetValue("Help1"))
+				new StringBuilder()
+				.AppendLine("格式：！帮助。")
+				.AppendLine("机器人可识别的功能有以下一些：")
+				.AppendLine("！帮助：显示此帮助信息。")
+				.AppendLine("！分析 <盘面>：显示题目的分析结果。")
+				.AppendLine("！生成图片 <盘面>：将题目文本转为图片显示。")
+				.AppendLine("！清盘 <盘面>：将盘面前期的排除、唯一余数、区块和数组技巧全部应用。")
+				.AppendLine("！生成空盘：给一个空盘的图片。")
+				.AppendLine("！开始绘图[ 大小 <图片大小>][ 盘面 <盘面>]：开始从空盘画盘面图，随后可以添加其它的操作，例如添加候选数涂色等。")
+				.AppendLine("！结束绘图：指定画图过程结束，清除画板。")
+				.AppendLine("！关于：我 介 绍 我 自 己")
 				.AppendLine()
-				.AppendLine(R.GetValue("Help2"))
-				.AppendLine()
-				.AppendLine(R.GetValue("HelpHelp"))
-				.AppendLine(R.GetValue("HelpAnalyze"))
-				.AppendLine(R.GetValue("HelpGeneratePicture"))
-				.AppendLine(R.GetValue("HelpClean"))
-				.AppendLine(R.GetValue("HelpEmpty"))
-				.AppendLine(R.GetValue("HelpStartDrawing"))
-				.AppendLine(R.GetValue("HelpEndDrawing"))
-				.AppendLine(R.GetValue("HelpIntroduceMyself"))
-				.AppendLine()
-				.AppendLine(R.GetValue("Help3"))
-				.AppendLine(R.GetValue("Help4"))
-				.AppendLine(R.GetValue("Help5"))
+				.AppendLine("注：为和普通聊天信息作区分，命令前面的叹号“！”也是命令的一部分；")
+				.AppendLine("每一个命令的详情信息请输入“命令 ？”来获取。")
 				.AppendLine()
 				.Append(R.GetValue("MyName"))
 				.ToString());
@@ -172,9 +289,9 @@ namespace Sudoku.Bot
 		/// <returns>The task of this method.</returns>
 		private static async Task IntroduceAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
-				new StringBuilder(R.GetValue("Introduce1"))
-				.AppendLine()
-				.Append(R.GetValue("Introduce2"))
+				new StringBuilder()
+				.AppendLine("Hello 大家好！我是一个机器人，叫小蛋蛋，是女孩子哦 (✿◡‿◡)")
+				.Append("我爸还在给我加别的功能，所以我现在还需要大家的鼓励和支持哦，蟹蟹~")
 				.ToString());
 
 		/// <summary>
@@ -193,10 +310,6 @@ namespace Sudoku.Bot
 
 			var analysisResult = await new ManualSolver().SolveAsync(grid, null);
 			await e.Source.SendAsync(analysisResult.ToString("-!", CountryCode.ZhCn));
-
-			var painter = new GridPainter(new(Size, Size), new(), analysisResult.Solution!);
-			using var image = painter.Draw();
-			await e.ReplyImageWithTextAsync(image, $"{R.GetValue("Analysis1")}{Environment.NewLine}");
 		}
 
 		/// <summary>
@@ -393,7 +506,7 @@ namespace Sudoku.Bot
 			}
 
 			long colorId = default;
-			if (!remove && !Parser.TryParseColorId(s[3], out colorId))
+			if (!remove && !Parser.TryParseColorId(s[3], true, out colorId))
 			{
 				return;
 			}
@@ -449,7 +562,7 @@ namespace Sudoku.Bot
 			}
 
 			long colorId = default;
-			if (!remove && !Parser.TryParseColorId(s[4], out colorId))
+			if (!remove && !Parser.TryParseColorId(s[4], false, out colorId))
 			{
 				return;
 			}
@@ -496,7 +609,7 @@ namespace Sudoku.Bot
 			}
 
 			long colorId = default;
-			if (!remove && !Parser.TryParseColorId(s[3], out colorId))
+			if (!remove && !Parser.TryParseColorId(s[3], true, out colorId))
 			{
 				return;
 			}
@@ -524,7 +637,7 @@ namespace Sudoku.Bot
 			}
 
 			long colorId = default;
-			if (!remove && !Parser.TryParseColorId(s[3], out colorId))
+			if (!remove && !Parser.TryParseColorId(s[3], true, out colorId))
 			{
 				return;
 			}
@@ -552,7 +665,7 @@ namespace Sudoku.Bot
 			}
 
 			long colorId = default;
-			if (!remove && !Parser.TryParseColorId(s[3], out colorId))
+			if (!remove && !Parser.TryParseColorId(s[3], true, out colorId))
 			{
 				return;
 			}

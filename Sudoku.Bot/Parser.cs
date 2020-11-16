@@ -12,20 +12,28 @@ namespace Sudoku.Bot
 		/// Try to parse a color ID.
 		/// </summary>
 		/// <param name="this">The string.</param>
+		/// <param name="withTransparency">
+		/// Indicates whether the parser will convert the value to the color with transparency.
+		/// </param>
 		/// <param name="colorId">(<see langword="out"/> parameter) The color ID.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
-		public static bool TryParseColorId(string @this, out long colorId)
+		public static bool TryParseColorId(string @this, bool withTransparency, out long colorId)
 		{
 			switch (@this)
 			{
-				case "红色" or "红": colorId = cid(64, 255, 0, 0); return true;
-				case "绿色" or "绿": colorId = cid(64, 0, 255, 0); return true;
-				case "蓝色" or "蓝": colorId = cid(64, 0, 0, 255); return true;
-				case "黄色" or "黄": colorId = cid(64, 255, 255, 0); return true;
-				case "青色" or "青": colorId = cid(64, 0, 255, 255); return true;
-				case "粉红" or "粉": colorId = cid(64, 255, 0, 255); return true;
-				case "灰色" or "灰": colorId = cid(64, 192, 192, 192); return true;
-				case "黑色" or "黑": colorId = cid(64, 255, 255, 255); return true;
+				case "红色" or "红": colorId = cid(withTransparency ? 128 : 255, 235, 0, 0); return true;
+				case "浅红色" or "浅红": colorId = cid(withTransparency ? 64 : 255, 247, 165, 167); return true;
+				case "橙色" or "橙": colorId = cid(withTransparency ? 64 : 255, 255, 192, 89); return true;
+				case "浅橙色" or "浅橙": colorId = cid(withTransparency ? 64 : 255, 247, 222, 143); return true;
+				case "黄色" or "黄": colorId = cid(withTransparency ? 64 : 255, 255, 255, 150); return true;
+				case "绿色" or "绿": colorId = cid(withTransparency ? 64 : 255, 134, 242, 128); return true;
+				case "浅绿色" or "浅绿": colorId = cid(withTransparency ? 64 : 255, 215, 255, 215); return true;
+				case "青色" or "青": colorId = cid(withTransparency ? 64 : 255, 134, 232, 208); return true;
+				case "浅青色" or "浅青": colorId = cid(withTransparency ? 64 : 255, 206, 251, 237); return true;
+				case "蓝色" or "蓝": colorId = cid(withTransparency ? 64 : 255, 0, 0, 255); return true;
+				case "浅蓝色" or "浅蓝": colorId = cid(withTransparency ? 64 : 255, 127, 187, 255); return true;
+				case "紫色" or "紫": colorId = cid(withTransparency ? 64 : 255, 177, 165, 243); return true;
+				case "浅紫色" or "浅紫": colorId = cid(withTransparency ? 64 : 255, 220, 212, 252); return true;
 				default:
 				{
 					string[] s = @this.Split(',', StringSplitOptions.RemoveEmptyEntries);
@@ -47,9 +55,7 @@ namespace Sudoku.Bot
 				}
 			}
 
-#pragma warning disable 675
-			static long cid(byte a, byte r, byte g, byte b) => 0xDEADL << 32 | a << 24 | r << 16 | g << 8 | b;
-#pragma warning restore 675
+			static long cid(long a, long r, long g, long b) => 0xDEADL << 32 | a << 24 | r << 16 | g << 8 | b;
 		}
 
 		/// <summary>

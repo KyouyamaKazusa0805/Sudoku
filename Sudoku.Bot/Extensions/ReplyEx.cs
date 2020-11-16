@@ -37,26 +37,5 @@ namespace Sudoku.Bot.Extensions
 				File.Delete(TemporaryPath);
 			}
 		}
-
-		/// <summary>
-		/// Reply an image with the message.
-		/// </summary>
-		/// <param name="e">(<see langword="this"/> parameter) The event arguments.</param>
-		/// <param name="image">The image.</param>
-		/// <param name="message">The additional message.</param>
-		/// <returns>The task of this method.</returns>
-		public static async Task ReplyImageWithTextAsync(
-			this MessageReceivedEventArgs e, DImage image, string message)
-		{
-			image.Save(TemporaryPath);
-
-			var hImage = new HImage(new Uri(TemporaryPath));
-			await e.Reply(message + hImage);
-
-			if (File.Exists(TemporaryPath))
-			{
-				File.Delete(TemporaryPath);
-			}
-		}
 	}
 }
