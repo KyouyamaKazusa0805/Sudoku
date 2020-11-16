@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.Data;
 
 namespace Sudoku.Bot
 {
@@ -49,6 +50,31 @@ namespace Sudoku.Bot
 #pragma warning disable 675
 			static long cid(byte a, byte r, byte g, byte b) => 0xDEADL << 32 | a << 24 | r << 16 | g << 8 | b;
 #pragma warning restore 675
+		}
+
+		/// <summary>
+		/// Try to parse cells.
+		/// </summary>
+		/// <param name="this">The string.</param>
+		/// <param name="cells">(<see langword="out"/> parameter) All cells parsed.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		public static bool TryParseCells(string @this, out GridMap cells)
+		{
+			cells = GridMap.Empty;
+			if (string.IsNullOrWhiteSpace(@this))
+			{
+				return false;
+			}
+
+			foreach (string cellStr in @this.Split(','))
+			{
+				if (TryParseCell(cellStr, out byte row, out byte column))
+				{
+					cells.AddAnyway(row * 9 + column);
+				}
+			}
+
+			return true;
 		}
 
 		/// <summary>

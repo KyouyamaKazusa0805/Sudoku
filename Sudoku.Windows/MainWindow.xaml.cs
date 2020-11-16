@@ -28,6 +28,7 @@ using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.TechniqueInfo>;
+using Sudoku.Data.Extensions;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif
@@ -116,7 +117,7 @@ namespace Sudoku.Windows
 		}
 
 		/// <inheritdoc/>
-		protected override unsafe void OnKeyDown(KeyEventArgs e)
+		protected override void OnKeyDown(KeyEventArgs e)
 		{
 			base.OnKeyDown(e);
 
@@ -143,10 +144,7 @@ namespace Sudoku.Windows
 						{
 							// Input a digit.
 							// Input or eliminate a digit.
-							static bool internalChecking(int c, in int digit, in MainWindow @this) =>
-								@this._puzzle[c] == digit;
-
-							if (digit != -1 && PeerMaps[cell].Any(&internalChecking, digit, this))
+							if (digit != -1 && ((SudokuGrid)_puzzle).Duplicate(cell, digit))
 							{
 								// Input is invalid. We can't let you fill this cell with this digit.
 								return;

@@ -1,4 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
+using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Data.Extensions
@@ -57,5 +59,19 @@ namespace Sudoku.Data.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool? Exists(this in SudokuGrid @this, int cell, int digit) =>
 			@this.GetStatus(cell) == Empty && !@this[cell, digit];
+
+		/// <summary>
+		/// Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
+		/// </summary>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="cell">The cell.</param>
+		/// <param name="digit">The digit.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		public static unsafe bool Duplicate(this in SudokuGrid @this, int cell, int digit)
+		{
+			static bool duplicate(int c, in SudokuGrid grid, in int digit) => grid[c] == digit;
+
+			return PeerMaps[cell].Any(&duplicate, @this, digit);
+		}
 	}
 }

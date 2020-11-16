@@ -7,11 +7,15 @@ using HuajiTech.Mirai.Messaging;
 using Sudoku.Bot.Extensions;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
+using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
+using static Sudoku.Constants.Processings;
 using R = Sudoku.Bot.Resources;
 
 namespace Sudoku.Bot
@@ -341,16 +345,23 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCell(s[4], out byte row, out byte column))
+			if (!Parser.TryParseCells(s[4], out var map))
 			{
 				return;
 			}
 
-			int cell = row * 9 + column;
-			_painter.Grid[cell] = digit - 1;
-			if (appendGiven)
+			foreach (int cell in map)
 			{
-				_painter.Grid.SetStatus(cell, CellStatus.Given);
+				if (((SudokuGrid)_painter.Grid).Duplicate(cell, digit))
+				{
+					continue;
+				}
+
+				_painter.Grid[cell] = digit - 1;
+				if (appendGiven)
+				{
+					_painter.Grid.SetStatus(cell, CellStatus.Given);
+				}
 			}
 
 			using var image = _painter.Draw();
@@ -376,7 +387,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCell(s[2], out byte row, out byte column))
+			if (!Parser.TryParseCells(s[2], out var map))
 			{
 				return;
 			}
@@ -392,14 +403,16 @@ namespace Sudoku.Bot
 				_painter = _painter with { CustomView = new() };
 			}
 
-			int cell = row * 9 + column;
-			if (remove)
+			foreach (int cell in map)
 			{
-				_painter.CustomView.RemoveCell(cell);
-			}
-			else
-			{
-				_painter.CustomView.AddCell(colorId, cell);
+				if (remove)
+				{
+					_painter.CustomView.RemoveCell(cell);
+				}
+				else
+				{
+					_painter.CustomView.AddCell(colorId, cell);
+				}
 			}
 
 			using var image = _painter.Draw();
@@ -425,7 +438,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCell(s[2], out byte row, out byte column))
+			if (!Parser.TryParseCells(s[2], out var map))
 			{
 				return;
 			}
@@ -446,14 +459,17 @@ namespace Sudoku.Bot
 				_painter = _painter with { CustomView = new() };
 			}
 
-			int candidate = row * 81 + column * 9 + digit - 1;
-			if (remove)
+			foreach (int cell in map)
 			{
-				_painter.CustomView.RemoveCandidate(candidate);
-			}
-			else
-			{
-				_painter.CustomView.AddCandidate(colorId, candidate);
+				int candidate = cell * 9 + digit - 1;
+				if (remove)
+				{
+					_painter.CustomView.RemoveCandidate(candidate);
+				}
+				else
+				{
+					_painter.CustomView.AddCandidate(colorId, candidate);
+				}
 			}
 
 			using var image = _painter.Draw();
@@ -654,7 +670,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCell(s[2], out byte row, out byte column))
+			if (!Parser.TryParseCells(s[2], out var map))
 			{
 				return;
 			}
@@ -664,13 +680,16 @@ namespace Sudoku.Bot
 				_painter = _painter with { CustomView = new() };
 			}
 
-			if (remove)
+			foreach (int cell in map)
 			{
-				_painter.CustomView.RemoveDirectLine(GridMap.Empty, new() { row * 9 + column });
-			}
-			else
-			{
-				_painter.CustomView.AddDirectLine(GridMap.Empty, new() { row * 9 + column });
+				if (remove)
+				{
+					_painter.CustomView.RemoveDirectLine(GridMap.Empty, new() { cell });
+				}
+				else
+				{
+					_painter.CustomView.AddDirectLine(GridMap.Empty, new() { cell });
+				}
 			}
 
 			using var image = _painter.Draw();
@@ -696,7 +715,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCell(s[2], out byte row, out byte column))
+			if (!Parser.TryParseCells(s[2], out var map))
 			{
 				return;
 			}
@@ -706,13 +725,16 @@ namespace Sudoku.Bot
 				_painter = _painter with { CustomView = new() };
 			}
 
-			if (remove)
+			foreach (int cell in map)
 			{
-				_painter.CustomView.RemoveDirectLine(new() { row * 9 + column }, GridMap.Empty);
-			}
-			else
-			{
-				_painter.CustomView.AddDirectLine(new() { row * 9 + column }, GridMap.Empty);
+				if (remove)
+				{
+					_painter.CustomView.RemoveDirectLine(new() { cell }, GridMap.Empty);
+				}
+				else
+				{
+					_painter.CustomView.AddDirectLine(new() { cell }, GridMap.Empty);
+				}
 			}
 
 			using var image = _painter.Draw();
