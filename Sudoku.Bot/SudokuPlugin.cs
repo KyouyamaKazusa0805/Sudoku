@@ -302,8 +302,9 @@ namespace Sudoku.Bot
 					if (SudokuGrid.TryParse(puzzle, out grid)
 						&& (File.Exists(FinishedPuzzlePath), grid.ToString()) is (var exists, var str)
 						&& (
-						File.ReadLines(FinishedPuzzlePath).All(l => !string.IsNullOrEmpty(l) && l != str)
-						&& exists || !exists))
+						exists
+						&& File.ReadLines(FinishedPuzzlePath).All(l => !string.IsNullOrEmpty(l) && l != str)
+						|| !exists))
 					{
 						break;
 					}
