@@ -76,7 +76,7 @@ namespace Sudoku.Bot
 								case "-生成空盘": await GenerateEmptyGridAsync(e); break;
 								case "-清盘": await CleanGridAsync(info, e); break;
 								case "小蛋蛋，介绍一下你吧": await IntroduceAsync(e); break;
-								case "-开始绘图": await StartDrawingAsync(s, e); break;
+								case "-开始绘图": await StartDrawingAsync(info, s, e); break;
 								case "-结束绘图": await DisposePainterAsync(e); break;
 								case "-填入" when s.Length >= 2:
 								{
@@ -255,77 +255,60 @@ namespace Sudoku.Bot
 		/// <summary>
 		/// Start drawing picture.
 		/// </summary>
+		/// <param name="info">The command arguments.</param>
 		/// <param name="s">The command arguments.</param>
 		/// <param name="e">The event arguments.</param>
 		/// <returns>The task of this method.</returns>
-		private static async Task StartDrawingAsync(string[] s, MessageReceivedEventArgs e)
+		private static async Task StartDrawingAsync(string info, string[] s, MessageReceivedEventArgs e)
 		{
-			switch (s.Length)
+			// 开始绘图 [大小 <大小>] [盘面 <盘面>]
+			int size = Size;
+			var grid = SudokuGrid.Undefined;
+			int pos = info.IndexOf(R.GetValue("Size"));
+			if (pos != -1)
 			{
-				case 1:
+				int startPos = pos + R.GetValue("Size").Length;
+				if (info[startPos] != ' ')
 				{
-					await g(600, SudokuGrid.Undefined);
-
-					break;
+					return;
 				}
-				case 2:
+
+				int index = startPos + 1;
+				for (; info[index] is >= '0' and <= '9'; index++) ;
+
+				string sizeStr = info[startPos..index];
+				if (!int.TryParse(sizeStr, out int result))
 				{
-					if (!SudokuGrid.TryParse(s[1], out var grid))
-					{
-						return;
-					}
-
-					await g(600, grid);
-
-					break;
+					return;
 				}
-				case 3:
-				{
-					if (s[1] != R.GetValue("Size"))
-					{
-						return;
-					}
 
-					if (!uint.TryParse(s[2], out uint size) || size > 1000U)
-					{
-						return;
-					}
-
-					await g(size, SudokuGrid.Undefined);
-
-					break;
-				}
-				case 4:
-				{
-					if (!SudokuGrid.TryParse(s[1], out var grid))
-					{
-						return;
-					}
-
-					if (s[2] != R.GetValue("Size"))
-					{
-						return;
-					}
-
-					if (!uint.TryParse(s[3], out uint size) || size > 1000U)
-					{
-						return;
-					}
-
-					await g(size, grid);
-
-					break;
-				}
+				size = result;
 			}
 
-			async Task g(uint result, SudokuGrid grid)
+			pos = info.IndexOf(R.GetValue("Grid"));
+			if (pos != -1)
 			{
-				var pointConverter = new PointConverter(result, result);
-				_painter = new(pointConverter, new(), grid);
+				int startPos = pos + R.GetValue("Grid").Length;
+				if (info[startPos] != ' ')
+				{
+					return;
+				}
 
-				using var image = _painter.Draw();
-				await e.ReplyImageAsync(image);
+				int index = startPos + 1;
+				string gridStr = info[startPos..];
+				if (!SudokuGrid.TryParse(gridStr, out var result))
+				{
+					return;
+				}
+
+				grid = result;
 			}
+
+			var pointConverter = new PointConverter(size, size);
+			_painter = new(pointConverter, new(), grid);
+
+			using var image = _painter.Draw();
+			await e.ReplyImageAsync(image);
 		}
 
 		/// <summary>

@@ -15,7 +15,8 @@ namespace Sudoku.Bot
 			["MyName"] = "小蛋蛋",
 			["Morning"] = "早上好",
 			["MorningToo"] = "你也早鸭",
-			["Size"] = "边长",
+			["Size"] = "大小",
+			["Grid"] = "盘面",
 			["From"] = "从",
 			["To"] = "到",
 			["Success"] = "成功。",
@@ -44,7 +45,7 @@ namespace Sudoku.Bot
 			["HelpGeneratePicture"] = "-生成图片 <盘面>：将题目文本转为图片显示。",
 			["HelpClean"] = "-清盘 <盘面>：将盘面前期的排除、唯一余数、区块和数组技巧全部应用。",
 			["HelpEmpty"] = "-生成空盘：给一个空盘的图片。",
-			["HelpStartDrawing"] = "-开始绘图 边长 <图片边长>：开始从空盘画盘面图，随后可以添加其它的操作，例如添加候选数涂色等。",
+			["HelpStartDrawing"] = "-开始绘图[ 大小 <图片大小>][ 盘面 <盘面>]：开始从空盘画盘面图，随后可以添加其它的操作，例如添加候选数涂色等。",
 			["HelpEndDrawing"] = "-结束绘图：指定画图过程结束，清除画板。",
 			["HelpIntroduceMyself"] = "小蛋蛋，介绍一下你吧：我 介 绍 我 自 己",
 
