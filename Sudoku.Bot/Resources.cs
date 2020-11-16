@@ -13,8 +13,6 @@ namespace Sudoku.Bot
 		private static readonly IDictionary<string, string> InnerDictionary = new Dictionary<string, string>
 		{
 			["MyName"] = "小蛋蛋",
-			["Morning"] = "早上好",
-			["MorningToo"] = "你也早鸭",
 			["Size"] = "大小",
 			["Grid"] = "盘面",
 			["From"] = "从",

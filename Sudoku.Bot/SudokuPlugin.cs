@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HuajiTech.Mirai;
@@ -58,7 +59,7 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			if (info.Contains(R.GetValue("MyName")) && info.Contains(R.GetValue("Morning")))
+			if (info.Contains(R.GetValue("MyName")) && info.Contains("早上好"))
 			{
 				await GreetingAsync(e);
 				return;
@@ -73,10 +74,10 @@ namespace Sudoku.Bot
 					{
 						case { Length: >= 1 } s:
 						{
-							switch (s[0][1..])
+							switch (splits[0][1..])
 							{
-								case "禁言": await JinxSomeoneAsync(e); break;
-								case "解除禁言" or "取消禁言": await UnjinxSomeoneAsync(e); break;
+								case "禁言": await JinxGroupAsync(s, e); break;
+								case "解除禁言" or "取消禁言": await UnjinxGroupAsync(s, e); break;
 							}
 							break;
 						}
@@ -115,7 +116,7 @@ namespace Sudoku.Bot
 									switch (s.Length)
 									{
 										case 1: await GenerateEmptyGridAsync(e); break;
-										case >= 2 when s[1] is "？": await GenerateEmptyGridHelpAsync(e); break;
+										case >= 2 when s[1] == "？": await GenerateEmptyGridHelpAsync(e); break;
 									}
 									break;
 								}
@@ -207,18 +208,31 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Jinx someone.
+		/// Jinx the current group.
 		/// </summary>
+		/// <param name="s">The command arguments.</param>
 		/// <param name="e">The event arguments.</param>
 		/// <returns>The task of this method.</returns>
-		private static async Task JinxSomeoneAsync(GroupMessageReceivedEventArgs e)
+		private static async Task JinxGroupAsync(string[] s, GroupMessageReceivedEventArgs e)
 		{
 			try
 			{
-				await (
-					e.Sender is { Role: MemberRole.Administrator or MemberRole.Owner }
-					? e.Source.MuteAsync()
-					: e.Reply("您没有权限使用此功能。"));
+				switch (s.Length)
+				{
+					case 1:
+					{
+						await (
+							e.Sender is { Role: MemberRole.Administrator or MemberRole.Owner }
+							? e.Source.MuteAsync()
+							: e.Reply("您没有权限使用此功能。"));
+						break;
+					}
+					//case >= 5 and var length when s[2] == "时长": // #禁言 <人> 时长 <数字> (天|周|小时|分钟|秒)
+					//{
+					//	await JinxOrUnjinxMemberAsync(s, length, e, true);
+					//	break;
+					//}
+				}
 			}
 			catch (ApiException ex) when (ex.ErrorCode == 10)
 			{
@@ -227,22 +241,95 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Unjinx someone.
+		/// Unjinx the current group.
 		/// </summary>
+		/// <param name="s">The command arguments.</param>
 		/// <param name="e">The event arguments.</param>
 		/// <returns>The task of this method.</returns>
-		private static async Task UnjinxSomeoneAsync(GroupMessageReceivedEventArgs e)
+		private static async Task UnjinxGroupAsync(string[] s, GroupMessageReceivedEventArgs e)
 		{
 			try
 			{
-				await (
-					e.Sender is { Role: MemberRole.Administrator or MemberRole.Owner }
-					? e.Source.UnmuteAsync()
-					: e.Reply("您没有权限使用此功能。"));
+				switch (s.Length)
+				{
+					case 1:
+					{
+						await (
+							e.Sender is { Role: MemberRole.Administrator or MemberRole.Owner }
+							? e.Source.UnmuteAsync()
+							: e.Reply("您没有权限使用此功能。"));
+						break;
+					}
+					//case >= 5 and var length when s[2] == "时长": // #解除禁言 <人> 时长 <数字> (天|周|小时|分钟|秒)
+					//{
+					//	await JinxOrUnjinxMemberAsync(s, length, e, false);
+					//	break;
+					//}
+				}
 			}
 			catch (ApiException ex) when (ex.ErrorCode == 10)
 			{
 				await e.Reply("我没有管理员权限，无法使用解除禁言功能。");
+			}
+		}
+
+		/// <summary>
+		/// To jinx or unjinx a specified person that is specified as number, group alias and its nickname.
+		/// </summary>
+		/// <param name="s">The command arguments.</param>
+		/// <param name="length">The length.</param>
+		/// <param name="e">The event arguments.</param>
+		/// <param name="jinx">
+		/// Indicates whether the current operation is jinx. If <see langword="false"/>,
+		/// unjinx.
+		/// </param>
+		/// <returns>The task of this method.</returns>
+		private static async Task<bool> JinxOrUnjinxMemberAsync(
+			string[] s, int length, GroupMessageReceivedEventArgs e, bool jinx)
+		{
+			var member = (
+				from m in await e.Source.GetMembersAsync()
+				where m.Alias == s[1] || m.DisplayName == s[1] || m.Number.ToString() == s[1]
+				select m).FirstOrDefault();
+			if (member is null)
+			{
+				return false;
+			}
+
+			if (jinx)
+			{
+				var timeSpan = TimeSpan.Zero;
+				for (int index = 3; index < length; index += 2)
+				{
+					if (!uint.TryParse(s[index], out uint current) || index + 1 >= length)
+					{
+						return false;
+					}
+
+					TimeSpan? currentUnit = s[index + 1] switch
+					{
+						"天" => TimeSpan.FromDays(current),
+						"周" => TimeSpan.FromDays(7 * current),
+						"小时" => TimeSpan.FromHours(current),
+						"分钟" => TimeSpan.FromMinutes(current),
+						"秒" => TimeSpan.FromSeconds(current),
+						_ => null
+					};
+					if (!currentUnit.HasValue)
+					{
+						return false;
+					}
+
+					timeSpan += currentUnit.Value;
+				}
+
+				await member.MuteAsync(timeSpan);
+				return true;
+			}
+			else
+			{
+				await member.UnmuteAsync();
+				return true;
 			}
 		}
 
@@ -252,7 +339,7 @@ namespace Sudoku.Bot
 		/// <param name="e">The event arguments.</param>
 		/// <returns>The task of the method.</returns>
 		private static async Task GreetingAsync(MessageReceivedEventArgs e) =>
-			await e.Reply(R.GetValue("MorningToo"));
+			await e.Reply("你也早鸭");
 
 		/// <summary>
 		/// Analyze helper text.
