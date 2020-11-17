@@ -217,8 +217,17 @@ namespace Sudoku.Bot
 								{
 									switch (s.Length)
 									{
-										case >= 2 when s[1] == "？": await ExtractPuzzleHelpAsync(e); break;
+										case 2 when s[1] == "？": await ExtractPuzzleHelpAsync(e); break;
 										default: await ExtractPuzzleAsync(s, e); break;
+									}
+									break;
+								}
+								case "命令符号说明":
+								{
+									switch (s.Length)
+									{
+										case 1: await DescribeCommandNotationAsync(e); break;
+										case 2 when s[1] == "？": await DescribeCommandNotationHelpAsync(e); break;
 									}
 									break;
 								}
@@ -231,6 +240,18 @@ namespace Sudoku.Bot
 			}
 		}
 
+		/// <summary>
+		/// 符号说明。
+		/// </summary>
+		private static async Task DescribeCommandNotationAsync(GroupMessageReceivedEventArgs e) =>
+			await e.Source.SendAsync(
+				new StringBuilder()
+				.AppendLine("命令符号说明：")
+				.AppendLine("(a|b|c|...)：表示内容为必选项，并在其中必须选择且只能选择一个作为结果。")
+				.AppendLine("[内容]：表示内容为可选项，可以不写，并带有默认值。")
+				.AppendLine("[a|b|c|...]：表示内容为可选项，可以不写，如果需要写则必须在内部选择一个。")
+				.AppendLine("<参数>：表示数据是一个根据上文传递过来的一个变量，可以根据命令的要求进行适当的调整，不一定限制它的数据范围。")
+				.ToString());
 
 		/// <summary>
 		/// 抽取题目。
@@ -601,6 +622,12 @@ namespace Sudoku.Bot
 		/// </summary>
 		private static async Task DisposePainterHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync("格式：！结束绘图。");
+
+		/// <summary>
+		/// 符号说明帮助。
+		/// </summary>
+		private static async Task DescribeCommandNotationHelpAsync(GroupMessageReceivedEventArgs e) =>
+			await e.Source.SendAsync("格式：！命令符号说明。");
 
 		/// <summary>
 		/// 填充数字帮助。
