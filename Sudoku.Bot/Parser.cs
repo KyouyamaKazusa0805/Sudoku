@@ -1,25 +1,27 @@
-﻿using System;
+﻿#if AUTHOR_RESERVED
+
+using System;
 using Sudoku.Data;
+using Sudoku.Drawing;
 
 namespace Sudoku.Bot
 {
 	/// <summary>
-	/// Encapsulates a parser.
+	/// 封装一个常用的解析工具类。
 	/// </summary>
 	public static class Parser
 	{
 		/// <summary>
-		/// Try to parse a color ID.
+		/// 尝试解析字符串，并转换为一个表示颜色的 ID。这个颜色 ID 一般用来封装和保存到 <see cref="DrawingInfo"/>
+		/// 对象里。
 		/// </summary>
-		/// <param name="this">The string.</param>
-		/// <param name="withTransparency">
-		/// Indicates whether the parser will convert the value to the color with transparency.
-		/// </param>
-		/// <param name="colorId">(<see langword="out"/> parameter) The color ID.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
-		public static bool TryParseColorId(string @this, bool withTransparency, out long colorId)
+		/// <param name="str">字符串。</param>
+		/// <param name="withTransparency">表示当前解析后的颜色是否保留透明度。</param>
+		/// <param name="colorId">(<see langword="out"/> 参数) 转换后的颜色 ID。</param>
+		/// <returns>表示是否转换成功。</returns>
+		public static bool TryParseColorId(string str, bool withTransparency, out long colorId)
 		{
-			switch (@this)
+			switch (str)
 			{
 				case "红色" or "红": colorId = cid(withTransparency ? 128 : 255, 235, 0, 0); return true;
 				case "浅红色" or "浅红": colorId = cid(withTransparency ? 64 : 255, 247, 165, 167); return true;
@@ -36,7 +38,7 @@ namespace Sudoku.Bot
 				case "浅紫色" or "浅紫": colorId = cid(withTransparency ? 64 : 255, 220, 212, 252); return true;
 				default:
 				{
-					string[] s = @this.Split(',', StringSplitOptions.RemoveEmptyEntries);
+					string[] s = str.Split(',', StringSplitOptions.RemoveEmptyEntries);
 					if (s.Length != 4)
 					{
 						colorId = default;
@@ -59,20 +61,20 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Try to parse cells.
+		/// 尝试解析字符串，并转换为一系列单元格，用 <see cref="GridMap"/> 对象表示。
 		/// </summary>
-		/// <param name="this">The string.</param>
-		/// <param name="cells">(<see langword="out"/> parameter) All cells parsed.</param>
-		/// <returns>The <see cref="bool"/> result.</returns>
-		public static bool TryParseCells(string @this, out GridMap cells)
+		/// <param name="str">字符串。</param>
+		/// <param name="cells">(<see langword="out"/> 参数) 解析后的对象。</param>
+		/// <returns>表示是否转换成功。</returns>
+		public static bool TryParseCells(string str, out GridMap cells)
 		{
 			cells = GridMap.Empty;
-			if (string.IsNullOrWhiteSpace(@this))
+			if (string.IsNullOrWhiteSpace(str))
 			{
 				return false;
 			}
 
-			foreach (string cellStr in @this.Split(','))
+			foreach (string cellStr in str.Split(','))
 			{
 				if (TryParseCell(cellStr, out byte row, out byte column))
 				{
@@ -84,32 +86,32 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Try to parse a cell.
+		/// 尝试解析一个字符串，并转换为一个单元格的绝对编号（偏移量）。
 		/// </summary>
-		/// <param name="this">The string.</param>
+		/// <param name="str">字符串。</param>
 		/// <param name="row">
-		/// (<see langword="out"/> parameter) The row. If failed to parse, the value will be
-		/// <see langword="default"/>(<see cref="byte"/>).
+		/// (<see langword="out"/> 参数) 表示所在行。如果解析失败，这个数值则为
+		/// <see langword="default"/>(<see cref="byte"/>)。
 		/// </param>
 		/// <param name="column">
-		/// (<see langword="out"/> parameter) The column. If failed to parse, the value will be
-		/// <see langword="default"/>(<see cref="byte"/>).
+		/// (<see langword="out"/> 参数) 表示所在列。如果解析失败，这个数值则为
+		/// <see langword="default"/>(<see cref="byte"/>)。
 		/// </param>
-		/// <returns>The <see cref="bool"/> result.</returns>
-		public static bool TryParseCell(string @this, out byte row, out byte column)
+		/// <returns>表示是否解析成功。</returns>
+		public static bool TryParseCell(string str, out byte row, out byte column)
 		{
-			switch (@this.Length)
+			switch (str.Length)
 			{
-				case 2 when isAtoI(@this[0]) && isDigit(@this[1]):
+				case 2 when isAtoI(str[0]) && isDigit(str[1]):
 				{
-					row = (byte)(@this[0] - toWeight(@this[0]));
-					column = toDigit(@this[1]);
+					row = (byte)(str[0] - toWeight(str[0]));
+					column = toDigit(str[1]);
 					return true;
 				}
-				case 4 when isRowLabel(@this[0]) && isColumnLabel(@this[2]) && isDigit(@this[1]) && isDigit(@this[3]):
+				case 4 when isRowLabel(str[0]) && isColumnLabel(str[2]) && isDigit(str[1]) && isDigit(str[3]):
 				{
-					row = toDigit(@this[1]);
-					column = toDigit(@this[3]);
+					row = toDigit(str[1]);
+					column = toDigit(str[3]);
 					return true;
 				}
 				default:
@@ -128,3 +130,5 @@ namespace Sudoku.Bot
 		}
 	}
 }
+
+#endif

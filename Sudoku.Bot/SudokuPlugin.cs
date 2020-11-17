@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if AUTHOR_RESERVED
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,54 +26,51 @@ using R = Sudoku.Bot.Resources;
 namespace Sudoku.Bot
 {
 	/// <summary>
-	/// Encapsulates a plugin for sudoku.
+	/// 封装一个关于数独相关操作的插件。
 	/// </summary>
 	public sealed class SudokuPlugin
 	{
-#if AUTHOR_RESERVED
 		/// <summary>
-		/// Indicates the directory of the puzzle library.
+		/// 默认的图片绘制大小。
+		/// </summary>
+		private const int Size = 800;
+
+		/// <summary>
+		/// 需要刷题的群的题库文件的文件夹路径。
 		/// </summary>
 		private const string PuzzleLibDir = @"S:\题库\机器人题库";
 
 		/// <summary>
-		/// Indicates the directory of the puzzle that is finished.
+		/// 刷题的群已经完成了的题目的存储文件夹路径。
 		/// </summary>
 		private const string FinishedPuzzleDir = @"S:\题库\机器人题库_已完成";
 
 
 		/// <summary>
-		/// The random number generator (RNG).
+		/// 随机数生成器。用来获取随机数。
 		/// </summary>
 		private static readonly Random Rng = new();
-#endif
 
 
 		/// <summary>
-		/// Indicates the drawing size.
-		/// </summary>
-		private const int Size = 800;
-
-
-		/// <summary>
-		/// The inner grid painter.
+		/// 在程序内使用的绘图工具类。
 		/// </summary>
 		private static GridPainter? _painter;
 
 
 		/// <summary>
-		/// Initializes an instance with the specified user event source.
+		/// 直接实例化一个插件对象，包含相关的执行事件。
 		/// </summary>
-		/// <param name="currentUserEventSource">The current user event source.</param>
+		/// <param name="currentUserEventSource">执行事件操作的事件源。</param>
 		public SudokuPlugin(CurrentUserEventSource currentUserEventSource) =>
 			currentUserEventSource.GroupMessageReceivedEvent += OnReceivingMessageAsync;
 
 		/// <summary>
-		/// The method that invoked on receiving messages.
+		/// 当接收到消息的时候，触发该事件。
 		/// </summary>
-		/// <param name="session">The current session.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
+		/// <param name="session">当前会话。</param>
+		/// <param name="e">群消息事件参数。</param>
+		/// <returns>当前事件处理方法的封装 <see cref="Task"/> 对象。</returns>
 		private static async Task OnReceivingMessageAsync(Session session, GroupMessageReceivedEventArgs e)
 		{
 			var complexStr = e.Message.Content;
@@ -81,12 +80,6 @@ namespace Sudoku.Bot
 			}
 
 			string info = pl.ToString();
-			if (info.Contains(R.GetValue("MyName")) && info.Contains("早上好"))
-			{
-				await GreetingAsync(e);
-				return;
-			}
-
 			string[] splits = info.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 			switch (info[0])
 			{
@@ -220,7 +213,6 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-#if AUTHOR_RESERVED
 								case "抽题":
 								{
 									switch (s.Length)
@@ -230,7 +222,6 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-#endif
 							}
 							break;
 						}
@@ -240,13 +231,10 @@ namespace Sudoku.Bot
 			}
 		}
 
-#if AUTHOR_RESERVED
+
 		/// <summary>
-		/// Extract a puzzle.
+		/// 抽取题目。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task ExtractPuzzleAsync(string[] s, GroupMessageReceivedEventArgs e)
 		{
 			if (!Directory.Exists(PuzzleLibDir))
@@ -445,14 +433,10 @@ namespace Sudoku.Bot
 				return true;
 			}
 		}
-#endif
 
 		/// <summary>
-		/// Jinx the current group.
+		/// 禁言整个群或指定的群内成员。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task JinxGroupAsync(string[] s, GroupMessageReceivedEventArgs e)
 		{
 			try
@@ -481,11 +465,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Unjinx the current group.
+		/// 取消对群的禁言，或对群内成员的禁言。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task UnjinxGroupAsync(string[] s, GroupMessageReceivedEventArgs e)
 		{
 			try
@@ -514,16 +495,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// To jinx or unjinx a specified person that is specified as number, group alias and its nickname.
+		/// 根据禁言的信息（被禁言人号码、昵称或群名）禁言对象。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="length">The length.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="jinx">
-		/// Indicates whether the current operation is jinx. If <see langword="false"/>,
-		/// unjinx.
-		/// </param>
-		/// <returns>The task of this method.</returns>
 		private static async Task<bool> JinxOrUnjinxMemberAsync(
 			string[] s, int length, GroupMessageReceivedEventArgs e, bool jinx)
 		{
@@ -574,18 +547,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Greet with somebody.
+		/// 分析题目帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of the method.</returns>
-		private static async Task GreetingAsync(MessageReceivedEventArgs e) =>
-			await e.Reply("你也早鸭");
-
-		/// <summary>
-		/// Analyze helper text.
-		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task AnalyzeHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -594,10 +557,8 @@ namespace Sudoku.Bot
 				.ToString());
 
 		/// <summary>
-		/// Generate picture helper text.
+		/// 生成图片帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task GeneratePictureHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -606,18 +567,14 @@ namespace Sudoku.Bot
 				.ToString());
 
 		/// <summary>
-		/// Generate empty grid picture helper text.
+		/// 生成空盘帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task GenerateEmptyGridHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync("格式：！生成空盘。");
 
 		/// <summary>
-		/// Clean grid helper text.
+		/// 清盘帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task CleanGridHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -626,18 +583,14 @@ namespace Sudoku.Bot
 				.ToString());
 
 		/// <summary>
-		/// Introduce the program helper text.
+		/// 介绍程序帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task IntroduceHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync("格式：！关于。");
 
 		/// <summary>
-		/// Start drawing helper text.
+		/// 开始绘图帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task StartDrawingHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -648,18 +601,14 @@ namespace Sudoku.Bot
 				.ToString());
 
 		/// <summary>
-		/// Dispose painter helper text.
+		/// 完成绘图帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DisposePainterHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync("格式：！结束绘图。");
 
 		/// <summary>
-		/// Fill digits helper text.
+		/// 填充数字帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task FillHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -668,10 +617,8 @@ namespace Sudoku.Bot
 				.ToString());
 
 		/// <summary>
-		/// Draw something helper text.
+		/// 画画功能帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawHelpAsync(MessageReceivedEventArgs e, bool remove) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -690,10 +637,8 @@ namespace Sudoku.Bot
 
 #if AUTHOR_RESERVED
 		/// <summary>
-		/// Extract puzzle helper text.
+		/// 抽取题目帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task ExtractPuzzleHelpAsync(GroupMessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -704,10 +649,8 @@ namespace Sudoku.Bot
 #endif
 
 		/// <summary>
-		/// Show helper text.
+		/// 帮助功能帮助。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task ShowHelperTextAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -716,9 +659,10 @@ namespace Sudoku.Bot
 				.AppendLine("！帮助：显示此帮助信息。")
 				.AppendLine("！分析 <盘面>：显示题目的分析结果。")
 				.AppendLine("！生成图片 <盘面>：将题目文本转为图片显示。")
+				.AppendLine("！填入 (提示数|填入数) <数字> 到 <单元格>：填入提示数或填入数。")
 				.AppendLine("！清盘 <盘面>：将盘面前期的排除、唯一余数、区块和数组技巧全部应用。")
 				.AppendLine("！生成空盘：给一个空盘的图片。")
-				.AppendLine("！开始绘图[ 大小 <图片大小>][ 盘面 <盘面>]：开始从空盘画盘面图，随后可以添加其它的操作，例如添加候选数涂色等。")
+				.AppendLine("！开始绘图[ 大小 <图片大小>][ 盘面 <盘面>]：开始从空盘或指定盘面开始为盘面进行绘制，比如添加候选数涂色等。")
 				.AppendLine("！结束绘图：指定画图过程结束，清除画板。")
 				.AppendLine("！抽题：抽取一道题库里的题目。")
 				.AppendLine("！关于：我 介 绍 我 自 己")
@@ -730,10 +674,8 @@ namespace Sudoku.Bot
 				.ToString());
 
 		/// <summary>
-		/// Introduce myself.
+		/// 介绍自己。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task IntroduceAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
@@ -742,11 +684,8 @@ namespace Sudoku.Bot
 				.ToString());
 
 		/// <summary>
-		/// Analyze the puzzle.
+		/// 分析题目。
 		/// </summary>
-		/// <param name="info">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task AnalysisAsync(string info, MessageReceivedEventArgs e)
 		{
 			string analysisCommand = R.GetValue("AnalysisCommand");
@@ -760,11 +699,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw the image.
+		/// 生成图片。
 		/// </summary>
-		/// <param name="info">The information.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawImageAsync(string info, MessageReceivedEventArgs e)
 		{
 			if (e.Message.Content.Count != 1)
@@ -785,10 +721,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Generate an empty grid.
+		/// 生成空盘。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task GenerateEmptyGridAsync(MessageReceivedEventArgs e)
 		{
 			var painter = new GridPainter(new(Size, Size), new(), SudokuGrid.Undefined);
@@ -797,11 +731,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Clean the grid, and send the grid picture.
+		/// 清盘。
 		/// </summary>
-		/// <param name="info">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task CleanGridAsync(string info, MessageReceivedEventArgs e)
 		{
 			string cleanCommand = R.GetValue("CleaningGridCommand");
@@ -818,12 +749,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Start drawing picture.
+		/// 开始画图。
 		/// </summary>
-		/// <param name="info">The command arguments.</param>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task StartDrawingAsync(string info, string[] s, MessageReceivedEventArgs e)
 		{
 			int size = Size;
@@ -876,12 +803,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Fill the given and modifiable.
+		/// 填入提示数或填入数。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="appendGiven">Indicates whether we should add given values.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task FillAsync(string[] s, MessageReceivedEventArgs e, bool appendGiven)
 		{
 			if (_painter is null)
@@ -928,12 +851,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw a cell.
+		/// 为单元格涂色。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawCellAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)
@@ -979,12 +898,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw a candidate.
+		/// 为候选数涂色。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawCandidateAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)
@@ -1036,12 +951,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw a row.
+		/// 为一行涂色。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawRowAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (s.Length != 4 - (remove ? 1 : 0))
@@ -1064,12 +975,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw a column.
+		/// 为一列涂色。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawColumnAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (s.Length != 4 - (remove ? 1 : 0))
@@ -1092,12 +999,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw a block.
+		/// 为一个宫涂色。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawBlockAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (s.Length != 4 - (remove ? 1 : 0))
@@ -1120,14 +1023,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw a region.
+		/// 为一个区域涂色。
 		/// </summary>
-		/// <param name="label">The region label.</param>
-		/// <param name="region">The region.</param>
-		/// <param name="colorId">The color ID.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawRegionAsync(
 			RegionLabel label, int region, long colorId, MessageReceivedEventArgs e, bool remove)
 		{
@@ -1156,12 +1053,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw a chain.
+		/// 画一条链。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawChainAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)
@@ -1211,12 +1104,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw a cross sign.
+		/// 画叉叉标记。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawCrossAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)
@@ -1256,12 +1145,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Draw a circle sign.
+		/// 画圆圈标记。
 		/// </summary>
-		/// <param name="s">The command arguments.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <param name="remove">Indicates whether the current operation is removing the element.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DrawCircleAsync(string[] s, MessageReceivedEventArgs e, bool remove)
 		{
 			if (_painter is null)
@@ -1301,10 +1186,8 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
-		/// Dispose the painter.
+		/// 清除画板。
 		/// </summary>
-		/// <param name="e">The event arguments.</param>
-		/// <returns>The task of this method.</returns>
 		private static async Task DisposePainterAsync(MessageReceivedEventArgs e)
 		{
 			_painter = null;
@@ -1313,3 +1196,5 @@ namespace Sudoku.Bot
 		}
 	}
 }
+
+#endif

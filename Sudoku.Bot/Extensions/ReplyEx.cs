@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if AUTHOR_RESERVED
+
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using HuajiTech.Mirai;
@@ -9,22 +11,22 @@ using HImage = HuajiTech.Mirai.Messaging.Image;
 namespace Sudoku.Bot.Extensions
 {
 	/// <summary>
-	/// Encapsulates methods for <see cref="MessageReceivedEventArgs"/>.
+	/// 为 <see cref="MessageReceivedEventArgs"/> 实例提供扩展方法。
 	/// </summary>
 	public static class ReplyEx
 	{
 		/// <summary>
-		/// The temporary path to save image.
+		/// 用来临时保存、缓存绘图后的图片。
 		/// </summary>
 		private const string TemporaryPath = @"C:\Users\Howdy\Desktop\Temp.png";
 
 
 		/// <summary>
-		/// Reply an image.
+		/// 回复一个图片。
 		/// </summary>
-		/// <param name="e">(<see langword="this"/> parameter) The event arguments.</param>
-		/// <param name="image">The image.</param>
-		/// <returns>The task of this method.</returns>
+		/// <param name="e">(<see langword="this"/> 参数) 事件参数。</param>
+		/// <param name="image">需要回复的图片。</param>
+		/// <returns>提供异步操作的具体 <see cref="Task"/> 实例。</returns>
 		public static async Task ReplyImageAsync(this MessageReceivedEventArgs e, DImage image)
 		{
 			image.Save(TemporaryPath);
@@ -39,3 +41,5 @@ namespace Sudoku.Bot.Extensions
 		}
 	}
 }
+
+#endif

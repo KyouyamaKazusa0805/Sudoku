@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
+﻿#if AUTHOR_RESERVED
+
+using System.Collections.Generic;
 
 namespace Sudoku.Bot
 {
 	/// <summary>
-	/// The resource dictionary.
+	/// 表示整个项目可能会用到的资源字典。
 	/// </summary>
 	public static class Resources
 	{
 		/// <summary>
-		/// The inner dictionary.
+		/// 内部的字典。
 		/// </summary>
 		private static readonly IDictionary<string, string> InnerDictionary = new Dictionary<string, string>
 		{
@@ -40,11 +42,13 @@ namespace Sudoku.Bot
 
 
 		/// <summary>
-		/// Get the resource key.
+		/// 获取字典里的指定字符串。
 		/// </summary>
-		/// <param name="key">The key.</param>
-		/// <returns>The value.</returns>
-		/// <exception cref="KeyNotFoundException">Throws when the specified key can't be found.</exception>
+		/// <param name="key">需要获取的字符串对应的键。</param>
+		/// <returns>对应存储的数据。</returns>
+		/// <exception cref="KeyNotFoundException">当在资源字典里无法找到对应键的时候抛出该异常。</exception>
 		public static string GetValue(string key) => InnerDictionary[key];
 	}
 }
+
+#endif

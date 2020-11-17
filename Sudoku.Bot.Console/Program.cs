@@ -1,4 +1,6 @@
-﻿#pragma warning disable IDE1006
+﻿#if AUTHOR_RESERVED
+
+#pragma warning disable IDE1006
 
 using System;
 using HuajiTech.Mirai;
@@ -21,3 +23,5 @@ var plugin = new SudokuPlugin(currentUserEventSource);
 Console.WriteLine("启动成功，可以愉快地使用啦！");
 Console.WriteLine("（输入换行符退出程序）");
 Console.ReadLine();
+
+#endif
