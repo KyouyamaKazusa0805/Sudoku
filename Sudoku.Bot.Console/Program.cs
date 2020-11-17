@@ -7,10 +7,10 @@ using HuajiTech.Mirai;
 using HuajiTech.Mirai.Events;
 using Sudoku.Bot;
 
-const long myQQ = (long)(222 * 1E7M) + (1 << 21);
+const long myNumber = (long)(222 * 1E7M) + (1 << 21);
 
 var sessionSettings = new SessionSettings("127.0.0.1", 8080, "1234567890");
-await using var session = new Session(sessionSettings, myQQ);
+await using var session = new Session(sessionSettings, myNumber);
 await session.ConnectAsync();
 
 var currentUserEventSource = new CurrentUserEventSource();

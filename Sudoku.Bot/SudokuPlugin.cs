@@ -257,12 +257,8 @@ namespace Sudoku.Bot
 				}
 				case 2:
 				{
-					await outputPuzzlePictureAsync(s[1] switch
-					{
-						"带候选数" => true,
-						"不带候选数" => false,
-						_ => null
-					});
+					await outputPuzzlePictureAsync(
+						s[1] switch { "带候选数" => true, "不带候选数" => false, _ => null });
 					break;
 				}
 			}
