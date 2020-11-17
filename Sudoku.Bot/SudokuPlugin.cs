@@ -35,11 +35,6 @@ namespace Sudoku.Bot
 		/// </summary>
 		private const string FinishedPuzzleDir = @"S:\题库\机器人题库_已完成";
 
-		/// <summary>
-		/// Indicates the path of the puzzle that is finished.
-		/// </summary>
-		private const string FinishedPuzzlePath = FinishedPuzzleDir + @"\Finished.txt";
-
 
 		/// <summary>
 		/// The random number generator (RNG).
@@ -258,7 +253,7 @@ namespace Sudoku.Bot
 			}
 
 			string[] files = Directory.GetFiles(PuzzleLibDir);
-			if (files.Length is var length && length == 0)
+			if (files.Length == 0)
 			{
 				return;
 			}
@@ -289,9 +284,16 @@ namespace Sudoku.Bot
 					return;
 				}
 
-				int indexChosen = Rng.Next(0, length);
-				string filePath = files[indexChosen];
-				string[] fileLines = File.ReadAllLines(filePath);
+				long groupNumber = e.Source.Number;
+				string correspondingPath = $@"{PuzzleLibDir}\{groupNumber}.txt";
+				string finishedPath = $@"{FinishedPuzzleDir}\{groupNumber}.txt";
+				if (!File.Exists(correspondingPath))
+				{
+					await e.Reply("本群尚未拥有刷题题库，抽取题目失败。");
+					return;
+				}
+
+				string[] fileLines = File.ReadAllLines(correspondingPath);
 
 				SudokuGrid grid;
 				int trial = 0;
@@ -300,10 +302,9 @@ namespace Sudoku.Bot
 					int lineChosen = Rng.Next(0, fileLines.Length);
 					string puzzle = fileLines[lineChosen];
 					if (SudokuGrid.TryParse(puzzle, out grid)
-						&& (File.Exists(FinishedPuzzlePath), grid.ToString()) is (var exists, var str)
+						&& (File.Exists(finishedPath), grid.ToString()) is (var exists, var str)
 						&& (
-						exists
-						&& File.ReadLines(FinishedPuzzlePath).All(l => !string.IsNullOrEmpty(l) && l != str)
+						exists && File.ReadLines(finishedPath).All(l => !string.IsNullOrEmpty(l) && l != str)
 						|| !exists))
 					{
 						break;
@@ -327,12 +328,10 @@ namespace Sudoku.Bot
 					{
 						Directory.CreateDirectory(FinishedPuzzleDir);
 					}
-					File.AppendAllText(FinishedPuzzlePath, $"{grid}{Environment.NewLine}");
+					File.AppendAllText(finishedPath, $"{grid}{Environment.NewLine}");
 
-#if DEBUG
-					// Output puzzle text.
-					await e.Reply($"题目文本：{grid}");
-#endif
+					// Output the analysis result.
+					await e.Reply(new ManualSolver().Solve(grid).ToString("-!", CountryCode.ZhCn));
 
 					// Output the picture.
 					var painter = new GridPainter(new(Size, Size), new() { ShowCandidates = b }, grid);
