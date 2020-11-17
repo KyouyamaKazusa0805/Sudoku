@@ -4,6 +4,7 @@
 // specified as parameters in the attribute statements.
 using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Sudoku.Bot")]
 [assembly: InternalsVisibleTo("Sudoku.CodeAnalysis")]
 [assembly: InternalsVisibleTo("Sudoku.Debugging")]
 [assembly: InternalsVisibleTo("Sudoku.Diagnostics")]

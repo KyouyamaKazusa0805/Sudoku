@@ -390,7 +390,7 @@ namespace Sudoku.Bot
 					return true;
 				}
 
-				// Arbitrary value will be okay: 4144959 :)
+				// Why 4144959? The only reason is that it's an abnormal value.
 				uint chainCountMin = 4144959, chainCountMax = 4144959;
 				decimal diffMin = 4144959, diffMax = 4144959;
 				if (currentLineSplits[2] == "any") chainCountMin = 0;
@@ -418,6 +418,25 @@ namespace Sudoku.Bot
 
 				if (max < diffMin || max > diffMax
 					|| chainingTechniquesCount < chainCountMin || chainingTechniquesCount > chainCountMax)
+				{
+					analysisResult = null;
+					return false;
+				}
+
+				bool? containFcs = currentLineSplits[10] switch
+				{
+					"有" => true,
+					"无" => false,
+					"any" => null,
+					_ => throw Throwings.ImpossibleCase
+				};
+
+				bool realContainFcs = analysisResult.SolvingSteps.Any(
+					static step =>
+						step is BowmanBingoTechniqueInfo
+						or RegionChainingTechniqueInfo or CellChainingTechniqueInfo);
+
+				if (containFcs is false && realContainFcs || containFcs is not false && !realContainFcs)
 				{
 					analysisResult = null;
 					return false;
