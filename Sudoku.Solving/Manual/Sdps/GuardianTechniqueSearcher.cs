@@ -21,7 +21,11 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55);
+		public static TechniqueProperties Properties { get; } = new(55)
+		{
+			IsEnabled = false,
+			DisabledReason = DisabledReason.HasBugs
+		};
 
 
 		/// <inheritdoc/>
@@ -80,14 +84,7 @@ namespace Sudoku.Solving.Manual.Sdps
 										from c in guardians.PeerIntersection & CandMaps[digit]
 										select new Conclusion(Elimination, c, digit)
 									).ToArray(),
-									new View[]
-									{
-										new View(
-											null,
-											candidateOffsets,
-											null,
-											links)
-									},
+									new View[] { new(null, candidateOffsets, null, links) },
 									digit,
 									map,
 									guardians));

@@ -59,10 +59,8 @@ namespace Sudoku.Bot
 		/// Initializes an instance with the specified user event source.
 		/// </summary>
 		/// <param name="currentUserEventSource">The current user event source.</param>
-		public SudokuPlugin(CurrentUserEventSource currentUserEventSource)
-		{
+		public SudokuPlugin(CurrentUserEventSource currentUserEventSource) =>
 			currentUserEventSource.GroupMessageReceivedEvent += OnReceivingMessageAsync;
-		}
 
 		/// <summary>
 		/// The method that invoked on receiving messages.

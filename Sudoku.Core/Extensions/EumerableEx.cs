@@ -311,16 +311,6 @@ namespace Sudoku.Extensions
 		}
 
 		/// <summary>
-		/// Get the total number of elements that are different.
-		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
-		/// <param name="selector">The selector.</param>
-		/// <returns>The result.</returns>
-		public static unsafe int Sum<T>(this IEnumerable<T> @this, delegate*<in T, decimal> selector) =>
-			new Set<decimal>(from element in @this select selector(element)).Count;
-
-		/// <summary>
 		/// Get the maximum value in this collection.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>

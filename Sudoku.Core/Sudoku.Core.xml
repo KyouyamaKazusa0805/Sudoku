@@ -4096,15 +4096,6 @@
             elements satisfying the condition.
             </returns>
         </member>
-        <member name="M:Sudoku.Extensions.EnumerableEx.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Get the total number of elements that are different.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="selector">The selector.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="M:Sudoku.Extensions.EnumerableEx.Max``1(System.Collections.Generic.IEnumerable{``0},)">
             <summary>
             Get the maximum value in this collection.

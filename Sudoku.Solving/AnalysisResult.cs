@@ -116,12 +116,22 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		/// <seealso cref="SolvingSteps"/>
-		public unsafe decimal TotalDifficulty
+		public decimal TotalDifficulty
 		{
 			get
 			{
-				static decimal g(in TechniqueInfo info) => info.ShowDifficulty ? info.Difficulty : 0;
-				return SolvingSteps?.Sum(&g) ?? 0;
+				if (SolvingSteps is null)
+				{
+					return 0;
+				}
+
+				decimal result = 0;
+				foreach (var step in SolvingSteps)
+				{
+					result += step.ShowDifficulty ? step.Difficulty : 0;
+				}
+
+				return result;
 			}
 		}
 
