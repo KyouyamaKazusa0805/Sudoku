@@ -357,8 +357,8 @@ namespace Sudoku.Bot
 				exists && File.ReadLines(finishedPath).All(
 					l =>
 					{
-						string[] z = l.Split('\t');
-						return z.Length >= 1 && z[0] is var s && !string.IsNullOrEmpty(s) && s != str;
+						string[] z = l.Split('\t', StringSplitOptions.RemoveEmptyEntries);
+						return z.Length >= 1 && z[0] is var s && s != str;
 					}) || !exists;
 
 			static bool customCondition(long groupNumber, in SudokuGrid grid, out AnalysisResult? analysisResult)
@@ -377,7 +377,7 @@ namespace Sudoku.Bot
 						{
 							string[] sp = line.Split(' ');
 							return sp.Length > 0 && sp[0] == groupNumber.ToString();
-						}) is var resultLine || resultLine is null)
+						}) is var resultLine && resultLine is null)
 				{
 					analysisResult = null;
 					return true;
@@ -395,18 +395,16 @@ namespace Sudoku.Bot
 					return true;
 				}
 
-				// Why 4144959? The only reason is that it's an abnormal value.
-				uint chainCountMin = 4144959, chainCountMax = 4144959;
-				decimal diffMin = 4144959, diffMax = 4144959;
+				uint chainCountMin = default, chainCountMax = default;
+				decimal diffMin = default, diffMax = default;
 				if (currentLineSplits[2] == "any") chainCountMin = 0;
 				if (currentLineSplits[4] == "any") chainCountMax = 1000;
 				if (currentLineSplits[6] == "any") diffMin = 0;
 				if (currentLineSplits[8] == "any") diffMax = 20;
-
-				if (chainCountMin != 4144959 && !uint.TryParse(currentLineSplits[2], out chainCountMin)
-					|| chainCountMax != 4144959 && !uint.TryParse(currentLineSplits[4], out chainCountMax)
-					|| diffMin != 4144959 && !decimal.TryParse(currentLineSplits[6], out diffMin)
-					|| diffMax != 4144959 && !decimal.TryParse(currentLineSplits[8], out diffMax)
+				if (currentLineSplits[2] is var k && k != "any" && !uint.TryParse(k, out chainCountMin)
+					|| currentLineSplits[4] is var l && l != "any" && !uint.TryParse(l, out chainCountMax)
+					|| currentLineSplits[6] is var m && m != "any" && !decimal.TryParse(m, out diffMin)
+					|| currentLineSplits[8] is var n && n != "any" && !decimal.TryParse(n, out diffMax)
 					|| currentLineSplits[10] is not ("有" or "无" or "any"))
 				{
 					analysisResult = null;
