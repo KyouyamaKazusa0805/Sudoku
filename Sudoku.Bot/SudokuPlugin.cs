@@ -12,9 +12,13 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
+using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
+using Sudoku.Solving.Manual.Alses.Basic;
+using Sudoku.Solving.Manual.Chaining;
+using Sudoku.Solving.Manual.LastResorts;
 using R = Sudoku.Bot.Resources;
 
 namespace Sudoku.Bot
@@ -293,17 +297,23 @@ namespace Sudoku.Bot
 
 				string[] fileLines = File.ReadAllLines(correspondingPath);
 
+				AnalysisResult? analysisResult = null;
 				SudokuGrid grid;
 				int trial = 0;
 				for (; trial < 10; trial++)
 				{
 					int lineChosen = Rng.Next(0, fileLines.Length);
 					string puzzle = fileLines[lineChosen];
-					if (SudokuGrid.TryParse(puzzle, out grid)
-						&& (File.Exists(finishedPath), grid.ToString()) is (var exists, var str)
-						&& (
-						exists && File.ReadLines(finishedPath).All(l => !string.IsNullOrEmpty(l) && l != str)
-						|| !exists))
+					bool parsed = SudokuGrid.TryParse(puzzle, out grid);
+					if (!parsed)
+					{
+						continue;
+					}
+
+					bool exists = File.Exists(finishedPath);
+					string str = grid.ToString();
+					if (basicCondition(finishedPath, exists, str)
+						&& customCondition(groupNumber, grid, out analysisResult))
 					{
 						break;
 					}
@@ -326,15 +336,94 @@ namespace Sudoku.Bot
 					{
 						Directory.CreateDirectory(FinishedPuzzleDir);
 					}
-					File.AppendAllText(finishedPath, $"{grid}{Environment.NewLine}");
+					File.AppendAllText(finishedPath, $"{grid}\r\n");
 
 					// Output the analysis result.
-					await e.Reply(new ManualSolver().Solve(grid).ToString("-!", CountryCode.ZhCn));
+					analysisResult ??= new ManualSolver().Solve(grid);
+					await e.Reply(analysisResult.ToString("-!", CountryCode.ZhCn));
 
 					// Output the picture.
 					var painter = new GridPainter(new(Size, Size), new() { ShowCandidates = b }, grid);
 					await e.ReplyImageAsync(painter.Draw());
 				}
+			}
+
+			static bool basicCondition(string finishedPath, bool exists, string str) =>
+				exists && File.ReadLines(finishedPath).All(
+					l =>
+					{
+						string[] z = l.Split('\t');
+						return z.Length >= 1 && z[0] is var s && !string.IsNullOrEmpty(s) && s != str;
+					}) || !exists;
+
+			static bool customCondition(long groupNumber, in SudokuGrid grid, out AnalysisResult? analysisResult)
+			{
+				string path = $@"{PuzzleLibDir}\设置.txt";
+				if (!File.Exists(path))
+				{
+					analysisResult = null;
+					return true;
+				}
+
+				string[] lines = File.ReadAllLines(path);
+				if (
+					lines.FirstOrDefault(
+						line =>
+						{
+							string[] sp = line.Split(' ');
+							return sp.Length > 0 && sp[0] == groupNumber.ToString();
+						}) is var resultLine || resultLine is null)
+				{
+					analysisResult = null;
+					return true;
+				}
+
+				string[] currentLineSplits = resultLine.Split(' ');
+				if (currentLineSplits.Length != 11
+					|| currentLineSplits[1] != "链数"
+					|| currentLineSplits[3] != "到"
+					|| currentLineSplits[5] != "难度"
+					|| currentLineSplits[7] != "到"
+					|| currentLineSplits[9] != "强制链")
+				{
+					analysisResult = null;
+					return true;
+				}
+
+				// Arbitrary value will be okay: 4144959 :)
+				uint chainCountMin = 4144959, chainCountMax = 4144959;
+				decimal diffMin = 4144959, diffMax = 4144959;
+				if (currentLineSplits[2] == "any") chainCountMin = 0;
+				if (currentLineSplits[4] == "any") chainCountMax = 1000;
+				if (currentLineSplits[6] == "any") diffMin = 0;
+				if (currentLineSplits[8] == "any") diffMax = 20;
+
+				if (chainCountMin != 4144959 && !uint.TryParse(currentLineSplits[2], out chainCountMin)
+					|| chainCountMax != 4144959 && !uint.TryParse(currentLineSplits[4], out chainCountMax)
+					|| diffMin != 4144959 && !decimal.TryParse(currentLineSplits[6], out diffMin)
+					|| diffMax != 4144959 && !decimal.TryParse(currentLineSplits[8], out diffMax)
+					|| currentLineSplits[10] is not ("有" or "无" or "any"))
+				{
+					analysisResult = null;
+					return true;
+				}
+
+				analysisResult = new ManualSolver().Solve(grid);
+				decimal max = analysisResult.MaxDifficulty;
+				int chainingTechniquesCount = analysisResult.SolvingSteps!.Count(
+					static step =>
+						step is ChainingTechniqueInfo
+						or AlsXzTechniqueInfo or AlsXyWingTechniqueInfo or AlsWWingTechniqueInfo
+						or DeathBlossomTechniqueInfo or BowmanBingoTechniqueInfo);
+
+				if (max < diffMin || max > diffMax
+					|| chainingTechniquesCount < chainCountMin || chainingTechniquesCount > chainCountMax)
+				{
+					analysisResult = null;
+					return false;
+				}
+
+				return true;
 			}
 		}
 #endif
