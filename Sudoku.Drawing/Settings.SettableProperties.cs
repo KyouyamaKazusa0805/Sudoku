@@ -45,8 +45,8 @@ namespace Sudoku.Drawing
 		/// Indicates the font of given digits to render.
 		/// </para>
 		/// <para>
-		/// The value is <c>"Fira Code"</c> in debug environment,
-		/// <c>"Arial"</c> in release environment.
+		/// The value is <c>"Fira Code"</c> in author-reserved environment,
+		/// <c>"Arial"</c> in other ones.
 		/// </para>
 		/// </summary>
 		public string GivenFontName { get; set; }
@@ -61,8 +61,8 @@ namespace Sudoku.Drawing
 		/// Indicates the font of modifiable digits to render.
 		/// </para>
 		/// <para>
-		/// The value is <c>"Fira Code"</c> in debug environment,
-		/// <c>"Arial"</c> in release environment.
+		/// The value is <c>"Fira Code"</c> in author-reserved environment,
+		/// <c>"Arial"</c> in other ones.
 		/// </para>
 		/// </summary>
 		public string ModifiableFontName { get; set; }
@@ -77,8 +77,8 @@ namespace Sudoku.Drawing
 		/// Indicates the font of candidate digits to render.
 		/// </para>
 		/// <para>
-		/// The value is <c>"Fira Code"</c> in debug environment,
-		/// <c>"Arial"</c> in release environment.
+		/// The value is <c>"Fira Code"</c> in author-reserved environment,
+		/// <c>"Arial"</c> in other ones.
 		/// </para>
 		/// </summary>
 		public string CandidateFontName { get; set; }
@@ -168,8 +168,10 @@ namespace Sudoku.Drawing
 		/// <para>
 		/// Indicates the color of the crosshatching inner.
 		/// </para>
-		/// <para>The value is <see cref="Color.Transparent"/> in debugger mode,
-		/// <see cref="Color.SkyBlue"/> in release mode in default case.</para>
+		/// <para>
+		/// The value is <see cref="Color.Transparent"/> in author-reserved environment,
+		/// <see cref="Color.SkyBlue"/> in other ones in default case.
+		/// </para>
 		/// </summary>
 		public Color CrosshatchingInnerColor { get; set; }
 #if AUTHOR_RESERVED

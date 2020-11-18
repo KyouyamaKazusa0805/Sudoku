@@ -770,8 +770,8 @@
             Indicates the font of given digits to render.
             </para>
             <para>
-            The value is <c>"Fira Code"</c> in debug environment,
-            <c>"Arial"</c> in release environment.
+            The value is <c>"Fira Code"</c> in author-reserved environment,
+            <c>"Arial"</c> in other ones.
             </para>
             </summary>
         </member>
@@ -781,8 +781,8 @@
             Indicates the font of modifiable digits to render.
             </para>
             <para>
-            The value is <c>"Fira Code"</c> in debug environment,
-            <c>"Arial"</c> in release environment.
+            The value is <c>"Fira Code"</c> in author-reserved environment,
+            <c>"Arial"</c> in other ones.
             </para>
             </summary>
         </member>
@@ -792,8 +792,8 @@
             Indicates the font of candidate digits to render.
             </para>
             <para>
-            The value is <c>"Fira Code"</c> in debug environment,
-            <c>"Arial"</c> in release environment.
+            The value is <c>"Fira Code"</c> in author-reserved environment,
+            <c>"Arial"</c> in other ones.
             </para>
             </summary>
         </member>
@@ -873,8 +873,10 @@
             <para>
             Indicates the color of the crosshatching inner.
             </para>
-            <para>The value is <see cref="P:System.Drawing.Color.Transparent"/> in debugger mode,
-            <see cref="P:System.Drawing.Color.SkyBlue"/> in release mode in default case.</para>
+            <para>
+            The value is <see cref="P:System.Drawing.Color.Transparent"/> in author-reserved environment,
+            <see cref="P:System.Drawing.Color.SkyBlue"/> in other ones in default case.
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.Settings.CrossSignColor">
