@@ -127,7 +127,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "生成图片" when s.Length == 2:
+								case "生成图片" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
@@ -145,7 +145,7 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
-								case "清盘" when s.Length == 2:
+								case "清盘" when s.Length >= 2:
 								{
 									switch (s[1])
 									{
