@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Sudoku.DocComments;
 
 namespace Sudoku.Drawing
 {
@@ -8,6 +9,18 @@ namespace Sudoku.Drawing
 	/// </summary>
 	public partial class Settings : ICloneable<Settings>
 	{
+		/// <inheritdoc	cref="DefaultConstructor"/>
+		public Settings()
+		{
+		}
+
+		/// <summary>
+		/// (Copy constructor) Copies another settings instance.
+		/// </summary>
+		/// <param name="another">Another instance.</param>
+		public Settings(Settings another) => CoverBy(another);
+
+
 		/// <summary>
 		/// To cover all settings.
 		/// </summary>

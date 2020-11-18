@@ -4,6 +4,20 @@
         <name>Sudoku.Drawing</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Drawing.ColorJsonConverter">
+            <summary>
+            Indicates a color JSON converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.ColorJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.ColorJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Drawing.Extensions.DrawingColorEx">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Color"/>.
@@ -377,6 +391,12 @@
             <param name="g">The graphics.</param>
             <param name="cells">The cells.</param>
         </member>
+        <member name="M:Sudoku.Drawing.GridPainter.InitializeCustomViewIfNull(Sudoku.Drawing.GridPainter@)">
+            <summary>
+            Initialize custom view if the current property is <see langword="null"/>.
+            </summary>
+            <param name="painter">(<see langword="ref"/> parameter) The current painter instance.</param>
+        </member>
         <member name="M:Sudoku.Drawing.GridPainter.GetFontByScale(System.String,System.Single,System.Decimal)">
             <summary>
             Get the font via name, size and the scale.
@@ -691,6 +711,15 @@
             <summary>
             Provides with a base class for program settings.
             </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Settings.#ctor">
+            <inheritdoc	cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Settings.#ctor(Sudoku.Drawing.Settings)">
+            <summary>
+            (Copy constructor) Copies another settings instance.
+            </summary>
+            <param name="another">Another instance.</param>
         </member>
         <member name="M:Sudoku.Drawing.Settings.CoverBy(Sudoku.Drawing.Settings)">
             <summary>

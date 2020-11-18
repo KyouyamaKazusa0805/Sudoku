@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
@@ -604,6 +605,19 @@ namespace Sudoku.Drawing
 			}
 		}
 
+
+		/// <summary>
+		/// Initialize custom view if the current property is <see langword="null"/>.
+		/// </summary>
+		/// <param name="painter">(<see langword="ref"/> parameter) The current painter instance.</param>
+		[MemberNotNull(nameof(CustomView))]
+		public static void InitializeCustomViewIfNull(ref GridPainter painter)
+		{
+			if (painter.CustomView is null)
+			{
+				painter = painter with { CustomView = new() };
+			}
+		}
 
 		/// <summary>
 		/// Get the font via name, size and the scale.

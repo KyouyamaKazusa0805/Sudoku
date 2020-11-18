@@ -131,20 +131,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.ColorJsonConverter">
-            <summary>
-            Indicates a color JSON converter.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.ColorJsonConverter.CanConvert(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.ColorJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Windows.Constants.Messagings">
             <summary>
             Provides all messages used for <see cref="T:System.Windows.MessageBox"/> instance.

@@ -1,9 +1,11 @@
 ﻿#if AUTHOR_RESERVED
 
 using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using HuajiTech.Mirai;
 using HuajiTech.Mirai.Events;
@@ -18,6 +20,7 @@ using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
+using PointConverter = Sudoku.Drawing.PointConverter;
 using TechniqueInfo = Sudoku.Solving.Extensions.TechniqueInfoEx;
 
 namespace Sudoku.Bot
@@ -30,28 +33,38 @@ namespace Sudoku.Bot
 		/// <summary>
 		/// 默认的图片绘制大小。
 		/// </summary>
+		[JsonIgnore]
 		private const int Size = 800;
 
 		/// <summary>
 		/// 需要刷题的群的题库文件的文件夹路径。
 		/// </summary>
-		private const string PuzzleLibDir = @"S:\题库\机器人题库";
+		[JsonIgnore]
+		private const string PuzzleLibDir = @"P:\Bot\题库\机器人题库";
 
 		/// <summary>
 		/// 刷题的群已经完成了的题目的存储文件夹路径。
 		/// </summary>
-		private const string FinishedPuzzleDir = @"S:\题库\机器人题库_已完成";
+		[JsonIgnore]
+		private const string FinishedPuzzleDir = @"P:\Bot\题库\机器人题库_已完成";
 
 
 		/// <summary>
 		/// 随机数生成器。用来获取随机数。
 		/// </summary>
+		[JsonIgnore]
 		private static readonly Random Rng = new();
 
 
 		/// <summary>
+		/// 表示项目内使用的设定项。
+		/// </summary>
+		internal static Settings Settings = new();
+
+		/// <summary>
 		/// 在程序内使用的绘图工具类。
 		/// </summary>
+		[JsonIgnore]
 		private static GridPainter? _painter;
 
 
@@ -182,7 +195,7 @@ namespace Sudoku.Bot
 								{
 									switch (s[1])
 									{
-										case "？": await DrawHelpAsync(e, false); break;
+										case "？": await DrawHelpAsync(e); break;
 										case "单元格": await DrawCellAsync(s, e, false); break;
 										case "候选数": await DrawCandidateAsync(s, e, false); break;
 										case "行": await DrawRowAsync(s, e, false); break;
@@ -198,7 +211,7 @@ namespace Sudoku.Bot
 								{
 									switch (s[1])
 									{
-										case "？": await DrawHelpAsync(e, true); break;
+										case "？": await DrawHelpAsync(e); break;
 										case "单元格": await DrawCellAsync(s, e, true); break;
 										case "候选数": await DrawCandidateAsync(s, e, true); break;
 										case "行": await DrawRowAsync(s, e, true); break;
@@ -228,215 +241,23 @@ namespace Sudoku.Bot
 									}
 									break;
 								}
+								case "调整" when s.Length >= 2:
+								{
+									switch (s[1])
+									{
+										case "？": await AdjustHelpAsync(e); break;
+										case "确定值字体比例": await AdjustValueAsync(s, e); break;
+										case "候选数字体比例": await AdjustCandidateAsync(s, e); break;
+										case "背景色": await AdjustBackgroundAsync(s, e); break;
+									}
+									break;
+								}
 							}
 							break;
 						}
 					}
 					break;
 				}
-			}
-		}
-
-		/// <summary>
-		/// 符号说明。
-		/// </summary>
-		private static async Task DescribeCommandNotationAsync(GroupMessageReceivedEventArgs e) =>
-			await e.Source.SendAsync(
-				new StringBuilder()
-				.AppendLine("命令符号说明：")
-				.AppendLine("(a|b|c|...)：表示内容为必选项，并在其中必须选择且只能选择一个作为结果。")
-				.AppendLine("[内容]：表示内容为可选项，可以不写，并带有默认值。")
-				.AppendLine("[a|b|c|...]：表示内容为可选项，可以不写，如果需要写则必须在内部选择一个。")
-				.AppendLine("<参数>：表示数据是一个根据上文传递过来的一个变量，可以根据命令的要求进行适当的调整，不一定限制它的数据范围。")
-				.ToString());
-
-		/// <summary>
-		/// 抽取题目。
-		/// </summary>
-		private static async Task ExtractPuzzleAsync(string[] s, GroupMessageReceivedEventArgs e)
-		{
-			if (!Directory.Exists(PuzzleLibDir))
-			{
-				return;
-			}
-
-			string[] files = Directory.GetFiles(PuzzleLibDir);
-			if (files.Length == 0)
-			{
-				return;
-			}
-
-			switch (s.Length)
-			{
-				case 1:
-				{
-					await outputPuzzlePictureAsync(true);
-					break;
-				}
-				case 2:
-				{
-					await outputPuzzlePictureAsync(
-						s[1] switch { "带候选数" => true, "不带候选数" => false, _ => null });
-					break;
-				}
-			}
-
-			async Task outputPuzzlePictureAsync(bool? withCandidates)
-			{
-				if (!withCandidates.HasValue)
-				{
-					return;
-				}
-
-				long groupNumber = e.Source.Number;
-				string correspondingPath = $@"{PuzzleLibDir}\{groupNumber}.txt";
-				string finishedPath = $@"{FinishedPuzzleDir}\{groupNumber}.txt";
-				if (!File.Exists(correspondingPath))
-				{
-					await e.Reply("本群尚未拥有刷题题库，抽取题目失败。");
-					return;
-				}
-
-				string[] fileLines = File.ReadAllLines(correspondingPath);
-
-				AnalysisResult? analysisResult = null;
-				SudokuGrid grid;
-				int trial = 0;
-				for (; trial < 10; trial++)
-				{
-					int lineChosen = Rng.Next(0, fileLines.Length);
-					string puzzle = fileLines[lineChosen];
-					bool parsed = SudokuGrid.TryParse(puzzle, out grid);
-					if (!parsed)
-					{
-						continue;
-					}
-
-					bool exists = File.Exists(finishedPath);
-					string str = grid.ToString();
-					if (basicCondition(finishedPath, exists, str)
-						&& customCondition(groupNumber, grid, out analysisResult))
-					{
-						break;
-					}
-				}
-
-				if (trial == 10)
-				{
-					await e.Reply("随机抽题失败，可能是脸不好；请重试一次。");
-				}
-				else
-				{
-					// Clean the grid if the puzzle should show candidates.
-					if (withCandidates.Value is var b && b)
-					{
-						grid.Clean();
-					}
-
-					// Save the puzzle to finished directory.
-					if (!Directory.Exists(FinishedPuzzleDir))
-					{
-						Directory.CreateDirectory(FinishedPuzzleDir);
-					}
-					File.AppendAllText(finishedPath, $"{grid}\r\n");
-
-					// Output the analysis result.
-					analysisResult ??= new ManualSolver().Solve(grid);
-					await e.Reply(analysisResult.ToString("-!", CountryCode.ZhCn));
-
-					// Output the picture.
-					var painter = new GridPainter(new(Size, Size), new() { ShowCandidates = b }, grid);
-					await e.ReplyImageAsync(painter.Draw());
-				}
-			}
-
-			static bool basicCondition(string finishedPath, bool exists, string str) =>
-				exists && File.ReadLines(finishedPath).All(
-					l =>
-					{
-						string[] z = l.Split('\t', StringSplitOptions.RemoveEmptyEntries);
-						return z.Length >= 1 && z[0] is var s && s != str;
-					}) || !exists;
-
-			static bool customCondition(long groupNumber, in SudokuGrid grid, out AnalysisResult? analysisResult)
-			{
-				string path = $@"{PuzzleLibDir}\设置.txt";
-				if (!File.Exists(path))
-				{
-					analysisResult = null;
-					return true;
-				}
-
-				string[] lines = File.ReadAllLines(path);
-				if (
-					lines.FirstOrDefault(
-						line =>
-						{
-							string[] sp = line.Split(' ');
-							return sp.Length > 0 && sp[0] == groupNumber.ToString();
-						}) is var resultLine && resultLine is null)
-				{
-					analysisResult = null;
-					return true;
-				}
-
-				string[] currentLineSplits = resultLine.Split(' ');
-				if (currentLineSplits.Length != 11
-					|| currentLineSplits[1] != "链数"
-					|| currentLineSplits[3] != "到"
-					|| currentLineSplits[5] != "难度"
-					|| currentLineSplits[7] != "到"
-					|| currentLineSplits[9] != "强制链")
-				{
-					analysisResult = null;
-					return true;
-				}
-
-				uint chainCountMin = default, chainCountMax = default;
-				decimal diffMin = default, diffMax = default;
-				if (currentLineSplits[2] == "any") chainCountMin = 0;
-				if (currentLineSplits[4] == "any") chainCountMax = 1000;
-				if (currentLineSplits[6] == "any") diffMin = 0;
-				if (currentLineSplits[8] == "any") diffMax = 20;
-				if (currentLineSplits[2] is var k && k != "any" && !uint.TryParse(k, out chainCountMin)
-					|| currentLineSplits[4] is var l && l != "any" && !uint.TryParse(l, out chainCountMax)
-					|| currentLineSplits[6] is var m && m != "any" && !decimal.TryParse(m, out diffMin)
-					|| currentLineSplits[8] is var n && n != "any" && !decimal.TryParse(n, out diffMax)
-					|| currentLineSplits[10] is not ("有" or "无" or "any"))
-				{
-					analysisResult = null;
-					return true;
-				}
-
-				analysisResult = new ManualSolver().Solve(grid);
-				decimal max = analysisResult.MaxDifficulty;
-				int chainingTechniquesCount = analysisResult.SolvingSteps!.Count(
-					static step => step.IsAlsTechnique() || step.IsChainingTechnique());
-
-				if (max < diffMin || max > diffMax
-					|| chainingTechniquesCount < chainCountMin || chainingTechniquesCount > chainCountMax)
-				{
-					analysisResult = null;
-					return false;
-				}
-
-				bool? containFcs = currentLineSplits[10] switch
-				{
-					"有" => true,
-					"无" => false,
-					"any" => null,
-					_ => throw Throwings.ImpossibleCase
-				};
-
-				bool realContainFcs = analysisResult.SolvingSteps.Any(TechniqueInfo.IsForcingChainsTechnique);
-
-				if (containFcs is false && realContainFcs || containFcs is not false && !realContainFcs)
-				{
-					analysisResult = null;
-					return false;
-				}
-
-				return true;
 			}
 		}
 
@@ -553,6 +374,262 @@ namespace Sudoku.Bot
 		}
 
 		/// <summary>
+		/// 调整背景色。
+		/// </summary>
+		private static async Task AdjustBackgroundAsync(string[] s, GroupMessageReceivedEventArgs e)
+		{
+			if (s.Length != 3)
+			{
+				return;
+			}
+
+			if (!Parser.TryParseColorId(s[2], false, out long colorId))
+			{
+				return;
+			}
+
+			byte a = (byte)(colorId >> 24 & 255);
+			byte r = (byte)(colorId >> 16 & 255);
+			byte g = (byte)(colorId >> 8 & 255);
+			byte b = (byte)(colorId & 255);
+			Settings.BackgroundColor = Color.FromArgb(a, r, g, b);
+
+			await e.Source.SendAsync($"颜色已修改为：[{a}, {r}, {g}, {b}]。");
+		}
+
+		/// <summary>
+		/// 调整候选数大小。
+		/// </summary>
+		private static async Task AdjustCandidateAsync(string[] s, GroupMessageReceivedEventArgs e)
+		{
+			if (s.Length != 3)
+			{
+				return;
+			}
+
+			if (!decimal.TryParse(s[2], out decimal scale))
+			{
+				return;
+			}
+
+			Settings.CandidateScale = scale;
+			await e.Source.SendAsync($"候选数的比例已调整为 {scale:0.0}。");
+		}
+
+		/// <summary>
+		/// 调整确定值大小。
+		/// </summary>
+		private static async Task AdjustValueAsync(string[] s, GroupMessageReceivedEventArgs e)
+		{
+			if (s.Length != 3)
+			{
+				return;
+			}
+
+			if (!decimal.TryParse(s[2], out decimal scale))
+			{
+				return;
+			}
+
+			Settings.ValueScale = scale;
+
+			await e.Source.SendAsync($"确定值的比例已调整为 {scale:0.0}。");
+		}
+
+		/// <summary>
+		/// 抽取题目。
+		/// </summary>
+		private static async Task ExtractPuzzleAsync(string[] s, GroupMessageReceivedEventArgs e)
+		{
+			if (!Directory.Exists(PuzzleLibDir))
+			{
+				return;
+			}
+
+			string[] files = Directory.GetFiles(PuzzleLibDir);
+			if (files.Length == 0)
+			{
+				return;
+			}
+
+			switch (s.Length)
+			{
+				case 1:
+				{
+					await outputPuzzlePictureAsync(true);
+					break;
+				}
+				case 2:
+				{
+					await outputPuzzlePictureAsync(
+						s[1] switch { "带候选数" => true, "不带候选数" => false, _ => null });
+					break;
+				}
+			}
+
+			async Task outputPuzzlePictureAsync(bool? withCandidates)
+			{
+				if (!withCandidates.HasValue)
+				{
+					return;
+				}
+
+				long groupNumber = e.Source.Number;
+				string correspondingPath = $@"{PuzzleLibDir}\{groupNumber}.txt";
+				string finishedPath = $@"{FinishedPuzzleDir}\{groupNumber}.txt";
+				if (!File.Exists(correspondingPath))
+				{
+					await e.Reply("本群尚未拥有刷题题库，抽取题目失败。");
+					return;
+				}
+
+				string[] fileLines = File.ReadAllLines(correspondingPath);
+
+				AnalysisResult? analysisResult = null;
+				SudokuGrid grid;
+				int trial = 0;
+				for (; trial < 10; trial++)
+				{
+					int lineChosen = Rng.Next(0, fileLines.Length);
+					string puzzle = fileLines[lineChosen];
+					bool parsed = SudokuGrid.TryParse(puzzle, out grid);
+					if (!parsed)
+					{
+						continue;
+					}
+
+					bool exists = File.Exists(finishedPath);
+					string str = grid.ToString();
+					if (basicCondition(finishedPath, exists, str)
+						&& customCondition(groupNumber, grid, out analysisResult))
+					{
+						break;
+					}
+				}
+
+				if (trial == 10)
+				{
+					await e.Reply("随机抽题失败，可能是脸不好；请重试一次。");
+				}
+				else
+				{
+					// 如果带候选数的时候，那么需要清盘。
+					if (withCandidates.Value is var b && b)
+					{
+						grid.Clean();
+					}
+
+					// 把当前题目标记为已做过，放到已经完成的文件夹里。
+					if (!Directory.Exists(FinishedPuzzleDir))
+					{
+						Directory.CreateDirectory(FinishedPuzzleDir);
+					}
+					File.AppendAllText(finishedPath, $"{grid}\r\n");
+
+					// 输出相关信息。
+					analysisResult ??= new ManualSolver().Solve(grid);
+					await e.Reply(analysisResult.ToString("-!", CountryCode.ZhCn));
+
+					// 输出图片信息。
+					var painter = new GridPainter(
+						new(Size, Size),
+						new(Settings) { ShowCandidates = b },
+						grid);
+					await e.ReplyImageAsync(painter.Draw());
+				}
+			}
+
+			static bool basicCondition(string finishedPath, bool exists, string str) =>
+				exists && File.ReadLines(finishedPath).All(
+					l =>
+					{
+						string[] z = l.Split('\t', StringSplitOptions.RemoveEmptyEntries);
+						return z.Length >= 1 && z[0] is var s && s != str;
+					}) || !exists;
+
+			static bool customCondition(long groupNumber, in SudokuGrid grid, out AnalysisResult? analysisResult)
+			{
+				string path = $@"{PuzzleLibDir}\设置.txt";
+				if (!File.Exists(path))
+				{
+					analysisResult = null;
+					return true;
+				}
+
+				string[] lines = File.ReadAllLines(path);
+				if (
+					lines.FirstOrDefault(
+						line =>
+						{
+							string[] sp = line.Split(' ');
+							return sp.Length > 0 && sp[0] == groupNumber.ToString();
+						}) is var resultLine && resultLine is null)
+				{
+					analysisResult = null;
+					return true;
+				}
+
+				string[] currentLineSplits = resultLine.Split(' ');
+				if (currentLineSplits.Length != 11
+					|| currentLineSplits[1] != "链数"
+					|| currentLineSplits[3] != "到"
+					|| currentLineSplits[5] != "难度"
+					|| currentLineSplits[7] != "到"
+					|| currentLineSplits[9] != "强制链")
+				{
+					analysisResult = null;
+					return true;
+				}
+
+				uint chainCountMin = default, chainCountMax = default;
+				decimal diffMin = default, diffMax = default;
+				if (currentLineSplits[2] == "any") chainCountMin = 0;
+				if (currentLineSplits[4] == "any") chainCountMax = 1000;
+				if (currentLineSplits[6] == "any") diffMin = 0;
+				if (currentLineSplits[8] == "any") diffMax = 20;
+				if (currentLineSplits[2] is var k && k != "any" && !uint.TryParse(k, out chainCountMin)
+					|| currentLineSplits[4] is var l && l != "any" && !uint.TryParse(l, out chainCountMax)
+					|| currentLineSplits[6] is var m && m != "any" && !decimal.TryParse(m, out diffMin)
+					|| currentLineSplits[8] is var n && n != "any" && !decimal.TryParse(n, out diffMax)
+					|| currentLineSplits[10] is not ("有" or "无" or "any"))
+				{
+					analysisResult = null;
+					return true;
+				}
+
+				analysisResult = new ManualSolver().Solve(grid);
+				decimal max = analysisResult.MaxDifficulty;
+				int chainingTechniquesCount = analysisResult.SolvingSteps!.Count(
+					static step => step.IsAlsTechnique() || step.IsChainingTechnique());
+
+				if (max < diffMin || max > diffMax
+					|| chainingTechniquesCount < chainCountMin || chainingTechniquesCount > chainCountMax)
+				{
+					analysisResult = null;
+					return false;
+				}
+
+				bool? containFcs = currentLineSplits[10] switch
+				{
+					"有" => true,
+					"无" => false,
+					"any" => null,
+					_ => throw Throwings.ImpossibleCase
+				};
+
+				bool realContainFcs = analysisResult.SolvingSteps.Any(TechniqueInfo.IsForcingChainsTechnique);
+
+				if (containFcs is false && realContainFcs || containFcs is not false && !realContainFcs)
+				{
+					analysisResult = null;
+					return false;
+				}
+
+				return true;
+			}
+		}
+
+		/// <summary>
 		/// 分析题目帮助。
 		/// </summary>
 		private static async Task AnalyzeHelpAsync(MessageReceivedEventArgs e) =>
@@ -603,7 +680,7 @@ namespace Sudoku.Bot
 				.AppendLine("格式：！开始绘图[ 大小 <大小>][ 盘面 <题目>]。")
 				.AppendLine("图片大小需要是一个不超过 1000 的正整数，表示多大的图片，以像素为单位；")
 				.AppendLine("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
-				.AppendLine("大小默认为 800，盘面默认为空盘。")
+				.Append("大小默认为 800，盘面默认为空盘。")
 				.ToString());
 
 		/// <summary>
@@ -622,31 +699,42 @@ namespace Sudoku.Bot
 		/// 填充数字帮助。
 		/// </summary>
 		private static async Task FillHelpAsync(MessageReceivedEventArgs e) =>
+			await e.Source.SendAsync("格式：！填入 (提示数|填入数) <数字> 到 <单元格>。");
+
+		/// <summary>
+		/// 调整设置项帮助。
+		/// </summary>
+		private static async Task AdjustHelpAsync(GroupMessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
-				.AppendLine("格式：！填入 (提示数|填入数) <数字> 到 <单元格>。")
+				.AppendLine("格式：")
+				.AppendLine("！调整 (确定值字体比例|候选数字体比例) <放大倍数>")
+				.AppendLine("！调整 背景色 <颜色>")
+				.AppendLine("其中“放大倍数”是一个非负小数，保留一位小数，表示字体相对于单元格的大小。")
+				.AppendLine("在默认设置项里，该数值在确定值里默认为 0.9，在候选数里默认为 0.3（提供参考）；")
+				.AppendLine("“颜色”支持 ARGB 颜色序列（透明分量、红色度、绿色度、蓝色度，分量范围均为 0 到 255，数字越大颜色越浅）；")
+				.AppendLine("盘面背景色建议使用灰色，即 R、G、B 分量数值全部相同。")
 				.ToString());
 
 		/// <summary>
 		/// 画画功能帮助。
 		/// </summary>
-		private static async Task DrawHelpAsync(MessageReceivedEventArgs e, bool remove) =>
+		private static async Task DrawHelpAsync(MessageReceivedEventArgs e) =>
 			await e.Source.SendAsync(
 				new StringBuilder()
 				.AppendLine("格式：")
-				.AppendLine($"！{(remove ? "去掉" : "画")} 单元格 <单元格> <颜色>；")
-				.AppendLine($"！{(remove ? "去掉" : "画")} 候选数 <单元格> <数字> <颜色>；")
-				.AppendLine($"！{(remove ? "去掉" : "画")} 行 <行编号> <颜色>；")
-				.AppendLine($"！{(remove ? "去掉" : "画")} 列 <列编号> <颜色>；")
-				.AppendLine($"！{(remove ? "去掉" : "画")} 宫 <宫编号> <颜色>；")
-				.AppendLine($"！{(remove ? "去掉" : "画")} 链 从 <单元格> <数字> 到 <单元格> <数字>")
-				.AppendLine($"！{(remove ? "去掉" : "画")} 叉叉 <单元格>；")
-				.AppendLine($"！{(remove ? "去掉" : "画")} 圆圈 <单元格>。")
+				.AppendLine($"！(去掉|画) 单元格 <单元格> <颜色>；")
+				.AppendLine($"！(去掉|画) 候选数 <单元格> <数字> <颜色>；")
+				.AppendLine($"！(去掉|画) 行 <行编号> <颜色>；")
+				.AppendLine($"！(去掉|画) 列 <列编号> <颜色>；")
+				.AppendLine($"！(去掉|画) 宫 <宫编号> <颜色>；")
+				.AppendLine($"！(去掉|画) 链 从 <单元格> <数字> 到 <单元格> <数字>")
+				.AppendLine($"！(去掉|画) 叉叉 <单元格>；")
+				.AppendLine($"！(去掉|画) 圆圈 <单元格>。")
 				.AppendLine("其中“颜色”项可设置为红、橙、黄、绿、青、蓝、紫七种颜色以及对应的浅色；但黄色除外。")
-				.AppendLine("“颜色”同样支持 ARGB 颜色序列（透明分量、红色度、绿色度、蓝色度）。")
+				.AppendLine("“颜色”同样支持 ARGB 颜色序列（透明分量、红色度、绿色度、蓝色度，分量范围均为 0 到 255，数字越大颜色越浅）。")
 				.ToString());
 
-#if AUTHOR_RESERVED
 		/// <summary>
 		/// 抽取题目帮助。
 		/// </summary>
@@ -656,7 +744,19 @@ namespace Sudoku.Bot
 				.AppendLine("格式：！抽题 [不带候选数|带候选数]。")
 				.Append("默认为带候选数。")
 				.ToString());
-#endif
+
+		/// <summary>
+		/// 符号说明。
+		/// </summary>
+		private static async Task DescribeCommandNotationAsync(GroupMessageReceivedEventArgs e) =>
+			await e.Source.SendAsync(
+				new StringBuilder()
+				.AppendLine("命令符号说明：")
+				.AppendLine("(a|b|c|...)：表示内容为必选项，并在其中必须选择且只能选择一个作为结果。")
+				.AppendLine("[内容]：表示内容为可选项，可以不写，并带有默认值。")
+				.AppendLine("[a|b|c|...]：表示内容为可选项，可以不写，如果需要写则必须在内部选择一个。")
+				.Append("<参数>：表示数据是一个根据上文传递过来的一个变量，可以根据命令的要求进行适当的调整，不一定限制它的数据范围。")
+				.ToString());
 
 		/// <summary>
 		/// 帮助功能帮助。
@@ -675,13 +775,14 @@ namespace Sudoku.Bot
 				.AppendLine("！开始绘图[ 大小 <图片大小>][ 盘面 <盘面>]：开始从空盘或指定盘面开始为盘面进行绘制，比如添加候选数涂色等。")
 				.AppendLine("！结束绘图：指定画图过程结束，清除画板。")
 				.AppendLine("！抽题：抽取一道题库里的题目。")
+				.AppendLine("！调整：调整设置项的具体内容。")
 				.AppendLine("！命令符号说明：解释命令里使用的括号的对应含义。")
 				.AppendLine("！关于：我 介 绍 我 自 己")
 				.AppendLine()
 				.AppendLine("注：为和普通聊天信息作区分，命令前面的叹号“！”也是命令的一部分；")
 				.AppendLine("每一个命令的详情信息请输入“命令 ？”来获取。")
 				.AppendLine()
-				.Append(DateTime.Today.ToString())
+				.Append(DateTime.Today.ToString("yyyy-MM-dd ddd"))
 				.ToString());
 
 		/// <summary>
@@ -723,7 +824,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			var painter = new GridPainter(new(Size, Size), new(), grid);
+			var painter = new GridPainter(new(Size, Size), Settings, grid);
 			using var image = painter.Draw();
 			await e.ReplyImageAsync(image);
 		}
@@ -733,7 +834,7 @@ namespace Sudoku.Bot
 		/// </summary>
 		private static async Task GenerateEmptyGridAsync(MessageReceivedEventArgs e)
 		{
-			var painter = new GridPainter(new(Size, Size), new(), SudokuGrid.Undefined);
+			var painter = new GridPainter(new(Size, Size), Settings, SudokuGrid.Undefined);
 			using var image = painter.Draw();
 			await e.ReplyImageAsync(image);
 		}
@@ -749,7 +850,7 @@ namespace Sudoku.Bot
 			}
 
 			grid.Clean();
-			var painter = new GridPainter(new(Size, Size), new(), grid);
+			var painter = new GridPainter(new(Size, Size), Settings, grid);
 
 			using var image = painter.Draw();
 			await e.ReplyImageAsync(image);
@@ -805,7 +906,7 @@ namespace Sudoku.Bot
 			}
 
 			var pointConverter = new PointConverter(size, size);
-			_painter = new(pointConverter, new(), grid);
+			_painter = new(pointConverter, Settings, grid);
 
 			using var image = _painter.Draw();
 			await e.ReplyImageAsync(image);
@@ -885,20 +986,17 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 
 			foreach (int cell in map)
 			{
 				if (remove)
 				{
-					_painter.CustomView.RemoveCell(cell);
+					_painter.CustomView!.RemoveCell(cell);
 				}
 				else
 				{
-					_painter.CustomView.AddCell(colorId, cell);
+					_painter.CustomView!.AddCell(colorId, cell);
 				}
 			}
 
@@ -937,21 +1035,18 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 
 			foreach (int cell in map)
 			{
 				int candidate = cell * 9 + digit - 1;
 				if (remove)
 				{
-					_painter.CustomView.RemoveCandidate(candidate);
+					_painter.CustomView!.RemoveCandidate(candidate);
 				}
 				else
 				{
-					_painter.CustomView.AddCandidate(colorId, candidate);
+					_painter.CustomView!.AddCandidate(colorId, candidate);
 				}
 			}
 
@@ -1042,19 +1137,16 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 
 			int r = (int)label * 9 + region;
 			if (remove)
 			{
-				_painter.CustomView.RemoveRegion(r);
+				_painter.CustomView!.RemoveRegion(r);
 			}
 			else
 			{
-				_painter.CustomView.AddRegion(colorId, r);
+				_painter.CustomView!.AddRegion(colorId, r);
 			}
 
 			using var image = _painter.Draw();
@@ -1093,19 +1185,16 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 
 			var link = new Link(r1 * 81 + c1 * 9 + (d1 - 1), r2 * 81 + c2 * 9 + (d2 - 1), LinkType.Default);
 			if (remove)
 			{
-				_painter.CustomView.RemoveLink(link);
+				_painter.CustomView!.RemoveLink(link);
 			}
 			else
 			{
-				_painter.CustomView.AddLink(link);
+				_painter.CustomView!.AddLink(link);
 			}
 
 			using var image = _painter.Draw();
@@ -1132,20 +1221,17 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 
 			foreach (int cell in map)
 			{
 				if (remove)
 				{
-					_painter.CustomView.RemoveDirectLine(GridMap.Empty, new() { cell });
+					_painter.CustomView!.RemoveDirectLine(GridMap.Empty, new() { cell });
 				}
 				else
 				{
-					_painter.CustomView.AddDirectLine(GridMap.Empty, new() { cell });
+					_painter.CustomView!.AddDirectLine(GridMap.Empty, new() { cell });
 				}
 			}
 
@@ -1173,20 +1259,17 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 
 			foreach (int cell in map)
 			{
 				if (remove)
 				{
-					_painter.CustomView.RemoveDirectLine(new() { cell }, GridMap.Empty);
+					_painter.CustomView!.RemoveDirectLine(new() { cell }, GridMap.Empty);
 				}
 				else
 				{
-					_painter.CustomView.AddDirectLine(new() { cell }, GridMap.Empty);
+					_painter.CustomView!.AddDirectLine(new() { cell }, GridMap.Empty);
 				}
 			}
 
