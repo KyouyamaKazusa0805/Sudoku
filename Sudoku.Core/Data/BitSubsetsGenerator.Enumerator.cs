@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data
 {
-	public readonly ref partial struct BitSubsetsGenerator
+	partial struct BitSubsetsGenerator
 	{
 		/// <summary>
 		/// Indicates the enumerator of the current instance.
