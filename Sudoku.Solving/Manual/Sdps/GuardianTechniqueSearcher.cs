@@ -11,6 +11,7 @@ using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.LinkType;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -120,14 +121,13 @@ namespace Sudoku.Solving.Manual.Sdps
 											new(
 												tempLoop[i] * 9 + digit,
 												tempLoop[i + 1] * 9 + digit,
-												LinkType.Line));
+												Line));
 									}
-									links.Add(
-										new(tempLoop[^1] * 9 + digit, tempLoop[0] * 9 + digit, LinkType.Line));
+									links.Add(new(tempLoop[^1] * 9 + digit, tempLoop[0] * 9 + digit, Line));
 
 									loops.Add((
 										loopMap,
-										new GridMap(
+										new(
 											RegionMaps[new GridMap { cell, anotherCell }.CoveredRegions.First()]
 											& CandMaps[digit]
 											| guardians)
@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.Sdps
 									f(
 										anotherCell,
 										label,
-										new GridMap(
+										new(
 											RegionMaps[new GridMap { cell, anotherCell }.CoveredRegions.First()]
 											& CandMaps[digit]
 											| guardians)
