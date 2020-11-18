@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						if (size == 2)
 						{
 							int finAndBodyCount = baseMask.PopCount();
-							if (finAndBodyCount >= 5)
+							if (finAndBodyCount > 5)
 							{
 								continue;
 							}
@@ -254,7 +254,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								if (size == 3)
 								{
 									int finAndBodyCount = baseMask.PopCount();
-									if (finAndBodyCount >= 6)
+									if (finAndBodyCount > 6)
 									{
 										continue;
 									}
@@ -433,7 +433,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 										baseMask |= baseMap4.GetSubviewMask(bs4);
 										int finAndBodyCount = baseMask.PopCount();
-										if (finAndBodyCount >= 7)
+										if (finAndBodyCount > 7)
 										{
 											continue;
 										}
