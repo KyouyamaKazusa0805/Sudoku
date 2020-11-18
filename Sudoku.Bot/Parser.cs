@@ -38,7 +38,7 @@ namespace Sudoku.Bot
 				case "浅紫色" or "浅紫": colorId = cid(withTransparency ? 64 : 255, 220, 212, 252); return true;
 				default:
 				{
-					string[] s = str.Split(',', StringSplitOptions.RemoveEmptyEntries);
+					string[] s = str.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries);
 					if (s.Length != 4)
 					{
 						colorId = default;
@@ -74,7 +74,7 @@ namespace Sudoku.Bot
 				return false;
 			}
 
-			foreach (string cellStr in str.Split(','))
+			foreach (string cellStr in str.Split(new[] { ',', '，' }))
 			{
 				if (TryParseCell(cellStr, out byte row, out byte column))
 				{
