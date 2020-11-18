@@ -154,7 +154,11 @@ namespace Sudoku.Solving.Manual
 							}
 						}
 
-						throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
+						string stepGridStr = cloneation.ToString("#");
+						throw new WrongHandlingException(
+							grid,
+							$"The specified step is wrong: {wrongStep}, {Environment.NewLine}" +
+							$"the current grid: {stepGridStr}.");
 					}
 				}
 				else
@@ -199,7 +203,11 @@ namespace Sudoku.Solving.Manual
 						goto Restart;
 					}
 
-					throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
+					string stepGridStr = cloneation.ToString("#");
+					throw new WrongHandlingException(
+						grid,
+						$"The specified step is wrong: {step}, {Environment.NewLine}" +
+						$"the current grid: {stepGridStr}.");
 				}
 			}
 

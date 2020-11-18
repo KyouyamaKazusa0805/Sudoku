@@ -5189,6 +5189,20 @@
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.CreateGuardianMap(System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@)">
+            <summary>
+            Create the guardian map.
+            </summary>
+            <param name="cell1">The first cell.</param>
+            <param name="cell2">The second cell.</param>
+            <param name="digit">The current digit.</param>
+            <param name="guardians">
+            (<see langword="in"/> parameter) The current guardian cells.
+            This map may not contain cells that lies on the region
+            that <paramref name="cell1"/> and <paramref name="cell2"/> both lies on.
+            </param>
+            <returns>All guardians.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.SdpTechniqueInfo">
             <summary>
             Provides a usage of <b>single-digit pattern</b> (SDP) technique.

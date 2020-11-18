@@ -22,11 +22,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55)
-		{
-			IsEnabled = false,
-			DisabledReason = DisabledReason.HasBugs
-		};
+		public static TechniqueProperties Properties { get; } = new(55);
 
 
 		/// <inheritdoc/>
@@ -73,6 +69,13 @@ namespace Sudoku.Solving.Manual.Sdps
 
 						foreach (var (map, guardians, links) in loops)
 						{
+							var elims = from c in guardians.PeerIntersection & CandMaps[digit]
+										select new Conclusion(Elimination, c, digit);
+							if (elims.None())
+							{
+								continue;
+							}
+
 							var candidateOffsets = new List<DrawingInfo>();
 							candidateOffsets.AddRange(
 								from c in map select new DrawingInfo(0, c * 9 + digit));
@@ -81,10 +84,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 							resultAccumulator.Add(
 								new GuardianTechniqueInfo(
-									(
-										from c in guardians.PeerIntersection & CandMaps[digit]
-										select new Conclusion(Elimination, c, digit)
-									).ToArray(),
+									elims.ToArray(),
 									new View[] { new(null, candidateOffsets, null, links) },
 									digit,
 									map,
@@ -127,14 +127,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 									loops.Add((
 										loopMap,
-										new(
-											RegionMaps[new GridMap { cell, anotherCell }.CoveredRegions.First()]
-											& CandMaps[digit]
-											| guardians)
-										{
-											~cell,
-											~anotherCell
-										},
+										CreateGuardianMap(cell, anotherCell, digit, guardians),
 										links));
 								}
 								else if (!loopMap[anotherCell])
@@ -142,14 +135,7 @@ namespace Sudoku.Solving.Manual.Sdps
 									f(
 										anotherCell,
 										label,
-										new(
-											RegionMaps[new GridMap { cell, anotherCell }.CoveredRegions.First()]
-											& CandMaps[digit]
-											| guardians)
-										{
-											~cell,
-											~anotherCell
-										});
+										CreateGuardianMap(cell, anotherCell, digit, guardians));
 								}
 							}
 
@@ -168,6 +154,32 @@ namespace Sudoku.Solving.Manual.Sdps
 
 			static int cmp(in GuardianTechniqueInfo l, in GuardianTechniqueInfo r) =>
 				(l.Loop.Count + l.Guardians.Count).CompareTo(r.Loop.Count + r.Guardians.Count);
+		}
+
+		/// <summary>
+		/// Create the guardian map.
+		/// </summary>
+		/// <param name="cell1">The first cell.</param>
+		/// <param name="cell2">The second cell.</param>
+		/// <param name="digit">The current digit.</param>
+		/// <param name="guardians">
+		/// (<see langword="in"/> parameter) The current guardian cells.
+		/// This map may not contain cells that lies on the region
+		/// that <paramref name="cell1"/> and <paramref name="cell2"/> both lies on.
+		/// </param>
+		/// <returns>All guardians.</returns>
+		private static GridMap CreateGuardianMap(int cell1, int cell2, int digit, in GridMap guardians)
+		{
+			var tempMap = GridMap.Empty;
+			foreach (int coveredRegion in new GridMap { cell1, cell2 }.CoveredRegions)
+			{
+				tempMap |= RegionMaps[coveredRegion];
+			}
+
+			tempMap &= CandMaps[digit];
+			tempMap |= guardians;
+
+			return new(tempMap) { ~cell1, ~cell2 };
 		}
 	}
 }
