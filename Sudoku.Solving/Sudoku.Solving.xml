@@ -1224,6 +1224,40 @@
             <param name="map">(<see langword="in"/> parameter) The map.</param>
             <returns>The result.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Extensions.TechniqueInfoEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.TechniqueInfo"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.TechniqueInfo"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.TechniqueInfoEx.IsAlsTechnique(Sudoku.Solving.TechniqueInfo)">
+            <summary>
+            Check whether the currrent technique information is an ALS technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.TechniqueInfoEx.IsChainingTechnique(Sudoku.Solving.TechniqueInfo)">
+            <summary>
+            Check whether the currrent technique information is a chaining-ruled technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.TechniqueInfoEx.IsForcingChainsTechnique(Sudoku.Solving.TechniqueInfo)">
+            <summary>
+            Check whether the currrent technique information is a forcing chains technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.TechniqueInfoEx.IsUniqueness(Sudoku.Solving.TechniqueInfo)">
+            <summary>
+            Check whether the currrent technique information is a uniqueness technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
             <summary>
             Encapsulates a puzzle generator, which provides the symmetry type constraint

@@ -49,10 +49,7 @@ for (int i = 0, length = lines.Length; i < length; i++)
 	var (_, _, total, max, pearl, diamond, _, _, _, stepCount, steps, _, _) = new ManualSolver().Solve(grid);
 
 	int chainingTechniquesCount = steps!.Count(
-		static step =>
-			step is ChainingTechniqueInfo
-			or AlsXzTechniqueInfo or AlsXyWingTechniqueInfo or AlsWWingTechniqueInfo
-			or DeathBlossomTechniqueInfo or BowmanBingoTechniqueInfo);
+		static step => step.IsAlsTechnique() || step.IsChainingTechnique());
 
 	await File.AppendAllTextAsync(
 		resultPath,

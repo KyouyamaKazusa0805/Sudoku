@@ -18,10 +18,7 @@ using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual;
-using Sudoku.Solving.Manual.Alses.Basic;
-using Sudoku.Solving.Manual.Chaining;
-using Sudoku.Solving.Manual.LastResorts;
-using R = Sudoku.Bot.Resources;
+using TechniqueInfo = Sudoku.Solving.Extensions.TechniqueInfoEx;
 
 namespace Sudoku.Bot
 {
@@ -414,10 +411,7 @@ namespace Sudoku.Bot
 				analysisResult = new ManualSolver().Solve(grid);
 				decimal max = analysisResult.MaxDifficulty;
 				int chainingTechniquesCount = analysisResult.SolvingSteps!.Count(
-					static step =>
-						step is ChainingTechniqueInfo
-						or AlsXzTechniqueInfo or AlsXyWingTechniqueInfo or AlsWWingTechniqueInfo
-						or DeathBlossomTechniqueInfo or BowmanBingoTechniqueInfo);
+					static step => step.IsAlsTechnique() || step.IsChainingTechnique());
 
 				if (max < diffMin || max > diffMax
 					|| chainingTechniquesCount < chainCountMin || chainingTechniquesCount > chainCountMax)
@@ -434,10 +428,7 @@ namespace Sudoku.Bot
 					_ => throw Throwings.ImpossibleCase
 				};
 
-				bool realContainFcs = analysisResult.SolvingSteps.Any(
-					static step =>
-						step is BowmanBingoTechniqueInfo
-						or RegionChainingTechniqueInfo or CellChainingTechniqueInfo);
+				bool realContainFcs = analysisResult.SolvingSteps.Any(TechniqueInfo.IsForcingChainsTechnique);
 
 				if (containFcs is false && realContainFcs || containFcs is not false && !realContainFcs)
 				{
@@ -612,7 +603,7 @@ namespace Sudoku.Bot
 				.AppendLine("格式：！开始绘图[ 大小 <大小>][ 盘面 <题目>]。")
 				.AppendLine("图片大小需要是一个不超过 1000 的正整数，表示多大的图片，以像素为单位；")
 				.AppendLine("题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。")
-				.Append(R.GetValue("OptionalArg"))
+				.AppendLine("大小默认为 800，盘面默认为空盘。")
 				.ToString());
 
 		/// <summary>
@@ -634,7 +625,6 @@ namespace Sudoku.Bot
 			await e.Source.SendAsync(
 				new StringBuilder()
 				.AppendLine("格式：！填入 (提示数|填入数) <数字> 到 <单元格>。")
-				.AppendLine(R.GetValue("RequiredArg"))
 				.ToString());
 
 		/// <summary>
@@ -664,7 +654,6 @@ namespace Sudoku.Bot
 			await e.Source.SendAsync(
 				new StringBuilder()
 				.AppendLine("格式：！抽题 [不带候选数|带候选数]。")
-				.AppendLine(R.GetValue("OptionalArg"))
 				.Append("默认为带候选数。")
 				.ToString());
 #endif
@@ -686,12 +675,13 @@ namespace Sudoku.Bot
 				.AppendLine("！开始绘图[ 大小 <图片大小>][ 盘面 <盘面>]：开始从空盘或指定盘面开始为盘面进行绘制，比如添加候选数涂色等。")
 				.AppendLine("！结束绘图：指定画图过程结束，清除画板。")
 				.AppendLine("！抽题：抽取一道题库里的题目。")
+				.AppendLine("！命令符号说明：解释命令里使用的括号的对应含义。")
 				.AppendLine("！关于：我 介 绍 我 自 己")
 				.AppendLine()
 				.AppendLine("注：为和普通聊天信息作区分，命令前面的叹号“！”也是命令的一部分；")
 				.AppendLine("每一个命令的详情信息请输入“命令 ？”来获取。")
 				.AppendLine()
-				.Append(R.GetValue("MyName"))
+				.Append(DateTime.Today.ToString())
 				.ToString());
 
 		/// <summary>
@@ -709,8 +699,7 @@ namespace Sudoku.Bot
 		/// </summary>
 		private static async Task AnalysisAsync(string info, MessageReceivedEventArgs e)
 		{
-			string analysisCommand = R.GetValue("AnalysisCommand");
-			if (!SudokuGrid.TryParse(info[analysisCommand.Length..].Trim(), out var grid) || !grid.IsValid())
+			if (!SudokuGrid.TryParse(info["！分析".Length..].Trim(), out var grid) || !grid.IsValid())
 			{
 				return;
 			}
@@ -729,9 +718,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			string GeneratePictureCommand = R.GetValue("GeneratePictureCommand");
-			if (!SudokuGrid.TryParse(info[GeneratePictureCommand.Length..].Trim(), out var grid)
-				|| !grid.IsValid())
+			if (!SudokuGrid.TryParse(info["！生成图片".Length..].Trim(), out var grid) || !grid.IsValid())
 			{
 				return;
 			}
@@ -756,8 +743,7 @@ namespace Sudoku.Bot
 		/// </summary>
 		private static async Task CleanGridAsync(string info, MessageReceivedEventArgs e)
 		{
-			string cleanCommand = R.GetValue("CleaningGridCommand");
-			if (!SudokuGrid.TryParse(info[cleanCommand.Length..].Trim(), out var grid) || !grid.IsValid())
+			if (!SudokuGrid.TryParse(info["！清盘".Length..].Trim(), out var grid) || !grid.IsValid())
 			{
 				return;
 			}
@@ -774,19 +760,21 @@ namespace Sudoku.Bot
 		/// </summary>
 		private static async Task StartDrawingAsync(string info, string[] s, MessageReceivedEventArgs e)
 		{
+			const string gridKeyword = "盘面", sizeKeyword = "大小";
+
 			int size = Size;
 			var grid = SudokuGrid.Undefined;
-			int pos = info.IndexOf(R.GetValue("Size"));
+			int pos = info.IndexOf(sizeKeyword);
 			if (pos != -1)
 			{
-				int startPos = pos + R.GetValue("Size").Length;
+				int startPos = pos + sizeKeyword.Length;
 				if (info[startPos] != ' ')
 				{
 					return;
 				}
 
 				int index = startPos + 1;
-				for (; info[index] is >= '0' and <= '9'; index++) ;
+				for (; char.IsDigit(info[index]); index++) ;
 
 				string sizeStr = info[startPos..index];
 				if (!int.TryParse(sizeStr, out int result))
@@ -797,10 +785,10 @@ namespace Sudoku.Bot
 				size = result;
 			}
 
-			pos = info.IndexOf(R.GetValue("Grid"));
+			pos = info.IndexOf(gridKeyword);
 			if (pos != -1)
 			{
-				int startPos = pos + R.GetValue("Grid").Length;
+				int startPos = pos + gridKeyword.Length;
 				if (info[startPos] != ' ')
 				{
 					return;
@@ -838,7 +826,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (s[3] != R.GetValue("To"))
+			if (s[3] != "到")
 			{
 				return;
 			}
@@ -1088,7 +1076,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (s[2] != R.GetValue("From"))
+			if (s[2] != "从")
 			{
 				return;
 			}
@@ -1213,7 +1201,7 @@ namespace Sudoku.Bot
 		{
 			_painter = null;
 
-			await e.Reply(R.GetValue("Success"));
+			await e.Reply("清除画板资源成功。");
 		}
 	}
 }

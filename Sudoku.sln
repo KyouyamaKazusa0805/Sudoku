@@ -34,9 +34,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Globalization", "Sud
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Recognition", "Sudoku.Recognition\Sudoku.Recognition.csproj", "{6ABA7028-B72C-4C9D-9C84-F9F683094FB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Bot", "Sudoku.Bot\Sudoku.Bot.csproj", "{1A153C64-3FA5-44BF-B442-9EB2F144B81B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bot", "Sudoku.Bot\Sudoku.Bot.csproj", "{1A153C64-3FA5-44BF-B442-9EB2F144B81B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Bot.Console", "Sudoku.Bot.Console\Sudoku.Bot.Console.csproj", "{A3895BB6-EA08-443E-BBDD-72CD49BA066B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bot.Console", "Sudoku.Bot.Console\Sudoku.Bot.Console.csproj", "{A3895BB6-EA08-443E-BBDD-72CD49BA066B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
