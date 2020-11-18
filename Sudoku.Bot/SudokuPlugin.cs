@@ -819,7 +819,12 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!SudokuGrid.TryParse(info["！生成图片".Length..].Trim(), out var grid) || !grid.IsValid())
+			int? i =
+				info.LastIndexOf("带候选数") is var r and not -1
+				? r
+				: info.LastIndexOf("不带候选数") is var z and not -1 ? z : null;
+			if (!SudokuGrid.TryParse(info["！生成图片".Length..(i ?? ^0)].Trim(), out var grid)
+				|| !grid.IsValid())
 			{
 				return;
 			}
