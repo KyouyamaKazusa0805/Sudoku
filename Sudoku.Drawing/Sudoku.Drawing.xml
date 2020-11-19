@@ -18,6 +18,41 @@
         <member name="M:Sudoku.Drawing.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Drawing.Extensions.ColorId">
+            <summary>
+            Extracts the extension methods for color ID.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.ColorId.ToCustomColorId(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Convert the current quadruple to a custom color ID.
+            </summary>
+            <param name="a">The alpha.</param>
+            <param name="r">The red.</param>
+            <param name="g">The green.</param>
+            <param name="b">The blue.</param>
+            <returns>The custom color ID.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.ColorId.IsCustomColorId(System.Int64,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <summary>
+            Check whether the color ID holds a custom color.
+            </summary>
+            <param name="this">The color ID.</param>
+            <param name="a">(<see langword="out"/> parameter) The alpha.</param>
+            <param name="r">(<see langword="out"/> parameter) The red.</param>
+            <param name="g">(<see langword="out"/> parameter) The green.</param>
+            <param name="b">(<see langword="out"/> parameter) The blue.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            <see cref="T:Sudoku.Drawing.DrawingInfo"/> objects holds key and value two properties, where
+            <see cref="P:Sudoku.Drawing.DrawingInfo.Id"/> is the key. Here ID can save a color value quadruple
+            if the higher 32 bits are 0xDEAD. The last 32 bits are A, R, G, B value from one color.
+            Otherwise the ID value is only between -4 and 10 (at present, who knows
+            whether the range will be extended larger or not).
+            </remarks>
+            <seealso cref="T:Sudoku.Drawing.DrawingInfo"/>
+            <seealso cref="P:Sudoku.Drawing.DrawingInfo.Id"/>
+        </member>
         <member name="T:Sudoku.Drawing.Extensions.DrawingColorEx">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Color"/>.
@@ -405,41 +440,6 @@
             <param name="size">The size.</param>
             <param name="scale">The scale.</param>
             <returns>The font.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.GridPainter.CutLink(System.Drawing.PointF@,System.Drawing.PointF@,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
-            <summary>
-            To cut the link to let the head and the tail is outside the candidate.
-            </summary>
-            <param name="pt1">(<see langword="ref"/> parameter) The point 1.</param>
-            <param name="pt2">(<see langword="ref"/> parameter) The point 2.</param>
-            <param name="offset">The offset.</param>
-            <param name="cw">The candidate width.</param>
-            <param name="ch">The candidate height.</param>
-            <param name="pt1x">The x value of point 1.</param>
-            <param name="pt1y">The y value of point 1.</param>
-            <param name="pt2x">The x value of point 2.</param>
-            <param name="pt2y">The y value of point 2.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.GridPainter.RotatePoint(System.Drawing.PointF@,System.Drawing.PointF@,System.Double)">
-            <summary>
-            Rotate the point.
-            </summary>
-            <param name="pt1">(<see langword="in"/> parameter) The point 1.</param>
-            <param name="pt2">(<see langword="ref"/> parameter) The point 2.</param>
-            <param name="angle">The angle.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.GridPainter.AdjustPoint(System.Drawing.PointF@,System.Drawing.PointF@,System.Drawing.PointF@,System.Drawing.PointF@,System.Double,System.Double,System.Single)">
-            <summary>
-            Adjust the end points of an arrow: the arrow should start and end outside
-            the circular background of the candidate.
-            </summary>
-            <param name="pt1">(<see langword="in"/> parameter) The point 1.</param>
-            <param name="pt2">(<see langword="in"/> parameter) The point 2.</param>
-            <param name="p1">(<see langword="out"/> parameter) The point 1.</param>
-            <param name="p2">(<see langword="out"/> parameter) The point 2.</param>
-            <param name="alpha">The angle.</param>
-            <param name="candidateSize">The candidate size.</param>
-            <param name="offset">The offset.</param>
         </member>
         <member name="T:Sudoku.Drawing.MutableView">
             <summary>

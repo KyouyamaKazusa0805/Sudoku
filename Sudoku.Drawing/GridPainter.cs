@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Extensions;
@@ -449,6 +450,74 @@ namespace Sudoku.Drawing
 					g.DrawLine(penToDraw, pt1, pt2);
 				}
 			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static void RotatePoint(in PointF pt1, ref PointF pt2, double angle)
+			{
+				// Translate 'pt2' to (0, 0).
+				pt2.X -= pt1.X;
+				pt2.Y -= pt1.Y;
+
+				// Rotate.
+				double sinAngle = Sin(angle), cosAngle = Cos(angle);
+				double xAct = pt2.X, yAct = pt2.Y;
+				pt2.X = (float)(xAct * cosAngle - yAct * sinAngle);
+				pt2.Y = (float)(xAct * sinAngle + yAct * cosAngle);
+
+				pt2.X += pt1.X;
+				pt2.Y += pt1.Y;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static void AdjustPoint(
+				in PointF pt1, in PointF pt2, out PointF p1, out PointF p2, double alpha,
+				double candidateSize, float offset)
+			{
+				(p1, p2) = (pt1, pt2);
+				double tempDelta = candidateSize / 2 + offset;
+				int px = (int)(tempDelta * Cos(alpha)), py = (int)(tempDelta * Sin(alpha));
+
+				p1.X += px;
+				p1.Y += py;
+				p2.X -= px;
+				p2.Y -= py;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static void CutLink(
+				ref PointF pt1, ref PointF pt2, float offset, float cw, float ch,
+				float pt1x, float pt1y, float pt2x, float pt2y)
+			{
+				float slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
+				float x = cw / (float)Sqrt(1 + slope * slope);
+				float y = ch * (float)Sqrt(slope * slope / (1 + slope * slope));
+
+				float o = offset / 8;
+				if (pt1y > pt2y && pt1x == pt2x) { pt1.Y -= ch / 2 - o; pt2.Y += ch / 2 - o; }
+				else if (pt1y < pt2y && pt1x == pt2x) { pt1.Y += ch / 2 - o; pt2.Y -= ch / 2 - o; }
+				else if (pt1y == pt2y && pt1x > pt2x) { pt1.X -= cw / 2 - o; pt2.X += cw / 2 - o; }
+				else if (pt1y == pt2y && pt1x < pt2x) { pt1.X += cw / 2 - o; pt2.X -= cw / 2 - o; }
+				else if (pt1y > pt2y && pt1x > pt2x)
+				{
+					pt1.X -= x / 2 - o; pt1.Y -= y / 2 - o;
+					pt2.X += x / 2 - o; pt2.Y += y / 2 - o;
+				}
+				else if (pt1y > pt2y && pt1x < pt2x)
+				{
+					pt1.X += x / 2 - o; pt1.Y -= y / 2 - o;
+					pt2.X -= x / 2 - o; pt2.Y += y / 2 - o;
+				}
+				else if (pt1y < pt2y && pt1x > pt2x)
+				{
+					pt1.X -= x / 2 - o; pt1.Y += y / 2 - o;
+					pt2.X += x / 2 - o; pt2.Y -= y / 2 - o;
+				}
+				else if (pt1y < pt2y && pt1x < pt2x)
+				{
+					pt1.X += x / 2 - o; pt1.Y += y / 2 - o;
+					pt2.X -= x / 2 - o; pt2.Y -= y / 2 - o;
+				}
+			}
 		}
 
 		/// <summary>
@@ -462,18 +531,8 @@ namespace Sudoku.Drawing
 		{
 			foreach (var (id, region) in regions)
 			{
-				// A new rule:
-				// Here ID can save a color value quadruple if the higher 32 bits are 0xDEAD.
-				// The last 32 bits are A, R, G, B value from one color.
-				// Otherwise the ID value is only between -4 and 10 (at present, who knows
-				// whether the range will be extended larger or not).
-				if ((id >> 32 & 65535) == 0xDEAD)
+				if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 				{
-					int aWeight = (int)(id >> 24 & 255);
-					int rWeight = (int)(id >> 16 & 255);
-					int gWeight = (int)(id >> 8 & 255);
-					int bWeight = (int)(id & 255);
-
 					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
 					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3));
 				}
@@ -511,18 +570,8 @@ namespace Sudoku.Drawing
 				int cell = candidate / 9, digit = candidate % 9;
 				if (!(Conclusions?.Any(&internalChecking, cell, digit) ?? false))
 				{
-					// A new rule:
-					// Here ID can save a color value quadruple if the higher 32 bits are 0xDEAD.
-					// The last 32 bits are A, R, G, B value from one color.
-					// Otherwise the ID value is only between -4 and 10 (at present, who knows
-					// whether the range will be extended larger or not).
-					if ((id >> 32 & 65535) == 0xDEAD)
+					if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 					{
-						int aWeight = (int)(id >> 24 & 255);
-						int rWeight = (int)(id >> 16 & 255);
-						int gWeight = (int)(id >> 8 & 255);
-						int bWeight = (int)(id & 255);
-
 						using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
 						g.FillEllipse(brush, PointConverter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
@@ -578,18 +627,8 @@ namespace Sudoku.Drawing
 		{
 			foreach (var (id, cell) in cells)
 			{
-				// A new rule:
-				// Here ID can save a color value quadruple if the higher 32 bits are 0xDEAD.
-				// The last 32 bits are A, R, G, B value from one color.
-				// Otherwise the ID value is only between -4 and 10 (at present, who knows
-				// whether the range will be extended larger or not).
-				if ((id >> 32 & 65535) == 0xDEAD)
+				if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 				{
-					int aWeight = (int)(id >> 24 & 255);
-					int rWeight = (int)(id >> 16 & 255);
-					int gWeight = (int)(id >> 8 & 255);
-					int bWeight = (int)(id & 255);
-
 					var (cw, ch) = PointConverter.CellSize;
 					var (x, y) = PointConverter.GetMousePointInCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
@@ -628,115 +667,5 @@ namespace Sudoku.Drawing
 		/// <returns>The font.</returns>
 		private static Font GetFontByScale(string fontName, float size, decimal scale) =>
 			new(fontName, size * (float)scale, FontStyle.Regular);
-
-		/// <summary>
-		/// To cut the link to let the head and the tail is outside the candidate.
-		/// </summary>
-		/// <param name="pt1">(<see langword="ref"/> parameter) The point 1.</param>
-		/// <param name="pt2">(<see langword="ref"/> parameter) The point 2.</param>
-		/// <param name="offset">The offset.</param>
-		/// <param name="cw">The candidate width.</param>
-		/// <param name="ch">The candidate height.</param>
-		/// <param name="pt1x">The x value of point 1.</param>
-		/// <param name="pt1y">The y value of point 1.</param>
-		/// <param name="pt2x">The x value of point 2.</param>
-		/// <param name="pt2y">The y value of point 2.</param>
-		private static void CutLink(
-			ref PointF pt1, ref PointF pt2, float offset, float cw, float ch,
-			float pt1x, float pt1y, float pt2x, float pt2y)
-		{
-			float slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
-			float x = cw / (float)Sqrt(1 + slope * slope);
-			float y = ch * (float)Sqrt(slope * slope / (1 + slope * slope));
-
-			float o = offset / 8;
-			if (pt1y > pt2y && pt1x == pt2x)
-			{
-				pt1.Y -= ch / 2 - o;
-				pt2.Y += ch / 2 - o;
-			}
-			else if (pt1y < pt2y && pt1x == pt2x)
-			{
-				pt1.Y += ch / 2 - o;
-				pt2.Y -= ch / 2 - o;
-			}
-			else if (pt1y == pt2y && pt1x > pt2x)
-			{
-				pt1.X -= cw / 2 - o;
-				pt2.X += cw / 2 - o;
-			}
-			else if (pt1y == pt2y && pt1x < pt2x)
-			{
-				pt1.X += cw / 2 - o;
-				pt2.X -= cw / 2 - o;
-			}
-			else if (pt1y > pt2y && pt1x > pt2x)
-			{
-				pt1.X -= x / 2 - o; pt1.Y -= y / 2 - o;
-				pt2.X += x / 2 - o; pt2.Y += y / 2 - o;
-			}
-			else if (pt1y > pt2y && pt1x < pt2x)
-			{
-				pt1.X += x / 2 - o; pt1.Y -= y / 2 - o;
-				pt2.X -= x / 2 - o; pt2.Y += y / 2 - o;
-			}
-			else if (pt1y < pt2y && pt1x > pt2x)
-			{
-				pt1.X -= x / 2 - o; pt1.Y += y / 2 - o;
-				pt2.X += x / 2 - o; pt2.Y -= y / 2 - o;
-			}
-			else if (pt1y < pt2y && pt1x < pt2x)
-			{
-				pt1.X += x / 2 - o; pt1.Y += y / 2 - o;
-				pt2.X -= x / 2 - o; pt2.Y -= y / 2 - o;
-			}
-		}
-
-		/// <summary>
-		/// Rotate the point.
-		/// </summary>
-		/// <param name="pt1">(<see langword="in"/> parameter) The point 1.</param>
-		/// <param name="pt2">(<see langword="ref"/> parameter) The point 2.</param>
-		/// <param name="angle">The angle.</param>
-		private static void RotatePoint(in PointF pt1, ref PointF pt2, double angle)
-		{
-			// Translate 'pt2' to (0, 0).
-			pt2.X -= pt1.X;
-			pt2.Y -= pt1.Y;
-
-			// Rotate.
-			double sinAngle = Sin(angle), cosAngle = Cos(angle);
-			double xAct = pt2.X, yAct = pt2.Y;
-			pt2.X = (float)(xAct * cosAngle - yAct * sinAngle);
-			pt2.Y = (float)(xAct * sinAngle + yAct * cosAngle);
-
-			pt2.X += pt1.X;
-			pt2.Y += pt1.Y;
-		}
-
-		/// <summary>
-		/// Adjust the end points of an arrow: the arrow should start and end outside
-		/// the circular background of the candidate.
-		/// </summary>
-		/// <param name="pt1">(<see langword="in"/> parameter) The point 1.</param>
-		/// <param name="pt2">(<see langword="in"/> parameter) The point 2.</param>
-		/// <param name="p1">(<see langword="out"/> parameter) The point 1.</param>
-		/// <param name="p2">(<see langword="out"/> parameter) The point 2.</param>
-		/// <param name="alpha">The angle.</param>
-		/// <param name="candidateSize">The candidate size.</param>
-		/// <param name="offset">The offset.</param>
-		private static void AdjustPoint(
-			in PointF pt1, in PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize,
-			float offset)
-		{
-			(p1, p2) = (pt1, pt2);
-			double tempDelta = candidateSize / 2 + offset;
-			int px = (int)(tempDelta * Cos(alpha)), py = (int)(tempDelta * Sin(alpha));
-
-			p1.X += px;
-			p1.Y += py;
-			p2.X -= px;
-			p2.Y -= py;
-		}
 	}
 }
