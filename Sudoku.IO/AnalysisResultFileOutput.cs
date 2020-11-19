@@ -3,7 +3,6 @@ using System.IO;
 using NPOI.XWPF.UserModel;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Annotations;
 
@@ -66,10 +65,7 @@ namespace Sudoku.IO
 				{
 					// If the directory cannot be found, create it.
 					string directoryPath = $@"{path[..path.LastIndexOf('\\')]}\Assets";
-					if (!Directory.Exists(directoryPath))
-					{
-						Directory.CreateDirectory(directoryPath);
-					}
+					DirectoryEx.CreateIfDoesNotExist(directoryPath);
 
 					// Get all pictures, and input into the document.
 					for (int i = 0; i < steps.Count; i++)
@@ -125,9 +121,9 @@ namespace Sudoku.IO
 						}
 
 						// If something is wrong occurred above, check it.
-						if (dirExists && Directory.GetFiles(directoryPath).None())
+						if (dirExists)
 						{
-							Directory.Delete(directoryPath);
+							DirectoryEx.DeleteWhenNoFilesInIt(directoryPath);
 						}
 					}
 				}

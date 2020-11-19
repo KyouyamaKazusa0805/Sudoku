@@ -29,10 +29,7 @@ Console.WriteLine("（输入换行符退出程序）");
 Console.ReadLine();
 
 string dir = Path.GetDirectoryName(pluginConfigPath)!;
-if (!Directory.Exists(dir))
-{
-	Directory.CreateDirectory(dir);
-}
+DirectoryEx.CreateIfDoesNotExist(dir);
 
 try
 {

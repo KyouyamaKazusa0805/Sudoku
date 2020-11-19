@@ -359,5 +359,23 @@
             Indicate the BMP format.
             </summary>
         </member>
+        <member name="T:System.IO.DirectoryEx">
+            <summary>
+            The directory extensions.
+            </summary>
+        </member>
+        <member name="M:System.IO.DirectoryEx.CreateIfDoesNotExist(System.String)">
+            <summary>
+            Create the specified directory path when the path doesn't exist.
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:System.IO.DirectoryEx.DeleteWhenNoFilesInIt(System.String)">
+            <summary>
+            Delete the directory when the current directory doesn't contain any files.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>The <see cref="T:System.Boolean"/> result indicating whether the deletion is successful.</returns>
+        </member>
     </members>
 </doc>

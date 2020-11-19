@@ -498,10 +498,7 @@ namespace Sudoku.IO
 					return;
 				}
 
-				if (!Directory.Exists(directoryName))
-				{
-					Directory.CreateDirectory(directoryName);
-				}
+				DirectoryEx.CreateIfDoesNotExist(directoryName);
 
 				_painter.Draw().Save(args[2]);
 			}

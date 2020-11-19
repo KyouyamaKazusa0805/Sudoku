@@ -520,10 +520,7 @@ namespace Sudoku.Bot
 					}
 
 					// 把当前题目标记为已做过，放到已经完成的文件夹里。
-					if (!Directory.Exists(FinishedPuzzleDir))
-					{
-						Directory.CreateDirectory(FinishedPuzzleDir);
-					}
+					DirectoryEx.CreateIfDoesNotExist(FinishedPuzzleDir);
 					File.AppendAllText(finishedPath, $"{grid}\r\n");
 
 					// 输出相关信息。

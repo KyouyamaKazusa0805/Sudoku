@@ -318,15 +318,10 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void SaveCoreResources()
 		{
-			if (!Directory.Exists("lang"))
-			{
-				Directory.CreateDirectory("lang");
-			}
+			DirectoryEx.CreateIfDoesNotExist("lang");
 
-			File.WriteAllText(
-				@"lang\Resources.en-us.dic", JsonSerializer.Serialize(CoreResources.LangSourceEnUs));
-			File.WriteAllText(
-				@"lang\Resources.zh-cn.dic", JsonSerializer.Serialize(CoreResources.LangSourceZhCn));
+			File.WriteAllText(@"lang\Resources.en-us.dic", JsonSerializer.Serialize(CoreResources.LangSourceEnUs));
+			File.WriteAllText(@"lang\Resources.zh-cn.dic", JsonSerializer.Serialize(CoreResources.LangSourceZhCn));
 		}
 
 		/// <summary>
