@@ -483,8 +483,8 @@ namespace Sudoku.Bot
 					return;
 				}
 
+				await e.Source.SendAsync("正在抽取题目，请耐心等待……");
 				string[] fileLines = File.ReadAllLines(correspondingPath);
-
 				AnalysisResult? analysisResult = null;
 				SudokuGrid grid;
 				int trial = 0;
