@@ -2664,6 +2664,13 @@
             Get all masks and print them.
             </summary>
             <returns>The result.</returns>
+            <remarks>
+            Please note that the method cannot be called with a correct behavior using
+            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
+            doesn't print correct values when indices of this grid aren't 0. In other words,
+            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
+            can be output correctly, and other values will be incorrect: they're always 0.
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

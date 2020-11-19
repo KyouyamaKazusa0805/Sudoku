@@ -14,9 +14,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a sudoku grid using value type instead of reference type.
 	/// </summary>
-#if AUTHOR_RESERVED
-	[DebuggerDisplay("{" + nameof(ToMaskString) + "()}")]
-#elif DEBUG
+#if DEBUG
 	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\")}")]
 #endif
 	public unsafe partial struct SudokuGrid : IEnumerable<short>, IValueEquatable<SudokuGrid>, IFormattable
@@ -432,6 +430,13 @@ namespace Sudoku.Data
 		/// Get all masks and print them.
 		/// </summary>
 		/// <returns>The result.</returns>
+		/// <remarks>
+		/// Please note that the method cannot be called with a correct behavior using
+		/// <see cref="DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
+		/// doesn't print correct values when indices of this grid aren't 0. In other words,
+		/// when we call this method using <see cref="DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
+		/// can be output correctly, and other values will be incorrect: they're always 0.
+		/// </remarks>
 		public readonly string ToMaskString()
 		{
 			const string separator = ", ";
@@ -767,7 +772,6 @@ namespace Sudoku.Data
 			}
 		}
 
-#if DEBUG
 		/// <summary>
 		/// Internal copy.
 		/// </summary>
@@ -776,20 +780,8 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentNullException">
 		/// Throws when <paramref name="dest"/> or <paramref name="src"/> is <see langword="null"/>.
 		/// </exception>
-#else
-		/// <summary>
-		/// Internal copy.
-		/// </summary>
-		/// <param name="dest">The destination pointer.</param>
-		/// <param name="src">The source pointer.</param>
-#endif
 		internal static void InternalCopy(short* dest, short* src)
 		{
-#if DEBUG
-			_ = dest == null ? throw new ArgumentNullException(nameof(dest)) : 0;
-			_ = src == null ? throw new ArgumentNullException(nameof(src)) : 0;
-#endif
-
 			int i = 0;
 			for (short* p = dest, q = src; i < Length; *p++ = *q++, i++) ;
 		}
