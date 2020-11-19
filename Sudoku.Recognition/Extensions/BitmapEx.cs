@@ -136,10 +136,7 @@ namespace Sudoku.Recognition.Extensions
 
 						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 						using var indexValue = new Image<Gray, byte>(size.Width, size.Height, data.Stride, data.Scan0);
-						using var b = new Mat();
-						using var g = new Mat();
-						using var r = new Mat();
-						using var a = new Mat();
+						using Mat a = new(), r = new(), g = new(), b = new();
 						using var mv = new VectorOfMat(new[] { b, g, r, a });
 						try
 						{

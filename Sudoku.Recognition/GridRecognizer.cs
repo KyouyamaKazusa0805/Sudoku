@@ -154,9 +154,7 @@ namespace Sudoku.Recognition
 			// 3--4
 
 			var corners = new PointF[4];
-
-			int maxSum = 0, maxDiff = 0;
-			int minSum = -1, minDiff = 0;
+			int maxSum = 0, maxDiff = 0, minSum = -1, minDiff = 0;
 			foreach (var point in points)
 			{
 				int sum = point.X + point.Y;
