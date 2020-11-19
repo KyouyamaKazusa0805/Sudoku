@@ -26,7 +26,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			var stopwatch = new Stopwatch();
 
 			stopwatch.Start();
-			var results = SolveStrings($"{grid:0}");
+			var results = SolveStrings(grid.ToString("0"));
 			stopwatch.Stop();
 
 			return results.Count switch
@@ -73,7 +73,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 						where inRow || inColumn || inBlock
 						select i
 					).None()
-					select $"{solution.Substring(0, i)}{@char}{solution[(i + 1)..]}").ToList();
+					select $"{solution[..i]}{@char}{solution[(i + 1)..]}").ToList();
 			}
 
 			return result;
