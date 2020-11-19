@@ -127,13 +127,14 @@ namespace Sudoku.Drawing
 			float candidateWidth = PointConverter.CandidateSize.Width;
 			float vOffsetValue = cellWidth / 9; // The vertical offset of rendering each value.
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
+			float halfWidth = cellWidth / 2F;
 
 			using var bGiven = new SolidBrush(Settings.GivenColor);
 			using var bModifiable = new SolidBrush(Settings.ModifiableColor);
 			using var bCandidate = new SolidBrush(Settings.CandidateColor);
-			using var fGiven = GetFontByScale(Settings.GivenFontName, cellWidth / 2F, Settings.ValueScale);
-			using var fModifiable = GetFontByScale(Settings.ModifiableFontName, cellWidth / 2F, Settings.ValueScale);
-			using var fCandidate = GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
+			using var fGiven = GetFontByScale(Settings.GivenFontName, halfWidth, Settings.ValueScale);
+			using var fModifiable = GetFontByScale(Settings.ModifiableFontName, halfWidth, Settings.ValueScale);
+			using var fCandidate = GetFontByScale(Settings.CandidateFontName, halfWidth, Settings.CandidateScale);
 			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
 
 			for (int cell = 0; cell < 81; cell++)
