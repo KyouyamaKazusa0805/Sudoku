@@ -11,6 +11,7 @@ using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using static System.Drawing.Drawing2D.DashStyle;
+using static System.Drawing.StringAlignment;
 using static System.Math;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
@@ -133,11 +134,7 @@ namespace Sudoku.Drawing
 			using var fGiven = GetFontByScale(Settings.GivenFontName, cellWidth / 2F, Settings.ValueScale);
 			using var fModifiable = GetFontByScale(Settings.ModifiableFontName, cellWidth / 2F, Settings.ValueScale);
 			using var fCandidate = GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
-			using var sf = new StringFormat
-			{
-				Alignment = StringAlignment.Center,
-				LineAlignment = StringAlignment.Center
-			};
+			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
 
 			for (int cell = 0; cell < 81; cell++)
 			{
@@ -271,11 +268,11 @@ namespace Sudoku.Drawing
 			foreach (var (t, c, d) in from c in conclusions where c.ConclusionType == Elimination select c)
 			{
 				g.FillEllipse(
-					View?.Candidates?.Any(&internalChecking, c, d) ?? false ? cannibalBrush : eliminationBrush,
+					View?.Candidates?.Any(&overlapping, c, d) ?? false ? cannibalBrush : eliminationBrush,
 					PointConverter.GetMouseRectangle(c, d).Zoom(-offset / 3));
 			}
 
-			static bool internalChecking(DrawingInfo pair, in int c, in int d) => pair.Value == c * 9 + d;
+			static bool overlapping(DrawingInfo pair, in int c, in int d) => pair.Value == c * 9 + d;
 		}
 
 		/// <summary>
@@ -533,13 +530,20 @@ namespace Sudoku.Drawing
 			{
 				if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 				{
-					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
-					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3));
+					var color = Color.FromArgb(aWeight, rWeight, gWeight, bWeight);
+					var rect = PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
+					using var brush = new SolidBrush(color);
+					//using var pen = new Pen(color, 6F);
+					//g.DrawRectangle(pen, rect.Truncate());
+					g.FillRectangle(brush, rect);
 				}
 				else if (Settings.PaletteColors.TryGetValue(id, out var color))
 				{
-					using var brush = new SolidBrush(Color.FromArgb(32, color));
-					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3));
+					var rect = PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
+					using var brush = new SolidBrush(Color.FromArgb(64, color));
+					//using var pen = new Pen(color, 6F);
+					//g.DrawRectangle(pen, rect.Truncate());
+					g.FillRectangle(brush, rect);
 				}
 			}
 		}
@@ -557,13 +561,8 @@ namespace Sudoku.Drawing
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 
 			using var bCandidate = new SolidBrush(Settings.CandidateColor);
-			using var fCandidate =
-				GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
-			using var sf = new StringFormat
-			{
-				Alignment = StringAlignment.Center,
-				LineAlignment = StringAlignment.Center
-			};
+			using var fCandidate = GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
+			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
 
 			foreach (var (id, candidate) in candidates)
 			{
