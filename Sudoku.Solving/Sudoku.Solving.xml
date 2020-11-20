@@ -7706,6 +7706,12 @@
             </param>
             <param name="size">The size of the wing to search.</param>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.PossibleUrList">
+            <summary>
+            <para>The table of all UR cells.</para>
+            <para>You <b>can't</b> modify any values in this table.</para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
@@ -8371,12 +8377,6 @@
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueSearcher">
             <summary>
             Encapsulates a <b>uniqueness</b> technique searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueSearcher.UrCellsList">
-            <summary>
-            <para>The table of all UR cells.</para>
-            <para>You <b>can't</b> modify any values in this table.</para>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueInfo">

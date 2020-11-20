@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			foreach (bool arMode in BooleanValues)
 			{
 				// Iterate on each possible UR structure.
-				foreach (int[] urCells in UrCellsList)
+				foreach (int[] urCells in PossibleUrList)
 				{
 					// Check preconditions.
 					if (!checkPreconditions(grid, urCells, arMode))
