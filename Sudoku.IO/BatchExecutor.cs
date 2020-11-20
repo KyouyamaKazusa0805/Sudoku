@@ -512,7 +512,7 @@ namespace Sudoku.IO
 		/// </summary>
 		/// <param name="args">The arguments.</param>
 		/// <param name="valueFill">The value filling method.</param>
-		private unsafe void FillValueInternal(string[] args, Action<int, int> valueFill)
+		private void FillValueInternal(string[] args, Action<int, int> valueFill)
 		{
 			if (args.Length != 5 || args[3] != "in")
 			{

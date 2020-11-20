@@ -103,7 +103,7 @@ namespace Sudoku.Data.Collections
 		/// <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
 		/// <param name="separator">The separator.</param>
 		/// <returns>The string result.</returns>
-		public unsafe string ToString(bool shouldSort, string separator)
+		public string ToString(bool shouldSort, string separator)
 		{
 			return _collection.Length switch
 			{
@@ -157,7 +157,6 @@ namespace Sudoku.Data.Collections
 				else
 				{
 					static string? converter(in Conclusion conc, in string? separator) => $"{conc}{separator}";
-
 					sb
 						.AppendRange<Conclusion, string?, string?>(conclusions, &converter, separator)
 						.RemoveFromEnd(separator.Length);

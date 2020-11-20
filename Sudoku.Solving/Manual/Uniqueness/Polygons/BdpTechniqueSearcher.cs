@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc/>
-		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			if (EmptyMap.Count < 7)
 			{
@@ -56,10 +56,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				short cornerMask1 = grid.BitwiseOrMasks(pattern.Pair1Map);
 				short cornerMask2 = grid.BitwiseOrMasks(pattern.Pair2Map);
 				short centerMask = grid.BitwiseOrMasks(pattern.CenterCellsMap);
-				var map = pattern.Map;
-				for (int j = 0; j < 4; j++)
+				unsafe
 				{
-					FunctionsList[j](accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
+					var map = pattern.Map;
+					foreach (var act in FunctionsList)
+					{
+						act(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
+					}
 				}
 			}
 		}

@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 
 		/// <inheritdoc/>
-		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			foreach (var pattern in Patterns)
 			{
@@ -48,9 +48,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					mask |= grid.GetCandidateMask(cell);
 				}
 
-				for (int i = 0; i < 4; i++)
+				unsafe
 				{
-					FunctionList[i](accumulator, grid, pattern, mask);
+					foreach (var act in FunctionList)
+					{
+						act(accumulator, grid, pattern, mask);
+					}
 				}
 			}
 		}

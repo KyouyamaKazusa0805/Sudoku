@@ -94,10 +94,13 @@ namespace Sudoku.Extensions
 		/// <param name="other">Another collection.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static unsafe bool CollectionEquals<T>(this ICollection<T> @this, ICollection<T> other)
+		public static bool CollectionEquals<T>(this ICollection<T> @this, ICollection<T> other)
 		{
-			static bool internalEquals(T element, in ICollection<T> other) => other.Contains(element);
-			return @this.Count == other.Count && @this.All(&internalEquals, other);
+			unsafe
+			{
+				static bool internalEquals(T element, in ICollection<T> other) => other.Contains(element);
+				return @this.Count == other.Count && @this.All(&internalEquals, other);
+			}
 		}
 
 		/// <summary>

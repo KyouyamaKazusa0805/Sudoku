@@ -67,11 +67,13 @@ namespace Sudoku.Data.Extensions
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
-		public static unsafe bool Duplicate(this in SudokuGrid @this, int cell, int digit)
+		public static bool Duplicate(this in SudokuGrid @this, int cell, int digit)
 		{
-			static bool duplicate(int c, in SudokuGrid grid, in int digit) => grid[c] == digit;
-
-			return PeerMaps[cell].Any(&duplicate, @this, digit);
+			unsafe
+			{
+				static bool duplicate(int c, in SudokuGrid grid, in int digit) => grid[c] == digit;
+				return PeerMaps[cell].Any(&duplicate, @this, digit);
+			}
 		}
 	}
 }

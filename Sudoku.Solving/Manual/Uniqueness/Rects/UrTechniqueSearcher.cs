@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc/>
-		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			// Iterate on mode (whether use AR or UR mode to search).
 			var tempList = new List<UrTechniqueInfo>();
@@ -83,13 +83,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							// All possible UR patterns should contain at least one cell
 							// that contains both 'd1' and 'd2'.
-							static bool internalChecking(int c, in short comparer, in SudokuGrid grid) =>
-								(grid.GetCandidateMask(c) & comparer).PopCount() != 2;
-
 							short comparer = (short)(1 << d1 | 1 << d2);
-							if (!arMode && urCells.All(&internalChecking, comparer, grid))
+							unsafe
 							{
-								continue;
+								static bool internalChecking(int c, in short comparer, in SudokuGrid grid) =>
+									(grid.GetCandidateMask(c) & comparer).PopCount() != 2;
+
+								if (!arMode && urCells.All(&internalChecking, comparer, grid))
+								{
+									continue;
+								}
 							}
 
 							// Iterate on each corner of four cells.

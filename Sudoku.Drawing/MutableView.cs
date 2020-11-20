@@ -115,10 +115,13 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public unsafe bool ContainsCell(int cell)
+		public bool ContainsCell(int cell)
 		{
-			static bool internalChecking(DrawingInfo p, in int cell) => p.Value == cell;
-			return Cells?.Any(&internalChecking, cell) ?? false;
+			unsafe
+			{
+				static bool internalChecking(DrawingInfo p, in int cell) => p.Value == cell;
+				return Cells?.Any(&internalChecking, cell) ?? false;
+			}
 		}
 
 		/// <summary>
@@ -126,10 +129,13 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public unsafe bool ContainsCandidate(int candidate)
+		public bool ContainsCandidate(int candidate)
 		{
-			static bool internalChecking(DrawingInfo p, in int candidate) => p.Value == candidate;
-			return Candidates?.Any(&internalChecking, candidate) ?? false;
+			unsafe
+			{
+				static bool internalChecking(DrawingInfo p, in int candidate) => p.Value == candidate;
+				return Candidates?.Any(&internalChecking, candidate) ?? false;
+			}
 		}
 
 		/// <summary>
@@ -137,10 +143,13 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public unsafe bool ContainsRegion(int region)
+		public bool ContainsRegion(int region)
 		{
-			static bool internalChecking(DrawingInfo p, in int region) => p.Value == region;
-			return Regions?.Any(&internalChecking, region) ?? false;
+			unsafe
+			{
+				static bool internalChecking(DrawingInfo p, in int region) => p.Value == region;
+				return Regions?.Any(&internalChecking, region) ?? false;
+			}
 		}
 
 		/// <summary>

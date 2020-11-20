@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="progress">The progress.</param>
 		/// <param name="countryCode">The country code.</param>
 		/// <returns>The puzzle.</returns>
-		public unsafe SudokuGrid Generate(
+		public SudokuGrid Generate(
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
 			CountryCode countryCode = CountryCode.Default)
 		{
@@ -58,17 +58,20 @@ namespace Sudoku.Solving.Generating
 
 			techniqueCodeFilter ??= DefaultFilter;
 
-			while (true)
+			unsafe
 			{
-				var puzzle = Generate(-1, progress, countryCode: countryCode);
-				if (ManualSolver.Solve(puzzle).Any(&internalChecking, techniqueCodeFilter))
+				static bool p(TechniqueInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
+					techniqueCodeFilter.Contains(step.TechniqueCode);
+
+				while (true)
 				{
-					return puzzle;
+					var puzzle = Generate(-1, progress, countryCode: countryCode);
+					if (ManualSolver.Solve(puzzle).Any(&p, techniqueCodeFilter))
+					{
+						return puzzle;
+					}
 				}
 			}
-
-			static bool internalChecking(TechniqueInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
-				techniqueCodeFilter.Contains(step.TechniqueCode);
 		}
 
 		/// <summary>

@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
-		private unsafe AnalysisResult SolveSeMode(
+		private AnalysisResult SolveSeMode(
 			in SudokuGrid grid, ref SudokuGrid cloneation, List<TechniqueInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
@@ -101,46 +101,51 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (!CheckConclusionValidityAfterSearched || selection.All(&InternalChecking, solution))
+					unsafe
 					{
-						foreach (var step in selection)
+						if (!CheckConclusionValidityAfterSearched || selection.All(&InternalChecking, solution))
 						{
-							if (
-								RecordTechnique(
-									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+							foreach (var step in selection)
 							{
-								stopwatch.Stop();
-								return result;
+								if (
+									RecordTechnique(
+										steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+								{
+									stopwatch.Stop();
+									return result;
+								}
 							}
-						}
 
-						// The puzzle has not been finished,
-						// we should turn to the first step finder
-						// to continue solving puzzle.
-						bag.Clear();
+							// The puzzle has not been finished,
+							// we should turn to the first step finder
+							// to continue solving puzzle.
+							bag.Clear();
 
-						if (progress is not null)
-						{
-							ReportProgress(cloneation, progress, ref progressResult);
-						}
-
-						goto Restart;
-					}
-					else
-					{
-						TechniqueInfo? wrongStep = null;
-						foreach (var step in selection)
-						{
-							if (!CheckConclusionsValidity(solution, step.Conclusions))
+							if (progress is not null)
 							{
-								wrongStep = step;
-								break;
+								ReportProgress(cloneation, progress, ref progressResult);
 							}
+
+							goto Restart;
 						}
-						throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
+						else
+						{
+							TechniqueInfo? wrongStep = null;
+							foreach (var step in selection)
+							{
+								if (!CheckConclusionsValidity(solution, step.Conclusions))
+								{
+									wrongStep = step;
+									break;
+								}
+							}
+							throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
+						}
 					}
 				}
-				else unsafe
+				else
+				{
+					unsafe
 					{
 						var step = bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector);
 						if (step is null)
@@ -183,6 +188,7 @@ namespace Sudoku.Solving.Manual
 							throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
 						}
 					}
+				}
 			}
 
 			// All solver can't finish the puzzle...

@@ -35,12 +35,15 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates whether the specified instance contains any extra regions.
 		/// </summary>
-		public unsafe bool ContainsExtraRegions
+		public bool ContainsExtraRegions
 		{
 			get
 			{
-				static bool internalChecking(int m) => m != 0;
-				return ExtraRegionsMask?.Any(&internalChecking) ?? false;
+				unsafe
+				{
+					static bool internalChecking(int m) => m != 0;
+					return ExtraRegionsMask?.Any(&internalChecking) ?? false;
+				}
 			}
 		}
 

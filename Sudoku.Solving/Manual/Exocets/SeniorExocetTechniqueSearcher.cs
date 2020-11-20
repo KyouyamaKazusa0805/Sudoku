@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <inheritdoc/>
 		[SkipLocalsInit]
-		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			var compatibleCells = (stackalloc int[4]);
 			var cover = (stackalloc int[8]);
@@ -59,18 +59,21 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				i = 0;
 				GridMap temp;
-				foreach (int digit in baseCandidatesMask)
+				unsafe
 				{
-					if (i++ == 0)
+					foreach (int digit in baseCandidatesMask)
 					{
-						*&temp = DigitMaps[digit];
+						if (i++ == 0)
+						{
+							*&temp = DigitMaps[digit];
+						}
+						else
+						{
+							*&temp |= DigitMaps[digit];
+						}
 					}
-					else
-					{
-						*&temp |= DigitMaps[digit];
-					}
+					*&temp &= tempCrosslineMap;
 				}
-				*&temp &= tempCrosslineMap;
 
 				var tempTarget = new List<int>();
 				for (i = 0; i < 8; i++)
@@ -222,12 +225,16 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						if (target != -1)
 						{
-							var (tempTargetElims, tempMirrorElims) =
-								CheckMirror(
-									grid, target, combination[target == combination[0] ? 1 : 0], 0,
-									baseCandidatesMask, *&mir, 0, -1, cellOffsets, candidateOffsets);
-							targetElims = TargetEliminations.MergeAll(targetElims, tempTargetElims);
-							mirrorElims = MirrorEliminations.MergeAll(mirrorElims, tempMirrorElims);
+							unsafe
+							{
+								var (tempTargetElims, tempMirrorElims) =
+									CheckMirror(
+										grid, target, combination[target == combination[0] ? 1 : 0], 0,
+										baseCandidatesMask, *&mir, 0, -1, cellOffsets, candidateOffsets);
+
+								targetElims = TargetEliminations.MergeAll(targetElims, tempTargetElims);
+								mirrorElims = MirrorEliminations.MergeAll(mirrorElims, tempMirrorElims);
+							}
 						}
 
 						short incompatible =

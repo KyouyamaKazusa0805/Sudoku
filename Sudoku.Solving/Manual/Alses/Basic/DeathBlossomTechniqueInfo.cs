@@ -34,13 +34,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc/>
-		public override unsafe string ToString()
+		public override string ToString()
 		{
 			string pivotStr = new GridMap { Pivot }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Cell {pivotStr} - {g(this)} => {elimStr}";
 
-			static string g(DeathBlossomTechniqueInfo @this)
+			static unsafe string g(DeathBlossomTechniqueInfo @this)
 			{
 				const string separator = ", ";
 				static string? converter(in KeyValuePair<int, Als> pair)

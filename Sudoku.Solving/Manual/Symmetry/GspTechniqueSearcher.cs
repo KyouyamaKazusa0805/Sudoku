@@ -29,12 +29,15 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 
 		/// <inheritdoc/>
-		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
-			// To verify all kinds of symmetry.
-			foreach (var act in FunctionList)
+			unsafe
 			{
-				act(accumulator, grid);
+				// To verify all kinds of symmetry.
+				foreach (var act in FunctionList)
+				{
+					act(accumulator, grid);
+				}
 			}
 		}
 

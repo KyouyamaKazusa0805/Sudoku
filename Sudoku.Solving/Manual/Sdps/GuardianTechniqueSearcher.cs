@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 
 		/// <inheritdoc/>
-		public unsafe override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			// Check POM eliminations first.
 			var eliminationMaps = (stackalloc GridMap[9]);
@@ -146,14 +146,17 @@ namespace Sudoku.Solving.Manual.Sdps
 				}
 			}
 
-			var set = new Set<GuardianTechniqueInfo>(resultAccumulator);
-			resultAccumulator.Clear();
-			resultAccumulator.AddRange(set);
-			resultAccumulator.Sort(&cmp);
-			accumulator.AddRange(resultAccumulator);
+			unsafe
+			{
+				var set = new Set<GuardianTechniqueInfo>(resultAccumulator);
+				resultAccumulator.Clear();
+				resultAccumulator.AddRange(set);
+				resultAccumulator.Sort(&cmp);
+				accumulator.AddRange(resultAccumulator);
 
-			static int cmp(in GuardianTechniqueInfo l, in GuardianTechniqueInfo r) =>
-				(l.Loop.Count + l.Guardians.Count).CompareTo(r.Loop.Count + r.Guardians.Count);
+				static int cmp(in GuardianTechniqueInfo l, in GuardianTechniqueInfo r) =>
+					(l.Loop.Count + l.Guardians.Count).CompareTo(r.Loop.Count + r.Guardians.Count);
+			}
 		}
 
 		/// <summary>

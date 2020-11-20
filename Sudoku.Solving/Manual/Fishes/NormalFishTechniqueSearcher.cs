@@ -634,7 +634,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 		/// <param name="finCellsMap">(<see langword="in"/> parameter) The fins map.</param>
 		/// <returns>The view.</returns>
-		private static unsafe View GetDirectView(
+		private static View GetDirectView(
 			in SudokuGrid grid, int digit, in ReadOnlySpan<int> baseSets, in ReadOnlySpan<int> coverSets,
 			bool searchRow, in GridMap finCellsMap)
 		{
@@ -654,11 +654,14 @@ namespace Sudoku.Solving.Manual.Fishes
 						}
 						case false or null:
 						{
-							static bool internalChecking(int c, in bool searchRow, in int cell) =>
-								RegionMaps[GetRegion(c, searchRow ? Column : Row)][cell];
-							if (ValueMaps[digit].Any(&internalChecking, searchRow, cell))
+							unsafe
 							{
-								continue;
+								static bool internalChecking(int c, in bool searchRow, in int cell) =>
+								RegionMaps[GetRegion(c, searchRow ? Column : Row)][cell];
+								if (ValueMaps[digit].Any(&internalChecking, searchRow, cell))
+								{
+									continue;
+								}
 							}
 
 							var baseMap = GridMap.Empty;

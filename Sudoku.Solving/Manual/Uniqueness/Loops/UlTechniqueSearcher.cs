@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override unsafe void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
 			if (BivalueMap.Count < 6)
 			{
@@ -88,14 +88,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					}
 				}
 
-				var set = new Set<UlTechniqueInfo>(resultAccumulator);
-				resultAccumulator.Clear();
-				resultAccumulator.AddRange(set);
-				resultAccumulator.Sort(&cmp);
-				accumulator.AddRange(resultAccumulator);
+				unsafe
+				{
+					var set = new Set<UlTechniqueInfo>(resultAccumulator);
+					resultAccumulator.Clear();
+					resultAccumulator.AddRange(set);
+					resultAccumulator.Sort(&cmp);
+					accumulator.AddRange(resultAccumulator);
 
-				static int cmp(in UlTechniqueInfo l, in UlTechniqueInfo r) =>
-					l.Loop.Count.CompareTo(r.Loop.Count);
+					static int cmp(in UlTechniqueInfo l, in UlTechniqueInfo r) =>
+						l.Loop.Count.CompareTo(r.Loop.Count);
+				}
 
 				void f(
 					in SudokuGrid grid,

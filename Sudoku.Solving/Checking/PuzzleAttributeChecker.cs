@@ -123,7 +123,7 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static unsafe bool IsMinimal(this in SudokuGrid @this)
+		public static bool IsMinimal(this in SudokuGrid @this)
 		{
 			int hintCount = 0;
 			int[] array = @this.ToArray();
@@ -148,10 +148,11 @@ namespace Sudoku.Solving.Checking
 				tempArrays[i][r * 9 + c] = 0;
 			}
 
-			return tempArrays.All(&internalChecking);
-
-			static bool internalChecking(int[] gridValues) =>
-				!Solver.Solve(SudokuGrid.CreateInstance(gridValues)).HasSolved;
+			unsafe
+			{
+				static bool p(int[] gridValues) => !Solver.Solve(SudokuGrid.CreateInstance(gridValues)).HasSolved;
+				return tempArrays.All(&p);
+			}
 		}
 
 		/// <summary>

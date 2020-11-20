@@ -24,18 +24,17 @@ namespace Sudoku.Data.Extensions
 			}
 
 			string copied = str.Trim();
-			byte c;
 			unsafe
 			{
-				if (rcb(copied, &c)) { cell = c; return true; }
-				if (k9(copied, &c)) { cell = c; return true; }
+				if (rcb(copied, out byte c)) { cell = c; return true; }
+				if (k9(copied, out c)) { cell = c; return true; }
 			}
 
 		Return:
 			cell = default;
 			return false;
 
-			static unsafe bool rcb(in string str, byte* cell)
+			static bool rcb(in string str, out byte cell)
 			{
 				if (str.Length != 4)
 				{
@@ -52,14 +51,15 @@ namespace Sudoku.Data.Extensions
 					goto DefaultReturn;
 				}
 
-				*cell = (byte)((str[1] - '1') * 9 + (str[3] - '1'));
+				cell = (byte)((str[1] - '1') * 9 + (str[3] - '1'));
 				return true;
 
 			DefaultReturn:
+				cell = default;
 				return false;
 			}
 
-			static unsafe bool k9(in string str, byte* cell)
+			static bool k9(in string str, out byte cell)
 			{
 				if (str.Length != 2)
 				{
@@ -72,10 +72,11 @@ namespace Sudoku.Data.Extensions
 				}
 
 				char start = str[0] is >= 'A' and <= 'I' ? 'A' : 'a';
-				*cell = (byte)((str[0] - start) * 9 + str[1] - '1');
+				cell = (byte)((str[0] - start) * 9 + str[1] - '1');
 				return true;
 
 			DefaultReturn:
+				cell = default;
 				return false;
 			}
 		}

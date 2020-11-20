@@ -94,12 +94,15 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public unsafe decimal MaxDifficulty
+		public decimal MaxDifficulty
 		{
 			get
 			{
-				static decimal g(in TechniqueInfo info) => info.ShowDifficulty ? info.Difficulty : 0;
-				return SolvingSteps?.None() ?? true ? 20.0M : SolvingSteps.Max(&g);
+				unsafe
+				{
+					static decimal g(in TechniqueInfo info) => info.ShowDifficulty ? info.Difficulty : 0;
+					return SolvingSteps?.None() ?? true ? 20.0M : SolvingSteps.Max(&g);
+				}
 			}
 		}
 
@@ -147,12 +150,15 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public unsafe decimal PearlDifficulty
+		public decimal PearlDifficulty
 		{
 			get
 			{
-				static bool p(in TechniqueInfo info) => info.ShowDifficulty;
-				return SolvingSteps?.FirstOrDefault(&p)?.Difficulty ?? 0;
+				unsafe
+				{
+					static bool p(in TechniqueInfo info) => info.ShowDifficulty;
+					return SolvingSteps?.FirstOrDefault(&p)?.Difficulty ?? 0;
+				}
 			}
 		}
 

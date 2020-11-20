@@ -34,14 +34,19 @@ namespace Sudoku.Extensions
 		/// This method is same as <see cref="Enum.HasFlag(Enum)"/>, but without boxing and unboxing operations.
 		/// </remarks>
 		/// <seealso cref="Enum.HasFlag(Enum)"/>
-		public static unsafe bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum =>
-			sizeof(TEnum) switch
+		public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
+		{
+			unsafe
 			{
-				1 or 2 or 4 when Unsafe.As<TEnum, int>(ref other) is var otherValue =>
-					(Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue,
-				8 when Unsafe.As<TEnum, long>(ref other) is var otherValue =>
-					(Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue,
-				_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4.")
-			};
+				return sizeof(TEnum) switch
+				{
+					1 or 2 or 4 when Unsafe.As<TEnum, int>(ref other) is var otherValue =>
+						(Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue,
+					8 when Unsafe.As<TEnum, long>(ref other) is var otherValue =>
+						(Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue,
+					_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4.")
+				};
+			}
+		}
 	}
 }

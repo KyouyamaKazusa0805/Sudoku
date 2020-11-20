@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
-		private unsafe AnalysisResult SolveNaively(
+		private AnalysisResult SolveNaively(
 			in SudokuGrid grid, ref SudokuGrid cloneation, List<TechniqueInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
@@ -75,12 +75,15 @@ namespace Sudoku.Solving.Manual
 
 			if (UseCalculationPriority)
 			{
-				searchers.Sort(&cmp);
-				static int cmp(in TechniqueSearcher a, in TechniqueSearcher b)
+				unsafe
 				{
-					int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
-					int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
-					return l > r ? 1 : l < r ? -1 : 0;
+					searchers.Sort(&cmp);
+					static int cmp(in TechniqueSearcher a, in TechniqueSearcher b)
+					{
+						int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
+						int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
+						return l > r ? 1 : l < r ? -1 : 0;
+					}
 				}
 			}
 
@@ -112,60 +115,68 @@ namespace Sudoku.Solving.Manual
 
 				if (FastSearch)
 				{
-					if (!CheckConclusionValidityAfterSearched || bag.All(&InternalChecking, solution))
+					unsafe
 					{
-						foreach (var step in bag)
+						if (!CheckConclusionValidityAfterSearched || bag.All(&InternalChecking, solution))
 						{
-							if (
-								RecordTechnique(
-									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+							foreach (var step in bag)
 							{
-								stopwatch.Stop();
-								return result;
+								if (
+									RecordTechnique(
+										steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+								{
+									stopwatch.Stop();
+									return result;
+								}
 							}
-						}
 
-						// The puzzle has not been finished,
-						// we should turn to the first step finder
-						// to continue solving puzzle.
-						bag.Clear();
-						if (EnableGarbageCollectionForcedly
-							&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
-						{
-							GC.Collect();
-						}
-
-						if (progress is not null)
-						{
-							ReportProgress(cloneation, progress, ref progressResult);
-						}
-
-						goto Restart;
-					}
-					else
-					{
-						TechniqueInfo? wrongStep = null;
-						foreach (var step in bag)
-						{
-							if (!CheckConclusionsValidity(solution, step.Conclusions))
+							// The puzzle has not been finished,
+							// we should turn to the first step finder
+							// to continue solving puzzle.
+							bag.Clear();
+							if (EnableGarbageCollectionForcedly
+								&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
 							{
-								wrongStep = step;
-								break;
+								GC.Collect();
 							}
-						}
 
-						string stepGridStr = cloneation.ToString("#");
-						throw new WrongHandlingException(
-							grid,
-							$"The specified step is wrong: {wrongStep}, {Environment.NewLine}" +
-							$"the current grid: {stepGridStr}.");
+							if (progress is not null)
+							{
+								ReportProgress(cloneation, progress, ref progressResult);
+							}
+
+							goto Restart;
+						}
+						else
+						{
+							TechniqueInfo? wrongStep = null;
+							foreach (var step in bag)
+							{
+								if (!CheckConclusionsValidity(solution, step.Conclusions))
+								{
+									wrongStep = step;
+									break;
+								}
+							}
+
+							string stepGridStr = cloneation.ToString("#");
+							throw new WrongHandlingException(
+								grid,
+								$"The specified step is wrong: {wrongStep}, {Environment.NewLine}" +
+								$"the current grid: {stepGridStr}.");
+						}
 					}
 				}
 				else
 				{
-					var step = OptimizedApplyingOrder
-					? bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector)
-					: bag.FirstOrDefault();
+					TechniqueInfo? step;
+					unsafe
+					{
+						step = OptimizedApplyingOrder
+						? bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector)
+						: bag.FirstOrDefault();
+					}
+
 					if (step is null)
 					{
 						// If current step can't find any steps,
