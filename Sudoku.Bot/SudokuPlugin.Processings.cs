@@ -534,7 +534,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCells(s[4], out var map))
+			if (!CellParser.TryParse(s[4], out var map, new[] { ',', '，' }))
 			{
 				return;
 			}
@@ -572,7 +572,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCells(s[2], out var map))
+			if (!CellParser.TryParse(s[2], out var map, new[] { ',', '，' }))
 			{
 				return;
 			}
@@ -616,7 +616,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCells(s[2], out var map))
+			if (!CellParser.TryParse(s[2], out var map, new[] { ',', '，' }))
 			{
 				return;
 			}
@@ -770,8 +770,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCell(s[3], out byte r1, out byte c1)
-				|| !Parser.TryParseCell(s[6], out byte r2, out byte c2))
+			if (!CellParser.TryParse(s[3], out byte cell1) || !CellParser.TryParse(s[6], out byte cell2))
 			{
 				return;
 			}
@@ -784,7 +783,7 @@ namespace Sudoku.Bot
 
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
 
-			var link = new Link(r1 * 81 + c1 * 9 + (d1 - 1), r2 * 81 + c2 * 9 + (d2 - 1), LinkType.Default);
+			var link = new Link(cell1 * 9 + d1 - 1, cell2 * 9 + d2 - 1, LinkType.Default);
 			if (remove)
 			{
 				_painter.CustomView!.RemoveLink(link);
@@ -813,7 +812,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCells(s[2], out var map))
+			if (!CellParser.TryParse(s[2], out var map, new[] { ',', '，' }))
 			{
 				return;
 			}
@@ -851,7 +850,7 @@ namespace Sudoku.Bot
 				return;
 			}
 
-			if (!Parser.TryParseCells(s[2], out var map))
+			if (!CellParser.TryParse(s[2], out var map, new[] { ',', '，' }))
 			{
 				return;
 			}

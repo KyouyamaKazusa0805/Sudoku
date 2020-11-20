@@ -863,6 +863,40 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
+        <member name="T:Sudoku.Data.Extensions.CellParser">
+            <summary>
+            Encapsulates the cell parser that converts the string to an <see cref="T:System.Int32"/> value that
+            represents a cell offset.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.CellParser.TryParse(System.String@,System.Byte@)">
+            <summary>
+            Try to parse the string, and converts the instance to a cell instance represented
+            by a <see cref="T:System.Byte"/> value.
+            </summary>
+            <param name="str">(<see langword="in"/> parameter) The string.</param>
+            <param name="cell">(<see langword="out"/> parameter) The cell.</param>
+            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.CellParser.TryParse(System.String@,Sudoku.Data.GridMap@)">
+            <summary>
+            Try to parse the string, and converts the instance to cells instance represented
+            by <see cref="T:System.Byte"/> values.
+            </summary>
+            <param name="str">(<see langword="in"/> parameter) The string.</param>
+            <param name="cells">(<see langword="out"/> parameter) The cells.</param>
+            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.CellParser.TryParse(System.String@,Sudoku.Data.GridMap@,System.Char[])">
+            <summary>
+            Try to parse the string, and converts the instance to cells instance represented
+            by <see cref="T:System.Byte"/> values, with the specified separators.
+            </summary>
+            <param name="str">(<see langword="in"/> parameter) The string.</param>
+            <param name="cells">(<see langword="out"/> parameter) The cell.</param>
+            <param name="separators">(<see langword="params"/> parameter) All separators.</param>
+            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Data.Extensions.SudokuGridEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.

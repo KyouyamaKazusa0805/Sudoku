@@ -1,7 +1,6 @@
 ﻿#if AUTHOR_RESERVED
 
 using System;
-using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 
@@ -57,75 +56,6 @@ namespace Sudoku.Bot
 					return true;
 				}
 			}
-		}
-
-		/// <summary>
-		/// 尝试解析字符串，并转换为一系列单元格，用 <see cref="GridMap"/> 对象表示。
-		/// </summary>
-		/// <param name="str">字符串。</param>
-		/// <param name="cells">(<see langword="out"/> 参数) 解析后的对象。</param>
-		/// <returns>表示是否转换成功。</returns>
-		public static bool TryParseCells(string str, out GridMap cells)
-		{
-			cells = GridMap.Empty;
-			if (string.IsNullOrWhiteSpace(str))
-			{
-				return false;
-			}
-
-			foreach (string cellStr in str.Split(new[] { ',', '，' }))
-			{
-				if (TryParseCell(cellStr, out byte row, out byte column))
-				{
-					cells.AddAnyway(row * 9 + column);
-				}
-			}
-
-			return true;
-		}
-
-		/// <summary>
-		/// 尝试解析一个字符串，并转换为一个单元格的绝对编号（偏移量）。
-		/// </summary>
-		/// <param name="str">字符串。</param>
-		/// <param name="row">
-		/// (<see langword="out"/> 参数) 表示所在行。如果解析失败，这个数值则为
-		/// <see langword="default"/>(<see cref="byte"/>)。
-		/// </param>
-		/// <param name="column">
-		/// (<see langword="out"/> 参数) 表示所在列。如果解析失败，这个数值则为
-		/// <see langword="default"/>(<see cref="byte"/>)。
-		/// </param>
-		/// <returns>表示是否解析成功。</returns>
-		public static bool TryParseCell(string str, out byte row, out byte column)
-		{
-			switch (str.Length)
-			{
-				case 2 when isAtoI(str[0]) && isDigit(str[1]):
-				{
-					row = (byte)(str[0] - toWeight(str[0]));
-					column = toDigit(str[1]);
-					return true;
-				}
-				case 4 when isRowLabel(str[0]) && isColumnLabel(str[2]) && isDigit(str[1]) && isDigit(str[3]):
-				{
-					row = toDigit(str[1]);
-					column = toDigit(str[3]);
-					return true;
-				}
-				default:
-				{
-					row = column = default;
-					return false;
-				}
-			}
-
-			static bool isAtoI(char c) => c is >= 'A' and <= 'I' or >= 'a' and <= 'i';
-			static bool isDigit(char c) => c is >= '1' and <= '9';
-			static bool isRowLabel(char c) => c is 'R' or 'r';
-			static bool isColumnLabel(char c) => c is 'C' or 'c';
-			static byte toDigit(char c) => (byte)(c - '1');
-			static char toWeight(char c) => c is >= 'A' and <= 'I' ? 'A' : 'a';
 		}
 	}
 }
