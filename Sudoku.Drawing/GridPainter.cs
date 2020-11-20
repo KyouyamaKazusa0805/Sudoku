@@ -607,9 +607,9 @@ namespace Sudoku.Drawing
 				}
 			}
 
-			if (!Settings.ShowCandidates)
+			if (!Settings.ShowCandidates && Conclusions is not null)
 			{
-				foreach (var (type, cell, digit) in Conclusions.NullableCollection())
+				foreach (var (type, cell, digit) in Conclusions)
 				{
 					if (type == Elimination)
 					{

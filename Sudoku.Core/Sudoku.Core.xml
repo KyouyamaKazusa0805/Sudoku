@@ -3858,15 +3858,6 @@
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <param name="item">The item to add.</param>
         </member>
-        <member name="M:Sudoku.Extensions.CollectionEx.CollectionEquals``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``0})">
-            <summary>
-            Check whether two <see cref="T:System.Collections.Generic.ICollection`1"/>s are equal.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="other">Another collection.</param>
-            <returns>The <see cref="T:System.Boolean"/> value.</returns>
-        </member>
         <member name="M:Sudoku.Extensions.CollectionEx.NullableCollection``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Get a result collection from a may-be-<see langword="null"/> collection.

@@ -38,12 +38,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			{
 				for (int region = 0; region < 27; region++)
 				{
-					if ((RegionMaps[region] & CandMaps[digit]) is var temp && temp.Count != 2)
+					if ((RegionMaps[region] & CandMaps[digit]) is { Count: 2 } temp)
 					{
-						continue;
+						(conjugatePairs[digit] ??= new List<ConjugatePair>()).Add(new(temp, digit));
 					}
-
-					(conjugatePairs[digit] ??= new List<ConjugatePair>()).Add(new(temp, digit));
 				}
 			}
 
@@ -84,105 +82,114 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						// Iterate on each conjugate pair.
 						short wDigitsMask = 0;
 						var conclusions = new List<Conclusion>();
-						foreach (var conjugatePair in conjugatePairs[x].NullableCollection())
+						if (conjugatePairs[x] is var conjPairs and not null)
 						{
-							var cpMap = conjugatePair.Map;
-							if (cpMap.Overlaps(map1) || cpMap.Overlaps(map2))
+							foreach (var conjugatePair in conjPairs)
 							{
-								// Conjugate pair can't overlap with the ALS structure.
-								continue;
-							}
+								var cpMap = conjugatePair.Map;
+								if (cpMap.Overlaps(map1) || cpMap.Overlaps(map2))
+								{
+									// Conjugate pair can't overlap with the ALS structure.
+									continue;
+								}
 
-							if (((cpMap & p1).Count, (cpMap & p2).Count, ((p1 | p2) & cpMap).Count) != (1, 1, 2))
-							{
-								continue;
-							}
-
-							foreach (int w in mask & ~(1 << x))
-							{
-								var tempMap = ((map1 | map2) & CandMaps[w]).PeerIntersection & CandMaps[w];
-								if (tempMap.IsEmpty)
+								if ((cpMap & p1).Count != 1 || (cpMap & p2).Count != 1)
 								{
 									continue;
 								}
 
-								wDigitsMask |= (short)(1 << w);
-								foreach (int cell in tempMap)
+								if (((p1 | p2) & cpMap).Count != 2)
 								{
-									conclusions.Add(new(Elimination, cell, w));
+									continue;
 								}
-							}
 
-							if (conclusions.Count == 0)
-							{
-								continue;
-							}
-
-							// Record highlight cell and candidate offsets.
-							var cellOffsets = new List<DrawingInfo>();
-							cellOffsets.AddRange(from cell in map1 select new DrawingInfo(-1, cell));
-							cellOffsets.AddRange(from cell in map2 select new DrawingInfo(-2, cell));
-
-							var candidateOffsets = new List<DrawingInfo>
-							{
-								new(0, cpMap.First * 9 + x), new(0, cpMap.SetAt(1) * 9 + x)
-							};
-							foreach (int cell in map1)
-							{
-								foreach (int digit in grid.GetCandidates(cell))
+								foreach (int w in mask & ~(1 << x))
 								{
-									candidateOffsets.Add(
-										new(
-											true switch
-											{
-												_ when digit == x => 1,
-												_ when (wDigitsMask >> digit & 1) != 0 => 2,
-												_ => -1
-											},
-											cell * 9 + digit));
-								}
-							}
-							foreach (int cell in map2)
-							{
-								foreach (int digit in grid.GetCandidates(cell))
-								{
-									candidateOffsets.Add(
-										new(
-											true switch
-											{
-												_ when digit == x => 1,
-												_ when (wDigitsMask >> digit & 1) != 0 => 2,
-												_ => -2
-											},
-											cell * 9 + digit));
-								}
-							}
-
-							accumulator.Add(
-								new AlsWWingTechniqueInfo(
-									conclusions,
-									new View[]
+									var tempMap = ((map1 | map2) & CandMaps[w]).PeerIntersection & CandMaps[w];
+									if (tempMap.IsEmpty)
 									{
-										new(
-											_alsShowRegions ? null : cellOffsets,
-											_alsShowRegions ? candidateOffsets : null,
-											_alsShowRegions switch
-											{
-												true => new DrawingInfo[]
+										continue;
+									}
+
+									wDigitsMask |= (short)(1 << w);
+									foreach (int cell in tempMap)
+									{
+										conclusions.Add(new(Elimination, cell, w));
+									}
+								}
+
+								if (conclusions.Count == 0)
+								{
+									continue;
+								}
+
+								// Record highlight cell and candidate offsets.
+								var cellOffsets = new List<DrawingInfo>();
+								cellOffsets.AddRange(from cell in map1 select new DrawingInfo(-1, cell));
+								cellOffsets.AddRange(from cell in map2 select new DrawingInfo(-2, cell));
+
+								var candidateOffsets = new List<DrawingInfo>
+								{
+									new(0, cpMap.First * 9 + x),
+									new(0, cpMap.SetAt(1) * 9 + x)
+								};
+								foreach (int cell in map1)
+								{
+									foreach (int digit in grid.GetCandidates(cell))
+									{
+										candidateOffsets.Add(
+											new(
+												true switch
 												{
-													new(-1, region1),
-													new(-2, region2),
-													new(0, conjugatePair.Region.First())
+													_ when digit == x => 1,
+													_ when (wDigitsMask >> digit & 1) != 0 => 2,
+													_ => -1
 												},
-												_ => null
-											},
-											null)
-									},
-									als1,
-									als2,
-									conjugatePair,
-									wDigitsMask,
-									x));
+												cell * 9 + digit));
+									}
+								}
+								foreach (int cell in map2)
+								{
+									foreach (int digit in grid.GetCandidates(cell))
+									{
+										candidateOffsets.Add(
+											new(
+												true switch
+												{
+													_ when digit == x => 1,
+													_ when (wDigitsMask >> digit & 1) != 0 => 2,
+													_ => -2
+												},
+												cell * 9 + digit));
+									}
+								}
+
+								accumulator.Add(
+									new AlsWWingTechniqueInfo(
+										conclusions,
+										new View[]
+										{
+											new(
+												_alsShowRegions ? null : cellOffsets,
+												_alsShowRegions ? candidateOffsets : null,
+												_alsShowRegions switch
+												{
+													true => new DrawingInfo[]
+													{
+														new(-1, region1),
+														new(-2, region2),
+														new(0, conjugatePair.Region.First())
+													},
+													_ => null
+												},
+												null)
+										},
+										als1,
+										als2,
+										conjugatePair,
+										wDigitsMask,
+										x));
+							}
 						}
 					}
 				}

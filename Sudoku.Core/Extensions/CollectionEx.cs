@@ -54,8 +54,7 @@ namespace Sudoku.Extensions
 		/// Indicates whether the method should check duplicating values first.
 		/// If so, the value won't add (do nothing).
 		/// </param>
-		public static void AddRange<T>(
-			this ICollection<T> @this, IEnumerable<T> values, bool verifyDuplicate)
+		public static void AddRange<T>(this ICollection<T> @this, IEnumerable<T> values, bool verifyDuplicate)
 		{
 			foreach (var value in values)
 			{
@@ -83,23 +82,6 @@ namespace Sudoku.Extensions
 			if (!@this.Contains(item))
 			{
 				@this.Add(item);
-			}
-		}
-
-		/// <summary>
-		/// Check whether two <see cref="ICollection{T}"/>s are equal.
-		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
-		/// <param name="other">Another collection.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool CollectionEquals<T>(this ICollection<T> @this, ICollection<T> other)
-		{
-			unsafe
-			{
-				static bool internalEquals(T element, in ICollection<T> other) => other.Contains(element);
-				return @this.Count == other.Count && @this.All(&internalEquals, other);
 			}
 		}
 
