@@ -5,7 +5,7 @@
 	https://docs.microsoft.com/en-us/visualstudio/ide/file-nesting-solution-explorer?view=vs-2019
 	for details.
 
-	Visual Studio 16.9 starts to support custom file nesting.
+	Visual Studio preview version supports custom file nesting.
 */
 {
 	"dependentFileProviders": {
