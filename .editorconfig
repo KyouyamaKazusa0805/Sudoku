@@ -366,6 +366,9 @@ dotnet_diagnostic.CS8767.severity = error
 # CS8769: Nullability of reference types in type of parameter doesn't match implemented member (possibly because of nullability attributes).
 dotnet_diagnostic.CS8769.severity = error
 
+# CS8774: Member must have a non-null value when exiting.
+dotnet_diagnostic.CS8774.severity = error
+
 # CS8777: Parameter must have a non-null value when exiting.
 dotnet_diagnostic.CS8777.severity = error
 

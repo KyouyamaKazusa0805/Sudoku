@@ -1,6 +1,4 @@
-﻿#nullable disable warnings
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Sudoku.Data;
@@ -147,12 +145,7 @@ namespace Sudoku.IO
 		/// <summary>
 		/// Clear all executions.
 		/// </summary>
-		public void Clear()
-		{
-			_batchExecuting = null;
-
-			GC.Collect();
-		}
+		public void Clear() => _batchExecuting = null;
 
 		/// <summary>
 		/// Create a workspace.
@@ -187,8 +180,6 @@ namespace Sudoku.IO
 		{
 			_painter = null;
 			_pointConverter = null;
-
-			//GC.Collect();
 		}
 
 		/// <summary>
@@ -202,8 +193,10 @@ namespace Sudoku.IO
 				return;
 			}
 
+#nullable disable warnings
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 0, 81, _painter.CustomView.AddCell);
+#nullable restore warnings
 		}
 
 		/// <summary>
@@ -217,8 +210,10 @@ namespace Sudoku.IO
 				return;
 			}
 
+#nullable disable warnings
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 0, 729, _painter.CustomView.AddCandidate);
+#nullable restore warnings
 		}
 
 		/// <summary>
@@ -232,8 +227,10 @@ namespace Sudoku.IO
 				return;
 			}
 
+#nullable disable warnings
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 0, 27, _painter.CustomView.AddRegion);
+#nullable restore warnings
 		}
 
 		/// <summary>
@@ -247,8 +244,10 @@ namespace Sudoku.IO
 				return;
 			}
 
+#nullable disable warnings
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 9, 18, _painter.CustomView.AddRegion);
+#nullable restore warnings
 		}
 
 		/// <summary>
@@ -262,8 +261,10 @@ namespace Sudoku.IO
 				return;
 			}
 
+#nullable disable warnings
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 18, 27, _painter.CustomView.AddRegion);
+#nullable restore warnings
 		}
 
 		/// <summary>
@@ -277,8 +278,10 @@ namespace Sudoku.IO
 				return;
 			}
 
+#nullable disable warnings
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 0, 9, _painter.CustomView.AddRegion);
+#nullable restore warnings
 		}
 
 		/// <summary>
@@ -303,6 +306,7 @@ namespace Sudoku.IO
 				return;
 			}
 
+#nullable disable warnings
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			_painter.CustomView.AddLink(
 				new(
@@ -315,6 +319,7 @@ namespace Sudoku.IO
 						"weak" => LinkType.Weak,
 						_ => LinkType.Default
 					}));
+#nullable restore warnings
 		}
 
 		/// <summary>
@@ -338,8 +343,10 @@ namespace Sudoku.IO
 				return;
 			}
 
+#nullable disable warnings
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			_painter.CustomView.AddDirectLine(GridMap.Empty, new() { c - 1 });
+#nullable restore warnings
 		}
 
 		/// <summary>
@@ -363,8 +370,10 @@ namespace Sudoku.IO
 				return;
 			}
 
+#nullable disable warnings
 			GridPainter.InitializeCustomViewIfNull(ref _painter);
-			_painter.CustomView!.AddDirectLine(new() { c - 1 }, GridMap.Empty);
+			_painter.CustomView.AddDirectLine(new() { c - 1 }, GridMap.Empty);
+#nullable restore warnings
 		}
 
 		/// <summary>
@@ -410,8 +419,9 @@ namespace Sudoku.IO
 			{
 				if (_painter is not null)
 				{
-					_painter.Grid[cell] = digit;
-					_painter.Grid.SetStatus(cell, CellStatus.Given);
+					var grid = _painter.Grid;
+					grid[cell] = digit;
+					grid.SetStatus(cell, CellStatus.Given);
 				}
 			});
 
@@ -459,15 +469,12 @@ namespace Sudoku.IO
 
 			try
 			{
-				string? directoryName = Path.GetDirectoryName(args[2]);
-				if (directoryName is null)
+				if (args[2] is var s && Path.GetDirectoryName(s) is string directoryName)
 				{
-					return;
+					DirectoryEx.CreateIfDoesNotExist(directoryName);
+
+					_painter.Draw().Save(s);
 				}
-
-				DirectoryEx.CreateIfDoesNotExist(directoryName);
-
-				_painter.Draw().Save(args[2]);
 			}
 			catch
 			{
