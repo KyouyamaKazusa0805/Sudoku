@@ -721,14 +721,12 @@ namespace Sudoku.Windows
 			_menuItemTransformRotateClockwise.IsEnabled = false;
 			_menuItemTransformRotateCounterclockwise.IsEnabled = false;
 			_menuItemTransformRotatePi.IsEnabled = false;
-			_buttonFindAllSteps.IsEnabled = false;
 			_imageGeneratingIcon.IsEnabled = false;
 			_imageSolve.IsEnabled = false;
 			_comboBoxSymmetry.IsEnabled = false;
 			_comboBoxMode.IsEnabled = false;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
 			_comboBoxDifficulty.IsEnabled = false;
-			_textBoxPathFilter.IsEnabled = false;
 
 			_imageGrid.Visibility = Visibility.Hidden;
 
@@ -769,14 +767,12 @@ namespace Sudoku.Windows
 			_menuItemTransformRotateClockwise.IsEnabled = true;
 			_menuItemTransformRotateCounterclockwise.IsEnabled = true;
 			_menuItemTransformRotatePi.IsEnabled = true;
-			_buttonFindAllSteps.IsEnabled = true;
 			_imageGeneratingIcon.IsEnabled = true;
 			_imageSolve.IsEnabled = true;
 			_comboBoxMode.IsEnabled = true;
 			_comboBoxSymmetry.IsEnabled = true;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 			_comboBoxDifficulty.IsEnabled = true;
-			_textBoxPathFilter.IsEnabled = true;
 
 			_imageGrid.Visibility = Visibility.Visible;
 
@@ -823,14 +819,12 @@ namespace Sudoku.Windows
 			_menuItemTransformRotateClockwise.IsEnabled = false;
 			_menuItemTransformRotateCounterclockwise.IsEnabled = false;
 			_menuItemTransformRotatePi.IsEnabled = false;
-			_buttonFindAllSteps.IsEnabled = false;
 			_imageGeneratingIcon.IsEnabled = false;
 			_imageSolve.IsEnabled = false;
 			_comboBoxSymmetry.IsEnabled = false;
 			_comboBoxMode.IsEnabled = false;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
 			_comboBoxDifficulty.IsEnabled = false;
-			_textBoxPathFilter.IsEnabled = false;
 
 			_imageGrid.Visibility = Visibility.Hidden;
 
@@ -875,14 +869,12 @@ namespace Sudoku.Windows
 			_menuItemTransformRotateClockwise.IsEnabled = true;
 			_menuItemTransformRotateCounterclockwise.IsEnabled = true;
 			_menuItemTransformRotatePi.IsEnabled = true;
-			_buttonFindAllSteps.IsEnabled = true;
 			_imageGeneratingIcon.IsEnabled = true;
 			_imageSolve.IsEnabled = true;
 			_comboBoxMode.IsEnabled = true;
 			_comboBoxSymmetry.IsEnabled = true;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 			_comboBoxDifficulty.IsEnabled = true;
-			_textBoxPathFilter.IsEnabled = true;
 
 			_imageGrid.Visibility = Visibility.Visible;
 

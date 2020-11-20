@@ -510,11 +510,6 @@
 								</ContextMenu>
 							</ListBox.ContextMenu>
 						</ListBox>
-						<TextBox Name="_textBoxPathFilter" Grid.Row="1" HorizontalContentAlignment="Left"
-								 VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="16"/>
-						<Button Content="{DynamicResource _buttonFindAllSteps}"
-								Name="_buttonFindAllSteps" Grid.Row="2"
-								Click="ButtonFindAllSteps_Click"/>
 					</Grid>
 				</TabItem>
 

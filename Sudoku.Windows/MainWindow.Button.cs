@@ -18,8 +18,6 @@ using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
-using Sudoku.Windows.Tooling;
-using TechniqueInfos = System.Collections.Generic.IEnumerable<System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>>;
 using TechniqueTriplet = System.KeyedTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
 
 namespace Sudoku.Windows
@@ -42,28 +40,20 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				// Filtering.
-				if (Parsing.ToCondition(_textBoxPathFilter.Text) is var f && f is null)
-				{
-					Messagings.InvalidFilter();
-
-					e.Handled = true;
-					return;
-				}
-
+				// Searching.
 				ProgressWindow? dialog = null;
 				var list = new List<ListBoxItem>();
 				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 				_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
-				_buttonFindAllSteps.IsEnabled = false;
 				DisableSolvingControls();
 
 				(dialog = new()).Show();
-				var techniqueGroups = await Task.Run(() => s(this, dialog, valueGrid));
+				var techniqueGroups = await Task.Run(
+					() =>
+					new StepFinder(Settings).Search(valueGrid, dialog.DefaultReporting, Settings.LanguageCode));
 
 				EnableSolvingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();
-				_buttonFindAllSteps.IsEnabled = true;
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
 
 				// The boolean value stands for whether the technique is enabled.
@@ -73,7 +63,6 @@ namespace Sudoku.Windows
 					string name = techniqueGroup.Key;
 					collection.AddRange(
 						from info in techniqueGroup
-						where f(info)
 						let pair = Settings.DiffColors[info.DifficultyLevel]
 						select new ListBoxItem
 						{
@@ -101,9 +90,6 @@ namespace Sudoku.Windows
 
 				dialog?.CloseAnyway();
 			}
-
-			static TechniqueInfos s(MainWindow @this, ProgressWindow dialog, in SudokuGrid g) =>
-				new StepFinder(@this.Settings).Search(g, dialog.DefaultReporting, @this.Settings.LanguageCode);
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>

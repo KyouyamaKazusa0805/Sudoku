@@ -2368,39 +2368,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Tooling.Parsing">
-            <summary>
-            Provides a parsing way.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Parsing.ToCondition(System.String)">
-            <summary>
-            Parse the string as a condition.
-            </summary>
-            <param name="s">The string.</param>
-            <returns>The predicate.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Parsing.AsCell(System.String)">
-            <summary>
-            Parse a string as a coordinate.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The coordinate value (between 0 and 80).</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Parsing.AsCandidate(System.String)">
-            <summary>
-            Parse a string as a candidate.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The coordinate value (between 0 and 728).</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Parsing.AsRegion(System.String)">
-            <summary>
-            Parse a string as a region.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The region value (between 0 and 26).</returns>
-        </member>
         <member name="T:Sudoku.Windows.Tooling.PickingColorHandlerEventHandler">
             <summary>
             Indicates the event handler when a color is picking.
@@ -2966,6 +2933,36 @@
         <member name="P:System.SystemClipboard.Image">
             <summary>
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>
