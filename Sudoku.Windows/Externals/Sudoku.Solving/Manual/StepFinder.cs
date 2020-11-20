@@ -98,7 +98,6 @@ namespace Sudoku.Solving.Manual
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new DeathBlossomTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.MaxPetalsOfDeathBlossom),
-				new ComplexFishTechniqueSearcher(solver.HobiwanFishMaximumSize),
 				new HobiwanFishTechniqueSearcher(
 					solver.HobiwanFishMaximumSize, solver.HobiwanFishMaximumExofinsCount,
 					solver.HobiwanFishMaximumEndofinsCount, solver.HobiwanFishCheckTemplates),

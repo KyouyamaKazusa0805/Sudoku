@@ -3580,65 +3580,6 @@
             <param name="t2">The target cell 2.</param>
             <seealso cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int32,System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Fishes.ComplexFishTechniqueSearcher">
-            <summary>
-            Encapsulates a <b>Hobiwan's fish</b> technique searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishTechniqueSearcher._size">
-            <summary>
-            The maximum size you want to search.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishTechniqueSearcher.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified size.
-            </summary>
-            <param name="size">The size.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishTechniqueSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-            <remarks>
-            <para>We use following algorithm to implement the complex fishes:</para>
-            <para>
-            (1) We call the POM searcher (<see cref="T:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher"/>)
-            to get all eliminations of a single digit.
-            If the digit contains the eliminations, we will try to search for complex fishes
-            (Here complex fish means Hobiwan's fish; In technically, not all POM eliminations
-            can be found in relative complex fishes).
-            </para>
-            <para>
-            (2) We will try to enumerate all region combinations numbered as the digit <c>0..27</c>.
-            The size of a combination is the fish size we will find. If <c>size</c> is <c>n</c>, the size
-            of each region combination is always <c>n</c>; in addition, we will get a new cell map
-            that contains only cells in base sets, without the elimination cell's peers.
-            </para>
-            <para>
-            (3) Continue to enumerate all region combinations of size <c>n - 1</c> (not <c>n</c>).
-            If the combination covers all cells in that step (2) got, complex fish must be found.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo},System.Int32)">
-            <summary>
-            Get all hobiwan fish instance with the specified size you want to search.
-            </summary>
-            <param name="accumulator">The result accumulator.</param>
-            <param name="elim">
-            The elimination that the possible relative complex fish you want to search.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishTechniqueSearcher.GetAllRegionsMask(Sudoku.Data.GridMap@)">
-            <summary>
-            Get all regions mask.
-            </summary>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
-            <returns>The mask.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>
             Provides a usage of <b>fish</b> technique.
