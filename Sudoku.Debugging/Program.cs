@@ -38,30 +38,39 @@ var stopwatch = new Stopwatch();
 string[] lines = await File.ReadAllLinesAsync(path);
 
 stopwatch.Start();
-for (int i = 0, length = lines.Length; i < length; i++)
+try
 {
-	string puzzle = lines[i];
-	if (!SudokuGrid.TryParse(puzzle, out var grid))
+	for (int i = 0, length = lines.Length; i < length; i++)
 	{
-		continue;
+		string puzzle = lines[i];
+		if (!SudokuGrid.TryParse(puzzle, out var grid))
+		{
+			continue;
+		}
+
+		var (_, _, total, max, pearl, diamond, _, _, _, stepCount, steps, _, _) = new ManualSolver().Solve(grid);
+
+		int chainingTechniquesCount = steps!.Count(
+			static step => step.IsAlsTechnique() || step.IsChainingTechnique());
+
+		await File.AppendAllTextAsync(
+			resultPath,
+			$"{grid}\t{total:0.0} {max:0.0} {pearl:0.0} {diamond:0.0} {stepCount} {chainingTechniquesCount}\r\n");
+
+		Clear();
+		WriteLine(
+			$"Current: {i + 1}/{length} ({(i + 1) * 100M / (decimal)length:0.000}%), " +
+			$"Elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
 	}
-
-	var (_, _, total, max, pearl, diamond, _, _, _, stepCount, steps, _, _) = new ManualSolver().Solve(grid);
-
-	int chainingTechniquesCount = steps!.Count(
-		static step => step.IsAlsTechnique() || step.IsChainingTechnique());
-
-	await File.AppendAllTextAsync(
-		resultPath,
-		$"{grid}\t{total:0.0} {max:0.0} {pearl:0.0} {diamond:0.0} {stepCount} {chainingTechniquesCount}\r\n");
-
-	Clear();
-	WriteLine(
-		$"Current: {i + 1}/{length} ({(i + 1) * 100M / (decimal)length:0.000}%), " +
-		$"Elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
+}
+catch (Exception e)
+{
+	WriteLine("出现问题，原因：");
+	WriteLine(e);
 }
 
 stopwatch.Stop();
+ReadKey();
 
 
 #if FILE_COUNTER || false
