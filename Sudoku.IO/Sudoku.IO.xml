@@ -146,7 +146,7 @@
             </item>
             <item>
             <term>
-            <c>Draw chain from &lt;candidate1&gt; to &lt;candidate2&gt; type (line|chain)</c>
+            <c>Draw chain from &lt;candidate1&gt; to &lt;candidate2&gt; type (line|strong|weak|chain)</c>
             </term>
             <description>Draw a chain.</description>
             </item>

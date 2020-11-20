@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable disable warnings
+
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Sudoku.Data;
@@ -68,7 +70,7 @@ namespace Sudoku.IO
 	/// </item>
 	/// <item>
 	/// <term>
-	/// <c>Draw chain from &lt;candidate1&gt; to &lt;candidate2&gt; type (line|chain)</c>
+	/// <c>Draw chain from &lt;candidate1&gt; to &lt;candidate2&gt; type (line|strong|weak|chain)</c>
 	/// </term>
 	/// <description>Draw a chain.</description>
 	/// </item>
@@ -168,8 +170,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (!int.TryParse(args[4], out int width) || width < 0
-				|| !int.TryParse(args[6], out int height) || height < 0)
+			if (!int.TryParse(args[4], out int width) || width is < 0 or > 1000
+				|| !int.TryParse(args[6], out int height) || height is < 0 or > 1000)
 			{
 				return;
 			}
@@ -186,7 +188,7 @@ namespace Sudoku.IO
 			_painter = null;
 			_pointConverter = null;
 
-			GC.Collect();
+			//GC.Collect();
 		}
 
 		/// <summary>
@@ -200,11 +202,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
-
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 0, 81, _painter.CustomView.AddCell);
 		}
 
@@ -219,11 +217,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
-
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 0, 729, _painter.CustomView.AddCandidate);
 		}
 
@@ -238,11 +232,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
-
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 0, 27, _painter.CustomView.AddRegion);
 		}
 
@@ -257,11 +247,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
-
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 9, 18, _painter.CustomView.AddRegion);
 		}
 
@@ -276,11 +262,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
-
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 18, 27, _painter.CustomView.AddRegion);
 		}
 
@@ -295,11 +277,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
-
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			DrawInternal(args, 0, 9, _painter.CustomView.AddRegion);
 		}
 
@@ -325,11 +303,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
-
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			_painter.CustomView.AddLink(
 				new(
 					start - 1,
@@ -337,7 +311,8 @@ namespace Sudoku.IO
 					args[7] switch
 					{
 						"line" => LinkType.Line,
-						"chain" => LinkType.Strong,
+						"chain" or "strong" => LinkType.Strong,
+						"weak" => LinkType.Weak,
 						_ => LinkType.Default
 					}));
 		}
@@ -363,11 +338,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
-
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
 			_painter.CustomView.AddDirectLine(GridMap.Empty, new() { c - 1 });
 		}
 
@@ -392,12 +363,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-			if (_painter.CustomView is null)
-			{
-				_painter = _painter with { CustomView = new() };
-			}
-
-			_painter.CustomView.AddDirectLine(new() { c - 1 }, GridMap.Empty);
+			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView!.AddDirectLine(new() { c - 1 }, GridMap.Empty);
 		}
 
 		/// <summary>
