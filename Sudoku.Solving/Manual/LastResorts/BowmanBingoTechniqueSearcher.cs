@@ -208,25 +208,23 @@ namespace Sudoku.Solving.Manual.LastResorts
 			grid.SetMask(cell, mask);
 		}
 
-#if TEMPORARY_SOLUTION || true
 		/// <summary>
 		/// To check the specified cell has a same digit filled in a cell
 		/// which is same region with the current one.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
-		private static bool IsValidGrid(SudokuGrid grid, int cell)
+		private static bool IsValidGrid(in SudokuGrid grid, int cell)
 		{
 			unsafe
 			{
-				return Peers[cell].All(&internalChecking, grid, cell);
-				static bool internalChecking(int c, in SudokuGrid grid, in int cell) =>
+				return Peers[cell].All(&isValid, grid, cell);
+				static bool isValid(int c, in SudokuGrid grid, in int cell) =>
 					grid.GetStatus(c) is var status
 					&& (status != Empty && grid[c] != grid[cell] || status == Empty)
 					&& grid.GetCandidateMask(c) != 0;
 			}
 		}
-#endif
 	}
 }

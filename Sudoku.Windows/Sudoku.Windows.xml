@@ -1414,6 +1414,9 @@
             <param name="bitmap">The bitmap.</param>
             <param name="fileName">The file name.</param>
         </member>
+        <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.ButtonCancel_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
         <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.InitializeComponent">
             <summary>
             InitializeComponent

@@ -32,6 +32,9 @@ using Sudoku.Data.Extensions;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif
+#if OBSOLETE
+using System.Runtime.CompilerServices;
+#endif
 
 namespace Sudoku.Windows
 {
@@ -520,7 +523,7 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-#if COPY_SYNC && OBSOLETE
+#if OBSOLETE
 				// This may throw exceptions being called while solving and generating puzzles.
 				SystemClipboard.Text = _puzzle.ToString(format);
 #else
@@ -531,7 +534,7 @@ namespace Sudoku.Windows
 			{
 				Messagings.FailedToSaveToClipboardDueToArgumentNullException(ex);
 			}
-#if COPY_SYNC && OBSOLETE
+#if OBSOLETE
 			catch (COMException ex) when (ex.HResult == unchecked((int)2147746256))
 			{
 				Messagings.FailedToSaveToClipboardDueToAsyncCalling();

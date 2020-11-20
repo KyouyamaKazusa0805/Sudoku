@@ -15,12 +15,6 @@ using Sudoku.Windows.Constants;
 using static System.Drawing.StringAlignment;
 using static Sudoku.Windows.MainWindow;
 using DFontStyle = System.Drawing.FontStyle;
-#if ADVANCED_PICTURE_SAVING
-using System.Linq;
-using Sudoku.Constants;
-using static System.Drawing.Imaging.ImageFormat;
-using DEncoder = System.Drawing.Imaging.Encoder;
-#endif
 
 namespace Sudoku.Windows
 {
@@ -195,19 +189,11 @@ namespace Sudoku.Windows
 								g.DrawString(
 									resultText, f, Brushes.Black, bitmap.Width >> 1,
 									bitmap.Height + (fontSize >> 1) + 8, sf);
-#if ADVANCED_PICTURE_SAVING
-								SavePicture(result, selectedIndex, fileName);
-#else
 								SavePicture(result, fileName);
-#endif
 							}
 							else
 							{
-#if ADVANCED_PICTURE_SAVING
-								SavePicture(bitmap, selectedIndex, fileName);
-#else
 								SavePicture(bitmap, fileName);
-#endif
 							}
 
 							break;
@@ -239,38 +225,14 @@ namespace Sudoku.Windows
 			}
 		}
 
-#if ADVANCED_PICTURE_SAVING
-		/// <summary>
-		/// To save the picture.
-		/// </summary>
-		/// <param name="bitmap">The bitmap.</param>
-		/// <param name="selectedIndex">The selected index.</param>
-		/// <param name="fileName">The file name.</param>
-		private static void SavePicture(Bitmap bitmap, int selectedIndex, string fileName) =>
-			bitmap.Save(
-				fileName,
-				ImageCodecInfo.GetImageEncoders().FirstOrDefault(
-					c => c.FormatID == (
-						selectedIndex switch
-						{
-							-1 => Png,
-							0 => Png,
-							1 => Jpeg,
-							2 => Bmp,
-							3 => Gif,
-							_ => throw Throwings.ImpossibleCase
-						}).Guid) ?? throw new NullReferenceException("The return value is null."),
-				new EncoderParameters(1) { Param = { [0] = new EncoderParameter(DEncoder.Quality, 100L) } });
-#else
 		/// <summary>
 		/// To save the picture.
 		/// </summary>
 		/// <param name="bitmap">The bitmap.</param>
 		/// <param name="fileName">The file name.</param>
 		private static void SavePicture(Bitmap bitmap, string fileName) => bitmap.Save(fileName);
-#endif
 
-
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e) => Close();
 	}
 }

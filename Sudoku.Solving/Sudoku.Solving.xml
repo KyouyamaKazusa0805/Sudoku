@@ -4278,12 +4278,12 @@
             <param name="cell">The cell.</param>
             <param name="mask">The mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.IsValidGrid(Sudoku.Data.SudokuGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.IsValidGrid(Sudoku.Data.SudokuGrid@,System.Int32)">
             <summary>
             To check the specified cell has a same digit filled in a cell
             which is same region with the current one.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="cell">The cell.</param>
             <returns>The result.</returns>
         </member>
