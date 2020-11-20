@@ -52,8 +52,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string baseCellsStr = BaseCells.ToString();
 			string targetCellsStr = TargetCells.ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {baseCellsStr} to {targetCellsStr} => {elimStr}";
 		}
 	}

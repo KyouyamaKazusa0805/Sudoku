@@ -36,8 +36,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string cellsStr = new GridMap(Cells).ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string sizeStr = SubsetNames[Digits.Count].ToLower();
 			string trueCandidatesStr = new SudokuMap(TrueCandidates).ToString();
 			string subsetTypeStr = IsNaked ? "naked" : "hidden";

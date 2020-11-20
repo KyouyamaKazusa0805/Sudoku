@@ -30,8 +30,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override string ToString()
 		{
 			string cellsStr = Cells.ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {Cells.Count} cells {cellsStr} => {elimStr}";
 		}
 	}

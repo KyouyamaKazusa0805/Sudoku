@@ -82,11 +82,7 @@ namespace Sudoku.Solving
 		/// Returns a string that only contains the name and the conclusions.
 		/// </summary>
 		/// <returns>The string instance.</returns>
-		public string ToSimpleString()
-		{
-			using var elims = new ConclusionCollection(Conclusions);
-			return $"{Name} => {elims.ToString()}";
-		}
+		public string ToSimpleString() => $"{Name} => {new ConclusionCollection(Conclusions).ToString()}";
 
 		/// <summary>
 		/// Returns a string that contains the name, the conclusions and its all details.

@@ -24,10 +24,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			using var elims = new ConclusionCollection(Conclusions);
-			return $"{Name}: {elims.ToString()}";
-		}
+		public override string ToString() => $"{Name}: {new ConclusionCollection(Conclusions).ToString()}";
 	}
 }

@@ -33,10 +33,8 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			using var elims = new ConclusionCollection(Conclusions);
-			return new StringBuilder()
+		public override string ToString() =>
+			new StringBuilder()
 				.Append(Name)
 				.Append(Resources.GetValue("Colon"))
 				.Append(Resources.GetValue("Space"))
@@ -46,23 +44,15 @@ namespace Sudoku.Solving.Manual.Intersections
 				.Append(Resources.GetValue("Backslash"))
 				.Append(new RegionCollection(CoverSet).ToString())
 				.Append(Resources.GetValue("GoesTo"))
-				.Append(elims.ToString())
+				.Append(new ConclusionCollection(Conclusions).ToString())
 				.ToString();
-		}
 
 		/// <inheritdoc/>
-		public override string ToString(CountryCode countryCode)
-		{
-			return countryCode switch
+		public override string ToString(CountryCode countryCode) =>
+			countryCode switch
 			{
-				CountryCode.ZhCn => toChinese(),
-				_ => base.ToString(countryCode)
-			};
-
-			string toChinese()
-			{
-				using var elims = new ConclusionCollection(Conclusions);
-				return new StringBuilder()
+				CountryCode.ZhCn =>
+					new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))
 					.Append(Resources.GetValue("_LcSimple1"))
@@ -73,10 +63,10 @@ namespace Sudoku.Solving.Manual.Intersections
 					.Append(Digit + 1)
 					.Append(Resources.GetValue("_LcSimple3"))
 					.Append(Resources.GetValue("GoesTo"))
-					.Append(elims.ToString())
-					.ToString();
-			}
-		}
+					.Append(new ConclusionCollection(Conclusions).ToString())
+					.ToString(),
+				_ => base.ToString(countryCode)
+			};
 
 		/// <inheritdoc/>
 		public override string ToFullString(CountryCode countryCode)
@@ -89,7 +79,6 @@ namespace Sudoku.Solving.Manual.Intersections
 
 			string toChinese()
 			{
-				using var elims = new ConclusionCollection(Conclusions);
 				string regionChineseName = Resources.GetValue(Processings.GetLabel(CoverSet).ToString());
 				int digit = Digit + 1;
 				return new StringBuilder()
@@ -109,7 +98,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					.Append(Resources.GetValue("_Lc6"))
 					.Append(digit)
 					.Append(Resources.GetValue("_Lc7"))
-					.Append(elims.ToString())
+					.Append(new ConclusionCollection(Conclusions).ToString())
 					.Append(Resources.GetValue("Period"))
 					.ToString();
 			}

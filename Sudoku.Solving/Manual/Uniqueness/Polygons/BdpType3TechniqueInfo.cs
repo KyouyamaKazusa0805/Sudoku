@@ -32,8 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string cellsStr = Map.ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string exDigitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
 			string exCellsStr = ExtraCells.ToString();
 			return

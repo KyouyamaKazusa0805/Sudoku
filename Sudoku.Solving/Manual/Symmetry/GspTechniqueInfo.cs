@@ -36,8 +36,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		{
 			const string separator = ", ";
 
-			using var elims = new ConclusionCollection(Conclusions);
-			string conclusions = elims.ToString();
+			string conclusions = new ConclusionCollection(Conclusions).ToString();
 			var sb = new StringBuilder();
 			for (int i = 0; i < 9; i++)
 			{

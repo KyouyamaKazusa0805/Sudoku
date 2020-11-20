@@ -51,8 +51,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string ToString()
 		{
 			string regionStr = new RegionCollection(Region).ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: It can be proved using chains that digit {Digit + 1} from {regionStr} are false" +
 				$" => {elimStr}";

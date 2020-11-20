@@ -36,8 +36,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			string subsetDigitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
 			string subsetCellsStr = new GridMap(ExtraCells).ToString();
 			string subsetName = SubsetNames[ExtraCells.Count + 1];
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: Digits {digitsStr} in cells {cellsStr} can be avoid to form a deadly pattern " +
 				$"if and only if the digits {subsetDigitsStr} in cells {subsetCellsStr} " +

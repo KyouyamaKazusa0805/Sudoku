@@ -79,8 +79,7 @@ namespace Sudoku.Windows
 				var enumerator = collections.GetEnumerator();
 				foreach (var collection in collections)
 				{
-					using var concs = new ConclusionCollection(collection);
-					collectionStr.Add(concs.ToString());
+					collectionStr.Add(new ConclusionCollection(collection).ToString());
 				}
 
 				_listBoxBackdoors.ItemsSource = collectionStr;

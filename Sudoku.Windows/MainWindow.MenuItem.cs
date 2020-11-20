@@ -876,22 +876,17 @@ namespace Sudoku.Windows
 				{
 					View =
 						new(
-							(
-								from backdoor in backdoors
-								where backdoor.ConclusionType == ConclusionType.Assignment
-								select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)
-							).ToArray()),
+						(
+							from backdoor in backdoors
+							where backdoor.ConclusionType == ConclusionType.Assignment
+							select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)
+						).ToArray()),
 					Conclusions = backdoors
 				};
 
 				UpdateImageGrid();
 
-				s();
-				void s()
-				{
-					using var r = new ConclusionCollection(backdoors);
-					_textBoxInfo.Text = $"{LangSource["AllBackdoorsAtLevel0Or1"]}{r.ToString()}";
-				}
+				_textBoxInfo.Text = $"{LangSource["AllBackdoorsAtLevel0Or1"]}{new ConclusionCollection(backdoors).ToString()}";
 			}
 		}
 

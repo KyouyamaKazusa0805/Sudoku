@@ -96,8 +96,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string pivotCellStr = new GridMap { Pivot }.ToString();
 			string cellOffsetsStr = new GridMap(Cells).ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {pivotCellStr} with {cellOffsetsStr} => {elimStr}";
 		}
 	}

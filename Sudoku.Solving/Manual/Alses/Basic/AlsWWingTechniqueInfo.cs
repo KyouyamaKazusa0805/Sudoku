@@ -34,8 +34,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string wStr = new DigitCollection(WDigitsMask.GetAllSets()).ToString();
 			return
 				$"{Name}: Two ALSes {Als1}, {Als2} connected by " +

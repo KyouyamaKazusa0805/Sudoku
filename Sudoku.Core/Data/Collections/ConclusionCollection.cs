@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.DocComments;
@@ -18,16 +17,6 @@ namespace Sudoku.Data.Collections
 	public readonly ref struct ConclusionCollection
 	{
 		/// <summary>
-		/// The pointer to point <see cref="_collection"/>.
-		/// If the constructor isn't <see cref="ConclusionCollection(in Conclusion)"/>,
-		/// the field is keep the value <see cref="IntPtr.Zero"/>.
-		/// </summary>
-		/// <seealso cref="_collection"/>
-		/// <seealso cref="ConclusionCollection(in Conclusion)"/>
-		/// <seealso cref="IntPtr.Zero"/>
-		private readonly IntPtr _ptr;
-
-		/// <summary>
 		/// The internal collection.
 		/// </summary>
 		private readonly Span<Conclusion> _collection;
@@ -39,9 +28,8 @@ namespace Sudoku.Data.Collections
 		/// <param name="conclusion">(<see langword="in"/> parameter) The conclusion.</param>
 		public unsafe ConclusionCollection(in Conclusion conclusion)
 		{
-			var tempSpan = new Span<Conclusion>((_ptr = Marshal.AllocHGlobal(sizeof(Conclusion))).ToPointer(), 1);
-			tempSpan[0] = conclusion;
-			_collection = tempSpan;
+			void* ptr = stackalloc[] { conclusion };
+			_collection = new(ptr, 1);
 		}
 
 		/// <summary>
@@ -92,17 +80,6 @@ namespace Sudoku.Data.Collections
 			}
 		}
 
-
-		/// <summary>
-		/// To dispose this instance (frees the unmanaged memory).
-		/// </summary>
-		public void Dispose()
-		{
-			if (_ptr != IntPtr.Zero)
-			{
-				Marshal.FreeHGlobal(_ptr);
-			}
-		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
@@ -160,7 +137,8 @@ namespace Sudoku.Data.Collections
 					{
 						string op = typeGroup.Key == Assignment ? " = " : " <> ";
 						foreach (var digitGroup in
-							from conclusion in typeGroup group conclusion by conclusion.Digit)
+							from conclusion in typeGroup
+							group conclusion by conclusion.Digit)
 						{
 							sb
 								.Append(new GridMap(from conclusion in digitGroup select conclusion.Cell))

@@ -35,8 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			string digit = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string extraCellStr = new GridMap { ExtraCell }.ToString();
 			string cellsStr = new GridMap(Cells).ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digit} with cells {cellsStr}, with extra cell {extraCellStr} => {elimStr}";
 		}
 	}

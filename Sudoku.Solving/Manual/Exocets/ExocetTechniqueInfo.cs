@@ -94,7 +94,6 @@ namespace Sudoku.Solving.Manual.Exocets
 			var (baseMap, targetMap, _) = Exocet;
 			string? addtional = GetAdditional();
 
-			using var elims = new ConclusionCollection(Conclusions);
 			return new StringBuilder(Name)
 				.Append(": Digits ")
 				.Append(new DigitCollection(Digits).ToString())
@@ -103,12 +102,19 @@ namespace Sudoku.Solving.Manual.Exocets
 				.Append(", target cells ")
 				.Append(targetMap)
 				.NullableAppend(
-					LockedMemberQ is null ? null : $", locked member 1: {new DigitCollection(LockedMemberQ).ToString()}")
+					LockedMemberQ is null
+					? null
+					: $", locked member 1: {new DigitCollection(LockedMemberQ).ToString()}")
 				.NullableAppend(
-					LockedMemberR is null ? null : $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}")
-				.Append(addtional is null ? string.Empty : $" with {addtional}")
+					LockedMemberR is null
+					? null
+					: $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}")
+				.Append(
+					addtional is null
+					? string.Empty
+					: $" with {addtional}")
 				.Append(" => ")
-				.Append(elims.ToString())
+				.Append(new ConclusionCollection(Conclusions).ToString())
 				.ToString();
 		}
 

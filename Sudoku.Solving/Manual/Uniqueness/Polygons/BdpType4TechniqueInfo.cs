@@ -39,8 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			string combStr = new DigitCollection(ExtraMask.GetAllSets()).ToString();
 			string cellsStr = Map.ToString();
 			string conjRegion = ConjugateRegion.ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: {digitsStr} in cells {cellsStr} with the conjugate region {conjRegion} " +
 				$"of the extra digits {combStr} => {elimStr}";

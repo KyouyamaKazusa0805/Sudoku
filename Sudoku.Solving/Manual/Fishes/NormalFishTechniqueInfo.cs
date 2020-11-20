@@ -84,10 +84,8 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			using var elims = new ConclusionCollection(Conclusions);
-			return new StringBuilder()
+		public override string ToString() =>
+			new StringBuilder()
 				.Append(Name)
 				.Append(Resources.GetValue("Colon"))
 				.Append(Resources.GetValue("Space"))
@@ -98,23 +96,15 @@ namespace Sudoku.Solving.Manual.Fishes
 				.Append(new RegionCollection(CoverSets).ToString())
 				.Append(Fins is { Count: not 0 } ? $" f{new GridMap(Fins)}" : string.Empty)
 				.Append(Resources.GetValue("GoesTo"))
-				.Append(elims.ToString())
+				.Append(new ConclusionCollection(Conclusions).ToString())
 				.ToString();
-		}
 
 		/// <inheritdoc/>
-		public override string ToString(CountryCode countryCode)
-		{
-			return countryCode switch
+		public override string ToString(CountryCode countryCode) =>
+			countryCode switch
 			{
-				CountryCode.ZhCn => toChinese(),
-				_ => base.ToString(countryCode)
-			};
-
-			string toChinese()
-			{
-				using var elims = new ConclusionCollection(Conclusions);
-				return new StringBuilder()
+				CountryCode.ZhCn =>
+					new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))
 					.Append(Resources.GetValue("_NormalFishSimple1"))
@@ -125,10 +115,10 @@ namespace Sudoku.Solving.Manual.Fishes
 					.Append(new RegionCollection(CoverSets).ToString())
 					.Append(Fins is { Count: not 0 } ? $" f{new GridMap(Fins)}" : string.Empty)
 					.Append(Resources.GetValue("GoesTo"))
-					.Append(elims.ToString())
-					.ToString();
-			}
-		}
+					.Append(new ConclusionCollection(Conclusions).ToString())
+					.ToString(),
+				_ => base.ToString(countryCode)
+			};
 
 		/// <inheritdoc/>
 		public override string ToFullString(CountryCode countryCode)
@@ -144,7 +134,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				var candidates = Views[0].Candidates!;
 				int digit = Digit + 1, regionsCount = BaseSets.Count;
 				static bool finChecking(in DrawingInfo info) => info is { Id: 0 };
-				using var elims = new ConclusionCollection(Conclusions);
+				var elims = new ConclusionCollection(Conclusions);
 				var sb = new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))

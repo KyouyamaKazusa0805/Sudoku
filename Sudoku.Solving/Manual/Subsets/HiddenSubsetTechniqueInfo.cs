@@ -38,10 +38,8 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			using var elims = new ConclusionCollection(Conclusions);
-			return new StringBuilder()
+		public override string ToString() =>
+			new StringBuilder()
 				.Append(Name)
 				.Append(Resources.GetValue("Colon"))
 				.Append(Resources.GetValue("Space"))
@@ -49,23 +47,15 @@ namespace Sudoku.Solving.Manual.Subsets
 				.Append(Resources.GetValue("_HiddenSubsetSimple1"))
 				.Append(new RegionCollection(Region).ToString())
 				.Append(Resources.GetValue("GoesTo"))
-				.Append(elims.ToString())
+				.Append(new ConclusionCollection(Conclusions).ToString())
 				.ToString();
-		}
 
 		/// <inheritdoc/>
-		public override string ToString(CountryCode countryCode)
-		{
-			return countryCode switch
+		public override string ToString(CountryCode countryCode) =>
+			countryCode switch
 			{
-				CountryCode.ZhCn => toChinese(),
-				_ => base.ToString(countryCode)
-			};
-
-			string toChinese()
-			{
-				using var elims = new ConclusionCollection(Conclusions);
-				return new StringBuilder()
+				CountryCode.ZhCn =>
+					new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))
 					.Append(Resources.GetValue("_HiddenSubsetSimple1"))
@@ -74,10 +64,10 @@ namespace Sudoku.Solving.Manual.Subsets
 					.Append(new DigitCollection(Digits).ToString())
 					.Append(Resources.GetValue("_HiddenSubsetSimple3"))
 					.Append(Resources.GetValue("GoesTo"))
-					.Append(elims.ToString())
-					.ToString();
-			}
-		}
+					.Append(new ConclusionCollection(Conclusions).ToString())
+					.ToString(),
+				_ => base.ToString(countryCode)
+			};
 
 		/// <inheritdoc/>
 		public override string ToFullString(CountryCode countryCode)
@@ -90,7 +80,6 @@ namespace Sudoku.Solving.Manual.Subsets
 
 			string toChinese()
 			{
-				using var elims = new ConclusionCollection(Conclusions);
 				string digitsStr = new DigitCollection(Digits).ToString();
 				string cellsStr = new GridMap(Cells).ToString();
 				return new StringBuilder()
@@ -115,7 +104,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					.Append(Resources.GetValue("_HiddenSubset9"))
 					.Append(Resources.GetValue(Processings.GetLabel(Region).ToString()))
 					.Append(Resources.GetValue("_HiddenSubset10"))
-					.Append(elims.ToString())
+					.Append(new ConclusionCollection(Conclusions).ToString())
 					.Append(Resources.GetValue("Period"))
 					.ToString();
 			}

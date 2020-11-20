@@ -50,8 +50,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string ToString()
 		{
 			string srcCellStr = new GridMap { SourceCell }.ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: It can be proved using chains that all digits are false from {srcCellStr} => {elimStr}";
 		}
 	}

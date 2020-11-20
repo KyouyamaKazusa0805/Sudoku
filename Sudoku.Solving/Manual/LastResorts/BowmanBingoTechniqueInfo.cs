@@ -29,10 +29,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			using var contraditions = new ConclusionCollection(ContradictionSeries);
-			string contradictionSeriesStr = contraditions.ToString(false, " -> ");
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string contradictionSeriesStr = new ConclusionCollection(ContradictionSeries).ToString(false, " -> ");
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Try {contradictionSeriesStr} => {elimStr}";
 		}
 	}

@@ -54,8 +54,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int d1 = Digit1 + 1;
 			int d2 = Digit2 + 1;
 			string cellsStr = new GridMap(Cells).ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string? additional = GetAdditional();
 			return
 				$"{Name}: {d1}, {d2} in " +

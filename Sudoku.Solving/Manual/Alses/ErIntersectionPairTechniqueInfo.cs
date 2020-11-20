@@ -36,8 +36,7 @@ namespace Sudoku.Solving.Manual.Alses
 			int d2 = Digit2 + 1;
 			string sCellStr = new GridMap { StartCell }.ToString();
 			string eCellStr = new GridMap { EndCell }.ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string regionStr = new RegionCollection(Region).ToString();
 			return
 				$"{Name}: Digits {d1}, {d2} in bivalue cells {sCellStr} and {eCellStr} " +

@@ -33,8 +33,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		{
 			int digit = Digit + 1;
 			string regionStr = new RegionCollection(Block).ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digit} in {regionStr} with conjugate pair {ConjugatePair} => {elimStr}";
 		}
 	}

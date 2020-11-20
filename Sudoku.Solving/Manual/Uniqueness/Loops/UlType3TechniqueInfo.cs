@@ -30,8 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public override string ToString()
 		{
 			string cellsStr = Loop.ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string subsetName = SubsetNames[SubsetCells.Count + 1];
 			string digitsStr = new DigitCollection(SubsetDigitsMask.GetAllSets()).ToString();
 			string subsetCellsStr = new GridMap(SubsetCells).ToString();

@@ -54,21 +54,10 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override readonly string? ToString()
-		{
-			switch (Conclusions)
-			{
-				case null:
-				{
-					return null;
-				}
-				default:
-				{
-					using var elims = new ConclusionCollection(Conclusions);
-					return $"  * Target pair eliminations: {elims.ToString()}";
-				}
-			}
-		}
+		public override readonly string? ToString() =>
+			Conclusions is null
+			? null
+			: $"  * Target pair eliminations: {new ConclusionCollection(Conclusions).ToString()}";
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

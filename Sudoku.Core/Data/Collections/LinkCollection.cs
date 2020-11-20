@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.DocComments;
@@ -16,16 +15,6 @@ namespace Sudoku.Data.Collections
 	public readonly ref struct LinkCollection
 	{
 		/// <summary>
-		/// The pointer to point <see cref="_collection"/>.
-		/// If the constructor isn't <see cref="LinkCollection(in Link)"/>,
-		/// the field is keep the value <see cref="IntPtr.Zero"/>.
-		/// </summary>
-		/// <seealso cref="_collection"/>
-		/// <seealso cref="LinkCollection(in Link)"/>
-		/// <seealso cref="IntPtr.Zero"/>
-		private readonly IntPtr _ptr;
-
-		/// <summary>
 		/// The internal collection.
 		/// </summary>
 		private readonly Span<Link> _collection;
@@ -37,9 +26,8 @@ namespace Sudoku.Data.Collections
 		/// <param name="link">(<see langword="in"/> parameter) The chain link.</param>
 		public unsafe LinkCollection(in Link link)
 		{
-			var tempSpan = new Span<Link>((_ptr = Marshal.AllocHGlobal(sizeof(Link))).ToPointer(), 1);
-			tempSpan[0] = link;
-			_collection = tempSpan;
+			void* ptr = stackalloc[] { link };
+			_collection = new(ptr, 1);
 		}
 
 		/// <summary>
@@ -55,21 +43,10 @@ namespace Sudoku.Data.Collections
 		public LinkCollection(IEnumerable<Link> collection) : this() =>
 			_collection = collection.ToArray().AsSpan();
 
-		/// <summary>
-		/// To dispose this link (frees the unmanaged memory).
-		/// </summary>
-		public void Dispose()
-		{
-			if (_ptr != IntPtr.Zero)
-			{
-				Marshal.FreeHGlobal(_ptr);
-			}
-		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
@@ -77,8 +54,7 @@ namespace Sudoku.Data.Collections
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
 		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
 
 		/// <inheritdoc cref="object.ToString"/>

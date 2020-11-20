@@ -37,8 +37,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override unsafe string ToString()
 		{
 			string pivotStr = new GridMap { Pivot }.ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Cell {pivotStr} - {g(this)} => {elimStr}";
 
 			static string g(DeathBlossomTechniqueInfo @this)

@@ -42,8 +42,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			string digits1Str = new DigitCollection(RowDigitsMask.GetAllSets()).ToString();
 			string digits2Str = new DigitCollection(ColumnDigitsMask.GetAllSets()).ToString();
 			string digits3Str = new DigitCollection(BlockDigitsMask.GetAllSets()).ToString();
-			using var elims = new ConclusionCollection(Conclusions);
-			string elimStr = elims.ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: {cells1Str}({digits1Str}) + {cells2Str}({digits2Str}) + " +
 				$"{cells3Str}({digits3Str}) => {elimStr}";
