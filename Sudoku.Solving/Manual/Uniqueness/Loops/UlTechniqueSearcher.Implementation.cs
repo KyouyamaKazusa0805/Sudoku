@@ -142,16 +142,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="links">The links.</param>
 		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
-		unsafe partial void CheckType3(
+		partial void CheckType3(
 			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
 			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer)
 		{
-			static bool internalChecking(int cell, in short comparer, in SudokuGrid grid) =>
-				grid.GetCandidateMask(cell) is var mask && (mask & comparer) == 0 || mask == comparer;
-
-			if (!extraCellsMap.InOneRegion || extraCellsMap.Any(&internalChecking, comparer, grid))
+			unsafe
 			{
-				return;
+				static bool internalChecking(int cell, in short comparer, in SudokuGrid grid) =>
+					grid.GetCandidateMask(cell) is var mask && (mask & comparer) == 0 || mask == comparer;
+
+				if (!extraCellsMap.InOneRegion || extraCellsMap.Any(&internalChecking, comparer, grid))
+				{
+					return;
+				}
 			}
 
 			short m = 0;

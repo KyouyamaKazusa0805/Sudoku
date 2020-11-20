@@ -104,7 +104,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
-		unsafe partial void CheckType2(
+		partial void CheckType2(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
 		{
@@ -149,9 +149,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 				}
 			}
-			if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
+
+			unsafe
 			{
-				return;
+				if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
+				{
+					return;
+				}
 			}
 
 			bool isType5 = !new GridMap { corner1, corner2 }.InOneRegion;
@@ -188,7 +192,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
-		unsafe partial void CheckType3Naked(
+		partial void CheckType3Naked(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
 		{
@@ -199,10 +203,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				grid.GetCandidateMask(cell) is var mask && (mask & comparer) == 0
 				|| mask == comparer || arMode && grid.GetStatus(cell) != Empty;
 
-			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer
-				|| otherCellsMap.Any(&internalChecking, comparer, arMode, grid))
+			unsafe
 			{
-				return;
+				if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer
+					|| otherCellsMap.Any(&internalChecking, comparer, arMode, grid))
+				{
+					return;
+				}
 			}
 
 			if (grid.BitwiseOrMasks(otherCellsMap) is var mask && (mask & comparer) != comparer)
@@ -427,7 +434,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
-		unsafe partial void CheckType5(
+		partial void CheckType5(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap)
 		{
@@ -476,9 +483,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
-			if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
+			unsafe
 			{
-				return;
+				if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
+				{
+					return;
+				}
 			}
 
 			accumulator.Add(

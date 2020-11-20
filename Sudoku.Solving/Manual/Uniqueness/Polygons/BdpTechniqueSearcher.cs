@@ -64,20 +64,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 		}
 
-		private static partial void CheckType1(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask, in GridMap map);
-
-		private static partial void CheckType2(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask, in GridMap map);
-
-		private static partial void CheckType3(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask, in GridMap map);
-
-		private static partial void CheckType4(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask, in GridMap map);
+		private static partial void CheckType1(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
+		private static partial void CheckType2(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
+		private static partial void CheckType3(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
+		private static partial void CheckType4(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
 	}
 }

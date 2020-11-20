@@ -120,20 +120,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			}
 		}
 
-		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
-			in GridMap extraCells, short normalDigits, int extraDigit);
-
-		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
-			in GridMap extraCells, short normalDigits, int extraDigit);
-
-		partial void CheckType3Naked(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
-			short normalDigits, short extraDigits, in GridMap extraCellsMap);
-
-		partial void CheckType14(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
-			short normalDigits, in GridMap extraCellsMap);
+		partial void CheckType1(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap, in GridMap extraCells, short normalDigits, int extraDigit);
+		partial void CheckType2(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap, in GridMap extraCells, short normalDigits, int extraDigit);
+		partial void CheckType3Naked(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap, short normalDigits, short extraDigits, in GridMap extraCellsMap);
+		partial void CheckType14(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap, short normalDigits, in GridMap extraCellsMap);
 	}
 }

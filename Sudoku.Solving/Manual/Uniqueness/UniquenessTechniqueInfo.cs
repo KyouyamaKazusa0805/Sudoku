@@ -9,6 +9,6 @@ namespace Sudoku.Solving.Manual.Uniqueness
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public abstract record UniquenessTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: TechniqueInfo(Conclusions, Views);
+	public abstract record UniquenessTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views) : TechniqueInfo(Conclusions, Views);
 }

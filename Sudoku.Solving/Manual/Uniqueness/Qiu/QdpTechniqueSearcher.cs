@@ -166,24 +166,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 		}
 
-		partial void CheckType1(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
-			in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
-
-		partial void CheckType2(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
-			in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
-
-		partial void CheckType3(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
-			in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
-
-		partial void CheckType4(
-			IList<TechniqueInfo> accumulator, bool isRow, in GridMap pair, in GridMap square,
-			in GridMap baseLine, in Pattern pattern, short comparer);
-
-		partial void CheckLockedType(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square,
-			in GridMap baseLine, in Pattern pattern, short comparer);
+		partial void CheckType1(IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
+		partial void CheckType2(IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
+		partial void CheckType3(IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
+		partial void CheckType4(IList<TechniqueInfo> accumulator, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer);
+		partial void CheckLockedType(IList<TechniqueInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer);
 	}
 }

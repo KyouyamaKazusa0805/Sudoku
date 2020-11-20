@@ -169,20 +169,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			}
 		}
 
-		partial void CheckType1(
-			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop,
-			IReadOnlyList<Link> links, in GridMap extraCellsMap);
-
-		partial void CheckType2(
-			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
-
-		unsafe partial void CheckType3(
-			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
-
-		partial void CheckType4(
-			IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
+		partial void CheckType1(IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap);
+		partial void CheckType2(IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
+		partial void CheckType3(IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
+		partial void CheckType4(IList<UlTechniqueInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
 	}
 }

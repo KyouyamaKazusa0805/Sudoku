@@ -55,16 +55,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		private static partial void CheckType1(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
-
-		private static partial void CheckType2(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
-
-		private static partial void CheckType3(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
-
-		private static partial void CheckType4(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
+		private static partial void CheckType1(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
+		private static partial void CheckType2(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
+		private static partial void CheckType3(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
+		private static partial void CheckType4(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
 	}
 }
