@@ -1,6 +1,5 @@
 ﻿#if AUTHOR_RESERVED
 
-using System;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 
@@ -36,25 +35,7 @@ namespace Sudoku.Bot
 				case "浅蓝色" or "浅蓝": colorId = ColorId.ToCustomColorId(withTransparency ? 64 : 255, 127, 187, 255); return true;
 				case "紫色" or "紫": colorId = ColorId.ToCustomColorId(withTransparency ? 64 : 255, 177, 165, 243); return true;
 				case "浅紫色" or "浅紫": colorId = ColorId.ToCustomColorId(withTransparency ? 64 : 255, 220, 212, 252); return true;
-				default:
-				{
-					string[] s = str.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries);
-					if (s.Length != 4)
-					{
-						colorId = default;
-						return false;
-					}
-
-					if (!byte.TryParse(s[0], out byte a) || !byte.TryParse(s[1], out byte r)
-						|| !byte.TryParse(s[2], out byte g) || !byte.TryParse(s[3], out byte b))
-					{
-						colorId = default;
-						return false;
-					}
-
-					colorId = ColorId.ToCustomColorId(a, r, g, b);
-					return true;
-				}
+				default: return ColorIdParser.TryParse(str, out colorId, withTransparency ? 64 : null, new[] { ',', '，' });
 			}
 		}
 	}
