@@ -266,13 +266,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 								case 0:
 								{
 									d1 = digit;
-
 									break;
 								}
 								case 1:
 								{
 									d2 = digit;
-
 									goto Finally;
 								}
 							}
@@ -315,7 +313,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					accumulator.Add(
 						new UsType4TechniqueInfo(
 							conclusions,
-							new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+							new View[]
+							{
+								new(
+									null,
+									candidateOffsets,
+									new DrawingInfo[] { new(0, region) },
+									null)
+							},
 							pattern,
 							digitsMask,
 							d1,

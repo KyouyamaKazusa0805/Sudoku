@@ -117,7 +117,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				accumulator.Add(
 					new Ur2DOr3XTechniqueInfo(
 						conclusions,
-						new View[] { new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null) },
+						new View[]
+						{
+							new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null)
+						},
 						arMode ? APlus2D : Plus2D,
 						d1,
 						d2,
@@ -228,7 +231,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											if (urCell != elimCell || d != elimDigit)
 											{
 												candidateOffsets.Add(
-													new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
+													new(
+														urCell == elimCell ? 0 : (d == digit ? 1 : 0),
+														urCell * 9 + d));
 											}
 										}
 									}
@@ -341,9 +346,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									unsafe
 									{
-										static bool internalChecking(int r, in int region) => r == region;
-										if (new GridMap { urCell, otherCell }.CoveredRegions
-											.Any(&internalChecking, region))
+										static bool same(int r, in int region) => r == region;
+										if (new GridMap { urCell, otherCell }.CoveredRegions.Any(&same, region))
 										{
 											foreach (int d in grid.GetCandidates(urCell))
 											{
@@ -363,10 +367,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									void record(in SudokuGrid grid, int d)
 									{
-										if ((grid.Exists(urCell, d), urCell != elimCell || d != digit) == (true, true))
+										if (grid.Exists(urCell, d) is true && (urCell != elimCell || d != digit))
 										{
 											candidateOffsets.Add(
-												new(urCell == elimCell ? 0 : (d == digit ? 1 : 0), urCell * 9 + d));
+												new(
+													urCell == elimCell ? 0 : (d == digit ? 1 : 0),
+													urCell * 9 + d));
 										}
 									}
 
@@ -509,7 +515,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				accumulator.Add(
 					new Ur2DOr3XTechniqueInfo(
 						conclusions,
-						new View[] { new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null) },
+						new View[]
+						{
+							new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null)
+						},
 						arMode ? APlus3X : Plus3X,
 						d1,
 						d2,
@@ -625,11 +634,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						d2,
 						urCells,
 						arMode,
-						new ConjugatePair[]
-						{
-							new(abxCell, abzCell, b),
-							new(abyCell, abzCell, a)
-						}));
+						new ConjugatePair[] { new(abxCell, abzCell, b), new(abyCell, abzCell, a) }));
 			}
 		}
 
@@ -729,10 +734,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					var conjugatePairs = new[]
+					var conjugatePairs = new ConjugatePair[]
 					{
 						new(cornerCell, begin, a),
-						new ConjugatePair(begin, abzCell, b)
+						new(begin, abzCell, b)
 					};
 					accumulator.Add(
 						new UrPlusTechniqueInfo(
@@ -742,7 +747,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								new(
 									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
-									new DrawingInfo[] { new(0, conjugatePairs[0].Line), new(1, conjugatePairs[1].Line) },
+									new DrawingInfo[]
+									{
+										new(0, conjugatePairs[0].Line),
+										new(1, conjugatePairs[1].Line)
+									},
 									null)
 							},
 							Plus3N2SL,
@@ -845,10 +854,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					var conjugatePairs = new[]
+					var conjugatePairs = new ConjugatePair[]
 					{
 						new(cornerCell, end, a),
-						new ConjugatePair(begin, abzCell, b)
+						new(begin, abzCell, b)
 					};
 					accumulator.Add(
 						new UrPlusTechniqueInfo(
@@ -858,7 +867,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								new(
 									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
-									new DrawingInfo[] { new(0, conjugatePairs[0].Line), new(1, conjugatePairs[1].Line) },
+									new DrawingInfo[]
+									{
+										new(0, conjugatePairs[0].Line),
+										new(1, conjugatePairs[1].Line)
+									},
 									null)
 							},
 							Plus3U2SL,
@@ -961,10 +974,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					var conjugatePairs = new[]
+					var conjugatePairs = new ConjugatePair[]
 					{
 						new(cornerCell, end, a),
-						new ConjugatePair(begin, abzCell, a)
+						new(begin, abzCell, a)
 					};
 					accumulator.Add(
 						new UrPlusTechniqueInfo(
@@ -974,7 +987,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								new(
 									arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
-									new DrawingInfo[] { new(0, conjugatePairs[0].Line), new(1, conjugatePairs[1].Line) },
+									new DrawingInfo[]
+									{
+										new(0, conjugatePairs[0].Line),
+										new(1, conjugatePairs[1].Line)
+									},
 									null)
 							},
 							Plus3E2SL,
@@ -1085,11 +1102,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					var conjugatePairs = new[]
+					var conjugatePairs = new ConjugatePair[]
 					{
 						new(head, begin, a),
 						new(begin, end, b),
-						new ConjugatePair(end, extra, a)
+						new(end, extra, a)
 					};
 					accumulator.Add(
 						new UrPlusTechniqueInfo(
@@ -1227,11 +1244,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						var conjugatePairs = new[]
+						var conjugatePairs = new ConjugatePair[]
 						{
 							new(abx, aby, a),
 							new(aby, abw, a),
-							new ConjugatePair(linkMap.First, linkMap.SetAt(1), b)
+							new(linkMap.First, linkMap.SetAt(1), b)
 						};
 						accumulator.Add(
 							new UrPlusTechniqueInfo(
