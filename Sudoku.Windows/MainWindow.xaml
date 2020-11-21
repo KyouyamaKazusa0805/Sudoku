@@ -467,8 +467,7 @@
 				<TabItem Header="{DynamicResource _tabItemAllPossibleSteps}" Name="_tabItemAllPossibleSteps">
 					<Grid Background="#FFE5E5E5">
 						<Grid.RowDefinitions>
-							<RowDefinition Height="14*"/>
-							<RowDefinition/>
+							<RowDefinition Height="15*"/>
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 						<ListBox Grid.Row="0" Name="_listBoxTechniques"
@@ -510,6 +509,9 @@
 								</ContextMenu>
 							</ListBox.ContextMenu>
 						</ListBox>
+						<Button Name="_buttonFindAllSteps" Grid.Row="1"
+								Content="{DynamicResource _buttonFindAllSteps}"
+								Click="ButtonFindAllSteps_Click"/>
 					</Grid>
 				</TabItem>
 

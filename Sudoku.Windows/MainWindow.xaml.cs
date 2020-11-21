@@ -730,6 +730,7 @@ namespace Sudoku.Windows
 			_comboBoxMode.IsEnabled = false;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
 			_comboBoxDifficulty.IsEnabled = false;
+			_buttonFindAllSteps.IsEnabled = false;
 
 			_imageGrid.Visibility = Visibility.Hidden;
 
@@ -776,6 +777,7 @@ namespace Sudoku.Windows
 			_comboBoxSymmetry.IsEnabled = true;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 			_comboBoxDifficulty.IsEnabled = true;
+			_buttonFindAllSteps.IsEnabled = true;
 
 			_imageGrid.Visibility = Visibility.Visible;
 
@@ -828,6 +830,7 @@ namespace Sudoku.Windows
 			_comboBoxMode.IsEnabled = false;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
 			_comboBoxDifficulty.IsEnabled = false;
+			_buttonFindAllSteps.IsEnabled = false;
 
 			_imageGrid.Visibility = Visibility.Hidden;
 
@@ -878,6 +881,7 @@ namespace Sudoku.Windows
 			_comboBoxSymmetry.IsEnabled = true;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 			_comboBoxDifficulty.IsEnabled = true;
+			_buttonFindAllSteps.IsEnabled = true;
 
 			_imageGrid.Visibility = Visibility.Visible;
 
