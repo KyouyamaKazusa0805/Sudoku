@@ -11,11 +11,11 @@
 			<ColumnDefinition Width="*" MinWidth="120" />
 			<ColumnDefinition Width="60" />
 		</Grid.ColumnDefinitions>
-		<Label Name="_label" Content=" " HorizontalAlignment="Left" VerticalAlignment="Stretch"
+		<Label x:Name="_label" Content=" " HorizontalAlignment="Left" VerticalAlignment="Stretch"
 			   Margin="0,2,0,0"/>
-		<Slider Name="_slider" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,7,10,0"
+		<Slider x:Name="_slider" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,7,10,0"
 				VerticalAlignment="Top" ValueChanged="Slider_ValueChanged"/>
-		<TextBox Name="_textBox" Grid.Column="2" HorizontalAlignment="Left" Height="23"
+		<TextBox x:Name="_textBox" Grid.Column="2" HorizontalAlignment="Left" Height="23"
 				 Margin="0,5,0,0" TextWrapping="Wrap" Text="0" HorizontalContentAlignment="Center"
 				 VerticalAlignment="Top" VerticalContentAlignment="Center" Width="57"
 				 TextChanged="TextBox_TextChanged"/>

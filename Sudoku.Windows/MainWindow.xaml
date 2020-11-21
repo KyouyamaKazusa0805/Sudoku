@@ -18,7 +18,7 @@
 			<Setter Property="VerticalContentAlignment" Value="Center" />
 		</Style>
 	</Window.Resources>
-	<Grid Name="_gridWindow">
+	<Grid x:Name="_gridWindow">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="20"/>
 			<RowDefinition Height="40"/>
@@ -34,251 +34,251 @@
 			<!-- File -->
 			<MenuItem Header="{DynamicResource _menuItemFile}">
 				<MenuItem Header="{DynamicResource _menuItemFileOpen}" InputGestureText="Ctrl + O"
-						  Name="_menuItemFileOpen"
+						  x:Name="_menuItemFileOpen"
 						  Click="MenuItemFileOpen_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemFileSave}" InputGestureText="Ctrl + S"
-						  Name="_menuItemFileSave"
+						  x:Name="_menuItemFileSave"
 						  Click="MenuItemFileSave_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemFileOpenDatabase}"
-						  Name="_menuItemFileOpenDatabase"
+						  x:Name="_menuItemFileOpenDatabase"
 						  Click="MenuItemFileOpenDatabase_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemBackupConfig}"
-						  Name="_menuItemBackupConfig"
+						  x:Name="_menuItemBackupConfig"
 						  Click="MenuItemBackupConfig_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemFileLoadPicture}"
-						  Name="_menuItemFileLoadPicture"
+						  x:Name="_menuItemFileLoadPicture"
 						  Click="MenuItemFileLoadPicture_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemFileSavePicture}"
-						  Name="_menuItemFileSavePicture"
+						  x:Name="_menuItemFileSavePicture"
 						  Click="MenuItemFileSavePicture_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemFileSaveBatch}"
-						  Name="_menuItemFileSaveBatch"
+						  x:Name="_menuItemFileSaveBatch"
 						  Click="MenuItemFileSaveBatch_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemFileGetSnapshot}" InputGestureText="Ctrl + P"
-						  Name="_menuItemFileGetSnapshot"
+						  x:Name="_menuItemFileGetSnapshot"
 						  Click="MenuItemFileGetSnapshot_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemFileQuitApp}" InputGestureText="Alt + F4"
-						  Name="_menuItemFileQuitApp" BorderThickness="2,2,2,2" BorderBrush="Red"
+						  x:Name="_menuItemFileQuitApp" BorderThickness="2,2,2,2" BorderBrush="Red"
 						  Click="MenuItemFileQuit_Click"/>
 			</MenuItem>
 
 			<!-- Options -->
 			<MenuItem Header="{DynamicResource _menuItemOptions}">
 				<MenuItem Header="{DynamicResource _menuItemOptionsShowCandidates}"
-						  Name="_menuItemOptionsShowCandidates" IsChecked="True"
+						  x:Name="_menuItemOptionsShowCandidates" IsChecked="True"
 						  Click="MenuItemOptionsShowCandidates_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemOptionsSettings}"
-						  Name="_menuItemOptionsSettings"
+						  x:Name="_menuItemOptionsSettings"
 						  Click="MenuItemOptionsSettings_Click"/>
 			</MenuItem>
 
 			<!-- Edit -->
 			<MenuItem Header="{DynamicResource _menuItemEdit}">
 				<MenuItem Header="{DynamicResource _menuItemEditUndo}" InputGestureText="Ctrl + Z"
-						  Name="_menuItemEditUndo" IsEnabled="False"
+						  x:Name="_menuItemEditUndo" IsEnabled="False"
 						  Click="MenuItemEditUndo_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemEditRedo}" InputGestureText="Ctrl + Y"
-						  Name="_menuItemEditRedo" IsEnabled="False"
+						  x:Name="_menuItemEditRedo" IsEnabled="False"
 						  Click="MenuItemEditRedo_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemClearStack}"
-						  Name="_menuItemClearStack"
+						  x:Name="_menuItemClearStack"
 						  Click="MenuItemClearStack_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemEditRecomputeCandidates}" InputGestureText="F5"
-						  Name="_menuItemEditRecomputeCandidates"
+						  x:Name="_menuItemEditRecomputeCandidates"
 						  Click="MenuItemEditRecomputeCandidates_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemEditCopy}" InputGestureText="Ctrl + C"
-						  Name="_menuItemEditCopy"
+						  x:Name="_menuItemEditCopy"
 						  Click="MenuItemEditCopy_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemEditCopyAs}">
 					<MenuItem Header="{DynamicResource _menuItemEditCopyCurrentGrid}" InputGestureText="Ctrl + Shift + C"
-							  Name="_menuItemEditCopyCurrentGrid"
+							  x:Name="_menuItemEditCopyCurrentGrid"
 							  Click="MenuItemEditCopyCurrentGrid_Click"/>
 					<MenuItem Header="{DynamicResource _menuItemEditCopyHodokuLibrary}"
-							  Name="_menuItemEditCopyHodokuLibrary"
+							  x:Name="_menuItemEditCopyHodokuLibrary"
 							  Click="MenuItemEditCopyHodokuLibrary_Click"/>
 					<MenuItem Header="{DynamicResource _menuItemEditCopyPmGrid}"
-							  Name="_menuItemEditCopyPmGrid"
+							  x:Name="_menuItemEditCopyPmGrid"
 							  Click="MenuItemEditCopyPmGrid_Click"/>
 					<MenuItem Header="{DynamicResource _menuItemEditCopyAsSukaku}"
-							  Name="_menuItemEditCopyAsSukaku"
+							  x:Name="_menuItemEditCopyAsSukaku"
 							  Click="MenuItemEditCopyAsSukaku_Click"/>
 					<MenuItem Header="{DynamicResource _menuItemEditCopyAsExcel}"
-							  Name="_menuItemEditCopyAsExcel"
+							  x:Name="_menuItemEditCopyAsExcel"
 							  Click="MenuItemEditCopyAsExcel_Click"/>
 				</MenuItem>
 				<MenuItem Header="{DynamicResource _menuItemEditPaste}" InputGestureText="Ctrl + V"
-						  Name="_menuItemEditPaste"
+						  x:Name="_menuItemEditPaste"
 						  Click="MenuItemEditPaste_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemEditPasteAsSukaku}"
-						  Name="_menuItemEditPasteAsSukaku"
+						  x:Name="_menuItemEditPasteAsSukaku"
 						  Click="MenuItemEditPasteAsSukaku_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemEditFix}" InputGestureText="Ctrl + `"
-						  Name="_menuItemEditFix"
+						  x:Name="_menuItemEditFix"
 						  Click="MenuItemEditFix_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemEditUnfix}" InputGestureText="Ctrl + Shift + `"
-						  Name="_menuItemEditUnfix"
+						  x:Name="_menuItemEditUnfix"
 						  Click="MenuItemEditUnfix_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemEditReset}"
-						  Name="_menuItemEditReset" BorderBrush="Red" BorderThickness="2,2,2,2"
+						  x:Name="_menuItemEditReset" BorderBrush="Red" BorderThickness="2,2,2,2"
 						  Click="MenuItemEditReset_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemEditClear}" InputGestureText="Ctrl + Shift + N"
-						  Name="_menuItemEditClear" BorderBrush="Red" BorderThickness="2,2,2,2"
+						  x:Name="_menuItemEditClear" BorderBrush="Red" BorderThickness="2,2,2,2"
 						  Click="MenuItemEditClear_Click"/>
 			</MenuItem>
 
 			<!-- Generate -->
 			<MenuItem Header="{DynamicResource _menuItemGenerate}">
 				<MenuItem Header="{DynamicResource _menuItemGenerateWithSymmetry}"
-						  Name="_menuItemGenerateWithSymmetry"
+						  x:Name="_menuItemGenerateWithSymmetry"
 						  Click="MenuItemGenerateWithSymmetry_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemGenerateHardPattern}" InputGestureText="Ctrl + H"
-						  Name="_menuItemGenerateHardPattern"
+						  x:Name="_menuItemGenerateHardPattern"
 						  Click="MenuItemGenerateHardPattern_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemGenerateWithTechniqueFiltering}"
-						  Name="_menuItemGenerateWithTechniqueFiltering"
+						  x:Name="_menuItemGenerateWithTechniqueFiltering"
 						  Click="MenuItemGenerateWithTechniqueFiltering_Click"/>
 			</MenuItem>
 
 			<!-- Analyze -->
 			<MenuItem Header="{DynamicResource _menuItemAnalyze}">
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeAnalyze}" InputGestureText="F9"
-						  Name="_menuItemAnalyzeAnalyze"
+						  x:Name="_menuItemAnalyzeAnalyze"
 						  Click="MenuItemAnalyzeAnalyze_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeSolve}" InputGestureText="F10"
-						  Name="_menuItemAnalyzeSolve"
+						  x:Name="_menuItemAnalyzeSolve"
 						  Click="MenuItemAnalyzeSolve_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowFullHouses}"
-						  Name="_menuItemAnalyzeShowFullHouses"
+						  x:Name="_menuItemAnalyzeShowFullHouses"
 						  Click="MenuItemShowFullHouses_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowLastDigits}"
-						  Name="_menuItemAnalyzeShowLastDigits"
+						  x:Name="_menuItemAnalyzeShowLastDigits"
 						  Click="MenuItemShowLastDigits_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeSeMode}"
-						  Name="_menuItemAnalyzeSeMode"
+						  x:Name="_menuItemAnalyzeSeMode"
 						  Click="MenuItemAnalyzeSeMode_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeFastSearch}"
-						  Name="_menuItemAnalyzeFastSearch"
+						  x:Name="_menuItemAnalyzeFastSearch"
 						  Click="MenuItemAnalyzeFastSearch_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeCheckConclusionValidityAfterSearched}"
-						  Name="_menuItemAnalyzeCheckConclusionValidityAfterSearched"
+						  x:Name="_menuItemAnalyzeCheckConclusionValidityAfterSearched"
 						  BorderBrush="Green" BorderThickness="2,2,2,2"
 						  Click="MenuItemCheckConclusionValidityAfterSearched_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeCheckGurthSymmetricalPlacement}"
-						  Name="_menuItemAnalyzeCheckGurthSymmetricalPlacement"
+						  x:Name="_menuItemAnalyzeCheckGurthSymmetricalPlacement"
 						  Click="MenuItemCheckGurthSymmetricalPlacement_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeOptimizeApplyingOrder}"
-						  Name="_menuItemAnalyzeOptimizeApplyingOrder"
+						  x:Name="_menuItemAnalyzeOptimizeApplyingOrder"
 						  Click="MenuItemOptimizeApplyingOrder_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeUseCalculationPriority}"
-						  Name="_menuItemAnalyzeUseCalculationPriority"
+						  x:Name="_menuItemAnalyzeUseCalculationPriority"
 						  Click="MenuItemUseCalculationPriority_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeExport}"
-						  Name="_menuItemAnalyzeExport"
+						  x:Name="_menuItemAnalyzeExport"
 						  Click="MenuItemExport_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeBugN}"
-						  Name="_menuItemAnalyzeBugN"
+						  x:Name="_menuItemAnalyzeBugN"
 						  Click="MenuItemAnalyzeBugN_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeBackdoor}"
-						  Name="_menuItemAnalyzeBackdoor"
+						  x:Name="_menuItemAnalyzeBackdoor"
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
 			</MenuItem>
 			
 			<!-- Views -->
 			<MenuItem Header="{DynamicResource _menuItemViews}">
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowBugN}"
-						  Name="_menuItemAnalyzeShowBugN"
+						  x:Name="_menuItemAnalyzeShowBugN"
 						  Click="MenuItemViewsShowBugN_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeBackdoorView}"
-						  Name="_menuItemAnalyzeBackdoorView"
+						  x:Name="_menuItemAnalyzeBackdoorView"
 						  Click="MenuItemViewsBackdoorView_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemViewsGspView}"
-						  Name="_menuItemViewsGspView"
+						  x:Name="_menuItemViewsGspView"
 						  Click="MenuItemViewsGspView_Click"/>
 			</MenuItem>
 
 			<!-- Tools -->
 			<MenuItem Header="{DynamicResource _menuItemTools}">
-				<MenuItem Header="{DynamicResource _menuItemToolsBatch}" Name="_menuItemToolsBatch"
+				<MenuItem Header="{DynamicResource _menuItemToolsBatch}" x:Name="_menuItemToolsBatch"
 						  Click="MenuItemToolsBatch_Click"/>
 			</MenuItem>
 
 			<!-- Transform -->
 			<MenuItem Header="{DynamicResource _menuItemTransform}">
 				<MenuItem Header="{DynamicResource _menuItemTransformMirrorLeftRight}"
-						  Name="_menuItemTransformMirrorLeftRight"
+						  x:Name="_menuItemTransformMirrorLeftRight"
 						  Click="MenuItemTransformMirrorLeftRight_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemTransformMirrorTopBotton}"
-						  Name="_menuItemTransformMirrorTopBotton"
+						  x:Name="_menuItemTransformMirrorTopBotton"
 						  Click="MenuItemTransformMirrorTopBotton_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemTransformMirrorDiagonal}"
-						  Name="_menuItemTransformMirrorDiagonal"
+						  x:Name="_menuItemTransformMirrorDiagonal"
 						  Click="MenuItemTransformMirrorDiagonal_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemTransformMirrorAntidiagonal}"
-						  Name="_menuItemTransformMirrorAntidiagonal"
+						  x:Name="_menuItemTransformMirrorAntidiagonal"
 						  Click="MenuItemTransformMirrorAntidiagonal_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemTransformRotateClockwise}"
-						  Name="_menuItemTransformRotateClockwise"
+						  x:Name="_menuItemTransformRotateClockwise"
 						  Click="MenuItemTransformRotateClockwise_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemTransformRotateCounterclockwise}"
-						  Name="_menuItemTransformRotateCounterclockwise"
+						  x:Name="_menuItemTransformRotateCounterclockwise"
 						  Click="MenuItemTransformRotateCounterclockwise_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemTransformRotatePi}"
-						  Name="_menuItemTransformRotatePi"
+						  x:Name="_menuItemTransformRotatePi"
 						  Click="MenuItemTransformRotatePi_Click"/>
 			</MenuItem>
 
 			<!-- Languages -->
 			<MenuItem Header="{DynamicResource _menuItemLanguages}">
 				<MenuItem Header="{DynamicResource _menuItemLanguagesChinese}"
-						  Name="_menuItemLanguagesChinese"
+						  x:Name="_menuItemLanguagesChinese"
 						  Click="MenuItemLanguagesChinese_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemLanguagesEnglish}"
-						  Name="_menuItemLanguagesEnglish"
+						  x:Name="_menuItemLanguagesEnglish"
 						  Click="MenuItemLanguagesEnglish_Click"/>
 			</MenuItem>
 
 			<!-- About -->
 			<MenuItem Header="{DynamicResource _menuItemAbout}">
 				<MenuItem Header="{DynamicResource _menuItemAboutMe}"
-						  Name="_menuItemAboutMe"
+						  x:Name="_menuItemAboutMe"
 						  Click="MenuItemAboutMe_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAboutSpecialThanks}"
-						  Name="_menuItemAboutSpecialThanks"
+						  x:Name="_menuItemAboutSpecialThanks"
 						  Click="MenuItemAboutSpecialThanks_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemAboutImplementedTechniques}"
-						  Name="_menuItemAboutImplementedTechniques"
+						  x:Name="_menuItemAboutImplementedTechniques"
 						  Click="MenuItemAboutImplementedTechniques_Click"/>
 			</MenuItem>
 		</Menu>
 
 		<!-- Row 1 -->
-		<ToolBar Grid.Row="1" Grid.ColumnSpan="2" Name="_toolBarMain">
-			<Image Source="Resources\ImageIcon-UndoDisable.png" Name="_imageUndoIcon"
+		<ToolBar Grid.Row="1" Grid.ColumnSpan="2" x:Name="_toolBarMain">
+			<Image Source="Resources\ImageIcon-UndoDisable.png" x:Name="_imageUndoIcon"
 				   MouseLeftButtonDown="ImageUndoIcon_MouseLeftButtonDown">
 				<Image.ToolTip>
 					<ToolTip Content="{DynamicResource TooltipUndo}"/>
 				</Image.ToolTip>
 			</Image>
-			<Image Source="Resources\ImageIcon-RedoDisable.png" Name="_imageRedoIcon"
+			<Image Source="Resources\ImageIcon-RedoDisable.png" x:Name="_imageRedoIcon"
 				   MouseLeftButtonDown="ImageRedoIcon_MouseLeftButtonDown">
 				<Image.ToolTip>
 					<ToolTip Content="{DynamicResource TooltipRedo}"/>
 				</Image.ToolTip>
 			</Image>
 			<Separator/>
-			<Image Source="Resources\ImageIcon-Generate.png" Name="_imageGeneratingIcon"
+			<Image Source="Resources\ImageIcon-Generate.png" x:Name="_imageGeneratingIcon"
 				   Cursor="Hand"
 				   MouseLeftButtonDown="ImageGeneratingIcon_MouseLeftButtonDown">
 				<Image.ToolTip>
@@ -287,16 +287,16 @@
 			</Image>
 			<Label Content="{DynamicResource _labelMode}"
 				   HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<ComboBox Name="_comboBoxMode" Focusable="False"
+			<ComboBox x:Name="_comboBoxMode" Focusable="False"
 					  SelectionChanged="ComboBoxMode_SelectionChanged">
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemSymmetryMode}"
-							  Name="_comboBoxItemSymmetryMode"/>
+							  x:Name="_comboBoxItemSymmetryMode"/>
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemHardMode}"
-							  Name="_comboBoxItemHardMode"/>
+							  x:Name="_comboBoxItemHardMode"/>
 			</ComboBox>
 			<Label Content="{DynamicResource _labelSymmetry}"
-				   Name="_labelSymmetry" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<ComboBox Name="_comboBoxSymmetry" Focusable="False"
+				   x:Name="_labelSymmetry" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<ComboBox x:Name="_comboBoxSymmetry" Focusable="False"
 					  SelectionChanged="ComboBoxSymmetry_SelectionChanged">
 				<ComboBoxItem Content="{DynamicResource None}"/>
 				<ComboBoxItem Content="{DynamicResource Central}"/>
@@ -309,8 +309,8 @@
 				<ComboBoxItem Content="{DynamicResource All}"/>
 			</ComboBox>
 			<Label Content="{DynamicResource _labelBackdoorFilteringDepth}"
-				   Name="_labelBackdoorFilteringDepth" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<ComboBox Name="_comboBoxBackdoorFilteringDepth" Focusable="False"
+				   x:Name="_labelBackdoorFilteringDepth" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<ComboBox x:Name="_comboBoxBackdoorFilteringDepth" Focusable="False"
 					  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
 					  SelectedIndex="0"
 					  SelectionChanged="ComboBoxBackdoorFilteringDepth_SelectionChanged">
@@ -321,7 +321,7 @@
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemBackdoorFilteringDepth3}"/>
 			</ComboBox>
 			<Label Content="{DynamicResource _labelDifficulty}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<ComboBox Name="_comboBoxDifficulty" HorizontalAlignment="Center" VerticalAlignment="Center"
+			<ComboBox x:Name="_comboBoxDifficulty" HorizontalAlignment="Center" VerticalAlignment="Center"
 					  SelectedIndex="0" Focusable="False"
 					  SelectionChanged="ComboBoxDifficulty_SelectionChanged">
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty0}"/>
@@ -332,7 +332,7 @@
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty5}"/>
 			</ComboBox>
 			<Separator/>
-			<Image Source="Resources\Solve.png" Name="_imageSolve"
+			<Image Source="Resources\Solve.png" x:Name="_imageSolve"
 				   Cursor="Hand"
 				   MouseLeftButtonDown="ImageSolve_MouseLeftButtonDown">
 				<Image.ToolTip>
@@ -342,7 +342,7 @@
 		</ToolBar>
 
 		<!-- Row 2 -->
-		<Grid Grid.Row="2" Grid.ColumnSpan="2" Name="_gridMain">
+		<Grid Grid.Row="2" Grid.ColumnSpan="2" x:Name="_gridMain">
 			<Grid.RowDefinitions>
 				<RowDefinition/>
 				<RowDefinition Height="50"/>
@@ -355,68 +355,68 @@
 
 			<!-- Inner row 0 -->
 			<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-				   Name="_imageGrid" Grid.Row="0" Grid.Column="0" Width="576" Height="576"
+				   x:Name="_imageGrid" Grid.Row="0" Grid.Column="0" Width="576" Height="576"
 				   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
 				   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"
 				   MouseRightButtonUp="ImageGrid_MouseRightButtonUp"
 				   ContextMenuOpening="ImageGrid_ContextMenuOpening"
 				   Panel.ZIndex="1">
 				<Image.ContextMenu>
-					<ContextMenu Name="_imageGridContextMenu">
+					<ContextMenu x:Name="_imageGridContextMenu">
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet1}"
-								  Name="_menuItemImageGridSet1"
+								  x:Name="_menuItemImageGridSet1"
 								  Click="MenuItemImageGridSet1_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet2}"
-								  Name="_menuItemImageGridSet2"
+								  x:Name="_menuItemImageGridSet2"
 								  Click="MenuItemImageGridSet2_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet3}"
-								  Name="_menuItemImageGridSet3"
+								  x:Name="_menuItemImageGridSet3"
 								  Click="MenuItemImageGridSet3_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet4}"
-								  Name="_menuItemImageGridSet4"
+								  x:Name="_menuItemImageGridSet4"
 								  Click="MenuItemImageGridSet4_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet5}"
-								  Name="_menuItemImageGridSet5"
+								  x:Name="_menuItemImageGridSet5"
 								  Click="MenuItemImageGridSet5_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet6}"
-								  Name="_menuItemImageGridSet6"
+								  x:Name="_menuItemImageGridSet6"
 								  Click="MenuItemImageGridSet6_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet7}"
-								  Name="_menuItemImageGridSet7"
+								  x:Name="_menuItemImageGridSet7"
 								  Click="MenuItemImageGridSet7_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet8}"
-								  Name="_menuItemImageGridSet8"
+								  x:Name="_menuItemImageGridSet8"
 								  Click="MenuItemImageGridSet8_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet9}"
-								  Name="_menuItemImageGridSet9"
+								  x:Name="_menuItemImageGridSet9"
 								  Click="MenuItemImageGridSet9_Click"/>
 						<Separator/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete1}"
-								  Name="_menuItemImageGridDelete1"
+								  x:Name="_menuItemImageGridDelete1"
 								  Click="MenuItemImageGridDelete1_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete2}"
-								  Name="_menuItemImageGridDelete2"
+								  x:Name="_menuItemImageGridDelete2"
 								  Click="MenuItemImageGridDelete2_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete3}"
-								  Name="_menuItemImageGridDelete3"
+								  x:Name="_menuItemImageGridDelete3"
 								  Click="MenuItemImageGridDelete3_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete4}"
-								  Name="_menuItemImageGridDelete4"
+								  x:Name="_menuItemImageGridDelete4"
 								  Click="MenuItemImageGridDelete4_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete5}"
-								  Name="_menuItemImageGridDelete5"
+								  x:Name="_menuItemImageGridDelete5"
 								  Click="MenuItemImageGridDelete5_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete6}"
-								  Name="_menuItemImageGridDelete6"
+								  x:Name="_menuItemImageGridDelete6"
 								  Click="MenuItemImageGridDelete6_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete7}"
-								  Name="_menuItemImageGridDelete7"
+								  x:Name="_menuItemImageGridDelete7"
 								  Click="MenuItemImageGridDelete7_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete8}"
-								  Name="_menuItemImageGridDelete8"
+								  x:Name="_menuItemImageGridDelete8"
 								  Click="MenuItemImageGridDelete8_Click"/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete9}"
-								  Name="_menuItemImageGridDelete9"
+								  x:Name="_menuItemImageGridDelete9"
 								  Click="MenuItemImageGridDelete9_Click"/>
 					</ContextMenu>
 				</Image.ContextMenu>
@@ -431,31 +431,31 @@
 				</TextBlock.LayoutTransform>
 			</TextBlock>
 			<GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"
-						  Name="_gridSplitterColumn01" Focusable="False"
+						  x:Name="_gridSplitterColumn01" Focusable="False"
 						  DragDelta="GridSplitterColumn01_DragDelta"
 						  DragCompleted="GridSplitterColumn01_DragCompleted"/>
-			<TabControl Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Name="_tabControlInfo" Focusable="False"
+			<TabControl Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" x:Name="_tabControlInfo" Focusable="False"
 						HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsTabStop="False"
 						SelectionChanged="TabControlInfo_SelectionChanged">
 				<!-- Summary -->
-				<TabItem Header="{DynamicResource _tabItemSummary}" Name="_tabItemSummary">
+				<TabItem Header="{DynamicResource _tabItemSummary}" x:Name="_tabItemSummary">
 					<Grid Background="#FFE5E5E5">
-						<ListView Name="_listViewSummary"/>
+						<ListView x:Name="_listViewSummary"/>
 					</Grid>
 				</TabItem>
 
 				<!-- Solution Path -->
-				<TabItem Header="{DynamicResource _tabItemSolutionPath}" Name="_tabItemSolutionPath">
+				<TabItem Header="{DynamicResource _tabItemSolutionPath}" x:Name="_tabItemSolutionPath">
 					<Grid Background="#FFE5E5E5">
-						<ListBox Name="_listBoxPaths"
+						<ListBox x:Name="_listBoxPaths"
 								 SelectionChanged="ListBoxPaths_SelectionChanged">
 							<ListBox.ContextMenu>
 								<ContextMenu>
 									<MenuItem Header="{DynamicResource _contextListBoxPathsCopyCurrentStep}"
-											  Name="_contextListBoxPathsCopyCurrentStep"
+											  x:Name="_contextListBoxPathsCopyCurrentStep"
 											  Click="ContextListBoxPathsCopyCurrentStep_Click"/>
 									<MenuItem Header="{DynamicResource _contextListBoxPathsCopyAllSteps}"
-											  Name="_contextListBoxPathsCopyAllSteps"
+											  x:Name="_contextListBoxPathsCopyAllSteps"
 											  Click="ContextListBoxPathsCopyAllSteps_Click"/>
 								</ContextMenu>
 							</ListBox.ContextMenu>
@@ -464,13 +464,13 @@
 				</TabItem>
 
 				<!-- All possible steps -->
-				<TabItem Header="{DynamicResource _tabItemAllPossibleSteps}" Name="_tabItemAllPossibleSteps">
+				<TabItem Header="{DynamicResource _tabItemAllPossibleSteps}" x:Name="_tabItemAllPossibleSteps">
 					<Grid Background="#FFE5E5E5">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="15*"/>
 							<RowDefinition/>
 						</Grid.RowDefinitions>
-						<ListBox Grid.Row="0" Name="_listBoxTechniques"
+						<ListBox Grid.Row="0" x:Name="_listBoxTechniques"
 								 HorizontalContentAlignment="Left"
 								 VerticalContentAlignment="Center"
 								 SelectionChanged="ListBoxTechniques_SelectionChanged">
@@ -502,21 +502,21 @@
 								</GroupStyle>
 							</ListBox.GroupStyle>
 							<ListBox.ContextMenu>
-								<ContextMenu Name="_contextMenuTechniques">
+								<ContextMenu x:Name="_contextMenuTechniques">
 									<MenuItem Header="{DynamicResource _contextMenuListBoxTechniquesApply}"
-											  Name="_contextMenuListBoxTechniquesApply"
+											  x:Name="_contextMenuListBoxTechniquesApply"
 											  Click="ContextMenuTechniquesApply_Click"/>
 								</ContextMenu>
 							</ListBox.ContextMenu>
 						</ListBox>
-						<Button Name="_buttonFindAllSteps" Grid.Row="1"
+						<Button x:Name="_buttonFindAllSteps" Grid.Row="1"
 								Content="{DynamicResource _buttonFindAllSteps}"
 								Click="ButtonFindAllSteps_Click"/>
 					</Grid>
 				</TabItem>
 
 				<!-- Drawing -->
-				<TabItem Header="{DynamicResource _tabItemDrawing}" Name="_tabItemDrawing">
+				<TabItem Header="{DynamicResource _tabItemDrawing}" x:Name="_tabItemDrawing">
 					<Grid Background="#FFE5E5E5">
 						<Grid.RowDefinitions>
 							<RowDefinition/>
@@ -536,7 +536,7 @@
 								<ColumnDefinition/>
 							</Grid.ColumnDefinitions>
 							<Label Content="{DynamicResource _labelChooseColorForCells}"
-								   Name="_labelChooseColorForCells" Grid.Row="0" Grid.ColumnSpan="3"
+								   x:Name="_labelChooseColorForCells" Grid.Row="0" Grid.ColumnSpan="3"
 								   HorizontalAlignment="Center" VerticalAlignment="Center"/>
 							<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
 								<Grid.RowDefinitions>
@@ -552,37 +552,37 @@
 									<ColumnDefinition/>
 									<ColumnDefinition/>
 								</Grid.ColumnDefinitions>
-								<Button Name="_buttonCellColor1" Grid.Row="0" Grid.Column="0"
+								<Button x:Name="_buttonCellColor1" Grid.Row="0" Grid.Column="0"
 										Click="ButtonCellColor1_Click"/>
-								<Button Name="_buttonCellColor2" Grid.Row="0" Grid.Column="1"
+								<Button x:Name="_buttonCellColor2" Grid.Row="0" Grid.Column="1"
 										Click="ButtonCellColor2_Click"/>
-								<Button Name="_buttonCellColor3" Grid.Row="0" Grid.Column="2"
+								<Button x:Name="_buttonCellColor3" Grid.Row="0" Grid.Column="2"
 										Click="ButtonCellColor3_Click"/>
-								<Button Name="_buttonCellColor4" Grid.Row="0" Grid.Column="3"
+								<Button x:Name="_buttonCellColor4" Grid.Row="0" Grid.Column="3"
 										Click="ButtonCellColor4_Click"/>
-								<Button Name="_buttonCellColor5" Grid.Row="0" Grid.Column="4"
+								<Button x:Name="_buttonCellColor5" Grid.Row="0" Grid.Column="4"
 										Click="ButtonCellColor5_Click"/>
-								<Button Name="_buttonCellColor6" Grid.Row="0" Grid.Column="5"
+								<Button x:Name="_buttonCellColor6" Grid.Row="0" Grid.Column="5"
 										Click="ButtonCellColor6_Click"/>
-								<Button Name="_buttonCellColor7" Grid.Row="0" Grid.Column="6"
+								<Button x:Name="_buttonCellColor7" Grid.Row="0" Grid.Column="6"
 										Click="ButtonCellColor7_Click"/>
-								<Button Name="_buttonCellColor8" Grid.Row="1" Grid.Column="0"
+								<Button x:Name="_buttonCellColor8" Grid.Row="1" Grid.Column="0"
 										Click="ButtonCellColor8_Click"/>
-								<Button Name="_buttonCellColor9" Grid.Row="1" Grid.Column="1"
+								<Button x:Name="_buttonCellColor9" Grid.Row="1" Grid.Column="1"
 										Click="ButtonCellColor9_Click"/>
-								<Button Name="_buttonCellColor10" Grid.Row="1" Grid.Column="2"
+								<Button x:Name="_buttonCellColor10" Grid.Row="1" Grid.Column="2"
 										Click="ButtonCellColor10_Click"/>
-								<Button Name="_buttonCellColor11" Grid.Row="1" Grid.Column="3"
+								<Button x:Name="_buttonCellColor11" Grid.Row="1" Grid.Column="3"
 										Click="ButtonCellColor11_Click"/>
-								<Button Name="_buttonCellColor12" Grid.Row="1" Grid.Column="4"
+								<Button x:Name="_buttonCellColor12" Grid.Row="1" Grid.Column="4"
 										Click="ButtonCellColor12_Click"/>
-								<Button Name="_buttonCellColor13" Grid.Row="1" Grid.Column="5"
+								<Button x:Name="_buttonCellColor13" Grid.Row="1" Grid.Column="5"
 										Click="ButtonCellColor13_Click"/>
-								<Button Name="_buttonCellColor14" Grid.Row="1" Grid.Column="6"
+								<Button x:Name="_buttonCellColor14" Grid.Row="1" Grid.Column="6"
 										Click="ButtonCellColor14_Click"/>
 							</Grid>
 							<Button Content="{DynamicResource _buttonColorReset}"
-									Name="_buttonCellReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+									x:Name="_buttonCellReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
 									HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
 									Background="White"
 									Click="ButtonCellReset_Click"/>
@@ -599,7 +599,7 @@
 								<ColumnDefinition/>
 							</Grid.ColumnDefinitions>
 							<Label Content="{DynamicResource _labelChooseColorForCandidates}"
-								   Name="_labelChooseColorForCandidates" Grid.Row="0" Grid.ColumnSpan="3"
+								   x:Name="_labelChooseColorForCandidates" Grid.Row="0" Grid.ColumnSpan="3"
 								   HorizontalAlignment="Center" VerticalAlignment="Center"/>
 							<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
 								<Grid.RowDefinitions>
@@ -615,37 +615,37 @@
 									<ColumnDefinition/>
 									<ColumnDefinition/>
 								</Grid.ColumnDefinitions>
-								<Button Name="_buttonCandidateColor1" Grid.Row="0" Grid.Column="0"
+								<Button x:Name="_buttonCandidateColor1" Grid.Row="0" Grid.Column="0"
 										Click="ButtonCandidateColor1_Click"/>
-								<Button Name="_buttonCandidateColor2" Grid.Row="0" Grid.Column="1"
+								<Button x:Name="_buttonCandidateColor2" Grid.Row="0" Grid.Column="1"
 										Click="ButtonCandidateColor2_Click"/>
-								<Button Name="_buttonCandidateColor3" Grid.Row="0" Grid.Column="2"
+								<Button x:Name="_buttonCandidateColor3" Grid.Row="0" Grid.Column="2"
 										Click="ButtonCandidateColor3_Click"/>
-								<Button Name="_buttonCandidateColor4" Grid.Row="0" Grid.Column="3"
+								<Button x:Name="_buttonCandidateColor4" Grid.Row="0" Grid.Column="3"
 										Click="ButtonCandidateColor4_Click"/>
-								<Button Name="_buttonCandidateColor5" Grid.Row="0" Grid.Column="4"
+								<Button x:Name="_buttonCandidateColor5" Grid.Row="0" Grid.Column="4"
 										Click="ButtonCandidateColor5_Click"/>
-								<Button Name="_buttonCandidateColor6" Grid.Row="0" Grid.Column="5"
+								<Button x:Name="_buttonCandidateColor6" Grid.Row="0" Grid.Column="5"
 										Click="ButtonCandidateColor6_Click"/>
-								<Button Name="_buttonCandidateColor7" Grid.Row="0" Grid.Column="6"
+								<Button x:Name="_buttonCandidateColor7" Grid.Row="0" Grid.Column="6"
 										Click="ButtonCandidateColor7_Click"/>
-								<Button Name="_buttonCandidateColor8" Grid.Row="1" Grid.Column="0"
+								<Button x:Name="_buttonCandidateColor8" Grid.Row="1" Grid.Column="0"
 										Click="ButtonCandidateColor8_Click"/>
-								<Button Name="_buttonCandidateColor9" Grid.Row="1" Grid.Column="1"
+								<Button x:Name="_buttonCandidateColor9" Grid.Row="1" Grid.Column="1"
 										Click="ButtonCandidateColor9_Click"/>
-								<Button Name="_buttonCandidateColor10" Grid.Row="1" Grid.Column="2"
+								<Button x:Name="_buttonCandidateColor10" Grid.Row="1" Grid.Column="2"
 										Click="ButtonCandidateColor10_Click"/>
-								<Button Name="_buttonCandidateColor11" Grid.Row="1" Grid.Column="3"
+								<Button x:Name="_buttonCandidateColor11" Grid.Row="1" Grid.Column="3"
 										Click="ButtonCandidateColor11_Click"/>
-								<Button Name="_buttonCandidateColor12" Grid.Row="1" Grid.Column="4"
+								<Button x:Name="_buttonCandidateColor12" Grid.Row="1" Grid.Column="4"
 										Click="ButtonCandidateColor12_Click"/>
-								<Button Name="_buttonCandidateColor13" Grid.Row="1" Grid.Column="5"
+								<Button x:Name="_buttonCandidateColor13" Grid.Row="1" Grid.Column="5"
 										Click="ButtonCandidateColor13_Click"/>
-								<Button Name="_buttonCandidateColor14" Grid.Row="1" Grid.Column="6"
+								<Button x:Name="_buttonCandidateColor14" Grid.Row="1" Grid.Column="6"
 										Click="ButtonCandidateColor14_Click"/>
 							</Grid>
 							<Button Content="{DynamicResource _buttonColorReset}"
-									Name="_buttonCandidateReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+									x:Name="_buttonCandidateReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
 									HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
 									Background="White"
 									Click="ButtonCellReset_Click"/>
@@ -662,7 +662,7 @@
 								<ColumnDefinition/>
 							</Grid.ColumnDefinitions>
 							<Label Content="{DynamicResource _labelChooseColorForRegions}"
-								   Name="_labelChooseColorForRegions" Grid.Row="0" Grid.ColumnSpan="3"
+								   x:Name="_labelChooseColorForRegions" Grid.Row="0" Grid.ColumnSpan="3"
 								   HorizontalAlignment="Center" VerticalAlignment="Center"/>
 							<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
 								<Grid.RowDefinitions>
@@ -678,37 +678,37 @@
 									<ColumnDefinition/>
 									<ColumnDefinition/>
 								</Grid.ColumnDefinitions>
-								<Button Name="_buttonRegionColor1" Grid.Row="0" Grid.Column="0"
+								<Button x:Name="_buttonRegionColor1" Grid.Row="0" Grid.Column="0"
 										Click="ButtonRegionColor1_Click"/>
-								<Button Name="_buttonRegionColor2" Grid.Row="0" Grid.Column="1"
+								<Button x:Name="_buttonRegionColor2" Grid.Row="0" Grid.Column="1"
 										Click="ButtonRegionColor2_Click"/>
-								<Button Name="_buttonRegionColor3" Grid.Row="0" Grid.Column="2"
+								<Button x:Name="_buttonRegionColor3" Grid.Row="0" Grid.Column="2"
 										Click="ButtonRegionColor3_Click"/>
-								<Button Name="_buttonRegionColor4" Grid.Row="0" Grid.Column="3"
+								<Button x:Name="_buttonRegionColor4" Grid.Row="0" Grid.Column="3"
 										Click="ButtonRegionColor4_Click"/>
-								<Button Name="_buttonRegionColor5" Grid.Row="0" Grid.Column="4"
+								<Button x:Name="_buttonRegionColor5" Grid.Row="0" Grid.Column="4"
 										Click="ButtonRegionColor5_Click"/>
-								<Button Name="_buttonRegionColor6" Grid.Row="0" Grid.Column="5"
+								<Button x:Name="_buttonRegionColor6" Grid.Row="0" Grid.Column="5"
 										Click="ButtonRegionColor6_Click"/>
-								<Button Name="_buttonRegionColor7" Grid.Row="0" Grid.Column="6"
+								<Button x:Name="_buttonRegionColor7" Grid.Row="0" Grid.Column="6"
 										Click="ButtonRegionColor7_Click"/>
-								<Button Name="_buttonRegionColor8" Grid.Row="1" Grid.Column="0"
+								<Button x:Name="_buttonRegionColor8" Grid.Row="1" Grid.Column="0"
 										Click="ButtonRegionColor8_Click"/>
-								<Button Name="_buttonRegionColor9" Grid.Row="1" Grid.Column="1"
+								<Button x:Name="_buttonRegionColor9" Grid.Row="1" Grid.Column="1"
 										Click="ButtonRegionColor9_Click"/>
-								<Button Name="_buttonRegionColor10" Grid.Row="1" Grid.Column="2"
+								<Button x:Name="_buttonRegionColor10" Grid.Row="1" Grid.Column="2"
 										Click="ButtonRegionColor10_Click"/>
-								<Button Name="_buttonRegionColor11" Grid.Row="1" Grid.Column="3"
+								<Button x:Name="_buttonRegionColor11" Grid.Row="1" Grid.Column="3"
 										Click="ButtonRegionColor11_Click"/>
-								<Button Name="_buttonRegionColor12" Grid.Row="1" Grid.Column="4"
+								<Button x:Name="_buttonRegionColor12" Grid.Row="1" Grid.Column="4"
 										Click="ButtonRegionColor12_Click"/>
-								<Button Name="_buttonRegionColor13" Grid.Row="1" Grid.Column="5"
+								<Button x:Name="_buttonRegionColor13" Grid.Row="1" Grid.Column="5"
 										Click="ButtonRegionColor13_Click"/>
-								<Button Name="_buttonRegionColor14" Grid.Row="1" Grid.Column="6"
+								<Button x:Name="_buttonRegionColor14" Grid.Row="1" Grid.Column="6"
 										Click="ButtonRegionColor14_Click"/>
 							</Grid>
 							<Button Content="{DynamicResource _buttonColorReset}"
-									Name="_buttonRegionReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+									x:Name="_buttonRegionReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
 									HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
 									Background="White"
 									Click="ButtonCellReset_Click"/>
@@ -729,24 +729,24 @@
 					<ColumnDefinition/>
 					<ColumnDefinition Width="2*"/>
 				</Grid.ColumnDefinitions>
-				<TextBox Grid.Column="1" Name="_textBoxJumpTo" HorizontalContentAlignment="Center"
+				<TextBox Grid.Column="1" x:Name="_textBoxJumpTo" HorizontalContentAlignment="Center"
 						 VerticalContentAlignment="Center" MaxLength="9" IsEnabled="False"
 						 TextChanged="TextBoxJumpTo_TextChanged"/>
-				<Button Grid.Column="2" Name="_buttonFirst" Content="&lt;&lt;"
+				<Button Grid.Column="2" x:Name="_buttonFirst" Content="&lt;&lt;"
 						Click="ButtonFirst_Click" IsEnabled="False"/>
-				<Button Grid.Column="3" Name="_buttonPrev" Content="&lt;"
+				<Button Grid.Column="3" x:Name="_buttonPrev" Content="&lt;"
 						Click="ButtonPrev_Click" IsEnabled="False"/>
-				<Button Grid.Column="4" Name="_buttonNext" Content="&gt;"
+				<Button Grid.Column="4" x:Name="_buttonNext" Content="&gt;"
 						Click="ButtonNext_Click" IsEnabled="False"/>
-				<Button Grid.Column="5" Name="_buttonLast" Content="&gt;&gt;"
+				<Button Grid.Column="5" x:Name="_buttonLast" Content="&gt;&gt;"
 						Click="ButtonLast_Click" IsEnabled="False"/>
-				<Label Grid.Column="6" Grid.ColumnSpan="2" Name="_labelPuzzleNumber"
+				<Label Grid.Column="6" Grid.ColumnSpan="2" x:Name="_labelPuzzleNumber"
 					   HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Grid>
 		</Grid>
 
 		<!-- Row 3 -->
 		<TextBox Grid.Row="3" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
-				 TextWrapping="Wrap" Name="_textBoxInfo" IsTabStop="False"/>
+				 TextWrapping="Wrap" x:Name="_textBoxInfo" IsTabStop="False"/>
 	</Grid>
 </Window>

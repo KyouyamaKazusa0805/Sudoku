@@ -19,7 +19,7 @@
 		</Grid.ColumnDefinitions>
 		<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
 			   Content="{DynamicResource ExportAnalysisResultLabelInfo}"/>
-		<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="_gridMain">
+		<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="_gridMain">
 			<Grid.RowDefinitions>
 				<RowDefinition/>
 				<RowDefinition/>
@@ -34,65 +34,65 @@
 			<CheckBox Grid.Row="0" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowSeparators}"
-					  Name="_checkBoxShowSeparators" Tag="-"
+					  x:Name="_checkBoxShowSeparators" Tag="-"
 					  Click="CheckBoxShowSeparators_Click"/>
 			<CheckBox Grid.Row="0" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowIndices}"
-					  Name="_checkBoxShowStepIndices" Tag="#"
+					  x:Name="_checkBoxShowStepIndices" Tag="#"
 					  Click="CheckBoxShowStepIndices_Click"/>
 			<CheckBox Grid.Row="1" Grid.Column="0" IsEnabled="True"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowLogic}"
-					  Name="_checkBoxShowLogic" Tag="@"
+					  x:Name="_checkBoxShowLogic" Tag="@"
 					  Click="CheckBoxShowLogic_Click"/>
 			<CheckBox Grid.Row="1" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowBottleneck}"
-					  Name="_checkBoxShowBottleneck" Tag="?"
+					  x:Name="_checkBoxShowBottleneck" Tag="?"
 					  Click="CheckBoxShowBottleneck_Click"/>
 			<CheckBox Grid.Row="2" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowDifficulty}"
-					  Name="_checkBoxShowDifficulty" Tag="!"
+					  x:Name="_checkBoxShowDifficulty" Tag="!"
 					  Click="CheckBoxShowDifficulty_Click"/>
 			<CheckBox Grid.Row="2" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="True"
 					  Content="{DynamicResource ExportAnalysisResultShowStepsAfterBottleneck}"
-					  Name="_checkboxShowStepsAfterBottleneck" Tag="."
+					  x:Name="_checkboxShowStepsAfterBottleneck" Tag="."
 					  Click="CheckboxShowStepsAfterBottleneck_Click"/>
 			<CheckBox Grid.Row="3" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowAttributes}"
-					  Name="_checkBoxShowAttributesOfPuzzle" Tag="a"
+					  x:Name="_checkBoxShowAttributesOfPuzzle" Tag="a"
 					  Click="CheckBoxShowAttributesOfPuzzle_Click"/>
 			<CheckBox Grid.Row="3" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowMagicCells}"
-					  Name="_checkBoxShowMagicCells" Tag="b"
+					  x:Name="_checkBoxShowMagicCells" Tag="b"
 					  Click="CheckBoxShowMagicCells_Click"/>
 			<CheckBox Grid.Row="4" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowDifficultyDetails}"
-					  Name="_checkBoxShowDifficultyDetail" Tag="d"
+					  x:Name="_checkBoxShowDifficultyDetail" Tag="d"
 					  Click="CheckBoxShowDifficultyDetail_Click"/>
 			<CheckBox Grid.Row="4" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowTechniqueSteps}"
-					  Name="_checkBoxShowTechniqueSteps" Tag="l"
+					  x:Name="_checkBoxShowTechniqueSteps" Tag="l"
 					  Click="CheckBoxShowTechniqueSteps_Click"/>
 		</Grid>
 		<Label Grid.Row="2" Grid.Column="0" Content="{DynamicResource ExportAnalysisResultLabelAnalysisResult}"/>
-		<Button Grid.Row="2" Grid.Column="1" Name="_buttonExport"
+		<Button Grid.Row="2" Grid.Column="1" x:Name="_buttonExport"
 				HorizontalAlignment="Right" VerticalAlignment="Bottom"
 				Content="{DynamicResource ExportAnalysisResultButtonExport}"
 				Click="ButtonExport_Click"/>
-		<TextBox Grid.Row="3" Grid.ColumnSpan="2" Name="_textBoxAnalysisResult"
+		<TextBox Grid.Row="3" Grid.ColumnSpan="2" x:Name="_textBoxAnalysisResult"
 				 IsReadOnly="True" FontFamily="Consolas"/>
-		<CheckBox Name="_checkBoxOutputStepGrids" Grid.Row="4" Grid.Column="1"
+		<CheckBox x:Name="_checkBoxOutputStepGrids" Grid.Row="4" Grid.Column="1"
 				  Content="{DynamicResource _checkBoxOutputStepGrids}"
 				  HorizontalAlignment="Left" VerticalAlignment="Center"/>
-		<Button Name="_buttonOutputAnalysisResult" Grid.Row="4" Grid.Column="1"
+		<Button x:Name="_buttonOutputAnalysisResult" Grid.Row="4" Grid.Column="1"
 				Content="{DynamicResource _buttonOutputAnalysisResult}"
 				HorizontalAlignment="Right" VerticalAlignment="Center"
 				Click="ButtonOutputAnalysisResult_Click"/>

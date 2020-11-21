@@ -26,10 +26,10 @@
 			   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
 			   HorizontalAlignment="Left" VerticalAlignment="Bottom" Cursor="Help">
 			<Label.ToolTip>
-				<ToolTip Name="_toolTipFormats" Content="{DynamicResource PictureSavingFormatHelper}"/>
+				<ToolTip x:Name="_toolTipFormats" Content="{DynamicResource PictureSavingFormatHelper}"/>
 			</Label.ToolTip>
 		</Label>
-		<TextBox Name="_textBoxFormat" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+		<TextBox x:Name="_textBoxFormat" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
 				 FontFamily="Consolas,'Microsoft YaHei UI','Times Now Roman',黑体,宋体"/>
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3" Grid.ColumnSpan="2">
@@ -38,9 +38,9 @@
 					<Setter Property="Margin" Value="5,5,5,5"/>
 				</Style>
 			</StackPanel.Resources>
-			<Button Name="_buttonSave" Content="{DynamicResource PictureSavingButtonSave}"
+			<Button x:Name="_buttonSave" Content="{DynamicResource PictureSavingButtonSave}"
 					Click="ButtonSave_Click" IsDefault="True"/>
-			<Button Name="_buttonCancel" Content="{DynamicResource PictureSavingButtonCancel}"
+			<Button x:Name="_buttonCancel" Content="{DynamicResource PictureSavingButtonCancel}"
 					Click="ButtonCancel_Click" IsCancel="True"/>
 		</StackPanel>
 	</Grid>

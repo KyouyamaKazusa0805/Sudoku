@@ -11,14 +11,12 @@
 			<RowDefinition Height="10*"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
-		</Grid.ColumnDefinitions>
 		<c:TechniqueView Grid.Row="0" x:Name="_techniqueList"/>
-		<DockPanel Grid.Row="1" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Center">
-			<Button Name="_buttonSelect" Content="{DynamicResource TechniqueViewWindowButtonSelect}"
+		<DockPanel Grid.Row="1" FlowDirection="RightToLeft" HorizontalAlignment="Right"
+				   VerticalAlignment="Center">
+			<Button x:Name="_buttonSelect" Content="{DynamicResource TechniqueViewWindowButtonSelect}"
 					Click="ButtonSelect_Click"/>
-			<Button Name="_buttonCancel" Content="{DynamicResource TechniqueViewWindowButtonCancel}"
+			<Button x:Name="_buttonCancel" Content="{DynamicResource TechniqueViewWindowButtonCancel}"
 					Click="ButtonCancel_Click"/>
 		</DockPanel>
 	</Grid>

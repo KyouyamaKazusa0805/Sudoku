@@ -10,7 +10,7 @@
 			<ColumnDefinition Width="4*"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<TextBox Name="_textBoxInner" Text="{Binding CurrentValue}"
+		<TextBox x:Name="_textBoxInner" Text="{Binding CurrentValue}"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
 				 TextChanged="TextBoxInner_TextChanged"/>
 		<Grid Grid.Column="1">
@@ -18,12 +18,12 @@
 				<RowDefinition/>
 				<RowDefinition/>
 			</Grid.RowDefinitions>
-			<Button Name="_buttonUp" Content="&lt;" Click="ButtonUp_Click">
+			<Button x:Name="_buttonUp" Content="&lt;" Click="ButtonUp_Click">
 				<Button.LayoutTransform>
 					<RotateTransform Angle="90"/>
 				</Button.LayoutTransform>
 			</Button>
-			<Button Grid.Row="1" Name="_buttonDown" Content="&gt;" Click="ButtonDown_Click">
+			<Button Grid.Row="1" x:Name="_buttonDown" Content="&gt;" Click="ButtonDown_Click">
 				<Button.LayoutTransform>
 					<RotateTransform Angle="90"/>
 				</Button.LayoutTransform>

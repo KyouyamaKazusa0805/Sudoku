@@ -12,7 +12,7 @@
 			<RowDefinition Height="12*"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<Label Grid.Row="0" Grid.Column="0" Name="_labelGrid"/>
+		<Label Grid.Row="0" Grid.Column="0" x:Name="_labelGrid"/>
 		<Grid Grid.Row="1" Grid.Column="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
@@ -21,7 +21,7 @@
 			<Label Content="{DynamicResource BugMultipleLabelTrueCandidates}" HorizontalAlignment="Left"
 				   VerticalAlignment="Bottom"/>
 		</Grid>
-		<ListBox Grid.Row="2" Grid.Column="0" Name="_listBoxTrueCandidates"/>
+		<ListBox Grid.Row="2" Grid.Column="0" x:Name="_listBoxTrueCandidates"/>
 		<Grid Grid.Row="3" Grid.Column="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
@@ -30,8 +30,8 @@
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 			<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-				   VerticalAlignment="Stretch" Name="_labelStatus"/>
-			<Button Grid.Row="0" Grid.Column="3" Name="_buttonStartSearching"
+				   VerticalAlignment="Stretch" x:Name="_labelStatus"/>
+			<Button Grid.Row="0" Grid.Column="3" x:Name="_buttonStartSearching"
 					Content="{DynamicResource BugMultipleButtonStartSearching}"
 					HorizontalAlignment="Right" VerticalAlignment="Bottom"
 					Click="ButtonStartSearching_Click"/>

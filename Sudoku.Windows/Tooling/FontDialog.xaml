@@ -20,29 +20,29 @@
 		<Label Content="Font:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom"/>
 		<Label Content="Style:" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom"/>
 		<Label Content="Size:" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom"/>
-		<ListBox Name="_listBoxFonts" Grid.Row="1" Grid.Column="0"
+		<ListBox x:Name="_listBoxFonts" Grid.Row="1" Grid.Column="0"
 				 SelectionChanged="ListBoxFonts_SelectionChanged"/>
-		<ListBox Name="_listBoxStyle" Grid.Row="1" Grid.Column="1" SelectedIndex="0"
+		<ListBox x:Name="_listBoxStyle" Grid.Row="1" Grid.Column="1" SelectedIndex="0"
 				 SelectionChanged="ListBoxStyle_SelectionChanged">
 			<ListBoxItem Content="Normal"/>
 			<ListBoxItem Content="Italic"/>
 			<ListBoxItem Content="Bold"/>
 			<ListBoxItem Content="Bold Italic"/>
 		</ListBox>
-		<TextBox Name="_textBoxSize" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Center"
+		<TextBox x:Name="_textBoxSize" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Center"
 				 VerticalContentAlignment="Center" FontSize="20"
 				 TextChanged="TextBoxSize_TextChanged"
 				 PreviewKeyDown="TextBoxSize_PreviewKeyDown"/>
 		<GroupBox Header="Preview" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
-			<Image Name="_imagePreview" Width="700" Height="45"/>
+			<Image x:Name="_imagePreview" Width="700" Height="45"/>
 		</GroupBox>
 		<Grid Grid.Row="3" Grid.ColumnSpan="3">
-			<Button Name="_buttonApply" Content="{DynamicResource SettingsButtonApply}" Grid.Row="3" Grid.Column="1"
-					Margin="0,0,70,10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+			<Button x:Name="_buttonApply" Content="{DynamicResource SettingsButtonApply}" Grid.Row="3"
+					Grid.Column="1" Margin="0,0,70,10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
 					IsDefault="True"
 					Click="ButtonApply_Click"/>
-			<Button Name="_buttonCancel" Content="{DynamicResource SettingsButtonCancel}" Grid.Row="3" Grid.Column="2"
-					Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+			<Button x:Name="_buttonCancel" Content="{DynamicResource SettingsButtonCancel}" Grid.Row="3"
+					Grid.Column="2" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
 					IsCancel="True"
 					Click="ButtonCancel_Click"/>
 		</Grid>

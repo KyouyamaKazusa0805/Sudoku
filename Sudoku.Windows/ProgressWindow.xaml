@@ -11,7 +11,7 @@
 			<RowDefinition Height="3*"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<TextBlock Grid.Row="0" Name="_textBlockInfo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-		<ProgressBar Grid.Row="1" Name="_progressBarInfo"/>
+		<TextBlock Grid.Row="0" x:Name="_textBlockInfo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		<ProgressBar Grid.Row="1" x:Name="_progressBarInfo"/>
 	</Grid>
 </Window>

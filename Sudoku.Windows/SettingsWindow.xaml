@@ -45,23 +45,23 @@
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
 					<CheckBox Content="{DynamicResource SettingsAskWhileQuitting}"
-							  Name="_checkBoxAskWhileQuitting"
+							  x:Name="_checkBoxAskWhileQuitting"
 							  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxAskWhileQuitting_Click"/>
 					<CheckBox Content="{DynamicResource SettingsEnableGcForcedly}"
-							  Name="_checkBoxEnableGcForcedly"
+							  x:Name="_checkBoxEnableGcForcedly"
 							  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxEnableGcForcedly_Click"/>
 					<CheckBox Content="{DynamicResource SettingsSolveFromTheCurrent}"
-							  Name="_checkBoxSolveFromCurrent"
+							  x:Name="_checkBoxSolveFromCurrent"
 							  Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxSolveFromCurrent_Click"/>
 					<CheckBox Content="{DynamicResource SettingsTextFormatPlaceholdersAreZero}"
-							  Name="_checkBoxTextFormatPlaceholdersAreZero"
+							  x:Name="_checkBoxTextFormatPlaceholdersAreZero"
 							  Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxTextFormatPlaceholdersAreZero_Click"/>
 					<CheckBox Content="{DynamicResource SettingsPmCompatible}"
-							  Name="_checkBoxPmGridCompatible"
+							  x:Name="_checkBoxPmGridCompatible"
 							  Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxPmGridCompatible_Click"/>
 				</Grid>
@@ -89,16 +89,16 @@
 							</Grid.ColumnDefinitions>
 							<CheckBox Content="{DynamicResource SettingsSolvingAlsAllowOverlapped}"
 									  Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
-									  VerticalAlignment="Center" Name="_checkBoxAllowOverlappingAlses"
+									  VerticalAlignment="Center" x:Name="_checkBoxAllowOverlappingAlses"
 									  Click="CheckBoxAllowOverlappingAlses_Click"/>
 							<CheckBox Content="{DynamicResource SettingsSolvingAlsHighlightRegions}"
 									  Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="0"
-									  Name="_checkBoxHighlightRegions" HorizontalAlignment="Left"
+									  x:Name="_checkBoxHighlightRegions" HorizontalAlignment="Left"
 									  VerticalAlignment="Center"
 									  Click="CheckBoxHighlightRegions_Click"/>
 							<CheckBox Content="{DynamicResource SettingsSolvingAlsAllowLoops}"
 									  Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="3"
-									  Name="_checkBoxAllowAlsCycles" HorizontalAlignment="Left"
+									  x:Name="_checkBoxAllowAlsCycles" HorizontalAlignment="Left"
 									  VerticalAlignment="Center"
 									  Click="CheckBoxAllowAlsCycles_Click"/>
 						</Grid>
@@ -138,7 +138,7 @@
 											 MinValue="0" MaxValue="9"
 											 x:Name="_numericUpDownMaximumEndofinsHobiwanFish"
 											 ValueChanged="NumericUpDownMaximumEndofinsHobiwanFish_ValueChanged"/>
-							<CheckBox Name="_checkBoxHobiwanFishCheckTemplates" Grid.Row="1" Grid.Column="3"
+							<CheckBox x:Name="_checkBoxHobiwanFishCheckTemplates" Grid.Row="1" Grid.Column="3"
 									  Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Content="{DynamicResource SettingsSolvingFishCheckTemplates}"
 									  Click="CheckBoxHobiwanFishCheckTemplates_Click"/>
@@ -172,12 +172,12 @@
 											 ValueChanged="NumericUpDownBowmanBingoMaxLength_ValueChanged"/>
 							<CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxAllowAlq"
+									  x:Name="_checkBoxAllowAlq"
 									  Content="{DynamicResource SettingsSolvingMiscAllowAlq}"
 									  Click="CheckBoxAllowAlq_Click"/>
 							<CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxCheckIncompleteUr"
+									  x:Name="_checkBoxCheckIncompleteUr"
 									  Content="{DynamicResource SettingsSolvingMiscCheckIncompleteUr}"
 									  Click="CheckBoxCheckIncompleteUr_Click"/>
 							<Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
@@ -189,12 +189,12 @@
 											 ValueChanged="NumericUpDownMaxRegularWingSize_ValueChanged"/>
 							<CheckBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxUseExtendedBugSearcher"
+									  x:Name="_checkBoxUseExtendedBugSearcher"
 									  Content="{DynamicResource SettingsSolvingMiscUseExtendedBugSearcher}"
 									  Click="CheckBoxUseExtendedBugSearcher_Click"/>
 							<CheckBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxSearchExtendedUniqueRectangle"
+									  x:Name="_checkBoxSearchExtendedUniqueRectangle"
 									  Content="{DynamicResource SettingsSolvingMiscSearchUrExtensions}"
 									  Click="CheckBoxSearchExtendedUniqueRectangle_Click"/>
 							<Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
@@ -204,13 +204,13 @@
 											 Grid.Row="3" Grid.Column="2" MinValue="2" MaxValue="9"
 											 ValueChanged="NumericUpDownMaxPetalsOfDeathBlossom_ValueChanged"/>
 							<CheckBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3"
-									  Name="_checkBoxCheckAdvancedInExocet"
+									  x:Name="_checkBoxCheckAdvancedInExocet"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Content="{DynamicResource SettingsSolvingMiscExocetsCheckAdvancedElims}"
 									  Click="CheckBoxCheckAdvancedInExocet_Click"/>
 							<CheckBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxShowDirectLines"
+									  x:Name="_checkBoxShowDirectLines"
 									  Content="{DynamicResource SettingsSolvingShowDirectLines}"
 									  Click="CheckBoxShowDirectLines_Click"/>
 						</Grid>
@@ -263,64 +263,64 @@
 									 ValueChanged="NumericUpDownCandidateScale_ValueChanged"/>
 					<Label Grid.Row="4" Grid.Column="0" Content="{DynamicResource SettingsDrawingGivenFontName}"/>
 					<Button Grid.Row="4" Grid.Column="1" Content="{DynamicResource SettingsDrawingChangeFont}"
-							Name="_buttonGivenFontName"
+							x:Name="_buttonGivenFontName"
 							Click="ButtonGivenFontName_Click"/>
-					<Label Grid.Row="4" Grid.Column="2" Name="_labelGivenFontName"
+					<Label Grid.Row="4" Grid.Column="2" x:Name="_labelGivenFontName"
 						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
 					<Label Grid.Row="5" Grid.Column="0" Content="{DynamicResource SettingsDrawingModifiableFontName}"/>
 					<Button Grid.Row="5" Grid.Column="1" Content="{DynamicResource SettingsDrawingChangeFont}"
-							Name="_buttonModifiableFontName"
+							x:Name="_buttonModifiableFontName"
 							Click="ButtonModifiableFontName_Click"/>
-					<Label Grid.Row="5" Grid.Column="2" Name="_labelModifiableFontName"
+					<Label Grid.Row="5" Grid.Column="2" x:Name="_labelModifiableFontName"
 						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
 					<Label Grid.Row="6" Grid.Column="0" Content="{DynamicResource SettingsDrawingCandidateFontName}"/>
 					<Button Grid.Row="6" Grid.Column="1" Content="{DynamicResource SettingsDrawingChangeFont}"
-							Name="_buttonCandidateFontName"
+							x:Name="_buttonCandidateFontName"
 							Click="ButtonCandidateFontName_Click"/>
-					<Label Grid.Row="6" Grid.Column="2" Name="_labelCandidateFontName"
+					<Label Grid.Row="6" Grid.Column="2" x:Name="_labelCandidateFontName"
 						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
 					<Label Grid.Row="7" Grid.Column="0" Content="{DynamicResource SettingsDrawingBackColor}"/>
-					<Button Name="_buttonBackgroundColor" Grid.Row="7" Grid.Column="1"
+					<Button x:Name="_buttonBackgroundColor" Grid.Row="7" Grid.Column="1"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonBackgroundColor_Click"/>
 					<Label Grid.Row="8" Grid.Column="0" Content="{DynamicResource SettingsDrawingGivenColor}"/>
-					<Button Name="_buttonGivenColor" Grid.Row="8" Grid.Column="1"
+					<Button x:Name="_buttonGivenColor" Grid.Row="8" Grid.Column="1"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonGivenColor_Click"/>
 					<Label Grid.Row="9" Grid.Column="0" Content="{DynamicResource SettingsDrawingModifiableColor}"/>
-					<Button Name="_buttonModifiableColor" Grid.Row="9" Grid.Column="1"
+					<Button x:Name="_buttonModifiableColor" Grid.Row="9" Grid.Column="1"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonModifiableColor_Click"/>
 					<Label Grid.Row="10" Grid.Column="0" Content="{DynamicResource SettingsDrawingCandidateColor}"/>
-					<Button Name="_buttonCandidateColor" Grid.Row="10" Grid.Column="1"
+					<Button x:Name="_buttonCandidateColor" Grid.Row="10" Grid.Column="1"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonCandidateColor_Click"/>
 					<Label Grid.Row="11" Grid.Column="0" Content="{DynamicResource SettingsDrawingFocusColor}"/>
-					<Button Name="_buttonFocusColor" Grid.Row="11" Grid.Column="1"
+					<Button x:Name="_buttonFocusColor" Grid.Row="11" Grid.Column="1"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonFocusColor_Click"/>
 					<Label Grid.Row="0" Grid.Column="3" Content="{DynamicResource SettingsDrawingGridLineColor}"/>
-					<Button Name="_buttonGridLineColor" Grid.Row="0" Grid.Column="4"
+					<Button x:Name="_buttonGridLineColor" Grid.Row="0" Grid.Column="4"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonGridLineColor_Click"/>
 					<Label Grid.Row="1" Grid.Column="3" Content="{DynamicResource SettingsDrawingBlockLineColor}"/>
-					<Button Name="_buttonBlockLineColor" Grid.Row="1" Grid.Column="4"
+					<Button x:Name="_buttonBlockLineColor" Grid.Row="1" Grid.Column="4"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonBlockLineColor_Click"/>
 					<Label Grid.Row="2" Grid.Column="3" Content="{DynamicResource SettingsDrawingChainColor}"/>
-					<Button Name="_buttonChainColor" Grid.Row="2" Grid.Column="4"
+					<Button x:Name="_buttonChainColor" Grid.Row="2" Grid.Column="4"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonChainColor_Click"/>
 					<Label Grid.Row="3" Grid.Column="3" Content="{DynamicResource SettingsDrawingCrosshathcingOutlineColor}"/>
-					<Button Name="_buttonCrosshatchingOutlineColor" Grid.Row="3" Grid.Column="4"
+					<Button x:Name="_buttonCrosshatchingOutlineColor" Grid.Row="3" Grid.Column="4"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonCrosshatchingOutlineColor_Click"/>
 					<Label Grid.Row="4" Grid.Column="3" Content="{DynamicResource SettingsDrawingCrosshatchingValuesColor}"/>
-					<Button Name="_buttonCrosshatchingValuesColor" Grid.Row="4" Grid.Column="4"
+					<Button x:Name="_buttonCrosshatchingValuesColor" Grid.Row="4" Grid.Column="4"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonCrosshatchingValuesColor_Click"/>
 					<Label Grid.Row="5" Grid.Column="3" Content="{DynamicResource SettingsDrawingCrossSignColor}"/>
-					<Button Name="_buttonCrossSignColor" Grid.Row="5" Grid.Column="4"
+					<Button x:Name="_buttonCrossSignColor" Grid.Row="5" Grid.Column="4"
 							Content="{DynamicResource SettingsPaletteChangeColor}"
 							Click="ButtonCrossSignColor_Click"/>
 				</Grid>
@@ -331,7 +331,7 @@
 						<ColumnDefinition/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
-					<ListBox Grid.Row="0" Grid.Column="0" Name="_listBoxPriority"
+					<ListBox Grid.Row="0" Grid.Column="0" x:Name="_listBoxPriority"
 							 SelectionChanged="ListBoxPriority_SelectionChanged"/>
 					<GroupBox Grid.Row="0" Grid.Column="1" Header="{DynamicResource SettingsPriority}"
 							  Width="200" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -346,13 +346,13 @@
 							</Grid.ColumnDefinitions>
 							<CheckBox Content="{DynamicResource SettingsPriorityIsEnabled}"
 									  Grid.Row="0" Grid.Column="0"
-									  Grid.ColumnSpan="2" Name="_checkBoxIsEnabled"
+									  Grid.ColumnSpan="2" x:Name="_checkBoxIsEnabled"
 									  HorizontalAlignment="Center" VerticalAlignment="Center"
 									  Click="CheckBoxIsEnabled_Click"/>
 							<Label Content="{DynamicResource SettingsPriorityValue}"
 								   HorizontalAlignment="Right"
 								   VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
-							<TextBox Grid.Row="1" Grid.Column="1" Name="_textBoxPriority"
+							<TextBox Grid.Row="1" Grid.Column="1" x:Name="_textBoxPriority"
 									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
 									 TextChanged="TextBoxPriority_TextChanged"/>
 						</Grid>
@@ -383,77 +383,77 @@
 					<Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource SettingsPalette1}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="0" Grid.Column="1" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor1"
+							x:Name="_buttonColor1"
 							Click="ButtonColor1_Click"/>
 					<Label Grid.Row="0" Grid.Column="2" Content="{DynamicResource SettingsPalette2}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="0" Grid.Column="3" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor2"
+							x:Name="_buttonColor2"
 							Click="ButtonColor2_Click"/>
 					<Label Grid.Row="0" Grid.Column="4" Content="{DynamicResource SettingsPalette3}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="0" Grid.Column="5" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor3"
+							x:Name="_buttonColor3"
 							Click="ButtonColor3_Click"/>
 					<Label Grid.Row="1" Grid.Column="0" Content="{DynamicResource SettingsPalette4}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="1" Grid.Column="1" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor4"
+							x:Name="_buttonColor4"
 							Click="ButtonColor4_Click"/>
 					<Label Grid.Row="1" Grid.Column="2" Content="{DynamicResource SettingsPalette5}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="1" Grid.Column="3" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor5"
+							x:Name="_buttonColor5"
 							Click="ButtonColor5_Click"/>
 					<Label Grid.Row="1" Grid.Column="4" Content="{DynamicResource SettingsPalette6}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="1" Grid.Column="5" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor6"
+							x:Name="_buttonColor6"
 							Click="ButtonColor6_Click"/>
 					<Label Grid.Row="2" Grid.Column="0" Content="{DynamicResource SettingsPalette7}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="2" Grid.Column="1" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor7"
+							x:Name="_buttonColor7"
 							Click="ButtonColor7_Click"/>
 					<Label Grid.Row="2" Grid.Column="2" Content="{DynamicResource SettingsPalette8}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="2" Grid.Column="3" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor8"
+							x:Name="_buttonColor8"
 							Click="ButtonColor8_Click"/>
 					<Label Grid.Row="2" Grid.Column="4" Content="{DynamicResource SettingsPalette9}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="2" Grid.Column="5" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor9"
+							x:Name="_buttonColor9"
 							Click="ButtonColor9_Click"/>
 					<Label Grid.Row="3" Grid.Column="0" Content="{DynamicResource SettingsPalette10}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="3" Grid.Column="1" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor10"
+							x:Name="_buttonColor10"
 							Click="ButtonColor10_Click"/>
 					<Label Grid.Row="3" Grid.Column="2" Content="{DynamicResource SettingsPalette11}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="3" Grid.Column="3" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor11"
+							x:Name="_buttonColor11"
 							Click="ButtonColor11_Click"/>
 					<Label Grid.Row="3" Grid.Column="4" Content="{DynamicResource SettingsPalette12}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="3" Grid.Column="5" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor12"
+							x:Name="_buttonColor12"
 							Click="ButtonColor12_Click"/>
 					<Label Grid.Row="4" Grid.Column="0" Content="{DynamicResource SettingsPalette13}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="4" Grid.Column="1" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor13"
+							x:Name="_buttonColor13"
 							Click="ButtonColor13_Click"/>
 					<Label Grid.Row="4" Grid.Column="2" Content="{DynamicResource SettingsPalette14}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="4" Grid.Column="3" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor14"
+							x:Name="_buttonColor14"
 							Click="ButtonColor14_Click"/>
 					<Label Grid.Row="4" Grid.Column="4" Content="{DynamicResource SettingsPalette15}"
 						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 					<Button Grid.Row="4" Grid.Column="5" Content="{DynamicResource SettingsPaletteChangeColor}"
-							Name="_buttonColor15"
+							x:Name="_buttonColor15"
 							Click="ButtonColor15_Click"/>
 				</Grid>
 			</TabItem>
@@ -461,10 +461,10 @@
 		<Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"
 			   Content="{DynamicResource SettingsLabelNote}"/>
 		<Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-				Name="_buttonApply" Content="{DynamicResource SettingsButtonApply}" Margin="0,0,70,10"
+				x:Name="_buttonApply" Content="{DynamicResource SettingsButtonApply}" Margin="0,0,70,10"
 				Click="ButtonApply_Click"/>
 		<Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-				Name="_buttonCancel" Content="{DynamicResource SettingsButtonCancel}" Margin="0,0,10,10"
+				x:Name="_buttonCancel" Content="{DynamicResource SettingsButtonCancel}" Margin="0,0,10,10"
 				Click="ButtonCancel_Click" IsCancel="True"/>
 	</Grid>
 </Window>

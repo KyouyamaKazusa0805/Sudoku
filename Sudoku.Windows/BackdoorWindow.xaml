@@ -12,7 +12,7 @@
 			<RowDefinition Height="12*"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<Label Grid.Row="0" Grid.Column="0" Name="_labelGrid"/>
+		<Label Grid.Row="0" Grid.Column="0" x:Name="_labelGrid"/>
 		<Grid Grid.Row="1" Grid.Column="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
@@ -27,7 +27,7 @@
 				</Grid.ColumnDefinitions>
 				<Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource BackdoorLabelSearchingDepth}"
 					   HorizontalAlignment="Right" VerticalAlignment="Center"/>
-				<ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" Name="_comboBoxDepth"
+				<ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" x:Name="_comboBoxDepth"
 						  IsEditable="False" HorizontalContentAlignment="Center"
 						  VerticalContentAlignment="Center"
 						  SelectionChanged="ComboBoxDepth_SelectionChanged">
@@ -38,15 +38,15 @@
 				</ComboBox>
 			</Grid>
 		</Grid>
-		<ListBox Grid.Row="2" Grid.Column="0" Name="_listBoxBackdoors"/>
+		<ListBox Grid.Row="2" Grid.Column="0" x:Name="_listBoxBackdoors"/>
 		<Grid Grid.Row="3" Grid.Column="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 			<Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch"
-				   VerticalAlignment="Stretch" Name="_labelStatus"/>
-			<Button Grid.Row="0" Grid.Column="1" Name="_buttonStartSearching"
+				   VerticalAlignment="Stretch" x:Name="_labelStatus"/>
+			<Button Grid.Row="0" Grid.Column="1" x:Name="_buttonStartSearching"
 					HorizontalAlignment="Right" VerticalAlignment="Bottom"
 					Content="{DynamicResource BackdoorButtonStartSearching}"
 					Click="ButtonStartSearching_Click"/>

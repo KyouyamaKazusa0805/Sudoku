@@ -10,11 +10,11 @@
 			<ColumnDefinition Width="200" MinWidth="100"/>
 			<ColumnDefinition Width="300" MinWidth="100"/>
 		</Grid.ColumnDefinitions>
-		<CheckBox Grid.Column="0" Name="_checkBoxMain" Click="CheckBox_Click"
+		<CheckBox Grid.Column="0" x:Name="_checkBoxMain" Click="CheckBox_Click"
 				  Content="{Binding Technique}"/>
-		<TextBlock Grid.Column="1" Name="_textBlockName" Text="{Binding Technique}"
+		<TextBlock Grid.Column="1" x:Name="_textBlockName" Text="{Binding Technique}"
 				   HorizontalAlignment="Stretch"/>
-		<TextBlock Grid.Column="2" Name="_textBlockNamespace" Text="{Binding Category}"
+		<TextBlock Grid.Column="2" x:Name="_textBlockNamespace" Text="{Binding Category}"
 				   HorizontalAlignment="Stretch"/>
 	</Grid>
 </UserControl>

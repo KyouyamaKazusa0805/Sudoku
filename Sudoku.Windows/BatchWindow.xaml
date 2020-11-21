@@ -10,10 +10,10 @@
 			<RowDefinition Height="19*"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<TextBox Name="_textBoxBatch" Margin="10 10 10 10" IsReadOnly="False"
-				 AcceptsReturn="True" FontFamily="'Cascadia Code', 'Fira Code',Consolas,'Microsoft YaHei UI'"
+		<TextBox x:Name="_textBoxBatch" Margin="10 10 10 10" IsReadOnly="False"
+				 AcceptsReturn="True" FontFamily="'Cascadia Code','Fira Code',Consolas,'Microsoft YaHei UI'"
 				 FontSize="16"/>
-		<Button Name="_buttonBatch" Content="{DynamicResource BatchWindowButtonBatch}"
+		<Button x:Name="_buttonBatch" Content="{DynamicResource BatchWindowButtonBatch}"
 				Grid.Row="1" Margin="0 0 10 0" HorizontalAlignment="Right" VerticalAlignment="Center"
 				Click="ButtonBatch_Click"/>
 	</Grid>

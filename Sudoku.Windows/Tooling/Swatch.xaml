@@ -6,7 +6,7 @@
 			 mc:Ignorable="d" 
 			 d:DesignHeight="300" d:DesignWidth="300">
 	<Grid>
-		<ItemsControl Name="SwatchListBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+		<ItemsControl x:Name="SwatchListBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 					  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>

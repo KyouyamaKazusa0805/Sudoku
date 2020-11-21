@@ -6,7 +6,7 @@
 			 mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="420">
     <Grid>
-		<TreeView Name="_treeViewMain">
+		<TreeView x:Name="_treeViewMain">
 			<TreeView.ItemTemplate>
 				<HierarchicalDataTemplate ItemsSource="{Binding Children}">
 					<TextBlock Text="{Binding Content}" VerticalAlignment="Center"/>
