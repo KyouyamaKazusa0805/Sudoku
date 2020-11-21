@@ -72,6 +72,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
+#pragma warning disable IDE0060
 		/// <summary>
 		/// Check type 2.
 		/// </summary>
@@ -130,6 +131,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 						extraDigit));
 			}
 		}
+#pragma warning restore IDE0060
 
 		/// <summary>
 		/// Check type 3.
