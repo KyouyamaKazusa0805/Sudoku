@@ -39,10 +39,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		in Pattern Exocet, IEnumerable<int> Digits,
 		IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
-		in TargetEliminations TargetEliminations, in MirrorEliminations MirrorEliminations,
-		in BibiPatternEliminations BibiEliminations, in TargetPairEliminations TargetPairEliminations,
-		in SwordfishEliminations SwordfishEliminations, in TrueBaseEliminations TrueBaseEliminations,
-		in CompatibilityTestEliminations CompatibilityEliminations)
+		Target? TargetEliminations, Mirror? MirrorEliminations,
+		BiBiPattern? BibiEliminations, TargetPair? TargetPairEliminations,
+		Swordfish? SwordfishEliminations, TrueBase? TrueBaseEliminations,
+		CompatibilityTest? CompatibilityEliminations)
 		: TechniqueInfo(
 			GatherConclusions(
 				Conclusions, TargetEliminations, MirrorEliminations, BibiEliminations,
@@ -70,13 +70,13 @@ namespace Sudoku.Solving.Manual.Exocets
 		public sealed override string ToFullString() =>
 			new StringBuilder(ToString())
 				.AppendLine()
-				.NullableAppendLine(TargetEliminations.ToString())
-				.NullableAppendLine(MirrorEliminations.ToString())
-				.NullableAppendLine(BibiEliminations.ToString())
-				.NullableAppendLine(TargetPairEliminations.ToString())
-				.NullableAppendLine(SwordfishEliminations.ToString())
-				.NullableAppendLine(TrueBaseEliminations.ToString())
-				.NullableAppendLine(CompatibilityEliminations.ToString())
+				.NullableAppendLine(TargetEliminations?.ToString())
+				.NullableAppendLine(MirrorEliminations?.ToString())
+				.NullableAppendLine(BibiEliminations?.ToString())
+				.NullableAppendLine(TargetPairEliminations?.ToString())
+				.NullableAppendLine(SwordfishEliminations?.ToString())
+				.NullableAppendLine(TrueBaseEliminations?.ToString())
+				.NullableAppendLine(CompatibilityEliminations?.ToString())
 				.ToString();
 
 		/// <summary>
@@ -109,10 +109,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					LockedMemberR is null
 					? null
 					: $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}")
-				.Append(
-					addtional is null
-					? string.Empty
-					: $" with {addtional}")
+				.Append(addtional is null ? string.Empty : $" with {addtional}")
 				.Append(" => ")
 				.Append(new ConclusionCollection(Conclusions).ToString())
 				.ToString();
@@ -123,57 +120,47 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// Gather conclusions.
 		/// </summary>
 		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="targetEliminations">(<see langword="in"/> parameter) The target eliminations.</param>
-		/// <param name="mirrorEliminations">(<see langword="in"/> parameter) The mirror eliminations.</param>
-		/// <param name="bibiEliminations">
-		/// (<see langword="in"/> parameter) The Bi-bi pattern eliminations.
-		/// </param>
-		/// <param name="targetPairEliminations">
-		/// (<see langword="in"/> parameter) The target pair eliminations.
-		/// </param>
-		/// <param name="swordfishEliminations">
-		/// (<see langword="in"/> parameter) The swordfish eliminations.
-		/// </param>
-		/// <param name="trueBaseEliminations">
-		/// (<see langword="in"/> parameter) The true base eliminations.
-		/// </param>
-		/// <param name="compatibilityEliminations">
-		/// (<see langword="in"/> parameter) The compatibility eliminations.
-		/// </param>
+		/// <param name="targetEliminations">The target eliminations.</param>
+		/// <param name="mirrorEliminations">The mirror eliminations.</param>
+		/// <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
+		/// <param name="targetPairEliminations">The target pair eliminations.</param>
+		/// <param name="swordfishEliminations">The swordfish eliminations.</param>
+		/// <param name="trueBaseEliminations">The true base eliminations.</param>
+		/// <param name="compatibilityEliminations">The compatibility eliminations.</param>
 		/// <returns>The gathered result.</returns>
 		private static IReadOnlyList<Conclusion> GatherConclusions(
 			IReadOnlyList<Conclusion> conclusions,
-			in TargetEliminations targetEliminations, in MirrorEliminations mirrorEliminations,
-			in BibiPatternEliminations bibiEliminations, in TargetPairEliminations targetPairEliminations,
-			in SwordfishEliminations swordfishEliminations, in TrueBaseEliminations trueBaseEliminations,
-			in CompatibilityTestEliminations compatibilityEliminations)
+			Target? targetEliminations, Mirror? mirrorEliminations,
+			BiBiPattern? bibiEliminations, TargetPair? targetPairEliminations,
+			Swordfish? swordfishEliminations, TrueBase? trueBaseEliminations,
+			CompatibilityTest? compatibilityEliminations)
 		{
 			var list = (List<Conclusion>)conclusions;
-			if (targetEliminations.Conclusions is not null)
+			if (targetEliminations is not null)
 			{
 				list.AddRange(targetEliminations);
 			}
-			if (mirrorEliminations.Conclusions is not null)
+			if (mirrorEliminations is not null)
 			{
 				list.AddRange(mirrorEliminations);
 			}
-			if (bibiEliminations.Conclusions is not null)
+			if (bibiEliminations is not null)
 			{
 				list.AddRange(bibiEliminations);
 			}
-			if (targetPairEliminations.Conclusions is not null)
+			if (targetPairEliminations is not null)
 			{
 				list.AddRange(targetPairEliminations);
 			}
-			if (swordfishEliminations.Conclusions is not null)
+			if (swordfishEliminations is not null)
 			{
 				list.AddRange(swordfishEliminations);
 			}
-			if (trueBaseEliminations.Conclusions is not null)
+			if (trueBaseEliminations is not null)
 			{
 				list.AddRange(trueBaseEliminations);
 			}
-			if (compatibilityEliminations.Conclusions is not null)
+			if (compatibilityEliminations is not null)
 			{
 				list.AddRange(compatibilityEliminations);
 			}

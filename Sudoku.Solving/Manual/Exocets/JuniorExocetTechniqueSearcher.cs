@@ -10,7 +10,6 @@ using Sudoku.Solving.Manual.Exocets.Eliminations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -111,10 +110,10 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// Check target eliminations.
 				// '|' first, '&&' second. (Do you know my meaning?)
-				var targetElims = new TargetEliminations();
+				var targetElims = new Target();
 				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
-				if (GatheringTargetEliminations(tq1, grid, baseCandidatesMask, temp, ref targetElims)
-					| GatheringTargetEliminations(tq2, grid, baseCandidatesMask, temp, ref targetElims)
+				if (GatheringTargetEliminations(tq1, grid, baseCandidatesMask, temp, targetElims)
+					| GatheringTargetEliminations(tq2, grid, baseCandidatesMask, temp, targetElims)
 					&& (nonBaseQ, grid.GetStatus(tq1), grid.GetStatus(tq2)) is (not 0, Empty, Empty))
 				{
 					int conjugatPairDigit = nonBaseQ.FindFirstSet();
@@ -129,8 +128,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				temp = (short)(nonBaseR > 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
-				if (GatheringTargetEliminations(tr1, grid, baseCandidatesMask, temp, ref targetElims)
-					| GatheringTargetEliminations(tr2, grid, baseCandidatesMask, temp, ref targetElims)
+				if (GatheringTargetEliminations(tr1, grid, baseCandidatesMask, temp, targetElims)
+					| GatheringTargetEliminations(tr2, grid, baseCandidatesMask, temp, targetElims)
 					&& nonBaseR != 0 && grid.GetStatus(tr1) == Empty && grid.GetStatus(tr2) == Empty)
 				{
 					int conjugatPairDigit = nonBaseR.FindFirstSet();
@@ -153,11 +152,11 @@ namespace Sudoku.Solving.Manual.Exocets
 					GatheringMirrorEliminations(
 						tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1, grid,
 						baseCandidatesMask, cellOffsets, candidateOffsets);
-				var targetEliminations = TargetEliminations.MergeAll(targetElims, tar1, tar2);
-				var mirrorEliminations = MirrorEliminations.MergeAll(mir1, mir2);
-				var bibiEliminations = new BibiPatternEliminations();
-				var targetPairEliminations = new TargetPairEliminations();
-				var swordfishEliminations = new SwordfishEliminations();
+				var targetEliminations = (Target)(targetElims | tar1 | tar2);
+				var mirrorEliminations = (Mirror)(mir1 | mir2);
+				var bibiEliminations = new BiBiPattern();
+				var targetPairEliminations = new TargetPair();
+				var swordfishEliminations = new Swordfish();
 				if (_checkAdvanced && baseCandidatesMask.PopCount() > 2)
 				{
 					CheckBibiPattern(
@@ -215,7 +214,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="cellOffsets">The highlight cells.</param>
 		/// <param name="candidateOffsets">The highliht candidates.</param>
 		/// <returns>The result.</returns>
-		private (TargetEliminations, MirrorEliminations) GatheringMirrorEliminations(
+		private (Target, Mirror) GatheringMirrorEliminations(
 			int tq1, int tq2, int tr1, int tr2, in GridMap m1, in GridMap m2, short lockedNonTarget,
 			int x, in SudokuGrid grid, short baseCandidatesMask, List<DrawingInfo> cellOffsets,
 			List<DrawingInfo> candidateOffsets)
@@ -257,20 +256,20 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="baseCandidatesMask">The base candidates mask.</param>
 		/// <param name="temp">The temp mask.</param>
-		/// <param name="targetElims">(<see langword="ref"/> parameter) The target eliminations.</param>
+		/// <param name="targetElims">The target eliminations.</param>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether this method has been found eliminations.
 		/// </returns>
 		private static bool GatheringTargetEliminations(
-			int cell, in SudokuGrid grid, short baseCandidatesMask, short temp,
-			ref TargetEliminations targetElims)
+			int cell, in SudokuGrid grid, short baseCandidatesMask, short temp, Target targetElims)
 		{
 			short candidateMask = (short)(grid.GetCandidateMask(cell) & ~temp);
-			if ((grid.GetStatus(cell), candidateMask, grid.GetCandidateMask(cell) & baseCandidatesMask) is (Empty, not 0, not 0))
+			if (grid.GetStatus(cell) == Empty && candidateMask != 0
+				&& (grid.GetCandidateMask(cell) & baseCandidatesMask) != 0)
 			{
 				foreach (int digit in candidateMask)
 				{
-					targetElims.Add(new(Elimination, cell, digit));
+					targetElims.Add(new(ConclusionType.Elimination, cell, digit));
 				}
 
 				return true;
@@ -355,8 +354,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				return true;
 			}
 
-			if (
-				(m1 & baseCandidatesMask, m2 & baseCandidatesMask) == (0, 0)
+			if ((m1 & baseCandidatesMask, m2 & baseCandidatesMask) == (0, 0)
 				|| (m1 & ~baseCandidatesMask, m2 & ~baseCandidatesMask) == (0, 0))
 			{
 				// Two cells don't contain any digits in the base cells neither,
@@ -444,8 +442,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			in SudokuGrid grid, short baseCandidatesMask, int b1, int b2,
 			int tq1, int tq2, int tr1, int tr2, in GridMap crossline, bool isRow,
 			short lockedQ, short lockedR, in GridMap targetMap,
-			out BibiPatternEliminations bibiElims, out TargetPairEliminations targetPairElims,
-			out SwordfishEliminations swordfishElims)
+			out BiBiPattern bibiElims, out TargetPair targetPairElims, out Swordfish swordfishElims)
 		{
 			bibiElims = new();
 			targetPairElims = new();
@@ -458,12 +455,10 @@ namespace Sudoku.Solving.Manual.Exocets
 				for (int j = 0; j < 4; j++)
 				{
 					int p = RegionCells[BibiIter[block, j]][i];
-					if (!grid.GetCandidateMask(p).IsPowerOfTwo())
+					if (grid.GetCandidateMask(p).IsPowerOfTwo())
 					{
-						continue;
+						temp[j] |= grid.GetCandidateMask(p);
 					}
-
-					temp[j] |= grid.GetCandidateMask(p);
 				}
 			}
 
@@ -472,7 +467,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			playground[2] = (short)(temp[1] & temp[2] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
 			if ((playground[1], playground[2]) is not (not 0, not 0))
 			{
-				// Does not contain Bi-bi pattern.
+				// Does not contain Bi-Bi pattern.
 				return false;
 			}
 
@@ -502,7 +497,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					foreach (int digit in candidateMask)
 					{
-						bibiElims.Add(new(Elimination, pos2, digit));
+						bibiElims.Add(new(ConclusionType.Elimination, pos2, digit));
 						dic[pos2] &= (short)~(1 << digit);
 					}
 				}
@@ -514,22 +509,22 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				if (grid.Exists(tq1, digit) is true)
 				{
-					bibiElims.Add(new(Elimination, tq1, digit));
+					bibiElims.Add(new(ConclusionType.Elimination, tq1, digit));
 				}
 				if (grid.Exists(tq2, digit) is true)
 				{
-					bibiElims.Add(new(Elimination, tq2, digit));
+					bibiElims.Add(new(ConclusionType.Elimination, tq2, digit));
 				}
 			}
 			foreach (int digit in SudokuGrid.MaxCandidatesMask & ~last & ~lockedR)
 			{
 				if (grid.Exists(tr1, digit) is true)
 				{
-					bibiElims.Add(new(Elimination, tr1, digit));
+					bibiElims.Add(new(ConclusionType.Elimination, tr1, digit));
 				}
 				if (grid.Exists(tr2, digit) is true)
 				{
-					bibiElims.Add(new(Elimination, tr2, digit));
+					bibiElims.Add(new(ConclusionType.Elimination, tr2, digit));
 				}
 			}
 
@@ -547,7 +542,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					foreach (int cell in elimMap & CandMaps[digit])
 					{
-						targetPairElims.Add(new(Elimination, cell, digit));
+						targetPairElims.Add(new(ConclusionType.Elimination, cell, digit));
 					}
 				}
 				elimMap = new GridMap { b1, b2 }.PeerIntersection;
@@ -560,7 +555,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					foreach (int cell in elimMap & CandMaps[digit])
 					{
-						targetPairElims.Add(new(Elimination, cell, digit));
+						targetPairElims.Add(new(ConclusionType.Elimination, cell, digit));
 					}
 				}
 
@@ -575,7 +570,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						{
 							foreach (int cell in (RegionMaps[region] & CandMaps[digit]) - crossline)
 							{
-								swordfishElims.Add(new(Elimination, cell, digit));
+								swordfishElims.Add(new(ConclusionType.Elimination, cell, digit));
 							}
 						}
 					}

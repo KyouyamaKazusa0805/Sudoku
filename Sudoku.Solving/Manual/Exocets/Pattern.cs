@@ -97,9 +97,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public void Deconstruct(
 			out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap) =>
 			(baseCellsMap, targetCellsMap, crosslineMap) = (
-				new() { Base1, Base2 },
-				new() { TargetQ1, TargetQ2, TargetR1, TargetR2 },
-				CrossLine);
+				new() { Base1, Base2 }, new() { TargetQ1, TargetQ2, TargetR1, TargetR2 }, CrossLine);
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
@@ -128,8 +126,17 @@ namespace Sudoku.Solving.Manual.Exocets
 			out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2,
 			out GridMap crossline, out GridMap mq1, out GridMap mq2, out GridMap mr1, out GridMap mr2)
 		{
-			(base1, base2, tq1, tq2, tr1, tr2) = (Base1, Base2, TargetQ1, TargetQ2, TargetR1, TargetR2);
-			(crossline, mq1, mq2, mr1, mr2) = (CrossLine, MirrorQ1, MirrorQ2, MirrorR1, MirrorR2);
+			base1 = Base1;
+			base2 = Base2;
+			tq1 = TargetQ1;
+			tq2 = TargetQ2;
+			tr1 = TargetR1;
+			tr2 = TargetR2;
+			crossline = CrossLine;
+			mq1 = MirrorQ1;
+			mq2 = MirrorQ2;
+			mr1 = MirrorR1;
+			mr2 = MirrorR2;
 		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>

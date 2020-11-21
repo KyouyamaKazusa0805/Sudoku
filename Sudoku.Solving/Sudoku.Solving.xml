@@ -2708,271 +2708,117 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations">
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern">
             <summary>
-            Indicates the Bi-bi pattern eliminations.
+            Indicates the special eliminations provided by Bi-Bi pattern.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Count">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Conclusions">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations}[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.GetEnumerator">
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern.EliminationTypeName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations">
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest">
             <summary>
-            Indicates the compatibility test eliminations.
+            Indicates the eliminations provided by compatibility test.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Count">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Conclusions">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations}[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.GetEnumerator">
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest.EliminationTypeName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations">
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.Mirror">
             <summary>
-            Indicates the mirror cell eliminations.
+            Indicates the special eliminations provided by mirror.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Count">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Conclusions">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations}[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.GetEnumerator">
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.Mirror.EliminationTypeName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations">
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions">
             <summary>
-            Indicates the swordfish pattern eliminations.
+            Encapsulates the elimination instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Count">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Conclusions">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations}[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations">
+        <member name="F:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions._innerCollection">
             <summary>
-            Indicates the target eliminations.
+            Indicates the conclusion list.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Count">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Conclusions">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations}[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations">
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions.Count">
             <summary>
-            Indicates the target pair eliminations.
+            Indicates the number of conclusions in this collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Count">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Conclusions">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations}[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations">
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions.EliminationTypeName">
             <summary>
-            Indicates the true base eliminations.
+            Indicates the elimination type name.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions.Conclusions">
+            <summary>
+            Indicates the conclusions list. If the collection is empty,
+            the value will be <see langword="null"/>.
+            </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Count">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Count"/>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions.Add(Sudoku.Data.Conclusion@)">
+            <summary>
+            Add the specified conclusion into the list.
+            </summary>
+            <param name="conclusion">(<see langword="in"/> parameter) The element.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Conclusions">
-            <inheritdoc cref="P:Sudoku.DocComments.ExocetElimination.Conclusions"/>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <summary>
+            Add a serial of conclusions.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Add(Sudoku.Data.Conclusion@)">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations}[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.GetEnumerator">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations})">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})"/>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations[])">
-            <inheritdoc cref="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])"/>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions.op_BitwiseOr(Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions,Sudoku.Solving.Manual.Exocets.Eliminations.SpecialConclusions)">
+            <summary>
+            Merge the specified eliminations into the <paramref name="list"/> list, and returns the reference
+            of <paramref name="list"/>.
+            </summary>
+            <param name="list">The list.</param>
+            <param name="elims">The eliminations to merge.</param>
+            <returns>The reference same as <paramref name="list"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish">
+            <summary>
+            Indicates the special eliminations provided by fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish.EliminationTypeName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.Target">
+            <summary>
+            Indicates the special eliminations provided by target, which is the basic eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.Target.EliminationTypeName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair">
+            <summary>
+            Indicates the special eliminations provided by target pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair.EliminationTypeName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBase">
+            <summary>
+            Indicates the special eliminations provided by true base.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBase.EliminationTypeName">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo">
             <summary>
@@ -3002,7 +2848,7 @@
             The compatibility test eliminations (only used for senior exocets).
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.Target,Sudoku.Solving.Manual.Exocets.Eliminations.Mirror,Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair,Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBase,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest)">
             <summary>
             Provides a usage of <b>exocet</b> technique.
             </summary>
@@ -3060,28 +2906,18 @@
             </summary>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.GatherConclusions(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.GatherConclusions(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},Sudoku.Solving.Manual.Exocets.Eliminations.Target,Sudoku.Solving.Manual.Exocets.Eliminations.Mirror,Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair,Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBase,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest)">
             <summary>
             Gather conclusions.
             </summary>
             <param name="conclusions">The conclusions.</param>
-            <param name="targetEliminations">(<see langword="in"/> parameter) The target eliminations.</param>
-            <param name="mirrorEliminations">(<see langword="in"/> parameter) The mirror eliminations.</param>
-            <param name="bibiEliminations">
-            (<see langword="in"/> parameter) The Bi-bi pattern eliminations.
-            </param>
-            <param name="targetPairEliminations">
-            (<see langword="in"/> parameter) The target pair eliminations.
-            </param>
-            <param name="swordfishEliminations">
-            (<see langword="in"/> parameter) The swordfish eliminations.
-            </param>
-            <param name="trueBaseEliminations">
-            (<see langword="in"/> parameter) The true base eliminations.
-            </param>
-            <param name="compatibilityEliminations">
-            (<see langword="in"/> parameter) The compatibility eliminations.
-            </param>
+            <param name="targetEliminations">The target eliminations.</param>
+            <param name="mirrorEliminations">The mirror eliminations.</param>
+            <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
+            <param name="targetPairEliminations">The target pair eliminations.</param>
+            <param name="swordfishEliminations">The swordfish eliminations.</param>
+            <param name="trueBaseEliminations">The true base eliminations.</param>
+            <param name="compatibilityEliminations">The compatibility eliminations.</param>
             <returns>The gathered result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher">
@@ -3123,37 +2959,6 @@
             <summary>
             Indicates all patterns.
             </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.SIter">
-            <summary>
-            The cross line cells iterator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BIter">
-            <summary>
-            The base cells iterator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RqIter">
-            <summary>
-            The Q or R cells iterator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.M">
-            <summary>
-            The mirror list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.B">
-            <summary>
-            The base list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BC">
-            <summary>
-            The combinations for base list <see cref="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.B"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.B"/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher._checkAdvanced">
             <summary>
@@ -3212,7 +3017,7 @@
             <param name="TargetPairEliminations">The target pair eliminations.</param>
             <param name="SwordfishEliminations">The swordfish pattern eliminations.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.Target,Sudoku.Solving.Manual.Exocets.Eliminations.Mirror,Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair,Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish)">
             <summary>
             Provides a usage of <b>junior exocet</b> (JE) technique.
             </summary>
@@ -3277,7 +3082,7 @@
             <param name="candidateOffsets">The highliht candidates.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringTargetEliminations(System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Int16,Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringTargetEliminations(System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Int16,Sudoku.Solving.Manual.Exocets.Eliminations.Target)">
             <summary>
             The method for gathering target eliminations.
             </summary>
@@ -3285,7 +3090,7 @@
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="baseCandidatesMask">The base candidates mask.</param>
             <param name="temp">The temp mask.</param>
-            <param name="targetElims">(<see langword="ref"/> parameter) The target eliminations.</param>
+            <param name="targetElims">The target eliminations.</param>
             <returns>
             A <see cref="T:System.Boolean"/> value indicating whether this method has been found eliminations.
             </returns>
@@ -3314,7 +3119,7 @@
             <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.SudokuGrid@,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Boolean,System.Int16,System.Int16,Sudoku.Data.GridMap@,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.SudokuGrid@,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Boolean,System.Int16,System.Int16,Sudoku.Data.GridMap@,Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair@,Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish@)">
             <summary>
             Check Bi-bi pattern eliminations.
             </summary>
@@ -3482,7 +3287,7 @@
             <param name="MirrorEliminations">The mirror eliminations.</param>
             <param name="CompatibilityEliminations">The compatibility eliminations.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32[],Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32[],Sudoku.Solving.Manual.Exocets.Eliminations.Target,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBase,Sudoku.Solving.Manual.Exocets.Eliminations.Mirror,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest)">
             <summary>
             Provides a usage of <b>senior exocet</b> (SE) technique.
             </summary>
@@ -3545,14 +3350,14 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.DeepCrosslineCheck(System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.DeepCrosslineCheck(System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Span{System.Int32}@)">
             <summary>
             Deeply check of cross-line cells (franken/mutant exocets can be searched here).
             </summary>
             <param name="digit">The digit.</param>
             <param name="baseElimMap">(<see langword="in"/> parameter) The base elimination map.</param>
             <param name="tempCrossline">(<see langword="in"/> parameter) The cross-line map.</param>
-            <param name="extraRegionsMask">The extra regions.</param>
+            <param name="extraRegionsMask">(<see langword="ref"/> parameter) The extra regions.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int32,System.Int32)">
@@ -3567,7 +3372,7 @@
             <param name="t2">The target cell 2.</param>
             <returns>The mask of all incompatible values.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest2(Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations@,Sudoku.Data.GridMap@,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest2(Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest,Sudoku.Data.GridMap@,System.Int16,System.Int32,System.Int32)">
             <summary>
             The compatibility testing after the method
             <see cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int32,System.Int32)"/>.

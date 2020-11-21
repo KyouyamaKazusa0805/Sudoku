@@ -22,9 +22,8 @@ namespace Sudoku.Solving.Manual.Exocets
 	public sealed record JuniorExocetTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Exocet,
 		IEnumerable<int> Digits, IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
-		in TargetEliminations TargetEliminations, in MirrorEliminations MirrorEliminations,
-		in BibiPatternEliminations BibiEliminations, in TargetPairEliminations TargetPairEliminations,
-		in SwordfishEliminations SwordfishEliminations)
+		Target? TargetEliminations, Mirror? MirrorEliminations, BiBiPattern? BibiEliminations,
+		TargetPair? TargetPairEliminations, Swordfish? SwordfishEliminations)
 		: ExocetTechniqueInfo(
 			Conclusions, Views, Exocet, Digits,
 			LockedMemberQ, LockedMemberR, TargetEliminations, MirrorEliminations,
@@ -33,10 +32,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
 			9.4M +
-			(MirrorEliminations.Conclusions is null ? 0 : .1M) +
-			(BibiEliminations.Conclusions is null ? 0 : .3M) +
-			(TargetPairEliminations.Conclusions is null ? 0 : .1M) +
-			(SwordfishEliminations.Conclusions is null ? 0 : .2M);
+			(MirrorEliminations?.Conclusions is null ? 0 : .1M) +
+			(BibiEliminations?.Conclusions is null ? 0 : .3M) +
+			(TargetPairEliminations?.Conclusions is null ? 0 : .1M) +
+			(SwordfishEliminations?.Conclusions is null ? 0 : .2M);
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.Je;
