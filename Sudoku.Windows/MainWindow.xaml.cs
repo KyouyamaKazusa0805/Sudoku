@@ -184,16 +184,12 @@ namespace Sudoku.Windows
 						return;
 					}
 
-					int nextIndex = key == K.OemMinus ? _currentViewIndex - 1 : _currentViewIndex + 1;
-					if (nextIndex < 0 || nextIndex >= _currentTechniqueInfo.Views.Count)
-					{
-						return;
-					}
+					var views = _currentTechniqueInfo.Views;
+					int totalViewsCount = views.Count;
+					_currentViewIndex = Abs(
+						(key == K.OemMinus ? _currentViewIndex - 1 : _currentViewIndex + 1) % totalViewsCount);
 
-					_currentPainter = _currentPainter with
-					{
-						View = _currentTechniqueInfo.Views[_currentViewIndex = nextIndex]
-					};
+					_currentPainter = _currentPainter with { View = views[_currentViewIndex] };
 
 					UpdateImageGrid();
 
@@ -213,11 +209,7 @@ namespace Sudoku.Windows
 							K.Right => (cell + 1) % 81
 						});
 
-					_currentPainter = _currentPainter with
-					{
-						Grid = _puzzle,
-						FocusedCells = _focusedCells
-					};
+					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
 
 					UpdateImageGrid();
 
@@ -229,11 +221,7 @@ namespace Sudoku.Windows
 					_previewMap = _focusedCells;
 					_focusedCells = _focusedCells.PeerIntersection;
 
-					_currentPainter = _currentPainter with
-					{
-						Grid = _puzzle,
-						FocusedCells = _focusedCells
-					};
+					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
 
 					UpdateImageGrid();
 
@@ -246,11 +234,7 @@ namespace Sudoku.Windows
 					_focusedCells.Clear();
 					_focusedCells.AddAnyway((cell + 3) % 81);
 
-					_currentPainter = _currentPainter with
-					{
-						Grid = _puzzle,
-						FocusedCells = _focusedCells
-					};
+					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
 
 					UpdateImageGrid();
 
