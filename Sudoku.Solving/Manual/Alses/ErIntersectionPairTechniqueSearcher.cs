@@ -129,14 +129,7 @@ namespace Sudoku.Solving.Manual.Alses
 						accumulator.Add(
 							new ErIntersectionPairTechniqueInfo(
 								conclusions,
-								new View[]
-								{
-									new(
-										new DrawingInfo[] { new(0, c1), new(0, c2) },
-										candidateOffsets,
-										new DrawingInfo[] { new(0, block) },
-										null)
-								},
+								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, block) }, null) },
 								c1,
 								c2,
 								block,

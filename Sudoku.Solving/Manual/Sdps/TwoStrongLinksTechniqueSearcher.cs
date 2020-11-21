@@ -58,8 +58,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						}
 
 						// Check two cells share a same region.
-						int sameRegion;
-						int headIndex, tailIndex, c1Index, c2Index;
+						int sameRegion, headIndex, tailIndex, c1Index, c2Index;
 						for (int i = 0; i < 2; i++)
 						{
 							int cell1 = cells1[i];
@@ -106,10 +105,12 @@ namespace Sudoku.Solving.Manual.Sdps
 										null,
 										new DrawingInfo[]
 										{
-											new(0, cells1[c1Index] * 9 + digit), new(0, cells2[c2Index] * 9 + digit),
-											new(0, head * 9 + digit), new(0, tail * 9 + digit)
+											new(0, cells1[c1Index] * 9 + digit),
+											new(0, cells2[c2Index] * 9 + digit),
+											new(0, head * 9 + digit),
+											new(0, tail * 9 + digit)
 										},
-										new DrawingInfo[] { new(0, r1), new(0, r2), new(1, sameRegion) },
+										new DrawingInfo[] { new(1, sameRegion) },
 										null)
 								},
 								digit,
