@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
@@ -11,7 +10,6 @@ using Sudoku.Extensions;
 using static System.Math;
 using static System.Reflection.BindingFlags;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 
 namespace Sudoku.Windows
 {
@@ -199,9 +197,12 @@ namespace Sudoku.Windows
 							{
 								int first = _selectedCellsWhileDrawingRegions.First;
 								int second = _selectedCellsWhileDrawingRegions.SetAt(1);
-								int r1 = GetRegion(first, Row), r2 = GetRegion(second, Row);
-								int c1 = GetRegion(first, Column), c2 = GetRegion(second, Column);
-								int b1 = GetRegion(first, Block), b2 = GetRegion(second, Block);
+								int r1 = GetRegion(first, RegionLabel.Row);
+								int r2 = GetRegion(second, RegionLabel.Row);
+								int c1 = GetRegion(first, RegionLabel.Column);
+								int c2 = GetRegion(second, RegionLabel.Column);
+								int b1 = GetRegion(first, RegionLabel.Block);
+								int b2 = GetRegion(second, RegionLabel.Block);
 								int region = (r1 == r2, c1 == c2, b1 == b2) switch
 								{
 									(true, _, _) => r1,
@@ -260,8 +261,7 @@ namespace Sudoku.Windows
 				_comboBoxMode.SelectedIndex switch
 				{
 					0 => MenuItemGenerateWithSymmetry_Click,
-					1 => MenuItemGenerateHardPattern_Click,
-					_ => throw Throwings.ImpossibleCase
+					1 => MenuItemGenerateHardPattern_Click
 				};
 
 			a(sender, e);

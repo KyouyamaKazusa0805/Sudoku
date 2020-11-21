@@ -27,13 +27,8 @@ namespace Sudoku.Solving.Manual.Subsets
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			Size switch { 2 => 3.0M, 3 => 3.6M, 4 => 5.0M, _ => throw Throwings.ImpossibleCase }
-			+ IsLocked switch
-			{
-				null => 0,
-				true => Size switch { 2 => -1.0M, 3 => -1.1M, _ => throw Throwings.ImpossibleCase },
-				false => .1M
-			};
+			Size switch { 2 => 3.0M, 3 => 3.6M, 4 => 5.0M } +
+			IsLocked switch { null => 0, true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M };
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
@@ -46,8 +41,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				(false, 3) => TechniqueCode.NakedTriplePlus,
 				(null, 3) => TechniqueCode.NakedTriple,
 				(false, 4) => TechniqueCode.NakedQuadruplePlus,
-				(null, 4) => TechniqueCode.NakedQuadruple,
-				_ => throw Throwings.ImpossibleCase
+				(null, 4) => TechniqueCode.NakedQuadruple
 			};
 
 

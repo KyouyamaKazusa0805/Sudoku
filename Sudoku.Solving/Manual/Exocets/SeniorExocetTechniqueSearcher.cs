@@ -10,7 +10,6 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Solving.Manual.Exocets
@@ -51,7 +50,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				short baseCandidatesMask = (short)(grid.GetCandidateMask(b1) | grid.GetCandidateMask(b2));
 
 				int i = 0;
-				int r = GetRegion(b1, Row) - 9, c = GetRegion(b1, Column) - 18;
+				int r = GetRegion(b1, RegionLabel.Row) - 9, c = GetRegion(b1, RegionLabel.Column) - 18;
 				foreach (int pos in SudokuGrid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))
 				{
 					cover[i++] = isRow ? pos + 9 : pos + 18;
@@ -102,8 +101,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					int row1 = GetRegion(v1, Row), column1 = GetRegion(v1, Column);
-					int row2 = GetRegion(v2, Row), column2 = GetRegion(v2, Column);
+					int row1 = GetRegion(v1, RegionLabel.Row), column1 = GetRegion(v1, RegionLabel.Column);
+					int row2 = GetRegion(v2, RegionLabel.Row), column2 = GetRegion(v2, RegionLabel.Column);
 					if (isRow ? column1 == column2 : row1 == row2)
 					{
 						continue;
@@ -389,9 +388,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			foreach (int[] combination in tempCrossline.ToArray().GetSubsets(3))
 			{
 				var (a, b, c) = (combination[0], combination[1], combination[2]);
-				int r1 = GetRegion(a, Row), c1 = GetRegion(a, Column);
-				int r2 = GetRegion(b, Row), c2 = GetRegion(b, Column);
-				int r3 = GetRegion(c, Row), c3 = GetRegion(c, Column);
+				int r1 = GetRegion(a, RegionLabel.Row), c1 = GetRegion(a, RegionLabel.Column);
+				int r2 = GetRegion(b, RegionLabel.Row), c2 = GetRegion(b, RegionLabel.Column);
+				int r3 = GetRegion(c, RegionLabel.Row), c3 = GetRegion(c, RegionLabel.Column);
 				if (r1 == r2 || r1 == r3 || r2 == r3 || c1 == c2 || c1 == c3 || c2 == c3)
 				{
 					continue;
@@ -443,9 +442,9 @@ namespace Sudoku.Solving.Manual.Exocets
 				foreach (int[] combination in (tempCrossline & digitMaps[digit]).ToArray().GetSubsets(3))
 				{
 					var (a, b, c) = (combination[0], combination[1], combination[2]);
-					int r1 = GetRegion(a, Row), c1 = GetRegion(a, Column);
-					int r2 = GetRegion(b, Row), c2 = GetRegion(b, Column);
-					int r3 = GetRegion(c, Row), c3 = GetRegion(c, Column);
+					int r1 = GetRegion(a, RegionLabel.Row), c1 = GetRegion(a, RegionLabel.Column);
+					int r2 = GetRegion(b, RegionLabel.Row), c2 = GetRegion(b, RegionLabel.Column);
+					int r3 = GetRegion(c, RegionLabel.Row), c3 = GetRegion(c, RegionLabel.Column);
 					if (r1 == r2 || r1 == r3 || r2 == r3 || c1 == c2 || c1 == c3 || c2 == c3)
 					{
 						continue;
@@ -513,9 +512,9 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			foreach (var (currentTarget, elimTarget) in stackalloc[] { (t1, t2), (t2, t1) })
 			{
-				int r = GetRegion(currentTarget, Row);
-				int c = GetRegion(currentTarget, Column);
-				int b = GetRegion(currentTarget, Block);
+				int r = GetRegion(currentTarget, RegionLabel.Row);
+				int c = GetRegion(currentTarget, RegionLabel.Column);
+				int b = GetRegion(currentTarget, RegionLabel.Block);
 				foreach (int digit in baseCandidatesMask)
 				{
 					if ((grid.GetCandidateMask(currentTarget) >> digit & 1) == 0)

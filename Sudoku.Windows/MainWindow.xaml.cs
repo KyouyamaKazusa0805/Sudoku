@@ -210,8 +210,7 @@ namespace Sudoku.Windows
 							K.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
 							K.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
 							K.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
-							K.Right => (cell + 1) % 81,
-							_ => throw Throwings.ImpossibleCase
+							K.Right => (cell + 1) % 81
 						});
 
 					_currentPainter = _currentPainter with

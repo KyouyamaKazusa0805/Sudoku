@@ -6,7 +6,6 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 
 namespace Sudoku.Solving.Checking
 {
@@ -109,9 +108,9 @@ namespace Sudoku.Solving.Checking
 						ref var map = ref stack[0, digit];
 						map.AddAnyway(cell);
 
-						span[0] = GetRegion(cell, Row);
-						span[1] = GetRegion(cell, Column);
-						span[2] = GetRegion(cell, Block);
+						span[0] = GetRegion(cell, RegionLabel.Row);
+						span[1] = GetRegion(cell, RegionLabel.Column);
+						span[2] = GetRegion(cell, RegionLabel.Block);
 						foreach (int region in span)
 						{
 							if ((map & RegionMaps[region]).Count > 2)
@@ -166,9 +165,9 @@ namespace Sudoku.Solving.Checking
 						var temp = stack[currentIndex - 1, digit];
 						temp.AddAnyway(currentCell);
 
-						playground[0] = GetRegion(currentCell, Block);
-						playground[1] = GetRegion(currentCell, Row);
-						playground[2] = GetRegion(currentCell, Column);
+						playground[0] = GetRegion(currentCell, RegionLabel.Block);
+						playground[1] = GetRegion(currentCell, RegionLabel.Row);
+						playground[2] = GetRegion(currentCell, RegionLabel.Column);
 						foreach (int region in playground)
 						{
 							if ((temp & RegionMaps[region]).Count > 2)

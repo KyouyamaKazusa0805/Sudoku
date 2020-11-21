@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Sudoku.Constants;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -44,8 +42,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			Size switch
 			{
 				3 => IsIncomplete ? 4.2M : 4.4M,
-				>= 4 and < 9 => IsIncomplete ? DifficultyRating[Size] + .1M : DifficultyRating[Size],
-				_ => throw Throwings.ImpossibleCase
+				>= 4 and < 9 => IsIncomplete ? DifficultyRating[Size] + .1M : DifficultyRating[Size]
 			};
 
 		/// <inheritdoc/>
@@ -53,8 +50,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			Size switch
 			{
 				>= 3 and <= 4 => DifficultyLevel.Hard,
-				> 4 and < 9 => DifficultyLevel.Fiendish,
-				_ => throw new NotSupportedException($"{nameof(Size)} isn't in a valid range.")
+				> 4 and < 9 => DifficultyLevel.Fiendish
 			};
 
 		/// <inheritdoc/>
@@ -74,8 +70,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				"Incomplete UVWXYZ-Wing" => TechniqueCode.IncompleteUvwxyzWing,
 				"Incomplete TUVWXYZ-Wing" => TechniqueCode.IncompleteTuvwxyzWing,
 				"Incomplete STUVWXYZ-Wing" => TechniqueCode.IncompleteStuvwxyzWing,
-				"Incomplete RSTUVWXYZ-Wing" => TechniqueCode.IncompleteRstuvwxyzWing,
-				_ => throw Throwings.ImpossibleCase
+				"Incomplete RSTUVWXYZ-Wing" => TechniqueCode.IncompleteRstuvwxyzWing
 			};
 
 		/// <summary>
@@ -85,8 +80,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			Size switch
 			{
 				3 => IsIncomplete ? "XY-Wing" : "XYZ-Wing",
-				>= 4 and < 9 => IsIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size],
-				_ => throw Throwings.ImpossibleCase
+				>= 4 and < 9 => IsIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size]
 			};
 
 

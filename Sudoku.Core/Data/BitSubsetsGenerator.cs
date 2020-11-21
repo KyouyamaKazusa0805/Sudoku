@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using Sudoku.Constants;
 
 namespace Sudoku.Data
 {
@@ -38,17 +37,29 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
+		public override bool Equals(object? obj) =>
+			throw new NotSupportedException(
+				"This instance doesn't support this member, " +
+				"because this method will cause box and unbox operations, " +
+				"which is invalid in ref structures.");
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
+		public override int GetHashCode() =>
+			throw new NotSupportedException(
+				"This instance doesn't support this member, " +
+				"because this method will cause box and unbox operations, " +
+				"which is invalid in ref structures.");
 
 		/// <inheritdoc cref="object.ToString"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override string ToString() => throw Throwings.RefStructNotSupported;
+		public override string ToString() =>
+			throw new NotSupportedException(
+				"This instance doesn't support this member, " +
+				"because this method will cause box and unbox operations, " +
+				"which is invalid in ref structures.");
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		public Enumerator GetEnumerator() => _enumerator;

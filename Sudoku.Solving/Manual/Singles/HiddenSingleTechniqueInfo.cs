@@ -36,8 +36,7 @@ namespace Sudoku.Solving.Manual.Singles
 				{
 					RegionLabel.Row => TechniqueCode.HiddenSingleRow,
 					RegionLabel.Column => TechniqueCode.HiddenSingleColumn,
-					RegionLabel.Block => TechniqueCode.HiddenSingleBlock,
-					_ => throw Throwings.ImpossibleCase
+					RegionLabel.Block => TechniqueCode.HiddenSingleBlock
 				}
 			};
 

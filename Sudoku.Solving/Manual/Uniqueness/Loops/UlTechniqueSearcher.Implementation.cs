@@ -1,13 +1,12 @@
-﻿using Sudoku.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using System.Collections.Generic;
-using System.Linq;
-using Sudoku.Data.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
-using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -339,7 +338,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			bool isOdd;
 			foreach (int cell in loop)
 			{
-				for (var label = Block; label <= Column; label++)
+				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 				{
 					int region = GetRegion(cell, label);
 					if (*&isOdd)

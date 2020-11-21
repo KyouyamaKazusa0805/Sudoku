@@ -9,7 +9,6 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Constants.Values;
 using static Sudoku.Data.ConclusionType;
 
@@ -657,7 +656,7 @@ namespace Sudoku.Solving.Manual.Fishes
 							unsafe
 							{
 								static bool internalChecking(int c, in bool searchRow, in int cell) =>
-								RegionMaps[GetRegion(c, searchRow ? Column : Row)][cell];
+								RegionMaps[GetRegion(c, searchRow ? RegionLabel.Column : RegionLabel.Row)][cell];
 								if (ValueMaps[digit].Any(&internalChecking, searchRow, cell))
 								{
 									continue;

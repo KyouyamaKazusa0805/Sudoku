@@ -1,28 +1,22 @@
 ﻿using System.Collections.Generic;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
 	partial class BdpTechniqueSearcher
 	{
-		/// <summary>
-		/// All combinations in a block.
-		/// </summary>
-		private static readonly int[][] Quads =
-		{
-			new[] { 0, 1, 3, 4 }, new[] { 1, 2, 4, 5 }, new[] { 3, 4, 6, 7 }, new[] { 4, 5, 7, 8 },
-			new[] { 0, 2, 3, 5 }, new[] { 3, 5, 6, 8 }, new[] { 0, 1, 6, 7 }, new[] { 1, 2, 7, 8 },
-			new[] { 0, 2, 6, 8 }
-		};
-
-
 		/// <inheritdoc cref="StaticConstructor"/>
 		static BdpTechniqueSearcher()
 		{
+			int[][] Quads =
+			{
+				new[] { 0, 1, 3, 4 }, new[] { 1, 2, 4, 5 }, new[] { 3, 4, 6, 7 }, new[] { 4, 5, 7, 8 },
+				new[] { 0, 2, 3, 5 }, new[] { 3, 5, 6, 8 }, new[] { 0, 1, 6, 7 }, new[] { 1, 2, 7, 8 },
+				new[] { 0, 2, 6, 8 }
+			};
+
 			int count = 0;
 			for (int block = 0; block < 9; block++)
 			{
@@ -59,16 +53,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 					(int incre1, int incre2) = i switch
 					{
-						0 => (9, 1),
-						1 => (9, 1),
-						2 => (9, 1),
-						3 => (9, 1),
-						4 => (9, 2),
-						5 => (9, 2),
-						6 => (18, 1),
-						7 => (18, 1),
-						8 => (18, 2),
-						_ => throw Throwings.ImpossibleCase
+						0 or 1 or 2 or 3 => (9, 1),
+						4 or 5 => (9, 2),
+						6 or 7 => (18, 1),
+						8 => (18, 2)
 					};
 					if (region1 is >= 9 and < 18)
 					{
@@ -122,16 +110,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				(int incre1, int incre2) = i switch
 				{
-					0 => (9, 1),
-					1 => (9, 1),
-					2 => (9, 1),
-					3 => (9, 1),
-					4 => (9, 2),
-					5 => (9, 2),
-					6 => (18, 1),
-					7 => (18, 1),
+					0 or 1 or 2 or 3 => (9, 1),
+					4 or 5 => (9, 2),
+					6 or 7 => (18, 1),
 					8 => (18, 2),
-					_ => throw Throwings.ImpossibleCase
 				};
 				if (region1 is >= 9 and < 18)
 				{
@@ -174,7 +156,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				for (int i = 0, cur = 0; i < 9; i++)
 				{
 					int cell = RegionCells[region][i];
-					if (block == GetRegion(cell, Block))
+					if (block == GetRegion(cell, RegionLabel.Block))
 					{
 						continue;
 					}
@@ -184,8 +166,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						0 => (cell, cell + increment),
 						1 => region is >= 18 and < 27 ? (cell - increment, cell) : (cell, cell + increment),
 						2 => region is >= 9 and < 18 ? (cell - increment, cell) : (cell, cell + increment),
-						3 => (cell - increment, cell),
-						_ => throw Throwings.ImpossibleCase
+						3 => (cell - increment, cell)
 					};
 					cur++;
 				}

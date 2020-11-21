@@ -8,7 +8,6 @@ using Sudoku.Solving.Manual.LastResorts;
 using static System.Algorithms;
 using static System.Math;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Solving.Annotations.DisabledReason;
 
@@ -165,9 +164,9 @@ namespace Sudoku.Solving.Manual.Fishes
 					// Gather the cover sets that contains the eliminations.
 					foreach (int cell in globalElimMap)
 					{
-						mask &= ~(1 << GetRegion(cell, Row));
-						mask &= ~(1 << GetRegion(cell, Column));
-						mask &= ~(1 << GetRegion(cell, Block));
+						mask &= ~(1 << GetRegion(cell, RegionLabel.Row));
+						mask &= ~(1 << GetRegion(cell, RegionLabel.Column));
+						mask &= ~(1 << GetRegion(cell, RegionLabel.Block));
 					}
 
 					// Then 'mask' contains the regions that eliminations don't lie on.

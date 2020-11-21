@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 
@@ -36,8 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				1 => 4.5M,
 				2 => 4.6M,
 				3 => 4.5M + ((UlType3TechniqueInfo)this).SubsetCells.Count * .1M,
-				4 => 4.6M,
-				_ => throw Throwings.ImpossibleCase
+				4 => 4.6M
 			} + DifficultyExtra[Loop.Count >> 1];
 
 		/// <inheritdoc/>
@@ -53,8 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				1 => TechniqueCode.UlType1,
 				2 => TechniqueCode.UlType2,
 				3 => TechniqueCode.UlType3,
-				4 => TechniqueCode.UlType4,
-				_ => throw Throwings.ImpossibleCase
+				4 => TechniqueCode.UlType4
 			};
 
 

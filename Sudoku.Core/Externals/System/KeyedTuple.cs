@@ -6,7 +6,6 @@
 **/
 
 using System.Runtime.CompilerServices;
-using Sudoku.Constants;
 using Sudoku.Extensions;
 
 namespace System
@@ -36,7 +35,7 @@ namespace System
 
 		/// <inheritdoc/>
 		object? ITuple.this[int index] =>
-			PriorKey switch { 1 => Item1, 2 => Item2, _ => Throwings.ImpossibleCase };
+			PriorKey switch { 1 => Item1, 2 => Item2 };
 
 
 		/// <inheritdoc/>
@@ -70,7 +69,7 @@ namespace System
 
 		/// <inheritdoc/>
 		object? ITuple.this[int index] =>
-			PriorKey switch { 1 => Item1, 2 => Item2, 3 => Item3, _ => Throwings.ImpossibleCase };
+			PriorKey switch { 1 => Item1, 2 => Item2, 3 => Item3 };
 
 
 		/// <inheritdoc/>
@@ -106,7 +105,7 @@ namespace System
 
 		/// <inheritdoc/>
 		object? ITuple.this[int index] =>
-			PriorKey switch { 1 => Item1, 2 => Item2, 3 => Item3, 4 => Item4, _ => Throwings.ImpossibleCase };
+			PriorKey switch { 1 => Item1, 2 => Item2, 3 => Item3, 4 => Item4 };
 
 
 		/// <inheritdoc/>

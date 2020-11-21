@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Constants
+﻿namespace Sudoku.Data
 {
 	/// <summary>
 	/// Indicates the region label.

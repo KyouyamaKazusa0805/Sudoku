@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using HuajiTech.Mirai;
 using HuajiTech.Mirai.Events;
 using Sudoku.Bot.Extensions;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -373,8 +372,7 @@ namespace Sudoku.Bot
 				{
 					"有" => true,
 					"无" => false,
-					"any" => null,
-					_ => throw Throwings.ImpossibleCase
+					"any" => null
 				};
 
 				bool realContainFcs = analysisResult.SolvingSteps.Any(TechniqueInfoEx.IsForcingChainsTechnique);

@@ -126,8 +126,7 @@ namespace Sudoku.Data
 					GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
 					GridParsingOption.Sukaku => OnParsingSukaku(ref this, false),
 					GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, true),
-					GridParsingOption.Excel => OnParsingExcel(ref this),
-					_ => throw Throwings.ImpossibleCase
+					GridParsingOption.Excel => OnParsingExcel(ref this)
 				};
 
 

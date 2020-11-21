@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 
@@ -65,9 +64,12 @@ namespace Sudoku.Data.Collections
 
 		/// <inheritdoc/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
-		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
+		public override bool Equals(object? obj) =>
+			throw new NotSupportedException(
+				"This instance doesn't support this member, " +
+				"because this method will cause box and unbox operations, " +
+				"which is invalid in ref structures.");
 
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		public bool Equals(in DigitCollection other) => _mask == other._mask;
@@ -81,9 +83,12 @@ namespace Sudoku.Data.Collections
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
-		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
+		public override int GetHashCode() =>
+			throw new NotSupportedException(
+				"This instance doesn't support this member, " +
+				"because this method will cause box and unbox operations, " +
+				"which is invalid in ref structures.");
 
 		/// <inheritdoc/>
 		public override string ToString() => ToString(", ");

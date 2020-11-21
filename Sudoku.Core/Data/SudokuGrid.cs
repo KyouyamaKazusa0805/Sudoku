@@ -238,8 +238,7 @@ namespace Sudoku.Data
 			{
 				CellStatus.Undefined => -2,
 				CellStatus.Empty => -1,
-				CellStatus.Modifiable or CellStatus.Given => (~_values[cell]).FindFirstSet(),
-				_ => throw Throwings.ImpossibleCase
+				CellStatus.Modifiable or CellStatus.Given => (~_values[cell]).FindFirstSet()
 			};
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -465,13 +464,16 @@ namespace Sudoku.Data
 				_ when formatProvider.HasFormatted(this, format, out string? result) => result,
 				_ when GridFormatter.Create(format) is var formatter => format switch
 				{
-					":" => formatter.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations).NullableToString(),
+					":" =>
+						formatter
+						.ToString(this)
+						.Match(RegularExpressions.ExtendedSusserEliminations)
+						.NullableToString(),
 					"!" => formatter.ToString(this).Replace("+", string.Empty),
 					".!" or "!." or "0!" or "!0" => formatter.ToString(this).Replace("+", string.Empty),
 					".!:" or "!.:" or "0!:" => formatter.ToString(this).Replace("+", string.Empty),
 					_ => formatter.ToString(this)
-				},
-				_ => throw Throwings.ImpossibleCase
+				}
 			};
 
 		/// <summary>

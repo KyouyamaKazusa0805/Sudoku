@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Constants
@@ -26,10 +24,9 @@ namespace Sudoku.Constants
 		(
 			label switch
 			{
-				Row => RowTable,
-				Column => ColumnTable,
-				Block => BlockTable,
-				_ => throw Throwings.ImpossibleCase
+				RegionLabel.Row => RowTable,
+				RegionLabel.Column => ColumnTable,
+				RegionLabel.Block => BlockTable
 			}
 		)[cell];
 
@@ -40,24 +37,6 @@ namespace Sudoku.Constants
 		/// <returns>The region label.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static RegionLabel GetLabel(int region) => (RegionLabel)(region / 9);
-
-		/// <summary>
-		/// Get cells with the specified mask, which consist of 9 bits and 1 is
-		/// for yielding.
-		/// </summary>
-		/// <param name="region">The region.</param>
-		/// <param name="mask">The mask.</param>
-		/// <returns>The cells.</returns>
-		public static IEnumerable<int> GetCells(int region, short mask)
-		{
-			for (int i = 0, t = mask; i < 9; i++, t >>= 1)
-			{
-				if ((t & 1) != 0)
-				{
-					yield return RegionCells[region][i];
-				}
-			}
-		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
@@ -76,122 +55,91 @@ namespace Sudoku.Constants
 		/// </param>
 		public static void Deconstruct(
 			this in SudokuGrid @this, out GridMap empty, out GridMap bivalue,
-			out GridMap[] candidates, out GridMap[] digits, out GridMap[] values) =>
-			(empty, bivalue, candidates, digits, values) = (
-				@this.GetEmptyCellsMap(), @this.GetBivalueCellsMap(),
-				@this.GetCandidatesMap(), @this.GetDigitsMap(), @this.GetValuesMap());
-
-		/// <summary>
-		/// Get the map of all empty cells in this grid.
-		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-		/// <returns>The map.</returns>
-		private static GridMap GetEmptyCellsMap(this in SudokuGrid @this)
+			out GridMap[] candidates, out GridMap[] digits, out GridMap[] values)
 		{
-			var result = GridMap.Empty;
-			for (int cell = 0; cell < 81; cell++)
+			(empty, bivalue, candidates, digits, values) = (e(@this), b(@this), c(@this), d(@this), v(@this));
+
+			static GridMap e(in SudokuGrid @this)
 			{
-				if (@this.GetStatus(cell) == Empty)
-				{
-					result.AddAnyway(cell);
-				}
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Get the map of all bi-value cells in this grid.
-		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-		/// <returns>The map.</returns>
-		private static GridMap GetBivalueCellsMap(this in SudokuGrid @this)
-		{
-			var result = GridMap.Empty;
-			for (int cell = 0; cell < 81; cell++)
-			{
-				if (@this.GetCandidateMask(cell).PopCount() == 2)
-				{
-					result.AddAnyway(cell);
-				}
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Get the map of all distributions for digits.
-		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-		/// <returns>The map.</returns>
-		private static GridMap[] GetCandidatesMap(this in SudokuGrid @this)
-		{
-			var result = new GridMap[9];
-			for (int digit = 0; digit < 9; digit++)
-			{
-				ref var map = ref result[digit];
+				var result = GridMap.Empty;
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if (@this.Exists(cell, digit) is true)
+					if (@this.GetStatus(cell) == Empty)
 					{
-						map.AddAnyway(cell);
+						result.AddAnyway(cell);
 					}
 				}
+
+				return result;
 			}
 
-			return result;
-		}
-
-		/// <summary>
-		/// <para>Get the map of all distributions for digits.</para>
-		/// <para>
-		/// Different with <see cref="GetCandidatesMap(in SudokuGrid)"/>,
-		/// this method will get all cells that contain the digit or fill this digit
-		/// (given or modifiable).
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-		/// <returns>The map.</returns>
-		/// <seealso cref="GetCandidatesMap(in SudokuGrid)"/>
-		private static GridMap[] GetDigitsMap(this in SudokuGrid @this)
-		{
-			var result = new GridMap[9];
-			for (int digit = 0; digit < 9; digit++)
+			static GridMap b(in SudokuGrid @this)
 			{
-				ref var map = ref result[digit];
+				var result = GridMap.Empty;
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if ((@this.GetCandidateMask(cell) >> digit & 1) != 0)
+					if (@this.GetCandidateMask(cell).PopCount() == 2)
 					{
-						map.AddAnyway(cell);
+						result.AddAnyway(cell);
 					}
 				}
+
+				return result;
 			}
 
-			return result;
-		}
-
-		/// <summary>
-		/// Get the map of all distributions for digits.
-		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-		/// <returns>The map.</returns>
-		private static GridMap[] GetValuesMap(this in SudokuGrid @this)
-		{
-			var result = new GridMap[9];
-			for (int digit = 0; digit < 9; digit++)
+			static GridMap[] c(in SudokuGrid @this)
 			{
-				ref var map = ref result[digit];
-				for (int cell = 0; cell < 81; cell++)
+				var result = new GridMap[9];
+				for (int digit = 0; digit < 9; digit++)
 				{
-					if (@this[cell] == digit)
+					ref var map = ref result[digit];
+					for (int cell = 0; cell < 81; cell++)
 					{
-						map.AddAnyway(cell);
+						if (@this.Exists(cell, digit) is true)
+						{
+							map.AddAnyway(cell);
+						}
 					}
 				}
+
+				return result;
 			}
 
-			return result;
+			static GridMap[] d(in SudokuGrid @this)
+			{
+				var result = new GridMap[9];
+				for (int digit = 0; digit < 9; digit++)
+				{
+					ref var map = ref result[digit];
+					for (int cell = 0; cell < 81; cell++)
+					{
+						if ((@this.GetCandidateMask(cell) >> digit & 1) != 0)
+						{
+							map.AddAnyway(cell);
+						}
+					}
+				}
+
+				return result;
+			}
+
+			static GridMap[] v(in SudokuGrid @this)
+			{
+				var result = new GridMap[9];
+				for (int digit = 0; digit < 9; digit++)
+				{
+					ref var map = ref result[digit];
+					for (int cell = 0; cell < 81; cell++)
+					{
+						if (@this[cell] == digit)
+						{
+							map.AddAnyway(cell);
+						}
+					}
+				}
+
+				return result;
+			}
 		}
 	}
 }

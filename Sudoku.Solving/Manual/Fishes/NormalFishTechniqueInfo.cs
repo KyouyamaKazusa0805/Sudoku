@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -44,11 +43,11 @@ namespace Sudoku.Solving.Manual.Fishes
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			Size switch { 2 => 3.2M, 3 => 3.8M, 4 => 5.2M, _ => throw Throwings.ImpossibleCase }
-			+ IsSashimi switch
+			Size switch { 2 => 3.2M, 3 => 3.8M, 4 => 5.2M } +
+			IsSashimi switch
 			{
 				null => 0,
-				true => Size switch { 2 => .3M, 3 => .3M, 4 => .4M, _ => throw Throwings.ImpossibleCase },
+				true => Size switch { 2 => .3M, 3 => .3M, 4 => .4M },
 				false => .2M
 			};
 

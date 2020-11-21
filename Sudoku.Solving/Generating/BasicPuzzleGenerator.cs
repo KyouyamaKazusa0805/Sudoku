@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Globalization;
@@ -81,21 +80,37 @@ namespace Sudoku.Solving.Generating
 					var tempMap = GridMap.Empty;
 					foreach (int tCell in selectedType switch
 					{
-						Central => new[] { r * 9 + c, (8 - r) * 9 + 8 - c },
-						Diagonal => new[] { r * 9 + c, c * 9 + r },
-						AntiDiagonal => new[] { r * 9 + c, (8 - c) * 9 + 8 - r },
-						XAxis => new[] { r * 9 + c, (8 - r) * 9 + c },
-						YAxis => new[] { r * 9 + c, r * 9 + 8 - c },
-						DiagonalBoth => new[] { r * 9 + c, c * 9 + r, (8 - c) * 9 + 8 - r, (8 - r) * 9 + 8 - c },
-						AxisBoth => new[] { r * 9 + c, (8 - r) * 9 + c, r * 9 + 8 - c, (8 - r) * 9 + 8 - c },
-						All => new[]
+						Central => stackalloc[] { r * 9 + c, (8 - r) * 9 + 8 - c },
+						Diagonal => stackalloc[] { r * 9 + c, c * 9 + r },
+						AntiDiagonal => stackalloc[] { r * 9 + c, (8 - c) * 9 + 8 - r },
+						XAxis => stackalloc[] { r * 9 + c, (8 - r) * 9 + c },
+						YAxis => stackalloc[] { r * 9 + c, r * 9 + 8 - c },
+						DiagonalBoth => stackalloc[]
 						{
-							r * 9 + c, r * 9 + (8 - c), (8 - r) * 9 + c, (8 - r) * 9 + (8 - c),
-							c * 9 + r, c * 9 + (8 - r), (8 - c) * 9 + r, (8 - c) * 9 + (8 - r)
+							r * 9 + c,
+							c * 9 + r,
+							(8 - c) * 9 + 8 - r,
+							(8 - r) * 9 + 8 - c
 						},
-						None => new[] { r * 9 + c },
-						_ => throw Throwings.ImpossibleCaseWithMessage(
-							"You shouldn't add an option that doesn't contain in the table of symmetrical types.")
+						AxisBoth => stackalloc[]
+						{
+							r * 9 + c,
+							(8 - r) * 9 + c,
+							r * 9 + 8 - c,
+							(8 - r) * 9 + 8 - c
+						},
+						All => stackalloc[]
+						{
+							r * 9 + c,
+							r * 9 + (8 - c),
+							(8 - r) * 9 + c,
+							(8 - r) * 9 + (8 - c),
+							c * 9 + r,
+							c * 9 + (8 - r),
+							(8 - c) * 9 + r,
+							(8 - c) * 9 + (8 - r)
+						},
+						None => stackalloc[] { r * 9 + c }
 					})
 					{
 						solution[tCell] = '0';

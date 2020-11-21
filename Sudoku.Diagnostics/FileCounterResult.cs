@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Sudoku.Constants;
 
 namespace Sudoku.Diagnostics
 {
@@ -48,8 +47,7 @@ namespace Sudoku.Diagnostics
 				SizeUnit.Kilobyte => "KB",
 				SizeUnit.Megabyte => "MB",
 				SizeUnit.Gigabyte => "GB",
-				SizeUnit.Terabyte => "TB",
-				_ => throw Throwings.ImpossibleCase
+				SizeUnit.Terabyte => "TB"
 			};
 	}
 }

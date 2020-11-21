@@ -7,7 +7,6 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 
@@ -109,14 +108,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						continue;
 					}
 
-					linkRegion[0] = GetRegion(cells[0], Row);
-					linkRegion[1] = GetRegion(cells[2], Block);
-					linkRegion[2] = GetRegion(cells[4], Column);
-					linkRegion[3] = GetRegion(cells[6], Block);
-					linkRegion[4] = GetRegion(cells[8], Row);
-					linkRegion[5] = GetRegion(cells[10], Block);
-					linkRegion[6] = GetRegion(cells[12], Column);
-					linkRegion[7] = GetRegion(cells[14], Block);
+					linkRegion[0] = GetRegion(cells[0], RegionLabel.Row);
+					linkRegion[1] = GetRegion(cells[2], RegionLabel.Block);
+					linkRegion[2] = GetRegion(cells[4], RegionLabel.Column);
+					linkRegion[3] = GetRegion(cells[6], RegionLabel.Block);
+					linkRegion[4] = GetRegion(cells[8], RegionLabel.Row);
+					linkRegion[5] = GetRegion(cells[10], RegionLabel.Block);
+					linkRegion[6] = GetRegion(cells[12], RegionLabel.Column);
+					linkRegion[7] = GetRegion(cells[14], RegionLabel.Block);
 
 					var conclusions = new List<Conclusion>();
 					var map = cells & EmptyMap;

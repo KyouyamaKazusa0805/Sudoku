@@ -10,7 +10,6 @@
 **/
 
 using System.Runtime.CompilerServices;
-using Sudoku.Constants;
 using Sudoku.Extensions;
 
 namespace System
@@ -71,10 +70,10 @@ for (int current = 2; current <= target; current++)
 		/// <inheritdoc/>
 		object? ITuple.this[int index] =>
 			PriorKey switch { <#
-		for (int i = 1; i <= current; i++)
+		for (int i = 1; i < current; i++)
 		{#><#= i #> => Item<#= i #>, <#
 		}
-		#>_ => Throwings.ImpossibleCase };
+		#><#= current #> => Item<#= current #> };
 
 
 		/// <inheritdoc/>

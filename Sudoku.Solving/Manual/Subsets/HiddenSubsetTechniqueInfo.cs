@@ -23,8 +23,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		: SubsetTechniqueInfo(Conclusions, Views, Region, Cells, Digits)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			Size switch { 2 => 3.4M, 3 => 4.0M, 4 => 5.4M, _ => throw Throwings.ImpossibleCase };
+		public override decimal Difficulty => Size switch { 2 => 3.4M, 3 => 4.0M, 4 => 5.4M };
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
@@ -32,8 +31,7 @@ namespace Sudoku.Solving.Manual.Subsets
 			{
 				2 => TechniqueCode.HiddenPair,
 				3 => TechniqueCode.HiddenTriple,
-				4 => TechniqueCode.HiddenQuadruple,
-				_ => throw Throwings.ImpossibleCase
+				4 => TechniqueCode.HiddenQuadruple
 			};
 
 

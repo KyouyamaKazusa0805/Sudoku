@@ -20,7 +20,7 @@
             the static constructor.
             </summary>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetRegion(System.Int32,Sudoku.Constants.RegionLabel)">
+        <member name="M:Sudoku.Constants.Processings.GetRegion(System.Int32,Sudoku.Data.RegionLabel)">
             <summary>
             Get the region index for the specified cell and the region type.
             </summary>
@@ -34,15 +34,6 @@
             </summary>
             <param name="region">The region.</param>
             <returns>The region label.</returns>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.GetCells(System.Int32,System.Int16)">
-            <summary>
-            Get cells with the specified mask, which consist of 9 bits and 1 is
-            for yielding.
-            </summary>
-            <param name="region">The region.</param>
-            <param name="mask">The mask.</param>
-            <returns>The cells.</returns>
         </member>
         <member name="M:Sudoku.Constants.Processings.Deconstruct(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
@@ -60,47 +51,6 @@
             (<see langword="out"/> parameter) The map of all cells that is the given or modifiable value,
             and the digit is the specified one.
             </param>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.GetEmptyCellsMap(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get the map of all empty cells in this grid.
-            </summary>
-            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-            <returns>The map.</returns>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.GetBivalueCellsMap(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get the map of all bi-value cells in this grid.
-            </summary>
-            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-            <returns>The map.</returns>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get the map of all distributions for digits.
-            </summary>
-            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-            <returns>The map.</returns>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.GetDigitsMap(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            <para>Get the map of all distributions for digits.</para>
-            <para>
-            Different with <see cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.SudokuGrid@)"/>,
-            this method will get all cells that contain the digit or fill this digit
-            (given or modifiable).
-            </para>
-            </summary>
-            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-            <returns>The map.</returns>
-            <seealso cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.SudokuGrid@)"/>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.GetValuesMap(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get the map of all distributions for digits.
-            </summary>
-            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-            <returns>The map.</returns>
         </member>
         <member name="F:Sudoku.Constants.Processings.BlockTable">
             <summary>
@@ -188,26 +138,6 @@
         <member name="M:Sudoku.Constants.Processings.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Constants.RegionLabel">
-            <summary>
-            Indicates the region label.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegionLabel.Block">
-            <summary>
-            Indicates the block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegionLabel.Row">
-            <summary>
-            Indicates the row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegionLabel.Column">
-            <summary>
-            Indicates the column.
-            </summary>
-        </member>
         <member name="T:Sudoku.Constants.RegularExpressions">
             <summary>
             The class that stores all regular expressions used in this solution.
@@ -282,53 +212,6 @@
             <summary>
             Indicates all null lines and header spaces in their lines.
             </summary>
-        </member>
-        <member name="T:Sudoku.Constants.Throwings">
-            <summary>
-            Provides operations for throwing exceptions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Constants.Throwings.ImpossibleCase">
-            <summary>
-            <para>
-            Indicates an exception throwing when the case is impossible
-            in switch expressions or switch-case clauses.
-            </para>
-            <para>
-            This property will be used as a placeholder when expressions
-            generate a warning (CS8509).
-            </para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Constants.Throwings.RefStructNotSupported">
-            <summary>
-            Indicates all <see langword="ref struct"/>s can't
-            use any boxing operations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Constants.Throwings.ImpossibleCaseWithMessage(System.String)">
-            <summary>
-            Indicates an exception throwing when the case is impossible
-            in switch expressions or switch-case clauses.
-            </summary>
-            <param name="message">The specified message to display.</param>
-            <returns>The exception.</returns>
-        </member>
-        <member name="M:Sudoku.Constants.Throwings.ParsingError``1(System.String)">
-            <summary>
-            Indicates an exception throwing when the parsing is failed.
-            </summary>
-            <typeparam name="TTarget">The target type to parse.</typeparam>
-            <param name="paramName">The name of the parameter.</param>
-            <returns>The exception.</returns>
-        </member>
-        <member name="M:Sudoku.Constants.Throwings.FormatErrorWithMessage(System.String,System.String)">
-            <summary>
-            Indicates an exception throwing when the format string is error.
-            </summary>
-            <param name="message">The inner message to display.</param>
-            <param name="paramName">The name of format string parameter.</param>
-            <returns>The exception.</returns>
         </member>
         <member name="T:Sudoku.Constants.Values">
             <summary>
@@ -2127,6 +2010,26 @@
         </member>
         <member name="M:Sudoku.Data.Node.op_Inequality(Sudoku.Data.Node@,Sudoku.Data.Node@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="T:Sudoku.Data.RegionLabel">
+            <summary>
+            Indicates the region label.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.RegionLabel.Block">
+            <summary>
+            Indicates the block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.RegionLabel.Row">
+            <summary>
+            Indicates the row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.RegionLabel.Column">
+            <summary>
+            Indicates the column.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.Stepping.AntiEliminationStep">
             <summary>

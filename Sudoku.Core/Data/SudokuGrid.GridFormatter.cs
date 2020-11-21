@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.Extensions;
 
 namespace Sudoku.Data
@@ -298,8 +297,7 @@ namespace Sudoku.Data
 							CellStatus.Empty => Placeholder,
 							CellStatus.Modifiable =>
 								WithModifiables ? $"+{GetFirstFalseCandidate(value) + 1}" : $"{Placeholder}",
-							CellStatus.Given => $"{GetFirstFalseCandidate(value) + 1}",
-							_ => throw Throwings.ImpossibleCase
+							CellStatus.Given => $"{GetFirstFalseCandidate(value) + 1}"
 						});
 
 					cell++;
@@ -399,8 +397,7 @@ namespace Sudoku.Data
 									{
 										1 or 2 or 3 or 4 => i - 1,
 										5 or 7 or 7 or 8 => i - 2,
-										9 or 10 or 11 or 12 => i - 3,
-										_ => throw Throwings.ImpossibleCaseWithMessage("On the border.")
+										9 or 10 or 11 or 12 => i - 3
 									}
 								], '|', '|', maxLengths);
 

@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -56,7 +54,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						//case <= 0:
 						//{
 						//	// Invalid grid status.
-						//	throw Throwings.ImpossibleCase;
+						//	throw NoSolutionException(grid);
 						//}
 						case 1:
 						{
@@ -108,7 +106,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					loopMap.AddAnyway(cell);
 					tempLoop.Add(cell);
 
-					for (var label = Block; label <= Column; label++)
+					for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 					{
 						if (label == lastLabel)
 						{

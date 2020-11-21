@@ -1,7 +1,6 @@
 ﻿using Sudoku.Data;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
@@ -42,16 +41,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					for (int k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 					{
 						var pairMap = new GridMap { c1, c2 };
-						if (baseLineMap.Overlaps(pairMap)
-							|| baseLineMap.Overlaps(RegionMaps[GetRegion(c1, Block)] | RegionMaps[GetRegion(c2, Block)]))
+						if (
+							baseLineMap.Overlaps(pairMap)
+							|| baseLineMap.Overlaps(
+								RegionMaps[GetRegion(c1, RegionLabel.Block)]
+								| RegionMaps[GetRegion(c2, RegionLabel.Block)]))
 						{
 							continue;
 						}
 
 						var squareMap =
 							baseLineMap & (
-								RegionMaps[GetRegion(c1, isRow ? Column : Row)]
-								| RegionMaps[GetRegion(c2, isRow ? Column : Row)]);
+								RegionMaps[GetRegion(c1, isRow ? RegionLabel.Column : RegionLabel.Row)]
+								| RegionMaps[GetRegion(c2, isRow ? RegionLabel.Column : RegionLabel.Row)]);
 
 						Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
 					}

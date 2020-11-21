@@ -8,7 +8,6 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Solving.Manual.Exocets
@@ -210,10 +209,12 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				short nonBase = (short)(mirrorCandidatesMask & ~baseCandidateMask);
-				int r1 = GetRegion(playground[0], Row);
+				int r1 = GetRegion(playground[0], RegionLabel.Row);
 				(regions[0], regions[1]) = (
-					GetRegion(playground[0], Block),
-					r1 == GetRegion(playground[1], Row) ? r1 : GetRegion(playground[0], Column));
+					GetRegion(playground[0], RegionLabel.Block),
+					r1 == GetRegion(playground[1], RegionLabel.Row)
+					? r1
+					: GetRegion(playground[0], RegionLabel.Column));
 				short locked = default;
 				foreach (short mask in GetCombinations(nonBase))
 				{

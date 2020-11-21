@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 
@@ -70,18 +69,24 @@ namespace Sudoku.Data.Collections
 
 		/// <inheritdoc/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
-		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
+		public override bool Equals(object? obj) =>
+			throw new NotSupportedException(
+				"This instance doesn't support this member, " +
+				"because this method will cause box and unbox operations, " +
+				"which is invalid in ref structures.");
 
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		public bool Equals(in RegionCollection other) => _mask == other._mask;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
-		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
+		public override int GetHashCode() =>
+			throw new NotSupportedException(
+				"This instance doesn't support this member, " +
+				"because this method will cause box and unbox operations, " +
+				"which is invalid in ref structures.");
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
@@ -152,8 +157,7 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The label.</returns>
-		private char GetLabel(int index) =>
-			index switch { 0 => 'b', 1 => 'r', 2 => 'c', _ => throw Throwings.ImpossibleCase };
+		private char GetLabel(int index) => index switch { 0 => 'b', 1 => 'r', 2 => 'c' };
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -9,7 +8,6 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.LinkType;
 
@@ -96,7 +94,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							loopMap.AddAnyway(cell);
 							tempLoop.Add(cell);
 
-							for (var label = Block; label <= Column; label++)
+							for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 							{
 								if (label == lastLabel)
 								{

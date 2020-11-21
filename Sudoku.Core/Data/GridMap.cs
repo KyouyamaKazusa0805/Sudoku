@@ -5,7 +5,6 @@ using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
@@ -740,7 +739,10 @@ namespace Sudoku.Data
 					_ => normalToString(this)
 				},
 				"B" or "b" => binaryToString(this),
-				_ => throw Throwings.FormatErrorWithMessage(null!, nameof(format))
+				_ =>
+					throw new FormatException(
+						"The specified format is invalid.",
+						new ArgumentException(null, nameof(format)))
 			};
 
 			static unsafe string normalToString(in GridMap @this)

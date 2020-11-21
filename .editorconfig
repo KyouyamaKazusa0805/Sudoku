@@ -291,6 +291,12 @@ csharp_style_unused_value_expression_statement_preference = discard_variable:non
 dotnet_diagnostic.IDE0072.severity = none
 
 
+# CS8509: The switch expression does not handle all possible values of its input type (it is not exhaustive).
+dotnet_diagnostic.CS8509.severity = silent
+
+# CS8524: The switch expression does not handle some values of its input type (it is not exhaustive) involving an unnamed enum value.
+dotnet_diagnostic.CS8524.severity = silent
+
 # CS8600: Converting null literal or possible null value to non-nullable type.
 dotnet_diagnostic.CS8600.severity = error
 
@@ -371,6 +377,9 @@ dotnet_diagnostic.CS8774.severity = error
 
 # CS8777: Parameter must have a non-null value when exiting.
 dotnet_diagnostic.CS8777.severity = error
+
+# CS8846: The switch expression does not handle all possible values of its input type (it is not exhaustive).
+dotnet_diagnostic.CS8846.severity = silent
 
 
 # CA1027: Mark enums with FlagsAttribute

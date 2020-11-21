@@ -8,7 +8,6 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Solving.Manual.Exocets
@@ -369,8 +368,13 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Therefore, we should check on non-base digits, whether the non-base digits
 			// covers only one of two last cells; otherwise, false.
 			short candidatesMask = (short)((m1 | m2) & ~baseCandidatesMask);
-			int r1 = GetRegion(pos1, Row);
-			var span = (stackalloc[] { GetRegion(pos1, Block), r1 == GetRegion(pos2, Row) ? r1 : GetRegion(pos1, Column) });
+			int r1 = GetRegion(pos1, RegionLabel.Row);
+			var span = (
+				stackalloc[]
+				{
+					GetRegion(pos1, RegionLabel.Block),
+					r1 == GetRegion(pos2, RegionLabel.Row) ? r1 : GetRegion(pos1, RegionLabel.Column)
+				});
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
 				for (int i = 0; i < 2; i++)
@@ -448,7 +452,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			targetPairElims = new();
 			swordfishElims = new();
 			var playground = (stackalloc short[3]);
-			int block = GetRegion(b1, Block);
+			int block = GetRegion(b1, RegionLabel.Block);
 			short[] temp = new short[4];
 			for (int i = 0; i < 9; i++)
 			{

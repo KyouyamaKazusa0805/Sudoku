@@ -6,7 +6,6 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -138,7 +137,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			IList<ChainingTechniqueInfo> accumulator, in SudokuGrid grid, int cell, int digit,
 			Set<Node> onToOn, Set<Node> onToOff)
 		{
-			for (var label = Block; label <= Column; label++)
+			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
 				int region = GetRegion(cell, label);
 				var worthMap = CandMaps[digit] & RegionMaps[region];

@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Sudoku.Constants;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
@@ -81,9 +80,12 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[DoesNotReturn]
-		public override readonly bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
+		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
+		public override readonly bool Equals(object? obj) =>
+			throw new NotSupportedException(
+				"This instance doesn't support this member, " +
+				"because this method will cause box and unbox operations, " +
+				"which is invalid in ref structures.");
 
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -6388,11 +6388,6 @@
             <param name="centerMask">The center mask.</param>
             <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Quads">
-            <summary>
-            All combinations in a block.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>

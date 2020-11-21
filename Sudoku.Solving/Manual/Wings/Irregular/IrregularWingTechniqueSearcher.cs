@@ -6,7 +6,6 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Wings.Irregular
@@ -59,8 +58,12 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 
 					for (int region = 9; region < 27; region++)
 					{
-						if (region < 18 && (GetRegion(c1, Row) == region || GetRegion(c2, Row) == region)
-							|| region >= 18 && (GetRegion(c1, Column) == region || GetRegion(c2, Column) == region))
+						if (region < 18 && (
+							GetRegion(c1, RegionLabel.Row) == region
+							|| GetRegion(c2, RegionLabel.Row) == region)
+							|| region >= 18 && (
+							GetRegion(c1, RegionLabel.Column) == region
+							|| GetRegion(c2, RegionLabel.Column) == region))
 						{
 							continue;
 						}

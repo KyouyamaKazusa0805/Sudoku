@@ -4,7 +4,6 @@ using Sudoku.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.RegionLabel;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -37,7 +36,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Second rule: Other positions for this digit get off.
-			for (var label = Block; label <= Column; label++)
+			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
 				int region = GetRegion(p.Cell, label);
 				for (int pos = 0; pos < 9; pos++)
@@ -80,7 +79,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			if (xEnabled)
 			{
 				// Second rule: If there's only two positions for this candidate, the other ont gets on.
-				for (var label = Block; label <= Column; label++)
+				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 				{
 					int region = GetRegion(p.Cell, label);
 					if (new GridMap(CandMaps[p.Digit] & RegionMaps[region]) { ~p.Cell } is { Count: 1 } cells)
