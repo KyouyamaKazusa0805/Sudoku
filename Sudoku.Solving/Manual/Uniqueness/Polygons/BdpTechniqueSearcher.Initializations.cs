@@ -30,12 +30,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						tempQuad[j] = (block / 3 * 3 + quad[j] / 3) * 9 + block % 3 * 3 + quad[j] % 3;
 					}
 
-					c3(block, i, tempQuad);
-					c4(block, i, tempQuad);
+					c3(block, i, tempQuad, ref count);
+					c4(block, i, tempQuad, ref count);
 				}
 			}
 
-			void c3(int block, int i, int[] quad)
+			static void c3(int block, int i, int[] quad, ref int count)
 			{
 				int[][] triplets = new int[4][]
 				{
@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				}
 			}
 
-			void c4(int block, int i, int[] quad)
+			static void c4(int block, int i, int[] quad, ref int count)
 			{
 				int region1 = new GridMap { quad[0], quad[1] }.CoveredLine;
 				int region2 = new GridMap { quad[0], quad[2] }.CoveredLine;

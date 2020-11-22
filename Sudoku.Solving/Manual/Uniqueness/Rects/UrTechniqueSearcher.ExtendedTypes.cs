@@ -224,22 +224,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								}
 								else if (urCell == otherCell || urCell == elimCell)
 								{
-									void record(in SudokuGrid grid, int d)
+									if (grid.Exists(urCell, d1) is true)
 									{
-										if (grid.Exists(urCell, d) is true)
+										if (urCell != elimCell || d1 != elimDigit)
 										{
-											if (urCell != elimCell || d != elimDigit)
-											{
-												candidateOffsets.Add(
-													new(
-														urCell == elimCell ? 0 : (d == digit ? 1 : 0),
-														urCell * 9 + d));
-											}
+											candidateOffsets.Add(
+												new(
+													urCell == elimCell ? 0 : (d1 == digit ? 1 : 0),
+													urCell * 9 + d1));
 										}
 									}
-
-									record(grid, d1);
-									record(grid, d2);
+									if (grid.Exists(urCell, d2) is true)
+									{
+										if (urCell != elimCell || d2 != elimDigit)
+										{
+											candidateOffsets.Add(
+												new(
+													urCell == elimCell ? 0 : (d2 == digit ? 1 : 0),
+													urCell * 9 + d2));
+										}
+									}
 								}
 							}
 
@@ -365,19 +369,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								}
 								else if (urCell == otherCell || urCell == elimCell)
 								{
-									void record(in SudokuGrid grid, int d)
+									if (grid.Exists(urCell, d1) is true && (urCell != elimCell || d1 != digit))
 									{
-										if (grid.Exists(urCell, d) is true && (urCell != elimCell || d != digit))
-										{
-											candidateOffsets.Add(
-												new(
-													urCell == elimCell ? 0 : (d == digit ? 1 : 0),
-													urCell * 9 + d));
-										}
+										candidateOffsets.Add(
+											new(
+												urCell == elimCell ? 0 : (d1 == digit ? 1 : 0),
+												urCell * 9 + d1));
 									}
-
-									record(grid, d1);
-									record(grid, d2);
+									if (grid.Exists(urCell, d2) is true && (urCell != elimCell || d2 != digit))
+									{
+										candidateOffsets.Add(
+											new(
+												urCell == elimCell ? 0 : (d2 == digit ? 1 : 0),
+												urCell * 9 + d2));
+									}
 								}
 							}
 

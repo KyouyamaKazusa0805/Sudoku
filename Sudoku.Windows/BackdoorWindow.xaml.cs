@@ -70,13 +70,11 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			// Here one more encapsulation is on purpose,
-			// because ref structs cannot be used in the async environment.
+			// This encapsulation is on purpose, because ref structs cannot be used in the async environment.
 			showBackdoors();
 			void showBackdoors()
 			{
 				var collectionStr = new List<string>();
-				var enumerator = collections.GetEnumerator();
 				foreach (var collection in collections)
 				{
 					collectionStr.Add(new ConclusionCollection(collection).ToString());

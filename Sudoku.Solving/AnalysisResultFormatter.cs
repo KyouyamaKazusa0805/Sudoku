@@ -90,7 +90,9 @@ namespace Sudoku.Solving
 
 			// Print solving steps (if worth).
 			var bottleneckData = GetBottleneckData();
-			void a() => sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);
+
+			void a(bool showSeparator) =>
+				sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);
 			if (showTechniqueSteps && steps is { Count: not 0 })
 			{
 				sb.AppendLine(GetValue("AnalysisResultSolvingSteps"));
@@ -120,7 +122,7 @@ namespace Sudoku.Solving
 
 					if (showBottleneck)
 					{
-						a();
+						a(showSeparator);
 
 						sb
 							.Append(GetValue("AnalysisResultBottleneckStep"))
@@ -132,7 +134,7 @@ namespace Sudoku.Solving
 							.AppendLine(bInfo);
 					}
 
-					a();
+					a(showSeparator);
 				}
 			}
 
@@ -196,7 +198,7 @@ namespace Sudoku.Solving
 							: GetValue("AnalysisResultStepPlural")
 						)}");
 
-				a();
+				a(showSeparator);
 			}
 
 			// Print detail data.
@@ -227,7 +229,7 @@ namespace Sudoku.Solving
 				.AppendLine(GetValue("AnalysisResultBeenSolved"))
 				.Append(GetValue("AnalysisResultTimeElapsed"))
 				.AppendLine(elapsed.ToString(@"hh\:mm\.ss\.fff"));
-			a();
+			a(showSeparator);
 
 			// Print attributes (if worth).
 			// Here use dynamic call (reflection) to get all methods which contains
@@ -251,7 +253,7 @@ namespace Sudoku.Solving
 						.AppendLine(attributeResult);
 				}
 
-				a();
+				a(showSeparator);
 			}
 
 			// Print backdoors (if worth).
@@ -264,7 +266,7 @@ namespace Sudoku.Solving
 					sb.Append(new string(' ', 4)).AppendLine(assignment[0]);
 				}
 
-				a();
+				a(showSeparator);
 			}
 
 			// Print the additional information (if worth).

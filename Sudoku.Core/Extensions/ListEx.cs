@@ -50,9 +50,9 @@ namespace Sudoku.Extensions
 		/// </remarks>
 		public static unsafe void Sort<T>(this IList<T> @this, delegate*<in T, in T, int> comparer)
 		{
-			q(0, @this.Count - 1);
+			q(0, @this.Count - 1, @this, comparer);
 
-			void q(int l, int r)
+			static void q(int l, int r, IList<T> @this, delegate*<in T, in T, int> comparer)
 			{
 				if (l < r)
 				{
@@ -71,8 +71,8 @@ namespace Sudoku.Extensions
 						if (comparer(@this[i], @this[j]) == 0) j--;
 					}
 
-					q(l, i);
-					q(i + 1, r);
+					q(l, i, @this, comparer);
+					q(i + 1, r, @this, comparer);
 				}
 			}
 		}

@@ -269,7 +269,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						// Here you should use '|' operator rather than '||'.
 						// Operator '||' won't execute the second method if the first condition is true.
-						if (g(grid, playground[0], mirrorElims) | g(grid, playground[1], mirrorElims))
+						if (g(grid, playground[0], mirrorElims, baseCandidateMask, locked)
+							| g(grid, playground[1], mirrorElims, baseCandidateMask, locked))
 						{
 							cellOffsets.Add(new(3, playground[0]));
 							cellOffsets.Add(new(3, playground[1]));
@@ -292,7 +293,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						break;
 
 						// Gathering.
-						bool g(in SudokuGrid grid, int p, Mirror mirrorElims)
+						bool g(
+							in SudokuGrid grid, int p, Mirror mirrorElims, short baseCandidateMask, short locked)
 						{
 							if (
 								(short)(grid.GetCandidateMask(p) & ~(baseCandidateMask | locked))

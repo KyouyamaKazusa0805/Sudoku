@@ -89,6 +89,11 @@ namespace Sudoku.Solving.Manual.Sdps
 									guardians));
 						}
 
+						// This function is used for recursion.
+						// You can't change it to the static local function or normal methods,
+						// because it'll cause stack-overflowing.
+						// One example is:
+						// 009050007060030080000009200100700800002400005080000040010820600000010000300007010
 						void f(int cell, RegionLabel lastLabel, GridMap guardians)
 						{
 							loopMap.AddAnyway(cell);

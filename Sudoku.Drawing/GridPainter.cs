@@ -588,7 +588,7 @@ namespace Sudoku.Drawing
 							// In direct view, candidates should be drawn also.
 							if (!Settings.ShowCandidates)
 							{
-								d(cell, digit);
+								d(cell, digit, vOffsetCandidate);
 							}
 						}
 						else if (Settings.PaletteColors.TryGetValue(id, out var color))
@@ -600,7 +600,7 @@ namespace Sudoku.Drawing
 							// In direct view, candidates should be drawn also.
 							if (!Settings.ShowCandidates)
 							{
-								d(cell, digit);
+								d(cell, digit, vOffsetCandidate);
 							}
 						}
 					}
@@ -613,12 +613,12 @@ namespace Sudoku.Drawing
 				{
 					if (type == Elimination)
 					{
-						d(cell, digit);
+						d(cell, digit, vOffsetCandidate);
 					}
 				}
 			}
 
-			void d(int cell, int digit)
+			void d(int cell, int digit, float vOffsetCandidate)
 			{
 				var point = PointConverter.GetMousePointInCenter(cell, digit);
 				point.Y += vOffsetCandidate;

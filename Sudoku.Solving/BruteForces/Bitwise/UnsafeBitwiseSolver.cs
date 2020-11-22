@@ -80,7 +80,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		{
 			var stopwatch = new Stopwatch();
 
-			string puzzle = $"{grid:0}";
+			string puzzle = grid.ToString("0");
 			fixed (char* p = puzzle)
 			{
 				char* solutionStr = stackalloc char[BufferLength];
@@ -369,7 +369,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if ((ar & 7) != *&s)
 					{
 						ar &= 0x7FFFFF8 | s;
-						upwcl(&s, 0, 3, 6, 9, 12, 15, 18, 21, 24);
+						upwcl(s, 0, 3, 6, 9, 12, 15, 18, 21, 24, a);
 					}
 				Digit0b:
 					if (_g->Bands[0 * 3 + 1] == _g->PrevBands[0 * 3 + 1]) goto Digit0c;
@@ -377,7 +377,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 3) & 7) != *&s)
 					{
 						ar &= 0x7FFFFC7 | (s << 3);
-						upwcl(&s, 1, 4, 7, 10, 13, 16, 19, 22, 25);
+						upwcl(s, 1, 4, 7, 10, 13, 16, 19, 22, 25, a);
 					}
 				Digit0c:
 					if (_g->Bands[0 * 3 + 2] == _g->PrevBands[0 * 3 + 2]) goto Digit1;
@@ -385,7 +385,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 6) & 7) != *&s)
 					{
 						ar &= 0x7FFFE3F | (s << 6);
-						upwcl(&s, 2, 5, 8, 11, 14, 17, 20, 23, 26);
+						upwcl(s, 2, 5, 8, 11, 14, 17, 20, 23, 26, a);
 					}
 				Digit1:
 					if (((ar >> 9) & 0x1FF) == 0) goto Digit2;
@@ -394,7 +394,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 9) & 7) != *&s)
 					{
 						ar &= 0x7FFF1FF | (s << 9);
-						upwcl(&s, 0, 0, 6, 9, 12, 15, 18, 21, 24);
+						upwcl(s, 0, 0, 6, 9, 12, 15, 18, 21, 24, a);
 					}
 				Digit1b:
 					if (_g->Bands[1 * 3 + 1] == _g->PrevBands[1 * 3 + 1]) goto Digit1c;
@@ -402,7 +402,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 12) & 7) != *&s)
 					{
 						ar &= 0x7FF8FFF | (s << 12);
-						upwcl(&s, 1, 1, 7, 10, 13, 16, 19, 22, 25);
+						upwcl(s, 1, 1, 7, 10, 13, 16, 19, 22, 25, a);
 					}
 				Digit1c:
 					if (_g->Bands[1 * 3 + 2] == _g->PrevBands[1 * 3 + 2]) goto Digit2;
@@ -410,7 +410,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 15) & 7) != *&s)
 					{
 						ar &= 0x7FC7FFF | (s << 15);
-						upwcl(&s, 2, 2, 8, 11, 14, 17, 20, 23, 26);
+						upwcl(s, 2, 2, 8, 11, 14, 17, 20, 23, 26, a);
 					}
 				Digit2:
 					if (((ar >> 18) & 0x1FF) == 0) goto End012;
@@ -419,7 +419,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 18) & 7) != *&s)
 					{
 						ar &= 0x7E3FFFF | (s << 18);
-						upwcl(&s, 0, 0, 3, 9, 12, 15, 18, 21, 24);
+						upwcl(s, 0, 0, 3, 9, 12, 15, 18, 21, 24, a);
 					}
 				Digit2b:
 					if (_g->Bands[2 * 3 + 1] == _g->PrevBands[2 * 3 + 1]) goto Digit2c;
@@ -427,7 +427,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 21) & 7) != *&s)
 					{
 						ar &= 0x71FFFFF | (s << 21);
-						upwcl(&s, 1, 1, 4, 10, 13, 16, 19, 22, 25);
+						upwcl(s, 1, 1, 4, 10, 13, 16, 19, 22, 25, a);
 					}
 				Digit2c:
 					if (_g->Bands[2 * 3 + 2] == _g->PrevBands[2 * 3 + 2]) goto End012;
@@ -435,7 +435,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 24) & 7) != *&s)
 					{
 						ar &= 0xFFFFFF | (s << 24);
-						upwcl(&s, 2, 2, 5, 11, 14, 17, 20, 23, 26);
+						upwcl(s, 2, 2, 5, 11, 14, 17, 20, 23, 26, a);
 					}
 				End012:
 					_g->UnsolvedRows[0] = ar;
@@ -450,7 +450,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if ((ar & 7) != *&s)
 					{
 						ar &= 0x7FFFFF8 | s;
-						upwcl(&s, 0, 0, 3, 6, 12, 15, 18, 21, 24);
+						upwcl(s, 0, 0, 3, 6, 12, 15, 18, 21, 24, a);
 					}
 				Digit3b:
 					if (_g->Bands[3 * 3 + 1] == _g->PrevBands[3 * 3 + 1]) goto Digit3c;
@@ -458,7 +458,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 3) & 7) != *&s)
 					{
 						ar &= 0x7FFFFC7 | (s << 3);
-						upwcl(&s, 1, 1, 4, 7, 13, 16, 19, 22, 25);
+						upwcl(s, 1, 1, 4, 7, 13, 16, 19, 22, 25, a);
 					}
 				Digit3c:
 					if (_g->Bands[3 * 3 + 2] == _g->PrevBands[3 * 3 + 2]) goto Digit4;
@@ -466,7 +466,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 6) & 7) != *&s)
 					{
 						ar &= 0x7FFFE3F | (s << 6);
-						upwcl(&s, 2, 2, 5, 8, 14, 17, 20, 23, 26);
+						upwcl(s, 2, 2, 5, 8, 14, 17, 20, 23, 26, a);
 					}
 				Digit4:
 					if (((ar >> 9) & 0x1FF) == 0) goto Digit5;
@@ -475,7 +475,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 9) & 7) != *&s)
 					{
 						ar &= 0x7FFF1FF | (s << 9);
-						upwcl(&s, 0, 0, 3, 6, 9, 15, 18, 21, 24);
+						upwcl(s, 0, 0, 3, 6, 9, 15, 18, 21, 24, a);
 					}
 				Digit4b:
 					if (_g->Bands[4 * 3 + 1] == _g->PrevBands[4 * 3 + 1]) goto Digit4c;
@@ -483,7 +483,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 12) & 7) != *&s)
 					{
 						ar &= 0x7FF8FFF | (s << 12);
-						upwcl(&s, 1, 1, 4, 7, 10, 16, 19, 22, 25);
+						upwcl(s, 1, 1, 4, 7, 10, 16, 19, 22, 25, a);
 					}
 				Digit4c:
 					if (_g->Bands[4 * 3 + 2] == _g->PrevBands[4 * 3 + 2]) goto Digit5;
@@ -491,7 +491,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 15) & 7) != *&s)
 					{
 						ar &= 0x7FC7FFF | (s << 15);
-						upwcl(&s, 2, 2, 5, 8, 11, 17, 20, 23, 26);
+						upwcl(s, 2, 2, 5, 8, 11, 17, 20, 23, 26, a);
 					}
 				Digit5:
 					if (((ar >> 18) & 0x1FF) == 0) goto End345;
@@ -500,7 +500,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 18) & 7) != *&s)
 					{
 						ar &= 0x7E3FFFF | (s << 18);
-						upwcl(&s, 0, 0, 3, 6, 9, 12, 18, 21, 24);
+						upwcl(s, 0, 0, 3, 6, 9, 12, 18, 21, 24, a);
 					}
 				Digit5b:
 					if (_g->Bands[5 * 3 + 1] == _g->PrevBands[5 * 3 + 1]) goto Digit5c;
@@ -508,7 +508,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 21) & 7) != *&s)
 					{
 						ar &= 0x71FFFFF | (s << 21);
-						upwcl(&s, 1, 1, 4, 7, 10, 13, 19, 22, 25);
+						upwcl(s, 1, 1, 4, 7, 10, 13, 19, 22, 25, a);
 					}
 				Digit5c:
 					if (_g->Bands[5 * 3 + 2] == _g->PrevBands[5 * 3 + 2]) goto End345;
@@ -516,7 +516,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 24) & 7) != *&s)
 					{
 						ar &= 0xFFFFFF | (s << 24);
-						upwcl(&s, 2, 2, 5, 8, 11, 14, 20, 23, 26);
+						upwcl(s, 2, 2, 5, 8, 11, 14, 20, 23, 26, a);
 					}
 				End345:
 					_g->UnsolvedRows[1] = ar;
@@ -531,7 +531,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if ((ar & 7) != *&s)
 					{
 						ar &= 0x7FFFFF8 | s;
-						upwcl(&s, 0, 0, 3, 6, 9, 12, 15, 21, 24);
+						upwcl(s, 0, 0, 3, 6, 9, 12, 15, 21, 24, a);
 					}
 				Digit6b:
 					if (_g->Bands[6 * 3 + 1] == _g->PrevBands[6 * 3 + 1]) goto Digit6c;
@@ -539,7 +539,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 3) & 7) != *&s)
 					{
 						ar &= 0x7FFFFC7 | (s << 3);
-						upwcl(&s, 1, 1, 4, 7, 10, 13, 16, 22, 25);
+						upwcl(s, 1, 1, 4, 7, 10, 13, 16, 22, 25, a);
 					}
 				Digit6c:
 					if (_g->Bands[6 * 3 + 2] == _g->PrevBands[6 * 3 + 2]) goto Digit7;
@@ -547,7 +547,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 6) & 7) != *&s)
 					{
 						ar &= 0x7FFFE3F | (s << 6);
-						upwcl(&s, 2, 2, 5, 8, 11, 14, 17, 23, 26);
+						upwcl(s, 2, 2, 5, 8, 11, 14, 17, 23, 26, a);
 					}
 				Digit7:
 					if (((ar >> 9) & 0x1FF) == 0) goto Digit8;
@@ -556,7 +556,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 9) & 7) != *&s)
 					{
 						ar &= 0x7FFF1FF | (s << 9);
-						upwcl(&s, 0, 0, 3, 6, 9, 12, 15, 18, 24);
+						upwcl(s, 0, 0, 3, 6, 9, 12, 15, 18, 24, a);
 					}
 				Digit7b:
 					if (_g->Bands[7 * 3 + 1] == _g->PrevBands[7 * 3 + 1]) goto Digit7c;
@@ -564,7 +564,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 12) & 7) != *&s)
 					{
 						ar &= 0x7FF8FFF | (s << 12);
-						upwcl(&s, 1, 1, 4, 7, 10, 13, 16, 19, 25);
+						upwcl(s, 1, 1, 4, 7, 10, 13, 16, 19, 25, a);
 					}
 				Digit7c:
 					if (_g->Bands[7 * 3 + 2] == _g->PrevBands[7 * 3 + 2]) goto Digit8;
@@ -572,7 +572,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 15) & 7) != *&s)
 					{
 						ar &= 0x7FC7FFF | (s << 15);
-						upwcl(&s, 2, 2, 5, 8, 11, 14, 17, 20, 26);
+						upwcl(s, 2, 2, 5, 8, 11, 14, 17, 20, 26, a);
 					}
 				Digit8:
 					if (((ar >> 18) & 0x1FF) == 0) goto End678;
@@ -581,7 +581,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 18) & 7) != *&s)
 					{
 						ar &= 0x7E3FFFF | (s << 18);
-						upwcl(&s, 0, 0, 3, 6, 9, 12, 15, 18, 21);
+						upwcl(s, 0, 0, 3, 6, 9, 12, 15, 18, 21, a);
 					}
 				Digit8b:
 					if (_g->Bands[8 * 3 + 1] == _g->PrevBands[8 * 3 + 1]) goto Digit8c;
@@ -589,7 +589,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 21) & 7) != *&s)
 					{
 						ar &= 0x71FFFFF | (s << 21);
-						upwcl(&s, 1, 1, 4, 7, 10, 13, 16, 19, 22);
+						upwcl(s, 1, 1, 4, 7, 10, 13, 16, 19, 22, a);
 					}
 				Digit8c:
 					if (_g->Bands[8 * 3 + 2] == _g->PrevBands[8 * 3 + 2]) goto End678;
@@ -597,7 +597,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					if (((ar >> 24) & 7) != *&s)
 					{
 						ar &= 0xFFFFFF | (s << 24);
-						upwcl(&s, 2, 2, 5, 8, 11, 14, 17, 20, 23);
+						upwcl(s, 2, 2, 5, 8, 11, 14, 17, 20, 23, a);
 					}
 				End678:
 					_g->UnsolvedRows[2] = ar;
@@ -629,9 +629,9 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			void upwcl(uint* s, uint i, uint p, uint q, uint r, uint t, uint u, uint v, uint w, uint x)
+			void upwcl(uint s, uint i, uint p, uint q, uint r, uint t, uint u, uint v, uint w, uint x, uint a)
 			{
-				cl = ~(a & TblRowMask[*s]);
+				cl = ~(a & TblRowMask[s]);
 				_g->UnsolvedCells[i] &= cl;
 				_g->Bands[p] &= cl;
 				_g->Bands[q] &= cl;

@@ -372,16 +372,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						if (otherCellsMap[cell])
 						{
-							void record(in SudokuGrid grid, int d)
+							if (d1 != elimDigit && grid.Exists(cell, d1) is true)
 							{
-								if (d != elimDigit && grid.Exists(cell, d) is true)
-								{
-									candidateOffsets.Add(new(1, cell * 9 + d));
-								}
+								candidateOffsets.Add(new(1, cell * 9 + d1));
 							}
-
-							record(grid, d1);
-							record(grid, d2);
+							if (d2 != elimDigit && grid.Exists(cell, d2) is true)
+							{
+								candidateOffsets.Add(new(1, cell * 9 + d2));
+							}
 						}
 						else
 						{
@@ -572,16 +570,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					if (otherCellsMap[cell])
 					{
-						void record(in SudokuGrid grid, int d)
+						if (d1 != digit && grid.Exists(cell, d1) is true)
 						{
-							if (d != digit && grid.Exists(cell, d) is true)
-							{
-								candidateOffsets.Add(new(0, cell * 9 + d));
-							}
+							candidateOffsets.Add(new(0, cell * 9 + d1));
 						}
-
-						record(grid, d1);
-						record(grid, d2);
+						if (d2 != digit && grid.Exists(cell, d2) is true)
+						{
+							candidateOffsets.Add(new(0, cell * 9 + d2));
+						}
 					}
 					else
 					{
@@ -677,16 +673,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					if (otherCellsMap[cell])
 					{
-						void record(in SudokuGrid grid, int d)
+						if ((cell != abzCell || d1 != elimDigit) && grid.Exists(cell, d1) is true)
 						{
-							if ((cell != abzCell || d != elimDigit) && grid.Exists(cell, d) is true)
-							{
-								candidateOffsets.Add(new(d != elimDigit ? 1 : 0, cell * 9 + d));
-							}
+							candidateOffsets.Add(new(d1 != elimDigit ? 1 : 0, cell * 9 + d1));
 						}
-
-						record(grid, d1);
-						record(grid, d2);
+						if ((cell != abzCell || d2 != elimDigit) && grid.Exists(cell, d2) is true)
+						{
+							candidateOffsets.Add(new(d2 != elimDigit ? 1 : 0, cell * 9 + d2));
+						}
 					}
 					else
 					{

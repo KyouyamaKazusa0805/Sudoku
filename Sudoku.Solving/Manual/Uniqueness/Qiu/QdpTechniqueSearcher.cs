@@ -68,15 +68,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					var tempMap = baseLine & regionMap;
 					if (tempMap.IsNotEmpty)
 					{
-						f(grid, tempMap);
+						f(grid, tempMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
 					}
 					else if ((square & regionMap) is { IsNotEmpty: true } squareMap)
 					{
 						// Don't forget to record the square cells.
-						f(grid, squareMap);
+						f(grid, squareMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
 					}
 
-					void f(in SudokuGrid grid, in GridMap map)
+					static void f(
+						in SudokuGrid grid, in GridMap map, ref short appearedDigitsMask,
+						ref short distinctionMask, ref int appearedParts)
 					{
 						bool flag = false;
 						int c1 = map.First, c2 = map.SetAt(1);

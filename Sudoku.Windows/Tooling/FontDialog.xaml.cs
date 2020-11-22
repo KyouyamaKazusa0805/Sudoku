@@ -156,20 +156,15 @@ namespace Sudoku.Windows.Tooling
 		/// <inheritdoc cref="Events.PreviewKeyDown(object?, EventArgs)"/>
 		private void TextBoxSize_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
-			bool c() => (e.Key, Keyboard.Modifiers) is ( > D0 and <= D9 or > NumPad0 and <= NumPad9, ModifierKeys.None);
-			if (sender is TextBox textBox)
+			static bool c(Key key) =>
+				key is > D0 and <= D9 or > NumPad0 and <= NumPad9
+				&& Keyboard.Modifiers == ModifierKeys.None;
+
+			if (sender is TextBox textBox && c(e.Key))
 			{
-				if (textBox.Text == "0")
-				{
-					if (c())
-					{
-						textBox.Text = e.Key is > D0 and <= D9 ? (e.Key - D0).ToString() : (e.Key - NumPad0).ToString();
-					}
-				}
-				else if (c())
-				{
-					textBox.Text = e.Key is >= D0 and <= D9 ? (e.Key - D0).ToString() : (e.Key - NumPad0).ToString();
-				}
+				textBox.Text = textBox.Text == "0"
+					? e.Key is > D0 and <= D9 ? (e.Key - D0).ToString() : (e.Key - NumPad0).ToString()
+					: e.Key is >= D0 and <= D9 ? (e.Key - D0).ToString() : (e.Key - NumPad0).ToString();
 			}
 		}
 	}
