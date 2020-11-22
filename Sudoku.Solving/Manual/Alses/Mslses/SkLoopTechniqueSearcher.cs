@@ -31,12 +31,15 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			var linkRegion = (stackalloc int[8]);
 			foreach (int[] cells in SkLoopTable)
 			{
+				// Initialize the elements.
 				int n = 0, candidateCount = 0, i = 0;
 				for (i = 0; i < 8; i++)
 				{
 					pairs[i] = default;
 					linkRegion[i] = default;
 				}
+
+				// Get the values count ('n') and pairs list ('pairs').
 				for (i = 0; i < 8; i++)
 				{
 					if (grid.GetStatus(cells[i << 1]) != Empty)
@@ -65,6 +68,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					candidateCount += pairs[i].PopCount();
 				}
 
+				// Check validity: If the number of candidate appearing is lower than 32 - (n * 2),
+				// the status is invalid.
 				if (i < 8 || candidateCount > 32 - (n << 1))
 				{
 					continue;
@@ -76,6 +81,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					continue;
 				}
 
+				// Check all combinations.
 				short[] masks = GetCombinations(candidateMask).ToArray();
 				for (int j = masks.Length - 1; j >= 0; j--)
 				{
@@ -90,6 +96,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						tempLink[p] = default;
 					}
 
+					// Check the associativity:
+					// Each pair should find the digits that can combine with the next pair.
 					int linkCount = (tempLink[0] = mask).PopCount();
 					int k = 1;
 					for (; k < 8; k++)
@@ -108,6 +116,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						continue;
 					}
 
+					// Last check: Check the first and the last pair.
+					candidateMask = (short)(tempLink[^1] ^ pairs[0]);
+					if ((candidateMask & pairs[(k + 1) % 8]) != candidateMask)
+					{
+						continue;
+					}
+
+					// Check elimination map.
 					linkRegion[0] = GetRegion(cells[0], RegionLabel.Row);
 					linkRegion[1] = GetRegion(cells[2], RegionLabel.Block);
 					linkRegion[2] = GetRegion(cells[4], RegionLabel.Column);
@@ -116,7 +132,6 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					linkRegion[5] = GetRegion(cells[10], RegionLabel.Block);
 					linkRegion[6] = GetRegion(cells[12], RegionLabel.Column);
 					linkRegion[7] = GetRegion(cells[14], RegionLabel.Block);
-
 					var conclusions = new List<Conclusion>();
 					var map = cells & EmptyMap;
 					for (k = 0; k < 8; k++)
@@ -140,11 +155,13 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						}
 					}
 
+					// Check the number of the available eliminations.
 					if (conclusions.Count == 0)
 					{
 						continue;
 					}
 
+					// Highlight candidates.
 					var candidateOffsets = new List<DrawingInfo>();
 					short[] link = new short[27];
 					for (k = 0; k < 8; k++)
@@ -160,11 +177,13 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 							foreach (int digit in cands)
 							{
-								candidateOffsets.Add(new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
+								candidateOffsets.Add(
+									new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
 							}
 						}
 					}
 
+					// Gather the result.
 					accumulator.Add(
 						new SkLoopTechniqueInfo(
 							conclusions,
