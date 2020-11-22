@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -50,6 +51,12 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// The base cells can't be given or modifiable.
 				if ((baseMap - EmptyMap).IsNotEmpty)
+				{
+					continue;
+				}
+
+				// Base cells should be empty.
+				if (grid.GetStatus(b1) != Empty || grid.GetStatus(b2) != Empty)
 				{
 					continue;
 				}
@@ -110,10 +117,10 @@ namespace Sudoku.Solving.Manual.Exocets
 				// Check target eliminations.
 				// '|' first, '&&' second. (Do you know my meaning?)
 				var targetElims = new Target();
-				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
+				temp = (short)(nonBaseQ != 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
 				if (GatheringTargetEliminations(tq1, grid, baseCandidatesMask, temp, targetElims)
 					| GatheringTargetEliminations(tq2, grid, baseCandidatesMask, temp, targetElims)
-					&& (nonBaseQ, grid.GetStatus(tq1), grid.GetStatus(tq2)) is (not 0, Empty, Empty))
+					&& nonBaseQ != 0 && grid.GetStatus(tq1) == Empty ^ grid.GetStatus(tq2) == Empty)
 				{
 					int conjugatPairDigit = nonBaseQ.FindFirstSet();
 					if (grid.Exists(tq1, conjugatPairDigit) is true)
@@ -126,10 +133,10 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 
-				temp = (short)(nonBaseR > 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
+				temp = (short)(nonBaseR != 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
 				if (GatheringTargetEliminations(tr1, grid, baseCandidatesMask, temp, targetElims)
 					| GatheringTargetEliminations(tr2, grid, baseCandidatesMask, temp, targetElims)
-					&& nonBaseR != 0 && grid.GetStatus(tr1) == Empty && grid.GetStatus(tr2) == Empty)
+					&& nonBaseR != 0 && grid.GetStatus(tr1) == Empty ^ grid.GetStatus(tr2) == Empty)
 				{
 					int conjugatPairDigit = nonBaseR.FindFirstSet();
 					if (grid.Exists(tr1, conjugatPairDigit) is true)
@@ -142,7 +149,6 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 
-				bool isRow = baseMap.CoveredLine < 18;
 				var (tar1, mir1) =
 					GatheringMirrorEliminations(
 						tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0, grid,
@@ -160,14 +166,13 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					CheckBibiPattern(
 						grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2, s,
-						isRow, nonBaseQ, nonBaseR, targetMap, out bibiEliminations,
+						baseMap.CoveredLine < 18, nonBaseQ, nonBaseR, targetMap, out bibiEliminations,
 						out targetPairEliminations, out swordfishEliminations);
 				}
 
-				if (
-					_checkAdvanced
+				if (_checkAdvanced
 					&& (targetEliminations.Count, mirrorEliminations.Count, bibiEliminations.Count) == (0, 0, 0)
-					|| (_checkAdvanced, targetEliminations.Count) == (false, 0))
+					|| !_checkAdvanced && targetEliminations.Count == 0)
 				{
 					continue;
 				}
@@ -190,7 +195,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						lockedMemberQ == 0 ? null : lockedMemberQ.GetAllSets(),
 						lockedMemberR == 0 ? null : lockedMemberR.GetAllSets(),
 						targetEliminations,
-						_checkAdvanced ? mirrorEliminations : default,
+						_checkAdvanced ? mirrorEliminations : null,
 						bibiEliminations,
 						targetPairEliminations,
 						swordfishEliminations));
@@ -221,25 +226,21 @@ namespace Sudoku.Solving.Manual.Exocets
 			if ((grid.GetCandidateMask(tq1) & baseCandidatesMask) != 0)
 			{
 				short mask1 = grid.GetCandidateMask(tr1), mask2 = grid.GetCandidateMask(tr2);
-				var (target, target2, mirror) = (tq1, tq2, m1);
+				short m1d = (short)(mask1 & baseCandidatesMask), m2d = (short)(mask2 & baseCandidatesMask);
 				return CheckMirror(
-					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : 0,
-					baseCandidatesMask, mirror, x,
-					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
-					? tr1
-					: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
+					grid, tq1, tq2, lockedNonTarget != 0 ? lockedNonTarget : 0,
+					baseCandidatesMask, m1, x,
+					(m1d, m2d) switch { (not 0, 0) => tr1, (0, not 0) => tr2, _ => -1 },
 					cellOffsets, candidateOffsets);
 			}
 			else if ((grid.GetCandidateMask(tq2) & baseCandidatesMask) != 0)
 			{
 				short mask1 = grid.GetCandidateMask(tq1), mask2 = grid.GetCandidateMask(tq2);
-				var (target, target2, mirror) = (tq2, tq1, m2);
+				short m1d = (short)(mask1 & baseCandidatesMask), m2d = (short)(mask2 & baseCandidatesMask);
 				return CheckMirror(
-					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : 0,
-					baseCandidatesMask, mirror, x,
-					(mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (not 0, 0)
-					? tr1
-					: (mask1 & baseCandidatesMask, mask2 & baseCandidatesMask) is (0, not 0) ? tr2 : -1,
+					grid, tq2, tq1, lockedNonTarget != 0 ? lockedNonTarget : 0,
+					baseCandidatesMask, m2, x,
+					(m1d, m2d) switch { (not 0, 0) => tr1, (0, not 0) => tr2, _ => -1 },
 					cellOffsets, candidateOffsets);
 			}
 			else
@@ -306,16 +307,12 @@ namespace Sudoku.Solving.Manual.Exocets
 						if ((crosslinePerCandidate - (RegionMaps[d1 + 9] | RegionMaps[d2 + 18])).IsEmpty)
 						{
 							flag = true;
-							break;
+							goto FinalCheck;
 						}
-					}
-
-					if (flag)
-					{
-						break;
 					}
 				}
 
+			FinalCheck:
 				if (!flag)
 				{
 					return false;
@@ -346,7 +343,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			otherCandidatesMask = -1;
 
 			short m1 = grid.GetCandidateMask(pos1), m2 = grid.GetCandidateMask(pos2);
-			if ((baseCandidatesMask & m1, baseCandidatesMask & m2) is (0, not 0) or (not 0, 0))
+			if (((baseCandidatesMask & m1) ^ (baseCandidatesMask & m2)) != 0)
 			{
 				// One cell contains the digit that base candidate holds,
 				// and another one doesn't contain.
@@ -368,13 +365,13 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Therefore, we should check on non-base digits, whether the non-base digits
 			// covers only one of two last cells; otherwise, false.
 			short candidatesMask = (short)((m1 | m2) & ~baseCandidatesMask);
-			int r1 = GetRegion(pos1, RegionLabel.Row);
-			var span = (
-				stackalloc[]
-				{
-					GetRegion(pos1, RegionLabel.Block),
-					r1 == GetRegion(pos2, RegionLabel.Row) ? r1 : GetRegion(pos1, RegionLabel.Column)
-				});
+			var span = (Span<int>)stackalloc[]
+			{
+				GetRegion(pos1, RegionLabel.Block),
+				GetRegion(pos1, RegionLabel.Row) == GetRegion(pos2, RegionLabel.Row)
+				? GetRegion(pos1, RegionLabel.Row)
+				: GetRegion(pos1, RegionLabel.Column)
+			};
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
 				for (int i = 0; i < 2; i++)
@@ -383,7 +380,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					for (int j = 0; j < 9; j++)
 					{
 						int p = RegionCells[span[i]][j];
-						if (p == pos1 || p == pos2 || grid.GetStatus(p) != Empty || (grid.GetCandidateMask(p) & mask) == 0)
+						if (p == pos1 || p == pos2 || grid.GetStatus(p) != Empty
+							|| (grid.GetCandidateMask(p) & mask) == 0)
 						{
 							continue;
 						}

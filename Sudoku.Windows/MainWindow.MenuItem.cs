@@ -319,7 +319,7 @@ namespace Sudoku.Windows
 			try
 			{
 				string z = _puzzle.ToString(Settings.TextFormatPlaceholdersAreZero ? "#0" : "#.");
-				SystemClipboard.Text = $":0000:x:{z}{(z.Contains(':') ? "::" : ":::")}";
+				SystemClipboard.DataObject = $":0000:x:{z}{(z.Contains(':') ? "::" : ":::")}";
 			}
 			catch (Exception ex)
 			{

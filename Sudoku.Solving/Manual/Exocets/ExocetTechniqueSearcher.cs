@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -173,14 +172,13 @@ namespace Sudoku.Solving.Manual.Exocets
 			var targetElims = new Target();
 			var mirrorElims = new Mirror();
 			var playground = (stackalloc[] { mirror.First, mirror.SetAt(1) });
-			short mirrorCandidatesMask = (short)(
+			short mirrorCandsMask = (short)(
 				grid.GetCandidateMask(playground[0]) | grid.GetCandidateMask(playground[1]));
-			short commonBase = (short)(mirrorCandidatesMask & baseCandidateMask & grid.GetCandidateMask(target));
-			short targetElimination = (short)(
-				grid.GetCandidateMask(target) & ~(short)(commonBase | lockedNonTarget));
-			if (targetElimination != 0 && grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
+			short commonBase = (short)(mirrorCandsMask & baseCandidateMask & grid.GetCandidateMask(target));
+			short targetElim = (short)(grid.GetCandidateMask(target) & ~(short)(commonBase | lockedNonTarget));
+			if (targetElim != 0)
 			{
-				foreach (int digit in targetElimination)
+				foreach (int digit in targetElim)
 				{
 					targetElims.Add(new(ConclusionType.Elimination, target, digit));
 				}
@@ -191,11 +189,11 @@ namespace Sudoku.Solving.Manual.Exocets
 				var regions = (stackalloc int[2]);
 				short m1 = (short)(grid.GetCandidateMask(playground[0]) & baseCandidateMask);
 				short m2 = (short)(grid.GetCandidateMask(playground[1]) & baseCandidateMask);
-				if ((m1 ^ m2) != 0)
+				if (m1 == 0 ^ m2 == 0)
 				{
 					int p = playground[m1 == 0 ? 1 : 0];
 					short candidateMask = (short)(grid.GetCandidateMask(p) & ~commonBase);
-					if (candidateMask != 0 && grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
+					if (candidateMask != 0)
 					{
 						cellOffsets.Add(new(3, playground[0]));
 						cellOffsets.Add(new(3, playground[1]));
@@ -208,13 +206,12 @@ namespace Sudoku.Solving.Manual.Exocets
 					return (targetElims, mirrorElims);
 				}
 
-				short nonBase = (short)(mirrorCandidatesMask & ~baseCandidateMask);
-				int r1 = GetRegion(playground[0], RegionLabel.Row);
-				(regions[0], regions[1]) = (
-					GetRegion(playground[0], RegionLabel.Block),
-					r1 == GetRegion(playground[1], RegionLabel.Row)
-					? r1
-					: GetRegion(playground[0], RegionLabel.Column));
+				short nonBase = (short)(mirrorCandsMask & ~baseCandidateMask);
+				regions[0] = GetRegion(playground[0], RegionLabel.Block);
+				regions[1] =
+					GetRegion(playground[0], RegionLabel.Row) == GetRegion(playground[1], RegionLabel.Row)
+					? GetRegion(playground[0], RegionLabel.Row)
+					: GetRegion(playground[0], RegionLabel.Column);
 				short locked = default;
 				foreach (short mask in GetCombinations(nonBase))
 				{
@@ -241,11 +238,25 @@ namespace Sudoku.Solving.Manual.Exocets
 							{
 								int p = RegionCells[regions[i]][j];
 								if ((grid.GetCandidateMask(p) & mask) == 0
-									|| grid.GetStatus(p) != Empty || p == onlyOne
-									|| p == playground[0] || p == playground[1]
+									|| grid.GetStatus(p) != Empty || p == onlyOne)
+								{
+									continue;
+								}
+
+								foreach (int digit in grid.GetCandidateMask(p) & ~mask)
+								{
+									candidateOffsets.Add(new(3, p * 9 + digit));
+								}
+
+								if (p == playground[0] || p == playground[1]
 									|| (grid.GetCandidateMask(p) & ~mask) == 0)
 								{
 									continue;
+								}
+
+								foreach (int digit in grid.GetCandidateMask(p) & ~mask)
+								{
+									mirrorElims.Add(new(ConclusionType.Elimination, p, digit));
 								}
 							}
 
@@ -258,7 +269,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						// Here you should use '|' operator rather than '||'.
 						// Operator '||' won't execute the second method if the first condition is true.
-						if (g(grid, playground, 0) | g(grid, playground, 1))
+						if (g(grid, playground[0], mirrorElims) | g(grid, playground[1], mirrorElims))
 						{
 							cellOffsets.Add(new(3, playground[0]));
 							cellOffsets.Add(new(3, playground[1]));
@@ -266,43 +277,38 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						short mask1 = grid.GetCandidateMask(playground[0]);
 						short mask2 = grid.GetCandidateMask(playground[1]);
-						if (locked.PopCount() == 1 && (mask1 & locked) != 0 ^ (mask2 & locked) != 0)
+						bool l = (mask1 & locked) != 0, r = (mask2 & locked) != 0;
+						if (locked.PopCount() == 1 && l ^ r
+							&& (short)(grid.GetCandidateMask(target) & baseCandidateMask) is var targetMask
+							&& (short)(~(grid.GetCandidateMask(playground[l ? 1 : 0]) & targetMask) & targetMask)
+							is var candidateMask and not 0)
 						{
-							short candidateMask = (short)(
-								~(
-									grid.GetCandidateMask(
-										playground[(mask1 & locked) != 0 ? 1 : 0]
-									) & grid.GetCandidateMask(target) & baseCandidateMask
-								) & grid.GetCandidateMask(target) & baseCandidateMask);
-							if (candidateMask != 0)
+							foreach (int digit in candidateMask)
 							{
-								foreach (int digit in candidateMask)
-								{
-									mirrorElims.Add(new(ConclusionType.Elimination, target, digit));
-								}
+								mirrorElims.Add(new(ConclusionType.Elimination, target, digit));
 							}
 						}
 
 						break;
 
 						// Gathering.
-						bool g(in SudokuGrid grid, in Span<int> playground, int i)
+						bool g(in SudokuGrid grid, int p, Mirror mirrorElims)
 						{
-							short candidateMask = (short)(
-								grid.GetCandidateMask(playground[i]) & ~(baseCandidateMask | locked));
-							if (candidateMask != 0)
+							if (
+								(short)(grid.GetCandidateMask(p) & ~(baseCandidateMask | locked))
+								is var candidateMask and not 0)
 							{
 								foreach (int digit in locked)
 								{
-									if (grid.Exists(playground[i], digit) is true)
+									if (grid.Exists(p, digit) is true)
 									{
-										candidateOffsets.Add(new(1, playground[i] * 9 + digit));
+										candidateOffsets.Add(new(1, p * 9 + digit));
 									}
 								}
 
 								foreach (int digit in candidateMask)
 								{
-									mirrorElims.Add(new(ConclusionType.Elimination, playground[i], digit));
+									mirrorElims.Add(new(ConclusionType.Elimination, p, digit));
 								}
 
 								return true;
