@@ -11,6 +11,7 @@ using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.Values;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -129,7 +130,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									}
 
 									// Confirm all fin cells.
-									short finMask = (short)(baseMask & ~(1 << i | 1 << j) & SudokuGrid.MaxCandidatesMask);
+									short finMask = (short)(baseMask & ~(1 << i | 1 << j) & MaxCandidatesMask);
 									foreach (int baseSet in baseSets2)
 									{
 										foreach (int x in finMask)
@@ -221,13 +222,11 @@ namespace Sudoku.Solving.Manual.Fishes
 													new(
 														null,
 														candidateOffsets,
-														new DrawingInfo[]
-														{
-															new(0, bs1), new(0, bs2), new(1, cs1), new(1, cs2)
-														},
+														new DrawingInfo[] { new(0, bs1), new(0, bs2) },
 														null),
 													GetDirectView(
-														grid, digit, baseSets2, coverSets2, searchRow, finCellsMap)
+														grid, digit, baseSets2, coverSets2,
+														searchRow, finCellsMap)
 												},
 												digit,
 												baseSets2.ToArray(),
@@ -306,8 +305,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 												// Confirm all fin cells.
 												short finMask = (short)(
-													baseMask & ~(1 << i | 1 << j | 1 << k)
-													& SudokuGrid.MaxCandidatesMask);
+													baseMask & ~(1 << i | 1 << j | 1 << k) & MaxCandidatesMask);
 												foreach (int baseSet in baseSets3)
 												{
 													foreach (int x in finMask)
@@ -401,8 +399,9 @@ namespace Sudoku.Solving.Manual.Fishes
 																	candidateOffsets,
 																	new DrawingInfo[]
 																	{
-																		new(0, bs1), new(0, bs2), new(0, bs3),
-																		new(1, cs1), new(1, cs2), new(1, cs3)
+																		new(0, bs1),
+																		new(0, bs2),
+																		new(0, bs3)
 																	},
 																	null),
 																GetDirectView(
@@ -496,7 +495,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														// Get the fin mask.
 														short finMask = (short)(
 															baseMask & ~(1 << i | 1 << j | 1 << k | 1 << l)
-															& SudokuGrid.MaxCandidatesMask);
+															& MaxCandidatesMask);
 
 														// Confirm all fin cells.
 														foreach (int baseSet in baseSets4)
@@ -594,10 +593,10 @@ namespace Sudoku.Solving.Manual.Fishes
 																			candidateOffsets,
 																			new DrawingInfo[]
 																			{
-																				new(0, bs1), new(0, bs2),
-																				new(0, bs3), new(0, bs4),
-																				new(1, cs1), new(1, cs2),
-																				new(1, cs3), new(1, cs4)
+																				new(0, bs1),
+																				new(0, bs2),
+																				new(0, bs3),
+																				new(0, bs4),
 																			},
 																			null),
 																		GetDirectView(
