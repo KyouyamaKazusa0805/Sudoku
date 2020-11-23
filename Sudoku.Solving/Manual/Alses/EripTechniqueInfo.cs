@@ -6,7 +6,7 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
-	/// Provides a usage of <b>empty rectangle intersection pair</b> technique.
+	/// Provides a usage of <b>empty rectangle intersection pair</b> (ERIP) technique.
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <param name="Region">The region that empty rectangle forms.</param>
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
-	public sealed record ErIntersectionPairTechniqueInfo(
+	public sealed record EripTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int StartCell, int EndCell,
 		int Region, int Digit1, int Digit2) : AlsTechniqueInfo(Conclusions, Views)
 	{

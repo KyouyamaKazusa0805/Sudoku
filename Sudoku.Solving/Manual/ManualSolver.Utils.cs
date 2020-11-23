@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual
 				new UsTechniqueSearcher(),
 				new GuardianTechniqueSearcher(),
 				new BugTechniqueSearcher(UseExtendedBugSearcher),
-				new ErIntersectionPairTechniqueSearcher(),
+				new EripTechniqueSearcher(),
 				new AicTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new AlsXyWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual
 					new UsTechniqueSearcher(),
 					new GuardianTechniqueSearcher(),
 					new BugTechniqueSearcher(UseExtendedBugSearcher),
-					new ErIntersectionPairTechniqueSearcher(),
+					new EripTechniqueSearcher(),
 					new AicTechniqueSearcher(),
 					new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 					new AlsXyWingTechniqueSearcher(

@@ -9,7 +9,7 @@ using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
-namespace Sudoku.Solving.Manual.Alses.Mslses
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Encapsulates a <b>3-dimension sue de coq</b> technique.

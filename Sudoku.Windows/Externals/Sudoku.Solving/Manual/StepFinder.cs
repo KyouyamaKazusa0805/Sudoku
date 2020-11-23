@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual
 				new UsTechniqueSearcher(),
 				new GuardianTechniqueSearcher(),
 				new BugTechniqueSearcher(solver.UseExtendedBugSearcher),
-				new ErIntersectionPairTechniqueSearcher(),
+				new EripTechniqueSearcher(),
 				new AicTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),

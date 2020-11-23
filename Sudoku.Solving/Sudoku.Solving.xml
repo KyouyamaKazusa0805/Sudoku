@@ -1887,9 +1887,9 @@
             <param name="emptyMap">(<see langword="in"/> parameter) The map of all empty cells.</param>
             <returns>All ALSes.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Alses.EripTechniqueInfo">
             <summary>
-            Provides a usage of <b>empty rectangle intersection pair</b> technique.
+            Provides a usage of <b>empty rectangle intersection pair</b> (ERIP) technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
@@ -1899,9 +1899,9 @@
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Alses.EripTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Provides a usage of <b>empty rectangle intersection pair</b> technique.
+            Provides a usage of <b>empty rectangle intersection pair</b> (ERIP) technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
@@ -1911,27 +1911,27 @@
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Alses.EripTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Alses.EripTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Alses.EripTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Alses.EripTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher">
+        <member name="T:Sudoku.Solving.Manual.Alses.EripTechniqueSearcher">
             <summary>
-            Encapsulates an <b>empty rectangle intersection pair</b> technique.
+            Encapsulates an <b>empty rectangle intersection pair</b> (ERIP) technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.Properties">
+        <member name="P:Sudoku.Solving.Manual.Alses.EripTechniqueSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.EripTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo">
@@ -2002,127 +2002,6 @@
             Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo">
-            <summary>
-            Provides a usage of <b>3-dimension sue de coq</b> technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="RowDigitsMask">The row digits mask.</param>
-            <param name="ColumnDigitsMask">The column digits mask.</param>
-            <param name="BlockDigitsMask">The block digits mask.</param>
-            <param name="RowCells">The row cells map.</param>
-            <param name="ColumnCells">The column cells map.</param>
-            <param name="BlockCells">The block cells map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <summary>
-            Provides a usage of <b>3-dimension sue de coq</b> technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="RowDigitsMask">The row digits mask.</param>
-            <param name="ColumnDigitsMask">The column digits mask.</param>
-            <param name="BlockDigitsMask">The block digits mask.</param>
-            <param name="RowCells">The row cells map.</param>
-            <param name="ColumnCells">The column cells map.</param>
-            <param name="BlockCells">The block cells map.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher">
-            <summary>
-            Encapsulates a <b>3-dimension sue de coq</b> technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <inheritdoc/>
-            <remarks>
-            The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
-            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo">
-            <summary>
-            Provides a usage of <b>sue de coq</b> (SdC) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Block">The block.</param>
-            <param name="Line">The line.</param>
-            <param name="BlockMask">The block mask.</param>
-            <param name="LineMask">The line mask.</param>
-            <param name="IntersectionMask">The intersection mask.</param>
-            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
-            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
-            <param name="BlockCells">The map of block cells.</param>
-            <param name="LineCells">The map of line cells.</param>
-            <param name="IntersectionCells">The map of intersection cells.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <summary>
-            Provides a usage of <b>sue de coq</b> (SdC) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Block">The block.</param>
-            <param name="Line">The line.</param>
-            <param name="BlockMask">The block mask.</param>
-            <param name="LineMask">The line mask.</param>
-            <param name="IntersectionMask">The intersection mask.</param>
-            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
-            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
-            <param name="BlockCells">The map of block cells.</param>
-            <param name="LineCells">The map of line cells.</param>
-            <param name="IntersectionCells">The map of intersection cells.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher">
-            <summary>
-            Encapsulates a <b>sue de coq</b> (SdC) technique searcher.
-            Cannibalistic SdCs can be found also.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <inheritdoc/>
-            <remarks>
-            The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
-            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo">
             <summary>
             Provides a usage of <b>domino loop</b> technique.
@@ -2181,6 +2060,127 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueInfo">
+            <summary>
+            Provides a usage of <b>3-dimension sue de coq</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="RowDigitsMask">The row digits mask.</param>
+            <param name="ColumnDigitsMask">The column digits mask.</param>
+            <param name="BlockDigitsMask">The block digits mask.</param>
+            <param name="RowCells">The row cells map.</param>
+            <param name="ColumnCells">The column cells map.</param>
+            <param name="BlockCells">The block cells map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+            <summary>
+            Provides a usage of <b>3-dimension sue de coq</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="RowDigitsMask">The row digits mask.</param>
+            <param name="ColumnDigitsMask">The column digits mask.</param>
+            <param name="BlockDigitsMask">The block digits mask.</param>
+            <param name="RowCells">The row cells map.</param>
+            <param name="ColumnCells">The column cells map.</param>
+            <param name="BlockCells">The block cells map.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>3-dimension sue de coq</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <inheritdoc/>
+            <remarks>
+            The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
+            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.SdcTechniqueInfo">
+            <summary>
+            Provides a usage of <b>sue de coq</b> (SdC) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The map of block cells.</param>
+            <param name="LineCells">The map of line cells.</param>
+            <param name="IntersectionCells">The map of intersection cells.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+            <summary>
+            Provides a usage of <b>sue de coq</b> (SdC) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The map of block cells.</param>
+            <param name="LineCells">The map of line cells.</param>
+            <param name="IntersectionCells">The map of intersection cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.SdcTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.SdcTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.SdcTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>sue de coq</b> (SdC) technique searcher.
+            Cannibalistic SdCs can be found also.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <inheritdoc/>
+            <remarks>
+            The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
+            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo">
             <summary>

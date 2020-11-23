@@ -4,7 +4,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 
-namespace Sudoku.Solving.Manual.Alses.Mslses
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Provides a usage of <b>sue de coq</b> (SdC) technique.
@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
 		bool IsCannibalistic, short IsolatedDigitsMask, in GridMap BlockCells, in GridMap LineCells,
 		in GridMap IntersectionCells)
-		: MslsTechniqueInfo(Conclusions, Views)
+		: AlsTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.0M + (IsolatedDigitsMask != 0 ? .1M : 0) + (IsCannibalistic ? .2M : 0);

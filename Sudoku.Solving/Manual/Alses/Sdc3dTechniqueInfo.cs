@@ -4,7 +4,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 
-namespace Sudoku.Solving.Manual.Alses.Mslses
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Provides a usage of <b>3-dimension sue de coq</b> technique.
@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		short RowDigitsMask, short ColumnDigitsMask, short BlockDigitsMask,
 		in GridMap RowCells, in GridMap ColumnCells, in GridMap BlockCells)
-		: MslsTechniqueInfo(Conclusions, Views)
+		: AlsTechniqueInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M;

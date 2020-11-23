@@ -9,7 +9,7 @@ using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.Values;
 using static Sudoku.Data.ConclusionType;
 
-namespace Sudoku.Solving.Manual.Alses.Mslses
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Encapsulates a <b>sue de coq</b> (SdC) technique searcher.

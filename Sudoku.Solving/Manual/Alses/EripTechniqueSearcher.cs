@@ -11,10 +11,10 @@ using static Sudoku.Data.ConclusionType;
 namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
-	/// Encapsulates an <b>empty rectangle intersection pair</b> technique.
+	/// Encapsulates an <b>empty rectangle intersection pair</b> (ERIP) technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Erip))]
-	public sealed class ErIntersectionPairTechniqueSearcher : AlsTechniqueSearcher
+	public sealed class EripTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(60);
@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 
 						accumulator.Add(
-							new ErIntersectionPairTechniqueInfo(
+							new EripTechniqueInfo(
 								conclusions,
 								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, block) }, null) },
 								c1,
