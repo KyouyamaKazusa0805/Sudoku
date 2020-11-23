@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
@@ -139,7 +138,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// If you want to determine the equality of two instance, I recommend you
 		/// <b>should</b> use method <see cref="Equals(in Als)"/> instead of this method.
 		/// </remarks>
-		[SuppressMessage("", "IDE0004")]
 		public override int GetHashCode()
 		{
 			short mask = 0;
@@ -154,7 +152,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				i++;
 			}
 
-			return Region << 18 | (int)mask << 9 | (int)DigitsMask;
+			return Region << 18 | mask << 9 | (int)DigitsMask;
 		}
 
 		/// <inheritdoc/>

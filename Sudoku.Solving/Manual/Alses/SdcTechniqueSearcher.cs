@@ -19,10 +19,6 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed class SdcTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		/// <remarks>
-		/// The fields <see cref="AlsTechniqueSearcher._allowAlsCycles"/> and
-		/// <see cref="AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
-		/// </remarks>
 		public SdcTechniqueSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles)
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{

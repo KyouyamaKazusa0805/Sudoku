@@ -2106,10 +2106,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
-            <remarks>
-            The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
-            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
-            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Sdc3dTechniqueSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
@@ -2171,10 +2167,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
-            <remarks>
-            The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
-            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> won't be used here.
-            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
