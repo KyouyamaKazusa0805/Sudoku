@@ -642,7 +642,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
-			var adjacentCellsMap = new GridMap(otherCellsMap) { ~abzCell };
+			var adjacentCellsMap = otherCellsMap - abzCell;
 			int r = GetRegion(abzCell, RegionLabel.Row), c = GetRegion(abzCell, RegionLabel.Column);
 
 			foreach (int digit in stackalloc[] { d1, d2 })

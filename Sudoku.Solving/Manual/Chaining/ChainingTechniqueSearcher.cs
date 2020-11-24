@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 				{
 					int region = GetRegion(p.Cell, label);
-					if (new GridMap(CandMaps[p.Digit] & RegionMaps[region]) { ~p.Cell } is { Count: 1 } cells)
+					if ((CandMaps[p.Digit] & RegionMaps[region]) - p.Cell is { Count: 1 } cells)
 					{
 						var pOn = new Node(cells.First, p.Digit, true, p);
 						result.Add(pOn);

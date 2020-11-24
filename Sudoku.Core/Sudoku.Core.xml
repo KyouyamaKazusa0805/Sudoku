@@ -1071,16 +1071,6 @@
             </summary>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor"/>
         </member>
-        <member name="F:Sudoku.Data.GridMap.LeftCurlyBrace">
-            <summary>
-            The left curly brace.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridMap.RightCurlyBrace">
-            <summary>
-            The right curly brace.
-            </summary>
-        </member>
         <member name="F:Sudoku.Data.GridMap.Shifting">
             <summary>
             The value used for shifting.
@@ -1143,19 +1133,6 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32[],Sudoku.Data.GridMap.InitializationOption)">
-            <summary>
-            Initializes an instance with cell offsets with an initialize option.
-            </summary>
-            <param name="offsets">The offsets to be processed.</param>
-            <param name="initializeOption">
-            Indicates the behavior of the initialization.
-            </param>
-            <remarks>
-            This method is same behavior of <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializationOption)"/>
-            </remarks>
-            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializationOption)"/>
-        </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Initializes an instance with a series of cell offsets.
@@ -1178,24 +1155,6 @@
             </code>
             </para>
             </remarks>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32}@,Sudoku.Data.GridMap.InitializationOption)">
-            <summary>
-            Initializes an instance with cell offsets with an initialize option.
-            </summary>
-            <param name="cells">(<see langword="in"/> parameter) The offsets to be processed.</param>
-            <param name="initializeOption">
-            Indicates the behavior of the initialization.
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified initialize option is invalid.
-            </exception>
-            <remarks>
-            If you pass <see cref="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself"/> in the second parameter,
-            you can consider to change the code to <see cref="P:Sudoku.Data.GridMap.PeerIntersection"/>.
-            </remarks>
-            <seealso cref="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself"/>
-            <seealso cref="P:Sudoku.Data.GridMap.PeerIntersection"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap@)">
             <summary>
@@ -1236,24 +1195,6 @@
             Note that all offsets will be set <see langword="true"/>, but their own peers
             won't be set <see langword="true"/>.
             </remarks>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializationOption)">
-            <summary>
-            Initializes an instance with cell offsets with an initialize option.
-            </summary>
-            <param name="offsets">The offsets to be processed.</param>
-            <param name="initializeOption">
-            Indicates the behavior of the initialization.
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified initialize option is invalid.
-            </exception>
-            <remarks>
-            If you pass <see cref="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself"/> in the second parameter,
-            you can consider to change the code to <see cref="P:Sudoku.Data.GridMap.PeerIntersection"/>.
-            </remarks>
-            <seealso cref="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself"/>
-            <seealso cref="P:Sudoku.Data.GridMap.PeerIntersection"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -1352,23 +1293,23 @@
         </member>
         <member name="P:Sudoku.Data.GridMap.PeerIntersection">
             <summary>
-            Indicates the map of cells, which is the peer intersections.
-            </summary>
-            <example>
+            <para>Indicates the map of cells, which is the peer intersections.</para>
+            <para>
             For example, the code
             <code>
-            var map = testMap.PeerIntersection;
+            var r = map.PeerIntersection;
             </code>
             is equivalent to the code
             <code>
-            var map = new GridMap(testMap, InitializeOption.ProcessPeersWithoutItself);
+            var r = new GridMap(map, InitializeOption.ProcessPeersWithoutItself);
             </code>
-            </example>
+            </para>
+            </summary>
         </member>
         <member name="P:Sudoku.Data.GridMap.CoveredRegions">
             <summary>
             Indicates all regions covered. This property is used to check all regions that all cells
-            of this instance covered. For examp;le, if the cells are { 0, 1 }, the property
+            of this instance covered. For example, if the cells are { 0, 1 }, the property
             <see cref="P:Sudoku.Data.GridMap.CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
             however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property won't contain
             any regions.
@@ -1598,6 +1539,34 @@
         <member name="M:Sudoku.Data.GridMap.op_LessThanOrEqual(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
+        <member name="M:Sudoku.Data.GridMap.op_Addition(Sudoku.Data.GridMap@,System.Int32)">
+            <summary>
+            The syntactic sugar for <c>new GridMap(map) { cell }</c> (i.e. add a new cell into the current
+            map, and return the new map).
+            </summary>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="cell">The cell to add.</param>
+            <returns>The result of the map.</returns>
+            <remarks>
+            I strongly recommend you should use <see cref="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap@)"/> instead
+            when more than one cell should be added into the map.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap@)"/>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap@,System.Int32)">
+            <summary>
+            The syntactic sugar for <c>new GridMap(map) { ~cell }</c> (i.e. remove a cell from the current
+            map, and return the new map).
+            </summary>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="cell">The cell to remove.</param>
+            <returns>The result of the map.</returns>
+            <remarks>
+            I strongly recommend you should use <see cref="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap@)"/> instead
+            when more than one cell should be removed from the map.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap@)"/>
+        </member>
         <member name="M:Sudoku.Data.GridMap.op_OnesComplement(Sudoku.Data.GridMap@)">
             <summary>
             Reverse status for all cells, which means all <see langword="true"/> bits
@@ -1667,30 +1636,6 @@
             Explicit cast from <see cref="T:Sudoku.Data.GridMap"/> to <see cref="T:System.Int32"/>[].
             </summary>
             <param name="map">(<see langword="in"/> parameter) The map.</param>
-        </member>
-        <member name="T:Sudoku.Data.GridMap.InitializationOption">
-            <summary>
-            Provides an option for initialization of the base type <see cref="T:Sudoku.Data.GridMap"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridMap.InitializationOption.Ordinary">
-            <summary>
-            Indicates each candidate will be processed with the normal case.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersAlso">
-            <summary>
-            Indicates each candidate will be processed with its peer cells.
-            For example, if set the cell of the index 0, this option
-            will let the constructor set its peer cells also.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridMap.InitializationOption.ProcessPeersWithoutItself">
-            <summary>
-            Indicates each candidate will be processed with its peer cells,
-            but itself will be set <see langword="false"/> rather than
-            <see langword="true"/> value.
-            </summary>
         </member>
         <member name="F:Sudoku.Data.GridMap.CoverTable">
             <summary>

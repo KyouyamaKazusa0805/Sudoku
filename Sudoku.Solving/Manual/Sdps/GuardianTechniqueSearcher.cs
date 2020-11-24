@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Sdps
 								}
 
 								int region = GetRegion(cell, label);
-								var otherCellsMap = RegionMaps[region] & new GridMap(globalMap) { ~cell };
+								var otherCellsMap = RegionMaps[region] & globalMap - cell;
 								if (otherCellsMap.Count != 1)
 								{
 									continue;

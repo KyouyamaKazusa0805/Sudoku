@@ -8,7 +8,6 @@ using System.Text;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.GridMap.InitializationOption;
 
 namespace Sudoku.Data
 {
@@ -21,7 +20,7 @@ namespace Sudoku.Data
 	/// and the <see langword="false"/> bit (0) is for the cell not containing
 	/// the digit.
 	/// </remarks>
-	public partial struct GridMap : IEnumerable<int>, IValueComparable<GridMap>, IValueEquatable<GridMap>, IFormattable
+	public partial struct GridMap : IEnumerable<int>, IValueEquatable<GridMap>, IFormattable
 	{
 		/// <summary>
 		/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -32,16 +31,6 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <seealso cref="GridMap()"/>
 		public static readonly GridMap Empty;
-
-		/// <summary>
-		/// The left curly brace.
-		/// </summary>
-		private const string LeftCurlyBrace = "{ ";
-
-		/// <summary>
-		/// The right curly brace.
-		/// </summary>
-		private static readonly string RightCurlyBrace = " }";
 
 
 		/// <summary>
@@ -91,22 +80,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Initializes an instance with cell offsets with an initialize option.
-		/// </summary>
-		/// <param name="offsets">The offsets to be processed.</param>
-		/// <param name="initializeOption">
-		/// Indicates the behavior of the initialization.
-		/// </param>
-		/// <remarks>
-		/// This method is same behavior of <see cref="GridMap(IEnumerable{int}, InitializationOption)"/>
-		/// </remarks>
-		/// <seealso cref="GridMap(IEnumerable{int}, InitializationOption)"/>
-		public GridMap(int[] offsets, InitializationOption initializeOption)
-			: this(offsets.AsEnumerable(), initializeOption)
-		{
-		}
-
-		/// <summary>
 		/// Initializes an instance with a series of cell offsets.
 		/// </summary>
 		/// <param name="cells">(<see langword="in"/> parameter) cell offsets.</param>
@@ -133,65 +106,6 @@ namespace Sudoku.Data
 			{
 				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
 				Count++;
-			}
-		}
-
-		/// <summary>
-		/// Initializes an instance with cell offsets with an initialize option.
-		/// </summary>
-		/// <param name="cells">(<see langword="in"/> parameter) The offsets to be processed.</param>
-		/// <param name="initializeOption">
-		/// Indicates the behavior of the initialization.
-		/// </param>
-		/// <exception cref="ArgumentException">
-		/// Throws when the specified initialize option is invalid.
-		/// </exception>
-		/// <remarks>
-		/// If you pass <see cref="ProcessPeersWithoutItself"/> in the second parameter,
-		/// you can consider to change the code to <see cref="PeerIntersection"/>.
-		/// </remarks>
-		/// <seealso cref="ProcessPeersWithoutItself"/>
-		/// <seealso cref="PeerIntersection"/>
-		public GridMap(in ReadOnlySpan<int> cells, InitializationOption initializeOption) : this()
-		{
-			switch (initializeOption)
-			{
-				case Ordinary:
-				{
-					foreach (int offset in cells)
-					{
-						this[offset] = true;
-					}
-
-					break;
-				}
-				case ProcessPeersAlso or ProcessPeersWithoutItself:
-				{
-					int i = 0;
-					foreach (int offset in cells)
-					{
-						long low = 0, high = 0;
-						foreach (int peer in Peers[offset])
-						{
-							(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
-						}
-
-						if (initializeOption == ProcessPeersAlso)
-						{
-							(offset / Shifting == 0 ? ref low : ref high) |= 1L << offset % Shifting;
-						}
-
-						(_low, _high) = i++ == 0 ? (low, high) : (_low & low, _high & high);
-					}
-
-					Count = _low.PopCount() + _high.PopCount();
-
-					break;
-				}
-				default:
-				{
-					throw new ArgumentException("The specified option doesn't exist.");
-				}
 			}
 		}
 
@@ -240,65 +154,6 @@ namespace Sudoku.Data
 			{
 				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
 				Count++;
-			}
-		}
-
-		/// <summary>
-		/// Initializes an instance with cell offsets with an initialize option.
-		/// </summary>
-		/// <param name="offsets">The offsets to be processed.</param>
-		/// <param name="initializeOption">
-		/// Indicates the behavior of the initialization.
-		/// </param>
-		/// <exception cref="ArgumentException">
-		/// Throws when the specified initialize option is invalid.
-		/// </exception>
-		/// <remarks>
-		/// If you pass <see cref="ProcessPeersWithoutItself"/> in the second parameter,
-		/// you can consider to change the code to <see cref="PeerIntersection"/>.
-		/// </remarks>
-		/// <seealso cref="ProcessPeersWithoutItself"/>
-		/// <seealso cref="PeerIntersection"/>
-		public GridMap(IEnumerable<int> offsets, InitializationOption initializeOption) : this()
-		{
-			switch (initializeOption)
-			{
-				case Ordinary:
-				{
-					foreach (int offset in offsets)
-					{
-						this[offset] = true;
-					}
-
-					break;
-				}
-				case ProcessPeersAlso or ProcessPeersWithoutItself:
-				{
-					int i = 0;
-					foreach (int offset in offsets)
-					{
-						long low = 0, high = 0;
-						foreach (int peer in Peers[offset])
-						{
-							(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
-						}
-
-						if (initializeOption == ProcessPeersAlso)
-						{
-							(offset / Shifting == 0 ? ref low : ref high) |= 1L << offset % Shifting;
-						}
-
-						(_low, _high) = i++ == 0 ? (low, high) : (_low & low, _high & high);
-					}
-
-					Count = _low.PopCount() + _high.PopCount();
-
-					break;
-				}
-				default:
-				{
-					throw new ArgumentException("The specified option doesn't exist.");
-				}
 			}
 		}
 
@@ -468,23 +323,51 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Indicates the map of cells, which is the peer intersections.
-		/// </summary>
-		/// <example>
+		/// <para>Indicates the map of cells, which is the peer intersections.</para>
+		/// <para>
 		/// For example, the code
 		/// <code>
-		/// var map = testMap.PeerIntersection;
+		/// var r = map.PeerIntersection;
 		/// </code>
 		/// is equivalent to the code
 		/// <code>
-		/// var map = new GridMap(testMap, InitializeOption.ProcessPeersWithoutItself);
+		/// var r = new GridMap(map, InitializeOption.ProcessPeersWithoutItself);
 		/// </code>
-		/// </example>
-		public readonly GridMap PeerIntersection => new(Offsets, ProcessPeersWithoutItself);
+		/// </para>
+		/// </summary>
+		public readonly GridMap PeerIntersection
+		{
+			get
+			{
+				long lowerBits = 0, higherBits = 0;
+				int i = 0;
+				foreach (int offset in Offsets)
+				{
+					long low = 0, high = 0;
+					foreach (int peer in Peers[offset])
+					{
+						(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
+					}
+
+					if (i++ == 0)
+					{
+						lowerBits = low;
+						higherBits = high;
+					}
+					else
+					{
+						lowerBits &= low;
+						higherBits &= high;
+					}
+				}
+
+				return new(higherBits, lowerBits);
+			}
+		}
 
 		/// <summary>
 		/// Indicates all regions covered. This property is used to check all regions that all cells
-		/// of this instance covered. For examp;le, if the cells are { 0, 1 }, the property
+		/// of this instance covered. For example, if the cells are { 0, 1 }, the property
 		/// <see cref="CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
 		/// however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property won't contain
 		/// any regions.
@@ -572,7 +455,7 @@ namespace Sudoku.Data
 		public bool this[int cell]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			readonly get => ((stackalloc[] { _low, _high }[cell / Shifting] >> cell % Shifting) & 1) != 0;
+			readonly get => ((stackalloc[] { _low, _high }[cell / Shifting] >> cell % Shifting) & 1L) != 0;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
@@ -676,6 +559,7 @@ namespace Sudoku.Data
 		public readonly int SetAt(in Index index) => SetAt(index.GetOffset(Count));
 
 		/// <inheritdoc/>
+		[Obsolete("I'll remove it later.", false)]
 		public readonly int CompareTo(in GridMap other) =>
 			((new BigInteger(_high) << Shifting) + new BigInteger(_low))
 				.CompareTo((new BigInteger(other._high) << Shifting) + new BigInteger(other._low));
@@ -747,6 +631,7 @@ namespace Sudoku.Data
 
 			static unsafe string normalToString(in GridMap @this)
 			{
+				const string leftCurlyBrace = "{ ", rightCurlyBrace = " }";
 				static int converter(in int v) => v + 1;
 				const string separator = ", ";
 				var sbRow = new StringBuilder();
@@ -763,7 +648,7 @@ namespace Sudoku.Data
 				bool addCurlyBraces = dic.Count > 1;
 				if (addCurlyBraces)
 				{
-					sbRow.Append(LeftCurlyBrace);
+					sbRow.Append(leftCurlyBrace);
 				}
 				foreach (int row in dic.Keys)
 				{
@@ -777,7 +662,7 @@ namespace Sudoku.Data
 				sbRow.RemoveFromEnd(separator.Length);
 				if (addCurlyBraces)
 				{
-					sbRow.Append(RightCurlyBrace);
+					sbRow.Append(rightCurlyBrace);
 				}
 
 				dic.Clear();
@@ -794,7 +679,7 @@ namespace Sudoku.Data
 				addCurlyBraces = dic.Count > 1;
 				if (addCurlyBraces)
 				{
-					sbColumn.Append(LeftCurlyBrace);
+					sbColumn.Append(leftCurlyBrace);
 				}
 
 				foreach (int column in dic.Keys)
@@ -809,7 +694,7 @@ namespace Sudoku.Data
 				sbColumn.RemoveFromEnd(separator.Length);
 				if (addCurlyBraces)
 				{
-					sbColumn.Append(RightCurlyBrace);
+					sbColumn.Append(rightCurlyBrace);
 				}
 
 				return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
@@ -979,19 +864,53 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="Operators.operator &gt;"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("I'll remove it later.", false)]
 		public static bool operator >(in GridMap left, in GridMap right) => left.CompareTo(right) > 0;
 
 		/// <inheritdoc cref="Operators.operator &gt;="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("I'll remove it later.", false)]
 		public static bool operator >=(in GridMap left, in GridMap right) => left.CompareTo(right) >= 0;
 
 		/// <inheritdoc cref="Operators.operator &lt;"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("I'll remove it later.", false)]
 		public static bool operator <(in GridMap left, in GridMap right) => left.CompareTo(right) < 0;
 
 		/// <inheritdoc cref="Operators.operator &lt;="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("I'll remove it later.", false)]
 		public static bool operator <=(in GridMap left, in GridMap right) => left.CompareTo(right) <= 0;
+
+		/// <summary>
+		/// The syntactic sugar for <c>new GridMap(map) { cell }</c> (i.e. add a new cell into the current
+		/// map, and return the new map).
+		/// </summary>
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="cell">The cell to add.</param>
+		/// <returns>The result of the map.</returns>
+		/// <remarks>
+		/// I strongly recommend you should use <see cref="GridMap(in GridMap)"/> instead
+		/// when more than one cell should be added into the map.
+		/// </remarks>
+		/// <seealso cref="GridMap(in GridMap)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static GridMap operator +(in GridMap map, int cell) => new(map) { cell };
+
+		/// <summary>
+		/// The syntactic sugar for <c>new GridMap(map) { ~cell }</c> (i.e. remove a cell from the current
+		/// map, and return the new map).
+		/// </summary>
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="cell">The cell to remove.</param>
+		/// <returns>The result of the map.</returns>
+		/// <remarks>
+		/// I strongly recommend you should use <see cref="GridMap(in GridMap)"/> instead
+		/// when more than one cell should be removed from the map.
+		/// </remarks>
+		/// <seealso cref="GridMap(in GridMap)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static GridMap operator -(in GridMap map, int cell) => new(map) { ~cell };
 
 		/// <summary>
 		/// Reverse status for all cells, which means all <see langword="true"/> bits

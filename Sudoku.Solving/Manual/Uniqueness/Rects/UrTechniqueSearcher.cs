@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								for (int c2 = c1 + 1; c2 < 4; c2++)
 								{
 									int corner2 = urCells[c2];
-									var tempOtherCellsMap = new GridMap(otherCellsMap) { ~corner2 };
+									var tempOtherCellsMap = otherCellsMap - corner2;
 
 									// Both diagonal and non-diagonal.
 									CheckType2(

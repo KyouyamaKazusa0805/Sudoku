@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int digit in digits)
 				{
-					foreach (int cell in new GridMap(pattern) { ~elimCell } & CandMaps[digit])
+					foreach (int cell in pattern - elimCell & CandMaps[digit])
 					{
 						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
@@ -72,7 +72,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-#pragma warning disable IDE0060
 		/// <summary>
 		/// Check type 2.
 		/// </summary>
@@ -131,7 +130,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 						extraDigit));
 			}
 		}
-#pragma warning restore IDE0060
 
 		/// <summary>
 		/// Check type 3.
