@@ -343,7 +343,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			otherCandidatesMask = -1;
 
 			short m1 = grid.GetCandidateMask(pos1), m2 = grid.GetCandidateMask(pos2);
-			if (((baseCandidatesMask & m1) ^ (baseCandidatesMask & m2)) != 0)
+			if ((baseCandidatesMask & m1) != 0 ^ (baseCandidatesMask & m2) != 0)
 			{
 				// One cell contains the digit that base candidate holds,
 				// and another one doesn't contain.
