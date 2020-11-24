@@ -2595,13 +2595,6 @@
             <param name="cell">The cell.</param>
             <returns>The cell status.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.GetCandidates(System.Int32)">
-            <summary>
-            Get all candidates containing in the specified cell.
-            </summary>
-            <param name="cell">The cell you want to get.</param>
-            <returns>All candidates.</returns>
-        </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetEnumerator">
             <inheritdoc/>
         </member>

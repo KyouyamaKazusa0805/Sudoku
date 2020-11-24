@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -141,7 +142,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					continue;
 				}
 
-				foreach (int digit in grid.GetCandidates(cell))
+				foreach (int digit in grid.GetCandidateMask(cell))
 				{
 					if (singleDigitList.Contains(digit))
 					{
@@ -266,7 +267,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					continue;
 				}
 
-				foreach (int digit in grid.GetCandidates(cell))
+				foreach (int digit in grid.GetCandidateMask(cell))
 				{
 					if (singleDigitList.Contains(digit))
 					{

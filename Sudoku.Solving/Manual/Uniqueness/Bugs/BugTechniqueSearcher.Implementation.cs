@@ -112,7 +112,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in elimMap)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								if ((mask >> digit & 1) != 0)
 								{
@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						}
 						foreach (int cell in cells)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}

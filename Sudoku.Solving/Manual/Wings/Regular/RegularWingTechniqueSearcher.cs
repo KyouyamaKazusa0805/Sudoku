@@ -138,12 +138,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in cells)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								candidateOffsets.Add(new(digit == zDigit ? 1 : 0, cell * 9 + digit));
 							}
 						}
-						foreach (int digit in grid.GetCandidates(pivot))
+						foreach (int digit in grid.GetCandidateMask(pivot))
 						{
 							candidateOffsets.Add(new(digit == zDigit ? 1 : 0, pivot * 9 + digit));
 						}

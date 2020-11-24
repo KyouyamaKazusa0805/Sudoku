@@ -104,17 +104,17 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 
 						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int digit in grid.GetCandidates(c1))
+						foreach (int digit in grid.GetCandidateMask(c1))
 						{
 							candidateOffsets.Add(new(0, c1 * 9 + digit));
 						}
-						foreach (int digit in grid.GetCandidates(c2))
+						foreach (int digit in grid.GetCandidateMask(c2))
 						{
 							candidateOffsets.Add(new(0, c2 * 9 + digit));
 						}
 						foreach (int cell in erCellsMap)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								if (digit != d1 && digit != d2)
 								{

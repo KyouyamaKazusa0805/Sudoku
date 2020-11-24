@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in cells)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								candidateOffsets.Add(new(0, cell * 9 + digit));
 							}

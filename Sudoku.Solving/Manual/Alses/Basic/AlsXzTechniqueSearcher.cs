@@ -195,7 +195,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					{
 						foreach (int cell in map)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								candidateOffsets.Add(new(finalZ >> digit & 1, cell * 9 + digit));
 							}

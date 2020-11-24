@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Checking
 			{
 				foreach (int cell in _bivalueMap)
 				{
-					foreach (int digit in Puzzle.GetCandidates(cell))
+					foreach (int digit in Puzzle.GetCandidateMask(cell))
 					{
 						ref var map = ref stack[0, digit];
 						map.AddAnyway(cell);

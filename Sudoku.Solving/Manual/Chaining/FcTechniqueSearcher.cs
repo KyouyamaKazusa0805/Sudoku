@@ -274,7 +274,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			// Build chains.
 			var chains = new Dictionary<int, Node>();
-			foreach (int digit in grid.GetCandidates(sourceCell))
+			foreach (int digit in grid.GetCandidateMask(sourceCell))
 			{
 				// Get the node that contains the same cell, digit and isOn property.
 				var valueTarget = outcomes[digit][target];

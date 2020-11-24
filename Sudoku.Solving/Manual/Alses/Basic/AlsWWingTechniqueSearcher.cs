@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								};
 								foreach (int cell in map1)
 								{
-									foreach (int digit in grid.GetCandidates(cell))
+									foreach (int digit in grid.GetCandidateMask(cell))
 									{
 										candidateOffsets.Add(
 											new(
@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								}
 								foreach (int cell in map2)
 								{
-									foreach (int digit in grid.GetCandidates(cell))
+									foreach (int digit in grid.GetCandidateMask(cell))
 									{
 										candidateOffsets.Add(
 											new(

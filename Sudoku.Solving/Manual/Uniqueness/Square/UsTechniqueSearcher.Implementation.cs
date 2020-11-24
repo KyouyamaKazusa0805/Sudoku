@@ -197,14 +197,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							var candidateOffsets = new List<DrawingInfo>();
 							foreach (int cell in pattern)
 							{
-								foreach (int digit in grid.GetCandidates(cell))
+								foreach (int digit in grid.GetCandidateMask(cell))
 								{
 									candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in cells)
 							{
-								foreach (int digit in grid.GetCandidates(cell))
+								foreach (int digit in grid.GetCandidateMask(cell))
 								{
 									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
@@ -296,7 +296,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in pattern - compareMap)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (int digit in grid.GetCandidateMask(cell))
 						{
 							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}

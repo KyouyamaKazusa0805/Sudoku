@@ -192,7 +192,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							foreach (int c in a.Map)
 							{
-								foreach (int dd in grid.GetCandidates(c))
+								foreach (int dd in grid.GetCandidateMask(c))
 								{
 									candidateOffsets.Add(new(d == dd ? 1 : -z - 1, c * 9 + dd));
 								}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
+using Sudoku.Extensions;
 using Sudoku.Runtime;
 using Sudoku.Solving.Manual;
 using static Sudoku.Data.CellStatus;
@@ -118,7 +119,7 @@ namespace Sudoku.Solving.Checking
 						}
 
 						int z = solution[c];
-						foreach (int d in grid.GetCandidates(c))
+						foreach (int d in grid.GetCandidateMask(c))
 						{
 							result.Add(new Conclusion[] { new(d == z ? Assignment : Elimination, c, d) });
 						}

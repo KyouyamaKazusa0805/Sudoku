@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in loop)
 			{
-				foreach (int digit in grid.GetCandidates(cell))
+				foreach (int digit in grid.GetCandidateMask(cell))
 				{
 					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
@@ -212,7 +212,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in loop)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								candidateOffsets.Add(
 									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
@@ -220,7 +220,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						}
 						foreach (int cell in cells)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
@@ -296,7 +296,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in loop - extraCellsMap)
 					{
-						foreach (int d in grid.GetCandidates(cell))
+						foreach (int d in grid.GetCandidateMask(cell))
 						{
 							candidateOffsets.Add(new(0, cell * 9 + d));
 						}

@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						continue;
 					}
 
-					foreach (int digit in grid.GetCandidates(cell))
+					foreach (int digit in grid.GetCandidateMask(cell))
 					{
 						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
@@ -128,7 +128,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int cell in map)
 				{
-					foreach (int digit in grid.GetCandidates(cell))
+					foreach (int digit in grid.GetCandidateMask(cell))
 					{
 						candidateOffsets.Add(new(digit == otherDigit ? 1 : 0, cell * 9 + digit));
 					}
@@ -222,21 +222,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							var candidateOffsets = new List<DrawingInfo>();
 							foreach (int cell in currentMap)
 							{
-								foreach (int digit in grid.GetCandidates(cell))
+								foreach (int digit in grid.GetCandidateMask(cell))
 								{
 									candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in otherCellsMap)
 							{
-								foreach (int digit in grid.GetCandidates(cell))
+								foreach (int digit in grid.GetCandidateMask(cell))
 								{
 									candidateOffsets.Add(new(0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in combination)
 							{
-								foreach (int digit in grid.GetCandidates(cell))
+								foreach (int digit in grid.GetCandidateMask(cell))
 								{
 									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
@@ -351,7 +351,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						}
 						foreach (int cell in otherCellsMap)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								candidateOffsets.Add(new(0, cell * 9 + digit));
 							}

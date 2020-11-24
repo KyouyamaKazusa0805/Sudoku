@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in otherCellsMap)
 			{
-				foreach (int digit in grid.GetCandidates(cell))
+				foreach (int digit in grid.GetCandidateMask(cell))
 				{
 					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				if (grid.GetStatus(cell) == Empty)
 				{
-					foreach (int digit in grid.GetCandidates(cell))
+					foreach (int digit in grid.GetCandidateMask(cell))
 					{
 						candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 					}
@@ -267,7 +267,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							if (grid.GetStatus(cell) == Empty)
 							{
-								foreach (int digit in grid.GetCandidates(cell))
+								foreach (int digit in grid.GetCandidateMask(cell))
 								{
 									candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
@@ -275,7 +275,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 						foreach (int cell in iteratedCells)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (int digit in grid.GetCandidateMask(cell))
 							{
 								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
@@ -384,7 +384,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						else
 						{
 							// Corner1 and corner2.
-							foreach (int d in grid.GetCandidates(cell))
+							foreach (int d in grid.GetCandidateMask(cell))
 							{
 								candidateOffsets.Add(new(0, cell * 9 + d));
 							}
@@ -475,7 +475,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					continue;
 				}
 
-				foreach (int digit in grid.GetCandidates(cell))
+				foreach (int digit in grid.GetCandidateMask(cell))
 				{
 					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
@@ -581,7 +581,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 					else
 					{
-						foreach (int d in grid.GetCandidates(cell))
+						foreach (int d in grid.GetCandidateMask(cell))
 						{
 							candidateOffsets.Add(new(d == digit ? 1 : 0, cell * 9 + d));
 						}
@@ -684,7 +684,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 					else
 					{
-						foreach (int d in grid.GetCandidates(cell))
+						foreach (int d in grid.GetCandidateMask(cell))
 						{
 							candidateOffsets.Add(new(0, cell * 9 + d));
 						}

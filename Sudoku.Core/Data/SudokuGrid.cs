@@ -484,18 +484,6 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly CellStatus GetStatus(int cell) => (CellStatus)(_values[cell] >> 9 & (int)CellStatus.All);
 
-		/// <summary>
-		/// Get all candidates containing in the specified cell.
-		/// </summary>
-		/// <param name="cell">The cell you want to get.</param>
-		/// <returns>All candidates.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete(
-			"Due to extension `GetEnumerator` in C# 9, " +
-			"you can only use '" + nameof(GetCandidateMask) + "' and " +
-			"'" + nameof(Int16Ex.GetEnumerator) + "' instead.", false)]
-		public readonly IEnumerable<int> GetCandidates(int cell) => GetCandidateMask(cell).GetAllSets();
-
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly IEnumerator<short> GetEnumerator()

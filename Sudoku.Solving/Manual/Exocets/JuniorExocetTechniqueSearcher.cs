@@ -105,11 +105,11 @@ namespace Sudoku.Solving.Manual.Exocets
 				// Gather highlight cells and candidates.
 				var cellOffsets = new List<DrawingInfo> { new(0, b1), new(0, b2) };
 				var candidateOffsets = new List<DrawingInfo>();
-				foreach (int digit in grid.GetCandidates(b1))
+				foreach (int digit in grid.GetCandidateMask(b1))
 				{
 					candidateOffsets.Add(new(0, b1 * 9 + digit));
 				}
-				foreach (int digit in grid.GetCandidates(b2))
+				foreach (int digit in grid.GetCandidateMask(b2))
 				{
 					candidateOffsets.Add(new(0, b2 * 9 + digit));
 				}
