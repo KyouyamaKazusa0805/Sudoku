@@ -28,9 +28,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
+		/// <param name="index">The index.</param>
 		partial void CheckType1(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap)
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index)
 		{
 			//   ↓ cornerCell
 			// (abc) ab
@@ -85,7 +86,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					d1,
 					d2,
 					urCells,
-					arMode));
+					arMode,
+					index));
 		}
 
 		/// <summary>
@@ -103,9 +105,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
+		/// <param name="index">The index.</param>
 		partial void CheckType2(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index)
 		{
 			//   ↓ corner1 and corner2
 			// (abc) (abc)
@@ -173,7 +176,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					d2,
 					urCells,
 					arMode,
-					extraDigit));
+					extraDigit,
+					index));
 		}
 
 		/// <summary>
@@ -191,9 +195,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
+		/// <param name="index">The index.</param>
 		partial void CheckType3Naked(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index)
 		{
 			//  ↓ corner1, corner2
 			// (ab ) (ab )
@@ -299,7 +304,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								otherDigitsMask.GetAllSets().ToArray(),
 								iteratedCells,
 								region,
-								true));
+								true,
+								index));
 					}
 				}
 			}
@@ -320,9 +326,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
+		/// <param name="index">The index.</param>
 		partial void CheckType4(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index)
 		{
 			//  ↓ corner1, corner2
 			// (ab ) ab
@@ -412,7 +419,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							d2,
 							urCells,
 							arMode,
-							new ConjugatePair[] { new(otherCellsMap.First, otherCellsMap.SetAt(1), digit) }));
+							new ConjugatePair[] { new(otherCellsMap.First, otherCellsMap.SetAt(1), digit) },
+							index));
 				}
 			}
 		}
@@ -431,9 +439,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
+		/// <param name="index">The index.</param>
 		partial void CheckType5(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap)
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index)
 		{
 			//  ↓ cornerCell
 			// (ab ) abc
@@ -497,7 +506,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					d2,
 					urCells,
 					arMode,
-					extraDigit));
+					extraDigit,
+					index));
 		}
 
 		/// <summary>
@@ -515,9 +525,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
+		/// <param name="index">The index.</param>
 		partial void CheckType6(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap)
+			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index)
 		{
 			//  ↓ corner1
 			// (ab )  aby
@@ -611,7 +622,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							new(corner1, isRow ? o1 : o2, digit),
 							new(corner2, isRow ? o2 : o1, digit)
-						}));
+						},
+						index));
 			}
 		}
 
@@ -629,9 +641,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="otherCellsMap">
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
+		/// <param name="index">The index.</param>
 		partial void CheckHidden(
 			IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap)
+			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index)
 		{
 			//  ↓ cornerCell
 			// (ab ) abx
@@ -713,7 +726,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							new(abzCell, abxCell, digit),
 							new(abzCell, abyCell, digit),
-						}));
+						},
+						index));
 			}
 		}
 	}

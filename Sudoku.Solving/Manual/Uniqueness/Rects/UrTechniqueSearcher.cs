@@ -57,8 +57,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			foreach (bool arMode in BooleanValues)
 			{
 				// Iterate on each possible UR structure.
-				foreach (int[] urCells in PossibleUrList)
+				for (int index = 0; index < PossibleUrList.Length; index++)
 				{
+					int[] urCells = PossibleUrList[index];
 					// Check preconditions.
 					if (!checkPreconditions(grid, urCells, arMode))
 					{
@@ -86,10 +87,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							short comparer = (short)(1 << d1 | 1 << d2);
 							unsafe
 							{
-								static bool internalChecking(int c, in short comparer, in SudokuGrid grid) =>
+								static bool v(int c, in short comparer, in SudokuGrid grid) =>
 									(grid.GetCandidateMask(c) & comparer).PopCount() != 2;
 
-								if (!arMode && urCells.All(&internalChecking, comparer, grid))
+								if (!arMode && urCells.All(&v, comparer, grid))
 								{
 									continue;
 								}
@@ -101,17 +102,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								int corner1 = urCells[c1];
 								var otherCellsMap = new GridMap(urCells) { ~corner1 };
 
-								CheckType1(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
-								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
-								CheckHidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
+								CheckType1(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
+								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
+								CheckHidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 
 								if (!arMode && _searchExtended)
 								{
-									Check3X(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
-									Check3X2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
-									Check3N2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
-									Check3U2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
-									Check3E2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
+									Check3X(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+									Check3X2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+									Check3N2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+									Check3U2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+									Check3E2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
 								}
 
 								if (c1 == 3)
@@ -125,17 +126,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									var tempOtherCellsMap = otherCellsMap - corner2;
 
 									// Both diagonal and non-diagonal.
-									CheckType2(
-										tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2,
-										tempOtherCellsMap);
+									CheckType2(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
 									if (_searchExtended)
 									{
 										for (int size = 2; size <= 4; size++)
 										{
-											CheckWing(
-												tempList, grid, urCells, arMode, comparer, d1, d2,
-												corner1, corner2, tempOtherCellsMap, size);
+											CheckWing(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size, index);
 										}
 									}
 
@@ -144,45 +141,29 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										// Diagonal type.
 										if (!arMode)
 										{
-											CheckType6(
-												tempList, grid, urCells, false, comparer, d1, d2,
-												corner1, corner2, tempOtherCellsMap);
+											CheckType6(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
 											if (_searchExtended)
 											{
-												Check2D(
-													tempList, grid, urCells, false, comparer, d1, d2,
-													corner1, corner2, tempOtherCellsMap);
-												Check2D1SL(
-													tempList, grid, urCells, false, comparer, d1, d2,
-													corner1, corner2, tempOtherCellsMap);
+												Check2D(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+												Check2D1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 											}
 										}
 									}
 									else
 									{
 										// Non-diagonal type.
-										CheckType3Naked(
-											tempList, grid, urCells, arMode, comparer, d1, d2,
-											corner1, corner2, tempOtherCellsMap);
+										CheckType3Naked(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
 										if (!arMode)
 										{
-											CheckType4(
-												tempList, grid, urCells, false, comparer, d1, d2,
-												corner1, corner2, tempOtherCellsMap);
+											CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
 											if (_searchExtended)
 											{
-												Check2B1SL(
-													tempList, grid, urCells, false, comparer, d1, d2,
-													corner1, corner2, tempOtherCellsMap);
-												Check4X3SL(
-													tempList, grid, urCells, false, comparer, d1, d2,
-													corner1, corner2, tempOtherCellsMap);
-												Check4C3SL(
-													tempList, grid, urCells, false, comparer, d1, d2,
-													corner1, corner2, tempOtherCellsMap);
+												Check2B1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+												Check4X3SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+												Check4C3SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 											}
 										}
 									}
@@ -310,23 +291,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			(from cell in urCells select new DrawingInfo(0, cell)).ToArray();
 
 
-		partial void CheckType1(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
-		partial void CheckType2(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
-		partial void CheckType3Naked(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
-		partial void CheckType4(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
-		partial void CheckType5(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
-		partial void CheckType6(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
-		partial void CheckHidden(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
-		partial void Check2D(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
-		partial void Check2B1SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
-		partial void Check2D1SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
-		partial void Check3X(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
-		partial void Check3X2SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
-		partial void Check3N2SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
-		partial void Check3U2SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
-		partial void Check3E2SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap);
-		partial void Check4X3SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
-		partial void Check4C3SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap);
-		partial void CheckWing(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int size);
+		partial void CheckType1(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
+		partial void CheckType2(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
+		partial void CheckType3Naked(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
+		partial void CheckType4(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
+		partial void CheckType5(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
+		partial void CheckType6(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
+		partial void CheckHidden(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
+		partial void Check2D(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
+		partial void Check2B1SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
+		partial void Check2D1SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
+		partial void Check3X(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
+		partial void Check3X2SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
+		partial void Check3N2SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
+		partial void Check3U2SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
+		partial void Check3E2SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
+		partial void Check4X3SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
+		partial void Check4C3SL(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
+		partial void CheckWing(IList<UrTechniqueInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int size, int index);
 	}
 }

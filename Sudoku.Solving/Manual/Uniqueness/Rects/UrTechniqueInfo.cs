@@ -20,9 +20,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Cells">All cells.</param>
 	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public abstract record UrTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable)
+		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset)
 		: UniquenessTechniqueInfo(Conclusions, Views), IComparable<UrTechniqueInfo>
 	{
 		/// <inheritdoc/>
@@ -37,6 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		/// <inheritdoc/>
 		public override string ToString() => ToStringInternal();
+
 
 		/// <summary>
 		/// Get additional string.
@@ -64,7 +66,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		int IComparable<UrTechniqueInfo>.CompareTo(UrTechniqueInfo other) =>
 			Math.Sign(TypeCode.CompareTo(other.TypeCode)) switch
 			{
-				0 => new GridMap(Cells).CompareTo(other.Cells) switch
+				0 => AbsoluteOffset.CompareTo(other.AbsoluteOffset) switch
 				{
 					0 => Math.Sign((Digit1 * 9 + Digit2).CompareTo(other.Digit1 * 9 + other.Digit2)) switch
 					{

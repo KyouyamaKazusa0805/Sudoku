@@ -16,12 +16,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="Cells">All cells.</param>
 	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
 	/// <param name="ConjugatePairs">All conjugate pairs.</param>
+	/// <param name="AbsoluteOffset">The absolute offset used in sorting.</param>
 	public sealed record HiddenUrTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<ConjugatePair> ConjugatePairs)
+		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<ConjugatePair> ConjugatePairs,
+		int AbsoluteOffset)
 		: UrPlusTechniqueInfo(
 			Conclusions, Views, IsAvoidable ? UrTypeCode.AHidden : UrTypeCode.Hidden,
-			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs)
+			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
 		public override string ToString() => ToStringInternal();

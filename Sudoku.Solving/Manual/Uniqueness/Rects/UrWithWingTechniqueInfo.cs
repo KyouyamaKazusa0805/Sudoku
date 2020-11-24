@@ -19,11 +19,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="ExtraCells">The extra cells.</param>
 	/// <param name="ExtraDigits">The extra digits.</param>
 	/// <param name="Pivots">The pivot cells.</param>
+	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record UrWithWingTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
-		IEnumerable<int> ExtraCells, IEnumerable<int> ExtraDigits, IEnumerable<int> Pivots)
-		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable)
+		IEnumerable<int> ExtraCells, IEnumerable<int> ExtraDigits, IEnumerable<int> Pivots, int AbsoluteOffset)
+		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <summary>
 		/// Indicates the difficulty rating extra.

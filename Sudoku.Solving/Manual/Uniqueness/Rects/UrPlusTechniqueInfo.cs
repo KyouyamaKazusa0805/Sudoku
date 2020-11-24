@@ -18,11 +18,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="Cells">All cells.</param>
 	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
 	/// <param name="ConjugatePairs">All conjugate pairs.</param>
+	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public record UrPlusTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
-		IReadOnlyList<ConjugatePair> ConjugatePairs)
-		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable)
+		IReadOnlyList<ConjugatePair> ConjugatePairs, int AbsoluteOffset)
+		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
 		public sealed override decimal Difficulty => ConjugatePairs.Count * .2M + 4.4M;
@@ -38,9 +39,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		protected sealed override string GetAdditional()
 		{
 			bool singular = ConjugatePairs.Count == 1;
-			return $"{(singular ? "a " : string.Empty)}conjugate pair{(singular ? string.Empty : "s")} {getStr()}";
+			return $"{(singular ? "a " : string.Empty)}conjugate pair{(singular ? string.Empty : "s")} {g()}";
 
-			unsafe string getStr()
+			unsafe string g()
 			{
 				const string separator = ", ";
 				static string? converter(in ConjugatePair cp) => $"{cp}{separator}";

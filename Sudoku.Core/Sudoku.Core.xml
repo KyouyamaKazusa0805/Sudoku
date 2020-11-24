@@ -1403,9 +1403,6 @@
             </remarks>
             <seealso cref="P:Sudoku.Data.GridMap.First"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.CompareTo(Sudoku.Data.GridMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.GridMap.ToArray">
             <summary>
             Get all cell offsets whose bits are set <see langword="true"/>.
@@ -1526,18 +1523,6 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Inequality(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.op_GreaterThan(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.op_GreaterThanOrEqual(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.op_LessThan(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.op_LessThanOrEqual(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Addition(Sudoku.Data.GridMap@,System.Int32)">
             <summary>

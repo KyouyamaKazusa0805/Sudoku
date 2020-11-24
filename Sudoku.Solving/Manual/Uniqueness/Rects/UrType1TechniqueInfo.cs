@@ -14,11 +14,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Cells">All cells.</param>
 	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
+	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record UrType1TechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Digit1, int Digit2, int[] Cells, bool IsAvoidable)
+		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset)
 		: UrTechniqueInfo(
-			Conclusions, Views, IsAvoidable ? UrTypeCode.AType1 : UrTypeCode.Type1, Digit1, Digit2, Cells, IsAvoidable)
+			Conclusions, Views, IsAvoidable ? UrTypeCode.AType1 : UrTypeCode.Type1,
+			Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.5M;

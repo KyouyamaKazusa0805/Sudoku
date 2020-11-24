@@ -19,11 +19,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="XDigit">The X digit.</param>
 	/// <param name="YDigit">The Y digit.</param>
 	/// <param name="XyCell">The cell that only contains X and Y digit.</param>
+	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record Ur2DOr3XTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
-		int XDigit, int YDigit, int XyCell)
-		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable)
+		int XDigit, int YDigit, int XyCell, int AbsoluteOffset)
+		: UrTechniqueInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.7M;

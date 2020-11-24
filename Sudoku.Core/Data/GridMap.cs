@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.DocComments;
@@ -558,12 +557,6 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int SetAt(in Index index) => SetAt(index.GetOffset(Count));
 
-		/// <inheritdoc/>
-		[Obsolete("I'll remove it later.", false)]
-		public readonly int CompareTo(in GridMap other) =>
-			((new BigInteger(_high) << Shifting) + new BigInteger(_low))
-				.CompareTo((new BigInteger(other._high) << Shifting) + new BigInteger(other._low));
-
 		/// <summary>
 		/// Get all cell offsets whose bits are set <see langword="true"/>.
 		/// </summary>
@@ -861,26 +854,6 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(in GridMap left, in GridMap right) => !(left == right);
-
-		/// <inheritdoc cref="Operators.operator &gt;"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete("I'll remove it later.", false)]
-		public static bool operator >(in GridMap left, in GridMap right) => left.CompareTo(right) > 0;
-
-		/// <inheritdoc cref="Operators.operator &gt;="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete("I'll remove it later.", false)]
-		public static bool operator >=(in GridMap left, in GridMap right) => left.CompareTo(right) >= 0;
-
-		/// <inheritdoc cref="Operators.operator &lt;"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete("I'll remove it later.", false)]
-		public static bool operator <(in GridMap left, in GridMap right) => left.CompareTo(right) < 0;
-
-		/// <inheritdoc cref="Operators.operator &lt;="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete("I'll remove it later.", false)]
-		public static bool operator <=(in GridMap left, in GridMap right) => left.CompareTo(right) <= 0;
 
 		/// <summary>
 		/// The syntactic sugar for <c>new GridMap(map) { cell }</c> (i.e. add a new cell into the current
