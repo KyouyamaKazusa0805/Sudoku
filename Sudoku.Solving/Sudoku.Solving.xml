@@ -989,80 +989,6 @@
             <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
             <returns>The difficulty level.</returns>
         </member>
-        <member name="T:Sudoku.Solving.ConjugatePair">
-            <summary>
-            Encapsulates a conjugate pair.
-            </summary>
-            <remarks>
-            <b>Conjugate pair</b> is a candidate pair (two candidates),
-            these two candidates is in the same region where all cells has only
-            two position can fill this candidate.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with from and to cell offset
-            and a digit.
-            </summary>
-            <param name="from">The from cell.</param>
-            <param name="to">The to cell.</param>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.#ctor(Sudoku.Data.GridMap@,System.Int32)">
-            <summary>
-            Initializes an instance with the map and the digit.
-            </summary>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="P:Sudoku.Solving.ConjugatePair.From">
-            <summary>
-            Indicates the 'from' cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.ConjugatePair.To">
-            <summary>
-            Indicates the 'to' cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.ConjugatePair.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.ConjugatePair.Line">
-            <summary>
-            Indicates the line that two cells lie in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.ConjugatePair.Region">
-            <summary>
-            Indicates the region that two cells lie in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.ConjugatePair.Map">
-            <summary>
-            Indicates the inner map.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.Equals(Sudoku.Solving.ConjugatePair@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.op_Equality(Sudoku.Solving.ConjugatePair@,Sudoku.Solving.ConjugatePair@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.ConjugatePair.op_Inequality(Sudoku.Solving.ConjugatePair@,Sudoku.Solving.ConjugatePair@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
         <member name="T:Sudoku.Solving.Constants.Processings">
             <summary>
             Provides the constants and read-only values in the current project.
@@ -1624,7 +1550,7 @@
             <param name="WDigitsMask">The W digit mask.</param>
             <param name="X">The digit X.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.ConjugatePair@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Data.ConjugatePair@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
             </summary>
@@ -4927,7 +4853,7 @@
             <param name="Block">The block that the empty rectangle lies in.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of empty rectangle technique.
             </summary>
@@ -5785,7 +5711,7 @@
             <param name="Cells">All cells.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Solving.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>bivalue universal grave</b> (BUG) type 4 technique.
             </summary>
@@ -6078,7 +6004,7 @@
             <param name="DigitsMask">All digits mask.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,Sudoku.Solving.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 4 technique.
             </summary>
@@ -6337,7 +6263,7 @@
             <param name="Loop">The loop.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Solving.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>unique loop type 4</b> technique.
             </summary>
@@ -7015,7 +6941,7 @@
             <param name="Pattern">The pattern.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,Sudoku.Solving.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>Qiu's deadly pattern type 4</b> (QDP) technique.
             </summary>
@@ -7047,7 +6973,7 @@
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
             <param name="ConjugatePairs">All conjugate pairs.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair})">
             <summary>
             Provides a usage of <b>hidden unique rectangle</b> (HUR) or
             <b>hidden avoidable rectangle</b> (HAR) technique.
@@ -7124,7 +7050,7 @@
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
             <param name="ConjugatePairs">All conjugate pairs.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair})">
             <summary>
             Provides a usage of <b>unique rectangle plus</b> (UR+) or
             <b>avoidable rectangle plus</b> (AR+) technique.
@@ -8299,7 +8225,7 @@
             <param name="EndCell">The end cell.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>W-Wing</b> technique.
             </summary>

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sudoku.Data;
 using Sudoku.DocComments;
 
-namespace Sudoku.Solving
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a conjugate pair.

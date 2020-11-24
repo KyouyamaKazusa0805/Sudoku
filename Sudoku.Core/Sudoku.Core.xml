@@ -716,6 +716,80 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
+        <member name="T:Sudoku.Data.ConjugatePair">
+            <summary>
+            Encapsulates a conjugate pair.
+            </summary>
+            <remarks>
+            <b>Conjugate pair</b> is a candidate pair (two candidates),
+            these two candidates is in the same region where all cells has only
+            two position can fill this candidate.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with from and to cell offset
+            and a digit.
+            </summary>
+            <param name="from">The from cell.</param>
+            <param name="to">The to cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.#ctor(Sudoku.Data.GridMap@,System.Int32)">
+            <summary>
+            Initializes an instance with the map and the digit.
+            </summary>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Data.ConjugatePair.From">
+            <summary>
+            Indicates the 'from' cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ConjugatePair.To">
+            <summary>
+            Indicates the 'to' cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ConjugatePair.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ConjugatePair.Line">
+            <summary>
+            Indicates the line that two cells lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ConjugatePair.Region">
+            <summary>
+            Indicates the region that two cells lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ConjugatePair.Map">
+            <summary>
+            Indicates the inner map.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.Equals(Sudoku.Data.ConjugatePair@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.op_Equality(Sudoku.Data.ConjugatePair@,Sudoku.Data.ConjugatePair@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.op_Inequality(Sudoku.Data.ConjugatePair@,Sudoku.Data.ConjugatePair@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
         <member name="T:Sudoku.Data.Extensions.CellParser">
             <summary>
             Encapsulates the cell parser that converts the string to an <see cref="T:System.Int32"/> value that
