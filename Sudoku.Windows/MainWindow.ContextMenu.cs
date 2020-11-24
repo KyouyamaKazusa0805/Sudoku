@@ -8,6 +8,7 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Windows.Constants;
+using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
 
 namespace Sudoku.Windows
 {
@@ -135,17 +136,21 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ContextMenuTechniquesApply_Click(object sender, RoutedEventArgs e)
 		{
-			if (sender is MenuItem
-				&& _listBoxTechniques is { SelectedItem: ListBoxItem { Content: KeyedTuple<string, TechniqueInfo, bool> { Item3: true } triplet } })
+			if (
+				sender is MenuItem
+				&& _listBoxTechniques is
+				{
+					SelectedItem: ListBoxItem { Content: InfoTriplet { Item3: true } triplet }
+				})
 			{
-				var valueGrid = _puzzle._innerGrid;
+				ref var valueGrid = ref _puzzle._innerGrid;
 				var info = triplet.Item2;
 				if (!Settings.MainManualSolver.CheckConclusionValidityAfterSearched
 					|| CheckConclusionsValidity(
 						new UnsafeBitwiseSolver().Solve(valueGrid).Solution!.Value, info.Conclusions))
 				{
 					info.ApplyTo(ref valueGrid);
-					_currentPainter = _currentPainter with { Conclusions = null, View = null/*, Grid = _puzzle*/ };
+					_currentPainter = _currentPainter with { Conclusions = null, View = null };
 
 					_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 					_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
