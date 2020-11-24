@@ -60,7 +60,7 @@ namespace Sudoku.Solving
 		public sealed override bool Equals(object? obj) => Equals(obj as TechniqueSearcher);
 
 		/// <inheritdoc/>
-		public sealed override string ToString() => GetType().Name;
+		public sealed override string? ToString() => DisplayName;
 
 
 		/// <summary>
