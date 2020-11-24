@@ -36,12 +36,12 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The left curly brace.
 		/// </summary>
-		private static readonly string LeftCurlyBrace = $"{"{",-2}";
+		private const string LeftCurlyBrace = "{ ";
 
 		/// <summary>
 		/// The right curly brace.
 		/// </summary>
-		private static readonly string RightCurlyBrace = $"{"}",2}";
+		private static readonly string RightCurlyBrace = " }";
 
 
 		/// <summary>
