@@ -490,6 +490,10 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell you want to get.</param>
 		/// <returns>All candidates.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete(
+			"Due to extension `GetEnumerator` in C# 9, " +
+			"you can only use '" + nameof(GetCandidateMask) + "' and " +
+			"'" + nameof(Int16Ex.GetEnumerator) + "' instead.", false)]
 		public readonly IEnumerable<int> GetCandidates(int cell) => GetCandidateMask(cell).GetAllSets();
 
 		/// <inheritdoc/>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
 namespace Sudoku.Drawing
@@ -51,5 +52,13 @@ namespace Sudoku.Drawing
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(in DrawingInfo left, in DrawingInfo right) => !(left == right);
+
+
+		/// <summary>
+		/// Implicit cast from <see cref="ValueTuple{T1, T2}"/> to <see cref="DrawingInfo"/>.
+		/// </summary>
+		/// <param name="pair">(<see langword="in"/> parameter) The pair value.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static implicit operator DrawingInfo(in (long Id, int Value) pair) => new(pair.Id, pair.Value);
 	}
 }

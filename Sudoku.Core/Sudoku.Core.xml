@@ -4683,6 +4683,12 @@
         <member name="M:Sudoku.Drawing.DrawingInfo.op_Inequality(Sudoku.Drawing.DrawingInfo@,Sudoku.Drawing.DrawingInfo@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
+        <member name="M:Sudoku.Drawing.DrawingInfo.op_Implicit(System.ValueTuple{System.Int64,System.Int32}@)~Sudoku.Drawing.DrawingInfo">
+            <summary>
+            Implicit cast from <see cref="T:System.ValueTuple`2"/> to <see cref="T:Sudoku.Drawing.DrawingInfo"/>.
+            </summary>
+            <param name="pair">(<see langword="in"/> parameter) The pair value.</param>
+        </member>
         <member name="T:Sudoku.Solving.Annotations.AliasAttribute">
             <summary>
             To mark on a enum field to give an alias.

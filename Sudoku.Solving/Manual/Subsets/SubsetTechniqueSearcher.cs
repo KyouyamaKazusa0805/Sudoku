@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				// Get naked subsets.
 				for (int region = 0; region < 27; region++)
 				{
-					if ((RegionMaps[region] & EmptyMap) is var currentEmptyMap && currentEmptyMap is { Count: < 2 })
+					if ((RegionMaps[region] & EmptyMap) is var currentEmptyMap && currentEmptyMap.Count < 2)
 					{
 						continue;
 					}
@@ -76,7 +76,14 @@ namespace Sudoku.Solving.Manual.Subsets
 						accumulator.Add(
 							new NakedSubsetTechniqueInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+								new View[]
+								{
+									new(
+										null,
+										candidateOffsets,
+										new DrawingInfo[] { new(0, region) },
+										null)
+								},
 								region,
 								cells,
 								mask.GetAllSets().ToArray(),
@@ -140,7 +147,14 @@ namespace Sudoku.Solving.Manual.Subsets
 						accumulator.Add(
 							new HiddenSubsetTechniqueInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+								new View[]
+								{
+									new(
+										null,
+										candidateOffsets,
+										new DrawingInfo[] { new(0, region) },
+										null)
+								},
 								region,
 								map.ToArray(),
 								digits));

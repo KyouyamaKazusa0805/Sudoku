@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -15,8 +14,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <param name="Views">All views.</param>
 	/// <param name="Pivot">The pivot cell.</param>
 	/// <param name="Alses">All ALSes used.</param>
-	[Obsolete("Please use '" + nameof(DbTechniqueInfo) + "' instead.", false)]
-	public sealed record DeathBlossomTechniqueInfo(
+	public sealed record DbTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot,
 		IReadOnlyDictionary<int, Als> Alses) : AlsTechniqueInfo(Conclusions, Views)
 	{
@@ -29,32 +27,28 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override decimal Difficulty => 8.0M + PetalsCount * .1M;
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
+		public override TechniqueCode TechniqueCode => TechniqueCode.DeathBlossom;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.DeathBlossom;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 
 		/// <inheritdoc/>
 		public override string ToString()
 		{
+			const string separator = ", ";
 			string pivotStr = new GridMap { Pivot }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Cell {pivotStr} - {g(this)} => {elimStr}";
+			return $"{Name}: Cell {pivotStr} - {g()} => {elimStr}";
 
-			static unsafe string g(DeathBlossomTechniqueInfo @this)
-			{
-				const string separator = ", ";
-				static string converter(in KeyValuePair<int, Als> pair)
-				{
-					var (digit, als) = pair;
-					return $"{digit + 1} - {als}{separator}";
-				}
-				return new StringBuilder()
-					.AppendRange<KeyValuePair<int, Als>, string>(@this.Alses, &converter)
+			unsafe string g() =>
+				new StringBuilder()
+					.AppendRange<KeyValuePair<int, Als>, string>(Alses, &converter)
 					.RemoveFromEnd(separator.Length)
 					.ToString();
-			}
+
+			static string converter(in KeyValuePair<int, Als> pair) =>
+				$"{pair.Key + 1} - {pair.Value}{separator}";
 		}
 	}
 }

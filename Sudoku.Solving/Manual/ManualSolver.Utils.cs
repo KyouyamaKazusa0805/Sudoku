@@ -64,8 +64,9 @@ namespace Sudoku.Solving.Manual
 				new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new AlsXyWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new DeathBlossomTechniqueSearcher(
-					AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
+				//new DeathBlossomTechniqueSearcher(
+				//	AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
+				new DbTechniqueSearcher(MaxPetalsOfDeathBlossom),
 				new FcTechniqueSearcher(),
 				new BugMultipleWithFcTechniqueSearcher(),
 				new HobiwanFishTechniqueSearcher(
@@ -123,8 +124,9 @@ namespace Sudoku.Solving.Manual
 					new FcTechniqueSearcher(),
 					new BugMultipleWithFcTechniqueSearcher(),
 					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
-					new DeathBlossomTechniqueSearcher(
-						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
+					//new DeathBlossomTechniqueSearcher(
+					//	AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
+					new DbTechniqueSearcher(MaxPetalsOfDeathBlossom),
 					new HobiwanFishTechniqueSearcher(
 						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -16,6 +17,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// Encapsulates a <b>death blossom</b> technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.DeathBlossom))]
+	[Obsolete("Please use '" + nameof(DbTechniqueSearcher) + "' instead.", false)]
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
