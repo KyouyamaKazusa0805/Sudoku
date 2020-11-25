@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						bool doContradiction = _dynamic || _nishio;
 
 						DoBinaryChaining(
-							ref grid, pOn, pOff, accumulator, onToOn, onToOff, doDouble, doContradiction);
+							accumulator, ref grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
 
 						if (!_nishio)
 						{
@@ -153,16 +153,16 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Do binary chaining.
 		/// </summary>
+		/// <param name="accumulator">The current accumulator.</param>
 		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
 		/// <param name="pOn">(<see langword="in"/> parameter) The on node.</param>
 		/// <param name="pOff">(<see langword="in"/> parameter) The off node.</param>
-		/// <param name="accumulator">The current accumulator.</param>
 		/// <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
 		/// <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
 		/// <param name="doReduction">Indicates whether the method executes double chaining.</param>
 		/// <param name="doContradiction">Indicates whether the method executes contradiction chaining.</param>
 		private void DoBinaryChaining(
-			ref SudokuGrid grid, in Node pOn, in Node pOff, IList<ChainingTechniqueInfo> accumulator,
+			IList<ChainingTechniqueInfo> accumulator, ref SudokuGrid grid, in Node pOn, in Node pOff,
 			ISet<Node> onToOn, ISet<Node> onToOff, bool doReduction, bool doContradiction)
 		{
 			Set<Node> offToOn = new(), offToOff = new();
