@@ -161,7 +161,7 @@ namespace Sudoku.Data
 		/// Add a node into the list.
 		/// </summary>
 		/// <param name="node">(<see langword="in"/> parameter) The node.</param>
-		public void AddParent(in Node node) => (_parents ??= new Node[7])[ParentsCount++] = node;
+		public void AddParent(in Node node) => (_parents ??= new Node[8])[ParentsCount++] = node;
 
 		/// <summary>
 		/// Clear all parent nodes.
@@ -233,6 +233,12 @@ namespace Sudoku.Data
 				return $"Candidate: {cell}({Digit + 1}), Parent(s): {parents}";
 			}
 		}
+
+		/// <summary>
+		/// Make the node off.
+		/// </summary>
+		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+		public readonly void OffTo(ref SudokuGrid grid) => grid[Cell, Digit] = true;
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

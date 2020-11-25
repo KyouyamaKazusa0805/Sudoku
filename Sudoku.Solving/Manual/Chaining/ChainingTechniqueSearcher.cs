@@ -1,9 +1,11 @@
 ﻿using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
+using Sudoku.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using static Sudoku.Constants.Processings;
+using C = Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -61,7 +63,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <returns>All possible strong links.</returns>
 		protected internal static ISet<Node> GetOffToOn(
-			in SudokuGrid grid, in Node p, bool xEnabled, bool yEnabled)
+			in SudokuGrid grid, in Node p, bool xEnabled, bool yEnabled,
+			in SudokuGrid source = default, ISet<Node>? offNodes = null)
 		{
 			var result = new Set<Node>();
 			if (yEnabled)
@@ -71,6 +74,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				if (BivalueMap[p.Cell] && mask.IsPowerOfTwo())
 				{
 					var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p);
+					if (source != default && offNodes is not null)
+					{
+						AddHiddenParentsOfCell(ref pOn, grid, source, offNodes);
+					}
+
 					result.Add(pOn);
 				}
 			}
@@ -84,6 +92,11 @@ namespace Sudoku.Solving.Manual.Chaining
 					if ((CandMaps[p.Digit] & RegionMaps[region]) - p.Cell is { Count: 1 } cells)
 					{
 						var pOn = new Node(cells.First, p.Digit, true, p);
+						if (source != default && offNodes is not null)
+						{
+							AddHiddenParentsOfRegion(ref pOn, grid, source, label, offNodes);
+						}
+
 						result.Add(pOn);
 					}
 				}
@@ -93,14 +106,85 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 		/// <summary>
+		/// Add hidden parents of a cell.
+		/// </summary>
+		/// <param name="p">(<see langword="ref"/> parameter) The node.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="source">(<see langword="in"/> parameter) The source grid.</param>
+		/// <param name="offNodes">All off nodes.</param>
+		/// <exception cref="SudokuRuntimeException">
+		/// Throws when the parent node of the specified node cannot be found.
+		/// </exception>
+		private static void AddHiddenParentsOfCell(
+			ref Node p, in SudokuGrid grid, in SudokuGrid source, ISet<Node> offNodes)
+		{
+			short currCell = grid.GetCandidateMask(p.Cell);
+			short srcCell = source.GetCandidateMask(p.Cell);
+			short mergedMask = (short)(srcCell & ~currCell);
+			foreach (int digit in mergedMask)
+			{
+				// Add a hidden parent.
+				var parent = new Node(p.Cell, digit, false);
+				p.AddParent(
+					offNodes.Contains(parent)
+					? parent
+					: throw new SudokuRuntimeException("Parent node not found."));
+			}
+		}
+
+		/// <summary>
+		/// Add hidden parents of a region.
+		/// </summary>
+		/// <param name="p">(<see langword="ref"/> parameter) The node.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="source">(<see langword="in"/> parameter) The source grid.</param>
+		/// <param name="currRegion">The current region label.</param>
+		/// <param name="offNodes">All off nodes.</param>
+		/// <exception cref="SudokuRuntimeException">
+		/// Throws when the parent node of the specified node cannot be found.
+		/// </exception>
+		private static void AddHiddenParentsOfRegion(
+			ref Node p, in SudokuGrid grid, in SudokuGrid source, RegionLabel currRegion, ISet<Node> offNodes)
+		{
+			int region = GetRegion(p.Cell, currRegion);
+			short currMask = m(grid, p.Digit, region), srcMask = m(source, p.Digit, region);
+
+			// Get positions of the potential digit that have been removed.
+			short mergedMask = (short)(srcMask & ~currMask);
+			foreach (int pos in mergedMask)
+			{
+				// Add a hidden parent.
+				int currCell = RegionCells[region][pos];
+				var parent = new Node(currCell, p.Digit, false);
+				p.AddParent(
+					offNodes.Contains(parent)
+					? parent
+					: throw new SudokuRuntimeException("Parent node not found."));
+			}
+
+			static short m(in SudokuGrid grid, int digit, int region)
+			{
+				short result = 0;
+				for (int i = 0; i < 9; i++)
+				{
+					if (grid.Exists(RegionCells[region][i], digit) is true)
+					{
+						result |= (short)(1 << i);
+					}
+				}
+
+				return result;
+			}
+		}
+
+		/// <summary>
 		/// Remove duplicate information instances and sort them.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
 		/// <returns>The result list.</returns>
-		protected static IQueryable<ChainingTechniqueInfo> SortInfo(
-			IEnumerable<ChainingTechniqueInfo> accumulator) =>
+		protected static IQueryable<C> SortInfo(IEnumerable<C> accumulator) =>
 		(
-			from info in new Set<ChainingTechniqueInfo>(accumulator)
+			from info in new Set<C>(accumulator)
 			orderby info.Difficulty, info.Complexity, info.SortKey
 			select info
 		).AsQueryable();

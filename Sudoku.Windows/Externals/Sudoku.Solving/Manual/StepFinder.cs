@@ -102,7 +102,10 @@ namespace Sudoku.Solving.Manual
 				new HobiwanFishTechniqueSearcher(
 					solver.HobiwanFishMaximumSize, solver.HobiwanFishMaximumExofinsCount,
 					solver.HobiwanFishMaximumEndofinsCount, solver.HobiwanFishCheckTemplates),
-				new FcTechniqueSearcher(),
+				//new FcTechniqueSearcher(),
+				new FcTechniqueSearcher(true, false, true, 0),
+				new FcTechniqueSearcher(false, true, false, 0),
+				new FcTechniqueSearcher(false, true, true, 0),
 				new BowmanBingoTechniqueSearcher(solver.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new JuniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),

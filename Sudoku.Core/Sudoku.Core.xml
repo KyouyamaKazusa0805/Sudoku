@@ -2009,6 +2009,12 @@
         <member name="M:Sudoku.Data.Node.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Data.Node.OffTo(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Make the node off.
+            </summary>
+            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+        </member>
         <member name="M:Sudoku.Data.Node.op_Equality(Sudoku.Data.Node@,Sudoku.Data.Node@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>

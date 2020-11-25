@@ -57,8 +57,23 @@
 		RegionFc,
 
 		/// <summary>
-		/// Indicates the binary forcing chains.
+		/// Indicates the contradiction forcing chains.
 		/// </summary>
-		BinaryFc,
+		ContradictionFc,
+
+		/// <summary>
+		/// Indicates the double forcing chains.
+		/// </summary>
+		DoubleFc,
+
+		/// <summary>
+		/// Indicates the dynamic contradiction forcing chains.
+		/// </summary>
+		DynamicContradictionFc,
+
+		/// <summary>
+		/// Indicates the dynamic double forcing chains.
+		/// </summary>
+		DynamicDoubleFc,
 	}
 }
