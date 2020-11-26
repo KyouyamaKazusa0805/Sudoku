@@ -69,6 +69,12 @@ namespace System.Collections.Generic
 		public void Sort(Comparison<T> comparison) => ((List<T>)_list).Sort(comparison);
 
 		/// <summary>
+		/// Sort the list with the specified comparsion.
+		/// </summary>
+		/// <param name="comparison">The comparsion.</param>
+		public unsafe void Sort(delegate*<in T, in T, int> comparison) => _list.Sort(comparison);
+
+		/// <summary>
 		/// Add an element into the set.
 		/// </summary>
 		/// <param name="item">The item.</param>
@@ -104,9 +110,9 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// Remove the element at the specified index.
 		/// </summary>
-		/// <param name="index">The index.</param>
+		/// <param name="index">(<see langword="in"/> parameter) The index.</param>
 		/// <returns>The element removed.</returns>
-		public T RemoveAt(Index index)
+		public T RemoveAt(in Index index)
 		{
 			var result = _list[index];
 			_list.RemoveAt(index.GetOffset(Count));

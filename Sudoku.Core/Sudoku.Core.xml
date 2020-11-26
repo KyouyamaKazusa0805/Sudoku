@@ -6593,6 +6593,12 @@
             </summary>
             <param name="comparison">The comparsion.</param>
         </member>
+        <member name="M:System.Collections.Generic.Set`1.Sort()">
+            <summary>
+            Sort the list with the specified comparsion.
+            </summary>
+            <param name="comparison">The comparsion.</param>
+        </member>
         <member name="M:System.Collections.Generic.Set`1.Add(`0)">
             <summary>
             Add an element into the set.
@@ -6612,11 +6618,11 @@
             <param name="index">The index.</param>
             <returns>The element removed.</returns>
         </member>
-        <member name="M:System.Collections.Generic.Set`1.RemoveAt(System.Index)">
+        <member name="M:System.Collections.Generic.Set`1.RemoveAt(System.Index@)">
             <summary>
             Remove the element at the specified index.
             </summary>
-            <param name="index">The index.</param>
+            <param name="index">(<see langword="in"/> parameter) The index.</param>
             <returns>The element removed.</returns>
         </member>
         <member name="M:System.Collections.Generic.Set`1.Equals(System.Object)">
