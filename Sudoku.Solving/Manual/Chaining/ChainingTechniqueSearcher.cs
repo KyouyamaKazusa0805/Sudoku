@@ -118,10 +118,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private static void AddHiddenParentsOfCell(
 			ref Node p, in SudokuGrid grid, in SudokuGrid source, ISet<Node> offNodes)
 		{
-			short currCell = grid.GetCandidateMask(p.Cell);
-			short srcCell = source.GetCandidateMask(p.Cell);
-			short mergedMask = (short)(srcCell & ~currCell);
-			foreach (int digit in mergedMask)
+			foreach (int digit in (short)(source.GetCandidateMask(p.Cell) & ~grid.GetCandidateMask(p.Cell)))
 			{
 				// Add a hidden parent.
 				var parent = new Node(p.Cell, digit, false);
@@ -147,15 +144,10 @@ namespace Sudoku.Solving.Manual.Chaining
 			ref Node p, in SudokuGrid grid, in SudokuGrid source, RegionLabel currRegion, ISet<Node> offNodes)
 		{
 			int region = GetRegion(p.Cell, currRegion);
-			short currMask = m(grid, p.Digit, region), srcMask = m(source, p.Digit, region);
-
-			// Get positions of the potential digit that have been removed.
-			short mergedMask = (short)(srcMask & ~currMask);
-			foreach (int pos in mergedMask)
+			foreach (int pos in (short)(m(source, p.Digit, region) & ~m(grid, p.Digit, region)))
 			{
 				// Add a hidden parent.
-				int currCell = RegionCells[region][pos];
-				var parent = new Node(currCell, p.Digit, false);
+				var parent = new Node(RegionCells[region][pos], p.Digit, false);
 				p.AddParent(
 					offNodes.Contains(parent)
 					? parent

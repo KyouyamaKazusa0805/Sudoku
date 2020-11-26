@@ -153,7 +153,7 @@ namespace Sudoku.Data
 		/// Throws when the <see cref="_parents"/> is currently <see langword="null"/>.
 		/// </exception>
 		/// <seealso cref="_parents"/>
-		[IndexerName("Index")]
+		[IndexerName("Parent")]
 		public readonly Node this[int index] => _parents?[index] ?? throw new NullReferenceException();
 
 

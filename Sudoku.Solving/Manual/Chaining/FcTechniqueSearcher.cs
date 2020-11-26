@@ -174,10 +174,10 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Test 'p' is on.
 			onToOn.Add(pOn);
 			var absurdNodes = DoChaining(ref grid, onToOn, onToOff);
-			if (doContradiction && absurdNodes is not null)
+			if (doContradiction && absurdNodes is { On: var on1, Off: var off1 })
 			{
 				// 'p' can't hold its value, otherwise it'd lead to a contradiction.
-				var hint = CreateChainingOffHint(absurdNodes[0], absurdNodes[1], pOn, pOn, true);
+				var hint = CreateChainingOffHint(on1, off1, pOn, pOn, true);
 				if (hint is not null)
 				{
 					accumulator.Add(hint);
@@ -187,10 +187,10 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Test 'p' is off.
 			offToOff.Add(pOff);
 			absurdNodes = DoChaining(ref grid, offToOn, offToOff);
-			if (doContradiction && absurdNodes is not null)
+			if (doContradiction && absurdNodes is { On: var on2, Off: var off2 })
 			{
 				// 'p' must hold its value, otherwise it'd lead to a contradiction.
-				var hint = CreateChainingOnHint(absurdNodes[0], absurdNodes[1], pOff, pOff, true);
+				var hint = CreateChainingOnHint(on2, off2, pOff, pOff, true);
 				if (hint is not null)
 				{
 					accumulator.Add(hint);
@@ -307,7 +307,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="toOn">The list to <c>on</c> nodes.</param>
 		/// <param name="toOff">The list to <c>off</c> nodes.</param>
 		/// <returns>The result.</returns>
-		private Node[]? DoChaining(ref SudokuGrid grid, ISet<Node> toOn, ISet<Node> toOff)
+		private (Node On, Node Off)? DoChaining(ref SudokuGrid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
 			_savedGrid = grid;
 
@@ -327,7 +327,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							if (toOn.Contains(pOn))
 							{
 								// Contradiction found.
-								return new[] { pOn, pOff }; // Cannot be both on and off at the same time.
+								return (pOn, pOff); // Cannot be both on and off at the same time.
 							}
 							else if (!toOff.Contains(pOff))
 							{
@@ -353,7 +353,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							if (toOff.Contains(pOff))
 							{
 								// Contradiction found.
-								return new[] { pOn, pOff }; // Cannot be both on and off at the same time.
+								return (pOn, pOff); // Cannot be both on and off at the same time.
 							}
 							else if (!toOn.Contains(pOn))
 							{

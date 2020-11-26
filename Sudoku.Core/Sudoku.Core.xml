@@ -1968,7 +1968,7 @@
             The chain nodes.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Node.Index(System.Int32)">
+        <member name="P:Sudoku.Data.Node.Parent(System.Int32)">
             <summary>
             Get the parent node with the specified index.
             </summary>
