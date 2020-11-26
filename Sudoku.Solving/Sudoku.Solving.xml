@@ -303,6 +303,49 @@
             </summary>
             <returns>The data.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Annotations.DirectSearcherAttribute">
+            <summary>
+            <para>
+            Indicates the technique searcher can or can't be used in some scenarios
+            where they aren't in traversing mode to call
+            <see cref="M:Sudoku.Solving.TechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)"/>
+            in <see cref="T:Sudoku.Solving.TechniqueSearcher"/>s one by one.
+            </para>
+            <para>
+            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
+            properties such as <see cref="P:Sudoku.Solving.TechniqueSearcher.CandMaps"/> in its method
+            <see cref="M:Sudoku.Solving.TechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)"/>.
+            </para>
+            </summary>
+            <remarks>
+            <para>
+            All disallowed properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Solving.TechniqueSearcher.DigitMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.TechniqueSearcher.ValueMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.TechniqueSearcher.CandMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.TechniqueSearcher.BivalueMap"/></item>
+            <item><see cref="P:Sudoku.Solving.TechniqueSearcher.EmptyMap"/></item>
+            </list>
+            The disallowed method is:
+            <list type="bullet">
+            <item><see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/></item>
+            </list>
+            </para>
+            <para>
+            Those properties can optimize the performance to analyze a sudoku grid, but
+            sometimes they may cause a potential bug that is hard to find and fix. The attribute
+            is created and used for solving the problem.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.TechniqueSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.DirectSearcherAttribute.IsAllow">
+            <summary>
+            Indicates the ability that can or can't be used in non-traversing scenarios.
+            The default value is <see langword="true"/>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Annotations.DisabledReason">
             <summary>
             Indicates a reason why the searcher is disabled.

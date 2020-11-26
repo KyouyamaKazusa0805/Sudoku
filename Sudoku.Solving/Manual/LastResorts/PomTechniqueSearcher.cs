@@ -11,6 +11,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>pattern overlay method</b> (POM) technique searcher.
 	/// </summary>
+	[DirectSearcher]
 	[TechniqueDisplay(nameof(TechniqueCode.Pom))]
 	public sealed class PomTechniqueSearcher : LastResortTechniqueSearcher
 	{
@@ -107,25 +108,19 @@ namespace Sudoku.Solving.Manual.LastResorts
 											{
 												for (int i6 = 0; i6 < 9; i6++)
 												{
-													if (i6 != i1 && i6 != i2 && i6 != i3
-														&& i6 / 3 != i4 / 3 && i6 / 3 != i5 / 3)
+													if (i6 != i1 && i6 != i2 && i6 != i3 && i6 / 3 != i4 / 3 && i6 / 3 != i5 / 3)
 													{
 														for (int i7 = 0; i7 < 9; i7++)
 														{
-															if (i7 != i1 && i7 != i2 && i7 != i3
-																&& i7 != i4 && i7 != i5 && i7 != i6)
+															if (i7 != i1 && i7 != i2 && i7 != i3 && i7 != i4 && i7 != i5 && i7 != i6)
 															{
 																for (int i8 = 0; i8 < 9; i8++)
 																{
-																	if (i8 != i1 && i8 != i2 && i8 != i3
-																		&& i8 != i4 && i8 != i5 && i8 != i6
-																		&& i8 / 3 != i7 / 3)
+																	if (i8 != i1 && i8 != i2 && i8 != i3 && i8 != i4 && i8 != i5 && i8 != i6 && i8 / 3 != i7 / 3)
 																	{
 																		for (int i9 = 0; i9 < 9; i9++)
 																		{
-																			if (i9 != i1 && i9 != i2 && i9 != i3
-																				&& i9 != i4 && i9 != i5 && i9 != i6
-																				&& i9 / 3 != i7 / 3 && i9 / 3 != i8 / 3)
+																			if (i9 != i1 && i9 != i2 && i9 != i3 && i9 != i4 && i9 != i5 && i9 != i6 && i9 / 3 != i7 / 3 && i9 / 3 != i8 / 3)
 																			{
 																				yield return new(
 																					1 << i1 | 1 << (i2 + 9) | 1 << (i3 + 18),

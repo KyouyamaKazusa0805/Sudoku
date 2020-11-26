@@ -89,8 +89,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				int count = mask.PopCount();
 				switch (count)
 				{
-					case > 1 when _dynamic:
 					case > 2:
+					case > 1 when _dynamic:
 					{
 						// Prepare storage and accumulator for cell eliminations.
 						Dictionary<int, Set<Node>> valueToOn = new(), valueToOff = new();
