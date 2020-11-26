@@ -2526,7 +2526,7 @@
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible weak links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOffToOn(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean,System.Boolean,Sudoku.Data.SudokuGrid@,System.Collections.Generic.ISet{Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOffToOn(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Collections.Generic.ISet{Sudoku.Data.Node})">
             <summary>
             Get all available strong links.
             </summary>

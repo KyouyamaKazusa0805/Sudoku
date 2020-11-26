@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <returns>All possible strong links.</returns>
 		protected internal static ISet<Node> GetOffToOn(
 			in SudokuGrid grid, in Node p, bool xEnabled, bool yEnabled,
-			in SudokuGrid source = default, ISet<Node>? offNodes = null)
+			in SudokuGrid? source = null, ISet<Node>? offNodes = null)
 		{
 			var result = new Set<Node>();
 			if (yEnabled)
@@ -74,9 +74,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				if (BivalueMap[p.Cell] && mask.IsPowerOfTwo())
 				{
 					var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p);
-					if (source != default && offNodes is not null)
+					if (source.HasValue && offNodes is not null)
 					{
-						AddHiddenParentsOfCell(ref pOn, grid, source, offNodes);
+						AddHiddenParentsOfCell(ref pOn, grid, source.Value, offNodes);
 					}
 
 					result.Add(pOn);
@@ -92,9 +92,9 @@ namespace Sudoku.Solving.Manual.Chaining
 					if ((CandMaps[p.Digit] & RegionMaps[region]) - p.Cell is { Count: 1 } cells)
 					{
 						var pOn = new Node(cells.First, p.Digit, true, p);
-						if (source != default && offNodes is not null)
+						if (source.HasValue && offNodes is not null)
 						{
-							AddHiddenParentsOfRegion(ref pOn, grid, source, label, offNodes);
+							AddHiddenParentsOfRegion(ref pOn, grid, source.Value, label, offNodes);
 						}
 
 						result.Add(pOn);
