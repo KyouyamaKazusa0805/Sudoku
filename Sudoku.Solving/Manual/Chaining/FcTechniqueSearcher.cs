@@ -76,75 +76,84 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
 		private void GetAll(IList<ChainingTechniqueInfo> accumulator, ref SudokuGrid grid)
 		{
-			// Iterate on all empty cells.
-			foreach (int cell in EmptyMap)
+			// Iterate on empty cells.
+			for (int cell = 0; cell < 81; cell++)
 			{
+				if (grid.GetStatus(cell) != CellStatus.Empty)
+				{
+					continue;
+				}
+
 				short mask = grid.GetCandidateMask(cell);
 				int count = mask.PopCount();
-				if (count > 2 || _dynamic && count > 1)
+				switch (count)
 				{
-					// Prepare storage and accumulator for cell eliminations.
-					Dictionary<int, Set<Node>> valueToOn = new(), valueToOff = new();
-					Set<Node>? cellToOn = null, cellToOff = null;
-
-					// Iterate on all candidates that aren't alone.
-					foreach (int digit in mask)
+					case > 1 when _dynamic:
+					case > 2:
 					{
-						var pOn = new Node(cell, digit, true);
-						var pOff = new Node(cell, digit, false);
-						Set<Node> onToOn = new(), onToOff = new();
+						// Prepare storage and accumulator for cell eliminations.
+						Dictionary<int, Set<Node>> valueToOn = new(), valueToOff = new();
+						Set<Node>? cellToOn = null, cellToOff = null;
 
-						bool doDouble = count >= 3 && !_nishio && _dynamic;
-						bool doContradiction = _dynamic || _nishio;
-
-						DoBinaryChaining(
-							accumulator, ref grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
-
-						if (!_nishio)
+						// Iterate on all candidates that aren't alone.
+						foreach (int digit in mask)
 						{
-							DoRegionChaining(accumulator, ref grid, cell, digit, onToOn, onToOff);
-						}
+							Node pOn = new(cell, digit, true), pOff = new(cell, digit, false);
+							Set<Node> onToOn = new(), onToOff = new();
 
-						// Collect results for cell chaining.
-						valueToOn.Add(digit, onToOn);
-						valueToOff.Add(digit, onToOff);
-						if (cellToOn is null || cellToOff is null)
-						{
-							cellToOn = new(onToOn);
-							cellToOff = new(onToOff);
-						}
-						else
-						{
-							cellToOn &= onToOn;
-							cellToOff &= onToOff;
-						}
-					}
+							bool doDouble = count >= 3 && !_nishio && _dynamic;
+							bool doContradiction = _dynamic || _nishio;
 
-					// Do cell eliminations.
-					if (!_nishio && (count == 2 || _multiple))
-					{
-						if (cellToOn is not null)
-						{
-							foreach (var p in cellToOn)
+							DoBinaryChaining(
+								accumulator, ref grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
+
+							if (!_nishio)
 							{
-								var hint = CreateCellEliminationHint(grid, cell, p, valueToOn);
-								if (hint is not null)
+								DoRegionChaining(accumulator, ref grid, cell, digit, onToOn, onToOff);
+							}
+
+							// Collect results for cell chaining.
+							valueToOn.Add(digit, onToOn);
+							valueToOff.Add(digit, onToOff);
+							if (cellToOn is null || cellToOff is null)
+							{
+								cellToOn = new(onToOn);
+								cellToOff = new(onToOff);
+							}
+							else
+							{
+								cellToOn &= onToOn;
+								cellToOff &= onToOff;
+							}
+						}
+
+						// Do cell eliminations.
+						if (!_nishio && (count == 2 || _multiple))
+						{
+							if (cellToOn is not null)
+							{
+								foreach (var p in cellToOn)
 								{
-									accumulator.Add(hint);
+									var hint = CreateCellEliminationHint(grid, cell, p, valueToOn);
+									if (hint is not null)
+									{
+										accumulator.Add(hint);
+									}
+								}
+							}
+							if (cellToOff is not null)
+							{
+								foreach (var p in cellToOff)
+								{
+									var hint = CreateCellEliminationHint(grid, cell, p, valueToOff);
+									if (hint is not null)
+									{
+										accumulator.Add(hint);
+									}
 								}
 							}
 						}
-						if (cellToOff is not null)
-						{
-							foreach (var p in cellToOff)
-							{
-								var hint = CreateCellEliminationHint(grid, cell, p, valueToOff);
-								if (hint is not null)
-								{
-									accumulator.Add(hint);
-								}
-							}
-						}
+						break;
 					}
 				}
 			}
@@ -246,55 +255,60 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				int region = GetRegion(cell, label);
 				var worthMap = CandMaps[digit] & RegionMaps[region];
-				if (worthMap.Count == 2 || _multiple && worthMap.Count > 2)
+				switch (worthMap.Count)
 				{
-					// Determine whether we meet this region for the first time.
-					if (worthMap.First == cell)
+					case 2:
+					case > 2 when _multiple:
 					{
-						Dictionary<int, Set<Node>> posToOn = new(), posToOff = new();
-						Set<Node> regionToOn = new(), regionToOff = new();
-
-						// Iterate on node positions within the region.
-						foreach (int otherCell in worthMap)
+						// Determine whether we meet this region for the first time.
+						if (worthMap.First == cell)
 						{
-							if (otherCell == cell)
+							Dictionary<int, Set<Node>> posToOn = new(), posToOff = new();
+							Set<Node> regionToOn = new(), regionToOff = new();
+
+							// Iterate on node positions within the region.
+							foreach (int otherCell in worthMap)
 							{
-								posToOn.Add(otherCell, onToOn);
-								posToOff.Add(otherCell, onToOff);
-								regionToOn |= onToOn;
-								regionToOff |= onToOff;
+								if (otherCell == cell)
+								{
+									posToOn.Add(otherCell, onToOn);
+									posToOff.Add(otherCell, onToOff);
+									regionToOn |= onToOn;
+									regionToOff |= onToOff;
+								}
+								else
+								{
+									var other = new Node(otherCell, digit, true);
+									Set<Node> otherToOn = new() { other }, otherToOff = new();
+
+									DoChaining(ref grid, otherToOn, otherToOff);
+
+									posToOn.Add(otherCell, otherToOn);
+									posToOff.Add(otherCell, otherToOff);
+									regionToOn &= otherToOn;
+									regionToOff &= otherToOff;
+								}
 							}
-							else
+
+							// Gather results.
+							foreach (var p in regionToOn)
 							{
-								var other = new Node(otherCell, digit, true);
-								Set<Node> otherToOn = new() { other }, otherToOff = new();
-
-								DoChaining(ref grid, otherToOn, otherToOff);
-
-								posToOn.Add(otherCell, otherToOn);
-								posToOff.Add(otherCell, otherToOff);
-								regionToOn &= otherToOn;
-								regionToOff &= otherToOff;
+								var hint = CreateRegionEliminationHint(region, digit, p, posToOn);
+								if (hint is not null)
+								{
+									accumulator.Add(hint);
+								}
+							}
+							foreach (var p in regionToOff)
+							{
+								var hint = CreateRegionEliminationHint(region, digit, p, posToOff);
+								if (hint is not null)
+								{
+									accumulator.Add(hint);
+								}
 							}
 						}
-
-						// Gather results.
-						foreach (var p in regionToOn)
-						{
-							var hint = CreateRegionEliminationHint(region, digit, p, posToOn);
-							if (hint is not null)
-							{
-								accumulator.Add(hint);
-							}
-						}
-						foreach (var p in regionToOff)
-						{
-							var hint = CreateRegionEliminationHint(region, digit, p, posToOff);
-							if (hint is not null)
-							{
-								accumulator.Add(hint);
-							}
-						}
+						break;
 					}
 				}
 			}
@@ -318,7 +332,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					if (pendingOn.Count != 0)
 					{
-						var p = pendingOn.Remove();
+						var p = pendingOn.RemoveAt(0);
 						var makeOff = GetOnToOff(grid, p, !_nishio);
 
 						foreach (var pOff in makeOff)
@@ -339,12 +353,13 @@ namespace Sudoku.Solving.Manual.Chaining
 					}
 					else
 					{
-						var p = pendingOff.Remove();
+						var p = pendingOff.RemoveAt(0);
 						var makeOn = GetOffToOn(grid, p, true, !_nishio, _savedGrid, toOff);
 
 						if (_dynamic)
 						{
-							p.OffTo(ref grid);
+							// Remove that digit.
+							grid[p.Cell, p.Digit] = true;
 						}
 
 						foreach (var pOn in makeOn)
@@ -392,25 +407,18 @@ namespace Sudoku.Solving.Manual.Chaining
 			var views = new List<View>();
 			var globalCandidates = new List<DrawingInfo>();
 			var globalLinks = new List<Link>();
-			foreach (var node in destOn.Chain)
-			{
-				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets());
-				var links = node.GetLinks(true);
 
-				views.Add(new(cellOffset, candidateOffsets, null, links));
+			var candidateOffsets = source.GetCandidateOffsets();
+			var links = source.GetLinks(true);
+			globalCandidates.AddRange(candidateOffsets);
+			globalLinks.AddRange(links);
+			views.Add(new(cellOffset, candidateOffsets, null, links));
 
-				globalCandidates.AddRange(candidateOffsets);
-				globalLinks.AddRange(links);
-			}
-			foreach (var node in destOff.Chain)
-			{
-				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets());
-				var links = node.GetLinks(true);
-				views.Add(new(cellOffset, candidateOffsets, null, links));
-
-				globalCandidates.AddRange(candidateOffsets);
-				globalLinks.AddRange(links);
-			}
+			candidateOffsets = target.GetCandidateOffsets();
+			links = target.GetLinks(true);
+			views.Add(new(cellOffset, candidateOffsets, null, links));
+			globalCandidates.AddRange(candidateOffsets);
+			globalLinks.AddRange(links);
 
 			// Insert the global view at head.
 			views.Insert(0, new(cellOffset, globalCandidates, null, globalLinks));
@@ -442,25 +450,18 @@ namespace Sudoku.Solving.Manual.Chaining
 			var views = new List<View>();
 			var globalCandidates = new List<DrawingInfo>();
 			var globalLinks = new List<Link>();
-			foreach (var node in destOn.Chain)
-			{
-				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets());
-				var links = node.GetLinks(true);
 
-				views.Add(new(cellOffset, candidateOffsets, null, links));
+			var candidateOffsets = source.GetCandidateOffsets();
+			var links = source.GetLinks(true);
+			globalCandidates.AddRange(candidateOffsets);
+			globalLinks.AddRange(links);
+			views.Add(new(cellOffset, candidateOffsets, null, links));
 
-				globalCandidates.AddRange(candidateOffsets);
-				globalLinks.AddRange(links);
-			}
-			foreach (var node in destOff.Chain)
-			{
-				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets());
-				var links = node.GetLinks(true);
-				views.Add(new(cellOffset, candidateOffsets, null, links));
-
-				globalCandidates.AddRange(candidateOffsets);
-				globalLinks.AddRange(links);
-			}
+			candidateOffsets = target.GetCandidateOffsets();
+			links = target.GetLinks(true);
+			views.Add(new(cellOffset, candidateOffsets, null, links));
+			globalCandidates.AddRange(candidateOffsets);
+			globalLinks.AddRange(links);
 
 			// Insert the global view at head.
 			views.Insert(0, new(cellOffset, globalCandidates, null, globalLinks));

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -34,5 +35,12 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + LengthDifficulty;
+
+
+		/// <inheritdoc/>
+		public override string ToString() =>
+			$"{Name}: It can be proved to be a contradiction if " +
+			$"{new SudokuMap { Anchor.Cell * 9 + Anchor.Digit }} is " +
+			$"{(!Anchor.IsOn).ToString().ToLower()} => {new ConclusionCollection(Conclusions).ToString()}";
 	}
 }

@@ -2363,6 +2363,9 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.BinaryChainingTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.BinaryChainingTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo">
             <summary>
             Provides a usage of <b>cell forcing chains</b> technique.

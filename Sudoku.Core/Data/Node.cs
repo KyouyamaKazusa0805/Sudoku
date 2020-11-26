@@ -217,7 +217,7 @@ namespace Sudoku.Data
 		{
 			if (ParentsCount == 0)
 			{
-				return $"Candidates: {new GridMap { Cell }}({Digit + 1})";
+				return $"Candidate: {new GridMap { Cell }}({Digit + 1})";
 			}
 			else
 			{
@@ -228,17 +228,9 @@ namespace Sudoku.Data
 					nodes.Add(node.Cell * 9 + node.Digit);
 				}
 
-				string cell = new GridMap { Cell }.ToString();
-				string parents = nodes.ToString();
-				return $"Candidate: {cell}({Digit + 1}), Parent(s): {parents}";
+				return $"Candidate: {new GridMap { Cell }}({Digit + 1}), Parent(s): {nodes}";
 			}
 		}
-
-		/// <summary>
-		/// Make the node off.
-		/// </summary>
-		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
-		public readonly void OffTo(ref SudokuGrid grid) => grid[Cell, Digit] = true;
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
