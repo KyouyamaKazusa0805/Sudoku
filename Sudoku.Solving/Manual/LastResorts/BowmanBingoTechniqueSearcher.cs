@@ -43,7 +43,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55) { IsReadOnly = true };
+		public static TechniqueProperties Properties { get; } = new(55)
+		{
+			IsReadOnly = true,
+			IsEnabled = false,
+			DisabledReason = DisabledReason.TooSlow | DisabledReason.LastResort
+		};
 
 
 		/// <inheritdoc/>
