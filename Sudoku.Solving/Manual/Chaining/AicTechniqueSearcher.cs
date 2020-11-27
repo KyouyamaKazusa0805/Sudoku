@@ -91,10 +91,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			var loops = new List<Node>();
-			var chains = new List<Node>();
-			var onToOn = new Set<Node> { pOn };
-			var onToOff = new Set<Node>();
+			List<Node> loops = new(), chains = new();
+			Set<Node> onToOn = new() { pOn }, onToOff = new();
 			DoLoops(grid, onToOn, onToOff, xEnabled, yEnabled, loops, pOn);
 
 			if (xEnabled)
@@ -116,14 +114,14 @@ namespace Sudoku.Solving.Manual.Chaining
 			foreach (var destOn in loops)
 			{
 				if ((destOn.Chain.Count & 1) != 1
-					&& CreateLoopHint(grid, destOn, xEnabled, yEnabled) is LoopTechniqueInfo result)
+					&& CreateLoopHint(grid, destOn, xEnabled, yEnabled) is var result and not null)
 				{
 					accumulator.Add(result);
 				}
 			}
 			foreach (var target in chains)
 			{
-				if (CreateAicHint(grid, target, xEnabled, yEnabled) is AicTechniqueInfo result)
+				if (CreateAicHint(grid, target, xEnabled, yEnabled) is var result and not null)
 				{
 					accumulator.Add(result);
 				}
@@ -149,7 +147,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			var links = destOn.GetLinks(true); //! Maybe wrong when adding grouped nodes.
 			foreach (var (start, end, type) in links)
 			{
-				if (type == LinkType.Weak && new SudokuMap { start, end }.PeerIntersection is { IsNotEmpty: true } elimMap)
+				if (type == LinkType.Weak
+					&& new SudokuMap { start, end }.PeerIntersection is { IsNotEmpty: true } elimMap)
 				{
 					foreach (int candidate in elimMap)
 					{
@@ -166,7 +165,15 @@ namespace Sudoku.Solving.Manual.Chaining
 				0 => null,
 				_ => new
 				(
-					conclusions, new View[] { new(null, destOn.GetCandidateOffsets(), null, links) },
+					conclusions,
+					new View[]
+					{
+						new(
+							null,
+							destOn.GetCandidateOffsets(simpleChain: true).AsReadOnlyList(),
+							null,
+							links)
+					},
 					xEnabled, yEnabled, destOn
 				)
 			};
@@ -220,8 +227,18 @@ namespace Sudoku.Solving.Manual.Chaining
 				0 => null,
 				_ => new
 				(
-					conclusions, new View[] { new(null, target.GetCandidateOffsets(), null, target.GetLinks()) },
-					xEnabled, yEnabled, target
+					conclusions,
+					new View[]
+					{
+						new(
+							null,
+							target.GetCandidateOffsets(simpleChain: true).AsReadOnlyList(),
+							null,
+							target.GetLinks())
+					},
+					xEnabled,
+					yEnabled,
+					target
 				)
 			};
 		}

@@ -4271,6 +4271,14 @@
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
         </member>
+        <member name="M:Sudoku.Extensions.ListEx.AsReadOnlyList``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Try to convert the current list to a <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <returns>The reusult of the conversion.</returns>
+        </member>
         <member name="T:Sudoku.Extensions.RangeEnumerator">
             <summary>
             Defines a range iterator.

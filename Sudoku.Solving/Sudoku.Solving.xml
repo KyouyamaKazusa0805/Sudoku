@@ -1130,11 +1130,15 @@
             </summary>
             <seealso cref="T:Sudoku.Data.Node"/>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.NodeEx.GetCandidateOffsets(Sudoku.Data.Node@)">
+        <member name="M:Sudoku.Solving.Extensions.NodeEx.GetCandidateOffsets(Sudoku.Data.Node@,System.Boolean,System.Boolean)">
             <summary>
             Get highlight candidate offsets through the specified target node.
             </summary>
             <param name="target">(<see langword="this in"/> parameter) The target node.</param>
+            <param name="simpleChain">
+            Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher"/>. The
+            default value is <see langword="false"/>.
+            </param>
             <returns>The candidate offsets.</returns>
         </member>
         <member name="M:Sudoku.Solving.Extensions.NodeEx.GetLinks(Sudoku.Data.Node@,System.Boolean)">
@@ -2793,7 +2797,7 @@
             <param name="isAbsurd">Indicates whether the chain is absurd.</param>
             <returns>The hint.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.CreateCellEliminationHint(Sudoku.Data.SudokuGrid@,System.Int32,Sudoku.Data.Node@,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.Node}})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.CreateCellFcHint(Sudoku.Data.SudokuGrid@,System.Int32,Sudoku.Data.Node@,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.Node}})">
             <summary>
             Create the hint for cell forcing chains.
             </summary>
@@ -2803,7 +2807,7 @@
             <param name="outcomes">All outcomes (conclusions).</param>
             <returns>The information instance.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.CreateRegionEliminationHint(System.Int32,System.Int32,Sudoku.Data.Node@,System.Collections.Generic.IDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.Node}})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.CreateRegionFcHint(System.Int32,System.Int32,Sudoku.Data.Node@,System.Collections.Generic.IDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.Node}})">
             <summary>
             Create a hint of region forcing chains.
             </summary>

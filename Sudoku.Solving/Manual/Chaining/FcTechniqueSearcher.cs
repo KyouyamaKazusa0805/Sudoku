@@ -133,22 +133,16 @@ namespace Sudoku.Solving.Manual.Chaining
 							{
 								foreach (var p in cellToOn)
 								{
-									var hint = CreateCellEliminationHint(grid, cell, p, valueToOn);
-									if (hint is not null)
-									{
-										accumulator.Add(hint);
-									}
+									var hint = CreateCellFcHint(grid, cell, p, valueToOn);
+									accumulator.Add(hint);
 								}
 							}
 							if (cellToOff is not null)
 							{
 								foreach (var p in cellToOff)
 								{
-									var hint = CreateCellEliminationHint(grid, cell, p, valueToOff);
-									if (hint is not null)
-									{
-										accumulator.Add(hint);
-									}
+									var hint = CreateCellFcHint(grid, cell, p, valueToOff);
+									accumulator.Add(hint);
 								}
 							}
 						}
@@ -186,10 +180,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				// 'p' can't hold its value, otherwise it'd lead to a contradiction.
 				var hint = CreateChainingOffHint(on1, off1, pOn, pOn, true);
-				if (hint is not null)
-				{
-					accumulator.Add(hint);
-				}
+				accumulator.Add(hint);
 			}
 
 			// Test 'p' is off.
@@ -199,10 +190,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				// 'p' must hold its value, otherwise it'd lead to a contradiction.
 				var hint = CreateChainingOnHint(on2, off2, pOff, pOff, true);
-				if (hint is not null)
-				{
-					accumulator.Add(hint);
-				}
+				accumulator.Add(hint);
 			}
 
 			if (doReduction)
@@ -210,28 +198,20 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Check candidates that must be on in both cases.
 				foreach (var pFromOn in onToOn)
 				{
-					if (offToOn.Contains(pFromOn))
+					if (offToOn.TryGetValue(pFromOn, out var pFromOff))
 					{
-						//                                       pFromOff
-						var hint = CreateChainingOnHint(pFromOn, pFromOn, pOn, pFromOn, false);
-						if (hint is not null)
-						{
-							accumulator.Add(hint);
-						}
+						var hint = CreateChainingOnHint(pFromOn, pFromOff, pOn, pFromOn, false);
+						accumulator.Add(hint);
 					}
 				}
 
 				// Check candidates that must be off in both cases.
 				foreach (var pFromOn in onToOff)
 				{
-					if (offToOff.Contains(pFromOn))
+					if (offToOff.TryGetValue(pFromOn, out var pFromOff))
 					{
-						//                                        pFromOff       pFromOff
-						var hint = CreateChainingOffHint(pFromOn, pFromOn, pOff, pFromOn, false);
-						if (hint is not null)
-						{
-							accumulator.Add(hint);
-						}
+						var hint = CreateChainingOffHint(pFromOn, pFromOff, pOff, pFromOff, false);
+						accumulator.Add(hint);
 					}
 				}
 			}
@@ -307,19 +287,13 @@ namespace Sudoku.Solving.Manual.Chaining
 							// Gather results.
 							foreach (var p in regionToOn)
 							{
-								var hint = CreateRegionEliminationHint(region, digit, p, posToOn);
-								if (hint is not null)
-								{
-									accumulator.Add(hint);
-								}
+								var hint = CreateRegionFcHint(region, digit, p, posToOn);
+								accumulator.Add(hint);
 							}
 							foreach (var p in regionToOff)
 							{
-								var hint = CreateRegionEliminationHint(region, digit, p, posToOff);
-								if (hint is not null)
-								{
-									accumulator.Add(hint);
-								}
+								var hint = CreateRegionFcHint(region, digit, p, posToOff);
+								accumulator.Add(hint);
 							}
 						}
 						break;
@@ -352,10 +326,9 @@ namespace Sudoku.Solving.Manual.Chaining
 						foreach (var pOff in makeOff)
 						{
 							var pOn = new Node(pOff.Cell, pOff.Digit, true); // Conjugate
-							if (toOn.Contains(pOn))
+							if (toOn.TryGetValue(pOn, out pOn))
 							{
 								// Contradiction found.
-								toOn.TryGetValue(pOn, out pOn);
 								return (pOn, pOff); // Cannot be both on and off at the same time.
 							}
 							else if (!toOff.Contains(pOff))
@@ -380,10 +353,9 @@ namespace Sudoku.Solving.Manual.Chaining
 						foreach (var pOn in makeOn)
 						{
 							var pOff = new Node(pOn.Cell, pOn.Digit, false); // Conjugate.
-							if (toOff.Contains(pOff))
+							if (toOff.TryGetValue(pOff, out pOff))
 							{
 								// Contradiction found.
-								toOff.TryGetValue(pOff, out pOff);
 								return (pOn, pOff); // Cannot be both on and off at the same time.
 							}
 							else if (!toOn.Contains(pOn))
@@ -419,18 +391,25 @@ namespace Sudoku.Solving.Manual.Chaining
 			in Node destOn, in Node destOff, in Node source, in Node target, bool isAbsurd)
 		{
 			// Get views.
+			var appendedInfo = new DrawingInfo(0, target.Cell * 9 + target.Digit);
 			var cellOffset = new DrawingInfo[] { new(0, destOn.Cell) };
 			var views = new List<View>();
-			var globalCandidates = new List<DrawingInfo>();
+			var globalCandidates = new List<DrawingInfo> { appendedInfo };
 			var globalLinks = new List<Link>();
 
-			var candidateOffsets = destOn.GetCandidateOffsets();
+			var candidateOffsets = new List<DrawingInfo>(destOn.GetCandidateOffsets(isDynamic: true))
+			{
+				appendedInfo
+			};
 			var links = destOn.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets);
 			globalLinks.AddRange(links);
 			views.Add(new(cellOffset, candidateOffsets, null, links));
 
-			candidateOffsets = destOff.GetCandidateOffsets();
+			candidateOffsets = new List<DrawingInfo>(destOff.GetCandidateOffsets(isDynamic: true))
+			{
+				appendedInfo
+			};
 			links = destOff.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets);
 			globalLinks.AddRange(links);
@@ -469,17 +448,17 @@ namespace Sudoku.Solving.Manual.Chaining
 			var globalCandidates = new List<DrawingInfo>();
 			var globalLinks = new List<Link>();
 
-			var candidateOffsets = destOn.GetCandidateOffsets();
+			var candidateOffsets = destOn.GetCandidateOffsets(isDynamic: true);
 			var links = destOn.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets);
 			globalLinks.AddRange(links);
-			views.Add(new(cellOffset, candidateOffsets, null, links));
+			views.Add(new(cellOffset, candidateOffsets.AsReadOnlyList(), null, links));
 
-			candidateOffsets = destOff.GetCandidateOffsets();
+			candidateOffsets = destOff.GetCandidateOffsets(isDynamic: true);
 			links = destOff.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets);
 			globalLinks.AddRange(links);
-			views.Add(new(cellOffset, candidateOffsets, null, links));
+			views.Add(new(cellOffset, candidateOffsets.AsReadOnlyList(), null, links));
 
 			// Insert the global view at head.
 			views.Insert(0, new(cellOffset, globalCandidates, null, globalLinks));
@@ -504,14 +483,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="target">(<see langword="in"/> parameter) The target elimination node.</param>
 		/// <param name="outcomes">All outcomes (conclusions).</param>
 		/// <returns>The information instance.</returns>
-		private ChainingTechniqueInfo? CreateCellEliminationHint(
+		private CellChainingTechniqueInfo CreateCellFcHint(
 			in SudokuGrid grid, int sourceCell, in Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
 		{
-			// Build removable nodes.
-			var conclusions = new List<Conclusion>
-			{
-				new(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
-			};
+			var (targetCandidate, targetIsOn) = target;
 
 			// Build chains.
 			var chains = new Dictionary<int, Node>();
@@ -524,17 +499,19 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			// Get views.
 			var views = new List<View>();
-			var globalCandidates = new List<DrawingInfo>();
+			var globalCandidates = new List<DrawingInfo> { new(0, targetCandidate) };
 			var globalLinks = new List<Link>();
 			foreach (var (digit, node) in chains)
 			{
 				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets())
 				{
-					new(2, sourceCell * 9 + digit)
+					new(2, sourceCell * 9 + digit),
+					new(0, targetCandidate)
 				};
 
 				var links = node.GetLinks(true);
 				views.Add(new(new DrawingInfo[] { new(0, sourceCell) }, candidateOffsets, null, links));
+				candidateOffsets.RemoveLastElement();
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);
 			}
@@ -542,7 +519,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Insert the global view at head.
 			views.Insert(0, new(new DrawingInfo[] { new(0, sourceCell) }, globalCandidates, null, globalLinks));
 
-			return new CellChainingTechniqueInfo(conclusions, views, sourceCell, chains);
+			return new CellChainingTechniqueInfo(
+				new Conclusion[] { new(targetIsOn ? Assignment : Elimination, target.Cell, target.Digit) },
+				views,
+				sourceCell,
+				chains);
 		}
 
 		/// <summary>
@@ -553,14 +534,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="target">(<see langword="in"/> parameter) The target node.</param>
 		/// <param name="outcomes">All outcomes (conclusions).</param>
 		/// <returns>The technique information instance.</returns>
-		private ChainingTechniqueInfo? CreateRegionEliminationHint(
+		private RegionChainingTechniqueInfo CreateRegionFcHint(
 			int region, int digit, in Node target, IDictionary<int, Set<Node>> outcomes)
 		{
-			// Build removable nodes.
-			var conclusions = new List<Conclusion>
-			{
-				new(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
-			};
+			var (targetCandidate, targetIsOn) = target;
 
 			// Build chains.
 			var chains = new Dictionary<int, Node>();
@@ -574,24 +551,31 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			// Get views.
 			var views = new List<View>();
-			var globalCandidates = new List<DrawingInfo>();
+			var globalCandidates = new List<DrawingInfo> { new(0, targetCandidate) };
 			var globalLinks = new List<Link>();
 			foreach (var (cell, node) in chains)
 			{
 				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets())
 				{
-					new(2, cell * 9 + digit)
+					new(2, cell * 9 + digit),
+					new(0, targetCandidate)
 				};
 
 				var links = node.GetLinks(true);
 				views.Add(new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, links));
+				candidateOffsets.RemoveLastElement();
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);
 			}
 
 			views.Insert(0, new(null, globalCandidates, new DrawingInfo[] { new(0, region) }, globalLinks));
 
-			return new RegionChainingTechniqueInfo(conclusions, views, region, digit, chains);
+			return new RegionChainingTechniqueInfo(
+				new Conclusion[] { new(targetIsOn ? Assignment : Elimination, target.Cell, target.Digit) },
+				views,
+				region,
+				digit,
+				chains);
 		}
 	}
 }

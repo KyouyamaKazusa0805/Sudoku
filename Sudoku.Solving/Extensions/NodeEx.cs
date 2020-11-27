@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
+using Sudoku.Solving.Manual.Chaining;
 
 namespace Sudoku.Solving.Extensions
 {
@@ -14,32 +16,38 @@ namespace Sudoku.Solving.Extensions
 		/// Get highlight candidate offsets through the specified target node.
 		/// </summary>
 		/// <param name="target">(<see langword="this in"/> parameter) The target node.</param>
+		/// <param name="simpleChain">
+		/// Indicates whether the current caller is in <see cref="AicTechniqueSearcher"/>. The
+		/// default value is <see langword="false"/>.
+		/// </param>
 		/// <returns>The candidate offsets.</returns>
-		public static IReadOnlyList<DrawingInfo> GetCandidateOffsets(this in Node target)
+		public static IList<DrawingInfo> GetCandidateOffsets(
+			this in Node target, bool simpleChain = false, bool isDynamic = false)
 		{
 			var result = new List<DrawingInfo>();
 			var chain = target.Chain;
+			if (isDynamic)
+			{
+				var (pCandidate, pIsOn) = chain[0];
+				result.Add(new(pIsOn ? 1 : 0, pCandidate));
+			}
+
 			for (int i = 0, count = chain.Count; i < count; i++)
 			{
 				var p = chain[i];
 				foreach (var pr in p.Parents)
 				{
-					var linkType = (pr.IsOn, p.IsOn) switch
+					if (isDynamic && pr == chain[^1])
 					{
-						(false, true) => LinkType.Strong,
-						(true, false) => LinkType.Weak,
-						_ => LinkType.Default
-					};
-					if ((linkType, i) == (LinkType.Weak, 0))
-					{
-						// Because of forcing chain, the first node won't be drawn.
 						continue;
 					}
 
-					result.Add(new(pr.IsOn ? 0 : 1, pr.Cell * 9 + pr.Digit));
+					var (prCandidate, prIsOn) = pr;
+					if (simpleChain && i != count - 2 || !simpleChain)
+					{
+						result.AddIfDoesNotContain(new(prIsOn ? 1 : 0, prCandidate));
+					}
 				}
-
-				result.Add(new(p.IsOn ? 0 : 1, p.Cell * 9 + p.Digit));
 			}
 
 			return result;
@@ -62,14 +70,15 @@ namespace Sudoku.Solving.Extensions
 			for (int i = showAllLinks ? 0 : 1, count = chain.Count - (showAllLinks ? 0 : 2); i < count; i++)
 			{
 				var p = chain[i];
+				var (pCandidate, pIsOn) = p;
 				for (int j = 0; j < p.ParentsCount; j++)
 				{
-					var pr = p[j];
+					var (prCandidate, prIsOn) = p[j];
 					result.Add(
 						new(
-							p.Cell * 9 + p.Digit,
-							pr.Cell * 9 + pr.Digit,
-							(pr.IsOn, p.IsOn) switch
+							pCandidate,
+							prCandidate,
+							(prIsOn, pIsOn) switch
 							{
 								(false, true) => LinkType.Strong,
 								(true, false) => LinkType.Weak,

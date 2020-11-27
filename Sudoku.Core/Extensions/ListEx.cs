@@ -89,5 +89,24 @@ namespace Sudoku.Extensions
 			@this.Clear();
 			@this.AddRange(tempList);
 		}
+
+
+		/// <summary>
+		/// Try to convert the current list to a <see cref="IReadOnlyList{T}"/>.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <returns>The reusult of the conversion.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IReadOnlyList<T?> AsReadOnlyList<T>(this IList<T?> @this) =>
+			@this switch
+			{
+				List<T?> list => list,
+				T[] array => array,
+				_ =>
+					throw new InvalidCastException(
+						$"Can't convert {nameof(@this)} to {typeof(IReadOnlyList<>).Name} " +
+						$"because the element isn't a normal {typeof(List<>).Name}.")
+			};
 	}
 }
