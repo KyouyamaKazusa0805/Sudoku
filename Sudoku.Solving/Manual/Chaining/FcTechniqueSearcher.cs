@@ -173,7 +173,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="doContradiction">Indicates whether the method executes contradiction chaining.</param>
 		private void DoBinaryChaining(
 			IList<ChainingTechniqueInfo> accumulator, ref SudokuGrid grid, in Node pOn, in Node pOff,
-			ISet<Node> onToOn, ISet<Node> onToOff, bool doReduction, bool doContradiction)
+			Set<Node> onToOn, Set<Node> onToOff, bool doReduction, bool doContradiction)
 		{
 			Set<Node> offToOn = new(), offToOff = new();
 
@@ -337,7 +337,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="toOn">The list to <c>on</c> nodes.</param>
 		/// <param name="toOff">The list to <c>off</c> nodes.</param>
 		/// <returns>The result.</returns>
-		private (Node On, Node Off)? DoChaining(ref SudokuGrid grid, ISet<Node> toOn, ISet<Node> toOff)
+		private (Node On, Node Off)? DoChaining(ref SudokuGrid grid, Set<Node> toOn, Set<Node> toOff)
 		{
 			_savedGrid = grid;
 
@@ -357,6 +357,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							if (toOn.Contains(pOn))
 							{
 								// Contradiction found.
+								toOn.TryGetValue(pOn, out pOn);
 								return (pOn, pOff); // Cannot be both on and off at the same time.
 							}
 							else if (!toOff.Contains(pOff))
@@ -384,6 +385,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							if (toOff.Contains(pOff))
 							{
 								// Contradiction found.
+								toOff.TryGetValue(pOff, out pOff);
 								return (pOn, pOff); // Cannot be both on and off at the same time.
 							}
 							else if (!toOn.Contains(pOn))

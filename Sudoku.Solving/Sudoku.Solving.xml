@@ -2744,7 +2744,7 @@
             <param name="accumulator">The accumulator.</param>
             <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.DoBinaryChaining(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.DoBinaryChaining(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Collections.Generic.Set{Sudoku.Data.Node},System.Collections.Generic.Set{Sudoku.Data.Node},System.Boolean,System.Boolean)">
             <summary>
             Do binary chaining.
             </summary>
@@ -2768,7 +2768,7 @@
             <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
             <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.DoChaining(Sudoku.Data.SudokuGrid@,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.DoChaining(Sudoku.Data.SudokuGrid@,System.Collections.Generic.Set{Sudoku.Data.Node},System.Collections.Generic.Set{Sudoku.Data.Node})">
             <summary>
             Do chaining (i.e. multiple chaining).
             </summary>

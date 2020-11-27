@@ -90,6 +90,32 @@ namespace System.Collections.Generic
 		}
 
 		/// <summary>
+		/// Get the instance in the collection that is same (or similar) as another one
+		/// specified as the parameter.
+		/// </summary>
+		/// <param name="other">The value to compare.</param>
+		/// <param name="result">(<see langword="out"/> parameter) The result.</param>
+		/// <returns>Indicates whether the searching is successful.</returns>
+		/// <remarks>
+		/// Note that <paramref name="other"/> and <paramref name="result"/> aren't totally same.
+		/// The comparsion is decided by the implementation of its <c>Equals</c> method.
+		/// </remarks>
+		public bool TryGetValue(T other, out T? result)
+		{
+			foreach (var value in _list)
+			{
+				if (value.Equals(other))
+				{
+					result = value;
+					return true;
+				}
+			}
+
+			result = default;
+			return false;
+		}
+
+		/// <summary>
 		/// Remove the last element out of the list.
 		/// </summary>
 		/// <returns>The element removed.</returns>
