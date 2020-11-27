@@ -67,7 +67,6 @@ namespace Sudoku.Solving.Manual
 				//new DeathBlossomTechniqueSearcher(
 				//	AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
 				new DbTechniqueSearcher(MaxPetalsOfDeathBlossom),
-				//new FcTechniqueSearcher(),
 				new FcTechniqueSearcher(true, false, true, 0),
 				new FcTechniqueSearcher(false, true, false, 0),
 				new FcTechniqueSearcher(false, true, true, 0),
@@ -124,7 +123,6 @@ namespace Sudoku.Solving.Manual
 				},
 				new TechniqueSearcher[]
 				{
-					//new FcTechniqueSearcher(),
 					new FcTechniqueSearcher(true, false, true, 0),
 					new FcTechniqueSearcher(false, true, false, 0),
 					new FcTechniqueSearcher(false, true, true, 0),

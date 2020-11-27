@@ -18,13 +18,12 @@ namespace Sudoku.Solving.Extensions
 		public static IReadOnlyList<DrawingInfo> GetCandidateOffsets(this in Node target)
 		{
 			var result = new List<DrawingInfo>();
-			var map = new HashSet<(int, bool)>();
 			var chain = target.Chain;
 			for (int i = 0, count = chain.Count; i < count; i++)
 			{
-				if (chain[i] is { ParentsCount: not 0 } p)
+				var p = chain[i];
+				foreach (var pr in p.Parents)
 				{
-					var pr = p[0];
 					var linkType = (pr.IsOn, p.IsOn) switch
 					{
 						(false, true) => LinkType.Strong,
@@ -37,13 +36,10 @@ namespace Sudoku.Solving.Extensions
 						continue;
 					}
 
-					map.Add((p.Cell * 9 + p.Digit, p.IsOn));
+					result.Add(new(pr.IsOn ? 0 : 1, pr.Cell * 9 + pr.Digit));
 				}
-			}
 
-			foreach (var (candidate, isOn) in map)
-			{
-				result.Add(new(isOn ? 0 : 1, candidate));
+				result.Add(new(p.IsOn ? 0 : 1, p.Cell * 9 + p.Digit));
 			}
 
 			return result;
@@ -71,9 +67,9 @@ namespace Sudoku.Solving.Extensions
 					var pr = p[j];
 					result.Add(
 						new(
-							startCandidate: p.Cell * 9 + p.Digit,
-							endCandidate: pr.Cell * 9 + pr.Digit,
-							linkType: (pr.IsOn, p.IsOn) switch
+							p.Cell * 9 + p.Digit,
+							pr.Cell * 9 + pr.Digit,
+							(pr.IsOn, p.IsOn) switch
 							{
 								(false, true) => LinkType.Strong,
 								(true, false) => LinkType.Weak,

@@ -2572,7 +2572,7 @@
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible weak links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOffToOn(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Collections.Generic.ISet{Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOffToOn(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean)">
             <summary>
             Get all available strong links.
             </summary>
@@ -2580,6 +2580,10 @@
             <param name="p">(<see langword="in"/> parameter) The current node.</param>
             <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <param name="isDynamic">
+            Indicates whether the current searcher is searching for dynamic chains. If so,
+            we can't use those static properties to optimize the performance.
+            </param>
             <returns>All possible strong links.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.AddHiddenParentsOfCell(Sudoku.Data.Node@,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.ISet{Sudoku.Data.Node})">

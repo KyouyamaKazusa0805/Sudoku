@@ -111,6 +111,28 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Get all parents of the current node.
+		/// </summary>
+		public readonly IReadOnlyList<Node> Parents
+		{
+			get
+			{
+				if (_parents is null)
+				{
+					return Array.Empty<Node>();
+				}
+
+				var result = new List<Node>();
+				for (int i = 0; i < ParentsCount; i++)
+				{
+					result.Add(_parents[i]);
+				}
+
+				return result;
+			}
+		}
+
+		/// <summary>
 		/// The chain nodes.
 		/// </summary>
 		public readonly IReadOnlyList<Node> Chain
@@ -167,6 +189,19 @@ namespace Sudoku.Data
 		/// Clear all parent nodes.
 		/// </summary>
 		public void ClearParents() => ParentsCount = 0;
+
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
+		/// <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
+		public readonly void Deconstruct(out int candidate, out bool isOn) =>
+			(candidate, isOn) = (Cell * 9 + Digit, IsOn);
+
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
+		/// <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
+		/// <param name="parents">(<see langword="out"/> parameter) All parents of this node.</param>
+		public readonly void Deconstruct(out int candidate, out bool isOn, out IReadOnlyList<Node> parents) =>
+			(candidate, isOn, parents) = (Cell * 9 + Digit, IsOn, Parents);
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);

@@ -1963,6 +1963,11 @@
             This property can only find the first root.
             </remarks>
         </member>
+        <member name="P:Sudoku.Data.Node.Parents">
+            <summary>
+            Get all parents of the current node.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Node.Chain">
             <summary>
             The chain nodes.
@@ -1989,6 +1994,17 @@
             <summary>
             Clear all parent nodes.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
+            <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
+        </member>
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node}@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
+            <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
+            <param name="parents">(<see langword="out"/> parameter) All parents of this node.</param>
         </member>
         <member name="M:Sudoku.Data.Node.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

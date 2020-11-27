@@ -370,7 +370,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					else
 					{
 						var p = pendingOff.RemoveAt(0);
-						var makeOn = GetOffToOn(grid, p, true, !_nishio, _savedGrid, toOff);
+						var makeOn = GetOffToOn(grid, p, true, !_nishio, _savedGrid, toOff, _dynamic);
 
 						if (_dynamic)
 						{
@@ -419,22 +419,22 @@ namespace Sudoku.Solving.Manual.Chaining
 			in Node destOn, in Node destOff, in Node source, in Node target, bool isAbsurd)
 		{
 			// Get views.
-			var cellOffset = new DrawingInfo[] { new(0, source.Cell) };
+			var cellOffset = new DrawingInfo[] { new(0, destOn.Cell) };
 			var views = new List<View>();
 			var globalCandidates = new List<DrawingInfo>();
 			var globalLinks = new List<Link>();
 
-			var candidateOffsets = source.GetCandidateOffsets();
-			var links = source.GetLinks(true);
+			var candidateOffsets = destOn.GetCandidateOffsets();
+			var links = destOn.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets);
 			globalLinks.AddRange(links);
 			views.Add(new(cellOffset, candidateOffsets, null, links));
 
-			candidateOffsets = target.GetCandidateOffsets();
-			links = target.GetLinks(true);
-			views.Add(new(cellOffset, candidateOffsets, null, links));
+			candidateOffsets = destOff.GetCandidateOffsets();
+			links = destOff.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets);
 			globalLinks.AddRange(links);
+			views.Add(new(cellOffset, candidateOffsets, null, links));
 
 			// Insert the global view at head.
 			views.Insert(0, new(cellOffset, globalCandidates, null, globalLinks));
@@ -462,22 +462,22 @@ namespace Sudoku.Solving.Manual.Chaining
 			in Node destOn, in Node destOff, in Node source, in Node target, bool isAbsurd)
 		{
 			// Get views.
-			var cellOffset = new DrawingInfo[] { new(0, source.Cell) };
+			var cellOffset = new DrawingInfo[] { new(0, destOn.Cell) };
 			var views = new List<View>();
 			var globalCandidates = new List<DrawingInfo>();
 			var globalLinks = new List<Link>();
 
-			var candidateOffsets = source.GetCandidateOffsets();
-			var links = source.GetLinks(true);
+			var candidateOffsets = destOn.GetCandidateOffsets();
+			var links = destOn.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets);
 			globalLinks.AddRange(links);
 			views.Add(new(cellOffset, candidateOffsets, null, links));
 
-			candidateOffsets = target.GetCandidateOffsets();
-			links = target.GetLinks(true);
-			views.Add(new(cellOffset, candidateOffsets, null, links));
+			candidateOffsets = destOff.GetCandidateOffsets();
+			links = destOff.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets);
 			globalLinks.AddRange(links);
+			views.Add(new(cellOffset, candidateOffsets, null, links));
 
 			// Insert the global view at head.
 			views.Insert(0, new(cellOffset, globalCandidates, null, globalLinks));
@@ -524,7 +524,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			var globalLinks = new List<Link>();
 			foreach (var (digit, node) in chains)
 			{
-				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets()) { new(2, sourceCell * 9 + digit) };
+				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets())
+				{
+					new(2, sourceCell * 9 + digit)
+				};
+
 				var links = node.GetLinks(true);
 				views.Add(new(new DrawingInfo[] { new(0, sourceCell) }, candidateOffsets, null, links));
 				globalCandidates.AddRange(candidateOffsets);
@@ -570,7 +574,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			var globalLinks = new List<Link>();
 			foreach (var (cell, node) in chains)
 			{
-				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets()) { new(2, cell * 9 + digit) };
+				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets())
+				{
+					new(2, cell * 9 + digit)
+				};
+
 				var links = node.GetLinks(true);
 				views.Add(new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, links));
 				globalCandidates.AddRange(candidateOffsets);

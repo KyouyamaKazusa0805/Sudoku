@@ -4,6 +4,7 @@ using Sudoku.Extensions;
 using Sudoku.Runtime;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using static Sudoku.Constants.Processings;
 using C = Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo;
 
@@ -61,17 +62,21 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="p">(<see langword="in"/> parameter) The current node.</param>
 		/// <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+		/// <param name="isDynamic">
+		/// Indicates whether the current searcher is searching for dynamic chains. If so,
+		/// we can't use those static properties to optimize the performance.
+		/// </param>
 		/// <returns>All possible strong links.</returns>
 		protected internal static ISet<Node> GetOffToOn(
 			in SudokuGrid grid, in Node p, bool xEnabled, bool yEnabled,
-			in SudokuGrid? source = null, ISet<Node>? offNodes = null)
+			in SudokuGrid? source = null, ISet<Node>? offNodes = null, bool isDynamic = false)
 		{
 			var result = new Set<Node>();
 			if (yEnabled)
 			{
 				// First rule: If there's only two candidates in this cell, the other one gets on.
 				short mask = (short)(grid.GetCandidateMask(p.Cell) & ~(1 << p.Digit));
-				if (BivalueMap[p.Cell] && mask.IsPowerOfTwo())
+				if (g(grid, p.Cell, isDynamic) && mask.IsPowerOfTwo())
 				{
 					var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p);
 					if (source.HasValue && offNodes is not null)
@@ -89,7 +94,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 				{
 					int region = GetRegion(p.Cell, label);
-					if ((CandMaps[p.Digit] & RegionMaps[region]) - p.Cell is { Count: 1 } cells)
+					var cells = (h(grid, p.Digit, region, isDynamic) & RegionMaps[region]) - p.Cell;
+					if (cells.Count == 1)
 					{
 						var pOn = new Node(cells.First, p.Digit, true, p);
 						if (source.HasValue && offNodes is not null)
@@ -103,6 +109,32 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			return result;
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static bool g(in SudokuGrid grid, int cell, bool isDynamic) =>
+				isDynamic ? grid.GetCandidateMask(cell).PopCount() == 2 : BivalueMap[cell];
+
+			static GridMap h(in SudokuGrid grid, int digit, int region, bool isDynamic)
+			{
+				if (!isDynamic)
+				{
+					// If not dynamic chains, we can use this property to optimize performance.
+					return CandMaps[digit];
+				}
+
+				var result = GridMap.Empty;
+				for (int i = 0; i < 9; i++)
+				{
+					int cell = RegionCells[region][i];
+					if (grid.Exists(cell, digit) is true)
+					{
+						result.AddAnyway(cell);
+					}
+				}
+
+				return result;
+			}
 		}
 
 		/// <summary>
