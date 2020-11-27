@@ -345,7 +345,7 @@ namespace Sudoku.Windows
 			["DynamicRegionFc"] = "动态区域强制链",
 			["DynamicCellFc"] = "动态单元格强制链",
 			["DynamicContradictionFc"] = "动态矛盾强制链",
-			["DynamicDoubleFc"] = "动态反矛盾强制链",
+			["DynamicDoubleFc"] = "动态逆反矛盾强制链",
 			["DynamicFc"] = "动态强制链",
 			["Erip"] = "对交空矩形",
 			["Esp"] = "伪数组",
