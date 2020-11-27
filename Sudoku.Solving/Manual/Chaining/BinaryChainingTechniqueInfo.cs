@@ -14,15 +14,21 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="FromOnNode">Indicates the node that is the destination (on side).</param>
 	/// <param name="FromOffNode">Indicates the node that is the destination (off side).</param>
 	/// <param name="IsAbsurd">Indicates whether the chain is absurd.</param>
+	/// <param name="IsMultiple">Indicates whether the chain is multiple.</param>
 	/// <param name="IsNishio">Indicates whether the chain is nishio.</param>
+	/// <param name="Level">Indicates the dynamic level of the chain.</param>
 	public sealed record BinaryChainingTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		in Node SourceNode, in Node FromOnNode, in Node FromOffNode, bool IsAbsurd, bool IsNishio)
-		: ChainingTechniqueInfo(Conclusions, Views, true, true, default, default, default, default)
+		in Node SourceNode, in Node FromOnNode, in Node FromOffNode, bool IsAbsurd, bool IsMultiple,
+		bool IsNishio, int Level)
+		: ChainingTechniqueInfo(Conclusions, Views, true, true, IsNishio, IsMultiple, true, Level)
 	{
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey =>
-			IsAbsurd ? ChainingTypeCode.ContradictionFc : ChainingTypeCode.DoubleFc;
+			IsAbsurd ? ChainingTypeCode.DynamicContradictionFc : ChainingTypeCode.DynamicDoubleFc;
+
+		/// <inheritdoc/>
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <summary>
 		/// Indicates the anchor.

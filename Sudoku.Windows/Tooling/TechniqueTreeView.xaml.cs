@@ -132,9 +132,14 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			// Now add them to the root node.
-			var root = new TreeNode<string> { Content = (string)LangSource["Techniques"], Id = 0, ParentId = -1 };
+			var root = new TreeNode<string>
+			{
+				Content = (string)LangSource["Techniques"],
+				Id = 0,
+				ParentId = -1
+			};
 			root.Children = GetSubnodes(root.ParentId, allNodes);
-			list.Prepend(root);
+			list = new(list.Prepend(root));
 
 			// Remove all sub-groups.
 			list.RemoveAll(node => node.Content!.Contains('>'));

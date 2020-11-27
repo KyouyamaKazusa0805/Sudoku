@@ -2378,9 +2378,11 @@
             <param name="FromOnNode">Indicates the node that is the destination (on side).</param>
             <param name="FromOffNode">Indicates the node that is the destination (off side).</param>
             <param name="IsAbsurd">Indicates whether the chain is absurd.</param>
+            <param name="IsMultiple">Indicates whether the chain is multiple.</param>
             <param name="IsNishio">Indicates whether the chain is nishio.</param>
+            <param name="Level">Indicates the dynamic level of the chain.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.BinaryChainingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.BinaryChainingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>contradiction forcing chains</b> and <b>double forcing chains</b> technique.
             </summary>
@@ -2390,9 +2392,14 @@
             <param name="FromOnNode">Indicates the node that is the destination (on side).</param>
             <param name="FromOffNode">Indicates the node that is the destination (off side).</param>
             <param name="IsAbsurd">Indicates whether the chain is absurd.</param>
+            <param name="IsMultiple">Indicates whether the chain is multiple.</param>
             <param name="IsNishio">Indicates whether the chain is nishio.</param>
+            <param name="Level">Indicates the dynamic level of the chain.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.BinaryChainingTechniqueInfo.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.BinaryChainingTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.BinaryChainingTechniqueInfo.Anchor">
@@ -2508,19 +2515,6 @@
             The nested complexity.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.Prefix">
-            <summary>
-            The prefix.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.Suffix">
-            <summary>
-            The suffix.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -2530,11 +2524,6 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.IsXyChain">
             <summary>
             Indicates whether the specified chain is an XY-Chain.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.NestedSuffix">
-            <summary>
-            The nested suffix.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.Equals(Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo)">
@@ -2681,6 +2670,16 @@
         <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.DoubleFc">
             <summary>
             Indicates the double forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.DynamicCellFc">
+            <summary>
+            Indicates the dynamic cell forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.DynamicRegionFc">
+            <summary>
+            Indictaes the dynamic region forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.DynamicContradictionFc">

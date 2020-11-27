@@ -22,12 +22,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		private readonly bool _nishio, _multiple, _dynamic;
 
-#pragma warning disable IDE0052
 		/// <summary>
 		/// Indicates the level of the searching depth.
 		/// </summary>
 		private readonly int _level;
-#pragma warning restore IDE0052
 
 
 		/// <summary>
@@ -448,7 +446,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				destOn,
 				destOff,
 				isAbsurd,
-				_nishio);
+				_multiple,
+				_nishio,
+				_level);
 		}
 
 		/// <summary>
@@ -491,7 +491,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				destOn,
 				destOff,
 				isAbsurd,
-				_nishio);
+				_multiple,
+				_nishio,
+				_level);
 		}
 
 		/// <summary>

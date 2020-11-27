@@ -5941,6 +5941,26 @@
             Indicates the cell FCs.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.DynamicRegionFc">
+            <summary>
+            Indicates the dynamic region FCs.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.DynamicCellFc">
+            <summary>
+            Indicates the dynamic cell FCs.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.DynamicContradictionFc">
+            <summary>
+            Indicates the dynamic contradiction FCs.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.DynamicDoubleFc">
+            <summary>
+            Indicates the dynamic double FCs.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.DynamicFc">
             <summary>
             Indicates the dynamic FCs.

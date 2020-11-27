@@ -538,6 +538,12 @@
 	<sys:String x:Key="GroupGroupedDiscontinuousNiceLoop">Chains&gt;Grouped Alternating Inference Chains</sys:String>
 	<sys:String x:Key="GroupGroupedContinuousNiceLoop">Chains&gt;Grouped Alternating Inference Chains</sys:String>
 	<sys:String x:Key="GroupGroupedAic">Chains&gt;Grouped Alternating Inference Chains</sys:String>
+	<sys:String x:Key="GroupRegionFc">Chains&gt;Forcing Chains</sys:String>
+	<sys:String x:Key="GroupCellFc">Chains&gt;Forcing Chains</sys:String>
+	<sys:String x:Key="GroupDynamicRegionFc">Chains&gt;Forcing Chains</sys:String>
+	<sys:String x:Key="GroupDynamicCellFc">Chains&gt;Forcing Chains</sys:String>
+	<sys:String x:Key="GroupDynamicContradictionFc">Chains&gt;Forcing Chains</sys:String>
+	<sys:String x:Key="GroupDynamicDoubleFc">Chains&gt;Forcing Chains</sys:String>
 	<sys:String x:Key="GroupErip">Almost Locked Sets</sys:String>
 	<sys:String x:Key="GroupEsp">Almost Locked Sets</sys:String>
 	<sys:String x:Key="GroupSinglyLinkedAlsXz">Almost Locked Sets</sys:String>

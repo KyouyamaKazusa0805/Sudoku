@@ -67,6 +67,16 @@
 		DoubleFc,
 
 		/// <summary>
+		/// Indicates the dynamic cell forcing chains.
+		/// </summary>
+		DynamicCellFc,
+
+		/// <summary>
+		/// Indictaes the dynamic region forcing chains.
+		/// </summary>
+		DynamicRegionFc,
+
+		/// <summary>
 		/// Indicates the dynamic contradiction forcing chains.
 		/// </summary>
 		DynamicContradictionFc,

@@ -105,38 +105,26 @@ namespace Sudoku.Solving.Manual.Chaining
 #endif
 
 
-		/// <summary>
-		/// The prefix.
-		/// </summary>
-		public string Prefix =>
-			TechniqueCode switch
-			{
-				TechniqueCode.DynamicFc => "Dynamic ",
-				TechniqueCode.NishioFc => "Nishio ",
-				TechniqueCode.RegionFc => "Region ",
-				TechniqueCode.CellFc => "Cell ",
-				_ => base.Name
-			};
-
-		/// <summary>
-		/// The suffix.
-		/// </summary>
-		public string Suffix => Level == 0 ? "Forcing Chains" : $"Forcing Chains{NestedSuffix}";
-
-		/// <inheritdoc/>
-		public override string Name => $"{Prefix}{Suffix}";
-
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			(Level > 0, IsNishio, IsMultiple, IsDynamic) switch
+			this switch
 			{
-				(true, _, _, _) => TechniqueCode.DynamicFc,
-				(_, true, _, _) => TechniqueCode.NishioFc,
-				(_, _, true, _) => SortKey == ChainingTypeCode.CellFc ? TechniqueCode.CellFc : TechniqueCode.RegionFc,
-				(_, _, _, true) => TechniqueCode.DynamicFc,
+				{ IsNishio: true } => TechniqueCode.NishioFc,
+				{ IsDynamic: true } => SortKey switch
+				{
+					ChainingTypeCode.DynamicRegionFc => TechniqueCode.DynamicRegionFc,
+					ChainingTypeCode.DynamicCellFc => TechniqueCode.DynamicCellFc,
+					ChainingTypeCode.DynamicContradictionFc => TechniqueCode.DynamicContradictionFc,
+					ChainingTypeCode.DynamicDoubleFc => TechniqueCode.DynamicDoubleFc
+				},
+				{ IsMultiple: true } => SortKey switch
+				{
+					ChainingTypeCode.RegionFc => TechniqueCode.RegionFc,
+					ChainingTypeCode.CellFc => TechniqueCode.CellFc,
+				},
 				_ => TechniqueCode.Aic
 			};
 
@@ -160,11 +148,6 @@ namespace Sudoku.Solving.Manual.Chaining
 				return true;
 			}
 		}
-
-		/// <summary>
-		/// The nested suffix.
-		/// </summary>
-		private string NestedSuffix => GetNestedSuffix(Level);
 
 
 		/// <inheritdoc/>

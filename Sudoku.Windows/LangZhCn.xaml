@@ -538,6 +538,12 @@
 	<sys:String x:Key="GroupGroupedDiscontinuousNiceLoop">链&gt;区块（或其他类型节点）链</sys:String>
 	<sys:String x:Key="GroupGroupedContinuousNiceLoop">链&gt;区块（或其他类型节点）链</sys:String>
 	<sys:String x:Key="GroupGroupedAic">链&gt;区块（或其他类型节点）链</sys:String>
+	<sys:String x:Key="GroupRegionFc">链&gt;强制链</sys:String>
+	<sys:String x:Key="GroupCellFc">链&gt;强制链</sys:String>
+	<sys:String x:Key="GroupDynamicRegionFc">链&gt;强制链</sys:String>
+	<sys:String x:Key="GroupDynamicCellFc">链&gt;强制链</sys:String>
+	<sys:String x:Key="GroupDynamicContradictionFc">链&gt;强制链</sys:String>
+	<sys:String x:Key="GroupDynamicDoubleFc">链&gt;强制链</sys:String>
 	<sys:String x:Key="GroupErip">待定数组</sys:String>
 	<sys:String x:Key="GroupEsp">待定数组</sys:String>
 	<sys:String x:Key="GroupSinglyLinkedAlsXz">待定数组</sys:String>

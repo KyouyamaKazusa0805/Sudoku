@@ -1360,6 +1360,30 @@ namespace Sudoku.Solving.Manual
 		CellFc,
 
 		/// <summary>
+		/// Indicates the dynamic region FCs.
+		/// </summary>
+		[TechniqueDisplay("Dynamic Region Forcing Chains")]
+		DynamicRegionFc,
+
+		/// <summary>
+		/// Indicates the dynamic cell FCs.
+		/// </summary>
+		[TechniqueDisplay("Dynamic Cell Forcing Chains")]
+		DynamicCellFc,
+
+		/// <summary>
+		/// Indicates the dynamic contradiction FCs.
+		/// </summary>
+		[TechniqueDisplay("Dynamic Contradiction Forcing Chains")]
+		DynamicContradictionFc,
+
+		/// <summary>
+		/// Indicates the dynamic double FCs.
+		/// </summary>
+		[TechniqueDisplay("Dynamic Double Forcing Chains")]
+		DynamicDoubleFc,
+
+		/// <summary>
 		/// Indicates the dynamic FCs.
 		/// </summary>
 		[TechniqueDisplay("Dynamic Forcing Chains")]
