@@ -76,35 +76,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// The total complexity.
 		/// </summary>
-		public int Complexity => FlatComplexity + NestedComplexity;
-
-		/// <summary>
-		/// The nested complexity.
-		/// </summary>
-		public int NestedComplexity =>
-#if OBSOLETE
-				int result = 0;
-				var processed = new HashSet<FullChain>();
-				foreach (var target in ChainsTargets)
-				{
-					foreach (var p in ChainingTechniqueSearcher.GetChain(target))
-					{
-						if (p.NestedChain is not null)
-						{
-							var f = new FullChain(p.NestedChain);
-							if (!processed.Contains(f))
-							{
-								result += p.NestedChain.Complexity;
-								processed.Add(f);
-							}
-						}
-					}
-				}
-
-				return result;
-#else
-				0;
-#endif
+		public int Complexity => FlatComplexity;
 
 
 		/// <inheritdoc/>
@@ -137,17 +109,21 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			get
 			{
-				var links = Views[0].Links!;
-				for (int i = 0; i < links.Count; i += 2)
+				if (Views[0].Links is var links and not null)
 				{
-					var link = links[i];
-					if (link.StartCandidate / 9 != link.EndCandidate / 9)
+					for (int i = 0; i < links.Count; i += 2)
 					{
-						return false;
+						var link = links[i];
+						if (link.StartCandidate / 9 != link.EndCandidate / 9)
+						{
+							return false;
+						}
 					}
+
+					return true;
 				}
 
-				return true;
+				return false;
 			}
 		}
 

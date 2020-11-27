@@ -2510,11 +2510,6 @@
             The total complexity.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.NestedComplexity">
-            <summary>
-            The nested complexity.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
