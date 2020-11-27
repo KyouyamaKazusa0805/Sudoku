@@ -41,14 +41,16 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// The base difficulty.
 		/// </summary>
 		public decimal BaseDifficulty =>
-			(Level >= 2, Level > 0, IsNishio, IsMultiple, IsDynamic) switch
+			this switch
 			{
-				(true, _, _, _, _) => 9.5M + .5M * (Level - 2),
-				(_, true, _, _, _) => 8.5M + .5M * Level,
-				(_, _, true, _, _) => 7.5M,
-				(_, _, _, true, _) => 8.0M,
-				(_, _, _, _, true) => 8.5M,
-				_ => 7.0M
+				{ IsNishio: true } => 7.5M,
+				{ IsDynamic: true } => Level switch
+				{
+					0 => 8.5M,
+					1 => 8.5M + .5M * Level,
+					>= 2 => 9.5M + .5M * (Level - 2)
+				},
+				{ IsMultiple: true } => 8.0M
 			};
 
 		/// <summary>
