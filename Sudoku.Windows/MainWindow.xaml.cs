@@ -255,8 +255,6 @@ namespace Sudoku.Windows
 					break;
 				}
 			}
-
-			GC.Collect();
 		}
 
 		/// <inheritdoc/>

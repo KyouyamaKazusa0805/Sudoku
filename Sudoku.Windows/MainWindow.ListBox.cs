@@ -42,11 +42,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (
-				sender is ListBox
-				{
-					SelectedItem: ListBoxItem { Content: TechniqueTriplet triplet }
-				})
+			if (sender is ListBox { SelectedItem: ListBoxItem { Content: TechniqueTriplet triplet } })
 			{
 				if (triplet.Item3 && triplet.Item2 is var info and var (_, _, _, conclusions, views))
 				{
