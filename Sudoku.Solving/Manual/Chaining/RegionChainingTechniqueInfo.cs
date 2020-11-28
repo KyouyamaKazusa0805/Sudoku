@@ -14,16 +14,19 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Region">The region.</param>
 	/// <param name="Digit">The digit.</param>
 	/// <param name="Chains">All branches.</param>
+	/// <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
+	/// <param name="Level">Indicates the depth level of the dynamic chains.</param>
 	public sealed record RegionChainingTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, int Digit, IReadOnlyDictionary<int, Node> Chains)
-		: ChainingTechniqueInfo(Conclusions, Views, default, default, default, true, default, default)
+		int Region, int Digit, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level)
+		: ChainingTechniqueInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
 	{
 		/// <inheritdoc/>
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
-		public override ChainingTypeCode SortKey => ChainingTypeCode.RegionFc;
+		public override ChainingTypeCode SortKey =>
+			IsDynamic ? ChainingTypeCode.DynamicRegionFc : ChainingTypeCode.RegionFc;
 
 		/// <inheritdoc/>
 		public override int FlatComplexity

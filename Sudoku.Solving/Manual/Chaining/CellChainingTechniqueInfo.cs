@@ -13,16 +13,19 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Views">All views.</param>
 	/// <param name="SourceCell">The source cell.</param>
 	/// <param name="Chains">All branches.</param>
+	/// <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
+	/// <param name="Level">Indicates the depth level of the dynamic chains.</param>
 	public sealed record CellChainingTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int SourceCell, IReadOnlyDictionary<int, Node> Chains)
-		: ChainingTechniqueInfo(Conclusions, Views, default, default, default, true, default, default)
+		int SourceCell, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level)
+		: ChainingTechniqueInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
 	{
 		/// <inheritdoc/>
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
-		public override ChainingTypeCode SortKey => ChainingTypeCode.CellFc;
+		public override ChainingTypeCode SortKey =>
+			IsDynamic ? ChainingTypeCode.DynamicCellFc : ChainingTypeCode.CellFc;
 
 		/// <inheritdoc/>
 		public override int FlatComplexity

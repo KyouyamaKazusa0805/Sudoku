@@ -2428,8 +2428,10 @@
             <param name="Views">All views.</param>
             <param name="SourceCell">The source cell.</param>
             <param name="Chains">All branches.</param>
+            <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
+            <param name="Level">Indicates the depth level of the dynamic chains.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node},System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>cell forcing chains</b> technique.
             </summary>
@@ -2437,6 +2439,8 @@
             <param name="Views">All views.</param>
             <param name="SourceCell">The source cell.</param>
             <param name="Chains">All branches.</param>
+            <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
+            <param name="Level">Indicates the depth level of the dynamic chains.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.Name">
             <inheritdoc/>
@@ -2869,8 +2873,10 @@
             <param name="Region">The region.</param>
             <param name="Digit">The digit.</param>
             <param name="Chains">All branches.</param>
+            <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
+            <param name="Level">Indicates the depth level of the dynamic chains.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node},System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>region forcing chains</b> technique.
             </summary>
@@ -2879,6 +2885,8 @@
             <param name="Region">The region.</param>
             <param name="Digit">The digit.</param>
             <param name="Chains">All branches.</param>
+            <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
+            <param name="Level">Indicates the depth level of the dynamic chains.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.Name">
             <inheritdoc/>

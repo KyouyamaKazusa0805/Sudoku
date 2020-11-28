@@ -523,7 +523,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				new Conclusion[] { new(targetIsOn ? Assignment : Elimination, target.Cell, target.Digit) },
 				views,
 				sourceCell,
-				chains);
+				chains,
+				_dynamic,
+				_level);
 		}
 
 		/// <summary>
@@ -575,7 +577,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				views,
 				region,
 				digit,
-				chains);
+				chains,
+				_dynamic,
+				_level);
 		}
 	}
 }
