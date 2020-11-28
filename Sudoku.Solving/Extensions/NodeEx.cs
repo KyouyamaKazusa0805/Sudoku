@@ -21,15 +21,14 @@ namespace Sudoku.Solving.Extensions
 		/// default value is <see langword="false"/>.
 		/// </param>
 		/// <returns>The candidate offsets.</returns>
-		public static IList<DrawingInfo> GetCandidateOffsets(
-			this in Node target, bool simpleChain = false, bool isDynamic = false)
+		public static IList<DrawingInfo> GetCandidateOffsets(this in Node target, bool simpleChain = false)
 		{
 			var result = new List<DrawingInfo>();
 			var chain = target.Chain;
-			if (isDynamic)
+			var (pCandidate, _) = chain[0];
+			if (!simpleChain)
 			{
-				var (pCandidate, pIsOn) = chain[0];
-				result.Add(new(pIsOn ? 1 : 0, pCandidate));
+				result.Add(new(2, pCandidate));
 			}
 
 			for (int i = 0, count = chain.Count; i < count; i++)
@@ -37,11 +36,6 @@ namespace Sudoku.Solving.Extensions
 				var p = chain[i];
 				foreach (var pr in p.Parents)
 				{
-					if (isDynamic && pr == chain[^1])
-					{
-						continue;
-					}
-
 					var (prCandidate, prIsOn) = pr;
 					if (simpleChain && i != count - 2 || !simpleChain)
 					{

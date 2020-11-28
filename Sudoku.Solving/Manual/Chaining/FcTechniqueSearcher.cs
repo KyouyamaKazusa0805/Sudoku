@@ -376,21 +376,21 @@ namespace Sudoku.Solving.Manual.Chaining
 			var globalCandidates = new List<DrawingInfo> { appendedInfo };
 			var globalLinks = new List<Link>();
 
-			var candidateOffsets = new List<DrawingInfo>(destOn.GetCandidateOffsets(isDynamic: true))
+			var candidateOffsets = new List<DrawingInfo>(destOn.GetCandidateOffsets())
 			{
 				appendedInfo
 			};
 			var links = destOn.GetLinks(true);
-			globalCandidates.AddRange(candidateOffsets);
+			globalCandidates.AddRange(candidateOffsets, true);
 			globalLinks.AddRange(links);
 			views.Add(new(cellOffset, candidateOffsets, null, links));
 
-			candidateOffsets = new List<DrawingInfo>(destOff.GetCandidateOffsets(isDynamic: true))
+			candidateOffsets = new List<DrawingInfo>(destOff.GetCandidateOffsets())
 			{
 				appendedInfo
 			};
 			links = destOff.GetLinks(true);
-			globalCandidates.AddRange(candidateOffsets);
+			globalCandidates.AddRange(candidateOffsets, true);
 			globalLinks.AddRange(links);
 			views.Add(new(cellOffset, candidateOffsets, null, links));
 
@@ -427,15 +427,15 @@ namespace Sudoku.Solving.Manual.Chaining
 			var globalCandidates = new List<DrawingInfo>();
 			var globalLinks = new List<Link>();
 
-			var candidateOffsets = destOn.GetCandidateOffsets(isDynamic: true);
+			var candidateOffsets = destOn.GetCandidateOffsets();
 			var links = destOn.GetLinks(true);
-			globalCandidates.AddRange(candidateOffsets);
+			globalCandidates.AddRange(candidateOffsets, true);
 			globalLinks.AddRange(links);
 			views.Add(new(cellOffset, candidateOffsets.AsReadOnlyList(), null, links));
 
-			candidateOffsets = destOff.GetCandidateOffsets(isDynamic: true);
+			candidateOffsets = destOff.GetCandidateOffsets();
 			links = destOff.GetLinks(true);
-			globalCandidates.AddRange(candidateOffsets);
+			globalCandidates.AddRange(candidateOffsets, true);
 			globalLinks.AddRange(links);
 			views.Add(new(cellOffset, candidateOffsets.AsReadOnlyList(), null, links));
 
@@ -491,7 +491,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				var links = node.GetLinks(true);
 				views.Add(new(new DrawingInfo[] { new(0, sourceCell) }, candidateOffsets, null, links));
 				candidateOffsets.RemoveLastElement();
-				globalCandidates.AddRange(candidateOffsets);
+				globalCandidates.AddRange(candidateOffsets, true);
 				globalLinks.AddRange(links);
 			}
 
@@ -545,7 +545,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				var links = node.GetLinks(true);
 				views.Add(new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, links));
 				candidateOffsets.RemoveLastElement();
-				globalCandidates.AddRange(candidateOffsets);
+				globalCandidates.AddRange(candidateOffsets, true);
 				globalLinks.AddRange(links);
 			}
 

@@ -1130,7 +1130,7 @@
             </summary>
             <seealso cref="T:Sudoku.Data.Node"/>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.NodeEx.GetCandidateOffsets(Sudoku.Data.Node@,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Extensions.NodeEx.GetCandidateOffsets(Sudoku.Data.Node@,System.Boolean)">
             <summary>
             Get highlight candidate offsets through the specified target node.
             </summary>
