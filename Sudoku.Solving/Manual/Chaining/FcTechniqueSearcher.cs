@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -76,13 +75,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		private void GetAll(IList<ChainingTechniqueInfo> accumulator, ref SudokuGrid grid)
 		{
 			// Iterate on empty cells.
-			for (int cell = 0; cell < 81; cell++)
+			foreach (int cell in EmptyMap)
 			{
-				if (grid.GetStatus(cell) != CellStatus.Empty)
-				{
-					continue;
-				}
-
 				short mask = grid.GetCandidateMask(cell);
 				int count = mask.PopCount();
 				switch (count)
@@ -230,25 +224,10 @@ namespace Sudoku.Solving.Manual.Chaining
 			IList<ChainingTechniqueInfo> accumulator, ref SudokuGrid grid, int cell, int digit,
 			Set<Node> onToOn, Set<Node> onToOff)
 		{
-			static GridMap g(in SudokuGrid grid, int digit)
-			{
-				var result = GridMap.Empty;
-
-				for (int cell = 0; cell < 81; cell++)
-				{
-					if (grid.Exists(cell, digit) is true)
-					{
-						result.AddAnyway(cell);
-					}
-				}
-
-				return result;
-			}
-
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
 				int region = GetRegion(cell, label);
-				var worthMap = g(grid, digit) & RegionMaps[region];
+				var worthMap = CandMaps[digit] & RegionMaps[region];
 				switch (worthMap.Count)
 				{
 					case 2:
