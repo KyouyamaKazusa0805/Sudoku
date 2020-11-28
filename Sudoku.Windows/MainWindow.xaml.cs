@@ -186,10 +186,13 @@ namespace Sudoku.Windows
 
 					var views = _currentTechniqueInfo.Views;
 					int totalViewsCount = views.Count;
-					_currentViewIndex = Abs(
-						(key == K.OemMinus ? _currentViewIndex - 1 : _currentViewIndex + 1) % totalViewsCount);
+					ref int i = ref _currentViewIndex;
+					i = Abs(
+					(
+						key == K.OemMinus ? i - 1 is var j && j < 0 ? j + totalViewsCount : j : i + 1
+					) % totalViewsCount);
 
-					_currentPainter = _currentPainter with { View = views[_currentViewIndex] };
+					_currentPainter = _currentPainter with { View = views[i] };
 
 					UpdateImageGrid();
 
