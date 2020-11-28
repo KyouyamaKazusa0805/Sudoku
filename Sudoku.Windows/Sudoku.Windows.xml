@@ -338,6 +338,31 @@
             </summary>
             <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
         </member>
+        <member name="T:Sudoku.Windows.Constants.Paths">
+            <summary>
+            Here displays the default and basic paths in this project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.Constants.Paths.TrainedDataFileName">
+            <summary>
+            Indicates the trained data file name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.Constants.Paths.LangSourceDirectory">
+            <summary>
+            Indicates the language source dictionary directory.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.Constants.Paths.LangSourceEnUs">
+            <summary>
+            Indicates the language source dictioanry (English).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.Constants.Paths.LangSourceZhCn">
+            <summary>
+            Indicates the language source dictionary (Chinese).
+            </summary>
+        </member>
         <member name="T:Sudoku.Windows.DifficultyInfo">
             <summary>
             Indicates the difficulty information used for gather the technique information of a puzzle.

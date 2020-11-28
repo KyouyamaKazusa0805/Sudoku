@@ -286,7 +286,7 @@ namespace Sudoku.Windows
 				_recognition = new();
 			}
 #if !MUST_DOWNLOAD_TRAINED_DATA
-			catch (FileNotFoundException ex) when (ex.FileName?.EndsWith("eng.traineddata") ?? false)
+			catch (FileNotFoundException ex) when (ex.FileName?.EndsWith(Paths.TrainedDataFileName) ?? false)
 			{
 				// Trained data file can't be found.
 				Messagings.FailedToLoadRecognitionTool(ex);
@@ -305,10 +305,10 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void SaveCoreResources()
 		{
-			DirectoryEx.CreateIfDoesNotExist("lang");
+			DirectoryEx.CreateIfDoesNotExist(Paths.LangSourceDirectory);
 
-			File.WriteAllText(@"lang\Resources.en-us.dic", JsonSerializer.Serialize(CoreResources.LangSourceEnUs));
-			File.WriteAllText(@"lang\Resources.zh-cn.dic", JsonSerializer.Serialize(CoreResources.LangSourceZhCn));
+			File.WriteAllText(Paths.LangSourceEnUs, JsonSerializer.Serialize(CoreResources.LangSourceEnUs));
+			File.WriteAllText(Paths.LangSourceZhCn, JsonSerializer.Serialize(CoreResources.LangSourceZhCn));
 		}
 
 		/// <summary>
