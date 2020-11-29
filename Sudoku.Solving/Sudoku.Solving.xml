@@ -5475,6 +5475,33 @@
             <param name="accumulator">The current accumulator.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.StepFinder">
+            <summary>
+            Provides a step finder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.StepFinder._solver">
+            <summary>
+            Indicates the inner solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepFinder.#ctor(Sudoku.Solving.Manual.ManualSolver)">
+            <summary>
+            Initializes an instance with the specified solver.
+            </summary>
+            <param name="solver">The solver.</param>
+            <remarks>
+            This solver will provide the settings of the searching operation.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepFinder.Search(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="progress">The progress.</param>
+            <param name="countryCode">The country code.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo">
             <summary>
             Provides a usage of <b>hidden subset</b> technique.

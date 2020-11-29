@@ -84,4 +84,8 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Externals\Sudoku.Solving\Manual\" />
+	</ItemGroup>
+
 </Project>

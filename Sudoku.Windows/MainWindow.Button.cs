@@ -48,9 +48,11 @@ namespace Sudoku.Windows
 				DisableSolvingControls();
 
 				(dialog = new()).Show();
-				var techniqueGroups = await Task.Run(
-					() =>
-					new StepFinder(Settings).Search(valueGrid, dialog.DefaultReporting, Settings.LanguageCode));
+				var techniqueGroups = await Task.Run(() =>
+				{
+					return new StepFinder(Settings.MainManualSolver)
+					.Search(valueGrid, dialog.DefaultReporting, Settings.LanguageCode);
+				});
 
 				EnableSolvingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();

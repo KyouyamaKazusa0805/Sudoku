@@ -38,16 +38,19 @@ namespace Sudoku.Solving.Manual
 	public sealed class StepFinder
 	{
 		/// <summary>
-		/// The settings used.
+		/// Indicates the inner solver.
 		/// </summary>
-		private readonly WindowsSettings _settings;
+		private readonly ManualSolver _solver;
 
 
 		/// <summary>
-		/// Initializes an instance with the specified settings.
+		/// Initializes an instance with the specified solver.
 		/// </summary>
-		/// <param name="settings">The settings.</param>
-		public StepFinder(WindowsSettings settings) => _settings = settings;
+		/// <param name="solver">The solver.</param>
+		/// <remarks>
+		/// This solver will provide the settings of the searching operation.
+		/// </remarks>
+		public StepFinder(ManualSolver solver) => _solver = solver;
 
 
 		/// <summary>
@@ -64,53 +67,58 @@ namespace Sudoku.Solving.Manual
 				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}
 
-			var solver = _settings.MainManualSolver;
 			var searchers = new TechniqueSearcher[]
 			{
-				new SingleTechniqueSearcher(solver.EnableFullHouse, solver.EnableLastDigit, solver.ShowDirectLines),
+				new SingleTechniqueSearcher(
+					_solver.EnableFullHouse, _solver.EnableLastDigit, _solver.ShowDirectLines),
 				new LcTechniqueSearcher(),
 				new SubsetTechniqueSearcher(),
 				new NormalFishTechniqueSearcher(),
-				new RegularWingTechniqueSearcher(solver.CheckRegularWingSize),
+				new RegularWingTechniqueSearcher(_solver.CheckRegularWingSize),
 				new IrregularWingTechniqueSearcher(),
 				new TwoStrongLinksTechniqueSearcher(),
-				new UrTechniqueSearcher(solver.CheckIncompleteUniquenessPatterns, solver.SearchExtendedUniqueRectangles),
+				new UrTechniqueSearcher(
+					_solver.CheckIncompleteUniquenessPatterns, _solver.SearchExtendedUniqueRectangles),
 				new XrTechniqueSearcher(),
 				new UlTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(),
-				new AlcTechniqueSearcher(solver.CheckAlmostLockedQuadruple),
+				new AlcTechniqueSearcher(_solver.CheckAlmostLockedQuadruple),
 				new SdcTechniqueSearcher(
-					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
+					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
+					_solver.AllowAlsCycles),
 				new Sdc3dTechniqueSearcher(
-					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
+					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
+					_solver.AllowAlsCycles),
 				new BdpTechniqueSearcher(),
 				new QdpTechniqueSearcher(),
 				new UsTechniqueSearcher(),
 				new GuardianTechniqueSearcher(),
-				new BugTechniqueSearcher(solver.UseExtendedBugSearcher),
+				new BugTechniqueSearcher(_solver.UseExtendedBugSearcher),
 				new EripTechniqueSearcher(),
 				new AicTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(
-					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
+					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
+					_solver.AllowAlsCycles),
 				new AlsXyWingTechniqueSearcher(
-					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
+					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
+					_solver.AllowAlsCycles),
 				new AlsWWingTechniqueSearcher(
-					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
+					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
+					_solver.AllowAlsCycles),
 				//new DeathBlossomTechniqueSearcher(
-				//	solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.MaxPetalsOfDeathBlossom),
-				new DbTechniqueSearcher(solver.MaxPetalsOfDeathBlossom),
+				//	solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell,
+				//	solver.MaxPetalsOfDeathBlossom),
+				new DbTechniqueSearcher(_solver.MaxPetalsOfDeathBlossom),
 				new HobiwanFishTechniqueSearcher(
-					solver.HobiwanFishMaximumSize, solver.HobiwanFishMaximumExofinsCount,
-					solver.HobiwanFishMaximumEndofinsCount, solver.HobiwanFishCheckTemplates),
+					_solver.HobiwanFishMaximumSize, _solver.HobiwanFishMaximumExofinsCount,
+					_solver.HobiwanFishMaximumEndofinsCount, _solver.HobiwanFishCheckTemplates),
 				new FcTechniqueSearcher(true, false, true, 0),
 				new FcTechniqueSearcher(false, true, false, 0),
 				new FcTechniqueSearcher(false, true, true, 0),
-				new BowmanBingoTechniqueSearcher(solver.BowmanBingoMaximumLength),
+				new BowmanBingoTechniqueSearcher(_solver.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
-				//new JuniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
-				//new SeniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
-				new JeTechniqueSearcher(solver.CheckAdvancedInExocet),
-				new SeTechniqueSearcher(solver.CheckAdvancedInExocet),
+				new JeTechniqueSearcher(_solver.CheckAdvancedInExocet),
+				new SeTechniqueSearcher(_solver.CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
 				new AlsNetTechniqueSearcher(),
 			};

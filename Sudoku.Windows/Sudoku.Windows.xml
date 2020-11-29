@@ -2918,30 +2918,6 @@
             <param name="this">(<see langword="this"/> parameter) The current size.</param>
             <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.StepFinder">
-            <summary>
-            Provides a step finder.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.StepFinder._settings">
-            <summary>
-            The settings used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepFinder.#ctor(Sudoku.Windows.WindowsSettings)">
-            <summary>
-            Initializes an instance with the specified settings.
-            </summary>
-            <param name="settings">The settings.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepFinder.Search(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
-            <summary>
-            Search for all possible steps in a grid.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="progress">The progress.</param>
-            <param name="countryCode">The country code.</param>
-        </member>
         <member name="T:System.SystemClipboard">
             <summary>
             Encapsulates a system clipboard (calls <see cref="T:System.Windows.Clipboard"/>).
