@@ -78,8 +78,8 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 
 | Project<br/>项目                                             | Description<br/>描述                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [`Sudoku.Bot`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Bot) | The project that implement the bot.<br/>实现机器人的项目。   |
-| [`Sudoku.Bot.Console`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Bot.Console) | The project that use the bot.<br/>使用机器人的项目。         |
+| [`Sudoku.Bot`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Bot) | The project that implement the bot.<br/>All code files in this project are surrounded with the conditional compilation symbol `AUTHOR_RESERVED`. If you wouldn't like to use this project, just delete it!<br />实现机器人的项目。<br />该项目的所有代码文件都使用条件编译符号`AUTHOR_RESERVED` 包裹。如果你不想使用这个项目，删掉就行！ |
+| [`Sudoku.Bot.Console`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Bot.Console) | The project that use the bot.<br/>All code files in this project are surrounded with the conditional compilation symbol `AUTHOR_RESERVED`. If you wouldn't like to use this project, just delete it!<br />使用机器人的项目。<br />该项目的所有代码文件都使用条件编译符号`AUTHOR_RESERVED` 包裹。如果你不想使用这个项目，删掉就行！ |
 | [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core) | The main data structure implementation of the sudoku elementary.<br/>对数独基本元素的主要数据结构的实现。 |
 | [`Sudoku.Diagnostics`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Diagnostics) | This project encapsulates operations for diagnosing the whole solution, such as checking the number of code lines.<br/>这个项目封装了诊断整个解决方案的操作，比如检查代码的行数。 |
 | [`Sudoku.DocComments`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.DocComments) | I just want to say this project is useless but for providing other projects with document comments. Due to some reason hard to say, I've deleted the XML files used for providing with comments and using real instances to offer comments.<br/>我只想说，这个项目除了给别的项目提供文档注释以外，就没别的用了。由于一些比较难说的原因，我把用来提供文档注释的 XML 文件都删掉了，改成了真正的实体对象。 |
@@ -90,7 +90,7 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 | [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving) | The generating and solving project.<br/>解题和题目生成的项目。 |
 | [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows) | The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。 |
 | [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging) | The project that can be used while debugging only.<br/>这个项目仅用于调试代码时。 |
-| [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref) | The profiles for sudoku for references.<br/>数独相关参考资料。 |
+| [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref) | The profiles for sudoku for references. In addition, some necessary files to help us compile and run the whole project are also in this folder.<br/>数独相关参考资料。另外，一些帮助我们执行和运行的文件也在此文件夹下。 |
 | [`pic`](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic) | The pictures.<br/>图片。                                     |
 
 
