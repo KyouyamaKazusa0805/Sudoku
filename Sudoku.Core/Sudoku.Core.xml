@@ -2618,9 +2618,6 @@
         <member name="M:Sudoku.Data.SudokuGrid.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.SudokuGrid.Fix">
             <summary>
             To fix the current grid (all modifiable values will be changed to given ones).

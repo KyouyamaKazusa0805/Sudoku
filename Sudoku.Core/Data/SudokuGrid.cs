@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -17,7 +15,7 @@ namespace Sudoku.Data
 #if DEBUG
 	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
 #endif
-	public unsafe partial struct SudokuGrid : IEnumerable<short>, IValueEquatable<SudokuGrid>, IFormattable
+	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable
 	{
 		/// <summary>
 		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -439,12 +437,13 @@ namespace Sudoku.Data
 		public readonly string ToMaskString()
 		{
 			const string separator = ", ";
-			return new StringBuilder()
-				.AppendRange<short, string>(this, &appender)
-				.RemoveFromEnd(separator.Length)
-				.ToString();
+			var sb = new StringBuilder();
+			foreach (short mask in this)
+			{
+				sb.Append(mask).Append(separator);
+			}
 
-			static string appender(in short mask) => $"{mask}{separator}";
+			return sb.RemoveFromEnd(separator.Length).ToString();
 		}
 
 		/// <inheritdoc cref="object.ToString"/>
@@ -486,17 +485,13 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly IEnumerator<short> GetEnumerator()
+		public readonly Enumerator GetEnumerator()
 		{
 			fixed (short* arr = _values)
 			{
 				return new Enumerator(arr);
 			}
 		}
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 		/// <summary>
 		/// To fix the current grid (all modifiable values will be changed to given ones).
