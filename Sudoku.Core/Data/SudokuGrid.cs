@@ -15,7 +15,7 @@ namespace Sudoku.Data
 	/// Encapsulates a sudoku grid using value type instead of reference type.
 	/// </summary>
 #if DEBUG
-	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\")}")]
+	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
 #endif
 	public unsafe partial struct SudokuGrid : IEnumerable<short>, IValueEquatable<SudokuGrid>, IFormattable
 	{
