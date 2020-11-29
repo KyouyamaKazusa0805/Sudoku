@@ -3199,6 +3199,57 @@
             <param name="seed">The specified number.</param>
             <returns>All combinations.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.JeTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>junior exocet</b> (JE) technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeTechniqueSearcher.#ctor(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JeTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeTechniqueSearcher.GatheringTargetElims(Sudoku.Solving.Manual.Exocets.Eliminations.Target,System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Int16)">
+            <summary>
+            The method for gathering target eliminations.
+            </summary>
+            <param name="targetElims">The target eliminations.</param>
+            <param name="cell">The cell.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="baseCandsMask">The base candidates mask.</param>
+            <param name="temp">The temp mask.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether this method has been found eliminations.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap@,System.Int16)">
+            <summary>
+            Check the cross-line cells.
+            </summary>
+            <param name="crossline">(<see langword="in"/> parameter) The cross line cells.</param>
+            <param name="digitsNeedChecking">The digits that need checking.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the structure passed the validation.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeTechniqueSearcher.CheckTarget(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int32,System.Int16@)">
+            <summary>
+            Check the target cells.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="pos1">The cell 1 to determine.</param>
+            <param name="pos2">The cell 2 to determine.</param>
+            <param name="baseCandsMask">The base candidate mask.</param>
+            <param name="otherCandsMask">
+            (<see langword="out"/> parameter) The other candidate mask. If failed to check,
+            the value will be <c>-1</c>.
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo">
             <summary>
             Provides a usage of <b>junior exocet</b> (JE) technique.
@@ -3582,6 +3633,32 @@
             <param name="t1">The target cell 1.</param>
             <param name="t2">The target cell 2.</param>
             <seealso cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.SeTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>senior exocet</b> (SE) technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeTechniqueSearcher.#ctor(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Check the cross-line cells.
+            </summary>
+            <param name="baseMap">(<see langword="in"/> parameter) The base cells map.</param>
+            <param name="tempCrossline">(<see langword="in"/> parameter) The cross-line map.</param>
+            <param name="baseCandidatesMask">The base candidate mask.</param>
+            <param name="t1">The target cell 1.</param>
+            <param name="t2">The target cell 2.</param>
+            <param name="isRow">Indicates whether the specified computation is for rows.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>

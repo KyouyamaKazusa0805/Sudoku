@@ -107,8 +107,10 @@ namespace Sudoku.Solving.Manual
 				new FcTechniqueSearcher(false, true, true, 0),
 				new BowmanBingoTechniqueSearcher(solver.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
-				new JuniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
-				new SeniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
+				//new JuniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
+				//new SeniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
+				new JeTechniqueSearcher(solver.CheckAdvancedInExocet),
+				new SeTechniqueSearcher(solver.CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
 				new AlsNetTechniqueSearcher(),
 			};

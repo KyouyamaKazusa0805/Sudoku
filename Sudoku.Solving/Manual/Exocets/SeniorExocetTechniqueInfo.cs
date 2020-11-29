@@ -25,8 +25,8 @@ namespace Sudoku.Solving.Manual.Exocets
 	public sealed record SeniorExocetTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Exocet,
 		IEnumerable<int> Digits, int EndoTargetCell, int[]? ExtraRegionsMask,
-		Target TargetEliminations, TrueBase TrueBaseEliminations,
-		Mirror MirrorEliminations, CompatibilityTest CompatibilityEliminations)
+		Target? TargetEliminations, TrueBase? TrueBaseEliminations,
+		Mirror? MirrorEliminations, CompatibilityTest? CompatibilityEliminations)
 		: ExocetTechniqueInfo(
 			Conclusions, Views, Exocet, Digits, null, null,
 			TargetEliminations, MirrorEliminations, default, default, default,
