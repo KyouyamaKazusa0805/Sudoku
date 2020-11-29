@@ -17,6 +17,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Encapsulates a <b>junior exocet</b> (JE) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Je))]
+	[Obsolete("Please use '" + nameof(JeTechniqueSearcher) + "' instead.", true)]
 	public sealed class JuniorExocetTechniqueSearcher : ExocetTechniqueSearcher
 	{
 		/// <summary>
@@ -191,7 +192,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				accumulator.Add(
-					new JuniorExocetTechniqueInfo(
+					new JeTechniqueInfo(
 						new List<Conclusion>(),
 						new View[] { new(cellOffsets, candidateOffsets, null, null) },
 						exocet,

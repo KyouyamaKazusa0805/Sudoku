@@ -199,7 +199,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					accumulator.Add(
-						new SeniorExocetTechniqueInfo(
+						new SeTechniqueInfo(
 							new List<Conclusion>(), // Special eliminations will use this empty list.
 							new View[] { new(cellOffsets, candidateOffsets, null, null) },
 							exocet,

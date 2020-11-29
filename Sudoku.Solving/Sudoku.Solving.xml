@@ -3199,6 +3199,50 @@
             <param name="seed">The specified number.</param>
             <returns>All combinations.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.JeTechniqueInfo">
+            <summary>
+            Provides a usage of <b>junior exocet</b> (JE) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Exocet">The exocet.</param>
+            <param name="Digits">All digits.</param>
+            <param name="LockedMemberQ">The locked member Q.</param>
+            <param name="LockedMemberR">The locked member R.</param>
+            <param name="TargetEliminations">The target eliminations.</param>
+            <param name="MirrorEliminations">The mirror eliminations.</param>
+            <param name="BibiEliminations">The Bi-bi pattern eliminations.</param>
+            <param name="TargetPairEliminations">The target pair eliminations.</param>
+            <param name="SwordfishEliminations">The swordfish pattern eliminations.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.Target,Sudoku.Solving.Manual.Exocets.Eliminations.Mirror,Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair,Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish)">
+            <summary>
+            Provides a usage of <b>junior exocet</b> (JE) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Exocet">The exocet.</param>
+            <param name="Digits">All digits.</param>
+            <param name="LockedMemberQ">The locked member Q.</param>
+            <param name="LockedMemberR">The locked member R.</param>
+            <param name="TargetEliminations">The target eliminations.</param>
+            <param name="MirrorEliminations">The mirror eliminations.</param>
+            <param name="BibiEliminations">The Bi-bi pattern eliminations.</param>
+            <param name="TargetPairEliminations">The target pair eliminations.</param>
+            <param name="SwordfishEliminations">The swordfish pattern eliminations.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JeTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JeTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeTechniqueInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.JeTechniqueSearcher">
             <summary>
             Encapsulates a <b>junior exocet</b> (JE) technique searcher.
@@ -3249,50 +3293,6 @@
             the value will be <c>-1</c>.
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo">
-            <summary>
-            Provides a usage of <b>junior exocet</b> (JE) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Exocet">The exocet.</param>
-            <param name="Digits">All digits.</param>
-            <param name="LockedMemberQ">The locked member Q.</param>
-            <param name="LockedMemberR">The locked member R.</param>
-            <param name="TargetEliminations">The target eliminations.</param>
-            <param name="MirrorEliminations">The mirror eliminations.</param>
-            <param name="BibiEliminations">The Bi-bi pattern eliminations.</param>
-            <param name="TargetPairEliminations">The target pair eliminations.</param>
-            <param name="SwordfishEliminations">The swordfish pattern eliminations.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.Target,Sudoku.Solving.Manual.Exocets.Eliminations.Mirror,Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair,Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish)">
-            <summary>
-            Provides a usage of <b>junior exocet</b> (JE) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Exocet">The exocet.</param>
-            <param name="Digits">All digits.</param>
-            <param name="LockedMemberQ">The locked member Q.</param>
-            <param name="LockedMemberR">The locked member R.</param>
-            <param name="TargetEliminations">The target eliminations.</param>
-            <param name="MirrorEliminations">The mirror eliminations.</param>
-            <param name="BibiEliminations">The Bi-bi pattern eliminations.</param>
-            <param name="TargetPairEliminations">The target pair eliminations.</param>
-            <param name="SwordfishEliminations">The swordfish pattern eliminations.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.GetAdditional">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher">
             <summary>
@@ -3521,53 +3521,6 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Inequality(Sudoku.Solving.Manual.Exocets.Pattern@,Sudoku.Solving.Manual.Exocets.Pattern@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo">
-            <summary>
-            Provides a usage of <b>senior exocet</b> (SE) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Exocet">The exocet.</param>
-            <param name="Digits">All digits.</param>
-            <param name="EndoTargetCell">The endo target cell.</param>
-            <param name="ExtraRegionsMask">The extra regions mask.</param>
-            <param name="TargetEliminations">The target eliminations.</param>
-            <param name="TrueBaseEliminations">The true base eliminations.</param>
-            <param name="MirrorEliminations">The mirror eliminations.</param>
-            <param name="CompatibilityEliminations">The compatibility eliminations.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32[],Sudoku.Solving.Manual.Exocets.Eliminations.Target,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBase,Sudoku.Solving.Manual.Exocets.Eliminations.Mirror,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest)">
-            <summary>
-            Provides a usage of <b>senior exocet</b> (SE) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Exocet">The exocet.</param>
-            <param name="Digits">All digits.</param>
-            <param name="EndoTargetCell">The endo target cell.</param>
-            <param name="ExtraRegionsMask">The extra regions mask.</param>
-            <param name="TargetEliminations">The target eliminations.</param>
-            <param name="TrueBaseEliminations">The true base eliminations.</param>
-            <param name="MirrorEliminations">The mirror eliminations.</param>
-            <param name="CompatibilityEliminations">The compatibility eliminations.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.ContainsExtraRegions">
-            <summary>
-            Indicates whether the specified instance contains any extra regions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.GetAdditional">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher">
             <summary>
             Encapsulates a <b>senior exocet</b> (SE) technique searcher.
@@ -3633,6 +3586,53 @@
             <param name="t1">The target cell 1.</param>
             <param name="t2">The target cell 2.</param>
             <seealso cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.SeTechniqueInfo">
+            <summary>
+            Provides a usage of <b>senior exocet</b> (SE) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Exocet">The exocet.</param>
+            <param name="Digits">All digits.</param>
+            <param name="EndoTargetCell">The endo target cell.</param>
+            <param name="ExtraRegionsMask">The extra regions mask.</param>
+            <param name="TargetEliminations">The target eliminations.</param>
+            <param name="TrueBaseEliminations">The true base eliminations.</param>
+            <param name="MirrorEliminations">The mirror eliminations.</param>
+            <param name="CompatibilityEliminations">The compatibility eliminations.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32[],Sudoku.Solving.Manual.Exocets.Eliminations.Target,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBase,Sudoku.Solving.Manual.Exocets.Eliminations.Mirror,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest)">
+            <summary>
+            Provides a usage of <b>senior exocet</b> (SE) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Exocet">The exocet.</param>
+            <param name="Digits">All digits.</param>
+            <param name="EndoTargetCell">The endo target cell.</param>
+            <param name="ExtraRegionsMask">The extra regions mask.</param>
+            <param name="TargetEliminations">The target eliminations.</param>
+            <param name="TrueBaseEliminations">The true base eliminations.</param>
+            <param name="MirrorEliminations">The mirror eliminations.</param>
+            <param name="CompatibilityEliminations">The compatibility eliminations.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeTechniqueInfo.ContainsExtraRegions">
+            <summary>
+            Indicates whether the specified instance contains any extra regions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeTechniqueInfo.GetAdditional">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SeTechniqueSearcher">
             <summary>

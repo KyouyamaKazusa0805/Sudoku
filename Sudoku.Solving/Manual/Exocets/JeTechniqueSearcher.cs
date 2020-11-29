@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				accumulator.Add(
-					new JuniorExocetTechniqueInfo(
+					new JeTechniqueInfo(
 						new List<Conclusion>(),
 						new View[] { new(cellOffsets, candidateOffsets, null, null) },
 						exocet,

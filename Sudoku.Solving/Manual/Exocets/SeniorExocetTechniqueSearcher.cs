@@ -18,6 +18,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Encapsulates a <b>senior exocet</b> (SE) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Se))]
+	[Obsolete("Please use '" + nameof(SeTechniqueSearcher) + "' instead.", true)]
 	public sealed class SeniorExocetTechniqueSearcher : ExocetTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -310,7 +311,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					accumulator.Add(
-						new SeniorExocetTechniqueInfo(
+						new SeTechniqueInfo(
 							new List<Conclusion>(), // Special eliminations will use this empty list.
 							new View[] { new(cellOffsets, candidateOffsets, null, null) },
 							exocet,

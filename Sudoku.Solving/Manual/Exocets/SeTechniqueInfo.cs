@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <param name="TrueBaseEliminations">The true base eliminations.</param>
 	/// <param name="MirrorEliminations">The mirror eliminations.</param>
 	/// <param name="CompatibilityEliminations">The compatibility eliminations.</param>
-	public sealed record SeniorExocetTechniqueInfo(
+	public sealed record SeTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Exocet,
 		IEnumerable<int> Digits, int EndoTargetCell, int[]? ExtraRegionsMask,
 		Target? TargetEliminations, TrueBase? TrueBaseEliminations,
