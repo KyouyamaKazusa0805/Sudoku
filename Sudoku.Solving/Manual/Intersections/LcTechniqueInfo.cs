@@ -84,7 +84,6 @@ namespace Sudoku.Solving.Manual.Intersections
 				return new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))
-					.Append(Resources.GetValue("Space"))
 					.Append(Resources.GetValue("_Lc1"))
 					.Append(digit)
 					.Append(Resources.GetValue("_Lc2"))
