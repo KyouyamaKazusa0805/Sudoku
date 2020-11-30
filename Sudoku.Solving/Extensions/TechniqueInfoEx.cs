@@ -19,7 +19,8 @@ namespace Sudoku.Solving.Extensions
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsAlsTechnique(this TechniqueInfo @this) =>
-			@this is DbTechniqueInfo or AlsXzTechniqueInfo or AlsXyWingTechniqueInfo or AlsWWingTechniqueInfo;
+			@this is DeathBlossomTechniqueInfo
+			or AlsXzTechniqueInfo or AlsXyWingTechniqueInfo or AlsWWingTechniqueInfo;
 
 		/// <summary>
 		/// Check whether the currrent technique information is a chaining-ruled technique.

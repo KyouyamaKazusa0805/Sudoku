@@ -437,7 +437,9 @@ namespace Sudoku.Data
 										var cellStatus = GetStatusFromMask(value);
 
 										value &= MaxCandidatesMask;
-										int d = (cellStatus != CellStatus.Empty ? value.FindFirstSet() : -1) + 1;
+										int d = value == 0
+											? -1
+											: (cellStatus != CellStatus.Empty ? value.FindFirstSet() : -1) + 1;
 										string s;
 										switch (cellStatus)
 										{

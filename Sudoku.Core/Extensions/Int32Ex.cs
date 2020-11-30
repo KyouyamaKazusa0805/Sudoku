@@ -18,8 +18,7 @@ namespace Sudoku.Extensions
 
 		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int FindFirstSet(this int @this) =>
-			@this == 0 ? -1 : BitOperations.TrailingZeroCount(@this);
+		public static int FindFirstSet(this int @this) => BitOperations.TrailingZeroCount(@this);
 
 		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
 		public static int PopCount(this int @this) => BitOperations.PopCount((uint)@this);

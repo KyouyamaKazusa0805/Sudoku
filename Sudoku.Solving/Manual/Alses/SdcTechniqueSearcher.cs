@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 										var elimMapIsolated = GridMap.Empty;
 										int digitIsolated = maskIsolated.FindFirstSet();
-										if (digitIsolated != -1)
+										if (digitIsolated != 32)
 										{
 											elimMapIsolated =
 											(
