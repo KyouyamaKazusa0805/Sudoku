@@ -13,6 +13,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
 	/// </summary>
+	[DisplayLevel(3)]
 	[TechniqueDisplay(nameof(TechniqueCode.RegionFc))]
 	public sealed class FcTechniqueSearcher : ChainingTechniqueSearcher
 	{

@@ -11,6 +11,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// Encapsulates a <b>unique loop</b> (UL) technique searcher.
 	/// In fact the unique loop can also search for URs.
 	/// </summary>
+	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.UlType1))]
 	public sealed partial class UlTechniqueSearcher : UniquenessTechniqueSearcher
 	{

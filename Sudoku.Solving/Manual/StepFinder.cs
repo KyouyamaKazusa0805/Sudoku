@@ -52,31 +52,48 @@ namespace Sudoku.Solving.Manual
 			var searchers = _solver.GetHodokuModeSearchers();
 
 			TechniqueSearcher.InitializeMaps(grid);
+			int i = -1;
 			var bag = new List<TechniqueInfo>();
 			var progressResult = new TechniqueProgressResult(
 				searchers.Length, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			foreach (var searcher in searchers)
 			{
+				// Check whether the searcher is only used for analyzing a sudoku grid.
+				// If so, the searcher will be disabled here.
 				if (searcher.GetType().GetCustomAttribute<OnlyEnableInAnalysisAttribute>() is not null)
 				{
-					// This searcher is only used in analysis. Therefore, the searcher is disabled here.
 					continue;
 				}
 
-				var props = g(searcher);
+				// Skip the searcher that is disabled.
+				var props =
+					searcher.GetType()
+					.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?
+					.GetValue(null) as TechniqueProperties;
 				if (props is { IsEnabled: false, DisabledReason: not DisabledReason.HighAllocation })
 				{
 					continue;
 				}
 
+				// Check the searcher.
+				// Sukaku mode can't use them.
+				// In fact, sukaku can use uniqueness tests, but this will make the project
+				// a large modification.
 				if ((sukaku, searcher) is (true, UniquenessTechniqueSearcher))
 				{
-					// Sukaku mode can't use them.
-					// In fact, sukaku can use uniqueness tests, but this will make the project
-					// a large modification.
 					continue;
 				}
 
+				// Check the level of the searcher.
+				// If a searcher contains the upper level value than the current searcher holding,
+				// the searcher will be skipped to search steps.
+				int level = searcher.GetType().GetCustomAttribute<DisplayLevelAttribute>()!.Level;
+				if (i != -1 && i != level)
+				{
+					continue;
+				}
+
+				// Update the progress result.
 				if (progress is not null)
 				{
 					progressResult.CurrentTechnique = Resources.GetValue($"Progress{searcher.DisplayName}");
@@ -84,7 +101,16 @@ namespace Sudoku.Solving.Manual
 					progress.Report(progressResult);
 				}
 
-				searcher.GetAll(bag, grid);
+				// Searching.
+				var tempBag = new List<TechniqueInfo>();
+				searcher.GetAll(tempBag, grid);
+
+				// Gather the technique steps, and record the current level of the searcher.
+				if (tempBag.Count != 0)
+				{
+					i = level;
+					bag.AddRange(tempBag);
+				}
 			}
 
 			// Group them up.
@@ -97,13 +123,6 @@ namespace Sudoku.Solving.Manual
 
 			// Return the result.
 			return from step in bag.Distinct() group step by step.Name;
-
-			static TechniqueProperties g(TechniqueSearcher searcher) =>
-				(TechniqueProperties)
-					searcher
-					.GetType()
-					.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)!
-					.GetValue(null)!;
 		}
 	}
 }

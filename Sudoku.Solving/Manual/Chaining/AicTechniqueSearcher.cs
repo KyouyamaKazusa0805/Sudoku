@@ -18,6 +18,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// I want to use BFS (breadth-first searching) to search for chains, which can avoid
 	/// the redundant backtracking.
 	/// </remarks>
+	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.Aic))]
 	public sealed class AicTechniqueSearcher : ChainingTechniqueSearcher
 	{

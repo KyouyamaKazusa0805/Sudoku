@@ -9,6 +9,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <summary>
 	/// Encapsulates a <b>Borescoper's deadly pattern</b> technique searcher.
 	/// </summary>
+	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.BdpType1))]
 	public sealed partial class BdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{

@@ -15,6 +15,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Encapsulates a <b>death blossom</b> technique.
 	/// </summary>
+	[DisplayLevel(3)]
 	[TechniqueDisplay(nameof(TechniqueCode.DeathBlossom))]
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{

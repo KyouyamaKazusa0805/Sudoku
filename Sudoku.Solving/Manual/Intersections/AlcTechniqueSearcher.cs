@@ -14,6 +14,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Encapsulates an <b>almost locked candidates</b> (ALC) technique searcher.
 	/// </summary>
+	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.AlmostLockedPair))]
 	public sealed class AlcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
