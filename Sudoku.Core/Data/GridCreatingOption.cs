@@ -1,5 +1,5 @@
 ﻿
-namespace Sudoku
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Indicates teh grid creating option.

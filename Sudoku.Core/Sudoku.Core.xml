@@ -977,6 +977,21 @@
             or two regions are not in same region type.
             </exception>
         </member>
+        <member name="T:Sudoku.Data.GridCreatingOption">
+            <summary>
+            Indicates teh grid creating option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridCreatingOption.None">
+            <summary>
+            Indicates the option is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridCreatingOption.MinusOne">
+            <summary>
+            Indicates each value should minus one before creation.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.GridFormattingOptions">
             <summary>
             Provides a grid format option.
@@ -2748,13 +2763,13 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.CreateInstance(System.Int32[],Sudoku.GridCreatingOption)">
+        <member name="M:Sudoku.Data.SudokuGrid.CreateInstance(System.Int32[],Sudoku.Data.GridCreatingOption)">
             <summary>
             Creates an instance using grid values.
             </summary>
             <param name="gridValues">The array of grid values.</param>
             <param name="creatingOption">
-            The grid creating option. The default value is <see cref="F:Sudoku.GridCreatingOption.None"/>.
+            The grid creating option. The default value is <see cref="F:Sudoku.Data.GridCreatingOption.None"/>.
             </param>
             <returns>The result instance.</returns>
         </member>
@@ -6225,21 +6240,6 @@
             This field is not <see langword="readonly"/> because it can be initialized by the
             module initializer.
             </remarks>
-        </member>
-        <member name="T:Sudoku.GridCreatingOption">
-            <summary>
-            Indicates teh grid creating option.
-            </summary>
-        </member>
-        <member name="F:Sudoku.GridCreatingOption.None">
-            <summary>
-            Indicates the option is none.
-            </summary>
-        </member>
-        <member name="F:Sudoku.GridCreatingOption.MinusOne">
-            <summary>
-            Indicates each value should minus one before creation.
-            </summary>
         </member>
         <member name="T:Sudoku.Models.GridProgressResult">
             <summary>
