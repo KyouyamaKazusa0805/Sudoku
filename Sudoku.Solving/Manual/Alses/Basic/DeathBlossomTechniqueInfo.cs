@@ -15,7 +15,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <param name="Views">All views.</param>
 	/// <param name="Pivot">The pivot cell.</param>
 	/// <param name="Alses">All ALSes used.</param>
-	[Obsolete("Please use '" + nameof(DbTechniqueInfo) + "' instead.", false)]
 	public sealed record DeathBlossomTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot,
 		IReadOnlyDictionary<int, Als> Alses) : AlsTechniqueInfo(Conclusions, Views)
