@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Sudoku.DocComments
 {
@@ -23,7 +24,14 @@ namespace Sudoku.DocComments
 		/// will always return -1.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
-		/// <returns>An <see cref="int"/> value indicating that.</returns>
+		/// <returns>
+		/// An <see cref="int"/> value indicating that. Please note that if the value is 0,
+		/// the return value will be always 32 (for <see cref="int"/>) or 64 (for <see cref="long"/>).
+		/// The method simply calls the method <see cref="BitOperations.TrailingZeroCount(int)"/>
+		/// or <see cref="BitOperations.TrailingZeroCount(long)"/>.
+		/// </returns>
+		/// <seealso cref="BitOperations.TrailingZeroCount(int)"/>
+		/// <seealso cref="BitOperations.TrailingZeroCount(long)"/>
 		public static int FindFirstSet(Integer @this) => throw new NotImplementedException();
 
 		/// <summary>

@@ -224,7 +224,14 @@
             will always return -1.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+            <returns>
+            An <see cref="T:System.Int32"/> value indicating that. Please note that if the value is 0,
+            the return value will be always 32 (for <see cref="T:System.Int32"/>) or 64 (for <see cref="T:System.Int64"/>).
+            The method simply calls the method <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/>
+            or <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)"/>.
+            </returns>
+            <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/>
+            <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)"/>
         </member>
         <member name="M:Sudoku.DocComments.Integer.PopCount(Sudoku.DocComments.Integer)">
             <summary>
