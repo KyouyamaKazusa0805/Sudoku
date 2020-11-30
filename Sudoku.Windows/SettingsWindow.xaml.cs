@@ -11,6 +11,7 @@ using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Tooling;
 using CoreResources = Sudoku.Windows.Resources;
+using StepTriplet = System.KeyedTuple<string, int, System.Type>;
 
 namespace Sudoku.Windows
 {
@@ -65,6 +66,7 @@ namespace Sudoku.Windows
 			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent;
 			_checkBoxTextFormatPlaceholdersAreZero.IsChecked = Settings.TextFormatPlaceholdersAreZero;
 			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible;
+			_checkBoxOnlyShowSameLevelStepsInFindAllSteps.IsChecked = Settings.MainManualSolver.OnlyShowSameLevelTechniquesInFindAllSteps;
 			_checkBoxAllowOverlappingAlses.IsChecked = Settings.MainManualSolver.AllowOverlappingAlses;
 			_checkBoxHighlightRegions.IsChecked = Settings.MainManualSolver.AlsHighlightRegionInsteadOfCell;
 			_checkBoxAllowAlsCycles.IsChecked = Settings.MainManualSolver.AllowAlsCycles;
@@ -158,11 +160,11 @@ namespace Sudoku.Windows
 				let prior = TechniqueProperties.GetPropertiesFrom(@type)!.Priority
 				orderby prior
 				let v = @type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName
-				let c = new KeyedTuple<string, int, Type>(CoreResources.GetValue($"Progress{v}"), prior, @type)
+				let c = new StepTriplet(CoreResources.GetValue($"Progress{v}"), prior, @type)
 				select new ListBoxItem { Content = c });
+
 			_listBoxPriority.SelectedIndex = 0;
-			var (_, priority, selectedType, _) =
-				(KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
+			var (_, priority, selectedType, _) = (StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
 			_checkBoxIsEnabled.IsEnabled = !TechniqueProperties.GetPropertiesFrom(selectedType)!.IsReadOnly;
 			_textBoxPriority.Text = priority.ToString();
 		}
@@ -212,6 +214,10 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxPmGridCompatible_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible ^= true;
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void CheckBoxOnlyShowSameLevelStepsInFindAllSteps_Click(object sender, RoutedEventArgs e) =>
+			_assigments += () => _checkBoxOnlyShowSameLevelStepsInFindAllSteps.IsChecked = _manualSolver.OnlyShowSameLevelTechniquesInFindAllSteps ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxSearchExtendedUniqueRectangle_Click(object sender, RoutedEventArgs e) =>
@@ -548,11 +554,12 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (sender is ListBox
-			{
-				SelectedIndex: not -1,
-				SelectedItem: ListBoxItem { Content: KeyedTuple<string, int, Type> triplet } listBoxItem
-			} listBox)
+			if (
+				sender is ListBox
+				{
+					SelectedIndex: not -1,
+					SelectedItem: ListBoxItem { Content: StepTriplet triplet } listBoxItem
+				} listBox)
 			{
 				var (_, priority, @type, _) = triplet;
 				var (isEnabled, isReadOnly, _, _) = TechniqueProperties.GetPropertiesFrom(@type)!;
@@ -574,7 +581,7 @@ namespace Sudoku.Windows
 			if (sender is CheckBox checkBox)
 			{
 				TechniqueProperties.GetPropertiesFrom(
-					((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
+					((StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
 				)!.IsEnabled = checkBox.IsChecked ?? false;
 			}
 		}
@@ -585,7 +592,7 @@ namespace Sudoku.Windows
 			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
 			{
 				TechniqueProperties.GetPropertiesFrom(
-					((KeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
+					((StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
 				)!.Priority = value;
 			}
 		}

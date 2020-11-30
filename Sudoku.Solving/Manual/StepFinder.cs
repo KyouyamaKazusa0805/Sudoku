@@ -48,6 +48,8 @@ namespace Sudoku.Solving.Manual
 				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}
 
+			bool onlyShowSameLevelTechniquesInFindAllSteps = _solver.OnlyShowSameLevelTechniquesInFindAllSteps;
+
 			// Note that the parameter is unnecessary to pass.
 			var searchers = _solver.GetHodokuModeSearchers();
 
@@ -87,10 +89,14 @@ namespace Sudoku.Solving.Manual
 				// Check the level of the searcher.
 				// If a searcher contains the upper level value than the current searcher holding,
 				// the searcher will be skipped to search steps.
-				int level = searcher.GetType().GetCustomAttribute<DisplayLevelAttribute>()!.Level;
-				if (i != -1 && i != level)
+				int level = default;
+				if (onlyShowSameLevelTechniquesInFindAllSteps)
 				{
-					continue;
+					level = searcher.GetType().GetCustomAttribute<DisplayLevelAttribute>()!.Level;
+					if (i != -1 && i != level)
+					{
+						continue;
+					}
 				}
 
 				// Update the progress result.
@@ -108,7 +114,11 @@ namespace Sudoku.Solving.Manual
 				// Gather the technique steps, and record the current level of the searcher.
 				if (tempBag.Count != 0)
 				{
-					i = level;
+					if (onlyShowSameLevelTechniquesInFindAllSteps)
+					{
+						i = level;
+					}
+
 					bag.AddRange(tempBag);
 				}
 			}

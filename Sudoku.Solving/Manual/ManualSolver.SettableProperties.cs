@@ -227,6 +227,15 @@ namespace Sudoku.Solving.Manual
 		public bool OnlyRecordTemplateDelete { get; set; } = true;
 
 		/// <summary>
+		/// <para>
+		/// Indicates whether the searcher will only display same-level techniques
+		/// in Find All Steps tab page.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; } = true;
+
+		/// <summary>
 		/// <para>Indicates whether the solver will optimizes the applying order.</para>
 		/// <para>
 		/// When the value is <see langword="true"/>, the result to apply to

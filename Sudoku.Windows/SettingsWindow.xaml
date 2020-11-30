@@ -64,6 +64,10 @@
 							  x:Name="_checkBoxPmGridCompatible"
 							  Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxPmGridCompatible_Click"/>
+					<CheckBox x:Name="_checkBoxOnlyShowSameLevelStepsInFindAllSteps"
+							  Content="{DynamicResource OnlyShowSameLevelStepsInFindAllSteps}"
+							  Grid.Row="5" VerticalAlignment="Center"
+							  Click="CheckBoxOnlyShowSameLevelStepsInFindAllSteps_Click"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="{DynamicResource SettingsTabSolving}">

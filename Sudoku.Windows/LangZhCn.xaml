@@ -215,6 +215,7 @@
 	<sys:String x:Key="SettingsSolveFromTheCurrent">从当前盘面起解题</sys:String>
 	<sys:String x:Key="SettingsTextFormatPlaceholdersAreZero">盘面文本用 '0' 字符占位</sys:String>
 	<sys:String x:Key="SettingsPmCompatible">兼容老版本的候选数盘面</sys:String>
+	<sys:String x:Key="OnlyShowSameLevelStepsInFindAllSteps">在搜索全部技巧的时候，仅显示同级技巧</sys:String>
 	<sys:String x:Key="SettingsTabSolving">解题</sys:String>
 	<sys:String x:Key="SettingsSolvingChains">链（Chains）</sys:String>
 	<sys:String x:Key="SettingsSolvingChainsMaxLength">最长长度：</sys:String>
