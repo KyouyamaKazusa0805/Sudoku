@@ -1,7 +1,4 @@
-﻿#pragma warning disable IDE0055
-
-#if OBSOLETE || true
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,15 +7,14 @@ using Sudoku.Extensions;
 using Sudoku.Models;
 using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Uniqueness;
 using static System.Reflection.BindingFlags;
-#endif
 
 namespace Sudoku.Solving.Manual
 {
 	partial class ManualSolver
 	{
-#if OBSOLETE || true
 		/// <summary>
 		/// Solve the puzzle with <see cref="AnalyzeDifficultyStrictly"/> option.
 		/// </summary>
@@ -44,15 +40,16 @@ namespace Sudoku.Solving.Manual
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
 		private AnalysisResult SolveSeMode(
-			in SudokuGrid grid, ref SudokuGrid cloneation, List<TechniqueInfo> steps, in SudokuGrid solution,
+			in SudokuGrid grid, ref SudokuGrid cloneation, IList<TechniqueInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 			var searchers =
 #if I_CANT_DECIDE_WHETHER_THE_FIELD_SHOULD_BE_REMOVED__IF_THE_FIELD_IS_REMOVED__THIS_METHOD_WILL_BE_CHANGED_SYNCHRONIZEDLY
-				GetSearchersHodokuMode(solution);
+				this.GetHodokuModeSearchers(solution);
 #else
-				GetSearchersSeMode(solution);
+				this.GetSeModeSearchers(solution);
 #endif
+
 			var stepGrids = new List<SudokuGrid>();
 			var bag = new List<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
@@ -94,7 +91,7 @@ namespace Sudoku.Solving.Manual
 
 				if (FastSearch)
 				{
-					decimal minDiff = bag.Min(info => info.Difficulty);
+					decimal minDiff = bag.Min(static info => info.Difficulty);
 					var selection = from info in bag where info.Difficulty == minDiff select info;
 					if (selection.None())
 					{
@@ -145,48 +142,50 @@ namespace Sudoku.Solving.Manual
 				}
 				else
 				{
+					TechniqueInfo? step;
 					unsafe
 					{
-						var step = bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector);
-						if (step is null)
+						step = bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector);
+					}
+
+					if (step is null)
+					{
+						// If current step can't find any steps,
+						// we will turn to the next step finder to
+						// continue solving puzzle.
+						continue;
+					}
+
+					if (!CheckConclusionValidityAfterSearched
+						|| CheckConclusionsValidity(solution, step.Conclusions))
+					{
+						if (
+							RecordTechnique(
+								steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 						{
-							// If current step can't find any steps,
-							// we will turn to the next step finder to
-							// continue solving puzzle.
-							continue;
-						}
-
-						if (!CheckConclusionValidityAfterSearched
-							|| CheckConclusionsValidity(solution, step.Conclusions))
-						{
-							if (
-								RecordTechnique(
-									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
-							{
-								// The puzzle has been solved.
-								// :)
-								stopwatch.Stop();
-								return result;
-							}
-							else
-							{
-								// The puzzle has not been finished,
-								// we should turn to the first step finder
-								// to continue solving puzzle.
-								bag.Clear();
-
-								if (progress is not null)
-								{
-									ReportProgress(cloneation, progress, ref progressResult);
-								}
-
-								goto Restart;
-							}
+							// The puzzle has been solved.
+							// :)
+							stopwatch.Stop();
+							return result;
 						}
 						else
 						{
-							throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
+							// The puzzle has not been finished,
+							// we should turn to the first step finder
+							// to continue solving puzzle.
+							bag.Clear();
+
+							if (progress is not null)
+							{
+								ReportProgress(cloneation, progress, ref progressResult);
+							}
+
+							goto Restart;
 						}
+					}
+					else
+					{
+						throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
 					}
 				}
 			}
@@ -195,17 +194,16 @@ namespace Sudoku.Solving.Manual
 			// :(
 			stopwatch.Stop();
 			return new(
-				solverName: SolverName,
-				puzzle: grid,
-				solution: null,
-				hasSolved: false,
-				elapsedTime: stopwatch.Elapsed,
-				steps,
+				SolverName,
+				grid,
+				null,
+				false,
+				stopwatch.Elapsed,
+				steps!.AsReadOnlyList()!,
 				stepGrids);
 
 			static TechniqueProperties g(TechniqueSearcher searcher) =>
 				(TechniqueProperties)searcher.GetType().GetProperty("Properties", Public | Static)!.GetValue(null)!;
 		}
-#endif
 	}
 }

@@ -5,147 +5,14 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Models;
-using Sudoku.Solving.Manual.Alses;
-using Sudoku.Solving.Manual.Alses.Basic;
-using Sudoku.Solving.Manual.Alses.Mslses;
-using Sudoku.Solving.Manual.Chaining;
-using Sudoku.Solving.Manual.Exocets;
-using Sudoku.Solving.Manual.Fishes;
-using Sudoku.Solving.Manual.Intersections;
-using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Solving.Manual.Sdps;
-using Sudoku.Solving.Manual.Singles;
-using Sudoku.Solving.Manual.Subsets;
-using Sudoku.Solving.Manual.Uniqueness.Bugs;
-using Sudoku.Solving.Manual.Uniqueness.Extended;
-using Sudoku.Solving.Manual.Uniqueness.Loops;
-using Sudoku.Solving.Manual.Uniqueness.Polygons;
-using Sudoku.Solving.Manual.Uniqueness.Qiu;
-using Sudoku.Solving.Manual.Uniqueness.Rects;
-using Sudoku.Solving.Manual.Uniqueness.Square;
-using Sudoku.Solving.Manual.Wings.Irregular;
-using Sudoku.Solving.Manual.Wings.Regular;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual
 {
 	partial class ManualSolver
 	{
-		/// <summary>
-		/// Get all searchers using in Hodoku-like mode.
-		/// </summary>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution used for brute forces.</param>
-		/// <returns>The searchers.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private TechniqueSearcher[] GetSearchersHodokuMode(in SudokuGrid solution) =>
-			new TechniqueSearcher[]
-			{
-				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit, ShowDirectLines),
-				new LcTechniqueSearcher(),
-				new SubsetTechniqueSearcher(),
-				new NormalFishTechniqueSearcher(),
-				new RegularWingTechniqueSearcher(CheckRegularWingSize),
-				new IrregularWingTechniqueSearcher(),
-				new TwoStrongLinksTechniqueSearcher(),
-				new UrTechniqueSearcher(CheckIncompleteUniquenessPatterns, SearchExtendedUniqueRectangles),
-				new XrTechniqueSearcher(),
-				new UlTechniqueSearcher(),
-				new EmptyRectangleTechniqueSearcher(),
-				new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
-				new SdcTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new BdpTechniqueSearcher(),
-				new QdpTechniqueSearcher(),
-				new UsTechniqueSearcher(),
-				new GuardianTechniqueSearcher(),
-				new BugTechniqueSearcher(UseExtendedBugSearcher),
-				new EripTechniqueSearcher(),
-				new AicTechniqueSearcher(),
-				new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new AlsXyWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new DeathBlossomTechniqueSearcher(
-					AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
-				new FcTechniqueSearcher(true, false, true, 0),
-				new FcTechniqueSearcher(false, true, false, 0),
-				new FcTechniqueSearcher(false, true, true, 0),
-				new BugMultipleWithFcTechniqueSearcher(),
-				new HobiwanFishTechniqueSearcher(
-					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
-					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
-				new JeTechniqueSearcher(CheckAdvancedInExocet),
-				new SeTechniqueSearcher(CheckAdvancedInExocet),
-				new SkLoopTechniqueSearcher(),
-				new AlsNetTechniqueSearcher(),
-				new PomTechniqueSearcher(),
-				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
-				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-				new BruteForceTechniqueSearcher(solution),
-			};
-
-#if OBSOLETE || true
-		/// <summary>
-		/// Get all searchers using in Sudoku Explainer-like mode.
-		/// </summary>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution used for brute forces.</param>
-		/// <returns>The searchers.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private TechniqueSearcher[][] GetSearchersSeMode(in SudokuGrid solution) =>
-			new TechniqueSearcher[][]
-			{
-				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit, ShowDirectLines) },
-				new[] { new LcTechniqueSearcher() },
-				new TechniqueSearcher[]
-				{
-					new SubsetTechniqueSearcher(),
-					new NormalFishTechniqueSearcher(),
-					new RegularWingTechniqueSearcher(CheckRegularWingSize),
-					new IrregularWingTechniqueSearcher(),
-					new TwoStrongLinksTechniqueSearcher(),
-					new UrTechniqueSearcher(CheckIncompleteUniquenessPatterns, SearchExtendedUniqueRectangles),
-					new XrTechniqueSearcher(),
-					new UlTechniqueSearcher(),
-					new EmptyRectangleTechniqueSearcher(),
-					new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
-					new SdcTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-					new BdpTechniqueSearcher(),
-					new QdpTechniqueSearcher(),
-					new UsTechniqueSearcher(),
-					new GuardianTechniqueSearcher(),
-					new BugTechniqueSearcher(UseExtendedBugSearcher),
-					new EripTechniqueSearcher(),
-					new AicTechniqueSearcher(),
-					new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-					new AlsXyWingTechniqueSearcher(
-						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-					new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				},
-				new TechniqueSearcher[]
-				{
-					new FcTechniqueSearcher(true, false, true, 0),
-					new FcTechniqueSearcher(false, true, false, 0),
-					new FcTechniqueSearcher(false, true, true, 0),
-					new BugMultipleWithFcTechniqueSearcher(),
-					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
-					new DeathBlossomTechniqueSearcher(
-						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
-					new HobiwanFishTechniqueSearcher(
-						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
-						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
-					new PomTechniqueSearcher(),
-					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-				},
-				new TechniqueSearcher[]
-				{
-					new JeTechniqueSearcher(CheckAdvancedInExocet),
-					new SeTechniqueSearcher(CheckAdvancedInExocet),
-					new SkLoopTechniqueSearcher(),
-					new AlsNetTechniqueSearcher(),
-				},
-				new[] { new BruteForceTechniqueSearcher(solution) }
-			};
-#endif
-
 		/// <summary>
 		/// Bound with on-solving methods returns the solving state.
 		/// </summary>
@@ -159,8 +26,8 @@ namespace Sudoku.Solving.Manual
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
-			List<TechniqueInfo> steps, TechniqueInfo step, in SudokuGrid grid,
-			ref SudokuGrid cloneation, Stopwatch stopwatch, List<SudokuGrid> stepGrids,
+			IList<TechniqueInfo> steps, TechniqueInfo step, in SudokuGrid grid,
+			ref SudokuGrid cloneation, Stopwatch stopwatch, IList<SudokuGrid> stepGrids,
 			[NotNullWhen(true)] out AnalysisResult? result)
 		{
 			bool needAdd = false;
@@ -188,13 +55,13 @@ namespace Sudoku.Solving.Manual
 				if (cloneation.HasSolved)
 				{
 					result = new(
-						solverName: SolverName,
-						puzzle: grid,
-						solution: cloneation,
-						hasSolved: true,
-						elapsedTime: stopwatch.Elapsed,
-						steps,
-						stepGrids);
+						SolverName,
+						grid,
+						cloneation,
+						true,
+						stopwatch.Elapsed,
+						steps!.AsReadOnlyList()!,
+						stepGrids.AsReadOnlyList());
 					return true;
 				}
 			}

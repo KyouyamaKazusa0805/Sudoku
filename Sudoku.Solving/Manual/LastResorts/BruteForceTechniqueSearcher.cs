@@ -18,6 +18,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// the terminal grid (I mean, the answer grid).
 	/// </remarks>
 	[TechniqueDisplay(nameof(TechniqueCode.BruteForce))]
+	[OnlyEnableInAnalysis]
 	public sealed class BruteForceTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>

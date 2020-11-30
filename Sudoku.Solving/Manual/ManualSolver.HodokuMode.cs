@@ -7,6 +7,7 @@ using Sudoku.Extensions;
 using Sudoku.Models;
 using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;
 
@@ -71,19 +72,20 @@ namespace Sudoku.Solving.Manual
 
 		Searching:
 			// Start searching.
-			var searchers = GetSearchersHodokuMode(solution);
+			var searchers = this.GetHodokuModeSearchers(solution);
 
 			if (UseCalculationPriority)
 			{
+				static int cmp(in TechniqueSearcher a, in TechniqueSearcher b)
+				{
+					int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
+					int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
+					return l > r ? 1 : l < r ? -1 : 0;
+				}
+
 				unsafe
 				{
 					searchers.Sort(&cmp);
-					static int cmp(in TechniqueSearcher a, in TechniqueSearcher b)
-					{
-						int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
-						int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
-						return l > r ? 1 : l < r ? -1 : 0;
-					}
 				}
 			}
 

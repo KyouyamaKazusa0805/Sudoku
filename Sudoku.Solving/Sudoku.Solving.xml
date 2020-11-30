@@ -382,6 +382,12 @@
             Indicates the searcher will cause a lot of memory allocation.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Annotations.OnlyEnableInAnalysisAttribute">
+            <summary>
+            Marks on a technique searcher to describe the searcher is only used in analyzing a sudoku grid.
+            When in find-all-step mode, this searcher will be disabled.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Annotations.TechniqueProperties">
             <summary>
             Indicates the properties while searching aiming to <see cref="T:Sudoku.Solving.TechniqueSearcher"/>s.
@@ -1123,6 +1129,36 @@
             </summary>
             <param name="length">(<see langword="this"/> parameter) The length.</param>
             <returns>The difficulty.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Extensions.ManualSolverEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.ManualSolverEx.GetSeModeSearchers(Sudoku.Solving.Manual.ManualSolver,Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Get the searchers to enumerate on Sudoku Explainer mode.
+            </summary>
+            <param name="this">(<see langword="this"/> paraemeter) The manual solver.</param>
+            <param name="solution">
+            (<see langword="in"/> paraemeter) The solution for a sudoku grid.
+            This parameter is necessary because some technique searchers will use this value,
+            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher"/>.
+            </param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.ManualSolverEx.GetHodokuModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
+            <summary>
+            Get the searchers to enumerate on Hodoku mode.
+            </summary>
+            <param name="this">(<see langword="this"/> paraemeter) The manual solver.</param>
+            <param name="solution">
+            (<see langword="in"/> paraemeter) The solution for a sudoku grid.
+            This parameter is necessary because some technique searchers will use this value,
+            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher"/>. The default value is <see langword="null"/>.
+            </param>
+            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Extensions.NodeEx">
             <summary>
@@ -4602,7 +4638,7 @@
             </exception>
             <seealso cref="T:Sudoku.Models.GridProgressResult"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveSeMode(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveSeMode(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult})">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
@@ -4966,21 +5002,7 @@
             <para>The value is <c>5</c> in default case.</para>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSearchersHodokuMode(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get all searchers using in Hodoku-like mode.
-            </summary>
-            <param name="solution">(<see langword="in"/> parameter) The solution used for brute forces.</param>
-            <returns>The searchers.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSearchersSeMode(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get all searchers using in Sudoku Explainer-like mode.
-            </summary>
-            <param name="solution">(<see langword="in"/> parameter) The solution used for brute forces.</param>
-            <returns>The searchers.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Diagnostics.Stopwatch,System.Collections.Generic.List{Sudoku.Data.SudokuGrid},Sudoku.Solving.AnalysisResult@)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Diagnostics.Stopwatch,System.Collections.Generic.IList{Sudoku.Data.SudokuGrid},Sudoku.Solving.AnalysisResult@)">
             <summary>
             Bound with on-solving methods returns the solving state.
             </summary>

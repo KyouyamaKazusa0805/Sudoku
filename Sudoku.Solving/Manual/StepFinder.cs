@@ -7,27 +7,8 @@ using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual.Alses;
-using Sudoku.Solving.Manual.Alses.Basic;
-using Sudoku.Solving.Manual.Alses.Mslses;
-using Sudoku.Solving.Manual.Chaining;
-using Sudoku.Solving.Manual.Exocets;
-using Sudoku.Solving.Manual.Fishes;
-using Sudoku.Solving.Manual.Intersections;
-using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Solving.Manual.Sdps;
-using Sudoku.Solving.Manual.Singles;
-using Sudoku.Solving.Manual.Subsets;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Uniqueness;
-using Sudoku.Solving.Manual.Uniqueness.Bugs;
-using Sudoku.Solving.Manual.Uniqueness.Extended;
-using Sudoku.Solving.Manual.Uniqueness.Loops;
-using Sudoku.Solving.Manual.Uniqueness.Polygons;
-using Sudoku.Solving.Manual.Uniqueness.Qiu;
-using Sudoku.Solving.Manual.Uniqueness.Rects;
-using Sudoku.Solving.Manual.Uniqueness.Square;
-using Sudoku.Solving.Manual.Wings.Irregular;
-using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual
@@ -67,60 +48,8 @@ namespace Sudoku.Solving.Manual
 				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}
 
-			var searchers = new TechniqueSearcher[]
-			{
-				new SingleTechniqueSearcher(
-					_solver.EnableFullHouse, _solver.EnableLastDigit, _solver.ShowDirectLines),
-				new LcTechniqueSearcher(),
-				new SubsetTechniqueSearcher(),
-				new NormalFishTechniqueSearcher(),
-				new RegularWingTechniqueSearcher(_solver.CheckRegularWingSize),
-				new IrregularWingTechniqueSearcher(),
-				new TwoStrongLinksTechniqueSearcher(),
-				new UrTechniqueSearcher(
-					_solver.CheckIncompleteUniquenessPatterns, _solver.SearchExtendedUniqueRectangles),
-				new XrTechniqueSearcher(),
-				new UlTechniqueSearcher(),
-				new EmptyRectangleTechniqueSearcher(),
-				new AlcTechniqueSearcher(_solver.CheckAlmostLockedQuadruple),
-				new SdcTechniqueSearcher(
-					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
-					_solver.AllowAlsCycles),
-				new Sdc3dTechniqueSearcher(
-					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
-					_solver.AllowAlsCycles),
-				new BdpTechniqueSearcher(),
-				new QdpTechniqueSearcher(),
-				new UsTechniqueSearcher(),
-				new GuardianTechniqueSearcher(),
-				new BugTechniqueSearcher(_solver.UseExtendedBugSearcher),
-				new EripTechniqueSearcher(),
-				new AicTechniqueSearcher(),
-				new AlsXzTechniqueSearcher(
-					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
-					_solver.AllowAlsCycles),
-				new AlsXyWingTechniqueSearcher(
-					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
-					_solver.AllowAlsCycles),
-				new AlsWWingTechniqueSearcher(
-					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
-					_solver.AllowAlsCycles),
-				new DeathBlossomTechniqueSearcher(
-					_solver.AllowOverlappingAlses, _solver.AlsHighlightRegionInsteadOfCell,
-					_solver.MaxPetalsOfDeathBlossom),
-				new HobiwanFishTechniqueSearcher(
-					_solver.HobiwanFishMaximumSize, _solver.HobiwanFishMaximumExofinsCount,
-					_solver.HobiwanFishMaximumEndofinsCount, _solver.HobiwanFishCheckTemplates),
-				new FcTechniqueSearcher(true, false, true, 0),
-				new FcTechniqueSearcher(false, true, false, 0),
-				new FcTechniqueSearcher(false, true, true, 0),
-				new BowmanBingoTechniqueSearcher(_solver.BowmanBingoMaximumLength),
-				new PomTechniqueSearcher(),
-				new JeTechniqueSearcher(_solver.CheckAdvancedInExocet),
-				new SeTechniqueSearcher(_solver.CheckAdvancedInExocet),
-				new SkLoopTechniqueSearcher(),
-				new AlsNetTechniqueSearcher(),
-			};
+			// Note that the parameter is unnecessary to pass.
+			var searchers = _solver.GetHodokuModeSearchers();
 
 			TechniqueSearcher.InitializeMaps(grid);
 			var bag = new List<TechniqueInfo>();
@@ -128,6 +57,12 @@ namespace Sudoku.Solving.Manual
 				searchers.Length, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			foreach (var searcher in searchers)
 			{
+				if (searcher.GetType().GetCustomAttribute<OnlyEnableInAnalysisAttribute>() is not null)
+				{
+					// This searcher is only used in analysis. Therefore, the searcher is disabled here.
+					continue;
+				}
+
 				var props = g(searcher);
 				if (props is { IsEnabled: false, DisabledReason: not DisabledReason.HighAllocation })
 				{
