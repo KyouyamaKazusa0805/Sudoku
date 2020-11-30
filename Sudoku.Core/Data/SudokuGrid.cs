@@ -6,6 +6,9 @@ using Sudoku.Constants;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
+using Formatter = Sudoku.Data.SudokuGrid.GridFormatter;
+using Parser = Sudoku.Data.SudokuGrid.GridParser;
+using ParsingOption = Sudoku.Data.GridParsingOption;
 
 namespace Sudoku.Data
 {
@@ -20,12 +23,27 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
 		/// </summary>
-		public const short DefaultMask = (short)CellStatus.Empty << 9;
+		public const short DefaultMask = (int)CellStatus.Empty << 9 | MaxCandidatesMask;
 
 		/// <summary>
 		/// Indicates the maximum candidate mask that used.
 		/// </summary>
 		public const short MaxCandidatesMask = 0b111_111_111;
+
+		/// <summary>
+		/// Indicates the empty mask.
+		/// </summary>
+		public const short EmptyMask = (int)CellStatus.Empty << 9;
+
+		/// <summary>
+		/// Indicates the modifiable mask.
+		/// </summary>
+		public const short ModifiableMask = (int)CellStatus.Modifiable << 9;
+
+		/// <summary>
+		/// Indicates the given mask.
+		/// </summary>
+		public const short GivenMask = (int)CellStatus.Given << 9;
 
 		/// <summary>
 		/// Indicates the size of each grid.
@@ -99,9 +117,7 @@ namespace Sudoku.Data
 		/// Initializes an instance with the specified mask array.
 		/// </summary>
 		/// <param name="masks">The masks.</param>
-		/// <exception cref="ArgumentException">
-		/// Throws when <see cref="Array.Length"/> is not 81.
-		/// </exception>
+		/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
 		public SudokuGrid(short[] masks)
 		{
 			_ = masks.Length != Length ? throw new ArgumentException($"The length of the array argument should be {Length}.", nameof(masks)) : masks;
@@ -179,29 +195,17 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the total number of given cells.
 		/// </summary>
-		public readonly int GivensCount
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => Triplet.C;
-		}
+		public readonly int GivensCount => Triplet.C;
 
 		/// <summary>
 		/// Indicates the total number of modifiable cells.
 		/// </summary>
-		public readonly int ModifiablesCount
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => Triplet.B;
-		}
+		public readonly int ModifiablesCount => Triplet.B;
 
 		/// <summary>
 		/// Indicates the total number of empty cells.
 		/// </summary>
-		public readonly int EmptiesCount
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => Triplet.A;
-		}
+		public readonly int EmptiesCount => Triplet.A;
 
 		/// <summary>
 		/// The triplet of three main information.
@@ -236,7 +240,7 @@ namespace Sudoku.Data
 			{
 				CellStatus.Undefined => -2,
 				CellStatus.Empty => -1,
-				CellStatus.Modifiable or CellStatus.Given => (~_values[cell]).FindFirstSet()
+				CellStatus.Modifiable or CellStatus.Given => _values[cell].FindFirstSet()
 			};
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -259,7 +263,7 @@ namespace Sudoku.Data
 						short copy = result;
 
 						// Set cell status to 'CellStatus.Modifiable'.
-						result = (short)((short)CellStatus.Modifiable << 9 | MaxCandidatesMask & ~(1 << value));
+						result = (short)(ModifiableMask | 1 << value);
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
@@ -290,19 +294,18 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				ref short result = ref _values[cell];
-				short copy = result;
+				short copied = _values[cell];
 				if (value)
 				{
-					result |= (short)(1 << digit);
+					_values[cell] |= (short)(1 << digit);
 				}
 				else
 				{
-					result &= (short)~(1 << digit);
+					_values[cell] &= (short)~(1 << digit);
 				}
 
 				// To trigger the event.
-				ValueChanged(ref this, new(cell, copy, result, -1));
+				ValueChanged(ref this, new(cell, copied, _values[cell], -1));
 			}
 		}
 
@@ -335,6 +338,14 @@ namespace Sudoku.Data
 
 						break;
 					}
+					case CellStatus.Empty:
+					{
+						continue;
+					}
+					default:
+					{
+						return false;
+					}
 				}
 			}
 
@@ -366,12 +377,7 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly int GetHashCode() =>
-			true switch
-			{
-				_ when this == Undefined => 0,
-				_ when this == Empty => 1,
-				_ => ToString(".+:").GetHashCode()
-			};
+			this == Undefined ? 0 : this == Empty ? 1 : ToString("#").GetHashCode();
 
 		/// <summary>
 		/// Serializes this instance to an array, where all digit value will be stored.
@@ -407,21 +413,21 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cell">The cell offset you want to get.</param>
 		/// <returns>
-		/// <para>The candidate mask.</para>
-		/// <para>
-		/// The return value is a 9-bit <see cref="short"/>
-		/// value, where the bit will be <c>0</c> if the corresponding digit <b>doesn't exist</b> in the cell,
-		/// and will be <c>1</c> if the corresponding contains this digit (either the cell
-		/// is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
-		/// </para>
+		/// The candidate mask. The return value is a 9-bit <see cref="short"/>
+		/// value, where each bit will be:
+		/// <list type="table">
+		/// <item>
+		/// <term><c>0</c></term>
+		/// <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
+		/// </item>
+		/// <item>
+		/// <term><c>1</c></term>
+		/// <description>The cell <b>contains</b> the possibility of the digit.</description>
+		/// </item>
+		/// </list>
 		/// </returns>
-		/// <remarks>
-		/// Please note that the grid masks is represented with bits, where 0 is for the digit containing in a
-		/// cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
-		/// 1 is for containing and 0 is for <b>not</b>.
-		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly short GetCandidateMask(int cell) => (short)(~_values[cell] & MaxCandidatesMask);
+		public readonly short GetCandidateMask(int cell) => (short)(_values[cell] & MaxCandidatesMask);
 
 		/// <summary>
 		/// Get all masks and print them.
@@ -455,25 +461,33 @@ namespace Sudoku.Data
 		public readonly string ToString(string? format) => ToString(format, null);
 
 		/// <inheritdoc/>
-		public readonly string ToString(string? format, IFormatProvider? formatProvider) =>
-			true switch
+		public readonly string ToString(string? format, IFormatProvider? formatProvider)
+		{
+			if (this == Empty)
 			{
-				_ when this == Empty => "<Empty>",
-				_ when this == Undefined => "<Undefined>",
-				_ when formatProvider.HasFormatted(this, format, out string? result) => result,
-				_ when GridFormatter.Create(format) is var formatter => format switch
-				{
-					":" =>
-						formatter
-						.ToString(this)
-						.Match(RegularExpressions.ExtendedSusserEliminations)
-						.NullableToString(),
-					"!" => formatter.ToString(this).Replace("+", string.Empty),
-					".!" or "!." or "0!" or "!0" => formatter.ToString(this).Replace("+", string.Empty),
-					".!:" or "!.:" or "0!:" => formatter.ToString(this).Replace("+", string.Empty),
-					_ => formatter.ToString(this)
-				}
+				return "<Empty>";
+			}
+
+			if (this == Undefined)
+			{
+				return "<Undefined>";
+			}
+
+			if (formatProvider.HasFormatted(this, format, out string? result))
+			{
+				return result;
+			}
+
+			var f = Formatter.Create(format);
+			return format switch
+			{
+				":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations).NullableToString(),
+				"!" => f.ToString(this).Replace("+", string.Empty),
+				".!" or "!." or "0!" or "!0" => f.ToString(this).Replace("+", string.Empty),
+				".!:" or "!.:" or "0!:" => f.ToString(this).Replace("+", string.Empty),
+				_ => f.ToString(this)
 			};
+		}
 
 		/// <summary>
 		/// Get the cell status at the specified cell.
@@ -578,19 +592,17 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// <para>
-		/// Parses a string value and converts to this type.
-		/// </para>
+		/// <para>Parses a string value and converts to this type.</para>
 		/// <para>
 		/// If you want to parse a PM grid, we recommend you use the method
-		/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
+		/// <see cref="Parse(string, ParsingOption)"/> instead of this method.
 		/// </para>
 		/// </summary>
 		/// <param name="str">(<see langword="in"/> parameter) The string.</param>
 		/// <returns>The result instance had converted.</returns>
-		/// <seealso cref="Parse(string, GridParsingOption)"/>
+		/// <seealso cref="Parse(string, ParsingOption)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(in ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
+		public static SudokuGrid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
 
 		/// <summary>
 		/// <para>
@@ -598,14 +610,14 @@ namespace Sudoku.Data
 		/// </para>
 		/// <para>
 		/// If you want to parse a PM grid, we recommend you use the method
-		/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
+		/// <see cref="Parse(string, ParsingOption)"/> instead of this method.
 		/// </para>
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
-		/// <seealso cref="Parse(string, GridParsingOption)"/>
+		/// <seealso cref="Parse(string, ParsingOption)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(string str) => new GridParser(str).Parse();
+		public static SudokuGrid Parse(string str) => new Parser(str).Parse();
 
 		/// <summary>
 		/// <para>
@@ -622,13 +634,13 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <param name="compatibleFirst">
 		/// Indicates whether the parsing operation should use compatible mode to check
-		/// PM grid. See <see cref="GridParser.CompatibleFirst"/> to learn more.
+		/// PM grid. See <see cref="Parser.CompatibleFirst"/> to learn more.
 		/// </param>
 		/// <returns>The result instance had converted.</returns>
-		/// <seealso cref="GridParser.CompatibleFirst"/>
+		/// <seealso cref="Parser.CompatibleFirst"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuGrid Parse(string str, bool compatibleFirst) =>
-			new GridParser(str, compatibleFirst).Parse();
+			new Parser(str, compatibleFirst).Parse();
 
 		/// <summary>
 		/// Parses a string value and converts to this type,
@@ -638,8 +650,8 @@ namespace Sudoku.Data
 		/// <param name="gridParsingOption">The grid parsing type.</param>
 		/// <returns>The result instance had converted.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(string str, GridParsingOption gridParsingOption) =>
-			new GridParser(str).Parse(gridParsingOption);
+		public static SudokuGrid Parse(string str, ParsingOption gridParsingOption) =>
+			new Parser(str).Parse(gridParsingOption);
 
 		/// <summary>
 		/// Try to parse a string and converts to this type, and returns a
@@ -680,7 +692,7 @@ namespace Sudoku.Data
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="Undefined"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryParse(string str, GridParsingOption option, out SudokuGrid result)
+		public static bool TryParse(string str, ParsingOption option, out SudokuGrid result)
 		{
 			try
 			{
@@ -698,8 +710,12 @@ namespace Sudoku.Data
 		/// Creates an instance using grid values.
 		/// </summary>
 		/// <param name="gridValues">The array of grid values.</param>
+		/// <param name="creatingOption">
+		/// The grid creating option. The default value is <see cref="GridCreatingOption.None"/>.
+		/// </param>
 		/// <returns>The result instance.</returns>
-		public static SudokuGrid CreateInstance(int[] gridValues)
+		public static SudokuGrid CreateInstance(
+			int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
 		{
 			var result = Empty;
 			for (int i = 0; i < Length; i++)
@@ -708,7 +724,7 @@ namespace Sudoku.Data
 				{
 					// Calls the indexer to trigger the event
 					// (Clear the candidates in peer cells).
-					result[i] = value - 1;
+					result[i] = creatingOption == GridCreatingOption.MinusOne ? value - 1 : value;
 
 					// Set the status to 'CellStatus.Given'.
 					result.SetStatus(i, CellStatus.Given);
@@ -725,13 +741,16 @@ namespace Sudoku.Data
 		/// <param name="e">(<see langword="in"/> parameter) The event arguments.</param>
 		private static void OnValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
 		{
-			if ((e.Cell, e.SetValue) is (var cell, var setValue and not -1))
+			if (e is { Cell: var cell, SetValue: var setValue and not -1 })
 			{
 				foreach (int peerCell in PeerMaps[cell])
 				{
 					if (@this.GetStatus(peerCell) == CellStatus.Empty)
 					{
-						@this._values[peerCell] |= (short)(1 << setValue);
+						// Please don't do this to avoid invoking recursively.
+						//@this[peerCell, setValue] = false;
+
+						@this._values[peerCell] &= (short)~(1 << setValue);
 					}
 				}
 			}
@@ -747,16 +766,17 @@ namespace Sudoku.Data
 			{
 				if (@this.GetStatus(i) == CellStatus.Empty)
 				{
-					short mask = 0;
+					// Remove all appeared digits.
+					short mask = MaxCandidatesMask;
 					foreach (int cell in PeerMaps[i])
 					{
 						if (@this[cell] is var digit and not -1)
 						{
-							mask |= (short)(1 << digit);
+							mask &= (short)~(1 << digit);
 						}
 					}
 
-					@this._values[i] = (short)(DefaultMask | mask);
+					@this._values[i] = (short)(EmptyMask | mask);
 				}
 			}
 		}

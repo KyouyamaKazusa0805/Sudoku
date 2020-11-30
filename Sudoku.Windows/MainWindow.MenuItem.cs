@@ -284,7 +284,7 @@ namespace Sudoku.Windows
 				z[cell] = _puzzle[cell] + 1;
 			}
 
-			var grid = SudokuGrid.CreateInstance(z);
+			var grid = SudokuGrid.CreateInstance(z, GridCreatingOption.MinusOne);
 			if (new UnsafeBitwiseSolver().Solve(grid.ToString(), null, 2) == 0)
 			{
 				Messagings.SukakuCannotUseThisFunction();

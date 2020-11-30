@@ -83,7 +83,7 @@ namespace Sudoku.Data
 			/// </para>
 			/// <para>
 			/// If the output is single line, the output will append the candidates
-			/// value at the tail of the string in ':candidate list'. In addition,
+			/// value at the tail of the string in '<c>:candidate list</c>'. In addition,
 			/// candidates will be represented as 'digit', 'row offset' and
 			/// 'column offset' in order.
 			/// </para>
@@ -123,24 +123,6 @@ namespace Sudoku.Data
 
 
 			/// <summary>
-			/// Get the default list.
-			/// </summary>
-			/// <returns>The list.</returns>
-			private static IDictionary<int, IList<short>> DefaultList =>
-				new Dictionary<int, IList<short>>()
-				{
-					[0] = new List<short>(),
-					[1] = new List<short>(),
-					[2] = new List<short>(),
-					[3] = new List<short>(),
-					[4] = new List<short>(),
-					[5] = new List<short>(),
-					[6] = new List<short>(),
-					[7] = new List<short>(),
-					[8] = new List<short>(),
-				};
-
-			/// <summary>
 			/// Represents a string value indicating this instance.
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
@@ -175,7 +157,12 @@ namespace Sudoku.Data
 				{
 					for (int j = 0; j < 9; j++)
 					{
-						sb.Append(span[i * 9 + j] - '0' is var digit and not 0 ? digit : '\t');
+						if (span[i * 9 + j] - '0' is var digit and not 0)
+						{
+							sb.Append(digit);
+						}
+
+						sb.Append('\t');
 					}
 
 					sb.RemoveFromEnd(1).AppendLine();
@@ -251,7 +238,7 @@ namespace Sudoku.Data
 
 					for (int i = 0; i < 729; i++)
 					{
-						if (grid[i / 9, i % 9])
+						if (!grid[i / 9, i % 9])
 						{
 							sb[i] = Placeholder;
 						}
@@ -269,35 +256,37 @@ namespace Sudoku.Data
 			private string ToSingleLineStringCore(in SudokuGrid grid)
 			{
 				StringBuilder sb = new(), elims = new();
-				var tempGrid = WithCandidates ? Parse(grid.ToString(".+")) : Undefined;
+				var originalGrid = WithCandidates ? Parse(grid.ToString(".+")) : Undefined;
 
 				int cell = 0;
-				foreach (short value in grid)
+				foreach (short value in originalGrid)
 				{
-					if (GetStatusFromMask(value) is var status && status == CellStatus.Empty
-						&& tempGrid != Undefined && WithCandidates)
+					var status = grid.GetStatus(cell);
+					if (status == CellStatus.Empty && originalGrid != Undefined && WithCandidates)
 					{
 						// Check if the value has been set 'true'
 						// and the value has already deleted at the grid
 						// with only givens and modifiables.
-						foreach (int i in from i in value where !tempGrid[cell, i] select i)
+						foreach (int i in value & MaxCandidatesMask)
 						{
-							// The value is 'true', which means the digit has already been deleted.
-							elims
-								.Append(i + 1)
-								.Append(cell / 9 + 1)
-								.Append(cell % 9 + 1)
-								.Append(' ');
+							if (!grid[cell, i])
+							{
+								// The value is 'true', which means the digit has already been deleted.
+								elims
+									.Append(i + 1)
+									.Append(cell / 9 + 1)
+									.Append(cell % 9 + 1)
+									.Append(' ');
+							}
 						}
 					}
 
 					sb.Append(
 						status switch
 						{
-							CellStatus.Empty => Placeholder,
-							CellStatus.Modifiable =>
-								WithModifiables ? $"+{GetFirstFalseCandidate(value) + 1}" : $"{Placeholder}",
-							CellStatus.Given => $"{GetFirstFalseCandidate(value) + 1}"
+							CellStatus.Empty => Placeholder.ToString(),
+							CellStatus.Modifiable => WithModifiables ? $"+{grid[cell] + 1}" : $"{Placeholder}",
+							CellStatus.Given => $"{grid[cell] + 1}"
 						});
 
 					cell++;
@@ -312,12 +301,33 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <returns>The result.</returns>
-			[SkipLocalsInit]
 			private string ToMultiLineStringCore(in SudokuGrid grid)
 			{
 				// Step 1: gets the candidates information grouped by columns.
-				var valuesByColumn = DefaultList;
-				var valuesByRow = DefaultList;
+				Dictionary<int, IList<short>> valuesByColumn = new()
+				{
+					[0] = new List<short>(),
+					[1] = new List<short>(),
+					[2] = new List<short>(),
+					[3] = new List<short>(),
+					[4] = new List<short>(),
+					[5] = new List<short>(),
+					[6] = new List<short>(),
+					[7] = new List<short>(),
+					[8] = new List<short>(),
+				}, valuesByRow = new()
+				{
+					[0] = new List<short>(),
+					[1] = new List<short>(),
+					[2] = new List<short>(),
+					[3] = new List<short>(),
+					[4] = new List<short>(),
+					[5] = new List<short>(),
+					[6] = new List<short>(),
+					[7] = new List<short>(),
+					[8] = new List<short>(),
+				};
+
 				for (int i = 0; i < 81; i++)
 				{
 					short value = grid.GetMask(i);
@@ -396,7 +406,7 @@ namespace Sudoku.Data
 									i switch
 									{
 										1 or 2 or 3 or 4 => i - 1,
-										5 or 7 or 7 or 8 => i - 2,
+										5 or 6 or 7 or 8 => i - 2,
 										9 or 10 or 11 or 12 => i - 3
 									}
 								], '|', '|', maxLengths);
@@ -405,7 +415,7 @@ namespace Sudoku.Data
 
 							void p(
 								in GridFormatter formatter, IList<short> valuesByRow, char c1, char c2,
-								Span<int> maxLengths)
+								in Span<int> maxLengths)
 							{
 								sb.Append(c1);
 								printValues(formatter, valuesByRow, 0, 2, maxLengths);
@@ -417,7 +427,7 @@ namespace Sudoku.Data
 
 								void printValues(
 									in GridFormatter formatter, IList<short> valuesByRow,
-									int start, int end, Span<int> maxLengths)
+									int start, int end, in Span<int> maxLengths)
 								{
 									sb.Append(' ');
 									for (int i = start; i <= end; i++)
@@ -426,36 +436,37 @@ namespace Sudoku.Data
 										short value = valuesByRow[i];
 										var cellStatus = GetStatusFromMask(value);
 
-										sb
-											.Append
-											(
-												(
-													((cellStatus != CellStatus.Empty ? (~value).FindFirstSet() : -1) + 1) switch
-													{
-														var d => cellStatus switch
-														{
-															CellStatus.Given => $"<{d}>",
-															CellStatus.Modifiable => formatter.TreatValueAsGiven switch
-															{
-																true => $"<{d}>",
-																_ => $"*{d}*"
-															},
-															_ => p(value)
-														}
-													}
-												).PadRight(maxLengths[i])
-											).Append(i != end ? "  " : " ");
-									}
-
-									static string p(short value)
-									{
-										var sb = new StringBuilder();
-										foreach (int i in value)
+										value &= MaxCandidatesMask;
+										int d = (cellStatus != CellStatus.Empty ? value.FindFirstSet() : -1) + 1;
+										string s;
+										switch (cellStatus)
 										{
-											sb.Append(i + 1);
+											case CellStatus.Given:
+											case CellStatus.Modifiable when formatter.TreatValueAsGiven:
+											{
+												s = $"<{d}>";
+												break;
+											}
+											case CellStatus.Modifiable:
+											{
+												s = $"*{d}*";
+												break;
+											}
+											default:
+											{
+												var innerSb = new StringBuilder();
+												foreach (int z in value)
+												{
+													innerSb.Append(z + 1);
+												}
+
+												s = innerSb.ToString();
+
+												break;
+											}
 										}
 
-										return sb.ToString();
+										sb.Append(s.PadRight(maxLengths[i])).Append(i != end ? "  " : " ");
 									}
 								}
 							}
@@ -565,14 +576,6 @@ namespace Sudoku.Data
 					"%" => new(true) { Excel = true },
 					_ => throw new FormatException("The specified format is invalid.")
 				};
-
-			/// <summary>
-			/// Get the first <see langword="false"/> candidate.
-			/// </summary>
-			/// <param name="value">The value.</param>
-			/// <returns>The first one.</returns>
-			private static int GetFirstFalseCandidate(short value) =>
-				(short)~(value & MaxCandidatesMask) is var v and not 0 ? v.FindFirstSet() : -1;
 
 			/// <summary>
 			/// Get cell status for a value.

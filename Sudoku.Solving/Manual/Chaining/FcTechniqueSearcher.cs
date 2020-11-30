@@ -326,7 +326,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						if (_dynamic)
 						{
 							// Remove that digit.
-							grid[p.Cell, p.Digit] = true;
+							grid[p.Cell, p.Digit] = false;
 						}
 
 						foreach (var pOn in makeOn)

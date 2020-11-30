@@ -69,7 +69,7 @@ namespace Sudoku.Data
 			}
 
 			static void a(ref SudokuGrid grid, int cell, int digit) => grid[cell] = digit;
-			static void e(ref SudokuGrid grid, int cell, int digit) => grid[cell, digit] = true;
+			static void e(ref SudokuGrid grid, int cell, int digit) => grid[cell, digit] = false;
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>

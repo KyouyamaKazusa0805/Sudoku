@@ -150,9 +150,11 @@ namespace Sudoku.Solving.Checking
 
 			unsafe
 			{
-				static bool p(int[] gridValues) => !Solver.Solve(SudokuGrid.CreateInstance(gridValues)).HasSolved;
 				return tempArrays.All(&p);
 			}
+
+			static bool p(int[] gridValues) =>
+				!Solver.Solve(SudokuGrid.CreateInstance(gridValues, GridCreatingOption.MinusOne)).HasSolved;
 		}
 
 		/// <summary>

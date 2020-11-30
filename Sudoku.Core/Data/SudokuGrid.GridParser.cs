@@ -82,18 +82,6 @@ namespace Sudoku.Data
 
 
 			/// <summary>
-			/// Get an array of default values in checking.
-			/// </summary>
-			/// <returns>The array of <see cref="bool"/> values.</returns>
-			/// <remarks>
-			/// Here must use method instead of property or field.
-			/// Because the return value should be mutable.
-			/// </remarks>
-			private static bool[] DefaultCheckingArray =>
-				new[] { true, true, true, true, true, true, true, true, true };
-
-
-			/// <summary>
 			/// To parse the value.
 			/// </summary>
 			/// <returns>The grid.</returns>
@@ -233,16 +221,19 @@ namespace Sudoku.Data
 			{
 				// Older regular expression pattern:
 				// string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit_Old);
-				if (parser.ParsingValue.MatchAll(RegularExpressions.PmGridUnit) is var matches && matches.Length != 81)
+				string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.PmGridUnit);
+				if (matches.Length != 81)
 				{
 					return Undefined;
 				}
 
+				var series = (stackalloc bool[9]);
 				var result = Empty;
-				for (int offset = 0; offset < 81; offset++)
+				for (int cell = 0; cell < 81; cell++)
 				{
-					string s = matches[offset].Reserve(RegularExpressions.Digit);
-					if (s.Length is var length && length > 9)
+					string s = matches[cell].Reserve(RegularExpressions.Digit);
+					int length = s.Length;
+					if (length > 9)
 					{
 						// More than 9 characters.
 						return Undefined;
@@ -259,19 +250,19 @@ namespace Sudoku.Data
 						{
 							// To assign the value, and to trigger the event
 							// to modify all information of peers.
-							result[offset] = s[0] - '1';
-							result.SetStatus(offset, CellStatus.Given);
+							result[cell] = s[0] - '1';
+							result.SetStatus(cell, CellStatus.Given);
 						}
 						else
 						{
-							bool[] series = DefaultCheckingArray;
+							series.Fill(false);
 							foreach (char c in s)
 							{
-								series[c - '1'] = false;
+								series[c - '1'] = true;
 							}
 							for (int digit = 0; digit < 9; digit++)
 							{
-								result[offset, digit] = series[digit];
+								result[cell, digit] = series[digit];
 							}
 						}
 					}
@@ -285,8 +276,8 @@ namespace Sudoku.Data
 						{
 							if (s[1] is var c and >= '1' and <= '9')
 							{
-								result[offset] = c - '1';
-								result.SetStatus(offset, CellStatus.Given);
+								result[cell] = c - '1';
+								result.SetStatus(cell, CellStatus.Given);
 							}
 							else
 							{
@@ -307,8 +298,8 @@ namespace Sudoku.Data
 						{
 							if (s[1] is var c and >= '1' and <= '9')
 							{
-								result[offset] = c - '1';
-								result.SetStatus(offset, CellStatus.Modifiable);
+								result[cell] = c - '1';
+								result.SetStatus(cell, CellStatus.Modifiable);
 							}
 							else
 							{
@@ -327,14 +318,14 @@ namespace Sudoku.Data
 						// Candidates.
 						// Here don't need to check the length of the string,
 						// and also all characters are digit characters.
-						bool[] series = DefaultCheckingArray;
+						series.Fill(false);
 						foreach (char c in s)
 						{
-							series[c - '1'] = false;
+							series[c - '1'] = true;
 						}
 						for (int digit = 0; digit < 9; digit++)
 						{
-							result[offset, digit] = series[digit];
+							result[cell, digit] = series[digit];
 						}
 					}
 					else
@@ -378,7 +369,8 @@ namespace Sudoku.Data
 			/// <returns>The result.</returns>
 			private static SudokuGrid OnParsingSusser(ref GridParser parser)
 			{
-				if (parser.ParsingValue.Match(RegularExpressions.Susser) is var match && match is not { Length: <= 405 })
+				var match = parser.ParsingValue.Match(RegularExpressions.Susser);
+				if (match is not { Length: <= 405 })
 				{
 					return Undefined;
 				}
@@ -464,12 +456,13 @@ namespace Sudoku.Data
 
 				// Step 2: eliminates candidates if exist.
 				// If we have met the colon sign ':', this loop would not be executed.
-				if (match.Match(RegularExpressions.ExtendedSusserEliminations) is var elimMatch and not null)
+				var elimMatch = match.Match(RegularExpressions.ExtendedSusserEliminations);
+				if (elimMatch is not null)
 				{
 					foreach (string elimBlock in elimMatch.MatchAll(RegularExpressions.ThreeDigitsCandidate))
 					{
 						// Set the candidate true value to eliminate the candidate.
-						result[(elimBlock[1] - '1') * 9 + elimBlock[2] - '1', elimBlock[0] - '1'] = true;
+						result[(elimBlock[1] - '1') * 9 + elimBlock[2] - '1', elimBlock[0] - '1'] = false;
 					}
 				}
 
@@ -504,7 +497,7 @@ namespace Sudoku.Data
 
 							if (c is '0' or '.')
 							{
-								result[i / 9, i % 9] = true;
+								result[i / 9, i % 9] = false;
 							}
 						}
 					}
@@ -514,12 +507,13 @@ namespace Sudoku.Data
 				}
 				else
 				{
-					if (parser.ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit) is var matches
-						&& matches is { Length: not 81 })
+					var matches = parser.ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
+					if (matches is { Length: not 81 })
 					{
 						return Undefined;
 					}
 
+					var series = (stackalloc bool[9]);
 					var result = Empty;
 					for (int offset = 0; offset < 81; offset++)
 					{
@@ -529,10 +523,10 @@ namespace Sudoku.Data
 							return Undefined;
 						}
 
-						bool[] series = DefaultCheckingArray;
+						series.Fill(false);
 						foreach (char c in s)
 						{
-							series[c - '1'] = false;
+							series[c - '1'] = true;
 						}
 						for (int digit = 0; digit < 9; digit++)
 						{

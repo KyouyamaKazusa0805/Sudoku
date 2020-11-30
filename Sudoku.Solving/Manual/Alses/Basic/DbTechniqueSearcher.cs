@@ -148,7 +148,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 										cellsContainingThatDigit.PeerIntersection & DigitMaps[currDigit])
 									{
 										// Remove that digit.
-										tempGrid[c, currDigit] = true;
+										tempGrid[c, currDigit] = false;
 									}
 								}
 

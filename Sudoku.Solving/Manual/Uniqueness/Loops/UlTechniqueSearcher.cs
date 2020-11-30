@@ -93,9 +93,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					resultAccumulator.AddRange(set);
 					resultAccumulator.Sort(&cmp);
 					accumulator.AddRange(resultAccumulator);
+				}
 
-					static int cmp(in UlTechniqueInfo l, in UlTechniqueInfo r) =>
-						l.Loop.Count.CompareTo(r.Loop.Count);
+				static int cmp(in UlTechniqueInfo l, in UlTechniqueInfo r)
+				{
+					int ll = l.Loop.Count, rr = r.Loop.Count;
+					return ll.CompareTo(rr);
 				}
 
 				void f(
@@ -134,7 +137,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 								loops.Add((loopMap, links));
 							}
-							else if (!loopMap[nextCell] && !grid[nextCell, d1] && !grid[nextCell, d2])
+							else if (!loopMap[nextCell] && grid[nextCell, d1] && grid[nextCell, d2])
 							{
 								// Here, unique loop can be found if and only if
 								// two cells both contain 'd1' and 'd2'.

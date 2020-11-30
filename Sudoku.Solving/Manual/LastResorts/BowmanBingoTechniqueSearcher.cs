@@ -207,7 +207,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			foreach (int cand in list)
 			{
-				grid[cand / 9, cand % 9] = false;
+				grid[cand / 9, cand % 9] = true;
 			}
 
 			grid.SetMask(cell, mask);

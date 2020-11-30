@@ -58,7 +58,7 @@ namespace Sudoku.Data.Extensions
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool? Exists(this in SudokuGrid @this, int cell, int digit) =>
-			@this.GetStatus(cell) == Empty && !@this[cell, digit];
+			@this.GetStatus(cell) == Empty ? @this[cell, digit] : null;
 
 		/// <summary>
 		/// Check whether the digit will be duplicate of its peers when it is filled in the specified cell.

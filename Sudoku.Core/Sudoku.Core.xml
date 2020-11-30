@@ -2418,6 +2418,21 @@
             Indicates the maximum candidate mask that used.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.SudokuGrid.EmptyMask">
+            <summary>
+            Indicates the empty mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.ModifiableMask">
+            <summary>
+            Indicates the modifiable mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.GivenMask">
+            <summary>
+            Indicates the given mask.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.SudokuGrid.Length">
             <summary>
             Indicates the size of each grid.
@@ -2477,9 +2492,7 @@
             Initializes an instance with the specified mask array.
             </summary>
             <param name="masks">The masks.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when <see cref="P:System.Array.Length"/> is not 81.
-            </exception>
+            <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is not 81.</exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
@@ -2572,19 +2585,19 @@
             </summary>
             <param name="cell">The cell offset you want to get.</param>
             <returns>
-            <para>The candidate mask.</para>
-            <para>
-            The return value is a 9-bit <see cref="T:System.Int16"/>
-            value, where the bit will be <c>0</c> if the corresponding digit <b>doesn't exist</b> in the cell,
-            and will be <c>1</c> if the corresponding contains this digit (either the cell
-            is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
-            </para>
+            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
+            value, where each bit will be:
+            <list type="table">
+            <item>
+            <term><c>0</c></term>
+            <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
+            </item>
+            <item>
+            <term><c>1</c></term>
+            <description>The cell <b>contains</b> the possibility of the digit.</description>
+            </item>
+            </list>
             </returns>
-            <remarks>
-            Please note that the grid masks is represented with bits, where 0 is for the digit containing in a
-            cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
-            1 is for containing and 0 is for <b>not</b>.
-            </remarks>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToMaskString">
             <summary>
@@ -2654,9 +2667,7 @@
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char}@)">
             <summary>
-            <para>
-            Parses a string value and converts to this type.
-            </para>
+            <para>Parses a string value and converts to this type.</para>
             <para>
             If you want to parse a PM grid, we recommend you use the method
             <see cref="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
@@ -2737,11 +2748,14 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.CreateInstance(System.Int32[])">
+        <member name="M:Sudoku.Data.SudokuGrid.CreateInstance(System.Int32[],Sudoku.GridCreatingOption)">
             <summary>
             Creates an instance using grid values.
             </summary>
             <param name="gridValues">The array of grid values.</param>
+            <param name="creatingOption">
+            The grid creating option. The default value is <see cref="F:Sudoku.GridCreatingOption.None"/>.
+            </param>
             <returns>The result instance.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.OnValueChanged(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
@@ -2883,7 +2897,7 @@
             </para>
             <para>
             If the output is single line, the output will append the candidates
-            value at the tail of the string in ':candidate list'. In addition,
+            value at the tail of the string in '<c>:candidate list</c>'. In addition,
             candidates will be represented as 'digit', 'row offset' and
             'column offset' in order.
             </para>
@@ -2919,12 +2933,6 @@
             <summary>
             Indicates the output will be Excel format.
             </summary>
-        </member>
-        <member name="P:Sudoku.Data.SudokuGrid.GridFormatter.DefaultList">
-            <summary>
-            Get the default list.
-            </summary>
-            <returns>The list.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridFormatter.ToString(Sudoku.Data.SudokuGrid@)">
             <summary>
@@ -3001,13 +3009,6 @@
             <returns>The grid formatter.</returns>
             <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.GridFormatter.GetFirstFalseCandidate(System.Int16)">
-            <summary>
-            Get the first <see langword="false"/> candidate.
-            </summary>
-            <param name="value">The value.</param>
-            <returns>The first one.</returns>
-        </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridFormatter.GetStatusFromMask(System.Int16)">
             <summary>
             Get cell status for a value.
@@ -3057,16 +3058,6 @@
             If the value is <see langword="true"/>, the parser will check compatible one
             first, and then check recommended parsing plan ('<c>&lt;d&gt;</c>' and '<c>*d*</c>').
             </summary>
-        </member>
-        <member name="P:Sudoku.Data.SudokuGrid.GridParser.DefaultCheckingArray">
-            <summary>
-            Get an array of default values in checking.
-            </summary>
-            <returns>The array of <see cref="T:System.Boolean"/> values.</returns>
-            <remarks>
-            Here must use method instead of property or field.
-            Because the return value should be mutable.
-            </remarks>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GridParser.Parse">
             <summary>
@@ -3780,6 +3771,16 @@
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <returns>The return collection that can't be <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.DictionaryEx.TryAddRange``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>
+            Try to add a series of elements into the dictionary.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
+            <param name="list">The list to add into the dictionary.</param>
+            <returns>The number of elements that is successful to add.</returns>
         </member>
         <member name="T:Sudoku.Extensions.DoubleEx">
             <summary>
@@ -4622,6 +4623,10 @@
             <param name="this">(<see langword="this"/> parameter) The string.</param>
             <param name="reservePattern">The pattern that reserved characters satisfied.</param>
             <returns>The result string.</returns>
+            <remarks>
+            For example, if code is <c>"Hello, world!".Reserve(@"\w+")</c>, the return value
+            won't contain any punctuation marks (i.e. <c>"Helloworld"</c>).
+            </remarks>
         </member>
         <member name="M:Sudoku.Extensions.StringEx.IsRegexPattern(System.String)">
             <summary>
@@ -6220,6 +6225,21 @@
             This field is not <see langword="readonly"/> because it can be initialized by the
             module initializer.
             </remarks>
+        </member>
+        <member name="T:Sudoku.GridCreatingOption">
+            <summary>
+            Indicates teh grid creating option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.GridCreatingOption.None">
+            <summary>
+            Indicates the option is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.GridCreatingOption.MinusOne">
+            <summary>
+            Indicates each value should minus one before creation.
+            </summary>
         </member>
         <member name="T:Sudoku.Models.GridProgressResult">
             <summary>

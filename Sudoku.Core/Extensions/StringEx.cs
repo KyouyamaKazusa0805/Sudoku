@@ -170,6 +170,10 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
 		/// <param name="reservePattern">The pattern that reserved characters satisfied.</param>
 		/// <returns>The result string.</returns>
+		/// <remarks>
+		/// For example, if code is <c>"Hello, world!".Reserve(@"\w+")</c>, the return value
+		/// won't contain any punctuation marks (i.e. <c>"Helloworld"</c>).
+		/// </remarks>
 		public static string Reserve(this string @this, string reservePattern)
 		{
 			var sb = new StringBuilder();

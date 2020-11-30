@@ -179,6 +179,11 @@ namespace Sudoku.Solving.Manual.Exocets
 						}
 					}
 
+					if (targetElims.Count == 0 && trueBaseElims.Count == 0)
+					{
+						continue;
+					}
+
 					// Get mirror and compatibility test eliminations.
 					var cellOffsets = new List<DrawingInfo> { new(0, b1), new(0, b2) };
 					foreach (int cell in tempCrosslineMap)

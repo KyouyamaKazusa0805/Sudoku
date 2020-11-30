@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Data.Stepping
 {
@@ -115,12 +116,12 @@ namespace Sudoku.Data.Stepping
 			foreach (int cell in map)
 			{
 				ref short mask = ref _innerGrid._values[cell];
-				mask = (short)((int)CellStatus.Given << 9 | mask & SudokuGrid.MaxCandidatesMask);
+				mask = (short)(GivenMask | mask & MaxCandidatesMask);
 			}
 
 			fixed (short* pInitialValues = _innerGrid._initialValues, pValues = _innerGrid._values)
 			{
-				SudokuGrid.InternalCopy(pInitialValues, pValues);
+				InternalCopy(pInitialValues, pValues);
 			}
 		}
 
@@ -140,7 +141,7 @@ namespace Sudoku.Data.Stepping
 			foreach (int cell in map)
 			{
 				ref short mask = ref _innerGrid._values[cell];
-				mask = (short)((int)CellStatus.Modifiable << 9 | mask & SudokuGrid.MaxCandidatesMask);
+				mask = (short)(ModifiableMask | mask & MaxCandidatesMask);
 			}
 		}
 
@@ -155,9 +156,9 @@ namespace Sudoku.Data.Stepping
 			_innerGrid.Reset();
 		}
 
-		/// <inheritdoc cref="SudokuGrid.RefreshingCandidates"/>
+		/// <inheritdoc cref="RefreshingCandidates"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void RecomputeCandidates() => SudokuGrid.RefreshingCandidates(ref _innerGrid);
+		public void RecomputeCandidates() => RefreshingCandidates(ref _innerGrid);
 
 		/// <inheritdoc cref="SudokuGrid.GetStatus(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

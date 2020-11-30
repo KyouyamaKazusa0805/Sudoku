@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					{
 						foreach (int digit in extraDigits)
 						{
-							if (!grid[cell, digit])
+							if (grid[cell, digit])
 							{
 								extraCellsMap.AddAnyway(cell);
 								break;

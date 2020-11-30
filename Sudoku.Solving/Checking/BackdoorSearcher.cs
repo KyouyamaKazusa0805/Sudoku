@@ -159,14 +159,14 @@ namespace Sudoku.Solving.Checking
 				where temp.GetStatus(cell) == Empty
 				let value = solution[cell]
 				from digit in Enumerable.Range(0, 9)
-				where !temp[cell, digit] && value != digit
+				where temp[cell, digit] && value != digit
 				select cell * 9 + digit).ToArray();
 
 			// Search backdoors (Eliminations).
 			for (int i1 = 0, count = incorrectCandidates.Length; i1 < count + 1 - depth; i1++)
 			{
 				int c1 = incorrectCandidates[i1];
-				tempGrid[c1 / 9, c1 % 9] = true;
+				tempGrid[c1 / 9, c1 % 9] = false;
 
 				if (depth == 1)
 				{
@@ -180,7 +180,7 @@ namespace Sudoku.Solving.Checking
 					for (int i2 = i1 + 1; i2 < count + 2 - depth; i2++)
 					{
 						int c2 = incorrectCandidates[i2];
-						tempGrid[c2 / 9, c2 % 9] = true;
+						tempGrid[c2 / 9, c2 % 9] = false;
 
 						if (depth == 2)
 						{
@@ -194,23 +194,28 @@ namespace Sudoku.Solving.Checking
 							for (int i3 = i2 + 1; i3 < count + 3 - depth; i3++)
 							{
 								int c3 = incorrectCandidates[i3];
-								tempGrid[c3 / 9, c3 % 9] = true;
+								tempGrid[c3 / 9, c3 % 9] = false;
 
 								if (TestSolver.CanSolve(tempGrid))
 								{
 									result.Add(
-										new Conclusion[] { new(Elimination, c1), new(Elimination, c2), new(Elimination, c3) });
+										new Conclusion[]
+										{
+											new(Elimination, c1),
+											new(Elimination, c2),
+											new(Elimination, c3)
+										});
 								}
 
-								tempGrid[c3 / 9, c3 % 9] = false;
+								tempGrid[c3 / 9, c3 % 9] = true;
 							}
 						}
 
-						tempGrid[c2 / 9, c2 % 9] = false;
+						tempGrid[c2 / 9, c2 % 9] = true;
 					}
 				}
 
-				tempGrid[c1 / 9, c1 % 9] = false;
+				tempGrid[c1 / 9, c1 % 9] = true;
 			}
 		}
 	}

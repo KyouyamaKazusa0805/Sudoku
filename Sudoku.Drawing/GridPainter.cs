@@ -146,7 +146,7 @@ namespace Sudoku.Drawing
 					case Empty when Settings.ShowCandidates:
 					{
 						// Draw candidates.
-						short candidateMask = (short)(~mask & SudokuGrid.MaxCandidatesMask);
+						short candidateMask = (short)(mask & SudokuGrid.MaxCandidatesMask);
 						foreach (int digit in candidateMask)
 						{
 							var point = PointConverter.GetMousePointInCenter(cell, digit);
@@ -268,7 +268,6 @@ namespace Sudoku.Drawing
 			using var cannibalBrush = new SolidBrush(Settings.CannibalismColor);
 			unsafe
 			{
-				static bool overlapping(DrawingInfo pair, in int c, in int d) => pair.Value == c * 9 + d;
 				foreach (var (t, c, d) in from c in conclusions where c.ConclusionType == Elimination select c)
 				{
 					g.FillEllipse(
@@ -276,6 +275,8 @@ namespace Sudoku.Drawing
 						PointConverter.GetMouseRectangle(c, d).Zoom(-offset / 3));
 				}
 			}
+
+			static bool overlapping(DrawingInfo pair, in int c, in int d) => pair.Value == c * 9 + d;
 		}
 
 		/// <summary>
