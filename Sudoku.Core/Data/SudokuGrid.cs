@@ -230,7 +230,10 @@ namespace Sudoku.Data
 		/// Gets or sets the value in the specified cell.
 		/// </summary>
 		/// <param name="cell">The cell you want to get or set a value.</param>
-		/// <value>The value you want to set.</value>
+		/// <value>
+		/// The value you want to set. The value should be between 0 and 8. If assigning -1,
+		/// that means to re-compute all candidates.
+		/// </value>
 		/// <returns>The value that the cell filled with.</returns>
 		[IndexerName("Value")]
 		public int this[int cell]
@@ -281,8 +284,8 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell offset between 0 and 80.</param>
 		/// <param name="digit">The digit between 0 and 8.</param>
 		/// <value>
-		/// The case you want to set. <see langword="true"/> means that this candidate
-		/// doesn't exist in this current sudoku grid; otherwise, <see langword="false"/>.
+		/// The case you want to set. <see langword="false"/> means that this candidate
+		/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
 		/// </value>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[IndexerName("Value")]
