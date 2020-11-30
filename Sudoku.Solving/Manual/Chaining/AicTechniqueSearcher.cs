@@ -160,23 +160,22 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 			}
 
-			return conclusions.Count switch
+			if (conclusions.Count == 0)
 			{
-				0 => null,
-				_ => new
-				(
-					conclusions,
-					new View[]
-					{
-						new(
-							null,
-							destOn.GetCandidateOffsets(simpleChain: true).AsReadOnlyList(),
-							null,
-							links)
-					},
-					xEnabled, yEnabled, destOn
-				)
-			};
+				return null;
+			}
+
+			var candidateOffsets = destOn.GetCandidateOffsets(simpleChain: true);
+
+			var (destCandidate, _) = destOn.Chain[^1];
+			candidateOffsets.Add(new(0, destCandidate));
+
+			return new(
+				conclusions,
+				new View[] { new(null, candidateOffsets.AsReadOnlyList(), null, links) },
+				xEnabled,
+				yEnabled,
+				destOn);
 		}
 
 		/// <summary>
@@ -197,10 +196,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			if (!target.IsOn)
 			{
 				// Get eliminations as an AIC.
-				var startNode = target.Chain[1];
-				int startCandidate = startNode.Cell * 9 + startNode.Digit;
-				var endNode = target.Chain[^2];
-				int endCandidate = endNode.Cell * 9 + endNode.Digit;
+				var (startCandidate, _) = target.Chain[1];
+				var (endCandidate, _) = target.Chain[^2];
 				var elimMap = new SudokuMap { startCandidate, endCandidate }.PeerIntersection;
 				if (elimMap.IsEmpty)
 				{
@@ -214,33 +211,30 @@ namespace Sudoku.Solving.Manual.Chaining
 						conclusions.Add(new(Elimination, candidate));
 					}
 				}
-
-				//conclusions.Add(new(Elimination, startCandidate));
 			}
 			//else
 			//{
-			//	conclusions.Add(new(Assignment, target._cell, target.Digit));
+			//	conclusions.Add(new(Assignment, target.Cell, target.Digit));
 			//}
 
-			return conclusions.Count switch
+			if (conclusions.Count == 0)
 			{
-				0 => null,
-				_ => new
-				(
-					conclusions,
-					new View[]
-					{
-						new(
-							null,
-							target.GetCandidateOffsets(simpleChain: true).AsReadOnlyList(),
-							null,
-							target.GetLinks())
-					},
-					xEnabled,
-					yEnabled,
-					target
-				)
-			};
+				return null;
+			}
+
+			return new(
+				conclusions,
+				new View[]
+				{
+					new(
+						null,
+						target.GetCandidateOffsets(simpleChain: true).AsReadOnlyList(),
+						null,
+						target.GetLinks())
+				},
+				xEnabled,
+				yEnabled,
+				target);
 		}
 
 		/// <summary>
