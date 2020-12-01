@@ -2498,9 +2498,7 @@
             <exception cref="T:System.ArgumentNullException">
             Throws when <paramref name="masks"/> is <see langword="null"/>.
             </exception>
-            <exception cref="T:System.ArgumentException">
-            Throws when <paramref name="length"/> is not 81.
-            </exception>
+            <exception cref="T:System.ArgumentException">Throws when <paramref name="length"/> is not 81.</exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int16[])">
             <summary>

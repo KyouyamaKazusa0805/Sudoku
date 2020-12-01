@@ -23,7 +23,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
 		/// </summary>
-		public const short DefaultMask = (int)CellStatus.Empty << 9 | MaxCandidatesMask;
+		public const short DefaultMask = EmptyMask | MaxCandidatesMask;
 
 		/// <summary>
 		/// Indicates the maximum candidate mask that used.
@@ -97,9 +97,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentNullException">
 		/// Throws when <paramref name="masks"/> is <see langword="null"/>.
 		/// </exception>
-		/// <exception cref="ArgumentException">
-		/// Throws when <paramref name="length"/> is not 81.
-		/// </exception>
+		/// <exception cref="ArgumentException">Throws when <paramref name="length"/> is not 81.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuGrid(short* masks, int length)
 		{
