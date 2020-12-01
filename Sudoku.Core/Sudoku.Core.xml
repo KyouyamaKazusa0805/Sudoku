@@ -3790,6 +3790,12 @@
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <returns>The return collection that can't be <see langword="null"/>.</returns>
         </member>
+        <member name="T:Sudoku.Extensions.DictionaryEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
+        </member>
         <member name="M:Sudoku.Extensions.DictionaryEx.ToArray``3(System.Collections.Generic.Dictionary{``0,``1})">
             <summary>
             Converts the specified dictionary to an array, if each value can be iterated.

@@ -3,6 +3,10 @@ using System.Linq;
 
 namespace Sudoku.Extensions
 {
+	/// <summary>
+	/// Provides extension methods on <see cref="Dictionary{TKey, TValue}"/>.
+	/// </summary>
+	/// <seealso cref="Dictionary{TKey, TValue}"/>
 	public static class DictionaryEx
 	{
 		/// <summary>
