@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </para>
 	/// <para>
 	/// In the data structure, all letters will be used as the same one in this exemplar.
-	/// In addition, if senior exocet, one of two target cells will lie on cross-line cells,
+	/// In addition, if senior exocet, one of two target cells will lie in cross-line cells,
 	/// and the lines of two target cells lying on can't contain any base digits.
 	/// </para>
 	/// </summary>

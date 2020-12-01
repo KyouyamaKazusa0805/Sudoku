@@ -74,13 +74,7 @@ namespace Sudoku.Data
 		public override int GetHashCode() => Map.GetHashCode() ^ Digit;
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override string ToString()
-		{
-			int v = Digit + 1;
-			string fromCell = new GridMap { From }.ToString();
-			string toCell = new GridMap { To }.ToString();
-			return $"{fromCell} == {toCell}({v})";
-		}
+		public override string ToString() => $"{new GridMap { From }} == {new GridMap { To }}({Digit + 1})";
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

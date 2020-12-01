@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public bool IsBivalueCell { get; }
 
 		/// <summary>
-		/// Indicates the region that the instance lies on.
+		/// Indicates the region that the instance lies in.
 		/// </summary>
 		public int Region { get; }
 

@@ -170,7 +170,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						mask &= ~(1 << GetRegion(cell, RegionLabel.Block));
 					}
 
-					// Then 'mask' contains the regions that eliminations don't lie on.
+					// Then 'mask' contains the regions that eliminations don't lie in.
 					var coverCombinationsDoNotContainElim = new RegionMap(mask);
 					var coverCombinationsContainElim = coverCombinations - coverCombinationsDoNotContainElim;
 					for (int internalSize = 1;

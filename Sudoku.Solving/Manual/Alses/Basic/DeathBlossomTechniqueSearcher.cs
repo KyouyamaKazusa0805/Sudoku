@@ -297,7 +297,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				tempEmptyCells = emptyMap & RegionMaps[region];
 				if (tempEmptyCells.Count < 3)
 				{
-					// Every death blossom should lies on more than 2 cells.
+					// Every death blossom should lies in more than 2 cells.
 					continue;
 				}
 

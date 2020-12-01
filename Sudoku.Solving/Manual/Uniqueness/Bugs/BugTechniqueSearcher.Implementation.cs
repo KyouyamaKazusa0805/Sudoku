@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		partial void CheckType3Naked(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
 		{
-			// Check whether all true candidates lie on a same region.
+			// Check whether all true candidates lie in a same region.
 			var map = new GridMap(from c in trueCandidates group c by c / 9 into z select z.Key);
 			if (!map.InOneRegion)
 			{
@@ -160,7 +160,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		partial void CheckType4(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
 		{
-			// Conjugate pairs should lie on two cells.
+			// Conjugate pairs should lie in two cells.
 			var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
 			if (candsGroupByCell.Count() != 2)
 			{
@@ -203,7 +203,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						continue;
 					}
 
-					// Check whether the conjugate pair lies on current two cells.
+					// Check whether the conjugate pair lies in current two cells.
 					int c1 = RegionCells[region][mask.SetAt(0)];
 					int c2 = RegionCells[region][mask.SetAt(1)];
 					if (c1 != cells[0] || c2 != cells[1])

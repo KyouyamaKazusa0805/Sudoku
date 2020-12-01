@@ -271,7 +271,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			short cornerMask1, short cornerMask2, short centerMask, in GridMap map)
 		{
 			// The type 4 may be complex and terrible to process.
-			// All regions that the pattern lies on should be checked.
+			// All regions that the pattern lies in should be checked.
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 			foreach (int region in map.Regions)
 			{

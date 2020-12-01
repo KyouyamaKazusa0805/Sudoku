@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										continue;
 									}
 
-									// And all fins don't lie on any cover sets.
+									// And all fins don't lie in any cover sets.
 									var coverSetsMap = GridMap.Empty;
 									foreach (int coverSet in coverSets2)
 									{
@@ -322,7 +322,7 @@ namespace Sudoku.Solving.Manual.Fishes
 													continue;
 												}
 
-												// And all fins don't lie on any cover sets.
+												// And all fins don't lie in any cover sets.
 												var coverSetsMap = GridMap.Empty;
 												foreach (int coverSet in coverSets3)
 												{
@@ -513,7 +513,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															continue;
 														}
 
-														// And all fins don't lie on any cover sets.
+														// And all fins don't lie in any cover sets.
 														var coverSetsMap = GridMap.Empty;
 														foreach (int coverSet in coverSets3)
 														{

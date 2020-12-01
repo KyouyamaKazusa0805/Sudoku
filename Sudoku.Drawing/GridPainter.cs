@@ -396,7 +396,7 @@ namespace Sudoku.Drawing
 					continue;
 				}
 
-				// Check if another candidate lies on the direct line.
+				// Check if another candidate lies in the direct line.
 				double deltaX = pt2x - pt1x, deltaY = pt2y - pt1y;
 				double alpha = Atan2(deltaY, deltaX);
 				double dx1 = deltaX, dy1 = deltaY;

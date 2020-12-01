@@ -171,8 +171,8 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <param name="digit">The current digit.</param>
 		/// <param name="guardians">
 		/// (<see langword="in"/> parameter) The current guardian cells.
-		/// This map may not contain cells that lies on the region
-		/// that <paramref name="cell1"/> and <paramref name="cell2"/> both lies on.
+		/// This map may not contain cells that lies in the region
+		/// that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
 		/// </param>
 		/// <returns>All guardians.</returns>
 		private static GridMap CreateGuardianMap(int cell1, int cell2, int digit, in GridMap guardians)

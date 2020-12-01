@@ -1585,7 +1585,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.Region">
             <summary>
-            Indicates the region that the instance lies on.
+            Indicates the region that the instance lies in.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.DigitsMask">
@@ -3139,7 +3139,7 @@
             </para>
             <para>
             In the data structure, all letters will be used as the same one in this exemplar.
-            In addition, if senior exocet, one of two target cells will lie on cross-line cells,
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
             and the lines of two target cells lying on can't contain any base digits.
             </para>
             </summary>
@@ -5195,8 +5195,8 @@
             <param name="digit">The current digit.</param>
             <param name="guardians">
             (<see langword="in"/> parameter) The current guardian cells.
-            This map may not contain cells that lies on the region
-            that <paramref name="cell1"/> and <paramref name="cell2"/> both lies on.
+            This map may not contain cells that lies in the region
+            that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
             </param>
             <returns>All guardians.</returns>
         </member>
