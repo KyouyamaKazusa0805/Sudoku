@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool RecordTechnique(
+		private bool RecordStep(
 			IList<TechniqueInfo> steps, TechniqueInfo step, in SudokuGrid grid,
 			ref SudokuGrid cloneation, Stopwatch stopwatch, IList<SudokuGrid> stepGrids,
 			[NotNullWhen(true)] out AnalysisResult? result)

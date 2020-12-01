@@ -9,7 +9,6 @@ using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Uniqueness;
-using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving.Manual
 {
@@ -27,7 +26,7 @@ namespace Sudoku.Solving.Manual
 		/// (<see langword="ref"/> parameter)
 		/// The progress result. This parameter is used for modify the state of UI controls.
 		/// The current argument won't be used until <paramref name="progress"/> isn't <see langword="null"/>.
-		/// In the default case, this parameter is
+		/// In the default case, this parameter being
 		/// <see langword="default"/>(<see cref="GridProgressResult"/>) is okay.
 		/// </param>
 		/// <param name="progress">
@@ -43,13 +42,7 @@ namespace Sudoku.Solving.Manual
 			in SudokuGrid grid, ref SudokuGrid cloneation, IList<TechniqueInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
-			var searchers =
-#if I_CANT_DECIDE_WHETHER_THE_FIELD_SHOULD_BE_REMOVED__IF_THE_FIELD_IS_REMOVED__THIS_METHOD_WILL_BE_CHANGED_SYNCHRONIZEDLY
-				this.GetHodokuModeSearchers(solution);
-#else
-				this.GetSeModeSearchers(solution);
-#endif
-
+			var searchers = this.GetSeModeSearchers(solution);
 			var stepGrids = new List<SudokuGrid>();
 			var bag = new List<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
@@ -70,7 +63,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					var props = g(searcher);
+					var props = TechniqueProperties.GetPropertiesFrom(searcher)!;
 					if (props is { IsEnabled: false, DisabledReason: not DisabledReason.HighAllocation })
 					{
 						continue;
@@ -98,46 +91,49 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
+					bool allConclusionsAreValid;
 					unsafe
 					{
-						if (!CheckConclusionValidityAfterSearched || selection.All(&InternalChecking, solution))
+						allConclusionsAreValid = selection.All(&InternalChecking, solution);
+					}
+
+					if (!CheckConclusionValidityAfterSearched || allConclusionsAreValid)
+					{
+						foreach (var step in selection)
 						{
-							foreach (var step in selection)
+							if (
+								RecordStep(
+									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 							{
-								if (
-									RecordTechnique(
-										steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
-								{
-									stopwatch.Stop();
-									return result;
-								}
+								stopwatch.Stop();
+								return result;
 							}
-
-							// The puzzle has not been finished,
-							// we should turn to the first step finder
-							// to continue solving puzzle.
-							bag.Clear();
-
-							if (progress is not null)
-							{
-								ReportProgress(cloneation, progress, ref progressResult);
-							}
-
-							goto Restart;
 						}
-						else
+
+						// The puzzle has not been finished,
+						// we should turn to the first step finder
+						// to continue solving puzzle.
+						bag.Clear();
+
+						if (progress is not null)
 						{
-							TechniqueInfo? wrongStep = null;
-							foreach (var step in selection)
-							{
-								if (!CheckConclusionsValidity(solution, step.Conclusions))
-								{
-									wrongStep = step;
-									break;
-								}
-							}
-							throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
+							ReportProgress(cloneation, progress, ref progressResult);
 						}
+
+						goto Restart;
+					}
+					else
+					{
+						TechniqueInfo? wrongStep = null;
+						foreach (var step in selection)
+						{
+							if (!CheckConclusionsValidity(solution, step.Conclusions))
+							{
+								wrongStep = step;
+								break;
+							}
+						}
+						throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
 					}
 				}
 				else
@@ -159,9 +155,7 @@ namespace Sudoku.Solving.Manual
 					if (!CheckConclusionValidityAfterSearched
 						|| CheckConclusionsValidity(solution, step.Conclusions))
 					{
-						if (
-							RecordTechnique(
-								steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+						if (RecordStep(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 						{
 							// The puzzle has been solved.
 							// :)
@@ -201,9 +195,6 @@ namespace Sudoku.Solving.Manual
 				stopwatch.Elapsed,
 				steps!.AsReadOnlyList()!,
 				stepGrids);
-
-			static TechniqueProperties g(TechniqueSearcher searcher) =>
-				(TechniqueProperties)searcher.GetType().GetProperty("Properties", Public | Static)!.GetValue(null)!;
 		}
 	}
 }

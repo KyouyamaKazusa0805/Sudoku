@@ -14,11 +14,11 @@ namespace Sudoku.Solving.Manual
 	/// <summary>
 	/// Provides a solver that use logical methods to solve a specified sudoku puzzle.
 	/// </summary>
-	public sealed partial class ManualSolver : Solver
+	public sealed partial class ManualSolver : ISolver
 	{
 		/// <inheritdoc/>
 		[JsonIgnore]
-		public override string SolverName => Resources.GetValue("Manual");
+		public string SolverName => Resources.GetValue("Manual");
 
 
 		/// <summary>
@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(in SudokuGrid grid) => Solve(grid, null);
+		public AnalysisResult Solve(in SudokuGrid grid) => Solve(grid, null);
 
 		/// <summary>
 		/// To solve the specified puzzle in asynchronous way.

@@ -16,7 +16,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 	/// I change the programming language to C# to decrease the native calling.
 	/// </remarks>
 	[SkipLocalsInit]
-	public sealed unsafe partial class UnsafeBitwiseSolver : Solver
+	public sealed unsafe partial class UnsafeBitwiseSolver : ISolver
 	{
 		/// <summary>
 		/// All pencil marks set - 27 bits per band.
@@ -62,21 +62,12 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 
 
 		/// <inheritdoc/>
-		public override string SolverName => "Bitwise (Unsafe)";
+		public string SolverName => "Bitwise (Unsafe)";
 
-
-		/// <summary>
-		/// To call <see cref="SudokuGrid.GridParser(string)"/> to parse the current puzzle code string
-		/// and solve it.
-		/// </summary>
-		/// <param name="str">The string.</param>
-		/// <returns>The result.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public AnalysisResult Solve(string str) => Solve(SudokuGrid.Parse(str));
 
 		/// <inheritdoc/>
 		[SkipLocalsInit]
-		public override AnalysisResult Solve(in SudokuGrid grid)
+		public AnalysisResult Solve(in SudokuGrid grid)
 		{
 			var stopwatch = new Stopwatch();
 

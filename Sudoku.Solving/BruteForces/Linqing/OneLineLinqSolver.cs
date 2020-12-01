@@ -14,14 +14,14 @@ namespace Sudoku.Solving.BruteForces.Linqing
 	/// <summary>
 	/// Provides a solver using LINQ method.
 	/// </summary>
-	public sealed class OneLineLinqSolver : Solver
+	public sealed class OneLineLinqSolver : ISolver
 	{
 		/// <inheritdoc/>
-		public override string SolverName => Resources.GetValue("OneLineLinq");
+		public string SolverName => Resources.GetValue("OneLineLinq");
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(in SudokuGrid grid)
+		public AnalysisResult Solve(in SudokuGrid grid)
 		{
 			var stopwatch = new Stopwatch();
 

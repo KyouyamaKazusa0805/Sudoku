@@ -10,7 +10,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 	/// <summary>
 	/// Provides a solver using backtracking method.
 	/// </summary>
-	public sealed class BacktrackingSolver : Solver
+	public sealed class BacktrackingSolver : ISolver
 	{
 		/// <summary>
 		/// The temporary grid to solve.
@@ -19,11 +19,11 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 
 
 		/// <inheritdoc/>
-		public override string SolverName => Resources.GetValue("Backtracking");
+		public string SolverName => Resources.GetValue("Backtracking");
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(in SudokuGrid grid)
+		public AnalysisResult Solve(in SudokuGrid grid)
 		{
 			_grid = grid;
 

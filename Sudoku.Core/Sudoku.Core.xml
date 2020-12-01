@@ -3790,6 +3790,19 @@
             <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <returns>The return collection that can't be <see langword="null"/>.</returns>
         </member>
+        <member name="M:Sudoku.Extensions.DictionaryEx.ToArray``3(System.Collections.Generic.Dictionary{``0,``1})">
+            <summary>
+            Converts the specified dictionary to an array, if each value can be iterated.
+            </summary>
+            <typeparam name="TKey">The type of the key of the dictioanry.</typeparam>
+            <typeparam name="TValue">The type of each value.</typeparam>
+            <typeparam name="T">
+            The iterator type, which means the iteration type for the <typeparamref name="TValue"/>
+            instances.
+            </typeparam>
+            <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
+            <returns>The result array.</returns>
+        </member>
         <member name="M:Sudoku.Extensions.DictionaryEx.TryAddRange``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
             <summary>
             Try to add a series of elements into the dictionary.

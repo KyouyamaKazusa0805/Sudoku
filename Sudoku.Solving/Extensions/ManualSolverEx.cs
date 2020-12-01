@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using Sudoku.Data;
+using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
@@ -40,65 +43,26 @@ namespace Sudoku.Solving.Extensions
 		/// such as <see cref="BruteForceTechniqueSearcher"/>.
 		/// </param>
 		/// <returns>The result.</returns>
-		public static TechniqueSearcher[][] GetSeModeSearchers(this ManualSolver @this, in SudokuGrid solution) =>
-			new TechniqueSearcher[][]
+		public static TechniqueSearcher[][] GetSeModeSearchers(
+			this ManualSolver @this, in SudokuGrid? solution = null)
+		{
+			var list = @this.GetHodokuModeSearchers(solution);
+			var dic = new Dictionary<int, IList<TechniqueSearcher>>();
+			foreach (var searcher in list)
 			{
-				new[]
+				int level = searcher.GetType().GetCustomAttribute<DisplayLevelAttribute>()!.Level;
+				if (dic.TryGetValue(level, out var l))
 				{
-					new SingleTechniqueSearcher(@this.EnableFullHouse, @this.EnableLastDigit, @this.ShowDirectLines)
-				},
-				new[]
-				{
-					new LcTechniqueSearcher()
-				},
-				new TechniqueSearcher[]
-				{
-					new SubsetTechniqueSearcher(),
-					new NormalFishTechniqueSearcher(),
-					new RegularWingTechniqueSearcher(@this.CheckRegularWingSize),
-					new IrregularWingTechniqueSearcher(),
-					new TwoStrongLinksTechniqueSearcher(),
-					new UrTechniqueSearcher(@this.CheckIncompleteUniquenessPatterns, @this.SearchExtendedUniqueRectangles),
-					new XrTechniqueSearcher(),
-					new UlTechniqueSearcher(),
-					new EmptyRectangleTechniqueSearcher(),
-					new AlcTechniqueSearcher(@this.CheckAlmostLockedQuadruple),
-					new SdcTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-					new BdpTechniqueSearcher(),
-					new QdpTechniqueSearcher(),
-					new UsTechniqueSearcher(),
-					new GuardianTechniqueSearcher(),
-					new BugTechniqueSearcher(@this.UseExtendedBugSearcher),
-					new EripTechniqueSearcher(),
-					new AicTechniqueSearcher(),
-					new AlsXzTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-					new AlsXyWingTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-					new AlsWWingTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-				},
-				new TechniqueSearcher[]
-				{
-					new FcTechniqueSearcher(true, false, true, 0),
-					new FcTechniqueSearcher(false, true, false, 0),
-					new FcTechniqueSearcher(false, true, true, 0),
-					new BugMultipleWithFcTechniqueSearcher(),
-					new BowmanBingoTechniqueSearcher(@this.BowmanBingoMaximumLength),
-					new DeathBlossomTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.MaxPetalsOfDeathBlossom),
-					new HobiwanFishTechniqueSearcher(@this.HobiwanFishMaximumSize, @this.HobiwanFishMaximumExofinsCount, @this.HobiwanFishMaximumEndofinsCount, @this.HobiwanFishCheckTemplates),
-					new PomTechniqueSearcher(),
-					new TemplateTechniqueSearcher(@this.OnlyRecordTemplateDelete),
-				},
-				new TechniqueSearcher[]
-				{
-					new JeTechniqueSearcher(@this.CheckAdvancedInExocet),
-					new SeTechniqueSearcher(@this.CheckAdvancedInExocet),
-					new SkLoopTechniqueSearcher(),
-					new AlsNetTechniqueSearcher(),
-				},
-				new[]
-				{
-					new BruteForceTechniqueSearcher(solution)
+					l.Add(searcher);
 				}
-			};
+				else
+				{
+					dic.Add(level, new List<TechniqueSearcher> { searcher });
+				}
+			}
+
+			return dic.ToArray<int, IList<TechniqueSearcher>, TechniqueSearcher>();
+		}
 
 		/// <summary>
 		/// Get the searchers to enumerate on Hodoku mode.

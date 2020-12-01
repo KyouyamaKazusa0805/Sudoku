@@ -27,7 +27,8 @@ namespace Sudoku.Solving.Manual
 		/// (<see langword="ref"/> parameter)
 		/// The progress result. This parameter is used for modify the state of UI controls.
 		/// The current argument won't be used until <paramref name="progress"/> isn't <see langword="null"/>.
-		/// In the default case, this parameter is <see langword="default"/>(<see cref="GridProgressResult"/>) is okay.
+		/// In the default case, this parameter being
+		/// <see langword="default"/>(<see cref="GridProgressResult"/>) is okay.
 		/// </param>
 		/// <param name="progress">
 		/// The progress used for report the current state. If we don't need, the value should
@@ -73,7 +74,6 @@ namespace Sudoku.Solving.Manual
 		Searching:
 			// Start searching.
 			var searchers = this.GetHodokuModeSearchers(solution);
-
 			if (UseCalculationPriority)
 			{
 				static int cmp(in TechniqueSearcher a, in TechniqueSearcher b)
@@ -117,56 +117,59 @@ namespace Sudoku.Solving.Manual
 
 				if (FastSearch)
 				{
+					bool allConclusionsAreVaild;
 					unsafe
 					{
-						if (!CheckConclusionValidityAfterSearched || bag.All(&InternalChecking, solution))
+						allConclusionsAreVaild = bag.All(&InternalChecking, solution);
+					}
+
+					if (!CheckConclusionValidityAfterSearched || allConclusionsAreVaild)
+					{
+						foreach (var step in bag)
 						{
-							foreach (var step in bag)
+							if (
+								RecordStep(
+									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 							{
-								if (
-									RecordTechnique(
-										steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
-								{
-									stopwatch.Stop();
-									return result;
-								}
+								stopwatch.Stop();
+								return result;
 							}
-
-							// The puzzle has not been finished,
-							// we should turn to the first step finder
-							// to continue solving puzzle.
-							bag.Clear();
-							if (EnableGarbageCollectionForcedly
-								&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
-							{
-								GC.Collect();
-							}
-
-							if (progress is not null)
-							{
-								ReportProgress(cloneation, progress, ref progressResult);
-							}
-
-							goto Restart;
 						}
-						else
+
+						// The puzzle has not been finished,
+						// we should turn to the first step finder
+						// to continue solving puzzle.
+						bag.Clear();
+						if (EnableGarbageCollectionForcedly
+							&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
 						{
-							TechniqueInfo? wrongStep = null;
-							foreach (var step in bag)
-							{
-								if (!CheckConclusionsValidity(solution, step.Conclusions))
-								{
-									wrongStep = step;
-									break;
-								}
-							}
-
-							string stepGridStr = cloneation.ToString("#");
-							throw new WrongHandlingException(
-								grid,
-								$"The specified step is wrong: {wrongStep}, {Environment.NewLine}" +
-								$"the current grid: {stepGridStr}.");
+							GC.Collect();
 						}
+
+						if (progress is not null)
+						{
+							ReportProgress(cloneation, progress, ref progressResult);
+						}
+
+						goto Restart;
+					}
+					else
+					{
+						TechniqueInfo? wrongStep = null;
+						foreach (var step in bag)
+						{
+							if (!CheckConclusionsValidity(solution, step.Conclusions))
+							{
+								wrongStep = step;
+								break;
+							}
+						}
+
+						string stepGridStr = cloneation.ToString("#");
+						throw new WrongHandlingException(
+							grid,
+							$"The specified step is wrong: {wrongStep}, {Environment.NewLine}" +
+							$"the current grid: {stepGridStr}.");
 					}
 				}
 				else
@@ -190,9 +193,7 @@ namespace Sudoku.Solving.Manual
 					if (!CheckConclusionValidityAfterSearched
 						|| CheckConclusionsValidity(solution, step.Conclusions))
 					{
-						if (
-							RecordTechnique(
-								steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+						if (RecordStep(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
 						{
 							stopwatch.Stop();
 							return result;

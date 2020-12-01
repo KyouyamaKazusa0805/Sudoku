@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Singles;
-using Sudoku.Windows;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 
@@ -15,23 +12,8 @@ namespace Sudoku.Solving.Manual
 	/// This solver will use mankind logic to solve a puzzle, but only
 	/// <b>Hidden Single</b>s and <b>Naked Single</b>s will be used.
 	/// </summary>
-	public sealed class LightManualSolver : Solver
+	public sealed class LightManualSolver
 	{
-		/// <inheritdoc/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override string SolverName => Resources.GetValue("ManualLight");
-
-
-		/// <inheritdoc/>
-		/// <remarks>
-		/// You should use the simple version of the solving method <see cref="CanSolve(in SudokuGrid)"/>.
-		/// </remarks>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		/// <seealso cref="CanSolve(in SudokuGrid)"/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override AnalysisResult Solve(in SudokuGrid grid) =>
-			throw new NotSupportedException($"The specified method should be replaced with '{nameof(CanSolve)}'.");
-
 		/// <summary>
 		/// To check whether the specified solver can solve the puzzle.
 		/// </summary>

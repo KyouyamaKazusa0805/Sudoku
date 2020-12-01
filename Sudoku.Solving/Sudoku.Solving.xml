@@ -587,14 +587,6 @@
         <member name="P:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(System.String)">
-            <summary>
-            To call <see cref="M:Sudoku.Data.SudokuGrid.GridParser.#ctor(System.String)"/> to parse the current puzzle code string
-            and solve it.
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
@@ -1168,7 +1160,7 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.ManualSolverEx.GetSeModeSearchers(Sudoku.Solving.Manual.ManualSolver,Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Extensions.ManualSolverEx.GetSeModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
             <summary>
             Get the searchers to enumerate on Sudoku Explainer mode.
             </summary>
@@ -1499,6 +1491,25 @@
             <param name="progress">The progress.</param>
             <param name="countryCode">The globalization string.</param>
             <returns>The task.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.ISolver">
+            <summary>
+            Indicates an instance used for solving a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.ISolver.SolverName">
+            <summary>
+            Indicates the name of this solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.ISolver.Solve(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            To solve the specified puzzle.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
+            <returns>
+            An <see cref="T:Sudoku.Solving.AnalysisResult"/> displaying all information of solving.
+            </returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsTechniqueInfo">
             <summary>
@@ -4581,17 +4592,6 @@
             <b>Hidden Single</b>s and <b>Naked Single</b>s will be used.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.LightManualSolver.SolverName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.LightManualSolver.Solve(Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-            <remarks>
-            You should use the simple version of the solving method <see cref="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.SudokuGrid@)"/>.
-            </remarks>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-            <seealso cref="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.SudokuGrid@)"/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.SudokuGrid@)">
             <summary>
             To check whether the specified solver can solve the puzzle.
@@ -4658,7 +4658,8 @@
             (<see langword="ref"/> parameter)
             The progress result. This parameter is used for modify the state of UI controls.
             The current argument won't be used until <paramref name="progress"/> isn't <see langword="null"/>.
-            In the default case, this parameter is <see langword="default"/>(<see cref="T:Sudoku.Models.GridProgressResult"/>) is okay.
+            In the default case, this parameter being
+            <see langword="default"/>(<see cref="T:Sudoku.Models.GridProgressResult"/>) is okay.
             </param>
             <param name="progress">
             The progress used for report the current state. If we don't need, the value should
@@ -4683,7 +4684,7 @@
             (<see langword="ref"/> parameter)
             The progress result. This parameter is used for modify the state of UI controls.
             The current argument won't be used until <paramref name="progress"/> isn't <see langword="null"/>.
-            In the default case, this parameter is
+            In the default case, this parameter being
             <see langword="default"/>(<see cref="T:Sudoku.Models.GridProgressResult"/>) is okay.
             </param>
             <param name="progress">
@@ -5043,7 +5044,7 @@
             <para>The value is <c>5</c> in default case.</para>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Diagnostics.Stopwatch,System.Collections.Generic.IList{Sudoku.Data.SudokuGrid},Sudoku.Solving.AnalysisResult@)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordStep(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Diagnostics.Stopwatch,System.Collections.Generic.IList{Sudoku.Data.SudokuGrid},Sudoku.Solving.AnalysisResult@)">
             <summary>
             Bound with on-solving methods returns the solving state.
             </summary>
@@ -8646,25 +8647,6 @@
             <summary>
             Encapsulates a <b>wing</b> technique solver.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Solver">
-            <summary>
-            Indicates an instance used for solving a sudoku puzzle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Solver.SolverName">
-            <summary>
-            Indicates the name of this solver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Solver.Solve(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            To solve the specified puzzle.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
-            <returns>
-            An <see cref="T:Sudoku.Solving.AnalysisResult"/> displaying all information of solving.
-            </returns>
         </member>
         <member name="T:Sudoku.Solving.TechniqueInfo">
             <summary>
