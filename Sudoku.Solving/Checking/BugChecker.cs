@@ -77,7 +77,7 @@ namespace Sudoku.Solving.Checking
 		/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
 		/// <returns>All true candidates.</returns>
 		[SkipLocalsInit]
-		public unsafe IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
+		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
 			// Get the number of multivalue cells.
 			// If the number of that is greater than the specified number,
@@ -99,26 +99,23 @@ namespace Sudoku.Solving.Checking
 			// Store all bivalue cells and construct the relations.
 			var span = (stackalloc int[3]);
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
-			if (_bivalueMap.IsNotEmpty)
+			foreach (int cell in _bivalueMap)
 			{
-				foreach (int cell in _bivalueMap)
+				foreach (int digit in Puzzle.GetCandidateMask(cell))
 				{
-					foreach (int digit in Puzzle.GetCandidateMask(cell))
-					{
-						ref var map = ref stack[0, digit];
-						map.AddAnyway(cell);
+					ref var map = ref stack[0, digit];
+					map.AddAnyway(cell);
 
-						span[0] = GetRegion(cell, RegionLabel.Row);
-						span[1] = GetRegion(cell, RegionLabel.Column);
-						span[2] = GetRegion(cell, RegionLabel.Block);
-						foreach (int region in span)
+					span[0] = GetRegion(cell, RegionLabel.Row);
+					span[1] = GetRegion(cell, RegionLabel.Column);
+					span[2] = GetRegion(cell, RegionLabel.Block);
+					foreach (int region in span)
+					{
+						if ((map & RegionMaps[region]).Count > 2)
 						{
-							if ((map & RegionMaps[region]).Count > 2)
-							{
-								// The specified region contains at least three positions to fill with the digit,
-								// which is invalid in any BUG + n patterns.
-								return DefaultList;
-							}
+							// The specified region contains at least three positions to fill with the digit,
+							// which is invalid in any BUG + n patterns.
+							return DefaultList;
 						}
 					}
 				}
@@ -191,7 +188,12 @@ namespace Sudoku.Solving.Checking
 					}
 
 					chosen[currentIndex] = i;
-					int pos1 = (&mask)->FindFirstSet();
+					int pos1;
+					unsafe
+					{
+						pos1 = (&mask)->FindFirstSet();
+					}
+
 					stack[currentIndex, pos1].AddAnyway(currentCell);
 					stack[currentIndex, mask.GetNextSet(pos1)].AddAnyway(currentCell);
 					if (currentIndex == multivalueCellsCount)

@@ -53,12 +53,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 					// Remove all digits to satisfy that the RCC digit can't appear
 					// in the intersection of two ALSes.
-					if (overlapMap.IsNotEmpty)
+					foreach (int cell in overlapMap)
 					{
-						foreach (int cell in overlapMap)
-						{
-							xzMask &= (short)~grid.GetCandidateMask(cell);
-						}
+						xzMask &= (short)~grid.GetCandidateMask(cell);
 					}
 
 					// If the number of digits that both two ALSes contain is only one (or zero),
@@ -155,14 +152,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							tempMap |= CandMaps[mask1.SetAt(k)];
 						}
 						tempMap &= possibleElimMap1;
-						if (tempMap.IsNotEmpty)
+						foreach (int cell in tempMap)
 						{
-							foreach (int cell in tempMap)
+							foreach (int digit in grid.GetCandidateMask(cell) & (mask1 & ~rccMask))
 							{
-								foreach (int digit in grid.GetCandidateMask(cell) & (mask1 & ~rccMask))
-								{
-									conclusions.Add(new(Elimination, cell, digit));
-								}
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						tempMap = CandMaps[mask2.FindFirstSet()];
@@ -171,14 +165,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							tempMap |= CandMaps[mask2.SetAt(k)];
 						}
 						tempMap &= possibleElimMap2;
-						if (tempMap.IsNotEmpty)
+						foreach (int cell in tempMap)
 						{
-							foreach (int cell in tempMap)
+							foreach (int digit in grid.GetCandidateMask(cell) & (mask2 & ~rccMask))
 							{
-								foreach (int digit in grid.GetCandidateMask(cell) & (mask2 & ~rccMask))
-								{
-									conclusions.Add(new(Elimination, cell, digit));
-								}
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 					}

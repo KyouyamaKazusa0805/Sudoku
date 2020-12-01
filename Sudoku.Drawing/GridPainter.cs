@@ -311,17 +311,14 @@ namespace Sudoku.Drawing
 				}
 
 				// Draw end cells (may be using cross sign to represent the current cell can't fill that digit).
-				if (end.IsNotEmpty)
+				foreach (int cell in end)
 				{
-					foreach (int cell in end)
-					{
-						// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-						var rect = PointConverter.GetMouseRectangleViaCell(cell).Zoom(-offset * 2);
+					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
+					var rect = PointConverter.GetMouseRectangleViaCell(cell).Zoom(-offset * 2);
 
-						// Step 2: Draw cross sign.
-						using var pen = new Pen(Settings.CrossSignColor, 5F);
-						g.DrawCrossSign(pen, rect);
-					}
+					// Step 2: Draw cross sign.
+					using var pen = new Pen(Settings.CrossSignColor, 5F);
+					g.DrawCrossSign(pen, rect);
 				}
 			}
 		}

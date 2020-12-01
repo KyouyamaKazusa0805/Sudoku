@@ -190,12 +190,9 @@ namespace Sudoku.Solving.Manual.Fishes
 										{
 											candidateOffsets.Add(new(0, cell * 9 + digit));
 										}
-										if (finCellsMap.IsNotEmpty)
+										foreach (int cell in finCellsMap)
 										{
-											foreach (int cell in finCellsMap)
-											{
-												candidateOffsets.Add(new(1, cell * 9 + digit));
-											}
+											candidateOffsets.Add(new(1, cell * 9 + digit));
 										}
 
 										// Check the fish is sashimi, normal finned or normal.
@@ -344,57 +341,57 @@ namespace Sudoku.Solving.Manual.Fishes
 
 											CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 												// Check whether the number of intersection cells is not 0.
-												if (elimMap.IsNotEmpty)
+												if (elimMap.IsEmpty)
 												{
-													// Finned/Sashimi X-Wing found.
-													// Check eliminations.
-													var conclusions = new List<Conclusion>();
-													foreach (int cell in elimMap)
-													{
-														conclusions.Add(new(Elimination, cell * 9 + digit));
-													}
-													if (conclusions.Count == 0)
-													{
-														continue;
-													}
+													continue;
+												}
 
-													// Eliminations does exist.
-													// Check all highlight candidates.
-													var candidateOffsets = new List<DrawingInfo>();
-													foreach (int cell in bodyMap)
+												// Finned/Sashimi X-Wing found.
+												// Check eliminations.
+												var conclusions = new List<Conclusion>();
+												foreach (int cell in elimMap)
+												{
+													conclusions.Add(new(Elimination, cell * 9 + digit));
+												}
+												if (conclusions.Count == 0)
+												{
+													continue;
+												}
+
+												// Eliminations does exist.
+												// Check all highlight candidates.
+												var candidateOffsets = new List<DrawingInfo>();
+												foreach (int cell in bodyMap)
+												{
+													candidateOffsets.Add(new(0, cell * 9 + digit));
+												}
+												foreach (int cell in finCellsMap)
+												{
+													candidateOffsets.Add(new(1, cell * 9 + digit));
+												}
+
+												// Check the fish is sashimi, normal finned or normal.
+												bool? isSashimi = null;
+												if (finCellsMap.IsNotEmpty)
+												{
+													isSashimi = true;
+													int finCell = finCellsMap.First;
+													int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
+													foreach (int offset in bodyMap)
 													{
-														candidateOffsets.Add(new(0, cell * 9 + digit));
-													}
-													if (finCellsMap.IsNotEmpty)
-													{
-														foreach (int cell in finCellsMap)
+														if (offset / 9 / 3 * 3 + offset % 9 / 3 == block)
 														{
-															candidateOffsets.Add(new(1, cell * 9 + digit));
+															isSashimi = false;
+															break;
 														}
 													}
+												}
 
-													// Check the fish is sashimi, normal finned or normal.
-													bool? isSashimi = null;
-													if (finCellsMap.IsNotEmpty)
-													{
-														isSashimi = true;
-														int finCell = finCellsMap.First;
-														int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
-														foreach (int offset in bodyMap)
+												accumulator.Add(
+													new NormalFishTechniqueInfo(
+														conclusions,
+														new View[]
 														{
-															if (offset / 9 / 3 * 3 + offset % 9 / 3 == block)
-															{
-																isSashimi = false;
-																break;
-															}
-														}
-													}
-
-													accumulator.Add(
-														new NormalFishTechniqueInfo(
-															conclusions,
-															new View[]
-															{
 																new(
 																	null,
 																	candidateOffsets,
@@ -408,13 +405,12 @@ namespace Sudoku.Solving.Manual.Fishes
 																GetDirectView(
 																	grid, digit, baseSets3,
 																	coverSets3, searchRow, finCellsMap)
-															},
-															digit,
-															baseSets3.ToArray(),
-															coverSets3.ToArray(),
-															finCellsMap.ToArray(),
-															isSashimi));
-												}
+														},
+														digit,
+														baseSets3.ToArray(),
+														coverSets3.ToArray(),
+														finCellsMap.ToArray(),
+														isSashimi));
 											}
 										}
 									}
@@ -557,12 +553,9 @@ namespace Sudoku.Solving.Manual.Fishes
 															{
 																candidateOffsets.Add(new(0, cell * 9 + digit));
 															}
-															if (finCellsMap.IsNotEmpty)
+															foreach (int cell in finCellsMap)
 															{
-																foreach (int cell in finCellsMap)
-																{
-																	candidateOffsets.Add(new(1, cell * 9 + digit));
-																}
+																candidateOffsets.Add(new(1, cell * 9 + digit));
 															}
 
 															// Check the fish is sashimi, normal finned or normal.

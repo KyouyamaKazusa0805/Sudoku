@@ -168,11 +168,6 @@ namespace Sudoku.Solving.Manual.Exocets
 						foreach (int digit in tbCands)
 						{
 							var elimMap = (baseMap & CandMaps[digit]).PeerIntersection & CandMaps[digit];
-							if (elimMap.IsEmpty)
-							{
-								continue;
-							}
-
 							foreach (int cell in elimMap)
 							{
 								trueBaseElims.Add(new(ConclusionType.Elimination, cell, digit));

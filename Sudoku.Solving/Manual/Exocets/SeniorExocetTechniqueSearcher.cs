@@ -565,12 +565,9 @@ namespace Sudoku.Solving.Manual.Exocets
 						compatibilityElims.Add(new(ConclusionType.Elimination, elimTarget, digit));
 					}
 
-					if (elimMap.IsNotEmpty)
+					foreach (int cell in elimMap)
 					{
-						foreach (int cell in elimMap)
-						{
-							compatibilityElims.Add(new(ConclusionType.Elimination, cell, digit));
-						}
+						compatibilityElims.Add(new(ConclusionType.Elimination, cell, digit));
 					}
 				}
 			}
