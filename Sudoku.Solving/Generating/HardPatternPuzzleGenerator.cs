@@ -133,7 +133,7 @@ namespace Sudoku.Solving.Generating
 		protected sealed override void CreatePattern(int[] pattern)
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static double rnd() => Rng.NextDouble();
+			static double rnd() => IPuzzleGenerator.Rng.NextDouble();
 
 			int a = 54, b = 0;
 			for (int i = 0; i < 9; i++)
@@ -174,7 +174,7 @@ namespace Sudoku.Solving.Generating
 		private static void RecreatePattern(int[] pattern)
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static double rnd() => Rng.NextDouble();
+			static double rnd() => IPuzzleGenerator.Rng.NextDouble();
 
 			for (int i = 23; i >= 0; i--)
 			{

@@ -9,7 +9,7 @@ namespace Sudoku.Solving.Generating
 	/// Encapsulates a puzzle generator, whose basic algorithm is digging
 	/// some values out of a random answer grid.
 	/// </summary>
-	public abstract class DiggingPuzzleGenerator : PuzzleGenerator
+	public abstract class DiggingPuzzleGenerator : IPuzzleGenerator
 	{
 		/// <summary>
 		/// The fast solver.
@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Generating
 				{
 					while (true)
 					{
-						int cell = Rng.Next(0, 81);
+						int cell = IPuzzleGenerator.Rng.Next(0, 81);
 						if (!map[cell])
 						{
 							map.AddAnyway(cell);
@@ -49,11 +49,14 @@ namespace Sudoku.Solving.Generating
 				{
 					do
 					{
-						puzzle[cell] = (char)(Rng.Next(1, 9) + '0');
+						puzzle[cell] = (char)(IPuzzleGenerator.Rng.Next(1, 9) + '0');
 					} while (CheckDuplicate(puzzle, cell));
 				}
 			} while (FastSolver.Solve(puzzle.ToString(), solution, 2) == 0);
 		}
+
+		/// <inheritdoc/>
+		public abstract SudokuGrid Generate();
 
 		/// <summary>
 		/// To create the pattern.

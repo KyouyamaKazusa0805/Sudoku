@@ -58,20 +58,25 @@ namespace Sudoku.Solving.Generating
 
 			techniqueCodeFilter ??= DefaultFilter;
 
-			unsafe
-			{
-				static bool p(TechniqueInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
-					techniqueCodeFilter.Contains(step.TechniqueCode);
 
-				while (true)
+			while (true)
+			{
+				var puzzle = Generate(-1, progress, countryCode: countryCode);
+
+				bool r;
+				unsafe
 				{
-					var puzzle = Generate(-1, progress, countryCode: countryCode);
-					if (ManualSolver.Solve(puzzle).Any(&p, techniqueCodeFilter))
-					{
-						return puzzle;
-					}
+					r = ManualSolver.Solve(puzzle).Any(&p, techniqueCodeFilter);
+				}
+
+				if (r)
+				{
+					return puzzle;
 				}
 			}
+
+			static bool p(TechniqueInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
+				techniqueCodeFilter.Contains(step.TechniqueCode);
 		}
 
 		/// <summary>

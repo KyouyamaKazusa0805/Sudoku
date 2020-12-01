@@ -1356,6 +1356,9 @@
             <param name="puzzle">The puzzle string.</param>
             <param name="solution">The solution string.</param>
         </member>
+        <member name="M:Sudoku.Solving.Generating.DiggingPuzzleGenerator.Generate">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Generating.DiggingPuzzleGenerator.CreatePattern(System.Int32[])">
             <summary>
             To create the pattern.
@@ -1428,23 +1431,23 @@
             </summary>
             <param name="pattern">The pattern array.</param>
         </member>
-        <member name="T:Sudoku.Solving.Generating.PuzzleGenerator">
+        <member name="T:Sudoku.Solving.Generating.IPuzzleGenerator">
             <summary>
             Provides data for all derived puzzle generators.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Generating.PuzzleGenerator.Rng">
+        <member name="F:Sudoku.Solving.Generating.IPuzzleGenerator.Rng">
             <summary>
             The random number generator.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Generating.PuzzleGenerator.Generate">
+        <member name="M:Sudoku.Solving.Generating.IPuzzleGenerator.Generate">
             <summary>
             Generates a puzzle.
             </summary>
             <returns>The puzzle.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Generating.PuzzleGenerator.GenerateAsync">
+        <member name="M:Sudoku.Solving.Generating.IPuzzleGenerator.GenerateAsync">
             <summary>
             Generates a puzzle asynchronizedly.
             </summary>

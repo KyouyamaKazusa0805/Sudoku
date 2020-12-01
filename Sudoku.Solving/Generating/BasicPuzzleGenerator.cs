@@ -52,9 +52,9 @@ namespace Sudoku.Solving.Generating
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
-			var allTypes = from @type in EnumEx.GetValues<SymmetryType>()
-						   where @type != None && symmetricalType.Flags(@type)
-						   select @type;
+			var allTypes = from type in EnumEx.GetValues<SymmetryType>()
+						   where type != None && symmetricalType.Flags(type)
+						   select type;
 			int count = allTypes.Count();
 			if (count == 0)
 			{
@@ -65,14 +65,14 @@ namespace Sudoku.Solving.Generating
 			string result;
 			do
 			{
-				var selectedType = allTypes.ElementAt(Rng.Next(count));
+				var selectedType = allTypes.ElementAt(IPuzzleGenerator.Rng.Next(count));
 				tempSb.CopyTo(solution);
 
 				var totalMap = GridMap.Empty;
 				do
 				{
 					int cell;
-					do cell = Rng.Next(0, 81); while (totalMap[cell]);
+					do cell = IPuzzleGenerator.Rng.Next(0, 81); while (totalMap[cell]);
 
 					int r = cell / 9, c = cell % 9;
 

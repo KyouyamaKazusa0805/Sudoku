@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Generating
 	/// <summary>
 	/// Provides data for all derived puzzle generators.
 	/// </summary>
-	public abstract class PuzzleGenerator
+	public interface IPuzzleGenerator
 	{
 		/// <summary>
 		/// The random number generator.
@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Generating
 		/// Generates a puzzle.
 		/// </summary>
 		/// <returns>The puzzle.</returns>
-		public abstract SudokuGrid Generate();
+		SudokuGrid Generate();
 
 		/// <summary>
 		/// Generates a puzzle asynchronizedly.
