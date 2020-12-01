@@ -27,7 +27,7 @@ using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Windows;
 using static System.Console;
 
-#if BATCH_RATING || true
+#if BATCH_RATING || false
 string path = @"C:\Users\Howdy\Desktop\p.txt";
 string resultPath = @"C:\Users\Howdy\Desktop\result.txt";
 if (!File.Exists(path))
@@ -74,7 +74,7 @@ stopwatch.Stop();
 ReadKey();
 #endif
 
-#if FILE_COUNTER || false
+#if FILE_COUNTER || true
 string root = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName;
 
 WriteLine(new FileCounter(root, "cs", withBinOrObjDirectory: false).CountUp());

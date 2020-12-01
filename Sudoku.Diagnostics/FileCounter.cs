@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Sudoku.Extensions;
 
 namespace Sudoku.Diagnostics
@@ -12,12 +11,6 @@ namespace Sudoku.Diagnostics
 	/// </summary>
 	public sealed class FileCounter
 	{
-		/// <summary>
-		/// Indicates the comment lint regular expression instance.
-		/// </summary>
-		private static readonly Regex CommentLineRegex = new(@"(\s//.+|/\*.+|.+\*/)", RegexOptions.Compiled);
-
-
 		/// <summary>
 		/// Initializes an instance with the specified root directory.
 		/// </summary>
@@ -36,7 +29,8 @@ namespace Sudoku.Diagnostics
 		/// The file extension. This parameter can be <see langword="null"/>. If
 		/// so, the counter will sum up all files with all extensions.
 		/// </param>
-		public FileCounter(string root, string? extension) : this(root, $@".+\.{extension}$", true, new List<string>())
+		public FileCounter(string root, string? extension)
+			: this(root, $@".+\.{extension}$", true, new List<string>())
 		{
 		}
 
@@ -104,14 +98,15 @@ namespace Sudoku.Diagnostics
 			stopwatch.Start();
 			g(new(Root));
 
-			int commentLines, filesCount, resultLines;
+			int filesCount, resultLines;
 			long charactersCount, bytes;
-			charactersCount = bytes = commentLines = filesCount = resultLines = 0;
+			charactersCount = bytes = filesCount = resultLines = 0;
 			foreach (string fileName in FileList)
 			{
+				StreamReader? sr = null;
 				try
 				{
-					using var sr = new StreamReader(fileName);
+					sr = new(fileName);
 					int fileLines = 0;
 					string? s;
 					while ((s = sr.ReadLine()) is not null)
@@ -121,12 +116,6 @@ namespace Sudoku.Diagnostics
 
 						// Remove header \t.
 						charactersCount -= s.Reserve(@"\t").Length;
-
-						// Check whether the current line is comment line.
-						if (CommentLineRegex.Match(s).Success)
-						{
-							commentLines++;
-						}
 					}
 
 					resultLines += fileLines;
@@ -135,12 +124,15 @@ namespace Sudoku.Diagnostics
 				}
 				catch
 				{
-					// Do nothing.
+				}
+				finally
+				{
+					sr?.Close();
 				}
 			}
 
 			stopwatch.Stop();
-			return new(resultLines, commentLines, filesCount, charactersCount, bytes, stopwatch.Elapsed, FileList);
+			return new(resultLines, filesCount, charactersCount, bytes, stopwatch.Elapsed, FileList);
 
 			void g(DirectoryInfo directory)
 			{

@@ -8,7 +8,6 @@ namespace Sudoku.Diagnostics
 	/// Encapsulates a result after <see cref="FileCounter"/>.
 	/// </summary>
 	/// <param name="ResultLines">The number of lines found.</param>
-	/// <param name="CommentLines">The number of comment lines found.</param>
 	/// <param name="FilesCount">The number of files found.</param>
 	/// <param name="CharactersCount">The number of characters found.</param>
 	/// <param name="Bytes">All bytes.</param>
@@ -19,13 +18,13 @@ namespace Sudoku.Diagnostics
 	/// </param>
 	/// <seealso cref="FileCounter"/>
 	public sealed record FileCounterResult(
-		int ResultLines, int CommentLines, int FilesCount, long CharactersCount, long Bytes,
+		int ResultLines, int FilesCount, long CharactersCount, long Bytes,
 		TimeSpan Elapsed, IList<string> FileList)
 	{
 		/// <inheritdoc/>
 		public override string ToString() =>
 			$"Results:\n" +
-			$"* Code lines: {ResultLines} (Comment lines: {CommentLines})\n" +
+			$"* Code lines: {ResultLines}\n" +
 			$"* Files: {FilesCount}\n" +
 			$"* Characters: {CharactersCount}\n" +
 			$"* Bytes: {SizeUnitConverter.Convert(Bytes, out var unit):.000} {Tostring(unit)} ({Bytes} Bytes)\n" +

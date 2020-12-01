@@ -143,6 +143,11 @@
             The class that stores all regular expressions used in this solution.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.CommentLine">
+            <summary>
+            Indicates a comment line.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.RegularExpressions.PmGridCandidates">
             <summary>
             Indicates each candidates group in the PM grid.

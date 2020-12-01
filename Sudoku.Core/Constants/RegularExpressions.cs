@@ -6,6 +6,11 @@
 	internal static class RegularExpressions
 	{
 		/// <summary>
+		/// Indicates a comment line.
+		/// </summary>
+		public const string CommentLine = @"(\s//.+|/\*.+|.+\*/)";
+
+		/// <summary>
 		/// Indicates each candidates group in the PM grid.
 		/// </summary>
 		public const string PmGridCandidates = @"[1-9]{1,9}";
