@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
@@ -15,37 +14,13 @@ namespace Sudoku.Solving.Checking
 	public sealed class BugChecker
 	{
 		/// <summary>
-		/// The distribution of all empty cells.
-		/// </summary>
-		private readonly GridMap _emptyMap;
-
-		/// <summary>
-		/// The distribution of all bivalue cells.
-		/// </summary>
-		private readonly GridMap _bivalueMap;
-
-		/// <summary>
-		/// The distribution of all digits.
-		/// </summary>
-		private readonly GridMap[] _candMaps;
-
-
-		/// <summary>
 		/// Initializes an instance with the specified grid.
 		/// </summary>
 		/// <param name="puzzle">(<see langword="in"/> parameter) The current puzzle grid.</param>
-		public BugChecker(in SudokuGrid puzzle)
-		{
-			if (puzzle.IsValid())
-			{
-				(_emptyMap, _bivalueMap, _candMaps, _, _) = Puzzle = puzzle;
-			}
-			else
-			{
-				throw new ArgumentException(
-					"The specified grid doesn't have a unique solution.", nameof(puzzle));
-			}
-		}
+		public BugChecker(in SudokuGrid puzzle) =>
+			Puzzle = puzzle.IsValid()
+				? puzzle
+				: throw new ArgumentException("The specified grid doesn't have a unique solution.", nameof(puzzle));
 
 
 		/// <summary>
@@ -65,12 +40,6 @@ namespace Sudoku.Solving.Checking
 
 
 		/// <summary>
-		/// The default list used for return.
-		/// </summary>
-		private static int[] DefaultList => Array.Empty<int>();
-
-
-		/// <summary>
 		/// Get all true candidates when the number of empty cells
 		/// is below than the argument.
 		/// </summary>
@@ -79,19 +48,20 @@ namespace Sudoku.Solving.Checking
 		[SkipLocalsInit]
 		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
+			TechniqueSearcher.InitializeMaps(Puzzle);
+
 			// Get the number of multivalue cells.
 			// If the number of that is greater than the specified number,
 			// here will return the default list directly.
 			int multivalueCellsCount = 0;
-			foreach (int value in _emptyMap)
+			foreach (int value in TechniqueSearcher.EmptyMap)
 			{
-				int candidatesCount = Puzzle.GetCandidateMask(value).PopCount();
-				switch (candidatesCount)
+				switch (Puzzle.GetCandidateMask(value).PopCount())
 				{
 					case 1:
 					case > 2 when ++multivalueCellsCount > maximumEmptyCells:
 					{
-						return DefaultList;
+						return Array.Empty<int>();
 					}
 				}
 			}
@@ -99,7 +69,7 @@ namespace Sudoku.Solving.Checking
 			// Store all bivalue cells and construct the relations.
 			var span = (stackalloc int[3]);
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
-			foreach (int cell in _bivalueMap)
+			foreach (int cell in TechniqueSearcher.BivalueMap)
 			{
 				foreach (int digit in Puzzle.GetCandidateMask(cell))
 				{
@@ -115,7 +85,7 @@ namespace Sudoku.Solving.Checking
 						{
 							// The specified region contains at least three positions to fill with the digit,
 							// which is invalid in any BUG + n patterns.
-							return DefaultList;
+							return Array.Empty<int>();
 						}
 					}
 				}
@@ -126,7 +96,7 @@ namespace Sudoku.Solving.Checking
 			// The comments will help you to understand the processing.
 			short mask;
 			short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-			int[] multivalueCells = (_emptyMap - _bivalueMap).ToArray();
+			int[] multivalueCells = (TechniqueSearcher.EmptyMap - TechniqueSearcher.BivalueMap).ToArray();
 			for (int i = 0, length = multivalueCells.Length; i < length; i++)
 			{
 				mask = Puzzle.GetCandidateMask(multivalueCells[i]); // eg. { 2, 4, 6 } (42)
@@ -204,7 +174,7 @@ namespace Sudoku.Solving.Checking
 							// Take the cell that doesn't contain in the map above.
 							// Here, the cell is the "true candidate cell".
 							ref var map = ref resultMap[digit];
-							map = _candMaps[digit] - stack[currentIndex, digit];
+							map = TechniqueSearcher.CandMaps[digit] - stack[currentIndex, digit];
 							foreach (int cell in map)
 							{
 								result.Add(cell * 9 + digit);

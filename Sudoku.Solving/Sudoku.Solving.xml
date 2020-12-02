@@ -895,21 +895,6 @@
             Encapsulates a BUG technique checker.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Checking.BugChecker._emptyMap">
-            <summary>
-            The distribution of all empty cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Checking.BugChecker._bivalueMap">
-            <summary>
-            The distribution of all bivalue cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Checking.BugChecker._candMaps">
-            <summary>
-            The distribution of all digits.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Checking.BugChecker.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
             Initializes an instance with the specified grid.
@@ -929,11 +914,6 @@
         <member name="P:Sudoku.Solving.Checking.BugChecker.TrueCandidates">
             <summary>
             Indicates all true candidates (non-BUG candidates).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Checking.BugChecker.DefaultList">
-            <summary>
-            The default list used for return.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllTrueCandidates(System.Int32)">
