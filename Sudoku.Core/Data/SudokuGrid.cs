@@ -474,6 +474,13 @@ namespace Sudoku.Data
 				return "<Undefined>";
 			}
 
+#if DEBUG
+			if (debuggerUndefined(this))
+			{
+				return "<Debugger can't recognize fixed buffer.>";
+			}
+#endif
+
 			if (formatProvider.HasFormatted(this, format, out string? result))
 			{
 				return result;
@@ -488,6 +495,19 @@ namespace Sudoku.Data
 				".!:" or "!.:" or "0!:" => f.ToString(this).Replace("+", string.Empty),
 				_ => f.ToString(this)
 			};
+
+			static bool debuggerUndefined(in SudokuGrid grid)
+			{
+				for (int cell = 1; cell < Length; cell++)
+				{
+					if (grid._values[cell] != 0)
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
 		}
 
 		/// <summary>
