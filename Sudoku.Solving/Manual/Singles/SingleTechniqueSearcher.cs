@@ -14,7 +14,6 @@ namespace Sudoku.Solving.Manual.Singles
 	/// Encapsulates a <b>single</b> technique searcher.
 	/// </summary>
 	[DirectSearcher]
-	[DisplayLevel(0)]
 	[TechniqueDisplay(nameof(TechniqueCode.NakedSingle))]
 	public sealed class SingleTechniqueSearcher : TechniqueSearcher
 	{
@@ -36,12 +35,20 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <param name="showDirectLines">
 		/// Indicates whether the solver shows the direct lines (cross-hatching information).
 		/// </param>
-		public SingleTechniqueSearcher(bool enableFullHouse, bool enableLastDigit, bool showDirectLines) =>
-			(_enableFullHouse, _enableLastDigit, _showDirectLines) = (enableFullHouse, enableLastDigit, showDirectLines);
+		public SingleTechniqueSearcher(bool enableFullHouse, bool enableLastDigit, bool showDirectLines)
+		{
+			_enableFullHouse = enableFullHouse;
+			_enableLastDigit = enableLastDigit;
+			_showDirectLines = showDirectLines;
+		}
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(10) { IsReadOnly = true };
+		public static TechniqueProperties Properties { get; } = new(10)
+		{
+			DisplayLevel = 0,
+			IsReadOnly = true
+		};
 
 
 		/// <inheritdoc/>

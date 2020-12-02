@@ -16,12 +16,11 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// the real technique, different with the abstract class <see cref="MslsTechniqueSearcher"/>.
 	/// </summary>
 	/// <seealso cref="MslsTechniqueSearcher"/>
-	[DisplayLevel(4)]
 	[TechniqueDisplay(nameof(TechniqueCode.Msls))]
 	public sealed partial class AlsNetTechniqueSearcher : MslsTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(96);
+		public static TechniqueProperties Properties { get; } = new(96) { DisplayLevel = 4 };
 
 
 		/// <inheritdoc/>

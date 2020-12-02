@@ -16,12 +16,11 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Encapsulates a <b>guardian</b> technique searcher.
 	/// </summary>
-	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.Guardian))]
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55);
+		public static TechniqueProperties Properties { get; } = new(55) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

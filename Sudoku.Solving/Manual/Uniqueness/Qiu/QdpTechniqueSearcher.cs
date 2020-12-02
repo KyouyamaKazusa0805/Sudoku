@@ -31,7 +31,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <item><term>B</term><description>Base Line Cells.</description></item>
 	/// </list>
 	/// </summary>
-	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.QdpType1))]
 	public sealed partial class QdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{
@@ -42,7 +41,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(58);
+		public static TechniqueProperties Properties { get; } = new(58) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

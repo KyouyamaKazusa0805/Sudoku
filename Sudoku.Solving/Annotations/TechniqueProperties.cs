@@ -1,5 +1,6 @@
 ﻿using System;
 using Sudoku.DocComments;
+using Sudoku.Solving.Manual;
 using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving.Annotations
@@ -25,12 +26,39 @@ namespace Sudoku.Solving.Annotations
 		/// <summary>
 		/// Indicates whether the property is read-only, which can't be modified.
 		/// </summary>
-		public bool IsReadOnly { get; set; } = false;
+		public bool IsReadOnly { get; set; }
+
+		/// <summary>
+		/// Indicates whether the searcher is only used in analyzing a sudoku grid.
+		/// If <see langword="true"/>, when in find-all-step mode, this searcher will be disabled.
+		/// </summary>
+		public bool OnlyEnableInAnalysis { get; set; }
 
 		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
 		public int Priority { get; set; }
+
+		/// <summary>
+		/// Indicates the display level of this technique.
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// The display level means the which level the technique is at. All higher leveled techniques
+		/// won't display on the screen when the searchers at the current level have found technique
+		/// instances.
+		/// </para>
+		/// <para>
+		/// This attribute is used on <see cref="StepFinder"/>. For example, if Alternating Inference Chain (AIC)
+		/// is at level 1 and Forcing Chains (FC) is at level 2, when we find any AIC technique instances,
+		/// FC won't be checked at the same time in order to enhance the performance.
+		/// </para>
+		/// <para>
+		/// This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+		/// </para>
+		/// </remarks>
+		/// <seealso cref="StepFinder"/>
+		public int DisplayLevel { get; set; }
 
 		/// <summary>
 		/// Indicates whether the current searcher has bug to fix, or something else to describe why
@@ -42,15 +70,69 @@ namespace Sudoku.Solving.Annotations
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="isEnabled">(<see langword="out"/> parameter) Indicates whether the technique is enabled.</param>
+		/// <param name="isEnabled">
+		/// (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+		/// </param>
 		/// <param name="isReadOnly">
 		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
 		/// </param>
-		/// <param name="priority">(<see langword="out"/> parameter) Indicates the priority of the technique.</param>
-		/// <param name="disabledReason">(<see langword="out"/> parameter) Indicates why this technique is disabled.</param>
+		public void Deconstruct(out bool isEnabled, out bool isReadOnly) =>
+			(isEnabled, isReadOnly) = (IsEnabled, IsReadOnly);
+
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="isEnabled">
+		/// (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+		/// </param>
+		/// <param name="isReadOnly">
+		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+		/// </param>
+		/// <param name="priority">
+		/// (<see langword="out"/> parameter) Indicates the priority of the technique.
+		/// </param>
+		public void Deconstruct(
+			out bool isEnabled, out bool isReadOnly, out int priority) =>
+			(isEnabled, isReadOnly, priority) = (IsEnabled, IsReadOnly, Priority);
+
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="isEnabled">
+		/// (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+		/// </param>
+		/// <param name="isReadOnly">
+		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+		/// </param>
+		/// <param name="priority">
+		/// (<see langword="out"/> parameter) Indicates the priority of the technique.
+		/// </param>
+		/// <param name="disabledReason">
+		/// (<see langword="out"/> parameter) Indicates why this technique is disabled.
+		/// </param>
 		public void Deconstruct(
 			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason) =>
 			(isEnabled, isReadOnly, priority, disabledReason) = (IsEnabled, IsReadOnly, Priority, DisabledReason);
+
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="isEnabled">
+		/// (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+		/// </param>
+		/// <param name="isReadOnly">
+		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+		/// </param>
+		/// <param name="priority">
+		/// (<see langword="out"/> parameter) Indicates the priority of the technique.
+		/// </param>
+		/// <param name="disabledReason">
+		/// (<see langword="out"/> parameter) Indicates why this technique is disabled.
+		/// </param>
+		/// <param name="onlyEnableInAnalysis">
+		/// (<see langword="out"/> parameter) Indicates whether the searcher is enabled only in traversing mode.
+		/// </param>
+		/// <param name="displayLevel">
+		/// (<see langword="out"/> parameter) Indicates the display level.
+		/// </param>
+		public void Deconstruct(
+			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason,
+			out bool onlyEnableInAnalysis, out int displayLevel) =>
+			(isEnabled, isReadOnly, priority, disabledReason, onlyEnableInAnalysis, displayLevel) = (IsEnabled, IsReadOnly, Priority, DisabledReason, OnlyEnableInAnalysis, DisplayLevel);
 
 
 		/// <summary>

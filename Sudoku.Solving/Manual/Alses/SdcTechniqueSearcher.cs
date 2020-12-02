@@ -15,7 +15,6 @@ namespace Sudoku.Solving.Manual.Alses
 	/// Encapsulates a <b>sue de coq</b> (SdC) technique searcher.
 	/// Cannibalistic SdCs can be found also.
 	/// </summary>
-	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.Sdc))]
 	public sealed class SdcTechniqueSearcher : AlsTechniqueSearcher
 	{
@@ -27,7 +26,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(50);
+		public static TechniqueProperties Properties { get; } = new(50) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

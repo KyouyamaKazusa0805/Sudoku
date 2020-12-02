@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Annotations;
@@ -63,17 +61,16 @@ namespace Sudoku.Solving.Manual
 			{
 				// Check whether the searcher is only used for analyzing a sudoku grid.
 				// If so, the searcher will be disabled here.
-				if (searcher.GetType().IsDefined<OnlyEnableInAnalysisAttribute>())
+				var (isEnabled, _, _, disabledReason, onlyEnableInAnalysis, level) =
+					TechniqueProperties.GetPropertiesFrom(searcher)!;
+
+				if (onlyEnableInAnalysis)
 				{
 					continue;
 				}
 
 				// Skip the searcher that is disabled.
-				var props =
-					searcher.GetType()
-					.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?
-					.GetValue(null) as TechniqueProperties;
-				if (props is { IsEnabled: false, DisabledReason: not DisabledReason.HighAllocation })
+				if (!isEnabled && disabledReason != DisabledReason.HighAllocation)
 				{
 					continue;
 				}
@@ -90,11 +87,11 @@ namespace Sudoku.Solving.Manual
 				// Check the level of the searcher.
 				// If a searcher contains the upper level value than the current searcher holding,
 				// the searcher will be skipped to search steps.
-				int level = default;
+				int currentLevel = default;
 				if (onlyShowSameLevelTechniquesInFindAllSteps)
 				{
-					level = searcher.GetType().GetCustomAttribute<DisplayLevelAttribute>()!.Level;
-					if (i != -1 && i != level)
+					currentLevel = level;
+					if (i != -1 && i != currentLevel)
 					{
 						continue;
 					}
@@ -117,7 +114,7 @@ namespace Sudoku.Solving.Manual
 				{
 					if (onlyShowSameLevelTechniquesInFindAllSteps)
 					{
-						i = level;
+						i = currentLevel;
 					}
 
 					bag.AddRange(tempBag);

@@ -13,12 +13,11 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <summary>
 	/// Encapsulates a <b>subset</b> technique searcher.
 	/// </summary>
-	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.NakedPair))]
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(30);
+		public static TechniqueProperties Properties { get; } = new(30) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

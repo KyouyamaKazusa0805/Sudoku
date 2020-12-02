@@ -562,7 +562,7 @@ namespace Sudoku.Windows
 				} listBox)
 			{
 				var (_, priority, @type, _) = triplet;
-				var (isEnabled, isReadOnly, _, _) = TechniqueProperties.GetPropertiesFrom(@type)!;
+				var (isEnabled, isReadOnly) = TechniqueProperties.GetPropertiesFrom(@type)!;
 				_checkBoxIsEnabled.IsChecked = isEnabled;
 				_checkBoxIsEnabled.IsEnabled = !isReadOnly;
 				_textBoxPriority.Text = priority.ToString();

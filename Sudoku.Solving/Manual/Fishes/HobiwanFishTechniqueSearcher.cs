@@ -9,14 +9,12 @@ using static System.Algorithms;
 using static System.Math;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Annotations.DisabledReason;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
 	/// Encapsulates a <b>Hobiwan's fish</b> technique searcher.
 	/// </summary>
-	[DisplayLevel(3)]
 	[TechniqueDisplay(nameof(TechniqueCode.FrankenSwordfish))]
 	public sealed class HobiwanFishTechniqueSearcher : FishTechniqueSearcher
 	{
@@ -59,8 +57,9 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(80)
 		{
+			DisplayLevel = 3,
 			IsEnabled = false,
-			DisabledReason = TooSlow
+			DisabledReason = DisabledReason.TooSlow
 		};
 
 

@@ -8,7 +8,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <summary>
 	/// Encapsulates a <b>uniqueness square</b> (US) technique searcher.
 	/// </summary>
-	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.UsType1))]
 	public sealed partial class UsTechniqueSearcher : UniquenessTechniqueSearcher
 	{
@@ -30,7 +29,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(53);
+		public static TechniqueProperties Properties { get; } = new(53) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

@@ -14,7 +14,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Encapsulates an <b>almost locked set XZ rule</b> (ALS-XZ) technique searcher.
 	/// </summary>
-	[DisplayLevel(2)]
 	[TechniqueDisplay(nameof(TechniqueCode.SinglyLinkedAlsXz))]
 	public sealed class AlsXzTechniqueSearcher : AlsTechniqueSearcher
 	{
@@ -26,7 +25,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55);
+		public static TechniqueProperties Properties { get; } = new(55) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

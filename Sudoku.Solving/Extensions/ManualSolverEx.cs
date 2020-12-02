@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -50,7 +49,7 @@ namespace Sudoku.Solving.Extensions
 			var dic = new Dictionary<int, IList<TechniqueSearcher>>();
 			foreach (var searcher in list)
 			{
-				int level = searcher.GetType().GetCustomAttribute<DisplayLevelAttribute>()!.Level;
+				int level = TechniqueProperties.GetPropertiesFrom(searcher)!.DisplayLevel;
 				if (dic.TryGetValue(level, out var l))
 				{
 					l.Add(searcher);
