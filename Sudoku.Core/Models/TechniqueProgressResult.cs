@@ -13,8 +13,11 @@ namespace Sudoku.Models
 		/// </summary>
 		/// <param name="totalSearchers">The total number of searchers.</param>
 		/// <param name="countryCode">The country code.</param>
-		public TechniqueProgressResult(int totalSearchers, CountryCode countryCode) : this() =>
-			(TotalSearchers, CountryCode) = (totalSearchers, countryCode);
+		public TechniqueProgressResult(int totalSearchers, CountryCode countryCode) : this()
+		{
+			TotalSearchers = totalSearchers;
+			CountryCode = countryCode;
+		}
 
 
 		/// <inheritdoc/>

@@ -85,8 +85,9 @@ namespace Sudoku.Windows
 			UndoableGrid grid, WindowsSettings settings, GridPainter targetPainter)
 		{
 			InitializeComponent();
-
-			(_settings, _grid, _targetPainter) = (settings, grid, targetPainter);
+			_settings = settings;
+			_grid = grid;
+			_targetPainter = targetPainter;
 			_numericUpDownSize.CurrentValue = (decimal)_settings.SavingPictureSize;
 			_textBoxFormat.Text = _settings.OutputPictureFormatText.NullableToString();
 		}

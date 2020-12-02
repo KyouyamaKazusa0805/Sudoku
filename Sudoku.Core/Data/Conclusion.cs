@@ -14,8 +14,12 @@ namespace Sudoku.Data
 		/// <param name="conclusionType">The conclusion type.</param>
 		/// <param name="cell">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
-		public Conclusion(ConclusionType conclusionType, int cell, int digit) =>
-			(ConclusionType, Cell, Digit) = (conclusionType, cell, digit);
+		public Conclusion(ConclusionType conclusionType, int cell, int digit)
+		{
+			ConclusionType = conclusionType;
+			Cell = cell;
+			Digit = digit;
+		}
 
 		/// <summary>
 		/// Initializes an instance with a conclusion type and a candidate offset.
@@ -75,15 +79,22 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
-		public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
-			(conclusionType, candidate) = (ConclusionType, Cell * 9 + Digit);
+		public void Deconstruct(out ConclusionType conclusionType, out int candidate)
+		{
+			conclusionType = ConclusionType;
+			candidate = Cell * 9 + Digit;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
 		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
-		public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit) =>
-			(conclusionType, cell, digit) = (ConclusionType, Cell, Digit);
+		public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit)
+		{
+			conclusionType = ConclusionType;
+			cell = Cell;
+			digit = Digit;
+		}
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Conclusion comparer && Equals(comparer);

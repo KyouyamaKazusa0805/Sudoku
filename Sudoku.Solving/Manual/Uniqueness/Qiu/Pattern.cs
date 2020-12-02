@@ -15,8 +15,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <param name="square">(<see langword="in"/> parameter) The square.</param>
 		/// <param name="baseLine">(<see langword="in"/> parameter) The base line.</param>
 		/// <param name="pair">(<see langword="in"/> parameter) The pair.</param>
-		public Pattern(in GridMap square, in GridMap baseLine, in GridMap pair) =>
-			(Square, BaseLine, Pair) = (square, baseLine, pair);
+		public Pattern(in GridMap square, in GridMap baseLine, in GridMap pair)
+		{
+			Square = square;
+			BaseLine = baseLine;
+			Pair = pair;
+		}
 
 
 		/// <summary>
@@ -44,15 +48,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <param name="pair">(<see langword="out"/> parameter) The pair map.</param>
 		/// <param name="square">(<see langword="out"/> parameter) The square map.</param>
 		/// <param name="baseLine">(<see langword="out"/> parameter) The base line map.</param>
-		public void Deconstruct(out GridMap pair, out GridMap square, out GridMap baseLine) =>
-			(pair, square, baseLine) = (Pair, Square, BaseLine);
+		public void Deconstruct(out GridMap pair, out GridMap square, out GridMap baseLine)
+		{
+			pair = Pair;
+			square = Square;
+			baseLine = BaseLine;
+		}
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Pattern other && Equals(other);
 
 		/// <inheritdoc/>
 		public bool Equals(in Pattern other) =>
-			(Square, BaseLine, Pair) == (other.Square, other.BaseLine, other.Pair);
+			Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => FullMap.GetHashCode();

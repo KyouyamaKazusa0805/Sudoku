@@ -32,7 +32,11 @@ namespace Sudoku.Extensions
 		/// </summary>
 		/// <param name="start">The start index value.</param>
 		/// <param name="end">The end index value.</param>
-		public RangeEnumerator(int start, int end) => (_current, _end) = (start, end);
+		public RangeEnumerator(int start, int end)
+		{
+			_current = start;
+			_end = end;
+		}
 
 
 		/// <inheritdoc/>

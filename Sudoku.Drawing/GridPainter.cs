@@ -471,7 +471,8 @@ namespace Sudoku.Drawing
 				in PointF pt1, in PointF pt2, out PointF p1, out PointF p2, double alpha,
 				double candidateSize, float offset)
 			{
-				(p1, p2) = (pt1, pt2);
+				p1 = pt1;
+				p2 = pt2;
 				double tempDelta = candidateSize / 2 + offset;
 				int px = (int)(tempDelta * Cos(alpha)), py = (int)(tempDelta * Sin(alpha));
 

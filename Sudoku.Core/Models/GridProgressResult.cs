@@ -19,11 +19,13 @@ namespace Sudoku.Models
 		/// <param name="countryCode">The country code.</param>
 		public GridProgressResult(
 			int currentCandidatesCount, int currentCellsCount, int initialCandidatesCount,
-			CountryCode countryCode) =>
-			(CurrentCandidatesCount, CurrentCellsCount, InitialCandidatesCount, CountryCode) = (
-				currentCandidatesCount, currentCellsCount,
-				initialCandidatesCount,
-				countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
+			CountryCode countryCode)
+		{
+			CurrentCandidatesCount = currentCandidatesCount;
+			CurrentCellsCount = currentCellsCount;
+			InitialCandidatesCount = initialCandidatesCount;
+			CountryCode = countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode;
+		}
 
 
 		/// <summary>
@@ -56,8 +58,11 @@ namespace Sudoku.Models
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="current">(<see langword="out"/> parameter) The number of unsolved candidates.</param>
 		/// <param name="unsolvedCells">(<see langword="out"/> parameter) The number of unsolved cells.</param>
-		public readonly void Deconstruct(out int current, out int unsolvedCells) =>
-			(current, unsolvedCells) = (CurrentCandidatesCount, CurrentCellsCount);
+		public readonly void Deconstruct(out int current, out int unsolvedCells)
+		{
+			current = CurrentCandidatesCount;
+			unsolvedCells = CurrentCellsCount;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="currentCandidatesCount">
@@ -70,9 +75,12 @@ namespace Sudoku.Models
 		/// (<see langword="out"/> parameter) The number of unsolved candidates in the initial grid.
 		/// </param>
 		public readonly void Deconstruct(
-			out int currentCandidatesCount, out int currentCellsCount, out int initialCandidatesCount) =>
-			(currentCandidatesCount, currentCellsCount, initialCandidatesCount) =
-			(CurrentCandidatesCount, CurrentCellsCount, InitialCandidatesCount);
+			out int currentCandidatesCount, out int currentCellsCount, out int initialCandidatesCount)
+		{
+			currentCandidatesCount = CurrentCandidatesCount;
+			currentCellsCount = CurrentCellsCount;
+			initialCandidatesCount = InitialCandidatesCount;
+		}
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString() =>

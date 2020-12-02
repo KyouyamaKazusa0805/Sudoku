@@ -23,8 +23,11 @@ namespace Sudoku.Runtime
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="wrongInfo">The error message.</param>
-		public WrongHandlingException(in SudokuGrid grid, string wrongInfo) : base(wrongInfo) =>
-			(Grid, WrongInfo) = (grid, wrongInfo);
+		public WrongHandlingException(in SudokuGrid grid, string wrongInfo) : base(wrongInfo)
+		{
+			Grid = grid;
+			WrongInfo = wrongInfo;
+		}
 
 		/// <summary>
 		/// Initializes an instance with a grid, an error message and an inner exception.
@@ -33,7 +36,11 @@ namespace Sudoku.Runtime
 		/// <param name="wrongInfo">The error message.</param>
 		/// <param name="inner">The inner exception.</param>
 		public WrongHandlingException(in SudokuGrid grid, string wrongInfo, Exception inner)
-			: base(wrongInfo, inner) => (Grid, WrongInfo) = (grid, wrongInfo);
+			: base(wrongInfo, inner)
+		{
+			Grid = grid;
+			WrongInfo = wrongInfo;
+		}
 
 		/// <summary>
 		/// Initializes an instance with a grid, a serialization information instance and

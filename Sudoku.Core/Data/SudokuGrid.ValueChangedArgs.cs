@@ -21,8 +21,13 @@ namespace Sudoku.Data
 			/// The value to set on the cell. If the action is deletion,
 			/// this argument should be -1.
 			/// </param>
-			public ValueChangedArgs(int cell, short oldMask, short newMask, int setValue) =>
-				(Cell, OldMask, NewMask, SetValue) = (cell, oldMask, newMask, setValue);
+			public ValueChangedArgs(int cell, short oldMask, short newMask, int setValue)
+			{
+				Cell = cell;
+				OldMask = oldMask;
+				NewMask = newMask;
+				SetValue = setValue;
+			}
 
 
 			/// <summary>
@@ -51,12 +56,18 @@ namespace Sudoku.Data
 			/// <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
 			/// <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
 			/// <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
-			public void Deconstruct(out int cell, out short oldMask, out short newMask, out int setValue) =>
-				(cell, oldMask, newMask, setValue) = (Cell, OldMask, NewMask, SetValue);
+			public void Deconstruct(out int cell, out short oldMask, out short newMask, out int setValue)
+			{
+				cell = Cell;
+				oldMask = OldMask;
+				newMask = NewMask;
+				setValue = SetValue;
+			}
 
 			/// <inheritdoc/>
 			public bool Equals(in ValueChangedArgs other) =>
-				(Cell, OldMask, NewMask, SetValue) == (other.Cell, other.OldMask, other.NewMask, other.SetValue);
+				Cell == other.Cell && OldMask == other.OldMask && NewMask == other.NewMask
+				&& SetValue == other.SetValue;
 		}
 	}
 }

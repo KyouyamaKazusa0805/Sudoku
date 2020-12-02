@@ -266,8 +266,11 @@ namespace Sudoku.Solving
 		/// <param name="hasSolved">
 		/// (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
 		/// </param>
-		public void Deconstruct(out string solverName, out bool hasSolved) =>
-			(solverName, hasSolved) = (SolverName, HasSolved);
+		public void Deconstruct(out string solverName, out bool hasSolved)
+		{
+			solverName = SolverName;
+			hasSolved = HasSolved;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="hasSolved">
@@ -280,8 +283,12 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) The all solving steps.
 		/// </param>
 		public void Deconstruct(
-			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
-			(hasSolved, solvingStepsCount, solvingSteps) = (HasSolved, SolvingStepsCount, SolvingSteps);
+			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps)
+		{
+			hasSolved = HasSolved;
+			solvingStepsCount = SolvingStepsCount;
+			solvingSteps = SolvingSteps;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="total">
@@ -296,8 +303,13 @@ namespace Sudoku.Solving
 		/// <param name="diamond">
 		/// (<see langword="out"/> parameter) The diamond difficulty.
 		/// </param>
-		public void Deconstruct(out decimal? total, out decimal max, out decimal? pearl, out decimal? diamond) =>
-			(total, max, pearl, diamond) = (TotalDifficulty, MaxDifficulty, PearlDifficulty, DiamondDifficulty);
+		public void Deconstruct(out decimal? total, out decimal max, out decimal? pearl, out decimal? diamond)
+		{
+			total = TotalDifficulty;
+			max = MaxDifficulty;
+			pearl = PearlDifficulty;
+			diamond = DiamondDifficulty;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="puzzle">
@@ -317,9 +329,14 @@ namespace Sudoku.Solving
 		/// </param>
 		public void Deconstruct(
 			out SudokuGrid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
-			out SudokuGrid? solution, out DifficultyLevel difficultyLevel) =>
-			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (
-				Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
+			out SudokuGrid? solution, out DifficultyLevel difficultyLevel)
+		{
+			puzzle = Puzzle;
+			hasSolved = HasSolved;
+			elapsedTime = ElapsedTime;
+			solution = Solution;
+			difficultyLevel = DifficultyLevel;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="solverName">(<see langword="out"/> parameter) The solver name.</param>

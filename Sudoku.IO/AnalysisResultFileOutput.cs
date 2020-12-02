@@ -24,8 +24,11 @@ namespace Sudoku.IO
 		/// </summary>
 		/// <param name="result">The result.</param>
 		/// <param name="settings">The settings.</param>
-		public AnalysisResultFileOutput(AnalysisResult result, Settings settings) =>
-			(AnalysisResult, Settings) = (result, settings);
+		public AnalysisResultFileOutput(AnalysisResult result, Settings settings)
+		{
+			AnalysisResult = result;
+			Settings = settings;
+		}
 
 
 		/// <summary>

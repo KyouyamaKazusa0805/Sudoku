@@ -28,9 +28,16 @@ namespace Sudoku.Solving.Manual.Exocets
 			in GridMap mq1, in GridMap mq2, in GridMap mr1, in GridMap mr2)
 		{
 			CrossLine = crossline;
-			(Base1, Base2) = (base1, base2);
-			(TargetQ1, TargetQ2, TargetR1, TargetR2) = (tq1, tq2, tr1, tr2);
-			(MirrorQ1, MirrorQ2, MirrorR1, MirrorR2) = (mq1, mq2, mr1, mr2);
+			Base1 = base1;
+			Base2 = base2;
+			TargetQ1 = tq1;
+			TargetQ2 = tq2;
+			TargetR1 = tr1;
+			TargetR2 = tr2;
+			MirrorQ1 = mq1;
+			MirrorQ2 = mq2;
+			MirrorR1 = mr1;
+			MirrorR2 = mr2;
 		}
 
 
@@ -95,9 +102,12 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
 		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
 		public void Deconstruct(
-			out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap) =>
-			(baseCellsMap, targetCellsMap, crosslineMap) = (
-				new() { Base1, Base2 }, new() { TargetQ1, TargetQ2, TargetR1, TargetR2 }, CrossLine);
+			out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap)
+		{
+			baseCellsMap = new() { Base1, Base2 };
+			targetCellsMap = new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
+			crosslineMap = CrossLine;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
@@ -107,8 +117,15 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="tr1">(<see langword="out"/> parameter) The target R1 cell.</param>
 		/// <param name="tr2">(<see langword="out"/> parameter) The target R2 cell.</param>
 		public void Deconstruct(
-			out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2) =>
-			(base1, base2, tq1, tq2, tr1, tr2) = (Base1, Base2, TargetQ1, TargetQ2, TargetR1, TargetR2);
+			out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2)
+		{
+			base1 = Base1;
+			base2 = Base2;
+			tq1 = TargetQ1;
+			tq2 = TargetQ2;
+			tr1 = TargetR1;
+			tr2 = TargetR2;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>

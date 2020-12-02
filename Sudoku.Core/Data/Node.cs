@@ -22,7 +22,12 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the node is on.</param>
-		public Node(int cell, int digit, bool isOn) : this() => (Digit, Cell, IsOn) = (digit, cell, isOn);
+		public Node(int cell, int digit, bool isOn) : this()
+		{
+			Digit = digit;
+			Cell = cell;
+			IsOn = isOn;
+		}
 
 		/// <summary>
 		/// Initializes an instance with the specified digit, the cell, a <see cref="bool"/> value
@@ -193,22 +198,29 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		/// <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
-		public readonly void Deconstruct(out int candidate, out bool isOn) =>
-			(candidate, isOn) = (Cell * 9 + Digit, IsOn);
+		public readonly void Deconstruct(out int candidate, out bool isOn)
+		{
+			candidate = Cell * 9 + Digit;
+			isOn = IsOn;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		/// <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
 		/// <param name="parents">(<see langword="out"/> parameter) All parents of this node.</param>
-		public readonly void Deconstruct(out int candidate, out bool isOn, out IReadOnlyList<Node> parents) =>
-			(candidate, isOn, parents) = (Cell * 9 + Digit, IsOn, Parents);
+		public readonly void Deconstruct(out int candidate, out bool isOn, out IReadOnlyList<Node> parents)
+		{
+			candidate = Cell * 9 + Digit;
+			isOn = IsOn;
+			parents = Parents;
+		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public readonly bool Equals(in Node other) =>
-			(Cell, Digit, IsOn) == (other.Cell, other.Digit, other.IsOn);
+			Cell == other.Cell && Digit == other.Digit && IsOn == other.IsOn;
 
 		/// <summary>
 		/// Determine whether the node is the parent of the specified node.

@@ -38,8 +38,11 @@ namespace Sudoku.Data
 			/// PM grid. See <see cref="CompatibleFirst"/> to learn more.
 			/// </param>
 			/// <seealso cref="CompatibleFirst"/>
-			public GridParser(string parsingValue, bool compatibleFirst) =>
-				(ParsingValue, CompatibleFirst) = (parsingValue, compatibleFirst);
+			public GridParser(string parsingValue, bool compatibleFirst)
+			{
+				ParsingValue = parsingValue;
+				CompatibleFirst = compatibleFirst;
+			}
 
 
 			/// <inheritdoc cref="StaticConstructor"/>

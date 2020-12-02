@@ -89,8 +89,12 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="region">(<see langword="out"/> parameter) The region.</param>
 		/// <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
 		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
-		public void Deconstruct(out int region, out short digitsMask, out GridMap map) =>
-			(region, digitsMask, map) = (Region, DigitsMask, Map);
+		public void Deconstruct(out int region, out short digitsMask, out GridMap map)
+		{
+			region = Region;
+			digitsMask = DigitsMask;
+			map = Map;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isBivalueCell">
@@ -103,8 +107,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="strongLinksMask">(<see langword="out"/> parameter) The strong links mask.</param>
 		public void Deconstruct(
 			out bool isBivalueCell, out int region, out short digitsMask,
-			out GridMap map, out GridMap possibleEliminations, out IEnumerable<short> strongLinksMask) =>
-			(isBivalueCell, region, digitsMask, map, possibleEliminations, strongLinksMask) = (IsBivalueCell, Region, DigitsMask, Map, PossibleEliminationSet, StrongLinksMask);
+			out GridMap map, out GridMap possibleEliminations, out IEnumerable<short> strongLinksMask)
+		{
+			isBivalueCell = IsBivalueCell;
+			region = Region;
+			digitsMask = DigitsMask;
+			map = Map;
+			possibleEliminations = PossibleEliminationSet;
+			strongLinksMask = StrongLinksMask;
+		}
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Als comparer && Equals(comparer);

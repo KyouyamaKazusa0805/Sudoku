@@ -488,7 +488,11 @@ namespace Sudoku.Data
 		/// <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
 		/// <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly void Deconstruct(out long high, out long low) => (high, low) = (_high, _low);
+		public readonly void Deconstruct(out long high, out long low)
+		{
+			high = _high;
+			low = _low;
+		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

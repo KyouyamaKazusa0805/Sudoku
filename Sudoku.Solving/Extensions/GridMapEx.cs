@@ -51,7 +51,8 @@ namespace Sudoku.Solving.Extensions
 						continue;
 					}
 
-					(row, column) = (i, j);
+					row = i;
+					column = j;
 					return true;
 				}
 			}

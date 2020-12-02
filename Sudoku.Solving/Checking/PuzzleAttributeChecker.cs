@@ -103,17 +103,20 @@ namespace Sudoku.Solving.Checking
 		{
 			if (Solver.CheckValidity(@this.ToString(), out string? solution))
 			{
-				(solutionIfValid, sukaku) = (SudokuGrid.Parse(solution), false);
+				solutionIfValid = SudokuGrid.Parse(solution);
+				sukaku = false;
 				return true;
 			}
 			else if (Solver.CheckValidity(@this.ToString("~"), out solution))
 			{
-				(solutionIfValid, sukaku) = (SudokuGrid.Parse(solution), true);
+				solutionIfValid = SudokuGrid.Parse(solution);
+				sukaku = true;
 				return true;
 			}
 			else
 			{
-				(solutionIfValid, sukaku) = (SudokuGrid.Undefined, null);
+				solutionIfValid = SudokuGrid.Undefined;
+				sukaku = null;
 				return false;
 			}
 		}

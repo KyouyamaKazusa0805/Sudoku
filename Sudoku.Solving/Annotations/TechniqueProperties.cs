@@ -76,8 +76,11 @@ namespace Sudoku.Solving.Annotations
 		/// <param name="isReadOnly">
 		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
 		/// </param>
-		public void Deconstruct(out bool isEnabled, out bool isReadOnly) =>
-			(isEnabled, isReadOnly) = (IsEnabled, IsReadOnly);
+		public void Deconstruct(out bool isEnabled, out bool isReadOnly)
+		{
+			isEnabled = IsEnabled;
+			isReadOnly = IsReadOnly;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isEnabled">
@@ -90,8 +93,12 @@ namespace Sudoku.Solving.Annotations
 		/// (<see langword="out"/> parameter) Indicates the priority of the technique.
 		/// </param>
 		public void Deconstruct(
-			out bool isEnabled, out bool isReadOnly, out int priority) =>
-			(isEnabled, isReadOnly, priority) = (IsEnabled, IsReadOnly, Priority);
+			out bool isEnabled, out bool isReadOnly, out int priority)
+		{
+			isEnabled = IsEnabled;
+			isReadOnly = IsReadOnly;
+			priority = Priority;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isEnabled">
@@ -107,8 +114,13 @@ namespace Sudoku.Solving.Annotations
 		/// (<see langword="out"/> parameter) Indicates why this technique is disabled.
 		/// </param>
 		public void Deconstruct(
-			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason) =>
-			(isEnabled, isReadOnly, priority, disabledReason) = (IsEnabled, IsReadOnly, Priority, DisabledReason);
+			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason)
+		{
+			isEnabled = IsEnabled;
+			isReadOnly = IsReadOnly;
+			priority = Priority;
+			disabledReason = DisabledReason;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isEnabled">
@@ -131,8 +143,15 @@ namespace Sudoku.Solving.Annotations
 		/// </param>
 		public void Deconstruct(
 			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason,
-			out bool onlyEnableInAnalysis, out int displayLevel) =>
-			(isEnabled, isReadOnly, priority, disabledReason, onlyEnableInAnalysis, displayLevel) = (IsEnabled, IsReadOnly, Priority, DisabledReason, OnlyEnableInAnalysis, DisplayLevel);
+			out bool onlyEnableInAnalysis, out int displayLevel)
+		{
+			isEnabled = IsEnabled;
+			isReadOnly = IsReadOnly;
+			priority = Priority;
+			disabledReason = DisabledReason;
+			onlyEnableInAnalysis = OnlyEnableInAnalysis;
+			displayLevel = DisplayLevel;
+		}
 
 
 		/// <summary>

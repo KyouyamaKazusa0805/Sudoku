@@ -10,15 +10,22 @@ namespace Sudoku.Solving
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-		public void Deconstruct(out string name, out decimal difficulty) =>
-			(name, difficulty) = (Name, Difficulty);
+		public void Deconstruct(out string name, out decimal difficulty)
+		{
+			name = Name;
+			difficulty = Difficulty;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-		public void Deconstruct(out string name, out decimal difficulty, out DifficultyLevel difficultyLevel) =>
-			(name, difficulty, difficultyLevel) = (Name, Difficulty, DifficultyLevel);
+		public void Deconstruct(out string name, out decimal difficulty, out DifficultyLevel difficultyLevel)
+		{
+			name = Name;
+			difficulty = Difficulty;
+			difficultyLevel = DifficultyLevel;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
@@ -27,8 +34,13 @@ namespace Sudoku.Solving
 		/// <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
 		public void Deconstruct(
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
-			out IReadOnlyList<Conclusion> conclusions) =>
-			(name, difficulty, difficultyLevel, conclusions) = (Name, Difficulty, DifficultyLevel, Conclusions);
+			out IReadOnlyList<Conclusion> conclusions)
+		{
+			name = Name;
+			difficulty = Difficulty;
+			difficultyLevel = DifficultyLevel;
+			conclusions = Conclusions;
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
@@ -38,8 +50,13 @@ namespace Sudoku.Solving
 		/// <param name="views">(<see langword="out"/> parameter) All views.</param>
 		public void Deconstruct(
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
-			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views) =>
-			(name, difficulty, difficultyLevel, conclusions, views) = (
-				Name, Difficulty, DifficultyLevel, Conclusions, Views);
+			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views)
+		{
+			name = Name;
+			difficulty = Difficulty;
+			difficultyLevel = DifficultyLevel;
+			conclusions = Conclusions;
+			views = Views;
+		}
 	}
 }

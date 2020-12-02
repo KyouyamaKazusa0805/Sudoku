@@ -50,8 +50,13 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="checkPom">
 		/// Indicates whether the puzzle will check POM first.
 		/// </param>
-		public HobiwanFishTechniqueSearcher(int size, int exofinCount, int endofinCount, bool checkPom) =>
-			(_size, _exofinCount, _endofinCount, _checkPom) = (size, exofinCount, endofinCount, checkPom);
+		public HobiwanFishTechniqueSearcher(int size, int exofinCount, int endofinCount, bool checkPom)
+		{
+			_size = size;
+			_exofinCount = exofinCount;
+			_endofinCount = endofinCount;
+			_checkPom = checkPom;
+		}
 
 
 		/// <inheritdoc cref="SearchingProperties"/>

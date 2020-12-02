@@ -34,7 +34,11 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="allowOverlapping">Indicates whether the ALSes can be overlapped with each other.</param>
 		/// <param name="alsShowRegions">Indicates whether the ALSes shows their regions rather than cells.</param>
 		/// <param name="allowAlsCycles">Indicates whether the solver will check ALS cycles.</param>
-		protected AlsTechniqueSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles) =>
-			(_allowOverlapping, _alsShowRegions, _allowAlsCycles) = (allowOverlapping, alsShowRegions, allowAlsCycles);
+		protected AlsTechniqueSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles)
+		{
+			_allowOverlapping = allowOverlapping;
+			_alsShowRegions = alsShowRegions;
+			_allowAlsCycles = allowAlsCycles;
+		}
 	}
 }

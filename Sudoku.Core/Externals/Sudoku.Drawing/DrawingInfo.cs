@@ -15,7 +15,11 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="id">The ID.</param>
 		/// <param name="value">The value.</param>
-		public DrawingInfo(long id, int value) => (Id, Value) = (id, value);
+		public DrawingInfo(long id, int value)
+		{
+			Id = id;
+			Value = value;
+		}
 
 
 		/// <summary>
@@ -33,7 +37,7 @@ namespace Sudoku.Drawing
 		public override bool Equals(object? obj) => obj is DrawingInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(in DrawingInfo other) => (Id, Value) == (other.Id, other.Value);
+		public bool Equals(in DrawingInfo other) => Id == other.Id && Value == other.Value;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => (int)((Id * 10000L + Value) % int.MaxValue);
@@ -44,7 +48,11 @@ namespace Sudoku.Drawing
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="id">(<see langword="out"/> parameter) The ID.</param>
 		/// <param name="value">(<see langword="out"/> parameter) The value.</param>
-		public void Deconstruct(out long id, out int value) => (id, value) = (Id, Value);
+		public void Deconstruct(out long id, out int value)
+		{
+			id = Id;
+			value = Value;
+		}
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

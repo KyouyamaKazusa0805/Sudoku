@@ -13,8 +13,11 @@ namespace Sudoku.Models
 		/// </summary>
 		/// <param name="generatingTrial">The number of the trial times.</param>
 		/// <param name="countryCode">The country code.</param>
-		public PuzzleGeneratingProgressResult(int generatingTrial, CountryCode countryCode) : this() =>
-			(GeneratingTrial, CountryCode) = (generatingTrial, countryCode);
+		public PuzzleGeneratingProgressResult(int generatingTrial, CountryCode countryCode) : this()
+		{
+			GeneratingTrial = generatingTrial;
+			CountryCode = countryCode;
+		}
 
 
 		/// <summary>
