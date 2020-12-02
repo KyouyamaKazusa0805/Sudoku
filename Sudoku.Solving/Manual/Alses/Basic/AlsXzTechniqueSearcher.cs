@@ -131,13 +131,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						int k = 0;
 						foreach (int digit in rccMask)
 						{
-							var elimMap = (RegionMaps[house[k]] & CandMaps[digit]) - map;
-							if (elimMap.IsNotEmpty)
+							foreach (int cell in (RegionMaps[house[k]] & CandMaps[digit]) - map)
 							{
-								foreach (int cell in elimMap)
-								{
-									conclusions.Add(new(Elimination, cell, digit));
-								}
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 
 							k++;
