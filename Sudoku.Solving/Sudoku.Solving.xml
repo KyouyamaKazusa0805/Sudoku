@@ -8827,16 +8827,6 @@
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.GetPriority(Sudoku.Solving.TechniqueSearcher)">
-            <summary>
-            To get the priority of the technique searcher.
-            </summary>
-            <param name="instance">The technique searcher.</param>
-            <returns>The priority.</returns>
-            <remarks>
-            This method uses reflection to get the specified value.
-            </remarks>
-        </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.InternalEquals(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
             <summary>
             Internal equals method.

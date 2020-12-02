@@ -40,13 +40,20 @@ namespace Sudoku.Solving.Annotations
 		/// <returns>
 		/// The display name. Return <see langword="null"/> when the field doesn't mark this attribute.
 		/// </returns>
-		public static string? GetDisplayName<TEnum>(TEnum enumField) where TEnum : Enum =>
-			typeof(TEnum).GetField(enumField.ToString()) switch
+		public static string? GetDisplayName<TEnum>(TEnum enumField) where TEnum : Enum
+		{
+			var f = typeof(TEnum).GetField(enumField.ToString());
+			if (f is null)
 			{
-				var f and not null
-				when f.GetCustomAttribute<TechniqueDisplayAttribute>() is { DisplayName: string result } =>
-					result,
-				_ => null
-			};
+				return null;
+			}
+
+			if (f.GetCustomAttribute<TechniqueDisplayAttribute>() is not { DisplayName: string result })
+			{
+				return null;
+			}
+
+			return result;
+		}
 	}
 }

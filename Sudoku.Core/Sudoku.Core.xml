@@ -4317,6 +4317,23 @@
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <returns>The reusult of the conversion.</returns>
         </member>
+        <member name="T:Sudoku.Extensions.MemberInfoEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Reflection.MemberInfo"/>.
+            </summary>
+            <seealso cref="T:System.Reflection.MemberInfo"/>
+        </member>
+        <member name="M:Sudoku.Extensions.MemberInfoEx.IsDefined``1(System.Reflection.MemberInfo)">
+            <summary>
+            Indicates whether custom attributes of a specified type are applied to a specified member.
+            </summary>
+            <typeparam name="TAttribute">The type of that attribute.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The member information instance.</param>
+            <returns>
+            <see langword="true"/> if an attribute of the specified type is applied to <paramref name="this"/>;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
         <member name="T:Sudoku.Extensions.RangeEnumerator">
             <summary>
             Defines a range iterator.

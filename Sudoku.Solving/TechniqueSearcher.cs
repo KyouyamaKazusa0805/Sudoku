@@ -51,7 +51,8 @@ namespace Sudoku.Solving
 			GetHashCode().CompareTo(other?.GetHashCode() ?? int.MaxValue);
 
 		/// <inheritdoc/>
-		public sealed override int GetHashCode() => GetPriority(this);
+		public sealed override int GetHashCode() =>
+			TechniqueProperties.GetPropertiesFrom(this)?.Priority ?? int.MaxValue;
 
 		/// <inheritdoc/>
 		public virtual bool Equals(TechniqueSearcher? other) => InternalEquals(this, other);
@@ -69,17 +70,6 @@ namespace Sudoku.Solving
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		public static void InitializeMaps(in SudokuGrid grid) =>
 			(EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;
-
-		/// <summary>
-		/// To get the priority of the technique searcher.
-		/// </summary>
-		/// <param name="instance">The technique searcher.</param>
-		/// <returns>The priority.</returns>
-		/// <remarks>
-		/// This method uses reflection to get the specified value.
-		/// </remarks>
-		private static int GetPriority(TechniqueSearcher instance) =>
-			TechniqueProperties.GetPropertiesFrom(instance)?.Priority ?? int.MaxValue;
 
 #nullable disable warnings
 		/// <summary>

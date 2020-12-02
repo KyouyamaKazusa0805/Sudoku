@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Sudoku.Data;
+using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Annotations;
@@ -62,7 +63,7 @@ namespace Sudoku.Solving.Manual
 			{
 				// Check whether the searcher is only used for analyzing a sudoku grid.
 				// If so, the searcher will be disabled here.
-				if (searcher.GetType().GetCustomAttribute<OnlyEnableInAnalysisAttribute>() is not null)
+				if (searcher.GetType().IsDefined<OnlyEnableInAnalysisAttribute>())
 				{
 					continue;
 				}
@@ -132,7 +133,7 @@ namespace Sudoku.Solving.Manual
 			}
 
 			// Return the result.
-			return from step in bag.Distinct() group step by step.Name;
+			return from step in Enumerable.Distinct(bag) group step by step.Name;
 		}
 	}
 }
