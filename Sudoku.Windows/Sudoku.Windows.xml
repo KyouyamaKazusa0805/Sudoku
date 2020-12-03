@@ -403,7 +403,7 @@
             The settings.
             </summary>
         </member>
-        <member name="F:Sudoku.Windows.ExportAnalysisResultWindow.FormatCharacterList">
+        <member name="F:Sudoku.Windows.ExportAnalysisResultWindow.FormatOptions">
             <summary>
             The internal dictionary of all format characters.
             </summary>
@@ -415,7 +415,7 @@
             <param name="analysisResult">The analysis result.</param>
             <param name="settings">The settings.</param>
         </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CreateFormatString">
+        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CreateFormat">
             <summary>
             Create format string.
             </summary>

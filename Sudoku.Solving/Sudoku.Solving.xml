@@ -247,6 +247,12 @@
         <member name="M:Sudoku.Solving.AnalysisResult.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.ToString(Sudoku.Solving.AnalysisResultFormattingOptions)">
+            <inheritdoc cref="M:Sudoku.Solving.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions)"/>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)">
+            <inheritdoc cref="M:Sudoku.Solving.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)"/>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -287,6 +293,81 @@
             Throws when the specified format contains other invalid characters
             and the format provider can't work.
             </exception>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions)">
+            <summary>
+            Get the string result with the specified formatting options.
+            </summary>
+            <param name="options">The options.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the string result with the specified formatting options and the country code.
+            </summary>
+            <param name="options">The options.</param>
+            <param name="countryCode">The country code.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.AnalysisResultFormattingOptions">
+            <summary>
+            Indicates the formatting options of <see cref="T:Sudoku.Solving.AnalysisResult"/> instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.None">
+            <summary>
+            Indicates the none of the formatting option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowSeparators">
+            <summary>
+            Indicates the analysis result will append separators.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowStepLabel">
+            <summary>
+            Indicates the analysis result will append the step label.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowSimple">
+            <summary>
+            Indicates the analysis result will use simple mode to show steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowBottleneck">
+            <summary>
+            Indicates the analysis result will show the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowDifficulty">
+            <summary>
+            Indicates the analysis result will show the difficulty.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowStepsAfterBottleneck">
+            <summary>
+            Indicates the analysis result will show all steps after the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowAttributes">
+            <summary>
+            Indicates the analysis result will append the attributes of the grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowBackdoors">
+            <summary>
+            Indicates the analysis result will append the backdoors of the grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowStepDetail">
+            <summary>
+            Indicates the analysis result will show the step detail.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.AnalysisResultFormattingOptions.ShowSteps">
+            <summary>
+            Indicates the analysis result will show the steps.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Annotations.DirectSearcherAttribute">
             <summary>

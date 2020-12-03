@@ -51,7 +51,7 @@
             Indicates the settings.
             </summary>
         </member>
-        <member name="M:Sudoku.IO.AnalysisResultFileOutput.Export(System.String,System.Int32,System.Boolean,System.String,Sudoku.IO.PictureFileType,Sudoku.IO.AnalysisResultOutputType,Sudoku.IO.Alignment)">
+        <member name="M:Sudoku.IO.AnalysisResultFileOutput.TryExport(System.String,System.Int32,System.Boolean,Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.IO.PictureFileType,Sudoku.IO.AnalysisResultOutputType,Sudoku.IO.Alignment)">
             <summary>
             Export the analysis result.
             </summary>
