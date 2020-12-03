@@ -317,13 +317,12 @@ namespace Sudoku.Data
 		/// <returns>The <see cref="bool"/> result.</returns>
 		public readonly bool SimplyValidate()
 		{
-			for (int i = 0, count = 0; i < Length; i++)
+			for (int i = 0; i < Length; i++)
 			{
 				switch (GetStatus(i))
 				{
 					case CellStatus.Given: /*fallthrough*/
 					{
-						count++;
 						goto case CellStatus.Modifiable;
 					}
 					case CellStatus.Modifiable:
@@ -559,7 +558,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// To reset the grid to iniatial status.
+		/// To reset the grid to initial status.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Reset()

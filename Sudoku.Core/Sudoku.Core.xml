@@ -2664,7 +2664,7 @@
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Reset">
             <summary>
-            To reset the grid to iniatial status.
+            To reset the grid to initial status.
             </summary>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.SetStatus(System.Int32,Sudoku.Data.CellStatus)">

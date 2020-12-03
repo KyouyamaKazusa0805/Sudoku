@@ -119,7 +119,7 @@ namespace Sudoku.Data.Collections
 				_ => internalToString(_collection)
 			};
 
-			unsafe string internalToString(in Span<Conclusion> collection)
+			string internalToString(in Span<Conclusion> collection)
 			{
 				var conclusions = collection.ToArray();
 				var sb = new StringBuilder();
@@ -135,7 +135,11 @@ namespace Sudoku.Data.Collections
 						if (d1 < d2) return -1;
 						return 0;
 					}
-					conclusions.Sort(&cmp);
+
+					unsafe
+					{
+						conclusions.Sort(&cmp);
+					}
 
 					var selection = from conclusion in conclusions
 									group conclusion by conclusion.ConclusionType;
@@ -164,9 +168,12 @@ namespace Sudoku.Data.Collections
 				else
 				{
 					static string? converter(in Conclusion conc, in string? separator) => $"{conc}{separator}";
-					sb
-						.AppendRange<Conclusion, string?, string?>(conclusions, &converter, separator)
-						.RemoveFromEnd(separator.Length);
+					unsafe
+					{
+						sb
+							.AppendRange<Conclusion, string?, string?>(conclusions, &converter, separator)
+							.RemoveFromEnd(separator.Length);
+					}
 				}
 
 				return sb.ToString();
