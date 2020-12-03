@@ -112,7 +112,7 @@ namespace Sudoku.Windows
 			// To be honest, I don't know why the program fails to exit... The background
 			// threads still running after base close method executed completely. If you
 			// know the detail of Emgu.CV, please tell me, thx!
-			if (_recognition is { ToolIsInitialized: true })
+			if (_recognition is { IsInitialized: true })
 			{
 				Process.GetCurrentProcess().Kill();
 			}

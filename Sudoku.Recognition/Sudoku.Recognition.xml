@@ -4,6 +4,66 @@
         <name>Sudoku.Recognition</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Recognition.Constants.Processings">
+            <summary>
+            Define the internal settings.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.MaxSize">
+            <summary>
+            Indicates the maximum size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.RSize">
+            <summary>
+            Indicates the R-size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.ThresholdMin">
+            <summary>
+            Indicates the minimum threshold.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.ThresholdMax">
+            <summary>
+            Indicates the maximum threshold.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.L2Gradient">
+            <summary>
+            Indicates the L2Gradient.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.Font">
+            <summary>
+            Indicates the font.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.FontSize">
+            <summary>
+            Indicates the font size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.FontSizePr">
+            <summary>
+            Indicates the font size pr.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.ChainApprox">
+            <summary>
+            Indicates the ChainApprox.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.ThOcrMin">
+            <summary>
+            Indicates the ThOcrMin.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.Processings.ThOcrMax">
+            <summary>
+            Indicates the ThOcrMax.
+            </summary>
+        </member>
         <member name="T:Sudoku.Recognition.Extensions.BitmapEx">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
@@ -176,9 +236,7 @@
             The result value (must be between 1 and 9). If the recognition is failed,
             the value will be <c>0</c>.
             </returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the OCR engine error.
-            </exception>
+            <exception cref="T:Sudoku.Recognition.RecognitionException">Throws when the OCR engine error.</exception>
         </member>
         <member name="M:Sudoku.Recognition.InternalServiceProvider.InitTesseract(System.String,System.String)">
             <summary>
@@ -188,66 +246,6 @@
             <param name="lang">The language. The default value is <c>"eng"</c>.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't found.</exception>
-        </member>
-        <member name="T:Sudoku.Recognition.InternalSettings">
-            <summary>
-            Define the internal settings.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.MaxSize">
-            <summary>
-            Indicates the maximum size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.RSize">
-            <summary>
-            Indicates the R-size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.ThresholdMin">
-            <summary>
-            Indicates the minimum threshold.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.ThresholdMax">
-            <summary>
-            Indicates the maximum threshold.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.L2Gradient">
-            <summary>
-            Indicates the L2Gradient.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.Font">
-            <summary>
-            Indicates the font.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.FontSize">
-            <summary>
-            Indicates the font size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.FontSizePr">
-            <summary>
-            Indicates the font size pr.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.ChainApprox">
-            <summary>
-            Indicates the ChainApprox.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.ThOcrMin">
-            <summary>
-            Indicates the ThOcrMin.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.InternalSettings.ThOcrMax">
-            <summary>
-            Indicates the ThOcrMax.
-            </summary>
         </member>
         <member name="T:Sudoku.Recognition.RecognitionException">
             <summary>
@@ -279,7 +277,7 @@
         <member name="M:Sudoku.Recognition.RecognitionServiceProvider.#ctor">
             <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
-        <member name="P:Sudoku.Recognition.RecognitionServiceProvider.ToolIsInitialized">
+        <member name="P:Sudoku.Recognition.RecognitionServiceProvider.IsInitialized">
             <summary>
             Indicates whether the OCR tool has already initialized.
             </summary>

@@ -37,7 +37,7 @@ namespace Sudoku.Recognition
 		/// <summary>
 		/// Indicates whether the OCR tool has already initialized.
 		/// </summary>
-		public bool ToolIsInitialized => _recognizingServiceProvider.Initialized;
+		public bool IsInitialized => _recognizingServiceProvider.Initialized;
 
 
 		/// <inheritdoc/>
@@ -54,7 +54,7 @@ namespace Sudoku.Recognition
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuGrid Recorgnize(Bitmap image)
 		{
-			if (ToolIsInitialized)
+			if (IsInitialized)
 			{
 				using var gridRecognizer = new GridRecognizer(image);
 				return _recognizingServiceProvider.RecognizeDigits(gridRecognizer.Recognize());

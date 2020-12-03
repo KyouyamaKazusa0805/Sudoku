@@ -8,6 +8,8 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.OCR;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using static Sudoku.Recognition.Constants.Processings;
+using Cv = Emgu.CV.CvInvoke;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 #if MUST_DOWNLOAD_TRAINED_DATA
 using System.Net.Http;
@@ -81,26 +83,21 @@ namespace Sudoku.Recognition
 		/// The result value (must be between 1 and 9). If the recognition is failed,
 		/// the value will be <c>0</c>.
 		/// </returns>
-		/// <exception cref="InvalidOperationException">
-		/// Throws when the OCR engine error.
-		/// </exception>
+		/// <exception cref="RecognitionException">Throws when the OCR engine error.</exception>
 		private int RecognizeCellNumber(Field cellImg)
 		{
 			_ = _ocr is null ? throw new NullReferenceException($"{nameof(_ocr)} cannot be null here.") : 0;
 
 			// Convert the image to gray-scale and filter out the noise
 			var imgGray = new Mat();
-			CvInvoke.CvtColor(cellImg, imgGray, ColorConversion.Bgr2Gray);
+			Cv.CvtColor(cellImg, imgGray, ColorConversion.Bgr2Gray);
 
 			// TODO: Can be problem with values for some image.
-			// Another methods to process image, but worse. Use only one!
 			var imgThresholded = new Mat();
-			CvInvoke.Threshold(
-				imgGray, imgThresholded, InternalSettings.ThOcrMin, InternalSettings.ThOcrMax,
-				ThresholdType.Binary);
+			Cv.Threshold(imgGray, imgThresholded, ThOcrMin, ThOcrMax, ThresholdType.Binary);
 
 			_ocr.SetImage(imgThresholded);
-			_ = _ocr.Recognize() != 0 ? throw new InvalidOperationException("Tessaract Error. Cannot to recognize cell image.") : 0;
+			_ = _ocr.Recognize() != 0 ? throw new RecognitionException("Tessaract Error. Cannot to recognize cell image.") : 0;
 
 			var characters = _ocr.GetCharacters();
 			string numberText = string.Empty;

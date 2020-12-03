@@ -2,12 +2,12 @@
 
 using Emgu.CV.CvEnum;
 
-namespace Sudoku.Recognition
+namespace Sudoku.Recognition.Constants
 {
 	/// <summary>
 	/// Define the internal settings.
 	/// </summary>
-	internal static class InternalSettings
+	internal static class Processings
 	{
 		/// <summary>
 		/// Indicates the maximum size.

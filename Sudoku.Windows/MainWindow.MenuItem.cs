@@ -155,7 +155,7 @@ namespace Sudoku.Windows
 				{
 					try
 					{
-						if (_recognition.ToolIsInitialized)
+						if (_recognition.IsInitialized)
 						{
 							if (Messagings.AskWhileLoadingPicture() == MessageBoxResult.Yes)
 							{
