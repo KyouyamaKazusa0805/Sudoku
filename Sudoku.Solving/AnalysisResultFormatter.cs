@@ -5,10 +5,11 @@ using System.Text;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
-using Sudoku.Globalization;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Singles;
+using static Sudoku.Solving.AnalysisResultFormattingOptions;
 using static Sudoku.Windows.Resources;
+using Code = Sudoku.Globalization.CountryCode;
 
 namespace Sudoku.Solving
 {
@@ -38,7 +39,7 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc/>
 		public string ToString(string? format, IFormatProvider? formatProvider) =>
-			ToString(format, formatProvider, Globalization.CountryCode.EnUs);
+			ToString(format, formatProvider, Code.EnUs);
 
 		/// <summary>
 		/// Get the string result.
@@ -51,7 +52,7 @@ namespace Sudoku.Solving
 		/// Throws when the specified format contains other invalid characters
 		/// and the format provider can't work.
 		/// </exception>
-		public string ToString(string? format, IFormatProvider? formatProvider, CountryCode countryCode)
+		public string ToString(string? format, IFormatProvider? formatProvider, Code countryCode)
 		{
 			if (formatProvider.HasFormatted(this, format, out string? result))
 			{
@@ -62,17 +63,38 @@ namespace Sudoku.Solving
 			_ = format.IsMatch(@"[^\^\-\.\?#@!abdl]") ? throw new FormatException("The specified format is invalid due to with invalid characters.") : 0;
 
 			string formatLower = format.ToLower();
-			bool showSeparator = c(in formatLower, '-');
-			bool showStepNum = c(in formatLower, '#');
-			bool showSimple = c(in formatLower, '@');
-			bool showBottleneck = c(in formatLower, '?');
-			bool showDifficulty = c(in formatLower, '!');
-			bool showStepsAfterBottleneck = c(in formatLower, '.');
-			bool showAttributes = c(in formatLower, 'a');
-			bool showBackdoors = c(in formatLower, 'b');
-			bool showTechniqueDetail = c(in formatLower, 'd');
-			bool showTechniqueSteps = c(in formatLower, 'l');
+			var options = None;
+			options |= c(in formatLower, '-') ? ShowSeparators : None;
+			options |= c(in formatLower, '#') ? ShowStepLabel : None;
+			options |= c(in formatLower, '@') ? ShowSimple : None;
+			options |= c(in formatLower, '?') ? ShowBottleneck : None;
+			options |= c(in formatLower, '!') ? ShowDifficulty : None;
+			options |= c(in formatLower, '.') ? ShowStepsAfterBottleneck : None;
+			options |= c(in formatLower, 'a') ? ShowAttributes : None;
+			options |= c(in formatLower, 'b') ? ShowBackdoors : None;
+			options |= c(in formatLower, 'd') ? ShowStepDetail : None;
+			options |= c(in formatLower, 'l') ? ShowSteps : None;
 
+			return ToString(options, countryCode);
+
+			static bool c(in string formatLower, char c) => formatLower.Contains(c);
+		}
+
+		/// <summary>
+		/// Get the string result with the specified formatting options.
+		/// </summary>
+		/// <param name="options">The options.</param>
+		/// <returns>The result.</returns>
+		public string ToString(AnalysisResultFormattingOptions options) => ToString(options, Code.EnUs);
+
+		/// <summary>
+		/// Get the string result with the specified formatting options and the country code.
+		/// </summary>
+		/// <param name="options">The options.</param>
+		/// <param name="countryCode">The country code.</param>
+		/// <returns>The result.</returns>
+		public string ToString(AnalysisResultFormattingOptions options, Code countryCode)
+		{
 			ChangeLanguage(countryCode);
 
 			// Get all information.
@@ -88,26 +110,27 @@ namespace Sudoku.Solving
 				.AppendLine(solverName);
 
 			// Print solving steps (if worth).
-			if (showTechniqueSteps && steps is { Count: not 0 })
+			if (options.Flags(ShowSteps) && steps is { Count: not 0 })
 			{
 				sb.AppendLine(GetValue("AnalysisResultSolvingSteps"));
 				if (getBottleneck() is var (bIndex, bInfo))
 				{
 					for (int i = 0; i < steps.Count; i++)
 					{
-						if (i > bIndex && showStepsAfterBottleneck)
+						if (i > bIndex && options.Flags(ShowStepsAfterBottleneck))
 						{
 							sb.AppendLine(GetValue("Ellipsis"));
 							break;
 						}
 
 						var info = steps[i];
-						string infoStr = showSimple ? info.ToSimpleString() : info.ToString();
-						bool showDiff = showDifficulty && info.ShowDifficulty;
+						string infoStr =
+							options.Flags(ShowSimple) ? info.ToSimpleString() : info.ToString();
+						bool showDiff = options.Flags(ShowDifficulty) && info.ShowDifficulty;
 
 						string d = $"{$"({info.Difficulty}",5:0.0}";
 						string s = $"{i + 1,4}";
-						string labelInfo = (showStepNum, showDiff) switch
+						string labelInfo = (options.Flags(ShowStepLabel), showDiff) switch
 						{
 							(true, true) => $"{s}, {d}) ",
 							(true, false) => $"{s} ",
@@ -117,21 +140,21 @@ namespace Sudoku.Solving
 						sb.Append(labelInfo).AppendLine(infoStr);
 					}
 
-					if (showBottleneck)
+					if (options.Flags(ShowBottleneck))
 					{
-						a(showSeparator);
+						a(options.Flags(ShowSeparators));
 
 						sb
 							.Append(GetValue("AnalysisResultBottleneckStep"))
 							.Append(
-								showStepNum
+								options.Flags(ShowStepLabel)
 								? $"{GetValue("AnalysisResultInStep")}{bIndex + 1}{GetValue("Colon")}"
 								: string.Empty)
 							.Append(' ')
 							.AppendLine(bInfo);
 					}
 
-					a(showSeparator);
+					a(options.Flags(ShowSeparators));
 				}
 			}
 
@@ -143,7 +166,7 @@ namespace Sudoku.Solving
 					orderby step.Difficulty
 					group step by step.Name);
 				sb.AppendLine(GetValue("AnalysisResultTechniqueUsed"));
-				if (showTechniqueDetail)
+				if (options.Flags(ShowStepDetail))
 				{
 					sb
 						.Append($"{GetValue("AnalysisResultMin"),6}")
@@ -155,7 +178,7 @@ namespace Sudoku.Solving
 
 				foreach (var solvingStepsGroup in solvingStepsGrouped)
 				{
-					if (showTechniqueDetail)
+					if (options.Flags(ShowStepDetail))
 					{
 						decimal currentTotal = 0, currentMinimum = decimal.MaxValue;
 						foreach (var solvingStep in solvingStepsGroup)
@@ -181,7 +204,7 @@ namespace Sudoku.Solving
 						.AppendLine(solvingStepsGroup.Key);
 				}
 
-				if (showTechniqueDetail)
+				if (options.Flags(ShowStepDetail))
 				{
 					sb
 						.Append($"{"(---",6}")
@@ -199,14 +222,10 @@ namespace Sudoku.Solving
 							: GetValue("AnalysisResultStepPlural")
 						)}");
 
-				a(showSeparator);
+				a(options.Flags(ShowSeparators));
 			}
 
 			// Print detail data.
-#if OBSOLETE
-			sb.AppendLine($"Total solving steps count: {stepsCount}");
-			sb.AppendLine($"Difficulty total: {total}");
-#endif
 			sb
 				.Append(GetValue("AnalysisResultPuzzleRating"))
 				.Append(max.ToString("0.0"))
@@ -230,12 +249,12 @@ namespace Sudoku.Solving
 				.AppendLine(GetValue("AnalysisResultBeenSolved"))
 				.Append(GetValue("AnalysisResultTimeElapsed"))
 				.AppendLine(elapsed.ToString("hh\\:mm\\.ss\\.fff"));
-			a(showSeparator);
+			a(options.Flags(ShowSeparators));
 
 			// Print attributes (if worth).
 			// Here use dynamic call (reflection) to get all methods which contains
 			// only one parameter and its type is 'Grid'.
-			if (showAttributes)
+			if (options.Flags(ShowAttributes))
 			{
 				sb.AppendLine(GetValue("AnalysisResultAttributes"));
 				foreach (var methodInfo in
@@ -253,11 +272,11 @@ namespace Sudoku.Solving
 						.AppendLine(methodInfo.Invoke(null, new object[] { puzzle })!);
 				}
 
-				a(showSeparator);
+				a(options.Flags(ShowSeparators));
 			}
 
 			// Print backdoors (if worth).
-			if (showBackdoors)
+			if (options.Flags(ShowBackdoors))
 			{
 				sb.AppendLine(GetValue("AnalysisResultBackdoors"));
 				var searcher = new BackdoorSearcher();
@@ -266,7 +285,7 @@ namespace Sudoku.Solving
 					sb.Append(new string(' ', 4)).AppendLine(assignment[0]);
 				}
 
-				a(showSeparator);
+				a(options.Flags(ShowSeparators));
 			}
 
 			// Print the additional information (if worth).
@@ -276,8 +295,6 @@ namespace Sudoku.Solving
 			}
 
 			return sb.ToString();
-
-			static bool c(in string formatLower, char c) => formatLower.Contains(c);
 
 			void a(bool showSeparator) =>
 				sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);

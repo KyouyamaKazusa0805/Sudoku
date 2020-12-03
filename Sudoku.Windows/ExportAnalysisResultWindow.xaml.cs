@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
@@ -32,18 +31,18 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The internal dictionary of all format characters.
 		/// </summary>
-		private static readonly IDictionary<char, bool> FormatCharacterList = new Dictionary<char, bool>
+		private static readonly Dictionary<AnalysisResultFormattingOptions, bool> FormatOptions = new()
 		{
-			['-'] = false, // Show separators.
-			['#'] = false, // Show step indices.
-			['@'] = true, // Don't show eliminations.
-			['?'] = false, // Show bottleneck.
-			['!'] = false, // Show difficulty rating of each step.
-			['.'] = true, // Don't show steps after bottleneck.
-			['a'] = false, // Show attributes of this puzzle (if exists).
-			['b'] = false, // Show magic cells.
-			['d'] = false, // Show difficulty details.
-			['l'] = true // Show technique steps.
+			[AnalysisResultFormattingOptions.ShowSeparators] = false,
+			[AnalysisResultFormattingOptions.ShowStepLabel] = false,
+			[AnalysisResultFormattingOptions.ShowSimple] = true,
+			[AnalysisResultFormattingOptions.ShowBottleneck] = false,
+			[AnalysisResultFormattingOptions.ShowDifficulty] = false,
+			[AnalysisResultFormattingOptions.ShowStepsAfterBottleneck] = true,
+			[AnalysisResultFormattingOptions.ShowAttributes] = false,
+			[AnalysisResultFormattingOptions.ShowBackdoors] = false,
+			[AnalysisResultFormattingOptions.ShowStepDetail] = false,
+			[AnalysisResultFormattingOptions.ShowSteps] = true
 		};
 
 
@@ -59,7 +58,7 @@ namespace Sudoku.Windows
 			// Initialize controls.
 			foreach (var control in _gridMain.Children.OfType<CheckBox>())
 			{
-				control.IsChecked = FormatCharacterList[control.Tag.ToString()![0]];
+				control.IsChecked = FormatOptions[(AnalysisResultFormattingOptions)(int)control.Tag!];
 			}
 
 			_analysisResult = analysisResult;
@@ -71,61 +70,61 @@ namespace Sudoku.Windows
 		/// Create format string.
 		/// </summary>
 		/// <returns>The result format string.</returns>
-		private string CreateFormatString()
+		private AnalysisResultFormattingOptions CreateFormat()
 		{
-			var format = new StringBuilder();
-			foreach (char key in from pair in FormatCharacterList where pair.Value select pair.Key)
+			var options = AnalysisResultFormattingOptions.None;
+			foreach (var key in from pair in FormatOptions where pair.Value select pair.Key)
 			{
-				format.Append(key);
+				options |= key;
 			}
 
-			return format.ToString();
+			return options;
 		}
 
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonExport_Click(object sender, RoutedEventArgs e) =>
-			_textBoxAnalysisResult.Text = _analysisResult.ToString(CreateFormatString());
+			_textBoxAnalysisResult.Text = _analysisResult.ToString(CreateFormat());
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowSeparators_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['-'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowSeparators] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowStepIndices_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['#'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowStepLabel] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowLogic_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['@'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowSimple] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowBottleneck_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['?'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowBottleneck] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowDifficulty_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['!'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowDifficulty] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckboxShowStepsAfterBottleneck_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['.'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowStepsAfterBottleneck] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowAttributesOfPuzzle_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['a'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowAttributes] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowMagicCells_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['b'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowBackdoors] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowDifficultyDetail_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['d'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowStepDetail] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowTechniqueSteps_Click(object sender, RoutedEventArgs e) =>
-			FormatCharacterList['l'] ^= true;
+			FormatOptions[AnalysisResultFormattingOptions.ShowSteps] ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonOutputAnalysisResult_Click(object sender, RoutedEventArgs e)
@@ -137,11 +136,11 @@ namespace Sudoku.Windows
 					FilterIndex = 0,
 					Title = (string)Application.Current.Resources["TitleSavingPuzzles"]
 				} is var sfd && sfd.ShowDialog() is true
-				&& new AnalysisResultFileOutput(_analysisResult, _settings).Export(
+				&& new AnalysisResultFileOutput(_analysisResult, _settings).TryExport(
 					sfd.FileName,
 					500,
 					_checkBoxOutputStepGrids.IsChecked.GetValueOrDefault(),
-					CreateFormatString(),
+					CreateFormat(),
 					PictureFileType.Png,
 					(AnalysisResultOutputType)(sfd.FilterIndex - 1),
 					Alignment.Middle))

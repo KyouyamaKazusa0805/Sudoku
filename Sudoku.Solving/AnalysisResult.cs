@@ -409,6 +409,14 @@ namespace Sudoku.Solving
 		public string ToString(string? format, IFormatProvider? formatProvider) =>
 			new AnalysisResultFormatter(this).ToString(format, formatProvider);
 
+		/// <inheritdoc cref="AnalysisResultFormatter.ToString(AnalysisResultFormattingOptions)"/>
+		public string ToString(AnalysisResultFormattingOptions options) =>
+			new AnalysisResultFormatter(this).ToString(options);
+
+		/// <inheritdoc cref="AnalysisResultFormatter.ToString(AnalysisResultFormattingOptions, CountryCode)"/>
+		public string ToString(AnalysisResultFormattingOptions options, CountryCode countryCode) =>
+			new AnalysisResultFormatter(this).ToString(options, countryCode);
+
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}

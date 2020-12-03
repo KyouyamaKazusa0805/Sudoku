@@ -34,52 +34,52 @@
 			<CheckBox Grid.Row="0" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowSeparators}"
-					  x:Name="_checkBoxShowSeparators" Tag="-"
+					  x:Name="_checkBoxShowSeparators" Tag="1"
 					  Click="CheckBoxShowSeparators_Click"/>
 			<CheckBox Grid.Row="0" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowIndices}"
-					  x:Name="_checkBoxShowStepIndices" Tag="#"
+					  x:Name="_checkBoxShowStepIndices" Tag="2"
 					  Click="CheckBoxShowStepIndices_Click"/>
 			<CheckBox Grid.Row="1" Grid.Column="0" IsEnabled="True"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowLogic}"
-					  x:Name="_checkBoxShowLogic" Tag="@"
+					  x:Name="_checkBoxShowLogic" Tag="4"
 					  Click="CheckBoxShowLogic_Click"/>
 			<CheckBox Grid.Row="1" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowBottleneck}"
-					  x:Name="_checkBoxShowBottleneck" Tag="?"
+					  x:Name="_checkBoxShowBottleneck" Tag="8"
 					  Click="CheckBoxShowBottleneck_Click"/>
 			<CheckBox Grid.Row="2" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowDifficulty}"
-					  x:Name="_checkBoxShowDifficulty" Tag="!"
+					  x:Name="_checkBoxShowDifficulty" Tag="16"
 					  Click="CheckBoxShowDifficulty_Click"/>
 			<CheckBox Grid.Row="2" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="True"
 					  Content="{DynamicResource ExportAnalysisResultShowStepsAfterBottleneck}"
-					  x:Name="_checkboxShowStepsAfterBottleneck" Tag="."
+					  x:Name="_checkboxShowStepsAfterBottleneck" Tag="32"
 					  Click="CheckboxShowStepsAfterBottleneck_Click"/>
 			<CheckBox Grid.Row="3" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowAttributes}"
-					  x:Name="_checkBoxShowAttributesOfPuzzle" Tag="a"
+					  x:Name="_checkBoxShowAttributesOfPuzzle" Tag="64"
 					  Click="CheckBoxShowAttributesOfPuzzle_Click"/>
 			<CheckBox Grid.Row="3" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowMagicCells}"
-					  x:Name="_checkBoxShowMagicCells" Tag="b"
+					  x:Name="_checkBoxShowMagicCells" Tag="128"
 					  Click="CheckBoxShowMagicCells_Click"/>
 			<CheckBox Grid.Row="4" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowDifficultyDetails}"
-					  x:Name="_checkBoxShowDifficultyDetail" Tag="d"
+					  x:Name="_checkBoxShowDifficultyDetail" Tag="256"
 					  Click="CheckBoxShowDifficultyDetail_Click"/>
 			<CheckBox Grid.Row="4" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="{DynamicResource ExportAnalysisResultShowTechniqueSteps}"
-					  x:Name="_checkBoxShowTechniqueSteps" Tag="l"
+					  x:Name="_checkBoxShowTechniqueSteps" Tag="512"
 					  Click="CheckBoxShowTechniqueSteps_Click"/>
 		</Grid>
 		<Label Grid.Row="2" Grid.Column="0" Content="{DynamicResource ExportAnalysisResultLabelAnalysisResult}"/>

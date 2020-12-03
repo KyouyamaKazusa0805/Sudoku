@@ -53,9 +53,10 @@ namespace Sudoku.IO
 		/// <param name="outputType">The output type.</param>
 		/// <param name="alignment">The alignment.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
-		public bool Export(
+		public bool TryExport(
 			string path, int size, bool saveStepGridPictures,
-			string format, PictureFileType pictureFileType = PictureFileType.Png,
+			AnalysisResultFormattingOptions format,
+			PictureFileType pictureFileType = PictureFileType.Png,
 			AnalysisResultOutputType outputType = AnalysisResultOutputType.Text,
 			Alignment alignment = Alignment.Middle)
 		{
