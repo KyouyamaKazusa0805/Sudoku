@@ -3853,20 +3853,6 @@
             </summary>
             <seealso cref="T:System.Enum"/>
         </member>
-        <member name="M:Sudoku.Extensions.EnumEx.GetValues``1">
-            <summary>
-            Get all enumeration fields.
-            </summary>
-            <typeparam name="TEnum">The type of enumeration type.</typeparam>
-            <returns>The fields.</returns>
-        </member>
-        <member name="M:Sudoku.Extensions.EnumEx.LengthOf``1">
-            <summary>
-            Get the total length of the specified enumeration type (how many fields there are).
-            </summary>
-            <typeparam name="TEnum">The type of the enmeration.</typeparam>
-            <returns>The <see cref="T:System.Int32"/> number indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Extensions.EnumEx.Flags``1(``0,``0)">
             <inheritdoc cref="M:System.Enum.HasFlag(System.Enum)"/>
             <typeparam name="TEnum">The type of the enumeration.</typeparam>
@@ -6199,22 +6185,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.op_Addition(Sudoku.Solving.Manual.TechniqueCodeFilter,Sudoku.Solving.Manual.TechniqueCode)">
-            <summary>
-            Add the specified technique into the list, and return the reference same as <paramref name="list"/>.
-            </summary>
-            <param name="list">The list.</param>
-            <param name="technique">The technique to add.</param>
-            <returns>The reference same as <paramref name="list"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.op_Subtraction(Sudoku.Solving.Manual.TechniqueCodeFilter,Sudoku.Solving.Manual.TechniqueCode)">
-            <summary>
-            Remove the specified technique in the list, and return the reference same as <paramref name="list"/>.
-            </summary>
-            <param name="list">The list.</param>
-            <param name="technique">The technique to add.</param>
-            <returns>The reference same as <paramref name="list"/>.</returns>
         </member>
         <member name="T:Sudoku.Windows.Resources">
             <summary>

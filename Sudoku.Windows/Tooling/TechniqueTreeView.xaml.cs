@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
@@ -32,21 +31,24 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Get all techniques to display.
 		/// </summary>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when parent Id doesn't equal to the number of all categories.
+		/// </exception>
 		private void GetAllTechniques()
 		{
-			var selection = from technique in EnumEx.GetValues<TechniqueCode>()
-							let nullableCategory = (string)LangSource[$"Group{technique}"]
+			var selection = from technique in Enum.GetValues<TechniqueCode>()
+							let nullableCategory = LangSource[$"Group{technique}"] as string
 							where nullableCategory is not null
 							select (
-								Technique: technique,
-								Id: (int)technique,
-								DisplayName: CoreResources.GetValue(technique.ToString()),
+								technique,
+								(int)technique,
+								CoreResources.GetValue(technique.ToString()),
 								Category: nullableCategory);
 
 			var categories = new List<string>((from quadruple in selection select quadruple.Category).Distinct());
 
 
-		Labal_Start:
+		Start:
 			// Iterate on each category, and add the missing nodes.
 			for (int i = 0; i < categories.Count; i++)
 			{
@@ -70,7 +72,7 @@ namespace Sudoku.Windows.Tooling
 				if (!alreadyExists)
 				{
 					categories.Insert(i, substring);
-					goto Labal_Start;
+					goto Start;
 				}
 			}
 
@@ -94,6 +96,7 @@ namespace Sudoku.Windows.Tooling
 
 						parentId++;
 					}
+
 					_ = parentId == categories.Count ? throw new InvalidOperationException() : 0;
 				}
 				else
@@ -106,11 +109,14 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			// Create nodes.
-			var list = (from category in parentList select g(category)).ToList();
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static TreeNode<string> g((int Id, int ParentId, string Content) triplet) =>
-				new() { Content = triplet.Content, Id = triplet.Id, ParentId = triplet.ParentId };
+			var list = new List<TreeNode<string>>(
+				from category in parentList
+				select new TreeNode<string>()
+				{
+					Content = category.Content,
+					Id = category.Id,
+					ParentId = category.ParentId
+				});
 
 			// The last step: get all techniques.
 			var allNodes = new List<TreeNode<string>>(list);
@@ -139,10 +145,11 @@ namespace Sudoku.Windows.Tooling
 				ParentId = -1
 			};
 			root.Children = GetSubnodes(root.ParentId, allNodes);
-			list = new(list.Prepend(root));
+
+			//list.Prepend(root);
 
 			// Remove all sub-groups.
-			list.RemoveAll(node => node.Content!.Contains('>'));
+			list.RemoveAll(static node => node.Content!.Contains('>'));
 
 			// Only reserve the name (The parent content and '>' should not be displayed).
 			foreach (var node in allNodes)
@@ -164,7 +171,8 @@ namespace Sudoku.Windows.Tooling
 		/// <returns>All sub-nodes.</returns>
 		private ICollection<TreeNode<string>> GetSubnodes(int parentId, ICollection<TreeNode<string>> nodes)
 		{
-			var mainNodes = (from node in nodes where node.ParentId == parentId select node).ToList();
+			var mainNodes = new List<TreeNode<string>>(
+				from node in nodes where node.ParentId == parentId select node);
 			var otherNodes = nodes.Except(mainNodes).ToList();
 			foreach (var mainNode in mainNodes)
 			{

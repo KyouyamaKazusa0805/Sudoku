@@ -2499,6 +2499,9 @@
             <summary>
             Get all techniques to display.
             </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when parent Id doesn't equal to the number of all categories.
+            </exception>
         </member>
         <member name="M:Sudoku.Windows.Tooling.TechniqueTreeView.GetSubnodes(System.Int32,System.Collections.Generic.ICollection{System.Collections.Generic.TreeNode{System.String}})">
             <summary>

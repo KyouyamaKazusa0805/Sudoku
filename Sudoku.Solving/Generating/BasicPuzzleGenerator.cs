@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Generating
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
-			var allTypes = from type in EnumEx.GetValues<SymmetryType>()
+			var allTypes = from type in Enum.GetValues<SymmetryType>()
 						   where type != None && symmetricalType.Flags(type)
 						   select type;
 			int count = allTypes.Count();

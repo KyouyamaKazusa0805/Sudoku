@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 using Sudoku.Extensions;
 
@@ -15,7 +14,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// The internal list.
 		/// </summary>
-		private readonly BitArray _internalList = new(EnumEx.LengthOf<TechniqueCode>());
+		private readonly BitArray _internalList = new(Enum.GetValues<TechniqueCode>().Length);
 
 
 		/// <inheritdoc cref="DefaultConstructor"/>
@@ -127,26 +126,5 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-
-		/// <summary>
-		/// Add the specified technique into the list, and return the reference same as <paramref name="list"/>.
-		/// </summary>
-		/// <param name="list">The list.</param>
-		/// <param name="technique">The technique to add.</param>
-		/// <returns>The reference same as <paramref name="list"/>.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TechniqueCodeFilter operator +(TechniqueCodeFilter list, TechniqueCode technique) =>
-			list.Add(technique);
-
-		/// <summary>
-		/// Remove the specified technique in the list, and return the reference same as <paramref name="list"/>.
-		/// </summary>
-		/// <param name="list">The list.</param>
-		/// <param name="technique">The technique to add.</param>
-		/// <returns>The reference same as <paramref name="list"/>.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TechniqueCodeFilter operator -(TechniqueCodeFilter list, TechniqueCode technique) =>
-			list.Remove(technique);
 	}
 }

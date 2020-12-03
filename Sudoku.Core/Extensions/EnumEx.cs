@@ -9,22 +9,6 @@ namespace Sudoku.Extensions
 	/// <seealso cref="Enum"/>
 	public static class EnumEx
 	{
-		/// <summary>
-		/// Get all enumeration fields.
-		/// </summary>
-		/// <typeparam name="TEnum">The type of enumeration type.</typeparam>
-		/// <returns>The fields.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TEnum[] GetValues<TEnum>() where TEnum : Enum => (TEnum[])Enum.GetValues(typeof(TEnum));
-
-		/// <summary>
-		/// Get the total length of the specified enumeration type (how many fields there are).
-		/// </summary>
-		/// <typeparam name="TEnum">The type of the enmeration.</typeparam>
-		/// <returns>The <see cref="int"/> number indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int LengthOf<TEnum>() where TEnum : Enum => typeof(TEnum).GetFields().Length;
-
 		/// <inheritdoc cref="Enum.HasFlag(Enum)"/>
 		/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The current enumeration type instance.</param>
@@ -36,16 +20,28 @@ namespace Sudoku.Extensions
 		/// <seealso cref="Enum.HasFlag(Enum)"/>
 		public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
 		{
+			int size;
 			unsafe
 			{
-				return sizeof(TEnum) switch
+				size = sizeof(TEnum);
+			}
+
+			switch (size)
+			{
+				case 1 or 2 or 4:
 				{
-					1 or 2 or 4 when Unsafe.As<TEnum, int>(ref other) is var otherValue =>
-						(Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue,
-					8 when Unsafe.As<TEnum, long>(ref other) is var otherValue =>
-						(Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue,
-					_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4.")
-				};
+					var otherValue = Unsafe.As<TEnum, int>(ref other);
+					return (Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue;
+				}
+				case 8:
+				{
+					var otherValue = Unsafe.As<TEnum, long>(ref other);
+					return (Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue;
+				}
+				default:
+				{
+					throw new ArgumentException("The parameter should be one of the values 1, 2, 4.");
+				}
 			}
 		}
 	}
