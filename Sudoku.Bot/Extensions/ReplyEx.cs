@@ -32,7 +32,7 @@ namespace Sudoku.Bot.Extensions
 			image.Save(TemporaryPath);
 
 			var hImage = new HImage(new Uri(TemporaryPath));
-			await e.Reply(hImage);
+			await e.ReplyAsync(hImage);
 
 			if (File.Exists(TemporaryPath))
 			{

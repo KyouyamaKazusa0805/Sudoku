@@ -16,7 +16,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HuajiTech.Mirai" Version="0.9.1-ci.272" />
+		<PackageReference Include="HuajiTech.Mirai" Version="0.11.1-ci.287" />
 	</ItemGroup>
 
 	<ItemGroup>

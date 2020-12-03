@@ -37,7 +37,7 @@ namespace Sudoku.Bot
 						await (
 							e.Sender is { Role: MemberRole.Administrator or MemberRole.Owner }
 							? e.Source.MuteAsync()
-							: e.Reply("您没有权限使用此功能。"));
+							: e.ReplyAsync("您没有权限使用此功能。"));
 						break;
 					}
 					//case >= 5 and var length when s[2] == "时长": // #禁言 <人> 时长 <数字> (天|周|小时|分钟|秒)
@@ -49,7 +49,7 @@ namespace Sudoku.Bot
 			}
 			catch (ApiException ex) when (ex.ErrorCode == 10)
 			{
-				await e.Reply("我没有管理员权限，无法使用禁言功能。");
+				await e.ReplyAsync("我没有管理员权限，无法使用禁言功能。");
 			}
 		}
 
@@ -67,7 +67,7 @@ namespace Sudoku.Bot
 						await (
 							e.Sender is { Role: MemberRole.Administrator or MemberRole.Owner }
 							? e.Source.UnmuteAsync()
-							: e.Reply("您没有权限使用此功能。"));
+							: e.ReplyAsync("您没有权限使用此功能。"));
 						break;
 					}
 					//case >= 5 and var length when s[2] == "时长": // #解除禁言 <人> 时长 <数字> (天|周|小时|分钟|秒)
@@ -79,7 +79,7 @@ namespace Sudoku.Bot
 			}
 			catch (ApiException ex) when (ex.ErrorCode == 10)
 			{
-				await e.Reply("我没有管理员权限，无法使用解除禁言功能。");
+				await e.ReplyAsync("我没有管理员权限，无法使用解除禁言功能。");
 			}
 		}
 
@@ -241,7 +241,7 @@ namespace Sudoku.Bot
 				string finishedPath = $@"{FinishedPuzzleDir}\{groupNumber}.txt";
 				if (!File.Exists(correspondingPath))
 				{
-					await e.Reply("本群尚未拥有刷题题库，抽取题目失败。");
+					await e.ReplyAsync("本群尚未拥有刷题题库，抽取题目失败。");
 					return;
 				}
 
@@ -271,7 +271,7 @@ namespace Sudoku.Bot
 
 				if (trial == 10)
 				{
-					await e.Reply("随机抽题失败，可能是脸不好；请重试一次。");
+					await e.ReplyAsync("随机抽题失败，可能是脸不好；请重试一次。");
 				}
 				else
 				{
@@ -287,7 +287,7 @@ namespace Sudoku.Bot
 
 					// 输出相关信息。
 					analysisResult ??= new ManualSolver().Solve(grid);
-					await e.Reply(analysisResult.ToString("-!", CountryCode.ZhCn));
+					await e.ReplyAsync(analysisResult.ToString("-!", CountryCode.ZhCn));
 
 					// 输出图片信息。
 					var painter = new GridPainter(
@@ -879,7 +879,7 @@ namespace Sudoku.Bot
 		{
 			_painter = null;
 
-			await e.Reply("清除画板资源成功。");
+			await e.ReplyAsync("清除画板资源成功。");
 		}
 
 		/// <summary>
