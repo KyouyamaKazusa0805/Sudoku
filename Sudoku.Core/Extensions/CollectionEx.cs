@@ -84,17 +84,5 @@ namespace Sudoku.Extensions
 				@this.Add(item);
 			}
 		}
-
-		/// <summary>
-		/// Get a result collection from a may-be-<see langword="null"/> collection.
-		/// If the collection is <see langword="null"/>, the method will return an empty array
-		/// of type <typeparamref name="T"/>.
-		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
-		/// <returns>The return collection that can't be <see langword="null"/>.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IEnumerable<T> NullableCollection<T>(this IEnumerable<T>? @this) =>
-			@this ?? Array.Empty<T>();
 	}
 }

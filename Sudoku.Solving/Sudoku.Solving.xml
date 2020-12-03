@@ -288,21 +288,6 @@
             and the format provider can't work.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResultFormatter.GetSolvingStepsGrouped">
-            <summary>
-            Indicates all groups that grouped by solving steps during solving.
-            If and only if <see cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/> is <see langword="null"/>, this value
-            will be <see langword="null"/>.
-            </summary>
-            <returns>The list grouped and ordered.</returns>
-            <seealso cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResultFormatter.GetBottleneckData">
-            <summary>
-            Get the data of bottleneck.
-            </summary>
-            <returns>The data.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Annotations.DirectSearcherAttribute">
             <summary>
             <para>

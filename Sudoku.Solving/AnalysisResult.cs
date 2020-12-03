@@ -100,9 +100,10 @@ namespace Sudoku.Solving
 			{
 				unsafe
 				{
-					static decimal g(in TechniqueInfo info) => info.ShowDifficulty ? info.Difficulty : 0;
 					return SolvingSteps?.None() ?? true ? 20.0M : SolvingSteps.Max(&g);
 				}
+
+				static decimal g(in TechniqueInfo info) => info.ShowDifficulty ? info.Difficulty : 0;
 			}
 		}
 
@@ -156,9 +157,10 @@ namespace Sudoku.Solving
 			{
 				unsafe
 				{
-					static bool p(in TechniqueInfo info) => info.ShowDifficulty;
 					return SolvingSteps?.FirstOrDefault(&p)?.Difficulty ?? 0;
 				}
+
+				static bool p(in TechniqueInfo info) => info.ShowDifficulty;
 			}
 		}
 
@@ -385,7 +387,8 @@ namespace Sudoku.Solving
 		/// <returns>
 		/// An enumerator that can be used to iterate through the collection.
 		/// </returns>
-		public IEnumerator<TechniqueInfo> GetEnumerator() => SolvingSteps.NullableCollection().GetEnumerator();
+		public IEnumerator<TechniqueInfo> GetEnumerator() =>
+			(SolvingSteps ?? Array.Empty<TechniqueInfo>()).GetEnumerator();
 
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);
