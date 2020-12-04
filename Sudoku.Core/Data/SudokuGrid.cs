@@ -321,11 +321,7 @@ namespace Sudoku.Data
 			{
 				switch (GetStatus(i))
 				{
-					case CellStatus.Given: /*fallthrough*/
-					{
-						goto case CellStatus.Modifiable;
-					}
-					case CellStatus.Modifiable:
+					case CellStatus.Given or CellStatus.Modifiable:
 					{
 						int curDigit = this[i];
 						foreach (int cell in PeerMaps[i])
@@ -806,9 +802,6 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="dest">The destination pointer.</param>
 		/// <param name="src">The source pointer.</param>
-		/// <exception cref="ArgumentNullException">
-		/// Throws when <paramref name="dest"/> or <paramref name="src"/> is <see langword="null"/>.
-		/// </exception>
 		internal static void InternalCopy(short* dest, short* src)
 		{
 			int i = 0;
