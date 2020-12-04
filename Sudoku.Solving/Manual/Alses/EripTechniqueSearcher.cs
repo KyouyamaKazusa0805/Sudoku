@@ -13,11 +13,10 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates an <b>empty rectangle intersection pair</b> (ERIP) technique.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.Erip))]
 	public sealed class EripTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(60) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(60, nameof(TechniqueCode.Erip)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

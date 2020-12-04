@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -17,16 +16,6 @@ namespace Sudoku.Solving
 	/// <seealso cref="ManualSolver"/>
 	public abstract partial class TechniqueSearcher : IComparable<TechniqueSearcher?>, IEquatable<TechniqueSearcher?>
 	{
-		/// <summary>
-		/// Get the display name of the type <see cref="TechniqueDisplayAttribute"/>.
-		/// </summary>
-		/// <seealso cref="TechniqueDisplayAttribute"/>
-		public string? DisplayName =>
-			GetType() is { IsAbstract: false } type
-			? type.GetCustomAttribute<TechniqueDisplayAttribute>()?.DisplayName
-			: null;
-
-
 		/// <summary>
 		/// Take a technique step after searched all solving steps.
 		/// </summary>
@@ -61,7 +50,7 @@ namespace Sudoku.Solving
 		public sealed override bool Equals(object? obj) => Equals(obj as TechniqueSearcher);
 
 		/// <inheritdoc/>
-		public sealed override string? ToString() => DisplayName;
+		public sealed override string? ToString() => TechniqueProperties.GetPropertiesFrom(this)!.DisplayLabel;
 
 
 		/// <summary>

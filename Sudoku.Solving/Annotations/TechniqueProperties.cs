@@ -15,7 +15,12 @@ namespace Sudoku.Solving.Annotations
 		/// Initializes an instance with the specified priority.
 		/// </summary>
 		/// <param name="priority">The priority.</param>
-		public TechniqueProperties(int priority) => Priority = priority;
+		/// <param name="displayLabel">The display label.</param>
+		public TechniqueProperties(int priority, string displayLabel)
+		{
+			Priority = priority;
+			DisplayLabel = displayLabel;
+		}
 
 
 		/// <summary>
@@ -58,7 +63,21 @@ namespace Sudoku.Solving.Annotations
 		/// </para>
 		/// </remarks>
 		/// <seealso cref="StepFinder"/>
+		/// <remarks>
+		/// Note that the property is different with <see cref="DisplayLabel"/>.
+		/// </remarks>
+		/// <seealso cref="DisplayLabel"/>
 		public int DisplayLevel { get; set; }
+
+		/// <summary>
+		/// Indicates the display label of this technique. The program will process and handle the
+		/// value to the specified technique name.
+		/// </summary>
+		/// <remarks>
+		/// Note that the property is different with <see cref="DisplayLevel"/>.
+		/// </remarks>
+		/// <seealso cref="DisplayLevel"/>
+		public string DisplayLabel { get; set; }
 
 		/// <summary>
 		/// Indicates whether the current searcher has bug to fix, or something else to describe why
@@ -92,8 +111,7 @@ namespace Sudoku.Solving.Annotations
 		/// <param name="priority">
 		/// (<see langword="out"/> parameter) Indicates the priority of the technique.
 		/// </param>
-		public void Deconstruct(
-			out bool isEnabled, out bool isReadOnly, out int priority)
+		public void Deconstruct(out bool isEnabled, out bool isReadOnly, out int priority)
 		{
 			isEnabled = IsEnabled;
 			isReadOnly = IsReadOnly;
@@ -141,9 +159,12 @@ namespace Sudoku.Solving.Annotations
 		/// <param name="displayLevel">
 		/// (<see langword="out"/> parameter) Indicates the display level.
 		/// </param>
+		/// <param name="displayLabel">
+		/// (<see langword="out"/> parameter) Indicates the display label.
+		/// </param>
 		public void Deconstruct(
 			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason,
-			out bool onlyEnableInAnalysis, out int displayLevel)
+			out bool onlyEnableInAnalysis, out int displayLevel, out string displayLabel)
 		{
 			isEnabled = IsEnabled;
 			isReadOnly = IsReadOnly;
@@ -151,6 +172,7 @@ namespace Sudoku.Solving.Annotations
 			disabledReason = DisabledReason;
 			onlyEnableInAnalysis = OnlyEnableInAnalysis;
 			displayLevel = DisplayLevel;
+			displayLabel = DisplayLabel;
 		}
 
 

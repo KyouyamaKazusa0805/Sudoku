@@ -14,7 +14,6 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates a <b>3-dimension sue de coq</b> technique.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.Sdc3d))]
 	public sealed class Sdc3dTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -25,7 +24,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55);
+		public static TechniqueProperties Properties { get; } = new(55, nameof(TechniqueCode.Sdc3d)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

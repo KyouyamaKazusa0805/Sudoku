@@ -8,14 +8,12 @@ using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Annotations.DisabledReason;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
 	/// <summary>
 	/// Encapsulates a <b>death blossom</b> technique.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.DeathBlossom))]
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
@@ -41,11 +39,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(80)
+		public static TechniqueProperties Properties { get; } = new(80, nameof(TechniqueCode.DeathBlossom))
 		{
 			DisplayLevel = 3,
 			IsEnabled = false,
-			DisabledReason = TooSlow | HighAllocation
+			DisabledReason = DisabledReason.TooSlow | DisabledReason.HighAllocation
 		};
 
 

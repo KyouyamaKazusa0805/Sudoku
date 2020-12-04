@@ -15,7 +15,6 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Encapsulates a <b>junior exocet</b> (JE) technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.Je))]
 	public sealed class JeTechniqueSearcher : ExocetTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -25,7 +24,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(94) { DisplayLevel = 4 };
+		public static TechniqueProperties Properties { get; } = new(94, nameof(TechniqueCode.Je)) { DisplayLevel = 4 };
 
 
 		/// <inheritdoc/>

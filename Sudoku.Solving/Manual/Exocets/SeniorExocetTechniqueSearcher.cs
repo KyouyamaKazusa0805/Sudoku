@@ -17,7 +17,6 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Encapsulates a <b>senior exocet</b> (SE) technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.Se))]
 	[Obsolete("Please use '" + nameof(SeTechniqueSearcher) + "' instead.", true)]
 	public sealed class SeniorExocetTechniqueSearcher : ExocetTechniqueSearcher
 	{
@@ -28,7 +27,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(96)
+		public static TechniqueProperties Properties { get; } = new(96, nameof(TechniqueCode.Se))
 		{
 			IsEnabled = false,
 			DisabledReason = DisabledReason.HasBugs

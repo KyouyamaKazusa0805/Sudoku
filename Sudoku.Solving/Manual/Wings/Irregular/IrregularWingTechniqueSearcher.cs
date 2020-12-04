@@ -13,11 +13,10 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	/// <summary>
 	/// Encapsulates an <b>irregular wing</b> technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.WWing))]
 	public sealed class IrregularWingTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(44) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(44, nameof(TechniqueCode.WWing)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

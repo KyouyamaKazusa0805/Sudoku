@@ -14,11 +14,10 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Encapsulates a <b>locked candidates</b> (LC) technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.Pointing))]
 	public sealed class LcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(26) { DisplayLevel = 1 };
+		public static TechniqueProperties Properties { get; } = new(26, nameof(TechniqueCode.Pointing)) { DisplayLevel = 1 };
 
 
 		/// <inheritdoc/>

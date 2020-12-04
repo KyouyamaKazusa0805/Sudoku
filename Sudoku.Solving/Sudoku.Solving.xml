@@ -454,11 +454,12 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.TechniqueSearcher"/>
         </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.#ctor(System.Int32)">
+        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.#ctor(System.Int32,System.String)">
             <summary>
             Initializes an instance with the specified priority.
             </summary>
             <param name="priority">The priority.</param>
+            <param name="displayLabel">The display label.</param>
         </member>
         <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.IsEnabled">
             <summary>
@@ -501,6 +502,20 @@
             </para>
             </remarks>
             <seealso cref="T:Sudoku.Solving.Manual.StepFinder"/>
+            <remarks>
+            Note that the property is different with <see cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLabel"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLabel"/>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLabel">
+            <summary>
+            Indicates the display label of this technique. The program will process and handle the
+            value to the specified technique name.
+            </summary>
+            <remarks>
+            Note that the property is different with <see cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLevel"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLevel"/>
         </member>
         <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.DisabledReason">
             <summary>
@@ -546,7 +561,7 @@
             (<see langword="out"/> parameter) Indicates why this technique is disabled.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Annotations.DisabledReason@,System.Boolean@,System.Int32@)">
+        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Annotations.DisabledReason@,System.Boolean@,System.Int32@,System.String@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isEnabled">
             (<see langword="out"/> parameter) Indicates whether the technique is enabled.
@@ -565,6 +580,9 @@
             </param>
             <param name="displayLevel">
             (<see langword="out"/> parameter) Indicates the display level.
+            </param>
+            <param name="displayLabel">
+            (<see langword="out"/> parameter) Indicates the display label.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.GetPropertiesFrom``1">
@@ -8948,12 +8966,6 @@
             <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
-        </member>
-        <member name="P:Sudoku.Solving.TechniqueSearcher.DisplayName">
-            <summary>
-            Get the display name of the type <see cref="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.GetOne(Sudoku.Data.SudokuGrid@)">
             <summary>

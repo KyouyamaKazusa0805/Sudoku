@@ -14,7 +14,6 @@ namespace Sudoku.Solving.Manual.Singles
 	/// Encapsulates a <b>single</b> technique searcher.
 	/// </summary>
 	[DirectSearcher]
-	[TechniqueDisplay(nameof(TechniqueCode.NakedSingle))]
 	public sealed class SingleTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>
@@ -44,7 +43,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(10)
+		public static TechniqueProperties Properties { get; } = new(10, nameof(TechniqueCode.NakedSingle))
 		{
 			DisplayLevel = 0,
 			IsReadOnly = true

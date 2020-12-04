@@ -12,11 +12,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// Encapsulates a <b>pattern overlay method</b> (POM) technique searcher.
 	/// </summary>
 	[DirectSearcher]
-	[TechniqueDisplay(nameof(TechniqueCode.Pom))]
 	public sealed class PomTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55)
+		public static TechniqueProperties Properties { get; } = new(55, nameof(TechniqueCode.Pom))
 		{
 			DisplayLevel = 3,
 			IsEnabled = false

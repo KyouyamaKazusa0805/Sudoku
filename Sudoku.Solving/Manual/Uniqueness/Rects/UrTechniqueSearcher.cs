@@ -17,7 +17,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Encapsulates an <b>unique rectangle</b> (UR) or
 	/// <b>avoidable rectangle</b> (AR) technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.UrType1))]
 	public sealed partial class UrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
@@ -49,7 +48,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(45) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(45, nameof(TechniqueCode.UrType1)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

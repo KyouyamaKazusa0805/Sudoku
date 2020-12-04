@@ -14,11 +14,10 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Encapsulates an empty rectangle technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.EmptyRectangle))]
 	public sealed partial class EmptyRectangleTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(46) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(46, nameof(TechniqueCode.EmptyRectangle)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

@@ -13,7 +13,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Encapsulates an <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.AlsWWing))]
 	public sealed class AlsWWingTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -24,7 +23,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(62) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(62, nameof(TechniqueCode.AlsWWing)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

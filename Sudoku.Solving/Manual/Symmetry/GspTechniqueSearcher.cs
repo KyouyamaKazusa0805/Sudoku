@@ -10,7 +10,6 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// <summary>
 	/// Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.Gsp))]
 	public sealed class GspTechniqueSearcher : SymmetryTechniqueSearcher
 	{
 		/// <summary>
@@ -26,7 +25,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(default) { IsReadOnly = true };
+		public static TechniqueProperties Properties { get; } = new(default, nameof(TechniqueCode.Gsp)) { IsReadOnly = true };
 
 
 		/// <inheritdoc/>

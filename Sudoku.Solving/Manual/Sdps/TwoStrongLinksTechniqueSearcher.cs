@@ -12,11 +12,10 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Encapsulates a two strong links technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.TurbotFish))]
 	public sealed class TwoStrongLinksTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(40) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(40, nameof(TechniqueCode.TurbotFish)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

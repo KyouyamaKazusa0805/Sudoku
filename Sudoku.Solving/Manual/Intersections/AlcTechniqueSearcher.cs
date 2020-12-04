@@ -14,7 +14,6 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Encapsulates an <b>almost locked candidates</b> (ALC) technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.AlmostLockedPair))]
 	public sealed class AlcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <summary>
@@ -33,7 +32,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(45) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(45, nameof(TechniqueCode.AlmostLockedPair)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

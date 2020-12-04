@@ -14,7 +14,6 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 	/// <summary>
 	/// Encapsulates a <b>regular wing</b> technique solver.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.XyWing))]
 	public sealed class RegularWingTechniqueSearcher : WingTechniqueSearcher
 	{
 		/// <summary>
@@ -31,7 +30,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(42) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(42, nameof(TechniqueCode.XyWing)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>

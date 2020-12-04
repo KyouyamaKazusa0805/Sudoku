@@ -15,11 +15,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// Encapsulates a <b>bivalue universal grave multiple</b> (BUG + n) with forcing chains
 	/// technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.BugMultipleFc))]
 	public sealed class BugMultipleWithFcTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(60) { DisplayLevel = 3 };
+		public static TechniqueProperties Properties { get; } = new(60, nameof(TechniqueCode.BugMultipleFc)) { DisplayLevel = 3 };
 
 
 		/// <inheritdoc/>

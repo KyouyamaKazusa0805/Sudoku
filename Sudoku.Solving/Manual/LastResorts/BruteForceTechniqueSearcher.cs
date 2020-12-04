@@ -17,7 +17,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// This searcher is a trick, because it will check the assignments on
 	/// the terminal grid (I mean, the answer grid).
 	/// </remarks>
-	[TechniqueDisplay(nameof(TechniqueCode.BruteForce))]
 	public sealed class BruteForceTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -53,7 +52,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(200)
+		public static TechniqueProperties Properties { get; } = new(200, nameof(TechniqueCode.BruteForce))
 		{
 			DisplayLevel = 10,
 			OnlyEnableInAnalysis = true

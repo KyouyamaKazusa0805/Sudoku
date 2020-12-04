@@ -14,7 +14,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>template</b> technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.TemplateSet))]
 	public sealed class TemplateTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -33,7 +32,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55)
+		public static TechniqueProperties Properties { get; } = new(55, nameof(TechniqueCode.TemplateSet))
 		{
 			DisplayLevel = 3,
 			IsEnabled = false

@@ -9,11 +9,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <summary>
 	/// Encapsulates an <b>extended rectangle</b> technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.XrType1))]
 	public sealed partial class XrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(46) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(46, nameof(TechniqueCode.XrType1)) { DisplayLevel = 2 };
 
 
 		/// <inheritdoc/>
