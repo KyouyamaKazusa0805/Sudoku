@@ -9,43 +9,52 @@ namespace Sudoku.Data.Stepping
 	/// <param name="Cell">The cell.</param>
 	/// <param name="Mask">The old mask to undo.</param>
 	/// <param name="InnerMap">The map which contains all cells that contains the digit.</param>
-	public sealed unsafe record AssignmentStep(int Digit, int Cell, short Mask, in GridMap InnerMap) : Step
+	public sealed record AssignmentStep(int Digit, int Cell, short Mask, in GridMap InnerMap) : IStep
 	{
 		/// <inheritdoc/>
-		public override void UndoStepTo(UndoableGrid grid)
+		public void UndoStepTo(UndoableGrid grid)
 		{
-			grid._innerGrid._values[Cell] = Mask;
-
-			foreach (int peerCell in InnerMap)
+			unsafe
 			{
-				grid._innerGrid._values[peerCell] &= (short)~(1 << Digit);
+				grid._innerGrid._values[Cell] = Mask;
+
+				foreach (int peerCell in InnerMap)
+				{
+					grid._innerGrid._values[peerCell] &= (short)~(1 << Digit);
+				}
 			}
 		}
 
 		/// <inheritdoc/>
-		public override void DoStepTo(UndoableGrid grid)
+		public void DoStepTo(UndoableGrid grid)
 		{
 			switch (Digit)
 			{
 				case -1 when grid.GetStatus(Cell) == CellStatus.Modifiable:
 				{
-					fixed (short* pValues = grid._innerGrid._values)
-					fixed (short* pInitialValues = grid._innerGrid._initialValues)
+					unsafe
 					{
-						SudokuGrid.InternalCopy(pValues, pInitialValues);
+						fixed (short* pValues = grid._innerGrid._values)
+						fixed (short* pInitialValues = grid._innerGrid._initialValues)
+						{
+							SudokuGrid.InternalCopy(pValues, pInitialValues);
+						}
 					}
 
 					break;
 				}
 				case >= 0 and < 9:
 				{
-					grid._innerGrid._values[Cell] =
-						(short)((int)CellStatus.Modifiable << 9 | SudokuGrid.MaxCandidatesMask & ~(1 << Digit));
-					foreach (int cell in Peers[Cell])
+					unsafe
 					{
-						if (grid.GetStatus(cell) == CellStatus.Empty)
+						grid._innerGrid._values[Cell] =
+							(short)(SudokuGrid.ModifiableMask | SudokuGrid.MaxCandidatesMask & ~(1 << Digit));
+						foreach (int cell in Peers[Cell])
 						{
-							grid._innerGrid._values[cell] |= (short)(1 << Digit);
+							if (grid.GetStatus(cell) == CellStatus.Empty)
+							{
+								grid._innerGrid._values[cell] |= (short)(1 << Digit);
+							}
 						}
 					}
 

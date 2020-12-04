@@ -96,7 +96,7 @@
             </param>
             <seealso cref="T:Sudoku.Diagnostics.FileCounter"/>
         </member>
-        <member name="M:Sudoku.Diagnostics.FileCounterResult.#ctor(System.Int32,System.Int32,System.Int64,System.Int64,System.TimeSpan,System.Collections.Generic.IList{System.String})">
+        <member name="M:Sudoku.Diagnostics.FileCounterResult.#ctor(System.Int32,System.Int32,System.Int64,System.Int64,System.TimeSpan@,System.Collections.Generic.IList{System.String})">
             <summary>
             Encapsulates a result after <see cref="T:Sudoku.Diagnostics.FileCounter"/>.
             </summary>

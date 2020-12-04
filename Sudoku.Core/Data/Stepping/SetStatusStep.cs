@@ -6,22 +6,28 @@
 	/// <param name="Cell">The cell.</param>
 	/// <param name="OldStatus">The old status.</param>
 	/// <param name="NewStatus">The new status.</param>
-	public sealed unsafe record SetStatusStep(int Cell, CellStatus OldStatus, CellStatus NewStatus) : Step
+	public sealed record SetStatusStep(int Cell, CellStatus OldStatus, CellStatus NewStatus) : IStep
 	{
 		/// <inheritdoc/>
-		public override void DoStepTo(UndoableGrid grid)
+		public void DoStepTo(UndoableGrid grid)
 		{
-			// To prevent the infinity recursion.
-			ref short mask = ref grid._innerGrid._values[Cell];
-			mask = (short)((int)NewStatus << 9 | mask & SudokuGrid.MaxCandidatesMask);
+			unsafe
+			{
+				// To prevent the infinity recursion.
+				ref short mask = ref grid._innerGrid._values[Cell];
+				mask = (short)((int)NewStatus << 9 | mask & SudokuGrid.MaxCandidatesMask);
+			}
 		}
 
 		/// <inheritdoc/>
-		public override void UndoStepTo(UndoableGrid grid)
+		public void UndoStepTo(UndoableGrid grid)
 		{
-			// To prevent the infinity recursion.
-			ref short mask = ref grid._innerGrid._values[Cell];
-			mask = (short)((int)OldStatus << 9 | mask & SudokuGrid.MaxCandidatesMask);
+			unsafe
+			{
+				// To prevent the infinity recursion.
+				ref short mask = ref grid._innerGrid._values[Cell];
+				mask = (short)((int)OldStatus << 9 | mask & SudokuGrid.MaxCandidatesMask);
+			}
 		}
 	}
 }

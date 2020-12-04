@@ -278,7 +278,7 @@
             <seealso cref="P:Sudoku.Drawing.GridPainter.Height"/>
             <seealso cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,System.Single,System.Single,Sudoku.Data.Stepping.UndoableGrid,System.Nullable{Sudoku.Data.GridMap},Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,System.Single,System.Single,Sudoku.Data.Stepping.UndoableGrid,System.Nullable{Sudoku.Data.GridMap}@,Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Indicates the grid painter.
             </summary>

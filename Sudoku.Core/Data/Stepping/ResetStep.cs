@@ -5,10 +5,10 @@
 	/// </summary>
 	/// <param name="OldMasks">Indicates the table of new grid masks.</param>
 	/// <param name="NewMasks">Indicates the table of old grid masks.</param>
-	public sealed unsafe record ResetStep(short* OldMasks, short* NewMasks) : Step
+	public sealed unsafe record ResetStep(short* OldMasks, short* NewMasks) : IStep
 	{
 		/// <inheritdoc/>
-		public override void DoStepTo(UndoableGrid grid)
+		public void DoStepTo(UndoableGrid grid)
 		{
 			fixed (short* pValues = grid._innerGrid._values)
 			{
@@ -17,7 +17,7 @@
 		}
 
 		/// <inheritdoc/>
-		public override void UndoStepTo(UndoableGrid grid)
+		public void UndoStepTo(UndoableGrid grid)
 		{
 			fixed (short* pValues = grid._innerGrid._values)
 			{

@@ -19,7 +19,7 @@ namespace Sudoku.Diagnostics
 	/// <seealso cref="FileCounter"/>
 	public sealed record FileCounterResult(
 		int ResultLines, int FilesCount, long CharactersCount, long Bytes,
-		TimeSpan Elapsed, IList<string> FileList)
+		in TimeSpan Elapsed, IList<string> FileList)
 	{
 		/// <inheritdoc/>
 		public override string ToString() =>

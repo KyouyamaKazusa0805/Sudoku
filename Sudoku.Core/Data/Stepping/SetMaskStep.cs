@@ -6,12 +6,24 @@
 	/// <param name="Cell">Indicates the cell.</param>
 	/// <param name="OldMask">Indicates the old mask.</param>
 	/// <param name="NewMask">Indicates the new mask.</param>
-	public sealed unsafe record SetMaskStep(int Cell, short OldMask, short NewMask) : Step
+	public sealed record SetMaskStep(int Cell, short OldMask, short NewMask) : IStep
 	{
 		/// <inheritdoc/>
-		public override void DoStepTo(UndoableGrid grid) => grid._innerGrid._values[Cell] = NewMask;
+		public void DoStepTo(UndoableGrid grid)
+		{
+			unsafe
+			{
+				grid._innerGrid._values[Cell] = NewMask;
+			}
+		}
 
 		/// <inheritdoc/>
-		public override void UndoStepTo(UndoableGrid grid) => grid._innerGrid._values[Cell] = OldMask;
+		public void UndoStepTo(UndoableGrid grid)
+		{
+			unsafe
+			{
+				grid._innerGrid._values[Cell] = OldMask;
+			}
+		}
 	}
 }

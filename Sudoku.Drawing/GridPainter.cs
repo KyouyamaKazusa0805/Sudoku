@@ -49,7 +49,7 @@ namespace Sudoku.Drawing
 	/// <seealso cref="PointConverter"/>
 	public sealed record GridPainter(
 		PointConverter PointConverter, Settings Settings, float Width, float Height, UndoableGrid Grid,
-		GridMap? FocusedCells, View? View, MutableView? CustomView, IEnumerable<Conclusion>? Conclusions)
+		in GridMap? FocusedCells, View? View, MutableView? CustomView, IEnumerable<Conclusion>? Conclusions)
 	{
 		/// <summary>
 		/// The square root of 2.
