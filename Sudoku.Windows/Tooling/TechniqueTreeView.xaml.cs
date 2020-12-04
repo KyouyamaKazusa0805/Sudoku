@@ -146,8 +146,6 @@ namespace Sudoku.Windows.Tooling
 			};
 			root.Children = GetSubnodes(root.ParentId, allNodes);
 
-			//list.Prepend(root);
-
 			// Remove all sub-groups.
 			list.RemoveAll(static node => node.Content!.Contains('>'));
 

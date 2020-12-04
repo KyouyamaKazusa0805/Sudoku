@@ -55,7 +55,7 @@ namespace Sudoku.Windows.Tooling
 						{
 							true => ChosenTechniques.Add,
 							false => ChosenTechniques.Remove,
-							_ => static (_) => default
+							_ => static _ => default
 						};
 
 						f(pair.Item2);

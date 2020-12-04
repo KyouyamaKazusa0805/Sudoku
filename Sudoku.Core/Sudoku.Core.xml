@@ -2153,6 +2153,23 @@
         <member name="M:Sudoku.Data.Stepping.FixStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Data.Stepping.IStep">
+            <summary>
+            Provides a step used for applying to a sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.IStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
+            <summary>
+            Apply the step to the grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.IStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
+            <summary>
+            Undo the step to the grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
         <member name="T:Sudoku.Data.Stepping.IUndoable">
             <summary>
             Provides a undo-able data structure.
@@ -2231,23 +2248,6 @@
         </member>
         <member name="M:Sudoku.Data.Stepping.SetStatusStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.Stepping.Step">
-            <summary>
-            Provides a step used for applying to a sudoku grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Stepping.Step.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
-            <summary>
-            Apply the step to the grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Data.Stepping.Step.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
-            <summary>
-            Undo the step to the grid.
-            </summary>
-            <param name="grid">The grid.</param>
         </member>
         <member name="T:Sudoku.Data.Stepping.UndoableGrid">
             <summary>
@@ -4028,6 +4028,15 @@
         <member name="M:Sudoku.Extensions.EnumerableEx.Max``1(System.Collections.Generic.IEnumerable{``0},)">
             <summary>
             Get the maximum value in this collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="selector">The selector.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.EnumerableEx.Min``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Get the minimum value in this collection.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The collection.</param>

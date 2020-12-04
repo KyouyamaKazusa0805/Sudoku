@@ -29,7 +29,7 @@ namespace Sudoku.Data.Stepping
 		/// <summary>
 		/// The undo and redo stack.
 		/// </summary>
-		private readonly Stack<Step> _undoStack = new(), _redoStack = new();
+		private readonly Stack<IStep> _undoStack = new(), _redoStack = new();
 
 
 		/// <summary>

@@ -331,5 +331,27 @@ namespace Sudoku.Extensions
 
 			return result.GetValueOrDefault();
 		}
+
+		/// <summary>
+		/// Get the minimum value in this collection.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
+		/// <param name="selector">The selector.</param>
+		/// <returns>The result.</returns>
+		public static unsafe decimal Min<T>(this IEnumerable<T> @this, delegate*<in T, decimal> selector)
+		{
+			decimal? result = null;
+			foreach (var element in @this)
+			{
+				var current = selector(element);
+				if (!result.HasValue || current < result.Value)
+				{
+					result = current;
+				}
+			}
+
+			return result.GetValueOrDefault();
+		}
 	}
 }
