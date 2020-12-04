@@ -156,10 +156,10 @@ namespace Sudoku.Solving.Manual.Sdps
 				resultAccumulator.AddRange(set);
 				resultAccumulator.Sort(&cmp);
 				accumulator.AddRange(resultAccumulator);
-
-				static int cmp(in GuardianTechniqueInfo l, in GuardianTechniqueInfo r) =>
-					(l.Loop.Count + l.Guardians.Count).CompareTo(r.Loop.Count + r.Guardians.Count);
 			}
+
+			static int cmp(in GuardianTechniqueInfo l, in GuardianTechniqueInfo r) =>
+				(l.Loop.Count + l.Guardians.Count).CompareTo(r.Loop.Count + r.Guardians.Count);
 		}
 
 		/// <summary>
