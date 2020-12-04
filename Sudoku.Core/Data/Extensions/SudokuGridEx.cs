@@ -12,23 +12,15 @@ namespace Sudoku.Data.Extensions
 	public static class SudokuGridEx
 	{
 		/// <summary>
-		/// <para>
 		/// Indicates whether the specified grid contains the digit in the specified cell.
-		/// </para>
-		/// <para>
-		/// The return value will be <see langword="true"/> if and only if
-		/// the cell is empty and contains that digit.
-		/// </para>
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <param name="cell">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>
-		/// A <see cref="bool"/>? value indicating that.
-		/// </returns>
-		/// <remarks>
-		/// <para>
-		/// The cases of the return value are below:
+		/// The method will return a <see cref="bool"/>? value (contains three possible cases:
+		/// <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+		/// All values corresponding to the cases are below:
 		/// <list type="table">
 		/// <item>
 		/// <term><c><see langword="true"/></c></term>
@@ -47,14 +39,11 @@ namespace Sudoku.Data.Extensions
 		/// <description>The cell is <b>not</b> an empty cell.</description>
 		/// </item>
 		/// </list>
-		/// </para>
-		/// <para>
+		/// </returns>
+		/// <remarks>
 		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
-		/// <code>grid.Exists(candidate) is true</code>
-		/// or
-		/// <code>grid.Exists(candidate) == true</code>
+		/// '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
 		/// to decide whether a condition is true.
-		/// </para>
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool? Exists(this in SudokuGrid @this, int cell, int digit) =>

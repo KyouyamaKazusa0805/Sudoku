@@ -322,17 +322,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// <para>Indicates the map of cells, which is the peer intersections.</para>
-		/// <para>
-		/// For example, the code
-		/// <code>
-		/// var r = map.PeerIntersection;
-		/// </code>
-		/// is equivalent to the code
-		/// <code>
-		/// var r = new GridMap(map, InitializeOption.ProcessPeersWithoutItself);
-		/// </code>
-		/// </para>
+		/// Indicates the map of cells, which is the peer intersections.
 		/// </summary>
 		public readonly GridMap PeerIntersection
 		{
@@ -809,24 +799,6 @@ namespace Sudoku.Data
 		public void AddAnyway(int offset) => this[offset] = true;
 
 		/// <summary>
-		/// Set the specified cell as <see langword="false"/> value.
-		/// </summary>
-		/// <param name="offset">The cell offset.</param>
-		/// <remarks>
-		/// Different with <see cref="Add(int)"/>, this method <b>can't</b> receive
-		/// the negative value as the parameter.
-		/// </remarks>
-		/// <seealso cref="Add(int)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Remove(int offset) => this[offset] = false;
-
-		/// <summary>
-		/// Clear all bits.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Clear() => _low = _high = Count = 0;
-
-		/// <summary>
 		/// Set the specified cells as <see langword="true"/> value.
 		/// </summary>
 		/// <param name="offsets">(<see langword="in"/> parameter) The cells to add.</param>
@@ -849,6 +821,24 @@ namespace Sudoku.Data
 				AddAnyway(cell);
 			}
 		}
+
+		/// <summary>
+		/// Set the specified cell as <see langword="false"/> value.
+		/// </summary>
+		/// <param name="offset">The cell offset.</param>
+		/// <remarks>
+		/// Different with <see cref="Add(int)"/>, this method <b>can't</b> receive
+		/// the negative value as the parameter.
+		/// </remarks>
+		/// <seealso cref="Add(int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Remove(int offset) => this[offset] = false;
+
+		/// <summary>
+		/// Clear all bits.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Clear() => _low = _high = Count = 0;
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

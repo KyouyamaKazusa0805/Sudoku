@@ -837,23 +837,15 @@
         </member>
         <member name="M:Sudoku.Data.Extensions.SudokuGridEx.Exists(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
             <summary>
-            <para>
             Indicates whether the specified grid contains the digit in the specified cell.
-            </para>
-            <para>
-            The return value will be <see langword="true"/> if and only if
-            the cell is empty and contains that digit.
-            </para>
             </summary>
             <param name="this">(<see langword="this in"/> parameter) The grid.</param>
             <param name="cell">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>
-            A <see cref="T:System.Boolean"/>? value indicating that.
-            </returns>
-            <remarks>
-            <para>
-            The cases of the return value are below:
+            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
+            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+            All values corresponding to the cases are below:
             <list type="table">
             <item>
             <term><c><see langword="true"/></c></term>
@@ -872,14 +864,11 @@
             <description>The cell is <b>not</b> an empty cell.</description>
             </item>
             </list>
-            </para>
-            <para>
+            </returns>
+            <remarks>
             Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
-            <code>grid.Exists(candidate) is true</code>
-            or
-            <code>grid.Exists(candidate) == true</code>
+            '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
             to decide whether a condition is true.
-            </para>
             </remarks>
         </member>
         <member name="M:Sudoku.Data.Extensions.SudokuGridEx.Duplicate(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
@@ -1313,17 +1302,7 @@
         </member>
         <member name="P:Sudoku.Data.GridMap.PeerIntersection">
             <summary>
-            <para>Indicates the map of cells, which is the peer intersections.</para>
-            <para>
-            For example, the code
-            <code>
-            var r = map.PeerIntersection;
-            </code>
-            is equivalent to the code
-            <code>
-            var r = new GridMap(map, InitializeOption.ProcessPeersWithoutItself);
-            </code>
-            </para>
+            Indicates the map of cells, which is the peer intersections.
             </summary>
         </member>
         <member name="P:Sudoku.Data.GridMap.CoveredRegions">
@@ -1510,6 +1489,18 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.Add(System.Int32)"/>
         </member>
+        <member name="M:Sudoku.Data.GridMap.AddRange(System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Set the specified cells as <see langword="true"/> value.
+            </summary>
+            <param name="offsets">(<see langword="in"/> parameter) The cells to add.</param>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Set the specified cells as <see langword="true"/> value.
+            </summary>
+            <param name="offsets">The cells to add.</param>
+        </member>
         <member name="M:Sudoku.Data.GridMap.Remove(System.Int32)">
             <summary>
             Set the specified cell as <see langword="false"/> value.
@@ -1525,18 +1516,6 @@
             <summary>
             Clear all bits.
             </summary>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.AddRange(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Set the specified cells as <see langword="true"/> value.
-            </summary>
-            <param name="offsets">(<see langword="in"/> parameter) The cells to add.</param>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Set the specified cells as <see langword="true"/> value.
-            </summary>
-            <param name="offsets">The cells to add.</param>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Equality(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
@@ -2606,6 +2585,7 @@
             </summary>
             <param name="cell">The cell offset you want to get.</param>
             <returns>
+            <para>
             The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
             value, where each bit will be:
             <list type="table">
@@ -2618,6 +2598,11 @@
             <description>The cell <b>contains</b> the possibility of the digit.</description>
             </item>
             </list>
+            </para>
+            <para>
+            For example, if the result mask is 266(i.e. <c>0b100_001_010</c> in binary),
+            the value will indicate the cell contains the digit 2, 4 and 9.
+            </para>
             </returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToMaskString">
@@ -3315,16 +3300,6 @@
             <summary>
             Indicates the map of cells, which is the peer intersections.
             </summary>
-            <example>
-            For example, the code
-            <code>
-            var map = testMap.PeerIntersection;
-            </code>
-            is equivalent to the code
-            <code>
-            var map = SudokuMap.CreateInstance(testMap);
-            </code>
-            </example>
         </member>
         <member name="P:Sudoku.Data.SudokuMap.Offsets">
             <summary>

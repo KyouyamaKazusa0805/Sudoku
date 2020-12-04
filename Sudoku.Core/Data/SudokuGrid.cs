@@ -409,6 +409,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cell">The cell offset you want to get.</param>
 		/// <returns>
+		/// <para>
 		/// The candidate mask. The return value is a 9-bit <see cref="short"/>
 		/// value, where each bit will be:
 		/// <list type="table">
@@ -421,6 +422,11 @@ namespace Sudoku.Data
 		/// <description>The cell <b>contains</b> the possibility of the digit.</description>
 		/// </item>
 		/// </list>
+		/// </para>
+		/// <para>
+		/// For example, if the result mask is 266(i.e. <c>0b100_001_010</c> in binary),
+		/// the value will indicate the cell contains the digit 2, 4 and 9.
+		/// </para>
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly short GetCandidateMask(int cell) => (short)(_values[cell] & MaxCandidatesMask);

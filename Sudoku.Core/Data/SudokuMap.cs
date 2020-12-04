@@ -225,16 +225,6 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the map of cells, which is the peer intersections.
 		/// </summary>
-		/// <example>
-		/// For example, the code
-		/// <code>
-		/// var map = testMap.PeerIntersection;
-		/// </code>
-		/// is equivalent to the code
-		/// <code>
-		/// var map = SudokuMap.CreateInstance(testMap);
-		/// </code>
-		/// </example>
 		public readonly SudokuMap PeerIntersection => CreateInstance(Offsets);
 
 		/// <summary>
@@ -404,8 +394,9 @@ namespace Sudoku.Data
 				{
 					return "{ }";
 				}
-				case 1 when First is var candidate && (candidate / 9, candidate % 9) is (var cell, var digit):
+				case 1:
 				{
+					int candidate = First, cell = candidate / 9, digit = candidate % 9;
 					return $"r{cell / 9 + 1}c{cell % 9 + 1}({digit + 1})";
 				}
 				default:
