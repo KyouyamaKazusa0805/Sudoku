@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Annotations
 	/// </list>
 	/// </para>
 	/// <para>
-	/// Those properties can optimize the performance to analyze a sudoku grid, but
+	/// Those properties or methods can optimize the performance to analyze a sudoku grid, but
 	/// sometimes they may cause a potential bug that is hard to find and fix. The attribute
 	/// is created and used for solving the problem.
 	/// </para>
