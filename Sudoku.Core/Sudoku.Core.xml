@@ -218,16 +218,6 @@
             Indicates all null lines and header spaces in their lines.
             </summary>
         </member>
-        <member name="T:Sudoku.Constants.Values">
-            <summary>
-            The values used in the whole solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.Values.BooleanValues">
-            <summary>
-            The two <see cref="T:System.Boolean"/> values used in traversing.
-            </summary>
-        </member>
         <member name="T:Sudoku.Data.BitSubsetsGenerator">
             <summary>
             Encapsulates a bit combination generator.

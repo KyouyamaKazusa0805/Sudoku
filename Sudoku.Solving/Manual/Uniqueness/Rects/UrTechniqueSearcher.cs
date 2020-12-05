@@ -8,7 +8,6 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.Values;
 using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -56,7 +55,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		{
 			// Iterate on mode (whether use AR or UR mode to search).
 			var tempList = new List<UrTechniqueInfo>();
-			foreach (bool arMode in BooleanValues)
+			foreach (bool arMode in stackalloc[] { false, true })
 			{
 				// Iterate on each possible UR structure.
 				for (int index = 0; index < PossibleUrList.Length; index++)

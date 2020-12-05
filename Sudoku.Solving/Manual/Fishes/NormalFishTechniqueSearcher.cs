@@ -9,7 +9,6 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Constants.Values;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.SudokuGrid;
 
@@ -27,9 +26,10 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
+			var values = (stackalloc[] { false, true });
 			for (int size = 2; size <= 4; size++)
 			{
-				foreach (bool searchRow in BooleanValues)
+				foreach (bool searchRow in values)
 				{
 					GetAll(accumulator, grid, size, searchRow);
 				}
