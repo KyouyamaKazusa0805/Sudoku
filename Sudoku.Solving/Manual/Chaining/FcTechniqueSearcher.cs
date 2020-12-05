@@ -5,6 +5,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
+using Grid = Sudoku.Data.SudokuGrid;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -13,23 +14,23 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
 	/// </summary>
-	public sealed class FcTechniqueSearcher : ChainingTechniqueSearcher
+	public class FcTechniqueSearcher : ChainingTechniqueSearcher
 	{
 		/// <summary>
 		/// Indicates the information.
 		/// </summary>
-		private readonly bool _nishio, _multiple, _dynamic;
+		protected readonly bool _nishio, _multiple, _dynamic;
+
 
 		/// <summary>
 		/// Indicates the level of the searching depth.
 		/// </summary>
-		private readonly int _level;
-
+		protected int _level;
 
 		/// <summary>
 		/// Indicates the grid that is used in processing.
 		/// </summary>
-		private SudokuGrid _savedGrid;
+		private Grid _savedGrid;
 
 
 		/// <summary>
@@ -38,12 +39,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="nishio">Indicates whether the searcher should search for nishio chains.</param>
 		/// <param name="multiple">Indicates whether the searcher should search for multiple chains.</param>
 		/// <param name="dynamic">Indicates whether the searcher should search for dynamic chains.</param>
-		public FcTechniqueSearcher(bool nishio, bool multiple, bool dynamic, int level)
+		public FcTechniqueSearcher(bool nishio, bool multiple, bool dynamic)
 		{
 			_nishio = nishio;
 			_multiple = multiple;
 			_dynamic = dynamic;
-			_level = level;
+			_level = 0;
 		}
 
 
@@ -52,7 +53,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
+		public sealed override void GetAll(IList<TechniqueInfo> accumulator, in Grid grid)
 		{
 			var tempGrid = grid;
 			var tempAccumulator = new List<ChainingTechniqueInfo>();
@@ -67,11 +68,20 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 		/// <summary>
+		/// Get all advanced nodes.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="source">(<see langword="in"/> parameter) The source.</param>
+		/// <param name="offNodes">All nodes that is off.</param>
+		/// <returns>All nodes.</returns>
+		protected virtual IEnumerable<Node>? Advanced(in Grid grid, in Grid source, Set<Node> offNodes) => null;
+
+		/// <summary>
 		/// Search for chains of each type.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
 		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
-		private void GetAll(IList<ChainingTechniqueInfo> accumulator, ref SudokuGrid grid)
+		private void GetAll(IList<ChainingTechniqueInfo> accumulator, ref Grid grid)
 		{
 			// Iterate on empty cells.
 			foreach (int cell in EmptyMap)
@@ -157,7 +167,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="doReduction">Indicates whether the method executes double chaining.</param>
 		/// <param name="doContradiction">Indicates whether the method executes contradiction chaining.</param>
 		private void DoBinaryChaining(
-			IList<ChainingTechniqueInfo> accumulator, ref SudokuGrid grid, in Node pOn, in Node pOff,
+			IList<ChainingTechniqueInfo> accumulator, ref Grid grid, in Node pOn, in Node pOff,
 			Set<Node> onToOn, Set<Node> onToOff, bool doReduction, bool doContradiction)
 		{
 			Set<Node> offToOn = new(), offToOff = new();
@@ -220,7 +230,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
 		/// <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
 		private void DoRegionChaining(
-			IList<ChainingTechniqueInfo> accumulator, ref SudokuGrid grid, int cell, int digit,
+			IList<ChainingTechniqueInfo> accumulator, ref Grid grid, int cell, int digit,
 			Set<Node> onToOn, Set<Node> onToOff)
 		{
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
@@ -287,7 +297,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="toOn">The list to <c>on</c> nodes.</param>
 		/// <param name="toOff">The list to <c>off</c> nodes.</param>
 		/// <returns>The result.</returns>
-		private (Node On, Node Off)? DoChaining(ref SudokuGrid grid, Set<Node> toOn, Set<Node> toOff)
+		private (Node On, Node Off)? DoChaining(ref Grid grid, Set<Node> toOn, Set<Node> toOff)
 		{
 			_savedGrid = grid;
 
@@ -345,7 +355,20 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 					}
 
-					// TODO: Get advanced relations (i.e. FCs (+) in Sudoku Explainer).
+					// Get advanced relations (i.e. FCs (+) in Sudoku Explainer).
+					if (_level > 0 && pendingOn.Count == 0 && pendingOff.Count == 0
+						&& Advanced(grid, _savedGrid, toOff) is var list and not null)
+					{
+						foreach (var pOff in list)
+						{
+							if (!toOff.Contains(pOff))
+							{
+								// Not processed yet.
+								toOff.Add(pOff);
+								pendingOff.Add(pOff);
+							}
+						}
+					}
 				}
 
 				return null;
@@ -462,7 +485,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="outcomes">All outcomes (conclusions).</param>
 		/// <returns>The information instance.</returns>
 		private CellChainingTechniqueInfo CreateCellFcHint(
-			in SudokuGrid grid, int sourceCell, in Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
+			in Grid grid, int sourceCell, in Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
 		{
 			var (targetCandidate, targetIsOn) = target;
 
