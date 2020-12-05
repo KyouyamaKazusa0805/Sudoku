@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
@@ -12,9 +11,6 @@ namespace Sudoku.Solving
 	/// Encapsulates a step finder that used in solving in <see cref="ManualSolver"/>.
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-#if DEBUG
-	[DebuggerDisplay("{TechniqueProperties.GetPropertiesFrom(this)!.DisplayLabel}")]
-#endif
 	public abstract partial class TechniqueSearcher
 	{
 		/// <summary>
