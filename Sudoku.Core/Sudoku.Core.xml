@@ -1962,17 +1962,6 @@
             The chain nodes.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Node.Parent(System.Int32)">
-            <summary>
-            Get the parent node with the specified index.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>The parent node.</returns>
-            <exception cref="T:System.NullReferenceException">
-            Throws when the <see cref="F:Sudoku.Data.Node._parents"/> is currently <see langword="null"/>.
-            </exception>
-            <seealso cref="F:Sudoku.Data.Node._parents"/>
-        </member>
         <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node@)">
             <summary>
             Add a node into the list.

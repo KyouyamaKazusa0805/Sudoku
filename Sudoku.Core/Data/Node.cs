@@ -75,7 +75,7 @@ namespace Sudoku.Data
 							ancestors.Add(p);
 							for (int i = 0; i < p.ParentsCount; i++)
 							{
-								next.Add(p[i]);
+								next.Add(p.Parents![i]);
 							}
 						}
 					}
@@ -108,7 +108,7 @@ namespace Sudoku.Data
 				var p = this;
 				while (p.ParentsCount != 0)
 				{
-					p = p[0];
+					p = p.Parents![0];
 				}
 
 				return p;
@@ -118,13 +118,13 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get all parents of the current node.
 		/// </summary>
-		public readonly IReadOnlyList<Node> Parents
+		public readonly IReadOnlyList<Node>? Parents
 		{
 			get
 			{
 				if (_parents is null)
 				{
-					return Array.Empty<Node>();
+					return null;
 				}
 
 				var result = new List<Node>();
@@ -158,7 +158,7 @@ namespace Sudoku.Data
 							result.Add(p);
 							for (int i = 0; i < p.ParentsCount; i++)
 							{
-								next.Add(p[i]);
+								next.Add(p.Parents![i]);
 							}
 						}
 					}
@@ -169,19 +169,6 @@ namespace Sudoku.Data
 				return result;
 			}
 		}
-
-
-		/// <summary>
-		/// Get the parent node with the specified index.
-		/// </summary>
-		/// <param name="index">The index.</param>
-		/// <returns>The parent node.</returns>
-		/// <exception cref="NullReferenceException">
-		/// Throws when the <see cref="_parents"/> is currently <see langword="null"/>.
-		/// </exception>
-		/// <seealso cref="_parents"/>
-		[IndexerName("Parent")]
-		public readonly Node this[int index] => _parents?[index] ?? throw new NullReferenceException();
 
 
 		/// <summary>
@@ -208,7 +195,7 @@ namespace Sudoku.Data
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		/// <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
 		/// <param name="parents">(<see langword="out"/> parameter) All parents of this node.</param>
-		public readonly void Deconstruct(out int candidate, out bool isOn, out IReadOnlyList<Node> parents)
+		public readonly void Deconstruct(out int candidate, out bool isOn, out IReadOnlyList<Node>? parents)
 		{
 			candidate = Cell * 9 + Digit;
 			isOn = IsOn;
@@ -232,7 +219,7 @@ namespace Sudoku.Data
 			var pTest = node;
 			while (pTest.ParentsCount != 0)
 			{
-				pTest = pTest[0];
+				pTest = pTest.Parents![0];
 				if (pTest == this)
 				{
 					return true;

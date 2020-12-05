@@ -34,12 +34,15 @@ namespace Sudoku.Solving.Extensions
 			for (int i = 0, count = chain.Count; i < count; i++)
 			{
 				var p = chain[i];
-				foreach (var pr in p.Parents)
+				if (p.Parents is var parents and not null)
 				{
-					var (prCandidate, prIsOn) = pr;
-					if (simpleChain && i != count - 2 || !simpleChain)
+					foreach (var pr in parents)
 					{
-						result.AddIfDoesNotContain(new(prIsOn ? 1 : 0, prCandidate));
+						var (prCandidate, prIsOn) = pr;
+						if (simpleChain && i != count - 2 || !simpleChain)
+						{
+							result.AddIfDoesNotContain(new(prIsOn ? 1 : 0, prCandidate));
+						}
 					}
 				}
 			}
@@ -67,7 +70,7 @@ namespace Sudoku.Solving.Extensions
 				var (pCandidate, pIsOn) = p;
 				for (int j = 0; j < p.ParentsCount; j++)
 				{
-					var (prCandidate, prIsOn) = p[j];
+					var (prCandidate, prIsOn) = p.Parents![j];
 					result.Add(
 						new(
 							pCandidate,
