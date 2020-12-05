@@ -2,7 +2,7 @@
 
 标题：**向向的数独解决方案 (SSS)**
 
-[TOC]
+
 
 A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
@@ -23,7 +23,7 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 * Language version: 9.0<br/>语言版本：9.0
 * Framework: .NET 5<br/>框架：.NET 5
 * Indenting: Tabs（`\t`）<br/>缩进：原生 Tab（`\t`）
-* Integrated development environment: Visual Studio 2019 V16.8<br/>集成开发环境：Visual Studio 2019 V16.8
+* Integrated development environment: Visual Studio 2019 V16.9 Preview<br/>集成开发环境：Visual Studio 2019 V16.9 预览版
 * Language Support: English, Simplified Chinese<br/>语言支持：英语、简体中文
 
 
