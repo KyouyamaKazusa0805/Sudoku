@@ -2,6 +2,8 @@
 
 标题：**向向的数独解决方案 (SSS)**
 
+[TOC]
+
 A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
@@ -103,19 +105,21 @@ The program supports technique below at present:
 
 目前程序支持如下的技巧项：
 
-* Direct techniques: Hidden Single (Last Digit), Naked Single (Full House)<br/>直观技巧：排除（同数剩余）、唯一余数（同区剩余）
-* Locked Candidates: Pointing, Claiming, Almost Locked Candidates<br/>区块：宫区块、行列区块、欠一数组
-* Subset: Naked Subset (Locked Subset & Partial Locked Subset), Hidden Subset<br/>数组：显性数组（死锁数组和区块数组）、隐性数组
-* Fishes: (Finned, Sashimi) X-Wing, Swordfish, Jellyfish, (Finned, Sashimi) Franken X-Wing, Swordfish, Jellyfish, Starfish, Whale, Leviathan, (Finned, Sashimi) Mutant X-Wing, Swordfish, Jellyfish, Starfish, Whale, Leviathan<br/>鱼：（鳍、退化）二链列、三链列和四链列、（鳍、退化）宫内二链列、三链列、四链列、五链列、六链列和七链列、（鳍、退化）交叉二链列、三链列、四链列、五链列、六链列和七链列
-* Wings: XY-Wing, XYZ-Wing, (Incomplete) WXYZ-Wing, (Incomplete) VWXYZ-Wing, W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing、M-Wing、Split-Wing、Local-Wing、Hybrid-Wing
-* Uniqueness: Unique Rectangle (Type 1 to 6, Hidden, -XY-Wing, -XYZ-Wing, -WXYZ-Wing, + 2(/1SL), + 3(/2SL), + 4(/3SL)), Avoidable Rectangle (Type 1, 2, 3, 5, Hidden, -XY-Wing, -XYZ-Wing, -WXYZ-Wing), Extended Rectangle (Type 1 to 4), Unique Loop (Type 1 to 4), Bivalue Universal Grave (Type 1 to 4 and BUG + n, -XZ, BUG + n with Forcing Chains), Borescoper's Deadly Pattern (Type 1 to 4), Qiu's Deadly Pattern (Type 1 to 4, Locked), Unique Square (Type 1 to 4)<br/>唯一性：唯一矩形（类型 1 到 6、隐性、-XY-Wing、-XYZ-Wing、-WXYZ-Wing、+ 2（带 1 个共轭对）、+ 3（带 2 个共轭对）、+ 4（带 3 个共轭对））、可规避矩形（类型 1、2、3、5、隐性可规避矩形、-XY-Wing、-XYZ-Wing、-WXYZ-Wing）、拓展矩形（类型 1 到 4）、唯一环（类型 1 到 4）、全双值格致死解法（类型 1 到 4 和 BUG + n、双强链、BUG + n + 强制链）、探长致命结构（类型 1 到 4）、淑芬致命结构（类型 1 到 4、死锁）、唯一矩阵（类型 1 到 4）
-* Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle, Guardians<br/>同数链式结构：摩天楼、双线风筝、多宝鱼、空矩形、守护者
-* Almost Locked Sets: Empty Rectangle Intersection Pair, Extended Subset Principle, Almost Locked Sets XZ Rule, Almost Locked Sets XY-Wing, Almost Locked Sets W-Wing, Death Blossom<br/>待定数组：对交空矩形、伪数组、ALS-双强链、ALS-XY-Wing、ALS-W-Wing、死亡绽放
-* Chains: Alternating Inference Chain, Continuous Nice Loop, Cell Forcing Chains, Region Forcing Chains, Dynamic Cell Forcing Chains, Dynamic Region Forcing Chains, Dynamic Contradiction Forcing Chains, Dynamic Double Forcing Chains<br/>链：普通链、普通环、单元格强制链、区域强制链、动态单元格强制链、动态区域强制链、动态矛盾强制链、动态逆反矛盾强制链
-* Exocet: Junior Exocet, Senior Exocet, Complex Senior Exocet<br/>飞鱼导弹：初级飞鱼导弹、高级飞鱼导弹、复杂高级飞鱼导弹
-* Generalized Locked Sets: Sue de Coq (Basic & Cannibalized), 3-Dimension Sue de Coq, Stephen Kurzhal's Loop, Multi-sector Locked Sets<br/>广义数组：融合待定数组（标准和自噬）、2自由度融合待定数组、多米诺环、网
-* Last Resorts: Pattern Overlay Method, Template, Bowman's Bingo, Brute Force<br/>爆破技巧：图案叠加删减、模板、人工试数、计算机试数
-* Other techniques: Gurth's Symmetrical Placement<br/>其它技巧：宇宙法
+| Techniques<br />技巧类别                    | Supported Techniques<br />已支持的技巧                       | Difficulty Level<br />技巧难度级别    |
+| ------------------------------------------- | ------------------------------------------------------------ | ------------------------------------- |
+| **Direct techniques<br />直观技巧**         | Hidden Single（排除）<br />Last Digit（同数剩余）<br />Naked Single（唯一余数）<br />Full House（同区剩余） | Easy<br />容易                        |
+| **Locked Candidates<br />区块**             | Pointing（宫区块）<br />Claiming（行列区块）                 | Moderate<br />一般                    |
+| **Subset<br />数组/链数**                   | Naked Subset（显性数组）<br />Naked Subset (+)（区块数组）<br />Locked Subset（死锁数组）<br />Hidden Subset（隐性数组） | Moderate<br />一般                    |
+| **Fishes<br />鱼/链列**                     | (Finned, Sashimi) Fishes（普通鱼）<br />(Finned, Sashimi) Franken Fishes（宫内鱼）<br />(Finned, Sashimi) Mutant Fishes（交叉鱼） | Hard<br />困难                        |
+| **Wings<br />短链类结构**                   | XY-Wing<br />XYZ-Wing<br />WXYZ-Wing<br />VWXYZ-Wing<br />W-Wing | Hard<br />困难                        |
+| **Uniqueness<br />唯一性技巧/致命结构**     | Unique Rectangle（唯一矩形）<br />Avoidable Rectangle（可规避矩形）<br />Extended Rectangle（拓展矩形）<br />Unique Loop（唯一环）<br />Bivalue Universal Grave（全双值格致死解法）<br />Borescoper's Deadly Pattern（探长致命结构）<br />Qiu's Deadly Pattern（淑芬致命结构）<br />Unique Square（唯一矩阵） | Hard - Fiendish<br />困难 - 极难      |
+| **Single Digit Patterns<br />同数链式结构** | Skyscraper（摩天楼）<br />Two-string Kite（双线风筝）<br />Turbot Fish（多宝鱼）<br />Empty Rectangle（空矩形）<br />Guardians（守护者） | Hard - Fiendish<br />困难 - 极难      |
+| **Almost Locked Sets<br />待定数组**        | Almost Locked Candidates（欠一数组）<br />Empty Rectangle Intersection Pair（对交空矩形）<br />Extended Subset Principle（伪数组）<br />Sue de Coq（融合待定数组）<br />3-Dimension Sue de Coq（三维融合待定数组）<br />Almost Locked Sets XZ Rule（ALS-双强链）<br />Almost Locked Sets XY-Wing（ALS-XY-Wing）<br />Almost Locked Sets W-Wing（ALS-W-Wing）<br />Death Blossom（死亡绽放） | Hard - Nightmare<br />困难 - 地狱     |
+| **Chains<br />链**                          | Alternating Inference Chain（普通链）<br />Continuous Nice Loop（连续环）<br />Cell Forcing Chains（单元格强制链）<br />Region Forcing Chains（区域强制链）<br />Dynamic Cell Forcing Chains（动态单元格强制链）<br />Dynamic Region Forcing Chains（动态区域强制链）<br />Dynamic Contradiction Forcing Chains（动态矛盾强制链）<br />Dynamic Double Forcing Chains（动态逆反矛盾强制链） | Fiendish - Nightmare<br />极难 - 地狱 |
+| **Exocet<br />飞鱼导弹**                    | Junior Exocet（初级飞鱼导弹）<br />Senior Exocet（高级飞鱼导弹） | Nightmare<br />地狱                   |
+| **Generalized Locked Sets<br />广义数组**   | Stephen Kurzhal's Loop（多米诺环）<br />Multi-sector Locked Sets（网） | Nightmare<br />地狱                   |
+| **Last Resorts<br />爆破技巧**              | Pattern Overlay Method（图案叠加删减）<br />Template（模板）<br />Bowman's Bingo（人工试数）<br />Brute Force（计算机试数） | Nightmare<br />地狱                   |
+| **Symmetrical Techniques<br />对称性技巧**  | Gurth's Symmetrical Placement（宇宙法）                      | Fiendish<br />极难                    |
 
 
 
