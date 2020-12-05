@@ -8962,8 +8962,7 @@
         </member>
         <member name="T:Sudoku.Solving.TechniqueSearcher">
             <summary>
-            Encapsulates a step finder that used in solving in
-            <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            Encapsulates a step finder that used in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
         </member>
@@ -8981,52 +8980,11 @@
             <param name="accumulator">The accumulator to store technique information.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid to search for techniques.</param>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.CompareTo(Sudoku.Solving.TechniqueSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.Equals(Sudoku.Solving.TechniqueSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)">
             <summary>
             Initialize the maps that used later.
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.InternalEquals(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <summary>
-            Internal equals method.
-            </summary>
-            <param name="left">The left comparer.</param>
-            <param name="right">The right comparer.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.op_Equality(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.op_Inequality(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="P:Sudoku.Solving.TechniqueSearcher.EmptyMap">
             <summary>

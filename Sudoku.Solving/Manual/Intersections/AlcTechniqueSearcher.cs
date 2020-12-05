@@ -88,11 +88,11 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
-				static bool internalChecking(int d, in int coverSet) => ValueMaps[d].Overlaps(RegionMaps[coverSet]);
+				static bool overlaps(int d, in int coverSet) => ValueMaps[d].Overlaps(RegionMaps[coverSet]);
 				var digits = mask.GetAllSets();
 				unsafe
 				{
-					if (digits.Any(&internalChecking, coverSet))
+					if (digits.Any(&overlaps, coverSet))
 					{
 						continue;
 					}
