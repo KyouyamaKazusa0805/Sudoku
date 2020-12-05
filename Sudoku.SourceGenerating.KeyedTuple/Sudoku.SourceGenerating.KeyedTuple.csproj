@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis" Version="3.9.0-1.final" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	</ItemGroup>
+
+</Project>
