@@ -2870,6 +2870,33 @@
             Indicates the dynamic double forcing chains.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.FcPlusTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>forcing chains (+)</b> (<b>FCs (+)</b>) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.FcPlusTechniqueSearcher._advancedSearchers">
+            <summary>
+            Indicates the advanced searchers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcPlusTechniqueSearcher.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified level.
+            </summary>
+            <param name="level">The level.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.FcPlusTechniqueSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcPlusTechniqueSearcher.Advanced(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.Set{Sudoku.Data.Node})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcPlusTechniqueSearcher.IniitalizeTechniquesIfNeed">
+            <summary>
+            Initalizes technique searchers if need.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher">
             <summary>
             Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
@@ -2900,7 +2927,7 @@
             Indicates the grid that is used in processing.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2913,6 +2940,15 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.Advanced(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.Set{Sudoku.Data.Node})">
+            <summary>
+            Get all advanced nodes.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="source">(<see langword="in"/> parameter) The source.</param>
+            <param name="offNodes">All nodes that is off.</param>
+            <returns>All nodes.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.SudokuGrid@)">
             <summary>

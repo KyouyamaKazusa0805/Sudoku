@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -45,6 +46,8 @@ namespace Sudoku.Solving.Manual.Chaining
 
 				// TODO: Get all nodes.
 			}
+
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
