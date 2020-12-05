@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
+using static System.Runtime.CompilerServices.Unsafe;
 
 namespace Sudoku.Extensions
 {
@@ -30,13 +30,13 @@ namespace Sudoku.Extensions
 			{
 				case 1 or 2 or 4:
 				{
-					var otherValue = Unsafe.As<TEnum, int>(ref other);
-					return (Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue;
+					int otherValue = As<TEnum, int>(ref other);
+					return (As<TEnum, int>(ref @this) & otherValue) == otherValue;
 				}
 				case 8:
 				{
-					var otherValue = Unsafe.As<TEnum, long>(ref other);
-					return (Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue;
+					long otherValue = As<TEnum, long>(ref other);
+					return (As<TEnum, long>(ref @this) & otherValue) == otherValue;
 				}
 				default:
 				{
