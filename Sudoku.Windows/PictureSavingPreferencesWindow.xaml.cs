@@ -10,7 +10,6 @@ using Microsoft.Win32;
 using Sudoku.Data.Stepping;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Windows.Constants;
 using static System.Drawing.StringAlignment;
 using static Sudoku.Windows.MainWindow;
@@ -89,7 +88,7 @@ namespace Sudoku.Windows
 			_grid = grid;
 			_targetPainter = targetPainter;
 			_numericUpDownSize.CurrentValue = (decimal)_settings.SavingPictureSize;
-			_textBoxFormat.Text = _settings.OutputPictureFormatText.NullableToString();
+			_textBoxFormat.Text = _settings.OutputPictureFormatText ?? string.Empty;
 		}
 
 

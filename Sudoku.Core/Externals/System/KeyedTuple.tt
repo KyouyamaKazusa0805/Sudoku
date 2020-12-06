@@ -10,7 +10,6 @@
 **/
 
 using System.Runtime.CompilerServices;
-using Sudoku.Extensions;
 
 namespace System
 {
@@ -77,7 +76,7 @@ for (int current = 2; current <= target; current++)
 
 
 		/// <inheritdoc/>
-		public override string ToString() => ((ITuple)this)[PriorKey].NullableToString();
+		public override string ToString() => ((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;
 	}
 <#
 	if (current != target)

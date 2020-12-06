@@ -6,7 +6,6 @@
 **/
 
 using System.Runtime.CompilerServices;
-using Sudoku.Extensions;
 
 namespace System
 {
@@ -39,7 +38,7 @@ namespace System
 
 
 		/// <inheritdoc/>
-		public override string ToString() => ((ITuple)this)[PriorKey].NullableToString();
+		public override string ToString() => ((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;
 	}
 
 	/// <summary>
@@ -73,7 +72,7 @@ namespace System
 
 
 		/// <inheritdoc/>
-		public override string ToString() => ((ITuple)this)[PriorKey].NullableToString();
+		public override string ToString() => ((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;
 	}
 
 	/// <summary>
@@ -109,6 +108,6 @@ namespace System
 
 
 		/// <inheritdoc/>
-		public override string ToString() => ((ITuple)this)[PriorKey].NullableToString();
+		public override string ToString() => ((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;
 	}
 }

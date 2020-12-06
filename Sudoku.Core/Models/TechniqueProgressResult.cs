@@ -1,5 +1,4 @@
-﻿using Sudoku.Extensions;
-using Sudoku.Globalization;
+﻿using Sudoku.Globalization;
 
 namespace Sudoku.Models
 {
@@ -43,6 +42,6 @@ namespace Sudoku.Models
 
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override readonly string ToString() => CurrentTechnique.NullableToString();
+		public override readonly string ToString() => CurrentTechnique ?? string.Empty;
 	}
 }

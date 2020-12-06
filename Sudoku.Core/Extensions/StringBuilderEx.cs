@@ -72,7 +72,7 @@ namespace Sudoku.Extensions
 		/// This method can solve the problem of boxing and unboxing.
 		/// </remarks>
 		public static StringBuilder AppendLine<T>(this StringBuilder @this, T? obj) =>
-			@this.AppendLine(obj.NullableToString());
+			@this.AppendLine(obj?.ToString() ?? string.Empty);
 
 		/// <summary>
 		/// Append several lines into the <see cref="StringBuilder"/> instance.
@@ -122,7 +122,7 @@ namespace Sudoku.Extensions
 		{
 			foreach (var content in contentList)
 			{
-				@this.Append(content.NullableToString());
+				@this.Append(content?.ToString() ?? string.Empty);
 			}
 
 			return @this;
@@ -145,7 +145,7 @@ namespace Sudoku.Extensions
 		{
 			foreach (var content in contentList)
 			{
-				@this.Append(converter(content).NullableToString());
+				@this.Append(converter(content)?.ToString() ?? string.Empty);
 			}
 
 			return @this;
@@ -173,7 +173,7 @@ namespace Sudoku.Extensions
 		{
 			foreach (var content in contentList)
 			{
-				@this.Append(converter(content, value).NullableToString());
+				@this.Append(converter(content, value)?.ToString() ?? string.Empty);
 			}
 
 			return @this;

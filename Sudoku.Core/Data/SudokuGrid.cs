@@ -490,7 +490,7 @@ namespace Sudoku.Data
 			var f = Formatter.Create(format);
 			return format switch
 			{
-				":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations).NullableToString(),
+				":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations) ?? string.Empty,
 				"!" => f.ToString(this).Replace("+", string.Empty),
 				".!" or "!." or "0!" or "!0" => f.ToString(this).Replace("+", string.Empty),
 				".!:" or "!.:" or "0!:" => f.ToString(this).Replace("+", string.Empty),
