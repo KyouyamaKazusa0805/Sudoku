@@ -1,7 +1,6 @@
-﻿using System;
-using static System.Runtime.CompilerServices.Unsafe;
+﻿using static System.Runtime.CompilerServices.Unsafe;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Enum"/>.

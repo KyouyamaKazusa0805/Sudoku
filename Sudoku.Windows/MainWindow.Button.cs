@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Extensions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,6 @@ using System.Windows.Media;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;

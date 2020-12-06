@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;

@@ -27,35 +27,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="Externals\System\KeyedTuple.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>KeyedTuple.tt</DependentUpon>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
 		<ProjectReference Include="..\Sudoku.Globalization\Sudoku.Globalization.csproj" />
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Update="Externals\System\KeyedTuple.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>KeyedTuple.tt</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="Externals\System\KeyedTuple.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>KeyedTuple.cs</LastGenOutput>
-		</None>
 	</ItemGroup>
 
 	<ItemGroup>

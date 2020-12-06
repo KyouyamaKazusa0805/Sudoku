@@ -1,7 +1,6 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ICloneable"/>.
@@ -28,7 +27,6 @@ namespace Sudoku.Extensions
 
 		/// <summary>
 		/// Clone this object and cast to the specified type no matter how.
-		/// If the conversion is invalid, the method will throw <see cref="InvalidCastException"/>.
 		/// </summary>
 		/// <typeparam name="TClass">
 		/// The type to cast. The type should be a <see langword="class"/> because the type
@@ -36,12 +34,8 @@ namespace Sudoku.Extensions
 		/// </typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The object.</param>
 		/// <returns>The cast result.</returns>
-		/// <exception cref="InvalidCastException">
-		/// Throws when the cast is invalid.
-		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TClass CloneAs<TClass>(this ICloneable @this) where TClass : class =>
-			(TClass)@this.Clone();
+		public static TClass CloneAs<TClass>(this ICloneable @this) where TClass : class => (TClass)@this.Clone();
 
 		/// <summary>
 		/// Try to cast the current instance to the generic cloneable type <see cref="ICloneable{T}"/>.

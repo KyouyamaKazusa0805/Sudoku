@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Extensions;
 using System.IO;
 using System.Linq;
-using Sudoku.Extensions;
 
 namespace Sudoku.Diagnostics
 {

@@ -4359,6 +4359,16 @@
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.BaseDifficulty">
+            <summary>
+            Indicates the base difficulty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.ExtraDifficulty">
+            <summary>
+            Indicates the extra difficulty.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -5760,6 +5770,16 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.TechniqueCode">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.BaseDifficulty">
+            <summary>
+            Indicates the base difficulty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.ExtraDifficulty">
+            <summary>
+            Indicates the extra difficulty.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.ToString">
             <inheritdoc/>

@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System.Extensions;
+using System.Linq;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 
 namespace System.Collections.Generic
 {

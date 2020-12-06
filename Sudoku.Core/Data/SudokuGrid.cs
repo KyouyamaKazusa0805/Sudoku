@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using Formatter = Sudoku.Data.SudokuGrid.GridFormatter;
 using Parser = Sudoku.Data.SudokuGrid.GridParser;

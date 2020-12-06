@@ -5,7 +5,6 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Windows;
 
@@ -26,9 +25,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		: SubsetTechniqueInfo(Conclusions, Views, Region, Cells, Digits)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			Size switch { 2 => 3.0M, 3 => 3.6M, 4 => 5.0M } +
-			IsLocked switch { null => 0, true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M };
+		public override decimal Difficulty => BaseDifficulty + ExtraDifficulty;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
@@ -43,6 +40,17 @@ namespace Sudoku.Solving.Manual.Subsets
 				(false, 4) => TechniqueCode.NakedQuadruplePlus,
 				(null, 4) => TechniqueCode.NakedQuadruple
 			};
+
+		/// <summary>
+		/// Indicates the base difficulty.
+		/// </summary>
+		private decimal BaseDifficulty => Size switch { 2 => 3.0M, 3 => 3.6M, 4 => 5.0M };
+
+		/// <summary>
+		/// Indicates the extra difficulty.
+		/// </summary>
+		private decimal ExtraDifficulty =>
+			IsLocked switch { null => 0, true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M };
 
 
 		/// <inheritdoc/>

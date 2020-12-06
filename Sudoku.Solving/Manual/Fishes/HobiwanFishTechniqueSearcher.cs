@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.LastResorts;
 using static System.Algorithms;

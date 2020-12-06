@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {

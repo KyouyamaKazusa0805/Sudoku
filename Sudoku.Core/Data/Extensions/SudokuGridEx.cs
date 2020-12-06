@@ -1,5 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Extensions;
+﻿using System.Extensions;
+using System.Runtime.CompilerServices;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 
@@ -58,9 +58,9 @@ namespace Sudoku.Data.Extensions
 		/// <returns>The <see cref="bool"/> result.</returns>
 		public static bool Duplicate(this in SudokuGrid @this, int cell, int digit)
 		{
+			static bool duplicate(int c, in SudokuGrid grid, in int digit) => grid[c] == digit;
 			unsafe
 			{
-				static bool duplicate(int c, in SudokuGrid grid, in int digit) => grid[c] == digit;
 				return PeerMaps[cell].Any(&duplicate, @this, digit);
 			}
 		}

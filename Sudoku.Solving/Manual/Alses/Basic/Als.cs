@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Alses.Basic

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {

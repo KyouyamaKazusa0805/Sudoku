@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 
 namespace Sudoku.Windows.Tooling
 {

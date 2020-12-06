@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;

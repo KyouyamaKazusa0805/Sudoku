@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Fishes
 {

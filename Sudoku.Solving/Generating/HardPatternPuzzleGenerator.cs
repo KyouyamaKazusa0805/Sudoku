@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Checking;

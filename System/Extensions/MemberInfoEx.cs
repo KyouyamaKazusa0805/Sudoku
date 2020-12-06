@@ -1,7 +1,6 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="MemberInfo"/>.

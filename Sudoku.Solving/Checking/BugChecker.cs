@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Checking

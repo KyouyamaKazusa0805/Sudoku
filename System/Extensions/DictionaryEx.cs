@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Dictionary{TKey, TValue}"/>.

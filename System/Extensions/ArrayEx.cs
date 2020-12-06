@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Array"/>.

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended

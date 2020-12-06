@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -72,6 +72,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
+#pragma warning disable IDE0060
 		/// <summary>
 		/// Check type 2.
 		/// </summary>
@@ -130,6 +131,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 						extraDigit));
 			}
 		}
+#pragma warning restore IDE0060
 
 		/// <summary>
 		/// Check type 3.

@@ -1,7 +1,6 @@
-﻿using System;
-using Sudoku.DocComments;
+﻿using Sudoku.DocComments;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Index"/>.

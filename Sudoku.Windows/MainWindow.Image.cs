@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Extensions;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -6,7 +7,6 @@ using System.Windows.Input;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Extensions;
 using static System.Math;
 using static System.Reflection.BindingFlags;
 using static Sudoku.Constants.Processings;

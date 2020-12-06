@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
@@ -18,7 +18,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	public sealed class BugMultipleWithFcTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(60, nameof(TechniqueCode.BugMultipleFc)) { DisplayLevel = 3 };
+		public static TechniqueProperties Properties { get; } = new(60, nameof(TechniqueCode.BugMultipleFc))
+		{
+			DisplayLevel = 3
+		};
 
 
 		/// <inheritdoc/>
@@ -93,11 +96,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			unsafe
 			{
 				tempAccumulator.Sort(&cmp);
-				accumulator.AddRange(tempAccumulator);
-
-				static int cmp(in BugMultipleWithFcTechniqueInfo left, in BugMultipleWithFcTechniqueInfo right) =>
-					left.Complexity - right.Complexity;
 			}
+
+			accumulator.AddRange(tempAccumulator);
+
+			static int cmp(in BugMultipleWithFcTechniqueInfo left, in BugMultipleWithFcTechniqueInfo right) =>
+				left.Complexity - right.Complexity;
 		}
 
 		/// <summary>

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;

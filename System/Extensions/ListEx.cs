@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="IList{T}"/>.
@@ -98,10 +97,10 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <returns>The reusult of the conversion.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReadOnlyList<T?> AsReadOnlyList<T>(this IList<T?> @this) =>
+		public static IReadOnlyList<T> AsReadOnlyList<T>(this IList<T> @this) =>
 			@this switch
 			{
-				List<T?> list => list,
+				List<T> list => list,
 				T[] array => array,
 				_ =>
 					throw new InvalidCastException(

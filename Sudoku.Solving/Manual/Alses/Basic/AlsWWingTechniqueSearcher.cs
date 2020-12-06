@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
@@ -58,7 +58,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					if ((short)(mask1 & mask2) is var mask && mask.PopCount() < 2)
+					var mask = (short)(mask1 & mask2);
+					if (mask.PopCount() < 2)
 					{
 						continue;
 					}

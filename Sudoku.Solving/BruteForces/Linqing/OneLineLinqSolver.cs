@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Runtime;
 using Sudoku.Windows;
 using static System.Linq.Enumerable;

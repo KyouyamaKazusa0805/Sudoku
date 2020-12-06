@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Sudoku.Extensions
+namespace System
 {
 	/// <summary>
 	/// Defines a range iterator.

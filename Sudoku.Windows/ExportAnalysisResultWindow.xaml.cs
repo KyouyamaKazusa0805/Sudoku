@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using Microsoft.Win32;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.IO;
 using Sudoku.Solving;
 using Sudoku.Windows.Constants;

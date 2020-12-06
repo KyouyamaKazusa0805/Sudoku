@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<LangVersion>9.0</LangVersion>
+		<AssemblyName>SystemExtensions</AssemblyName>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="KeyedTuple.tt">
+	    <LastGenOutput>KeyedTuple.cs</LastGenOutput>
+	    <Generator>TextTemplatingFileGenerator</Generator>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="KeyedTuple.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>KeyedTuple.tt</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+</Project>

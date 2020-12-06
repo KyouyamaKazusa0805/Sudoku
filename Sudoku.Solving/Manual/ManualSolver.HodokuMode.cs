@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Models;
 using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;

@@ -16,7 +16,6 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
@@ -29,6 +28,7 @@ using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.TechniqueInfo>;
 using Sudoku.Data.Extensions;
+using System.Extensions;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif

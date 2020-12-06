@@ -15,7 +15,6 @@ using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
@@ -23,6 +22,7 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
+using System.Extensions;
 #if SUDOKU_RECOGNITION
 using System.Drawing;
 #endif

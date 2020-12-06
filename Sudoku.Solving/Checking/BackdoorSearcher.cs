@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Runtime;
 using Sudoku.Solving.Manual;
 using static Sudoku.Data.CellStatus;

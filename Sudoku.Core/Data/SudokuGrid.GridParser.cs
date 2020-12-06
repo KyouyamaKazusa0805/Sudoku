@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Extensions;
 using System.Linq;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 
 namespace Sudoku.Data
 {

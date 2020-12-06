@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="StringBuilder"/>.
@@ -188,13 +187,13 @@ namespace Sudoku.Extensions
 		/// Throws if the target instance doesn't have enough space to store all characters
 		/// from the base one.
 		/// </exception>
-		public static void CopyTo(this StringBuilder @this, StringBuilder @to)
+		public static void CopyTo(this StringBuilder @this, StringBuilder to)
 		{
-			_ = @this.Length > @to.Length ? throw new ArgumentException("The specified string builder doesn't have enough space to copy.") : 0;
+			_ = @this.Length > to.Length ? throw new ArgumentException("The specified string builder doesn't have enough space to copy.") : 0;
 
 			for (int i = 0; i < @this.Length; i++)
 			{
-				@to[i] = @this[i];
+				to[i] = @this[i];
 			}
 		}
 	}

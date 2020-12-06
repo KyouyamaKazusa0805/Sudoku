@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Extensions;
 using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Manual;

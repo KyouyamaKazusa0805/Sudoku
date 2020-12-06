@@ -2,12 +2,12 @@
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
 using Grid = Sudoku.Data.SudokuGrid;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
+using System.Extensions;
 
 namespace Sudoku.Solving.Manual.Chaining
 {

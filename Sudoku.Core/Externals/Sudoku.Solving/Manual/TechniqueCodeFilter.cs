@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual
 {

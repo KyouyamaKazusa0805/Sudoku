@@ -1,4 +1,4 @@
-﻿using Sudoku.Extensions;
+﻿using System.Extensions;
 
 namespace Sudoku.Solving.Extensions
 {

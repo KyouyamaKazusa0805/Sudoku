@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="BitArray"/>.

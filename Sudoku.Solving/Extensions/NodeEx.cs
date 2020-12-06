@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving.Manual.Chaining;
 
 namespace Sudoku.Solving.Extensions

@@ -1,8 +1,8 @@
 ﻿using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Extensions;
 using Sudoku.Runtime;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using static Sudoku.Constants.Processings;

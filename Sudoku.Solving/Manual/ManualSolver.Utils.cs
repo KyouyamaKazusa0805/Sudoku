@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Extensions;
 using Sudoku.Models;
 using static Sudoku.Data.ConclusionType;
 
@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual
 						cloneation,
 						true,
 						stopwatch.Elapsed,
-						steps!.AsReadOnlyList()!,
+						steps.AsReadOnlyList(),
 						stepGrids.AsReadOnlyList());
 					return true;
 				}

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -27,9 +27,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		public int Size => DigitsMask.PopCount();
 
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M } +
-			(HasValueCell ? Size switch { 2 => .1M, 3 => .1M, 4 => .2M } : 0);
+		public override decimal Difficulty => BaseDifficulty + (HasValueCell ? ExtraDifficulty : 0);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -43,6 +41,16 @@ namespace Sudoku.Solving.Manual.Intersections
 				4 => TechniqueCode.AlmostLockedQuadruple,
 				_ => throw new NotSupportedException("The current instance doesn't support.")
 			};
+
+		/// <summary>
+		/// Indicates the base difficulty.
+		/// </summary>
+		private decimal BaseDifficulty => Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M };
+
+		/// <summary>
+		/// Indicates the extra difficulty.
+		/// </summary>
+		private decimal ExtraDifficulty => Size switch { 2 => .1M, 3 => .1M, 4 => .2M };
 
 
 		/// <inheritdoc/>

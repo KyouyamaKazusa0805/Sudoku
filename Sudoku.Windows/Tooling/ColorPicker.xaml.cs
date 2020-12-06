@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
 using System.Windows;
 using System.Windows.Media;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
-using static Sudoku.Windows.Tooling.ColorPickerOptions;
 
 namespace Sudoku.Windows.Tooling
 {
@@ -97,10 +96,10 @@ namespace Sudoku.Windows.Tooling
 		/// otherwise, <see langword="false"/> (i.e. user canceled).
 		/// </returns>
 		public static bool ShowDialog(
-			[NotNullWhen(true)] out Color? color, ColorPickerOptions flags = None,
+			[NotNullWhen(true)] out Color? color, ColorPickerOptions flags = ColorPickerOptions.None,
 			PickingColorEventHandler? customPreviewEventHandler = null)
 		{
-			if (flags.Flags(LoadCustomPalette))
+			if (flags.Flags(ColorPickerOptions.LoadCustomPalette))
 			{
 				ColorPickerSettings.UsingCustomPalette = true;
 			}
@@ -108,7 +107,7 @@ namespace Sudoku.Windows.Tooling
 			var instance = new ColorPicker();
 			color = instance._colorPicker.Color;
 
-			if (flags.Flags(SimpleView))
+			if (flags.Flags(ColorPickerOptions.SimpleView))
 			{
 				instance.ToggleSimpleAdvancedView();
 			}

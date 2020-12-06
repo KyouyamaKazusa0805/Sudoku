@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ICollection{T}"/> and <see cref="IReadOnlyCollection{T}"/>.

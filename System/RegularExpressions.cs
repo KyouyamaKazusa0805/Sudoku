@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Constants
+﻿namespace System
 {
 	/// <summary>
 	/// The class that stores all regular expressions used in this solution.

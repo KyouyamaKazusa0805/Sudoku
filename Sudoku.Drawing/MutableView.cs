@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Extensions;
 
 namespace Sudoku.Drawing
 {
@@ -117,9 +117,9 @@ namespace Sudoku.Drawing
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsCell(int cell)
 		{
+			static bool internalChecking(DrawingInfo p, in int cell) => p.Value == cell;
 			unsafe
 			{
-				static bool internalChecking(DrawingInfo p, in int cell) => p.Value == cell;
 				return Cells?.Any(&internalChecking, cell) ?? false;
 			}
 		}
@@ -131,9 +131,9 @@ namespace Sudoku.Drawing
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsCandidate(int candidate)
 		{
+			static bool internalChecking(DrawingInfo p, in int candidate) => p.Value == candidate;
 			unsafe
 			{
-				static bool internalChecking(DrawingInfo p, in int candidate) => p.Value == candidate;
 				return Candidates?.Any(&internalChecking, candidate) ?? false;
 			}
 		}
@@ -145,9 +145,9 @@ namespace Sudoku.Drawing
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsRegion(int region)
 		{
+			static bool internalChecking(DrawingInfo p, in int region) => p.Value == region;
 			unsafe
 			{
-				static bool internalChecking(DrawingInfo p, in int region) => p.Value == region;
 				return Regions?.Any(&internalChecking, region) ?? false;
 			}
 		}

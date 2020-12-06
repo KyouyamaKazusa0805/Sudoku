@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Manual;
 
@@ -151,13 +151,8 @@ namespace Sudoku.Solving.Checking
 				tempArrays[i][r * 9 + c] = 0;
 			}
 
-			unsafe
-			{
-				return tempArrays.All(&p);
-			}
-
-			static bool p(int[] gridValues) =>
-				!Solver.Solve(SudokuGrid.CreateInstance(gridValues, GridCreatingOption.MinusOne)).HasSolved;
+			return tempArrays.All(
+				static v => !Solver.Solve(SudokuGrid.CreateInstance(v, GridCreatingOption.MinusOne)).HasSolved);
 		}
 
 		/// <summary>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Runtime;
 using Sudoku.Windows;
 

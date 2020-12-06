@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Extensions;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -11,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Extensions;
 using WColor = System.Windows.Media.Color;
 using WPoint = System.Windows.Point;
 

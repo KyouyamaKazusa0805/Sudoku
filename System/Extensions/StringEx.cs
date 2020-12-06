@@ -1,11 +1,11 @@
-﻿using System;
+﻿#pragma warning disable CA2208
+
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using Sudoku.Constants;
 using static System.StringSplitOptions;
 
-namespace Sudoku.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="string"/>.
