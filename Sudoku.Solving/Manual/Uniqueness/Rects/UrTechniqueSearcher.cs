@@ -85,23 +85,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							// All possible UR patterns should contain at least one cell
 							// that contains both 'd1' and 'd2'.
+							static bool v(int c, in short comparer, in SudokuGrid grid) =>
+								(grid.GetCandidateMask(c) & comparer).PopCount() != 2;
+
 							short comparer = (short)(1 << d1 | 1 << d2);
+							bool isNotPossibleUr;
 							unsafe
 							{
-								static bool v(int c, in short comparer, in SudokuGrid grid) =>
-									(grid.GetCandidateMask(c) & comparer).PopCount() != 2;
+								isNotPossibleUr = urCells.All(&v, comparer, grid);
+							}
 
-								if (!arMode && urCells.All(&v, comparer, grid))
-								{
-									continue;
-								}
+							if (!arMode && isNotPossibleUr)
+							{
+								continue;
 							}
 
 							// Iterate on each corner of four cells.
 							for (int c1 = 0; c1 < 4; c1++)
 							{
 								int corner1 = urCells[c1];
-								var otherCellsMap = new GridMap(urCells) { ~corner1 };
+								var otherCellsMap = new GridMap(urCells) - corner1;
 
 								CheckType1(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
@@ -137,9 +140,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										}
 									}
 
-									if ((c1, c2) is (0, 3) or (1, 2))
+									if ((c1, c2) is (0, 3) or (1, 2)) // Diagonal type.
 									{
-										// Diagonal type.
 										if (!arMode)
 										{
 											CheckType6(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
@@ -151,9 +153,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											}
 										}
 									}
-									else
+									else // Non-diagonal type.
 									{
-										// Non-diagonal type.
 										CheckType3Naked(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
 										if (!arMode)
