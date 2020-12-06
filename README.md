@@ -90,7 +90,7 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 | [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving) | The generating and solving project.<br/>解题和题目生成的项目。 |
 | [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows) | The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。 |
 | [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging) | The project that can be used while debugging only.<br/>这个项目仅用于调试代码时。 |
-| [`SystemExtensions`](https://github.com/Sunnie-Shine/Sudoku/tree/master/SystemExtensions) | The project provides the extension methods, classes and structures in use.<br/>这个项目提供 .NET 库内相关的扩展的方法、类和结构。 |
+| [`System`](https://github.com/Sunnie-Shine/Sudoku/tree/master/System) | The project provides the extension methods, classes and structures in use.<br/>这个项目提供 .NET 库内相关的扩展的方法、类和结构。 |
 | [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref) | The profiles for sudoku for references. In addition, some necessary files to help us compile and run the whole project are also in this folder.<br/>数独相关参考资料。另外，一些帮助我们执行和运行的文件也在此文件夹下。 |
 | [`pic`](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic) | The pictures.<br/>图片。                                     |
 
