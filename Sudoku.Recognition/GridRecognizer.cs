@@ -2,12 +2,14 @@
 
 using System;
 using System.Drawing;
+using System.Extensions;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
 using Sudoku.Recognition.Extensions;
 using static Sudoku.Recognition.Constants.Processings;
+using Cv = Emgu.CV.CvInvoke;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 
 namespace Sudoku.Recognition
@@ -63,20 +65,20 @@ namespace Sudoku.Recognition
 
 			// Convert the image to gray-scale and filter out the noise.
 			using var uimage = new UMat();
-			CvInvoke.CvtColor(_image, uimage, ColorConversion.Bgr2Gray);
+			Cv.CvtColor(_image, uimage, ColorConversion.Bgr2Gray);
 
 			// Use image pyramid to remove noise.
 			using var pyrDown = new UMat();
-			CvInvoke.PyrDown(uimage, pyrDown);
-			CvInvoke.PyrUp(pyrDown, uimage);
+			Cv.PyrDown(uimage, pyrDown);
+			Cv.PyrUp(pyrDown, uimage);
 
 			var cannyEdges = new UMat();
 #if OBSOLETE
 			//Another way to process image, but worse. Use only one!
-			CvInvoke.Threshold(uimage, cannyEdges, 50.0, 100.0, ThresholdType.Binary);
-			CvInvoke.AdaptiveThreshold(uimage, cannyEdges, 50, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 7, 1);
+			Cv.Threshold(uimage, cannyEdges, 50.0, 100.0, ThresholdType.Binary);
+			Cv.AdaptiveThreshold(uimage, cannyEdges, 50, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 7, 1);
 #else
-			CvInvoke.Canny(uimage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
+			Cv.Canny(uimage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
 #endif
 
 			return cannyEdges;
@@ -94,7 +96,7 @@ namespace Sudoku.Recognition
 			using var contours = new VectorOfVectorOfPoint();
 
 			// Finding contours and choosing needed.
-			CvInvoke.FindContours(edges, contours, null, RetrType.List, ChainApprox);
+			Cv.FindContours(edges, contours, null, RetrType.List, ChainApprox);
 
 			for (int i = 0; i < contours.Size; i++)
 			{
@@ -106,7 +108,7 @@ namespace Sudoku.Recognition
 				var shape = GetFourCornerPoints(contours[i].ToArray());
 				if (shape.IsRectangle())
 				{
-					var (_, (width, height)) = CvInvoke.MinAreaRect(shape);
+					var (_, (width, height)) = Cv.MinAreaRect(shape);
 					float area = width * height;
 
 					if (area > maxRectArea)
@@ -131,10 +133,10 @@ namespace Sudoku.Recognition
 			var resultField = new Field(RSize, RSize);
 
 			// Transformation sudoku field to rectangle size and aligning the sides.
-			CvInvoke.WarpPerspective(
+			Cv.WarpPerspective(
 				_image,
 				resultField,
-				CvInvoke.GetPerspectiveTransform(
+				Cv.GetPerspectiveTransform(
 					field,
 					new PointF[] { new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize) }),
 				new(RSize, RSize));

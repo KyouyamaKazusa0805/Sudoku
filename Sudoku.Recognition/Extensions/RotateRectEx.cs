@@ -4,6 +4,10 @@ using Sudoku.DocComments;
 
 namespace Sudoku.Recognition.Extensions
 {
+	/// <summary>
+	/// Provides extension methods for <see cref="RotatedRect"/>.
+	/// </summary>
+	/// <seealso cref="RotatedRect"/>
 	public static class RotateRectEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>

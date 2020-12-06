@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
-namespace Sudoku.Drawing.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Size"/> and <see cref="SizeF"/>.

@@ -123,24 +123,17 @@
             <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
+        <member name="T:Sudoku.Recognition.Extensions.RotateRectEx">
+            <summary>
+            Provides extension methods for <see cref="T:Emgu.CV.Structure.RotatedRect"/>.
+            </summary>
+            <seealso cref="T:Emgu.CV.Structure.RotatedRect"/>
+        </member>
         <member name="M:Sudoku.Recognition.Extensions.RotateRectEx.Deconstruct(Emgu.CV.Structure.RotatedRect,System.Drawing.PointF@,System.Drawing.SizeF@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
             <param name="center">(<see langword="out"/> parameter) The center.</param>
             <param name="size">(<see langword="out"/> parameter) The size.</param>
-        </member>
-        <member name="T:Sudoku.Recognition.Extensions.SizeEx">
-            <summary>
-            Provides extension methods for <see cref="T:System.Drawing.Size"/> and <see cref="T:System.Drawing.SizeF"/>.
-            </summary>
-            <seealso cref="T:System.Drawing.Size"/>
-            <seealso cref="T:System.Drawing.SizeF"/>
-        </member>
-        <member name="M:Sudoku.Recognition.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
-            <param name="width">(<see langword="out"/> parameter) The width.</param>
-            <param name="height">(<see langword="out"/> parameter) The height.</param>
         </member>
         <member name="T:Sudoku.Recognition.GridRecognizer">
             <summary>

@@ -2,7 +2,7 @@
 using DPoint = System.Drawing.Point;
 using DPointF = System.Drawing.PointF;
 
-namespace Sudoku.Drawing.Extensions
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="DPoint"/> and <see cref="DPointF"/>.
