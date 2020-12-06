@@ -496,6 +496,7 @@ namespace Sudoku.Data
 				_ => f.ToString(this)
 			};
 
+#if DEBUG
 			static bool debuggerUndefined(in SudokuGrid grid)
 			{
 				for (int cell = 1; cell < Length; cell++)
@@ -508,6 +509,7 @@ namespace Sudoku.Data
 
 				return true;
 			}
+#endif
 		}
 
 		/// <summary>
