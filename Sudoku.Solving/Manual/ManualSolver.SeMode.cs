@@ -84,13 +84,7 @@ namespace Sudoku.Solving.Manual
 
 				if (FastSearch)
 				{
-					static decimal g(in TechniqueInfo info) => info.Difficulty;
-					decimal minDiff;
-					unsafe
-					{
-						minDiff = bag.Min(&g);
-					}
-
+					decimal minDiff = bag.Min(static info => info.Difficulty);
 					var selection = from info in bag where info.Difficulty == minDiff select info;
 					if (selection.None())
 					{

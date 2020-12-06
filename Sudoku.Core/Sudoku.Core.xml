@@ -3967,36 +3967,6 @@
             <param name="selector">The condition to check, specified as a function pointer.</param>
             <returns>The number of all elements satisfying the condition.</returns>
         </member>
-        <member name="M:Sudoku.Extensions.EnumerableEx.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Get the first element or default value.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="predicate">The predicate.</param>
-            <returns>
-            The result. The value is <see langword="default"/> when the collection cannot found any
-            elements satisfying the condition.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Extensions.EnumerableEx.Max``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Get the maximum value in this collection.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="selector">The selector.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Extensions.EnumerableEx.Min``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Get the minimum value in this collection.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="selector">The selector.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:Sudoku.Extensions.FormatProviderEx">
             <summary>
             Provides extension methods on <see cref="T:System.IFormatProvider"/>.

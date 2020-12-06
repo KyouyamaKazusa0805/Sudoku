@@ -94,18 +94,10 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal MaxDifficulty
-		{
-			get
-			{
-				unsafe
-				{
-					return SolvingSteps?.None() ?? true ? 20.0M : SolvingSteps.Max(&g);
-				}
-
-				static decimal g(in TechniqueInfo info) => info.ShowDifficulty ? info.Difficulty : 0;
-			}
-		}
+		public decimal MaxDifficulty =>
+			SolvingSteps?.None() ?? true
+			? 20.0M
+			: SolvingSteps.Max(static info => info.ShowDifficulty ? info.Difficulty : 0);
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -151,18 +143,8 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal PearlDifficulty
-		{
-			get
-			{
-				unsafe
-				{
-					return SolvingSteps?.FirstOrDefault(&p)?.Difficulty ?? 0;
-				}
-
-				static bool p(in TechniqueInfo info) => info.ShowDifficulty;
-			}
-		}
+		public decimal PearlDifficulty =>
+			SolvingSteps?.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
 
 		/// <summary>
 		/// <para>
