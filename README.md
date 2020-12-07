@@ -86,6 +86,14 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 
 
 
+## Other introduction
+
+标题：**其它关于该项目的介绍**
+
+Please visit [this page](https://sunnieshine.github.io/Sudoku/index) to get more information.
+
+请访问[此链接](https://sunnieshine.github.io/Sudoku/index)以获取更多信息。
+
 
 
 ## Author
