@@ -1815,11 +1815,6 @@
             Encapsulates a chain node.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Node._parents">
-            <summary>
-            The parent nodes.
-            </summary>
-        </member>
         <member name="M:Sudoku.Data.Node.#ctor(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Initializes an instance with the specified digit, cell and a <see cref="T:System.Boolean"/> value.
@@ -1847,11 +1842,6 @@
         <member name="P:Sudoku.Data.Node.Digit">
             <summary>
             Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Node.ParentsCount">
-            <summary>
-            Indicates the number of parents.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Node.AncestorsCount">
@@ -1882,12 +1872,6 @@
             The chain nodes.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node@)">
-            <summary>
-            Add a node into the list.
-            </summary>
-            <param name="node">(<see langword="in"/> parameter) The node.</param>
-        </member>
         <member name="M:Sudoku.Data.Node.ClearParents">
             <summary>
             Clear all parent nodes.
@@ -1898,7 +1882,7 @@
             <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
             <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
         </member>
-        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node}@)">
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@,System.Collections.Generic.IList{Sudoku.Data.Node}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
             <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>

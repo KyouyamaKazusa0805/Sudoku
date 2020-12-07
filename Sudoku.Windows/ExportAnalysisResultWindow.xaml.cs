@@ -57,7 +57,8 @@ namespace Sudoku.Windows
 			// Initialize controls.
 			foreach (var control in _gridMain.Children.OfType<CheckBox>())
 			{
-				control.IsChecked = FormatOptions[(AnalysisResultFormattingOptions)(int)control.Tag!];
+				control.IsChecked = FormatOptions[
+					(AnalysisResultFormattingOptions)int.Parse(control.Tag.ToString()!)];
 			}
 
 			_analysisResult = analysisResult;

@@ -104,16 +104,23 @@ namespace Sudoku.Solving.Extensions
 				new DeathBlossomTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.MaxPetalsOfDeathBlossom),
 				new FcTechniqueSearcher(nishio: true, multiple: false, dynamic: true),
 				new FcTechniqueSearcher(nishio: false, multiple: true, dynamic: false),
-				new FcTechniqueSearcher(nishio: false, multiple: true, dynamic: true),
 				new BugMultipleWithFcTechniqueSearcher(),
 				new HobiwanFishTechniqueSearcher(@this.HobiwanFishMaximumSize, @this.HobiwanFishMaximumExofinsCount, @this.HobiwanFishMaximumEndofinsCount, @this.HobiwanFishCheckTemplates),
+				new FcTechniqueSearcher(nishio: false, multiple: true, dynamic: true),
 				new JeTechniqueSearcher(@this.CheckAdvancedInExocet),
 				new SeTechniqueSearcher(@this.CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
 				new AlsNetTechniqueSearcher(),
 				new PomTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(@this.BowmanBingoMaximumLength),
-				new TemplateTechniqueSearcher(@this.OnlyRecordTemplateDelete)
+				new TemplateTechniqueSearcher(@this.OnlyRecordTemplateDelete),
+#if DOUBLE_LAYERED_ASSUMPTION
+				new FcPlusTechniqueSearcher(level: 1),
+				new FcPlusTechniqueSearcher(level: 2),
+				new FcPlusTechniqueSearcher(level: 3),
+				new FcPlusTechniqueSearcher(level: 4),
+				new FcPlusTechniqueSearcher(level: 5),
+#endif
 			};
 
 			if (solution.HasValue)

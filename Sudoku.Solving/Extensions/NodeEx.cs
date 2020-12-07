@@ -68,7 +68,7 @@ namespace Sudoku.Solving.Extensions
 			{
 				var p = chain[i];
 				var (pCandidate, pIsOn) = p;
-				for (int j = 0; j < p.ParentsCount; j++)
+				for (int j = 0, parentsCount = p.Parents?.Count ?? 0; j < parentsCount; j++)
 				{
 					var (prCandidate, prIsOn) = p.Parents![j];
 					result.Add(

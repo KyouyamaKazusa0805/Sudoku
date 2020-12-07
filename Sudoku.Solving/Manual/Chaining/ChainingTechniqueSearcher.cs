@@ -33,7 +33,14 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					if (digit != p.Digit && grid.Exists(p.Cell, digit) is true)
 					{
-						result.Add(new(p.Cell, digit, false, p));
+						result.Add(
+							new(p.Cell, digit, false, p)
+#if DOUBLE_LAYERED_ASSUMPTION
+							{
+								Cause = Cause.NakedSingle
+							}
+#endif
+							);
 					}
 				}
 			}
@@ -47,7 +54,14 @@ namespace Sudoku.Solving.Manual.Chaining
 					int cell = RegionCells[region][pos];
 					if (cell != p.Cell && grid.Exists(cell, p.Digit) is true)
 					{
-						result.Add(new(cell, p.Digit, false, p));
+						result.Add(
+							new(cell, p.Digit, false, p)
+#if DOUBLE_LAYERED_ASSUMPTION
+							{
+								Cause = label.GetRegionCause()
+							}
+#endif
+							);
 					}
 				}
 			}
@@ -78,7 +92,14 @@ namespace Sudoku.Solving.Manual.Chaining
 				short mask = (short)(grid.GetCandidateMask(p.Cell) & ~(1 << p.Digit));
 				if (g(grid, p.Cell, isDynamic) && mask.IsPowerOfTwo())
 				{
-					var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p);
+					var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p)
+#if DOUBLE_LAYERED_ASSUMPTION
+					{
+						Cause = Cause.NakedSingle
+					}
+#endif
+					;
+
 					if (source.HasValue && offNodes is not null)
 					{
 						AddHiddenParentsOfCell(ref pOn, grid, source.Value, offNodes);
@@ -97,7 +118,14 @@ namespace Sudoku.Solving.Manual.Chaining
 					var cells = (h(grid, p.Digit, region, isDynamic) & RegionMaps[region]) - p.Cell;
 					if (cells.Count == 1)
 					{
-						var pOn = new Node(cells.First, p.Digit, true, p);
+						var pOn = new Node(cells.First, p.Digit, true, p)
+#if DOUBLE_LAYERED_ASSUMPTION
+						{
+							Cause = label.GetRegionCause()
+						}
+#endif
+						;
+
 						if (source.HasValue && offNodes is not null)
 						{
 							AddHiddenParentsOfRegion(ref pOn, grid, source.Value, label, offNodes);
@@ -154,7 +182,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				// Add a hidden parent.
 				var parent = new Node(p.Cell, digit, false);
-				p.AddParent(
+				(p.Parents ??= new List<Node>()).Add(
 					offNodes.Contains(parent)
 					? parent
 					: throw new SudokuRuntimeException("Parent node not found."));
@@ -180,7 +208,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				// Add a hidden parent.
 				var parent = new Node(RegionCells[region][pos], p.Digit, false);
-				p.AddParent(
+				(p.Parents ??= new List<Node>()).Add(
 					offNodes.Contains(parent)
 					? parent
 					: throw new SudokuRuntimeException("Parent node not found."));

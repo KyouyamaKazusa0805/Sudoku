@@ -9,6 +9,10 @@ using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Windows;
 using static Sudoku.Solving.Constants.Processings;
+#if DOUBLE_LAYERED_ASSUMPTION
+using static Sudoku.Constants.Processings;
+using static Sudoku.Solving.TechniqueSearcher;
+#endif
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -40,6 +44,9 @@ namespace Sudoku.Solving.Manual.Fishes
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
 		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, IReadOnlyList<int>? Fins, bool? IsSashimi)
 		: FishTechniqueInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
+#if DOUBLE_LAYERED_ASSUMPTION
+		, IHasParentNodeInfo
+#endif
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
@@ -74,12 +81,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Indicates the internal name.
 		/// </summary>
 		private string InternalName =>
-			$@"{IsSashimi switch
-			{
-				null => string.Empty,
-				true => "Sashimi ",
-				false => "Finned "
-			}}{FishNames[Size]}";
+			$"{IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty }}{FishNames[Size]}";
 
 
 		/// <inheritdoc/>
@@ -193,5 +195,42 @@ namespace Sudoku.Solving.Manual.Fishes
 				};
 			}
 		}
+
+#if DOUBLE_LAYERED_ASSUMPTION
+		/// <inheritdoc/>
+		IEnumerable<Node> IHasParentNodeInfo.GetRuleParents(in SudokuGrid initialGrid, in SudokuGrid currentGrid)
+		{
+			var result = new List<Node>();
+			foreach (int baseSet in BaseSets)
+			{
+				foreach (int cell in RegionMaps[baseSet] & EmptyMap)
+				{
+					short mask = currentGrid.GetCandidateMask(cell);
+					short initialMask = initialGrid.GetCandidateMask(cell);
+					if ((initialMask >> Digit & 1) != 0 && (mask >> Digit & 1) == 0)
+					{
+						bool isInCoverSet = false;
+						foreach (int coverSet in CoverSets)
+						{
+							foreach (int otherCell in RegionMaps[coverSet] & EmptyMap)
+							{
+								if (otherCell == cell)
+								{
+									isInCoverSet = true;
+									break;
+								}
+							}
+						}
+						if (!isInCoverSet)
+						{
+							result.Add(new(cell, Digit, false));
+						}
+					}
+				}
+			}
+
+			return result;
+		}
+#endif
 	}
 }

@@ -30,6 +30,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
+#if DOUBLE_LAYERED_ASSUMPTION
+		/// <inheritdoc/>
+		public override Node[] ChainsTargets => new[] { FromOnNode, FromOffNode };
+#endif
+
 		/// <summary>
 		/// Indicates the anchor.
 		/// </summary>

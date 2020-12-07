@@ -21,7 +21,10 @@ namespace Sudoku.Solving.Manual.Chaining
 	public sealed class AicTechniqueSearcher : ChainingTechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(46, nameof(TechniqueCode.Aic)) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(46, nameof(TechniqueCode.Aic))
+		{
+			DisplayLevel = 2
+		};
 
 
 		/// <inheritdoc/>
@@ -112,8 +115,17 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			foreach (var destOn in loops)
 			{
+#if DOUBLE_LAYERED_ASSUMPTION
+				var destOff = getReversedLoop(destOn);
+#endif
 				if ((destOn.Chain.Count & 1) != 1
-					&& CreateLoopHint(grid, destOn, xEnabled, yEnabled) is var result and not null)
+					&&
+#if DOUBLE_LAYERED_ASSUMPTION
+					CreateLoopHint(grid, destOn, destOff, xEnabled, yEnabled)
+#else
+					CreateLoopHint(grid, destOn, xEnabled, yEnabled)
+#endif
+					is var result and not null)
 				{
 					accumulator.Add(result);
 				}
@@ -125,8 +137,53 @@ namespace Sudoku.Solving.Manual.Chaining
 					accumulator.Add(result);
 				}
 			}
+
+#if DOUBLE_LAYERED_ASSUMPTION
+			static Node getReversedLoop(in Node? org)
+			{
+				var result = new List<Node>();
+				var z = org;
+				while (z is { Cell: var cell, Digit: var digit, IsOn: var isOn } node)
+				{
+					var rev = new Node(cell, digit, !isOn);
+					result.Insert(0, rev);
+
+					z = node.Parents is { Count: not 0 } parents ? parents[0] : null;
+				}
+
+				Node? prev = null;
+				foreach (var rev in result)
+				{
+					if (prev.HasValue)
+					{
+						var v = prev.Value;
+						(v.Parents ??= new List<Node>()).Add(rev);
+						prev = v;
+					}
+
+					prev = rev;
+				}
+
+				return result[0];
+			}
+#endif
 		}
 
+#if DOUBLE_LAYERED_ASSUMPTION
+		/// <summary>
+		/// Create a loop hint (i.e. a <see cref="LoopTechniqueInfo"/>).
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="destOn">(<see langword="in"/> parameter) The start node.</param>
+		/// <param name="destOff">(<see langword="in"/> parameter) The end node.</param>
+		/// <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
+		/// <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
+		/// <returns>
+		/// If the number of conclusions are not zero (in other words, if worth), the information
+		/// will be returned; otherwise, <see langword="null"/>.
+		/// </returns>
+		/// <seealso cref="LoopTechniqueInfo"/>
+#else
 		/// <summary>
 		/// Create a loop hint (i.e. a <see cref="LoopTechniqueInfo"/>).
 		/// </summary>
@@ -139,8 +196,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
 		/// <seealso cref="LoopTechniqueInfo"/>
+#endif
 		private LoopTechniqueInfo? CreateLoopHint(
-			in SudokuGrid grid, in Node destOn, bool xEnabled, bool yEnabled)
+			in SudokuGrid grid, in Node destOn,
+#if DOUBLE_LAYERED_ASSUMPTION
+			in Node destOff,
+#endif
+			bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
 			var links = destOn.GetLinks(true); //! Maybe wrong when adding grouped nodes.
@@ -174,7 +236,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				new View[] { new(null, candidateOffsets.AsReadOnlyList(), null, links) },
 				xEnabled,
 				yEnabled,
-				destOn);
+				destOn
+#if DOUBLE_LAYERED_ASSUMPTION
+				, destOff
+#endif
+				);
 		}
 
 		/// <summary>

@@ -11,12 +11,6 @@ namespace Sudoku.Data
 	public struct Node : IValueEquatable<Node>
 	{
 		/// <summary>
-		/// The parent nodes.
-		/// </summary>
-		private Node[]? _parents;
-
-
-		/// <summary>
 		/// Initializes an instance with the specified digit, cell and a <see cref="bool"/> value.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
@@ -38,7 +32,7 @@ namespace Sudoku.Data
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
 		/// <param name="parent">(<see langword="in"/> parameter) The parent node.</param>
 		public Node(int cell, int digit, bool isOn, in Node parent) : this(cell, digit, isOn) =>
-			AddParent(parent);
+			Parents = new List<Node> { parent };
 
 
 		/// <summary>
@@ -51,11 +45,6 @@ namespace Sudoku.Data
 		/// Indicates the digit.
 		/// </summary>
 		public readonly int Digit { get; }
-
-		/// <summary>
-		/// Indicates the number of parents.
-		/// </summary>
-		public int ParentsCount { readonly get; private set; }
 
 		/// <summary>
 		/// Get the total number of the ancestors.
@@ -73,7 +62,7 @@ namespace Sudoku.Data
 						if (!ancestors.Contains(p))
 						{
 							ancestors.Add(p);
-							for (int i = 0; i < p.ParentsCount; i++)
+							for (int i = 0, count = p.Parents?.Count ?? 0; i < count; i++)
 							{
 								next.Add(p.Parents![i]);
 							}
@@ -90,6 +79,13 @@ namespace Sudoku.Data
 		/// </summary>
 		public readonly bool IsOn { get; }
 
+#if DOUBLE_LAYERED_ASSUMPTION
+		/// <summary>
+		/// Indicates the cause of the node.
+		/// </summary>
+		public readonly Cause Cause { get; init; }
+#endif
+
 		/// <summary>
 		/// Indicates the root.
 		/// </summary>
@@ -100,15 +96,15 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				if (ParentsCount == 0)
+				if (Parents is null or { Count: 0 })
 				{
 					return this;
 				}
 
 				var p = this;
-				while (p.ParentsCount != 0)
+				while (p.Parents is { Count: not 0 } parents)
 				{
-					p = p.Parents![0];
+					p = parents[0];
 				}
 
 				return p;
@@ -118,24 +114,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get all parents of the current node.
 		/// </summary>
-		public readonly IReadOnlyList<Node>? Parents
-		{
-			get
-			{
-				if (_parents is null)
-				{
-					return null;
-				}
-
-				var result = new List<Node>();
-				for (int i = 0; i < ParentsCount; i++)
-				{
-					result.Add(_parents[i]);
-				}
-
-				return result;
-			}
-		}
+		public IList<Node>? Parents { readonly get; set; }
 
 		/// <summary>
 		/// The chain nodes.
@@ -156,7 +135,7 @@ namespace Sudoku.Data
 						{
 							done.Add(p);
 							result.Add(p);
-							for (int i = 0; i < p.ParentsCount; i++)
+							for (int i = 0, count = p.Parents?.Count ?? 0; i < count; i++)
 							{
 								next.Add(p.Parents![i]);
 							}
@@ -172,15 +151,9 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Add a node into the list.
-		/// </summary>
-		/// <param name="node">(<see langword="in"/> parameter) The node.</param>
-		public void AddParent(in Node node) => (_parents ??= new Node[8])[ParentsCount++] = node;
-
-		/// <summary>
 		/// Clear all parent nodes.
 		/// </summary>
-		public void ClearParents() => ParentsCount = 0;
+		public void ClearParents() => Parents = null;
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
@@ -195,7 +168,7 @@ namespace Sudoku.Data
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		/// <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
 		/// <param name="parents">(<see langword="out"/> parameter) All parents of this node.</param>
-		public readonly void Deconstruct(out int candidate, out bool isOn, out IReadOnlyList<Node>? parents)
+		public readonly void Deconstruct(out int candidate, out bool isOn, out IList<Node>? parents)
 		{
 			candidate = Cell * 9 + Digit;
 			isOn = IsOn;
@@ -217,9 +190,9 @@ namespace Sudoku.Data
 		public readonly bool IsParentOf(in Node node)
 		{
 			var pTest = node;
-			while (pTest.ParentsCount != 0)
+			while (pTest.Parents is { Count: not 0 } parents)
 			{
-				pTest = pTest.Parents![0];
+				pTest = parents[0];
 				if (pTest == this)
 				{
 					return true;
@@ -232,13 +205,13 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override readonly int GetHashCode()
 		{
-			if (_parents is null)
+			if (Parents is null)
 			{
 				return 0;
 			}
 
 			var hashCode = new HashCode();
-			foreach (var parent in _parents)
+			foreach (var parent in Parents)
 			{
 				hashCode.Add(parent);
 			}
@@ -249,16 +222,16 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString()
 		{
-			if (ParentsCount == 0)
+			if (Parents is null or { Count: 0 })
 			{
 				return $"Candidate: {new GridMap { Cell }}({Digit + 1})";
 			}
 			else
 			{
 				var nodes = new SudokuMap();
-				for (int i = 0; i < ParentsCount; i++)
+				for (int i = 0; i < Parents.Count; i++)
 				{
-					var node = _parents![i];
+					var node = Parents[i];
 					nodes.Add(node.Cell * 9 + node.Digit);
 				}
 

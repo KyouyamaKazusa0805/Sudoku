@@ -25,6 +25,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override decimal Difficulty =>
 			(XEnabled && YEnabled ? 5.0M : 4.6M) + (FlatComplexity - 2).GetExtraDifficultyByLength();
 
+#if DOUBLE_LAYERED_ASSUMPTION
+		/// <inheritdoc/>
+		public override Node[] ChainsTargets => new[] { Target };
+#endif
+
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey => Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());
 

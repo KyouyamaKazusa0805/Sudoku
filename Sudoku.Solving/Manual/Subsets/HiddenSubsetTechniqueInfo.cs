@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Windows;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -21,6 +21,9 @@ namespace Sudoku.Solving.Manual.Subsets
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Region, IReadOnlyList<int> Cells, IReadOnlyList<int> Digits)
 		: SubsetTechniqueInfo(Conclusions, Views, Region, Cells, Digits)
+#if DOUBLE_LAYERED_ASSUMPTION
+		, IHasParentNodeInfo
+#endif
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => Size switch { 2 => 3.4M, 3 => 4.0M, 4 => 5.4M };
@@ -100,12 +103,40 @@ namespace Sudoku.Solving.Manual.Subsets
 					.Append(Resources.GetValue("_HiddenSubset8"))
 					.Append(Digits.Count)
 					.Append(Resources.GetValue("_HiddenSubset9"))
-					.Append(Resources.GetValue(Processings.GetLabel(Region).ToString()))
+					.Append(Resources.GetValue(GetLabel(Region).ToString()))
 					.Append(Resources.GetValue("_HiddenSubset10"))
 					.Append(new ConclusionCollection(Conclusions).ToString())
 					.Append(Resources.GetValue("Period"))
 					.ToString();
 			}
 		}
+
+#if DOUBLE_LAYERED_ASSUMPTION
+		/// <inheritdoc/>
+		IEnumerable<Node> IHasParentNodeInfo.GetRuleParents(in SudokuGrid initialGrid, in SudokuGrid currentGrid)
+		{
+			var result = new List<Node>();
+			var posMap = GridMap.Empty;
+			foreach (int cell in Cells)
+			{
+				posMap.AddAnyway(cell);
+			}
+			posMap = RegionMaps[Region] - posMap;
+
+			foreach (int cell in posMap)
+			{
+				short initialMask = initialGrid.GetCandidateMask(cell);
+				foreach (int digit in Digits)
+				{
+					if ((initialMask >> digit & 1) != 0)
+					{
+						result.Add(new(cell, digit, false));
+					}
+				}
+			}
+
+			return result;
+		}
+#endif
 	}
 }
