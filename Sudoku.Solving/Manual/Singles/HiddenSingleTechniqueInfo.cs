@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -29,15 +28,13 @@ namespace Sudoku.Solving.Manual.Singles
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			EnableAndIsLastDigit switch
+			EnableAndIsLastDigit
+			? TechniqueCode.LastDigit
+			: GetLabel(Region) switch
 			{
-				true => TechniqueCode.LastDigit,
-				_ => GetLabel(Region) switch
-				{
-					RegionLabel.Row => TechniqueCode.HiddenSingleRow,
-					RegionLabel.Column => TechniqueCode.HiddenSingleColumn,
-					RegionLabel.Block => TechniqueCode.HiddenSingleBlock
-				}
+				RegionLabel.Row => TechniqueCode.HiddenSingleRow,
+				RegionLabel.Column => TechniqueCode.HiddenSingleColumn,
+				RegionLabel.Block => TechniqueCode.HiddenSingleBlock
 			};
 
 

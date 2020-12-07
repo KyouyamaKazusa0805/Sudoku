@@ -1,6 +1,5 @@
 ﻿using System.Runtime.Serialization;
 using System;
-using System.Diagnostics;
 using Sudoku.Data;
 
 namespace Sudoku.Runtime
@@ -30,8 +29,8 @@ namespace Sudoku.Runtime
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="message">The error message.</param>
 		/// <param name="inner">The inner exception.</param>
-		public NoSolutionException(in SudokuGrid grid, string message, Exception inner)
-			: base(message, inner) => Grid = grid;
+		public NoSolutionException(in SudokuGrid grid, string message, Exception inner) : base(message, inner) =>
+			Grid = grid;
 
 		/// <summary>
 		/// Initializes an instance with a grid, a serialization information instance and

@@ -1,4 +1,5 @@
-﻿#nullable enable annotations
+﻿#pragma warning disable IDE0060
+#nullable enable annotations
 
 using System;
 using System.Collections.Generic;
