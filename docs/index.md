@@ -1,5 +1,17 @@
-# Sudoku introduction
+# Sudoku pages
 
-[Manual Techniques Support](manual-techniques-support)
+Here displays what I want to display about the solution [Sudoku](https://github.com/SunnieShine/Sudoku).
 
-[Conditional Compilation Symbol](conditional-compilation-symbol)
+
+
+# Sudoku solution introduction
+
+* [Manual Techniques Support](manual-techniques-support)
+
+* [Conditional Compilation Symbol](conditional-compilation-symbol)
+
+
+
+# Language
+
+* [Chinese (Simplified)](zh-cn/index)
