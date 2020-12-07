@@ -56,9 +56,9 @@ Of course, you can also download the zip file.
 
 标题：**编译和运行**
 
-Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt) in [this folder](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/require).
+Before running the program, you should download some files ahead of time (or check the existence of some files). Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt) in [this folder](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/require) for more information.
 
-请参看这个[文件夹](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/require)下的这个[文件](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt)。
+在运行程序的时候，你需要提前下载一些文件（或者是确认一些文件是否存在）。请参看这个[文件夹](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/require)下的这个[文件](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt)以获取更多相关信息。
 
 
 
@@ -81,6 +81,7 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 | [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows) | The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。 |
 | [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging) | The project that can be used while debugging only.<br/>这个项目仅用于调试代码时。 |
 | [`System`](https://github.com/Sunnie-Shine/Sudoku/tree/master/System) | The project provides the extension methods, classes and structures in use.<br/>这个项目提供 .NET 库内相关的扩展的方法、类和结构。 |
+| [`docs`](https://github.com/SunnieShine/Sudoku/tree/master/docs) | Provides the document or helper files of this solution or sudoku itself.<br />提供文档或者是跟项目有关的帮助文件，抑或是数独本身的内容。 |
 | [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref) | The profiles for sudoku for references. In addition, some necessary files to help us compile and run the whole project are also in this folder.<br/>数独相关参考资料。另外，一些帮助我们执行和运行的文件也在此文件夹下。 |
 | [`pic`](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic) | The pictures.<br/>图片。                                     |
 
