@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
@@ -168,9 +169,9 @@ namespace Sudoku.Solving.Manual.Fishes
 					// Gather the cover sets that contains the eliminations.
 					foreach (int cell in globalElimMap)
 					{
-						mask &= ~(1 << GetRegion(cell, RegionLabel.Row));
-						mask &= ~(1 << GetRegion(cell, RegionLabel.Column));
-						mask &= ~(1 << GetRegion(cell, RegionLabel.Block));
+						mask &= ~(1 << RegionLabel.Row.GetRegion(cell));
+						mask &= ~(1 << RegionLabel.Column.GetRegion(cell));
+						mask &= ~(1 << RegionLabel.Block.GetRegion(cell));
 					}
 
 					// Then 'mask' contains the regions that eliminations don't lie in.

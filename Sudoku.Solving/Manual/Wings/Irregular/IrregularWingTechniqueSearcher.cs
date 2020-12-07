@@ -2,6 +2,7 @@
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
@@ -58,11 +59,11 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					for (int region = 9; region < 27; region++)
 					{
 						if (region < 18 && (
-							GetRegion(c1, RegionLabel.Row) == region
-							|| GetRegion(c2, RegionLabel.Row) == region)
+							RegionLabel.Row.GetRegion(c1) == region
+							|| RegionLabel.Row.GetRegion(c2) == region)
 							|| region >= 18 && (
-							GetRegion(c1, RegionLabel.Column) == region
-							|| GetRegion(c2, RegionLabel.Column) == region))
+							RegionLabel.Column.GetRegion(c1) == region
+							|| RegionLabel.Column.GetRegion(c2) == region))
 						{
 							continue;
 						}

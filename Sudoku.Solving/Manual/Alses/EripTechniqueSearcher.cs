@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Alses
 						continue;
 					}
 
-					int block1 = GetRegion(c1, RegionLabel.Block), block2 = GetRegion(c2, RegionLabel.Block);
+					int block1 = RegionLabel.Block.GetRegion(c1), block2 = RegionLabel.Block.GetRegion(c2);
 					if (block1 % 3 == block2 % 3 || block1 / 3 == block2 / 3)
 					{
 						continue;
@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Alses
 					var unionMap = new GridMap(c1) | new GridMap(c2);
 					foreach (int interCell in interMap)
 					{
-						int block = GetRegion(interCell, RegionLabel.Block);
+						int block = RegionLabel.Block.GetRegion(interCell);
 						var regionMap = RegionMaps[block];
 						var checkingMap = regionMap - unionMap & regionMap;
 						if (checkingMap.Overlaps(CandMaps[d1]) || checkingMap.Overlaps(CandMaps[d2]))
@@ -67,8 +67,8 @@ namespace Sudoku.Solving.Manual.Alses
 						// Check whether two digits are both in the same empty rectangle.
 						int inter1 = interMap.First;
 						int inter2 = interMap.SetAt(1);
-						int b1 = GetRegion(inter1, RegionLabel.Block);
-						int b2 = GetRegion(inter2, RegionLabel.Block);
+						int b1 = RegionLabel.Block.GetRegion(inter1);
+						int b2 = RegionLabel.Block.GetRegion(inter2);
 						var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
 						var erCellsMap = regionMap & erMap;
 						short m = 0;
@@ -127,7 +127,14 @@ namespace Sudoku.Solving.Manual.Alses
 						accumulator.Add(
 							new EripTechniqueInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, block) }, null) },
+								new View[]
+								{
+									new(
+										null,
+										candidateOffsets,
+										new DrawingInfo[] { new(0, block) },
+										null)
+								},
 								c1,
 								c2,
 								block,

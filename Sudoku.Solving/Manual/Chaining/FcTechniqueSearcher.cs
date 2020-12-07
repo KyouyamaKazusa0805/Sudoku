@@ -8,6 +8,7 @@ using Grid = Sudoku.Data.SudokuGrid;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 using System.Extensions;
+using Sudoku.Data.Extensions;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -235,7 +236,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
-				int region = GetRegion(cell, label);
+				int region = label.GetRegion(cell);
 				var worthMap = CandMaps[digit] & RegionMaps[region];
 				switch (worthMap.Count)
 				{

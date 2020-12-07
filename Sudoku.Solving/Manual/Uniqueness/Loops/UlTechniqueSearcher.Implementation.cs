@@ -340,7 +340,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			{
 				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 				{
-					int region = GetRegion(cell, label);
+					int region = label.GetRegion(cell);
 					if (*&isOdd)
 					{
 						if ((visitedOddRegions >> region & 1) != 0)

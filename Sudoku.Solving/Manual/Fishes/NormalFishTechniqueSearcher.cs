@@ -644,14 +644,16 @@ namespace Sudoku.Solving.Manual.Fishes
 						}
 						case false or null:
 						{
+							bool flag;
+							static bool i(int c, in bool searchRow, in int cell) =>
+								RegionMaps[(searchRow ? RegionLabel.Column : RegionLabel.Row).GetRegion(c)][cell];
 							unsafe
 							{
-								static bool internalChecking(int c, in bool searchRow, in int cell) =>
-								RegionMaps[GetRegion(c, searchRow ? RegionLabel.Column : RegionLabel.Row)][cell];
-								if (ValueMaps[digit].Any(&internalChecking, searchRow, cell))
-								{
-									continue;
-								}
+								flag = ValueMaps[digit].Any(&i, searchRow, cell);
+							}
+							if (flag)
+							{
+								continue;
 							}
 
 							var baseMap = GridMap.Empty;

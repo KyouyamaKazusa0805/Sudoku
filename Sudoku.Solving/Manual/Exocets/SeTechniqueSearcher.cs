@@ -2,6 +2,7 @@
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
@@ -45,7 +46,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				short baseCandsMask = (short)(grid.GetCandidateMask(b1) | grid.GetCandidateMask(b2));
 
 				int i = 0;
-				int r = GetRegion(b1, RegionLabel.Row) - 9, c = GetRegion(b1, RegionLabel.Column) - 18;
+				int r = RegionLabel.Row.GetRegion(b1) - 9, c = RegionLabel.Column.GetRegion(b1) - 18;
 				foreach (int pos in SudokuGrid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))
 				{
 					cover[i++] = isRow ? pos + 9 : pos + 18;
@@ -94,8 +95,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					int row1 = GetRegion(v1, RegionLabel.Row), column1 = GetRegion(v1, RegionLabel.Column);
-					int row2 = GetRegion(v2, RegionLabel.Row), column2 = GetRegion(v2, RegionLabel.Column);
+					int row1 = RegionLabel.Row.GetRegion(v1), column1 = RegionLabel.Column.GetRegion(v1);
+					int row2 = RegionLabel.Row.GetRegion(v2), column2 = RegionLabel.Column.GetRegion(v2);
 					if (isRow ? column1 == column2 : row1 == row2)
 					{
 						continue;

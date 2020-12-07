@@ -5,11 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
-using static System.Math;
-using static System.Reflection.BindingFlags;
-using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Windows
 {
@@ -103,8 +101,8 @@ namespace Sudoku.Windows
 						int currentClickedCell = getCell();
 						int r1 = cell / 9, c1 = cell % 9;
 						int r2 = currentClickedCell / 9, c2 = currentClickedCell % 9;
-						int minRow = Min(r1, r2), minColumn = Min(c1, c2);
-						int maxRow = Max(r1, r2), maxColumn = Max(c1, c2);
+						int minRow = Math.Min(r1, r2), minColumn = Math.Min(c1, c2);
+						int maxRow = Math.Max(r1, r2), maxColumn = Math.Max(c1, c2);
 						for (int r = minRow; r <= maxRow; r++)
 						{
 							for (int c = minColumn; c <= maxColumn; c++)
@@ -134,7 +132,7 @@ namespace Sudoku.Windows
 			_selectedCellsWhileDrawingRegions.AddAnyway(cell);
 
 			// Disable all menu items.
-			var flags = NonPublic | Instance;
+			var flags = BindingFlags.NonPublic | BindingFlags.Instance;
 			for (int i = 0; i < 9; i++)
 			{
 				s(this, flags, i).Visibility = Visibility.Collapsed;
@@ -197,12 +195,12 @@ namespace Sudoku.Windows
 							{
 								int first = _selectedCellsWhileDrawingRegions.First;
 								int second = _selectedCellsWhileDrawingRegions.SetAt(1);
-								int r1 = GetRegion(first, RegionLabel.Row);
-								int r2 = GetRegion(second, RegionLabel.Row);
-								int c1 = GetRegion(first, RegionLabel.Column);
-								int c2 = GetRegion(second, RegionLabel.Column);
-								int b1 = GetRegion(first, RegionLabel.Block);
-								int b2 = GetRegion(second, RegionLabel.Block);
+								int r1 = RegionLabel.Row.GetRegion(first);
+								int r2 = RegionLabel.Row.GetRegion(second);
+								int c1 = RegionLabel.Column.GetRegion(first);
+								int c2 = RegionLabel.Column.GetRegion(second);
+								int b1 = RegionLabel.Block.GetRegion(first);
+								int b2 = RegionLabel.Block.GetRegion(second);
 								int region = (r1 == r2, c1 == c2, b1 == b2) switch
 								{
 									(true, _, _) => r1,

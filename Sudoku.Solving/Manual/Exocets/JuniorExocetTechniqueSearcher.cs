@@ -371,10 +371,10 @@ namespace Sudoku.Solving.Manual.Exocets
 			short candidatesMask = (short)((m1 | m2) & ~baseCandidatesMask);
 			var span = (Span<int>)stackalloc[]
 			{
-				GetRegion(pos1, RegionLabel.Block),
-				GetRegion(pos1, RegionLabel.Row) == GetRegion(pos2, RegionLabel.Row)
-				? GetRegion(pos1, RegionLabel.Row)
-				: GetRegion(pos1, RegionLabel.Column)
+				RegionLabel.Block.GetRegion(pos1),
+				RegionLabel.Row.GetRegion(pos1) == RegionLabel.Row.GetRegion(pos2)
+				? RegionLabel.Row.GetRegion(pos1)
+				: RegionLabel.Column.GetRegion(pos1)
 			};
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
@@ -454,7 +454,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			targetPairElims = new();
 			swordfishElims = new();
 			var playground = (stackalloc short[3]);
-			int block = GetRegion(b1, RegionLabel.Block);
+			int block = RegionLabel.Block.GetRegion(b1);
 			short[] temp = new short[4];
 			for (int i = 0; i < 9; i++)
 			{

@@ -1,4 +1,5 @@
 ﻿using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
 
@@ -44,16 +45,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						if (
 							baseLineMap.Overlaps(pairMap)
 							|| baseLineMap.Overlaps(
-								RegionMaps[GetRegion(c1, RegionLabel.Block)]
-								| RegionMaps[GetRegion(c2, RegionLabel.Block)]))
+								RegionMaps[RegionLabel.Block.GetRegion(c1)]
+								| RegionMaps[RegionLabel.Block.GetRegion(c2)]))
 						{
 							continue;
 						}
 
 						var squareMap =
 							baseLineMap & (
-								RegionMaps[GetRegion(c1, isRow ? RegionLabel.Column : RegionLabel.Row)]
-								| RegionMaps[GetRegion(c2, isRow ? RegionLabel.Column : RegionLabel.Row)]);
+								RegionMaps[(isRow ? RegionLabel.Column : RegionLabel.Row).GetRegion(c1)]
+								| RegionMaps[(isRow ? RegionLabel.Column : RegionLabel.Row).GetRegion(c2)]);
 
 						Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
 					}

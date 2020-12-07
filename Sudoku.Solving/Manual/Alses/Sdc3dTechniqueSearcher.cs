@@ -2,6 +2,7 @@
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
@@ -33,9 +34,9 @@ namespace Sudoku.Solving.Manual.Alses
 			List<GridMap> rbList = new(3), cbList = new(3);
 			foreach (int pivot in EmptyMap)
 			{
-				int r = GetRegion(pivot, RegionLabel.Row);
-				int c = GetRegion(pivot, RegionLabel.Column);
-				int b = GetRegion(pivot, RegionLabel.Block);
+				int r = RegionLabel.Row.GetRegion(pivot);
+				int c = RegionLabel.Column.GetRegion(pivot);
+				int b = RegionLabel.Block.GetRegion(pivot);
 				GridMap rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
 				GridMap rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
 				if ((rbEmptyMap.Count, cbEmptyMap.Count) is not ( >= 2, >= 2))

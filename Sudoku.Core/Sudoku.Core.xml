@@ -20,14 +20,6 @@
             the static constructor.
             </summary>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetRegion(System.Int32,Sudoku.Data.RegionLabel)">
-            <summary>
-            Get the region index for the specified cell and the region type.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="label">The label.</param>
-            <returns>The region index (<c>0..27</c>).</returns>
-        </member>
         <member name="M:Sudoku.Constants.Processings.GetLabel(System.Int32)">
             <summary>
             Get the label in the specified region.
@@ -738,6 +730,20 @@
             <param name="cells">(<see langword="out"/> parameter) The cell.</param>
             <param name="separators">(<see langword="params"/> parameter) All separators.</param>
             <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.RegionLabelEx">
+            <summary>
+            Provides extension methods for <see cref="T:Sudoku.Data.RegionLabel"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.RegionLabel"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.RegionLabelEx.GetRegion(Sudoku.Data.RegionLabel,System.Int32)">
+            <summary>
+            Get the region index for the specified cell and the region type.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="@this">(<see langword="this"/> parameter) The label.</param>
+            <returns>The region index (<c>0..27</c>).</returns>
         </member>
         <member name="T:Sudoku.Data.Extensions.SudokuGridEx">
             <summary>

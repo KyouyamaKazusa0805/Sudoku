@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
@@ -105,7 +106,7 @@ namespace Sudoku.Solving.Manual.Sdps
 									continue;
 								}
 
-								int region = GetRegion(cell, label);
+								int region = label.GetRegion(cell);
 								var otherCellsMap = RegionMaps[region] & globalMap - cell;
 								if (otherCellsMap.Count != 1)
 								{

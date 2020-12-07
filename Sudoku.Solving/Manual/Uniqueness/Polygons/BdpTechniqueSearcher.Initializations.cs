@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
 
@@ -156,7 +157,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				for (int i = 0, cur = 0; i < 9; i++)
 				{
 					int cell = RegionCells[region][i];
-					if (block == GetRegion(cell, RegionLabel.Block))
+					if (block == RegionLabel.Block.GetRegion(cell))
 					{
 						continue;
 					}

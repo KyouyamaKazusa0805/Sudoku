@@ -1,6 +1,5 @@
-﻿#if DOUBLE_LAYERED_ASSUMPTION
-
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using Sudoku.Constants;
 
 namespace Sudoku.Data.Extensions
 {
@@ -10,6 +9,24 @@ namespace Sudoku.Data.Extensions
 	/// <seealso cref="RegionLabel"/>
 	public static class RegionLabelEx
 	{
+		/// <summary>
+		/// Get the region index for the specified cell and the region type.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <param name="@this">(<see langword="this"/> parameter) The label.</param>
+		/// <returns>The region index (<c>0..27</c>).</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static int GetRegion(this RegionLabel @this, int cell) =>
+		(
+			@this switch
+			{
+				RegionLabel.Row => Processings.RowTable,
+				RegionLabel.Column => Processings.ColumnTable,
+				RegionLabel.Block => Processings.BlockTable
+			}
+		)[cell];
+
+#if DOUBLE_LAYERED_ASSUMPTION
 		/// <summary>
 		/// Get the specified region cause with the specified region label.
 		/// </summary>
@@ -23,7 +40,6 @@ namespace Sudoku.Data.Extensions
 				RegionLabel.Column => Cause.ColumnHiddenSingle,
 				RegionLabel.Block => Cause.BlockHiddenSingle
 			};
+#endif
 	}
 }
-
-#endif

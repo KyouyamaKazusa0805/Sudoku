@@ -540,8 +540,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int o1 = otherCellsMap.First, o2 = otherCellsMap.SetAt(1);
-			int r1 = GetRegion(corner1, RegionLabel.Row), c1 = GetRegion(corner1, RegionLabel.Column);
-			int r2 = GetRegion(corner2, RegionLabel.Row), c2 = GetRegion(corner2, RegionLabel.Column);
+			int r1 = RegionLabel.Row.GetRegion(corner1), c1 = RegionLabel.Column.GetRegion(corner1);
+			int r2 = RegionLabel.Row.GetRegion(corner2), c2 = RegionLabel.Column.GetRegion(corner2);
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
 				foreach (var (region1, region2) in stackalloc[] { (r1, r2), (c1, c2) })
@@ -656,7 +656,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = otherCellsMap - abzCell;
-			int r = GetRegion(abzCell, RegionLabel.Row), c = GetRegion(abzCell, RegionLabel.Column);
+			int r = RegionLabel.Row.GetRegion(abzCell), c = RegionLabel.Column.GetRegion(abzCell);
 
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{

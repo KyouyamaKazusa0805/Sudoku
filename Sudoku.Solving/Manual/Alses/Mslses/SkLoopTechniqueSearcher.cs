@@ -3,10 +3,10 @@ using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
-using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 
@@ -123,14 +123,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					}
 
 					// Check elimination map.
-					linkRegion[0] = GetRegion(cells[0], RegionLabel.Row);
-					linkRegion[1] = GetRegion(cells[2], RegionLabel.Block);
-					linkRegion[2] = GetRegion(cells[4], RegionLabel.Column);
-					linkRegion[3] = GetRegion(cells[6], RegionLabel.Block);
-					linkRegion[4] = GetRegion(cells[8], RegionLabel.Row);
-					linkRegion[5] = GetRegion(cells[10], RegionLabel.Block);
-					linkRegion[6] = GetRegion(cells[12], RegionLabel.Column);
-					linkRegion[7] = GetRegion(cells[14], RegionLabel.Block);
+					linkRegion[0] = RegionLabel.Row.GetRegion(cells[0]);
+					linkRegion[1] = RegionLabel.Block.GetRegion(cells[2]);
+					linkRegion[2] = RegionLabel.Column.GetRegion(cells[4]);
+					linkRegion[3] = RegionLabel.Block.GetRegion(cells[6]);
+					linkRegion[4] = RegionLabel.Row.GetRegion(cells[8]);
+					linkRegion[5] = RegionLabel.Block.GetRegion(cells[10]);
+					linkRegion[6] = RegionLabel.Column.GetRegion(cells[12]);
+					linkRegion[7] = RegionLabel.Block.GetRegion(cells[14]);
 					var conclusions = new List<Conclusion>();
 					var map = cells & EmptyMap;
 					for (k = 0; k < 8; k++)

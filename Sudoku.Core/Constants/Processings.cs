@@ -14,23 +14,6 @@ namespace Sudoku.Constants
 	public static partial class Processings
 	{
 		/// <summary>
-		/// Get the region index for the specified cell and the region type.
-		/// </summary>
-		/// <param name="cell">The cell.</param>
-		/// <param name="label">The label.</param>
-		/// <returns>The region index (<c>0..27</c>).</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int GetRegion(int cell, RegionLabel label) =>
-		(
-			label switch
-			{
-				RegionLabel.Row => RowTable,
-				RegionLabel.Column => ColumnTable,
-				RegionLabel.Block => BlockTable
-			}
-		)[cell];
-
-		/// <summary>
 		/// Get the label in the specified region.
 		/// </summary>
 		/// <param name="region">The region.</param>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
@@ -115,7 +116,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							continue;
 						}
 
-						int region = GetRegion(cell, label);
+						int region = label.GetRegion(cell);
 						var cellsMap = RegionMaps[region] & EmptyMap - cell;
 						if (cellsMap.IsEmpty)
 						{

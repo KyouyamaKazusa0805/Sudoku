@@ -280,10 +280,10 @@ namespace Sudoku.Solving.Manual.Exocets
 			short candidatesMask = (short)((m1 | m2) & ~baseCandsMask);
 			var span = (Span<int>)stackalloc[]
 			{
-				GetRegion(pos1, RegionLabel.Block),
-				GetRegion(pos1, RegionLabel.Row) == GetRegion(pos2, RegionLabel.Row)
-				? GetRegion(pos1, RegionLabel.Row)
-				: GetRegion(pos1, RegionLabel.Column)
+				RegionLabel.Block.GetRegion(pos1),
+				RegionLabel.Row.GetRegion(pos1) == RegionLabel.Row.GetRegion(pos2)
+				? RegionLabel.Row.GetRegion(pos1)
+				: RegionLabel.Column.GetRegion(pos1)
 			};
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
