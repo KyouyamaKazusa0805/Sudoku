@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Encapsulates a step finder that used in solving in <see cref="ManualSolver"/>.

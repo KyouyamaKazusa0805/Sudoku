@@ -6,6 +6,7 @@ using System.Text;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
+using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
 using static Sudoku.Solving.AnalysisResultFormattingOptions;
 using static Sudoku.Windows.Resources;

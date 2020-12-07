@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving.Annotations
 {

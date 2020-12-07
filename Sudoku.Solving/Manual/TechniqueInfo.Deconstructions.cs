@@ -3,7 +3,7 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Manual
 {
 	partial record TechniqueInfo
 	{

@@ -7,6 +7,7 @@ using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Checking;
+using Sudoku.Solving.Manual;
 using static System.Algorithms;
 
 namespace Sudoku.Solving.Generating

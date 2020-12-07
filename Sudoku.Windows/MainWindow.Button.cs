@@ -14,11 +14,10 @@ using System.Windows.Media;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
-using TechniqueTriplet = System.KeyedTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
+using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.TechniqueInfo, bool>;
 
 namespace Sudoku.Windows
 {
@@ -68,7 +67,7 @@ namespace Sudoku.Windows
 						let pair = Settings.DiffColors[info.DifficultyLevel]
 						select new ListBoxItem
 						{
-							Content = new TechniqueTriplet(info.ToSimpleString(), info, true),
+							Content = new InfoTriplet(info.ToSimpleString(), info, true),
 							Foreground = new SolidColorBrush(pair.Foreground.ToWColor()),
 							Background = new SolidColorBrush(pair.Background.ToWColor()),
 							BorderThickness = default,
@@ -84,7 +83,7 @@ namespace Sudoku.Windows
 						new StringBuilder()
 						.Append(nameof(Content))
 						.Append('.')
-						.Append(nameof(TechniqueTriplet.Item2))
+						.Append(nameof(InfoTriplet.Item2))
 						.Append('.')
 						.Append(nameof(TechniqueInfo.Name))
 						.ToString()));

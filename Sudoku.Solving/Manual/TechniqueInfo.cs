@@ -3,11 +3,10 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
-using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Windows;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Encapsulates all information after searched a solving step,

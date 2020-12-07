@@ -2,9 +2,8 @@
 using System.Drawing;
 using System.Text.Json.Serialization;
 using Sudoku.Globalization;
-using Sudoku.Solving;
 using Sudoku.Solving.Manual;
-using static Sudoku.Solving.DifficultyLevel;
+using static Sudoku.Solving.Manual.DifficultyLevel;
 
 namespace Sudoku.Windows
 {

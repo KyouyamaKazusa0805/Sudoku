@@ -5,10 +5,10 @@ using System.Windows;
 using System.Windows.Controls;
 using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Windows.Constants;
-using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
+using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.TechniqueInfo, bool>;
+using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.TechniqueInfo>;
 
 namespace Sudoku.Windows
 {
@@ -93,9 +93,7 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					if (
-						_listBoxPaths.SelectedItem
-						is ListBoxItem { Content: KeyedTuple<string, int, TechniqueInfo> triplet })
+					if (_listBoxPaths.SelectedItem is ListBoxItem { Content: StepTriplet triplet })
 					{
 						SystemClipboard.Text = triplet.Item3.ToFullString();
 					}
@@ -115,7 +113,7 @@ namespace Sudoku.Windows
 				var sb = new StringBuilder();
 				foreach (string step in
 					from ListBoxItem item in _listBoxPaths.Items
-					let content = item.Content as KeyedTuple<string, int, TechniqueInfo>
+					let content = item.Content as StepTriplet
 					where content is not null
 					select content.Item3.ToFullString())
 				{

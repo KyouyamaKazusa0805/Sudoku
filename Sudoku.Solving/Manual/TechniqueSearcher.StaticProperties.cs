@@ -1,7 +1,7 @@
 ﻿using Sudoku.Data;
 using Sudoku.Solving.Manual.Singles;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Manual
 {
 	partial class TechniqueSearcher
 	{

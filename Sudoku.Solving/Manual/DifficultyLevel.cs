@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides a difficulty kind for a puzzle.

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Controls;
 using Sudoku.DocComments;
-using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.TechniqueInfo>;
-using TechniqueTriplet = System.KeyedTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
+using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.TechniqueInfo, bool>;
+using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.TechniqueInfo>;
 
 namespace Sudoku.Windows
 {
@@ -42,7 +42,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (sender is ListBox { SelectedItem: ListBoxItem { Content: TechniqueTriplet triplet } })
+			if (sender is ListBox { SelectedItem: ListBoxItem { Content: InfoTriplet triplet } })
 			{
 				if (triplet.Item3 && triplet.Item2 is var info and var (_, _, _, conclusions, views))
 				{

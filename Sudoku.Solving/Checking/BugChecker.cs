@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Solving.Manual;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Checking
