@@ -1,4 +1,5 @@
-﻿using Sudoku.DocComments;
+﻿using Sudoku.Data;
+using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
@@ -16,6 +17,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			{ 2, 3, 6 }, { 2, 3, 7 }, { 2, 3, 8 }, { 2, 4, 6 }, { 2, 4, 7 }, { 2, 4, 8 },
 			{ 2, 5, 6 }, { 2, 5, 7 }, { 2, 5, 8 }
 		};
+
+		/// <summary>
+		/// Indicates the patterns.
+		/// </summary>
+		private static readonly GridMap[] Patterns = new GridMap[162];
 
 
 		/// <inheritdoc cref="StaticConstructor"/>

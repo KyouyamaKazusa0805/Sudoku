@@ -10,25 +10,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// </summary>
 	public sealed partial class UsTechniqueSearcher : UniquenessTechniqueSearcher
 	{
-		/// <summary>
-		/// The function list.
-		/// </summary>
-		private static readonly unsafe delegate*<IList<TechniqueInfo>, in SudokuGrid, in GridMap, short, void>[] FunctionList =
-		{
-			&CheckType1,
-			&CheckType2,
-			&CheckType3,
-			&CheckType4
-		};
-
-		/// <summary>
-		/// Indicates the patterns.
-		/// </summary>
-		private static readonly GridMap[] Patterns = new GridMap[162];
-
-
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(53, nameof(TechniqueCode.UsType1)) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(53, nameof(TechniqueCode.UsType1))
+		{
+			DisplayLevel = 2
+		};
 
 
 		/// <inheritdoc/>
@@ -47,13 +33,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					mask |= grid.GetCandidateMask(cell);
 				}
 
-				unsafe
-				{
-					foreach (var act in FunctionList)
-					{
-						act(accumulator, grid, pattern, mask);
-					}
-				}
+				CheckType1(accumulator, grid, pattern, mask);
+				CheckType2(accumulator, grid, pattern, mask);
+				CheckType3(accumulator, grid, pattern, mask);
+				CheckType4(accumulator, grid, pattern, mask);
 			}
 		}
 

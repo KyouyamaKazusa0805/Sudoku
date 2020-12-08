@@ -12,33 +12,20 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// </summary>
 	public sealed class GspTechniqueSearcher : SymmetryTechniqueSearcher
 	{
-		/// <summary>
-		/// The function list.
-		/// </summary>
-		/// <remarks>Note that Gurth's symmetrical placement doesn't have X-axis and Y-axis type.</remarks>
-		private static readonly unsafe delegate*<IList<TechniqueInfo>, in SudokuGrid, void>[] FunctionList =
-		{
-			&CheckCentral,
-			&CheckDiagonal,
-			&CheckAntiDiagonal
-		};
-
-
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(default, nameof(TechniqueCode.Gsp)) { IsReadOnly = true };
+		public static TechniqueProperties Properties { get; } = new(default, nameof(TechniqueCode.Gsp))
+		{
+			IsReadOnly = true
+		};
 
 
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, in SudokuGrid grid)
 		{
-			unsafe
-			{
-				// To verify all kinds of symmetry.
-				foreach (var act in FunctionList)
-				{
-					act(accumulator, grid);
-				}
-			}
+			// To verify all kinds of symmetry.
+			CheckCentral(accumulator, grid);
+			CheckDiagonal(accumulator, grid);
+			CheckAntiDiagonal(accumulator, grid);
 		}
 
 		/// <summary>

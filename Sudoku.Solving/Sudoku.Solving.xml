@@ -5832,12 +5832,6 @@
             Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.FunctionList">
-            <summary>
-            The function list.
-            </summary>
-            <remarks>Note that Gurth's symmetrical placement doesn't have X-axis and Y-axis type.</remarks>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
@@ -8712,16 +8706,6 @@
             Encapsulates a <b>uniqueness square</b> (US) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.FunctionList">
-            <summary>
-            The function list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.Patterns">
-            <summary>
-            Indicates the patterns.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
@@ -8767,6 +8751,11 @@
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.ChuteIterator">
             <summary>
             The chute iterator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.Patterns">
+            <summary>
+            Indicates the patterns.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.#cctor">
