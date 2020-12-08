@@ -32,7 +32,11 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static new TechniqueProperties Properties { get; } = new(80, nameof(TechniqueCode.DynamicRegionFc)) { DisplayLevel = 5 };
+		public static new TechniqueProperties Properties { get; } = new(80, nameof(TechniqueCode.DynamicRegionFc))
+		{
+			OnlyEnableInAnalysis = true,
+			DisplayLevel = 5
+		};
 
 
 		/// <inheritdoc/>
