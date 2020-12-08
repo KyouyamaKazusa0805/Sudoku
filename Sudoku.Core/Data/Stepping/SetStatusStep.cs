@@ -13,9 +13,10 @@
 		{
 			unsafe
 			{
-				// To prevent the infinity recursion.
-				ref short mask = ref grid._innerGrid._values[Cell];
-				mask = (short)((int)NewStatus << 9 | mask & SudokuGrid.MaxCandidatesMask);
+				fixed (short* pGrid = grid)
+				{
+					pGrid[Cell] = (short)((int)NewStatus << 9 | pGrid[Cell] & SudokuGrid.MaxCandidatesMask);
+				}
 			}
 		}
 
@@ -24,9 +25,10 @@
 		{
 			unsafe
 			{
-				// To prevent the infinity recursion.
-				ref short mask = ref grid._innerGrid._values[Cell];
-				mask = (short)((int)OldStatus << 9 | mask & SudokuGrid.MaxCandidatesMask);
+				fixed (short* pGrid = grid)
+				{
+					pGrid[Cell] = (short)((int)OldStatus << 9 | pGrid[Cell] & SudokuGrid.MaxCandidatesMask);
+				}
 			}
 		}
 	}

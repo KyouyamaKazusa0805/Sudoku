@@ -80,12 +80,12 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the inner array.
 		/// </summary>
-		internal fixed short _values[Length];
+		private fixed short _values[Length];
 
 		/// <summary>
 		/// Indicates the inner array suggests the initial grid.
 		/// </summary>
-		internal fixed short _initialValues[Length];
+		private fixed short _initialValues[Length];
 
 
 		/// <summary>
@@ -186,6 +186,20 @@ namespace Sudoku.Data
 				}
 
 				return count;
+			}
+		}
+
+		/// <summary>
+		/// Indicates the pinnable reference of the initial mask list.
+		/// </summary>
+		public readonly short* InitialMaskPinnableReference
+		{
+			get
+			{
+				fixed (short* p = _initialValues)
+				{
+					return p;
+				}
 			}
 		}
 
@@ -354,7 +368,7 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public readonly bool Equals(in SudokuGrid other)
 		{
-			fixed (short* pThis = _values, pOther = other._values)
+			fixed (short* pThis = this, pOther = other)
 			{
 				int i = 0;
 				for (short* l = pThis, r = pOther; i < Length; i++, l++, r++)
@@ -429,6 +443,23 @@ namespace Sudoku.Data
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly short GetCandidateMask(int cell) => (short)(_values[cell] & MaxCandidatesMask);
+
+		/// <summary>
+		/// Returns a reference to the element of the <see cref="SudokuGrid"/> at index zero.
+		/// </summary>
+		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly ref short GetPinnableReference()
+		{
+			fixed (SudokuGrid* @this = &this)
+			{
+				return ref @this->_values[0];
+			}
+
+			// Don't use this way to get the first value.
+			// Following code may cause an error (CS8354: Can't return 'this' by reference).
+			//return ref _values[0];
+		}
 
 		/// <summary>
 		/// Get all masks and print them.
@@ -605,7 +636,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// To update initial masks.
 		/// </summary>
-		private void UpdateInitialMasks()
+		internal void UpdateInitialMasks()
 		{
 			fixed (short* pValues = _values, pInitialValues = _initialValues)
 			{

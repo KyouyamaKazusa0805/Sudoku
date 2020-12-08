@@ -10,18 +10,18 @@
 		/// <inheritdoc/>
 		public void DoStepTo(UndoableGrid grid)
 		{
-			fixed (short* pValues = grid._innerGrid._values)
+			fixed (short* pGrid = grid)
 			{
-				SudokuGrid.InternalCopy(pValues, OldMasks);
+				SudokuGrid.InternalCopy(pGrid, OldMasks);
 			}
 		}
 
 		/// <inheritdoc/>
 		public void UndoStepTo(UndoableGrid grid)
 		{
-			fixed (short* pValues = grid._innerGrid._values)
+			fixed (short* pGrid = grid)
 			{
-				SudokuGrid.InternalCopy(pValues, NewMasks);
+				SudokuGrid.InternalCopy(pGrid, NewMasks);
 			}
 		}
 	}

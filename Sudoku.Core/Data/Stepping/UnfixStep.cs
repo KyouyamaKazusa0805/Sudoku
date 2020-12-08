@@ -11,11 +11,12 @@
 		{
 			unsafe
 			{
-				foreach (int cell in AllCells)
+				fixed (short* pGrid = grid)
 				{
-					// To prevent the event re-invoke.
-					ref short mask = ref grid._innerGrid._values[cell];
-					mask = (short)((int)CellStatus.Modifiable << 9 | mask & SudokuGrid.MaxCandidatesMask);
+					foreach (int cell in AllCells)
+					{
+						pGrid[cell] = (short)(SudokuGrid.ModifiableMask | pGrid[cell] & SudokuGrid.MaxCandidatesMask);
+					}
 				}
 			}
 		}
@@ -25,11 +26,12 @@
 		{
 			unsafe
 			{
-				foreach (int cell in AllCells)
+				fixed (short* pGrid = grid)
 				{
-					// To prevent the event re-invoke.
-					ref short mask = ref grid._innerGrid._values[cell];
-					mask = (short)((int)CellStatus.Given << 9 | mask & SudokuGrid.MaxCandidatesMask);
+					foreach (int cell in AllCells)
+					{
+						pGrid[cell] = (short)(SudokuGrid.GivenMask | pGrid[cell] & SudokuGrid.MaxCandidatesMask);
+					}
 				}
 			}
 		}

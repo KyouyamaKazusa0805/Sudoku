@@ -24,7 +24,7 @@ namespace Sudoku.Windows
 			{
 				_puzzle = value;
 				_currentPainter = new(_pointConverter, Settings, value);
-				_initialPuzzle = value._innerGrid;
+				_initialPuzzle = value.InnerGrid;
 
 				GC.Collect();
 			}

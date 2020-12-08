@@ -16,11 +16,13 @@ namespace Sudoku.Data.Stepping
 		{
 			unsafe
 			{
-				grid._innerGrid._values[Cell] = Mask;
-
-				foreach (int peerCell in InnerMap)
+				fixed (short* pGrid = grid)
 				{
-					grid._innerGrid._values[peerCell] &= (short)~(1 << Digit);
+					pGrid[Cell] = Mask;
+					foreach (int peerCell in InnerMap)
+					{
+						pGrid[peerCell] &= (short)~(1 << Digit);
+					}
 				}
 			}
 		}
@@ -28,37 +30,37 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc/>
 		public void DoStepTo(UndoableGrid grid)
 		{
-			switch (Digit)
+			unsafe
 			{
-				case -1 when grid.GetStatus(Cell) == CellStatus.Modifiable:
+				switch (Digit)
 				{
-					unsafe
+					case -1 when grid.GetStatus(Cell) == CellStatus.Modifiable:
 					{
-						fixed (short* pValues = grid._innerGrid._values)
-						fixed (short* pInitialValues = grid._innerGrid._initialValues)
+						fixed (short* pGrid = grid)
 						{
-							SudokuGrid.InternalCopy(pValues, pInitialValues);
+							SudokuGrid.InternalCopy(pGrid, grid.InitialMaskPinnableReference);
 						}
-					}
 
-					break;
-				}
-				case >= 0 and < 9:
-				{
-					unsafe
+						break;
+					}
+					case >= 0 and < 9:
 					{
-						grid._innerGrid._values[Cell] =
-							(short)(SudokuGrid.ModifiableMask | SudokuGrid.MaxCandidatesMask & ~(1 << Digit));
-						foreach (int cell in Peers[Cell])
+						fixed (short* pGrid = grid)
 						{
-							if (grid.GetStatus(cell) == CellStatus.Empty)
+							pGrid[Cell] = (short)(
+								SudokuGrid.ModifiableMask | SudokuGrid.MaxCandidatesMask & ~(1 << Digit));
+
+							foreach (int cell in Peers[Cell])
 							{
-								grid._innerGrid._values[cell] |= (short)(1 << Digit);
+								if (grid.GetStatus(cell) == CellStatus.Empty)
+								{
+									pGrid[cell] |= (short)(1 << Digit);
+								}
 							}
 						}
-					}
 
-					break;
+						break;
+					}
 				}
 			}
 		}

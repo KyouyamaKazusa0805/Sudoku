@@ -22,14 +22,15 @@ namespace Sudoku.Data.Stepping
 	public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable
 	{
 		/// <summary>
-		/// The inner sudoku grid.
-		/// </summary>
-		internal SudokuGrid _innerGrid;
-
-		/// <summary>
 		/// The undo and redo stack.
 		/// </summary>
 		private readonly Stack<IStep> _undoStack = new(), _redoStack = new();
+
+
+		/// <summary>
+		/// The inner sudoku grid.
+		/// </summary>
+		private SudokuGrid _innerGrid;
 
 
 		/// <summary>
@@ -61,6 +62,14 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc cref="SudokuGrid.GivensCount"/>
 		public int GivensCount => _innerGrid.GivensCount;
 
+		/// <inheritdoc cref="SudokuGrid.InitialMaskPinnableReference"/>
+		public short* InitialMaskPinnableReference => _innerGrid.InitialMaskPinnableReference;
+
+		/// <summary>
+		/// Indicates the inner grid.
+		/// </summary>
+		public ref SudokuGrid InnerGrid => ref _innerGrid;
+
 
 		/// <inheritdoc cref="SudokuGrid.this[int]"/>
 		public int this[int cell]
@@ -78,7 +87,10 @@ namespace Sudoku.Data.Stepping
 					}
 				}
 
-				_undoStack.Push(new AssignmentStep(value, cell, _innerGrid._values[cell], map));
+				fixed (short* pGrid = _innerGrid)
+				{
+					_undoStack.Push(new AssignmentStep(value, cell, pGrid[cell], map));
+				}
 
 				// Do step.
 				_innerGrid[cell] = value;
@@ -113,16 +125,15 @@ namespace Sudoku.Data.Stepping
 			}
 
 			_undoStack.Push(new FixStep(map));
-			foreach (int cell in map)
+			fixed (short* pGrid = _innerGrid)
 			{
-				ref short mask = ref _innerGrid._values[cell];
-				mask = (short)(GivenMask | mask & MaxCandidatesMask);
+				foreach (int cell in map)
+				{
+					pGrid[cell] = (short)(GivenMask | pGrid[cell] & MaxCandidatesMask);
+				}
 			}
 
-			fixed (short* pInitialValues = _innerGrid._initialValues, pValues = _innerGrid._values)
-			{
-				InternalCopy(pInitialValues, pValues);
-			}
+			_innerGrid.UpdateInitialMasks();
 		}
 
 		/// <inheritdoc cref="SudokuGrid.Unfix"/>
@@ -138,10 +149,12 @@ namespace Sudoku.Data.Stepping
 			}
 
 			_undoStack.Push(new UnfixStep(map));
-			foreach (int cell in map)
+			fixed (short* pGrid = _innerGrid)
 			{
-				ref short mask = ref _innerGrid._values[cell];
-				mask = (short)(ModifiableMask | mask & MaxCandidatesMask);
+				foreach (int cell in map)
+				{
+					pGrid[cell] = (short)(ModifiableMask | pGrid[cell] & MaxCandidatesMask);
+				}
 			}
 		}
 
@@ -149,9 +162,9 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Reset()
 		{
-			fixed (short* pInitialValues = _innerGrid._initialValues, pValues = _innerGrid._values)
+			fixed (short* pGrid = _innerGrid)
 			{
-				_undoStack.Push(new ResetStep(pInitialValues, pValues));
+				_undoStack.Push(new ResetStep(_innerGrid.InitialMaskPinnableReference, pGrid));
 			}
 			_innerGrid.Reset();
 		}
@@ -179,6 +192,19 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc cref="SudokuGrid.GetCandidateMask(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public short GetCandidateMask(int cell) => _innerGrid.GetCandidateMask(cell);
+
+		/// <summary>
+		/// Returns a reference to the element of the <see cref="UndoableGrid"/> at index zero.
+		/// </summary>
+		/// <returns>A reference to the element of the <see cref="UndoableGrid"/> at index zero.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public ref short GetPinnableReference()
+		{
+			fixed (short* pThis = _innerGrid)
+			{
+				return ref *pThis;
+			}
+		}
 
 		/// <inheritdoc cref="SudokuGrid.SetMask(int, short)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -235,6 +261,7 @@ namespace Sudoku.Data.Stepping
 		public bool Equals(UndoableGrid? other) => other is { _innerGrid: var grid } && Equals(grid);
 
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Equals(in SudokuGrid other) => _innerGrid == other;
 
 		/// <inheritdoc/>

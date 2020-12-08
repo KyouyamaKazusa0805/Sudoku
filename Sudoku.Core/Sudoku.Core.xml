@@ -808,7 +808,7 @@
             The table of clockwise rotation.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Extensions.SudokuGridTransformations.CounterClockwiseTable">
+        <member name="F:Sudoku.Data.Extensions.SudokuGridTransformations.CounterclockwiseTable">
             <summary>
             The table of counter-clockwise rotation.
             </summary>
@@ -2127,11 +2127,6 @@
             <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Undo"/>
             <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Redo"/>
         </member>
-        <member name="F:Sudoku.Data.Stepping.UndoableGrid._innerGrid">
-            <summary>
-            The inner sudoku grid.
-            </summary>
-        </member>
         <member name="F:Sudoku.Data.Stepping.UndoableGrid._undoStack">
             <summary>
             The undo and redo stack.
@@ -2140,6 +2135,11 @@
         <member name="F:Sudoku.Data.Stepping.UndoableGrid._redoStack">
             <summary>
             The undo and redo stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Stepping.UndoableGrid._innerGrid">
+            <summary>
+            The inner sudoku grid.
             </summary>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(System.Int16[])">
@@ -2170,6 +2170,14 @@
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.GivensCount">
             <inheritdoc cref="P:Sudoku.Data.SudokuGrid.GivensCount"/>
         </member>
+        <member name="P:Sudoku.Data.Stepping.UndoableGrid.InitialMaskPinnableReference">
+            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.InitialMaskPinnableReference"/>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.UndoableGrid.InnerGrid">
+            <summary>
+            Indicates the inner grid.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.Item(System.Int32)">
             <inheritdoc cref="P:Sudoku.Data.SudokuGrid.Value(System.Int32)"/>
         </member>
@@ -2199,6 +2207,12 @@
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetCandidateMask(System.Int32)">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetCandidateMask(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetPinnableReference">
+            <summary>
+            Returns a reference to the element of the <see cref="T:Sudoku.Data.Stepping.UndoableGrid"/> at index zero.
+            </summary>
+            <returns>A reference to the element of the <see cref="T:Sudoku.Data.Stepping.UndoableGrid"/> at index zero.</returns>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetMask(System.Int32,System.Int16)">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.SetMask(System.Int32,System.Int16)"/>
@@ -2394,6 +2408,11 @@
             Indicates the number of total candidates.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.SudokuGrid.InitialMaskPinnableReference">
+            <summary>
+            Indicates the pinnable reference of the initial mask list.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.SudokuGrid.GivensCount">
             <summary>
             Indicates the total number of given cells.
@@ -2493,6 +2512,12 @@
             the value will indicate the cell contains the digit 2, 4 and 9.
             </para>
             </returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.GetPinnableReference">
+            <summary>
+            Returns a reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.
+            </summary>
+            <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToMaskString">
             <summary>

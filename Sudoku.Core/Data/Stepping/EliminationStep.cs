@@ -12,7 +12,10 @@
 		{
 			unsafe
 			{
-				grid._innerGrid._values[Cell] &= (short)~(1 << Digit);
+				fixed (short* pGrid = grid)
+				{
+					pGrid[Cell] &= (short)~(1 << Digit);
+				}
 			}
 		}
 
@@ -21,7 +24,10 @@
 		{
 			unsafe
 			{
-				grid._innerGrid._values[Cell] |= (short)(1 << Digit);
+				fixed (short* pGrid = grid)
+				{
+					pGrid[Cell] |= (short)(1 << Digit);
+				}
 			}
 		}
 	}

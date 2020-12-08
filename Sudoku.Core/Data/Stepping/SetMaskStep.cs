@@ -13,7 +13,10 @@
 		{
 			unsafe
 			{
-				grid._innerGrid._values[Cell] = NewMask;
+				fixed (short* pGrid = grid)
+				{
+					pGrid[Cell] = NewMask;
+				}
 			}
 		}
 
@@ -22,7 +25,10 @@
 		{
 			unsafe
 			{
-				grid._innerGrid._values[Cell] = OldMask;
+				fixed (short* pGrid = grid)
+				{
+					pGrid[Cell] = OldMask;
+				}
 			}
 		}
 	}

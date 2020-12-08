@@ -141,7 +141,7 @@ namespace Sudoku.Windows
 					SelectedItem: ListBoxItem { Content: InfoTriplet { Item3: true } triplet }
 				})
 			{
-				ref var valueGrid = ref _puzzle._innerGrid;
+				ref var valueGrid = ref _puzzle.InnerGrid;
 				var info = triplet.Item2;
 				if (!Settings.MainManualSolver.CheckConclusionValidityAfterSearched
 					|| CheckConclusionsValidity(
