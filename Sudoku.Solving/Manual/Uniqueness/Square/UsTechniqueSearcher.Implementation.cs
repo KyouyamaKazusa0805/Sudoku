@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using static Sudoku.Constants.Processings;
@@ -16,7 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
-		private static partial void CheckType1(
+		partial void CheckType1(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask)
 		{
 			if (mask.PopCount() != 5)
@@ -24,7 +25,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				return;
 			}
 
-			foreach (int[] digits in mask.GetMaskSubsets(4))
+			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -72,23 +73,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-#pragma warning disable IDE0060
 		/// <summary>
 		/// Check type 2.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
-		private static partial void CheckType2(
-			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask)
+		partial void CheckType2(IList<TechniqueInfo> accumulator, in GridMap pattern, short mask)
 		{
 			if (mask.PopCount() != 5)
 			{
 				return;
 			}
 
-			foreach (int[] digits in mask.GetMaskSubsets(4))
+			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -131,7 +129,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 						extraDigit));
 			}
 		}
-#pragma warning restore IDE0060
 
 		/// <summary>
 		/// Check type 3.
@@ -140,10 +137,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
-		private static partial void CheckType3(
+		partial void CheckType3(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask)
 		{
-			foreach (int[] digits in mask.GetMaskSubsets(4))
+			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -231,10 +228,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
-		private static partial void CheckType4(
+		partial void CheckType4(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask)
 		{
-			foreach (int[] digits in mask.GetMaskSubsets(4))
+			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)

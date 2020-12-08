@@ -225,11 +225,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 			unsafe
 			{
 				return Peers[cell].All(&isValid, grid, cell);
-				static bool isValid(int c, in SudokuGrid grid, in int cell) =>
-					grid.GetStatus(c) is var status
-					&& (status != Empty && grid[c] != grid[cell] || status == Empty)
-					&& grid.GetCandidateMask(c) != 0;
 			}
+
+			static bool isValid(int c, in SudokuGrid grid, in int cell) =>
+				grid.GetStatus(c) is var status
+				&& (status != Empty && grid[c] != grid[cell] || status == Empty)
+				&& grid.GetCandidateMask(c) != 0;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
@@ -31,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 
 			// Iterate on each combination.
-			foreach (int[] digits in orMask.GetMaskSubsets(pattern.IsHeptagon ? 3 : 4))
+			foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
 				foreach (int digit in digits)
@@ -103,7 +104,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 
 			// Iterate on each combination.
-			foreach (int[] digits in orMask.GetMaskSubsets(pattern.IsHeptagon ? 3 : 4))
+			foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
 				foreach (int digit in digits)
@@ -166,7 +167,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				short currentMask = grid.BitwiseOrMasks(currentMap);
 				short otherMask = grid.BitwiseOrMasks(otherCellsMap);
 
-				foreach (int[] digits in orMask.GetMaskSubsets(pattern.IsHeptagon ? 3 : 4))
+				foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 				{
 					short tempMask = 0;
 					foreach (int digit in digits)
@@ -283,7 +284,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				// Iterate on each possible digit combination.
 				// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values
 				// are { 1, 2 }, { 2, 3 } and { 1, 3 }.
-				foreach (int[] digits in orMask.GetMaskSubsets(pattern.IsHeptagon ? 3 : 4))
+				foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 				{
 					short tempMask = 0;
 					foreach (int digit in digits)

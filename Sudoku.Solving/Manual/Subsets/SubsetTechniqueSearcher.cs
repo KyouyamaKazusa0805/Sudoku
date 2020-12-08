@@ -6,7 +6,6 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -16,7 +15,10 @@ namespace Sudoku.Solving.Manual.Subsets
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(30, nameof(TechniqueCode.NakedPair)) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(30, nameof(TechniqueCode.NakedPair))
+		{
+			DisplayLevel = 2
+		};
 
 
 		/// <inheritdoc/>
@@ -24,140 +26,165 @@ namespace Sudoku.Solving.Manual.Subsets
 		{
 			for (int size = 2; size <= 4; size++)
 			{
-				// Get naked subsets.
-				for (int region = 0; region < 27; region++)
+				GetNakedSubsets(accumulator, grid, size);
+				GetHiddenSubsets(accumulator, grid, size);
+			}
+		}
+
+		/// <summary>
+		/// Get all naked subsets.
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="size">The size to search.</param>
+		private static void GetHiddenSubsets(IList<TechniqueInfo> accumulator, in SudokuGrid grid, int size)
+		{
+			for (int region = 0; region < 27; region++)
+			{
+				var traversingMap = RegionMaps[region] - EmptyMap;
+				if (traversingMap.Count >= 8)
 				{
-					if ((RegionMaps[region] & EmptyMap) is var currentEmptyMap && currentEmptyMap.Count < 2)
-					{
-						continue;
-					}
-
-					// Iterate on each combination.
-					foreach (int[] cells in currentEmptyMap.ToArray().GetSubsets(size))
-					{
-						short mask = 0;
-						foreach (int cell in cells)
-						{
-							mask |= grid.GetCandidateMask(cell);
-						}
-						if (mask.PopCount() != size)
-						{
-							continue;
-						}
-
-						// Naked subset found. Now check eliminations.
-						short flagMask = 0;
-						var conclusions = new List<Conclusion>();
-						foreach (int digit in mask)
-						{
-							var map = (cells & CandMaps[digit]).PeerIntersection & CandMaps[digit];
-							flagMask |= (short)(map.InOneRegion ? 0 : (1 << digit));
-
-							foreach (int cell in map)
-							{
-								conclusions.Add(new(Elimination, cell, digit));
-							}
-						}
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
-
-						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int cell in cells)
-						{
-							foreach (int digit in grid.GetCandidateMask(cell))
-							{
-								candidateOffsets.Add(new(0, cell * 9 + digit));
-							}
-						}
-
-						accumulator.Add(
-							new NakedSubsetTechniqueInfo(
-								conclusions,
-								new View[]
-								{
-									new(
-										null,
-										candidateOffsets,
-										new DrawingInfo[] { new(0, region) },
-										null)
-								},
-								region,
-								cells,
-								mask.GetAllSets().ToArray(),
-								flagMask switch { _ when flagMask == mask => true, not 0 => false, _ => null }));
-					}
+					// No available digit (Or hidden single).
+					continue;
 				}
 
-				// Get hidden subsets.
-				for (int region = 0; region < 27; region++)
+				short mask = SudokuGrid.MaxCandidatesMask;
+				foreach (int cell in traversingMap)
 				{
-					var traversingMap = RegionMaps[region] - EmptyMap;
-					if (traversingMap.Count >= 8)
+					mask &= (short)~(1 << grid[cell]);
+				}
+				foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(size))
+				{
+					short tempMask = mask;
+					var map = GridMap.Empty;
+					foreach (int digit in digits)
 					{
-						// No available digit (Or hidden single).
+						tempMask &= (short)~(1 << digit);
+						map |= RegionMaps[region] & CandMaps[digit];
+					}
+					if (map.Count != size)
+					{
 						continue;
 					}
 
-					short mask = SudokuGrid.MaxCandidatesMask;
-					foreach (int cell in traversingMap)
+					// Gather eliminations.
+					var conclusions = new List<Conclusion>();
+					foreach (int digit in tempMask)
 					{
-						mask &= (short)~(1 << grid[cell]);
+						foreach (int cell in map & CandMaps[digit])
+						{
+							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+						}
 					}
-					foreach (int[] digits in mask.GetMaskSubsets(size))
+					if (conclusions.Count == 0)
 					{
-						short tempMask = mask;
-						var map = GridMap.Empty;
-						foreach (int digit in digits)
-						{
-							tempMask &= (short)~(1 << digit);
-							map |= RegionMaps[region] & CandMaps[digit];
-						}
-						if (map.Count != size)
-						{
-							continue;
-						}
-
-						// Gather eliminations.
-						var conclusions = new List<Conclusion>();
-						foreach (int digit in tempMask)
-						{
-							foreach (int cell in map & CandMaps[digit])
-							{
-								conclusions.Add(new(Elimination, cell, digit));
-							}
-						}
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
-
-						// Gather highlight candidates.
-						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int digit in digits)
-						{
-							foreach (int cell in map & CandMaps[digit])
-							{
-								candidateOffsets.Add(new(0, cell * 9 + digit));
-							}
-						}
-
-						accumulator.Add(
-							new HiddenSubsetTechniqueInfo(
-								conclusions,
-								new View[]
-								{
-									new(
-										null,
-										candidateOffsets,
-										new DrawingInfo[] { new(0, region) },
-										null)
-								},
-								region,
-								map.ToArray(),
-								digits));
+						continue;
 					}
+
+					// Gather highlight candidates.
+					var candidateOffsets = new List<DrawingInfo>();
+					foreach (int digit in digits)
+					{
+						foreach (int cell in map & CandMaps[digit])
+						{
+							candidateOffsets.Add(new(0, cell * 9 + digit));
+						}
+					}
+
+					accumulator.Add(
+						new HiddenSubsetTechniqueInfo(
+							conclusions,
+							new View[]
+							{
+								new(
+									null,
+									candidateOffsets,
+									new DrawingInfo[] { new(0, region) },
+									null)
+							},
+							region,
+							map.ToArray(),
+							digits));
+				}
+			}
+		}
+
+		/// <summary>
+		/// Get all hidden subsets.
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="size">The size to search.</param>
+		private static void GetNakedSubsets(IList<TechniqueInfo> accumulator, in SudokuGrid grid, int size)
+		{
+			for (int region = 0; region < 27; region++)
+			{
+				var currentEmptyMap = RegionMaps[region] & EmptyMap;
+				if (currentEmptyMap.Count < 2)
+				{
+					continue;
+				}
+
+				// Iterate on each combination.
+				foreach (int[] cells in currentEmptyMap.ToArray().GetSubsets(size))
+				{
+					short mask = 0;
+					foreach (int cell in cells)
+					{
+						mask |= grid.GetCandidateMask(cell);
+					}
+					if (mask.PopCount() != size)
+					{
+						continue;
+					}
+
+					// Naked subset found. Now check eliminations.
+					short flagMask = 0;
+					var conclusions = new List<Conclusion>();
+					foreach (int digit in mask)
+					{
+						var map = (cells & CandMaps[digit]).PeerIntersection & CandMaps[digit];
+						flagMask |= (short)(map.InOneRegion ? 0 : (1 << digit));
+
+						foreach (int cell in map)
+						{
+							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+						}
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					var candidateOffsets = new List<DrawingInfo>();
+					foreach (int cell in cells)
+					{
+						foreach (int digit in grid.GetCandidateMask(cell))
+						{
+							candidateOffsets.Add(new(0, cell * 9 + digit));
+						}
+					}
+
+					bool? isLocked;
+					if (flagMask == mask) isLocked = true;
+					else if (flagMask != 0) isLocked = false;
+					else isLocked = null;
+
+					accumulator.Add(
+						new NakedSubsetTechniqueInfo(
+							conclusions,
+							new View[]
+							{
+								new(
+									null,
+									candidateOffsets,
+									new DrawingInfo[] { new(0, region) },
+									null)
+							},
+							region,
+							cells,
+							mask.GetAllSets().ToArray(),
+							isLocked));
 				}
 			}
 		}

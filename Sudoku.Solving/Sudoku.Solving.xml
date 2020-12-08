@@ -5794,6 +5794,22 @@
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.TechniqueInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsets(System.Collections.Generic.IList{Sudoku.Solving.Manual.TechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32)">
+            <summary>
+            Get all naked subsets.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="size">The size to search.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsets(System.Collections.Generic.IList{Sudoku.Solving.Manual.TechniqueInfo},Sudoku.Data.SudokuGrid@,System.Int32)">
+            <summary>
+            Get all hidden subsets.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="size">The size to search.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo">
             <summary>
             Provides a usage of <b>Gurth's symmetrical placement</b> (GSP) technique.
@@ -8721,12 +8737,11 @@
             <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
             <param name="mask">The mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.TechniqueInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.TechniqueInfo},Sudoku.Data.GridMap@,System.Int16)">
             <summary>
             Check type 2.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
             <param name="mask">The mask.</param>
         </member>
