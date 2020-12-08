@@ -6,8 +6,8 @@
 
 ## 该解决方案的相关介绍
 
+* [介绍](intro)
 * [人工逻辑解题技巧支持](manual-techniques-support)
-
 * [条件编译符号](conditional-compilation-symbol)
 
 
