@@ -61,11 +61,11 @@ namespace Sudoku.Solving.Annotations
 		/// <para>
 		/// This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
 		/// </para>
+		/// <para>
+		/// Note that the property is different with <see cref="DisplayLabel"/>.
+		/// </para>
 		/// </remarks>
 		/// <seealso cref="StepFinder"/>
-		/// <remarks>
-		/// Note that the property is different with <see cref="DisplayLabel"/>.
-		/// </remarks>
 		/// <seealso cref="DisplayLabel"/>
 		public int DisplayLevel { get; set; }
 
