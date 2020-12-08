@@ -9,8 +9,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public abstract record IrregularWingTechniqueInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: TechniqueInfo(Conclusions, Views)
+	public abstract record IrregularWingTechniqueInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views) : TechniqueInfo(Conclusions, Views)
 	{
 	}
 }

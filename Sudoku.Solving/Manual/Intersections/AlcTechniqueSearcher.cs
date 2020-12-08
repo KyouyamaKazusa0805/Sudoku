@@ -7,7 +7,6 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -32,7 +31,10 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(45, nameof(TechniqueCode.AlmostLockedPair)) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(45, nameof(TechniqueCode.AlmostLockedPair))
+		{
+			DisplayLevel = 2
+		};
 
 
 		/// <inheritdoc/>
@@ -126,14 +128,14 @@ namespace Sudoku.Solving.Manual.Intersections
 
 					foreach (int digit in mask & grid.GetCandidateMask(aCell))
 					{
-						conclusions.Add(new(Elimination, aCell, digit));
+						conclusions.Add(new(ConclusionType.Elimination, aCell, digit));
 					}
 				}
 				foreach (int digit in SudokuGrid.MaxCandidatesMask & ~mask)
 				{
 					foreach (int ahsCell in ahsCells & CandMaps[digit])
 					{
-						conclusions.Add(new(Elimination, ahsCell, digit));
+						conclusions.Add(new(ConclusionType.Elimination, ahsCell, digit));
 					}
 				}
 				if (conclusions.Count == 0)

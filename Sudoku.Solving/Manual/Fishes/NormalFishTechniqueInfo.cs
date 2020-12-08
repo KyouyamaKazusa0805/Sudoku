@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </param>
 	public sealed record NormalFishTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
-		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, IReadOnlyList<int>? Fins, bool? IsSashimi)
+		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in GridMap Fins, bool? IsSashimi)
 		: FishTechniqueInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
 #if DOUBLE_LAYERED_ASSUMPTION
 		, IHasParentNodeInfo
@@ -63,19 +63,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			InternalName switch
-			{
-				"X-Wing" => TechniqueCode.XWing,
-				"Finned X-Wing" => TechniqueCode.FinnedXWing,
-				"Sashimi X-Wing" => TechniqueCode.SashimiXWing,
-				"Swordfish" => TechniqueCode.Swordfish,
-				"Finned Swordfish" => TechniqueCode.FinnedSwordfish,
-				"Sashimi Swordfish" => TechniqueCode.SashimiSwordfish,
-				"Jellyfish" => TechniqueCode.Jellyfish,
-				"Finned Jellyfish" => TechniqueCode.FinnedJellyfish,
-				"Sashimi Jellyfish" => TechniqueCode.SashimiJellyfish,
-				_ => throw new NotSupportedException("The current instance doesn't support this kind of fish.")
-			};
+			Enum.Parse<TechniqueCode>(InternalName.Replace(" ", string.Empty).Replace("-", string.Empty));
 
 		/// <summary>
 		/// Indicates the internal name.
@@ -160,7 +148,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 				return Fins switch
 				{
-					null or { Count: 0 } when BaseSets[0] is >= 9 and < 18 is var isRowDirection =>
+					{ Count: 0 } when BaseSets[0] is >= 9 and < 18 is var isRowDirection =>
 						sb
 						.Append(Resources.GetValue("_NormalFish9"))
 						.Append(digit)

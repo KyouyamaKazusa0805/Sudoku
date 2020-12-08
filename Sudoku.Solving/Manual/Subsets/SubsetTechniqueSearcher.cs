@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Subsets
 									null)
 							},
 							region,
-							cells,
+							new(cells),
 							mask.GetAllSets().ToArray(),
 							isLocked));
 				}

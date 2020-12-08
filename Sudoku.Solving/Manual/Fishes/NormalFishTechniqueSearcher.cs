@@ -227,7 +227,7 @@ namespace Sudoku.Solving.Manual.Fishes
 												digit,
 												baseSets2.ToArray(),
 												coverSets2.ToArray(),
-												finCellsMap.ToArray(),
+												finCellsMap,
 												isSashimi));
 									}
 								}
@@ -407,7 +407,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														digit,
 														baseSets3.ToArray(),
 														coverSets3.ToArray(),
-														finCellsMap.ToArray(),
+														finCellsMap,
 														isSashimi));
 											}
 										}
@@ -598,7 +598,7 @@ namespace Sudoku.Solving.Manual.Fishes
 																	digit,
 																	baseSets4.ToArray(),
 																	coverSets4.ToArray(),
-																	finCellsMap.ToArray(),
+																	finCellsMap,
 																	isSashimi));
 														}
 													}

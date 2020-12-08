@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="IsLocked">Indicates whether the subset is locked.</param>
 	public sealed record NakedSubsetTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, IReadOnlyList<int> Cells, IReadOnlyList<int> Digits, bool? IsLocked)
+		int Region, in GridMap Cells, IReadOnlyList<int> Digits, bool? IsLocked)
 		: SubsetTechniqueInfo(Conclusions, Views, Region, Cells, Digits)
 #if DOUBLE_LAYERED_ASSUMPTION
 		, IHasParentNodeInfo

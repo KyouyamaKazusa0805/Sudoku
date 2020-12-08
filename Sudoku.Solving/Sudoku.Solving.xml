@@ -4057,7 +4057,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap@,System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>normal fish</b> technique.
             </summary>
@@ -5683,7 +5683,7 @@
             <param name="Cells">All cells used.</param>
             <param name="Digits">All digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>hidden subset</b> technique.
             </summary>
@@ -5719,7 +5719,7 @@
             <param name="Digits">All digits used.</param>
             <param name="IsLocked">Indicates whether the subset is locked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>naked subset</b> technique.
             </summary>
@@ -5765,7 +5765,7 @@
             <param name="Cells">All cells used.</param>
             <param name="Digits">All digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>subset</b> technique.
             </summary>

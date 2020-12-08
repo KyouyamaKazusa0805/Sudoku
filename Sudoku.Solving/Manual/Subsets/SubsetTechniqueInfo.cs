@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="Digits">All digits used.</param>
 	public abstract record SubsetTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, IReadOnlyList<int> Cells, IReadOnlyList<int> Digits)
+		int Region, in GridMap Cells, IReadOnlyList<int> Digits)
 		: TechniqueInfo(Conclusions, Views)
 	{
 		/// <summary>

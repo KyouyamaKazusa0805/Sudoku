@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="Digits">All digits used.</param>
 	public sealed record HiddenSubsetTechniqueInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, IReadOnlyList<int> Cells, IReadOnlyList<int> Digits)
+		int Region, in GridMap Cells, IReadOnlyList<int> Digits)
 		: SubsetTechniqueInfo(Conclusions, Views, Region, Cells, Digits)
 #if DOUBLE_LAYERED_ASSUMPTION
 		, IHasParentNodeInfo

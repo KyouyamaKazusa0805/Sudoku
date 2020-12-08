@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Singles
 			.Append(Name)
 			.Append(Resources.GetValue("Colon"))
 			.Append(Resources.GetValue("Space"))
-			.Append(new GridMap { Cell })
+			.Append(new GridMap { Cell }.ToString())
 			.Append(Resources.GetValue("Equals"))
 			.Append(Digit + 1)
 			.ToString();
