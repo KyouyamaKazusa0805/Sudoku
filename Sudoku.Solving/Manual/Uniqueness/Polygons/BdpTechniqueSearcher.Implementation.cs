@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="cornerMask2">The corner mask 2.</param>
 		/// <param name="centerMask">The center mask.</param>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		private static partial void CheckType1(
+		partial void CheckType1(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, in GridMap map)
 		{
@@ -93,7 +93,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="cornerMask2">The corner mask 2.</param>
 		/// <param name="centerMask">The center mask.</param>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		private static partial void CheckType2(
+		partial void CheckType2(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, in GridMap map)
 		{
@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="cornerMask2">The corner mask 2.</param>
 		/// <param name="centerMask">The center mask.</param>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		private static partial void CheckType3(
+		partial void CheckType3(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern,
 			short cornerMask1, short cornerMask2, short centerMask, in GridMap map)
 		{
@@ -267,7 +267,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="cornerMask2">The corner mask 2.</param>
 		/// <param name="centerMask">The center mask.</param>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		private static partial void CheckType4(
+		partial void CheckType4(
 			IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern,
 			short cornerMask1, short cornerMask2, short centerMask, in GridMap map)
 		{

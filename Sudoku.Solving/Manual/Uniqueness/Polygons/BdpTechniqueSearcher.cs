@@ -12,17 +12,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	public sealed partial class BdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
-		/// The function list.
-		/// </summary>
-		private static readonly unsafe delegate*<IList<TechniqueInfo>, in SudokuGrid, in Pattern, short, short, short, in GridMap, void>[] FunctionsList =
-		{
-			&CheckType1,
-			&CheckType2,
-			&CheckType3,
-			&CheckType4
-		};
-
-		/// <summary>
 		/// All different patterns.
 		/// </summary>
 		/// <remarks>
@@ -55,20 +44,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				short cornerMask1 = grid.BitwiseOrMasks(pattern.Pair1Map);
 				short cornerMask2 = grid.BitwiseOrMasks(pattern.Pair2Map);
 				short centerMask = grid.BitwiseOrMasks(pattern.CenterCellsMap);
-				unsafe
-				{
-					var map = pattern.Map;
-					foreach (var act in FunctionsList)
-					{
-						act(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
-					}
-				}
+				CheckType1(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, pattern.Map);
+				CheckType2(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, pattern.Map);
+				CheckType3(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, pattern.Map);
+				CheckType4(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, pattern.Map);
 			}
 		}
 
-		private static partial void CheckType1(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
-		private static partial void CheckType2(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
-		private static partial void CheckType3(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
-		private static partial void CheckType4(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
+		partial void CheckType1(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
+		partial void CheckType2(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
+		partial void CheckType3(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
+		partial void CheckType4(IList<TechniqueInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
 	}
 }
