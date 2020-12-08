@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					if (d1 == d2)
 					{
 						int? o1 = mapping[d1];
-						if (o1 is null)
+						if (!o1.HasValue)
 						{
 							mapping[d1] = d1;
 							continue;
@@ -100,12 +100,12 @@ namespace Sudoku.Solving.Manual.Symmetry
 					else
 					{
 						int? o1 = mapping[d1], o2 = mapping[d2];
-						if ((o1, o2) is (null, not null) or (not null, null))
+						if (o1.HasValue ^ o2.HasValue)
 						{
 							return;
 						}
 
-						if ((o1, o2) is (null, null))
+						if (!o1.HasValue && !o2.HasValue)
 						{
 							mapping[d1] = d2;
 							mapping[d2] = d1;
@@ -211,7 +211,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					if (d1 == d2)
 					{
 						int? o1 = mapping[d1];
-						if (o1 is null)
+						if (!o1.HasValue)
 						{
 							mapping[d1] = d1;
 							continue;
@@ -225,12 +225,12 @@ namespace Sudoku.Solving.Manual.Symmetry
 					else
 					{
 						int? o1 = mapping[d1], o2 = mapping[d2];
-						if ((o1, o2) is (null, not null) or (not null, null))
+						if (o1.HasValue ^ o2.HasValue)
 						{
 							return;
 						}
 
-						if ((o1, o2) is (null, null))
+						if (!o1.HasValue && !o2.HasValue)
 						{
 							mapping[d1] = d2;
 							mapping[d2] = d1;
@@ -338,12 +338,12 @@ namespace Sudoku.Solving.Manual.Symmetry
 				else
 				{
 					int? o1 = mapping[d1], o2 = mapping[d2];
-					if ((o1, o2) is (null, not null) or (not null, null))
+					if (o1.HasValue ^ o2.HasValue)
 					{
 						return;
 					}
 
-					if ((o1, o2) is (null, null))
+					if (!o1.HasValue && !o2.HasValue)
 					{
 						mapping[d1] = d2;
 						mapping[d2] = d1;
