@@ -143,7 +143,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					.Append(Resources.GetValue("_NormalFish3"))
 					.Append(candidates.Count(&finChecking))
 					.Append(Resources.GetValue("_NormalFish4"))
-					.Append(new SudokuMap(from candidate in candidates select candidate.Value))
+					.Append(new SudokuMap(from candidate in candidates select candidate.Value).ToString())
 					.Append(Resources.GetValue("_NormalFish5"))
 					.Append(digit)
 					.Append(Resources.GetValue("_NormalFish6"))
@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					_ =>
 						sb
 						.Append(Resources.GetValue("_NormalFish18"))
-						.Append(new GridMap(Fins))
+						.Append(new GridMap(Fins).ToString())
 						.AppendLine(Resources.GetValue("_NormalFish19"))
 						.AppendLine()
 						.Append(Resources.GetValue("_NormalFish20"))

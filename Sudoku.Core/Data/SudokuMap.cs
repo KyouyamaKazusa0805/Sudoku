@@ -408,7 +408,7 @@ namespace Sudoku.Data
 					foreach (var digitGroup in from candidate in candidates group candidate by candidate % 9)
 					{
 						sb
-							.Append(new GridMap(from candidate in digitGroup select candidate / 9))
+							.Append(new GridMap(from candidate in digitGroup select candidate / 9).ToString())
 							.Append('(')
 							.Append(digitGroup.Key + 1)
 							.Append(')')

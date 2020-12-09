@@ -152,7 +152,7 @@ namespace Sudoku.Data.Collections
 							group conclusion by conclusion.Digit)
 						{
 							sb
-								.Append(new GridMap(from conclusion in digitGroup select conclusion.Cell))
+								.Append(new GridMap(from conclusion in digitGroup select conclusion.Cell).ToString())
 								.Append(op)
 								.Append(digitGroup.Key + 1)
 								.Append(separator);
