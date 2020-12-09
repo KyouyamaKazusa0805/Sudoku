@@ -2059,6 +2059,11 @@
             </summary>
             <param name="OldMasks">Indicates the table of new grid masks.</param>
             <param name="NewMasks">Indicates the table of old grid masks.</param>
+            <remarks>
+            Note that <see langword="record"/>s can't support pointers at present. Therefore,
+            I use <see cref="T:System.IntPtr"/> instead.
+            </remarks>
+            <seealso cref="T:System.IntPtr"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.ResetStep.#ctor(System.IntPtr,System.IntPtr)">
             <summary>
@@ -2066,6 +2071,11 @@
             </summary>
             <param name="OldMasks">Indicates the table of new grid masks.</param>
             <param name="NewMasks">Indicates the table of old grid masks.</param>
+            <remarks>
+            Note that <see langword="record"/>s can't support pointers at present. Therefore,
+            I use <see cref="T:System.IntPtr"/> instead.
+            </remarks>
+            <seealso cref="T:System.IntPtr"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.ResetStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
