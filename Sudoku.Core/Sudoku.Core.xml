@@ -569,10 +569,6 @@
             Put this instance into the specified grid.
             </summary>
             <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified conclusion type is neither <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>
-            nor <see cref="F:Sudoku.Data.ConclusionType.Elimination"/>.
-            </exception>
         </member>
         <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
@@ -596,11 +592,6 @@
         </member>
         <member name="M:Sudoku.Data.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the current conclusion type is invalid (neither <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>
-            nor <see cref="F:Sudoku.Data.ConclusionType.Elimination"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Data.Conclusion.ConclusionType"/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_Equality(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>

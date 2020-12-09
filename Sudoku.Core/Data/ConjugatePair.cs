@@ -21,16 +21,26 @@ namespace Sudoku.Data
 		/// <param name="from">The from cell.</param>
 		/// <param name="to">The to cell.</param>
 		/// <param name="digit">The digit.</param>
-		public ConjugatePair(int from, int to, int digit) =>
-			(Digit, From, To, Map) = (digit, from, to, new() { from, to });
+		public ConjugatePair(int from, int to, int digit)
+		{
+			Digit = digit;
+			From = from;
+			To = to;
+			Map = new() { from, to };
+		}
 
 		/// <summary>
 		/// Initializes an instance with the map and the digit.
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <param name="digit">The digit.</param>
-		public ConjugatePair(in GridMap map, int digit) =>
-			(Digit, From, To, Map) = (digit, map.First, map.SetAt(1), map);
+		public ConjugatePair(in GridMap map, int digit)
+		{
+			Digit = digit;
+			From = map.First;
+			To = map.SetAt(1);
+			Map = map;
+		}
 
 
 		/// <summary>
@@ -68,7 +78,7 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => obj is ConjugatePair comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(in ConjugatePair other) => (Map, Digit) == (other.Map, other.Digit);
+		public bool Equals(in ConjugatePair other) => Map == other.Map && Digit == other.Digit;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => Map.GetHashCode() ^ Digit;

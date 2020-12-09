@@ -55,25 +55,21 @@ namespace Sudoku.Data
 		/// Put this instance into the specified grid.
 		/// </summary>
 		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
-		/// <exception cref="InvalidOperationException">
-		/// Throws when the specified conclusion type is neither <see cref="ConclusionType.Assignment"/>
-		/// nor <see cref="ConclusionType.Elimination"/>.
-		/// </exception>
 		public void ApplyTo(ref SudokuGrid grid)
 		{
-			unsafe
+			switch (ConclusionType)
 			{
-				delegate*<ref SudokuGrid, int, int, void> m = ConclusionType switch
+				case ConclusionType.Assignment:
 				{
-					ConclusionType.Assignment => &a,
-					ConclusionType.Elimination => &e,
-					_ => throw new InvalidOperationException("Cannot apply to grid due to invalid conclusion type.")
-				};
-				m(ref grid, Cell, Digit);
+					grid[Cell] = Digit;
+					break;
+				}
+				case ConclusionType.Elimination:
+				{
+					grid[Cell, Digit] = false;
+					break;
+				}
 			}
-
-			static void a(ref SudokuGrid grid, int cell, int digit) => grid[cell] = digit;
-			static void e(ref SudokuGrid grid, int cell, int digit) => grid[cell, digit] = false;
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
@@ -106,17 +102,11 @@ namespace Sudoku.Data
 		public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);
 
 		/// <inheritdoc cref="object.ToString"/>
-		/// <exception cref="InvalidOperationException">
-		/// Throws when the current conclusion type is invalid (neither <see cref="ConclusionType.Assignment"/>
-		/// nor <see cref="ConclusionType.Elimination"/>.
-		/// </exception>
-		/// <seealso cref="ConclusionType"/>
 		public override string ToString() =>
 			$@"r{Cell / 9 + 1}c{Cell % 9 + 1} {ConclusionType switch
 			{
 				ConclusionType.Assignment => "=",
-				ConclusionType.Elimination => "<>",
-				_ => throw new InvalidOperationException("Cannot get the string due to invalid conclusion type.")
+				ConclusionType.Elimination => "<>"
 			}} {Digit + 1}";
 
 
