@@ -40,14 +40,14 @@ namespace Sudoku.Solving.Manual
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
 		private AnalysisResult SolveNaively(
-			in SudokuGrid grid, ref SudokuGrid cloneation, List<TechniqueInfo> steps, in SudokuGrid solution,
+			in SudokuGrid grid, ref SudokuGrid cloneation, List<StepInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 			// Check symmetry first.
 			var stepGrids = new List<SudokuGrid>();
 			if (!sukaku && CheckGurthSymmetricalPlacement)
 			{
-				var symmetrySearcher = new GspTechniqueSearcher();
+				var symmetrySearcher = new GspStepSearcher();
 				var tempStep = symmetrySearcher.GetOne(cloneation);
 				if (tempStep is not null)
 				{
@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual
 			var searchers = this.GetHodokuModeSearchers(solution);
 			if (UseCalculationPriority)
 			{
-				static int cmp(in TechniqueSearcher a, in TechniqueSearcher b)
+				static int cmp(in StepSearcher a, in StepSearcher b)
 				{
 					int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
 					int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
@@ -89,16 +89,16 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
-			var bag = new List<TechniqueInfo>();
+			var bag = new List<StepInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 
 		Restart:
-			TechniqueSearcher.InitializeMaps(cloneation);
+			StepSearcher.InitializeMaps(cloneation);
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];
-				if ((sukaku, searcher) is (true, UniquenessTechniqueSearcher))
+				if ((sukaku, searcher) is (true, UniquenessStepSearcher))
 				{
 					continue;
 				}
@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						TechniqueInfo? wrongStep = null;
+						StepInfo? wrongStep = null;
 						foreach (var step in bag)
 						{
 							if (!CheckConclusionsValidity(solution, step.Conclusions))
@@ -174,11 +174,11 @@ namespace Sudoku.Solving.Manual
 				}
 				else
 				{
-					TechniqueInfo? step;
+					StepInfo? step;
 					unsafe
 					{
 						step = OptimizedApplyingOrder
-						? bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector)
+						? bag.GetElementByMinSelector<StepInfo, decimal>(&InternalSelector)
 						: bag.FirstOrDefault();
 					}
 

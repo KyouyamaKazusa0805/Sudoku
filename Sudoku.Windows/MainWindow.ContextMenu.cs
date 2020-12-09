@@ -7,8 +7,8 @@ using Sudoku.DocComments;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Windows.Constants;
-using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.TechniqueInfo, bool>;
-using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.TechniqueInfo>;
+using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
+using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 
 namespace Sudoku.Windows
 {

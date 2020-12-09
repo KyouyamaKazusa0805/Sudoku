@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the list that used as a cache.
 		/// </summary>
 		[JsonIgnore]
-		private static List<TechniqueInfo> TempList => new();
+		private static List<StepInfo> TempList => new();
 
 
 		/// <inheritdoc/>

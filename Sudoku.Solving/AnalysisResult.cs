@@ -27,8 +27,8 @@ namespace Sudoku.Solving
 	/// <param name="StepGrids">The step grids while solving.</param>
 	public sealed record AnalysisResult(
 		bool HasSolved, string SolverName, string? Additional, in TimeSpan ElapsedTime, in SudokuGrid Puzzle,
-		in SudokuGrid? Solution, IReadOnlyList<TechniqueInfo>? SolvingSteps,
-		IReadOnlyList<SudokuGrid>? StepGrids) : IEnumerable<TechniqueInfo>, IFormattable
+		in SudokuGrid? Solution, IReadOnlyList<StepInfo>? SolvingSteps,
+		IReadOnlyList<SudokuGrid>? StepGrids) : IEnumerable<StepInfo>, IFormattable
 	{
 		/// <summary>
 		/// Initializes an instance with some information.
@@ -58,7 +58,7 @@ namespace Sudoku.Solving
 		/// <param name="stepGrids">All intermediate grids.</param>
 		public AnalysisResult(
 			string solverName, in SudokuGrid puzzle, in SudokuGrid? solution, bool hasSolved,
-			in TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids)
+			in TimeSpan elapsedTime, IReadOnlyList<StepInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids)
 			: this(solverName, puzzle, solution, hasSolved, elapsedTime, steps, stepGrids, null)
 		{
 		}
@@ -76,7 +76,7 @@ namespace Sudoku.Solving
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
 			string solverName, in SudokuGrid puzzle, in SudokuGrid? solution, bool hasSolved,
-			in TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids,
+			in TimeSpan elapsedTime, IReadOnlyList<StepInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids,
 			string? additional)
 			: this(hasSolved, solverName, additional, elapsedTime, puzzle, solution, steps, stepGrids)
 		{
@@ -174,7 +174,7 @@ namespace Sudoku.Solving
 					for (int i = 1, count = SolvingSteps.Count; i < count; i++)
 					{
 						if (SolvingSteps[i - 1] is { ShowDifficulty: true } info
-							&& SolvingSteps[i] is SingleTechniqueInfo)
+							&& SolvingSteps[i] is SingleStepInfo)
 						{
 							return info.Difficulty;
 						}
@@ -219,7 +219,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the bottle neck during the whole grid solving.
 		/// </summary>
-		public TechniqueInfo? Bottleneck
+		public StepInfo? Bottleneck
 		{
 			get
 			{
@@ -230,7 +230,7 @@ namespace Sudoku.Solving
 
 				for (int i = SolvingSteps.Count - 1; i >= 0; i--)
 				{
-					if (SolvingSteps[i] is not SingleTechniqueInfo and { ShowDifficulty: true } step)
+					if (SolvingSteps[i] is not SingleStepInfo and { ShowDifficulty: true } step)
 					{
 						return step;
 					}
@@ -267,7 +267,7 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) The all solving steps.
 		/// </param>
 		public void Deconstruct(
-			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps)
+			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<StepInfo>? solvingSteps)
 		{
 			hasSolved = HasSolved;
 			solvingStepsCount = SolvingStepsCount;
@@ -343,7 +343,7 @@ namespace Sudoku.Solving
 		public void Deconstruct(
 			out string solverName, out bool hasSolved, out decimal total, out decimal max, out decimal pearl,
 			out decimal diamond, out SudokuGrid puzzle, out SudokuGrid? solution, out TimeSpan elasped,
-			out int stepCount, out IReadOnlyList<TechniqueInfo>? steps, out IReadOnlyList<SudokuGrid>? stepGrids,
+			out int stepCount, out IReadOnlyList<StepInfo>? steps, out IReadOnlyList<SudokuGrid>? stepGrids,
 			out string? additional)
 		{
 			solverName = SolverName;
@@ -369,8 +369,8 @@ namespace Sudoku.Solving
 		/// <returns>
 		/// An enumerator that can be used to iterate through the collection.
 		/// </returns>
-		public IEnumerator<TechniqueInfo> GetEnumerator() =>
-			(SolvingSteps ?? Array.Empty<TechniqueInfo>()).GetEnumerator();
+		public IEnumerator<StepInfo> GetEnumerator() =>
+			(SolvingSteps ?? Array.Empty<StepInfo>()).GetEnumerator();
 
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);

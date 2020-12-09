@@ -17,7 +17,7 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
-using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.TechniqueInfo, bool>;
+using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
 
 namespace Sudoku.Windows
 {
@@ -85,7 +85,7 @@ namespace Sudoku.Windows
 						.Append('.')
 						.Append(nameof(InfoTriplet.Item2))
 						.Append('.')
-						.Append(nameof(TechniqueInfo.Name))
+						.Append(nameof(StepInfo.Name))
 						.ToString()));
 				_listBoxTechniques.ItemsSource = srcView;
 

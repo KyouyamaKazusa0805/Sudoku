@@ -26,9 +26,8 @@ namespace Sudoku.Solving.Manual
 		{
 			var cloneation = grid;
 
-			var steps = new List<TechniqueInfo>();
-			var searcher = new SingleTechniqueSearcher(false, false, false);
-			var bag = new List<TechniqueInfo>();
+			var searcher = new SingleStepSearcher(false, false, false);
+			List<StepInfo> steps = new(), bag = new();
 			while (!cloneation.HasSolved)
 			{
 				searcher.GetAll(bag, cloneation);
@@ -58,7 +57,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="step">The current step.</param>
 		/// <param name="cloneation">(<see langword="ref"/> parameter) The cloneation of the grid.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		private bool SaveStep(ICollection<TechniqueInfo> steps, TechniqueInfo step, ref SudokuGrid cloneation)
+		private bool SaveStep(ICollection<StepInfo> steps, StepInfo step, ref SudokuGrid cloneation)
 		{
 			foreach (var (t, c, d) in step.Conclusions)
 			{

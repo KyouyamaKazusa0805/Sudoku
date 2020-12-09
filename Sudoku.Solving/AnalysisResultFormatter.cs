@@ -162,7 +162,7 @@ namespace Sudoku.Solving
 			// Print solving step statistics (if worth).
 			if (Result.SolvingSteps is var solvingSteps and not null)
 			{
-				var solvingStepsGrouped = new List<IGrouping<string, TechniqueInfo>>(
+				var solvingStepsGrouped = new List<IGrouping<string, StepInfo>>(
 					from step in solvingSteps
 					orderby step.Difficulty
 					group step by step.Name);
@@ -249,7 +249,7 @@ namespace Sudoku.Solving
 				.Append(hasSolved ? string.Empty : GetValue("AnalysisResultNot"))
 				.AppendLine(GetValue("AnalysisResultBeenSolved"))
 				.Append(GetValue("AnalysisResultTimeElapsed"))
-				.AppendLine(elapsed.ToString("hh\\:mm\\.ss\\.fff"));
+				.AppendLine(elapsed.ToString("hh\\:mm\\:ss\\.fff"));
 			a(options.Flags(ShowSeparators));
 
 			// Print attributes (if worth).
@@ -300,7 +300,7 @@ namespace Sudoku.Solving
 			void a(bool showSeparator) =>
 				sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);
 
-			(int, TechniqueInfo)? getBottleneck()
+			(int, StepInfo)? getBottleneck()
 			{
 				var (_, solvingStepsCount, solvingSteps) = Result;
 				if (solvingSteps is null)
@@ -310,7 +310,7 @@ namespace Sudoku.Solving
 
 				for (int i = solvingStepsCount - 1; i >= 0; i--)
 				{
-					if (solvingSteps[i] is not SingleTechniqueInfo and { ShowDifficulty: true } step)
+					if (solvingSteps[i] is not SingleStepInfo and { ShowDifficulty: true } step)
 					{
 						return (i, step);
 					}

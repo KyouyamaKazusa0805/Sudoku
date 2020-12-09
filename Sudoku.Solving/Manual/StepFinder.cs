@@ -39,12 +39,12 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="countryCode">The country code.</param>
-		public IEnumerable<IGrouping<string, TechniqueInfo>> Search(
+		public IEnumerable<IGrouping<string, StepInfo>> Search(
 			in SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode)
 		{
 			if (grid.HasSolved || !grid.IsValid(out bool? sukaku))
 			{
-				return Array.Empty<IGrouping<string, TechniqueInfo>>();
+				return Array.Empty<IGrouping<string, StepInfo>>();
 			}
 
 			bool onlyShowSameLevelTechniquesInFindAllSteps = _solver.OnlyShowSameLevelTechniquesInFindAllSteps;
@@ -52,9 +52,9 @@ namespace Sudoku.Solving.Manual
 			// Note that the parameter is unnecessary to pass.
 			var searchers = _solver.GetHodokuModeSearchers();
 
-			TechniqueSearcher.InitializeMaps(grid);
+			StepSearcher.InitializeMaps(grid);
 			int i = -1;
-			var bag = new List<TechniqueInfo>();
+			var bag = new List<StepInfo>();
 			var progressResult = new TechniqueProgressResult(
 				searchers.Length, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			foreach (var searcher in searchers)
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual
 				// Sukaku mode can't use them.
 				// In fact, sukaku can use uniqueness tests, but this will make the project
 				// a large modification.
-				if ((sukaku, searcher) is (true, UniquenessTechniqueSearcher))
+				if ((sukaku, searcher) is (true, UniquenessStepSearcher))
 				{
 					continue;
 				}
@@ -106,7 +106,7 @@ namespace Sudoku.Solving.Manual
 				}
 
 				// Searching.
-				var tempBag = new List<TechniqueInfo>();
+				var tempBag = new List<StepInfo>();
 				searcher.GetAll(tempBag, grid);
 
 				// Gather the technique steps, and record the current level of the searcher.

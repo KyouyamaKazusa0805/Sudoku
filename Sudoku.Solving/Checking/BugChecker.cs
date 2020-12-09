@@ -50,13 +50,13 @@ namespace Sudoku.Solving.Checking
 		[SkipLocalsInit]
 		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
-			TechniqueSearcher.InitializeMaps(Puzzle);
+			StepSearcher.InitializeMaps(Puzzle);
 
 			// Get the number of multivalue cells.
 			// If the number of that is greater than the specified number,
 			// here will return the default list directly.
 			int multivalueCellsCount = 0;
-			foreach (int value in TechniqueSearcher.EmptyMap)
+			foreach (int value in StepSearcher.EmptyMap)
 			{
 				switch (Puzzle.GetCandidateMask(value).PopCount())
 				{
@@ -71,7 +71,7 @@ namespace Sudoku.Solving.Checking
 			// Store all bivalue cells and construct the relations.
 			var span = (stackalloc int[3]);
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
-			foreach (int cell in TechniqueSearcher.BivalueMap)
+			foreach (int cell in StepSearcher.BivalueMap)
 			{
 				foreach (int digit in Puzzle.GetCandidateMask(cell))
 				{
@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Checking
 			// The comments will help you to understand the processing.
 			short mask;
 			short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-			int[] multivalueCells = (TechniqueSearcher.EmptyMap - TechniqueSearcher.BivalueMap).ToArray();
+			int[] multivalueCells = (StepSearcher.EmptyMap - StepSearcher.BivalueMap).ToArray();
 			for (int i = 0, length = multivalueCells.Length; i < length; i++)
 			{
 				mask = Puzzle.GetCandidateMask(multivalueCells[i]); // eg. { 2, 4, 6 } (42)
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Checking
 							// Take the cell that doesn't contain in the map above.
 							// Here, the cell is the "true candidate cell".
 							ref var map = ref resultMap[digit];
-							map = TechniqueSearcher.CandMaps[digit] - stack[currentIndex, digit];
+							map = StepSearcher.CandMaps[digit] - stack[currentIndex, digit];
 							foreach (int cell in map)
 							{
 								result.Add(cell * 9 + digit);

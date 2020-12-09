@@ -34,7 +34,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// </param>
 		public Als(short digitMask, in GridMap map, in GridMap possibleEliminationSet)
 		{
-			(DigitsMask, Map, IsBivalueCell, PossibleEliminationSet) = (digitMask, map, map.Count == 1, possibleEliminationSet);
+			DigitsMask = digitMask;
+			Map = map;
+			IsBivalueCell = map.Count == 1;
+			PossibleEliminationSet = possibleEliminationSet;
 			Map.AllSetsAreInOneRegion(out int region);
 			Region = region;
 		}
@@ -192,8 +195,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <returns>All ALSes searched.</returns>
 		public static IEnumerable<Als> GetAllAlses(SudokuGrid grid)
 		{
-			var bivalueMap = TechniqueSearcher.BivalueMap;
-			var emptyMap = TechniqueSearcher.EmptyMap;
+			var bivalueMap = StepSearcher.BivalueMap;
+			var emptyMap = StepSearcher.EmptyMap;
 
 			// Get all bi-value-cell ALSes.
 			foreach (int cell in bivalueMap)

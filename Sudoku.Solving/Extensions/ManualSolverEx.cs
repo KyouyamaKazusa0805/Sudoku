@@ -39,14 +39,14 @@ namespace Sudoku.Solving.Extensions
 		/// <param name="solution">
 		/// (<see langword="in"/> paraemeter) The solution for a sudoku grid.
 		/// This parameter is necessary because some technique searchers will use this value,
-		/// such as <see cref="BruteForceTechniqueSearcher"/>.
+		/// such as <see cref="BfStepSearcher"/>.
 		/// </param>
 		/// <returns>The result.</returns>
-		public static TechniqueSearcher[][] GetSeModeSearchers(
+		public static StepSearcher[][] GetSeModeSearchers(
 			this ManualSolver @this, in SudokuGrid? solution = null)
 		{
 			var list = @this.GetHodokuModeSearchers(solution);
-			var dic = new Dictionary<int, IList<TechniqueSearcher>>();
+			var dic = new Dictionary<int, IList<StepSearcher>>();
 			foreach (var searcher in list)
 			{
 				int level = TechniqueProperties.GetPropertiesFrom(searcher)!.DisplayLevel;
@@ -56,11 +56,11 @@ namespace Sudoku.Solving.Extensions
 				}
 				else
 				{
-					dic.Add(level, new List<TechniqueSearcher> { searcher });
+					dic.Add(level, new List<StepSearcher> { searcher });
 				}
 			}
 
-			return dic.ToArray<int, IList<TechniqueSearcher>, TechniqueSearcher>();
+			return dic.ToArray<int, IList<StepSearcher>, StepSearcher>();
 		}
 
 		/// <summary>
@@ -70,50 +70,50 @@ namespace Sudoku.Solving.Extensions
 		/// <param name="solution">
 		/// (<see langword="in"/> paraemeter) The solution for a sudoku grid.
 		/// This parameter is necessary because some technique searchers will use this value,
-		/// such as <see cref="BruteForceTechniqueSearcher"/>. The default value is <see langword="null"/>.
+		/// such as <see cref="BfStepSearcher"/>. The default value is <see langword="null"/>.
 		/// </param>
 		/// <returns>The result.</returns>
-		public static TechniqueSearcher[] GetHodokuModeSearchers(
+		public static StepSearcher[] GetHodokuModeSearchers(
 			this ManualSolver @this, in SudokuGrid? solution = null)
 		{
-			var result = new List<TechniqueSearcher>
+			var result = new List<StepSearcher>
 			{
-				new SingleTechniqueSearcher(@this.EnableFullHouse, @this.EnableLastDigit, @this.ShowDirectLines),
-				new LcTechniqueSearcher(),
-				new SubsetTechniqueSearcher(),
-				new NormalFishTechniqueSearcher(),
-				new RegularWingTechniqueSearcher(@this.CheckRegularWingSize),
-				new IrregularWingTechniqueSearcher(),
-				new TwoStrongLinksTechniqueSearcher(),
-				new UrTechniqueSearcher(@this.CheckIncompleteUniquenessPatterns, @this.SearchExtendedUniqueRectangles),
-				new XrTechniqueSearcher(),
-				new UlTechniqueSearcher(),
-				new EmptyRectangleTechniqueSearcher(),
-				new AlcTechniqueSearcher(@this.CheckAlmostLockedQuadruple),
-				new SdcTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-				new BdpTechniqueSearcher(),
-				new QdpTechniqueSearcher(),
-				new UsTechniqueSearcher(),
-				new GuardianTechniqueSearcher(),
-				new BugTechniqueSearcher(@this.UseExtendedBugSearcher),
-				new EripTechniqueSearcher(),
-				new AicTechniqueSearcher(),
-				new AlsXzTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-				new AlsXyWingTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-				new AlsWWingTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-				new DeathBlossomTechniqueSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.MaxPetalsOfDeathBlossom),
-				new FcTechniqueSearcher(nishio: true, multiple: false, dynamic: true),
-				new FcTechniqueSearcher(nishio: false, multiple: true, dynamic: false),
-				new BugMultipleWithFcTechniqueSearcher(),
-				new HobiwanFishTechniqueSearcher(@this.HobiwanFishMaximumSize, @this.HobiwanFishMaximumExofinsCount, @this.HobiwanFishMaximumEndofinsCount, @this.HobiwanFishCheckTemplates),
-				new FcTechniqueSearcher(nishio: false, multiple: true, dynamic: true),
-				new JeTechniqueSearcher(@this.CheckAdvancedInExocet),
-				new SeTechniqueSearcher(@this.CheckAdvancedInExocet),
-				new SkLoopTechniqueSearcher(),
-				new AlsNetTechniqueSearcher(),
-				new PomTechniqueSearcher(),
-				new BowmanBingoTechniqueSearcher(@this.BowmanBingoMaximumLength),
-				new TemplateTechniqueSearcher(@this.OnlyRecordTemplateDelete),
+				new SingleStepSearcher(@this.EnableFullHouse, @this.EnableLastDigit, @this.ShowDirectLines),
+				new LcStepSearcher(),
+				new SubsetStepSearcher(),
+				new NormalFishStepSearcher(),
+				new RegularWingStepSearcher(@this.CheckRegularWingSize),
+				new IrregularWingStepSearcher(),
+				new TwoStrongLinksStepSearcher(),
+				new UrStepSearcher(@this.CheckIncompleteUniquenessPatterns, @this.SearchExtendedUniqueRectangles),
+				new XrStepSearcher(),
+				new UlStepSearcher(),
+				new ErStepSearcher(),
+				new AlcStepSearcher(@this.CheckAlmostLockedQuadruple),
+				new SdcStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
+				new BdpStepSearcher(),
+				new QdpStepSearcher(),
+				new UsStepSearcher(),
+				new GuardianStepSearcher(),
+				new BugStepSearcher(@this.UseExtendedBugSearcher),
+				new EripStepSearcher(),
+				new AicStepSearcher(),
+				new AlsXzStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
+				new AlsXyWingStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
+				new AlsWWingStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
+				new DeathBlossomStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.MaxPetalsOfDeathBlossom),
+				new FcStepSearcher(nishio: true, multiple: false, dynamic: true),
+				new FcStepSearcher(nishio: false, multiple: true, dynamic: false),
+				new BugMultipleWithFcStepSearcher(),
+				new HobiwanFishStepSearcher(@this.HobiwanFishMaximumSize, @this.HobiwanFishMaximumExofinsCount, @this.HobiwanFishMaximumEndofinsCount, @this.HobiwanFishCheckTemplates),
+				new FcStepSearcher(nishio: false, multiple: true, dynamic: true),
+				new JeStepSearcher(@this.CheckAdvancedInExocet),
+				new SeStepSearcher(@this.CheckAdvancedInExocet),
+				new SkLoopStepSearcher(),
+				new AlsNetStepSearcher(),
+				new PomStepSearcher(),
+				new BowmanBingoStepSearcher(@this.BowmanBingoMaximumLength),
+				new TemplateStepSearcher(@this.OnlyRecordTemplateDelete),
 #if DOUBLE_LAYERED_ASSUMPTION
 				new FcPlusTechniqueSearcher(level: 1),
 				new FcPlusTechniqueSearcher(level: 2),
@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Extensions
 
 			if (solution.HasValue)
 			{
-				result.Add(new BruteForceTechniqueSearcher(solution.Value));
+				result.Add(new BfStepSearcher(solution.Value));
 			}
 
 			return result.ToArray();

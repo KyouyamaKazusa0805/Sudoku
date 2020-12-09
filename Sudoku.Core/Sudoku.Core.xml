@@ -2060,7 +2060,7 @@
             <param name="OldMasks">Indicates the table of new grid masks.</param>
             <param name="NewMasks">Indicates the table of old grid masks.</param>
         </member>
-        <member name="M:Sudoku.Data.Stepping.ResetStep.#ctor(System.Int16*,System.Int16*)">
+        <member name="M:Sudoku.Data.Stepping.ResetStep.#ctor(System.IntPtr,System.IntPtr)">
             <summary>
             Encapsulates a reset step.
             </summary>

@@ -39,23 +39,23 @@ namespace Sudoku.Solving.Manual
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
 		private AnalysisResult SolveSeMode(
-			in SudokuGrid grid, ref SudokuGrid cloneation, IList<TechniqueInfo> steps, in SudokuGrid solution,
+			in SudokuGrid grid, ref SudokuGrid cloneation, IList<StepInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 			var searchers = this.GetSeModeSearchers(solution);
 			var stepGrids = new List<SudokuGrid>();
-			var bag = new List<TechniqueInfo>();
+			var bag = new List<StepInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 
 		Restart:
-			TechniqueSearcher.InitializeMaps(cloneation);
+			StepSearcher.InitializeMaps(cloneation);
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcherListGroup = searchers[i];
 				foreach (var searcher in searcherListGroup)
 				{
-					if ((sukaku, searcher) is (true, UniquenessTechniqueSearcher))
+					if ((sukaku, searcher) is (true, UniquenessStepSearcher))
 					{
 						// Sukaku mode can't use them.
 						// In fact, sukaku can use uniqueness tests, however the program should
@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						TechniqueInfo? wrongStep = null;
+						StepInfo? wrongStep = null;
 						foreach (var step in selection)
 						{
 							if (!CheckConclusionsValidity(solution, step.Conclusions))
@@ -138,10 +138,10 @@ namespace Sudoku.Solving.Manual
 				}
 				else
 				{
-					TechniqueInfo? step;
+					StepInfo? step;
 					unsafe
 					{
-						step = bag.GetElementByMinSelector<TechniqueInfo, decimal>(&InternalSelector);
+						step = bag.GetElementByMinSelector<StepInfo, decimal>(&InternalSelector);
 					}
 
 					if (step is null)

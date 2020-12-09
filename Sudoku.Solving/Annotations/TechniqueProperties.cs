@@ -6,9 +6,9 @@ using static System.Reflection.BindingFlags;
 namespace Sudoku.Solving.Annotations
 {
 	/// <summary>
-	/// Indicates the properties while searching aiming to <see cref="TechniqueSearcher"/>s.
+	/// Indicates the properties while searching aiming to <see cref="StepSearcher"/>s.
 	/// </summary>
-	/// <seealso cref="TechniqueSearcher"/>
+	/// <seealso cref="StepSearcher"/>
 	public sealed class TechniqueProperties
 	{
 		/// <summary>
@@ -182,11 +182,11 @@ namespace Sudoku.Solving.Annotations
 		/// <typeparam name="TTechniqueSearcher">The type of the searcher.</typeparam>
 		/// <returns>
 		/// The properties instance. If the searcher is <see langword="abstract"/> type
-		/// or not <see cref="TechniqueSearcher"/> at all,
+		/// or not <see cref="StepSearcher"/> at all,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
 		public static TechniqueProperties? GetPropertiesFrom<TTechniqueSearcher>()
-			where TTechniqueSearcher : TechniqueSearcher => GetPropertiesFrom(typeof(TTechniqueSearcher));
+			where TTechniqueSearcher : StepSearcher => GetPropertiesFrom(typeof(TTechniqueSearcher));
 
 		/// <summary>
 		/// Get the specified properties using reflection.
@@ -196,7 +196,7 @@ namespace Sudoku.Solving.Annotations
 		/// The properties instance. If the searcher is <see langword="abstract"/> type,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
-		public static TechniqueProperties? GetPropertiesFrom(TechniqueSearcher searcher) =>
+		public static TechniqueProperties? GetPropertiesFrom(StepSearcher searcher) =>
 			searcher.GetType() is not { IsAbstract: false } type
 			? null
 			: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
@@ -207,11 +207,11 @@ namespace Sudoku.Solving.Annotations
 		/// <param name="type">The type of the specified searcher.</param>
 		/// <returns>
 		/// The properties instance. If the searcher is <see langword="abstract"/> type
-		/// or not <see cref="TechniqueSearcher"/> at all,
+		/// or not <see cref="StepSearcher"/> at all,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
 		public static TechniqueProperties? GetPropertiesFrom(Type type) =>
-			!type.IsSubclassOf(typeof(TechniqueSearcher)) || type.IsAbstract
+			!type.IsSubclassOf(typeof(StepSearcher)) || type.IsAbstract
 			? null
 			: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
 	}

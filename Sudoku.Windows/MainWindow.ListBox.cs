@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Controls;
 using Sudoku.DocComments;
-using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.TechniqueInfo, bool>;
-using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.TechniqueInfo>;
+using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
+using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 
 namespace Sudoku.Windows
 {

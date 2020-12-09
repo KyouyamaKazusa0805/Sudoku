@@ -154,7 +154,7 @@ namespace Sudoku.Windows
 				ItemsControl.ItemsSourceProperty,
 				from @type in
 					from @type in Assembly.Load("Sudoku.Solving").GetTypes()
-					where !@type.IsAbstract && @type.IsSubclassOf(typeof(TechniqueSearcher))
+					where !@type.IsAbstract && @type.IsSubclassOf(typeof(StepSearcher))
 					select @type
 				let prior = TechniqueProperties.GetPropertiesFrom(@type)!.Priority
 				orderby prior

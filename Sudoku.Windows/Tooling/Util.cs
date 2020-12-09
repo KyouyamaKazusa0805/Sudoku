@@ -200,15 +200,16 @@ namespace Sudoku.Windows.Tooling
 		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		internal static T? LoadFromXml<T>(this T? @this, string filename)
 		{
-			T? result = default;
 			if (File.Exists(filename))
 			{
 				using var sr = new StreamReader(filename);
 				using var xr = new XmlTextReader(sr);
-				result = (T)new XmlSerializer(typeof(T)).Deserialize(xr);
+				return new XmlSerializer(typeof(T)).Deserialize(xr) is T r ? r : default;
 			}
-
-			return result;
+			else
+			{
+				return default;
+			}
 		}
 	}
 }

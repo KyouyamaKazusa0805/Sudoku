@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Annotations
 		TooSlow = 4,
 
 		/// <summary>
-		/// Indicates the searcher can get correct <see cref="TechniqueInfo"/>s, but the difference
+		/// Indicates the searcher can get correct <see cref="StepInfo"/>s, but the difference
 		/// of the difficulty among them are too big.
 		/// </summary>
 		Unstable = 8,

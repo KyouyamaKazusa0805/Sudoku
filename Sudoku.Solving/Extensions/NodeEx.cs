@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Extensions
 		/// </summary>
 		/// <param name="target">(<see langword="this in"/> parameter) The target node.</param>
 		/// <param name="simpleChain">
-		/// Indicates whether the current caller is in <see cref="AicTechniqueSearcher"/>. The
+		/// Indicates whether the current caller is in <see cref="AicStepSearcher"/>. The
 		/// default value is <see langword="false"/>.
 		/// </param>
 		/// <returns>The candidate offsets.</returns>

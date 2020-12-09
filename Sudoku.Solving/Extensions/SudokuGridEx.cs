@@ -16,11 +16,11 @@ namespace Sudoku.Solving.Extensions
 		/// <summary>
 		/// All available SSTS searchers.
 		/// </summary>
-		private static readonly TechniqueSearcher[] SstsSearchers =
+		private static readonly StepSearcher[] SstsSearchers =
 		{
-			new SingleTechniqueSearcher(false, false, false),
-			new LcTechniqueSearcher(),
-			new SubsetTechniqueSearcher()
+			new SingleStepSearcher(false, false, false),
+			new LcStepSearcher(),
+			new SubsetStepSearcher()
 		};
 
 
@@ -30,20 +30,20 @@ namespace Sudoku.Solving.Extensions
 		/// <param name="this">(<see langword="this ref"/> parameter) The grid.</param>
 		/// <remarks>
 		/// "To clean a grid" means we process this grid to fill with singles that is found
-		/// in <see cref="SingleTechniqueSearcher"/>, and remove eliminations that is found
-		/// in <see cref="LcTechniqueSearcher"/> and <see cref="SubsetTechniqueSearcher"/>.
+		/// in <see cref="SingleStepSearcher"/>, and remove eliminations that is found
+		/// in <see cref="LcStepSearcher"/> and <see cref="SubsetStepSearcher"/>.
 		/// The process won't stop until the puzzle cannot use these techniques.
 		/// </remarks>
-		/// <seealso cref="SingleTechniqueSearcher"/>
-		/// <seealso cref="LcTechniqueSearcher"/>
-		/// <seealso cref="SubsetTechniqueSearcher"/>
+		/// <seealso cref="SingleStepSearcher"/>
+		/// <seealso cref="LcStepSearcher"/>
+		/// <seealso cref="SubsetStepSearcher"/>
 		public static void Clean(this ref SudokuGrid @this)
 		{
-			var steps = new List<TechniqueInfo>();
+			var steps = new List<StepInfo>();
 
 		Start:
 			steps.Clear();
-			TechniqueSearcher.InitializeMaps(@this);
+			StepSearcher.InitializeMaps(@this);
 			for (int i = 0, length = SstsSearchers.Length; i < length; i++)
 			{
 				var searcher = SstsSearchers[i];

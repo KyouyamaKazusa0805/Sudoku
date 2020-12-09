@@ -9,28 +9,28 @@ namespace Sudoku.Solving.Annotations
 	/// <para>
 	/// Indicates the technique searcher can or can't be used in some scenarios
 	/// where they aren't in traversing mode to call
-	/// <see cref="TechniqueSearcher.GetAll(IList{TechniqueInfo}, in SudokuGrid)"/>
-	/// in <see cref="TechniqueSearcher"/>s one by one.
+	/// <see cref="StepSearcher.GetAll(IList{StepInfo}, in SudokuGrid)"/>
+	/// in <see cref="StepSearcher"/>s one by one.
 	/// </para>
 	/// <para>
 	/// If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-	/// properties such as <see cref="TechniqueSearcher.CandMaps"/> in its method
-	/// <see cref="TechniqueSearcher.GetAll(IList{TechniqueInfo}, in SudokuGrid)"/>.
+	/// properties such as <see cref="StepSearcher.CandMaps"/> in its method
+	/// <see cref="StepSearcher.GetAll(IList{StepInfo}, in SudokuGrid)"/>.
 	/// </para>
 	/// </summary>
 	/// <remarks>
 	/// <para>
 	/// All disallowed properties are:
 	/// <list type="bullet">
-	/// <item><see cref="TechniqueSearcher.DigitMaps"/></item>
-	/// <item><see cref="TechniqueSearcher.ValueMaps"/></item>
-	/// <item><see cref="TechniqueSearcher.CandMaps"/></item>
-	/// <item><see cref="TechniqueSearcher.BivalueMap"/></item>
-	/// <item><see cref="TechniqueSearcher.EmptyMap"/></item>
+	/// <item><see cref="StepSearcher.DigitMaps"/></item>
+	/// <item><see cref="StepSearcher.ValueMaps"/></item>
+	/// <item><see cref="StepSearcher.CandMaps"/></item>
+	/// <item><see cref="StepSearcher.BivalueMap"/></item>
+	/// <item><see cref="StepSearcher.EmptyMap"/></item>
 	/// </list>
 	/// The disallowed method is:
 	/// <list type="bullet">
-	/// <item><see cref="TechniqueSearcher.InitializeMaps(in SudokuGrid)"/></item>
+	/// <item><see cref="StepSearcher.InitializeMaps(in SudokuGrid)"/></item>
 	/// </list>
 	/// </para>
 	/// <para>
@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Annotations
 	/// is created and used for solving the problem.
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="TechniqueSearcher"/>
+	/// <seealso cref="StepSearcher"/>
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class DirectSearcherAttribute : Attribute
 	{

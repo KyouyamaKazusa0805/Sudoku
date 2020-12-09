@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordStep(
-			IList<TechniqueInfo> steps, TechniqueInfo step, in SudokuGrid grid,
+			IList<StepInfo> steps, StepInfo step, in SudokuGrid grid,
 			ref SudokuGrid cloneation, Stopwatch stopwatch, IList<SudokuGrid> stepGrids,
 			[NotNullWhen(true)] out AnalysisResult? result)
 		{
@@ -114,7 +114,7 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <param name="info">The information.</param>
 		/// <returns>The decimal selection.</returns>
-		private static decimal InternalSelector(TechniqueInfo info) => info.Difficulty;
+		private static decimal InternalSelector(StepInfo info) => info.Difficulty;
 
 		/// <summary>
 		/// Internal checking.
@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="info">The technique information.</param>
 		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
 		/// <returns>The result.</returns>
-		private static bool InternalChecking(TechniqueInfo info, in SudokuGrid solution) =>
+		private static bool InternalChecking(StepInfo info, in SudokuGrid solution) =>
 			CheckConclusionsValidity(solution, info.Conclusions);
 	}
 }

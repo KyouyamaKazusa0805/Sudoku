@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Generating
 				}
 			}
 
-			static bool p(TechniqueInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
+			static bool p(StepInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
 				techniqueCodeFilter.Contains(step.TechniqueCode);
 		}
 

@@ -903,7 +903,7 @@ namespace Sudoku.Windows
 			static bool internalChecking(int i, in MainWindow @this) =>
 				@this._puzzle.GetStatus(i) != CellStatus.Given;
 
-			if (new GspTechniqueSearcher().GetOne((SudokuGrid)_puzzle) is not GspTechniqueInfo info)
+			if (new GspStepSearcher().GetOne((SudokuGrid)_puzzle) is not GspStepInfo info)
 			{
 				Messagings.DoesNotContainGsp();
 				e.Handled = true;

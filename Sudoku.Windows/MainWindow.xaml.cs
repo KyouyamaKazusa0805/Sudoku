@@ -26,7 +26,7 @@ using CoreResources = Sudoku.Windows.Resources;
 using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
-using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.TechniqueInfo>;
+using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 using Sudoku.Data.Extensions;
 using System.Extensions;
 #if SUDOKU_RECOGNITION
