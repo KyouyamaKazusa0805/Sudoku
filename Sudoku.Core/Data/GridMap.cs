@@ -385,17 +385,8 @@ namespace Sudoku.Data
 			((int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset).GetAllSets();
 
 		/// <summary>
-		/// <para>
-		/// Indicates all cell offsets whose corresponding value
-		/// are set <see langword="true"/>.
-		/// </para>
-		/// <para>
-		/// If you want to make an array of them, please use method
-		/// <see cref="ToArray"/> instead of code
-		/// '<c>Offsets.ToArray()</c>'.
-		/// </para>
+		/// Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
 		/// </summary>
-		/// <seealso cref="ToArray"/>
 		private readonly IEnumerable<int> Offsets
 		{
 			get

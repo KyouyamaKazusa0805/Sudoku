@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data.Collections
@@ -86,7 +87,7 @@ namespace Sudoku.Data.Collections
 						var (start, _, type) = links[i];
 						sb
 							.Append(new SudokuMap { start })
-							.Append(NameAttribute.GetName(type));
+							.Append(type.GetNotation());
 					}
 					sb.Append(new SudokuMap { links[^1].EndCandidate });
 

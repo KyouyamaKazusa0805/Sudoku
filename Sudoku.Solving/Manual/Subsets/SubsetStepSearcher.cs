@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.Subsets
 									null)
 							},
 							region,
-							map.ToArray(),
+							map,
 							digits));
 				}
 			}

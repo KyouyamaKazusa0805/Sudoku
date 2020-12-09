@@ -3,6 +3,7 @@ using System.Extensions;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -47,7 +48,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					.Append(separator);
 			}
 
-			string customName = NameAttribute.GetName(SymmetryType)!.ToLower();
+			string customName = SymmetryType.GetName().ToLower();
 			string mapping = sb.RemoveFromEnd(separator.Length).ToString();
 			return $"{Name}: Symmetry type: {customName}, mapping relations: {mapping} => {conclusions}";
 		}

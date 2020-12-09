@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace Sudoku
 {
@@ -20,30 +19,5 @@ namespace Sudoku
 		/// Indicates the name.
 		/// </summary>
 		public string Name { get; }
-
-
-		/// <summary>
-		/// Get the name of the specified enum field which has marked this attribute.
-		/// </summary>
-		/// <typeparam name="TEnum">The type of the enum field.</typeparam>
-		/// <param name="enumField">The enum field.</param>
-		/// <returns>
-		/// The name. Return <see langword="null"/> when the specified field doesn't mark this attribute.
-		/// </returns>
-		public static string? GetName<TEnum>(TEnum enumField) where TEnum : Enum
-		{
-			var fieldInfo = typeof(TEnum).GetField(enumField.ToString());
-			if (fieldInfo is null)
-			{
-				return null;
-			}
-
-			if (fieldInfo.GetCustomAttribute<NameAttribute>() is not { Name: string result })
-			{
-				return null;
-			}
-
-			return result;
-		}
 	}
 }

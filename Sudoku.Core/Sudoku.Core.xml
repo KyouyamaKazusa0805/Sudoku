@@ -731,6 +731,19 @@
             <param name="separators">(<see langword="params"/> parameter) All separators.</param>
             <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Data.Extensions.LinkTypeEx">
+            <summary>
+            Provides extension methods for <see cref="T:Sudoku.Data.LinkType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.LinkType"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.LinkTypeEx.GetNotation(Sudoku.Data.LinkType)">
+            <summary>
+            Get the string notation of this current link type.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The link type.</param>
+            <returns>The notation.</returns>
+        </member>
         <member name="T:Sudoku.Data.Extensions.RegionLabelEx">
             <summary>
             Provides extension methods for <see cref="T:Sudoku.Data.RegionLabel"/>.
@@ -886,6 +899,19 @@
             Throws when two specified region argument is not in valid range (0..27)
             or two regions are not in same region type.
             </exception>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.SymmetryTypeEx">
+            <summary>
+            Provides extension methods for <see cref="T:Sudoku.Data.SymmetryType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.SymmetryType"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.SymmetryTypeEx.GetName(Sudoku.Data.SymmetryType)">
+            <summary>
+            Get the name of the current symmetry type.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The type.</param>
+            <returns>The name.</returns>
         </member>
         <member name="T:Sudoku.Data.GridCreatingOption">
             <summary>
@@ -1240,17 +1266,8 @@
         </member>
         <member name="P:Sudoku.Data.GridMap.Offsets">
             <summary>
-            <para>
-            Indicates all cell offsets whose corresponding value
-            are set <see langword="true"/>.
-            </para>
-            <para>
-            If you want to make an array of them, please use method
-            <see cref="M:Sudoku.Data.GridMap.ToArray"/> instead of code
-            '<c>Offsets.ToArray()</c>'.
-            </para>
+            Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
             </summary>
-            <seealso cref="M:Sudoku.Data.GridMap.ToArray"/>
         </member>
         <member name="P:Sudoku.Data.GridMap.Index(System.Int32)">
             <summary>
@@ -5217,16 +5234,6 @@
             <summary>
             Indicates the name.
             </summary>
-        </member>
-        <member name="M:Sudoku.NameAttribute.GetName``1(``0)">
-            <summary>
-            Get the name of the specified enum field which has marked this attribute.
-            </summary>
-            <typeparam name="TEnum">The type of the enum field.</typeparam>
-            <param name="enumField">The enum field.</param>
-            <returns>
-            The name. Return <see langword="null"/> when the specified field doesn't mark this attribute.
-            </returns>
         </member>
         <member name="T:Sudoku.Runtime.MultipleSolutionsException">
             <summary>

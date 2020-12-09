@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -75,11 +76,8 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override string ToString()
-		{
-			string? linkStr = NameAttribute.GetName(LinkType);
-			return $"{new SudokuMap { StartCandidate }}{linkStr}{new SudokuMap { EndCandidate }}";
-		}
+		public override string ToString() =>
+			$"{new SudokuMap { StartCandidate }}{LinkType.GetNotation()}{new SudokuMap { EndCandidate }}";
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);
