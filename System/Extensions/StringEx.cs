@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using static System.StringSplitOptions;
 
 namespace System.Extensions
 {
@@ -25,9 +24,7 @@ namespace System.Extensions
 		/// expression pattern.
 		/// </exception>
 		public static bool SatisfyPattern(this string @this, string pattern) =>
-			pattern.IsRegexPattern()
-			? @this.Match(pattern) == @this
-			: throw new InvalidRegexStringException();
+			pattern.IsRegexPattern() ? @this.Match(pattern) == @this : throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Check whether the specified string instance can match the value
@@ -46,9 +43,7 @@ namespace System.Extensions
 		/// expression pattern.
 		/// </exception>
 		public static bool IsMatch(this string @this, string pattern) =>
-			pattern.IsRegexPattern()
-			? Regex.IsMatch(@this, pattern)
-			: throw new InvalidRegexStringException();
+			pattern.IsRegexPattern() ? Regex.IsMatch(@this, pattern) : throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Searches the specified input string for the first occurrence of
@@ -153,12 +148,9 @@ namespace System.Extensions
 
 			// Do not use 'var' ('var' is 'object?').
 			var result = new List<string>();
-			foreach (Match? match in Regex.Matches(@this, pattern, regexOption))
+			foreach (Match match in Regex.Matches(@this, pattern, regexOption))
 			{
-				if (match is not null)
-				{
-					result.Add(match.Value);
-				}
+				result.Add(match.Value);
 			}
 
 			return result.ToArray();
@@ -230,6 +222,7 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
 		/// <returns>The result.</returns>
-		public static string[] SplitByNewLine(this string @this) => @this.Split(new[] { '\r', '\n' }, RemoveEmptyEntries);
+		public static string[] SplitByNewLine(this string @this) =>
+			@this.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 	}
 }
