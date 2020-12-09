@@ -530,15 +530,20 @@ namespace Sudoku.Data
 #if DEBUG
 			static bool debuggerUndefined(in SudokuGrid grid)
 			{
-				for (int cell = 1; cell < Length; cell++)
+				fixed (short* pGrid = grid)
 				{
-					if (grid._values[cell] != 0)
+					int i = 1;
+					short* p = pGrid;
+					while (i < Length)
 					{
-						return false;
+						if (p++[i++] != 0)
+						{
+							return false;
+						}
 					}
-				}
 
-				return true;
+					return true;
+				}
 			}
 #endif
 		}
