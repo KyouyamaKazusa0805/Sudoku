@@ -5210,22 +5210,6 @@
         <member name="M:Sudoku.Models.TechniqueProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.NameAttribute">
-            <summary>
-            Mark on a field of an enumeration type to set a custom name to output.
-            </summary>
-        </member>
-        <member name="M:Sudoku.NameAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an instance with the specified name.
-            </summary>
-            <param name="name">The name.</param>
-        </member>
-        <member name="P:Sudoku.NameAttribute.Name">
-            <summary>
-            Indicates the name.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.MultipleSolutionsException">
             <summary>
             Represents an error that the puzzle has multiple solutions while solving.
