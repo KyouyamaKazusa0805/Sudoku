@@ -164,6 +164,11 @@ namespace Sudoku.Data.Collections
 							sb.Append(separator);
 						}
 					}
+
+					if (!hasOnlyOneType)
+					{
+						sb.RemoveFromEnd(separator.Length);
+					}
 				}
 				else
 				{

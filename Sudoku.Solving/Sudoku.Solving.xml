@@ -6050,7 +6050,10 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
             <param name="SymmetryType">The symmetry type used.</param>
-            <param name="MappingTable">The mapping table.</param>
+            <param name="MappingTable">
+            The mapping table. The value is always not <see langword="null"/> unless the current instance
+            contains multiple different symmetry types.
+            </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.SymmetryType,System.Nullable{System.Int32}[])">
             <summary>
@@ -6059,7 +6062,10 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
             <param name="SymmetryType">The symmetry type used.</param>
-            <param name="MappingTable">The mapping table.</param>
+            <param name="MappingTable">
+            The mapping table. The value is always not <see langword="null"/> unless the current instance
+            contains multiple different symmetry types.
+            </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspStepInfo.ShowDifficulty">
             <inheritdoc/>
@@ -6076,6 +6082,14 @@
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepInfo.op_BitwiseOr(Sudoku.Solving.Manual.Symmetry.GspStepInfo,Sudoku.Solving.Manual.Symmetry.GspStepInfo)">
+            <summary>
+            Merge two information, and reserve all conclusions from them two.
+            </summary>
+            <param name="left">The left information to merge.</param>
+            <param name="right">The right information to merge.</param>
+            <returns>The merge result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.GspStepSearcher">
             <summary>
             Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
@@ -6087,26 +6101,29 @@
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.CheckDiagonal(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.CheckDiagonal(System.Collections.Generic.IList{Sudoku.Data.Conclusion},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Symmetry.GspStepInfo@)">
             <summary>
             Check diagonal symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="info">(<see langword="out"/> parameter) The step information result.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.CheckAntiDiagonal(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.CheckAntiDiagonal(System.Collections.Generic.IList{Sudoku.Data.Conclusion},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Symmetry.GspStepInfo@)">
             <summary>
             Check anti-diagonal symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="info">(<see langword="out"/> parameter) The step information result.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.CheckCentral(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.CheckCentral(System.Collections.Generic.IList{Sudoku.Data.Conclusion},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Symmetry.GspStepInfo@)">
             <summary>
             Check central symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="info">(<see langword="out"/> parameter) The step information result.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.SymmetryStepInfo">
             <summary>

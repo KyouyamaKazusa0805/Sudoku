@@ -23,9 +23,17 @@ namespace Sudoku.Solving.Manual.Symmetry
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			// To verify all kinds of symmetry.
-			CheckCentral(accumulator, grid);
-			CheckDiagonal(accumulator, grid);
-			CheckAntiDiagonal(accumulator, grid);
+			var conclusions = new List<Conclusion>();
+			CheckDiagonal(conclusions, grid, out var diagonalInfo);
+			CheckAntiDiagonal(conclusions, grid, out var antidiagonalInfo);
+			CheckCentral(conclusions, grid, out var centralInfo);
+
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			accumulator.Add((diagonalInfo | antidiagonalInfo | centralInfo)!);
 		}
 
 		/// <summary>
@@ -33,8 +41,11 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		private static void CheckDiagonal(IList<StepInfo> result, in SudokuGrid grid)
+		/// <param name="info">(<see langword="out"/> parameter) The step information result.</param>
+		private static void CheckDiagonal(IList<Conclusion> result, in SudokuGrid grid, out GspStepInfo? info)
 		{
+			info = null;
+
 			bool diagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
 			{
@@ -145,12 +156,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 				return;
 			}
 
-			result.Add(
-				new GspStepInfo(
-					conclusions,
-					new View[] { new(candidateOffsets) },
-					SymmetryType.Diagonal,
-					mapping));
+			result.AddRange(conclusions);
+			info = new(conclusions, new View[] { new(candidateOffsets) }, SymmetryType.Diagonal, mapping);
 		}
 
 		/// <summary>
@@ -158,8 +165,11 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		private static void CheckAntiDiagonal(IList<StepInfo> result, in SudokuGrid grid)
+		/// <param name="info">(<see langword="out"/> parameter) The step information result.</param>
+		private static void CheckAntiDiagonal(IList<Conclusion> result, in SudokuGrid grid, out GspStepInfo? info)
 		{
+			info = null;
+
 			bool antiDiagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
 			{
@@ -270,12 +280,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 				return;
 			}
 
-			result.Add(
-				new GspStepInfo(
-					conclusions,
-					new View[] { new(candidateOffsets) },
-					SymmetryType.AntiDiagonal,
-					mapping));
+			result.AddRange(conclusions);
+			info = new(conclusions, new View[] { new(candidateOffsets) }, SymmetryType.AntiDiagonal, mapping);
 		}
 
 		/// <summary>
@@ -283,8 +289,11 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		private static void CheckCentral(IList<StepInfo> result, in SudokuGrid grid)
+		/// <param name="info">(<see langword="out"/> parameter) The step information result.</param>
+		private static void CheckCentral(IList<Conclusion> result, in SudokuGrid grid, out GspStepInfo? info)
 		{
+			info = null;
+
 			if (grid.GetStatus(40) != CellStatus.Empty)
 			{
 				// Has no conclusion even though the grid may be symmetrical.
@@ -349,12 +358,14 @@ namespace Sudoku.Solving.Manual.Symmetry
 			{
 				if (mapping[digit] == digit || mapping[digit] is null)
 				{
-					result.Add(
-						new GspStepInfo(
-							new Conclusion[] { new(ConclusionType.Assignment, 40, digit) },
-							new View[] { new(new DrawingInfo[] { new(0, 360 + digit) }) },
-							SymmetryType.Central,
-							mapping));
+					var conclusion = new Conclusion(ConclusionType.Assignment, 40, digit);
+					result.Add(conclusion);
+
+					info = new(
+						new[] { conclusion },
+						new View[] { new(new DrawingInfo[] { new(0, 360 + digit) }) },
+						SymmetryType.Central,
+						mapping);
 
 					return;
 				}

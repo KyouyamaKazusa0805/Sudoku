@@ -911,31 +911,43 @@ namespace Sudoku.Windows
 			}
 
 			bool[] series = new bool[9];
-			int?[] mapping = info.MappingTable;
-			var cellOffsets = new List<DrawingInfo>();
-			for (int i = 0, p = 0; i < 9; i++)
+			if (info.MappingTable is { } mapping)
 			{
-				if ((series[i], mapping[i]) is (false, int j) && (series[i] = true) & (series[j] = true))
+				var cellOffsets = new List<DrawingInfo>();
+				for (int i = 0, p = 0; i < 9; i++)
 				{
-					for (int cell = 0; cell < 81; cell++)
+					if ((series[i], mapping[i]) is (false, { } j) && (series[i] = true) & (series[j] = true))
 					{
-						if (_puzzle[cell] is var cellValue && (cellValue == i || cellValue == j))
+						for (int cell = 0; cell < 81; cell++)
 						{
-							cellOffsets.Add(new(p, cell));
+							int cellValue = _puzzle[cell];
+							if (cellValue == i || cellValue == j)
+							{
+								cellOffsets.Add(new(p, cell));
+							}
 						}
-					}
 
-					p++;
+						p++;
+					}
 				}
+
+				_currentPainter = _currentPainter with
+				{
+					View = new(cellOffsets, info.Views[0].Candidates, null, null),
+					Conclusions = info.Conclusions
+				};
+			}
+			else
+			{
+				_currentPainter = _currentPainter with
+				{
+					View = new(info.Views[0].Candidates!),
+					Conclusions = info.Conclusions
+				};
 			}
 
 			_textBoxInfo.Text = info.ToString();
-			_currentPainter = _currentPainter with
-			{
-				View = new(cellOffsets, info.Views[0].Candidates, null, null),
-				Conclusions = info.Conclusions
-			};
-
+			
 			UpdateImageGrid();
 		}
 
