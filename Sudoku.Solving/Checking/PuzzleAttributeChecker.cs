@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Stepping;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Manual;
 
@@ -32,6 +33,17 @@ namespace Sudoku.Solving.Checking
 			Solver.CheckValidity(@this.ToString()) || Solver.CheckValidity(@this.ToString("~"));
 
 		/// <summary>
+		/// Same as <see cref="IsValid(UndoableGrid, out UndoableGrid)"/> and
+		/// <see cref="IsValid(UndoableGrid, out UndoableGrid, out bool?)"/>,
+		/// but doesn't contain any <see langword="out"/> parameters.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <returns>The <see cref="bool"/> indicating that.</returns>
+		/// <seealso cref="IsValid(UndoableGrid, out UndoableGrid)"/>
+		/// <seealso cref="IsValid(UndoableGrid, out UndoableGrid, out bool?)"/>
+		public static bool IsValid(this UndoableGrid @this) => IsValid((SudokuGrid)@this);
+
+		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
@@ -44,6 +56,32 @@ namespace Sudoku.Solving.Checking
 		public static bool IsValid(this in SudokuGrid @this, out SudokuGrid solutionIfValid)
 		{
 			solutionIfValid = SudokuGrid.Undefined;
+
+			if (Solver.CheckValidity(@this.ToString(), out string? solution)
+				|| Solver.CheckValidity(@this.ToString("~"), out solution))
+			{
+				solutionIfValid = SudokuGrid.Parse(solution);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// To check if a puzzle has only one solution or not.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+		/// <param name="solutionIfValid">
+		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
+		/// otherwise, <see langword="null"/>.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsValid(
+			this UndoableGrid @this, [NotNullWhen(true)] out UndoableGrid? solutionIfValid)
+		{
+			solutionIfValid = null;
 
 			if (Solver.CheckValidity(@this.ToString(), out string? solution)
 				|| Solver.CheckValidity(@this.ToString("~"), out solution))
@@ -88,6 +126,18 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+		/// <param name="sukaku">
+		/// (<see langword="out"/> parameter) A <see cref="bool"/> value indicating whether the current
+		/// grid is a sukaku. <see langword="true"/> is for sukaku.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsValid(this UndoableGrid @this, [NotNullWhen(true)] out bool? sukaku) =>
+			IsValid((SudokuGrid)@this, out sukaku);
+
+		/// <summary>
+		/// To check if a puzzle has only one solution or not.
+		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
 		/// <param name="solutionIfValid">
 		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
@@ -116,6 +166,43 @@ namespace Sudoku.Solving.Checking
 			else
 			{
 				solutionIfValid = SudokuGrid.Undefined;
+				sukaku = null;
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// To check if a puzzle has only one solution or not.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+		/// <param name="solutionIfValid">
+		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
+		/// otherwise, <see langword="null"/>.
+		/// </param>
+		/// <param name="sukaku">
+		/// (<see langword="out"/> parameter) Indicates whether the current mode is sukaku mode.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsValid(
+			this UndoableGrid @this,
+			[NotNullWhen(true)] out UndoableGrid? solutionIfValid,
+			[NotNullWhen(true)] out bool? sukaku)
+		{
+			if (Solver.CheckValidity(@this.ToString(), out string? solution))
+			{
+				solutionIfValid = SudokuGrid.Parse(solution);
+				sukaku = false;
+				return true;
+			}
+			else if (Solver.CheckValidity(@this.ToString("~"), out solution))
+			{
+				solutionIfValid = SudokuGrid.Parse(solution);
+				sukaku = true;
+				return true;
+			}
+			else
+			{
+				solutionIfValid = null;
 				sukaku = null;
 				return false;
 			}

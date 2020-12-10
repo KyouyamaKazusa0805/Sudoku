@@ -209,7 +209,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSaveBatch_Click(object sender, RoutedEventArgs e)
 		{
-			if (!((SudokuGrid)_puzzle).IsValid())
+			if (!_puzzle.IsValid())
 			{
 				Messagings.FailedToCheckDueToInvalidPuzzle();
 				e.Handled = true;
@@ -231,7 +231,6 @@ namespace Sudoku.Windows
 		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
 		{
 			Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true;
-			//_currentPainter = _currentPainter with { Grid = _puzzle };
 
 			UpdateImageGrid();
 		}
@@ -352,24 +351,22 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditPasteAsSukaku_Click(object sender, RoutedEventArgs e)
 		{
-			if (SystemClipboard.Text is var puzzleStr)
+			try
 			{
-				try
-				{
-					Puzzle = SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku);
+				string puzzleStr = SystemClipboard.Text;
+				Puzzle = SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku);
 
-					_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
-					UpdateImageGrid();
-				}
-				catch (ArgumentException)
-				{
-					Messagings.FailedToPasteText();
-				}
-
-				_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
-				_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
-				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
+				UpdateImageGrid();
 			}
+			catch (ArgumentException)
+			{
+				Messagings.FailedToPasteText();
+			}
+
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -742,15 +739,14 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAnalyzeBugN_Click(object sender, RoutedEventArgs e)
 		{
-			var valueGrid = (SudokuGrid)_puzzle;
-			if (!valueGrid.IsValid())
+			if (!_puzzle.IsValid())
 			{
 				Messagings.FailedToCheckDueToInvalidPuzzle();
 				e.Handled = true;
 				return;
 			}
 
-			new BugNSearchWindow(valueGrid).ShowDialog();
+			new BugNSearchWindow((SudokuGrid)_puzzle).ShowDialog();
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
