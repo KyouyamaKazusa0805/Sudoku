@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual
 
 			var searcher = new SingleStepSearcher(false, false, false);
 			List<StepInfo> steps = new(), bag = new();
-			while (!cloneation.HasSolved)
+			while (!cloneation.IsSolved)
 			{
 				searcher.GetAll(bag, cloneation);
 				if (bag.Count == 0)
@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Manual
 						step.ApplyTo(ref cloneation);
 						steps.Add(step);
 
-						return cloneation.HasSolved;
+						return cloneation.IsSolved;
 					}
 				}
 			}

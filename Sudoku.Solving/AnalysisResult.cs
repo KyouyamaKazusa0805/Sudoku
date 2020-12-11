@@ -16,10 +16,10 @@ namespace Sudoku.Solving
 	/// </summary>
 	/// <param name="SolverName">Indicates the solver name.</param>
 	/// <param name="Puzzle">Indicates the puzzle.</param>
-	/// <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
+	/// <param name="IsSolved">Indicates whether the puzzle has been solved.</param>
 	/// <param name="ElapsedTime">The elapsed time.</param>
 	public sealed record AnalysisResult(
-		string SolverName, in SudokuGrid Puzzle, bool HasSolved, in TimeSpan ElapsedTime) : IEnumerable<StepInfo>, IFormattable
+		string SolverName, in SudokuGrid Puzzle, bool IsSolved, in TimeSpan ElapsedTime) : IEnumerable<StepInfo>, IFormattable
 	{
 		/// <summary>
 		/// Indicates the additional texts that we should describe.
@@ -126,7 +126,7 @@ namespace Sudoku.Solving
 					goto NotSolvedOrSolvingStepsIsNull;
 				}
 
-				if (HasSolved)
+				if (IsSolved)
 				{
 					for (int i = 1, count = Steps.Count; i < count; i++)
 					{
@@ -157,7 +157,7 @@ namespace Sudoku.Solving
 			get
 			{
 				var maxLevel = DifficultyLevel.Unknown;
-				if ((HasSolved, Steps) is (true, not null))
+				if ((IsSolved, Steps) is (true, not null))
 				{
 					foreach (var step in Steps!)
 					{
@@ -212,7 +212,7 @@ namespace Sudoku.Solving
 		public void Deconstruct(
 			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<StepInfo>? solvingSteps)
 		{
-			hasSolved = HasSolved;
+			hasSolved = IsSolved;
 			solvingStepsCount = SolvingStepsCount;
 			solvingSteps = Steps;
 		}
@@ -242,7 +242,7 @@ namespace Sudoku.Solving
 			out string? additional)
 		{
 			solverName = SolverName;
-			hasSolved = HasSolved;
+			hasSolved = IsSolved;
 			total = TotalDifficulty;
 			max = MaxDifficulty;
 			pearl = PearlDifficulty;

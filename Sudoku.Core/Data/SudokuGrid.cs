@@ -211,7 +211,7 @@ namespace Sudoku.Data
 		/// Indicates the grid has already solved. If the value is <see langword="true"/>,
 		/// the grid is solved; otherwise, <see langword="false"/>.
 		/// </summary>
-		public readonly bool HasSolved
+		public readonly bool IsSolved
 		{
 			get
 			{

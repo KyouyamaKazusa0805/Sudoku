@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual
 		public IEnumerable<IGrouping<string, StepInfo>> Search(
 			in SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode)
 		{
-			if (grid.HasSolved || !grid.IsValid(out bool? sukaku))
+			if (grid.IsSolved || !grid.IsValid(out bool? sukaku))
 			{
 				return Array.Empty<IGrouping<string, StepInfo>>();
 			}

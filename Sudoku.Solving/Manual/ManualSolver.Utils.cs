@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual
 				step.ApplyTo(ref cloneation);
 				steps.Add(step);
 
-				if (cloneation.HasSolved)
+				if (cloneation.IsSolved)
 				{
 					result = new(SolverName, grid, true, stopwatch.Elapsed)
 					{

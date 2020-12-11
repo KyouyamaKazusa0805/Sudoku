@@ -2182,8 +2182,8 @@
             Indicates whether the grid has any redo steps available.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Stepping.UndoableGrid.HasSolved">
-            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.HasSolved"/>
+        <member name="P:Sudoku.Data.Stepping.UndoableGrid.IsSolved">
+            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.IsSolved"/>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.GivensCount">
             <inheritdoc cref="P:Sudoku.Data.SudokuGrid.GivensCount"/>
@@ -2427,7 +2427,7 @@
         <member name="M:Sudoku.Data.SudokuGrid.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
-        <member name="P:Sudoku.Data.SudokuGrid.HasSolved">
+        <member name="P:Sudoku.Data.SudokuGrid.IsSolved">
             <summary>
             Indicates the grid has already solved. If the value is <see langword="true"/>,
             the grid is solved; otherwise, <see langword="false"/>.

@@ -620,7 +620,7 @@ namespace Sudoku.Windows
 
 			async Task<bool> internalOperation(bool sukakuMode)
 			{
-				if (_puzzle.HasSolved)
+				if (_puzzle.IsSolved)
 				{
 					Messagings.PuzzleAlreadySolved();
 					return !(e.Handled = true);

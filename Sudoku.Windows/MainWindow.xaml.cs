@@ -972,7 +972,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (_analyisResult.HasSolved)
+			if (_analyisResult.IsSolved)
 			{
 				_textBoxInfo.Text =
 					$"{_analyisResult.SolvingStepsCount} " +

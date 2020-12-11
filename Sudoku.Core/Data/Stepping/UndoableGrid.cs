@@ -56,8 +56,8 @@ namespace Sudoku.Data.Stepping
 		/// </summary>
 		public bool HasRedoSteps => _redoStack.Count != 0;
 
-		/// <inheritdoc cref="SudokuGrid.HasSolved"/>
-		public bool HasSolved => _innerGrid.HasSolved;
+		/// <inheritdoc cref="SudokuGrid.IsSolved"/>
+		public bool IsSolved => _innerGrid.IsSolved;
 
 		/// <inheritdoc cref="SudokuGrid.GivensCount"/>
 		public int GivensCount => _innerGrid.GivensCount;

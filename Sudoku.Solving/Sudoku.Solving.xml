@@ -10,7 +10,7 @@
             </summary>
             <param name="SolverName">Indicates the solver name.</param>
             <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
+            <param name="IsSolved">Indicates whether the puzzle has been solved.</param>
             <param name="ElapsedTime">The elapsed time.</param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.SudokuGrid@,System.Boolean,System.TimeSpan@)">
@@ -19,7 +19,7 @@
             </summary>
             <param name="SolverName">Indicates the solver name.</param>
             <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
+            <param name="IsSolved">Indicates whether the puzzle has been solved.</param>
             <param name="ElapsedTime">The elapsed time.</param>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.Additional">
