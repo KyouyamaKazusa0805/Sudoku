@@ -187,14 +187,11 @@ namespace Sudoku.Solving.Manual
 			// All solver can't finish the puzzle...
 			// :(
 			stopwatch.Stop();
-			return new(
-				SolverName,
-				grid,
-				null,
-				false,
-				stopwatch.Elapsed,
-				steps.AsReadOnlyList(),
-				stepGrids);
+			return new(SolverName, grid, false, stopwatch.Elapsed)
+			{
+				Steps = steps.AsReadOnlyList(),
+				StepGrids = stepGrids,
+			};
 		}
 	}
 }

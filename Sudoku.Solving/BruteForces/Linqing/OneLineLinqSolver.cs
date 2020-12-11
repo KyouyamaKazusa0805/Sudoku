@@ -32,15 +32,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			return results.Count switch
 			{
 				0 => throw new NoSolutionException(grid),
-				1 => new
-				(
-					solverName: SolverName,
-					puzzle: grid,
-					solution: SudokuGrid.Parse(results[0]),
-					hasSolved: true,
-					elapsedTime: stopwatch.Elapsed,
-					additional: null
-				),
+				1 => new(SolverName, grid, true, stopwatch.Elapsed) { Solution = SudokuGrid.Parse(results[0]) },
 				_ => throw new MultipleSolutionsException(grid)
 			};
 		}
@@ -51,7 +43,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 		/// </summary>
 		/// <param name="puzzle">The puzzle string, with placeholder character '0'.</param>
 		/// <returns>The result strings (i.e. All solutions).</returns>
-		private static List<string> SolveStrings(string puzzle)
+		private static IReadOnlyList<string> SolveStrings(string puzzle)
 		{
 			const string digitChars = "123456789";
 			static int index(string solution) => solution.IndexOf('0', OrdinalIgnoreCase);

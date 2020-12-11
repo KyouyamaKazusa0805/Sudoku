@@ -21,9 +21,9 @@ namespace Sudoku.Windows
 				sender is ListBox
 				{
 					SelectedItem: ListBoxItem { Content: StepTriplet { Item2: var n, Item3: var s } }
-				} && _analyisResult is { SolvingSteps: not null, StepGrids: not null })
+				} && _analyisResult is { Steps: not null, StepGrids: not null })
 			{
-				var techniqueInfo = _analyisResult.SolvingSteps[n];
+				var techniqueInfo = _analyisResult.Steps[n];
 				_currentTechniqueInfo = techniqueInfo;
 				_currentViewIndex = 0;
 				_currentPainter = _currentPainter with

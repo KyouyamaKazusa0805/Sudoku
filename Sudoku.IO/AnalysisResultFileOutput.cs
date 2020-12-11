@@ -64,7 +64,7 @@ namespace Sudoku.IO
 			try
 			{
 				XWPFDocument? doc = outputType == AnalysisResultOutputType.WordDocument ? new() : null;
-				if (AnalysisResult.SolvingSteps is IReadOnlyList<StepInfo> steps
+				if (AnalysisResult.Steps is IReadOnlyList<StepInfo> steps
 					&& AnalysisResult.StepGrids is IReadOnlyList<SudokuGrid> stepGrids
 					&& doc is not null)
 				{

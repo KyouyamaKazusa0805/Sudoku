@@ -38,26 +38,19 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				BacktrackinglySolve(ref solutionsCount, ref result, gridValues, 0);
 				stopwatch.Stop();
 
-				return new(
-					SolverName,
-					grid,
-					SudokuGrid.CreateInstance(
-						result ?? throw new NoSolutionException(grid), GridCreatingOption.MinusOne),
-					true,
-					stopwatch.Elapsed,
-					null);
+				return new(SolverName, grid, true, stopwatch.Elapsed)
+				{
+					Solution =
+						SudokuGrid.CreateInstance(
+							result ?? throw new NoSolutionException(grid),
+							GridCreatingOption.MinusOne)
+				};
 			}
 			catch (Exception ex)
 			{
 				stopwatch.Stop();
 
-				return new(
-					SolverName,
-					grid,
-					null,
-					false,
-					stopwatch.Elapsed,
-					ex.Message);
+				return new(SolverName, grid, false, stopwatch.Elapsed) { Additional = ex.Message };
 			}
 		}
 

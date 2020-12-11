@@ -228,14 +228,11 @@ namespace Sudoku.Solving.Manual
 			// All solver can't finish the puzzle...
 			// :(
 			stopwatch.Stop();
-			return new(
-				solverName: SolverName,
-				puzzle: grid,
-				solution: null,
-				hasSolved: false,
-				elapsedTime: stopwatch.Elapsed,
-				steps,
-				stepGrids);
+			return new(SolverName, grid, false, stopwatch.Elapsed)
+			{
+				Steps = steps,
+				StepGrids = stepGrids,
+			};
 		}
 	}
 }

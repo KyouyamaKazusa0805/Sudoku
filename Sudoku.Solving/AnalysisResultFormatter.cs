@@ -160,7 +160,7 @@ namespace Sudoku.Solving
 			}
 
 			// Print solving step statistics (if worth).
-			if (Result.SolvingSteps is var solvingSteps and not null)
+			if (Result.Steps is var solvingSteps and not null)
 			{
 				var solvingStepsGrouped = new List<IGrouping<string, StepInfo>>(
 					from step in solvingSteps

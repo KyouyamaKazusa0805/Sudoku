@@ -381,6 +381,9 @@ dotnet_diagnostic.CS8777.severity = error
 # CS8846: The switch expression does not handle all possible values of its input type (it is not exhaustive).
 dotnet_diagnostic.CS8846.severity = silent
 
+# CS8907: Parameter is unread. Did you forget to use it to initialize the property with that name?
+dotnet_diagnostic.CS8907.severity = error
+
 
 # CA1027: Mark enums with FlagsAttribute
 dotnet_diagnostic.CA1027.severity = none

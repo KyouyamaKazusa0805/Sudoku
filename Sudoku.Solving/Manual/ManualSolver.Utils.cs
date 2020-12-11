@@ -54,14 +54,11 @@ namespace Sudoku.Solving.Manual
 
 				if (cloneation.HasSolved)
 				{
-					result = new(
-						SolverName,
-						grid,
-						cloneation,
-						true,
-						stopwatch.Elapsed,
-						steps.AsReadOnlyList(),
-						stepGrids.AsReadOnlyList());
+					result = new(SolverName, grid, true, stopwatch.Elapsed)
+					{
+						Steps = steps.AsReadOnlyList(),
+						StepGrids = stepGrids.AsReadOnlyList(),
+					};
 					return true;
 				}
 			}

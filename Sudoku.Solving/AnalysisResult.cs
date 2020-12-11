@@ -14,74 +14,33 @@ namespace Sudoku.Solving
 	/// <summary>
 	/// Provides an analysis result after a puzzle solved.
 	/// </summary>
-	/// <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
 	/// <param name="SolverName">Indicates the solver name.</param>
-	/// <param name="Additional">Indicates the additional texts.</param>
-	/// <param name="ElapsedTime">The elapsed time.</param>
 	/// <param name="Puzzle">Indicates the puzzle.</param>
-	/// <param name="Solution">
-	/// Indicates the solution of the puzzle. If the puzzle doesn't contain non-unique solution,
-	/// the value will be <see langword="null"/>.
-	/// </param>
-	/// <param name="SolvingSteps">The solving steps.</param>
-	/// <param name="StepGrids">The step grids while solving.</param>
+	/// <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
+	/// <param name="ElapsedTime">The elapsed time.</param>
 	public sealed record AnalysisResult(
-		bool HasSolved, string SolverName, string? Additional, in TimeSpan ElapsedTime, in SudokuGrid Puzzle,
-		in SudokuGrid? Solution, IReadOnlyList<StepInfo>? SolvingSteps,
-		IReadOnlyList<SudokuGrid>? StepGrids) : IEnumerable<StepInfo>, IFormattable
+		string SolverName, in SudokuGrid Puzzle, bool HasSolved, in TimeSpan ElapsedTime) : IEnumerable<StepInfo>, IFormattable
 	{
 		/// <summary>
-		/// Initializes an instance with some information.
+		/// Indicates the additional texts that we should describe.
 		/// </summary>
-		/// <param name="solverName">The name of the solver.</param>
-		/// <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution grid.</param>
-		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-		/// <param name="elapsedTime">(<see langword="in"/> parameter) The elapsed time while solving.</param>
-		/// <param name="additional">The additional message.</param>
-		public AnalysisResult(
-			string solverName, in SudokuGrid puzzle, in SudokuGrid? solution, bool hasSolved,
-			in TimeSpan elapsedTime, string? additional)
-			: this(solverName, puzzle, solution, hasSolved, elapsedTime, null, null, additional)
-		{
-		}
+		public string? Additional { get; init; }
 
 		/// <summary>
-		/// Initializes an instance with some information.
+		/// Indicates the solution of the puzzle. If the puzzle doesn't contain non-unique solution,
+		/// the value will be <see langword="null"/>.
 		/// </summary>
-		/// <param name="solverName">The name of the solver.</param>
-		/// <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution grid.</param>
-		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-		/// <param name="elapsedTime">(<see langword="in"/> parameter) The elapsed time while solving.</param>
-		/// <param name="steps">All steps produced in solving.</param>
-		/// <param name="stepGrids">All intermediate grids.</param>
-		public AnalysisResult(
-			string solverName, in SudokuGrid puzzle, in SudokuGrid? solution, bool hasSolved,
-			in TimeSpan elapsedTime, IReadOnlyList<StepInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids)
-			: this(solverName, puzzle, solution, hasSolved, elapsedTime, steps, stepGrids, null)
-		{
-		}
+		public SudokuGrid? Solution { get; init; }
 
 		/// <summary>
-		/// Initializes an instance with some information.
+		/// Indicates a list, whose element is the intermediate grid for each step.
 		/// </summary>
-		/// <param name="solverName">The name of the solver.</param>
-		/// <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution grid.</param>
-		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-		/// <param name="elapsedTime">(<see langword="in"/> parameter) The elapsed time while solving.</param>
-		/// <param name="steps">All steps produced in solving.</param>
-		/// <param name="stepGrids">All intermediate grids.</param>
-		/// <param name="additional">The additional message.</param>
-		public AnalysisResult(
-			string solverName, in SudokuGrid puzzle, in SudokuGrid? solution, bool hasSolved,
-			in TimeSpan elapsedTime, IReadOnlyList<StepInfo>? steps, IReadOnlyList<SudokuGrid>? stepGrids,
-			string? additional)
-			: this(hasSolved, solverName, additional, elapsedTime, puzzle, solution, steps, stepGrids)
-		{
-		}
+		public IReadOnlyList<SudokuGrid>? StepGrids { get; init; }
 
+		/// <summary>
+		/// Indicates all solving steps that the solver has recorded.
+		/// </summary>
+		public IReadOnlyList<StepInfo>? Steps { get; init; }
 
 		/// <summary>
 		/// <para>Indicates the maximum difficulty of the puzzle.</para>
@@ -95,9 +54,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		public decimal MaxDifficulty =>
-			SolvingSteps?.None() ?? true
-			? 20.0M
-			: SolvingSteps.Max(static info => info.ShowDifficulty ? info.Difficulty : 0);
+			Steps?.None() ?? true ? 20.0M : Steps.Max(static info => info.ShowDifficulty ? info.Difficulty : 0);
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -105,24 +62,24 @@ namespace Sudoku.Solving
 		/// When the puzzle is solved by <see cref="ManualSolver"/>,
 		/// the value will be the sum of all difficulty ratings of steps. If
 		/// the puzzle has not been solved, the value will be the sum of all
-		/// difficulty ratings of steps recorded in <see cref="SolvingSteps"/>.
+		/// difficulty ratings of steps recorded in <see cref="Steps"/>.
 		/// However, if the puzzle is solved by other solvers, this value will
 		/// be <c>0</c>.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		/// <seealso cref="SolvingSteps"/>
+		/// <seealso cref="Steps"/>
 		public decimal TotalDifficulty
 		{
 			get
 			{
-				if (SolvingSteps is null)
+				if (Steps is null)
 				{
 					return 0;
 				}
 
 				decimal result = 0;
-				foreach (var step in SolvingSteps)
+				foreach (var step in Steps)
 				{
 					result += step.ShowDifficulty ? step.Difficulty : 0;
 				}
@@ -144,7 +101,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		public decimal PearlDifficulty =>
-			SolvingSteps?.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
+			Steps?.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
 
 		/// <summary>
 		/// <para>
@@ -164,17 +121,16 @@ namespace Sudoku.Solving
 		{
 			get
 			{
-				if (SolvingSteps is null)
+				if (Steps is null)
 				{
 					goto NotSolvedOrSolvingStepsIsNull;
 				}
 
 				if (HasSolved)
 				{
-					for (int i = 1, count = SolvingSteps.Count; i < count; i++)
+					for (int i = 1, count = Steps.Count; i < count; i++)
 					{
-						if (SolvingSteps[i - 1] is { ShowDifficulty: true } info
-							&& SolvingSteps[i] is SingleStepInfo)
+						if (Steps[i - 1] is { ShowDifficulty: true } info && Steps[i] is SingleStepInfo)
 						{
 							return info.Difficulty;
 						}
@@ -189,7 +145,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the number of all solving steps recorded.
 		/// </summary>
-		public int SolvingStepsCount => SolvingSteps?.Count ?? 1;
+		public int SolvingStepsCount => Steps?.Count ?? 1;
 
 		/// <summary>
 		/// Indicates the difficulty level of the puzzle.
@@ -201,9 +157,9 @@ namespace Sudoku.Solving
 			get
 			{
 				var maxLevel = DifficultyLevel.Unknown;
-				if ((HasSolved, SolvingSteps) is (true, not null))
+				if ((HasSolved, Steps) is (true, not null))
 				{
-					foreach (var step in SolvingSteps!)
+					foreach (var step in Steps!)
 					{
 						if (step.ShowDifficulty && step.DifficultyLevel > maxLevel)
 						{
@@ -223,14 +179,14 @@ namespace Sudoku.Solving
 		{
 			get
 			{
-				if (SolvingSteps is null)
+				if (Steps is null)
 				{
 					return null;
 				}
 
-				for (int i = SolvingSteps.Count - 1; i >= 0; i--)
+				for (int i = Steps.Count - 1; i >= 0; i--)
 				{
-					if (SolvingSteps[i] is not SingleStepInfo and { ShowDifficulty: true } step)
+					if (Steps[i] is not SingleStepInfo and { ShowDifficulty: true } step)
 					{
 						return step;
 					}
@@ -238,23 +194,10 @@ namespace Sudoku.Solving
 
 				// If code goes to here, all steps are more difficult than single techniques.
 				// Get the first one is okay.
-				return SolvingSteps[0];
+				return Steps[0];
 			}
 		}
 
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="solverName">
-		/// (<see langword="out"/> parameter) The solver's name.
-		/// </param>
-		/// <param name="hasSolved">
-		/// (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
-		/// </param>
-		public void Deconstruct(out string solverName, out bool hasSolved)
-		{
-			solverName = SolverName;
-			hasSolved = HasSolved;
-		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="hasSolved">
@@ -271,55 +214,7 @@ namespace Sudoku.Solving
 		{
 			hasSolved = HasSolved;
 			solvingStepsCount = SolvingStepsCount;
-			solvingSteps = SolvingSteps;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="total">
-		/// (<see langword="out"/> parameter) The total difficulty.
-		/// </param>
-		/// <param name="max">
-		/// (<see langword="out"/> parameter) The maximum difficulty.
-		/// </param>
-		/// <param name="pearl">
-		/// (<see langword="out"/> parameter) The pearl difficulty.
-		/// </param>
-		/// <param name="diamond">
-		/// (<see langword="out"/> parameter) The diamond difficulty.
-		/// </param>
-		public void Deconstruct(out decimal? total, out decimal max, out decimal? pearl, out decimal? diamond)
-		{
-			total = TotalDifficulty;
-			max = MaxDifficulty;
-			pearl = PearlDifficulty;
-			diamond = DiamondDifficulty;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="puzzle">
-		/// (<see langword="out"/> parameter) The initial puzzle.
-		/// </param>
-		/// <param name="hasSolved">
-		/// (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
-		/// </param>
-		/// <param name="elapsedTime">
-		/// (<see langword="out"/> parameter) The elapsed time during solving.
-		/// </param>
-		/// <param name="solution">
-		/// (<see langword="out"/> parameter) The solution.
-		/// </param>
-		/// <param name="difficultyLevel">
-		/// (<see langword="out"/> parameter) The difficulty level.
-		/// </param>
-		public void Deconstruct(
-			out SudokuGrid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
-			out SudokuGrid? solution, out DifficultyLevel difficultyLevel)
-		{
-			puzzle = Puzzle;
-			hasSolved = HasSolved;
-			elapsedTime = ElapsedTime;
-			solution = Solution;
-			difficultyLevel = DifficultyLevel;
+			solvingSteps = Steps;
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
@@ -356,7 +251,7 @@ namespace Sudoku.Solving
 			solution = Solution;
 			elasped = ElapsedTime;
 			stepCount = SolvingStepsCount;
-			steps = SolvingSteps;
+			steps = Steps;
 			stepGrids = StepGrids;
 			additional = Additional;
 		}
@@ -370,7 +265,7 @@ namespace Sudoku.Solving
 		/// An enumerator that can be used to iterate through the collection.
 		/// </returns>
 		public IEnumerator<StepInfo> GetEnumerator() =>
-			(SolvingSteps ?? Array.Empty<StepInfo>()).GetEnumerator();
+			(Steps ?? Array.Empty<StepInfo>()).GetEnumerator();
 
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);

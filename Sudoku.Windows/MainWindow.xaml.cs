@@ -986,7 +986,7 @@ namespace Sudoku.Windows
 
 				int i = 0;
 				var pathList = new List<ListBoxItem>();
-				foreach (var step in _analyisResult.SolvingSteps!)
+				foreach (var step in _analyisResult.Steps!)
 				{
 					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
 					pathList.Add(
@@ -1013,7 +1013,7 @@ namespace Sudoku.Windows
 				decimal summary = 0, summaryMax = 0;
 				int summaryCount = 0;
 				foreach (var techniqueGroup in
-					from step in _analyisResult.SolvingSteps!
+					from step in _analyisResult.Steps!
 					orderby step.Difficulty
 					group step by step.Name)
 				{

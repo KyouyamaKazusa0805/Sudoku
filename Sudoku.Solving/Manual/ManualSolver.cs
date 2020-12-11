@@ -73,24 +73,15 @@ namespace Sudoku.Solving.Manual
 				}
 				catch (WrongHandlingException ex)
 				{
-					return new(
-						solverName: SolverName,
-						puzzle: grid,
-						solution: null,
-						hasSolved: false,
-						elapsedTime: TimeSpan.Zero,
-						additional: ex.Message);
+					return new(SolverName, grid, false, TimeSpan.Zero) { Additional = ex.Message };
 				}
 			}
 			else
 			{
-				return new(
-					solverName: SolverName,
-					puzzle: grid,
-					solution: null,
-					hasSolved: false,
-					elapsedTime: TimeSpan.Zero,
-					additional: "The puzzle doesn't have a unique solution (multiple solutions or no solution).");
+				return new(SolverName, grid, false, TimeSpan.Zero)
+				{
+					Additional = "The puzzle doesn't have a unique solution (multiple solutions or no solution)."
+				};
 			}
 		}
 	}

@@ -8,69 +8,40 @@
             <summary>
             Provides an analysis result after a puzzle solved.
             </summary>
-            <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
             <param name="SolverName">Indicates the solver name.</param>
-            <param name="Additional">Indicates the additional texts.</param>
-            <param name="ElapsedTime">The elapsed time.</param>
             <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="Solution">
-            Indicates the solution of the puzzle. If the puzzle doesn't contain non-unique solution,
-            the value will be <see langword="null"/>.
-            </param>
-            <param name="SolvingSteps">The solving steps.</param>
-            <param name="StepGrids">The step grids while solving.</param>
+            <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
+            <param name="ElapsedTime">The elapsed time.</param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.Boolean,System.String,System.String,System.TimeSpan@,Sudoku.Data.SudokuGrid@,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.SudokuGrid})">
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.SudokuGrid@,System.Boolean,System.TimeSpan@)">
             <summary>
             Provides an analysis result after a puzzle solved.
             </summary>
-            <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
             <param name="SolverName">Indicates the solver name.</param>
-            <param name="Additional">Indicates the additional texts.</param>
-            <param name="ElapsedTime">The elapsed time.</param>
             <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="Solution">
+            <param name="HasSolved">Indicates whether the puzzle has been solved.</param>
+            <param name="ElapsedTime">The elapsed time.</param>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.Additional">
+            <summary>
+            Indicates the additional texts that we should describe.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.Solution">
+            <summary>
             Indicates the solution of the puzzle. If the puzzle doesn't contain non-unique solution,
             the value will be <see langword="null"/>.
-            </param>
-            <param name="SolvingSteps">The solving steps.</param>
-            <param name="StepGrids">The step grids while solving.</param>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.SudokuGrid@,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Boolean,System.TimeSpan@,System.String)">
-            <summary>
-            Initializes an instance with some information.
             </summary>
-            <param name="solverName">The name of the solver.</param>
-            <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
-            <param name="solution">(<see langword="in"/> parameter) The solution grid.</param>
-            <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-            <param name="elapsedTime">(<see langword="in"/> parameter) The elapsed time while solving.</param>
-            <param name="additional">The additional message.</param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.SudokuGrid@,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Boolean,System.TimeSpan@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.SudokuGrid})">
+        <member name="P:Sudoku.Solving.AnalysisResult.StepGrids">
             <summary>
-            Initializes an instance with some information.
+            Indicates a list, whose element is the intermediate grid for each step.
             </summary>
-            <param name="solverName">The name of the solver.</param>
-            <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
-            <param name="solution">(<see langword="in"/> parameter) The solution grid.</param>
-            <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-            <param name="elapsedTime">(<see langword="in"/> parameter) The elapsed time while solving.</param>
-            <param name="steps">All steps produced in solving.</param>
-            <param name="stepGrids">All intermediate grids.</param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.SudokuGrid@,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Boolean,System.TimeSpan@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.SudokuGrid},System.String)">
+        <member name="P:Sudoku.Solving.AnalysisResult.Steps">
             <summary>
-            Initializes an instance with some information.
+            Indicates all solving steps that the solver has recorded.
             </summary>
-            <param name="solverName">The name of the solver.</param>
-            <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
-            <param name="solution">(<see langword="in"/> parameter) The solution grid.</param>
-            <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-            <param name="elapsedTime">(<see langword="in"/> parameter) The elapsed time while solving.</param>
-            <param name="steps">All steps produced in solving.</param>
-            <param name="stepGrids">All intermediate grids.</param>
-            <param name="additional">The additional message.</param>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.MaxDifficulty">
             <summary>
@@ -92,13 +63,13 @@
             When the puzzle is solved by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>,
             the value will be the sum of all difficulty ratings of steps. If
             the puzzle has not been solved, the value will be the sum of all
-            difficulty ratings of steps recorded in <see cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/>.
+            difficulty ratings of steps recorded in <see cref="P:Sudoku.Solving.AnalysisResult.Steps"/>.
             However, if the puzzle is solved by other solvers, this value will
             be <c>0</c>.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
-            <seealso cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/>
+            <seealso cref="P:Sudoku.Solving.AnalysisResult.Steps"/>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.PearlDifficulty">
             <summary>
@@ -147,15 +118,6 @@
             Indicates the bottle neck during the whole grid solving.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="solverName">
-            (<see langword="out"/> parameter) The solver's name.
-            </param>
-            <param name="hasSolved">
-            (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
-            </param>
-        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="hasSolved">
@@ -166,39 +128,6 @@
             </param>
             <param name="solvingSteps">
             (<see langword="out"/> parameter) The all solving steps.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Nullable{System.Decimal}@,System.Decimal@,System.Nullable{System.Decimal}@,System.Nullable{System.Decimal}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="total">
-            (<see langword="out"/> parameter) The total difficulty.
-            </param>
-            <param name="max">
-            (<see langword="out"/> parameter) The maximum difficulty.
-            </param>
-            <param name="pearl">
-            (<see langword="out"/> parameter) The pearl difficulty.
-            </param>
-            <param name="diamond">
-            (<see langword="out"/> parameter) The diamond difficulty.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.SudokuGrid@,System.Boolean@,System.TimeSpan@,System.Nullable{Sudoku.Data.SudokuGrid}@,Sudoku.Solving.Manual.DifficultyLevel@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="puzzle">
-            (<see langword="out"/> parameter) The initial puzzle.
-            </param>
-            <param name="hasSolved">
-            (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
-            </param>
-            <param name="elapsedTime">
-            (<see langword="out"/> parameter) The elapsed time during solving.
-            </param>
-            <param name="solution">
-            (<see langword="out"/> parameter) The solution.
-            </param>
-            <param name="difficultyLevel">
-            (<see langword="out"/> parameter) The difficulty level.
             </param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@,Sudoku.Data.SudokuGrid@,System.Nullable{Sudoku.Data.SudokuGrid}@,System.TimeSpan@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.SudokuGrid}@,System.String@)">

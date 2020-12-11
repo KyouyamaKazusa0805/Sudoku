@@ -83,15 +83,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				return _numSolutions switch
 				{
 					0 => throw new NoSolutionException(grid),
-					1 => new
-					(
-						solverName: SolverName,
-						puzzle: grid,
-						solution: SudokuGrid.Parse(new Span<char>(solutionStr, BufferLength)),
-						hasSolved: true,
-						elapsedTime: stopwatch.Elapsed,
-						additional: null
-					),
+					1 => new(SolverName, grid, true, stopwatch.Elapsed)
+					{
+						Solution = SudokuGrid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength)),
+					},
 					_ => throw new MultipleSolutionsException(grid)
 				};
 			}
