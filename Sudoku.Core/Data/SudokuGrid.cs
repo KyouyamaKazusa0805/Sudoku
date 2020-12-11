@@ -56,6 +56,16 @@ namespace Sudoku.Data
 		public static readonly string EmptyString = new('0', Length);
 
 		/// <summary>
+		/// Indicates the event triggered when the value is changed.
+		/// </summary>
+		public static readonly delegate*<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
+
+		/// <summary>
+		/// Indicates the event triggered when should re-compute candidates.
+		/// </summary>
+		public static readonly delegate*<ref SudokuGrid, void> RefreshingCandidates;
+
+		/// <summary>
 		/// Indicates the default grid that all values are initialized 0, which is same as
 		/// <see cref="SudokuGrid()"/>.
 		/// </summary>
@@ -154,8 +164,46 @@ namespace Sudoku.Data
 			}
 
 			// Initializes events.
-			ValueChanged = &OnValueChanged;
-			RefreshingCandidates = &OnRefreshingCandidates;
+			ValueChanged = &onValueChanged;
+			RefreshingCandidates = &onRefreshingCandidates;
+
+			static void onValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
+			{
+				if (e is { Cell: var cell, SetValue: var setValue and not -1 })
+				{
+					foreach (int peerCell in PeerMaps[cell])
+					{
+						if (@this.GetStatus(peerCell) == CellStatus.Empty)
+						{
+							// Please don't do this to avoid invoking recursively.
+							//@this[peerCell, setValue] = false;
+
+							@this._values[peerCell] &= (short)~(1 << setValue);
+						}
+					}
+				}
+			}
+
+			static void onRefreshingCandidates(ref SudokuGrid @this)
+			{
+				for (int i = 0; i < Length; i++)
+				{
+					if (@this.GetStatus(i) == CellStatus.Empty)
+					{
+						// Remove all appeared digits.
+						short mask = MaxCandidatesMask;
+						foreach (int cell in PeerMaps[i])
+						{
+							if (@this[cell] is var digit and not -1)
+							{
+								mask &= (short)~(1 << digit);
+							}
+						}
+
+						@this._values[i] = (short)(EmptyMask | mask);
+					}
+				}
+			}
 		}
 
 
@@ -772,53 +820,6 @@ namespace Sudoku.Data
 			{
 				result = Undefined;
 				return false;
-			}
-		}
-
-		/// <summary>
-		/// Delete or set a value on the specified grid.
-		/// </summary>
-		/// <param name="this">(<see langword="ref"/> parameter) The grid.</param>
-		/// <param name="e">(<see langword="in"/> parameter) The event arguments.</param>
-		private static void OnValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
-		{
-			if (e is { Cell: var cell, SetValue: var setValue and not -1 })
-			{
-				foreach (int peerCell in PeerMaps[cell])
-				{
-					if (@this.GetStatus(peerCell) == CellStatus.Empty)
-					{
-						// Please don't do this to avoid invoking recursively.
-						//@this[peerCell, setValue] = false;
-
-						@this._values[peerCell] &= (short)~(1 << setValue);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Re-compute candidates.
-		/// </summary>
-		/// <param name="this">The grid.</param>
-		public static void OnRefreshingCandidates(ref SudokuGrid @this)
-		{
-			for (int i = 0; i < Length; i++)
-			{
-				if (@this.GetStatus(i) == CellStatus.Empty)
-				{
-					// Remove all appeared digits.
-					short mask = MaxCandidatesMask;
-					foreach (int cell in PeerMaps[i])
-					{
-						if (@this[cell] is var digit and not -1)
-						{
-							mask &= (short)~(1 << digit);
-						}
-					}
-
-					@this._values[i] = (short)(EmptyMask | mask);
-				}
 			}
 		}
 

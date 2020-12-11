@@ -2212,7 +2212,7 @@
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.Reset"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.RecomputeCandidates">
-            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>
+            <inheritdoc cref="F:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetStatus(System.Int32)">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)"/>
@@ -2361,6 +2361,16 @@
         <member name="F:Sudoku.Data.SudokuGrid.EmptyString">
             <summary>
             Indicates the empty grid string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.ValueChanged">
+            <summary>
+            Indicates the event triggered when the value is changed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.RefreshingCandidates">
+            <summary>
+            Indicates the event triggered when should re-compute candidates.
             </summary>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.Undefined">
@@ -2688,19 +2698,6 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.OnValueChanged(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
-            <summary>
-            Delete or set a value on the specified grid.
-            </summary>
-            <param name="this">(<see langword="ref"/> parameter) The grid.</param>
-            <param name="e">(<see langword="in"/> parameter) The event arguments.</param>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.OnRefreshingCandidates(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Re-compute candidates.
-            </summary>
-            <param name="this">The grid.</param>
-        </member>
         <member name="M:Sudoku.Data.SudokuGrid.InternalCopy(System.Int16*,System.Int16*)">
             <summary>
             Internal copy.
@@ -2754,16 +2751,6 @@
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Enumerator.Reset">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Data.SudokuGrid.ValueChanged">
-            <summary>
-            Indicates the event triggered when the value is changed.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.SudokuGrid.RefreshingCandidates">
-            <summary>
-            Indicates the event triggered when should re-compute candidates.
-            </summary>
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.GridFormatter">
             <summary>
@@ -3048,9 +3035,9 @@
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.ValueChangedArgs">
             <summary>
-            Provides arguments for the event <see cref="P:Sudoku.Data.SudokuGrid.ValueChanged"/>.
+            Provides arguments for the event <see cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>.
             </summary>
-            <seealso cref="P:Sudoku.Data.SudokuGrid.ValueChanged"/>
+            <seealso cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.#ctor(System.Int32,System.Int16,System.Int16,System.Int32)">
             <summary>

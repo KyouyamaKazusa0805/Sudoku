@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Globalization", "Sud
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Recognition", "Sudoku.Recognition\Sudoku.Recognition.csproj", "{6ABA7028-B72C-4C9D-9C84-F9F683094FB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemExtensions", "System\SystemExtensions.csproj", "{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemExtensions", "System\SystemExtensions.csproj", "{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
