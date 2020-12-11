@@ -40,10 +40,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 
 				return new(SolverName, grid, true, stopwatch.Elapsed)
 				{
-					Solution =
-						SudokuGrid.CreateInstance(
-							result ?? throw new NoSolutionException(grid),
-							GridCreatingOption.MinusOne)
+					Solution = new(result ?? throw new NoSolutionException(grid), GridCreatingOption.MinusOne)
 				};
 			}
 			catch (Exception ex)

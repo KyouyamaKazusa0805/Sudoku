@@ -2394,16 +2394,18 @@
             Indicates the inner array suggests the initial grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int16*,System.Int32)">
+        <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int32[])">
             <summary>
-            Initializes an instance with the specified mask list and the length.
+            Creates an instance using grid values.
             </summary>
-            <param name="masks">The masks.</param>
-            <param name="length">The length of the <paramref name="masks"/>. The value should be 81.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when <paramref name="masks"/> is <see langword="null"/>.
-            </exception>
-            <exception cref="T:System.ArgumentException">Throws when <paramref name="length"/> is not 81.</exception>
+            <param name="gridValues">The array of grid values.</param>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int32[],Sudoku.Data.GridCreatingOption)">
+            <summary>
+            Creates an instance using grid values.
+            </summary>
+            <param name="gridValues">The array of grid values.</param>
+            <param name="creatingOption">The grid creating option.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int16[])">
             <summary>
@@ -2685,16 +2687,6 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.CreateInstance(System.Int32[],Sudoku.Data.GridCreatingOption)">
-            <summary>
-            Creates an instance using grid values.
-            </summary>
-            <param name="gridValues">The array of grid values.</param>
-            <param name="creatingOption">
-            The grid creating option. The default value is <see cref="F:Sudoku.Data.GridCreatingOption.None"/>.
-            </param>
-            <returns>The result instance.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.OnValueChanged(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
             <summary>

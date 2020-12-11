@@ -89,25 +89,35 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Initializes an instance with the specified mask list and the length.
+		/// Creates an instance using grid values.
 		/// </summary>
-		/// <param name="masks">The masks.</param>
-		/// <param name="length">The length of the <paramref name="masks"/>. The value should be 81.</param>
-		/// <exception cref="ArgumentNullException">
-		/// Throws when <paramref name="masks"/> is <see langword="null"/>.
-		/// </exception>
-		/// <exception cref="ArgumentException">Throws when <paramref name="length"/> is not 81.</exception>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuGrid(short* masks, int length)
+		/// <param name="gridValues">The array of grid values.</param>
+		public SudokuGrid(int[] gridValues) : this(gridValues, GridCreatingOption.None)
 		{
-			_ = masks == null ? throw new ArgumentNullException(nameof(masks)) : masks;
-			_ = length != Length ? throw new ArgumentException($"The specified argument should be {Length}.", nameof(length)) : length;
+		}
 
-			fixed (short* pValues = _values, pInitialValues = _initialValues)
+		/// <summary>
+		/// Creates an instance using grid values.
+		/// </summary>
+		/// <param name="gridValues">The array of grid values.</param>
+		/// <param name="creatingOption">The grid creating option.</param>
+		public SudokuGrid(int[] gridValues, GridCreatingOption creatingOption)
+		{
+			var result = Empty;
+			for (int i = 0; i < Length; i++)
 			{
-				InternalCopy(pValues, masks);
-				InternalCopy(pInitialValues, masks);
+				if (gridValues[i] is var value and not 0)
+				{
+					// Calls the indexer to trigger the event
+					// (Clear the candidates in peer cells).
+					result[i] = creatingOption == GridCreatingOption.MinusOne ? value - 1 : value;
+
+					// Set the status to 'CellStatus.Given'.
+					result.SetStatus(i, CellStatus.Given);
+				}
 			}
+
+			this = result;
 		}
 
 		/// <summary>
@@ -115,7 +125,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="masks">The masks.</param>
 		/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
-		public SudokuGrid(short[] masks)
+		internal SudokuGrid(short[] masks)
 		{
 			_ = masks.Length != Length ? throw new ArgumentException($"The length of the array argument should be {Length}.", nameof(masks)) : masks;
 
@@ -763,34 +773,6 @@ namespace Sudoku.Data
 				result = Undefined;
 				return false;
 			}
-		}
-
-		/// <summary>
-		/// Creates an instance using grid values.
-		/// </summary>
-		/// <param name="gridValues">The array of grid values.</param>
-		/// <param name="creatingOption">
-		/// The grid creating option. The default value is <see cref="GridCreatingOption.None"/>.
-		/// </param>
-		/// <returns>The result instance.</returns>
-		public static SudokuGrid CreateInstance(
-			int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
-		{
-			var result = Empty;
-			for (int i = 0; i < Length; i++)
-			{
-				if (gridValues[i] is var value and not 0)
-				{
-					// Calls the indexer to trigger the event
-					// (Clear the candidates in peer cells).
-					result[i] = creatingOption == GridCreatingOption.MinusOne ? value - 1 : value;
-
-					// Set the status to 'CellStatus.Given'.
-					result.SetStatus(i, CellStatus.Given);
-				}
-			}
-
-			return result;
 		}
 
 		/// <summary>

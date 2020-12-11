@@ -239,7 +239,7 @@ namespace Sudoku.Solving.Checking
 			}
 
 			return tempArrays.All(
-				static v => !Solver.Solve(SudokuGrid.CreateInstance(v, GridCreatingOption.MinusOne)).HasSolved);
+				static v => !Solver.Solve(new SudokuGrid(v, GridCreatingOption.MinusOne)).HasSolved);
 		}
 
 		/// <summary>
