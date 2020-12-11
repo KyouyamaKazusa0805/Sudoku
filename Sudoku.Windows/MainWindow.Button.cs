@@ -49,7 +49,7 @@ namespace Sudoku.Windows
 				(dialog = new()).Show();
 				var techniqueGroups = await Task.Run(() =>
 				{
-					return new StepFinder(Settings.MainManualSolver)
+					return new AllStepSearcher(Settings.MainManualSolver)
 					.Search(valueGrid, dialog.DefaultReporting, Settings.LanguageCode);
 				});
 

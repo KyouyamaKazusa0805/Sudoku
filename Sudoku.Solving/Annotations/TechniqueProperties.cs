@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Annotations
 		/// instances.
 		/// </para>
 		/// <para>
-		/// This attribute is used on <see cref="StepFinder"/>. For example, if Alternating Inference Chain (AIC)
+		/// This attribute is used on <see cref="AllStepSearcher"/>. For example, if Alternating Inference Chain (AIC)
 		/// is at level 1 and Forcing Chains (FC) is at level 2, when we find any AIC technique instances,
 		/// FC won't be checked at the same time in order to enhance the performance.
 		/// </para>
@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Annotations
 		/// Note that the property is different with <see cref="DisplayLabel"/>.
 		/// </para>
 		/// </remarks>
-		/// <seealso cref="StepFinder"/>
+		/// <seealso cref="AllStepSearcher"/>
 		/// <seealso cref="DisplayLabel"/>
 		public int DisplayLevel { get; set; }
 

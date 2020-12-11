@@ -422,7 +422,7 @@
             instances.
             </para>
             <para>
-            This attribute is used on <see cref="T:Sudoku.Solving.Manual.StepFinder"/>. For example, if Alternating Inference Chain (AIC)
+            This attribute is used on <see cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>. For example, if Alternating Inference Chain (AIC)
             is at level 1 and Forcing Chains (FC) is at level 2, when we find any AIC technique instances,
             FC won't be checked at the same time in order to enhance the performance.
             </para>
@@ -433,7 +433,7 @@
             Note that the property is different with <see cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLabel"/>.
             </para>
             </remarks>
-            <seealso cref="T:Sudoku.Solving.Manual.StepFinder"/>
+            <seealso cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>
             <seealso cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLabel"/>
         </member>
         <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLabel">
@@ -1549,6 +1549,42 @@
             <returns>
             An <see cref="T:Sudoku.Solving.AnalysisResult"/> displaying all information of solving.
             </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.AllStepSearcher">
+            <summary>
+            Provides a step searcher that is different with <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>.
+            </summary>
+            <remarks>
+            All-step searcher (<see cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>) is a searcher that find all steps in a given grid,
+            which can be a initial grid or a intermediate grid. Different with <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>,
+            this searcher only calculates for the grid in an only status.
+            In addition, different with <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>, this searcher searches all
+            possible solving techniques.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.AllStepSearcher._solver">
+            <summary>
+            Indicates the inner solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AllStepSearcher.#ctor(Sudoku.Solving.Manual.ManualSolver)">
+            <summary>
+            Initializes an instance with the specified solver.
+            </summary>
+            <param name="solver">The solver.</param>
+            <remarks>
+            This solver will provide the settings of the searching operation.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AllStepSearcher.Search(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="progress">The progress.</param>
+            <param name="countryCode">The country code.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsStepInfo">
             <summary>
@@ -5646,33 +5682,6 @@
             </summary>
             <param name="accumulator">The current accumulator.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.StepFinder">
-            <summary>
-            Provides a step finder.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.StepFinder._solver">
-            <summary>
-            Indicates the inner solver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepFinder.#ctor(Sudoku.Solving.Manual.ManualSolver)">
-            <summary>
-            Initializes an instance with the specified solver.
-            </summary>
-            <param name="solver">The solver.</param>
-            <remarks>
-            This solver will provide the settings of the searching operation.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepFinder.Search(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
-            <summary>
-            Search for all possible steps in a grid.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="progress">The progress.</param>
-            <param name="countryCode">The country code.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.StepInfo">
             <summary>

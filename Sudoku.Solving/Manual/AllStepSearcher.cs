@@ -13,9 +13,18 @@ using Sudoku.Windows;
 namespace Sudoku.Solving.Manual
 {
 	/// <summary>
-	/// Provides a step finder.
+	/// Provides a step searcher that is different with <see cref="StepSearcher"/>.
 	/// </summary>
-	public sealed class StepFinder
+	/// <remarks>
+	/// All-step searcher (<see cref="AllStepSearcher"/>) is a searcher that find all steps in a given grid,
+	/// which can be a initial grid or a intermediate grid. Different with <see cref="ManualSolver"/>,
+	/// this searcher only calculates for the grid in an only status.
+	/// In addition, different with <see cref="StepSearcher"/>, this searcher searches all
+	/// possible solving techniques.
+	/// </remarks>
+	/// <seealso cref="StepSearcher"/>
+	/// <seealso cref="ManualSolver"/>
+	public sealed class AllStepSearcher
 	{
 		/// <summary>
 		/// Indicates the inner solver.
@@ -30,7 +39,7 @@ namespace Sudoku.Solving.Manual
 		/// <remarks>
 		/// This solver will provide the settings of the searching operation.
 		/// </remarks>
-		public StepFinder(ManualSolver solver) => _solver = solver;
+		public AllStepSearcher(ManualSolver solver) => _solver = solver;
 
 
 		/// <summary>
