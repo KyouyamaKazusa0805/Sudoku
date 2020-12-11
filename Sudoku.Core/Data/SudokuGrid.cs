@@ -507,16 +507,12 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly ref short GetPinnableReference()
+		public readonly ref readonly short GetPinnableReference()
 		{
 			fixed (SudokuGrid* @this = &this)
 			{
 				return ref @this->_values[0];
 			}
-
-			// Don't use this way to get the first value.
-			// Following code may cause an error (CS8354: Can't return 'this' by reference).
-			//return ref _values[0];
 		}
 
 		/// <summary>
