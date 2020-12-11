@@ -40,7 +40,11 @@ namespace Sudoku.Constants
 			this in SudokuGrid @this, out GridMap empty, out GridMap bivalue,
 			out GridMap[] candidates, out GridMap[] digits, out GridMap[] values)
 		{
-			(empty, bivalue, candidates, digits, values) = (e(@this), b(@this), c(@this), d(@this), v(@this));
+			empty = e(@this);
+			bivalue = b(@this);
+			candidates = c(@this);
+			digits = d(@this);
+			values = v(@this);
 
 			static GridMap e(in SudokuGrid @this)
 			{

@@ -36,7 +36,14 @@ namespace Sudoku.Solving.Manual
 		/// Initialize the maps that used later.
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		public static void InitializeMaps(in SudokuGrid grid) =>
-			(EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;
+		public static void InitializeMaps(in SudokuGrid grid)
+		{
+			var (e, b, c, d, v) = grid;
+			EmptyMap = e;
+			BivalueMap = b;
+			CandMaps = c;
+			DigitMaps = d;
+			ValueMaps = v;
+		}
 	}
 }
