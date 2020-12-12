@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -44,28 +45,16 @@ namespace Sudoku.Solving.Manual.Symmetry
 			// Iterate on each combination.
 			foreach (int[] r1 in R1)
 			{
-				if (r1[0] == 0 ^ r1[1] == 0 || r1[0] != r1[1]) continue;
-
 				foreach (int[] r2 in R2)
 				{
-					if (r2[0] == 0 ^ r2[1] == 0 || r2[0] != r2[1]) continue;
-
 					foreach (int[] r3 in R3)
 					{
-						if (r3[0] == 0 ^ r3[1] == 0 || r3[0] != r3[1]) continue;
-
 						foreach (int[] c1 in C1)
 						{
-							if (c1[0] == 0 ^ c1[1] == 0 || c1[0] != c1[1]) continue;
-
 							foreach (int[] c2 in C2)
 							{
-								if (c2[0] == 0 ^ c2[1] == 0 || c2[0] != c2[1]) continue;
-
 								foreach (int[] c3 in C3)
 								{
-									if (c3[0] == 0 ^ c3[1] == 0 || c3[0] != c3[1]) continue;
-
 									// Now swap the regions.
 									var tempGrid = grid;
 									if (r1[0] != 0) SwapTwoRegions(ref tempGrid, r1[0], r1[1]);
@@ -216,7 +205,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			{
 				for (int i = 0; i < 9; i++)
 				{
-					pGrid[RegionCells[region1][i]] = pGrid[RegionCells[region2][i]];
+					Algorithms.Swap(ref pGrid[RegionCells[region1][i]], ref pGrid[RegionCells[region2][i]]);
 				}
 			}
 		}

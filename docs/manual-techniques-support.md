@@ -16,5 +16,5 @@ The program supports technique below at present:
 | **Exocets**                 | Junior Exocet<br />Senior Exocet                             | Nightmare            |
 | **Generalized Locked Sets** | Stephen Kurzhal's Loop<br />Multi-sector Locked Sets         | Nightmare            |
 | **Last Resorts**            | Pattern Overlay Method<br />Template<br />Bowman's Bingo<br />Brute Force | Nightmare            |
-| **Symmetrical Techniques**  | Gurth's Symmetrical Placement                                | Fiendish             |
+| **Symmetrical Techniques**  | Gurth's Symmetrical Placement<br />Gurth's Symmetrical Placement 2 | Fiendish - Nightmare |
 
