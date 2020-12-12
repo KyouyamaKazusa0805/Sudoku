@@ -6005,19 +6005,82 @@
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="size">The size to search.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Symmetry.Gsp2StepInfo">
+            <summary>
+            Provides a usage of <b>Gurth's symmetrical placement 2</b> (GSP2) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="SymmetryType">The symmetry type used.</param>
+            <param name="SwappingTable">Indicates the swapping table.</param>
+            <param name="MappingTable">
+            The mapping table. The value is always not <see langword="null"/> unless the current instance
+            contains multiple different symmetry types.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.Gsp2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.SymmetryType,System.Int32[][],System.Nullable{System.Int32}[])">
+            <summary>
+            Provides a usage of <b>Gurth's symmetrical placement 2</b> (GSP2) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="SymmetryType">The symmetry type used.</param>
+            <param name="SwappingTable">Indicates the swapping table.</param>
+            <param name="MappingTable">
+            The mapping table. The value is always not <see langword="null"/> unless the current instance
+            contains multiple different symmetry types.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.Gsp2StepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.Gsp2StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.Gsp2StepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.Gsp2StepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher">
             <summary>
             Encapsulates a <b>Gurth's symmetrical placement 2</b> (GSP2) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.RowIterationList">
+        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.R1">
             <summary>
-            Indicates the iteration list for row swapping.
+            Indictaes the iteration list.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.ColumnIterationList">
+        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.R2">
             <summary>
-            Indicates the iteration list for column swapping.
+            Indictaes the iteration list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.R3">
+            <summary>
+            Indictaes the iteration list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.C1">
+            <summary>
+            Indictaes the iteration list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.C2">
+            <summary>
+            Indictaes the iteration list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.C3">
+            <summary>
+            Indictaes the iteration list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.Searcher">
+            <summary>
+            Indicates the step searcher for GSP technique.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.Properties">
@@ -6025,6 +6088,26 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.FullRestore(System.Int32@,System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.Int32[])">
+            <summary>
+            Full restore a cell.
+            </summary>
+            <param name="cell">(<see langword="ref"/> parameter) The cell to restore.</param>
+            <param name="r1">The region list 1 for a row.</param>
+            <param name="r2">The region list 2 for a row.</param>
+            <param name="r3">The region list 3 for a row.</param>
+            <param name="c1">The region list 1 for a column.</param>
+            <param name="c2">The region list 2 for a column.</param>
+            <param name="c3">The region list 3 for a column.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.SwapTwoRegions(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
+            <summary>
+            Swap values on two different regions.
+            </summary>
+            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+            <param name="region1">The region 1.</param>
+            <param name="region2">The region 2.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.GspStepInfo">
             <summary>
