@@ -355,6 +355,7 @@ namespace Sudoku.Windows
 			["AlsWWing"] = "待定数组-W-Wing",
 			["DeathBlossom"] = "死亡绽放",
 			["Gsp"] = "宇宙法",
+			["Gsp2"] = "宇宙法2",
 			["Je"] = "初级飞鱼导弹",
 			["Se"] = "高级飞鱼导弹",
 			["ComplexSe"] = "复杂高级飞鱼导弹",

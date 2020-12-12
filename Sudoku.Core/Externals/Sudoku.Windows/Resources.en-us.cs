@@ -353,6 +353,7 @@ namespace Sudoku.Windows
 			["AlsWWing"] = "Almost Locked Sets W-Wing",
 			["DeathBlossom"] = "Death Blossom",
 			["Gsp"] = "Gurth's Symmetrical Placement",
+			["Gsp2"] = "Gurth's Symmetrical Placement 2",
 			["Je"] = "Junior Exocet",
 			["Se"] = "Senior Exocet",
 			["ComplexSe"] = "Complex Senior Exocet",

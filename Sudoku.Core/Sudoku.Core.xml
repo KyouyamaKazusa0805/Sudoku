@@ -4841,6 +4841,11 @@
             Indicates the GSP.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Gsp2">
+            <summary>
+            Indicates the GSP2.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Je">
             <summary>
             Indicates the JE.

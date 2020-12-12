@@ -1988,29 +1988,6 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.DbStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DbStepSearcher.GetCombinations(System.Int32[][])">
-            <summary>
-            Get all combinations that each sub-array only choose one.
-            </summary>
-            <param name="array">The jigsaw array.</param>
-            <returns>
-            All combinations that each sub-array choose one. For example, if the array is
-            <c>{ { 1, 2, 3 }, { 1, 3 }, { 1, 4, 7, 10 } }</c>, all combinations are:
-            <list type="table">
-            <item><c>{ 1, 1, 1 }</c>, <c>{ 1, 1, 4 }</c>, <c>{ 1, 1, 7 }</c>, <c>{ 1, 1, 10 }</c>,</item>
-            <item><c>{ 1, 3, 1 }</c>, <c>{ 1, 3, 4 }</c>, <c>{ 1, 3, 7 }</c>, <c>{ 1, 3, 10 }</c>,</item>
-            <item><c>{ 2, 1, 1 }</c>, <c>{ 2, 1, 4 }</c>, <c>{ 2, 1, 7 }</c>, <c>{ 2, 1, 10 }</c>,</item>
-            <item><c>{ 2, 3, 1 }</c>, <c>{ 2, 3, 4 }</c>, <c>{ 2, 3, 7 }</c>, <c>{ 2, 3, 10 }</c>,</item>
-            <item><c>{ 3, 1, 1 }</c>, <c>{ 3, 1, 4 }</c>, <c>{ 3, 1, 7 }</c>, <c>{ 3, 1, 10 }</c>,</item>
-            <item><c>{ 3, 3, 1 }</c>, <c>{ 3, 3, 4 }</c>, <c>{ 3, 3, 7 }</c>, <c>{ 3, 3, 10 }</c></item>
-            </list>
-            24 cases in total.
-            </returns>
-            <remarks>
-            Please note that each return values unit (an array) contains the same number of elements
-            with the whole array.
-            </remarks>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomStepInfo">
             <summary>
             Provides a usage of <b>death blossom</b> technique.
@@ -6027,6 +6004,27 @@
             <param name="accumulator">The accumulator.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="size">The size to search.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher">
+            <summary>
+            Encapsulates a <b>Gurth's symmetrical placement 2</b> (GSP2) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.RowIterationList">
+            <summary>
+            Indicates the iteration list for row swapping.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.ColumnIterationList">
+            <summary>
+            Indicates the iteration list for column swapping.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.GspStepInfo">
             <summary>

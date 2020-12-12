@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -91,7 +90,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 
 							// Enumerate all digit combinations, and one digit always come from one ALS.
-							foreach (int[] digitSeries in GetCombinations(linkCombinations))
+							foreach (int[] digitSeries in linkCombinations.GetCombinations())
 							{
 								// Get each element by the specified index, and remove proper candidates.
 								for (int index = 0; index < size; index++)
@@ -186,72 +185,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 					}
 				}
-			}
-		}
-
-		/// <summary>
-		/// Get all combinations that each sub-array only choose one.
-		/// </summary>
-		/// <param name="array">The jigsaw array.</param>
-		/// <returns>
-		/// All combinations that each sub-array choose one. For example, if the array is
-		/// <c>{ { 1, 2, 3 }, { 1, 3 }, { 1, 4, 7, 10 } }</c>, all combinations are:
-		/// <list type="table">
-		/// <item><c>{ 1, 1, 1 }</c>, <c>{ 1, 1, 4 }</c>, <c>{ 1, 1, 7 }</c>, <c>{ 1, 1, 10 }</c>,</item>
-		/// <item><c>{ 1, 3, 1 }</c>, <c>{ 1, 3, 4 }</c>, <c>{ 1, 3, 7 }</c>, <c>{ 1, 3, 10 }</c>,</item>
-		/// <item><c>{ 2, 1, 1 }</c>, <c>{ 2, 1, 4 }</c>, <c>{ 2, 1, 7 }</c>, <c>{ 2, 1, 10 }</c>,</item>
-		/// <item><c>{ 2, 3, 1 }</c>, <c>{ 2, 3, 4 }</c>, <c>{ 2, 3, 7 }</c>, <c>{ 2, 3, 10 }</c>,</item>
-		/// <item><c>{ 3, 1, 1 }</c>, <c>{ 3, 1, 4 }</c>, <c>{ 3, 1, 7 }</c>, <c>{ 3, 1, 10 }</c>,</item>
-		/// <item><c>{ 3, 3, 1 }</c>, <c>{ 3, 3, 4 }</c>, <c>{ 3, 3, 7 }</c>, <c>{ 3, 3, 10 }</c></item>
-		/// </list>
-		/// 24 cases in total.
-		/// </returns>
-		/// <remarks>
-		/// Please note that each return values unit (an array) contains the same number of elements
-		/// with the whole array.
-		/// </remarks>
-		[SkipLocalsInit]
-		private static IEnumerable<int[]> GetCombinations(int[][] array)
-		{
-			unsafe
-			{
-				int length = array.GetLength(0), resultCount = 1;
-				int* tempArray = stackalloc int[length];
-				for (int i = 0; i < length; i++)
-				{
-					tempArray[i] = -1;
-					resultCount *= array[i].Length;
-				}
-
-				int[][] result = new int[resultCount][];
-				int m = -1, n = -1;
-				do
-				{
-					if (m < length - 1)
-					{
-						m++;
-					}
-
-					int* value = tempArray + m;
-					(*value)++;
-					if (*value > array[m].Length - 1)
-					{
-						*value = -1;
-						m -= 2; // Backtrack.
-					}
-
-					if (m == length - 1)
-					{
-						n++;
-						result[n] = new int[m + 1];
-						for (int i = 0; i <= m; i++)
-						{
-							result[n][i] = array[i][tempArray[i]];
-						}
-					}
-				} while (m >= -1);
-
-				return result;
 			}
 		}
 	}

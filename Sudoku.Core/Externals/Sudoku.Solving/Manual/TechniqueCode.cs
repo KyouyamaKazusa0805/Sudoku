@@ -1438,6 +1438,12 @@ namespace Sudoku.Solving.Manual
 		Gsp,
 
 		/// <summary>
+		/// Indicates the GSP2.
+		/// </summary>
+		[TechniqueDisplay("Gurth's Symmetrical Placement 2")]
+		Gsp2,
+
+		/// <summary>
 		/// Indicates the JE.
 		/// </summary>
 		[TechniqueDisplay("Junior Exocet")]
