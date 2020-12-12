@@ -12,30 +12,30 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+		<PackageReference Include="System.Drawing.Common" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
+		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="KeyedTuple.tt">
-	    <LastGenOutput>KeyedTuple.cs</LastGenOutput>
-	    <Generator>TextTemplatingFileGenerator</Generator>
-	  </None>
+		<None Update="KeyedTuple.tt">
+			<LastGenOutput>KeyedTuple.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="KeyedTuple.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>KeyedTuple.tt</DependentUpon>
-	  </Compile>
+		<Compile Update="KeyedTuple.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>KeyedTuple.tt</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 </Project>
