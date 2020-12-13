@@ -47,6 +47,7 @@ namespace System.Extensions
 		/// may not be the built-in types such as <see cref="int"/>, <see cref="float"/> or so on,
 		/// because they can use operators directly.
 		/// </remarks>
+		[CLSCompliant(false)]
 		public static unsafe void Sort<T>(this IList<T> @this, delegate*<in T, in T, int> comparer)
 		{
 			q(0, @this.Count - 1, @this, comparer);

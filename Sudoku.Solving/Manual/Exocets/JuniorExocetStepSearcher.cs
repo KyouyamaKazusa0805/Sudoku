@@ -166,7 +166,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				var bibiEliminations = new BiBiPattern();
 				var targetPairEliminations = new TargetPair();
 				var swordfishEliminations = new Swordfish();
-				if (_checkAdvanced && baseCandidatesMask.PopCount() > 2)
+				if (CheckAdvanced && baseCandidatesMask.PopCount() > 2)
 				{
 					CheckBibiPattern(
 						grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2, s,
@@ -174,9 +174,9 @@ namespace Sudoku.Solving.Manual.Exocets
 						out targetPairEliminations, out swordfishEliminations);
 				}
 
-				if (_checkAdvanced
+				if (CheckAdvanced
 					&& (targetEliminations.Count, mirrorEliminations.Count, bibiEliminations.Count) == (0, 0, 0)
-					|| !_checkAdvanced && targetEliminations.Count == 0)
+					|| !CheckAdvanced && targetEliminations.Count == 0)
 				{
 					continue;
 				}
@@ -199,7 +199,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						lockedMemberQ == 0 ? null : lockedMemberQ.GetAllSets(),
 						lockedMemberR == 0 ? null : lockedMemberR.GetAllSets(),
 						targetEliminations,
-						_checkAdvanced ? mirrorEliminations : null,
+						CheckAdvanced ? mirrorEliminations : null,
 						bibiEliminations,
 						targetPairEliminations,
 						swordfishEliminations));

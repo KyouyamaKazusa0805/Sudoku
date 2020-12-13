@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 
 						// Check overlap ALSes.
-						if (!_allowOverlapping)
+						if (!AllowOverlapping)
 						{
 							var alsesUsed = dic.Values.ToArray();
 							bool overlap = false;
@@ -217,9 +217,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									new()
 									{
 										Cells =
-											_alsShowRegions ? new DrawingInfo[] { new(0, pivot) } : cellOffsets,
-										Candidates = _alsShowRegions ? candidateOffsets : null,
-										Regions = _alsShowRegions ? regionOffsets : null
+											AlsShowRegions ? new DrawingInfo[] { new(0, pivot) } : cellOffsets,
+										Candidates = AlsShowRegions ? candidateOffsets : null,
+										Regions = AlsShowRegions ? regionOffsets : null
 									}
 								},
 								pivot,

@@ -254,9 +254,9 @@ namespace Sudoku.Solving.Manual.Alses
 													{
 														new()
 														{
-															Cells = _alsShowRegions ? null : cellOffsets,
-															Candidates = _alsShowRegions ? candidateOffsets : null,
-															Regions = _alsShowRegions
+															Cells = AlsShowRegions ? null : cellOffsets,
+															Candidates = AlsShowRegions ? candidateOffsets : null,
+															Regions = AlsShowRegions
 															? new DrawingInfo[]
 															{
 																new(0, coverSet), new(1, baseSet)

@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						var loopMap = GridMap.Empty;
 						loops.Clear();
 						tempLoop.Clear();
-						f(cell, (RegionLabel)(-1), GridMap.Empty);
+						f(cell, (RegionLabel)byte.MaxValue, GridMap.Empty);
 
 						if (loops.Count == 0)
 						{

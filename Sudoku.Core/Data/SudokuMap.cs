@@ -93,7 +93,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
 		public SudokuMap(long[] binary)
 		{
-			_ = binary.Length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.") : 0;
+			_ = binary.Length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.", nameof(binary)) : 0;
 
 			int count = 0;
 			fixed (long* pThis = _innerBinary)
@@ -116,9 +116,10 @@ namespace Sudoku.Data
 		/// <param name="binary">The pointer to the binary array.</param>
 		/// <param name="length">The length.</param>
 		/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
+		[CLSCompliant(false)]
 		public SudokuMap(long* binary, int length)
 		{
-			_ = length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.") : 0;
+			_ = length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.", nameof(length)) : 0;
 
 			int count = 0;
 			fixed (long* pThis = _innerBinary)
@@ -294,6 +295,7 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is SudokuMap comparer && Equals(comparer);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public readonly bool Equals(in SudokuMap other)
 		{
 			for (int i = 0; i < BufferLength; i++)

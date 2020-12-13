@@ -92,6 +92,7 @@ namespace Sudoku.Models
 			obj is GridProgressResult comparer && Equals(comparer);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public readonly bool Equals(in GridProgressResult other) =>
 			CurrentCellsCount == other.CurrentCellsCount
 			&& CurrentCandidatesCount == other.CurrentCandidatesCount

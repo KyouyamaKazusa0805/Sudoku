@@ -72,6 +72,7 @@ namespace System.Collections.Generic
 		/// Sort the list with the specified comparsion.
 		/// </summary>
 		/// <param name="comparison">The comparsion.</param>
+		[CLSCompliant(false)]
 		public unsafe void Sort(delegate*<in T, in T, int> comparison) => _list.Sort(comparison);
 
 		/// <summary>

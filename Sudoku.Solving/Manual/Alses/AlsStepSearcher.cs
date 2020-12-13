@@ -10,17 +10,17 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <summary>
 		/// Indicates whether the ALSes can be overlapped with each other.
 		/// </summary>
-		protected readonly bool _allowOverlapping;
+		protected readonly bool AllowOverlapping;
 
 		/// <summary>
 		/// Indicates whether the ALSes shows their regions rather than cells.
 		/// </summary>
-		protected readonly bool _alsShowRegions;
+		protected readonly bool AlsShowRegions;
 
 		/// <summary>
 		/// Indicates whether the solver will check ALS cycles.
 		/// </summary>
-		protected readonly bool _allowAlsCycles;
+		protected readonly bool AllowAlsCycles;
 
 
 		/// <inheritdoc cref="DefaultConstructor"/>
@@ -36,9 +36,9 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="allowAlsCycles">Indicates whether the solver will check ALS cycles.</param>
 		protected AlsStepSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles)
 		{
-			_allowOverlapping = allowOverlapping;
-			_alsShowRegions = alsShowRegions;
-			_allowAlsCycles = allowAlsCycles;
+			AllowOverlapping = allowOverlapping;
+			AlsShowRegions = alsShowRegions;
+			AllowAlsCycles = allowAlsCycles;
 		}
 	}
 }

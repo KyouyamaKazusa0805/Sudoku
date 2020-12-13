@@ -37,6 +37,7 @@ namespace Sudoku.Drawing
 		public override bool Equals(object? obj) => obj is DrawingInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public bool Equals(in DrawingInfo other) => Id == other.Id && Value == other.Value;
 
 		/// <inheritdoc cref="object.GetHashCode"/>

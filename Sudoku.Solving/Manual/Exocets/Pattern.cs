@@ -160,6 +160,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public bool Equals(in Pattern other) =>
 			Base1 == other.Base1 && Base2 == other.Base2
 			&& TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2

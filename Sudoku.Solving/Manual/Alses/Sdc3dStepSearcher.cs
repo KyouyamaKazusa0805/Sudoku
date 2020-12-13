@@ -288,10 +288,10 @@ namespace Sudoku.Solving.Manual.Alses
 															{
 																new()
 																{
-																	Cells = _alsShowRegions ? null : cellOffsets,
+																	Cells = AlsShowRegions ? null : cellOffsets,
 																	Candidates =
-																		_alsShowRegions ? candidateOffsets : null,
-																	Regions = _alsShowRegions
+																		AlsShowRegions ? candidateOffsets : null,
+																	Regions = AlsShowRegions
 																	? new DrawingInfo[]
 																	{
 																		new(0, r), new(1, c), new(2, b)

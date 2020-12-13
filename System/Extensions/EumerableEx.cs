@@ -33,6 +33,7 @@ namespace System.Extensions
 		/// because each element can't be <see langword="null"/>
 		/// (either value types or non-<see langword="null"/> reference types).
 		/// </remarks>
+		[CLSCompliant(false)]
 		public static unsafe T? GetElementByMinSelector<T, TComparable>(
 			this IEnumerable<T> @this, delegate*<T, TComparable> selector)
 			where TComparable : IComparable<TComparable> =>
@@ -55,6 +56,7 @@ namespace System.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="selector">The selector, specified a function pointer.</param>
 		/// <returns>The result indicating whether all values satisfy the condition.</returns>
+		[CLSCompliant(false)]
 		public static unsafe bool All<T>(this IEnumerable<T> @this, delegate*<T, bool> selector)
 		{
 			foreach (var element in @this)
@@ -79,6 +81,7 @@ namespace System.Extensions
 		/// <param name="selector">The selector.</param>
 		/// <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
 		/// <returns>The result indicating whether all values satisfy the condition.</returns>
+		[CLSCompliant(false)]
 		public static unsafe bool All<TElement, TOther>(
 			this IEnumerable<TElement> @this, delegate*<TElement, in TOther, bool> selector, in TOther value)
 		{
@@ -110,6 +113,7 @@ namespace System.Extensions
 		/// (<see langword="in"/> parameter) The second value to participate in checking.
 		/// </param>
 		/// <returns>The result indicating whether all values satisfy the condition.</returns>
+		[CLSCompliant(false)]
 		public static unsafe bool All<TElement, T1, T2>(
 			this IEnumerable<TElement> @this, delegate*<TElement, in T1, in T2, bool> selector,
 			in T1 value1, in T2 value2)
@@ -133,6 +137,7 @@ namespace System.Extensions
 		/// <param name="this">(<see langword="in"/> parameter) The list.</param>
 		/// <param name="selector">The selector.</param>
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
+		[CLSCompliant(false)]
 		public static unsafe bool Any<T>(this IEnumerable<T> @this, delegate*<T, bool> selector)
 		{
 			foreach (var element in @this)
@@ -157,6 +162,7 @@ namespace System.Extensions
 		/// <param name="selector">The selector.</param>
 		/// <param name="value">(<see langword="in"/> parameter) The value to participate in checking.</param>
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
+		[CLSCompliant(false)]
 		public static unsafe bool Any<TElement, TOther>(
 			this IEnumerable<TElement> @this, delegate*<TElement, in TOther, bool> selector, in TOther value)
 		{
@@ -188,6 +194,7 @@ namespace System.Extensions
 		/// (<see langword="in"/> parameter) The second value to participate in checking.
 		/// </param>
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
+		[CLSCompliant(false)]
 		public static unsafe bool Any<TElement, T1, T2>(
 			this IEnumerable<TElement> @this, delegate*<TElement, in T1, in T2, bool> selector,
 			in T1 value1, in T2 value2)
@@ -224,6 +231,7 @@ namespace System.Extensions
 		/// (<see langword="in"/> parameter) The third value to participate in checking.
 		/// </param>
 		/// <returns>The result indicating whether any an element satisfy the condition.</returns>
+		[CLSCompliant(false)]
 		public static unsafe bool Any<TElement, T1, T2, T3>(
 			this IEnumerable<TElement> @this, delegate*<TElement, in T1, in T2, in T3, bool> selector,
 			in T1 value1, in T2 value2, in T3 value3)
@@ -272,6 +280,7 @@ namespace System.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="selector">The condition to check, specified as a function pointer.</param>
 		/// <returns>The number of all elements satisfying the condition.</returns>
+		[CLSCompliant(false)]
 		public static unsafe int Count<T>(this IEnumerable<T> @this, delegate*<in T, bool> selector)
 		{
 			int count = 0;

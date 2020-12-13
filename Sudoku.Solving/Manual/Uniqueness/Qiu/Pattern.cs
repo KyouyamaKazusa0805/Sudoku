@@ -59,6 +59,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public override bool Equals(object? obj) => obj is Pattern other && Equals(other);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public bool Equals(in Pattern other) =>
 			Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
 

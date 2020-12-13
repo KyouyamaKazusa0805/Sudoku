@@ -138,6 +138,7 @@ namespace System.Extensions
 		/// <param name="contentList">All contents.</param>
 		/// <param name="converter">The converter method specified as a function pointer.</param>
 		/// <returns>The reference of the current instance.</returns>
+		[CLSCompliant(false)]
 		public static unsafe StringBuilder AppendRange<TElement, TOther>(
 			this StringBuilder @this, IEnumerable<TElement?> contentList,
 			delegate*<in TElement?, TOther?> converter)
@@ -166,6 +167,7 @@ namespace System.Extensions
 		/// <param name="converter">The converter method specified as a function pointer.</param>
 		/// <param name="value">The auxiliary value.</param>
 		/// <returns>The reference of the current instance.</returns>
+		[CLSCompliant(false)]
 		public static unsafe StringBuilder AppendRange<TElement, TAuxiliary, TResult>(
 			this StringBuilder @this, IEnumerable<TElement?> contentList,
 			delegate*<in TElement?, in TAuxiliary?, TResult?> converter, in TAuxiliary value)

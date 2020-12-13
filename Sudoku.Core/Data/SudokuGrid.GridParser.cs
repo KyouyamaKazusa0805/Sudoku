@@ -23,7 +23,7 @@ namespace Sudoku.Data
 			/// Initializes an instance with parsing data.
 			/// </summary>
 			/// <param name="parsingValue">The string to parse.</param>
-			public GridParser(string parsingValue) : this(parsingValue, false)
+			public GridParser(string parsingValue) : this(parsingValue, compatibleFirst: false)
 			{
 			}
 
@@ -111,11 +111,11 @@ namespace Sudoku.Data
 				{
 					GridParsingOption.Susser => OnParsingSusser(ref this),
 					GridParsingOption.Table => OnParsingSimpleMultilineGrid(ref this),
-					GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this, false),
-					GridParsingOption.PencilMarkedTreatSingleAsGiven => OnParsingPencilMarked(ref this, true),
+					GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this, treatSingleValueAsGiven: false),
+					GridParsingOption.PencilMarkedTreatSingleAsGiven => OnParsingPencilMarked(ref this, treatSingleValueAsGiven: true),
 					GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
-					GridParsingOption.Sukaku => OnParsingSukaku(ref this, false),
-					GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, true),
+					GridParsingOption.Sukaku => OnParsingSukaku(ref this, compatibleFirst: false),
+					GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, compatibleFirst: true),
 					GridParsingOption.Excel => OnParsingExcel(ref this)
 				};
 

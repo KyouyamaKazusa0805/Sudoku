@@ -7,7 +7,7 @@
 	/// This <see langword="enum"/> is used for some formatted string output, i.e. a
 	/// multi-language string.
 	/// </remarks>
-	public enum CountryCode : ushort
+	public enum CountryCode : short
 	{
 		/// <summary>
 		/// Indicates the language is none of them, which is the default value of this type.

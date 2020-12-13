@@ -96,6 +96,7 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => obj is Conclusion comparer && Equals(comparer);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public bool Equals(in Conclusion other) => GetHashCode() == other.GetHashCode();
 
 		/// <inheritdoc cref="object.GetHashCode"/>

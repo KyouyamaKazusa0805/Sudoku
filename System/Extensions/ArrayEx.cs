@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace System.Extensions
 {
@@ -19,6 +18,7 @@ namespace System.Extensions
 		/// If you want to use this method, please note that the <typeparamref name="T"/> may not be the built-in
 		/// types such as <see cref="int"/>, <see cref="float"/> or so on, because they can use operators directly.
 		/// </remarks>
+		[CLSCompliant(false)]
 		public static unsafe void Sort<T>(this T[] @this, delegate*<in T, in T, int> comparer)
 		{
 			q(0, @this.Length - 1, @this, comparer);

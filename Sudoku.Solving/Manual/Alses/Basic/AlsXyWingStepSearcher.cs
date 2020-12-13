@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					if (!_allowOverlapping && (aMap.Overlaps(bMap) || aMap.Overlaps(cMap) || bMap.Overlaps(cMap)))
+					if (!AllowOverlapping && (aMap.Overlaps(bMap) || aMap.Overlaps(cMap) || bMap.Overlaps(cMap)))
 					{
 						continue;
 					}
@@ -214,9 +214,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									{
 										new()
 										{
-											Cells = _alsShowRegions ? null : cellOffsets,
-											Candidates =_alsShowRegions ? candidateOffsets : null,
-											Regions = _alsShowRegions
+											Cells = AlsShowRegions ? null : cellOffsets,
+											Candidates =AlsShowRegions ? candidateOffsets : null,
+											Regions = AlsShowRegions
 											? new DrawingInfo[]
 											{
 												new(-1, aRegion), new(-2, bRegion), new(-3, cRegion)

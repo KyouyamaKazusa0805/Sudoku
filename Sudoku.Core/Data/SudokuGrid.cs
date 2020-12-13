@@ -58,11 +58,13 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the event triggered when the value is changed.
 		/// </summary>
+		[CLSCompliant(false)]
 		public static readonly delegate*<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
 
 		/// <summary>
 		/// Indicates the event triggered when should re-compute candidates.
 		/// </summary>
+		[CLSCompliant(false)]
 		public static readonly delegate*<ref SudokuGrid, void> RefreshingCandidates;
 
 		/// <summary>
@@ -250,6 +252,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the pinnable reference of the initial mask list.
 		/// </summary>
+		[CLSCompliant(false)]
 		public readonly short* InitialMaskPinnableReference
 		{
 			get
@@ -424,6 +427,7 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is SudokuGrid other && Equals(other);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public readonly bool Equals(in SudokuGrid other)
 		{
 			fixed (short* pThis = this, pOther = other)

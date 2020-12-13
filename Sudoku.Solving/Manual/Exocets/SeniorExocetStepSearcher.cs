@@ -202,7 +202,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						cellOffsets.Add(new(cell == v1 || cell == v2 ? 1 : 2, cell));
 					}
 					var candidateOffsets = new List<DrawingInfo>();
-					if (_checkAdvanced)
+					if (CheckAdvanced)
 					{
 						for (int k = 0; k < 2; k++)
 						{
@@ -271,8 +271,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					if (
 						(mirrorElims.Count, compatibilityElims.Count) == (0, 0)
 						&& (
-						_checkAdvanced && (targetElims.Count, trueBaseElims.Count) == (0, 0)
-						|| !_checkAdvanced))
+						CheckAdvanced && (targetElims.Count, trueBaseElims.Count) == (0, 0)
+						|| !CheckAdvanced))
 					{
 						continue;
 					}

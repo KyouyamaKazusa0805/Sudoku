@@ -83,6 +83,7 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public bool Equals(in Link other)
 		{
 			var (a, b, c) = this;

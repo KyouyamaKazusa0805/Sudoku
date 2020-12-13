@@ -1605,17 +1605,17 @@
             Encapsulates an <b>almost locked set</b> (ALS) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsStepSearcher._allowOverlapping">
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsStepSearcher.AllowOverlapping">
             <summary>
             Indicates whether the ALSes can be overlapped with each other.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsStepSearcher._alsShowRegions">
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsStepSearcher.AlsShowRegions">
             <summary>
             Indicates whether the ALSes shows their regions rather than cells.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsStepSearcher._allowAlsCycles">
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsStepSearcher.AllowAlsCycles">
             <summary>
             Indicates whether the solver will check ALS cycles.
             </summary>
@@ -2815,22 +2815,22 @@
             Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.FcStepSearcher._nishio">
+        <member name="F:Sudoku.Solving.Manual.Chaining.FcStepSearcher.IsNishio">
             <summary>
             Indicates the information.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.FcStepSearcher._multiple">
+        <member name="F:Sudoku.Solving.Manual.Chaining.FcStepSearcher.IsMultiple">
             <summary>
             Indicates the information.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.FcStepSearcher._dynamic">
+        <member name="F:Sudoku.Solving.Manual.Chaining.FcStepSearcher.IsDynamic">
             <summary>
             Indicates the information.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.FcStepSearcher._level">
+        <member name="F:Sudoku.Solving.Manual.Chaining.FcStepSearcher.Level">
             <summary>
             Indicates the level of the searching depth.
             </summary>
@@ -3323,7 +3323,7 @@
             Indicates all patterns.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher._checkAdvanced">
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.CheckAdvanced">
             <summary>
             Indicates whether the searcher will find advanced eliminations.
             </summary>
@@ -8513,11 +8513,6 @@
             Indicates the type 2 (UR + 2x).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2X">
-            <summary>
-            Indicates the type 3 (UR + 2X).
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type3">
             <summary>
             Indicates the type 3 (UR + 2X).
@@ -8533,12 +8528,12 @@
             Indicates the type 4 (UR + 2X / 1SL).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2d">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2d_Lower">
             <summary>
             Indicates the type 5 (UR + 2d).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3x">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3x_Lower">
             <summary>
             Indicates the type 5 (UR + 3x).
             </summary>
@@ -8563,7 +8558,7 @@
             Indicates the hidden UR (UR + 3C / 2SL).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2D">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2D_Upper">
             <summary>
             Indicates the UR + 2D.
             </summary>
@@ -8578,17 +8573,17 @@
             Indicates the UR + 2D / 1SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3X">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3X_Upper">
             <summary>
             Indicates the UR + 3X.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3x1SL">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3x1SL_Lower">
             <summary>
             Indicates the UR + 3x / 1SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3X1SL">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3X1SL_Upper">
             <summary>
             Indicates the UR + 3X / 1SL.
             </summary>
@@ -8613,22 +8608,22 @@
             Indicates the UR + 3E / 2SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4x1SL">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4x1SL_Lower">
             <summary>
             Indicates the UR + 4x / 1SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4X1SL">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4X1SL_Upper">
             <summary>
             Indicates the UR + 4X / 1SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4x2SL">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4x2SL_Lower">
             <summary>
             Indicates the UR + 4x / 2SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4X2SL">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4X2SL_Upper">
             <summary>
             Indicates the UR + 4X / 2SL.
             </summary>
@@ -8673,11 +8668,6 @@
             Indicates the type 1 (AR + 1).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2x">
-            <summary>
-            Indicates the type 2 (AR + 2x).
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType2">
             <summary>
             Indicates the type 2 (AR + 2x).
@@ -8693,12 +8683,12 @@
             Indicates the type 3 (AR + 2X).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2d">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2d_Lower">
             <summary>
             Indicates the type 5 (AR + 2d).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3x">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3x_Lower">
             <summary>
             Indicates the type 5 (AR + 3x).
             </summary>
@@ -8718,12 +8708,12 @@
             Indicates the hidden AR (AR + 3C / 2SL).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2D">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2D_Upper">
             <summary>
             Indicates the AR + 2D.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3X">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3X_Upper">
             <summary>
             Indicates the AR + 3X.
             </summary>

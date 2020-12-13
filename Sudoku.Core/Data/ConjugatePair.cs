@@ -78,6 +78,7 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => obj is ConjugatePair comparer && Equals(comparer);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public bool Equals(in ConjugatePair other) => Map == other.Map && Digit == other.Digit;
 
 		/// <inheritdoc cref="object.GetHashCode"/>

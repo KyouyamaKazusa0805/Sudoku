@@ -158,8 +158,7 @@
             <param name="oneCount">The number of <see langword="true"/> bits.</param>
         </member>
         <member name="M:Sudoku.Data.BitSubsetsGenerator.Equals(System.Object)">
-            <inheritdoc/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Data.BitSubsetsGenerator.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -3078,8 +3077,20 @@
             <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
             <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
         </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.Equals(Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.op_Equality(Sudoku.Data.SudokuGrid.ValueChangedArgs,Sudoku.Data.SudokuGrid.ValueChangedArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.op_Inequality(Sudoku.Data.SudokuGrid.ValueChangedArgs,Sudoku.Data.SudokuGrid.ValueChangedArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.SudokuMap">
             <summary>
@@ -4346,12 +4357,12 @@
             Indicates the UR + 3X.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3x1SL">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3x1SL_Lower">
             <summary>
             Indicates the UR + 3x / 1SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3X1SL">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3X1SL_Upper">
             <summary>
             Indicates the UR + 3X / 1SL.
             </summary>
@@ -4376,22 +4387,22 @@
             Indicates the UR + 3E / 2SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4x1SL">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4x1SL_Lower">
             <summary>
             Indicates the UR + 4x / 1SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4X1SL">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4X1SL_Upper">
             <summary>
             Indicates the UR + 4X / 1SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4x2SL">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4x2SL_Lower">
             <summary>
             Indicates the UR + 4x / 2SL.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4X2SL">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4X2SL_Upper">
             <summary>
             Indicates the UR + 4X / 2SL.
             </summary>

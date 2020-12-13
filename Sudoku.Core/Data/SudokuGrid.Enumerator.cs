@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -32,6 +33,7 @@ namespace Sudoku.Data
 			/// Initializes an instance with the specified pointer to an array to iterate.
 			/// </summary>
 			/// <param name="arr">The pointer to an array.</param>
+			[CLSCompliant(false)]
 			public Enumerator(short* arr)
 			{
 				// Note here we should point at the one-unit-lengthed memory before the array start.

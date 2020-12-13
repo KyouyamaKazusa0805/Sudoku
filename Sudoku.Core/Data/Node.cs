@@ -179,6 +179,7 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public readonly bool Equals(in Node other) =>
 			Cell == other.Cell && Digit == other.Digit && IsOn == other.IsOn;
 

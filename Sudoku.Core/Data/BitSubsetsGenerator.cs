@@ -34,14 +34,9 @@ namespace Sudoku.Data
 		public BitSubsetsGenerator(int bitCount, int oneCount) => _enumerator = new(bitCount, oneCount);
 
 
-		/// <inheritdoc/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override bool Equals(object? obj) =>
-			throw new NotSupportedException(
-				"This instance doesn't support this member, " +
-				"because this method will cause box and unbox operations, " +
-				"which is invalid in ref structures.");
+		/// <inheritdoc cref="object.Equals(object?)"/>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public override bool Equals(object? obj) => false;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>

@@ -43,12 +43,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates the type 3 (UR + 2X).
 		/// </summary>
 		[Alias(nameof(TechniqueCode.UrType3))]
-		Plus2X = 3,
-
-		/// <summary>
-		/// Indicates the type 3 (UR + 2X).
-		/// </summary>
-		[Alias(nameof(TechniqueCode.UrType3))]
 		Type3 = 3,
 
 		/// <summary>
@@ -67,13 +61,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates the type 5 (UR + 2d).
 		/// </summary>
 		[Alias(nameof(TechniqueCode.UrType5))]
-		Plus2d = 5,
+		Plus2d_Lower = 5,
 
 		/// <summary>
 		/// Indicates the type 5 (UR + 3x).
 		/// </summary>
 		[Alias(nameof(TechniqueCode.UrType5))]
-		Plus3x = 5,
+		Plus3x_Lower = 5,
 
 		/// <summary>
 		/// Indicates the type 5 (UR + 2d or UR + 3x).
@@ -103,7 +97,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates the UR + 2D.
 		/// </summary>
 		[Alias(nameof(TechniqueCode.UrPlus2D))]
-		Plus2D = 8,
+		Plus2D_Upper = 8,
 
 		/// <summary>
 		/// Indicates the UR + 2B / 1SL.
@@ -121,19 +115,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates the UR + 3X.
 		/// </summary>
 		[Alias(nameof(TechniqueCode.UrPlus3X))]
-		Plus3X = 11,
+		Plus3X_Upper = 11,
 
 		/// <summary>
 		/// Indicates the UR + 3x / 1SL.
 		/// </summary>
-		[Alias(nameof(TechniqueCode.UrPlus3x1SL))]
-		Plus3x1SL = 12,
+		[Alias(nameof(TechniqueCode.UrPlus3x1SL_Lower))]
+		Plus3x1SL_Lower = 12,
 
 		/// <summary>
 		/// Indicates the UR + 3X / 1SL.
 		/// </summary>
-		[Alias(nameof(TechniqueCode.UrPlus3X1SL))]
-		Plus3X1SL = 13,
+		[Alias(nameof(TechniqueCode.UrPlus3X1SL_Upper))]
+		Plus3X1SL_Upper = 13,
 
 		/// <summary>
 		/// Indicates the UR + 3X / 2SL.
@@ -162,26 +156,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <summary>
 		/// Indicates the UR + 4x / 1SL.
 		/// </summary>
-		[Alias(nameof(TechniqueCode.UrPlus4x1SL))]
-		Plus4x1SL = 18,
+		[Alias(nameof(TechniqueCode.UrPlus4x1SL_Lower))]
+		Plus4x1SL_Lower = 18,
 
 		/// <summary>
 		/// Indicates the UR + 4X / 1SL.
 		/// </summary>
-		[Alias(nameof(TechniqueCode.UrPlus4X1SL))]
-		Plus4X1SL = 19,
+		[Alias(nameof(TechniqueCode.UrPlus4X1SL_Upper))]
+		Plus4X1SL_Upper = 19,
 
 		/// <summary>
 		/// Indicates the UR + 4x / 2SL.
 		/// </summary>
-		[Alias(nameof(TechniqueCode.UrPlus4x2SL))]
-		Plus4x2SL = 20,
+		[Alias(nameof(TechniqueCode.UrPlus4x2SL_Lower))]
+		Plus4x2SL_Lower = 20,
 
 		/// <summary>
 		/// Indicates the UR + 4X / 2SL.
 		/// </summary>
-		[Alias(nameof(TechniqueCode.UrPlus4X2SL))]
-		Plus4X2SL = 21,
+		[Alias(nameof(TechniqueCode.UrPlus4X2SL_Upper))]
+		Plus4X2SL_Upper = 21,
 
 		/// <summary>
 		/// Indicates the UR + 4X / 3SL.
@@ -235,12 +229,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates the type 2 (AR + 2x).
 		/// </summary>
 		[Alias(nameof(TechniqueCode.ArType2))]
-		APlus2x = 29,
-
-		/// <summary>
-		/// Indicates the type 2 (AR + 2x).
-		/// </summary>
-		[Alias(nameof(TechniqueCode.ArType2))]
 		AType2 = 29,
 
 		/// <summary>
@@ -259,13 +247,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates the type 5 (AR + 2d).
 		/// </summary>
 		[Alias(nameof(TechniqueCode.ArType5))]
-		APlus2d = 32,
+		APlus2d_Lower = 32,
 
 		/// <summary>
 		/// Indicates the type 5 (AR + 3x).
 		/// </summary>
 		[Alias(nameof(TechniqueCode.ArType5))]
-		APlus3x = 32,
+		APlus3x_Lower = 32,
 
 		/// <summary>
 		/// Indicates the type 5 (AR + 2d or AR + 3x).
@@ -289,13 +277,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates the AR + 2D.
 		/// </summary>
 		[Alias(nameof(TechniqueCode.ArPlus2D))]
-		APlus2D = 35,
+		APlus2D_Upper = 35,
 
 		/// <summary>
 		/// Indicates the AR + 3X.
 		/// </summary>
 		[Alias(nameof(TechniqueCode.ArPlus3X))]
-		APlus3X = 38,
+		APlus3X_Upper = 38,
 
 		/// <summary>
 		/// Indicates the AR-XY-Wing.

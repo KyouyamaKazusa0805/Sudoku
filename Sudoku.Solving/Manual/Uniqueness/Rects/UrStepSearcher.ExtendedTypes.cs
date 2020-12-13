@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								Candidates = candidateOffsets
 							}
 						},
-						arMode ? APlus2D : Plus2D,
+						arMode ? APlus2D_Upper : Plus2D_Upper,
 						d1,
 						d2,
 						urCells,
@@ -544,7 +544,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								Candidates = candidateOffsets
 							}
 						},
-						arMode ? APlus3X : Plus3X,
+						arMode ? APlus3X_Upper : Plus3X_Upper,
 						d1,
 						d2,
 						urCells,

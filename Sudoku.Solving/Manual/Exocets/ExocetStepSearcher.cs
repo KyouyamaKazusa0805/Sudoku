@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates whether the searcher will find advanced eliminations.
 		/// </summary>
-		protected readonly bool _checkAdvanced;
+		protected readonly bool CheckAdvanced;
 
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="checkAdvanced">
 		/// Indicates whether the searcher will find advanced eliminations.
 		/// </param>
-		protected ExocetStepSearcher(bool checkAdvanced) => _checkAdvanced = checkAdvanced;
+		protected ExocetStepSearcher(bool checkAdvanced) => CheckAdvanced = checkAdvanced;
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 			}
 
-			if (_checkAdvanced)
+			if (CheckAdvanced)
 			{
 				var regions = (stackalloc int[2]);
 				short m1 = (short)(grid.GetCandidateMask(playground[0]) & baseCandidateMask);

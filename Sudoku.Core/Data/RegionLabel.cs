@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Indicates the region label.
 	/// </summary>
-	public enum RegionLabel : sbyte
+	public enum RegionLabel : byte
 	{
 		/// <summary>
 		/// Indicates the block.

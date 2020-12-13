@@ -145,6 +145,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		}
 
 		/// <inheritdoc/>
+		[CLSCompliant(false)]
 		public bool Equals(in Als other) => DigitsMask == other.DigitsMask && Map == other.Map;
 
 		/// <inheritdoc cref="object.GetHashCode"/>

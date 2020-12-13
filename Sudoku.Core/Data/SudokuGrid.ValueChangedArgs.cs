@@ -64,10 +64,24 @@ namespace Sudoku.Data
 				setValue = SetValue;
 			}
 
+			/// <inheritdoc cref="object.Equals(object?)"/>
+			public override bool Equals(object? obj) => obj is ValueChangedArgs comparer && Equals(comparer);
+
+			/// <inheritdoc cref="object.GetHashCode"/>
+			public override int GetHashCode() => HashCode.Combine(Cell, OldMask, NewMask, SetValue);
+
 			/// <inheritdoc/>
+			[CLSCompliant(false)]
 			public bool Equals(in ValueChangedArgs other) =>
 				Cell == other.Cell && OldMask == other.OldMask && NewMask == other.NewMask
 				&& SetValue == other.SetValue;
+
+
+			/// <inheritdoc cref="Operators.operator =="/>
+			public static bool operator ==(ValueChangedArgs left, ValueChangedArgs right) => left.Equals(right);
+
+			/// <inheritdoc cref="Operators.operator !="/>
+			public static bool operator !=(ValueChangedArgs left, ValueChangedArgs right) => !(left == right);
 		}
 	}
 }

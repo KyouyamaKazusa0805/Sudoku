@@ -63,6 +63,7 @@ namespace Sudoku.Data.Stepping
 		public int GivensCount => _innerGrid.GivensCount;
 
 		/// <inheritdoc cref="SudokuGrid.InitialMaskPinnableReference"/>
+		[CLSCompliant(false)]
 		public short* InitialMaskPinnableReference => _innerGrid.InitialMaskPinnableReference;
 
 		/// <summary>

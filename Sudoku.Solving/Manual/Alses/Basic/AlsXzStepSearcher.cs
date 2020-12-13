@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					short xzMask = (short)(mask1 & mask2);
 					var map = map1 | map2;
 					var overlapMap = map1 & map2;
-					if (!_allowOverlapping && overlapMap.IsNotEmpty)
+					if (!AllowOverlapping && overlapMap.IsNotEmpty)
 					{
 						continue;
 					}
@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						finalZ |= (short)(1 << elimDigit);
 					}
 
-					if (_allowAlsCycles && rccMask.PopCount() == 2)
+					if (AllowAlsCycles && rccMask.PopCount() == 2)
 					{
 						// Doubly linked ALS-XZ.
 						isDoublyLinked = true;
@@ -236,9 +236,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							{
 								new()
 								{
-									Cells = _alsShowRegions ? null : cellOffsets,
-									Candidates = _alsShowRegions ? candidateOffsets : null,
-									Regions = _alsShowRegions
+									Cells = AlsShowRegions ? null : cellOffsets,
+									Candidates = AlsShowRegions ? candidateOffsets : null,
+									Regions = AlsShowRegions
 									? isEsp ? null : new DrawingInfo[] { new(0, region1), new(1, region2) }
 									: null
 								}

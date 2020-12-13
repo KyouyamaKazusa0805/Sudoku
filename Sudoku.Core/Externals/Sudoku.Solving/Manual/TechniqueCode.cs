@@ -847,13 +847,13 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the UR + 3x / 1SL.
 		/// </summary>
 		[TechniqueDisplay("Unique Rectangle + 3x / 1SL")]
-		UrPlus3x1SL,
+		UrPlus3x1SL_Lower,
 
 		/// <summary>
 		/// Indicates the UR + 3X / 1SL.
 		/// </summary>
 		[TechniqueDisplay("Unique Rectangle + 3X / 1SL")]
-		UrPlus3X1SL,
+		UrPlus3X1SL_Upper,
 
 		/// <summary>
 		/// Indicates the UR + 3X / 2SL.
@@ -883,25 +883,25 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the UR + 4x / 1SL.
 		/// </summary>
 		[TechniqueDisplay("Unique Rectangle + 4x / 1SL")]
-		UrPlus4x1SL,
+		UrPlus4x1SL_Lower,
 
 		/// <summary>
 		/// Indicates the UR + 4X / 1SL.
 		/// </summary>
 		[TechniqueDisplay("Unique Rectangle + 4X / 1SL")]
-		UrPlus4X1SL,
+		UrPlus4X1SL_Upper,
 
 		/// <summary>
 		/// Indicates the UR + 4x / 2SL.
 		/// </summary>
 		[TechniqueDisplay("Unique Rectangle + 4x / 2SL")]
-		UrPlus4x2SL,
+		UrPlus4x2SL_Lower,
 
 		/// <summary>
 		/// Indicates the UR + 4X / 2SL.
 		/// </summary>
 		[TechniqueDisplay("Unique Rectangle + 4X / 2SL")]
-		UrPlus4X2SL,
+		UrPlus4X2SL_Upper,
 
 		/// <summary>
 		/// Indicates the UR + 4X / 3SL.

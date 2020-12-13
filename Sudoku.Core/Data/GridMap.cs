@@ -480,6 +480,7 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is GridMap comparer && Equals(comparer);
 
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+		[CLSCompliant(false)]
 		public readonly bool Equals(in GridMap other) => _high == other._high && _low == other._low;
 
 		/// <summary>

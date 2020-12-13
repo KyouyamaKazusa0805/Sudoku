@@ -20,13 +20,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Indicates the information.
 		/// </summary>
-		protected readonly bool _nishio, _multiple, _dynamic;
+		protected readonly bool IsNishio, IsMultiple, IsDynamic;
 
 
 		/// <summary>
 		/// Indicates the level of the searching depth.
 		/// </summary>
-		protected int _level;
+		protected int Level;
 
 		/// <summary>
 		/// Indicates the grid that is used in processing.
@@ -42,10 +42,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="dynamic">Indicates whether the searcher should search for dynamic chains.</param>
 		public FcStepSearcher(bool nishio, bool multiple, bool dynamic)
 		{
-			_nishio = nishio;
-			_multiple = multiple;
-			_dynamic = dynamic;
-			_level = 0;
+			IsNishio = nishio;
+			IsMultiple = multiple;
+			IsDynamic = dynamic;
+			Level = 0;
 		}
 
 
@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				switch (count)
 				{
 					case > 2:
-					case > 1 when _dynamic:
+					case > 1 when IsDynamic:
 					{
 						// Prepare storage and accumulator for cell eliminations.
 						Dictionary<int, Set<Node>> valueToOn = new(), valueToOff = new();
@@ -104,13 +104,13 @@ namespace Sudoku.Solving.Manual.Chaining
 							Node pOn = new(cell, digit, true), pOff = new(cell, digit, false);
 							Set<Node> onToOn = new(), onToOff = new();
 
-							bool doDouble = count >= 3 && !_nishio && _dynamic;
-							bool doContradiction = _dynamic || _nishio;
+							bool doDouble = count >= 3 && !IsNishio && IsDynamic;
+							bool doContradiction = IsDynamic || IsNishio;
 
 							DoBinaryChaining(
 								accumulator, ref grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
 
-							if (!_nishio)
+							if (!IsNishio)
 							{
 								DoRegionChaining(accumulator, ref grid, cell, digit, onToOn, onToOff);
 							}
@@ -131,7 +131,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 
 						// Do cell eliminations.
-						if (!_nishio && (count == 2 || _multiple))
+						if (!IsNishio && (count == 2 || IsMultiple))
 						{
 							if (cellToOn is not null)
 							{
@@ -241,7 +241,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				switch (worthMap.Count)
 				{
 					case 2:
-					case > 2 when _multiple:
+					case > 2 when IsMultiple:
 					{
 						// Determine whether we meet this region for the first time.
 						if (worthMap.First == cell)
@@ -310,7 +310,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					if (pendingOn.Count != 0)
 					{
 						var p = pendingOn.RemoveAt(0);
-						var makeOff = GetOnToOff(grid, p, !_nishio);
+						var makeOff = GetOnToOff(grid, p, !IsNishio);
 
 						foreach (var pOff in makeOff)
 						{
@@ -331,9 +331,9 @@ namespace Sudoku.Solving.Manual.Chaining
 					else
 					{
 						var p = pendingOff.RemoveAt(0);
-						var makeOn = GetOffToOn(grid, p, true, !_nishio, _savedGrid, toOff, _dynamic);
+						var makeOn = GetOffToOn(grid, p, true, !IsNishio, _savedGrid, toOff, IsDynamic);
 
-						if (_dynamic)
+						if (IsDynamic)
 						{
 							// Remove that digit.
 							grid[p.Cell, p.Digit] = false;
@@ -357,7 +357,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					}
 
 					// Get advanced relations (i.e. FCs (+) in Sudoku Explainer).
-					if (_level > 0 && pendingOn.Count == 0 && pendingOff.Count == 0
+					if (Level > 0 && pendingOn.Count == 0 && pendingOff.Count == 0
 						&& Advanced(grid, _savedGrid, toOff) is var list and not null)
 					{
 						foreach (var pOff in list)
@@ -442,9 +442,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				destOn,
 				destOff,
 				isAbsurd,
-				_multiple,
-				_nishio,
-				_level);
+				IsMultiple,
+				IsNishio,
+				Level);
 		}
 
 		/// <summary>
@@ -502,9 +502,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				destOn,
 				destOff,
 				isAbsurd,
-				_multiple,
-				_nishio,
-				_level);
+				IsMultiple,
+				IsNishio,
+				Level);
 		}
 
 		/// <summary>
@@ -566,8 +566,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				views,
 				sourceCell,
 				chains,
-				_dynamic,
-				_level);
+				IsDynamic,
+				Level);
 		}
 
 		/// <summary>
@@ -630,8 +630,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				region,
 				digit,
 				chains,
-				_dynamic,
-				_level);
+				IsDynamic,
+				Level);
 		}
 	}
 }

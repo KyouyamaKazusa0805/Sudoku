@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				loops.Clear();
 				tempLoop.Clear();
 
-				f(grid, d1, d2, cell, (RegionLabel)(-1), default, 2);
+				f(grid, d1, d2, cell, (RegionLabel)byte.MaxValue, default, 2);
 
 				if (loops.Count == 0)
 				{
