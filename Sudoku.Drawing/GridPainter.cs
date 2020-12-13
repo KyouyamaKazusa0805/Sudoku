@@ -10,12 +10,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Extensions;
-using static System.Drawing.Drawing2D.DashStyle;
-using static System.Drawing.StringAlignment;
 using static System.Math;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.LinkType;
 
 namespace Sudoku.Drawing
 {
@@ -132,18 +127,25 @@ namespace Sudoku.Drawing
 			using var bGiven = new SolidBrush(Preferences.GivenColor);
 			using var bModifiable = new SolidBrush(Preferences.ModifiableColor);
 			using var bCandidate = new SolidBrush(Preferences.CandidateColor);
-			using var fGiven = GetFontByScale(Preferences.GivenFontName, halfWidth, Preferences.ValueScale);
-			using var fModifiable = GetFontByScale(Preferences.ModifiableFontName, halfWidth, Preferences.ValueScale);
-			using var fCandidate = GetFontByScale(Preferences.CandidateFontName, halfWidth, Preferences.CandidateScale);
-			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
+			using var fGiven =
+				GetFontByScale(Preferences.GivenFontName, halfWidth, Preferences.ValueScale);
+			using var fModifiable =
+				GetFontByScale(Preferences.ModifiableFontName, halfWidth, Preferences.ValueScale);
+			using var fCandidate =
+				GetFontByScale(Preferences.CandidateFontName, halfWidth, Preferences.CandidateScale);
+			using var sf = new StringFormat
+			{
+				Alignment = StringAlignment.Center,
+				LineAlignment = StringAlignment.Center
+			};
 
 			for (int cell = 0; cell < 81; cell++)
 			{
 				short mask = grid.GetMask(cell);
-				var status = (CellStatus)(mask >> 9 & (int)All);
+				var status = (CellStatus)(mask >> 9 & (int)CellStatus.All);
 				switch (status)
 				{
-					case Empty when Preferences.ShowCandidates:
+					case CellStatus.Empty when Preferences.ShowCandidates:
 					{
 						// Draw candidates.
 						short candidateMask = (short)(mask & SudokuGrid.MaxCandidatesMask);
@@ -156,13 +158,14 @@ namespace Sudoku.Drawing
 
 						break;
 					}
-					case Modifiable or Given when Converter.GetMousePointInCenter(cell) is var point:
+					case CellStatus.Modifiable or CellStatus.Given:
 					{
 						// Draw values.
+						var point = Converter.GetMousePointInCenter(cell);
 						point.Y += vOffsetValue;
 						g.DrawString(
-							(grid[cell] + 1).ToString(), status == Given ? fGiven : fModifiable,
-							status == Given ? bGiven : bModifiable, point, sf);
+							(grid[cell] + 1).ToString(), status == CellStatus.Given ? fGiven : fModifiable,
+							status == CellStatus.Given ? bGiven : bModifiable, point, sf);
 
 						break;
 					}
@@ -266,13 +269,16 @@ namespace Sudoku.Drawing
 		{
 			using var eliminationBrush = new SolidBrush(Preferences.EliminationColor);
 			using var cannibalBrush = new SolidBrush(Preferences.CannibalismColor);
-			unsafe
+			foreach (var (t, c, d) in
+				from c in conclusions
+				where c.ConclusionType == ConclusionType.Elimination
+				select c)
 			{
-				foreach (var (t, c, d) in from c in conclusions where c.ConclusionType == Elimination select c)
+				unsafe
 				{
 					g.FillEllipse(
-						View?.Candidates?.Any(&overlapping, c, d) ?? false ? cannibalBrush : eliminationBrush,
-						Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
+					View?.Candidates?.Any(&overlapping, c, d) ?? false ? cannibalBrush : eliminationBrush,
+					Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
 				}
 			}
 
@@ -363,7 +369,13 @@ namespace Sudoku.Drawing
 			foreach (var link in links)
 			{
 				var (start, end, type) = link;
-				arrowPen.DashStyle = type switch { Strong => Solid, Weak => Dot, Default => Dash, _ => Dash };
+				arrowPen.DashStyle = type switch
+				{
+					LinkType.Strong => DashStyle.Solid,
+					LinkType.Weak => DashStyle.Dot,
+					//LinkType.Default => DashStyle.Dash,
+					_ => DashStyle.Dash
+				};
 
 				var pt1 = Converter.GetMouseCenter(new() { start });
 				var pt2 = Converter.GetMouseCenter(new() { end });
@@ -423,7 +435,7 @@ namespace Sudoku.Drawing
 				// Now cut the link.
 				CutLink(ref pt1, ref pt2, offset, cw, ch, pt1x, pt1y, pt2x, pt2y);
 
-				var penToDraw = type != Line ? arrowPen : linePen;
+				var penToDraw = type != LinkType.Line ? arrowPen : linePen;
 				if (through)
 				{
 					double bezierLength = 20;
@@ -563,44 +575,46 @@ namespace Sudoku.Drawing
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 
 			using var bCandidate = new SolidBrush(Preferences.CandidateColor);
-			using var fCandidate = GetFontByScale(Preferences.CandidateFontName, cellWidth / 2F, Preferences.CandidateScale);
-			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
-
-			unsafe
+			using var fCandidate =
+				GetFontByScale(Preferences.CandidateFontName, cellWidth / 2F, Preferences.CandidateScale);
+			using var sf = new StringFormat
 			{
-				static bool overlaps(Conclusion conc, in int cell, in int digit)
+				Alignment = StringAlignment.Center,
+				LineAlignment = StringAlignment.Center
+			};
+
+			foreach (var (id, candidate) in candidates)
+			{
+				int cell = candidate / 9, digit = candidate % 9;
+				bool isOverlapped;
+				unsafe
 				{
-					var (ttt, ccc, ddd) = conc;
-					return (ttt, ccc, ddd) == (Elimination, cell, digit);
+					isOverlapped = Conclusions?.Any(&overlapping, cell, digit) ?? false;
 				}
 
-				foreach (var (id, candidate) in candidates)
+				if (!isOverlapped)
 				{
-					int cell = candidate / 9, digit = candidate % 9;
-					if (!(Conclusions?.Any(&overlaps, cell, digit) ?? false))
+					if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 					{
-						if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
-						{
-							using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
-							g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+						using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
+						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
-							// In direct view, candidates should be drawn also.
-							if (!Preferences.ShowCandidates)
-							{
-								d(cell, digit, vOffsetCandidate);
-							}
+						// In direct view, candidates should be drawn also.
+						if (!Preferences.ShowCandidates)
+						{
+							d(cell, digit, vOffsetCandidate);
 						}
-						else if (Preferences.PaletteColors.TryGetValue(id, out var color))
-						{
-							// In the normal case, I'll draw these circles.
-							using var brush = new SolidBrush(color);
-							g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+					}
+					else if (Preferences.PaletteColors.TryGetValue(id, out var color))
+					{
+						// In the normal case, I'll draw these circles.
+						using var brush = new SolidBrush(color);
+						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
-							// In direct view, candidates should be drawn also.
-							if (!Preferences.ShowCandidates)
-							{
-								d(cell, digit, vOffsetCandidate);
-							}
+						// In direct view, candidates should be drawn also.
+						if (!Preferences.ShowCandidates)
+						{
+							d(cell, digit, vOffsetCandidate);
 						}
 					}
 				}
@@ -610,7 +624,7 @@ namespace Sudoku.Drawing
 			{
 				foreach (var (type, cell, digit) in Conclusions)
 				{
-					if (type == Elimination)
+					if (type == ConclusionType.Elimination)
 					{
 						d(cell, digit, vOffsetCandidate);
 					}
@@ -623,6 +637,9 @@ namespace Sudoku.Drawing
 				point.Y += vOffsetCandidate;
 				g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
 			}
+
+			static bool overlapping(Conclusion conc, in int cell, in int digit) =>
+				conc.ConclusionType == ConclusionType.Elimination && conc.Cell == cell && conc.Digit == digit;
 		}
 
 		/// <summary>
