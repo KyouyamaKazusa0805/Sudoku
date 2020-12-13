@@ -810,7 +810,12 @@ namespace Sudoku.Windows
 
 				_currentPainter = _currentPainter with
 				{
-					View = new((from candidate in trueCandidates select new DrawingInfo(0, candidate)).ToArray()),
+					View = new()
+					{
+						Candidates = (
+							from candidate in trueCandidates select new DrawingInfo(0, candidate)
+						).ToArray()
+					},
 					Conclusions = null
 				};
 
@@ -870,13 +875,14 @@ namespace Sudoku.Windows
 
 				_currentPainter = _currentPainter with
 				{
-					View =
-						new(
-						(
+					View = new()
+					{
+						Candidates = (
 							from backdoor in backdoors
 							where backdoor.ConclusionType == ConclusionType.Assignment
 							select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)
-						).ToArray()),
+						).ToArray()
+					},
 					Conclusions = backdoors
 				};
 
@@ -929,7 +935,11 @@ namespace Sudoku.Windows
 
 				_currentPainter = _currentPainter with
 				{
-					View = new(cellOffsets, info.Views[0].Candidates, null, null),
+					View = new()
+					{
+						Cells = cellOffsets,
+						Candidates = info.Views[0].Candidates
+					},
 					Conclusions = info.Conclusions
 				};
 			}
@@ -937,7 +947,7 @@ namespace Sudoku.Windows
 			{
 				_currentPainter = _currentPainter with
 				{
-					View = new(info.Views[0].Candidates!),
+					View = new() { Candidates = info.Views[0].Candidates! },
 					Conclusions = info.Conclusions
 				};
 			}

@@ -312,7 +312,10 @@ namespace Sudoku.Solving.Manual.Fishes
 								accumulator.Add(
 									new HobiwanFishStepInfo(
 										conclusions,
-										new View[] { new(null, candidateOffsets, regionOffsets, null) },
+										new View[]
+										{
+											new() { Candidates = candidateOffsets, Regions = regionOffsets }
+										},
 										digit,
 										baseSets,
 										coverSets,

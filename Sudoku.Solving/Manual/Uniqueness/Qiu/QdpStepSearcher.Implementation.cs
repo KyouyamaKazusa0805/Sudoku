@@ -72,14 +72,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					conclusions,
 					new View[]
 					{
-						new(
-							cellOffsets,
-							candidateOffsets,
-							(
+						new()
+						{
+							Cells = cellOffsets,
+							Candidates = candidateOffsets,
+							Regions = (
 								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 								select new DrawingInfo(0, pos + (isRow ? 9 : 18))
-							).ToArray(),
-							null)
+							).ToArray()
+						}
 					},
 					pattern,
 					elimCell * 9 + extraDigit));
@@ -142,14 +143,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					conclusions,
 					new View[]
 					{
-						new(
-							cellOffsets,
-							candidateOffsets,
-							(
+						new()
+						{
+							Cells = cellOffsets,
+							Candidates = candidateOffsets,
+							Regions = (
 								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 								select new DrawingInfo(0, pos +(isRow ? 9 : 18))
-							).ToArray(),
-							null)
+							).ToArray()
+						}
 					},
 					pattern,
 					extraDigit));
@@ -232,14 +234,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 								conclusions,
 								new View[]
 								{
-									new(
-										cellOffsets,
-										candidateOffsets,
-										(
-											from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+									new()
+									{
+										Cells = cellOffsets,
+										Candidates = candidateOffsets,
+										Regions = (
+											from pos
+											in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 											select new DrawingInfo(0, pos + (isRow ? 9 : 18))
-										).ToArray(),
-										null)
+										).ToArray()
+									}
 								},
 								pattern,
 								mask,
@@ -319,14 +323,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							conclusions,
 							new View[]
 							{
-								new(
-									cellOffsets,
-									candidateOffsets,
-									(
+								new()
+								{
+									Cells = cellOffsets,
+									Candidates = candidateOffsets,
+									Regions = (
 										from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 										select new DrawingInfo(0, pos + (isRow ? 9 : 18))
-									).ToArray(),
-									null)
+									).ToArray()
+								}
 							},
 							pattern,
 							new(pair, digit)));
@@ -436,14 +441,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					conclusions,
 					new View[]
 					{
-						new(
-							cellOffsets,
-							candidateOffsets,
-							(
+						new()
+						{
+							Cells = cellOffsets,
+							Candidates = candidateOffsets,
+							Regions = (
 								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 								select new DrawingInfo(0, pos + (isRow ? 9 : 18))
-							).ToArray(),
-							null)
+							).ToArray()
+						}
 					},
 					pattern,
 					candidates));

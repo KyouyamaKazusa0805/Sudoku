@@ -68,7 +68,14 @@ namespace Sudoku.Solving.Manual.Intersections
 					accumulator.Add(
 						new LcStepInfo(
 							conclusions,
-							new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, r[0]) }, null) },
+							new View[]
+							{
+								new()
+								{
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[] { new(0, r[0]) }
+								}
+							},
 							digit,
 							r[0],
 							r[1]));

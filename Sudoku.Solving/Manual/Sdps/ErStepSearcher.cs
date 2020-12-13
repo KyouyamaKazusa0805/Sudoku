@@ -88,7 +88,14 @@ namespace Sudoku.Solving.Manual.Sdps
 						accumulator.Add(
 							new ErStepInfo(
 								new Conclusion[] { new(Elimination, elimCell, digit) },
-								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, block) }, null) },
+								new View[]
+								{
+									new()
+									{
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[] { new(0, block) }
+									}
+								},
 								digit,
 								block,
 								new(cpCells[0], cpCells[1], digit)));

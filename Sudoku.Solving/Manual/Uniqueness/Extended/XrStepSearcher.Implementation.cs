@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			accumulator.Add(
 				new XrType1StepInfo(
 					conclusions,
-					new View[] { new(candidateOffsets) },
+					new View[] { new() { Candidates = candidateOffsets } },
 					allCellsMap,
 					normalDigits));
 		}
@@ -96,7 +96,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			accumulator.Add(
 				new XrType2StepInfo(
 					conclusions,
-					new View[] { new(candidateOffsets) },
+					new View[] { new() { Candidates = candidateOffsets } },
 					allCellsMap,
 					normalDigits,
 					extraDigit));
@@ -178,7 +178,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						accumulator.Add(
 							new XrType3StepInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+								new View[]
+								{
+									new()
+									{
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[] { new(0, region) }
+									}
+								},
 								allCellsMap,
 								normalDigits,
 								cells,
@@ -242,7 +249,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					accumulator.Add(
 						new XrType1StepInfo(
 							conclusions,
-							new View[] { new(candidateOffsets) },
+							new View[] { new() { Candidates = candidateOffsets } },
 							allCellsMap,
 							normalDigits));
 
@@ -299,7 +306,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							accumulator.Add(
 								new XrType4StepInfo(
 									conclusions,
-									new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+									new View[]
+									{
+										new()
+										{
+											Candidates = candidateOffsets,
+											Regions = new DrawingInfo[] { new(0, region) }
+										}
+									},
 									allCellsMap,
 									normalDigits,
 									new(extraCellsMap, conjugateDigit)));

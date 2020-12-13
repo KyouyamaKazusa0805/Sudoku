@@ -212,18 +212,17 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									conclusions,
 									new View[]
 									{
-										new(
-											_alsShowRegions ? null : cellOffsets,
-											_alsShowRegions ? candidateOffsets : null,
-											_alsShowRegions switch
+										new()
+										{
+											Cells = _alsShowRegions ? null : cellOffsets,
+											Candidates =_alsShowRegions ? candidateOffsets : null,
+											Regions = _alsShowRegions
+											? new DrawingInfo[]
 											{
-												true => new DrawingInfo[]
-												{
-													new(-1, aRegion), new(-2, bRegion), new(-3, cRegion)
-												},
-												_ => null
-											},
-											null)
+												new(-1, aRegion), new(-2, bRegion), new(-3, cRegion)
+											}
+											: null
+										}
 									},
 									a,
 									b,

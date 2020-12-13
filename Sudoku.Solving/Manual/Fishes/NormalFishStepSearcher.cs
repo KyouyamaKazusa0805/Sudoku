@@ -217,11 +217,11 @@ namespace Sudoku.Solving.Manual.Fishes
 												conclusions,
 												new View[]
 												{
-													new(
-														null,
-														candidateOffsets,
-														new DrawingInfo[] { new(0, bs1), new(0, bs2) },
-														null),
+													new()
+													{
+														Candidates = candidateOffsets,
+														Regions = new DrawingInfo[] { new(0, bs1), new(0, bs2) }
+													},
 													GetDirectView(
 														grid, digit, baseSets2, coverSets2,
 														searchRow, finCellsMap)
@@ -392,19 +392,19 @@ namespace Sudoku.Solving.Manual.Fishes
 														conclusions,
 														new View[]
 														{
-																new(
-																	null,
-																	candidateOffsets,
-																	new DrawingInfo[]
-																	{
-																		new(0, bs1),
-																		new(0, bs2),
-																		new(0, bs3)
-																	},
-																	null),
-																GetDirectView(
-																	grid, digit, baseSets3,
-																	coverSets3, searchRow, finCellsMap)
+															new()
+															{
+																Candidates = candidateOffsets,
+																Regions = new DrawingInfo[]
+																{
+																	new(0, bs1),
+																	new(0, bs2),
+																	new(0, bs3)
+																}
+															},
+															GetDirectView(
+																grid, digit, baseSets3,
+																coverSets3, searchRow, finCellsMap)
 														},
 														digit,
 														baseSets3.ToArray(),
@@ -582,17 +582,17 @@ namespace Sudoku.Solving.Manual.Fishes
 																	conclusions,
 																	new View[]
 																	{
-																		new(
-																			null,
-																			candidateOffsets,
-																			new DrawingInfo[]
+																		new()
+																		{
+																			Candidates = candidateOffsets,
+																			Regions = new DrawingInfo[]
 																			{
 																				new(0, bs1),
 																				new(0, bs2),
 																				new(0, bs3),
 																				new(0, bs4),
-																			},
-																			null),
+																			}
+																		},
 																		GetDirectView(
 																			grid, digit, baseSets4,
 																			coverSets4, searchRow, finCellsMap)
@@ -695,7 +695,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				candidateOffsets!.Add(new(1, cell * 9 + digit));
 			}
 
-			return new(cellOffsets, candidateOffsets, null, null);
+			return new() { Cells = cellOffsets, Candidates = candidateOffsets };
 		}
 
 		/// <summary>

@@ -96,11 +96,11 @@ namespace Sudoku.Solving.Manual.Subsets
 							conclusions,
 							new View[]
 							{
-								new(
-									null,
-									candidateOffsets,
-									new DrawingInfo[] { new(0, region) },
-									null)
+								new()
+								{
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[] { new(0, region) }
+								}
 							},
 							region,
 							map,
@@ -175,11 +175,11 @@ namespace Sudoku.Solving.Manual.Subsets
 							conclusions,
 							new View[]
 							{
-								new(
-									null,
-									candidateOffsets,
-									new DrawingInfo[] { new(0, region) },
-									null)
+								new()
+								{
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[] { new(0, region) }
+								}
 							},
 							region,
 							new(cells),

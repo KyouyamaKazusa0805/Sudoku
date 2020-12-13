@@ -172,20 +172,19 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 										conclusions,
 										new View[]
 										{
-											new(
-												_alsShowRegions ? null : cellOffsets,
-												_alsShowRegions ? candidateOffsets : null,
-												_alsShowRegions switch
+											new()
+											{
+												Cells = _alsShowRegions ? null : cellOffsets,
+												Candidates = _alsShowRegions ? candidateOffsets : null,
+												Regions = _alsShowRegions
+												? new DrawingInfo[]
 												{
-													true => new DrawingInfo[]
-													{
-														new(-1, region1),
-														new(-2, region2),
-														new(0, conjugatePair.Region.First())
-													},
-													_ => null
-												},
-												null)
+													new(-1, region1),
+													new(-2, region2),
+													new(0, conjugatePair.Region.First())
+												}
+												: null
+											}
 										},
 										als1,
 										als2,

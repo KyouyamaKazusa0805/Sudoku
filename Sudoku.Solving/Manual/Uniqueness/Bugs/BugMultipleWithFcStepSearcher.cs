@@ -199,13 +199,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			foreach (var (candidate, node) in chains)
 			{
 				var candidateOffsets = new List<DrawingInfo>(node.GetCandidateOffsets()) { new(2, candidate) };
-				var links = new List<Link>(node.GetLinks(true));
-				views.Add(new(null, candidateOffsets, null, links));
+				var links = node.GetLinks(true);
+				views.Add(new()
+				{
+					Candidates = candidateOffsets,
+					Links = links
+				});
 				globalCandidates.AddRange(candidateOffsets);
 				globalLinks.AddRange(links);
 			}
 
-			views.Insert(0, new(null, globalCandidates, null, globalLinks));
+			views.Insert(0, new()
+			{
+				Candidates = globalCandidates,
+				Links = globalLinks
+			});
 
 			return new(conclusions, views, trueCandidates, chains);
 		}

@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							resultAccumulator.Add(
 								new GuardianStepInfo(
 									elims.ToArray(),
-									new View[] { new(null, candidateOffsets, null, links) },
+									new View[] { new() { Candidates = candidateOffsets, Links = links } },
 									digit,
 									map,
 									guardians));

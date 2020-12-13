@@ -177,7 +177,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 												from c in elimMap
 												select new Conclusion(ConclusionType.Elimination, c, digit)
 											).ToArray(),
-											new View[] { new(candidateOffsets) },
+											new View[] { new() { Candidates = candidateOffsets } },
 											nullCell,
 											alsMappingRelation));
 								}

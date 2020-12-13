@@ -66,7 +66,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				accumulator.Add(
 					new UsType1StepInfo(
 						conclusions,
-						new View[] { new(candidateOffsets) },
+						new View[] { new() { Candidates = candidateOffsets } },
 						pattern,
 						digitsMask,
 						elimCell * 9 + extraDigit));
@@ -123,7 +123,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				accumulator.Add(
 					new UsType2StepInfo(
 						conclusions,
-						new View[] { new(candidateOffsets) },
+						new View[] { new() { Candidates = candidateOffsets } },
 						pattern,
 						digitsMask,
 						extraDigit));
@@ -210,7 +210,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							accumulator.Add(
 								new UsType3StepInfo(
 									conclusions,
-									new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+									new View[]
+									{
+										new()
+										{
+											Candidates = candidateOffsets,
+											Regions = new DrawingInfo[] { new(0, region) }
+										}
+									},
 									pattern,
 									digitsMask,
 									extraDigitsMask,
@@ -312,11 +319,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							conclusions,
 							new View[]
 							{
-								new(
-									null,
-									candidateOffsets,
-									new DrawingInfo[] { new(0, region) },
-									null)
+								new()
+								{
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[] { new(0, region) }
+								}
 							},
 							pattern,
 							digitsMask,

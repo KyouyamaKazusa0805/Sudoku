@@ -51,14 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			accumulator.AddIfDoesNotContain(
 				new UlType1StepInfo(
 					conclusions,
-					new View[]
-					{
-						new(
-							null,
-							candidateOffsets,
-							null,
-							links)
-					},
+					new View[] { new() { Candidates = candidateOffsets, Links = links } },
 					d1,
 					d2,
 					loop));
@@ -116,14 +109,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			accumulator.AddIfDoesNotContain(
 				new UlType2StepInfo(
 					conclusions,
-					new View[]
-					{
-						new(
-							null,
-							candidateOffsets,
-							null,
-							links)
-					},
+					new View[] { new() { Candidates = candidateOffsets, Links = links } },
 					d1,
 					d2,
 					loop,
@@ -231,11 +217,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								conclusions,
 								new View[]
 								{
-									new(
-										null,
-										candidateOffsets,
-										new DrawingInfo[] { new(0, region) },
-										links)
+									new()
+									{
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[] { new(0, region) },
+										Links = links
+									}
 								},
 								d1,
 								d2,
@@ -311,11 +298,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							conclusions,
 							new View[]
 							{
-								new(
-									null,
-									candidateOffsets,
-									new DrawingInfo[] { new(0, region) },
-									links)
+								new()
+								{
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[] { new(0, region) },
+									Links = links
+								}
 							},
 							d1,
 							d2,

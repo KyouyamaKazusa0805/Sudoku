@@ -105,11 +105,11 @@ namespace Sudoku.Solving.Manual.Singles
 						new Conclusion[] { new(Assignment, resultCell, digit) },
 						new View[]
 						{
-							new(
-								null,
-								new DrawingInfo[] { new(0, resultCell * 9 + digit) },
-								new DrawingInfo[] { new(0, region) },
-								null)
+							new()
+							{
+								Candidates = new DrawingInfo[] { new(0, resultCell * 9 + digit) },
+								Regions = new DrawingInfo[] { new(0, region) }
+							}
 						},
 						resultCell,
 						digit));
@@ -208,12 +208,13 @@ namespace Sudoku.Solving.Manual.Singles
 							new Conclusion[] { new(Assignment, resultCell, digit) },
 							new View[]
 							{
-								new(
-									enableAndIsLastDigit ? cellOffsets : null,
-									new DrawingInfo[] { new(0, resultCell * 9 + digit) },
-									enableAndIsLastDigit ? null : new DrawingInfo[] { new(0, region) },
-									null,
-									directLines)
+								new()
+								{
+									Cells = enableAndIsLastDigit ? cellOffsets : null,
+									Candidates = new DrawingInfo[] { new(0, resultCell * 9 + digit) },
+									Regions = enableAndIsLastDigit ? null : new DrawingInfo[] { new(0, region) },
+									DirectLines = directLines
+								}
 							},
 							resultCell,
 							digit,
@@ -267,12 +268,11 @@ namespace Sudoku.Solving.Manual.Singles
 							new Conclusion[] { new(Assignment, cell, digit) },
 							new View[]
 							{
-								new(
-									null,
-									new DrawingInfo[] { new(0, cell * 9 + digit) },
-									null,
-									null,
-									directLines)
+								new()
+								{
+									Candidates = new DrawingInfo[] { new(0, cell * 9 + digit) },
+									DirectLines = directLines
+								}
 							},
 							cell,
 							digit));

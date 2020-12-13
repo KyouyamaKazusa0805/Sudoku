@@ -234,15 +234,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							conclusions,
 							new View[]
 							{
-								new(
-									_alsShowRegions ? null : cellOffsets,
-									_alsShowRegions ? candidateOffsets : null,
-									_alsShowRegions switch
-									{
-										true => isEsp ? null : new DrawingInfo[] { new(0, region1), new(1, region2) },
-										_ => null
-									},
-									null)
+								new()
+								{
+									Cells = _alsShowRegions ? null : cellOffsets,
+									Candidates = _alsShowRegions ? candidateOffsets : null,
+									Regions = _alsShowRegions
+									? isEsp ? null : new DrawingInfo[] { new(0, region1), new(1, region2) }
+									: null
+								}
 							},
 							als1,
 							als2,

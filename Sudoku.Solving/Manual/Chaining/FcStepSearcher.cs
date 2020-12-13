@@ -406,7 +406,12 @@ namespace Sudoku.Solving.Manual.Chaining
 			var links = destOn.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets, true);
 			globalLinks.AddRange(links);
-			views.Add(new(cellOffset, candidateOffsets, null, links));
+			views.Add(new()
+			{
+				Cells = cellOffset,
+				Candidates = candidateOffsets,
+				Links  = links
+			});
 
 			candidateOffsets = new List<DrawingInfo>(destOff.GetCandidateOffsets())
 			{
@@ -415,10 +420,20 @@ namespace Sudoku.Solving.Manual.Chaining
 			links = destOff.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets, true);
 			globalLinks.AddRange(links);
-			views.Add(new(cellOffset, candidateOffsets, null, links));
+			views.Add(new()
+			{
+				Cells = cellOffset,
+				Candidates = candidateOffsets,
+				Links = links
+			});
 
 			// Insert the global view at head.
-			views.Insert(0, new(cellOffset, globalCandidates, null, globalLinks));
+			views.Insert(0, new()
+			{
+				Cells = cellOffset,
+				Candidates = globalCandidates,
+				Links = globalLinks
+			});
 
 			return new BinaryChainingStepInfo(
 				new Conclusion[] { new(Assignment, target.Cell, target.Digit) },
@@ -454,16 +469,31 @@ namespace Sudoku.Solving.Manual.Chaining
 			var links = destOn.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets, true);
 			globalLinks.AddRange(links);
-			views.Add(new(cellOffset, candidateOffsets.AsReadOnlyList(), null, links));
+			views.Add(new()
+			{
+				Cells = cellOffset,
+				Candidates  = candidateOffsets.AsReadOnlyList(),
+				Links = links
+			});
 
 			candidateOffsets = destOff.GetCandidateOffsets();
 			links = destOff.GetLinks(true);
 			globalCandidates.AddRange(candidateOffsets, true);
 			globalLinks.AddRange(links);
-			views.Add(new(cellOffset, candidateOffsets.AsReadOnlyList(), null, links));
+			views.Add(new()
+			{
+				Cells = cellOffset,
+				Candidates = candidateOffsets.AsReadOnlyList(),
+				Links = links
+			});
 
 			// Insert the global view at head.
-			views.Insert(0, new(cellOffset, globalCandidates, null, globalLinks));
+			views.Insert(0, new()
+			{
+				Cells = cellOffset,
+				Candidates = globalCandidates,
+				Links = globalLinks
+			});
 
 			return new BinaryChainingStepInfo(
 				new Conclusion[] { new(Elimination, target.Cell, target.Digit) },
@@ -512,14 +542,24 @@ namespace Sudoku.Solving.Manual.Chaining
 				};
 
 				var links = node.GetLinks(true);
-				views.Add(new(new DrawingInfo[] { new(0, sourceCell) }, candidateOffsets, null, links));
+				views.Add(new()
+				{
+					Cells = new DrawingInfo[] { new(0, sourceCell) },
+					Candidates = candidateOffsets,
+					Links = links
+				});
 				candidateOffsets.RemoveLastElement();
 				globalCandidates.AddRange(candidateOffsets, true);
 				globalLinks.AddRange(links);
 			}
 
 			// Insert the global view at head.
-			views.Insert(0, new(new DrawingInfo[] { new(0, sourceCell) }, globalCandidates, null, globalLinks));
+			views.Insert(0, new()
+			{
+				Cells  = new DrawingInfo[] { new(0, sourceCell) },
+				Candidates = globalCandidates,
+				Links = globalLinks
+			});
 
 			return new CellChainingStepInfo(
 				new Conclusion[] { new(targetIsOn ? Assignment : Elimination, target.Cell, target.Digit) },
@@ -566,13 +606,23 @@ namespace Sudoku.Solving.Manual.Chaining
 				};
 
 				var links = node.GetLinks(true);
-				views.Add(new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, links));
+				views.Add(new()
+				{
+					Candidates = candidateOffsets,
+					Regions = new DrawingInfo[] { new(0, region) },
+					Links = links
+				});
 				candidateOffsets.RemoveLastElement();
 				globalCandidates.AddRange(candidateOffsets, true);
 				globalLinks.AddRange(links);
 			}
 
-			views.Insert(0, new(null, globalCandidates, new DrawingInfo[] { new(0, region) }, globalLinks));
+			views.Insert(0, new()
+			{
+				Candidates = globalCandidates,
+				Regions = new DrawingInfo[] { new(0, region) },
+				Links = globalLinks
+			});
 
 			return new RegionChainingStepInfo(
 				new Conclusion[] { new(targetIsOn ? Assignment : Elimination, target.Cell, target.Digit) },

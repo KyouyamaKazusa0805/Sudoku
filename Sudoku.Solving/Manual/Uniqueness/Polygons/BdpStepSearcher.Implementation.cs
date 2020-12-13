@@ -77,7 +77,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				accumulator.Add(
 					new BdpType1StepInfo(
 						conclusions,
-						new View[] { new(candidateOffsets) },
+						new View[] { new() { Candidates = candidateOffsets } },
 						map,
 						tempMask));
 			}
@@ -138,7 +138,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				accumulator.Add(
 					new BdpType2StepInfo(
 						conclusions,
-						new View[] { new(candidateOffsets) },
+						new View[] { new() { Candidates = candidateOffsets } },
 						map,
 						tempMask,
 						otherDigit));
@@ -246,7 +246,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							accumulator.Add(
 								new BdpType3StepInfo(
 									conclusions,
-									new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+									new View[]
+									{
+										new()
+										{
+											Candidates = candidateOffsets,
+											Regions = new DrawingInfo[] { new(0, region) }
+										}
+									},
 									map,
 									tempMask,
 									combination,
@@ -361,7 +368,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						accumulator.Add(
 							new BdpType4StepInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+								new View[]
+								{
+									new()
+									{
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[] { new(0, region) }
+									}
+								},
 								map,
 								otherMask,
 								currentMap,

@@ -119,7 +119,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						conclusions,
 						new View[]
 						{
-							new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null)
+							new()
+							{
+								Cells = arMode ? GetHighlightCells(urCells) : null,
+								Candidates = candidateOffsets
+							}
 						},
 						arMode ? APlus2D : Plus2D,
 						d1,
@@ -259,9 +263,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									conclusions,
 									new View[]
 									{
-										new(
-											arMode ? GetHighlightCells(urCells) : null,
-											candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
+										new()
+										{
+											Cells = arMode ? GetHighlightCells(urCells) : null,
+											Candidates = candidateOffsets,
+											Regions = new DrawingInfo[] { new(0, region) }
+										}
 									},
 									Plus2B1SL,
 									d1,
@@ -400,9 +407,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									conclusions,
 									new View[]
 									{
-										new(
-											arMode ? GetHighlightCells(urCells) : null,
-											candidateOffsets, new DrawingInfo[] { new(0, region) }, null)
+										new()
+										{
+											Cells = arMode ? GetHighlightCells(urCells) : null,
+											Candidates = candidateOffsets,
+											Regions = new DrawingInfo[] { new(0, region) }
+										}
 									},
 									Plus2D1SL,
 									d1,
@@ -528,7 +538,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						conclusions,
 						new View[]
 						{
-							new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null)
+							new()
+							{
+								Cells = arMode ? GetHighlightCells(urCells) : null,
+								Candidates = candidateOffsets
+							}
 						},
 						arMode ? APlus3X : Plus3X,
 						d1,
@@ -636,11 +650,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						conclusions,
 						new View[]
 						{
-							new(
-								arMode ? GetHighlightCells(urCells) : null,
-								candidateOffsets,
-								new DrawingInfo[] { new(0, map1.CoveredLine), new(1, map2.CoveredLine) },
-								null)
+							new()
+							{
+								Cells = arMode ? GetHighlightCells(urCells) : null,
+								Candidates = candidateOffsets,
+								Regions = new DrawingInfo[]
+								{
+									new(0, map1.CoveredLine),
+									new(1, map2.CoveredLine)
+								}
+							}
 						},
 						Plus3X2SL,
 						d1,
@@ -759,15 +778,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							conclusions,
 							new View[]
 							{
-								new(
-									arMode ? GetHighlightCells(urCells) : null,
-									candidateOffsets,
-									new DrawingInfo[]
+								new()
+								{
+									Cells = arMode ? GetHighlightCells(urCells) : null,
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[]
 									{
 										new(0, conjugatePairs[0].Line),
 										new(1, conjugatePairs[1].Line)
-									},
-									null)
+									}
+								}
 							},
 							Plus3N2SL,
 							d1,
@@ -881,15 +901,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							conclusions,
 							new View[]
 							{
-								new(
-									arMode ? GetHighlightCells(urCells) : null,
-									candidateOffsets,
-									new DrawingInfo[]
+								new()
+								{
+									Cells = arMode ? GetHighlightCells(urCells) : null,
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[]
 									{
 										new(0, conjugatePairs[0].Line),
 										new(1, conjugatePairs[1].Line)
-									},
-									null)
+									}
+								}
 							},
 							Plus3U2SL,
 							d1,
@@ -1003,15 +1024,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							conclusions,
 							new View[]
 							{
-								new(
-									arMode ? GetHighlightCells(urCells) : null,
-									candidateOffsets,
-									new DrawingInfo[]
+								new()
+								{
+									Cells = arMode ? GetHighlightCells(urCells) : null,
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[]
 									{
 										new(0, conjugatePairs[0].Line),
 										new(1, conjugatePairs[1].Line)
-									},
-									null)
+									}
+								}
 							},
 							Plus3E2SL,
 							d1,
@@ -1134,16 +1156,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							conclusions,
 							new View[]
 							{
-								new(
-									arMode ? GetHighlightCells(urCells) : null,
-									candidateOffsets,
-									new DrawingInfo[]
+								new()
+								{
+									Cells = arMode ? GetHighlightCells(urCells) : null,
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[]
 									{
 										new(0, conjugatePairs[0].Line),
 										new(1, conjugatePairs[1].Line),
 										new(0, conjugatePairs[2].Line)
-									},
-									null)
+									}
+								}
 							},
 							Plus4X3SL,
 							d1,
@@ -1278,16 +1301,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								conclusions,
 								new View[]
 								{
-									new(
-										arMode ? GetHighlightCells(urCells) : null,
-										candidateOffsets,
-										new DrawingInfo[]
+									new()
+									{
+										Cells = arMode ? GetHighlightCells(urCells) : null,
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[]
 										{
 											new(0, conjugatePairs[0].Line),
 											new(0, conjugatePairs[1].Line),
 											new(1, conjugatePairs[2].Line)
-										},
-										null)
+										}
+									}
 								},
 								Plus4C3SL,
 								d1,
@@ -1459,7 +1483,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									conclusions,
 									new View[]
 									{
-										new(arMode ? GetHighlightCells(urCells) : null, candidateOffsets, null, null)
+										new()
+										{
+											Cells = arMode ? GetHighlightCells(urCells) : null,
+											Candidates = candidateOffsets
+										}
 									},
 									arMode ? AXyWing : XyWing,
 									d1,
@@ -1559,9 +1587,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											conclusions,
 											new View[]
 											{
-												new(
-													arMode ? GetHighlightCells(urCells) : null,
-													candidateOffsets, null, null)
+												new()
+												{
+													Cells = arMode ? GetHighlightCells(urCells) : null,
+													Candidates = candidateOffsets
+												}
 											},
 											arMode ? AXyzWing : XyzWing,
 											d1,
@@ -1665,9 +1695,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												conclusions,
 												new View[]
 												{
-													new(
-														arMode ? GetHighlightCells(urCells) : null,
-														candidateOffsets, null, null)
+													new()
+													{
+														Cells = arMode ? GetHighlightCells(urCells) : null,
+														Candidates = candidateOffsets
+													}
 												},
 												arMode ? AWxyzWing : WxyzWing,
 												d1,

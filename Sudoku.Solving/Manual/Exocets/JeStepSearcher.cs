@@ -154,7 +154,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				accumulator.Add(
 					new JeStepInfo(
 						new List<Conclusion>(),
-						new View[] { new(cellOffsets, candidateOffsets, null, null) },
+						new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
 						exocet,
 						baseCandsMask.GetAllSets(),
 						null,

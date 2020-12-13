@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					accumulator.Add(
 						new AlsNetStepInfo(
 							conclusions,
-							new View[] { new(candidateOffsets) },
+							new View[] { new() { Candidates = candidateOffsets } },
 							map));
 				}
 			}

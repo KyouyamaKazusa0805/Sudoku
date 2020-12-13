@@ -214,11 +214,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								conclusions,
 								new View[]
 								{
-									new(
-										_alsShowRegions ? new DrawingInfo[] { new(0, pivot) } : cellOffsets,
-										_alsShowRegions ? candidateOffsets : null,
-										_alsShowRegions ? regionOffsets : null,
-										null)
+									new()
+									{
+										Cells =
+											_alsShowRegions ? new DrawingInfo[] { new(0, pivot) } : cellOffsets,
+										Candidates = _alsShowRegions ? candidateOffsets : null,
+										Regions = _alsShowRegions ? regionOffsets : null
+									}
 								},
 								pivot,
 								dic));

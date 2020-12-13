@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 #nullable restore warnings
 					return new(
 						results,
-						new View[] { new(candidateOffsets) },
+						new View[] { new() { Candidates = candidateOffsets } },
 						left.SymmetryType | right.SymmetryType,
 						null);
 				}

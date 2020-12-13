@@ -114,9 +114,9 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 									conclusions,
 									new View[]
 									{
-										new(
-											null,
-											new DrawingInfo[]
+										new()
+										{
+											Candidates = new DrawingInfo[]
 											{
 												new(1, c1 * 9 + elimDigit),
 												new(0, c1 * 9 + digit),
@@ -125,8 +125,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 												new(0, c2 * 9 + digit),
 												new(1, c2 * 9 + elimDigit)
 											},
-											new DrawingInfo[] { new(0, region) },
-											null)
+											Regions = new DrawingInfo[] { new(0, region) }
+										}
 									},
 									c1,
 									c2,

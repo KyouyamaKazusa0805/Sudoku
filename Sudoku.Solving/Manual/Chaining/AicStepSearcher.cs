@@ -233,7 +233,14 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			return new(
 				conclusions,
-				new View[] { new(null, candidateOffsets.AsReadOnlyList(), null, links) },
+				new View[]
+				{
+					new()
+					{
+						Candidates = candidateOffsets.AsReadOnlyList(),
+						Links = links
+					}
+				},
 				xEnabled,
 				yEnabled,
 				destOn
@@ -291,11 +298,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				conclusions,
 				new View[]
 				{
-					new(
-						null,
-						target.GetCandidateOffsets(simpleChain: true).AsReadOnlyList(),
-						null,
-						target.GetLinks())
+					new()
+					{
+						Candidates = target.GetCandidateOffsets(simpleChain: true).AsReadOnlyList(),
+						Links = target.GetLinks()
+					}
 				},
 				xEnabled,
 				yEnabled,

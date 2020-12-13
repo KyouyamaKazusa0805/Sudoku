@@ -810,46 +810,31 @@
             <summary>
             Encapsulates a view when displaying the information on forms.
             </summary>
-            <param name="Cells">All cells used.</param>
-            <param name="Candidates">All candidates used.</param>
-            <param name="Regions">All regions used.</param>
-            <param name="Links">All links used.</param>
-            <param name="DirectLines">All direct lines.</param>
         </member>
-        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Collections.Generic.IReadOnlyList{System.ValueTuple{Sudoku.Data.GridMap,Sudoku.Data.GridMap}})">
+        <member name="P:Sudoku.Drawing.View.Cells">
             <summary>
-            Encapsulates a view when displaying the information on forms.
-            </summary>
-            <param name="Cells">All cells used.</param>
-            <param name="Candidates">All candidates used.</param>
-            <param name="Regions">All regions used.</param>
-            <param name="Links">All links used.</param>
-            <param name="DirectLines">All direct lines.</param>
-        </member>
-        <member name="F:Sudoku.Drawing.View.DefaultViews">
-            <summary>
-            Provides a new default view list for initialization.
+            Indicates all cells used.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.DrawingInfo})">
+        <member name="P:Sudoku.Drawing.View.Candidates">
             <summary>
-            Initializes an instance with the specified highlighted candidate offsets.
+            Indicates all candidates used.
             </summary>
-            <param name="candidates">
-            The list of pairs of identifier and candidate offset.
-            </param>
         </member>
-        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link})">
+        <member name="P:Sudoku.Drawing.View.Regions">
             <summary>
-            Initializes an instance with the specified cells, candidates, regions and links.
+            Indicates all regions used.
             </summary>
-            <param name="cells">The cells.</param>
-            <param name="candidates">The candidates.</param>
-            <param name="regions">The regions.</param>
-            <param name="links">The links.</param>
         </member>
-        <member name="M:Sudoku.Drawing.View.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        <member name="P:Sudoku.Drawing.View.Links">
+            <summary>
+            Indicates all links used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.View.DirectLines">
+            <summary>
+            Indicates all direct lines.
+            </summary>
         </member>
     </members>
 </doc>

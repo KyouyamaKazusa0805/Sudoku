@@ -157,7 +157,11 @@ namespace Sudoku.Solving.Manual.Symmetry
 			}
 
 			result.AddRange(conclusions);
-			info = new(conclusions, new View[] { new(candidateOffsets) }, SymmetryType.Diagonal, mapping);
+			info = new(
+				conclusions,
+				new View[] { new() { Candidates = candidateOffsets } },
+				SymmetryType.Diagonal,
+				mapping);
 		}
 
 		/// <summary>
@@ -281,7 +285,11 @@ namespace Sudoku.Solving.Manual.Symmetry
 			}
 
 			result.AddRange(conclusions);
-			info = new(conclusions, new View[] { new(candidateOffsets) }, SymmetryType.AntiDiagonal, mapping);
+			info = new(
+				conclusions,
+				new View[] { new() { Candidates = candidateOffsets } },
+				SymmetryType.AntiDiagonal,
+				mapping);
 		}
 
 		/// <summary>
@@ -320,7 +328,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				if (d1 == d2)
 				{
 					int? o1 = mapping[d1];
-					if (o1 is null)
+					if (!o1.HasValue)
 					{
 						mapping[d1] = d1;
 						continue;
@@ -356,14 +364,14 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 			for (int digit = 0; digit < 9; digit++)
 			{
-				if (mapping[digit] == digit || mapping[digit] is null)
+				if (mapping[digit] == digit || !mapping[digit].HasValue)
 				{
 					var conclusion = new Conclusion(ConclusionType.Assignment, 40, digit);
 					result.Add(conclusion);
 
 					info = new(
 						new[] { conclusion },
-						new View[] { new(new DrawingInfo[] { new(0, 360 + digit) }) },
+						new View[] { new() { Candidates = new DrawingInfo[] { new(0, 360 + digit) } } },
 						SymmetryType.Central,
 						mapping);
 

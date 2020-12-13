@@ -120,14 +120,18 @@ namespace Sudoku.Solving.Manual.Symmetry
 											}
 										}
 
-										newView = new(newCellOffsets, newCandidateOffsets, null, null);
+										newView = new()
+										{
+											Cells = newCellOffsets,
+											Candidates = newCandidateOffsets
+										};
 									}
 
 									// Gather the information.
 									accumulator.Add(
 										new Gsp2StepInfo(
 											conclusions,
-											newView is null ? View.DefaultViews : new[] { newView },
+											new[] { newView is null ? new() : newView },
 											info.SymmetryType,
 											r1[0] == 0 && r2[0] == 0 && r3[0] == 0
 											&& c1[0] == 0 && c2[0] == 0 && c3[0] == 0

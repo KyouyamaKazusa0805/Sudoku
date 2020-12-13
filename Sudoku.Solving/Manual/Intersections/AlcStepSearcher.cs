@@ -174,11 +174,12 @@ namespace Sudoku.Solving.Manual.Intersections
 						conclusions,
 						new View[]
 						{
-							new(
-								hasValueCell ? valueCells.ToArray() : null,
-								candidateOffsets,
-								new DrawingInfo[] { new(0, baseSet), new(1, coverSet) },
-								null)
+							new()
+							{
+								Cells = hasValueCell ? valueCells.ToArray() : null,
+								Candidates = candidateOffsets,
+								Regions = new DrawingInfo[] { new(0, baseSet), new(1, coverSet) }
+							}
 						},
 						mask,
 						cellsMap,

@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			accumulator.Add(
 				new BugType2StepInfo(
 					conclusions,
-					new View[] { new(candidateOffsets) },
+					new View[] { new() { Candidates = candidateOffsets } },
 					digit,
 					selection.ToArray()));
 		}
@@ -141,7 +141,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						accumulator.Add(
 							new BugType3StepInfo(
 								conclusions,
-								new View[] { new(null, candidateOffsets, new DrawingInfo[] { new(0, region) }, null) },
+								new View[]
+								{
+									new()
+									{
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[] { new(0, region) }
+									}
+								},
 								trueCandidates,
 								digitsMask.GetAllSets().ToArray(),
 								cells,
@@ -253,16 +260,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							conclusions,
 							new View[]
 							{
-								new(
-									null,
-									new List<DrawingInfo>(
-										from candidate in trueCandidates select new DrawingInfo(0, candidate))
+								new()
+								{
+									Candidates = new List<DrawingInfo>(
+										from candidate in trueCandidates
+										select new DrawingInfo(0, candidate))
 									{
 										new(1, c1 * 9 + conjuagtePairDigit),
 										new(1, c2 * 9 + conjuagtePairDigit)
 									},
-									new DrawingInfo[] { new(0, region) },
-									null)
+									Regions = new DrawingInfo[] { new(0, region) }
+								}
 							},
 							digits.ToArray(),
 							cells,
@@ -310,7 +318,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			accumulator.Add(
 				new BugMultipleStepInfo(
 					conclusions,
-					new View[] { new((from candidate in trueCandidates select new DrawingInfo(0, candidate)).ToArray()) },
+					new View[]
+					{
+						new()
+						{
+							Candidates = (
+								from candidate in trueCandidates select new DrawingInfo(0, candidate)
+							).ToArray()
+						}
+					},
 					trueCandidates));
 		}
 
@@ -355,11 +371,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 
 				var cellOffsets = new DrawingInfo[] { new(0, cell) };
-				var candidateOffsets = (from candidate in trueCandidates select new DrawingInfo(0, candidate)).ToArray();
+				var candidateOffsets = (
+					from candidate in trueCandidates select new DrawingInfo(0, candidate)
+				).ToArray();
 				accumulator.Add(
 					new BugXzStepInfo(
 						conclusions,
-						new View[] { new(cellOffsets, candidateOffsets, null, null) },
+						new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
 						mask,
 						new[] { c1, c2 },
 						cell));

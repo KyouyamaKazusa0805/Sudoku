@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					accumulator.Add(
 						new BfStepInfo(
 							new Conclusion[] { new(Assignment, cand) },
-							new View[] { new(new DrawingInfo[] { new(0, cand) }) }));
+							new View[] { new() { Candidates = new DrawingInfo[] { new(0, cand) } } }));
 				}
 			}
 		}

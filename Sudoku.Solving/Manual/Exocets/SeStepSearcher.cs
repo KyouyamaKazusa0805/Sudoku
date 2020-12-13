@@ -204,7 +204,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					accumulator.Add(
 						new SeStepInfo(
 							new List<Conclusion>(), // Special eliminations will use this empty list.
-							new View[] { new(cellOffsets, candidateOffsets, null, null) },
+							new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
 							exocet,
 							m.GetAllSets(),
 							endoTargetCell,

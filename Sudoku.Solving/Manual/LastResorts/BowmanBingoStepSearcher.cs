@@ -78,14 +78,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 								new Conclusion[] { new(Elimination, startCandidate) },
 								new View[]
 								{
-									new(
-										null,
-										(
+									new()
+									{
+										Candidates = (
 											from conclusion in _tempConclusions
 											select new DrawingInfo(0, conclusion.Cell * 9 + conclusion.Digit)
 										).ToArray(),
-										null,
-										GetLinks())
+										Links = GetLinks()
+									}
 								},
 								_tempConclusions.ToArray()));
 					}
@@ -143,14 +143,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 						new Conclusion[] { new(Elimination, startCandidate) },
 						new View[]
 						{
-							new(
-								null,
-								(
+							new()
+							{
+								Candidates = (
 									from tempConclusion in _tempConclusions
 									select new DrawingInfo(0, tempConclusion.Cell * 9 + tempConclusion.Digit)
 								).ToArray(),
-								null,
-								GetLinks())
+								Links = GetLinks()
+							}
 						},
 						_tempConclusions.ToArray()));
 			}

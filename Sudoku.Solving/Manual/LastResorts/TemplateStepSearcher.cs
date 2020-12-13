@@ -84,9 +84,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 						conclusions,
 						new View[]
 						{
-							new((
-								from conclusion in conclusions
-								select new DrawingInfo(0, conclusion.Cell * 9 + conclusion.Digit)).ToArray())
+							new()
+							{
+								Candidates = (
+									from conclusion in conclusions
+									select new DrawingInfo(0, conclusion.Cell * 9 + conclusion.Digit)
+								).ToArray()
+							}
 						},
 						false));
 			}
@@ -115,7 +119,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					continue;
 				}
 
-				result.Add(new TemplateStepInfo(conclusions, View.DefaultViews, true));
+				result.Add(new TemplateStepInfo(conclusions, new View[] { new() }, true));
 			}
 		}
 

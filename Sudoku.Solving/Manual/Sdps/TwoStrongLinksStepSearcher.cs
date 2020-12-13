@@ -100,17 +100,17 @@ namespace Sudoku.Solving.Manual.Sdps
 								conclusions,
 								new View[]
 								{
-									new(
-										null,
-										new DrawingInfo[]
+									new()
+									{
+										Candidates = new DrawingInfo[]
 										{
 											new(0, cells1[c1Index] * 9 + digit),
 											new(0, cells2[c2Index] * 9 + digit),
 											new(0, head * 9 + digit),
 											new(0, tail * 9 + digit)
 										},
-										new DrawingInfo[] { new(1, sameRegion) },
-										null)
+										Regions = new DrawingInfo[] { new(1, sameRegion) }
+									}
 								},
 								digit,
 								r1,

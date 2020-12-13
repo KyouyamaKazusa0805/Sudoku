@@ -132,11 +132,11 @@ namespace Sudoku.Solving.Manual.Alses
 								conclusions,
 								new View[]
 								{
-									new(
-										null,
-										candidateOffsets,
-										new DrawingInfo[] { new(0, block) },
-										null)
+									new()
+									{
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[] { new(0, block) }
+									}
 								},
 								c1,
 								c2,

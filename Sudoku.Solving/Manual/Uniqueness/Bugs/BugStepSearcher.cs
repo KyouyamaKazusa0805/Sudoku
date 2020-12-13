@@ -54,7 +54,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					accumulator.Add(
 						new BugType1StepInfo(
 							new Conclusion[] { new(Assignment, trueCandidates[0]) },
-							new View[] { new(new DrawingInfo[] { new(0, trueCandidates[0]) }) }));
+							new View[]
+							{
+								new() { Candidates = new DrawingInfo[] { new(0, trueCandidates[0]) } }
+							}));
 					break;
 				}
 				default:
