@@ -808,16 +808,13 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_currentPainter = _currentPainter with
+				_currentPainter.View = new()
 				{
-					View = new()
-					{
-						Candidates = (
-							from candidate in trueCandidates select new DrawingInfo(0, candidate)
-						).ToArray()
-					},
-					Conclusions = null
+					Candidates = (
+						from candidate in trueCandidates select new DrawingInfo(0, candidate)
+					).ToArray()
 				};
+				_currentPainter.Conclusions = null;
 
 				UpdateImageGrid();
 
@@ -873,18 +870,15 @@ namespace Sudoku.Windows
 					currentLevel++;
 				}
 
-				_currentPainter = _currentPainter with
+				_currentPainter.View = new()
 				{
-					View = new()
-					{
-						Candidates = (
-							from backdoor in backdoors
-							where backdoor.ConclusionType == ConclusionType.Assignment
-							select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)
-						).ToArray()
-					},
-					Conclusions = backdoors
+					Candidates = (
+						from backdoor in backdoors
+						where backdoor.ConclusionType == ConclusionType.Assignment
+						select new DrawingInfo(0, backdoor.Cell * 9 + backdoor.Digit)
+					).ToArray()
 				};
+				_currentPainter.Conclusions = backdoors;
 
 				UpdateImageGrid();
 
@@ -933,27 +927,16 @@ namespace Sudoku.Windows
 					}
 				}
 
-				_currentPainter = _currentPainter with
-				{
-					View = new()
-					{
-						Cells = cellOffsets,
-						Candidates = info.Views[0].Candidates
-					},
-					Conclusions = info.Conclusions
-				};
+				_currentPainter.View = new() { Cells = cellOffsets, Candidates = info.Views[0].Candidates };
 			}
 			else
 			{
-				_currentPainter = _currentPainter with
-				{
-					View = new() { Candidates = info.Views[0].Candidates! },
-					Conclusions = info.Conclusions
-				};
+				_currentPainter.View = new() { Candidates = info.Views[0].Candidates! };
 			}
 
+			_currentPainter.Conclusions = info.Conclusions;
 			_textBoxInfo.Text = info.ToString();
-			
+
 			UpdateImageGrid();
 		}
 

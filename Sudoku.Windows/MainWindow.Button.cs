@@ -148,7 +148,7 @@ namespace Sudoku.Windows
 			_customDrawingMode = -1;
 
 			_view.Clear();
-			_currentPainter = _currentPainter with { CustomView = null };
+			_currentPainter.CustomView = null;
 
 			UpdateImageGrid();
 		}

@@ -19,7 +19,6 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
-using static System.Math;
 using static Sudoku.Constants.Processings;
 using C = Sudoku.Data.ConclusionType;
 using CoreResources = Sudoku.Windows.Resources;
@@ -76,7 +75,7 @@ namespace Sudoku.Windows
 			{
 				double w = _gridMain.ColumnDefinitions[0].ActualWidth;
 				double h = _gridMain.RowDefinitions[0].ActualHeight;
-				_imageGrid.Height = _imageGrid.Width = Min(w, h);
+				_imageGrid.Height = _imageGrid.Width = Math.Min(w, h);
 				Settings.GridSize = w;
 				_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings, _puzzle);
 
@@ -187,12 +186,12 @@ namespace Sudoku.Windows
 					var views = _currentTechniqueInfo.Views;
 					int totalViewsCount = views.Count;
 					ref int i = ref _currentViewIndex;
-					i = Abs(
+					i = Math.Abs(
 					(
 						key == K.OemMinus ? i - 1 is var j && j < 0 ? j + totalViewsCount : j : i + 1
 					) % totalViewsCount);
 
-					_currentPainter = _currentPainter with { View = views[i] };
+					_currentPainter.View = views[i];
 
 					UpdateImageGrid();
 
@@ -212,7 +211,7 @@ namespace Sudoku.Windows
 							K.Right => (cell + 1) % 81
 						});
 
-					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
+					_currentPainter.FocusedCells = _focusedCells;
 
 					UpdateImageGrid();
 
@@ -224,7 +223,7 @@ namespace Sudoku.Windows
 					_previewMap = _focusedCells;
 					_focusedCells = _focusedCells.PeerIntersection;
 
-					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
+					_currentPainter.FocusedCells = _focusedCells;
 
 					UpdateImageGrid();
 
@@ -237,7 +236,7 @@ namespace Sudoku.Windows
 					_focusedCells.Clear();
 					_focusedCells.AddAnyway((cell + 3) % 81);
 
-					_currentPainter = _currentPainter with { Grid = _puzzle, FocusedCells = _focusedCells };
+					_currentPainter.FocusedCells = _focusedCells;
 
 					UpdateImageGrid();
 
@@ -266,7 +265,7 @@ namespace Sudoku.Windows
 			{
 				_focusedCells = _previewMap.Value;
 
-				_currentPainter = _currentPainter with { FocusedCells = _focusedCells };
+				_currentPainter.FocusedCells = _focusedCells;
 
 				UpdateImageGrid();
 			}
@@ -342,14 +341,8 @@ namespace Sudoku.Windows
 		private void ClearViews()
 		{
 			_focusedCells.Clear();
-			_currentPainter = _currentPainter with
-			{
-				Grid = _puzzle,
-				Conclusions = null,
-				CustomView = null,
-				View = null,
-				FocusedCells = null
-			};
+
+			_currentPainter = new(_currentPainter.Converter, _currentPainter.Preferences, _puzzle);
 			_currentViewIndex = -1;
 			_currentTechniqueInfo = null;
 		}
@@ -1025,8 +1018,8 @@ namespace Sudoku.Windows
 						summary += step.Difficulty;
 						summaryCount++;
 						total += step.Difficulty;
-						maximum = Max(step.Difficulty, maximum);
-						summaryMax = Max(step.Difficulty, maximum);
+						maximum = Math.Max(step.Difficulty, maximum);
+						summaryMax = Math.Max(step.Difficulty, maximum);
 					}
 
 					collection.Add(new(name, count, total, maximum));

@@ -26,6 +26,7 @@ namespace Sudoku.Windows
 				var techniqueInfo = _analyisResult.Steps[n];
 				_currentTechniqueInfo = techniqueInfo;
 				_currentViewIndex = 0;
+
 				_currentPainter = _currentPainter with
 				{
 					Grid = _puzzle = _analyisResult.StepGrids[n],
@@ -48,7 +49,8 @@ namespace Sudoku.Windows
 				{
 					_currentTechniqueInfo = info;
 					_currentViewIndex = 0;
-					_currentPainter = _currentPainter with { View = views[0], Conclusions = conclusions };
+					_currentPainter.View = views[0];
+					_currentPainter.Conclusions = conclusions;
 
 					_textBoxInfo.Text = info.ToFullString(Settings.LanguageCode);
 

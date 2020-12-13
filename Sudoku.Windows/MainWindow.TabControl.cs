@@ -12,7 +12,7 @@ namespace Sudoku.Windows
 			{
 				_currentViewIndex = -1;
 				_currentTechniqueInfo = null;
-				_currentPainter = _currentPainter with { View = null };
+				_currentPainter.View = null;
 
 				UpdateImageGrid();
 			}

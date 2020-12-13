@@ -52,22 +52,22 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates the focused cells.
 		/// </summary>
-		public GridMap? FocusedCells { get; init; }
+		public GridMap? FocusedCells { get; set; }
 
 		/// <summary>
 		/// Indicates the view.
 		/// </summary>
-		public View? View { get; init; }
+		public View? View { get; set; }
 
 		/// <summary>
 		/// Indicates the custom view.
 		/// </summary>
-		public MutableView? CustomView { get; init; }
+		public MutableView? CustomView { get; set; }
 
 		/// <summary>
 		/// Indicates all conclusions.
 		/// </summary>
-		public IEnumerable<Conclusion>? Conclusions { get; init; }
+		public IEnumerable<Conclusion>? Conclusions { get; set; }
 
 
 		/// <summary>
