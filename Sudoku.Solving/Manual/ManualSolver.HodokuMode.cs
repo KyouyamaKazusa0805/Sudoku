@@ -47,9 +47,13 @@ namespace Sudoku.Solving.Manual
 			var stepGrids = new List<SudokuGrid>();
 			if (!sukaku && CheckGurthSymmetricalPlacement)
 			{
-				var symmetrySearcher = new Gsp2StepSearcher();
-				var tempStep = symmetrySearcher.GetOne(cloneation);
-				if (tempStep is not null)
+				var symmetrySearcher =
+#if I_WANT_TO_DISABLE_THIS__BECAUSE_OF_TOO_SLOW
+					new Gsp2StepSearcher();
+#else
+					new GspStepSearcher();
+#endif
+				if (symmetrySearcher.GetOne(cloneation) is var tempStep and not null)
 				{
 					if (CheckConclusionsValidity(solution, tempStep.Conclusions))
 					{
