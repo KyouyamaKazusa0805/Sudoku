@@ -193,10 +193,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-#nullable disable warnings
-			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView ??= new();
 			DrawInternal(args, 0, 81, _painter.CustomView.AddCell);
-#nullable restore warnings
 		}
 
 		/// <summary>
@@ -210,10 +208,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-#nullable disable warnings
-			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView ??= new();
 			DrawInternal(args, 0, 729, _painter.CustomView.AddCandidate);
-#nullable restore warnings
 		}
 
 		/// <summary>
@@ -227,10 +223,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-#nullable disable warnings
-			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView ??= new();
 			DrawInternal(args, 0, 27, _painter.CustomView.AddRegion);
-#nullable restore warnings
 		}
 
 		/// <summary>
@@ -244,10 +238,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-#nullable disable warnings
-			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView ??= new();
 			DrawInternal(args, 9, 18, _painter.CustomView.AddRegion);
-#nullable restore warnings
 		}
 
 		/// <summary>
@@ -261,10 +253,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-#nullable disable warnings
-			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView ??= new();
 			DrawInternal(args, 18, 27, _painter.CustomView.AddRegion);
-#nullable restore warnings
 		}
 
 		/// <summary>
@@ -278,10 +268,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-#nullable disable warnings
-			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView ??= new();
 			DrawInternal(args, 0, 9, _painter.CustomView.AddRegion);
-#nullable restore warnings
 		}
 
 		/// <summary>
@@ -306,8 +294,7 @@ namespace Sudoku.IO
 				return;
 			}
 
-#nullable disable warnings
-			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView ??= new();
 			_painter.CustomView.AddLink(
 				new(
 					start - 1,
@@ -319,7 +306,6 @@ namespace Sudoku.IO
 						"weak" => LinkType.Weak,
 						_ => LinkType.Default
 					}));
-#nullable restore warnings
 		}
 
 		/// <summary>
@@ -343,10 +329,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-#nullable disable warnings
-			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView ??= new();
 			_painter.CustomView.AddDirectLine(GridMap.Empty, new() { c - 1 });
-#nullable restore warnings
 		}
 
 		/// <summary>
@@ -370,10 +354,8 @@ namespace Sudoku.IO
 				return;
 			}
 
-#nullable disable warnings
-			GridPainter.InitializeCustomViewIfNull(ref _painter);
+			_painter.CustomView ??= new();
 			_painter.CustomView.AddDirectLine(new() { c - 1 }, GridMap.Empty);
-#nullable restore warnings
 		}
 
 		/// <summary>

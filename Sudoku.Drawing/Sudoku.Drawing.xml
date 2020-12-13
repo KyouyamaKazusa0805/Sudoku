@@ -251,12 +251,6 @@
             <param name="g">The graphics.</param>
             <param name="cells">The cells.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.InitializeCustomViewIfNull(Sudoku.Drawing.GridPainter@)">
-            <summary>
-            Initialize custom view if the current property is <see langword="null"/>.
-            </summary>
-            <param name="painter">(<see langword="ref"/> parameter) The current painter instance.</param>
-        </member>
         <member name="M:Sudoku.Drawing.GridPainter.GetFontByScale(System.String,System.Single,System.Decimal)">
             <summary>
             Get the font via name, size and the scale.
