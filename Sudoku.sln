@@ -11,7 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		Puzzles that searchers find wrong conclusions.txt = Puzzles that searchers find wrong conclusions.txt
 		README.md = README.md
 		Supported grid texts.txt = Supported grid texts.txt
-		User Manual.md = User Manual.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Debugging", "Sudoku.Debugging\Sudoku.Debugging.csproj", "{0E1D4D29-4563-4709-ADD9-C80C30F9A010}"

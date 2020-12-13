@@ -9,6 +9,7 @@ Here displays what I want to display about the solution [Sudoku](https://github.
 * [Introduction](intro)
 * [Manual Techniques Support](manual-techniques-support)
 * [Conditional Compilation Symbol](conditional-compilation-symbol)
+* [User Manual](user-manual)
 
 
 

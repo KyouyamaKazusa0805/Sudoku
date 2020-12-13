@@ -9,6 +9,7 @@
 * [介绍](intro)
 * [人工逻辑解题技巧支持](manual-techniques-support)
 * [条件编译符号](conditional-compilation-symbol)
+* [用户手册](user-manual)
 
 
 
