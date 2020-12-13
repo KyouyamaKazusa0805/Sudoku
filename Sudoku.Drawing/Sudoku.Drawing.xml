@@ -74,61 +74,25 @@
             <summary>
             Indicates the grid painter.
             </summary>
-            <param name="PointConverter">Indicates the <see cref="T:Sudoku.Drawing.PointConverter"/> instance.</param>
-            <param name="Settings">Indicates the <see cref="T:Sudoku.Drawing.Settings"/> instance.</param>
-            <param name="Width">Indicates the width.</param>
-            <param name="Height">Indicates the height.</param>
+            <param name="Converter">Indicates the <see cref="T:Sudoku.Drawing.PointConverter"/> instance.</param>
+            <param name="Preferences">Indicates the <see cref="T:Sudoku.Drawing.Settings"/> instance.</param>
             <param name="Grid">Indicates the grid.</param>
-            <param name="FocusedCells">Indicates the focused cells.</param>
-            <param name="View">Indicates the view.</param>
-            <param name="CustomView">Indicates the custom view.</param>
-            <param name="Conclusions">All conclusions.</param>
             <remarks>
-            <para>
             Please note that eliminations will be colored with red, but all assignments won't be colored,
             because they will be colored using another method (draw candidates).
-            </para>
-            <para>
-            In addition, please use the constructor <see cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,Sudoku.Data.Stepping.UndoableGrid)"/>
-            instead of <see langword="init"/> <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/> or <see langword="with"/>
-            expression to assign the value on <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>, to ensure the points
-            can be re-calculated.
-            </para>
             </remarks>
-            <seealso cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,Sudoku.Data.Stepping.UndoableGrid)"/>
-            <seealso cref="P:Sudoku.Drawing.GridPainter.Width"/>
-            <seealso cref="P:Sudoku.Drawing.GridPainter.Height"/>
-            <seealso cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,System.Single,System.Single,Sudoku.Data.Stepping.UndoableGrid,System.Nullable{Sudoku.Data.GridMap}@,Sudoku.Drawing.View,Sudoku.Drawing.MutableView,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,Sudoku.Data.Stepping.UndoableGrid)">
             <summary>
             Indicates the grid painter.
             </summary>
-            <param name="PointConverter">Indicates the <see cref="T:Sudoku.Drawing.PointConverter"/> instance.</param>
-            <param name="Settings">Indicates the <see cref="T:Sudoku.Drawing.Settings"/> instance.</param>
-            <param name="Width">Indicates the width.</param>
-            <param name="Height">Indicates the height.</param>
+            <param name="Converter">Indicates the <see cref="T:Sudoku.Drawing.PointConverter"/> instance.</param>
+            <param name="Preferences">Indicates the <see cref="T:Sudoku.Drawing.Settings"/> instance.</param>
             <param name="Grid">Indicates the grid.</param>
-            <param name="FocusedCells">Indicates the focused cells.</param>
-            <param name="View">Indicates the view.</param>
-            <param name="CustomView">Indicates the custom view.</param>
-            <param name="Conclusions">All conclusions.</param>
             <remarks>
-            <para>
             Please note that eliminations will be colored with red, but all assignments won't be colored,
             because they will be colored using another method (draw candidates).
-            </para>
-            <para>
-            In addition, please use the constructor <see cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,Sudoku.Data.Stepping.UndoableGrid)"/>
-            instead of <see langword="init"/> <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/> or <see langword="with"/>
-            expression to assign the value on <see cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>, to ensure the points
-            can be re-calculated.
-            </para>
             </remarks>
-            <seealso cref="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,Sudoku.Data.Stepping.UndoableGrid)"/>
-            <seealso cref="P:Sudoku.Drawing.GridPainter.Width"/>
-            <seealso cref="P:Sudoku.Drawing.GridPainter.Height"/>
-            <seealso cref="P:Sudoku.Drawing.GridPainter.PointConverter"/>
         </member>
         <member name="F:Sudoku.Drawing.GridPainter.SqrtOf2">
             <summary>
@@ -142,13 +106,35 @@
             </summary>
             <seealso cref="F:System.Math.PI"/>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.Settings,Sudoku.Data.Stepping.UndoableGrid)">
+        <member name="P:Sudoku.Drawing.GridPainter.Width">
             <summary>
-            Initializes an instance with the specified information.
+            Indicates the drawing width.
             </summary>
-            <param name="pointConverter">The point converter.</param>
-            <param name="settings">The instance.</param>
-            <param name="grid">The grid.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.Height">
+            <summary>
+            Indicates the drawing height.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.FocusedCells">
+            <summary>
+            Indicates the focused cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.View">
+            <summary>
+            Indicates the view.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.CustomView">
+            <summary>
+            Indicates the custom view.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.GridPainter.Conclusions">
+            <summary>
+            Indicates all conclusions.
+            </summary>
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.Draw">
             <summary>

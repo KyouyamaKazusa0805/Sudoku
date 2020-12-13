@@ -22,34 +22,14 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// Indicates the grid painter.
 	/// </summary>
-	/// <param name="PointConverter">Indicates the <see cref="Drawing.PointConverter"/> instance.</param>
-	/// <param name="Settings">Indicates the <see cref="Drawing.Settings"/> instance.</param>
-	/// <param name="Width">Indicates the width.</param>
-	/// <param name="Height">Indicates the height.</param>
+	/// <param name="Converter">Indicates the <see cref="PointConverter"/> instance.</param>
+	/// <param name="Preferences">Indicates the <see cref="Settings"/> instance.</param>
 	/// <param name="Grid">Indicates the grid.</param>
-	/// <param name="FocusedCells">Indicates the focused cells.</param>
-	/// <param name="View">Indicates the view.</param>
-	/// <param name="CustomView">Indicates the custom view.</param>
-	/// <param name="Conclusions">All conclusions.</param>
 	/// <remarks>
-	/// <para>
 	/// Please note that eliminations will be colored with red, but all assignments won't be colored,
 	/// because they will be colored using another method (draw candidates).
-	/// </para>
-	/// <para>
-	/// In addition, please use the constructor <see cref="GridPainter(PointConverter, Settings, UndoableGrid)"/>
-	/// instead of <see langword="init"/> <see cref="PointConverter"/> or <see langword="with"/>
-	/// expression to assign the value on <see cref="PointConverter"/>, to ensure the points
-	/// can be re-calculated.
-	/// </para>
 	/// </remarks>
-	/// <seealso cref="GridPainter(PointConverter, Settings, UndoableGrid)"/>
-	/// <seealso cref="Width"/>
-	/// <seealso cref="Height"/>
-	/// <seealso cref="PointConverter"/>
-	public sealed record GridPainter(
-		PointConverter PointConverter, Settings Settings, float Width, float Height, UndoableGrid Grid,
-		in GridMap? FocusedCells, View? View, MutableView? CustomView, IEnumerable<Conclusion>? Conclusions)
+	public sealed record GridPainter(PointConverter Converter, Settings Preferences, UndoableGrid Grid)
 	{
 		/// <summary>
 		/// The square root of 2.
@@ -65,14 +45,34 @@ namespace Sudoku.Drawing
 
 
 		/// <summary>
-		/// Initializes an instance with the specified information.
+		/// Indicates the drawing width.
 		/// </summary>
-		/// <param name="pointConverter">The point converter.</param>
-		/// <param name="settings">The instance.</param>
-		/// <param name="grid">The grid.</param>
-		public GridPainter(PointConverter pointConverter, Settings settings, UndoableGrid grid)
-			: this(pointConverter, settings, default, default, grid, null, null, null, null) =>
-			(Width, Height) = pointConverter.ControlSize;
+		public float Width => Converter.ControlSize.Width;
+
+		/// <summary>
+		/// Indicates the drawing height.
+		/// </summary>
+		public float Height => Converter.ControlSize.Height;
+
+		/// <summary>
+		/// Indicates the focused cells.
+		/// </summary>
+		public GridMap? FocusedCells { get; init; }
+
+		/// <summary>
+		/// Indicates the view.
+		/// </summary>
+		public View? View { get; init; }
+
+		/// <summary>
+		/// Indicates the custom view.
+		/// </summary>
+		public MutableView? CustomView { get; init; }
+
+		/// <summary>
+		/// Indicates all conclusions.
+		/// </summary>
+		public IEnumerable<Conclusion>? Conclusions { get; init; }
 
 
 		/// <summary>
@@ -123,18 +123,18 @@ namespace Sudoku.Drawing
 		/// <param name="grid">The grid.</param>
 		private void DrawValue(Graphics g, UndoableGrid grid)
 		{
-			float cellWidth = PointConverter.CellSize.Width;
-			float candidateWidth = PointConverter.CandidateSize.Width;
+			float cellWidth = Converter.CellSize.Width;
+			float candidateWidth = Converter.CandidateSize.Width;
 			float vOffsetValue = cellWidth / 9; // The vertical offset of rendering each value.
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 			float halfWidth = cellWidth / 2F;
 
-			using var bGiven = new SolidBrush(Settings.GivenColor);
-			using var bModifiable = new SolidBrush(Settings.ModifiableColor);
-			using var bCandidate = new SolidBrush(Settings.CandidateColor);
-			using var fGiven = GetFontByScale(Settings.GivenFontName, halfWidth, Settings.ValueScale);
-			using var fModifiable = GetFontByScale(Settings.ModifiableFontName, halfWidth, Settings.ValueScale);
-			using var fCandidate = GetFontByScale(Settings.CandidateFontName, halfWidth, Settings.CandidateScale);
+			using var bGiven = new SolidBrush(Preferences.GivenColor);
+			using var bModifiable = new SolidBrush(Preferences.ModifiableColor);
+			using var bCandidate = new SolidBrush(Preferences.CandidateColor);
+			using var fGiven = GetFontByScale(Preferences.GivenFontName, halfWidth, Preferences.ValueScale);
+			using var fModifiable = GetFontByScale(Preferences.ModifiableFontName, halfWidth, Preferences.ValueScale);
+			using var fCandidate = GetFontByScale(Preferences.CandidateFontName, halfWidth, Preferences.CandidateScale);
 			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
 
 			for (int cell = 0; cell < 81; cell++)
@@ -143,20 +143,20 @@ namespace Sudoku.Drawing
 				var status = (CellStatus)(mask >> 9 & (int)All);
 				switch (status)
 				{
-					case Empty when Settings.ShowCandidates:
+					case Empty when Preferences.ShowCandidates:
 					{
 						// Draw candidates.
 						short candidateMask = (short)(mask & SudokuGrid.MaxCandidatesMask);
 						foreach (int digit in candidateMask)
 						{
-							var point = PointConverter.GetMousePointInCenter(cell, digit);
+							var point = Converter.GetMousePointInCenter(cell, digit);
 							point.Y += vOffsetCandidate;
 							g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
 						}
 
 						break;
 					}
-					case Modifiable or Given when PointConverter.GetMousePointInCenter(cell) is var point:
+					case Modifiable or Given when Converter.GetMousePointInCenter(cell) is var point:
 					{
 						// Draw values.
 						point.Y += vOffsetValue;
@@ -220,10 +220,10 @@ namespace Sudoku.Drawing
 		/// <param name="focusedCells">(<see langword="in"/> parameter) The focused cells.</param>
 		private void DrawFocusedCells(Graphics g, in GridMap focusedCells)
 		{
-			using var b = new SolidBrush(Settings.FocusedCellColor);
+			using var b = new SolidBrush(Preferences.FocusedCellColor);
 			foreach (int cell in focusedCells)
 			{
-				g.FillRectangle(b, PointConverter.GetMouseRectangleViaCell(cell));
+				g.FillRectangle(b, Converter.GetMouseRectangleViaCell(cell));
 			}
 		}
 
@@ -232,7 +232,7 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="g">The graphics.</param>
 		/// <seealso cref="Settings.BackgroundColor"/>
-		private void DrawBackground(Graphics g) => g.Clear(Settings.BackgroundColor);
+		private void DrawBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
 
 		/// <summary>
 		/// Draw grid lines and block lines.
@@ -240,9 +240,9 @@ namespace Sudoku.Drawing
 		/// <param name="g">The graphics.</param>
 		private void DrawGridAndBlockLines(Graphics g)
 		{
-			using var pg = new Pen(Settings.GridLineColor, Settings.GridLineWidth);
-			using var pb = new Pen(Settings.BlockLineColor, Settings.BlockLineWidth);
-			var gridPoints = PointConverter.GridPoints;
+			using var pg = new Pen(Preferences.GridLineColor, Preferences.GridLineWidth);
+			using var pb = new Pen(Preferences.BlockLineColor, Preferences.BlockLineWidth);
+			var gridPoints = Converter.GridPoints;
 			for (int i = 0; i < 28; i += 3)
 			{
 				g.DrawLine(pg, gridPoints[i, 0], gridPoints[i, 27]);
@@ -264,15 +264,15 @@ namespace Sudoku.Drawing
 		/// <param name="offset">The drawing offset.</param>
 		private void DrawEliminations(Graphics g, IEnumerable<Conclusion> conclusions, float offset)
 		{
-			using var eliminationBrush = new SolidBrush(Settings.EliminationColor);
-			using var cannibalBrush = new SolidBrush(Settings.CannibalismColor);
+			using var eliminationBrush = new SolidBrush(Preferences.EliminationColor);
+			using var cannibalBrush = new SolidBrush(Preferences.CannibalismColor);
 			unsafe
 			{
 				foreach (var (t, c, d) in from c in conclusions where c.ConclusionType == Elimination select c)
 				{
 					g.FillEllipse(
 						View?.Candidates?.Any(&overlapping, c, d) ?? false ? cannibalBrush : eliminationBrush,
-						PointConverter.GetMouseRectangle(c, d).Zoom(-offset / 3));
+						Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
 				}
 			}
 
@@ -287,7 +287,7 @@ namespace Sudoku.Drawing
 		/// <param name="offset">The drawing offset.</param>
 		private void DrawDirectLines(Graphics g, IEnumerable<(GridMap, GridMap)> directLines, float offset)
 		{
-			if (Settings.ShowCandidates)
+			if (Preferences.ShowCandidates)
 			{
 				// Non-direct view (without candidates) don't show this function.
 				return;
@@ -299,13 +299,13 @@ namespace Sudoku.Drawing
 				if (start.IsNotEmpty)
 				{
 					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-					var p1 = PointConverter.GetMousePointInCenter(start.SetAt(0)) - PointConverter.CellSize / 2;
-					var p2 = PointConverter.GetMousePointInCenter(start.SetAt(^1)) + PointConverter.CellSize / 2;
+					var p1 = Converter.GetMousePointInCenter(start.SetAt(0)) - Converter.CellSize / 2;
+					var p2 = Converter.GetMousePointInCenter(start.SetAt(^1)) + Converter.CellSize / 2;
 					var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset);
 
 					// Step 2: Draw capsule.
-					using var pen = new Pen(Settings.CrosshatchingOutlineColor, 3F);
-					using var brush = new SolidBrush(Settings.CrosshatchingInnerColor);
+					using var pen = new Pen(Preferences.CrosshatchingOutlineColor, 3F);
+					using var brush = new SolidBrush(Preferences.CrosshatchingInnerColor);
 					g.DrawEllipse(pen, rect);
 					g.FillEllipse(brush, rect);
 				}
@@ -314,10 +314,10 @@ namespace Sudoku.Drawing
 				foreach (int cell in end)
 				{
 					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-					var rect = PointConverter.GetMouseRectangleViaCell(cell).Zoom(-offset * 2);
+					var rect = Converter.GetMouseRectangleViaCell(cell).Zoom(-offset * 2);
 
 					// Step 2: Draw cross sign.
-					using var pen = new Pen(Settings.CrossSignColor, 5F);
+					using var pen = new Pen(Preferences.CrossSignColor, 5F);
 					g.DrawCrossSign(pen, rect);
 				}
 			}
@@ -337,24 +337,24 @@ namespace Sudoku.Drawing
 			{
 				SudokuMap map1 = new() { startCand }, map2 = new() { endCand };
 
-				points.Add(PointConverter.GetMouseCenter(map1));
-				points.Add(PointConverter.GetMouseCenter(map2));
+				points.Add(Converter.GetMouseCenter(map1));
+				points.Add(Converter.GetMouseCenter(map2));
 			}
 
 			if (Conclusions is not null)
 			{
 				points.AddRange(
 					from conclusion in Conclusions
-					select PointConverter.GetMousePointInCenter(conclusion.Cell, conclusion.Digit));
+					select Converter.GetMousePointInCenter(conclusion.Cell, conclusion.Digit));
 			}
 
 			// Iterate on each inference to draw the links and grouped nodes (if so).
-			var (cw, ch) = PointConverter.CandidateSize;
-			using var arrowPen = new Pen(Settings.ChainColor, 2F)
+			var (cw, ch) = Converter.CandidateSize;
+			using var arrowPen = new Pen(Preferences.ChainColor, 2F)
 			{
 				CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F)
 			};
-			using var linePen = new Pen(Settings.ChainColor, 2F);
+			using var linePen = new Pen(Preferences.ChainColor, 2F);
 
 #if OBSOLETE
 			// This brush is used for drawing grouped nodes.
@@ -365,8 +365,8 @@ namespace Sudoku.Drawing
 				var (start, end, type) = link;
 				arrowPen.DashStyle = type switch { Strong => Solid, Weak => Dot, Default => Dash, _ => Dash };
 
-				var pt1 = PointConverter.GetMouseCenter(new() { start });
-				var pt2 = PointConverter.GetMouseCenter(new() { end });
+				var pt1 = Converter.GetMouseCenter(new() { start });
+				var pt2 = Converter.GetMouseCenter(new() { end });
 				var (pt1x, pt1y) = pt1;
 				var (pt2x, pt2y) = pt2;
 
@@ -376,14 +376,14 @@ namespace Sudoku.Drawing
 				{
 					g.FillRoundedRectangle(
 						groupedNodeBrush,
-						PointConverter.GetMouseRectangleOfCandidates(startFullMap),
+						Converter.GetMouseRectangleOfCandidates(startFullMap),
 						offset);
 				}
 				if (endMap.Count != 1)
 				{
 					g.FillRoundedRectangle(
 						groupedNodeBrush,
-						PointConverter.GetMouseRectangleOfCandidates(endFullMap),
+						Converter.GetMouseRectangleOfCandidates(endFullMap),
 						offset);
 				}
 #endif
@@ -533,15 +533,15 @@ namespace Sudoku.Drawing
 				if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 				{
 					var color = Color.FromArgb(aWeight, rWeight, gWeight, bWeight);
-					var rect = PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
+					var rect = Converter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
 					using var brush = new SolidBrush(color);
 					//using var pen = new Pen(color, 6F);
 					//g.DrawRectangle(pen, rect.Truncate());
 					g.FillRectangle(brush, rect);
 				}
-				else if (Settings.PaletteColors.TryGetValue(id, out var color))
+				else if (Preferences.PaletteColors.TryGetValue(id, out var color))
 				{
-					var rect = PointConverter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
+					var rect = Converter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
 					//using var pen = new Pen(color, 6F);
 					//g.DrawRectangle(pen, rect.Truncate());
@@ -558,12 +558,12 @@ namespace Sudoku.Drawing
 		/// <param name="offset">The drawing offsets.</param>
 		private void DrawCandidates(Graphics g, IEnumerable<DrawingInfo> candidates, float offset)
 		{
-			float cellWidth = PointConverter.CellSize.Width;
-			float candidateWidth = PointConverter.CandidateSize.Width;
+			float cellWidth = Converter.CellSize.Width;
+			float candidateWidth = Converter.CandidateSize.Width;
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 
-			using var bCandidate = new SolidBrush(Settings.CandidateColor);
-			using var fCandidate = GetFontByScale(Settings.CandidateFontName, cellWidth / 2F, Settings.CandidateScale);
+			using var bCandidate = new SolidBrush(Preferences.CandidateColor);
+			using var fCandidate = GetFontByScale(Preferences.CandidateFontName, cellWidth / 2F, Preferences.CandidateScale);
 			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
 
 			unsafe
@@ -582,22 +582,22 @@ namespace Sudoku.Drawing
 						if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 						{
 							using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
-							g.FillEllipse(brush, PointConverter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+							g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 							// In direct view, candidates should be drawn also.
-							if (!Settings.ShowCandidates)
+							if (!Preferences.ShowCandidates)
 							{
 								d(cell, digit, vOffsetCandidate);
 							}
 						}
-						else if (Settings.PaletteColors.TryGetValue(id, out var color))
+						else if (Preferences.PaletteColors.TryGetValue(id, out var color))
 						{
 							// In the normal case, I'll draw these circles.
 							using var brush = new SolidBrush(color);
-							g.FillEllipse(brush, PointConverter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+							g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 							// In direct view, candidates should be drawn also.
-							if (!Settings.ShowCandidates)
+							if (!Preferences.ShowCandidates)
 							{
 								d(cell, digit, vOffsetCandidate);
 							}
@@ -606,7 +606,7 @@ namespace Sudoku.Drawing
 				}
 			}
 
-			if (!Settings.ShowCandidates && Conclusions is not null)
+			if (!Preferences.ShowCandidates && Conclusions is not null)
 			{
 				foreach (var (type, cell, digit) in Conclusions)
 				{
@@ -619,7 +619,7 @@ namespace Sudoku.Drawing
 
 			void d(int cell, int digit, float vOffsetCandidate)
 			{
-				var point = PointConverter.GetMousePointInCenter(cell, digit);
+				var point = Converter.GetMousePointInCenter(cell, digit);
 				point.Y += vOffsetCandidate;
 				g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
 			}
@@ -634,21 +634,19 @@ namespace Sudoku.Drawing
 		{
 			foreach (var (id, cell) in cells)
 			{
-				if (
-					ColorId.IsCustomColorId(
-						id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
+				if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 				{
-					var (cw, ch) = PointConverter.CellSize;
-					var (x, y) = PointConverter.GetMousePointInCenter(cell);
+					var (cw, ch) = Converter.CellSize;
+					var (x, y) = Converter.GetMousePointInCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
-					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
+					g.FillRectangle(brush, Converter.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
 				}
-				else if (Settings.PaletteColors.TryGetValue(id, out var color))
+				else if (Preferences.PaletteColors.TryGetValue(id, out var color))
 				{
-					var (cw, ch) = PointConverter.CellSize;
-					var (x, y) = PointConverter.GetMousePointInCenter(cell);
+					var (cw, ch) = Converter.CellSize;
+					var (x, y) = Converter.GetMousePointInCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
-					g.FillRectangle(brush, PointConverter.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
+					g.FillRectangle(brush, Converter.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
 				}
 			}
 		}
