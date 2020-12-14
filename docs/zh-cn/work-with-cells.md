@@ -44,7 +44,7 @@ var exemplar5 = new Cells(2);
 var exemplar6 = new Cells(2, false);
 ```
 
-> 最后一个构造器 `.ctor(int, bool)` 是一个私有方法，这意味着你无法从结构外部调用它。如果你需要使用这个构造器，请你使用 `Sudoku.Constants.Processings` 这个静态类下面的 [`Peers`](https://github.com/SunnieShine/Sudoku/blob/master/Sudoku.Core/Constants/Processings.Fields.cs#L62) 这个数组来获取。
+> 最后一个构造器 `.ctor(int, bool)` 是一个私有方法，这意味着你无法从结构外部调用它。如果你需要使用这个构造器，请你使用 `Sudoku.Constants.Processings` 这个静态类下面的 [`Peers`](https://github.com/SunnieShine/Sudoku/blob/master/Sudoku.Core/Constants/Processings.cs#L66) 这个数组来获取。
 
 你可以查看 [`Cells.cs`](https://github.com/SunnieShine/Sudoku/blob/master/Sudoku.Core/Data/Cells.cs) 来了解更多有关其他构造器的信息。
 
