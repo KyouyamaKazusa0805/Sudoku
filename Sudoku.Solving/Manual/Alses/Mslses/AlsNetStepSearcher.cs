@@ -33,8 +33,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			var linkForEachDigit = (stackalloc Cells[9]);
 			foreach (var pattern in Patterns)
 			{
-				if ((EmptyMap & pattern) is var map
-					&& pattern.Count < 12
+				var map = EmptyMap & pattern;
+				if (pattern.Count < 12
 					&& (pattern.Count - map.Count, pattern.Count - map.Count) is not ( <= 1, <= 2))
 				{
 					continue;

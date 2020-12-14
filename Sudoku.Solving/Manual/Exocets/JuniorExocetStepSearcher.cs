@@ -537,7 +537,8 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Then check target pairs if worth.
 			if (last.PopCount() == 2)
 			{
-				if ((targetMap & EmptyMap).PeerIntersection is var elimMap && elimMap.IsEmpty)
+				var elimMap = (targetMap & EmptyMap).PeerIntersection;
+				if (elimMap.IsEmpty)
 				{
 					// Exit the method.
 					return true;

@@ -253,7 +253,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			{
 				foreach (int digit in digitsMask)
 				{
-					if (((candMaps[digit] & map).PeerIntersection & candMaps[digit]) is var temp && temp.IsEmpty)
+					var temp = (candMaps[digit] & map).PeerIntersection & candMaps[digit];
+					if (temp.IsEmpty)
 					{
 						continue;
 					}
