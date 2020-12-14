@@ -82,7 +82,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Candidates(int[] candidates) : this(candidates.AsEnumerable())
+		public Candidates(int[] candidates) : this((IEnumerable<int>)candidates)
 		{
 		}
 

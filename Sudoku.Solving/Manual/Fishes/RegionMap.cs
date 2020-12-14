@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Initializes a map with the specified regions.
 		/// </summary>
 		/// <param name="regions">The regions.</param>
-		public RegionMap(int[] regions) : this(regions.AsEnumerable())
+		public RegionMap(int[] regions) : this((IEnumerable<int>)regions)
 		{
 		}
 

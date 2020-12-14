@@ -74,7 +74,7 @@ namespace Sudoku.Data
 		/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
 		/// </remarks>
 		/// <seealso cref="Cells(IEnumerable{int})"/>
-		public Cells(int[] offsets) : this(offsets.AsEnumerable())
+		public Cells(int[] offsets) : this((IEnumerable<int>)offsets)
 		{
 		}
 

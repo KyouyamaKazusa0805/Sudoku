@@ -1042,7 +1042,7 @@ namespace Sudoku.Windows
 					{
 						Header = header,
 						DisplayMemberBinding = new Binding(name),
-						Width = _tabControlInfo.ActualWidth * widthScale - 4,
+						Width = _tabControlInfo.ActualWidth * widthScale - 4
 					};
 			}
 			else

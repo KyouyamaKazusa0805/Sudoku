@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace System.Extensions
@@ -21,7 +20,7 @@ namespace System.Extensions
 		/// (<see langword="params"/> parameter) The values you want to add to the end of the collection.
 		/// </param>
 		public static void AddRange<T>(this ICollection<T> @this, params T[] values) =>
-			@this.AddRange(values.AsEnumerable());
+			@this.AddRange((IEnumerable<T>)values);
 
 		/// <summary>
 		/// Adds the elements of the specified collection to the end of the
