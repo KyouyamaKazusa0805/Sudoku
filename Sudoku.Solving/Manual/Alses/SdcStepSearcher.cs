@@ -168,8 +168,8 @@ namespace Sudoku.Solving.Manual.Alses
 
 										if (currentInterMap.Count + i + j ==
 											blockMask.PopCount() + lineMask.PopCount() + maskOnlyInInter.PopCount()
-											&& (elimMapBlock.IsNotEmpty || elimMapLine.IsNotEmpty
-												|| elimMapIsolated.IsNotEmpty))
+											&& (!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty
+												|| !elimMapIsolated.IsEmpty))
 										{
 											// Check eliminations.
 											var conclusions = new List<Conclusion>();

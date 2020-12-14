@@ -169,7 +169,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 								CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 									// Check whether the number of intersection cells is not 0.
-									if (elimMap.IsNotEmpty)
+									if (!elimMap.IsEmpty)
 									{
 										// Finned/Sashimi X-Wing found.
 										// Check eliminations.
@@ -197,7 +197,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 										// Check the fish is sashimi, normal finned or normal.
 										bool? isSashimi = null;
-										if (finCellsMap.IsNotEmpty)
+										if (!finCellsMap.IsEmpty)
 										{
 											isSashimi = true;
 											int finCell = finCellsMap.First;
@@ -341,7 +341,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 											CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 												// Check whether the number of intersection cells is not 0.
-												if (elimMap.IsEmpty)
+												if (!elimMap.IsEmpty)
 												{
 													continue;
 												}
@@ -372,7 +372,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 												// Check the fish is sashimi, normal finned or normal.
 												bool? isSashimi = null;
-												if (finCellsMap.IsNotEmpty)
+												if (!finCellsMap.IsEmpty)
 												{
 													isSashimi = true;
 													int finCell = finCellsMap.First;
@@ -532,7 +532,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 													CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 														// Check whether the number of intersection cells is not 0.
-														if (elimMap.IsNotEmpty)
+														if (!elimMap.IsEmpty)
 														{
 															// Finned/Sashimi X-Wing found.
 															// Check eliminations.
@@ -560,7 +560,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 															// Check the fish is sashimi, normal finned or normal.
 															bool? isSashimi = null;
-															if (finCellsMap.IsNotEmpty)
+															if (!finCellsMap.IsEmpty)
 															{
 																isSashimi = true;
 																int finCell = finCellsMap.First;

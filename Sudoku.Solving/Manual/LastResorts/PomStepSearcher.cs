@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				foreach (var map in GetTemplates())
 				{
-					if ((mustPos[digit] - map).IsNotEmpty || invalidPos[digit].Overlaps(map))
+					if (!(mustPos[digit] - map).IsEmpty || invalidPos[digit].Overlaps(map))
 					{
 						continue;
 					}

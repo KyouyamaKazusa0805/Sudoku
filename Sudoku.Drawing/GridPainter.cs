@@ -301,7 +301,7 @@ namespace Sudoku.Drawing
 			foreach (var (start, end) in directLines)
 			{
 				// Draw start cells (may be a capsule-like shape to block them).
-				if (start.IsNotEmpty)
+				if (!start.IsEmpty)
 				{
 					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
 					var p1 = Converter.GetMousePointInCenter(start.SetAt(0)) - Converter.CellSize / 2;

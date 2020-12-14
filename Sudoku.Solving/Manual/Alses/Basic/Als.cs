@@ -141,7 +141,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				}
 			}
 
-			return result.IsNotEmpty;
+			return !result.IsEmpty;
 		}
 
 		/// <inheritdoc/>

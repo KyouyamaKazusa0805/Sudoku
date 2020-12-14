@@ -69,11 +69,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				{
 					var regionMap = RegionMaps[region];
 					var tempMap = baseLine & regionMap;
-					if (tempMap.IsNotEmpty)
+					if (!tempMap.IsEmpty)
 					{
 						f(grid, tempMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
 					}
-					else if ((square & regionMap) is { IsNotEmpty: true } squareMap)
+					else if ((square & regionMap) is { IsEmpty: false } squareMap)
 					{
 						// Don't forget to record the square cells.
 						f(grid, squareMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);

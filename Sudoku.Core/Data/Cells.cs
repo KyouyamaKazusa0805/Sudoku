@@ -203,17 +203,12 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// Indicates whether the map has no set bits.
-		/// This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
 		/// </summary>
-		/// <seealso cref="IsNotEmpty"/>
-		public readonly bool IsEmpty => (_high, _low) is (0, 0);
-
-		/// <summary>
-		/// Indicates whether the map has at least one set bit.
-		/// This property is equivalent to code '<c>!this.IsEmpty</c>'.
-		/// </summary>
-		/// <seealso cref="IsEmpty"/>
-		public readonly bool IsNotEmpty => (_high, _low) is not (0, 0);
+		public readonly bool IsEmpty
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _high == 0 && _low == 0;
+		}
 
 		/// <summary>
 		/// Same as <see cref="AllSetsAreInOneRegion(out int)"/>, but only contains
@@ -239,17 +234,29 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the mask of block.
 		/// </summary>
-		public readonly short BlockMask => GetFirst(BlockOffset, RowOffset);
+		public readonly short BlockMask
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => GetFirst(BlockOffset, RowOffset);
+		}
 
 		/// <summary>
 		/// Indicates the mask of row.
 		/// </summary>
-		public readonly short RowMask => GetFirst(RowOffset, ColumnOffset);
+		public readonly short RowMask
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => GetFirst(RowOffset, ColumnOffset);
+		}
 
 		/// <summary>
 		/// Indicates the mask of column.
 		/// </summary>
-		public readonly short ColumnMask => GetFirst(ColumnOffset, Limit);
+		public readonly short ColumnMask
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => GetFirst(ColumnOffset, Limit);
+		}
 
 		/// <summary>
 		/// Indicates the covered line.
@@ -381,8 +388,11 @@ namespace Sudoku.Data
 		/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
 		/// and the region 19 (column 2).
 		/// </summary>
-		public readonly IEnumerable<int> Regions =>
-			((int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset).GetAllSets();
+		public readonly IEnumerable<int> Regions
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ((int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset).GetAllSets();
+		}
 
 		/// <summary>
 		/// Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
@@ -489,7 +499,7 @@ namespace Sudoku.Data
 		/// <param name="other">(<see langword="in"/> parameter) The other map.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Overlaps(in Cells other) => (this & other).IsNotEmpty;
+		public readonly bool Overlaps(in Cells other) => !(this & other).IsEmpty;
 
 		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.

@@ -145,7 +145,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					}
 
 					var elimEndoFinsMap = Cells.Empty;
-					if (endoFinsMap.IsNotEmpty)
+					if (!endoFinsMap.IsEmpty)
 					{
 						elimEndoFinsMap = endoFinsMap.PeerIntersection & candMap;
 						if (elimEndoFinsMap.IsEmpty)
@@ -217,7 +217,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								}
 
 								var elimExoFinsMap = Cells.Empty;
-								if (exoFinsMap.IsNotEmpty)
+								if (!exoFinsMap.IsEmpty)
 								{
 									elimExoFinsMap = exoFinsMap.PeerIntersection & candMap;
 									if (elimExoFinsMap.IsEmpty)
@@ -227,11 +227,11 @@ namespace Sudoku.Solving.Manual.Fishes
 								}
 
 								var elimMap = (coverSetMap & candMap) - baseSetsMap;
-								if (exoFinsMap.IsNotEmpty)
+								if (!exoFinsMap.IsEmpty)
 								{
 									elimMap &= elimExoFinsMap;
 								}
-								if (endoFinsMap.IsNotEmpty)
+								if (!endoFinsMap.IsEmpty)
 								{
 									elimMap &= elimEndoFinsMap;
 								}
@@ -249,11 +249,11 @@ namespace Sudoku.Solving.Manual.Fishes
 								}
 
 								two &= candMap & baseSetsMap;
-								if (endoFinsMap.IsNotEmpty)
+								if (!endoFinsMap.IsEmpty)
 								{
 									two &= elimEndoFinsMap;
 								}
-								if (exoFinsMap.IsNotEmpty)
+								if (!exoFinsMap.IsEmpty)
 								{
 									two &= elimExoFinsMap;
 								}

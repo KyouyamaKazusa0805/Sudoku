@@ -195,7 +195,7 @@ namespace Sudoku.Solving.Manual.Singles
 						foreach (int cell in crosshatchingCells)
 						{
 							var removableCells = PeerMaps[cell] & tempMap;
-							if (removableCells.IsNotEmpty)
+							if (!removableCells.IsEmpty)
 							{
 								directLines.Add((new() { cell }, removableCells));
 								tempMap -= removableCells;

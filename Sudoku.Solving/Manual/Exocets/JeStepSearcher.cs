@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
 
 				// The base cells can't be given or modifiable.
-				if ((baseMap - EmptyMap).IsNotEmpty)
+				if (!(baseMap - EmptyMap).IsEmpty)
 				{
 					continue;
 				}

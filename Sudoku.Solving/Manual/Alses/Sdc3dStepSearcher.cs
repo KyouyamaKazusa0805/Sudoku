@@ -212,8 +212,8 @@ namespace Sudoku.Solving.Manual.Alses
 												if (cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1 ==
 													blockMask.PopCount() + rowMask.PopCount() + columnMask.PopCount()
 													+ rbMaskOnlyInInter.PopCount() + cbMaskOnlyInInter.PopCount()
-													&& (elimMapRow.IsNotEmpty || elimMapColumn.IsNotEmpty
-														|| elimMapBlock.IsNotEmpty))
+													&& (!elimMapRow.IsEmpty || !elimMapColumn.IsEmpty
+														|| !elimMapBlock.IsEmpty))
 												{
 													// Check eliminations.
 													var conclusions = new List<Conclusion>();

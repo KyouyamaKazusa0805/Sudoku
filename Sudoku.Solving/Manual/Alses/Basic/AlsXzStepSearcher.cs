@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					short xzMask = (short)(mask1 & mask2);
 					var map = map1 | map2;
 					var overlapMap = map1 & map2;
-					if (!AllowOverlapping && overlapMap.IsNotEmpty)
+					if (!AllowOverlapping && !overlapMap.IsEmpty)
 					{
 						continue;
 					}

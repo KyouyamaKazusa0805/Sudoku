@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							map2.AddAnyway(cell2);
 						}
 
-						if ((map1 & map2).IsNotEmpty)
+						if (map1.Overlaps(map2))
 						{
 							continue;
 						}
