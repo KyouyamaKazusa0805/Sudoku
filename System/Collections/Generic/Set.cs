@@ -195,10 +195,12 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public bool IsProperSubsetOf(IEnumerable<T> other) => IsSubsetOf(other) && other.Count() != Count;
+		public bool IsProperSubsetOf(IEnumerable<T> other) =>
+			IsSubsetOf(other) && other.Take(Count + 1).Count() != Count;
 
 		/// <inheritdoc/>
-		public bool IsProperSupersetOf(IEnumerable<T> other) => IsSupersetOf(other) && other.Count() != Count;
+		public bool IsProperSupersetOf(IEnumerable<T> other) =>
+			IsSupersetOf(other) && other.Take(Count + 1).Count() != Count;
 
 		/// <inheritdoc/>
 		public bool IsSubsetOf(IEnumerable<T> other)

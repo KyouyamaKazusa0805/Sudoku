@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text.Json.Serialization;
 using Sudoku.Drawing;
 
@@ -28,13 +27,7 @@ namespace Sudoku.Windows
 		{
 			_ = newSetting is not WindowsSettings @new ? throw new ArgumentException("The specified argument is invalid due to its invalid type.", nameof(newSetting)) : 0;
 
-			foreach (var property in
-				from prop in GetType().GetProperties()
-				where prop.CanWrite
-				select prop)
-			{
-				property.SetValue(this, property.GetValue(@new));
-			}
+			InternalCoverBy(@new);
 		}
 
 		/// <inheritdoc/>

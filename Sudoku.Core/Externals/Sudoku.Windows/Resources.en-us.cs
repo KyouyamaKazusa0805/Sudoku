@@ -62,6 +62,7 @@ namespace Sudoku.Windows
 			["ProgressNakedSingle"] = "Singles",
 			["ProgressNakedPair"] = "Subsets",
 			["ProgressGsp"] = "Gurth's Symmetrical Placement",
+			["ProgressGsp2"] = "Gurth's Symmetrical Placement (+)",
 			["ProgressBugType1"] = "Bivalue Universal Grave",
 			["ProgressXrType1"] = "Extended Rectangle",
 			["ProgressUlType1"] = "Unique Loop",

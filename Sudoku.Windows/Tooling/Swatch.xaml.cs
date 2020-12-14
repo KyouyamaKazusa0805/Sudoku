@@ -7,12 +7,6 @@ using Sudoku.DocComments;
 namespace Sudoku.Windows.Tooling
 {
 	/// <summary>
-	/// Indicates the event handler when a color is picking.
-	/// </summary>
-	/// <param name="color">The color.</param>
-	public delegate void PickingColorHandlerEventHandler(Color color);
-
-	/// <summary>
 	/// Interaction logic for <c>Swatch.xaml</c>.
 	/// </summary>
 	public partial class Swatch : UserControl

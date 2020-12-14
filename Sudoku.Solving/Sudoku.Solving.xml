@@ -7940,6 +7940,26 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.System#IComparable{Sudoku#Solving#Manual#Uniqueness#Rects#UrStepInfo}#CompareTo(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.InternalComparsion(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
+            <summary>
+            Internal comparsion.
+            </summary>
+            <param name="l">The left comparer.</param>
+            <param name="r">The right comparer.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.op_GreaterThan(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.op_GreaterThanOrEqual(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.op_LessThan(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.op_LessThanOrEqual(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher">
             <summary>
             Encapsulates an <b>unique rectangle</b> (UR) or

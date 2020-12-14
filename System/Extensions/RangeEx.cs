@@ -17,8 +17,8 @@ namespace System.Extensions
 		public static RangeEnumerator GetEnumerator(this in Range @this)
 		{
 			var ((sIsFromEnd, sValue), (eIsFromEnd, eValue)) = @this;
-			_ = sIsFromEnd || eIsFromEnd ? throw new ArgumentException("The index should be from start.") : 0;
-			_ = sValue > eValue ? throw new ArgumentException("The start index should be less than end index.") : 0;
+			_ = sIsFromEnd || eIsFromEnd ? throw new ArgumentException("The index should be from start.", nameof(@this)) : 0;
+			_ = sValue > eValue ? throw new ArgumentException("The start index should be less than end index.", nameof(@this)) : 0;
 
 			return new RangeEnumerator(sValue, eValue);
 		}

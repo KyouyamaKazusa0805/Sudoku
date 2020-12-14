@@ -61,6 +61,7 @@ namespace Sudoku.Windows
 			["ProgressNakedSingle"] = "出数技巧",
 			["ProgressNakedPair"] = "数组",
 			["ProgressGsp"] = "宇宙法",
+			["ProgressGsp2"] = "宇宙法 (+)",
 			["ProgressBugType1"] = "全双值格致死解法",
 			["ProgressXrType1"] = "拓展矩形",
 			["ProgressUlType1"] = "唯一环",

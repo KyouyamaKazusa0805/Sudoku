@@ -437,38 +437,6 @@ dotnet_diagnostic.CA2208.severity = silent
 dotnet_diagnostic.CA2244.severity = warning
 
 
-# MA0003: Add argument name to improve readability
-dotnet_diagnostic.MA0003.severity = silent
-
-# MA0007: Add a comma after the last value
-dotnet_diagnostic.MA0007.severity = none
-
-# MA0008: Add StructLayoutAttribute
-dotnet_diagnostic.MA0008.severity = none
-
-# MA0011: IFormatProvider is missing
-dotnet_diagnostic.MA0011.severity = silent
-
-# MA0021: Use StringComparer.GetHashCode instead of string.GetHashCode
-dotnet_diagnostic.MA0021.severity = silent
-
-# MA0037: Remove empty statement
-dotnet_diagnostic.MA0037.severity = none
-
-# MA0051: Method is too long
-dotnet_diagnostic.MA0051.severity = none
-
-# MA0071: Avoid using redundant else
-dotnet_diagnostic.MA0071.severity = silent
-
-# MA0074: Avoid implicit culture-sensitive methods
-dotnet_diagnostic.MA0074.severity = silent
-
-# MA0076: Do not use implicit culture-sensitive ToString in interpolated strings
-dotnet_diagnostic.MA0076.severity = none
-
-
-
 # Other custom disabled cases.
 # May be deleted later in the future.
 dotnet_diagnostic.CS1572.severity = none

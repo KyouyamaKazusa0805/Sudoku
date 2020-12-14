@@ -1990,18 +1990,17 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Tooling.ValueChangedEventHandler">
-            <summary>
-            Indicates the event handler when the value is changed.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
         <member name="T:Sudoku.Windows.Tooling.ColorComponentSlider">
             <summary>
             Interaction logic for <c>ColorComponentSlider.xaml</c>.
             </summary>
             <summary>
             ColorComponentSlider
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.Tooling.ColorComponentSlider._updatingValues">
+            <summary>
+            Indicates the updating values.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorComponentSlider.#ctor">
@@ -2125,12 +2124,6 @@
             <summary>
             InitializeComponent
             </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.PickingColorEventHandler">
-            <summary>
-            Indicates the event handler triggering when the color is start to pick.
-            </summary>
-            <param name="color">The color.</param>
         </member>
         <member name="T:Sudoku.Windows.Tooling.ColorPickerControl">
             <summary>
@@ -2425,6 +2418,12 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.Tooling.PickingColorEventHandler">
+            <summary>
+            Indicates the event handler triggering when the color is start to pick.
+            </summary>
+            <param name="color">The color.</param>
+        </member>
         <member name="T:Sudoku.Windows.Tooling.PickingColorHandlerEventHandler">
             <summary>
             Indicates the event handler when a color is picking.
@@ -2501,6 +2500,9 @@
             <summary>
             Indicates whether the check box changed the status.
             </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Tooling.TechniqueBox.CheckBox_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.TechniqueBox.InitializeComponent">
             <summary>
@@ -2673,6 +2675,12 @@
             <param name="this">(<see langword="this"/> parameter) The instance.</param>
             <param name="filename">The file name.</param>
             <returns>The instance.</returns>
+        </member>
+        <member name="T:Sudoku.Windows.Tooling.ValueChangedEventHandler">
+            <summary>
+            Indicates the event handler when the value is changed.
+            </summary>
+            <param name="value">The value.</param>
         </member>
         <member name="T:Sudoku.Windows.WindowsSettings">
             <summary>

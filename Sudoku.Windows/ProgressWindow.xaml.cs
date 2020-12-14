@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1806
+
+using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;

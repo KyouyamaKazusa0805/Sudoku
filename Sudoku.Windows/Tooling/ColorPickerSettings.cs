@@ -16,12 +16,12 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Indicates the XML file name.
 		/// </summary>
-		public static string CustomColorsFilename = "CustomColorPalette.xml";
+		public static readonly string CustomColorsFilename = "CustomColorPalette.xml";
 
 		/// <summary>
 		/// Indicates the directory that custom colors saved.
 		/// </summary>
-		public static string CustomColorsDirectory = Environment.CurrentDirectory;
+		public static readonly string CustomColorsDirectory = Environment.CurrentDirectory;
 
 
 		/// <summary>

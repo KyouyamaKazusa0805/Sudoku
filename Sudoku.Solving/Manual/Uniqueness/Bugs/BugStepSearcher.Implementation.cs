@@ -169,7 +169,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		{
 			// Conjugate pairs should lie in two cells.
 			var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
-			if (candsGroupByCell.Count() != 2)
+			if (candsGroupByCell.Take(3).Count() != 2)
 			{
 				return;
 			}

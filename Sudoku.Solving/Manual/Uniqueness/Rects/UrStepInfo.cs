@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 
@@ -63,14 +64,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		/// <inheritdoc/>
-		int IComparable<UrStepInfo>.CompareTo(UrStepInfo other) =>
-			Math.Sign(TypeCode.CompareTo(other.TypeCode)) switch
+		int IComparable<UrStepInfo>.CompareTo(UrStepInfo other) => InternalComparsion(this, other);
+
+
+		/// <summary>
+		/// Internal comparsion.
+		/// </summary>
+		/// <param name="l">The left comparer.</param>
+		/// <param name="r">The right comparer.</param>
+		/// <returns>An <see cref="int"/> value indicating the result.</returns>
+		private static int InternalComparsion(UrStepInfo l, UrStepInfo r) =>
+			Math.Sign(l.TypeCode.CompareTo(r.TypeCode)) switch
 			{
-				0 => AbsoluteOffset.CompareTo(other.AbsoluteOffset) switch
+				0 => l.AbsoluteOffset.CompareTo(r.AbsoluteOffset) switch
 				{
-					0 => Math.Sign((Digit1 * 9 + Digit2).CompareTo(other.Digit1 * 9 + other.Digit2)) switch
+					0 => Math.Sign((l.Digit1 * 9 + l.Digit2).CompareTo(r.Digit1 * 9 + r.Digit2)) switch
 					{
-						0 => TypeCode.CompareTo(other.TypeCode),
+						0 => l.TypeCode.CompareTo(r.TypeCode),
 						1 => 1,
 						-1 => -1
 					},
@@ -80,5 +90,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				1 => 1,
 				-1 => -1
 			};
+
+
+		/// <inheritdoc cref="Operators.operator &gt;"/>
+		public static bool operator >(UrStepInfo left, UrStepInfo right) => InternalComparsion(left, right) > 0;
+
+		/// <inheritdoc cref="Operators.operator &gt;="/>
+		public static bool operator >=(UrStepInfo left, UrStepInfo right) => InternalComparsion(left, right) >= 0;
+
+		/// <inheritdoc cref="Operators.operator &lt;"/>
+		public static bool operator <(UrStepInfo left, UrStepInfo right) => InternalComparsion(left, right) < 0;
+
+		/// <inheritdoc cref="Operators.operator &lt;="/>
+		public static bool operator <=(UrStepInfo left, UrStepInfo right) => InternalComparsion(left, right) <= 0;
 	}
 }

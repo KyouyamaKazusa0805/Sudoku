@@ -549,6 +549,12 @@
         <member name="M:Sudoku.Drawing.Settings.Clone">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Drawing.Settings.InternalCoverBy(Sudoku.Drawing.Settings)">
+            <summary>
+            The internal covering.
+            </summary>
+            <param name="newSetting">The new settings.</param>
+        </member>
         <member name="P:Sudoku.Drawing.Settings.ShowCandidates">
             <summary>
             <para>Indicates whether the form shows candidates.</para>

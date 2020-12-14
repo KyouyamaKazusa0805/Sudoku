@@ -139,7 +139,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </exception>
 		private static GridMap CreateInstance(in SudokuGrid grid, int digit)
 		{
-			_ = grid.IsSolved ? 0 : throw new ArgumentException("The specified sudoku grid has not been solved.");
+			_ = grid.IsSolved ? 0 : throw new ArgumentException("The specified sudoku grid has not been solved.", nameof(grid));
 
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)

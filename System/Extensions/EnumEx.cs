@@ -39,7 +39,7 @@ namespace System.Extensions
 				}
 				default:
 				{
-					throw new ArgumentException("The parameter should be one of the values 1, 2, 4.");
+					throw new ArgumentException("The parameter should be one of the values 1, 2, 4.", nameof(@this));
 				}
 			}
 		}

@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(default, nameof(TechniqueCode.Gsp))
+		public static TechniqueProperties Properties { get; } = new(default, nameof(TechniqueCode.Gsp2))
 		{
 			IsReadOnly = true
 		};

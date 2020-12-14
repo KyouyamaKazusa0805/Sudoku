@@ -43,7 +43,9 @@ namespace System.Extensions
 		/// expression pattern.
 		/// </exception>
 		public static bool IsMatch(this string @this, string pattern) =>
-			pattern.IsRegexPattern() ? Regex.IsMatch(@this, pattern) : throw new InvalidRegexStringException();
+			pattern.IsRegexPattern()
+			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5))
+			: throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Searches the specified input string for the first occurrence of
@@ -93,7 +95,7 @@ namespace System.Extensions
 		{
 			_ = pattern.IsRegexPattern() ? 0 : throw new InvalidRegexStringException();
 
-			var match = Regex.Match(@this, pattern, regexOption);
+			var match = Regex.Match(@this, pattern, regexOption, TimeSpan.FromSeconds(5));
 			return match.Success ? match.Value : null;
 		}
 
@@ -148,7 +150,7 @@ namespace System.Extensions
 
 			// Do not use 'var' ('var' is 'object?').
 			var result = new List<string>();
-			foreach (Match match in Regex.Matches(@this, pattern, regexOption))
+			foreach (Match match in Regex.Matches(@this, pattern, regexOption, TimeSpan.FromSeconds(5)))
 			{
 				result.Add(match.Value);
 			}
@@ -190,7 +192,7 @@ namespace System.Extensions
 		{
 			try
 			{
-				Regex.Match(string.Empty, @this);
+				Regex.Match(string.Empty, @this, RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5));
 				return true;
 			}
 			catch (ArgumentException)
@@ -208,7 +210,9 @@ namespace System.Extensions
 		/// Note that all null lines and header spaces are removed.
 		/// </remarks>
 		public static string TrimVerbatim(this string @this) =>
-			Regex.Replace(@this, RegularExpressions.NullLinesOrHeaderSpaces, string.Empty);
+			Regex.Replace(
+				@this, RegularExpressions.NullLinesOrHeaderSpaces,
+				string.Empty, RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5));
 
 		/// <summary>
 		/// Trim new-line characters from the tail of the string.

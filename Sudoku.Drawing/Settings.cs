@@ -18,23 +18,14 @@ namespace Sudoku.Drawing
 		/// (Copy constructor) Copies another settings instance.
 		/// </summary>
 		/// <param name="another">Another instance.</param>
-		public Settings(Settings another) => CoverBy(another);
+		public Settings(Settings another) => InternalCoverBy(another);
 
 
 		/// <summary>
 		/// To cover all settings.
 		/// </summary>
 		/// <param name="newSetting">The new settings instance.</param>
-		public virtual void CoverBy(Settings newSetting)
-		{
-			foreach (var property in
-				from prop in GetType().GetProperties()
-				where prop.CanWrite
-				select prop)
-			{
-				property.SetValue(this, property.GetValue(newSetting));
-			}
-		}
+		public virtual void CoverBy(Settings newSetting) => InternalCoverBy(newSetting);
 
 		/// <inheritdoc/>
 		public virtual Settings Clone()
@@ -46,6 +37,21 @@ namespace Sudoku.Drawing
 			}
 
 			return resultInstance;
+		}
+
+		/// <summary>
+		/// The internal covering.
+		/// </summary>
+		/// <param name="newSetting">The new settings.</param>
+		protected void InternalCoverBy(Settings newSetting)
+		{
+			foreach (var property in
+				from prop in GetType().GetProperties()
+				where prop.CanWrite
+				select prop)
+			{
+				property.SetValue(this, property.GetValue(newSetting));
+			}
 		}
 	}
 }

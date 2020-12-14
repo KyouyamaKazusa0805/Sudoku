@@ -249,7 +249,7 @@ namespace Sudoku.Data.Extensions
 		{
 			_ = region1 is < 0 or >= 18 ? throw new ArgumentException("The specified argument is out of valid range.", nameof(region1)) : 0;
 			_ = region2 is < 0 or >= 18 ? throw new ArgumentException("The specified argument is out of valid range.", nameof(region2)) : 0;
-			_ = region1 / 9 != region2 / 9 ? throw new ArgumentException("Two region should be the same region type.") : 0;
+			_ = region1 / 9 != region2 / 9 ? throw new ArgumentException("Two region should be the same region type.", nameof(region1)) : 0;
 
 			var result = @this;
 			unsafe

@@ -32,6 +32,7 @@ namespace Sudoku.Windows.Tooling
 		public event EventHandler? CheckingChanged;
 
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBox_Click(object sender, RoutedEventArgs e) =>
 			CheckingChanged?.Invoke(sender, EventArgs.Empty);
 	}

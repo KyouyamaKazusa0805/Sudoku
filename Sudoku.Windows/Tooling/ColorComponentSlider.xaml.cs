@@ -5,17 +5,13 @@ using Sudoku.DocComments;
 namespace Sudoku.Windows.Tooling
 {
 	/// <summary>
-	/// Indicates the event handler when the value is changed.
-	/// </summary>
-	/// <param name="value">The value.</param>
-	public delegate void ValueChangedEventHandler(double value);
-
-	/// <summary>
 	/// Interaction logic for <c>ColorComponentSlider.xaml</c>.
 	/// </summary>
 	public partial class ColorComponentSlider : UserControl
 	{
-
+		/// <summary>
+		/// Indicates the updating values.
+		/// </summary>
 		protected bool _updatingValues = false;
 
 

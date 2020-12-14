@@ -170,10 +170,10 @@ namespace Sudoku.Solving
 				if (options.Flags(ShowStepDetail))
 				{
 					sb
-						.Append($"{GetValue("AnalysisResultMin"),6}")
+						.AppendFormat("{0,6}", GetValue("AnalysisResultMin"))
 						.Append(',')
 						.Append(' ')
-						.Append($"{GetValue("AnalysisResultTotal"),6}")
+						.AppendFormat("{0,6}", GetValue("AnalysisResultTotal"))
 						.AppendLine(GetValue("AnalysisResultTechniqueUsing"));
 				}
 
@@ -189,16 +189,16 @@ namespace Sudoku.Solving
 							currentMinimum = Math.Min(currentMinimum, difficulty);
 						}
 						sb
-							.Append($"{$"({currentMinimum:0.0}",6}")
+							.AppendFormat("{0,6}", $"({currentMinimum:0.0}")
 							.Append(',')
 							.Append(' ')
-							.Append($"{currentTotal,6:0.0}")
+							.AppendFormat("{0,6:0.0}", currentTotal)
 							.Append(')')
 							.Append(' ');
 					}
 
 					sb
-						.Append($"{solvingStepsGroup.Count(),3}")
+						.AppendFormat("{0,3}", solvingStepsGroup.Count())
 						.Append(' ')
 						.Append('*')
 						.Append(' ')
@@ -208,20 +208,19 @@ namespace Sudoku.Solving
 				if (options.Flags(ShowStepDetail))
 				{
 					sb
-						.Append($"{"(---",6}")
-						.Append($"{total,6}")
+						.AppendFormat("{0,6}", "(---")
+						.AppendFormat("{0,6}", total)
 						.Append(')')
 						.Append(' ');
 				}
 
 				sb
-					.Append($"{stepsCount,3}")
-					.AppendLine(
-						$@"{(
-							stepsCount == 1
-							? GetValue("AnalysisResultStepSingular")
-							: GetValue("AnalysisResultStepPlural")
-						)}");
+					.AppendFormat("{0,3}", stepsCount)
+					.Append(
+						stepsCount == 1
+						? GetValue("AnalysisResultStepSingular")
+						: GetValue("AnalysisResultStepPlural"))
+					.AppendLine();
 
 				a(options.Flags(ShowSeparators));
 			}

@@ -18,12 +18,6 @@ using WPoint = System.Windows.Point;
 namespace Sudoku.Windows.Tooling
 {
 	/// <summary>
-	/// Indicates the event handler triggering when the color is start to pick.
-	/// </summary>
-	/// <param name="color">The color.</param>
-	public delegate void PickingColorEventHandler(WColor color);
-
-	/// <summary>
 	/// Interaction logic for <c>ColorPickerControl.xaml</c>.
 	/// </summary>
 	public sealed partial class ColorPickerControl : UserControl

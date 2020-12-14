@@ -158,8 +158,10 @@ namespace Sudoku.Windows
 					select @type
 				let prior = TechniqueProperties.GetPropertiesFrom(@type)!.Priority
 				orderby prior
-				let v = @type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName
-				let c = new StepTriplet(CoreResources.GetValue($"Progress{v}"), prior, @type)
+				let v = @type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
+				where v is not null
+				let p = ((TechniqueProperties)v).DisplayLabel
+				let c = new StepTriplet(CoreResources.GetValue($"Progress{p}"), prior, @type)
 				select new ListBoxItem { Content = c });
 
 			_listBoxPriority.SelectedIndex = 0;

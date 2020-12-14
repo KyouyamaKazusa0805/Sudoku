@@ -20,7 +20,7 @@ namespace System.Extensions
 		/// </typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
 		/// <returns>The result array.</returns>
-		public static T[][] ToArray<TKey, TValue, T>(this Dictionary<TKey, TValue> @this)
+		public static T[][] ToArray<TKey, TValue, T>(this IDictionary<TKey, TValue> @this)
 			where TKey : notnull
 			where TValue : IEnumerable<T>
 		{
@@ -44,7 +44,7 @@ namespace System.Extensions
 		/// <param name="list">The list to add into the dictionary.</param>
 		/// <returns>The number of elements that is successful to add.</returns>
 		public static int TryAddRange<TKey, TValue>(
-			this Dictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> list)
+			this IDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> list)
 			where TKey : notnull
 		{
 			int resultCount = 0;

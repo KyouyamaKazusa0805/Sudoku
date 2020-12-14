@@ -941,7 +941,7 @@ namespace Sudoku.Windows
 			}
 
 			// Get the specified dictionary.
-			ResourceDictionary? g(string p) => dictionaries.FirstOrDefault(d => d.Source.OriginalString == p);
+			ResourceDictionary? g(string p) => dictionaries.Find(d => d.Source.OriginalString == p);
 			if ((g($"Lang{countryCode}.xaml") ?? g("LangEnUs.xaml")) is not ResourceDictionary rd)
 			{
 				Messagings.FailedToLoadGlobalizationFile();
