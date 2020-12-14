@@ -13,6 +13,19 @@
 
 
 
+## 相关操作
+
+* [`Grid` 类的格式化字符串](how-to-grid-formats)
+* [`Cells` 结构体用法](work-with-cells)
+
+
+
+## 其它
+
+* [C# 里的运算符的优先级](priority-of-operators)
+
+
+
 ## 语言切换
 
 * [英语](../index)

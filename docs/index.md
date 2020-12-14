@@ -4,7 +4,7 @@ Here displays what I want to display about the solution [Sudoku](https://github.
 
 
 
-# Sudoku solution introduction
+## Sudoku solution introduction
 
 * [Introduction](intro)
 * [Manual Techniques Support](manual-techniques-support)
@@ -13,6 +13,19 @@ Here displays what I want to display about the solution [Sudoku](https://github.
 
 
 
-# Language
+## How To
+
+* [Format Strings in `Grid`](how-to-grid-formats)
+* [Work with Structure `Cells`](work-with-cells)
+
+
+
+## Miscellaneous
+
+* [Priority of Operators in C#](priority-of-operators)
+
+
+
+## Language
 
 * [Chinese (Simplified)](zh-cn/index)
