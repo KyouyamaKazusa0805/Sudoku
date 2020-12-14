@@ -1,4 +1,6 @@
-﻿namespace System
+﻿#pragma warning disable MA0048
+
+namespace System
 {
 	/// <inheritdoc cref="ICloneable"/>
 	/// <typeparam name="T">
