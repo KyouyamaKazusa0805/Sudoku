@@ -44,7 +44,7 @@ var exemplar5 = new Cells(2);
 var exemplar6 = new Cells(2, false);
 ```
 
-> The last constructor `.ctor(int, bool)` is a `private` method, which means you can only use it in the struct range. If you want to use this constructor, please use the array `PeerTable` in the static class `Sudoku.Constants.Processings` instead.
+> The last constructor `.ctor(int, bool)` is a `private` method, which means you can only use it in the struct range. If you want to use this constructor, please use the array [`Peers`](https://github.com/SunnieShine/Sudoku/blob/master/Sudoku.Core/Constants/Processings.Fields.cs#L62) in the static class `Sudoku.Constants.Processings` instead.
 
 You can read file [`Cells.cs`](https://github.com/SunnieShine/Sudoku/blob/master/Sudoku.Core/Data/Cells.cs) to learn more about other constructors.
 
