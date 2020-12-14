@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <param name="square">(<see langword="in"/> parameter) The square.</param>
 		/// <param name="baseLine">(<see langword="in"/> parameter) The base line.</param>
 		/// <param name="pair">(<see langword="in"/> parameter) The pair.</param>
-		public Pattern(in GridMap square, in GridMap baseLine, in GridMap pair)
+		public Pattern(in Cells square, in Cells baseLine, in Cells pair)
 		{
 			Square = square;
 			BaseLine = baseLine;
@@ -26,29 +26,29 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <summary>
 		/// Indicates the square.
 		/// </summary>
-		public GridMap Square { get; }
+		public Cells Square { get; }
 
 		/// <summary>
 		/// Indicates the base line.
 		/// </summary>
-		public GridMap BaseLine { get; }
+		public Cells BaseLine { get; }
 
 		/// <summary>
 		/// Indicates the pair.
 		/// </summary>
-		public GridMap Pair { get; }
+		public Cells Pair { get; }
 
 		/// <summary>
 		/// Indicates the full map.
 		/// </summary>
-		public GridMap FullMap => Square | BaseLine | Pair;
+		public Cells FullMap => Square | BaseLine | Pair;
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="pair">(<see langword="out"/> parameter) The pair map.</param>
 		/// <param name="square">(<see langword="out"/> parameter) The square map.</param>
 		/// <param name="baseLine">(<see langword="out"/> parameter) The base line map.</param>
-		public void Deconstruct(out GridMap pair, out GridMap square, out GridMap baseLine)
+		public void Deconstruct(out Cells pair, out Cells square, out Cells baseLine)
 		{
 			pair = Pair;
 			square = Square;

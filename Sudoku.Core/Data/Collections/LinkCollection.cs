@@ -86,10 +86,10 @@ namespace Sudoku.Data.Collections
 					{
 						var (start, _, type) = links[i];
 						sb
-							.Append(new SudokuMap { start }.ToString())
+							.Append(new Candidates { start }.ToString())
 							.Append(type.GetNotation());
 					}
-					sb.Append(new SudokuMap { links[^1].EndCandidate }.ToString());
+					sb.Append(new Candidates { links[^1].EndCandidate }.ToString());
 
 					// Remove redundant digit labels:
 					// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).

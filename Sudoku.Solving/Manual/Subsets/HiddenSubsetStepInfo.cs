@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="Digits">All digits used.</param>
 	public sealed record HiddenSubsetStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, in GridMap Cells, IReadOnlyList<int> Digits)
+		int Region, in Cells Cells, IReadOnlyList<int> Digits)
 		: SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
 #if DOUBLE_LAYERED_ASSUMPTION
 		, IHasParentNodeInfo
@@ -82,7 +82,7 @@ namespace Sudoku.Solving.Manual.Subsets
 			string toChinese()
 			{
 				string digitsStr = new DigitCollection(Digits).ToString();
-				string cellsStr = new GridMap(Cells).ToString();
+				string cellsStr = Cells.ToString();
 				return new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))

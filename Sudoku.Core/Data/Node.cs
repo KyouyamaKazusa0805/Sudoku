@@ -225,18 +225,18 @@ namespace Sudoku.Data
 		{
 			if (Parents is null or { Count: 0 })
 			{
-				return $"Candidate: {new GridMap { Cell }}({Digit + 1})";
+				return $"Candidate: {new Cells { Cell }}({Digit + 1})";
 			}
 			else
 			{
-				var nodes = new SudokuMap();
+				var nodes = new Candidates();
 				for (int i = 0; i < Parents.Count; i++)
 				{
 					var node = Parents[i];
 					nodes.Add(node.Cell * 9 + node.Digit);
 				}
 
-				return $"Candidate: {new GridMap { Cell }}({Digit + 1}), Parent(s): {nodes}";
+				return $"Candidate: {new Cells { Cell }}({Digit + 1}), Parent(s): {nodes}";
 			}
 		}
 

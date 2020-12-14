@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellStr = new GridMap { Cell }.ToString();
+			string cellStr = new Cells { Cell }.ToString();
 			int v = Digit + 1;
 			return EnableAndIsLastDigit switch
 			{
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 			string toChinese()
 			{
-				string cellStr = new GridMap { Cell }.ToString();
+				string cellStr = new Cells { Cell }.ToString();
 				int v = Digit + 1;
 				return EnableAndIsLastDigit switch
 				{
@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 			string toChinese()
 			{
-				string cellStr = new GridMap { Cell }.ToString();
+				string cellStr = new Cells { Cell }.ToString();
 				string regionStr = new RegionCollection(Region).ToString();
 				int v = Digit + 1;
 				return EnableAndIsLastDigit switch

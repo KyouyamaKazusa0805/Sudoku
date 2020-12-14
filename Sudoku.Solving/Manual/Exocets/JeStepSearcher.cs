@@ -206,7 +206,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the structure passed the validation.
 		/// </returns>
-		private bool CheckCrossline(in GridMap crossline, short digitsNeedChecking)
+		private bool CheckCrossline(in Cells crossline, short digitsNeedChecking)
 		{
 			foreach (int digit in digitsNeedChecking)
 			{

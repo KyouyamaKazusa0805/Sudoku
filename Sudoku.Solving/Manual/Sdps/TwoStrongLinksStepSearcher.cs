@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						}
 
 						// Get all cells.
-						GridMap map1 = GridMap.Empty, map2 = GridMap.Empty;
+						Cells map1 = Cells.Empty, map2 = Cells.Empty;
 						List<int> cells1 = new(), cells2 = new();
 						foreach (int pos1 in mask1)
 						{
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							for (int j = 0; j < 2; j++)
 							{
 								int cell2 = cells2[j];
-								if (new GridMap { cell1, cell2 }.AllSetsAreInOneRegion(out sameRegion))
+								if (new Cells { cell1, cell2 }.AllSetsAreInOneRegion(out sameRegion))
 								{
 									(c1Index, c2Index, headIndex, tailIndex) = (i, j, i == 0 ? 1 : 0, j == 0 ? 1 : 0);
 									goto Checking;

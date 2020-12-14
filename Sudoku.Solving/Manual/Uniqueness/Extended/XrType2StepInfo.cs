@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <param name="DigitsMask">All digits mask.</param>
 	/// <param name="ExtraDigit">The extra digit.</param>
 	public sealed record XrType2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
 		int ExtraDigit) : XrStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>

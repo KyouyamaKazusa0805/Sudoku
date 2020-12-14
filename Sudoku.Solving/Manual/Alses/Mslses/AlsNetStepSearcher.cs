@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			var linkForEachRegion = (stackalloc short[27]);
-			var linkForEachDigit = (stackalloc GridMap[9]);
+			var linkForEachDigit = (stackalloc Cells[9]);
 			foreach (var pattern in Patterns)
 			{
 				if ((EmptyMap & pattern) is var map
@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				if (n == count)
 				{
 					short canF = 0;
-					var canL = new GridMap[9];
+					var canL = new Cells[9];
 					var conclusions = new List<Conclusion>();
 					var candidateOffsets = new List<DrawingInfo>();
 					for (int digit = 0; digit < 9; digit++)
@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						short cMask = currentMap.ColumnMask;
 						short bMask = currentMap.BlockMask;
 						int temp = Min(rMask.PopCount(), cMask.PopCount(), bMask.PopCount());
-						var elimMap = GridMap.Empty;
+						var elimMap = Cells.Empty;
 						int check = 0;
 						if (rMask.PopCount() == temp)
 						{

@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record UlType4StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in GridMap Loop, in ConjugatePair ConjugatePair) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
+		in Cells Loop, in ConjugatePair ConjugatePair) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
 		/// <inheritdoc/>
 		public override int Type => 4;

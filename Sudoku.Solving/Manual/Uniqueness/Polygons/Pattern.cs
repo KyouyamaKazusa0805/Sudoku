@@ -64,29 +64,29 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <summary>
 		/// Indicates the map of pair 1 cells.
 		/// </summary>
-		public GridMap Pair1Map => new() { Pair1.Cell1, Pair1.Cell2 };
+		public Cells Pair1Map => new() { Pair1.Cell1, Pair1.Cell2 };
 
 		/// <summary>
 		/// Indicates the map of pair 2 cells.
 		/// </summary>
-		public GridMap Pair2Map => new() { Pair2.Cell1, Pair2.Cell2 };
+		public Cells Pair2Map => new() { Pair2.Cell1, Pair2.Cell2 };
 
 		/// <summary>
 		/// The map of other three (or four) cells.
 		/// </summary>
-		public GridMap CenterCellsMap
+		public Cells CenterCellsMap
 		{
 			get
 			{
 				var (a, b, c, d) = CenterCells;
-				return IsHeptagon ? new() { a, b, c } : new GridMap { a, b, c, d };
+				return IsHeptagon ? new() { a, b, c } : new Cells { a, b, c, d };
 			}
 		}
 
 		/// <summary>
 		/// The map.
 		/// </summary>
-		public GridMap Map => Pair1Map | Pair2Map | CenterCellsMap;
+		public Cells Map => Pair1Map | Pair2Map | CenterCellsMap;
 
 
 		/// <inheritdoc cref="object.Equals(object?)"/>

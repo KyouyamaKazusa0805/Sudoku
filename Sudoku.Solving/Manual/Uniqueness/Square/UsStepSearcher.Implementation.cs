@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
 		partial void CheckType1(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask)
+			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
 			if (mask.PopCount() != 5)
 			{
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="accumulator">The technique accumulator.</param>
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
-		partial void CheckType2(IList<StepInfo> accumulator, in GridMap pattern, short mask)
+		partial void CheckType2(IList<StepInfo> accumulator, in Cells pattern, short mask)
 		{
 			if (mask.PopCount() != 5)
 			{
@@ -138,7 +138,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
 		partial void CheckType3(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask)
+			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
 			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
@@ -149,7 +149,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				}
 
 				short extraDigitsMask = (short)(mask & ~digitsMask);
-				var tempMap = GridMap.Empty;
+				var tempMap = Cells.Empty;
 				foreach (int digit in extraDigitsMask)
 				{
 					tempMap |= CandMaps[digit];
@@ -177,7 +177,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 								continue;
 							}
 
-							var cellsMap = new GridMap(cells);
+							var cellsMap = new Cells(cells);
 							var conclusions = new List<Conclusion>();
 							foreach (int digit in tempMask)
 							{
@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
 		partial void CheckType4(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask)
+			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
 			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
@@ -247,7 +247,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				}
 
 				short extraDigitsMask = (short)(mask & ~digitsMask);
-				var tempMap = GridMap.Empty;
+				var tempMap = Cells.Empty;
 				foreach (int digit in extraDigitsMask)
 				{
 					tempMap |= CandMaps[digit];

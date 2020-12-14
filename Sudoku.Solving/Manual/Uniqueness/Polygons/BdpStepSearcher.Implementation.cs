@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		partial void CheckType1(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask, in GridMap map)
+			short cornerMask2, short centerMask, in Cells map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 			if (orMask.PopCount() != (pattern.IsHeptagon ? 4 : 5))
@@ -95,7 +95,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		partial void CheckType2(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask, in GridMap map)
+			short cornerMask2, short centerMask, in Cells map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 			if (orMask.PopCount() != (pattern.IsHeptagon ? 4 : 5))
@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		partial void CheckType3(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern,
-			short cornerMask1, short cornerMask2, short centerMask, in GridMap map)
+			short cornerMask1, short cornerMask2, short centerMask, in Cells map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 			foreach (int region in map.Regions)
@@ -276,7 +276,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		partial void CheckType4(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern,
-			short cornerMask1, short cornerMask2, short centerMask, in GridMap map)
+			short cornerMask1, short cornerMask2, short centerMask, in Cells map)
 		{
 			// The type 4 may be complex and terrible to process.
 			// All regions that the pattern lies in should be checked.
@@ -309,7 +309,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					foreach (int[] combination in (tempMask & orMask).GetMaskSubsets(currentMap.Count - 1))
 					{
 						short combinationMask = 0;
-						var combinationMap = GridMap.Empty;
+						var combinationMap = Cells.Empty;
 						bool flag = false;
 						foreach (int digit in combination)
 						{

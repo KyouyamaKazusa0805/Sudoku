@@ -4,7 +4,7 @@
 	/// Encapsulates an unfix step.
 	/// </summary>
 	/// <param name="AllCells">Indicates all cells.</param>
-	public sealed record UnfixStep(in GridMap AllCells) : IStep
+	public sealed record UnfixStep(in Cells AllCells) : IStep
 	{
 		/// <inheritdoc/>
 		public void DoStepTo(UndoableGrid grid)

@@ -56,9 +56,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		protected override string? GetAdditional()
 		{
-			string pivotsStr = new GridMap(Pivots).ToString();
+			string pivotsStr = new Cells(Pivots).ToString();
 			string digitsStr = new DigitCollection(ExtraDigits).ToString();
-			string cellsStr = new GridMap(ExtraCells).ToString();
+			string cellsStr = new Cells(ExtraCells).ToString();
 			return $"pivots: {pivotsStr}, with digits: {digitsStr} in cells {cellsStr}";
 		}
 	}

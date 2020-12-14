@@ -16,8 +16,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="ExtraCells">The extra cells.</param>
 	/// <param name="ExtraDigitsMask">The extra digits mask.</param>
 	public sealed record BdpType3StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Map, short DigitsMask,
-		in GridMap ExtraCells, short ExtraDigitsMask) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Map, short DigitsMask,
+		in Cells ExtraCells, short ExtraDigitsMask) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.2M + ExtraCells.Count * .1M;

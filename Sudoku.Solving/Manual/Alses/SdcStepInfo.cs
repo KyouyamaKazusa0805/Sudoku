@@ -24,8 +24,8 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed record SdcStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
-		bool IsCannibalistic, short IsolatedDigitsMask, in GridMap BlockCells, in GridMap LineCells,
-		in GridMap IntersectionCells) : AlsStepInfo(Conclusions, Views)
+		bool IsCannibalistic, short IsolatedDigitsMask, in Cells BlockCells, in Cells LineCells,
+		in Cells IntersectionCells) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

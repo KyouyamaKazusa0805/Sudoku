@@ -96,7 +96,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					else if (n == digitsCount - 1)
 					{
 						int k = 0;
-						var temp = GridMap.Empty;
+						var temp = Cells.Empty;
 						foreach (int d in digits)
 						{
 							var map = alsList[death[pivot * 9 + d, stack[k]]].Map;
@@ -244,7 +244,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="death">The death table.</param>
 		/// <param name="alses">The ALS list.</param>
 		private static void ProcessDeathAlsInfo(
-			in SudokuGrid grid, GridMap[] candMaps, short[] checkedCandidates,
+			in SudokuGrid grid, Cells[] candMaps, short[] checkedCandidates,
 			int[,] death, IReadOnlyList<Als> alses)
 		{
 			int max = 0;
@@ -288,10 +288,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="emptyMap">(<see langword="in"/> parameter) The map of all empty cells.</param>
 		/// <returns>All ALSes.</returns>
-		private IReadOnlyList<Als> PreprocessAndRecordAlses(in SudokuGrid grid, in GridMap emptyMap)
+		private IReadOnlyList<Als> PreprocessAndRecordAlses(in SudokuGrid grid, in Cells emptyMap)
 		{
 			var list = new List<Als>();
-			GridMap tempEmptyCells;
+			Cells tempEmptyCells;
 			for (int region = 0; region < 27; region++)
 			{
 				tempEmptyCells = emptyMap & RegionMaps[region];
@@ -322,7 +322,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							continue;
 						}
 
-						var map = new GridMap(cells);
+						var map = new Cells(cells);
 						if ((map.BlockMask.PopCount(), region) is (1, >= 9))
 						{
 							// If the current cells are in the same block and same line (i.e. in mini-line),

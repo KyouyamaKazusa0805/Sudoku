@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		partial void CheckType2(IList<StepInfo> accumulator, IReadOnlyList<int> trueCandidates)
 		{
 			var selection = from candidate in trueCandidates select candidate / 9;
-			var map = new GridMap(selection).PeerIntersection;
+			var map = new Cells(selection).PeerIntersection;
 			if (map.IsEmpty)
 			{
 				return;
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Check whether all true candidates lie in a same region.
-			var map = new GridMap(from c in trueCandidates group c by c / 9 into z select z.Key);
+			var map = new Cells(from c in trueCandidates group c by c / 9 into z select z.Key);
 			if (!map.InOneRegion)
 			{
 				return;
@@ -181,7 +181,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				cells.Add(candGroupByCell.Key);
 			}
 
-			var regions = new GridMap(cells).CoveredRegions;
+			var regions = new Cells(cells).CoveredRegions;
 			if (regions.None())
 			{
 				return;
@@ -293,7 +293,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				return;
 			}
 
-			var map = new SudokuMap(trueCandidates).PeerIntersection;
+			var map = new Candidates(trueCandidates).PeerIntersection;
 			if (map.IsEmpty)
 			{
 				return;
@@ -355,10 +355,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 				// BUG-XZ found.
 				var conclusions = new List<Conclusion>();
-				bool condition = new GridMap { c1, cell }.InOneRegion;
+				bool condition = new Cells { c1, cell }.InOneRegion;
 				int anotherCell = condition ? c2 : c1;
 				int anotherDigit = condition ? d2 : d1;
-				foreach (int peer in new GridMap { cell, anotherCell }.PeerIntersection)
+				foreach (int peer in new Cells { cell, anotherCell }.PeerIntersection)
 				{
 					if (grid.Exists(peer, anotherDigit) is true)
 					{

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="DigitsMask">The digits mask.</param>
 	/// <param name="Candidate">Indicates the true candidate.</param>
 	public sealed record UsType1StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
 		int Candidate) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string candStr = new SudokuMap { Candidate }.ToString();
+			string candStr = new Candidates { Candidate }.ToString();
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string cellsStr = Cells.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();

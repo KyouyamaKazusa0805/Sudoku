@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellsStr = new GridMap(Cells).ToString();
+			string cellsStr = new Cells(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {Cells.Count} Cells {cellsStr} => {elimStr}";
 		}

@@ -24,8 +24,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="mr1">(<see langword="in"/> parameter) The mirror R1 cell.</param>
 		/// <param name="mr2">(<see langword="in"/> parameter) The mirror R2 cell.</param>
 		public Pattern(
-			int base1, int base2, int tq1, int tq2, int tr1, int tr2, in GridMap crossline,
-			in GridMap mq1, in GridMap mq2, in GridMap mr1, in GridMap mr2)
+			int base1, int base2, int tq1, int tq2, int tr1, int tr2, in Cells crossline,
+			in Cells mq1, in Cells mq2, in Cells mr1, in Cells mr2)
 		{
 			CrossLine = crossline;
 			Base1 = base1;
@@ -74,27 +74,27 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates the cross line cells.
 		/// </summary>
-		public GridMap CrossLine { get; }
+		public Cells CrossLine { get; }
 
 		/// <summary>
 		/// Indicates the mirror Q1 cell.
 		/// </summary>
-		public GridMap MirrorQ1 { get; }
+		public Cells MirrorQ1 { get; }
 
 		/// <summary>
 		/// Indicates the mirror Q2 cell.
 		/// </summary>
-		public GridMap MirrorQ2 { get; }
+		public Cells MirrorQ2 { get; }
 
 		/// <summary>
 		/// Indicates the mirror R1 cell.
 		/// </summary>
-		public GridMap MirrorR1 { get; }
+		public Cells MirrorR1 { get; }
 
 		/// <summary>
 		/// Indicates the mirror R2 cell.
 		/// </summary>
-		public GridMap MirrorR2 { get; }
+		public Cells MirrorR2 { get; }
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
@@ -102,7 +102,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
 		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
 		public void Deconstruct(
-			out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap)
+			out Cells baseCellsMap, out Cells targetCellsMap, out Cells crosslineMap)
 		{
 			baseCellsMap = new() { Base1, Base2 };
 			targetCellsMap = new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
@@ -141,7 +141,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="mr2">(<see langword="out"/> parameter) The mirror R2 cell.</param>
 		public void Deconstruct(
 			out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2,
-			out GridMap crossline, out GridMap mq1, out GridMap mq2, out GridMap mr1, out GridMap mr2)
+			out Cells crossline, out Cells mq1, out Cells mq2, out Cells mr1, out Cells mr2)
 		{
 			base1 = Base1;
 			base2 = Base2;
@@ -190,8 +190,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
-			string baseCells = new GridMap { Base1, Base2 }.ToString();
-			string targetCells = new GridMap { TargetQ1, TargetQ2, TargetR1, TargetR2 }.ToString();
+			string baseCells = new Cells { Base1, Base2 }.ToString();
+			string targetCells = new Cells { TargetQ1, TargetQ2, TargetR1, TargetR2 }.ToString();
 			return $"Exocet: base {baseCells}, target {targetCells}";
 		}
 

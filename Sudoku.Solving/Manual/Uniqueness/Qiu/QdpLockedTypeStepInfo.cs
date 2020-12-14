@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public override string ToString()
 		{
 			string patternStr = Pattern.FullMap.ToString();
-			string candStr = new SudokuMap(Candidates).ToString();
+			string candStr = new Candidates(Candidates).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string quantifier = Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
 			string number = Candidates.Count == 1 ? " the" : $" {Candidates.Count}";

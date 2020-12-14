@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		{
 			string patternStr = Pattern.FullMap.ToString();
 			string digitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
-			string cellsStr = new GridMap(ExtraCells).ToString();
+			string cellsStr = new Cells(ExtraCells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string subsetName = SubsetNames[ExtraCells.Count + 1].ToLower();
 			return

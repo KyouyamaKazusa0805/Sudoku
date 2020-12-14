@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			// Check POM eliminations first.
-			var eliminationMaps = (stackalloc GridMap[9]);
+			var eliminationMaps = (stackalloc Cells[9]);
 			var infos = new List<StepInfo>();
 			new PomStepSearcher().GetAll(infos, grid);
 			foreach (PomStepInfo info in infos)
@@ -53,15 +53,15 @@ namespace Sudoku.Solving.Manual.Sdps
 
 				foreach (int elimination in eliminations)
 				{
-					var loops = new List<(GridMap Map, GridMap Guardians, IReadOnlyList<Link> Links)>();
+					var loops = new List<(Cells Map, Cells Guardians, IReadOnlyList<Link> Links)>();
 					var tempLoop = new List<int>();
-					var globalMap = CandMaps[digit] - new GridMap(elimination);
+					var globalMap = CandMaps[digit] - new Cells(elimination);
 					foreach (int cell in globalMap)
 					{
-						var loopMap = GridMap.Empty;
+						var loopMap = Cells.Empty;
 						loops.Clear();
 						tempLoop.Clear();
-						f(cell, (RegionLabel)byte.MaxValue, GridMap.Empty);
+						f(cell, (RegionLabel)byte.MaxValue, Cells.Empty);
 
 						if (loops.Count == 0)
 						{
@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						// because it'll cause stack-overflowing.
 						// One example is:
 						// 009050007060030080000009200100700800002400005080000040010820600000010000300007010
-						void f(int cell, RegionLabel lastLabel, GridMap guardians)
+						void f(int cell, RegionLabel lastLabel, Cells guardians)
 						{
 							loopMap.AddAnyway(cell);
 							tempLoop.Add(cell);
@@ -177,10 +177,10 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
 		/// </param>
 		/// <returns>All guardians.</returns>
-		private static GridMap CreateGuardianMap(int cell1, int cell2, int digit, in GridMap guardians)
+		private static Cells CreateGuardianMap(int cell1, int cell2, int digit, in Cells guardians)
 		{
-			var tempMap = GridMap.Empty;
-			foreach (int coveredRegion in new GridMap { cell1, cell2 }.CoveredRegions)
+			var tempMap = Cells.Empty;
+			foreach (int coveredRegion in new Cells { cell1, cell2 }.CoveredRegions)
 			{
 				tempMap |= RegionMaps[coveredRegion];
 			}

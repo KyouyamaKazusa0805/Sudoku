@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								{
 									// Death Blossom (Basic type) found. Here 'nullCell' is the blossom center.
 									// Check full eliminations.
-									var cellsFromAllAlsesContainingDigit = GridMap.Empty;
+									var cellsFromAllAlsesContainingDigit = Cells.Empty;
 									foreach (var als in combination)
 									{
 										foreach (int c in als.Map)

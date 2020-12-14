@@ -34,8 +34,8 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			int d1 = Digit1 + 1;
 			int d2 = Digit2 + 1;
-			string sCellStr = new GridMap { StartCell }.ToString();
-			string eCellStr = new GridMap { EndCell }.ToString();
+			string sCellStr = new Cells { StartCell }.ToString();
+			string eCellStr = new Cells { EndCell }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string regionStr = new RegionCollection(Region).ToString();
 			return

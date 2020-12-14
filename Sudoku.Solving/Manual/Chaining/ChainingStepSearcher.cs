@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			static bool g(in SudokuGrid grid, int cell, bool isDynamic) =>
 				isDynamic ? grid.GetCandidateMask(cell).PopCount() == 2 : BivalueMap[cell];
 
-			static GridMap h(in SudokuGrid grid, int digit, int region, bool isDynamic)
+			static Cells h(in SudokuGrid grid, int digit, int region, bool isDynamic)
 			{
 				if (!isDynamic)
 				{
@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					return CandMaps[digit];
 				}
 
-				var result = GridMap.Empty;
+				var result = Cells.Empty;
 				for (int i = 0; i < 9; i++)
 				{
 					int cell = RegionCells[region][i];

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <summary>
 		/// The region maps.
 		/// </summary>
-		private static readonly GridMap[] RegionMaps;
+		private static readonly Cells[] RegionMaps;
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		static SkLoopStepSearcher()
 		{
 			// Initialize for region maps.
-			RegionMaps = new GridMap[27];
+			RegionMaps = new Cells[27];
 			for (int i = 0; i < 27; i++)
 			{
 				ref var map = ref RegionMaps[i];

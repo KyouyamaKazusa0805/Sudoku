@@ -183,7 +183,7 @@
             <param name="offset">The drawing offset.</param>
             <param name="view">The view instance.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.DrawFocusedCells(System.Drawing.Graphics,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Drawing.GridPainter.DrawFocusedCells(System.Drawing.Graphics,Sudoku.Data.Cells@)">
             <summary>
             Draw focused cells.
             </summary>
@@ -211,7 +211,7 @@
             <param name="conclusions">The conclusions.</param>
             <param name="offset">The drawing offset.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.DrawDirectLines(System.Drawing.Graphics,System.Collections.Generic.IEnumerable{System.ValueTuple{Sudoku.Data.GridMap,Sudoku.Data.GridMap}},System.Single)">
+        <member name="M:Sudoku.Drawing.GridPainter.DrawDirectLines(System.Drawing.Graphics,System.Collections.Generic.IEnumerable{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}},System.Single)">
             <summary>
             Draw direct lines. The direct lines are the information for hidden singles and naked singles.
             </summary>
@@ -273,7 +273,7 @@
             <param name="DirectLines">All direct lines.</param>
             <seealso cref="T:Sudoku.Drawing.View"/>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.#ctor(System.Collections.Generic.ICollection{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Data.Link},System.Collections.Generic.ICollection{System.ValueTuple{Sudoku.Data.GridMap,Sudoku.Data.GridMap}})">
+        <member name="M:Sudoku.Drawing.MutableView.#ctor(System.Collections.Generic.ICollection{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Data.Link},System.Collections.Generic.ICollection{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}})">
             <summary>
             Encapsulates a view when displaying the information on forms.
             Different with <see cref="T:Sudoku.Drawing.View"/>, this data structure can add and remove the items
@@ -316,7 +316,7 @@
             </summary>
             <param name="inference">The link.</param>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.AddDirectLine(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Drawing.MutableView.AddDirectLine(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Add a direct link into the list.
             </summary>
@@ -347,7 +347,7 @@
             </summary>
             <param name="link">(<see langword="in"/> parameter) The link.</param>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.RemoveDirectLine(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Drawing.MutableView.RemoveDirectLine(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Remove the direct link from the list.
             </summary>
@@ -387,7 +387,7 @@
             <param name="inference">(<see langword="in"/> parameter) The link.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.MutableView.ContainsDirectLine(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Drawing.MutableView.ContainsDirectLine(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Indicates whether the list contains the specified direct line.
             </summary>
@@ -472,14 +472,14 @@
             <param name="point">The mouse point.</param>
             <returns>The candidate offset.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetMouseCenter(Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseCenter(Sudoku.Data.Candidates)">
             <summary>
             Get the center mouse point of all candidates.
             </summary>
             <param name="map">The map of candidates.</param>
             <returns>The center mouse point.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangle(Sudoku.Data.SudokuMap)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangle(Sudoku.Data.Candidates)">
             <summary>
             Get the rectangle from all candidates.
             </summary>

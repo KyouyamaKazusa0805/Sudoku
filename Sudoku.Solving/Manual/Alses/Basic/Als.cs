@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// </summary>
 		/// <param name="digitMask">The digit mask.</param>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		public Als(short digitMask, in GridMap map) : this(digitMask, map, default)
+		public Als(short digitMask, in Cells map) : this(digitMask, map, default)
 		{
 		}
 
@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="possibleEliminationSet">
 		/// (<see langword="in"/> parameter) The possible elimination set.
 		/// </param>
-		public Als(short digitMask, in GridMap map, in GridMap possibleEliminationSet)
+		public Als(short digitMask, in Cells map, in Cells possibleEliminationSet)
 		{
 			DigitsMask = digitMask;
 			Map = map;
@@ -61,12 +61,12 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <summary>
 		/// Indicates the map that ALS lying on.
 		/// </summary>
-		public GridMap Map { get; }
+		public Cells Map { get; }
 
 		/// <summary>
 		/// Indicates the possible elimination set.
 		/// </summary>
-		public GridMap PossibleEliminationSet { get; }
+		public Cells PossibleEliminationSet { get; }
 
 		/// <summary>
 		/// Indicates all strong links in this ALS. The result will be represented
@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="region">(<see langword="out"/> parameter) The region.</param>
 		/// <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
 		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
-		public void Deconstruct(out int region, out short digitsMask, out GridMap map)
+		public void Deconstruct(out int region, out short digitsMask, out Cells map)
 		{
 			region = Region;
 			digitsMask = DigitsMask;
@@ -110,7 +110,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="strongLinksMask">(<see langword="out"/> parameter) The strong links mask.</param>
 		public void Deconstruct(
 			out bool isBivalueCell, out int region, out short digitsMask,
-			out GridMap map, out GridMap possibleEliminations, out IEnumerable<short> strongLinksMask)
+			out Cells map, out Cells possibleEliminations, out IEnumerable<short> strongLinksMask)
 		{
 			isBivalueCell = IsBivalueCell;
 			region = Region;
@@ -130,9 +130,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="digit">The digit.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The result.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsDigit(in SudokuGrid grid, int digit, out GridMap result)
+		public bool ContainsDigit(in SudokuGrid grid, int digit, out Cells result)
 		{
-			result = GridMap.Empty;
+			result = Cells.Empty;
 			foreach (int cell in Map)
 			{
 				if ((grid.GetCandidateMask(cell) >> digit & 1) != 0)
@@ -223,7 +223,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				{
 					foreach (int[] cells in list.ToArray().GetSubsets(size))
 					{
-						var map = new GridMap(cells);
+						var map = new Cells(cells);
 						if (map.BlockMask.IsPowerOfTwo() && region >= 9)
 						{
 							// All ALS cells lying on a box-row or a box-column

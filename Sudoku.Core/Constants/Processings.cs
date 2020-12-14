@@ -37,8 +37,8 @@ namespace Sudoku.Constants
 		/// and the digit is the specified one.
 		/// </param>
 		public static void Deconstruct(
-			this in SudokuGrid @this, out GridMap empty, out GridMap bivalue,
-			out GridMap[] candidates, out GridMap[] digits, out GridMap[] values)
+			this in SudokuGrid @this, out Cells empty, out Cells bivalue,
+			out Cells[] candidates, out Cells[] digits, out Cells[] values)
 		{
 			empty = e(@this);
 			bivalue = b(@this);
@@ -46,9 +46,9 @@ namespace Sudoku.Constants
 			digits = d(@this);
 			values = v(@this);
 
-			static GridMap e(in SudokuGrid @this)
+			static Cells e(in SudokuGrid @this)
 			{
-				var result = GridMap.Empty;
+				var result = Cells.Empty;
 				for (int cell = 0; cell < 81; cell++)
 				{
 					if (@this.GetStatus(cell) == Empty)
@@ -60,9 +60,9 @@ namespace Sudoku.Constants
 				return result;
 			}
 
-			static GridMap b(in SudokuGrid @this)
+			static Cells b(in SudokuGrid @this)
 			{
-				var result = GridMap.Empty;
+				var result = Cells.Empty;
 				for (int cell = 0; cell < 81; cell++)
 				{
 					if (@this.GetCandidateMask(cell).PopCount() == 2)
@@ -74,9 +74,9 @@ namespace Sudoku.Constants
 				return result;
 			}
 
-			static GridMap[] c(in SudokuGrid @this)
+			static Cells[] c(in SudokuGrid @this)
 			{
-				var result = new GridMap[9];
+				var result = new Cells[9];
 				for (int digit = 0; digit < 9; digit++)
 				{
 					ref var map = ref result[digit];
@@ -92,9 +92,9 @@ namespace Sudoku.Constants
 				return result;
 			}
 
-			static GridMap[] d(in SudokuGrid @this)
+			static Cells[] d(in SudokuGrid @this)
 			{
-				var result = new GridMap[9];
+				var result = new Cells[9];
 				for (int digit = 0; digit < 9; digit++)
 				{
 					ref var map = ref result[digit];
@@ -110,9 +110,9 @@ namespace Sudoku.Constants
 				return result;
 			}
 
-			static GridMap[] v(in SudokuGrid @this)
+			static Cells[] v(in SudokuGrid @this)
 			{
-				var result = new GridMap[9];
+				var result = new Cells[9];
 				for (int digit = 0; digit < 9; digit++)
 				{
 					ref var map = ref result[digit];

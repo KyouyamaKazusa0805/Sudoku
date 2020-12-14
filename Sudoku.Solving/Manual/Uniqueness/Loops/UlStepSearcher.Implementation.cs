@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
 		partial void CheckType1(
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap)
+			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap)
 		{
 			int extraCell = extraCellsMap.First;
 			var conclusions = new List<Conclusion>();
@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		partial void CheckType2(
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer)
+			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
 		{
 			short mask = 0;
 			foreach (int cell in extraCellsMap)
@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		partial void CheckType3(
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer)
+			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
 		{
 			unsafe
 			{
@@ -247,7 +247,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		partial void CheckType4(
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-			in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer)
+			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
 		{
 			if (!extraCellsMap.InOneRegion)
 			{

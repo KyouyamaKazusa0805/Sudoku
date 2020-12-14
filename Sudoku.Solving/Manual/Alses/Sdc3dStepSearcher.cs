@@ -34,14 +34,14 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			List<GridMap> rbList = new(3), cbList = new(3);
+			List<Cells> rbList = new(3), cbList = new(3);
 			foreach (int pivot in EmptyMap)
 			{
 				int r = RegionLabel.Row.GetRegion(pivot);
 				int c = RegionLabel.Column.GetRegion(pivot);
 				int b = RegionLabel.Block.GetRegion(pivot);
-				GridMap rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
-				GridMap rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
+				Cells rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
+				Cells rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
 				if ((rbEmptyMap.Count, cbEmptyMap.Count) is not ( >= 2, >= 2))
 				{
 					// The intersection needs at least two cells.
@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Alses
 				rbList.Clear();
 				cbList.Clear();
 
-				static void a(IList<GridMap> list, in GridMap emptyMap)
+				static void a(IList<Cells> list, in Cells emptyMap)
 				{
 					switch (emptyMap.Count)
 					{
@@ -116,8 +116,8 @@ namespace Sudoku.Solving.Manual.Alses
 							foreach (int[] selectedBlockCells in blockMap.ToArray().GetSubsets(i))
 							{
 								short blockMask = 0;
-								var currentBlockMap = new GridMap(selectedBlockCells);
-								var elimMapBlock = GridMap.Empty;
+								var currentBlockMap = new Cells(selectedBlockCells);
+								var elimMapBlock = Cells.Empty;
 
 								// Get the links of the block.
 								foreach (int cell in selectedBlockCells)
@@ -137,8 +137,8 @@ namespace Sudoku.Solving.Manual.Alses
 									foreach (int[] selectedRowCells in rowMap.ToArray().GetSubsets(j))
 									{
 										short rowMask = 0;
-										var currentRowMap = new GridMap(selectedRowCells);
-										var elimMapRow = GridMap.Empty;
+										var currentRowMap = new Cells(selectedRowCells);
+										var elimMapRow = Cells.Empty;
 
 										foreach (int cell in selectedRowCells)
 										{
@@ -161,8 +161,8 @@ namespace Sudoku.Solving.Manual.Alses
 											foreach (int[] selectedColumnCells in columnMap.ToArray().GetSubsets(k))
 											{
 												short columnMask = 0;
-												var currentColumnMap = new GridMap(selectedColumnCells);
-												var elimMapColumn = GridMap.Empty;
+												var currentColumnMap = new Cells(selectedColumnCells);
+												var elimMapColumn = Cells.Empty;
 
 												foreach (int cell in selectedColumnCells)
 												{

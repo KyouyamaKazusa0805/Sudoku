@@ -116,15 +116,15 @@ namespace Sudoku.Solving.Manual.Fishes
 									baseSets2[1] = bs2;
 									coverSets2[0] = cs1;
 									coverSets2[1] = cs2;
-									var bodyMap = GridMap.Empty;
-									var elimMap = GridMap.Empty;
+									var bodyMap = Cells.Empty;
+									var elimMap = Cells.Empty;
 									GetGridMap(ref bodyMap, baseSets2, CandMaps[digit]);
 									GetGridMap(ref elimMap, coverSets2, CandMaps[digit]);
 									bodyMap &= elimMap;
 									elimMap -= bodyMap;
 
 									// Check the existence of fin.
-									var finCellsMap = GridMap.Empty;
+									var finCellsMap = Cells.Empty;
 									if (finAndBodyCount == 2) // size == 2
 									{
 										goto CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
@@ -151,7 +151,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									}
 
 									// And all fins don't lie in any cover sets.
-									var coverSetsMap = GridMap.Empty;
+									var coverSetsMap = Cells.Empty;
 									foreach (int coverSet in coverSets2)
 									{
 										coverSetsMap |= RegionMaps[coverSet];
@@ -287,15 +287,15 @@ namespace Sudoku.Solving.Manual.Fishes
 												coverSets3[0] = cs1;
 												coverSets3[1] = cs2;
 												coverSets3[2] = cs3;
-												var bodyMap = GridMap.Empty;
-												var elimMap = GridMap.Empty;
+												var bodyMap = Cells.Empty;
+												var elimMap = Cells.Empty;
 												GetGridMap(ref bodyMap, baseSets3, CandMaps[digit]);
 												GetGridMap(ref elimMap, coverSets3, CandMaps[digit]);
 												bodyMap &= elimMap;
 												elimMap -= bodyMap;
 
 												// Check the existence of fin.
-												var finCellsMap = GridMap.Empty;
+												var finCellsMap = Cells.Empty;
 												if (finAndBodyCount == 3) // size == 3
 												{
 													goto CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
@@ -323,7 +323,7 @@ namespace Sudoku.Solving.Manual.Fishes
 												}
 
 												// And all fins don't lie in any cover sets.
-												var coverSetsMap = GridMap.Empty;
+												var coverSetsMap = Cells.Empty;
 												foreach (int coverSet in coverSets3)
 												{
 													coverSetsMap |= RegionMaps[coverSet];
@@ -475,15 +475,15 @@ namespace Sudoku.Solving.Manual.Fishes
 														coverSets4[1] = cs2;
 														coverSets4[2] = cs3;
 														coverSets4[3] = cs4;
-														var bodyMap = GridMap.Empty;
-														var elimMap = GridMap.Empty;
+														var bodyMap = Cells.Empty;
+														var elimMap = Cells.Empty;
 														GetGridMap(ref bodyMap, baseSets4, CandMaps[digit]);
 														GetGridMap(ref elimMap, coverSets4, CandMaps[digit]);
 														bodyMap &= elimMap;
 														elimMap -= bodyMap;
 
 														// Check the existence of fin.
-														var finCellsMap = GridMap.Empty;
+														var finCellsMap = Cells.Empty;
 														if (finAndBodyCount == 4) // size == 4
 														{
 															goto CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
@@ -514,7 +514,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														}
 
 														// And all fins don't lie in any cover sets.
-														var coverSetsMap = GridMap.Empty;
+														var coverSetsMap = Cells.Empty;
 														foreach (int coverSet in coverSets3)
 														{
 															coverSetsMap |= RegionMaps[coverSet];
@@ -628,7 +628,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <returns>The view.</returns>
 		private static View GetDirectView(
 			in SudokuGrid grid, int digit, in ReadOnlySpan<int> baseSets, in ReadOnlySpan<int> coverSets,
-			bool searchRow, in GridMap finCellsMap)
+			bool searchRow, in Cells finCellsMap)
 		{
 			// Get the highlight cells (necessary).
 			var cellOffsets = new List<DrawingInfo>();
@@ -658,12 +658,12 @@ namespace Sudoku.Solving.Manual.Fishes
 								continue;
 							}
 
-							var baseMap = GridMap.Empty;
+							var baseMap = Cells.Empty;
 							foreach (int b in baseSets)
 							{
 								baseMap |= RegionMaps[b];
 							}
-							var coverMap = GridMap.Empty;
+							var coverMap = Cells.Empty;
 							foreach (int c in coverSets)
 							{
 								coverMap |= RegionMaps[c];
@@ -699,12 +699,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		}
 
 		/// <summary>
-		/// Record all cells in the all regions to a <see cref="GridMap"/> instance.
+		/// Record all cells in the all regions to a <see cref="Cells"/> instance.
 		/// </summary>
 		/// <param name="map">(<see langword="ref"/> parameter) The map.</param>
 		/// <param name="regions">(<see langword="in"/> parameter) All region offsets.</param>
 		/// <param name="candMap">(<see langword="in"/> parameter) The candidate map.</param>
-		private static void GetGridMap(ref GridMap map, in ReadOnlySpan<int> regions, in GridMap candMap)
+		private static void GetGridMap(ref Cells map, in ReadOnlySpan<int> regions, in Cells candMap)
 		{
 			foreach (int region in regions)
 			{

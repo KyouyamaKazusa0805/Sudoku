@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="c">(<see langword="in"/> parameter) The intersection.</param>
 		private static void GetAll(
 			IList<StepInfo> result, in SudokuGrid grid, int size, int baseSet, int coverSet,
-			in GridMap a, in GridMap b, in GridMap c)
+			in Cells a, in Cells b, in Cells c)
 		{
 			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{
@@ -110,14 +110,14 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
-				var ahsCells = GridMap.Empty;
+				var ahsCells = Cells.Empty;
 				foreach (int pos in ahsMask)
 				{
 					ahsCells.AddAnyway(RegionCells[coverSet][pos]);
 				}
 
 				// Record all eliminations.
-				var cellsMap = new GridMap(cells);
+				var cellsMap = new Cells(cells);
 				var conclusions = new List<Conclusion>();
 				foreach (int aCell in a)
 				{

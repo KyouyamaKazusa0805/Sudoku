@@ -79,7 +79,7 @@ namespace Sudoku.Data.Stepping
 
 			set
 			{
-				var map = GridMap.Empty;
+				var map = Cells.Empty;
 				foreach (int peerCell in PeerMaps[cell])
 				{
 					if (GetStatus(peerCell) == CellStatus.Empty)
@@ -116,7 +116,7 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc cref="SudokuGrid.Fix"/>
 		public void Fix()
 		{
-			var map = GridMap.Empty;
+			var map = Cells.Empty;
 			for (int i = 0; i < 81; i++)
 			{
 				if (GetStatus(i) == CellStatus.Modifiable)
@@ -140,7 +140,7 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc cref="SudokuGrid.Unfix"/>
 		public void Unfix()
 		{
-			var map = GridMap.Empty;
+			var map = Cells.Empty;
 			for (int i = 0; i < 81; i++)
 			{
 				if (GetStatus(i) == CellStatus.Given)

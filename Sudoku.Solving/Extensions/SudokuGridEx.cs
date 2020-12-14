@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Extensions
 		/// <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <returns>The result.</returns>
-		public static short BitwiseAndMasks(this in SudokuGrid grid, in GridMap map)
+		public static short BitwiseAndMasks(this in SudokuGrid grid, in Cells map)
 		{
 			short mask = SudokuGrid.MaxCandidatesMask;
 			foreach (int cell in map)
@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Extensions
 		/// <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <returns>The result.</returns>
-		public static short BitwiseOrMasks(this in SudokuGrid grid, in GridMap map)
+		public static short BitwiseOrMasks(this in SudokuGrid grid, in Cells map)
 		{
 			short mask = 0;
 			foreach (int cell in map)

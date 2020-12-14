@@ -20,13 +20,13 @@ namespace Sudoku.Drawing
 	public sealed record MutableView(
 		ICollection<DrawingInfo>? Cells, ICollection<DrawingInfo>? Candidates,
 		ICollection<DrawingInfo>? Regions, ICollection<Link>? Links,
-		ICollection<(GridMap Start, GridMap End)>? DirectLines)
+		ICollection<(Cells Start, Cells End)>? DirectLines)
 	{
 		/// <inheritdoc cref="DefaultConstructor"/>
 		public MutableView()
 			: this(
 				new List<DrawingInfo>(), new List<DrawingInfo>(), new List<DrawingInfo>(), new List<Link>(),
-				new List<(GridMap, GridMap)>())
+				new List<(Cells, Cells)>())
 		{
 		}
 
@@ -63,7 +63,7 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
 		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
-		public void AddDirectLine(in GridMap start, in GridMap end) => DirectLines?.Add((start, end));
+		public void AddDirectLine(in Cells start, in Cells end) => DirectLines?.Add((start, end));
 
 		/// <summary>
 		/// Remove the cell from the list.
@@ -96,7 +96,7 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
 		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
-		public void RemoveDirectLine(in GridMap start, in GridMap end) => DirectLines?.Remove((start, end));
+		public void RemoveDirectLine(in Cells start, in Cells end) => DirectLines?.Remove((start, end));
 
 		/// <summary>
 		/// Clear all elements.
@@ -165,7 +165,7 @@ namespace Sudoku.Drawing
 		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
 		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsDirectLine(in GridMap start, in GridMap end) =>
+		public bool ContainsDirectLine(in Cells start, in Cells end) =>
 			DirectLines?.Contains((start, end)) ?? false;
 	}
 }

@@ -91,12 +91,12 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The map of selected cells while drawing regions.
 		/// </summary>
-		private GridMap _selectedCellsWhileDrawingRegions = GridMap.Empty;
+		private Cells _selectedCellsWhileDrawingRegions = Cells.Empty;
 
 		/// <summary>
 		/// Indicates all focused cells.
 		/// </summary>
-		private GridMap _focusedCells = GridMap.Empty;
+		private Cells _focusedCells = Cells.Empty;
 
 		/// <summary>
 		/// The preview map. This field is only used for
@@ -104,7 +104,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <seealso cref="OnKeyDown(KeyEventArgs)"/>
 		/// <seealso cref="OnKeyUp(KeyEventArgs)"/>
-		private GridMap? _previewMap;
+		private Cells? _previewMap;
 
 		/// <summary>
 		/// The initial grid.

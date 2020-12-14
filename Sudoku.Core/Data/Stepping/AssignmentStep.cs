@@ -9,7 +9,7 @@ namespace Sudoku.Data.Stepping
 	/// <param name="Cell">The cell.</param>
 	/// <param name="Mask">The old mask to undo.</param>
 	/// <param name="InnerMap">The map which contains all cells that contains the digit.</param>
-	public sealed record AssignmentStep(int Digit, int Cell, short Mask, in GridMap InnerMap) : IStep
+	public sealed record AssignmentStep(int Digit, int Cell, short Mask, in Cells InnerMap) : IStep
 	{
 		/// <inheritdoc/>
 		public void UndoStepTo(UndoableGrid grid)

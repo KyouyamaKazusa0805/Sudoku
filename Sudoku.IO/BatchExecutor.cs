@@ -330,7 +330,7 @@ namespace Sudoku.IO
 			}
 
 			_painter.CustomView ??= new();
-			_painter.CustomView.AddDirectLine(GridMap.Empty, new() { c - 1 });
+			_painter.CustomView.AddDirectLine(Cells.Empty, new() { c - 1 });
 		}
 
 		/// <summary>
@@ -355,7 +355,7 @@ namespace Sudoku.IO
 			}
 
 			_painter.CustomView ??= new();
-			_painter.CustomView.AddDirectLine(new() { c - 1 }, GridMap.Empty);
+			_painter.CustomView.AddDirectLine(new() { c - 1 }, Cells.Empty);
 		}
 
 		/// <summary>

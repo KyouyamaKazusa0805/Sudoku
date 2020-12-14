@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				i = 0;
-				GridMap temp;
+				Cells temp;
 				unsafe
 				{
 					foreach (int digit in baseCandsMask)
@@ -229,9 +229,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>The <see cref="bool"/> result.</returns>
 		[SkipLocalsInit]
 		private bool CheckCrossline(
-			in GridMap baseMap, in GridMap tempCrossline, short baseCandidatesMask, int t1, int t2, bool isRow)
+			in Cells baseMap, in Cells tempCrossline, short baseCandidatesMask, int t1, int t2, bool isRow)
 		{
-			var xx = new GridMap { t1, t2 };
+			var xx = new Cells { t1, t2 };
 			var tempMask = (stackalloc int[9]);
 			foreach (int digit in baseCandidatesMask)
 			{

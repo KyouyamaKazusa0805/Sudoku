@@ -20,8 +20,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="normalDigits">The normal digits mask.</param>
 		/// <param name="extraDigit">The extra digit.</param>
 		partial void CheckType1(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
-			in GridMap extraCells, short normalDigits, int extraDigit)
+			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
+			in Cells extraCells, short normalDigits, int extraDigit)
 		{
 			var conclusions = new List<Conclusion>();
 			var candidateOffsets = new List<DrawingInfo>();
@@ -69,8 +69,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="normalDigits">The normal digits mask.</param>
 		/// <param name="extraDigit">The extra digit.</param>
 		partial void CheckType2(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
-			in GridMap extraCells, short normalDigits, int extraDigit)
+			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
+			in Cells extraCells, short normalDigits, int extraDigit)
 		{
 			var elimMap = extraCells.PeerIntersection & CandMaps[extraDigit];
 			if (elimMap.IsEmpty)
@@ -112,8 +112,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="extraDigits">The extra digits mask.</param>
 		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The map of extra cells.</param>
 		partial void CheckType3Naked(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
-			short normalDigits, short extraDigits, in GridMap extraCellsMap)
+			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
+			short normalDigits, short extraDigits, in Cells extraCellsMap)
 		{
 			foreach (int region in extraCellsMap.CoveredRegions)
 			{
@@ -198,7 +198,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 		/// <summary>
 		/// Check type 4 and a part of type 1 that
-		/// <see cref="CheckType1(IList{StepInfo}, in SudokuGrid, in GridMap, in GridMap, short, int)"/>
+		/// <see cref="CheckType1(IList{StepInfo}, in SudokuGrid, in Cells, in Cells, short, int)"/>
 		/// cannot be found.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
@@ -207,8 +207,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="normalDigits">The normal digits mask.</param>
 		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The map of extra cells.</param>
 		partial void CheckType14(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap,
-			short normalDigits, in GridMap extraCellsMap)
+			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
+			short normalDigits, in Cells extraCellsMap)
 		{
 			switch (extraCellsMap.Count)
 			{

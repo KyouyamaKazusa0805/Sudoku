@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		}
 
 		/// <summary>
-		/// Create a <see cref="GridMap"/> instance with the specified solution.
+		/// Create a <see cref="Cells"/> instance with the specified solution.
 		/// If the puzzle has been solved, this method will create a grid map of
 		/// distribution of a single digit in this solution.
 		/// </summary>
@@ -137,11 +137,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <exception cref="ArgumentException">
 		/// Throws when the puzzle has not been solved.
 		/// </exception>
-		private static GridMap CreateInstance(in SudokuGrid grid, int digit)
+		private static Cells CreateInstance(in SudokuGrid grid, int digit)
 		{
 			_ = grid.IsSolved ? 0 : throw new ArgumentException("The specified sudoku grid has not been solved.", nameof(grid));
 
-			var result = GridMap.Empty;
+			var result = Cells.Empty;
 			for (int cell = 0; cell < 81; cell++)
 			{
 				if (grid[cell] == digit)

@@ -818,7 +818,7 @@ namespace Sudoku.Windows
 
 				UpdateImageGrid();
 
-				_textBoxInfo.Text = $"{LangSource["AllTrueCandidates"]}{new SudokuMap(trueCandidates)}";
+				_textBoxInfo.Text = $"{LangSource["AllTrueCandidates"]}{new Candidates(trueCandidates)}";
 			}
 		}
 

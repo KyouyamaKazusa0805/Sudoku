@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <param name="Views">All views.</param>
 	/// <param name="Cells">Indicates the cells used.</param>
 	public sealed record AlsNetStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells)
 		: MslsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

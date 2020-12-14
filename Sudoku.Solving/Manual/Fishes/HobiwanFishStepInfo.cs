@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </param>
 	public sealed record HobiwanFishStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, IReadOnlyList<int> BaseSets,
-		IReadOnlyList<int> CoverSets, in GridMap Exofins, in GridMap Endofins, bool? IsSashimi)
+		IReadOnlyList<int> CoverSets, in Cells Exofins, in Cells Endofins, bool? IsSashimi)
 		: FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
 	{
 		/// <summary>

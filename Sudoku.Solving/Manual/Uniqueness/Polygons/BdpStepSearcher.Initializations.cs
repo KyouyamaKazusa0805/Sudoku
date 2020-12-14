@@ -49,8 +49,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				for (int j = 0; j < 4; j++)
 				{
 					int[] triplet = triplets[j];
-					int region1 = new GridMap { triplet[0], triplet[1] }.CoveredLine;
-					int region2 = new GridMap { triplet[0], triplet[2] }.CoveredLine;
+					int region1 = new Cells { triplet[0], triplet[1] }.CoveredLine;
+					int region2 = new Cells { triplet[0], triplet[2] }.CoveredLine;
 					int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 					(int incre1, int incre2) = i switch
 					{
@@ -106,8 +106,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 			static void c4(int block, int i, int[] quad, ref int count)
 			{
-				int region1 = new GridMap { quad[0], quad[1] }.CoveredLine;
-				int region2 = new GridMap { quad[0], quad[2] }.CoveredLine;
+				int region1 = new Cells { quad[0], quad[1] }.CoveredLine;
+				int region2 = new Cells { quad[0], quad[2] }.CoveredLine;
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				(int incre1, int incre2) = i switch
 				{

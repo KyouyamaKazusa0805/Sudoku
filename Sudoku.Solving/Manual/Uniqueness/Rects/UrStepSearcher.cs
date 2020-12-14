@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							for (int c1 = 0; c1 < 4; c1++)
 							{
 								int corner1 = urCells[c1];
-								var otherCellsMap = new GridMap(urCells) - corner1;
+								var otherCellsMap = new Cells(urCells) - corner1;
 
 								CheckType1(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
@@ -227,7 +227,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool IsConjugatePair(int digit, in GridMap map, int region) =>
+		private static bool IsConjugatePair(int digit, in Cells map, int region) =>
 			(RegionMaps[region] & CandMaps[digit]) == map;
 
 		/// <summary>
@@ -273,7 +273,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static bool IsSameRegionCell(int currentCell, int anotherCell, out IEnumerable<int> region)
 		{
-			if (new GridMap { anotherCell, currentCell }.CoveredRegions is var coveredRegions
+			if (new Cells { anotherCell, currentCell }.CoveredRegions is var coveredRegions
 				&& coveredRegions.None())
 			{
 				region = Array.Empty<int>();
@@ -296,23 +296,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			(from cell in urCells select new DrawingInfo(0, cell)).ToArray();
 
 
-		partial void CheckType1(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
-		partial void CheckType2(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
-		partial void CheckType3Naked(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
-		partial void CheckType4(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
-		partial void CheckType5(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
-		partial void CheckType6(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
-		partial void CheckHidden(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
-		partial void Check2D(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
-		partial void Check2B1SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
-		partial void Check2D1SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
-		partial void Check3X(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
-		partial void Check3X2SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
-		partial void Check3N2SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
-		partial void Check3U2SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
-		partial void Check3E2SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index);
-		partial void Check4X3SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
-		partial void Check4C3SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index);
-		partial void CheckWing(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int size, int index);
+		partial void CheckType1(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index);
+		partial void CheckType2(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void CheckType3Naked(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void CheckType4(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void CheckType5(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index);
+		partial void CheckType6(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void CheckHidden(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index);
+		partial void Check2D(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void Check2B1SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void Check2D1SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void Check3X(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index);
+		partial void Check3X2SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index);
+		partial void Check3N2SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index);
+		partial void Check3U2SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index);
+		partial void Check3E2SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index);
+		partial void Check4X3SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void Check4C3SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void CheckWing(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int size, int index);
 	}
 }

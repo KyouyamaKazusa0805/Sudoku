@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override string ToString() =>
 			$"{Name}: It can be proved to be a contradiction if " +
-			$"{new SudokuMap { Anchor.Cell * 9 + Anchor.Digit }} is " +
+			$"{new Candidates { Anchor.Cell * 9 + Anchor.Digit }} is " +
 			$"{(!Anchor.IsOn).ToString().ToLower()} => {new ConclusionCollection(Conclusions).ToString()}";
 	}
 }

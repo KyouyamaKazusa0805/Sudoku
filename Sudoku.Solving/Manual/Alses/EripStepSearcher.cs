@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					// Check the two cells are not in same region.
-					if (new GridMap { c1, c2 }.InOneRegion)
+					if (new Cells { c1, c2 }.InOneRegion)
 					{
 						continue;
 					}
@@ -55,8 +55,8 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					// Check the block that two cells both see.
-					var interMap = new GridMap { c1, c2 }.PeerIntersection;
-					var unionMap = new GridMap(c1) | new GridMap(c2);
+					var interMap = new Cells { c1, c2 }.PeerIntersection;
+					var unionMap = new Cells(c1) | new Cells(c2);
 					foreach (int interCell in interMap)
 					{
 						int block = RegionLabel.Block.GetRegion(interCell);
@@ -87,9 +87,9 @@ namespace Sudoku.Solving.Manual.Alses
 						// Check eliminations.
 						var conclusions = new List<Conclusion>();
 						int z = (interMap & regionMap).First;
-						var c1Map = RegionMaps[new GridMap { z, c1 }.CoveredLine];
-						var c2Map = RegionMaps[new GridMap { z, c2 }.CoveredLine];
-						foreach (int elimCell in new GridMap(c1Map | c2Map) { ~c1, ~c2 } - erMap)
+						var c1Map = RegionMaps[new Cells { z, c1 }.CoveredLine];
+						var c2Map = RegionMaps[new Cells { z, c2 }.CoveredLine];
+						foreach (int elimCell in new Cells(c1Map | c2Map) { ~c1, ~c2 } - erMap)
 						{
 							if (grid.Exists(elimCell, d1) is true)
 							{

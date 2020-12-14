@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(size))
 				{
 					short tempMask = mask;
-					var map = GridMap.Empty;
+					var map = Cells.Empty;
 					foreach (int digit in digits)
 					{
 						tempMask &= (short)~(1 << digit);

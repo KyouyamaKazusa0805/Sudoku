@@ -34,7 +34,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <param name="digit">The digit.</param>
-		public ConjugatePair(in GridMap map, int digit)
+		public ConjugatePair(in Cells map, int digit)
 		{
 			Digit = digit;
 			From = map.First;
@@ -71,7 +71,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the inner map.
 		/// </summary>
-		public GridMap Map { get; }
+		public Cells Map { get; }
 
 
 		/// <inheritdoc/>
@@ -85,7 +85,7 @@ namespace Sudoku.Data
 		public override int GetHashCode() => Map.GetHashCode() ^ Digit;
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override string ToString() => $"{new GridMap { From }} == {new GridMap { To }}({Digit + 1})";
+		public override string ToString() => $"{new Cells { From }} == {new Cells { To }}({Digit + 1})";
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
-			string xyCellStr = new GridMap { XyCell }.ToString();
+			string xyCellStr = new Cells { XyCell }.ToString();
 			return $"X = {XDigit + 1}, Y = {YDigit + 1} and a bi-value cell {xyCellStr}";
 		}
 	}

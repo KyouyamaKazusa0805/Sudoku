@@ -165,14 +165,14 @@ namespace Sudoku.Solving.Manual.Singles
 						enableAndIsLastDigit = digitCount == 8;
 					}
 
-					List<(GridMap, GridMap)>? directLines = null;
+					List<(Cells, Cells)>? directLines = null;
 					if (!enableAndIsLastDigit && _showDirectLines)
 					{
 						directLines = new();
 
 						// Step 1: Get all source cells that makes the result cell
 						// can't be filled with the result digit.
-						GridMap crosshatchingCells = GridMap.Empty, tempMap = GridMap.Empty;
+						Cells crosshatchingCells = Cells.Empty, tempMap = Cells.Empty;
 						foreach (int cell in RegionCells[region])
 						{
 							if (cell != resultCell && grid.GetStatus(cell) == CellStatus.Empty)
@@ -237,7 +237,7 @@ namespace Sudoku.Solving.Manual.Singles
 					&& grid.GetCandidateMask(cell) is var mask && mask.IsPowerOfTwo()
 					&& mask.FindFirstSet() is var digit)
 				{
-					List<(GridMap, GridMap)>? directLines = null;
+					List<(Cells, Cells)>? directLines = null;
 					if (_showDirectLines)
 					{
 						directLines = new();
@@ -250,7 +250,7 @@ namespace Sudoku.Solving.Manual.Singles
 								{
 									if (grid[peerCell] == i)
 									{
-										directLines.Add((new() { peerCell }, GridMap.Empty));
+										directLines.Add((new() { peerCell }, Cells.Empty));
 										flag = true;
 										break;
 									}

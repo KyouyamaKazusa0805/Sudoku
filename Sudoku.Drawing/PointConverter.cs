@@ -139,7 +139,7 @@ namespace Sudoku.Drawing
 		/// <param name="map">The map of candidates.</param>
 		/// <returns>The center mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PointF GetMouseCenter(SudokuMap map)
+		public PointF GetMouseCenter(Candidates map)
 		{
 			int min = map.SetAt(0), max = map.SetAt(^1);
 			var (x1, y1) = GetMousePointInCenter(min / 9, min % 9);
@@ -153,7 +153,7 @@ namespace Sudoku.Drawing
 		/// <param name="map">The candidates.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RectangleF GetMouseRectangle(SudokuMap map)
+		public RectangleF GetMouseRectangle(Candidates map)
 		{
 			var (cw, ch) = CandidateSize;
 			int min = map.SetAt(0), max = map.SetAt(^1);

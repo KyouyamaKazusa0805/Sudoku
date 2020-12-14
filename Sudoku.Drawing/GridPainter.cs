@@ -51,7 +51,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates the focused cells.
 		/// </summary>
-		public GridMap? FocusedCells { get; set; }
+		public Cells? FocusedCells { get; set; }
 
 		/// <summary>
 		/// Indicates the view.
@@ -212,7 +212,7 @@ namespace Sudoku.Drawing
 			if (view.Cells is IEnumerable<DrawingInfo> cells) DrawCells(g, cells);
 			if (view.Candidates is IEnumerable<DrawingInfo> candidates) DrawCandidates(g, candidates, offset);
 			if (view.Links is IEnumerable<Link> links) DrawLinks(g, links, offset);
-			if (view.DirectLines is IEnumerable<(GridMap, GridMap)> directLines) DrawDirectLines(g, directLines, offset);
+			if (view.DirectLines is IEnumerable<(Cells, Cells)> directLines) DrawDirectLines(g, directLines, offset);
 		}
 
 		/// <summary>
@@ -220,7 +220,7 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="g">The graphics.</param>
 		/// <param name="focusedCells">(<see langword="in"/> parameter) The focused cells.</param>
-		private void DrawFocusedCells(Graphics g, in GridMap focusedCells)
+		private void DrawFocusedCells(Graphics g, in Cells focusedCells)
 		{
 			using var b = new SolidBrush(Preferences.FocusedCellColor);
 			foreach (int cell in focusedCells)
@@ -290,7 +290,7 @@ namespace Sudoku.Drawing
 		/// <param name="g">The graphics.</param>
 		/// <param name="directLines">The direct lines.</param>
 		/// <param name="offset">The drawing offset.</param>
-		private void DrawDirectLines(Graphics g, IEnumerable<(GridMap, GridMap)> directLines, float offset)
+		private void DrawDirectLines(Graphics g, IEnumerable<(Cells, Cells)> directLines, float offset)
 		{
 			if (Preferences.ShowCandidates)
 			{
@@ -340,7 +340,7 @@ namespace Sudoku.Drawing
 			var points = new HashSet<PointF>();
 			foreach (var (startCand, endCand) in links)
 			{
-				SudokuMap map1 = new() { startCand }, map2 = new() { endCand };
+				Candidates map1 = new() { startCand }, map2 = new() { endCand };
 
 				points.Add(Converter.GetMouseCenter(map1));
 				points.Add(Converter.GetMouseCenter(map2));

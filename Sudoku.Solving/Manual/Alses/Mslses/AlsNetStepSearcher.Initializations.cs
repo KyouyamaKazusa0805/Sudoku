@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <summary>
 		/// Indicates the list initialized with the static constructor.
 		/// </summary>
-		private static readonly IReadOnlyList<GridMap> Patterns;
+		private static readonly IReadOnlyList<Cells> Patterns;
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			const int a = ~7, b = ~56, c = ~448;
 			int[,] sizeList = { { 3, 3 }, { 3, 4 }, { 4, 3 }, { 4, 4 }, { 4, 5 }, { 5, 4 } };
 			int[] z = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-			var result = new GridMap[74601];
+			var result = new Cells[74601];
 			int n = 0;
 			for (int i = 0; i < sizeList.Length >> 1; i++)
 			{
@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				foreach (int[] rowList in z.GetSubsets(rows))
 				{
 					short rowMask = 0;
-					var rowMap = GridMap.Empty;
+					var rowMap = Cells.Empty;
 					foreach (int row in rowList)
 					{
 						rowMask |= (short)(1 << row);
@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					foreach (int[] columnList in z.GetSubsets(columns))
 					{
 						short columnMask = 0;
-						var columnMap = GridMap.Empty;
+						var columnMap = Cells.Empty;
 						foreach (int column in columnList)
 						{
 							columnMask |= (short)(1 << column);

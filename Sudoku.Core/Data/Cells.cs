@@ -19,17 +19,17 @@ namespace Sudoku.Data
 	/// and the <see langword="false"/> bit (0) is for the cell not containing
 	/// the digit.
 	/// </remarks>
-	public partial struct GridMap : IEnumerable<int>, IValueEquatable<GridMap>, IFormattable
+	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
 	{
 		/// <summary>
 		/// <para>Indicates an empty instance (all bits are 0).</para>
 		/// <para>
 		/// I strongly recommend you <b>should</b> use this instance instead of default constructor
-		/// <see cref="GridMap()"/> and <see langword="default"/>(<see cref="GridMap"/>).
+		/// <see cref="Cells()"/> and <see langword="default"/>(<see cref="Cells"/>).
 		/// </para>
 		/// </summary>
-		/// <seealso cref="GridMap()"/>
-		public static readonly GridMap Empty;
+		/// <seealso cref="Cells()"/>
+		public static readonly Cells Empty;
 
 
 		/// <summary>
@@ -56,12 +56,12 @@ namespace Sudoku.Data
 		/// (Sets itself and all peers).
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
-		public GridMap(int offset) : this(offset, true)
+		public Cells(int offset) : this(offset, true)
 		{
 		}
 
 		/// <summary>
-		/// Same behavior of the constructor as <see cref="GridMap(IEnumerable{int})"/>.
+		/// Same behavior of the constructor as <see cref="Cells(IEnumerable{int})"/>.
 		/// </summary>
 		/// <param name="offsets">All offsets.</param>
 		/// <remarks>
@@ -73,8 +73,8 @@ namespace Sudoku.Data
 		/// constructors). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
 		/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
 		/// </remarks>
-		/// <seealso cref="GridMap(IEnumerable{int})"/>
-		public GridMap(int[] offsets) : this(offsets.AsEnumerable())
+		/// <seealso cref="Cells(IEnumerable{int})"/>
+		public Cells(int[] offsets) : this(offsets.AsEnumerable())
 		{
 		}
 
@@ -99,7 +99,7 @@ namespace Sudoku.Data
 		/// </code>
 		/// </para>
 		/// </remarks>
-		public GridMap(in ReadOnlySpan<int> cells) : this()
+		public Cells(in ReadOnlySpan<int> cells) : this()
 		{
 			foreach (int offset in cells)
 			{
@@ -137,7 +137,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public GridMap(in GridMap another) => this = another;
+		public Cells(in Cells another) => this = another;
 
 		/// <summary>
 		/// Initializes an instance with a series of cell offsets.
@@ -147,7 +147,7 @@ namespace Sudoku.Data
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
 		/// won't be set <see langword="true"/>.
 		/// </remarks>
-		public GridMap(IEnumerable<int> offsets) : this()
+		public Cells(IEnumerable<int> offsets) : this()
 		{
 			foreach (int offset in offsets)
 			{
@@ -162,7 +162,7 @@ namespace Sudoku.Data
 		/// <param name="high">Higher 27 bits.</param>
 		/// <param name="mid">Medium 27 bits.</param>
 		/// <param name="low">Lower 27 bits.</param>
-		public GridMap(int high, int mid, int low)
+		public Cells(int high, int mid, int low)
 			: this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
 		{
 		}
@@ -187,7 +187,7 @@ namespace Sudoku.Data
 		/// If you want to use this constructor, please use <see cref="PeerMaps"/> instead.
 		/// </remarks>
 		/// <seealso cref="PeerMaps"/>
-		private GridMap(int offset, bool setItself)
+		private Cells(int offset, bool setItself)
 		{
 			this = PeerMaps[offset];
 			this[offset] = setItself;
@@ -198,7 +198,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="high">Higher 40 bits.</param>
 		/// <param name="low">Lower 41 bits.</param>
-		private GridMap(long high, long low) => Count = (_high = high).PopCount() + (_low = low).PopCount();
+		private Cells(long high, long low) => Count = (_high = high).PopCount() + (_low = low).PopCount();
 
 
 		/// <summary>
@@ -324,7 +324,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the map of cells, which is the peer intersections.
 		/// </summary>
-		public readonly GridMap PeerIntersection
+		public readonly Cells PeerIntersection
 		{
 			get
 			{
@@ -477,11 +477,11 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly bool Equals(object? obj) => obj is GridMap comparer && Equals(comparer);
+		public override readonly bool Equals(object? obj) => obj is Cells comparer && Equals(comparer);
 
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		[CLSCompliant(false)]
-		public readonly bool Equals(in GridMap other) => _high == other._high && _low == other._low;
+		public readonly bool Equals(in Cells other) => _high == other._high && _low == other._low;
 
 		/// <summary>
 		/// Indicates whether this map overlaps another one.
@@ -489,7 +489,7 @@ namespace Sudoku.Data
 		/// <param name="other">(<see langword="in"/> parameter) The other map.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Overlaps(in GridMap other) => (this & other).IsNotEmpty;
+		public readonly bool Overlaps(in Cells other) => (this & other).IsNotEmpty;
 
 		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
@@ -608,7 +608,7 @@ namespace Sudoku.Data
 						new ArgumentException(null, nameof(format)))
 			};
 
-			static unsafe string normalToString(in GridMap @this)
+			static unsafe string normalToString(in Cells @this)
 			{
 				const string leftCurlyBrace = "{ ", rightCurlyBrace = " }";
 				static int converter(in int v) => v + 1;
@@ -679,7 +679,7 @@ namespace Sudoku.Data
 				return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
 			}
 
-			static unsafe string binaryToString(in GridMap @this)
+			static unsafe string binaryToString(in Cells @this)
 			{
 				var sb = new StringBuilder();
 				int i;
@@ -835,11 +835,11 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in GridMap left, in GridMap right) => left.Equals(right);
+		public static bool operator ==(in Cells left, in Cells right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(in GridMap left, in GridMap right) => !(left == right);
+		public static bool operator !=(in Cells left, in Cells right) => !(left == right);
 
 		/// <summary>
 		/// The syntactic sugar for <c>new GridMap(map) { cell }</c> (i.e. add a new cell into the current
@@ -849,12 +849,12 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell to add.</param>
 		/// <returns>The result of the map.</returns>
 		/// <remarks>
-		/// I strongly recommend you should use <see cref="GridMap(in GridMap)"/> instead
+		/// I strongly recommend you should use <see cref="Cells(in Cells)"/> instead
 		/// when more than one cell should be added into the map.
 		/// </remarks>
-		/// <seealso cref="GridMap(in GridMap)"/>
+		/// <seealso cref="Cells(in Cells)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator +(in GridMap map, int cell) => new(map) { cell };
+		public static Cells operator +(in Cells map, int cell) => new(map) { cell };
 
 		/// <summary>
 		/// The syntactic sugar for <c>new GridMap(map) { ~cell }</c> (i.e. remove a cell from the current
@@ -864,12 +864,12 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The result of the map.</returns>
 		/// <remarks>
-		/// I strongly recommend you should use <see cref="GridMap(in GridMap)"/> instead
+		/// I strongly recommend you should use <see cref="Cells(in Cells)"/> instead
 		/// when more than one cell should be removed from the map.
 		/// </remarks>
-		/// <seealso cref="GridMap(in GridMap)"/>
+		/// <seealso cref="Cells(in Cells)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator -(in GridMap map, int cell) => new(map) { ~cell };
+		public static Cells operator -(in Cells map, int cell) => new(map) { ~cell };
 
 		/// <summary>
 		/// Reverse status for all cells, which means all <see langword="true"/> bits
@@ -883,76 +883,75 @@ namespace Sudoku.Data
 		/// that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator ~(in GridMap gridMap) =>
-			new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
+		public static Cells operator ~(in Cells gridMap) => new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
 
 		/// <summary>
-		/// Get a <see cref="GridMap"/> that contains all <paramref name="left"/> cells
+		/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> cells
 		/// but not in <paramref name="right"/> cells.
 		/// </summary>
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator -(in GridMap left, in GridMap right) => left & ~right;
+		public static Cells operator -(in Cells left, in Cells right) => left & ~right;
 
 		/// <summary>
-		/// Get all cells that two <see cref="GridMap"/>s both contain.
+		/// Get all cells that two <see cref="Cells"/>s both contain.
 		/// </summary>
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The intersection result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator &(in GridMap left, in GridMap right) =>
+		public static Cells operator &(in Cells left, in Cells right) =>
 			new(left._high & right._high, left._low & right._low);
 
 		/// <summary>
-		/// Get all cells from two <see cref="GridMap"/>s.
+		/// Get all cells from two <see cref="Cells"/>s.
 		/// </summary>
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The union result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator |(in GridMap left, in GridMap right) =>
+		public static Cells operator |(in Cells left, in Cells right) =>
 			new(left._high | right._high, left._low | right._low);
 
 		/// <summary>
-		/// Get all cells that only appears once in two <see cref="GridMap"/>s.
+		/// Get all cells that only appears once in two <see cref="Cells"/>s.
 		/// </summary>
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The symmetrical difference result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator ^(in GridMap left, in GridMap right) =>
+		public static Cells operator ^(in Cells left, in Cells right) =>
 			new(left._high ^ right._high, left._low ^ right._low);
 
 
 		/// <summary>
-		/// Implicit cast from <see cref="int"/>[] to <see cref="GridMap"/>.
+		/// Implicit cast from <see cref="int"/>[] to <see cref="Cells"/>.
 		/// </summary>
 		/// <param name="cells">The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static implicit operator GridMap(int[] cells) => new(cells);
+		public static implicit operator Cells(int[] cells) => new(cells);
 
 		/// <summary>
-		/// Implicit cast from <see cref="Span{T}"/> to <see cref="GridMap"/>.
+		/// Implicit cast from <see cref="Span{T}"/> to <see cref="Cells"/>.
 		/// </summary>
 		/// <param name="cells">(<see langword="in"/> parameter) The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static implicit operator GridMap(in Span<int> cells) => new(cells);
+		public static implicit operator Cells(in Span<int> cells) => new(cells);
 
 		/// <summary>
-		/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="GridMap"/>.
+		/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Cells"/>.
 		/// </summary>
 		/// <param name="cells">(<see langword="in"/> parameter) The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static implicit operator GridMap(in ReadOnlySpan<int> cells) => new(cells);
+		public static implicit operator Cells(in ReadOnlySpan<int> cells) => new(cells);
 
 		/// <summary>
-		/// Explicit cast from <see cref="GridMap"/> to <see cref="int"/>[].
+		/// Explicit cast from <see cref="Cells"/> to <see cref="int"/>[].
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static explicit operator int[](in GridMap map) => map.ToArray();
+		public static explicit operator int[](in Cells map) => map.ToArray();
 	}
 }

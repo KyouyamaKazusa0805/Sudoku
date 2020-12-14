@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <summary>
 		/// Indicates the patterns.
 		/// </summary>
-		private static readonly GridMap[] Patterns = new GridMap[162];
+		private static readonly Cells[] Patterns = new Cells[162];
 
 
 		/// <inheritdoc cref="StaticConstructor"/>

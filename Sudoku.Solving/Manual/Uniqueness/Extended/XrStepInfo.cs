@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <param name="Cells">All cells.</param>
 	/// <param name="DigitsMask">All digits mask.</param>
 	public abstract record XrStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask)
 		: UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <summary>

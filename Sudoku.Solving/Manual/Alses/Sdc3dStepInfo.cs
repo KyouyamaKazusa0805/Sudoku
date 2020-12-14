@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed record Sdc3dStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		short RowDigitsMask, short ColumnDigitsMask, short BlockDigitsMask,
-		in GridMap RowCells, in GridMap ColumnCells, in GridMap BlockCells) : AlsStepInfo(Conclusions, Views)
+		in Cells RowCells, in Cells ColumnCells, in Cells BlockCells) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M;

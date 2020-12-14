@@ -49,7 +49,7 @@ namespace Sudoku.Windows
 				var array = (
 					from candidate in await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64)
 					orderby candidate
-					let str = new SudokuMap { candidate }.ToString()
+					let str = new Candidates { candidate }.ToString()
 					select new KeyedTuple<int, string>(candidate, str, 2)).ToArray();
 
 				_labelStatus.ClearValue(ContentProperty);

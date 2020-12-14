@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="ExtraDigitsMask">The extra digits mask.</param>
 	/// <param name="ExtraCells">The extra cells.</param>
 	public sealed record UsType3StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
 		short ExtraDigitsMask, IReadOnlyList<int> ExtraCells) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string cellsStr = Cells.ToString();
 			string subsetDigitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
-			string subsetCellsStr = new GridMap(ExtraCells).ToString();
+			string subsetCellsStr = new Cells(ExtraCells).ToString();
 			string subsetName = SubsetNames[ExtraCells.Count + 1];
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return

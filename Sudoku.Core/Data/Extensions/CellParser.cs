@@ -89,7 +89,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="cells">(<see langword="out"/> parameter) The cells.</param>
 		/// <returns>The <see cref="bool"/> indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryParse(in string str, out GridMap cells) => TryParse(str, out cells, new[] { ' ' });
+		public static bool TryParse(in string str, out Cells cells) => TryParse(str, out cells, new[] { ' ' });
 
 		/// <summary>
 		/// Try to parse the string, and converts the instance to cells instance represented
@@ -99,7 +99,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="cells">(<see langword="out"/> parameter) The cell.</param>
 		/// <param name="separators">(<see langword="params"/> parameter) All separators.</param>
 		/// <returns>The <see cref="bool"/> indicating that.</returns>
-		public static bool TryParse(in string str, out GridMap cells, params char[] separators)
+		public static bool TryParse(in string str, out Cells cells, params char[] separators)
 		{
 			if (string.IsNullOrWhiteSpace(str))
 			{
@@ -107,7 +107,7 @@ namespace Sudoku.Data.Extensions
 				return false;
 			}
 
-			cells = GridMap.Empty;
+			cells = Cells.Empty;
 			foreach (string split in str.Trim().Split(separators, StringSplitOptions.RemoveEmptyEntries))
 			{
 				if (TryParse(split, out byte cell))

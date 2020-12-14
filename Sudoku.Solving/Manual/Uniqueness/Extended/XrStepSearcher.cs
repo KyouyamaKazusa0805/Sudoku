@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				}
 				else
 				{
-					var extraCellsMap = GridMap.Empty;
+					var extraCellsMap = Cells.Empty;
 					foreach (int cell in allCellsMap)
 					{
 						foreach (int digit in extraDigits)
@@ -122,9 +122,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			}
 		}
 
-		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap, in GridMap extraCells, short normalDigits, int extraDigit);
-		partial void CheckType2(IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap, in GridMap extraCells, short normalDigits, int extraDigit);
-		partial void CheckType3Naked(IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap, short normalDigits, short extraDigits, in GridMap extraCellsMap);
-		partial void CheckType14(IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap allCellsMap, short normalDigits, in GridMap extraCellsMap);
+		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap, in Cells extraCells, short normalDigits, int extraDigit);
+		partial void CheckType2(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap, in Cells extraCells, short normalDigits, int extraDigit);
+		partial void CheckType3Naked(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap, short normalDigits, short extraDigits, in Cells extraCellsMap);
+		partial void CheckType14(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap, short normalDigits, in Cells extraCellsMap);
 	}
 }

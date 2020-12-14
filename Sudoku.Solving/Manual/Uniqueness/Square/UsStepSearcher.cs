@@ -40,9 +40,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
-		partial void CheckType2(IList<StepInfo> accumulator, in GridMap pattern, short mask);
-		partial void CheckType3(IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
-		partial void CheckType4(IList<StepInfo> accumulator, in SudokuGrid grid, in GridMap pattern, short mask);
+		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask);
+		partial void CheckType2(IList<StepInfo> accumulator, in Cells pattern, short mask);
+		partial void CheckType3(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask);
+		partial void CheckType4(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask);
 	}
 }

@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Singles
 			.Append(Name)
 			.Append(Resources.GetValue("Colon"))
 			.Append(Resources.GetValue("Space"))
-			.Append(new GridMap { Cell }.ToString())
+			.Append(new Cells { Cell }.ToString())
 			.Append(Resources.GetValue("Equals"))
 			.Append(Digit + 1)
 			.ToString();
@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 			string toChinese()
 			{
-				string cellStr = new GridMap { Cell }.ToString();
+				string cellStr = new Cells { Cell }.ToString();
 				int v = Digit + 1;
 				return new StringBuilder()
 					.Append(Name)

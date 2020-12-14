@@ -166,7 +166,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		[SkipLocalsInit]
 		protected (Target, Mirror) CheckMirror(
 			in SudokuGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
-			in GridMap mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets,
+			in Cells mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets,
 			IList<DrawingInfo> candidateOffsets)
 		{
 			var targetElims = new Target();

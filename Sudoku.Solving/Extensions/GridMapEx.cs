@@ -4,9 +4,9 @@ using static Sudoku.Constants.Processings;
 namespace Sudoku.Solving.Extensions
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="GridMap"/>.
+	/// Provides extension methods on <see cref="Cells"/>.
 	/// </summary>
-	/// <seealso cref="GridMap"/>
+	/// <seealso cref="Cells"/>
 	public static class GridMapEx
 	{
 		/// <summary>
@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Extensions
 		/// <param name="row">(<see langword="out"/> parameter) The row.</param>
 		/// <param name="column">(<see langword="out"/> parameter) The column.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsEmptyRectangle(this in GridMap @this, int block, out int row, out int column)
+		public static bool IsEmptyRectangle(this in Cells @this, int block, out int row, out int column)
 		{
 			int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
 			for (int i = r, count = 0; i < r + 3; i++)

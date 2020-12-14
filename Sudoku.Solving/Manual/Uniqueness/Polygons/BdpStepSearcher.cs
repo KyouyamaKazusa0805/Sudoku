@@ -54,9 +54,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 		}
 
-		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
-		partial void CheckType2(IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
-		partial void CheckType3(IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
-		partial void CheckType4(IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in GridMap map);
+		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in Cells map);
+		partial void CheckType2(IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in Cells map);
+		partial void CheckType3(IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in Cells map);
+		partial void CheckType4(IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1, short cornerMask2, short centerMask, in Cells map);
 	}
 }

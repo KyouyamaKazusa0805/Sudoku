@@ -68,7 +68,7 @@ namespace Sudoku.Solving.Generating
 				var selectedType = allTypes.ElementAt(IPuzzleGenerator.Rng.Next(count));
 				tempSb.CopyTo(solution);
 
-				var totalMap = GridMap.Empty;
+				var totalMap = Cells.Empty;
 				do
 				{
 					int cell;
@@ -77,7 +77,7 @@ namespace Sudoku.Solving.Generating
 					int r = cell / 9, c = cell % 9;
 
 					// Get new value of 'last'.
-					var tempMap = GridMap.Empty;
+					var tempMap = Cells.Empty;
 					foreach (int tCell in selectedType switch
 					{
 						Central => stackalloc[] { r * 9 + c, (8 - r) * 9 + 8 - c },

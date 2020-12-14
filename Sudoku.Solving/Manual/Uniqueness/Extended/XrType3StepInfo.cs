@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <param name="ExtraDigitsMask">All extra digits mask.</param>
 	/// <param name="Region">The region.</param>
 	public sealed record XrType3StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
 		IReadOnlyList<int> ExtraCells, short ExtraDigitsMask, int Region)
 		: XrStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		protected override string GetAdditional()
 		{
 			string digitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
-			string cellsStr = new GridMap(ExtraCells).ToString();
+			string cellsStr = new Cells(ExtraCells).ToString();
 			string regionStr = new RegionCollection(Region).ToString();
 			return $"{digitsStr} in cells {cellsStr} in {regionStr}";
 		}

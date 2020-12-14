@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				i = 0;
-				GridMap temp;
+				Cells temp;
 				unsafe
 				{
 					foreach (int digit in baseCandidatesMask)
@@ -194,7 +194,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					// Get mirror and compatibility test eliminations.
 					var mirrorElims = new Mirror();
 					var compatibilityElims = new CompatibilityTest();
-					GridMap mir;
+					Cells mir;
 					int target = -1;
 					var cellOffsets = new List<DrawingInfo> { new(0, b1), new(0, b2) };
 					foreach (int cell in tempCrosslineMap)
@@ -289,7 +289,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					// Gather extra region cells (mutant exocets).
-					var extraMap = GridMap.Empty;
+					var extraMap = Cells.Empty;
 					for (int digit = 0; digit < 9; digit++)
 					{
 						foreach (int region in extraRegionsMask[digit])
@@ -341,10 +341,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private bool CheckCrossline(
-			in GridMap baseMap, in GridMap tempCrossline, short baseCandidatesMask,
+			in Cells baseMap, in Cells tempCrossline, short baseCandidatesMask,
 			int t1, int t2, bool isRow, [NotNullWhen(true)] out int[]? extraRegionsMask)
 		{
-			var xx = new GridMap { t1, t2 };
+			var xx = new Cells { t1, t2 };
 			var tempMask = (stackalloc int[9]);
 			foreach (int digit in baseCandidatesMask)
 			{
@@ -386,7 +386,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>The <see cref="bool"/> result.</returns>
 		[SkipLocalsInit]
 		private bool DeepCrosslineCheck(
-			int digit, in GridMap baseElimMap, in GridMap tempCrossline, ref Span<int> extraRegionsMask)
+			int digit, in Cells baseElimMap, in Cells tempCrossline, ref Span<int> extraRegionsMask)
 		{
 			int region, p;
 			foreach (int[] combination in tempCrossline.ToArray().GetSubsets(3))
@@ -435,8 +435,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="t2">The target cell 2.</param>
 		/// <returns>The mask of all incompatible values.</returns>
 		private short CompatibilityTest(
-			short baseCandidatesMask, GridMap[] digitMaps, in GridMap tempCrossline,
-			in GridMap baseCellsMap, int t1, int t2)
+			short baseCandidatesMask, Cells[] digitMaps, in Cells tempCrossline,
+			in Cells baseCellsMap, int t1, int t2)
 		{
 			short result = 0;
 			foreach (int digit in baseCandidatesMask)
@@ -496,7 +496,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <summary>
 		/// The compatibility testing after the method
-		/// <see cref="CompatibilityTest(short, GridMap[], in GridMap, in GridMap, int, int)"/>.
+		/// <see cref="CompatibilityTest(short, Cells[], in Cells, in Cells, int, int)"/>.
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="compatibilityElims">The compatibility eliminations.</param>
@@ -504,10 +504,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="baseCandidatesMask">The base candidates mask.</param>
 		/// <param name="t1">The target cell 1.</param>
 		/// <param name="t2">The target cell 2.</param>
-		/// <seealso cref="CompatibilityTest(short, GridMap[], in GridMap, in GridMap, int, int)"/>
+		/// <seealso cref="CompatibilityTest(short, Cells[], in Cells, in Cells, int, int)"/>
 		private void CompatibilityTest2(
 			in SudokuGrid grid, CompatibilityTest compatibilityElims,
-			in GridMap baseCellsMap, short baseCandidatesMask, int t1, int t2)
+			in Cells baseCellsMap, short baseCandidatesMask, int t1, int t2)
 		{
 			if ((grid.GetStatus(t1), grid.GetStatus(t2)) is (not Empty, not Empty))
 			{
@@ -529,7 +529,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					var temp = (PeerMaps[currentTarget] & DigitMaps[digit]) - baseCellsMap.PeerIntersection;
 
 					bool flag = false;
-					var elimMap = GridMap.Empty;
+					var elimMap = Cells.Empty;
 					if (!temp.Overlaps(RegionMaps[r]))
 					{
 						flag = true;

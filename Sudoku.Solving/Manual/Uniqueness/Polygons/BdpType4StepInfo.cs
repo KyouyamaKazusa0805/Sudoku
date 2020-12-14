@@ -16,14 +16,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="ConjugateRegion">
 	/// The so-called conjugate region. If you don't know what is a "conjugate region",
 	/// please read the comments in the method
-	/// <see cref="BdpStepSearcher.CheckType4(IList{StepInfo}, in SudokuGrid, in Pattern, short, short, short, in GridMap)"/>
+	/// <see cref="BdpStepSearcher.CheckType4(IList{StepInfo}, in SudokuGrid, in Pattern, short, short, short, in Cells)"/>
 	/// for more details.
 	/// </param>
 	/// <param name="ExtraMask">Indicates the mask of digits that is the combination.</param>
-	/// <seealso cref="BdpStepSearcher.CheckType4(IList{StepInfo}, in SudokuGrid, in Pattern, short, short, short, in GridMap)"/>
+	/// <seealso cref="BdpStepSearcher.CheckType4(IList{StepInfo}, in SudokuGrid, in Pattern, short, short, short, in Cells)"/>
 	public sealed record BdpType4StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Map, short DigitsMask,
-		in GridMap ConjugateRegion, short ExtraMask) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Map, short DigitsMask,
+		in Cells ConjugateRegion, short ExtraMask) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M;

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Loop">The loop.</param>
 	public abstract record UlStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in GridMap Loop) : UniquenessStepInfo(Conclusions, Views)
+		in Cells Loop) : UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty extra.

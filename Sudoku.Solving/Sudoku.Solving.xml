@@ -1163,11 +1163,11 @@
         </member>
         <member name="T:Sudoku.Solving.Extensions.GridMapEx">
             <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.GridMap"/>.
+            Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
             </summary>
-            <seealso cref="T:Sudoku.Data.GridMap"/>
+            <seealso cref="T:Sudoku.Data.Cells"/>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridMapEx.IsEmptyRectangle(Sudoku.Data.GridMap@,System.Int32,System.Int32@,System.Int32@)">
+        <member name="M:Sudoku.Solving.Extensions.GridMapEx.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
             <summary>
             Check whether the cells form an empty cell.
             </summary>
@@ -1275,7 +1275,7 @@
             <seealso cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseAndMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseAndMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@)">
             <summary>
             Get the mask that is a result after the bitwise and operation processed all cells
             in the specified map.
@@ -1284,7 +1284,7 @@
             <param name="map">(<see langword="in"/> parameter) The map.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseOrMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseOrMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@)">
             <summary>
             Get the mask that is a result after the bitwise or operation processed all cells
             in the specified map.
@@ -1636,14 +1636,14 @@
             Encapsulates a normal ALS.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.#ctor(System.Int16,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.#ctor(System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Initializes an instance with the specified digit mask and the map of cells.
             </summary>
             <param name="digitMask">The digit mask.</param>
             <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.#ctor(System.Int16,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.#ctor(System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Initializes an instance with the specified digit mask and the map of cells.
             </summary>
@@ -1684,13 +1684,13 @@
             as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="region">(<see langword="out"/> parameter) The region.</param>
             <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
             <param name="map">(<see langword="out"/> parameter) The map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Collections.Generic.IEnumerable{System.Int16}@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Collections.Generic.IEnumerable{System.Int16}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isBivalueCell">
             (<see langword="out"/> parameter) Indicates whether the specified ALS is bi-value.
@@ -1704,7 +1704,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ContainsDigit(Sudoku.Data.SudokuGrid@,System.Int32,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ContainsDigit(Sudoku.Data.SudokuGrid@,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Indicates whether the specified grid contains the digit.
             </summary>
@@ -2053,7 +2053,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomStepSearcher.ProcessDeathAlsInfo(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap[],System.Int16[],System.Int32[0:,0:],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Alses.Basic.Als})">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomStepSearcher.ProcessDeathAlsInfo(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells[],System.Int16[],System.Int32[0:,0:],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Alses.Basic.Als})">
             <summary>
             Process death ALSes information.
             </summary>
@@ -2063,7 +2063,7 @@
             <param name="death">The death table.</param>
             <param name="alses">The ALS list.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomStepSearcher.PreprocessAndRecordAlses(Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomStepSearcher.PreprocessAndRecordAlses(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@)">
             <summary>
             To preprocess and record all ALSes.
             </summary>
@@ -2126,7 +2126,7 @@
             <param name="Views">All views.</param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>almost locked sets net</b> technique.
             </summary>
@@ -2258,7 +2258,7 @@
             <param name="ColumnCells">The column cells map.</param>
             <param name="BlockCells">The block cells map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>3-dimension sue de coq</b> technique.
             </summary>
@@ -2314,7 +2314,7 @@
             <param name="LineCells">The map of line cells.</param>
             <param name="IntersectionCells">The map of intersection cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.SdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>sue de coq</b> (SdC) technique.
             </summary>
@@ -3339,7 +3339,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.CheckMirror(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap@,System.Int32,System.Int32,System.Collections.Generic.IList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IList{Sudoku.Drawing.DrawingInfo})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.CheckMirror(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Collections.Generic.IList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IList{Sudoku.Drawing.DrawingInfo})">
             <summary>
             Check mirror eliminations.
             </summary>
@@ -3435,7 +3435,7 @@
             A <see cref="T:System.Boolean"/> value indicating whether this method has been found eliminations.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.CheckCrossline(Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.CheckCrossline(Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check the cross-line cells.
             </summary>
@@ -3478,7 +3478,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetStepSearcher.GatheringMirrorEliminations(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16,System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Collections.Generic.List{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.List{Sudoku.Drawing.DrawingInfo})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetStepSearcher.GatheringMirrorEliminations(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Collections.Generic.List{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.List{Sudoku.Drawing.DrawingInfo})">
             <summary>
             Gathering mirror eliminations. This method is an entry for the method check mirror in base class.
             </summary>
@@ -3509,7 +3509,7 @@
             A <see cref="T:System.Boolean"/> value indicating whether this method has been found eliminations.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetStepSearcher.CheckCrossline(Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetStepSearcher.CheckCrossline(Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check the cross-line cells.
             </summary>
@@ -3533,7 +3533,7 @@
             <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetStepSearcher.CheckBibiPattern(Sudoku.Data.SudokuGrid@,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Boolean,System.Int16,System.Int16,Sudoku.Data.GridMap@,Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair@,Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetStepSearcher.CheckBibiPattern(Sudoku.Data.SudokuGrid@,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int16,System.Int16,Sudoku.Data.Cells@,Sudoku.Solving.Manual.Exocets.Eliminations.BiBiPattern@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPair@,Sudoku.Solving.Manual.Exocets.Eliminations.Swordfish@)">
             <summary>
             Check Bi-bi pattern eliminations.
             </summary>
@@ -3568,7 +3568,7 @@
             Indicates an exocet pattern.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Initializes an instance with the specified cells.
             </summary>
@@ -3639,7 +3639,7 @@
             Indicates the mirror R2 cell.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
             <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
@@ -3654,7 +3654,7 @@
             <param name="tr1">(<see langword="out"/> parameter) The target R1 cell.</param>
             <param name="tr2">(<see langword="out"/> parameter) The target R2 cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
             <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
@@ -3700,7 +3700,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CheckCrossline(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32[]@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CheckCrossline(Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32[]@)">
             <summary>
             Check the cross-line cells.
             </summary>
@@ -3717,7 +3717,7 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.DeepCrosslineCheck(System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Span{System.Int32}@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.DeepCrosslineCheck(System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Span{System.Int32}@)">
             <summary>
             Deeply check of cross-line cells (franken/mutant exocets can be searched here).
             </summary>
@@ -3727,7 +3727,7 @@
             <param name="extraRegionsMask">(<see langword="ref"/> parameter) The extra regions.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CompatibilityTest(System.Int16,Sudoku.Data.Cells[],Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32)">
             <summary>
             Compatibility test.
             </summary>
@@ -3739,10 +3739,10 @@
             <param name="t2">The target cell 2.</param>
             <returns>The mask of all incompatible values.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CompatibilityTest2(Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest,Sudoku.Data.GridMap@,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CompatibilityTest2(Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTest,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32)">
             <summary>
             The compatibility testing after the method
-            <see cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int32,System.Int32)"/>.
+            <see cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CompatibilityTest(System.Int16,Sudoku.Data.Cells[],Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32)"/>.
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="compatibilityElims">The compatibility eliminations.</param>
@@ -3750,7 +3750,7 @@
             <param name="baseCandidatesMask">The base candidates mask.</param>
             <param name="t1">The target cell 1.</param>
             <param name="t2">The target cell 2.</param>
-            <seealso cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetStepSearcher.CompatibilityTest(System.Int16,Sudoku.Data.Cells[],Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SeStepInfo">
             <summary>
@@ -3813,7 +3813,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.SeStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeStepSearcher.CheckCrossline(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeStepSearcher.CheckCrossline(Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check the cross-line cells.
             </summary>
@@ -3887,7 +3887,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>Hobiwan's fish</b> technique.
             </summary>
@@ -4061,7 +4061,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap@,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.Cells@,System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>normal fish</b> technique.
             </summary>
@@ -4143,7 +4143,7 @@
             </param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetDirectView(Sudoku.Data.SudokuGrid@,System.Int32,System.ReadOnlySpan{System.Int32}@,System.ReadOnlySpan{System.Int32}@,System.Boolean,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetDirectView(Sudoku.Data.SudokuGrid@,System.Int32,System.ReadOnlySpan{System.Int32}@,System.ReadOnlySpan{System.Int32}@,System.Boolean,Sudoku.Data.Cells@)">
             <summary>
             Get the direct fish view with the specified grid and the base sets.
             </summary>
@@ -4155,9 +4155,9 @@
             <param name="finCellsMap">(<see langword="in"/> parameter) The fins map.</param>
             <returns>The view.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetGridMap(Sudoku.Data.GridMap@,System.ReadOnlySpan{System.Int32}@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetGridMap(Sudoku.Data.Cells@,System.ReadOnlySpan{System.Int32}@,Sudoku.Data.Cells@)">
             <summary>
-            Record all cells in the all regions to a <see cref="T:Sudoku.Data.GridMap"/> instance.
+            Record all cells in the all regions to a <see cref="T:Sudoku.Data.Cells"/> instance.
             </summary>
             <param name="map">(<see langword="ref"/> parameter) The map.</param>
             <param name="regions">(<see langword="in"/> parameter) All region offsets.</param>
@@ -4313,7 +4313,7 @@
             <param name="TargetCells">All target cells.</param>
             <param name="HasValueCell">Indicates whether the current ALC contains value cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean)">
             <summary>
             Provides a usage of <b>almost locked candidates</b> (ALC) technique.
             </summary>
@@ -4384,7 +4384,7 @@
             <param name="size">The size.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Process the calculation.
             </summary>
@@ -4780,7 +4780,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.CreateInstance(Sudoku.Data.SudokuGrid@,System.Int32)">
             <summary>
-            Create a <see cref="T:Sudoku.Data.GridMap"/> instance with the specified solution.
+            Create a <see cref="T:Sudoku.Data.Cells"/> instance with the specified solution.
             If the puzzle has been solved, this method will create a grid map of
             distribution of a single digit in this solution.
             </summary>
@@ -5356,7 +5356,7 @@
             <param name="Loop">The loop.</param>
             <param name="Guardians">All guardians.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>guardian</b> technique.
             </summary>
@@ -5395,7 +5395,7 @@
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepSearcher.CreateGuardianMap(System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepSearcher.CreateGuardianMap(System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Create the guardian map.
             </summary>
@@ -5878,7 +5878,7 @@
             <param name="Cells">All cells used.</param>
             <param name="Digits">All digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>hidden subset</b> technique.
             </summary>
@@ -5914,7 +5914,7 @@
             <param name="Digits">All digits used.</param>
             <param name="IsLocked">Indicates whether the subset is locked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>naked subset</b> technique.
             </summary>
@@ -5960,7 +5960,7 @@
             <param name="Cells">All cells used.</param>
             <param name="Digits">All digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>subset</b> technique.
             </summary>
@@ -6577,7 +6577,7 @@
             <param name="Cells">All cells.</param>
             <param name="DigitsMask">All digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) technique.
             </summary>
@@ -6622,7 +6622,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Check type 1.
             </summary>
@@ -6633,7 +6633,7 @@
             <param name="normalDigits">The normal digits mask.</param>
             <param name="extraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Check type 2.
             </summary>
@@ -6644,7 +6644,7 @@
             <param name="normalDigits">The normal digits mask.</param>
             <param name="extraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,System.Int16,System.Int16,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,System.Int16,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Check type 3.
             </summary>
@@ -6655,10 +6655,10 @@
             <param name="extraDigits">The extra digits mask.</param>
             <param name="extraCellsMap">(<see langword="in"/> parameter) The map of extra cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType14(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,System.Int16,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType14(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Check type 4 and a part of type 1 that
-            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Int16,System.Int32)"/>
+            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32)"/>
             cannot be found.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
@@ -6699,7 +6699,7 @@
             <param name="Cells">All cells.</param>
             <param name="DigitsMask">All digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 1 technique.
             </summary>
@@ -6733,7 +6733,7 @@
             <param name="DigitsMask">All digits mask.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 2 technique.
             </summary>
@@ -6770,7 +6770,7 @@
             <param name="ExtraDigitsMask">All extra digits mask.</param>
             <param name="Region">The region.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 3 technique.
             </summary>
@@ -6807,7 +6807,7 @@
             <param name="DigitsMask">All digits mask.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 4 technique.
             </summary>
@@ -6842,7 +6842,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="Loop">The loop.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>unique loop</b> (UL) technique.
             </summary>
@@ -6900,7 +6900,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@)">
             <summary>
             Check type 1.
             </summary>
@@ -6912,7 +6912,7 @@
             <param name="links">The links.</param>
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 2.
             </summary>
@@ -6925,7 +6925,7 @@
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 3.
             </summary>
@@ -6938,7 +6938,7 @@
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 4.
             </summary>
@@ -6968,7 +6968,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="Loop">The loop.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>unique loop type 1</b> technique.
             </summary>
@@ -7001,7 +7001,7 @@
             <param name="Loop">The loop.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Provides a usage of <b>unique loop type 2</b> technique.
             </summary>
@@ -7036,7 +7036,7 @@
             <param name="SubsetDigitsMask">The subset digits mask.</param>
             <param name="SubsetCells">The subset cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>unique loop type 3</b> technique.
             </summary>
@@ -7071,7 +7071,7 @@
             <param name="Loop">The loop.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>unique loop type 4</b> technique.
             </summary>
@@ -7103,7 +7103,7 @@
             <param name="Map">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern</b> (BDP) technique.
             </summary>
@@ -7149,7 +7149,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Check type 1.
             </summary>
@@ -7161,7 +7161,7 @@
             <param name="centerMask">The center mask.</param>
             <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Check type 2.
             </summary>
@@ -7173,7 +7173,7 @@
             <param name="centerMask">The center mask.</param>
             <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Check type 3.
             </summary>
@@ -7185,7 +7185,7 @@
             <param name="centerMask">The center mask.</param>
             <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Check type 4.
             </summary>
@@ -7209,7 +7209,7 @@
             <param name="Map">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern type 1</b> (BDP) technique.
             </summary>
@@ -7234,7 +7234,7 @@
             <param name="DigitsMask">The digits mask.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern type 2</b> (BDP) technique.
             </summary>
@@ -7264,7 +7264,7 @@
             <param name="ExtraCells">The extra cells.</param>
             <param name="ExtraDigitsMask">The extra digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern type 3</b> (BDP) technique.
             </summary>
@@ -7295,13 +7295,13 @@
             <param name="ConjugateRegion">
             The so-called conjugate region. If you don't know what is a "conjugate region",
             please read the comments in the method
-            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@)"/>
+            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)"/>
             for more details.
             </param>
             <param name="ExtraMask">Indicates the mask of digits that is the combination.</param>
-            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern type 4</b> (BDP) technique.
             </summary>
@@ -7312,11 +7312,11 @@
             <param name="ConjugateRegion">
             The so-called conjugate region. If you don't know what is a "conjugate region",
             please read the comments in the method
-            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@)"/>
+            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)"/>
             for more details.
             </param>
             <param name="ExtraMask">Indicates the mask of digits that is the combination.</param>
-            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap@)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4StepInfo.Difficulty">
             <inheritdoc/>
@@ -7424,7 +7424,7 @@
             Encapsulates a pattern for Qiu's deadly pattern (QDP).
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.#ctor(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.#ctor(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Initializes an instance with the specified maps.
             </summary>
@@ -7452,7 +7452,7 @@
             Indicates the full map.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="pair">(<see langword="out"/> parameter) The pair map.</param>
             <param name="square">(<see langword="out"/> parameter) The square map.</param>
@@ -7574,7 +7574,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16,System.Int16)">
             <summary>
             Check type 1.
             </summary>
@@ -7588,7 +7588,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="otherDigitsMask">Other digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16,System.Int16)">
             <summary>
             Check type 2.
             </summary>
@@ -7602,7 +7602,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="otherDigitsMask">Other digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16,System.Int16)">
             <summary>
             Check type 3.
             </summary>
@@ -7616,7 +7616,7 @@
             <param name="comparer">The mask comparer.</param>
             <param name="otherDigitsMask">Other digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},System.Boolean,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},System.Boolean,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16)">
             <summary>
             Check type 4.
             </summary>
@@ -7628,7 +7628,7 @@
             <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
             <param name="comparer">The mask comparer.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckLockedType(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckLockedType(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16)">
             <summary>
             Check locked type.
             </summary>
@@ -7994,7 +7994,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.IsConjugatePair(System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.IsConjugatePair(System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             To determine whether the specified region forms a conjugate pair
             of the specified digit, and the cells where they contain the digit
@@ -8044,7 +8044,7 @@
             <param name="urCells">The all UR cells used.</param>
             <returns>The list of highlight cells.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check type 1.
             </summary>
@@ -8061,7 +8061,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check type 2.
             </summary>
@@ -8079,7 +8079,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check type 3.
             </summary>
@@ -8097,7 +8097,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check type 4.
             </summary>
@@ -8115,7 +8115,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType5(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType5(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check type 5.
             </summary>
@@ -8132,7 +8132,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType6(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckType6(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check type 6.
             </summary>
@@ -8150,7 +8150,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckHidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckHidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check hidden UR.
             </summary>
@@ -8167,7 +8167,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check2D(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check2D(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+2D.
             </summary>
@@ -8185,7 +8185,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check2B1SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check2B1SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+2B/1SL.
             </summary>
@@ -8203,7 +8203,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check2D1SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check2D1SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+2D/1SL.
             </summary>
@@ -8221,7 +8221,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3X(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3X(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+3X.
             </summary>
@@ -8238,7 +8238,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3X2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3X2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+3X/2SL.
             </summary>
@@ -8255,7 +8255,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3N2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3N2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+3N/2SL.
             </summary>
@@ -8272,7 +8272,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3U2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3U2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+3U/2SL.
             </summary>
@@ -8289,7 +8289,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3E2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check3E2SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+3E/2SL.
             </summary>
@@ -8306,7 +8306,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check4X3SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check4X3SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+4X/3SL.
             </summary>
@@ -8324,7 +8324,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check4C3SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Check4C3SL(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check UR+4C/3SL.
             </summary>
@@ -8342,7 +8342,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckWing(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckWing(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32)">
             <summary>
             Check UR-XY-Wing, UR-XYZ-Wing and UR-WXYZ-Wing.
             </summary>
@@ -8828,7 +8828,7 @@
             <param name="Cells">The cells.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>unique square</b> (US) technique.
             </summary>
@@ -8866,7 +8866,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 1.
             </summary>
@@ -8875,7 +8875,7 @@
             <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
             <param name="mask">The mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 2.
             </summary>
@@ -8883,7 +8883,7 @@
             <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
             <param name="mask">The mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 3.
             </summary>
@@ -8892,7 +8892,7 @@
             <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
             <param name="mask">The mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.GridMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 4.
             </summary>
@@ -8924,7 +8924,7 @@
             <param name="DigitsMask">The digits mask.</param>
             <param name="Candidate">Indicates the true candidate.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>unique square type 1</b> (US) technique.
             </summary>
@@ -8950,7 +8950,7 @@
             <param name="DigitsMask">The digits mask.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>unique square type 2</b> (US) technique.
             </summary>
@@ -8980,7 +8980,7 @@
             <param name="ExtraDigitsMask">The extra digits mask.</param>
             <param name="ExtraCells">The extra cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>unique square type 3</b> (US) technique.
             </summary>
@@ -9017,7 +9017,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="ConjugateRegion">The so-called conjugate region.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap@,System.Int16,System.Int32,System.Int32,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>unique square type 4</b> (US) technique.
             </summary>

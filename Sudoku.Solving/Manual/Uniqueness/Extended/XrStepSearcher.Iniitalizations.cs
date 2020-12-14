@@ -51,13 +51,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <summary>
 		/// All combinations.
 		/// </summary>
-		private static readonly IReadOnlyList<(GridMap, IReadOnlyList<(int, int)>, int)> Combinations;
+		private static readonly IReadOnlyList<(Cells, IReadOnlyList<(int, int)>, int)> Combinations;
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
 		static XrStepSearcher()
 		{
-			var combinations = new List<(GridMap, IReadOnlyList<(int, int)>, int)>();
+			var combinations = new List<(Cells, IReadOnlyList<(int, int)>, int)>();
 
 			// Fit type. e.g.
 			// ab | ab
@@ -108,7 +108,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							continue;
 						}
 
-						var map = GridMap.Empty;
+						var map = Cells.Empty;
 						var pairs = new List<(int, int)>();
 						foreach (int pos in mask)
 						{

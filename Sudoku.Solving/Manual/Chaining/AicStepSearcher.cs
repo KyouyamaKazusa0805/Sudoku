@@ -209,7 +209,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			foreach (var (start, end, type) in links)
 			{
 				if (type == LinkType.Weak
-					&& new SudokuMap { start, end }.PeerIntersection is { IsNotEmpty: true } elimMap)
+					&& new Candidates { start, end }.PeerIntersection is { IsNotEmpty: true } elimMap)
 				{
 					foreach (int candidate in elimMap)
 					{
@@ -270,7 +270,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Get eliminations as an AIC.
 				var (startCandidate, _) = target.Chain[1];
 				var (endCandidate, _) = target.Chain[^2];
-				var elimMap = new SudokuMap { startCandidate, endCandidate }.PeerIntersection;
+				var elimMap = new Candidates { startCandidate, endCandidate }.PeerIntersection;
 				if (elimMap.IsEmpty)
 				{
 					return null;

@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		private void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid, int size)
 		{
 			var bag = new List<StepInfo>();
-			var conclusionList = new GridMap[9];
+			var conclusionList = new Cells[9];
 			if (_checkPom)
 			{
 				var searcher = new PomStepSearcher();
@@ -119,14 +119,14 @@ namespace Sudoku.Solving.Manual.Fishes
 				foreach (int[] baseSets in baseSetsList)
 				{
 					var baseRegionMap = new RegionMap(baseSets);
-					var baseSetsMap = GridMap.Empty;
+					var baseSetsMap = Cells.Empty;
 					foreach (int baseSet in baseSets)
 					{
 						baseSetsMap |= RegionMaps[baseSet];
 					}
 
-					var endoFinsMap = GridMap.Empty;
-					var tempMap = GridMap.Empty;
+					var endoFinsMap = Cells.Empty;
+					var tempMap = Cells.Empty;
 					for (int i = 0; i < size; i++)
 					{
 						var baseSetMap = RegionMaps[baseSets[i]];
@@ -144,7 +144,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						continue;
 					}
 
-					var elimEndoFinsMap = GridMap.Empty;
+					var elimEndoFinsMap = Cells.Empty;
 					if (endoFinsMap.IsNotEmpty)
 					{
 						elimEndoFinsMap = endoFinsMap.PeerIntersection & candMap;
@@ -188,7 +188,7 @@ namespace Sudoku.Solving.Manual.Fishes
 							{
 								var coverRegionMap = new RegionMap(comb) | new RegionMap(comb2);
 								var coverSets = coverRegionMap.ToArray();
-								var coverSetMap = GridMap.Empty;
+								var coverSetMap = Cells.Empty;
 								foreach (int coverSet in coverSets)
 								{
 									coverSetMap |= RegionMaps[coverSet];
@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									continue;
 								}
 
-								var elimExoFinsMap = GridMap.Empty;
+								var elimExoFinsMap = Cells.Empty;
 								if (exoFinsMap.IsNotEmpty)
 								{
 									elimExoFinsMap = exoFinsMap.PeerIntersection & candMap;
@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									elimMap &= elimEndoFinsMap;
 								}
 
-								GridMap one = GridMap.Empty, two = GridMap.Empty;
+								Cells one = Cells.Empty, two = Cells.Empty;
 								for (int i = 0; i < coverSets.Length; i++)
 								{
 									var z = RegionMaps[coverSets[i]];

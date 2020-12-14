@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		protected override string GetAdditional()
 		{
 			string digitsStr = new DigitCollection(ExtraDigits).ToString();
-			string cellsStr = new GridMap(ExtraCells).ToString();
+			string cellsStr = new Cells(ExtraCells).ToString();
 			string regionStr = new RegionCollection(Region).ToString();
 			return $"{digitsStr} in {(IsNaked ? string.Empty : "only ")}cells {cellsStr} in {regionStr}";
 		}

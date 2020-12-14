@@ -31,6 +31,6 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates all direct lines.
 		/// </summary>
-		public IReadOnlyList<(GridMap Start, GridMap End)>? DirectLines { get; init; }
+		public IReadOnlyList<(Cells Start, Cells End)>? DirectLines { get; init; }
 	}
 }

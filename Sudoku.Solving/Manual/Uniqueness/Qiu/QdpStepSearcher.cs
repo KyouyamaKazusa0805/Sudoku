@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					}
 
 					static void f(
-						in SudokuGrid grid, in GridMap map, ref short appearedDigitsMask,
+						in SudokuGrid grid, in Cells map, ref short appearedDigitsMask,
 						ref short distinctionMask, ref int appearedParts)
 					{
 						bool flag = false;
@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					{
 						// Step 2: To determine whether the digits in pair cells
 						// will only appears in square cells.
-						var tempMap = GridMap.Empty;
+						var tempMap = Cells.Empty;
 						foreach (int digit in digits)
 						{
 							tempMap |= CandMaps[digit];
@@ -171,10 +171,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 		}
 
-		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
-		partial void CheckType2(IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
-		partial void CheckType3(IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
-		partial void CheckType4(IList<StepInfo> accumulator, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer);
-		partial void CheckLockedType(IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in GridMap pair, in GridMap square, in GridMap baseLine, in Pattern pattern, short comparer);
+		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in Cells pair, in Cells square, in Cells baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
+		partial void CheckType2(IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in Cells pair, in Cells square, in Cells baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
+		partial void CheckType3(IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in Cells pair, in Cells square, in Cells baseLine, in Pattern pattern, short comparer, short otherDigitsMask);
+		partial void CheckType4(IList<StepInfo> accumulator, bool isRow, in Cells pair, in Cells square, in Cells baseLine, in Pattern pattern, short comparer);
+		partial void CheckLockedType(IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in Cells pair, in Cells square, in Cells baseLine, in Pattern pattern, short comparer);
 	}
 }

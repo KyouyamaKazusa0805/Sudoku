@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="SubsetCells">The subset cells.</param>
 	public sealed record UlType3StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in GridMap Loop, short SubsetDigitsMask, IReadOnlyList<int> SubsetCells)
+		in Cells Loop, short SubsetDigitsMask, IReadOnlyList<int> SubsetCells)
 		: UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
 		/// <inheritdoc/>
@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string subsetName = SubsetNames[SubsetCells.Count + 1];
 			string digitsStr = new DigitCollection(SubsetDigitsMask.GetAllSets()).ToString();
-			string subsetCellsStr = new GridMap(SubsetCells).ToString();
+			string subsetCellsStr = new Cells(SubsetCells).ToString();
 			return
 				$"{Name}: Digits {Digit1 + 1}, {Digit2 + 1} in cells {cellsStr} " +
 				$"with the naked {subsetName} with extra digits {digitsStr} " +

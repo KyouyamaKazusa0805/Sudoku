@@ -191,13 +191,13 @@ namespace Sudoku.Constants
 		/// <example>
 		/// '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
 		/// </example>
-		public static readonly GridMap[] RegionMaps;
+		public static readonly Cells[] RegionMaps;
 
 		/// <summary>
 		/// Indicates the peer maps using <see cref="Peers"/> table.
 		/// </summary>
 		/// <seealso cref="Peers"/>
-		public static readonly GridMap[] PeerMaps;
+		public static readonly Cells[] PeerMaps;
 
 		/// <summary>
 		/// <para>
@@ -214,6 +214,6 @@ namespace Sudoku.Constants
 		/// In addition, in this data structure, "<c>CoverSet</c>" is a block and "<c>BaseSet</c>" is a line.
 		/// </para>
 		/// </summary>
-		public static readonly IReadOnlyDictionary<(byte, byte), (GridMap, GridMap, GridMap)> IntersectionMaps;
+		public static readonly IReadOnlyDictionary<(byte, byte), (Cells, Cells, Cells)> IntersectionMaps;
 	}
 }

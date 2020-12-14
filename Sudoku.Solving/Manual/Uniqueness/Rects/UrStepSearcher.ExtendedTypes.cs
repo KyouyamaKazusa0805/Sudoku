@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void Check2D(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 		{
 			//   ↓ corner1
 			// (ab )  abx
@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			short xyMask = (short)(o ^ comparer);
 			int x = xyMask.FindFirstSet(), y = xyMask.GetNextSet(x);
-			var inter = new GridMap(otherCells).PeerIntersection - urCells;
+			var inter = new Cells(otherCells).PeerIntersection - urCells;
 			foreach (int possibleXyCell in inter)
 			{
 				if (grid.GetCandidateMask(possibleXyCell) != xyMask)
@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void Check2B1SL(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 		{
 			//   ↓ corner1, corner2
 			// (ab )  (ab )
@@ -213,7 +213,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								if (urCell == corner1 || urCell == corner2)
 								{
-									if (new GridMap { urCell, otherCell }.CoveredRegions.Contains(region))
+									if (new Cells { urCell, otherCell }.CoveredRegions.Contains(region))
 									{
 										foreach (int d in grid.GetCandidateMask(urCell))
 										{
@@ -301,7 +301,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void Check2D1SL(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 		{
 			//   ↓ corner1
 			// (ab )   aby
@@ -362,7 +362,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									unsafe
 									{
 										static bool same(int r, in int region) => r == region;
-										if (new GridMap { urCell, otherCell }.CoveredRegions.Any(&same, region))
+										if (new Cells { urCell, otherCell }.CoveredRegions.Any(&same, region))
 										{
 											foreach (int d in grid.GetCandidateMask(urCell))
 											{
@@ -444,7 +444,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void Check3X(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 		{
 			//   ↓ cornerCell
 			// (ab )  abx
@@ -573,7 +573,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void Check3X2SL(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 		{
 			//   ↓ cornerCell
 			// (ab )    abx
@@ -592,8 +592,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				int abxCell = adjacentCellsMap.First;
 				int abyCell = adjacentCellsMap.SetAt(1);
-				var map1 = new GridMap { abzCell, abxCell };
-				var map2 = new GridMap { abzCell, abyCell };
+				var map1 = new Cells { abzCell, abxCell };
+				var map2 = new Cells { abzCell, abyCell };
 				if (!IsConjugatePair(b, map1, map1.CoveredLine)
 					|| !IsConjugatePair(a, map2, map2.CoveredLine))
 				{
@@ -688,7 +688,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void Check3N2SL(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 		{
 			//   ↓ cornerCell
 			// (ab )-----abx
@@ -709,7 +709,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int abyCell = adjacentCellsMap.SetAt(1);
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
-				var linkMap = new GridMap { begin, abzCell };
+				var linkMap = new Cells { begin, abzCell };
 				foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 				{
 					if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
@@ -719,7 +719,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					// Step 2: Get the link cell that is adjacent to 'cornerCell'
 					// and check the strong link.
-					var secondLinkMap = new GridMap { cornerCell, begin };
+					var secondLinkMap = new Cells { cornerCell, begin };
 					if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
 					{
 						continue;
@@ -817,7 +817,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void Check3U2SL(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 		{
 			//   ↓ cornerCell
 			// (ab )-----abx
@@ -836,7 +836,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int abyCell = adjacentCellsMap.SetAt(1);
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
-				var linkMap = new GridMap { begin, abzCell };
+				var linkMap = new Cells { begin, abzCell };
 				foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 				{
 					if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
@@ -844,7 +844,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					var secondLinkMap = new GridMap { cornerCell, end };
+					var secondLinkMap = new Cells { cornerCell, end };
 					if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
 					{
 						continue;
@@ -940,7 +940,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void Check3E2SL(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int cornerCell, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 		{
 			//   ↓ cornerCell
 			// (ab )-----abx
@@ -959,7 +959,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int abyCell = adjacentCellsMap.SetAt(1);
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
-				var linkMap = new GridMap { begin, abzCell };
+				var linkMap = new Cells { begin, abzCell };
 				foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 				{
 					if (!IsConjugatePair(a, linkMap, linkMap.CoveredLine))
@@ -967,7 +967,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					var secondLinkMap = new GridMap { cornerCell, end };
+					var secondLinkMap = new Cells { cornerCell, end };
 					if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
 					{
 						continue;
@@ -1064,7 +1064,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void Check4X3SL(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 		{
 			//   ↓ corner1, corner2
 			// (abx)-----(aby)
@@ -1072,7 +1072,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//             | b
 			//        a    |
 			//  abz ----- abw
-			var link1Map = new GridMap { corner1, corner2 };
+			var link1Map = new Cells { corner1, corner2 };
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
 				if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
@@ -1085,13 +1085,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				foreach (var (head, begin, end, extra) in
 					stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
 				{
-					var link2Map = new GridMap { begin, end };
+					var link2Map = new Cells { begin, end };
 					if (!IsConjugatePair(b, link2Map, link2Map.CoveredLine))
 					{
 						continue;
 					}
 
-					var link3Map = new GridMap { end, extra };
+					var link3Map = new Cells { end, extra };
 					if (!IsConjugatePair(a, link3Map, link3Map.CoveredLine))
 					{
 						continue;
@@ -1198,7 +1198,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		[SkipLocalsInit]
 		partial void Check4C3SL(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap, int index)
+			short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 		{
 			// Subtype 1:
 			//   ↓ corner1, corner2
@@ -1215,8 +1215,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//   | b       | a
 			//   |         |
 			//  abz       abw
-			var innerMaps = (stackalloc GridMap[2]);
-			var link1Map = new GridMap { corner1, corner2 };
+			var innerMaps = (stackalloc Cells[2]);
+			var link1Map = new Cells { corner1, corner2 };
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
 				if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
@@ -1229,13 +1229,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				foreach (var (abx, aby, abw, abz) in
 					stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) })
 				{
-					var link2Map = new GridMap { aby, abw };
+					var link2Map = new Cells { aby, abw };
 					if (!IsConjugatePair(a, link2Map, link2Map.CoveredLine))
 					{
 						continue;
 					}
 
-					GridMap link3Map1 = new() { abw, abz }, link3Map2 = new() { abx, abz };
+					Cells link3Map1 = new() { abw, abz }, link3Map2 = new() { abx, abz };
 					innerMaps[0] = link3Map1;
 					innerMaps[1] = link3Map2;
 					for (int i = 0; i < 2; i++)
@@ -1344,7 +1344,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="index">The index.</param>
 		partial void CheckWing(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, in GridMap otherCellsMap,
+			short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap,
 			int size, int index)
 		{
 			// Subtype 1:
@@ -1364,7 +1364,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			if (new GridMap { corner1, corner2 }.AllSetsAreInOneRegion(out int region) && region < 9)
+			if (new Cells { corner1, corner2 }.AllSetsAreInOneRegion(out int region) && region < 9)
 			{
 				// Subtype 1.
 				int otherCell1 = otherCellsMap.First, otherCell2 = otherCellsMap.SetAt(1);
@@ -1383,7 +1383,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					return;
 				}
 
-				var testMap = new GridMap { otherCell1, otherCell2 }.PeerIntersection;
+				var testMap = new Cells { otherCell1, otherCell2 }.PeerIntersection;
 				short extraDigitsMask = (short)(mask ^ comparer);
 				int[] cells = map.ToArray();
 				for (int i1 = 0, length = cells.Length; i1 < length - size + 1; i1++)
@@ -1433,7 +1433,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							// Now check eliminations.
 							var conclusions = new List<Conclusion>();
 							int elimDigit = m.FindFirstSet();
-							var elimMap = new GridMap { c1, c2 }.PeerIntersection & CandMaps[elimDigit];
+							var elimMap = new Cells { c1, c2 }.PeerIntersection & CandMaps[elimDigit];
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -1539,7 +1539,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									// Now check eliminations.
 									var conclusions = new List<Conclusion>();
 									int elimDigit = m.FindFirstSet();
-									var elimMap = new GridMap { c1, c2, c3 }.PeerIntersection & CandMaps[elimDigit];
+									var elimMap = new Cells { c1, c2, c3 }.PeerIntersection & CandMaps[elimDigit];
 									if (elimMap.IsEmpty)
 									{
 										continue;
@@ -1641,7 +1641,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										// Now check eliminations.
 										var conclusions = new List<Conclusion>();
 										int elimDigit = m.FindFirstSet();
-										var elimMap = new GridMap { c1, c2, c3, c4 }.PeerIntersection & CandMaps[elimDigit];
+										var elimMap = new Cells { c1, c2, c3, c4 }.PeerIntersection & CandMaps[elimDigit];
 										if (elimMap.IsEmpty)
 										{
 											continue;

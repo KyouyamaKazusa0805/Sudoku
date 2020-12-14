@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="Map">The cells used.</param>
 	/// <param name="DigitsMask">The digits mask.</param>
 	public abstract record BdpStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Map, short DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Map, short DigitsMask)
 		: UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>

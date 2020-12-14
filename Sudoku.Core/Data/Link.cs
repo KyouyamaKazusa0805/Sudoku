@@ -77,7 +77,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() =>
-			$"{new SudokuMap { StartCandidate }}{LinkType.GetNotation()}{new SudokuMap { EndCandidate }}";
+			$"{new Candidates { StartCandidate }}{LinkType.GetNotation()}{new Candidates { EndCandidate }}";
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);

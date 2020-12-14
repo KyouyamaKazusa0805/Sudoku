@@ -32,8 +32,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override string ToString()
 		{
 			string digit = new DigitCollection(DigitsMask.GetAllSets()).ToString();
-			string extraCellStr = new GridMap { ExtraCell }.ToString();
-			string cellsStr = new GridMap(Cells).ToString();
+			string extraCellStr = new Cells { ExtraCell }.ToString();
+			string cellsStr = new Cells(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digit} with cells {cellsStr}, with extra cell {extraCellStr} => {elimStr}";
 		}

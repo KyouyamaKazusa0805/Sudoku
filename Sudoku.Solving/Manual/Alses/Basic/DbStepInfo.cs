@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override string ToString()
 		{
 			const string separator = ", ";
-			string pivotStr = new GridMap { Pivot }.ToString();
+			string pivotStr = new Cells { Pivot }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Cell {pivotStr} - {g()} => {elimStr}";
 

@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="IsLocked">Indicates whether the subset is locked.</param>
 	public sealed record NakedSubsetStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, in GridMap Cells, IReadOnlyList<int> Digits, bool? IsLocked)
+		int Region, in Cells Cells, IReadOnlyList<int> Digits, bool? IsLocked)
 		: SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
 #if DOUBLE_LAYERED_ASSUMPTION
 		, IHasParentNodeInfo
@@ -102,7 +102,7 @@ namespace Sudoku.Solving.Manual.Subsets
 			{
 				string regionStr = new RegionCollection(Region).ToString();
 				string digitsStr = new DigitCollection(Digits).ToString();
-				string cellsStr = new GridMap(Cells).ToString();
+				string cellsStr = Cells.ToString();
 				return new StringBuilder()
 					.Append(Name)
 					.Append(Resources.GetValue("Colon"))

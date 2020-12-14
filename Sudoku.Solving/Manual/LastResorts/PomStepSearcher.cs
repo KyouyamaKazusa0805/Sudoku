@@ -46,11 +46,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <returns>The 9 maps for invalid positions of each digit.</returns>
-		private static GridMap[] GetInvalidPos(in SudokuGrid grid)
+		private static Cells[] GetInvalidPos(in SudokuGrid grid)
 		{
-			var result = new GridMap[9];
-			var invalidPos = new GridMap[9];
-			var mustPos = new GridMap[9];
+			var result = new Cells[9];
+			var invalidPos = new Cells[9];
+			var mustPos = new Cells[9];
 			for (int digit = 0; digit < 9; digit++)
 			{
 				for (int cell = 0; cell < 81; cell++)
@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// Get templates.
 		/// </summary>
 		/// <returns>The templates.</returns>
-		private static IEnumerable<GridMap> GetTemplates()
+		private static IEnumerable<Cells> GetTemplates()
 		{
 #if true
 			for (int i1 = 0; i1 < 9; i1++)

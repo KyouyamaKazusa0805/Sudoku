@@ -48,11 +48,11 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Indicates all cells used in this conclusions list.
 		/// </summary>
-		public GridMap Cells
+		public Cells Cells
 		{
 			get
 			{
-				var result = GridMap.Empty;
+				var result = Cells.Empty;
 				foreach (var conclusion in _collection)
 				{
 					result.AddAnyway(conclusion.Cell);
@@ -152,7 +152,7 @@ namespace Sudoku.Data.Collections
 							group conclusion by conclusion.Digit)
 						{
 							sb
-								.Append(new GridMap(from conclusion in digitGroup select conclusion.Cell).ToString())
+								.Append(new Cells(from conclusion in digitGroup select conclusion.Cell).ToString())
 								.Append(op)
 								.Append(digitGroup.Key + 1)
 								.Append(separator);

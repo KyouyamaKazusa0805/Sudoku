@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Alses
 				return;
 			}
 
-			var list = new List<GridMap>(4);
+			var list = new List<Cells>(4);
 			foreach (bool cannibalMode in stackalloc[] { false, true })
 			{
 				foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
@@ -101,8 +101,8 @@ namespace Sudoku.Solving.Manual.Alses
 							foreach (int[] selectedCellsInBlock in blockMap.ToArray().GetSubsets(i))
 							{
 								short blockMask = 0;
-								var currentBlockMap = new GridMap(selectedCellsInBlock);
-								var elimMapBlock = GridMap.Empty;
+								var currentBlockMap = new Cells(selectedCellsInBlock);
+								var elimMapBlock = Cells.Empty;
 
 								// Get the links of the block.
 								foreach (int cell in selectedCellsInBlock)
@@ -124,8 +124,8 @@ namespace Sudoku.Solving.Manual.Alses
 									foreach (int[] selectedCellsInLine in lineMap.ToArray().GetSubsets(j))
 									{
 										short lineMask = 0;
-										var currentLineMap = new GridMap(selectedCellsInLine);
-										var elimMapLine = GridMap.Empty;
+										var currentLineMap = new Cells(selectedCellsInLine);
+										var elimMapLine = Cells.Empty;
 
 										// Get the links of the line.
 										foreach (int cell in selectedCellsInLine)
@@ -154,7 +154,7 @@ namespace Sudoku.Solving.Manual.Alses
 											continue;
 										}
 
-										var elimMapIsolated = GridMap.Empty;
+										var elimMapIsolated = Cells.Empty;
 										int digitIsolated = maskIsolated.FindFirstSet();
 										if (digitIsolated != 32)
 										{

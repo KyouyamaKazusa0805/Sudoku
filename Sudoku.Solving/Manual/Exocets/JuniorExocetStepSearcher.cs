@@ -223,7 +223,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="candidateOffsets">The highliht candidates.</param>
 		/// <returns>The result.</returns>
 		private (Target, Mirror) GatheringMirrorEliminations(
-			int tq1, int tq2, int tr1, int tr2, in GridMap m1, in GridMap m2, short lockedNonTarget,
+			int tq1, int tq2, int tr1, int tr2, in Cells m1, in Cells m2, short lockedNonTarget,
 			int x, in SudokuGrid grid, short baseCandidatesMask, List<DrawingInfo> cellOffsets,
 			List<DrawingInfo> candidateOffsets)
 		{
@@ -292,7 +292,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the structure passed the validation.
 		/// </returns>
-		private bool CheckCrossline(in GridMap crossline, short digitsNeedChecking)
+		private bool CheckCrossline(in Cells crossline, short digitsNeedChecking)
 		{
 			foreach (int digit in digitsNeedChecking)
 			{
@@ -446,8 +446,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		[SkipLocalsInit]
 		private bool CheckBibiPattern(
 			in SudokuGrid grid, short baseCandidatesMask, int b1, int b2,
-			int tq1, int tq2, int tr1, int tr2, in GridMap crossline, bool isRow,
-			short lockedQ, short lockedR, in GridMap targetMap,
+			int tq1, int tq2, int tr1, int tr2, in Cells crossline, bool isRow,
+			short lockedQ, short lockedR, in Cells targetMap,
 			out BiBiPattern bibiElims, out TargetPair targetPairElims, out Swordfish swordfishElims)
 		{
 			bibiElims = new();
@@ -551,7 +551,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						targetPairElims.Add(new(ConclusionType.Elimination, cell, digit));
 					}
 				}
-				elimMap = new GridMap { b1, b2 }.PeerIntersection;
+				elimMap = new Cells { b1, b2 }.PeerIntersection;
 				if (elimMap.IsEmpty)
 				{
 					return true;

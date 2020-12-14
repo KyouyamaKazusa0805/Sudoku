@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 				foreach (int digit in m)
 				{
-					GridMap elimMap;
+					Cells elimMap;
 					(r[0], r[1], elimMap) =
 						a.Overlaps(CandMaps[digit])
 						? (coverSet, baseSet, a & CandMaps[digit])

@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleStepSearcher"/>
-		internal static GridMap EmptyMap { get; private set; }
+		internal static Cells EmptyMap { get; private set; }
 
 		/// <summary>
 		/// The bi-value cells map.
@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleStepSearcher"/>
-		internal static GridMap BivalueMap { get; private set; }
+		internal static Cells BivalueMap { get; private set; }
 
 		/// <summary>
 		/// The candidate maps.
@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleStepSearcher"/>
-		internal static GridMap[] CandMaps { get; private set; } = null!;
+		internal static Cells[] CandMaps { get; private set; } = null!;
 
 		/// <summary>
 		/// The digit maps.
@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Manual
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleStepSearcher"/>
-		internal static GridMap[] DigitMaps { get; private set; } = null!;
+		internal static Cells[] DigitMaps { get; private set; } = null!;
 
 		/// <summary>
 		/// The value maps.
@@ -57,6 +57,6 @@ namespace Sudoku.Solving.Manual
 		/// not use this field on <see cref="SingleStepSearcher"/> instance.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
-		internal static GridMap[] ValueMaps { get; private set; } = null!;
+		internal static Cells[] ValueMaps { get; private set; } = null!;
 	}
 }

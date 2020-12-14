@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		protected override string? GetAdditional()
 		{
 			const string separator = ", ";
-			string endoTargetStr = $"endo-target: {new GridMap { EndoTargetCell }}";
+			string endoTargetStr = $"endo-target: {new Cells { EndoTargetCell }}";
 			if (ExtraRegionsMask is not null)
 			{
 				var sb = new StringBuilder();

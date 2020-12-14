@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Checking
 
 			// Store all bivalue cells and construct the relations.
 			var span = (stackalloc int[3]);
-			var stack = new GridMap[multivalueCellsCount + 1, 9];
+			var stack = new Cells[multivalueCellsCount + 1, 9];
 			foreach (int cell in StepSearcher.BivalueMap)
 			{
 				foreach (int digit in Puzzle.GetCandidateMask(cell))
@@ -118,7 +118,7 @@ namespace Sudoku.Solving.Checking
 			var playground = (stackalloc int[3]);
 			int currentIndex = 1;
 			int[] chosen = new int[multivalueCellsCount + 1];
-			var resultMap = new GridMap[9];
+			var resultMap = new Cells[9];
 			var result = new List<int>();
 			do
 			{

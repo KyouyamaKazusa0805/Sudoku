@@ -14,13 +14,13 @@ namespace Sudoku.Constants
 		/// </remarks>
 		static Processings()
 		{
-			PeerMaps = new GridMap[81];
+			PeerMaps = new Cells[81];
 			for (int i = 0; i < 81; i++)
 			{
 				PeerMaps[i] = Peers[i];
 			}
 
-			RegionMaps = new GridMap[27];
+			RegionMaps = new Cells[27];
 			for (int i = 0; i < 27; i++)
 			{
 				RegionMaps[i] = RegionCells[i];
@@ -28,7 +28,7 @@ namespace Sudoku.Constants
 
 			ReadOnlySpan<byte> r = (stackalloc byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
 			ReadOnlySpan<byte> c = (stackalloc byte[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
-			var dic = new Dictionary<(byte, byte), (GridMap, GridMap, GridMap)>(new ValueTupleComparer());
+			var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells)>(new ValueTupleComparer());
 			for (byte bs = 9; bs < 27; bs++)
 			{
 				for (byte j = 0; j < 3; j++)

@@ -30,14 +30,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			}
 
 			var resultAccumulator = new List<UlStepInfo>();
-			var loops = new List<(GridMap Map, IReadOnlyList<Link> Links)>();
+			var loops = new List<(Cells Map, IReadOnlyList<Link> Links)>();
 			var tempLoop = new List<int>();
 			foreach (int cell in BivalueMap)
 			{
 				short mask = grid.GetCandidateMask(cell);
 				int d1 = mask.FindFirstSet();
 				int d2 = mask.GetNextSet(d1);
-				var loopMap = GridMap.Empty;
+				var loopMap = Cells.Empty;
 				loops.Clear();
 				tempLoop.Clear();
 
@@ -172,9 +172,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			}
 		}
 
-		partial void CheckType1(IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap);
-		partial void CheckType2(IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
-		partial void CheckType3(IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
-		partial void CheckType4(IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in GridMap loop, IReadOnlyList<Link> links, in GridMap extraCellsMap, short comparer);
+		partial void CheckType1(IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap);
+		partial void CheckType2(IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer);
+		partial void CheckType3(IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer);
+		partial void CheckType4(IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer);
 	}
 }

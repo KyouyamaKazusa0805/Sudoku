@@ -13,7 +13,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulats a map that contains 729 positions to represent a candidate.
 	/// </summary>
-	public unsafe struct SudokuMap : IEnumerable<int>, IValueEquatable<SudokuMap>
+	public unsafe struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>
 	{
 		/// <summary>
 		/// The length of the buffer.
@@ -33,11 +33,11 @@ namespace Sudoku.Data
 		/// <para>Indicates an empty instance (all bits are 0).</para>
 		/// <para>
 		/// I strongly recommend you <b>should</b> use this instance instead of default constructor
-		/// <see cref="SudokuMap()"/>.
+		/// <see cref="Candidates()"/>.
 		/// </para>
 		/// </summary>
-		/// <seealso cref="SudokuMap()"/>
-		public static readonly SudokuMap Empty;
+		/// <seealso cref="Candidates()"/>
+		public static readonly Candidates Empty;
 
 
 		/// <summary>
@@ -51,14 +51,14 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="another">(<see langword="in"/> parameter) The another instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap(in SudokuMap another) => this = another;
+		public Candidates(in Candidates another) => this = another;
 
 		/// <summary>
 		/// Initializes an instance with the specified candidate and its peers.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap(int candidate) : this(candidate, true)
+		public Candidates(int candidate) : this(candidate, true)
 		{
 		}
 
@@ -71,7 +71,7 @@ namespace Sudoku.Data
 		/// Indicates whether the map will process itself with <see langword="true"/> value.
 		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap(int candidate, bool setItself)
+		public Candidates(int candidate, bool setItself)
 		{
 			Count = setItself ? 29 : 28;
 			AssignFixedArray(candidate, setItself);
@@ -82,7 +82,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap(int[] candidates) : this(candidates.AsEnumerable())
+		public Candidates(int[] candidates) : this(candidates.AsEnumerable())
 		{
 		}
 
@@ -91,7 +91,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="binary">The array.</param>
 		/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
-		public SudokuMap(long[] binary)
+		public Candidates(long[] binary)
 		{
 			_ = binary.Length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.", nameof(binary)) : 0;
 
@@ -117,7 +117,7 @@ namespace Sudoku.Data
 		/// <param name="length">The length.</param>
 		/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
 		[CLSCompliant(false)]
-		public SudokuMap(long* binary, int length)
+		public Candidates(long* binary, int length)
 		{
 			_ = length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.", nameof(length)) : 0;
 
@@ -132,12 +132,12 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Initializes an instance with the specified <see cref="GridMap"/> and the number
+		/// Initializes an instance with the specified <see cref="Cells"/> and the number
 		/// representing.
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <param name="digit">The digit.</param>
-		public SudokuMap(in GridMap map, int digit) : this()
+		public Candidates(in Cells map, int digit) : this()
 		{
 			foreach (int cell in map)
 			{
@@ -151,14 +151,14 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidates">(<see langword="in"/> parameter) The candidates.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap(in ReadOnlySpan<int> candidates) : this() => AddRange(candidates);
+		public Candidates(in ReadOnlySpan<int> candidates) : this() => AddRange(candidates);
 
 		/// <summary>
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap(IEnumerable<int> candidates) : this() => AddRange(candidates);
+		public Candidates(IEnumerable<int> candidates) : this() => AddRange(candidates);
 
 
 		/// <summary>
@@ -226,7 +226,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the map of cells, which is the peer intersections.
 		/// </summary>
-		public readonly SudokuMap PeerIntersection => CreateInstance(Offsets);
+		public readonly Candidates PeerIntersection => CreateInstance(Offsets);
 
 		/// <summary>
 		/// Indicates all indices of set bits.
@@ -292,11 +292,11 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override readonly bool Equals(object? obj) => obj is SudokuMap comparer && Equals(comparer);
+		public override readonly bool Equals(object? obj) => obj is Candidates comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		[CLSCompliant(false)]
-		public readonly bool Equals(in SudokuMap other)
+		public readonly bool Equals(in Candidates other)
 		{
 			for (int i = 0; i < BufferLength; i++)
 			{
@@ -315,7 +315,7 @@ namespace Sudoku.Data
 		/// <param name="other">(<see langword="in"/> parameter) The other map.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Overlaps(in SudokuMap other) => (this & other).IsNotEmpty;
+		public readonly bool Overlaps(in Candidates other) => (this & other).IsNotEmpty;
 
 		/// <summary>
 		/// Get a n-th index of the <see langword="true"/> bit in this instance.
@@ -361,7 +361,7 @@ namespace Sudoku.Data
 		public readonly int[] ToArray()
 		{
 			// To avoid the implicitly copy, we use the pointer to point to the same memory.
-			fixed (SudokuMap* @this = &this)
+			fixed (Candidates* @this = &this)
 			{
 				return @this->Offsets.ToArray();
 			}
@@ -410,7 +410,7 @@ namespace Sudoku.Data
 					foreach (var digitGroup in from candidate in candidates group candidate by candidate % 9)
 					{
 						sb
-							.Append(new GridMap(from candidate in digitGroup select candidate / 9).ToString())
+							.Append(new Cells(from candidate in digitGroup select candidate / 9).ToString())
 							.Append('(')
 							.Append(digitGroup.Key + 1)
 							.Append(')')
@@ -423,14 +423,14 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Get the final <see cref="GridMap"/> to get all cells that the corresponding indices
+		/// Get the final <see cref="Cells"/> to get all cells that the corresponding indices
 		/// are set <see langword="true"/>.
 		/// </summary>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The map of all cells chosen.</returns>
-		public readonly GridMap Reduce(int digit)
+		public readonly Cells Reduce(int digit)
 		{
-			var result = GridMap.Empty;
+			var result = Cells.Empty;
 			for (int cell = 0; cell < 81; cell++)
 			{
 				if (this[cell * 9 + digit])
@@ -586,12 +586,12 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidates">All candidates.</param>
 		/// <returns>The result map.</returns>
-		public static SudokuMap CreateInstance(IEnumerable<int> candidates)
+		public static Candidates CreateInstance(IEnumerable<int> candidates)
 		{
 			var result = ~Empty;
 			foreach (int candidate in candidates)
 			{
-				result &= new SudokuMap(candidate, false);
+				result &= new Candidates(candidate, false);
 			}
 
 			return new(result);
@@ -599,10 +599,10 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in SudokuMap left, in SudokuMap right) => left.Equals(right);
+		public static bool operator ==(in Candidates left, in Candidates right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in SudokuMap left, in SudokuMap right) => !(left == right);
+		public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
 
 		/// <summary>
 		/// Reverse status for all candidates, which means all <see langword="true"/> bits
@@ -612,7 +612,7 @@ namespace Sudoku.Data
 		/// <param name="map">(<see langword="in"/> parameter) The instance to negate.</param>
 		/// <returns>The negative result.</returns>
 		[SkipLocalsInit]
-		public static SudokuMap operator ~(in SudokuMap map)
+		public static Candidates operator ~(in Candidates map)
 		{
 			long* result = stackalloc long[BufferLength];
 			for (int i = 0; i < BufferLength; i++)
@@ -624,13 +624,13 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Get all candidates that two <see cref="SudokuMap"/>s both contain.
+		/// Get all candidates that two <see cref="Candidates"/>s both contain.
 		/// </summary>
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The intersection result.</returns>
 		[SkipLocalsInit]
-		public static SudokuMap operator &(in SudokuMap left, in SudokuMap right)
+		public static Candidates operator &(in Candidates left, in Candidates right)
 		{
 			long* result = stackalloc long[BufferLength];
 			for (int i = 0; i < BufferLength; i++)
@@ -642,13 +642,13 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Get all candidates from two <see cref="SudokuMap"/>s.
+		/// Get all candidates from two <see cref="Candidates"/>s.
 		/// </summary>
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The union result.</returns>
 		[SkipLocalsInit]
-		public static SudokuMap operator |(in SudokuMap left, in SudokuMap right)
+		public static Candidates operator |(in Candidates left, in Candidates right)
 		{
 			long* result = stackalloc long[BufferLength];
 			for (int i = 0; i < BufferLength; i++)
@@ -660,13 +660,13 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Get all candidates that only appears once in two <see cref="SudokuMap"/>s.
+		/// Get all candidates that only appears once in two <see cref="Candidates"/>s.
 		/// </summary>
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The symmetrical difference result.</returns>
 		[SkipLocalsInit]
-		public static SudokuMap operator ^(in SudokuMap left, in SudokuMap right)
+		public static Candidates operator ^(in Candidates left, in Candidates right)
 		{
 			long* result = stackalloc long[BufferLength];
 			for (int i = 0; i < BufferLength; i++)
@@ -678,14 +678,14 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Get a <see cref="GridMap"/> that contains all <paramref name="left"/> candidates
+		/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> candidates
 		/// but not in <paramref name="right"/> candidates.
 		/// </summary>
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The result.</returns>
 		[SkipLocalsInit]
-		public static SudokuMap operator -(in SudokuMap left, in SudokuMap right)
+		public static Candidates operator -(in Candidates left, in Candidates right)
 		{
 			long* result = stackalloc long[BufferLength];
 			for (int i = 0; i < BufferLength; i++)
@@ -698,15 +698,15 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Implicit cast from <see cref="SudokuMap"/> to <see cref="int"/>[].
+		/// Implicit cast from <see cref="Candidates"/> to <see cref="int"/>[].
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		public static implicit operator int[](in SudokuMap map) => map.ToArray();
+		public static implicit operator int[](in Candidates map) => map.ToArray();
 
 		/// <summary>
-		/// Implicit cast from <see cref="int"/>[] to <see cref="SudokuMap"/>.
+		/// Implicit cast from <see cref="int"/>[] to <see cref="Candidates"/>.
 		/// </summary>
 		/// <param name="array">The array.</param>
-		public static implicit operator SudokuMap(int[] array) => new(array);
+		public static implicit operator Candidates(int[] array) => new(array);
 	}
 }

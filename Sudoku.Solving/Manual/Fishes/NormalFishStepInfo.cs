@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </param>
 	public sealed record NormalFishStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
-		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in GridMap Fins, bool? IsSashimi)
+		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Fins, bool? IsSashimi)
 		: FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
 #if DOUBLE_LAYERED_ASSUMPTION
 		, IHasParentNodeInfo
@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				.Append(new RegionCollection(BaseSets).ToString())
 				.Append(Resources.GetValue("Backslash"))
 				.Append(new RegionCollection(CoverSets).ToString())
-				.Append(Fins is { Count: not 0 } ? $" f{new GridMap(Fins)}" : string.Empty)
+				.Append(Fins is { Count: not 0 } ? $" f{Fins}" : string.Empty)
 				.Append(Resources.GetValue("GoesTo"))
 				.Append(new ConclusionCollection(Conclusions).ToString())
 				.ToString();
@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					.Append(new RegionCollection(BaseSets).ToString())
 					.Append(Resources.GetValue("Backslash"))
 					.Append(new RegionCollection(CoverSets).ToString())
-					.Append(Fins is { Count: not 0 } ? $" f{new GridMap(Fins)}" : string.Empty)
+					.Append(Fins is { Count: not 0 } ? $" f{Fins}" : string.Empty)
 					.Append(Resources.GetValue("GoesTo"))
 					.Append(new ConclusionCollection(Conclusions).ToString())
 					.ToString(),
@@ -143,7 +143,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					.Append(Resources.GetValue("_NormalFish3"))
 					.Append(candidates.Count(&finChecking))
 					.Append(Resources.GetValue("_NormalFish4"))
-					.Append(new SudokuMap(from candidate in candidates select candidate.Value).ToString())
+					.Append(new Candidates(from candidate in candidates select candidate.Value).ToString())
 					.Append(Resources.GetValue("_NormalFish5"))
 					.Append(digit)
 					.Append(Resources.GetValue("_NormalFish6"))
@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					_ =>
 						sb
 						.Append(Resources.GetValue("_NormalFish18"))
-						.Append(new GridMap(Fins).ToString())
+						.Append(Fins.ToString())
 						.AppendLine(Resources.GetValue("_NormalFish19"))
 						.AppendLine()
 						.Append(Resources.GetValue("_NormalFish20"))

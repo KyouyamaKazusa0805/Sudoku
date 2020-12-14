@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Data
 {
-	partial struct GridMap
+	partial struct Cells
 	{
 		/// <summary>
 		/// The cover table.

@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Generating
 					puzzle[i] = '0';
 				}
 
-				var map = GridMap.Empty;
+				var map = Cells.Empty;
 				for (int i = 0; i < 16; i++)
 				{
 					while (true)

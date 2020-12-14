@@ -17,8 +17,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="ConjugateRegion">The so-called conjugate region.</param>
 	public sealed record UsType4StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in GridMap Cells, short DigitsMask,
-		int Digit1, int Digit2, in GridMap ConjugateRegion) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
+		int Digit1, int Digit2, in Cells ConjugateRegion) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.UsType4;

@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
 					for (int k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 					{
-						var pairMap = new GridMap { c1, c2 };
+						var pairMap = new Cells { c1, c2 };
 						if (
 							baseLineMap.Overlaps(pairMap)
 							|| baseLineMap.Overlaps(
