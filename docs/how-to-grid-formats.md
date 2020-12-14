@@ -1,4 +1,4 @@
-# Format Strings in Class `Grid`
+# Format Strings in Structure `SudokuGrid`
 
 If you has known the whole outline of this solution, you want to know how to use grid format. First of all, I will give you some characters you should use.
 

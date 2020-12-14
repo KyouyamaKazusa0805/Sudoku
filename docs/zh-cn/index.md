@@ -15,8 +15,8 @@
 
 ## 相关操作
 
-* [`Grid` 类的格式化字符串](how-to-grid-formats)
-* [`Cells` 结构体用法](work-with-cells)
+* [`SudokuGrid` 结构的格式化字符串](how-to-grid-formats)
+* [`Cells` 结构的用法](work-with-cells)
 
 
 

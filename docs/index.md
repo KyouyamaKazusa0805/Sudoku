@@ -15,7 +15,7 @@ Here displays what I want to display about the solution [Sudoku](https://github.
 
 ## How To
 
-* [Format Strings in `Grid`](how-to-grid-formats)
+* [Format Strings in Structure `SudokuGrid`](how-to-grid-formats)
 * [Work with Structure `Cells`](work-with-cells)
 
 
