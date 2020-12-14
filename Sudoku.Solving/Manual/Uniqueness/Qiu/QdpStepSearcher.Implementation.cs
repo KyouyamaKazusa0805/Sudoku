@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				return;
 			}
 
-			int elimCell = map.First;
+			int elimCell = map.Offsets[0];
 			short mask = (short)(grid.GetCandidateMask(elimCell) & ~(1 << extraDigit));
 			if (mask == 0)
 			{
@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					candidateOffsets.Add(new(1, cell * 9 + digit));
 				}
 			}
-			int anotherCellInPair = (pair - map).First;
+			int anotherCellInPair = (pair - map).Offsets[0];
 			foreach (int digit in grid.GetCandidateMask(anotherCellInPair))
 			{
 				candidateOffsets.Add(new(0, anotherCellInPair * 9 + digit));
@@ -218,7 +218,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						{
 							foreach (int digit in grid.GetCandidateMask(cell))
 							{
-								candidateOffsets.Add(new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								candidateOffsets.Add(
+									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in cells)
@@ -280,7 +281,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					bool flag = false;
 					foreach (int d in otherDigitsMask)
 					{
-						if (ValueMaps[d].Overlaps(RegionMaps[region]) || (RegionMaps[region] & CandMaps[d]) != square)
+						if (ValueMaps[d].Overlaps(RegionMaps[region])
+							|| (RegionMaps[region] & CandMaps[d]) != square)
 						{
 							flag = true;
 							break;

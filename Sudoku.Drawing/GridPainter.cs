@@ -304,8 +304,8 @@ namespace Sudoku.Drawing
 				if (!start.IsEmpty)
 				{
 					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-					var p1 = Converter.GetMousePointInCenter(start.SetAt(0)) - Converter.CellSize / 2;
-					var p2 = Converter.GetMousePointInCenter(start.SetAt(^1)) + Converter.CellSize / 2;
+					var p1 = Converter.GetMousePointInCenter(start.Offsets[0]) - Converter.CellSize / 2;
+					var p2 = Converter.GetMousePointInCenter(start.Offsets[^1]) + Converter.CellSize / 2;
 					var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset);
 
 					// Step 2: Draw capsule.

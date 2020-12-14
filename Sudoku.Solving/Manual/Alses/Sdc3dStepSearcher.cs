@@ -53,17 +53,18 @@ namespace Sudoku.Solving.Manual.Alses
 
 				static void a(IList<Cells> list, in Cells emptyMap)
 				{
+					int[] offsets = emptyMap.Offsets;
 					switch (emptyMap.Count)
 					{
 						case 2:
 						{
-							list.Add(new() { emptyMap.First, emptyMap.SetAt(1) });
+							list.Add(new() { offsets[0], offsets[1] });
 
 							break;
 						}
 						case 3:
 						{
-							var (i, j, k) = (emptyMap.First, emptyMap.SetAt(1), emptyMap.SetAt(2));
+							int i = offsets[0], j = offsets[1], k = offsets[2];
 							list.Add(new() { i, j });
 							list.Add(new() { i, k });
 							list.Add(new() { j, k });

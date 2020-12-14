@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Sdps
 									continue;
 								}
 
-								int anotherCell = otherCellsMap.First;
+								int anotherCell = otherCellsMap.Offsets[0];
 								if (tempLoop.Count is var count and >= 5 && (count & 1) != 0
 									&& tempLoop[0] == anotherCell)
 								{

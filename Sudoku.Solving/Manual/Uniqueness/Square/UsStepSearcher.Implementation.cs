@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					continue;
 				}
 
-				int elimCell = extraDigitMap.First;
+				int elimCell = extraDigitMap.Offsets[0];
 				short cellMask = grid.GetCandidateMask(elimCell);
 				short elimMask = (short)(cellMask & ~(1 << extraDigit));
 				if (elimMask == 0)

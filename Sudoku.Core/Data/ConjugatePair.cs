@@ -37,8 +37,8 @@ namespace Sudoku.Data
 		public ConjugatePair(in Cells map, int digit)
 		{
 			Digit = digit;
-			From = map.First;
-			To = map.SetAt(1);
+			From = map.Offsets[0];
+			To = map.Offsets[1];
 			Map = map;
 		}
 

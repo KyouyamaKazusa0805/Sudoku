@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			int[] bivalueCells = BivalueMap.ToArray();
+			int[] bivalueCells = BivalueMap.Offsets;
 			for (int i = 0, length = bivalueCells.Length; i < length - 1; i++)
 			{
 				int c1 = bivalueCells[i];
@@ -68,8 +68,8 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 
 						// Check whether two digits are both in the same empty rectangle.
-						int inter1 = interMap.First;
-						int inter2 = interMap.SetAt(1);
+						int[] offsets = interMap.Offsets;
+						int inter1 = offsets[0], inter2 = offsets[1];
 						int b1 = RegionLabel.Block.GetRegion(inter1);
 						int b2 = RegionLabel.Block.GetRegion(inter2);
 						var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 						// Check eliminations.
 						var conclusions = new List<Conclusion>();
-						int z = (interMap & regionMap).First;
+						int z = (interMap & regionMap).Offsets[0];
 						var c1Map = RegionMaps[new Cells { z, c1 }.CoveredLine];
 						var c2Map = RegionMaps[new Cells { z, c2 }.CoveredLine];
 						foreach (int elimCell in new Cells(c1Map | c2Map) { ~c1, ~c2 } - erMap)

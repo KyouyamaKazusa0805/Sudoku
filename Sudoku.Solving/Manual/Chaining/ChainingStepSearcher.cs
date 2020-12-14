@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var cells = (h(grid, p.Digit, region, isDynamic) & RegionMaps[region]) - p.Cell;
 					if (cells.Count == 1)
 					{
-						var pOn = new Node(cells.First, p.Digit, true, p)
+						var pOn = new Node(cells.Offsets[0], p.Digit, true, p)
 #if DOUBLE_LAYERED_ASSUMPTION
 						{
 							Cause = label.GetRegionCause()

@@ -57,7 +57,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				var (pair, square, baseLine) = pattern;
 
 				// To check whether both two pair cells are empty.
-				if (!EmptyMap[pair.First] || !EmptyMap[pair.SetAt(1)])
+				int[] offsets = pair.Offsets;
+				if (!EmptyMap[offsets[0]] || !EmptyMap[offsets[1]])
 				{
 					continue;
 				}
@@ -84,7 +85,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						ref short distinctionMask, ref int appearedParts)
 					{
 						bool flag = false;
-						int c1 = map.First, c2 = map.SetAt(1);
+						int[] offsets = map.Offsets;
+						int c1 = offsets[0], c2 = offsets[1];
 						if (!EmptyMap[c1])
 						{
 							int d1 = grid[c1];

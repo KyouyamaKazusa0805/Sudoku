@@ -284,32 +284,27 @@ namespace Sudoku.Data
 		public int Count { readonly get; private set; }
 
 		/// <summary>
-		/// Gets the first set bit position. If the current map is empty,
-		/// the return value will be <c>-1</c>.
+		/// Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
 		/// </summary>
-		/// <remarks>
-		/// The property will use the same process with <see cref="Offsets"/>,
-		/// but the <see langword="yield"/> clause will be replaced with normal <see langword="return"/>s.
-		/// </remarks>
-		/// <seealso cref="Offsets"/>
-		public readonly int First
+		public readonly int[] Offsets
 		{
 			get
 			{
 				if (IsEmpty)
 				{
-					return -1;
+					return Array.Empty<int>();
 				}
 
 				long value;
-				int i;
+				int i, pos = 0;
+				int[] result = new int[Count];
 				if (_low != 0)
 				{
 					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
 					{
 						if ((value & 1) != 0)
 						{
-							return i;
+							result[pos++] = i;
 						}
 					}
 				}
@@ -319,12 +314,12 @@ namespace Sudoku.Data
 					{
 						if ((value & 1) != 0)
 						{
-							return i;
+							result[pos++] = i;
 						}
 					}
 				}
 
-				return default; // Here is only used for a placeholder.
+				return result;
 			}
 		}
 
@@ -392,43 +387,6 @@ namespace Sudoku.Data
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ((int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset).GetAllSets();
-		}
-
-		/// <summary>
-		/// Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
-		/// </summary>
-		private readonly IEnumerable<int> Offsets
-		{
-			get
-			{
-				if (IsEmpty)
-				{
-					yield break;
-				}
-
-				long value;
-				int i;
-				if (_low != 0)
-				{
-					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
-					{
-						if ((value & 1) != 0)
-						{
-							yield return i;
-						}
-					}
-				}
-				if (_high != 0)
-				{
-					for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
-					{
-						if ((value & 1) != 0)
-						{
-							yield return i;
-						}
-					}
-				}
-			}
 		}
 
 
@@ -530,37 +488,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Get a n-th index of the <see langword="true"/> bit in this instance.
-		/// </summary>
-		/// <param name="index">The true bit index order.</param>
-		/// <returns>The real index.</returns>
-		/// <remarks>
-		/// If you want to select the first set bit, please use <see cref="First"/> instead.
-		/// </remarks>
-		/// <seealso cref="First"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int SetAt(int index) => index == 0 ? First : Offsets.ElementAt(index);
-
-		/// <summary>
-		/// Get a n-th index of the <see langword="true"/> bit in this instance.
-		/// </summary>
-		/// <param name="index">(<see langword="in"/> parameter) The true bit index order.</param>
-		/// <returns>The real index.</returns>
-		/// <remarks>
-		/// If you want to select the first set bit, please use <see cref="First"/> instead.
-		/// </remarks>
-		/// <seealso cref="First"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int SetAt(in Index index) => SetAt(index.GetOffset(Count));
-
-		/// <summary>
-		/// Get all cell offsets whose bits are set <see langword="true"/>.
-		/// </summary>
-		/// <returns>An array of cell offsets.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int[] ToArray() => Offsets.ToArray();
-
-		/// <summary>
 		/// Get the subview mask of this map.
 		/// </summary>
 		/// <param name="region">The region.</param>
@@ -583,7 +510,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly IEnumerator<int> GetEnumerator() => Offsets.GetEnumerator();
+		public readonly IEnumerator<int> GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -608,7 +535,7 @@ namespace Sudoku.Data
 				null or "N" or "n" => Count switch
 				{
 					0 => "{ }",
-					1 when First is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
+					1 when Offsets[0] is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
 					_ => normalToString(this)
 				},
 				"B" or "b" => binaryToString(this),
@@ -621,8 +548,8 @@ namespace Sudoku.Data
 			static unsafe string normalToString(in Cells @this)
 			{
 				const string leftCurlyBrace = "{ ", rightCurlyBrace = " }";
-				static int converter(in int v) => v + 1;
 				const string separator = ", ";
+				static int converter(in int v) => v + 1;
 				var sbRow = new StringBuilder();
 				var dic = new Dictionary<int, ICollection<int>>();
 				foreach (int cell in @this)
@@ -956,12 +883,5 @@ namespace Sudoku.Data
 		/// <param name="cells">(<see langword="in"/> parameter) The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator Cells(in ReadOnlySpan<int> cells) => new(cells);
-
-		/// <summary>
-		/// Explicit cast from <see cref="Cells"/> to <see cref="int"/>[].
-		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static explicit operator int[](in Cells map) => map.ToArray();
 	}
 }

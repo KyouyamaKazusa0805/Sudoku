@@ -786,16 +786,10 @@
             value are set <see langword="true"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Cells.First">
+        <member name="P:Sudoku.Data.Cells.Offsets">
             <summary>
-            Gets the first set bit position. If the current map is empty,
-            the return value will be <c>-1</c>.
+            Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
             </summary>
-            <remarks>
-            The property will use the same process with <see cref="P:Sudoku.Data.Cells.Offsets"/>,
-            but the <see langword="yield"/> clause will be replaced with normal <see langword="return"/>s.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.Cells.Offsets"/>
         </member>
         <member name="P:Sudoku.Data.Cells.PeerIntersection">
             <summary>
@@ -817,11 +811,6 @@
             this instance spanned. For example, if the cells are { 0, 1 }, the property
             <see cref="P:Sudoku.Data.Cells.Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
             and the region 19 (column 2).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Cells.Offsets">
-            <summary>
-            Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Cells.Index(System.Int32)">
@@ -867,34 +856,6 @@
             use the property <see cref="P:Sudoku.Data.Cells.InOneRegion"/> to improve the performance.
             </remarks>
             <seealso cref="P:Sudoku.Data.Cells.InOneRegion"/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.SetAt(System.Int32)">
-            <summary>
-            Get a n-th index of the <see langword="true"/> bit in this instance.
-            </summary>
-            <param name="index">The true bit index order.</param>
-            <returns>The real index.</returns>
-            <remarks>
-            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.Cells.First"/> instead.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.Cells.First"/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.SetAt(System.Index@)">
-            <summary>
-            Get a n-th index of the <see langword="true"/> bit in this instance.
-            </summary>
-            <param name="index">(<see langword="in"/> parameter) The true bit index order.</param>
-            <returns>The real index.</returns>
-            <remarks>
-            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.Cells.First"/> instead.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.Cells.First"/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.ToArray">
-            <summary>
-            Get all cell offsets whose bits are set <see langword="true"/>.
-            </summary>
-            <returns>An array of cell offsets.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.GetSubviewMask(System.Int32)">
             <summary>
@@ -1102,12 +1063,6 @@
             Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Data.Cells"/>.
             </summary>
             <param name="cells">(<see langword="in"/> parameter) The cells.</param>
-        </member>
-        <member name="M:Sudoku.Data.Cells.op_Explicit(Sudoku.Data.Cells@)~System.Int32[]">
-            <summary>
-            Explicit cast from <see cref="T:Sudoku.Data.Cells"/> to <see cref="T:System.Int32"/>[].
-            </summary>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
         <member name="F:Sudoku.Data.Cells.CoverTable">
             <summary>

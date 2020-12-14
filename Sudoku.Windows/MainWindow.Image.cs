@@ -94,7 +94,7 @@ namespace Sudoku.Windows
 					case ModifierKeys.Shift:
 					{
 						// Select a region of cells.
-						int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.First;
+						int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.Offsets[0];
 						int currentClickedCell = getCell();
 						int r1 = cell / 9, c1 = cell % 9;
 						int r2 = currentClickedCell / 9, c2 = currentClickedCell % 9;
@@ -190,8 +190,8 @@ namespace Sudoku.Windows
 						{
 							case 2 when _selectedCellsWhileDrawingRegions.Count == 2: // Region.
 							{
-								int first = _selectedCellsWhileDrawingRegions.First;
-								int second = _selectedCellsWhileDrawingRegions.SetAt(1);
+								int[] offsets = _selectedCellsWhileDrawingRegions.Offsets;
+								int first = offsets[0], second = offsets[1];
 								int r1 = RegionLabel.Row.GetRegion(first);
 								int r2 = RegionLabel.Row.GetRegion(second);
 								int c1 = RegionLabel.Column.GetRegion(first);

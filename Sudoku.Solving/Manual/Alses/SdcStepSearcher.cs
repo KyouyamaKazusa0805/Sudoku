@@ -54,19 +54,18 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					list.Clear();
+					int[] offsets = emptyCellsInInterMap.Offsets;
 					switch (emptyCellsInInterMap.Count)
 					{
 						case 2:
 						{
-							list.Add(new() { emptyCellsInInterMap.First, emptyCellsInInterMap.SetAt(1) });
+							list.Add(new() { offsets[0], offsets[1] });
 
 							break;
 						}
 						case 3:
 						{
-							var (i, j, k) = (
-								emptyCellsInInterMap.First, emptyCellsInInterMap.SetAt(1),
-								emptyCellsInInterMap.SetAt(2));
+							int i = offsets[0], j = offsets[1], k = offsets[2];
 							list.Add(new() { i, j });
 							list.Add(new() { j, k });
 							list.Add(new() { i, k });

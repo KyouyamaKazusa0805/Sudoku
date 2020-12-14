@@ -131,10 +131,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								cellOffsets.AddRange(from cell in map1 select new DrawingInfo(-1, cell));
 								cellOffsets.AddRange(from cell in map2 select new DrawingInfo(-2, cell));
 
+								int[] offsets = cpMap.Offsets;
 								var candidateOffsets = new List<DrawingInfo>
 								{
-									new(0, cpMap.First * 9 + x),
-									new(0, cpMap.SetAt(1) * 9 + x)
+									new(0, offsets[0] * 9 + x),
+									new(0, offsets[1] * 9 + x)
 								};
 								foreach (int cell in map1)
 								{

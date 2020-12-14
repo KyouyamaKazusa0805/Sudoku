@@ -72,13 +72,13 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// Get all locked members.
-				int v1 = grid.GetCandidateMask(mq1.First) | grid.GetCandidateMask(mq1.SetAt(1));
-				int v2 = grid.GetCandidateMask(mq2.First) | grid.GetCandidateMask(mq2.SetAt(1));
-				short temp = (short)(v1 | v2);
-				short needChecking = (short)(baseCandsMask & temp);
+				int[] mq1o = mq1.Offsets, mq2o = mq2.Offsets, mr1o = mr1.Offsets, mr2o = mr2.Offsets;
+				int v1 = grid.GetCandidateMask(mq1o[0]) | grid.GetCandidateMask(mq1o[1]);
+				int v2 = grid.GetCandidateMask(mq2o[0]) | grid.GetCandidateMask(mq2o[1]);
+				short temp = (short)(v1 | v2), needChecking = (short)(baseCandsMask & temp);
 
-				v1 = grid.GetCandidateMask(mr1.First) | grid.GetCandidateMask(mr1.SetAt(1));
-				v2 = grid.GetCandidateMask(mr2.First) | grid.GetCandidateMask(mr2.SetAt(1));
+				v1 = grid.GetCandidateMask(mr1o[0]) | grid.GetCandidateMask(mr1o[1]);
+				v2 = grid.GetCandidateMask(mr2o[0]) | grid.GetCandidateMask(mr2o[1]);
 				temp = (short)(v1 | v2);
 				needChecking &= temp;
 

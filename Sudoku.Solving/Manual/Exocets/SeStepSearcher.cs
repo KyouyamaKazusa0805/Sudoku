@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					if ((temp & RegionMaps[cover[i]]) is { Count: 1 } check)
 					{
-						tempTarget.Add(check.First);
+						tempTarget.Add(check.Offsets[0]);
 					}
 				}
 				if (tempTarget.Count == 0)

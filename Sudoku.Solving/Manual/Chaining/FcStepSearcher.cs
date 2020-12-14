@@ -244,7 +244,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					case > 2 when IsMultiple:
 					{
 						// Determine whether we meet this region for the first time.
-						if (worthMap.First == cell)
+						if (worthMap.Offsets[0] == cell)
 						{
 							Dictionary<int, Set<Node>> posToOn = new(), posToOff = new();
 							Set<Node> regionToOn = new(), regionToOff = new();

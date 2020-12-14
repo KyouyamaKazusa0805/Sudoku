@@ -191,7 +191,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								continue;
 							}
 
-							int elimCell = (otherCellsMap - otherCell).First;
+							int elimCell = (otherCellsMap - otherCell).Offsets[0];
 							if (grid.Exists(otherCell, digit) is not true)
 							{
 								continue;
@@ -338,7 +338,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								continue;
 							}
 
-							int elimCell = (otherCellsMap - otherCell).First;
+							int elimCell = (otherCellsMap - otherCell).Offsets[0];
 							if (grid.Exists(otherCell, digit) is not true)
 							{
 								continue;
@@ -455,12 +455,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			int c1 = otherCellsMap.First;
-			int c2 = otherCellsMap.SetAt(1);
-			int c3 = otherCellsMap.SetAt(2);
-			short m1 = grid.GetCandidateMask(c1);
-			short m2 = grid.GetCandidateMask(c2);
-			short m3 = grid.GetCandidateMask(c3);
+			int[] offsets = otherCellsMap.Offsets;
+			int c1 = offsets[0], c2 = offsets[1], c3 = offsets[2];
+			short m1 = grid.GetCandidateMask(c1), m2 = grid.GetCandidateMask(c2), m3 = grid.GetCandidateMask(c3);
 			short mask = (short)((short)(m1 | m2) | m3);
 
 			if (
@@ -590,8 +587,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var adjacentCellsMap = otherCellsMap - abzCell;
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
-				int abxCell = adjacentCellsMap.First;
-				int abyCell = adjacentCellsMap.SetAt(1);
+				int[] offsets = adjacentCellsMap.Offsets;
+				int abxCell = offsets[0], abyCell = offsets[1];
 				var map1 = new Cells { abzCell, abxCell };
 				var map2 = new Cells { abzCell, abyCell };
 				if (!IsConjugatePair(b, map1, map1.CoveredLine)
@@ -705,8 +702,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// the existence of strong link.
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = otherCellsMap - abzCell;
-			int abxCell = adjacentCellsMap.First;
-			int abyCell = adjacentCellsMap.SetAt(1);
+			int[] offsets = adjacentCellsMap.Offsets;
+			int abxCell = offsets[0], abyCell = offsets[1];
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
 				var linkMap = new Cells { begin, abzCell };
@@ -832,8 +829,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = otherCellsMap - abzCell;
-			int abxCell = adjacentCellsMap.First;
-			int abyCell = adjacentCellsMap.SetAt(1);
+			int[] offsets = adjacentCellsMap.Offsets;
+			int abxCell = offsets[0], abyCell = offsets[1];
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
 				var linkMap = new Cells { begin, abzCell };
@@ -955,8 +952,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = otherCellsMap - abzCell;
-			int abxCell = adjacentCellsMap.First;
-			int abyCell = adjacentCellsMap.SetAt(1);
+			int[] offsets = adjacentCellsMap.Offsets;
+			int abxCell = offsets[0], abyCell = offsets[1];
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
 				var linkMap = new Cells { begin, abzCell };
@@ -1081,7 +1078,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				int abwCell = GetDiagonalCell(urCells, corner1);
-				int abzCell = (otherCellsMap - abwCell).First;
+				int abzCell = (otherCellsMap - abwCell).Offsets[0];
 				foreach (var (head, begin, end, extra) in
 					stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
 				{
@@ -1225,7 +1222,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				int end = GetDiagonalCell(urCells, corner1);
-				int extra = (otherCellsMap - end).First;
+				int extra = (otherCellsMap - end).Offsets[0];
 				foreach (var (abx, aby, abw, abz) in
 					stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) })
 				{
@@ -1290,11 +1287,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
+						int[] offsets = linkMap.Offsets;
 						var conjugatePairs = new ConjugatePair[]
 						{
 							new(abx, aby, a),
 							new(aby, abw, a),
-							new(linkMap.First, linkMap.SetAt(1), b)
+							new(offsets[0], offsets[1], b)
 						};
 						accumulator.Add(
 							new UrPlusStepInfo(
@@ -1367,12 +1365,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			if (new Cells { corner1, corner2 }.AllSetsAreInOneRegion(out int region) && region < 9)
 			{
 				// Subtype 1.
-				int otherCell1 = otherCellsMap.First, otherCell2 = otherCellsMap.SetAt(1);
+				int[] offsets = otherCellsMap.Offsets;
+				int otherCell1 = offsets[0], otherCell2 = offsets[1];
 				short mask1 = grid.GetCandidateMask(otherCell1);
 				short mask2 = grid.GetCandidateMask(otherCell2);
 				short mask = (short)(mask1 | mask2);
 
-				if (mask.PopCount() != 2 + size || (mask & comparer) != comparer || mask1 == comparer || mask2 == comparer)
+				if (mask.PopCount() != 2 + size || (mask & comparer) != comparer
+					|| mask1 == comparer || mask2 == comparer)
 				{
 					return;
 				}

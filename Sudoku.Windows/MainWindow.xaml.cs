@@ -200,7 +200,7 @@ namespace Sudoku.Windows
 				case var key when key.IsArrow() && _focusedCells.Count == 1:
 				{
 					// Move the focused cell.
-					int cell = _focusedCells.First;
+					int cell = _focusedCells.Offsets[0];
 					_focusedCells.Clear();
 					_focusedCells.AddAnyway(
 						e.Key switch
@@ -232,7 +232,7 @@ namespace Sudoku.Windows
 				case K.Tab:
 				{
 					// Move to next box row.
-					int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.First;
+					int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.Offsets[0];
 					_focusedCells.Clear();
 					_focusedCells.AddAnyway((cell + 3) % 81);
 

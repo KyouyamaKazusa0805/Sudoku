@@ -411,6 +411,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
+					int[] offsets = otherCellsMap.Offsets;
 					accumulator.Add(
 						new UrPlusStepInfo(
 							conclusions,
@@ -428,7 +429,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							d2,
 							urCells,
 							arMode,
-							new ConjugatePair[] { new(otherCellsMap.First, otherCellsMap.SetAt(1), digit) },
+							new ConjugatePair[] { new(offsets[0], offsets[1], digit) },
 							index));
 				}
 			}
@@ -555,7 +556,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			int o1 = otherCellsMap.First, o2 = otherCellsMap.SetAt(1);
+			int[] offsets = otherCellsMap.Offsets;
+			int o1 = offsets[0], o2 = offsets[1];
 			int r1 = RegionLabel.Row.GetRegion(corner1), c1 = RegionLabel.Column.GetRegion(corner1);
 			int r2 = RegionLabel.Row.GetRegion(corner2), c2 = RegionLabel.Column.GetRegion(corner2);
 			foreach (int digit in stackalloc[] { d1, d2 })
@@ -679,11 +681,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
-				int abxCell = adjacentCellsMap.First;
-				int abyCell = adjacentCellsMap.SetAt(1);
-				var map1 = new Cells { abzCell, abxCell };
-				var map2 = new Cells { abzCell, abyCell };
-				if (!IsConjugatePair(digit, map1, map1.CoveredLine) || !IsConjugatePair(digit, map2, map2.CoveredLine))
+				int[] offsets = adjacentCellsMap.Offsets;
+				int abxCell = offsets[0], abyCell = offsets[1];
+				Cells map1 = new() { abzCell, abxCell }, map2 = new() { abzCell, abyCell };
+				if (!IsConjugatePair(digit, map1, map1.CoveredLine)
+					|| !IsConjugatePair(digit, map2, map2.CoveredLine))
 				{
 					continue;
 				}
