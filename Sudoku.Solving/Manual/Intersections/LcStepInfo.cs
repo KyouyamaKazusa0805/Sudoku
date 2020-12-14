@@ -2,10 +2,10 @@
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Windows;
-using static Sudoku.Constants.Processings;
 #if DOUBLE_LAYERED_ASSUMPTION
 using static Sudoku.Solving.TechniqueSearcher;
 #endif
@@ -85,7 +85,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 			string toChinese()
 			{
-				string regionChineseName = Resources.GetValue(GetLabel(CoverSet).ToString());
+				string regionChineseName = Resources.GetValue(CoverSet.ToLabel().ToString());
 				int digit = Digit + 1;
 				return new StringBuilder()
 					.Append(Name)

@@ -2,10 +2,10 @@
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Windows;
-using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Singles
 		public override TechniqueCode TechniqueCode =>
 			EnableAndIsLastDigit
 			? TechniqueCode.LastDigit
-			: GetLabel(Region) switch
+			: Region.ToLabel() switch
 			{
 				RegionLabel.Row => TechniqueCode.HiddenSingleRow,
 				RegionLabel.Column => TechniqueCode.HiddenSingleColumn,

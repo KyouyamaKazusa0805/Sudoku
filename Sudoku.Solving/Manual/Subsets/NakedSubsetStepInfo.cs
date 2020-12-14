@@ -2,9 +2,9 @@
 using System.Extensions;
 using System.Linq;
 using System.Text;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Windows;
@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					.Append(Resources.GetValue("_NakedSubset9"))
 					.AppendJoin(Resources.GetValue("_NakedSubset10"), from digit in Digits select digit + 1)
 					.Append(Resources.GetValue("_NakedSubset11"))
-					.Append(Resources.GetValue(Processings.GetLabel(Region).ToString()))
+					.Append(Resources.GetValue(Region.ToLabel().ToString()))
 					.Append(Resources.GetValue("_NakedSubset12"))
 					.Append(digitsStr)
 					.Append(Resources.GetValue("_NakedSubset13"))

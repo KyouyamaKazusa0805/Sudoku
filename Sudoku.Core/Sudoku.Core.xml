@@ -20,30 +20,6 @@
             the static constructor.
             </summary>
         </member>
-        <member name="M:Sudoku.Constants.Processings.GetLabel(System.Int32)">
-            <summary>
-            Get the label in the specified region.
-            </summary>
-            <param name="region">The region.</param>
-            <returns>The region label.</returns>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.Deconstruct(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-            <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
-            <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
-            <param name="candidates">
-            (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit.
-            </param>
-            <param name="digits">
-            (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit
-            or that value in given or modifiable.
-            </param>
-            <param name="values">
-            (<see langword="out"/> parameter) The map of all cells that is the given or modifiable value,
-            and the digit is the specified one.
-            </param>
-        </member>
         <member name="F:Sudoku.Constants.Processings.BlockTable">
             <summary>
             The block table.
@@ -1592,6 +1568,20 @@
             <param name="this">(<see langword="this"/> parameter) The link type.</param>
             <returns>The notation.</returns>
         </member>
+        <member name="T:Sudoku.Data.Extensions.RegionLabelConverter">
+            <summary>
+            Encapsulates the converter methods of conversions between <see cref="T:System.Int32"/>
+            and <see cref="T:Sudoku.Data.RegionLabel"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.RegionLabel"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.RegionLabelConverter.ToLabel(System.Int32)">
+            <summary>
+            Get the label in the specified region.
+            </summary>
+            <param name="region">(<see langword="this"/> parameter) The region.</param>
+            <returns>The region label.</returns>
+        </member>
         <member name="T:Sudoku.Data.Extensions.RegionLabelEx">
             <summary>
             Provides extension methods for <see cref="T:Sudoku.Data.RegionLabel"/>.
@@ -1611,6 +1601,23 @@
             Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
             </summary>
             <seealso cref="T:Sudoku.Data.SudokuGrid"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.SudokuGridEx.Deconstruct(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+            <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
+            <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
+            <param name="candidates">
+            (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit.
+            </param>
+            <param name="digits">
+            (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit
+            or that value in given or modifiable.
+            </param>
+            <param name="values">
+            (<see langword="out"/> parameter) The map of all cells that is the given or modifiable value,
+            and the digit is the specified one.
+            </param>
         </member>
         <member name="M:Sudoku.Data.Extensions.SudokuGridEx.Exists(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
             <summary>

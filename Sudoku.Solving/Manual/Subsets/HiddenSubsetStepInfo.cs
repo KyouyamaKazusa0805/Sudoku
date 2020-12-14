@@ -2,10 +2,10 @@
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Windows;
-using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					.Append(Resources.GetValue("_HiddenSubset8"))
 					.Append(Digits.Count)
 					.Append(Resources.GetValue("_HiddenSubset9"))
-					.Append(Resources.GetValue(GetLabel(Region).ToString()))
+					.Append(Resources.GetValue(Region.ToLabel().ToString()))
 					.Append(Resources.GetValue("_HiddenSubset10"))
 					.Append(new ConclusionCollection(Conclusions).ToString())
 					.Append(Resources.GetValue("Period"))

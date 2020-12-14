@@ -1,5 +1,6 @@
 ﻿using System.Extensions;
 using System.Runtime.CompilerServices;
+using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 
@@ -11,6 +12,114 @@ namespace Sudoku.Data.Extensions
 	/// <seealso cref="SudokuGrid"/>
 	public static class SudokuGridEx
 	{
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
+		/// <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
+		/// <param name="candidates">
+		/// (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit.
+		/// </param>
+		/// <param name="digits">
+		/// (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit
+		/// or that value in given or modifiable.
+		/// </param>
+		/// <param name="values">
+		/// (<see langword="out"/> parameter) The map of all cells that is the given or modifiable value,
+		/// and the digit is the specified one.
+		/// </param>
+		public static void Deconstruct(
+			this in SudokuGrid @this, out Cells empty, out Cells bivalue,
+			out Cells[] candidates, out Cells[] digits, out Cells[] values)
+		{
+			empty = e(@this);
+			bivalue = b(@this);
+			candidates = c(@this);
+			digits = d(@this);
+			values = v(@this);
+
+			static Cells e(in SudokuGrid @this)
+			{
+				var result = Cells.Empty;
+				for (int cell = 0; cell < 81; cell++)
+				{
+					if (@this.GetStatus(cell) == Empty)
+					{
+						result.AddAnyway(cell);
+					}
+				}
+
+				return result;
+			}
+
+			static Cells b(in SudokuGrid @this)
+			{
+				var result = Cells.Empty;
+				for (int cell = 0; cell < 81; cell++)
+				{
+					if (@this.GetCandidateMask(cell).PopCount() == 2)
+					{
+						result.AddAnyway(cell);
+					}
+				}
+
+				return result;
+			}
+
+			static Cells[] c(in SudokuGrid @this)
+			{
+				var result = new Cells[9];
+				for (int digit = 0; digit < 9; digit++)
+				{
+					ref var map = ref result[digit];
+					for (int cell = 0; cell < 81; cell++)
+					{
+						if (@this.Exists(cell, digit) is true)
+						{
+							map.AddAnyway(cell);
+						}
+					}
+				}
+
+				return result;
+			}
+
+			static Cells[] d(in SudokuGrid @this)
+			{
+				var result = new Cells[9];
+				for (int digit = 0; digit < 9; digit++)
+				{
+					ref var map = ref result[digit];
+					for (int cell = 0; cell < 81; cell++)
+					{
+						if ((@this.GetCandidateMask(cell) >> digit & 1) != 0)
+						{
+							map.AddAnyway(cell);
+						}
+					}
+				}
+
+				return result;
+			}
+
+			static Cells[] v(in SudokuGrid @this)
+			{
+				var result = new Cells[9];
+				for (int digit = 0; digit < 9; digit++)
+				{
+					ref var map = ref result[digit];
+					for (int cell = 0; cell < 81; cell++)
+					{
+						if (@this[cell] == digit)
+						{
+							map.AddAnyway(cell);
+						}
+					}
+				}
+
+				return result;
+			}
+		}
+
 		/// <summary>
 		/// Indicates whether the specified grid contains the digit in the specified cell.
 		/// </summary>
