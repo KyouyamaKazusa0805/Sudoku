@@ -781,7 +781,6 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="Undefined"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool TryParse(string str, out SudokuGrid result)
 		{
 			try
@@ -808,7 +807,6 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="Undefined"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool TryParse(string str, ParsingOption option, out SudokuGrid result)
 		{
 			try
