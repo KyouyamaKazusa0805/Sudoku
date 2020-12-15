@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Sudoku.Data;
@@ -61,7 +60,6 @@ namespace Sudoku.Solving.Generating
 			var puzzle = new StringBuilder() { Length = 81 };
 			var solution = new StringBuilder() { Length = 81 };
 			var emptyGridStr = new StringBuilder(SudokuGrid.EmptyString);
-			static string valueOf(StringBuilder solution) => solution.ToString();
 
 			while (true)
 			{
@@ -79,7 +77,7 @@ namespace Sudoku.Solving.Generating
 						char temp = solution[p];
 						solution[p] = '0';
 
-						if (!FastSolver.CheckValidity(valueOf(solution)))
+						if (!FastSolver.CheckValidity(solution.ToString()))
 						{
 							// Reset the value.
 							solution[p] = temp;
@@ -92,9 +90,9 @@ namespace Sudoku.Solving.Generating
 						progress.Report(progressResult);
 					}
 
-					if (FastSolver.CheckValidity(valueOf(solution)))
+					if (FastSolver.CheckValidity(solution.ToString()))
 					{
-						var grid = SudokuGrid.Parse(valueOf(solution));
+						var grid = SudokuGrid.Parse(solution.ToString());
 						if ((
 							backdoorFilterDepth != -1
 							&& BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).None()
@@ -133,13 +131,10 @@ namespace Sudoku.Solving.Generating
 		/// <inheritdoc/>
 		protected sealed override void CreatePattern(int[] pattern)
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static double rnd() => IPuzzleGenerator.Rng.NextDouble();
-
 			int a = 54, b = 0;
 			for (int i = 0; i < 9; i++)
 			{
-				int n = (int)(rnd() * 6);
+				int n = (int)(IPuzzleGenerator.Rng.NextDouble() * 6);
 				for (int j = 0; j < 3; j++)
 				{
 					for (int k = 0; k < 3; k++)
@@ -151,19 +146,19 @@ namespace Sudoku.Solving.Generating
 
 			for (int i = 23; i >= 0; i--)
 			{
-				Swap(ref pattern[i], ref pattern[(int)((i + 1) * rnd())]);
+				Swap(ref pattern[i], ref pattern[(int)((i + 1) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 47; i >= 24; i--)
 			{
-				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * rnd())]);
+				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 53; i >= 48; i--)
 			{
-				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * rnd())]);
+				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 80; i >= 54; i--)
 			{
-				Swap(ref pattern[i], ref pattern[54 + (int)(27 * rnd())]);
+				Swap(ref pattern[i], ref pattern[54 + (int)(27 * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 		}
 
@@ -174,24 +169,21 @@ namespace Sudoku.Solving.Generating
 		/// <param name="pattern">The pattern array.</param>
 		private static void RecreatePattern(int[] pattern)
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static double rnd() => IPuzzleGenerator.Rng.NextDouble();
-
 			for (int i = 23; i >= 0; i--)
 			{
-				Swap(ref pattern[i], ref pattern[(int)((i + 1) * rnd())]);
+				Swap(ref pattern[i], ref pattern[(int)((i + 1) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 47; i >= 24; i--)
 			{
-				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * rnd())]);
+				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 53; i >= 48; i--)
 			{
-				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * rnd())]);
+				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 80; i >= 54; i--)
 			{
-				Swap(ref pattern[i], ref pattern[54 + (int)(27 * rnd())]);
+				Swap(ref pattern[i], ref pattern[54 + (int)(27 * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 		}
 	}
