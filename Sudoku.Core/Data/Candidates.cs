@@ -460,11 +460,11 @@ namespace Sudoku.Data
 		/// <para>
 		/// For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
 		/// <code>
-		/// var map = new GridMap(xxx) { ~1 };
+		/// var map = new Cells(xxx) { ~1 };
 		/// </code>
 		/// which is equivalent to:
 		/// <code>
-		/// var map = new GridMap(xxx);
+		/// var map = new Cells(xxx);
 		/// map[1] = false;
 		/// </code>
 		/// </para>

@@ -165,7 +165,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				   where i8 != i1 && i8 != i2 && i8 != i3 && i8 != i4 && i8 != i5 && i8 != i6 && i8 / 3 != i7 / 3
 				   from i9 in values
 				   where i9 != i1 && i9 != i2 && i9 != i3 && i9 != i4 && i9 != i5 && i9 != i6 && i9 / 3 != i7 / 3 && i9 / 3 != i8 / 3
-				   select new GridMap(1 << i1 | 1 << (i2 + 9) | 1 << (i3 + 18), 1 << i4 | 1 << (i5 + 9) | 1 << (i6 + 18), 1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18));
+				   select new Cells(1 << i1 | 1 << (i2 + 9) | 1 << (i3 + 18), 1 << i4 | 1 << (i5 + 9) | 1 << (i6 + 18), 1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18));
 #endif
 		}
 	}

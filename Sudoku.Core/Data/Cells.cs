@@ -91,11 +91,11 @@ namespace Sudoku.Data
 		/// In some case, you can use object initializer instead.
 		/// You can use the code
 		/// <code>
-		/// var map = new GridMap { 0, 3, 5 };
+		/// var map = new Cells { 0, 3, 5 };
 		/// </code>
 		/// instead of the code
 		/// <code>
-		/// var map = new GridMap(stackalloc[] { 0, 3, 5 });
+		/// var map = new Cells(stackalloc[] { 0, 3, 5 });
 		/// </code>
 		/// </para>
 		/// </remarks>
@@ -116,21 +116,21 @@ namespace Sudoku.Data
 		/// <para>
 		/// This constructor is only used for adding or removing some extra cells like:
 		/// <code>
-		/// var y = new GridMap(x) { [i] = true };
+		/// var y = new Cells(x) { [i] = true };
 		/// </code>
 		/// or
 		/// <code>
-		/// var y = new GridMap(x) { i };
+		/// var y = new Cells(x) { i };
 		/// </code>
 		/// </para>
 		/// <para>
 		/// Similarly, the following code is also okay:
 		/// <code>
-		/// var y = new GridMap(x) { [i] = false };
+		/// var y = new Cells(x) { [i] = false };
 		/// </code>
 		/// or
 		/// <code>
-		/// var y = new GridMap(x) { ~i };
+		/// var y = new Cells(x) { ~i };
 		/// </code>
 		/// where <c>~i</c> means assigning <see langword="false"/> value to the position
 		/// whose the corresponding value is <c>i</c>.
@@ -180,7 +180,7 @@ namespace Sudoku.Data
 		/// If the value is <see langword="false"/>, it will be equivalent
 		/// to below:
 		/// <code>
-		/// var map = new GridMap(offset) { [offset] = false };
+		/// var map = new Cells(offset) { [offset] = false };
 		/// </code>
 		/// </param>
 		/// <remarks>
@@ -688,11 +688,11 @@ namespace Sudoku.Data
 		/// <para>
 		/// For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
 		/// <code>
-		/// var map = new GridMap(xxx) { ~1 };
+		/// var map = new Cells(xxx) { ~1 };
 		/// </code>
 		/// which is equivalent to:
 		/// <code>
-		/// var map = new GridMap(xxx);
+		/// var map = new Cells(xxx);
 		/// map[1] = false;
 		/// </code>
 		/// </para>
@@ -779,7 +779,7 @@ namespace Sudoku.Data
 		public static bool operator !=(in Cells left, in Cells right) => !(left == right);
 
 		/// <summary>
-		/// The syntactic sugar for <c>new GridMap(map) { cell }</c> (i.e. add a new cell into the current
+		/// The syntactic sugar for <c>new Cells(map) { cell }</c> (i.e. add a new cell into the current
 		/// map, and return the new map).
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
@@ -794,7 +794,7 @@ namespace Sudoku.Data
 		public static Cells operator +(in Cells map, int cell) => new(map) { cell };
 
 		/// <summary>
-		/// The syntactic sugar for <c>new GridMap(map) { ~cell }</c> (i.e. remove a cell from the current
+		/// The syntactic sugar for <c>new Cells(map) { ~cell }</c> (i.e. remove a cell from the current
 		/// map, and return the new map).
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>

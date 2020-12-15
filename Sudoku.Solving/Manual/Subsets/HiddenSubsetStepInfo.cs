@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		IEnumerable<Node> IHasParentNodeInfo.GetRuleParents(in SudokuGrid initialGrid, in SudokuGrid currentGrid)
 		{
 			var result = new List<Node>();
-			var posMap = GridMap.Empty;
+			var posMap = Cells.Empty;
 			foreach (int cell in Cells)
 			{
 				posMap.AddAnyway(cell);
