@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 				foreach (int elimination in eliminations)
 				{
-					var loops = new List<(Cells Map, Cells Guardians, IReadOnlyList<Link> Links)>();
+					var loops = new List<(Cells, Cells, IReadOnlyList<Link>)>();
 					var tempLoop = new List<int>();
 					var globalMap = CandMaps[digit] - new Cells(elimination);
 					foreach (int cell in globalMap)
