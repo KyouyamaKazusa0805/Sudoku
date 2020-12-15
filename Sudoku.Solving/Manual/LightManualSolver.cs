@@ -2,8 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Singles;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual
 {
@@ -63,8 +61,8 @@ namespace Sudoku.Solving.Manual
 			{
 				switch (t)
 				{
-					case Assignment when cloneation.GetStatus(c) == Empty:
-					case Elimination when cloneation.Exists(c, d) is true:
+					case ConclusionType.Assignment when cloneation.GetStatus(c) == CellStatus.Empty:
+					case ConclusionType.Elimination when cloneation.Exists(c, d) is true:
 					{
 						step.ApplyTo(ref cloneation);
 						steps.Add(step);

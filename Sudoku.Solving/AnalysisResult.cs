@@ -157,9 +157,9 @@ namespace Sudoku.Solving
 			get
 			{
 				var maxLevel = DifficultyLevel.Unknown;
-				if ((IsSolved, Steps) is (true, not null))
+				if (IsSolved && Steps is not null)
 				{
-					foreach (var step in Steps!)
+					foreach (var step in Steps)
 					{
 						if (step.ShowDifficulty && step.DifficultyLevel > maxLevel)
 						{
@@ -264,8 +264,7 @@ namespace Sudoku.Solving
 		/// <returns>
 		/// An enumerator that can be used to iterate through the collection.
 		/// </returns>
-		public IEnumerator<StepInfo> GetEnumerator() =>
-			(Steps ?? Array.Empty<StepInfo>()).GetEnumerator();
+		public IEnumerator<StepInfo> GetEnumerator() => (Steps ?? Array.Empty<StepInfo>()).GetEnumerator();
 
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);

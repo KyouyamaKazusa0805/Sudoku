@@ -32,8 +32,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="countryCode">The country code.</param>
 		/// <returns>The task of the execution.</returns>
 		public async Task<AnalysisResult> SolveAsync(
-			SudokuGrid grid, IProgress<IProgressResult>? progress,
-			CountryCode countryCode = CountryCode.EnUs) =>
+			SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode = CountryCode.EnUs) =>
 			await Task.Run(() => Solve(grid, progress, countryCode));
 
 		/// <summary>
@@ -44,8 +43,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="countryCode">The country code.</param>
 		/// <returns>The analysis result.</returns>
 		public AnalysisResult Solve(
-			in SudokuGrid grid, IProgress<IProgressResult>? progress,
-			CountryCode countryCode = CountryCode.EnUs)
+			in SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode = CountryCode.EnUs)
 		{
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{
