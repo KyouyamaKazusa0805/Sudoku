@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -68,25 +67,15 @@ namespace Sudoku.Data.Collections
 
 
 		/// <inheritdoc/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override bool Equals(object? obj) =>
-			throw new NotSupportedException(
-				"This instance doesn't support this member, " +
-				"because this method will cause box and unbox operations, " +
-				"which is invalid in ref structures.");
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public override bool Equals(object? obj) => false;
 
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		public bool Equals(in RegionCollection other) => _mask == other._mask;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override int GetHashCode() =>
-			throw new NotSupportedException(
-				"This instance doesn't support this member, " +
-				"because this method will cause box and unbox operations, " +
-				"which is invalid in ref structures.");
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public override int GetHashCode() => _mask;
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()

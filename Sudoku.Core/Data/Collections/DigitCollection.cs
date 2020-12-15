@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Text;
 using Sudoku.DocComments;
@@ -63,13 +62,8 @@ namespace Sudoku.Data.Collections
 
 
 		/// <inheritdoc/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override bool Equals(object? obj) =>
-			throw new NotSupportedException(
-				"This instance doesn't support this member, " +
-				"because this method will cause box and unbox operations, " +
-				"which is invalid in ref structures.");
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public override bool Equals(object? obj) => false;
 
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		public bool Equals(in DigitCollection other) => _mask == other._mask;
@@ -82,13 +76,8 @@ namespace Sudoku.Data.Collections
 		public bool Contains(int digit) => (_mask >> digit & 1) != 0;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override int GetHashCode() =>
-			throw new NotSupportedException(
-				"This instance doesn't support this member, " +
-				"because this method will cause box and unbox operations, " +
-				"which is invalid in ref structures.");
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public override int GetHashCode() => _mask;
 
 		/// <inheritdoc/>
 		public override string ToString() => ToString(", ");
@@ -120,7 +109,7 @@ namespace Sudoku.Data.Collections
 		/// Get the enumerator.
 		/// </summary>
 		/// <returns>The enumerator.</returns>
-		public IEnumerator<int> GetEnumerator() => _mask.GetAllSets().GetEnumerator();
+		public IEnumerator<int> GetEnumerator() => _mask.GetEnumerator();
 
 
 		/// <summary>

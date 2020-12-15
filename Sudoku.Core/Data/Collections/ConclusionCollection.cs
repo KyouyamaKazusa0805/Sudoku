@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Text;
@@ -81,25 +80,24 @@ namespace Sudoku.Data.Collections
 
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override bool Equals(object? obj) =>
-			throw new NotSupportedException(
-				"This instance doesn't support this member, " +
-				"because this method will cause box and unbox operations, " +
-				"which is invalid in ref structures.");
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public override bool Equals(object? obj) => false;
 
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		public bool Equals(in ConclusionCollection other) => _collection == other._collection;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override int GetHashCode() =>
-			throw new NotSupportedException(
-				"This instance doesn't support this member, " +
-				"because this method will cause box and unbox operations, " +
-				"which is invalid in ref structures.");
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public override int GetHashCode()
+		{
+			int result = 0;
+			foreach (var conclusion in _collection)
+			{
+				result ^= 123574689 ^ conclusion.GetHashCode();
+			}
+
+			return result;
+		}
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => ToString(true, ", ");
