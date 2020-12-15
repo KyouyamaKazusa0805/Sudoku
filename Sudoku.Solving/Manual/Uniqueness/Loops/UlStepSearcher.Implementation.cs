@@ -131,15 +131,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
 			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
 		{
+			static bool isSatisfyType3(int cell, in short comparer, in SudokuGrid grid) =>
+				grid.GetCandidateMask(cell) is var mask && (mask & comparer) == 0 || mask == comparer;
+
+			bool satisfyType3;
 			unsafe
 			{
-				static bool internalChecking(int cell, in short comparer, in SudokuGrid grid) =>
-					grid.GetCandidateMask(cell) is var mask && (mask & comparer) == 0 || mask == comparer;
+				satisfyType3 = extraCellsMap.Any(&isSatisfyType3, comparer, grid);
+			}
 
-				if (!extraCellsMap.InOneRegion || extraCellsMap.Any(&internalChecking, comparer, grid))
-				{
-					return;
-				}
+			if (!extraCellsMap.InOneRegion || satisfyType3)
+			{
+				return;
 			}
 
 			short m = 0;
@@ -328,7 +331,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			{
 				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 				{
-					int region = label.GetRegion(cell);
+					int region = label.ToRegion(cell);
 					if (*&isOdd)
 					{
 						if ((visitedOddRegions >> region & 1) != 0)

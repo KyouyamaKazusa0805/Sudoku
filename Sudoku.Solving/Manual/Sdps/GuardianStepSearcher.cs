@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual.Sdps
 									continue;
 								}
 
-								int region = label.GetRegion(cell);
+								int region = label.ToRegion(cell);
 								var otherCellsMap = RegionMaps[region] & globalMap - cell;
 								if (otherCellsMap.Count != 1)
 								{

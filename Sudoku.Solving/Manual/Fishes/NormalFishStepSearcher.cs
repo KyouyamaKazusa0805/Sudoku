@@ -648,7 +648,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						{
 							bool flag;
 							static bool i(int c, in bool searchRow, in int cell) =>
-								RegionMaps[(searchRow ? RegionLabel.Column : RegionLabel.Row).GetRegion(c)][cell];
+								RegionMaps[(searchRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c)][cell];
 							unsafe
 							{
 								flag = ValueMaps[digit].Any(&i, searchRow, cell);

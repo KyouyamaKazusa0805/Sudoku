@@ -37,9 +37,9 @@ namespace Sudoku.Solving.Manual.Alses
 			List<Cells> rbList = new(3), cbList = new(3);
 			foreach (int pivot in EmptyMap)
 			{
-				int r = RegionLabel.Row.GetRegion(pivot);
-				int c = RegionLabel.Column.GetRegion(pivot);
-				int b = RegionLabel.Block.GetRegion(pivot);
+				int r = RegionLabel.Row.ToRegion(pivot);
+				int c = RegionLabel.Column.ToRegion(pivot);
+				int b = RegionLabel.Block.ToRegion(pivot);
 				Cells rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
 				Cells rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
 				if ((rbEmptyMap.Count, cbEmptyMap.Count) is not ( >= 2, >= 2))

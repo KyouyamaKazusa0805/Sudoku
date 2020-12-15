@@ -78,9 +78,9 @@ namespace Sudoku.Solving.Checking
 					ref var map = ref stack[0, digit];
 					map.AddAnyway(cell);
 
-					span[0] = RegionLabel.Row.GetRegion(cell);
-					span[1] = RegionLabel.Column.GetRegion(cell);
-					span[2] = RegionLabel.Block.GetRegion(cell);
+					span[0] = RegionLabel.Row.ToRegion(cell);
+					span[1] = RegionLabel.Column.ToRegion(cell);
+					span[2] = RegionLabel.Block.ToRegion(cell);
 					foreach (int region in span)
 					{
 						if ((map & RegionMaps[region]).Count > 2)
@@ -134,9 +134,9 @@ namespace Sudoku.Solving.Checking
 						var temp = stack[currentIndex - 1, digit];
 						temp.AddAnyway(currentCell);
 
-						playground[0] = RegionLabel.Block.GetRegion(currentCell);
-						playground[1] = RegionLabel.Row.GetRegion(currentCell);
-						playground[2] = RegionLabel.Column.GetRegion(currentCell);
+						playground[0] = RegionLabel.Block.ToRegion(currentCell);
+						playground[1] = RegionLabel.Row.ToRegion(currentCell);
+						playground[2] = RegionLabel.Column.ToRegion(currentCell);
 						foreach (int region in playground)
 						{
 							if ((temp & RegionMaps[region]).Count > 2)

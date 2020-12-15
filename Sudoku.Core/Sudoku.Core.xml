@@ -1588,7 +1588,7 @@
             </summary>
             <seealso cref="T:Sudoku.Data.RegionLabel"/>
         </member>
-        <member name="M:Sudoku.Data.Extensions.RegionLabelEx.GetRegion(Sudoku.Data.RegionLabel,System.Int32)">
+        <member name="M:Sudoku.Data.Extensions.RegionLabelEx.ToRegion(Sudoku.Data.RegionLabel,System.Int32)">
             <summary>
             Get the region index for the specified cell and the region type.
             </summary>

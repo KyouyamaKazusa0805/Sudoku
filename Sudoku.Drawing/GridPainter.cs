@@ -273,12 +273,15 @@ namespace Sudoku.Drawing
 				where c.ConclusionType == ConclusionType.Elimination
 				select c)
 			{
+				bool isCannibalism;
 				unsafe
 				{
-					g.FillEllipse(
-					View?.Candidates?.Any(&overlapping, c, d) ?? false ? cannibalBrush : eliminationBrush,
-					Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
+					isCannibalism = View?.Candidates?.Any(&overlapping, c, d) ?? false;
 				}
+
+				g.FillEllipse(
+					isCannibalism ? cannibalBrush : eliminationBrush,
+					Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
 			}
 
 			static bool overlapping(DrawingInfo pair, in int c, in int d) => pair.Value == c * 9 + d;

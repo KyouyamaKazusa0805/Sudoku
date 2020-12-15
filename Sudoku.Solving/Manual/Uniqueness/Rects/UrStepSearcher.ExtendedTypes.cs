@@ -359,22 +359,25 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								if (urCell == corner1 || urCell == corner2)
 								{
+									static bool same(int r, in int region) => r == region;
+									bool flag;
 									unsafe
 									{
-										static bool same(int r, in int region) => r == region;
-										if (new Cells { urCell, otherCell }.CoveredRegions.Any(&same, region))
+										flag = new Cells { urCell, otherCell }.CoveredRegions.Any(&same, region);
+									}
+
+									if (flag)
+									{
+										foreach (int d in grid.GetCandidateMask(urCell))
 										{
-											foreach (int d in grid.GetCandidateMask(urCell))
-											{
-												candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
-											}
+											candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
 										}
-										else
+									}
+									else
+									{
+										foreach (int d in grid.GetCandidateMask(urCell))
 										{
-											foreach (int d in grid.GetCandidateMask(urCell))
-											{
-												candidateOffsets.Add(new(0, urCell * 9 + d));
-											}
+											candidateOffsets.Add(new(0, urCell * 9 + d));
 										}
 									}
 								}

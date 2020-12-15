@@ -889,15 +889,12 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemViewsGspView_Click(object sender, RoutedEventArgs e)
 		{
-			if (Enumerable.Range(0, 81).All(&internalChecking, this))
+			if (Enumerable.Range(0, 81).All(i => _puzzle.GetStatus(i) != CellStatus.Given))
 			{
 				Messagings.SukakuCannotUseGspChecking();
 				e.Handled = true;
 				return;
 			}
-
-			static bool internalChecking(int i, in MainWindow @this) =>
-				@this._puzzle.GetStatus(i) != CellStatus.Given;
 
 			if (new GspStepSearcher().GetOne((SudokuGrid)_puzzle) is not GspStepInfo info)
 			{

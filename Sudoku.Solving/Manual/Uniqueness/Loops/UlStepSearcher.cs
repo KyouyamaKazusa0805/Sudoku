@@ -115,7 +115,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							continue;
 						}
 
-						int region = label.GetRegion(cell);
+						int region = label.ToRegion(cell);
 						var cellsMap = RegionMaps[region] & EmptyMap - cell;
 						if (cellsMap.IsEmpty)
 						{

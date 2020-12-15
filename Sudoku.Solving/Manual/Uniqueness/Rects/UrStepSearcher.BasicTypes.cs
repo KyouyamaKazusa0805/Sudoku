@@ -210,20 +210,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ↓ corner1, corner2
 			// (ab ) (ab )
 			//  abx   aby
-			static bool internalChecking(int cell, in short comparer, in bool arMode, in SudokuGrid grid) =>
+			static bool isSatisfiedType3(int cell, in short comparer, in bool arMode, in SudokuGrid grid) =>
 				grid.GetCandidateMask(cell) is var mask && (mask & comparer) == 0
 				|| mask == comparer || arMode && grid.GetStatus(cell) != Empty;
 
+			bool satisfiedType3;
 			unsafe
 			{
-				if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer
-					|| otherCellsMap.Any(&internalChecking, comparer, arMode, grid))
-				{
-					return;
-				}
+				satisfiedType3 = otherCellsMap.Any(&isSatisfiedType3, comparer, arMode, grid);
 			}
 
-			if (grid.BitwiseOrMasks(otherCellsMap) is var mask && (mask & comparer) != comparer)
+			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer || satisfiedType3)
+			{
+				return;
+			}
+
+			short mask = grid.BitwiseOrMasks(otherCellsMap);
+			if ((mask & comparer) != comparer)
 			{
 				return;
 			}
@@ -558,8 +561,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int[] offsets = otherCellsMap.Offsets;
 			int o1 = offsets[0], o2 = offsets[1];
-			int r1 = RegionLabel.Row.GetRegion(corner1), c1 = RegionLabel.Column.GetRegion(corner1);
-			int r2 = RegionLabel.Row.GetRegion(corner2), c2 = RegionLabel.Column.GetRegion(corner2);
+			int r1 = RegionLabel.Row.ToRegion(corner1), c1 = RegionLabel.Column.ToRegion(corner1);
+			int r2 = RegionLabel.Row.ToRegion(corner2), c2 = RegionLabel.Column.ToRegion(corner2);
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
 				foreach (var (region1, region2) in stackalloc[] { (r1, r2), (c1, c2) })
@@ -677,7 +680,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = otherCellsMap - abzCell;
-			int r = RegionLabel.Row.GetRegion(abzCell), c = RegionLabel.Column.GetRegion(abzCell);
+			int r = RegionLabel.Row.ToRegion(abzCell), c = RegionLabel.Column.ToRegion(abzCell);
 
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{

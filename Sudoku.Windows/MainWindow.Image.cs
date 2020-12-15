@@ -192,12 +192,12 @@ namespace Sudoku.Windows
 							{
 								int[] offsets = _selectedCellsWhileDrawingRegions.Offsets;
 								int first = offsets[0], second = offsets[1];
-								int r1 = RegionLabel.Row.GetRegion(first);
-								int r2 = RegionLabel.Row.GetRegion(second);
-								int c1 = RegionLabel.Column.GetRegion(first);
-								int c2 = RegionLabel.Column.GetRegion(second);
-								int b1 = RegionLabel.Block.GetRegion(first);
-								int b2 = RegionLabel.Block.GetRegion(second);
+								int r1 = RegionLabel.Row.ToRegion(first);
+								int r2 = RegionLabel.Row.ToRegion(second);
+								int c1 = RegionLabel.Column.ToRegion(first);
+								int c2 = RegionLabel.Column.ToRegion(second);
+								int b1 = RegionLabel.Block.ToRegion(first);
+								int b2 = RegionLabel.Block.ToRegion(second);
 								int region = (r1 == r2, c1 == c2, b1 == b2) switch
 								{
 									(true, _, _) => r1,

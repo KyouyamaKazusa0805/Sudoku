@@ -62,11 +62,11 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					for (int region = 9; region < 27; region++)
 					{
 						if (region < 18 && (
-							RegionLabel.Row.GetRegion(c1) == region
-							|| RegionLabel.Row.GetRegion(c2) == region)
+							RegionLabel.Row.ToRegion(c1) == region
+							|| RegionLabel.Row.ToRegion(c2) == region)
 							|| region >= 18 && (
-							RegionLabel.Column.GetRegion(c1) == region
-							|| RegionLabel.Column.GetRegion(c2) == region))
+							RegionLabel.Column.ToRegion(c1) == region
+							|| RegionLabel.Column.ToRegion(c2) == region))
 						{
 							continue;
 						}

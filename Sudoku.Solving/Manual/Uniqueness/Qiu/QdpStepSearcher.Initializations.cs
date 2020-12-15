@@ -45,16 +45,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						if (
 							baseLineMap.Overlaps(pairMap)
 							|| baseLineMap.Overlaps(
-								RegionMaps[RegionLabel.Block.GetRegion(c1)]
-								| RegionMaps[RegionLabel.Block.GetRegion(c2)]))
+								RegionMaps[RegionLabel.Block.ToRegion(c1)]
+								| RegionMaps[RegionLabel.Block.ToRegion(c2)]))
 						{
 							continue;
 						}
 
 						var squareMap =
 							baseLineMap & (
-								RegionMaps[(isRow ? RegionLabel.Column : RegionLabel.Row).GetRegion(c1)]
-								| RegionMaps[(isRow ? RegionLabel.Column : RegionLabel.Row).GetRegion(c2)]);
+								RegionMaps[(isRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c1)]
+								| RegionMaps[(isRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c2)]);
 
 						Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
 					}

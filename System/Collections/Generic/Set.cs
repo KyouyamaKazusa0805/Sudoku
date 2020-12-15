@@ -231,24 +231,10 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public bool Overlaps(IEnumerable<T> other)
-		{
-			unsafe
-			{
-				static bool internalChecking(T element, in Set<T> @this) => @this._list.Contains(element);
-				return other.Any(&internalChecking, this);
-			}
-		}
+		public bool Overlaps(IEnumerable<T> other) => other.Any(element => _list.Contains(element));
 
 		/// <inheritdoc/>
-		public bool SetEquals(IEnumerable<T> other)
-		{
-			unsafe
-			{
-				static bool internalChecking(T element, in Set<T> @this) => @this._list.Contains(element);
-				return other.All(&internalChecking, this);
-			}
-		}
+		public bool SetEquals(IEnumerable<T> other) => other.All(element => _list.Contains(element));
 
 		/// <inheritdoc/>
 		public void SymmetricExceptWith(IEnumerable<T> other)

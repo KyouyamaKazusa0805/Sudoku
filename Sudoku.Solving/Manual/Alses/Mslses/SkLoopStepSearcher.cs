@@ -126,14 +126,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					}
 
 					// Check elimination map.
-					linkRegion[0] = RegionLabel.Row.GetRegion(cells[0]);
-					linkRegion[1] = RegionLabel.Block.GetRegion(cells[2]);
-					linkRegion[2] = RegionLabel.Column.GetRegion(cells[4]);
-					linkRegion[3] = RegionLabel.Block.GetRegion(cells[6]);
-					linkRegion[4] = RegionLabel.Row.GetRegion(cells[8]);
-					linkRegion[5] = RegionLabel.Block.GetRegion(cells[10]);
-					linkRegion[6] = RegionLabel.Column.GetRegion(cells[12]);
-					linkRegion[7] = RegionLabel.Block.GetRegion(cells[14]);
+					linkRegion[0] = RegionLabel.Row.ToRegion(cells[0]);
+					linkRegion[1] = RegionLabel.Block.ToRegion(cells[2]);
+					linkRegion[2] = RegionLabel.Column.ToRegion(cells[4]);
+					linkRegion[3] = RegionLabel.Block.ToRegion(cells[6]);
+					linkRegion[4] = RegionLabel.Row.ToRegion(cells[8]);
+					linkRegion[5] = RegionLabel.Block.ToRegion(cells[10]);
+					linkRegion[6] = RegionLabel.Column.ToRegion(cells[12]);
+					linkRegion[7] = RegionLabel.Block.ToRegion(cells[14]);
 					var conclusions = new List<Conclusion>();
 					var map = cells & EmptyMap;
 					for (k = 0; k < 8; k++)

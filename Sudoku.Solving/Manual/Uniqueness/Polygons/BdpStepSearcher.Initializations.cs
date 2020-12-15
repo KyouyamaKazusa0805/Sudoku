@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				for (int i = 0, cur = 0; i < 9; i++)
 				{
 					int cell = RegionCells[region][i];
-					if (block == RegionLabel.Block.GetRegion(cell))
+					if (block == RegionLabel.Block.ToRegion(cell))
 					{
 						continue;
 					}

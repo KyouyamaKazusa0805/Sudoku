@@ -207,11 +207,11 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				short nonBase = (short)(mirrorCandsMask & ~baseCandidateMask);
-				regions[0] = RegionLabel.Block.GetRegion(l);
+				regions[0] = RegionLabel.Block.ToRegion(l);
 				regions[1] =
-					RegionLabel.Row.GetRegion(l) == RegionLabel.Row.GetRegion(r)
-					? RegionLabel.Row.GetRegion(l)
-					: RegionLabel.Column.GetRegion(l);
+					RegionLabel.Row.ToRegion(l) == RegionLabel.Row.ToRegion(r)
+					? RegionLabel.Row.ToRegion(l)
+					: RegionLabel.Column.ToRegion(l);
 				short locked = default;
 				foreach (short mask in GetCombinations(nonBase))
 				{

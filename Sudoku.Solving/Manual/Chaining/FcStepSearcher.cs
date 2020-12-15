@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
-				int region = label.GetRegion(cell);
+				int region = label.ToRegion(cell);
 				var worthMap = CandMaps[digit] & RegionMaps[region];
 				switch (worthMap.Count)
 				{

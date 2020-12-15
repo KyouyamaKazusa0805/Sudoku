@@ -16,7 +16,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="@this">(<see langword="this"/> parameter) The label.</param>
 		/// <returns>The region index (<c>0..27</c>).</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int GetRegion(this RegionLabel @this, int cell) =>
+		public static int ToRegion(this RegionLabel @this, int cell) =>
 		(
 			@this switch
 			{

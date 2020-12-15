@@ -62,21 +62,11 @@ namespace Sudoku.Solving.Generating
 			while (true)
 			{
 				var puzzle = Generate(-1, progress, countryCode: countryCode);
-
-				bool r;
-				unsafe
-				{
-					r = ManualSolver.Solve(puzzle).Any(&p, techniqueCodeFilter);
-				}
-
-				if (r)
+				if (ManualSolver.Solve(puzzle).Any(step => techniqueCodeFilter.Contains(step.TechniqueCode)))
 				{
 					return puzzle;
 				}
 			}
-
-			static bool p(StepInfo step, in TechniqueCodeFilter techniqueCodeFilter) =>
-				techniqueCodeFilter.Contains(step.TechniqueCode);
 		}
 
 		/// <summary>

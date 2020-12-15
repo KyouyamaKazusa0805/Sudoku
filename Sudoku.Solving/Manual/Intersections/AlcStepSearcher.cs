@@ -92,12 +92,15 @@ namespace Sudoku.Solving.Manual.Intersections
 
 				static bool overlaps(int d, in int coverSet) => ValueMaps[d].Overlaps(RegionMaps[coverSet]);
 				var digits = mask.GetAllSets();
+				bool isOverlapped;
 				unsafe
 				{
-					if (digits.Any(&overlaps, coverSet))
-					{
-						continue;
-					}
+					isOverlapped = digits.Any(&overlaps, coverSet);
+				}
+
+				if (isOverlapped)
+				{
+					continue;
 				}
 
 				short ahsMask = 0;
