@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				.Append(new RegionCollection(BaseSets).ToString())
 				.Append(Resources.GetValue("Backslash"))
 				.Append(new RegionCollection(CoverSets).ToString())
-				.Append(Fins is { Count: not 0 } ? $" f{Fins}" : string.Empty)
+				.Append(Fins.IsEmpty ? string.Empty : $" f{Fins}")
 				.Append(Resources.GetValue("GoesTo"))
 				.Append(new ConclusionCollection(Conclusions).ToString())
 				.ToString();
@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					.Append(new RegionCollection(BaseSets).ToString())
 					.Append(Resources.GetValue("Backslash"))
 					.Append(new RegionCollection(CoverSets).ToString())
-					.Append(Fins is { Count: not 0 } ? $" f{Fins}" : string.Empty)
+					.Append(Fins.IsEmpty ? string.Empty : $" f{Fins}")
 					.Append(Resources.GetValue("GoesTo"))
 					.Append(new ConclusionCollection(Conclusions).ToString())
 					.ToString(),
@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 				return Fins switch
 				{
-					{ Count: 0 } when BaseSets[0] is >= 9 and < 18 is var isRowDirection =>
+					{ IsEmpty: true } when BaseSets[0] is >= 9 and < 18 is var isRowDirection =>
 						sb
 						.Append(Resources.GetValue("_NormalFish9"))
 						.Append(digit)
