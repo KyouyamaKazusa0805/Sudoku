@@ -21,13 +21,6 @@ namespace Sudoku.Solving.Manual
 		public string SolverName => Resources.GetValue("Manual");
 
 
-		/// <summary>
-		/// Indicates the list that used as a cache.
-		/// </summary>
-		[JsonIgnore]
-		private static List<StepInfo> TempList => new();
-
-
 		/// <inheritdoc/>
 		public AnalysisResult Solve(in SudokuGrid grid) => Solve(grid, null);
 
@@ -68,8 +61,8 @@ namespace Sudoku.Solving.Manual
 
 					var copied = grid;
 					return AnalyzeDifficultyStrictly
-					? SolveSeMode(grid, ref copied, TempList, solution, sukaku.Value, ref pr, progress)
-					: SolveNaively(grid, ref copied, TempList, solution, sukaku.Value, ref pr, progress);
+					? SolveSeMode(grid, ref copied, new List<StepInfo>(), solution, sukaku.Value, ref pr, progress)
+					: SolveNaively(grid, ref copied, new List<StepInfo>(), solution, sukaku.Value, ref pr, progress);
 				}
 				catch (WrongHandlingException ex)
 				{
