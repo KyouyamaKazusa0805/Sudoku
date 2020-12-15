@@ -15,7 +15,6 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Diagnostics;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.IO;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.BruteForces.Bitwise;
@@ -26,6 +25,9 @@ using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Windows;
 using static System.Console;
+
+var cell = new Cells(2);
+Console.WriteLine(cell.ToString("t"));
 
 #if BATCH_RATING || false
 string path = @"C:\Users\Howdy\Desktop\p.txt";
@@ -74,7 +76,7 @@ stopwatch.Stop();
 ReadKey();
 #endif
 
-#if FILE_COUNTER || true
+#if FILE_COUNTER || false
 string root = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName;
 
 WriteLine(new FileCounter(root, "cs", withBinOrObjDirectory: false).CountUp());

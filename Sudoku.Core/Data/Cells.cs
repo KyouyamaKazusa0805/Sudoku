@@ -551,16 +551,51 @@ namespace Sudoku.Data
 					_ => normalToString(this)
 				},
 				"B" or "b" => binaryToString(this),
-				_ =>
-					throw new FormatException(
-						"The specified format is invalid.",
-						new ArgumentException(null, nameof(format)))
+				"T" or "t" => tableToString(this),
+				_ => throw new FormatException("The specified format is invalid.")
 			};
+
+			static string tableToString(in Cells @this)
+			{
+				// Cells(2):
+				// * * * | * * * | * * *
+				// * * * | . . . | . . .
+				// * * * | . . . | . . .
+				// ------+-------+------
+				// . . * | . . . | . . .
+				// . . * | . . . | . . .
+				// . . * | . . . | . . .
+				// ------+-------+------
+				// . . * | . . . | . . .
+				// . . * | . . . | . . .
+				// . . * | . . . | . . .
+				var sb = new StringBuilder();
+				for (int i = 0; i < 3; i++)
+				{
+					for (int bandLine = 0; bandLine < 3; bandLine++)
+					{
+						for (int j = 0; j < 3; j++)
+						{
+							for (int columnLine = 0; columnLine < 3; columnLine++)
+							{
+								sb
+									.Append(@this[(i * 3 + bandLine) * 9 + j * 3 + columnLine] ? '*' : '.')
+									.Append(' ');
+							}
+
+							_ = j != 2 ? sb.Append("| ") : sb.AppendLine();
+						}
+					}
+
+					_ = i != 2 ? sb.AppendLine("------+-------+------") : default;
+				}
+
+				return sb.ToString();
+			}
 
 			static unsafe string normalToString(in Cells @this)
 			{
-				const string leftCurlyBrace = "{ ", rightCurlyBrace = " }";
-				const string separator = ", ";
+				const string leftCurlyBrace = "{ ", rightCurlyBrace = " }", separator = ", ";
 				static int converter(in int v) => v + 1;
 				var sbRow = new StringBuilder();
 				var dic = new Dictionary<int, ICollection<int>>();
@@ -574,10 +609,7 @@ namespace Sudoku.Data
 					dic[cell / 9].Add(cell % 9);
 				}
 				bool addCurlyBraces = dic.Count > 1;
-				if (addCurlyBraces)
-				{
-					sbRow.Append(leftCurlyBrace);
-				}
+				_ = addCurlyBraces ? sbRow.Append(leftCurlyBrace) : default;
 				foreach (int row in dic.Keys)
 				{
 					sbRow
@@ -588,10 +620,7 @@ namespace Sudoku.Data
 						.Append(separator);
 				}
 				sbRow.RemoveFromEnd(separator.Length);
-				if (addCurlyBraces)
-				{
-					sbRow.Append(rightCurlyBrace);
-				}
+				_ = addCurlyBraces ? sbRow.Append(rightCurlyBrace) : default;
 
 				dic.Clear();
 				var sbColumn = new StringBuilder();
@@ -605,10 +634,7 @@ namespace Sudoku.Data
 					dic[cell % 9].Add(cell / 9);
 				}
 				addCurlyBraces = dic.Count > 1;
-				if (addCurlyBraces)
-				{
-					sbColumn.Append(leftCurlyBrace);
-				}
+				_ = addCurlyBraces ? sbColumn.Append(leftCurlyBrace) : default;
 
 				foreach (int column in dic.Keys)
 				{
@@ -620,10 +646,7 @@ namespace Sudoku.Data
 						.Append(separator);
 				}
 				sbColumn.RemoveFromEnd(separator.Length);
-				if (addCurlyBraces)
-				{
-					sbColumn.Append(rightCurlyBrace);
-				}
+				_ = addCurlyBraces ? sbColumn.Append(rightCurlyBrace) : default;
 
 				return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
 			}
