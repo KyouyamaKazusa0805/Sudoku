@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 												{
 													new(-1, region1),
 													new(-2, region2),
-													new(0, conjugatePair.Region.First())
+													new(0, conjugatePair.Regions.FindFirstSet())
 												}
 												: null
 											}

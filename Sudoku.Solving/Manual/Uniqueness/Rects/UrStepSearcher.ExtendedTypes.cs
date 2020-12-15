@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -7,8 +6,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
 using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -47,7 +44,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int[] otherCells = otherCellsMap.ToArray();
 			short o1 = grid.GetCandidateMask(otherCells[0]), o2 = grid.GetCandidateMask(otherCells[1]);
 			short o = (short)(o1 | o2);
-			if ((o.PopCount(), o1.PopCount(), o2.PopCount(), o1 & comparer, o2 & comparer) is not (4, <= 3, <= 3, not 0, not 0)
+			if ((o.PopCount(), o1.PopCount(), o2.PopCount(), o1 & comparer, o2 & comparer) is
+				not (4, <= 3, <= 3, not 0, not 0)
 				|| (o & comparer) != comparer)
 			{
 				return;
@@ -71,11 +69,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					if (grid.Exists(cell, x) is true)
 					{
-						conclusions.Add(new(Elimination, cell, x));
+						conclusions.Add(new(ConclusionType.Elimination, cell, x));
 					}
 					if (grid.Exists(cell, y) is true)
 					{
-						conclusions.Add(new(Elimination, cell, y));
+						conclusions.Add(new(ConclusionType.Elimination, cell, y));
 					}
 				}
 				if (conclusions.Count == 0)
@@ -172,7 +170,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				foreach (int otherCell in otherCellsMap)
 				{
-					if (!IsSameRegionCell(cell, otherCell, out var regions))
+					if (!IsSameRegionCell(cell, otherCell, out int regions))
 					{
 						continue;
 					}
@@ -201,7 +199,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							var conclusions = new List<Conclusion>();
 							if (grid.Exists(elimCell, elimDigit) is true)
 							{
-								conclusions.Add(new(Elimination, elimCell, elimDigit));
+								conclusions.Add(new(ConclusionType.Elimination, elimCell, elimDigit));
 							}
 							if (conclusions.Count == 0)
 							{
@@ -213,7 +211,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								if (urCell == corner1 || urCell == corner2)
 								{
-									if (new Cells { urCell, otherCell }.CoveredRegions.Contains(region))
+									int coveredRegions = new Cells { urCell, otherCell }.CoveredRegions;
+									if ((coveredRegions >> region & 1) != 0)
 									{
 										foreach (int d in grid.GetCandidateMask(urCell))
 										{
@@ -347,7 +346,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							var conclusions = new List<Conclusion>();
 							if (grid.Exists(elimCell, digit) is true)
 							{
-								conclusions.Add(new(Elimination, elimCell, digit));
+								conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
 							}
 							if (conclusions.Count == 0)
 							{
@@ -359,11 +358,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								if (urCell == corner1 || urCell == corner2)
 								{
-									static bool same(int r, in int region) => r == region;
-									bool flag;
-									unsafe
+									bool flag = false;
+									foreach (int r in new Cells { urCell, otherCell }.CoveredRegions)
 									{
-										flag = new Cells { urCell, otherCell }.CoveredRegions.Any(&same, region);
+										if (r == region)
+										{
+											flag = true;
+											break;
+										}
 									}
 
 									if (flag)
@@ -491,11 +493,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					if (grid.Exists(cell, x) is true)
 					{
-						conclusions.Add(new(Elimination, cell, x));
+						conclusions.Add(new(ConclusionType.Elimination, cell, x));
 					}
 					if (grid.Exists(cell, y) is true)
 					{
-						conclusions.Add(new(Elimination, cell, y));
+						conclusions.Add(new(ConclusionType.Elimination, cell, y));
 					}
 				}
 				if (conclusions.Count == 0)
@@ -603,11 +605,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var conclusions = new List<Conclusion>();
 				if (grid.Exists(abxCell, a) is true)
 				{
-					conclusions.Add(new(Elimination, abxCell, a));
+					conclusions.Add(new(ConclusionType.Elimination, abxCell, a));
 				}
 				if (grid.Exists(abyCell, b) is true)
 				{
-					conclusions.Add(new(Elimination, abyCell, b));
+					conclusions.Add(new(ConclusionType.Elimination, abyCell, b));
 				}
 				if (conclusions.Count == 0)
 				{
@@ -729,7 +731,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(end, a) is true)
 					{
-						conclusions.Add(new(Elimination, end, a));
+						conclusions.Add(new(ConclusionType.Elimination, end, a));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -853,7 +855,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(begin, a) is true)
 					{
-						conclusions.Add(new(Elimination, begin, a));
+						conclusions.Add(new(ConclusionType.Elimination, begin, a));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -976,7 +978,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(abzCell, b) is true)
 					{
-						conclusions.Add(new(Elimination, abzCell, b));
+						conclusions.Add(new(ConclusionType.Elimination, abzCell, b));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -1100,11 +1102,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(head, b) is true)
 					{
-						conclusions.Add(new(Elimination, head, b));
+						conclusions.Add(new(ConclusionType.Elimination, head, b));
 					}
 					if (grid.Exists(extra, b) is true)
 					{
-						conclusions.Add(new(Elimination, extra, b));
+						conclusions.Add(new(ConclusionType.Elimination, extra, b));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -1249,7 +1251,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var conclusions = new List<Conclusion>();
 						if (grid.Exists(aby, b) is true)
 						{
-							conclusions.Add(new(Elimination, aby, b));
+							conclusions.Add(new(ConclusionType.Elimination, aby, b));
 						}
 						if (conclusions.Count == 0)
 						{
@@ -1444,13 +1446,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							foreach (int cell in elimMap)
 							{
-								conclusions.Add(new(Elimination, cell, elimDigit));
+								conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
 							}
 
 							var candidateOffsets = new List<DrawingInfo>();
 							foreach (int cell in urCells)
 							{
-								if (grid.GetStatus(cell) == Empty)
+								if (grid.GetStatus(cell) == CellStatus.Empty)
 								{
 									foreach (int digit in grid.GetCandidateMask(cell))
 									{
@@ -1550,13 +1552,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									foreach (int cell in elimMap)
 									{
-										conclusions.Add(new(Elimination, cell, elimDigit));
+										conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
 									}
 
 									var candidateOffsets = new List<DrawingInfo>();
 									foreach (int cell in urCells)
 									{
-										if (grid.GetStatus(cell) == Empty)
+										if (grid.GetStatus(cell) == CellStatus.Empty)
 										{
 											foreach (int digit in grid.GetCandidateMask(cell))
 											{
@@ -1652,13 +1654,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 										foreach (int cell in elimMap)
 										{
-											conclusions.Add(new(Elimination, cell, elimDigit));
+											conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
 										}
 
 										var candidateOffsets = new List<DrawingInfo>();
 										foreach (int cell in urCells)
 										{
-											if (grid.GetStatus(cell) == Empty)
+											if (grid.GetStatus(cell) == CellStatus.Empty)
 											{
 												foreach (int digit in grid.GetCandidateMask(cell))
 												{

@@ -4,7 +4,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
@@ -51,7 +50,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				var conclusions = new List<Conclusion>();
 				foreach (int digit in elimMask)
 				{
-					conclusions.Add(new(Elimination, elimCell, digit));
+					conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
 				}
 
 				var candidateOffsets = new List<DrawingInfo>();
@@ -104,7 +103,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap)
 				{
-					conclusions.Add(new(Elimination, cell, extraDigit));
+					conclusions.Add(new(ConclusionType.Elimination, cell, extraDigit));
 				}
 
 				var candidateOffsets = new List<DrawingInfo>();
@@ -183,7 +182,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							{
 								foreach (int cell in (allCells - cellsMap) & CandMaps[digit])
 								{
-									conclusions.Add(new(Elimination, cell, digit));
+									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 								}
 							}
 							if (conclusions.Count == 0)
@@ -289,7 +288,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					{
 						foreach (int cell in compareMap & CandMaps[digit])
 						{
-							conclusions.Add(new(Elimination, cell, digit));
+							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)

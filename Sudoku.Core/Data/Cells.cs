@@ -363,17 +363,24 @@ namespace Sudoku.Data
 		/// however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property won't contain
 		/// any regions.
 		/// </summary>
-		public readonly IEnumerable<int> CoveredRegions
+		/// <remarks>
+		/// The return value will be an <see cref="int"/> value indicating each regions. Bits set 1 are
+		/// covered regions.
+		/// </remarks>
+		public readonly int CoveredRegions
 		{
 			get
 			{
+				int resultRegions = 0;
 				for (int i = BlockOffset; i < Limit; i++)
 				{
 					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
 					{
-						yield return i;
+						resultRegions |= 1 << i;
 					}
 				}
+
+				return resultRegions;
 			}
 		}
 
@@ -383,10 +390,10 @@ namespace Sudoku.Data
 		/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
 		/// and the region 19 (column 2).
 		/// </summary>
-		public readonly IEnumerable<int> Regions
+		public readonly int Regions
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => ((int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset).GetAllSets();
+			get => (int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
 		}
 
 

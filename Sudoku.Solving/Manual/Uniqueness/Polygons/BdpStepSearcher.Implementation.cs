@@ -5,7 +5,6 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -57,7 +56,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				var conclusions = new List<Conclusion>();
 				foreach (int digit in elimMask)
 				{
-					conclusions.Add(new(Elimination, elimCell, digit));
+					conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
 				}
 
 				var candidateOffsets = new List<DrawingInfo>();
@@ -123,7 +122,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap)
 				{
-					conclusions.Add(new(Elimination, cell, otherDigit));
+					conclusions.Add(new(ConclusionType.Elimination, cell, otherDigit));
 				}
 
 				var candidateOffsets = new List<DrawingInfo>();
@@ -211,7 +210,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 								foreach (int cell in cells)
 								{
-									conclusions.Add(new(Elimination, cell, digit));
+									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 								}
 							}
 
@@ -346,7 +345,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in elimMap)
 						{
-							conclusions.Add(new(Elimination, cell, finalDigit));
+							conclusions.Add(new(ConclusionType.Elimination, cell, finalDigit));
 						}
 
 						var candidateOffsets = new List<DrawingInfo>();

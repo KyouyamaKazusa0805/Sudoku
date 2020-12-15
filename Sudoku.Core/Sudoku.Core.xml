@@ -780,6 +780,10 @@
             however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property won't contain
             any regions.
             </summary>
+            <remarks>
+            The return value will be an <see cref="T:System.Int32"/> value indicating each regions. Bits set 1 are
+            covered regions.
+            </remarks>
         </member>
         <member name="P:Sudoku.Data.Cells.Regions">
             <summary>
@@ -1493,10 +1497,14 @@
             Indicates the line that two cells lie in.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.ConjugatePair.Region">
+        <member name="P:Sudoku.Data.ConjugatePair.Regions">
             <summary>
             Indicates the region that two cells lie in.
             </summary>
+            <remarks>
+            The return value will be an <see cref="T:System.Int32"/> indicating the covered region. Bits set 1
+            are covered regions.
+            </remarks>
         </member>
         <member name="P:Sudoku.Data.ConjugatePair.Map">
             <summary>

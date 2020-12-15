@@ -271,12 +271,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// The <see cref="bool"/> value indicating whether the another cell is same region as the current one.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool IsSameRegionCell(int currentCell, int anotherCell, out IEnumerable<int> region)
+		private static bool IsSameRegionCell(int currentCell, int anotherCell, out int region)
 		{
-			if (new Cells { anotherCell, currentCell }.CoveredRegions is var coveredRegions
-				&& coveredRegions.None())
+			int coveredRegions = new Cells { anotherCell, currentCell }.CoveredRegions;
+			if (coveredRegions != 0)
 			{
-				region = Array.Empty<int>();
+				region = 0;
 				return false;
 			}
 			else

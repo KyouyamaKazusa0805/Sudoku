@@ -181,8 +181,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				cells.Add(candGroupByCell.Key);
 			}
 
-			var regions = new Cells(cells).CoveredRegions;
-			if (regions.None())
+			int regions = new Cells(cells).CoveredRegions;
+			if (regions != 0)
 			{
 				return;
 			}

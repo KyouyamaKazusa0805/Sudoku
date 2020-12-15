@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -66,7 +65,11 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the region that two cells lie in.
 		/// </summary>
-		public IEnumerable<int> Region => Map.CoveredRegions;
+		/// <remarks>
+		/// The return value will be an <see cref="int"/> indicating the covered region. Bits set 1
+		/// are covered regions.
+		/// </remarks>
+		public int Regions => Map.CoveredRegions;
 
 		/// <summary>
 		/// Indicates the inner map.
