@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Data.Extensions
 {
@@ -31,93 +30,11 @@ namespace Sudoku.Data.Extensions
 			this in SudokuGrid @this, out Cells empty, out Cells bivalue,
 			out Cells[] candidates, out Cells[] digits, out Cells[] values)
 		{
-			empty = e(@this);
-			bivalue = b(@this);
-			candidates = c(@this);
-			digits = d(@this);
-			values = v(@this);
-
-			static Cells e(in SudokuGrid @this)
-			{
-				var result = Cells.Empty;
-				for (int cell = 0; cell < 81; cell++)
-				{
-					if (@this.GetStatus(cell) == Empty)
-					{
-						result.AddAnyway(cell);
-					}
-				}
-
-				return result;
-			}
-
-			static Cells b(in SudokuGrid @this)
-			{
-				var result = Cells.Empty;
-				for (int cell = 0; cell < 81; cell++)
-				{
-					if (@this.GetCandidateMask(cell).PopCount() == 2)
-					{
-						result.AddAnyway(cell);
-					}
-				}
-
-				return result;
-			}
-
-			static Cells[] c(in SudokuGrid @this)
-			{
-				var result = new Cells[9];
-				for (int digit = 0; digit < 9; digit++)
-				{
-					ref var map = ref result[digit];
-					for (int cell = 0; cell < 81; cell++)
-					{
-						if (@this.Exists(cell, digit) is true)
-						{
-							map.AddAnyway(cell);
-						}
-					}
-				}
-
-				return result;
-			}
-
-			static Cells[] d(in SudokuGrid @this)
-			{
-				var result = new Cells[9];
-				for (int digit = 0; digit < 9; digit++)
-				{
-					ref var map = ref result[digit];
-					for (int cell = 0; cell < 81; cell++)
-					{
-						if ((@this.GetCandidateMask(cell) >> digit & 1) != 0)
-						{
-							map.AddAnyway(cell);
-						}
-					}
-				}
-
-				return result;
-			}
-
-			static Cells[] v(in SudokuGrid @this)
-			{
-				var result = new Cells[9];
-				for (int digit = 0; digit < 9; digit++)
-				{
-					ref var map = ref result[digit];
-					for (int cell = 0; cell < 81; cell++)
-					{
-						if (@this[cell] == digit)
-						{
-							map.AddAnyway(cell);
-						}
-					}
-				}
-
-				return result;
-			}
+			empty = @this.EmptyCells;
+			bivalue = @this.BivalueCells;
+			candidates = @this.CandidateMap;
+			digits = @this.DigitsMap;
+			values = @this.ValuesMap;
 		}
 
 		/// <summary>
@@ -156,7 +73,7 @@ namespace Sudoku.Data.Extensions
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool? Exists(this in SudokuGrid @this, int cell, int digit) =>
-			@this.GetStatus(cell) == Empty ? @this[cell, digit] : null;
+			@this.GetStatus(cell) == CellStatus.Empty ? @this[cell, digit] : null;
 
 		/// <summary>
 		/// Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
@@ -167,10 +84,10 @@ namespace Sudoku.Data.Extensions
 		/// <returns>The <see cref="bool"/> result.</returns>
 		public static bool Duplicate(this in SudokuGrid @this, int cell, int digit)
 		{
-			static bool duplicate(int c, in SudokuGrid grid, in int digit) => grid[c] == digit;
+			static bool dupe(int c, in SudokuGrid grid, in int digit) => grid[c] == digit;
 			unsafe
 			{
-				return PeerMaps[cell].Any(&duplicate, @this, digit);
+				return PeerMaps[cell].Any(&dupe, @this, digit);
 			}
 		}
 	}

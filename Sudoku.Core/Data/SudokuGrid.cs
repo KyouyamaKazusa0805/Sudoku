@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
 using Formatter = Sudoku.Data.SudokuGrid.GridFormatter;
@@ -278,6 +279,109 @@ namespace Sudoku.Data
 		/// Indicates the total number of empty cells.
 		/// </summary>
 		public readonly int EmptiesCount => Triplet.A;
+
+		/// <summary>
+		/// Indicates the cells that correspoinding position in this grid is empty.
+		/// </summary>
+		/// <remarks>
+		/// Note that this property isn't a promptly one because the value won't be calculated
+		/// until this property called.
+		/// </remarks>
+		public readonly Cells EmptyCells
+		{
+			get
+			{
+				return GetCells(&p);
+
+				static bool p(in SudokuGrid @this, int cell) => @this.GetStatus(cell) == CellStatus.Empty;
+			}
+		}
+
+		/// <summary>
+		/// Indicates the cells that corresponding position in this grid contain two candidates.
+		/// </summary>
+		/// <remarks>
+		/// Note that this property isn't a promptly one because the value won't be calculated
+		/// until this property called.
+		/// </remarks>
+		public readonly Cells BivalueCells
+		{
+			get
+			{
+				return GetCells(&p);
+
+				static bool p(in SudokuGrid @this, int cell) => @this.GetCandidateMask(cell).PopCount() == 2;
+			}
+		}
+
+		/// <summary>
+		/// Indicates the map of possible positions of the existence of the candidate value for each digit.
+		/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+		/// </summary>
+		/// <remarks>
+		/// Note that this property isn't a promptly one because the value won't be calculated
+		/// until this property called.
+		/// </remarks>
+		public readonly Cells[] CandidateMap
+		{
+			get
+			{
+				return GetMap(&p);
+
+				static bool p(in SudokuGrid @this, int cell, int digit) => @this.Exists(cell, digit) is true;
+			}
+		}
+
+		/// <summary>
+		/// <para>
+		/// Indicates the map of possible positions of the existence of each digit. The return value will
+		/// be an array of 9 elements, which stands for the statuses of 9 digits.
+		/// </para>
+		/// <para>
+		/// Different with <see cref="CandidateMap"/>, this property contains all givens, modifiables and
+		/// empty cells only if it contains the digit in the mask.
+		/// </para>
+		/// </summary>
+		/// <remarks>
+		/// Note that this property isn't a promptly one because the value won't be calculated
+		/// until this property called.
+		/// </remarks>
+		/// <seealso cref="CandidateMap"/>
+		public readonly	Cells[] DigitsMap
+		{
+			get
+			{
+				return GetMap(&p);
+
+				static bool p(in SudokuGrid @this, int cell, int digit) =>
+					(@this.GetCandidateMask(cell) >> digit & 1) != 0;
+			}
+		}
+
+		/// <summary>
+		/// <para>
+		/// Indicates the map of possible positions of the existence of that value of each digit.
+		/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+		/// </para>
+		/// <para>
+		/// Different with <see cref="CandidateMap"/>, the value only contains the given or modifiable
+		/// cells whose mask contain the set bit of that digit.
+		/// </para>
+		/// </summary>
+		/// <remarks>
+		/// Note that this property isn't a promptly one because the value won't be calculated
+		/// until this property called.
+		/// </remarks>
+		/// <seealso cref="CandidateMap"/>
+		public readonly Cells[] ValuesMap
+		{
+			get
+			{
+				return GetMap(&p);
+
+				static bool p(in SudokuGrid @this, int cell, int digit) => @this[cell] == digit;
+			}
+		}
 
 		/// <summary>
 		/// The triplet of three main information.
@@ -705,6 +809,54 @@ namespace Sudoku.Data
 			{
 				InternalCopy(pInitialValues, pValues);
 			}
+		}
+
+		/// <summary>
+		/// Called by properties <see cref="CandidateMap"/>, <see cref="DigitsMap"/>
+		/// and <see cref="ValuesMap"/>.
+		/// </summary>
+		/// <param name="predicate">The predicate.</param>
+		/// <returns>The map of digits.</returns>
+		/// <seealso cref="CandidateMap"/>
+		/// <seealso cref="DigitsMap"/>
+		/// <seealso cref="ValuesMap"/>
+		private readonly Cells[] GetMap(delegate*<in SudokuGrid, int, int, bool> predicate)
+		{
+			var result = new Cells[9];
+			for (int digit = 0; digit < 9; digit++)
+			{
+				ref var map = ref result[digit];
+				for (int cell = 0; cell < 81; cell++)
+				{
+					if (predicate(this, cell, digit))
+					{
+						map.AddAnyway(cell);
+					}
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
+		/// </summary>
+		/// <param name="predicate">The predicate.</param>
+		/// <returns>The cells.</returns>
+		/// <seealso cref="EmptyCells"/>
+		/// <seealso cref="BivalueCells"/>
+		private readonly Cells GetCells(delegate*<in SudokuGrid, int, bool> predicate)
+		{
+			var result = Cells.Empty;
+			for (int cell = 0; cell < 81; cell++)
+			{
+				if (predicate(this, cell))
+				{
+					result.AddAnyway(cell);
+				}
+			}
+
+			return result;
 		}
 
 

@@ -2769,6 +2769,68 @@
             Indicates the total number of empty cells.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.SudokuGrid.EmptyCells">
+            <summary>
+            Indicates the cells that correspoinding position in this grid is empty.
+            </summary>
+            <remarks>
+            Note that this property isn't a promptly one because the value won't be calculated
+            until this property called.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.BivalueCells">
+            <summary>
+            Indicates the cells that corresponding position in this grid contain two candidates.
+            </summary>
+            <remarks>
+            Note that this property isn't a promptly one because the value won't be calculated
+            until this property called.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.CandidateMap">
+            <summary>
+            Indicates the map of possible positions of the existence of the candidate value for each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </summary>
+            <remarks>
+            Note that this property isn't a promptly one because the value won't be calculated
+            until this property called.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.DigitsMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of each digit. The return value will
+            be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>, this property contains all givens, modifiables and
+            empty cells only if it contains the digit in the mask.
+            </para>
+            </summary>
+            <remarks>
+            Note that this property isn't a promptly one because the value won't be calculated
+            until this property called.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.ValuesMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of that value of each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>, the value only contains the given or modifiable
+            cells whose mask contain the set bit of that digit.
+            </para>
+            </summary>
+            <remarks>
+            Note that this property isn't a promptly one because the value won't be calculated
+            until this property called.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>
+        </member>
         <member name="P:Sudoku.Data.SudokuGrid.Triplet">
             <summary>
             The triplet of three main information.
@@ -2925,6 +2987,26 @@
             <summary>
             To update initial masks.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.GetMap()">
+            <summary>
+            Called by properties <see cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>, <see cref="P:Sudoku.Data.SudokuGrid.DigitsMap"/>
+            and <see cref="P:Sudoku.Data.SudokuGrid.ValuesMap"/>.
+            </summary>
+            <param name="predicate">The predicate.</param>
+            <returns>The map of digits.</returns>
+            <seealso cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>
+            <seealso cref="P:Sudoku.Data.SudokuGrid.DigitsMap"/>
+            <seealso cref="P:Sudoku.Data.SudokuGrid.ValuesMap"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.GetCells()">
+            <summary>
+            Called by properties <see cref="P:Sudoku.Data.SudokuGrid.EmptyCells"/> and <see cref="P:Sudoku.Data.SudokuGrid.BivalueCells"/>.
+            </summary>
+            <param name="predicate">The predicate.</param>
+            <returns>The cells.</returns>
+            <seealso cref="P:Sudoku.Data.SudokuGrid.EmptyCells"/>
+            <seealso cref="P:Sudoku.Data.SudokuGrid.BivalueCells"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char}@)">
             <summary>
