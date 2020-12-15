@@ -56,6 +56,11 @@ namespace Sudoku.Data
 		/// (Sets itself and all peers).
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
+		/// <remarks>
+		/// If you don't want to set itself, you may use <see cref="PeerMaps"/>
+		/// instead.
+		/// </remarks>
+		/// <seealso cref="PeerMaps"/>
 		public Cells(int offset) : this(offset, true)
 		{
 		}

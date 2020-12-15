@@ -607,6 +607,11 @@
             (Sets itself and all peers).
             </summary>
             <param name="offset">The cell offset.</param>
+            <remarks>
+            If you don't want to set itself, you may use <see cref="F:Sudoku.Constants.Processings.PeerMaps"/>
+            instead.
+            </remarks>
+            <seealso cref="F:Sudoku.Constants.Processings.PeerMaps"/>
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Int32[])">
             <summary>
