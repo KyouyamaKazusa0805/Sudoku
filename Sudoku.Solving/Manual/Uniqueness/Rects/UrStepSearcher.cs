@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						for (int c1 = 0; c1 < 4; c1++)
 						{
 							int corner1 = urCells[c1];
-							var otherCellsMap = new Cells(urCells) - corner1;
+							var otherCellsMap = new Cells(urCells) { ~corner1 };
 
 							CheckType1(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 							CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
@@ -162,9 +162,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									}
 								}
 
-								if ((c1, c2) is (0, 3) or (1, 2)) // Diagonal type.
+								switch ((c1, c2))
 								{
-									if (!arMode)
+									case (0, 3) or (1, 2) when !arMode: // Diagonal type.
 									{
 										CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
@@ -173,22 +173,25 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 											Check2D1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 										}
+										break;
 									}
-								}
-								else // Non-diagonal type.
-								{
-									CheckType3Naked(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-
-									if (!arMode)
+									default: // Non-diagonal type.
 									{
-										CheckType4(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+										CheckType3Naked(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
-										if (_searchExtended)
+										if (!arMode)
 										{
-											Check2B1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-											Check4X3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-											Check4C3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											CheckType4(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+
+											if (_searchExtended)
+											{
+												Check2B1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+												Check4X3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+												Check4C3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											}
 										}
+
+										break;
 									}
 								}
 							}
