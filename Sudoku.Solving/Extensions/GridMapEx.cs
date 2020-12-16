@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Extensions
 			{
 				for (int j = c; j < c + 3; j++)
 				{
-					if (!(@this - (RegionMaps[i] | RegionMaps[j])).IsEmpty)
+					if (@this > (RegionMaps[i] | RegionMaps[j]))
 					{
 						continue;
 					}

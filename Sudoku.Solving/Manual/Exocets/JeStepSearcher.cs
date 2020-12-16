@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
 
 				// The base cells can't be given or modifiable.
-				if (!(baseMap - EmptyMap).IsEmpty)
+				if (baseMap > EmptyMap)
 				{
 					continue;
 				}
@@ -223,7 +223,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					foreach (int d2 in c)
 					{
-						if ((crosslinePerCandidate - (RegionMaps[d1 + 9] | RegionMaps[d2 + 18])).IsEmpty)
+						if (crosslinePerCandidate < (RegionMaps[d1 + 9] | RegionMaps[d2 + 18]))
 						{
 							flag = true;
 							goto FinalCheck;

@@ -48,8 +48,8 @@ namespace Sudoku.Solving.Manual.Sdps
 						}
 
 						if (linkMap.BlockMask.IsPowerOfTwo()
-							|| i < 6 && (linkMap & RegionMaps[column]).IsEmpty
-							|| i >= 6 && (linkMap & RegionMaps[row]).IsEmpty)
+							|| i < 6 && !linkMap.Overlaps(RegionMaps[column])
+							|| i >= 6 && !linkMap.Overlaps(RegionMaps[row]))
 						{
 							continue;
 						}

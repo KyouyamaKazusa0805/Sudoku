@@ -322,7 +322,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										coverSets,
 										exoFinsMap,
 										endoFinsMap,
-										(exoFinsMap | endoFinsMap).IsEmpty ? null : isSashimi));
+										exoFinsMap.IsEmpty && endoFinsMap.IsEmpty ? null : isSashimi));
 							}
 						}
 					}

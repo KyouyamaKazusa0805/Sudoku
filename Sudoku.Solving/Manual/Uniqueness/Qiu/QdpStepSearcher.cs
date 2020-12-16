@@ -69,8 +69,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				for (int j = 0, region = isRow ? 18 : 9; j < 9; j++, region++)
 				{
 					var regionMap = RegionMaps[region];
-					var tempMap = baseLine & regionMap;
-					if (!tempMap.IsEmpty)
+					if ((baseLine & regionMap) is { IsEmpty: false } tempMap)
 					{
 						f(grid, tempMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
 					}

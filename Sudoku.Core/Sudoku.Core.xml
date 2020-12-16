@@ -827,6 +827,14 @@
             <param name="other">(<see langword="in"/> parameter) The other map.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
+        <member name="M:Sudoku.Data.Cells.Overlaps(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Indicates whether this map overlaps one of two specified ones.
+            </summary>
+            <param name="cells1">(<see langword="in"/> parameter) The first map to check.</param>
+            <param name="cells2">(<see langword="in"/> parameter) The second map to check.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="M:Sudoku.Data.Cells.AllSetsAreInOneRegion(System.Int32@)">
             <summary>
             Indicates whether all cells in this instance are in one region.
@@ -956,6 +964,22 @@
         </member>
         <member name="M:Sudoku.Data.Cells.op_Inequality(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_GreaterThan(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+            </summary>
+            <param name="left">(<see langword="in"/> parameter) The subtrahend.</param>
+            <param name="right">(<see langword="in"/> parameter) The subtractor.</param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_LessThan(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+            </summary>
+            <param name="left">(<see langword="in"/> parameter) The subtrahend.</param>
+            <param name="right">(<see langword="in"/> parameter) The subtractor.</param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Addition(Sudoku.Data.Cells@,System.Int32)">
             <summary>

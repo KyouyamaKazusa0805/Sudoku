@@ -472,6 +472,15 @@ namespace Sudoku.Data
 		public readonly bool Overlaps(in Cells other) => !(this & other).IsEmpty;
 
 		/// <summary>
+		/// Indicates whether this map overlaps one of two specified ones.
+		/// </summary>
+		/// <param name="cells1">(<see langword="in"/> parameter) The first map to check.</param>
+		/// <param name="cells2">(<see langword="in"/> parameter) The second map to check.</param>
+		/// <returns>The <see cref="bool"/> value.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly bool Overlaps(in Cells cells1, in Cells cells2) => !(this & cells1 & cells2).IsEmpty;
+
+		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
 		/// </summary>
 		/// <param name="region">
@@ -812,6 +821,24 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(in Cells left, in Cells right) => !(left == right);
+
+		/// <summary>
+		/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+		/// </summary>
+		/// <param name="left">(<see langword="in"/> parameter) The subtrahend.</param>
+		/// <param name="right">(<see langword="in"/> parameter) The subtractor.</param>
+		/// <returns>The <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool operator >(in Cells left, in Cells right) => !(left - right).IsEmpty;
+
+		/// <summary>
+		/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+		/// </summary>
+		/// <param name="left">(<see langword="in"/> parameter) The subtrahend.</param>
+		/// <param name="right">(<see langword="in"/> parameter) The subtractor.</param>
+		/// <returns>The <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool operator <(in Cells left, in Cells right) => !(left > right);
 
 		/// <summary>
 		/// The syntactic sugar for <c>new Cells(map) { cell }</c> (i.e. add a new cell into the current

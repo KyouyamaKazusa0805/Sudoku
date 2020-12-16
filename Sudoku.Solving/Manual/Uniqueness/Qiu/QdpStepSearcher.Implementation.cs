@@ -379,7 +379,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 
 			otherCellsMap &= tempMap;
-			if (otherCellsMap.IsEmpty || otherCellsMap.Count > 5)
+			if (otherCellsMap is { IsEmpty: true } or { Count: > 5 })
 			{
 				return;
 			}
