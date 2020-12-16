@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
-using Sudoku.Solving.Extensions;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {

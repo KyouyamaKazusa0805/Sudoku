@@ -2,10 +2,10 @@
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
-using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -44,10 +44,18 @@ namespace Sudoku.Solving.Manual.Intersections
 				foreach (int digit in m)
 				{
 					Cells elimMap;
-					(r[0], r[1], elimMap) =
-						a.Overlaps(CandMaps[digit])
-						? (coverSet, baseSet, a & CandMaps[digit])
-						: (baseSet, coverSet, b & CandMaps[digit]);
+					if (a.Overlaps(CandMaps[digit]))
+					{
+						r[0] = coverSet;
+						r[1] = baseSet;
+						elimMap = a & CandMaps[digit];
+					}
+					else
+					{
+						r[0] = baseSet;
+						r[1] = coverSet;
+						elimMap = b & CandMaps[digit];
+					}
 					if (elimMap.IsEmpty)
 					{
 						continue;

@@ -41,61 +41,25 @@ namespace Sudoku.Solving.Extensions
 		{
 			var steps = new List<StepInfo>();
 
-		Start:
-			steps.Clear();
-			StepSearcher.InitializeMaps(@this);
-			for (int i = 0, length = SstsSearchers.Length; i < length; i++)
+			while (true)
 			{
-				var searcher = SstsSearchers[i];
-				searcher.GetAll(steps, @this);
-				if (steps.Count == 0)
+				steps.Clear();
+				StepSearcher.InitializeMaps(@this);
+				for (int i = 0, length = SstsSearchers.Length; i < length; i++)
 				{
-					continue;
+					var searcher = SstsSearchers[i];
+					searcher.GetAll(steps, @this);
+					if (steps.Count == 0)
+					{
+						continue;
+					}
+
+					foreach (var step in steps)
+					{
+						step.ApplyTo(ref @this);
+					}
 				}
-
-				foreach (var step in steps)
-				{
-					step.ApplyTo(ref @this);
-				}
-
-				goto Start;
 			}
-		}
-
-		/// <summary>
-		/// Get the mask that is a result after the bitwise and operation processed all cells
-		/// in the specified map.
-		/// </summary>
-		/// <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		/// <returns>The result.</returns>
-		public static short BitwiseAndMasks(this in SudokuGrid grid, in Cells map)
-		{
-			short mask = SudokuGrid.MaxCandidatesMask;
-			foreach (int cell in map)
-			{
-				mask &= grid.GetCandidateMask(cell);
-			}
-
-			return mask;
-		}
-
-		/// <summary>
-		/// Get the mask that is a result after the bitwise or operation processed all cells
-		/// in the specified map.
-		/// </summary>
-		/// <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		/// <returns>The result.</returns>
-		public static short BitwiseOrMasks(this in SudokuGrid grid, in Cells map)
-		{
-			short mask = 0;
-			foreach (int cell in map)
-			{
-				mask |= grid.GetCandidateMask(cell);
-			}
-
-			return mask;
 		}
 	}
 }

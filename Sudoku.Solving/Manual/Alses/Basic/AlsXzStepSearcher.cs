@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					// in the intersection of two ALSes.
 					foreach (int cell in overlapMap)
 					{
-						xzMask &= (short)~grid.GetCandidateMask(cell);
+						xzMask &= (short)~grid.GetCandidates(cell);
 					}
 
 					// If the number of digits that both two ALSes contain is only one (or zero),
@@ -148,7 +148,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						tempMap &= possibleElimMap1;
 						foreach (int cell in tempMap)
 						{
-							foreach (int digit in grid.GetCandidateMask(cell) & (mask1 & ~rccMask))
+							foreach (int digit in grid.GetCandidates(cell) & (mask1 & ~rccMask))
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						tempMap &= possibleElimMap2;
 						foreach (int cell in tempMap)
 						{
-							foreach (int digit in grid.GetCandidateMask(cell) & (mask2 & ~rccMask))
+							foreach (int digit in grid.GetCandidates(cell) & (mask2 & ~rccMask))
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -181,7 +181,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					{
 						foreach (int cell in map)
 						{
-							foreach (int digit in grid.GetCandidateMask(cell))
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(new(finalZ >> digit & 1, cell * 9 + digit));
 							}
@@ -191,7 +191,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					{
 						foreach (int cell in map1)
 						{
-							short mask = grid.GetCandidateMask(cell);
+							short mask = grid.GetCandidates(cell);
 							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
 							short targetDigitsMask = (short)(mask & finalZ);
 							short rccDigitsMask = (short)(mask & rccMask);
@@ -210,7 +210,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 						foreach (int cell in map2)
 						{
-							short mask = grid.GetCandidateMask(cell);
+							short mask = grid.GetCandidates(cell);
 							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
 							short targetDigitsMask = (short)(mask & finalZ);
 							short rccDigitsMask = (short)(mask & rccMask);

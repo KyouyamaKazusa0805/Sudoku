@@ -230,7 +230,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			static bool isValid(int c, in SudokuGrid grid, in int cell) =>
 				grid.GetStatus(c) is var status
 				&& (status != Empty && grid[c] != grid[cell] || status == Empty)
-				&& grid.GetCandidateMask(c) != 0;
+				&& grid.GetCandidates(c) != 0;
 		}
 	}
 }

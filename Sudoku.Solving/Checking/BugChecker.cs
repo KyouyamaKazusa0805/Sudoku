@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Checking
 			int multivalueCellsCount = 0;
 			foreach (int value in StepSearcher.EmptyMap)
 			{
-				switch (Puzzle.GetCandidateMask(value).PopCount())
+				switch (Puzzle.GetCandidates(value).PopCount())
 				{
 					case 1:
 					case > 2 when ++multivalueCellsCount > maximumEmptyCells:
@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Checking
 			var stack = new Cells[multivalueCellsCount + 1, 9];
 			foreach (int cell in StepSearcher.BivalueMap)
 			{
-				foreach (int digit in Puzzle.GetCandidateMask(cell))
+				foreach (int digit in Puzzle.GetCandidates(cell))
 				{
 					ref var map = ref stack[0, digit];
 					map.AddAnyway(cell);
@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Checking
 			int[] multivalueCells = (StepSearcher.EmptyMap - StepSearcher.BivalueMap).Offsets;
 			for (int i = 0, length = multivalueCells.Length; i < length; i++)
 			{
-				mask = Puzzle.GetCandidateMask(multivalueCells[i]); // eg. { 2, 4, 6 } (42)
+				mask = Puzzle.GetCandidates(multivalueCells[i]); // eg. { 2, 4, 6 } (42)
 				short[] pairList = GetAllCombinations(mask, 2); // eg. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
 
 				// eg. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })

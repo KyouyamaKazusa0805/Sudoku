@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Alses
 						short selectedInterMask = 0;
 						foreach (int cell in currentInterMap)
 						{
-							selectedInterMask |= grid.GetCandidateMask(cell);
+							selectedInterMask |= grid.GetCandidates(cell);
 						}
 						if (selectedInterMask.PopCount() <= currentInterMap.Count + 1)
 						{
@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Manual.Alses
 						for (int i = 1; i < blockMap.Count; i++)
 						{
 							// Iterate on each combination in block.
-							foreach (int[] selectedCellsInBlock in blockMap.ToArray().GetSubsets(i))
+							foreach (int[] selectedCellsInBlock in blockMap.Offsets.GetSubsets(i))
 							{
 								short blockMask = 0;
 								var currentBlockMap = new Cells(selectedCellsInBlock);
@@ -106,7 +106,7 @@ namespace Sudoku.Solving.Manual.Alses
 								// Get the links of the block.
 								foreach (int cell in selectedCellsInBlock)
 								{
-									blockMask |= grid.GetCandidateMask(cell);
+									blockMask |= grid.GetCandidates(cell);
 								}
 
 								// Get the elimination map in the block.
@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Manual.Alses
 								for (int j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
 								{
 									// Iterate on each combination in line.
-									foreach (int[] selectedCellsInLine in lineMap.ToArray().GetSubsets(j))
+									foreach (int[] selectedCellsInLine in lineMap.Offsets.GetSubsets(j))
 									{
 										short lineMask = 0;
 										var currentLineMap = new Cells(selectedCellsInLine);
@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual.Alses
 										// Get the links of the line.
 										foreach (int cell in selectedCellsInLine)
 										{
-											lineMask |= grid.GetCandidateMask(cell);
+											lineMask |= grid.GetCandidates(cell);
 										}
 
 										// Get the elimination map in the line.
@@ -174,7 +174,7 @@ namespace Sudoku.Solving.Manual.Alses
 											var conclusions = new List<Conclusion>();
 											foreach (int cell in elimMapBlock)
 											{
-												foreach (int digit in grid.GetCandidateMask(cell))
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													if ((blockMask >> digit & 1) != 0)
 													{
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Alses
 											}
 											foreach (int cell in elimMapLine)
 											{
-												foreach (int digit in grid.GetCandidateMask(cell))
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													if ((lineMask >> digit & 1) != 0)
 													{
@@ -213,7 +213,7 @@ namespace Sudoku.Solving.Manual.Alses
 											var candidateOffsets = new List<DrawingInfo>();
 											foreach (int cell in currentBlockMap)
 											{
-												foreach (int digit in grid.GetCandidateMask(cell))
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													candidateOffsets.Add(
 														new(
@@ -223,7 +223,7 @@ namespace Sudoku.Solving.Manual.Alses
 											}
 											foreach (int cell in currentLineMap)
 											{
-												foreach (int digit in grid.GetCandidateMask(cell))
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													candidateOffsets.Add(
 														new(
@@ -233,7 +233,7 @@ namespace Sudoku.Solving.Manual.Alses
 											}
 											foreach (int cell in currentInterMap)
 											{
-												foreach (int digit in grid.GetCandidateMask(cell))
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													candidateOffsets.Add(
 														new(

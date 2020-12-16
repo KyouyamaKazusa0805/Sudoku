@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			var alses = Als.GetAllAlses(grid).ToArray();
 			foreach (int cell in EmptyMap)
 			{
-				foreach (int digit in grid.GetCandidateMask(cell))
+				foreach (int digit in grid.GetCandidates(cell))
 				{
 					// Get all ALSes relative to the current candidate.
 					var relativeAlses = new List<Als>();
@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								int nullCell = -1;
 								for (int c = 0; c < 81; c++)
 								{
-									if (tempGrid.GetCandidateMask(c) == 0)
+									if (tempGrid.GetCandidates(c) == 0)
 									{
 										containNullCell = true;
 										nullCell = c;
@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 										var als = combination[i];
 										foreach (int c in als.Map)
 										{
-											foreach (int d in grid.GetCandidateMask(c))
+											foreach (int d in grid.GetCandidates(c))
 											{
 												int cand = c * 9 + d;
 												candidateOffsets.Add(new(d == digitSeries[i] ? -~i : ~i, cand));
@@ -167,7 +167,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 										}
 									}
 
-									foreach (int d in grid.GetCandidateMask(nullCell))
+									foreach (int d in grid.GetCandidates(nullCell))
 									{
 										candidateOffsets.Add(new(0, nullCell * 9 + d));
 									}

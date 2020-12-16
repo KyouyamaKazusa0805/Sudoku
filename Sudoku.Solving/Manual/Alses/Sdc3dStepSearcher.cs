@@ -82,7 +82,7 @@ namespace Sudoku.Solving.Manual.Alses
 					short rbSelectedInterMask = 0;
 					foreach (int cell in rbCurrentMap)
 					{
-						rbSelectedInterMask |= grid.GetCandidateMask(cell);
+						rbSelectedInterMask |= grid.GetCandidates(cell);
 					}
 					if (rbSelectedInterMask.PopCount() <= rbCurrentMap.Count + 1)
 					{
@@ -94,7 +94,7 @@ namespace Sudoku.Solving.Manual.Alses
 						short cbSelectedInterMask = 0;
 						foreach (int cell in cbCurrentMap)
 						{
-							cbSelectedInterMask |= grid.GetCandidateMask(cell);
+							cbSelectedInterMask |= grid.GetCandidates(cell);
 						}
 						if (cbSelectedInterMask.PopCount() <= cbCurrentMap.Count + 1)
 						{
@@ -114,7 +114,7 @@ namespace Sudoku.Solving.Manual.Alses
 						// Iterate on the number of the cells that should be selected in block.
 						for (int i = 0; i < blockMap.Count; i++)
 						{
-							foreach (int[] selectedBlockCells in blockMap.ToArray().GetSubsets(i))
+							foreach (int[] selectedBlockCells in blockMap.Offsets.GetSubsets(i))
 							{
 								short blockMask = 0;
 								var currentBlockMap = new Cells(selectedBlockCells);
@@ -123,7 +123,7 @@ namespace Sudoku.Solving.Manual.Alses
 								// Get the links of the block.
 								foreach (int cell in selectedBlockCells)
 								{
-									blockMask |= grid.GetCandidateMask(cell);
+									blockMask |= grid.GetCandidates(cell);
 								}
 
 								// Get the elimination map in the block.
@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 								for (int j = 1; j < Min(9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count); j++)
 								{
-									foreach (int[] selectedRowCells in rowMap.ToArray().GetSubsets(j))
+									foreach (int[] selectedRowCells in rowMap.Offsets.GetSubsets(j))
 									{
 										short rowMask = 0;
 										var currentRowMap = new Cells(selectedRowCells);
@@ -143,7 +143,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 										foreach (int cell in selectedRowCells)
 										{
-											rowMask |= grid.GetCandidateMask(cell);
+											rowMask |= grid.GetCandidates(cell);
 										}
 
 										foreach (int digit in rowMask)
@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Manual.Alses
 												rowMap.Count, columnMap.Count);
 											k++)
 										{
-											foreach (int[] selectedColumnCells in columnMap.ToArray().GetSubsets(k))
+											foreach (int[] selectedColumnCells in columnMap.Offsets.GetSubsets(k))
 											{
 												short columnMask = 0;
 												var currentColumnMap = new Cells(selectedColumnCells);
@@ -167,7 +167,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 												foreach (int cell in selectedColumnCells)
 												{
-													columnMask |= grid.GetCandidateMask(cell);
+													columnMask |= grid.GetCandidates(cell);
 												}
 
 												foreach (int digit in columnMask)
@@ -190,7 +190,7 @@ namespace Sudoku.Solving.Manual.Alses
 												short mask = 0;
 												foreach (int cell in otherMap_row)
 												{
-													mask |= grid.GetCandidateMask(cell);
+													mask |= grid.GetCandidates(cell);
 												}
 												if ((mask & rowMask) != 0)
 												{
@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual.Alses
 												mask = 0;
 												foreach (int cell in otherMap_column)
 												{
-													mask |= grid.GetCandidateMask(cell);
+													mask |= grid.GetCandidates(cell);
 												}
 												if ((mask & columnMask) != 0)
 												{

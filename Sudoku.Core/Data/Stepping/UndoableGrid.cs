@@ -190,9 +190,9 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public short GetMask(int offset) => _innerGrid.GetMask(offset);
 
-		/// <inheritdoc cref="SudokuGrid.GetCandidateMask(int)"/>
+		/// <inheritdoc cref="SudokuGrid.GetCandidates(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public short GetCandidateMask(int cell) => _innerGrid.GetCandidateMask(cell);
+		public short GetCandidateMask(int cell) => _innerGrid.GetCandidates(cell);
 
 		/// <summary>
 		/// Returns a reference to the element of the <see cref="UndoableGrid"/> at index zero.

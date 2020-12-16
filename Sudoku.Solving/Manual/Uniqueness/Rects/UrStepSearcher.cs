@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					short mask = 0;
 					foreach (int urCell in urCells)
 					{
-						mask |= grid.GetCandidateMask(urCell);
+						mask |= grid.GetCandidates(urCell);
 					}
 
 					// Iterate on each possible digit combination.
@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							// All possible UR patterns should contain at least one cell
 							// that contains both 'd1' and 'd2'.
 							static bool v(int c, in short comparer, in SudokuGrid grid) =>
-								(grid.GetCandidateMask(c) & comparer).PopCount() != 2;
+								(grid.GetCandidates(c) & comparer).PopCount() != 2;
 
 							short comparer = (short)(1 << d1 | 1 << d2);
 							bool isNotPossibleUr;

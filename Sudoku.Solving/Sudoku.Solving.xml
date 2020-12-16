@@ -1275,24 +1275,6 @@
             <seealso cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseAndMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@)">
-            <summary>
-            Get the mask that is a result after the bitwise and operation processed all cells
-            in the specified map.
-            </summary>
-            <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.BitwiseOrMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@)">
-            <summary>
-            Get the mask that is a result after the bitwise or operation processed all cells
-            in the specified map.
-            </summary>
-            <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Extensions.TechniqueInfoEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.

@@ -119,7 +119,7 @@ namespace Sudoku.Solving.Checking
 						}
 
 						int z = solution[c];
-						foreach (int d in grid.GetCandidateMask(c))
+						foreach (int d in grid.GetCandidates(c))
 						{
 							result.Add(new Conclusion[] { new(d == z ? Assignment : Elimination, c, d) });
 						}

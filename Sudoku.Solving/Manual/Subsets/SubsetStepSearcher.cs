@@ -126,12 +126,12 @@ namespace Sudoku.Solving.Manual.Subsets
 				}
 
 				// Iterate on each combination.
-				foreach (int[] cells in currentEmptyMap.ToArray().GetSubsets(size))
+				foreach (int[] cells in currentEmptyMap.Offsets.GetSubsets(size))
 				{
 					short mask = 0;
 					foreach (int cell in cells)
 					{
-						mask |= grid.GetCandidateMask(cell);
+						mask |= grid.GetCandidates(cell);
 					}
 					if (mask.PopCount() != size)
 					{
@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in cells)
 					{
-						foreach (int digit in grid.GetCandidateMask(cell))
+						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}

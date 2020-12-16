@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 
 				// Iterate on each size.
-				int[] otherCells = otherCellsMap.ToArray();
+				int[] otherCells = otherCellsMap.Offsets;
 				for (int size = 1, length = otherCells.Length; size < length; size++)
 				{
 					foreach (int[] cells in otherCells.GetSubsets(size))
@@ -96,7 +96,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						short mask = digitsMask;
 						foreach (int cell in cells)
 						{
-							mask |= grid.GetCandidateMask(cell);
+							mask |= grid.GetCandidates(cell);
 						}
 						if (mask.PopCount() != size + 1)
 						{
@@ -112,7 +112,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in elimMap)
 						{
-							foreach (int digit in grid.GetCandidateMask(cell))
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								if ((mask >> digit & 1) != 0)
 								{
@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						}
 						foreach (int cell in cells)
 						{
-							foreach (int digit in grid.GetCandidateMask(cell))
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
@@ -348,7 +348,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			short mask = (short)(1 << d1 | 1 << d2);
 			foreach (int cell in (PeerMaps[c1] ^ PeerMaps[c2]) & BivalueMap)
 			{
-				if (grid.GetCandidateMask(cell) != mask)
+				if (grid.GetCandidates(cell) != mask)
 				{
 					continue;
 				}

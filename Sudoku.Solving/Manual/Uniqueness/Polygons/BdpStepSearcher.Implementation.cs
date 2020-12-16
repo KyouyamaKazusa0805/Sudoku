@@ -2,8 +2,8 @@
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				}
 
 				int elimCell = mapContainingThatDigit.Offsets[0];
-				short elimMask = (short)(grid.GetCandidateMask(elimCell) & tempMask);
+				short elimMask = (short)(grid.GetCandidates(elimCell) & tempMask);
 				if (elimMask == 0)
 				{
 					continue;
@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						continue;
 					}
 
-					foreach (int digit in grid.GetCandidateMask(cell))
+					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
@@ -128,7 +128,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int cell in map)
 				{
-					foreach (int digit in grid.GetCandidateMask(cell))
+					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(new(digit == otherDigit ? 1 : 0, cell * 9 + digit));
 					}
@@ -180,7 +180,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 					// Iterate on the cells by the specified size.
 					var iterationCellsMap = (RegionMaps[region] - currentMap) & EmptyMap;
-					int[] iterationCells = iterationCellsMap.ToArray();
+					int[] iterationCells = iterationCellsMap.Offsets;
 					short otherDigitsMask = (short)(orMask & ~tempMask);
 					for (int size = otherDigitsMask.PopCount() - 1; size < iterationCellsMap.Count; size++)
 					{
@@ -189,7 +189,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							short comparer = 0;
 							foreach (int cell in combination)
 							{
-								comparer |= grid.GetCandidateMask(cell);
+								comparer |= grid.GetCandidates(cell);
 							}
 							if ((tempMask & comparer) != 0 || tempMask.PopCount() - 1 != size
 								|| (tempMask & otherDigitsMask) != otherDigitsMask)
@@ -222,21 +222,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							var candidateOffsets = new List<DrawingInfo>();
 							foreach (int cell in currentMap)
 							{
-								foreach (int digit in grid.GetCandidateMask(cell))
+								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in otherCellsMap)
 							{
-								foreach (int digit in grid.GetCandidateMask(cell))
+								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(new(0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in combination)
 							{
-								foreach (int digit in grid.GetCandidateMask(cell))
+								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
@@ -305,7 +305,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					// Iterate on each combination.
 					// Only one digit should be eliminated, and other digits should form a "conjugate region".
 					// In a so-called conjugate region, the digits can only appear in these cells in this region.
-					foreach (int[] combination in (tempMask & orMask).GetMaskSubsets(currentMap.Count - 1))
+					foreach (int[] combination in
+						(tempMask & orMask).GetAllSets().ToArray().GetSubsets(currentMap.Count - 1))
 					{
 						short combinationMask = 0;
 						var combinationMap = Cells.Empty;
@@ -351,14 +352,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in currentMap)
 						{
-							foreach (int digit in grid.GetCandidateMask(cell) & combinationMask)
+							foreach (int digit in grid.GetCandidates(cell) & combinationMask)
 							{
 								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in otherCellsMap)
 						{
-							foreach (int digit in grid.GetCandidateMask(cell))
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(new(0, cell * 9 + digit));
 							}

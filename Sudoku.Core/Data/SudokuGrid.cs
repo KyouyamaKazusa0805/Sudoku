@@ -242,7 +242,7 @@ namespace Sudoku.Data
 				{
 					if (GetStatus(i) == CellStatus.Empty)
 					{
-						count += GetCandidateMask(i).PopCount();
+						count += GetCandidates(i).PopCount();
 					}
 				}
 
@@ -310,7 +310,7 @@ namespace Sudoku.Data
 			{
 				return GetCells(&p);
 
-				static bool p(in SudokuGrid @this, int cell) => @this.GetCandidateMask(cell).PopCount() == 2;
+				static bool p(in SudokuGrid @this, int cell) => @this.GetCandidates(cell).PopCount() == 2;
 			}
 		}
 
@@ -354,7 +354,7 @@ namespace Sudoku.Data
 				return GetMap(&p);
 
 				static bool p(in SudokuGrid @this, int cell, int digit) =>
-					(@this.GetCandidateMask(cell) >> digit & 1) != 0;
+					(@this.GetCandidates(cell) >> digit & 1) != 0;
 			}
 		}
 
@@ -608,7 +608,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly short GetCandidateMask(int cell) => (short)(_values[cell] & MaxCandidatesMask);
+		public readonly short GetCandidates(int cell) => (short)(_values[cell] & MaxCandidatesMask);
 
 		/// <summary>
 		/// Returns a reference to the element of the <see cref="SudokuGrid"/> at index zero.

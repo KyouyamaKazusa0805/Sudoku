@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				}
 
 				int elimCell = extraDigitMap.Offsets[0];
-				short cellMask = grid.GetCandidateMask(elimCell);
+				short cellMask = grid.GetCandidates(elimCell);
 				short elimMask = (short)(cellMask & ~(1 << extraDigit));
 				if (elimMask == 0)
 				{
@@ -160,7 +160,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 				foreach (int region in tempMap.CoveredRegions)
 				{
-					int[] allCells = ((RegionMaps[region] & EmptyMap) - pattern).ToArray();
+					int[] allCells = ((RegionMaps[region] & EmptyMap) - pattern).Offsets;
 					for (int size = extraDigitsMask.PopCount() - 1, count = allCells.Length; size < count; size++)
 					{
 						foreach (int[] cells in allCells.GetSubsets(size))
@@ -168,7 +168,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							short tempMask = 0;
 							foreach (int cell in cells)
 							{
-								tempMask |= grid.GetCandidateMask(cell);
+								tempMask |= grid.GetCandidates(cell);
 							}
 
 							if (tempMask.PopCount() != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
@@ -193,14 +193,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							var candidateOffsets = new List<DrawingInfo>();
 							foreach (int cell in pattern)
 							{
-								foreach (int digit in grid.GetCandidateMask(cell))
+								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in cells)
 							{
-								foreach (int digit in grid.GetCandidateMask(cell))
+								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(new(1, cell * 9 + digit));
 								}
@@ -299,7 +299,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in pattern - compareMap)
 					{
-						foreach (int digit in grid.GetCandidateMask(cell))
+						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}

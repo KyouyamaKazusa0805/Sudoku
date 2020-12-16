@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				short mask = 0;
 				foreach (int cell in pattern)
 				{
-					mask |= grid.GetCandidateMask(cell);
+					mask |= grid.GetCandidates(cell);
 				}
 
 				CheckType1(accumulator, grid, pattern, mask);

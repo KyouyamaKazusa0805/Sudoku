@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			if (yEnabled)
 			{
 				// First rule: If there's only two candidates in this cell, the other one gets on.
-				short mask = (short)(grid.GetCandidateMask(p.Cell) & ~(1 << p.Digit));
+				short mask = (short)(grid.GetCandidates(p.Cell) & ~(1 << p.Digit));
 				if (g(grid, p.Cell, isDynamic) && mask.IsPowerOfTwo())
 				{
 					var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p)
@@ -140,7 +140,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static bool g(in SudokuGrid grid, int cell, bool isDynamic) =>
-				isDynamic ? grid.GetCandidateMask(cell).PopCount() == 2 : BivalueMap[cell];
+				isDynamic ? grid.GetCandidates(cell).PopCount() == 2 : BivalueMap[cell];
 
 			static Cells h(in SudokuGrid grid, int digit, int region, bool isDynamic)
 			{
@@ -177,7 +177,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private static void AddHiddenParentsOfCell(
 			ref Node p, in SudokuGrid grid, in SudokuGrid source, ISet<Node> offNodes)
 		{
-			foreach (int digit in (short)(source.GetCandidateMask(p.Cell) & ~grid.GetCandidateMask(p.Cell)))
+			foreach (int digit in (short)(source.GetCandidates(p.Cell) & ~grid.GetCandidates(p.Cell)))
 			{
 				// Add a hidden parent.
 				var parent = new Node(p.Cell, digit, false);

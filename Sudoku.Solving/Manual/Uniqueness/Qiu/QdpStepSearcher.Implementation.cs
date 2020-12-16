@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 
 			int elimCell = map.Offsets[0];
-			short mask = (short)(grid.GetCandidateMask(elimCell) & ~(1 << extraDigit));
+			short mask = (short)(grid.GetCandidates(elimCell) & ~(1 << extraDigit));
 			if (mask == 0)
 			{
 				return;
@@ -62,7 +62,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				}
 			}
 			int anotherCellInPair = (pair - map).Offsets[0];
-			foreach (int digit in grid.GetCandidateMask(anotherCellInPair))
+			foreach (int digit in grid.GetCandidates(anotherCellInPair))
 			{
 				candidateOffsets.Add(new(0, anotherCellInPair * 9 + digit));
 			}
@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 			foreach (int cell in pair)
 			{
-				foreach (int digit in grid.GetCandidateMask(cell))
+				foreach (int digit in grid.GetCandidates(cell))
 				{
 					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			foreach (int region in pair.CoveredRegions)
 			{
 				var allCellsMap = (RegionMaps[region] & EmptyMap) - pair;
-				int[] allCells = allCellsMap.ToArray();
+				int[] allCells = allCellsMap.Offsets;
 				for (int size = otherDigitsMask.PopCount() - 1; size < allCells.Length; size++)
 				{
 					foreach (int[] cells in allCells.GetSubsets(size))
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						short mask = 0;
 						foreach (int cell in cells)
 						{
-							mask |= grid.GetCandidateMask(cell);
+							mask |= grid.GetCandidates(cell);
 						}
 
 						if ((mask & comparer) != comparer || mask.PopCount() != size + 1)
@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						}
 						foreach (int cell in pair)
 						{
-							foreach (int digit in grid.GetCandidateMask(cell))
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
 									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
@@ -224,7 +224,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						}
 						foreach (int cell in cells)
 						{
-							foreach (int digit in grid.GetCandidateMask(cell))
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
@@ -428,7 +428,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 			foreach (int cell in pair)
 			{
-				foreach (int digit in grid.GetCandidateMask(cell))
+				foreach (int digit in grid.GetCandidates(cell))
 				{
 					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}

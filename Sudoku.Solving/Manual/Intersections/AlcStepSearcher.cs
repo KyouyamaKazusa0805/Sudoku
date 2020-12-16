@@ -2,10 +2,10 @@
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
-using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Intersections
@@ -82,7 +82,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			IList<StepInfo> result, in SudokuGrid grid, int size, int baseSet, int coverSet,
 			in Cells a, in Cells b, in Cells c)
 		{
-			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
+			foreach (int[] cells in (a & EmptyMap).Offsets.GetSubsets(size - 1))
 			{
 				short mask = grid.BitwiseOrMasks(cells);
 				if (mask.PopCount() != size)
@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						continue;
 					}
 
-					foreach (int digit in mask & grid.GetCandidateMask(aCell))
+					foreach (int digit in mask & grid.GetCandidates(aCell))
 					{
 						conclusions.Add(new(ConclusionType.Elimination, aCell, digit));
 					}
@@ -157,14 +157,14 @@ namespace Sudoku.Solving.Manual.Intersections
 				}
 				foreach (int cell in c)
 				{
-					foreach (int digit in mask & grid.GetCandidateMask(cell))
+					foreach (int digit in mask & grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(new(1, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in ahsCells)
 				{
-					foreach (int digit in mask & grid.GetCandidateMask(cell))
+					foreach (int digit in mask & grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}

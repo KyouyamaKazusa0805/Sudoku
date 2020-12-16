@@ -45,10 +45,10 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				}
 
 				// Iterate on each cells which are not peers in 'c1'.
-				int[] digits = grid.GetCandidateMask(c1).GetAllSets().ToArray();
+				int[] digits = grid.GetCandidates(c1).GetAllSets().ToArray();
 				foreach (int c2 in BivalueMap - new Cells(c1))
 				{
-					if (c2 < c1 || grid.GetCandidateMask(c1) != grid.GetCandidateMask(c2))
+					if (c2 < c1 || grid.GetCandidates(c1) != grid.GetCandidates(c2))
 					{
 						continue;
 					}

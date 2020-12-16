@@ -1669,6 +1669,24 @@
             <param name="digit">The digit.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Data.Extensions.SudokuGridEx.BitwiseAndMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@)">
+            <summary>
+            Get the mask that is a result after the bitwise and operation processed all cells
+            in the specified map.
+            </summary>
+            <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.SudokuGridEx.BitwiseOrMasks(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@)">
+            <summary>
+            Get the mask that is a result after the bitwise or operation processed all cells
+            in the specified map.
+            </summary>
+            <param name="grid">(<see langword="this in"/> parameter) The grid.</param>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Data.Extensions.SudokuGridTransformations">
             <summary>
             Provides a series of methods for <see cref="T:Sudoku.Data.SudokuGrid"/>
@@ -2535,7 +2553,7 @@
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetMask(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetCandidateMask(System.Int32)">
-            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetCandidateMask(System.Int32)"/>
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetCandidates(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetPinnableReference">
             <summary>
@@ -2890,7 +2908,7 @@
             <param name="offset">The cell offset you want to get.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.GetCandidateMask(System.Int32)">
+        <member name="M:Sudoku.Data.SudokuGrid.GetCandidates(System.Int32)">
             <summary>
             Get the candidate mask part of the specified cell.
             </summary>

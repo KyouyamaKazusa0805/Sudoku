@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			var tempLoop = new List<int>();
 			foreach (int cell in BivalueMap)
 			{
-				short mask = grid.GetCandidateMask(cell);
+				short mask = grid.GetCandidates(cell);
 				int d1 = mask.FindFirstSet();
 				int d2 = mask.GetNextSet(d1);
 				var loopMap = Cells.Empty;
@@ -141,7 +141,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								// Here, unique loop can be found if and only if
 								// two cells both contain 'd1' and 'd2'.
 								// Incomplete ULs can't be found at present.
-								short nextCellMask = grid.GetCandidateMask(nextCell);
+								short nextCellMask = grid.GetCandidates(nextCell);
 								exDigitsMask |= nextCellMask;
 								exDigitsMask &= (short)~((1 << d1) | (1 << d2));
 								int digitsCount = nextCellMask.PopCount();

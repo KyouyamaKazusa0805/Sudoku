@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			foreach (int cell in EmptyMap)
 			{
-				if (grid.GetCandidateMask(cell) is var mask && mask.PopCount() >= 2)
+				if (grid.GetCandidates(cell) is var mask && mask.PopCount() >= 2)
 				{
 					// Iterate on all candidates that aren't alone.
 					foreach (int digit in mask)
@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			IList<ChainingStepInfo> accumulator, in SudokuGrid grid, in Node pOn,
 			bool xEnabled, bool yEnabled)
 		{
-			if (grid.GetCandidateMask(pOn.Cell).PopCount() > 2 && !xEnabled)
+			if (grid.GetCandidates(pOn.Cell).PopCount() > 2 && !xEnabled)
 			{
 				// Y-Chains can only start with the bivalue cell.
 				return;

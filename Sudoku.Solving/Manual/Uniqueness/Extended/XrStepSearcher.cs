@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				bool checkKindsFlag = true;
 				foreach (var (l, r) in pairs)
 				{
-					short tempMask = (short)(grid.GetCandidateMask(l) & grid.GetCandidateMask(r));
+					short tempMask = (short)(grid.GetCandidates(l) & grid.GetCandidates(r));
 					if (tempMask == 0 || tempMask.IsPowerOfTwo())
 					{
 						checkKindsFlag = false;
@@ -51,8 +51,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				short m1 = 0, m2 = 0;
 				foreach (var (l, r) in pairs)
 				{
-					m1 |= grid.GetCandidateMask(l);
-					m2 |= grid.GetCandidateMask(r);
+					m1 |= grid.GetCandidates(l);
+					m2 |= grid.GetCandidates(r);
 				}
 
 				short resultMask = (short)(m1 | m2);
@@ -62,7 +62,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					int count = 0;
 					foreach (var (l, r) in pairs)
 					{
-						if (((grid.GetCandidateMask(l) & grid.GetCandidateMask(r)) >> digit & 1) != 0)
+						if (((grid.GetCandidates(l) & grid.GetCandidates(r)) >> digit & 1) != 0)
 						{
 							// Both two cells contain same digit.
 							count++;

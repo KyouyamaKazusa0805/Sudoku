@@ -40,14 +40,14 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
-				if (grid.GetCandidateMask(b1).PopCount() < 2 || grid.GetCandidateMask(b2).PopCount() < 2)
+				if (grid.GetCandidates(b1).PopCount() < 2 || grid.GetCandidates(b2).PopCount() < 2)
 				{
 					continue;
 				}
 
 				bool isRow = baseMap.CoveredLine < 18;
 				var tempCrosslineMap = s | targetMap;
-				short baseCandsMask = (short)(grid.GetCandidateMask(b1) | grid.GetCandidateMask(b2));
+				short baseCandsMask = (short)(grid.GetCandidates(b1) | grid.GetCandidates(b2));
 
 				int i = 0;
 				int r = RegionLabel.Row.ToRegion(b1) - 9, c = RegionLabel.Column.ToRegion(b1) - 18;
@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					short elimDigits = (short)((
-						grid.GetCandidateMask(v1) | grid.GetCandidateMask(v2)
+						grid.GetCandidates(v1) | grid.GetCandidates(v2)
 					) & ~baseCandsMask);
 					if (!CheckCrossline(baseMap, tempCrosslineMap, baseCandsMask, v1, v2, isRow))
 					{
@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					// Get all target eliminations.
 					var targetElims = new Target();
-					short cands = (short)(elimDigits & grid.GetCandidateMask(v1));
+					short cands = (short)(elimDigits & grid.GetCandidates(v1));
 					if (cands != 0)
 					{
 						foreach (int digit in cands)
@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							targetElims.Add(new(ConclusionType.Elimination, v1, digit));
 						}
 					}
-					cands = (short)(elimDigits & grid.GetCandidateMask(v2));
+					cands = (short)(elimDigits & grid.GetCandidates(v2));
 					if (cands != 0)
 					{
 						foreach (int digit in cands)
@@ -136,9 +136,9 @@ namespace Sudoku.Solving.Manual.Exocets
 					short tbCands = 0;
 					for (int j = 0; j < 2; j++)
 					{
-						if (grid.GetCandidateMask(comb[j]).PopCount() == 1)
+						if (grid.GetCandidates(comb[j]).PopCount() == 1)
 						{
-							tbCands |= grid.GetCandidateMask(comb[j]);
+							tbCands |= grid.GetCandidates(comb[j]);
 						}
 					}
 
@@ -154,7 +154,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								continue;
 							}
 
-							if ((cands = (short)(grid.GetCandidateMask(comb[j]) & tbCands)) == 0)
+							if ((cands = (short)(grid.GetCandidates(comb[j]) & tbCands)) == 0)
 							{
 								continue;
 							}
@@ -192,7 +192,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					var candidateOffsets = new List<DrawingInfo>();
 
 					int endoTargetCell = comb[s[v1] ? 0 : 1];
-					short m1 = grid.GetCandidateMask(b1), m2 = grid.GetCandidateMask(b2), m = (short)(m1 | m2);
+					short m1 = grid.GetCandidates(b1), m2 = grid.GetCandidates(b2), m = (short)(m1 | m2);
 					foreach (int digit in m1)
 					{
 						candidateOffsets.Add(new(0, b1 * 9 + digit));

@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Singles
 					continue;
 				}
 
-				int digit = grid.GetCandidateMask(resultCell).FindFirstSet();
+				int digit = grid.GetCandidates(resultCell).FindFirstSet();
 				accumulator.Add(
 					new FullHouseStepInfo(
 						new Conclusion[] { new(Assignment, resultCell, digit) },
@@ -234,7 +234,7 @@ namespace Sudoku.Solving.Manual.Singles
 			for (int cell = 0; cell < 81; cell++)
 			{
 				if (grid.GetStatus(cell) == CellStatus.Empty
-					&& grid.GetCandidateMask(cell) is var mask && mask.IsPowerOfTwo()
+					&& grid.GetCandidates(cell) is var mask && mask.IsPowerOfTwo()
 					&& mask.FindFirstSet() is var digit)
 				{
 					List<(Cells, Cells)>? directLines = null;

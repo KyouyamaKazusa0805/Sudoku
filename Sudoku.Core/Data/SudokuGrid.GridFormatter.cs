@@ -197,7 +197,7 @@ namespace Sudoku.Data
 					for (int i = 0; i < 81; i++)
 					{
 						builders[i] = new();
-						foreach (int digit in grid.GetCandidateMask(i))
+						foreach (int digit in grid.GetCandidates(i))
 						{
 							builders[i].Append(digit + 1);
 						}

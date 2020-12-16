@@ -139,7 +139,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					continue;
 				}
 
-				foreach (int digit in grid.GetCandidateMask(cell))
+				foreach (int digit in grid.GetCandidates(cell))
 				{
 					if (singleDigitList.Contains(digit))
 					{
@@ -267,7 +267,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					continue;
 				}
 
-				foreach (int digit in grid.GetCandidateMask(cell))
+				foreach (int digit in grid.GetCandidates(cell))
 				{
 					if (singleDigitList.Contains(digit))
 					{

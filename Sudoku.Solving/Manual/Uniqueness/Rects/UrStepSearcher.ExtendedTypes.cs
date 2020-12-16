@@ -36,13 +36,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// (ab )  abx
 			//  aby  (ab )  xy  *
 			//         ↑ corner2
-			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer)
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 			{
 				return;
 			}
 
-			int[] otherCells = otherCellsMap.ToArray();
-			short o1 = grid.GetCandidateMask(otherCells[0]), o2 = grid.GetCandidateMask(otherCells[1]);
+			int[] otherCells = otherCellsMap.Offsets;
+			short o1 = grid.GetCandidates(otherCells[0]), o2 = grid.GetCandidates(otherCells[1]);
 			short o = (short)(o1 | o2);
 			if ((o.PopCount(), o1.PopCount(), o2.PopCount(), o1 & comparer, o2 & comparer) is
 				not (4, <= 3, <= 3, not 0, not 0)
@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var inter = new Cells(otherCells).PeerIntersection - urCells;
 			foreach (int possibleXyCell in inter)
 			{
-				if (grid.GetCandidateMask(possibleXyCell) != xyMask)
+				if (grid.GetCandidates(possibleXyCell) != xyMask)
 				{
 					continue;
 				}
@@ -86,14 +86,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					if (otherCellsMap[cell])
 					{
-						foreach (int digit in grid.GetCandidateMask(cell))
+						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
 						}
 					}
 					else
 					{
-						foreach (int digit in grid.GetCandidateMask(cell))
+						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}
@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  | a
 			//  |
 			//  abx    aby
-			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer)
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 			{
 				return;
 			}
@@ -214,14 +214,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									int coveredRegions = new Cells { urCell, otherCell }.CoveredRegions;
 									if ((coveredRegions >> region & 1) != 0)
 									{
-										foreach (int d in grid.GetCandidateMask(urCell))
+										foreach (int d in grid.GetCandidates(urCell))
 										{
 											candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
 										}
 									}
 									else
 									{
-										foreach (int d in grid.GetCandidateMask(urCell))
+										foreach (int d in grid.GetCandidates(urCell))
 										{
 											candidateOffsets.Add(new(0, urCell * 9 + d));
 										}
@@ -309,7 +309,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  |
 			//  abx   (ab )
 			//          ↑ corner2
-			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer)
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 			{
 				return;
 			}
@@ -370,14 +370,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									if (flag)
 									{
-										foreach (int d in grid.GetCandidateMask(urCell))
+										foreach (int d in grid.GetCandidates(urCell))
 										{
 											candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
 										}
 									}
 									else
 									{
-										foreach (int d in grid.GetCandidateMask(urCell))
+										foreach (int d in grid.GetCandidates(urCell))
 										{
 											candidateOffsets.Add(new(0, urCell * 9 + d));
 										}
@@ -455,14 +455,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// (ab )  abx
 			//  aby   abz   xy  *
 			// Note: 'z' is 'x' or 'y'.
-			if (grid.GetCandidateMask(cornerCell) != comparer)
+			if (grid.GetCandidates(cornerCell) != comparer)
 			{
 				return;
 			}
 
 			int[] offsets = otherCellsMap.Offsets;
 			int c1 = offsets[0], c2 = offsets[1], c3 = offsets[2];
-			short m1 = grid.GetCandidateMask(c1), m2 = grid.GetCandidateMask(c2), m3 = grid.GetCandidateMask(c3);
+			short m1 = grid.GetCandidates(c1), m2 = grid.GetCandidates(c2), m3 = grid.GetCandidates(c3);
 			short mask = (short)((short)(m1 | m2) | m3);
 
 			if (
@@ -481,7 +481,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var inter = otherCellsMap.PeerIntersection - urCells;
 			foreach (int possibleXyCell in inter)
 			{
-				if (grid.GetCandidateMask(possibleXyCell) != xyMask)
+				if (grid.GetCandidates(possibleXyCell) != xyMask)
 				{
 					continue;
 				}
@@ -510,14 +510,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					if (otherCellsMap[cell])
 					{
-						foreach (int digit in grid.GetCandidateMask(cell))
+						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
 						}
 					}
 					else
 					{
-						foreach (int digit in grid.GetCandidateMask(cell))
+						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}
@@ -583,7 +583,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//           | b
 			//       a   |
 			//  aby-----abz
-			if (grid.GetCandidateMask(cornerCell) != comparer)
+			if (grid.GetCandidates(cornerCell) != comparer)
 			{
 				return;
 			}
@@ -617,21 +617,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				var candidateOffsets = new List<DrawingInfo>();
-				foreach (int digit in grid.GetCandidateMask(abxCell))
+				foreach (int digit in grid.GetCandidates(abxCell))
 				{
 					if ((digit == d1 || digit == d2) && digit != a)
 					{
 						candidateOffsets.Add(new(digit == b ? 1 : 0, abxCell * 9 + digit));
 					}
 				}
-				foreach (int digit in grid.GetCandidateMask(abyCell))
+				foreach (int digit in grid.GetCandidates(abyCell))
 				{
 					if ((digit == d1 || digit == d2) && digit != b)
 					{
 						candidateOffsets.Add(new(digit == a ? 1 : 0, abyCell * 9 + digit));
 					}
 				}
-				foreach (int digit in grid.GetCandidateMask(abzCell))
+				foreach (int digit in grid.GetCandidates(abzCell))
 				{
 					if (digit == a || digit == b)
 					{
@@ -698,7 +698,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//            | b
 			//            |
 			//  aby      abz
-			if (grid.GetCandidateMask(cornerCell) != comparer)
+			if (grid.GetCandidates(cornerCell) != comparer)
 			{
 				return;
 			}
@@ -751,14 +751,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add(new(d == b ? 1 : 0, abzCell * 9 + d));
 						}
 					}
-					foreach (int d in grid.GetCandidateMask(begin))
+					foreach (int d in grid.GetCandidates(begin))
 					{
 						if (d == d1 || d == d2)
 						{
 							candidateOffsets.Add(new(1, begin * 9 + d));
 						}
 					}
-					foreach (int d in grid.GetCandidateMask(end))
+					foreach (int d in grid.GetCandidates(end))
 					{
 						if ((d == d1 || d == d2) && d != a)
 						{
@@ -827,7 +827,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//
 			//        b
 			//  aby -----abz
-			if (grid.GetCandidateMask(cornerCell) != comparer)
+			if (grid.GetCandidates(cornerCell) != comparer)
 			{
 				return;
 			}
@@ -867,21 +867,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
 					}
-					foreach (int d in grid.GetCandidateMask(begin))
+					foreach (int d in grid.GetCandidates(begin))
 					{
 						if ((d == d1 || d == d2) && d != a)
 						{
 							candidateOffsets.Add(new(1, begin * 9 + d));
 						}
 					}
-					foreach (int d in grid.GetCandidateMask(end))
+					foreach (int d in grid.GetCandidates(end))
 					{
 						if (d == d1 || d == d2)
 						{
 							candidateOffsets.Add(new(d == a ? 1 : 0, end * 9 + d));
 						}
 					}
-					foreach (int d in grid.GetCandidateMask(abzCell))
+					foreach (int d in grid.GetCandidates(abzCell))
 					{
 						if (d == d1 || d == d2)
 						{
@@ -950,7 +950,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//
 			//        a
 			//  aby -----abz
-			if (grid.GetCandidateMask(cornerCell) != comparer)
+			if (grid.GetCandidates(cornerCell) != comparer)
 			{
 				return;
 			}
@@ -990,21 +990,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
 					}
-					foreach (int d in grid.GetCandidateMask(begin))
+					foreach (int d in grid.GetCandidates(begin))
 					{
 						if (d == d1 || d == d2)
 						{
 							candidateOffsets.Add(new(d == a ? 1 : 0, begin * 9 + d));
 						}
 					}
-					foreach (int d in grid.GetCandidateMask(end))
+					foreach (int d in grid.GetCandidates(end))
 					{
 						if (d == d1 || d == d2)
 						{
 							candidateOffsets.Add(new(d == a ? 1 : 0, end * 9 + d));
 						}
 					}
-					foreach (int d in grid.GetCandidateMask(abzCell))
+					foreach (int d in grid.GetCandidates(abzCell))
 					{
 						if ((d == d1 || d == d2) && d != b)
 						{
@@ -1114,28 +1114,28 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 
 					var candidateOffsets = new List<DrawingInfo>();
-					foreach (int d in grid.GetCandidateMask(head))
+					foreach (int d in grid.GetCandidates(head))
 					{
 						if ((d == d1 || d == d2) && d != b)
 						{
 							candidateOffsets.Add(new(1, head * 9 + d));
 						}
 					}
-					foreach (int d in grid.GetCandidateMask(extra))
+					foreach (int d in grid.GetCandidates(extra))
 					{
 						if ((d == d1 || d == d2) && d != b)
 						{
 							candidateOffsets.Add(new(1, extra * 9 + d));
 						}
 					}
-					foreach (int d in grid.GetCandidateMask(begin))
+					foreach (int d in grid.GetCandidates(begin))
 					{
 						if (d == d1 || d == d2)
 						{
 							candidateOffsets.Add(new(1, begin * 9 + d));
 						}
 					}
-					foreach (int d in grid.GetCandidateMask(end))
+					foreach (int d in grid.GetCandidates(end))
 					{
 						if (d == d1 || d == d2)
 						{
@@ -1259,28 +1259,28 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 
 						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int d in grid.GetCandidateMask(abx))
+						foreach (int d in grid.GetCandidates(abx))
 						{
 							if (d == d1 || d == d2)
 							{
 								candidateOffsets.Add(new(i == 0 ? d == a ? 1 : 0 : 1, abx * 9 + d));
 							}
 						}
-						foreach (int d in grid.GetCandidateMask(abz))
+						foreach (int d in grid.GetCandidates(abz))
 						{
 							if (d == d1 || d == d2)
 							{
 								candidateOffsets.Add(new(d == b ? 1 : 0, abz * 9 + d));
 							}
 						}
-						foreach (int d in grid.GetCandidateMask(aby))
+						foreach (int d in grid.GetCandidates(aby))
 						{
 							if ((d == d1 || d == d2) && d != b)
 							{
 								candidateOffsets.Add(new(1, aby * 9 + d));
 							}
 						}
-						foreach (int d in grid.GetCandidateMask(abw))
+						foreach (int d in grid.GetCandidates(abw))
 						{
 							if (d == d1 || d == d2)
 							{
@@ -1362,7 +1362,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//   (ab )  abx   xz
 			//    aby  (ab )  *   yz
 			//           ↑ corner2
-			if ((grid.GetCandidateMask(corner1) | grid.GetCandidateMask(corner2)) != comparer)
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 			{
 				return;
 			}
@@ -1372,8 +1372,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				// Subtype 1.
 				int[] offsets = otherCellsMap.Offsets;
 				int otherCell1 = offsets[0], otherCell2 = offsets[1];
-				short mask1 = grid.GetCandidateMask(otherCell1);
-				short mask2 = grid.GetCandidateMask(otherCell2);
+				short mask1 = grid.GetCandidates(otherCell1);
+				short mask2 = grid.GetCandidates(otherCell2);
 				short mask = (short)(mask1 | mask2);
 
 				if (mask.PopCount() != 2 + size || (mask & comparer) != comparer
@@ -1390,11 +1390,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				var testMap = new Cells { otherCell1, otherCell2 }.PeerIntersection;
 				short extraDigitsMask = (short)(mask ^ comparer);
-				int[] cells = map.ToArray();
+				int[] cells = map.Offsets;
 				for (int i1 = 0, length = cells.Length; i1 < length - size + 1; i1++)
 				{
 					int c1 = cells[i1];
-					short m1 = grid.GetCandidateMask(c1);
+					short m1 = grid.GetCandidates(c1);
 					if ((m1 & ~extraDigitsMask) == 0)
 					{
 						continue;
@@ -1403,7 +1403,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					for (int i2 = i1 + 1; i2 < length - size + 2; i2++)
 					{
 						int c2 = cells[i2];
-						short m2 = grid.GetCandidateMask(c2);
+						short m2 = grid.GetCandidates(c2);
 						if ((m2 & ~extraDigitsMask) == 0)
 						{
 							continue;
@@ -1423,7 +1423,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							bool flag = true;
 							foreach (int cell in stackalloc[] { c1, c2 })
 							{
-								int extraDigit = (grid.GetCandidateMask(cell) & ~m).FindFirstSet();
+								int extraDigit = (grid.GetCandidates(cell) & ~m).FindFirstSet();
 								if (!(testMap & CandMaps[extraDigit])[cell])
 								{
 									flag = false;
@@ -1454,7 +1454,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								if (grid.GetStatus(cell) == CellStatus.Empty)
 								{
-									foreach (int digit in grid.GetCandidateMask(cell))
+									foreach (int digit in grid.GetCandidates(cell))
 									{
 										candidateOffsets.Add(
 											new(
@@ -1467,11 +1467,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									}
 								}
 							}
-							foreach (int digit in grid.GetCandidateMask(c1))
+							foreach (int digit in grid.GetCandidates(c1))
 							{
 								candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
 							}
-							foreach (int digit in grid.GetCandidateMask(c2))
+							foreach (int digit in grid.GetCandidates(c2))
 							{
 								candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
 							}
@@ -1509,7 +1509,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							for (int i3 = i2 + 1; i3 < length - size + 3; i3++)
 							{
 								int c3 = cells[i3];
-								short m3 = grid.GetCandidateMask(c3);
+								short m3 = grid.GetCandidates(c3);
 								if ((m3 & ~extraDigitsMask) == 0)
 								{
 									continue;
@@ -1529,7 +1529,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									bool flag = true;
 									foreach (int cell in stackalloc[] { c1, c2, c3 })
 									{
-										int extraDigit = (grid.GetCandidateMask(cell) & ~m).FindFirstSet();
+										int extraDigit = (grid.GetCandidates(cell) & ~m).FindFirstSet();
 										if (!(testMap & CandMaps[extraDigit])[cell])
 										{
 											flag = false;
@@ -1560,22 +1560,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									{
 										if (grid.GetStatus(cell) == CellStatus.Empty)
 										{
-											foreach (int digit in grid.GetCandidateMask(cell))
+											foreach (int digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
 													new((extraDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 											}
 										}
 									}
-									foreach (int digit in grid.GetCandidateMask(c1))
+									foreach (int digit in grid.GetCandidates(c1))
 									{
 										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
 									}
-									foreach (int digit in grid.GetCandidateMask(c2))
+									foreach (int digit in grid.GetCandidates(c2))
 									{
 										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
 									}
-									foreach (int digit in grid.GetCandidateMask(c3))
+									foreach (int digit in grid.GetCandidates(c3))
 									{
 										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c3 * 9 + digit));
 									}
@@ -1613,7 +1613,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									for (int i4 = i3 + 1; i4 < length; i4++)
 									{
 										int c4 = cells[i4];
-										short m4 = grid.GetCandidateMask(c4);
+										short m4 = grid.GetCandidates(c4);
 										if ((m4 & ~extraDigitsMask) == 0)
 										{
 											continue;
@@ -1631,7 +1631,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										bool flag = true;
 										foreach (int cell in stackalloc[] { c1, c2, c3, c4 })
 										{
-											int extraDigit = (grid.GetCandidateMask(cell) & ~m).FindFirstSet();
+											int extraDigit = (grid.GetCandidates(cell) & ~m).FindFirstSet();
 											if (!(testMap & CandMaps[extraDigit])[cell])
 											{
 												flag = false;
@@ -1662,7 +1662,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										{
 											if (grid.GetStatus(cell) == CellStatus.Empty)
 											{
-												foreach (int digit in grid.GetCandidateMask(cell))
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													candidateOffsets.Add(
 														new(
@@ -1671,19 +1671,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												}
 											}
 										}
-										foreach (int digit in grid.GetCandidateMask(c1))
+										foreach (int digit in grid.GetCandidates(c1))
 										{
 											candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
 										}
-										foreach (int digit in grid.GetCandidateMask(c2))
+										foreach (int digit in grid.GetCandidates(c2))
 										{
 											candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
 										}
-										foreach (int digit in grid.GetCandidateMask(c3))
+										foreach (int digit in grid.GetCandidates(c3))
 										{
 											candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c3 * 9 + digit));
 										}
-										foreach (int digit in grid.GetCandidateMask(c4))
+										foreach (int digit in grid.GetCandidates(c4))
 										{
 											candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c4 * 9 + digit));
 										}

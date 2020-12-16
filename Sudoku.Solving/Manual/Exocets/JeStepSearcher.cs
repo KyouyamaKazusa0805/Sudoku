@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// The number of different candidates in base cells can't be greater than 5.
-				short baseCandsMask = (short)(grid.GetCandidateMask(b1) | grid.GetCandidateMask(b2));
+				short baseCandsMask = (short)(grid.GetCandidates(b1) | grid.GetCandidates(b2));
 				if (baseCandsMask.PopCount() > 5)
 				{
 					continue;
@@ -74,12 +74,12 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// Get all locked members.
 				int[] mq1o = mq1.Offsets, mq2o = mq2.Offsets, mr1o = mr1.Offsets, mr2o = mr2.Offsets;
-				int v1 = grid.GetCandidateMask(mq1o[0]) | grid.GetCandidateMask(mq1o[1]);
-				int v2 = grid.GetCandidateMask(mq2o[0]) | grid.GetCandidateMask(mq2o[1]);
+				int v1 = grid.GetCandidates(mq1o[0]) | grid.GetCandidates(mq1o[1]);
+				int v2 = grid.GetCandidates(mq2o[0]) | grid.GetCandidates(mq2o[1]);
 				short temp = (short)(v1 | v2), needChecking = (short)(baseCandsMask & temp);
 
-				v1 = grid.GetCandidateMask(mr1o[0]) | grid.GetCandidateMask(mr1o[1]);
-				v2 = grid.GetCandidateMask(mr2o[0]) | grid.GetCandidateMask(mr2o[1]);
+				v1 = grid.GetCandidates(mr1o[0]) | grid.GetCandidates(mr1o[1]);
+				v2 = grid.GetCandidates(mr2o[0]) | grid.GetCandidates(mr2o[1]);
 				temp = (short)(v1 | v2);
 				needChecking &= temp;
 
@@ -92,11 +92,11 @@ namespace Sudoku.Solving.Manual.Exocets
 				// Gather highlight cells and candidates.
 				var cellOffsets = new List<DrawingInfo> { new(0, b1), new(0, b2) };
 				var candidateOffsets = new List<DrawingInfo>();
-				foreach (int digit in grid.GetCandidateMask(b1))
+				foreach (int digit in grid.GetCandidates(b1))
 				{
 					candidateOffsets.Add(new(0, b1 * 9 + digit));
 				}
-				foreach (int digit in grid.GetCandidateMask(b2))
+				foreach (int digit in grid.GetCandidates(b2))
 				{
 					candidateOffsets.Add(new(0, b2 * 9 + digit));
 				}
@@ -182,9 +182,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		private static bool GatheringTargetElims(
 			Target targetElims, int cell, in SudokuGrid grid, short baseCandsMask, short temp)
 		{
-			short candMask = (short)(grid.GetCandidateMask(cell) & ~temp);
+			short candMask = (short)(grid.GetCandidates(cell) & ~temp);
 			if (grid.GetStatus(cell) == CellStatus.Empty && candMask != 0
-				&& (grid.GetCandidateMask(cell) & baseCandsMask) != 0)
+				&& (grid.GetCandidates(cell) & baseCandsMask) != 0)
 			{
 				foreach (int digit in candMask)
 				{
@@ -259,7 +259,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			otherCandsMask = -1;
 
-			short m1 = grid.GetCandidateMask(pos1), m2 = grid.GetCandidateMask(pos2);
+			short m1 = grid.GetCandidates(pos1), m2 = grid.GetCandidates(pos2);
 			if ((baseCandsMask & m1) != 0 ^ (baseCandsMask & m2) != 0)
 			{
 				// One cell contains the digit that base candidate holds,
@@ -298,7 +298,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						int p = RegionCells[span[i]][j];
 						if (p == pos1 || p == pos2 || grid.GetStatus(p) != CellStatus.Empty
-							|| (grid.GetCandidateMask(p) & mask) == 0)
+							|| (grid.GetCandidates(p) & mask) == 0)
 						{
 							continue;
 						}
@@ -311,8 +311,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						for (int j = 0; j < 9; j++)
 						{
 							int p = RegionCells[span[i]][j];
-							if (grid.GetStatus(p) != CellStatus.Empty || (grid.GetCandidateMask(p) & mask) == 0
-								|| (grid.GetCandidateMask(p) & ~mask) == 0 || p == pos1 || p == pos2)
+							if (grid.GetStatus(p) != CellStatus.Empty || (grid.GetCandidates(p) & mask) == 0
+								|| (grid.GetCandidates(p) & ~mask) == 0 || p == pos1 || p == pos2)
 							{
 								continue;
 							}

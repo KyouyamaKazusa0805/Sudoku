@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				short pairMask = 0;
 				foreach (int cell in pair)
 				{
-					pairMask |= grid.GetCandidateMask(cell);
+					pairMask |= grid.GetCandidates(cell);
 				}
 
 				// Iterate on each combination.

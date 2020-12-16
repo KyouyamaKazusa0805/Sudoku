@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 						foreach (int cell in map & RegionMaps[region])
 						{
-							if ((short)(grid.GetCandidateMask(cell) & linkMask) is var cands && cands == 0)
+							if ((short)(grid.GetCandidates(cell) & linkMask) is var cands && cands == 0)
 							{
 								continue;
 							}
