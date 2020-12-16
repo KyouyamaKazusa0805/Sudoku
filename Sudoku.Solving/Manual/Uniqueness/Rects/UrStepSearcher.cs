@@ -269,14 +269,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static int GetDiagonalCell(int[] urCells, int cell) =>
-			true switch
-			{
-				_ when cell == urCells[0] => urCells[3],
-				_ when cell == urCells[1] => urCells[2],
-				_ when cell == urCells[2] => urCells[1],
-				_ when cell == urCells[3] => urCells[0],
-				_ => throw new ArgumentException("The cell is invalid.", nameof(cell))
-			};
+			cell == urCells[0]
+			? urCells[3]
+			: cell == urCells[1]
+			? urCells[2]
+			: cell == urCells[2]
+			? urCells[1]
+			: urCells[0];
 
 		/// <summary>
 		/// Get a cell that is in the same region of the specified cell lies in.
