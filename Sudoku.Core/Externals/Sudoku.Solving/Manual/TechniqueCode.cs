@@ -432,7 +432,7 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the franken squirmbag.
 		/// </summary>
 		FrankenSquirmbag,
-		
+
 		/// <summary>
 		/// Indicates the finned franken squirmbag.
 		/// </summary>
@@ -467,7 +467,7 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the sashimi mutant squirmbag.
 		/// </summary>
 		SashimiMutantSquirmbag,
-		
+
 		/// <summary>
 		/// Indicates the siamese finned mutant squirmbag.
 		/// </summary>
@@ -542,7 +542,7 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the sashimi mutant whale.
 		/// </summary>
 		SashimiMutantWhale,
-		
+
 		/// <summary>
 		/// Indicates the siamese finned mutant whale.
 		/// </summary>
@@ -612,7 +612,7 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the finned mutant leviathan.
 		/// </summary>
 		FinnedMutantLeviathan,
-		
+
 		/// <summary>
 		/// Indicates the sashimi mutant leviathan.
 		/// </summary>
@@ -1178,6 +1178,54 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		[TechniqueDisplay("Unique Square Type 4")]
 		UsType4,
+
+		/// <summary>
+		/// Indicates the reverse UR type 1.
+		/// </summary>
+		[TechniqueDisplay("Reverse Unique Rectangle Type 1")]
+		ReverseUrType1,
+
+		/// <summary>
+		/// Indicates the reverse UR type 2.
+		/// </summary>
+		[TechniqueDisplay("Reverse Unique Rectangle Type 2")]
+		ReverseUrType2,
+
+		/// <summary>
+		/// Indicates the reverse UR type 3.
+		/// </summary>
+		[TechniqueDisplay("Reverse Unique Rectangle Type 3")]
+		ReverseUrType3,
+
+		/// <summary>
+		/// Indicates the reverse UR type 4.
+		/// </summary>
+		[TechniqueDisplay("Reverse Unique Rectangle Type 4")]
+		ReverseUrType4,
+
+		/// <summary>
+		/// Indicates the reverse UL type 1.
+		/// </summary>
+		[TechniqueDisplay("Reverse Unique Loop Type 1")]
+		ReverseUlType1,
+
+		/// <summary>
+		/// Indicates the reverse UL type 2.
+		/// </summary>
+		[TechniqueDisplay("Reverse Unique Loop Type 2")]
+		ReverseUlType2,
+
+		/// <summary>
+		/// Indicates the reverse UL type 3.
+		/// </summary>
+		[TechniqueDisplay("Reverse Unique Loop Type 3")]
+		ReverseUlType3,
+
+		/// <summary>
+		/// Indicates the reverse UL type 4.
+		/// </summary>
+		[TechniqueDisplay("Reverse Unique Loop Type 4")]
+		ReverseUlType4,
 
 		/// <summary>
 		/// Indicates the SdC.

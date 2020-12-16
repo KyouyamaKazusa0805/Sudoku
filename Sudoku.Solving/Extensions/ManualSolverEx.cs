@@ -20,6 +20,7 @@ using Sudoku.Solving.Manual.Uniqueness.Loops;
 using Sudoku.Solving.Manual.Uniqueness.Polygons;
 using Sudoku.Solving.Manual.Uniqueness.Qiu;
 using Sudoku.Solving.Manual.Uniqueness.Rects;
+using Sudoku.Solving.Manual.Uniqueness.Reversal;
 using Sudoku.Solving.Manual.Uniqueness.Square;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
@@ -92,6 +93,7 @@ namespace Sudoku.Solving.Extensions
 				new AlcStepSearcher(@this.CheckAlmostLockedQuadruple),
 				new SdcStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
 				new BdpStepSearcher(),
+				new ReverseBugStepSearcher(),
 				new QdpStepSearcher(),
 				new UsStepSearcher(),
 				new GuardianStepSearcher(),

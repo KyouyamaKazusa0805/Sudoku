@@ -35,8 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			foreach (int cell in BivalueMap)
 			{
 				short mask = grid.GetCandidates(cell);
-				int d1 = mask.FindFirstSet();
-				int d2 = mask.GetNextSet(d1);
+				int d1 = mask.FindFirstSet(), d2 = mask.GetNextSet(d1);
 				var loopMap = Cells.Empty;
 				loops.Clear();
 				tempLoop.Clear();

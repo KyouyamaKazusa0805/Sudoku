@@ -8801,6 +8801,110 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.GetAdditional">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="DigitsMask">The mask that contains all set bits of corresponding digits.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="DigitsMask">The mask that contains all set bits of corresponding digits.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher">
+            <summary>
+            Encapsulates a <b>reverse bi-value universal grave</b> technique searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.ContainsValidPath(Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link}@)">
+            <summary>
+            Check whether the specified cells form a valid unique loop (or rectangle).
+            </summary>
+            <param name="cells">(<see langword="in"/> parameter) The cells.</param>
+            <param name="list">
+            (<see langword="out"/> parameter) If found any valid loop, the value will be the cells in order;
+            otherwise, <see langword="null"/>.
+            </param>
+            <param name="links">
+            (<see langword="out"/> parameter) If found any valid loop, the value will be 
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.LoopIsValid(System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            To check whether the specified loop is valid.
+            </summary>
+            <param name="loop">The loop.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Int32)">
+            <summary>
+            Check the type 1.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="d1">The digit 1 to check.</param>
+            <param name="d2">The digit 2 to check.</param>
+            <param name="loop">(<see langword="in"/> parameter) The cells of that loop.</param>
+            <param name="links">The links.</param>
+            <param name="extraCell">Indicates the extra cell.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave type 1</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="Digit1">The digit 1 used.</param>
+            <param name="Digit2">The digit 2 used.</param>
+            <param name="Anchor">Indicates the anchor cell that produces the conclusion.</param>
+            <param name="AnchorLastDigit">
+            Indicates the digit when the anchor cell is filled with it, then the structure may
+            form a deadly pattern.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave type 1</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="Digit1">The digit 1 used.</param>
+            <param name="Digit2">The digit 2 used.</param>
+            <param name="Anchor">Indicates the anchor cell that produces the conclusion.</param>
+            <param name="AnchorLastDigit">
+            Indicates the digit when the anchor cell is filled with it, then the structure may
+            form a deadly pattern.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo">
             <summary>
             Provides a usage of <b>unique square</b> (US) technique.

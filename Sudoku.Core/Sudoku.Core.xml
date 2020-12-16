@@ -4719,6 +4719,46 @@
             Indicates the US type 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ReverseUrType1">
+            <summary>
+            Indicates the reverse UR type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ReverseUrType2">
+            <summary>
+            Indicates the reverse UR type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ReverseUrType3">
+            <summary>
+            Indicates the reverse UR type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ReverseUrType4">
+            <summary>
+            Indicates the reverse UR type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ReverseUlType1">
+            <summary>
+            Indicates the reverse UL type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ReverseUlType2">
+            <summary>
+            Indicates the reverse UL type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ReverseUlType3">
+            <summary>
+            Indicates the reverse UL type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ReverseUlType4">
+            <summary>
+            Indicates the reverse UL type 4.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Sdc">
             <summary>
             Indicates the SdC.

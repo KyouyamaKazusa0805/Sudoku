@@ -286,7 +286,7 @@
 	<sys:String x:Key="SettingsButtonApply">Apply</sys:String>
 	<sys:String x:Key="SettingsButtonCancel">Cancel</sys:String>
 
-    <sys:String x:Key="TechniqueViewWindowTitle">Choose the techniques</sys:String>
+	<sys:String x:Key="TechniqueViewWindowTitle">Choose the techniques</sys:String>
 	<sys:String x:Key="TechniqueViewWindowButtonSelect">Select</sys:String>
 	<sys:String x:Key="TechniqueViewWindowButtonCancel">Cancel</sys:String>
 
@@ -513,6 +513,14 @@
 	<sys:String x:Key="GroupUsType2">Uniqueness&gt;Square</sys:String>
 	<sys:String x:Key="GroupUsType3">Uniqueness&gt;Square</sys:String>
 	<sys:String x:Key="GroupUsType4">Uniqueness&gt;Square</sys:String>
+	<sys:String x:Key="GroupReverseUrType1">Uniqueness&gt;Reverse&gt;Unique Rectangle</sys:String>
+	<sys:String x:Key="GroupReverseUrType2">Uniqueness&gt;Reverse&gt;Unique Rectangle</sys:String>
+	<sys:String x:Key="GroupReverseUrType3">Uniqueness&gt;Reverse&gt;Unique Rectangle</sys:String>
+	<sys:String x:Key="GroupReverseUrType4">Uniqueness&gt;Reverse&gt;Unique Rectangle</sys:String>
+	<sys:String x:Key="GroupReverseUlType1">Uniqueness&gt;Reverse&gt;Unique Loop</sys:String>
+	<sys:String x:Key="GroupReverseUlType2">Uniqueness&gt;Reverse&gt;Unique Loop</sys:String>
+	<sys:String x:Key="GroupReverseUlType3">Uniqueness&gt;Reverse&gt;Unique Loop</sys:String>
+	<sys:String x:Key="GroupReverseUlType4">Uniqueness&gt;Reverse&gt;Unique Loop</sys:String>
 	<sys:String x:Key="GroupSdc">Almost Locked Sets</sys:String>
 	<sys:String x:Key="GroupSdc3d">Almost Locked Sets</sys:String>
 	<sys:String x:Key="GroupCannibalizedSdc">Almost Locked Sets</sys:String>

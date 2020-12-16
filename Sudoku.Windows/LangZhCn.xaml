@@ -513,6 +513,14 @@
 	<sys:String x:Key="GroupUsType2">唯一性技巧&gt;矩阵</sys:String>
 	<sys:String x:Key="GroupUsType3">唯一性技巧&gt;矩阵</sys:String>
 	<sys:String x:Key="GroupUsType4">唯一性技巧&gt;矩阵</sys:String>
+	<sys:String x:Key="GroupReverseUrType1">唯一性技巧&gt;反转类&gt;矩形</sys:String>
+	<sys:String x:Key="GroupReverseUrType2">唯一性技巧&gt;反转类&gt;矩形</sys:String>
+	<sys:String x:Key="GroupReverseUrType3">唯一性技巧&gt;反转类&gt;矩形</sys:String>
+	<sys:String x:Key="GroupReverseUrType4">唯一性技巧&gt;反转类&gt;矩形</sys:String>
+	<sys:String x:Key="GroupReverseUlType1">唯一性技巧&gt;反转类&gt;环</sys:String>
+	<sys:String x:Key="GroupReverseUlType2">唯一性技巧&gt;反转类&gt;环</sys:String>
+	<sys:String x:Key="GroupReverseUlType3">唯一性技巧&gt;反转类&gt;环</sys:String>
+	<sys:String x:Key="GroupReverseUlType4">唯一性技巧&gt;反转类&gt;环</sys:String>
 	<sys:String x:Key="GroupSdc">待定数组</sys:String>
 	<sys:String x:Key="GroupSdc3d">待定数组</sys:String>
 	<sys:String x:Key="GroupCannibalizedSdc">待定数组</sys:String>

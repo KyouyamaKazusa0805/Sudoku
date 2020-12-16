@@ -882,7 +882,8 @@ namespace Sudoku.Data
 		/// that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cells operator ~(in Cells gridMap) => new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
+		public static Cells operator ~(in Cells gridMap) =>
+			new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low & 0x1FFFFFFFFFFL);
 
 		/// <summary>
 		/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> cells
