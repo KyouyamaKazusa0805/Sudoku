@@ -38,6 +38,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
+			// TODO: Bug to fix.
 			var alses = Als.GetAllAlses(grid).ToArray();
 			foreach (int cell in EmptyMap)
 			{

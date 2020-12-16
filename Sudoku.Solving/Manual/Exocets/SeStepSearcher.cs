@@ -33,6 +33,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		[SkipLocalsInit]
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
+			// TODO: Extend SE eliminations checking.
 			var compatibleCells = (stackalloc int[4]);
 			var cover = (stackalloc int[8]);
 			foreach (var exocet in Patterns)

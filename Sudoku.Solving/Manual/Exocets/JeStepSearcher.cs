@@ -33,6 +33,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
+			// TODO: Extend JE eliminations checking.
 			foreach (var exocet in Patterns)
 			{
 				var (baseMap, targetMap, _) = exocet;
