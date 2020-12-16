@@ -35,7 +35,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public static TechniqueProperties Properties { get; } = new(55, nameof(TechniqueCode.TemplateSet))
 		{
 			DisplayLevel = 3,
-			IsEnabled = false
+			IsEnabled = false,
+			DisabledReason = DisabledReason.LastResort
 		};
 
 

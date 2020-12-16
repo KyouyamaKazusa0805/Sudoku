@@ -18,7 +18,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public static TechniqueProperties Properties { get; } = new(55, nameof(TechniqueCode.Pom))
 		{
 			DisplayLevel = 3,
-			IsEnabled = false
+			IsEnabled = false,
+			DisabledReason = DisabledReason.LastResort
 		};
 
 

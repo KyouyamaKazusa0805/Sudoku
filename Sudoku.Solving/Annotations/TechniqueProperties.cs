@@ -85,7 +85,7 @@ namespace Sudoku.Solving.Annotations
 		/// The default value is <see cref="DisabledReason.LastResort"/>.
 		/// </summary>
 		/// <seealso cref="DisabledReason.LastResort"/>
-		public DisabledReason DisabledReason { get; set; } = DisabledReason.LastResort;
+		public DisabledReason DisabledReason { get; set; }
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
