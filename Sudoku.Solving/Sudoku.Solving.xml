@@ -7971,6 +7971,23 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Boolean)">
+            <summary>
+            Get all possible hints from the grid.
+            </summary>
+            <param name="gathered">The list stored the result.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckPreconditions(Sudoku.Data.SudokuGrid@,System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            Check preconditions.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+            <returns>Indicates whether the UR is passed to check.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.IsConjugatePair(System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             To determine whether the specified region forms a conjugate pair

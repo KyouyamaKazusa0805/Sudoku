@@ -58,126 +58,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		{
 			// Iterate on mode (whether use AR or UR mode to search).
 			var tempList = new List<UrStepInfo>();
-			foreach (bool arMode in stackalloc[] { false, true })
-			{
-				// Iterate on each possible UR structure.
-				for (int index = 0; index < PossibleUrList.Length; index++)
-				{
-					int[] urCells = PossibleUrList[index];
-					// Check preconditions.
-					if (!checkPreconditions(grid, urCells, arMode))
-					{
-						continue;
-					}
-
-					// Get all candidates that all four cells appeared.
-					short mask = 0;
-					foreach (int urCell in urCells)
-					{
-						mask |= grid.GetCandidates(urCell);
-					}
-
-					// Iterate on each possible digit combination.
-					int[] allDigitsInThem = mask.GetAllSets().ToArray();
-					for (int i = 0, length = allDigitsInThem.Length; i < length - 1; i++)
-					{
-						int d1 = allDigitsInThem[i];
-						for (int j = i + 1; j < length; j++)
-						{
-							int d2 = allDigitsInThem[j];
-
-							// All possible UR patterns should contain at least one cell
-							// that contains both 'd1' and 'd2'.
-							static bool v(int c, in short comparer, in SudokuGrid grid) =>
-								(grid.GetCandidates(c) & comparer).PopCount() != 2;
-
-							short comparer = (short)(1 << d1 | 1 << d2);
-							bool isNotPossibleUr;
-							unsafe
-							{
-								isNotPossibleUr = urCells.All(&v, comparer, grid);
-							}
-
-							if (!arMode && isNotPossibleUr)
-							{
-								continue;
-							}
-
-							// Iterate on each corner of four cells.
-							for (int c1 = 0; c1 < 4; c1++)
-							{
-								int corner1 = urCells[c1];
-								var otherCellsMap = new Cells(urCells) - corner1;
-
-								CheckType1(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
-								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
-								CheckHidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
-
-								if (!arMode && _searchExtended)
-								{
-									Check3X(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
-									Check3X2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
-									Check3N2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
-									Check3U2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
-									Check3E2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
-								}
-
-								if (c1 == 3)
-								{
-									break;
-								}
-
-								for (int c2 = c1 + 1; c2 < 4; c2++)
-								{
-									int corner2 = urCells[c2];
-									var tempOtherCellsMap = otherCellsMap - corner2;
-
-									// Both diagonal and non-diagonal.
-									CheckType2(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-
-									if (_searchExtended)
-									{
-										for (int size = 2; size <= 4; size++)
-										{
-											CheckWing(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size, index);
-										}
-									}
-
-									if ((c1, c2) is (0, 3) or (1, 2)) // Diagonal type.
-									{
-										if (!arMode)
-										{
-											CheckType6(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-
-											if (_searchExtended)
-											{
-												Check2D(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-												Check2D1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-											}
-										}
-									}
-									else // Non-diagonal type.
-									{
-										CheckType3Naked(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-
-										if (!arMode)
-										{
-											CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-
-											if (_searchExtended)
-											{
-												Check2B1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-												Check4X3SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-												Check4C3SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+			GetAll(tempList, grid, false);
+			GetAll(tempList, grid, true);
 
 			// Sort and remove duplicate instances if worth.
 			if (tempList.Count != 0)
@@ -186,34 +68,169 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				tempList.Sort();
 				accumulator.AddRange(tempList);
 			}
+		}
 
-			static bool checkPreconditions(in SudokuGrid grid, IEnumerable<int> urCells, bool arMode)
+		/// <summary>
+		/// Get all possible hints from the grid.
+		/// </summary>
+		/// <param name="gathered">The list stored the result.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+		private void GetAll(IList<UrStepInfo> gathered, in SudokuGrid grid, bool arMode)
+		{
+			// Iterate on each possible UR structure.
+			for (int index = 0, l = PossibleUrList.Length; index < l; index++)
 			{
-				byte emptyCountWhenArMode = 0, modifiableCount = 0;
+				int[] urCells = PossibleUrList[index];
+
+				// Check preconditions.
+				if (!CheckPreconditions(grid, urCells, arMode))
+				{
+					continue;
+				}
+
+				// Get all candidates that all four cells appeared.
+				short mask = 0;
 				foreach (int urCell in urCells)
 				{
-					switch (grid.GetStatus(urCell))
+					mask |= grid.GetCandidates(urCell);
+				}
+
+				// Iterate on each possible digit combination.
+				int[] allDigitsInThem = mask.GetAllSets().ToArray();
+				for (int i = 0, length = allDigitsInThem.Length; i < length - 1; i++)
+				{
+					int d1 = allDigitsInThem[i];
+					for (int j = i + 1; j < length; j++)
 					{
-						case Given:
-						case Modifiable when !arMode:
+						int d2 = allDigitsInThem[j];
+
+						// All possible UR patterns should contain at least one cell
+						// that contains both 'd1' and 'd2'.
+						static bool v(int c, in short comparer, in SudokuGrid grid) =>
+							(grid.GetCandidates(c) & comparer).PopCount() != 2;
+
+						short comparer = (short)(1 << d1 | 1 << d2);
+						bool isNotPossibleUr;
+						unsafe
 						{
-							return false;
+							isNotPossibleUr = urCells.All(&v, comparer, grid);
 						}
-						case Empty when arMode:
+
+						if (!arMode && isNotPossibleUr)
 						{
-							emptyCountWhenArMode++;
-							break;
+							continue;
 						}
-						case Modifiable:
+
+						// Iterate on each corner of four cells.
+						for (int c1 = 0; c1 < 4; c1++)
 						{
-							modifiableCount++;
-							break;
+							int corner1 = urCells[c1];
+							var otherCellsMap = new Cells(urCells) - corner1;
+
+							CheckType1(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
+							CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
+							CheckHidden(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
+
+							if (!arMode && _searchExtended)
+							{
+								Check3X(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+								Check3X2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+								Check3N2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+								Check3U2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+								Check3E2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+							}
+
+							if (c1 == 3)
+							{
+								break;
+							}
+
+							for (int c2 = c1 + 1; c2 < 4; c2++)
+							{
+								int corner2 = urCells[c2];
+								var tempOtherCellsMap = otherCellsMap - corner2;
+
+								// Both diagonal and non-diagonal.
+								CheckType2(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+
+								if (_searchExtended)
+								{
+									for (int size = 2; size <= 4; size++)
+									{
+										CheckWing(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size, index);
+									}
+								}
+
+								if ((c1, c2) is (0, 3) or (1, 2)) // Diagonal type.
+								{
+									if (!arMode)
+									{
+										CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+
+										if (_searchExtended)
+										{
+											Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											Check2D1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+										}
+									}
+								}
+								else // Non-diagonal type.
+								{
+									CheckType3Naked(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+
+									if (!arMode)
+									{
+										CheckType4(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+
+										if (_searchExtended)
+										{
+											Check2B1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											Check4X3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											Check4C3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+										}
+									}
+								}
+							}
 						}
 					}
 				}
-
-				return (modifiableCount, emptyCountWhenArMode) is (not 4, not 4);
 			}
+		}
+
+		/// <summary>
+		/// Check preconditions.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+		/// <returns>Indicates whether the UR is passed to check.</returns>
+		private static bool CheckPreconditions(in SudokuGrid grid, IEnumerable<int> urCells, bool arMode)
+		{
+			byte emptyCountWhenArMode = 0, modifiableCount = 0;
+			foreach (int urCell in urCells)
+			{
+				switch (grid.GetStatus(urCell))
+				{
+					case Given:
+					case Modifiable when !arMode:
+					{
+						return false;
+					}
+					case Empty when arMode:
+					{
+						emptyCountWhenArMode++;
+						break;
+					}
+					case Modifiable:
+					{
+						modifiableCount++;
+						break;
+					}
+				}
+			}
+
+			return modifiableCount != 4 && emptyCountWhenArMode != 4;
 		}
 
 
