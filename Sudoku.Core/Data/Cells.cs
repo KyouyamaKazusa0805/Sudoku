@@ -302,7 +302,7 @@ namespace Sudoku.Data
 
 				long value;
 				int i, pos = 0;
-				int[] result = new int[Count];
+				var result = (stackalloc int[Count]);
 				if (_low != 0)
 				{
 					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
@@ -324,7 +324,7 @@ namespace Sudoku.Data
 					}
 				}
 
-				return result;
+				return result.ToArray();
 			}
 		}
 
