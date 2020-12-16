@@ -3,7 +3,6 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
@@ -24,6 +23,15 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// The difficulty rating.
 		/// </summary>
 		private static readonly decimal[] DifficultyRating = { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6.0M };
+
+		/// <summary>
+		/// The names of all regular wings by their sizes.
+		/// </summary>
+		public static readonly string[] RegularWingNames =
+		{
+			string.Empty, string.Empty, string.Empty, string.Empty, "WXYZ-Wing", "VWXYZ-Wing",
+			"UVWXYZ-Wing", "TUVWXYZ-Wing", "STUVWXYZ-Wing", "RSTUVWXYZ-Wing"
+		};
 
 
 		/// <summary>

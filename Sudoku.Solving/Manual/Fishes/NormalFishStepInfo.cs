@@ -8,7 +8,6 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Windows;
-using static Sudoku.Solving.Constants.Processings;
 #if DOUBLE_LAYERED_ASSUMPTION
 using static Sudoku.Constants.Processings;
 using static Sudoku.Solving.TechniqueSearcher;

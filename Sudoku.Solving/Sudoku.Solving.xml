@@ -1139,28 +1139,6 @@
             <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
             <returns>The difficulty level.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Constants.Processings">
-            <summary>
-            Provides the constants and read-only values in the current project.
-            Of course, the class will also provides you with some method to get the results
-            such as the chain length rating calculation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Constants.Processings.SubsetNames">
-            <summary>
-            The names of all subsets by their sizes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Constants.Processings.FishNames">
-            <summary>
-            The names of all fishes by their sizes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Constants.Processings.RegularWingNames">
-            <summary>
-            The names of all regular wings by their sizes.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Extensions.GridMapEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
@@ -3827,6 +3805,11 @@
             <param name="BaseSets">The base sets.</param>
             <param name="CoverSets">The cover sets.</param>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.FishStepInfo.FishNames">
+            <summary>
+            The names of all fishes by their sizes.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.FishStepInfo.Size">
             <summary>
             Indicates the size of this fish instance.
@@ -5652,6 +5635,11 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.StepInfo.SubsetNames">
+            <summary>
+            The names of all subsets by their sizes.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.StepInfo.ShowDifficulty">
             <summary>
@@ -9135,6 +9123,11 @@
         <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepInfo.DifficultyRating">
             <summary>
             The difficulty rating.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepInfo.RegularWingNames">
+            <summary>
+            The names of all regular wings by their sizes.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepInfo.IsIncomplete">

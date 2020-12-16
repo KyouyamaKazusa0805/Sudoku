@@ -17,6 +17,16 @@ namespace Sudoku.Solving.Manual.Fishes
 		IReadOnlyList<int> CoverSets) : StepInfo(Conclusions, Views)
 	{
 		/// <summary>
+		/// The names of all fishes by their sizes.
+		/// </summary>
+		protected static readonly string[] FishNames =
+		{
+			string.Empty, "Cyclopsfish", "X-Wing", "Swordfish", "Jellyfish",
+			"Squirmbag", "Whale", "Leviathan", "Octopus", "Dragon"
+		};
+
+
+		/// <summary>
 		/// Indicates the size of this fish instance.
 		/// </summary>
 		public int Size => BaseSets.Count;
