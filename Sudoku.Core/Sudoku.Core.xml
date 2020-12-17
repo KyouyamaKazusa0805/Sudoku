@@ -20,21 +20,6 @@
             the static constructor.
             </summary>
         </member>
-        <member name="F:Sudoku.Constants.Processings.BlockTable">
-            <summary>
-            The block table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.Processings.RowTable">
-            <summary>
-            The row table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.Processings.ColumnTable">
-            <summary>
-            The column table.
-            </summary>
-        </member>
         <member name="F:Sudoku.Constants.Processings.Peers">
             <summary>
             <para>Indicates a table for each cell's peers.</para>
@@ -1616,6 +1601,21 @@
             Provides extension methods for <see cref="T:Sudoku.Data.RegionLabel"/>.
             </summary>
             <seealso cref="T:Sudoku.Data.RegionLabel"/>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.RegionLabelEx.BlockTable">
+            <summary>
+            The block table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.RegionLabelEx.RowTable">
+            <summary>
+            The row table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.RegionLabelEx.ColumnTable">
+            <summary>
+            The column table.
+            </summary>
         </member>
         <member name="M:Sudoku.Data.Extensions.RegionLabelEx.ToRegion(Sudoku.Data.RegionLabel,System.Int32)">
             <summary>
