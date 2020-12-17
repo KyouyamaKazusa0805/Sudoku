@@ -7,6 +7,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Runtime;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Reversal
@@ -120,15 +121,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 							if (loopMap == cells)
 							{
 								// The loop is closed. Now construct the result pair.
-								var links = new List<Link>();
-								for (int i = 0; i < tempLoop.Count - 1; i++)
-								{
-									links.Add(new(tempLoop[i] * 9 + 4, tempLoop[i + 1] * 9 + 4, LinkType.Line));
-								}
-								links.Add(new(tempLoop[^1] * 9 + 4, tempLoop[0] * 9 + 4, LinkType.Line));
-
 								flag = true;
-								tempLinks = links;
+								tempLinks = tempLoop.GetLinks();
 
 								// Break the recursion.
 								throw new SudokuRuntimeException();

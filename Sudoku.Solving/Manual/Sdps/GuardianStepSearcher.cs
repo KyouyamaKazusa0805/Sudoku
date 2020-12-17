@@ -7,6 +7,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
@@ -119,17 +120,10 @@ namespace Sudoku.Solving.Manual.Sdps
 								if (tempLoop.Count is var count and >= 5 && (count & 1) != 0
 									&& tempLoop[0] == anotherCell)
 								{
-									var links = new List<Link>();
-									for (int i = 0; i < tempLoop.Count - 1; i++)
-									{
-										links.Add(new(tempLoop[i] * 9 + 4, tempLoop[i + 1] * 9 + 4, LinkType.Line));
-									}
-									links.Add(new(tempLoop[^1] * 9 + 4, tempLoop[0] * 9 + 4, LinkType.Line));
-
 									loops.Add((
 										loopMap,
 										CreateGuardianMap(cell, anotherCell, digit, guardians),
-										links));
+										tempLoop.GetLinks()));
 								}
 								else if (!loopMap[anotherCell])
 								{

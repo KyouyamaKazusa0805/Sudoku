@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
@@ -126,14 +127,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							if (tempLoop[0] == nextCell && tempLoop.Count >= 6 && LoopIsValid(tempLoop))
 							{
 								// The loop is closed. Now construct the result pair.
-								var links = new List<Link>();
-								for (int i = 0; i < tempLoop.Count - 1; i++)
-								{
-									links.Add(new(tempLoop[i] * 9 + 4, tempLoop[i + 1] * 9 + 4, LinkType.Line));
-								}
-								links.Add(new(tempLoop[^1] * 9 + 4, tempLoop[0] * 9 + 4, LinkType.Line));
-
-								loops.Add((loopMap, links));
+								loops.Add((loopMap, tempLoop.GetLinks()));
 							}
 							else if (!loopMap[nextCell] && grid[nextCell, d1] && grid[nextCell, d2])
 							{

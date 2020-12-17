@@ -1227,6 +1227,20 @@
             </param>
             <returns>The link.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Extensions.ReadOnlyListEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.ReadOnlyListEx.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+            <summary>
+            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The list of cells.</param>
+            <param name="offset">The offset. The default value is 4.</param>
+            <returns>All links.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Extensions.SudokuGridEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
