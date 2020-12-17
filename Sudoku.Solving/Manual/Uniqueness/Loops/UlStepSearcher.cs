@@ -129,9 +129,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								var links = new List<Link>();
 								for (int i = 0; i < tempLoop.Count - 1; i++)
 								{
-									links.Add(new(tempLoop[i] * 9 + d1, tempLoop[i + 1] * 9 + d1, LinkType.Line));
+									links.Add(new(tempLoop[i] * 9 + 4, tempLoop[i + 1] * 9 + 4, LinkType.Line));
 								}
-								links.Add(new(tempLoop[^1] * 9 + d1, tempLoop[0] * 9 + d1, LinkType.Line));
+								links.Add(new(tempLoop[^1] * 9 + 4, tempLoop[0] * 9 + 4, LinkType.Line));
 
 								loops.Add((loopMap, links));
 							}

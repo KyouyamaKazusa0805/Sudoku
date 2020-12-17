@@ -10,7 +10,6 @@ using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.LinkType;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -123,13 +122,9 @@ namespace Sudoku.Solving.Manual.Sdps
 									var links = new List<Link>();
 									for (int i = 0; i < tempLoop.Count - 1; i++)
 									{
-										links.Add(
-											new(
-												tempLoop[i] * 9 + digit,
-												tempLoop[i + 1] * 9 + digit,
-												Line));
+										links.Add(new(tempLoop[i] * 9 + 4, tempLoop[i + 1] * 9 + 4, LinkType.Line));
 									}
-									links.Add(new(tempLoop[^1] * 9 + digit, tempLoop[0] * 9 + digit, Line));
+									links.Add(new(tempLoop[^1] * 9 + 4, tempLoop[0] * 9 + 4, LinkType.Line));
 
 									loops.Add((
 										loopMap,
