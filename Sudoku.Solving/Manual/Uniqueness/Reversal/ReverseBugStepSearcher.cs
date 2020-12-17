@@ -31,9 +31,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			{
 				for (int d2 = d1 + 1; d2 < 9; d2++)
 				{
-					var possibleLoop = ValueMaps[d1] | ValueMaps[d2];
+					Cells possibleLoop = ValueMaps[d1] | ValueMaps[d2], possibleEmptyMap = Cells.Empty;
+					foreach (int region in possibleLoop.Regions)
+					{
+						possibleEmptyMap |= RegionMaps[region] & EmptyMap;
+					}
 
-					int[] emptyMapCells = EmptyMap.Offsets;
+#if TOO_SLOW_THAT_I_DISABLE_THE_CODE
+					int[] emptyMapCells = possibleEmptyMap.Offsets;
 					for (int size = 1; size <= 3/*10*/; size++)
 					{
 						foreach (Cells cells in emptyMapCells.GetSubsets(size))
@@ -66,6 +71,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 							}
 						}
 					}
+#else
+					foreach (int cell in possibleEmptyMap)
+					{
+						var currMap = possibleLoop + cell;
+						if (!ContainsValidPath(currMap, out _, out var links))
+						{
+							continue;
+						}
+
+						short comparer = (short)(1 << d1 | 1 << d2);
+						CheckType1(resultAccumulator, grid, d1, d2, currMap, cell, links, comparer);
+					}
+#endif
 				}
 			}
 
