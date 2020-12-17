@@ -56,7 +56,7 @@ This whole solution consists of several folders below:
 | [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging) | The project that can be used while debugging only.           |
 | [`System`](https://github.com/Sunnie-Shine/Sudoku/tree/master/System) | The project provides the extension methods, classes and structures in use. |
 | [`docs`](https://github.com/SunnieShine/Sudoku/tree/master/docs) | Provides the document or helper files of this solution or sudoku itself. |
-| [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref) | The profiles for sudoku for references. In addition, some necessary files to help us compile and run the whole project are also in this folder. |
+| [`required`](https://github.com/Sunnie-Shine/Sudoku/tree/master/required) | Some necessary files to help us compile and run the whole project. |
 | [`pic`](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic) | The pictures.                                                |
 
 

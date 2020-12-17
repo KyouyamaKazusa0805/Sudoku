@@ -55,7 +55,7 @@ git clone https://github.com/Sunnie-Shine/Sudoku.git
 | [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging) | 这个项目仅用于调试代码时。                                   |
 | [`System`](https://github.com/Sunnie-Shine/Sudoku/tree/master/System) | 这个项目提供 .NET 库内相关的扩展的方法、类和结构。           |
 | [`docs`](https://github.com/SunnieShine/Sudoku/tree/master/docs) | 提供文档或者是跟项目有关的帮助文件，抑或是数独本身的内容。   |
-| [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref) | 数独相关参考资料。另外，一些帮助我们执行和运行的文件也在此文件夹下。 |
+| [`required`](https://github.com/Sunnie-Shine/Sudoku/tree/master/required) | 一些帮助我们执行和运行的文件。                               |
 | [`pic`](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic) | 图片。                                                       |
 
 
