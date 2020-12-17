@@ -315,51 +315,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				}
 			}
 		}
-
-
-		/// <summary>
-		/// To check whether the specified loop is valid.
-		/// </summary>
-		/// <param name="loop">The loop.</param>
-		/// <returns>The <see cref="bool"/> result.</returns>
-		[SkipLocalsInit]
-		private static unsafe bool LoopIsValid(IReadOnlyList<int> loop)
-		{
-			int visitedOddRegions = 0, visitedEvenRegions = 0;
-			bool isOdd;
-			foreach (int cell in loop)
-			{
-				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
-				{
-					int region = label.ToRegion(cell);
-					if (*&isOdd)
-					{
-						if ((visitedOddRegions >> region & 1) != 0)
-						{
-							return false;
-						}
-						else
-						{
-							visitedOddRegions |= 1 << region;
-						}
-					}
-					else
-					{
-						if ((visitedEvenRegions >> region & 1) != 0)
-						{
-							return false;
-						}
-						else
-						{
-							visitedEvenRegions |= 1 << region;
-						}
-					}
-				}
-
-				(&isOdd)->Flip();
-			}
-
-			return visitedEvenRegions == visitedOddRegions;
-		}
 	}
 }

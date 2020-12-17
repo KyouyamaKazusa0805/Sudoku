@@ -1139,6 +1139,19 @@
             <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
             <returns>The difficulty level.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Extensions.EnumerableEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.EnumerableEx.IsValidLoop(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Check whether the current loop is valid UL-shaped loop.
+            </summary>
+            <param name="loop">(<see langword="this"/> parameter) The loop.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Extensions.GridMapEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
@@ -6930,13 +6943,6 @@
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.LoopIsValid(System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            To check whether the specified loop is valid.
-            </summary>
-            <param name="loop">The loop.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlType1StepInfo">
             <summary>
             Provides a usage of <b>unique loop type 1</b> technique.
@@ -8857,13 +8863,6 @@
             (<see langword="out"/> parameter) If found any valid loop, the value will be 
             </param>
             <returns></returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.LoopIsValid(System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            To check whether the specified loop is valid.
-            </summary>
-            <param name="loop">The loop.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Int32)">
             <summary>

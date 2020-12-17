@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -116,7 +115,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 
 					foreach (int nextCell in cellsMap)
 					{
-						if (tempLoop[0] == nextCell && tempLoop.Count >= 4 && LoopIsValid(tempLoop))
+						if (tempLoop[0] == nextCell && tempLoop.Count >= 4 && tempLoop.IsValidLoop())
 						{
 							if (loopMap == cells)
 							{
@@ -145,50 +144,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			}
 		}
 
-		/// <summary>
-		/// To check whether the specified loop is valid.
-		/// </summary>
-		/// <param name="loop">The loop.</param>
-		/// <returns>The <see cref="bool"/> result.</returns>
-		[SkipLocalsInit]
-		private static unsafe bool LoopIsValid(IReadOnlyList<int> loop)
-		{
-			int visitedOddRegions = 0, visitedEvenRegions = 0;
-			bool isOdd;
-			foreach (int cell in loop)
-			{
-				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
-				{
-					int region = label.ToRegion(cell);
-					if (*&isOdd)
-					{
-						if ((visitedOddRegions >> region & 1) != 0)
-						{
-							return false;
-						}
-						else
-						{
-							visitedOddRegions |= 1 << region;
-						}
-					}
-					else
-					{
-						if ((visitedEvenRegions >> region & 1) != 0)
-						{
-							return false;
-						}
-						else
-						{
-							visitedEvenRegions |= 1 << region;
-						}
-					}
-				}
-
-				(&isOdd)->Flip();
-			}
-
-			return visitedEvenRegions == visitedOddRegions;
-		}
 
 		partial void CheckType1(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, int extraCell);
 		partial void CheckType2(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, in Cells extraCellsMap, IReadOnlyList<Link> links, short comparer);

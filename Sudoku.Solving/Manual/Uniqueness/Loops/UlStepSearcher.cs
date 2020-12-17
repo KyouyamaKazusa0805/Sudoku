@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 						foreach (int nextCell in cellsMap)
 						{
-							if (tempLoop[0] == nextCell && tempLoop.Count >= 6 && LoopIsValid(tempLoop))
+							if (tempLoop[0] == nextCell && tempLoop.Count >= 6 && tempLoop.IsValidLoop())
 							{
 								// The loop is closed. Now construct the result pair.
 								loops.Add((loopMap, tempLoop.GetLinks()));
