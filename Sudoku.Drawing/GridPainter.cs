@@ -152,7 +152,7 @@ namespace Sudoku.Drawing
 						{
 							var point = Converter.GetMousePointInCenter(cell, digit);
 							point.Y += vOffsetCandidate;
-							g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
+							g.DrawInt32(digit + 1, fCandidate, bCandidate, point, sf);
 						}
 
 						break;
@@ -162,8 +162,8 @@ namespace Sudoku.Drawing
 						// Draw values.
 						var point = Converter.GetMousePointInCenter(cell);
 						point.Y += vOffsetValue;
-						g.DrawString(
-							(grid[cell] + 1).ToString(), status == CellStatus.Given ? fGiven : fModifiable,
+						g.DrawInt32(
+							grid[cell] + 1, status == CellStatus.Given ? fGiven : fModifiable,
 							status == CellStatus.Given ? bGiven : bModifiable, point, sf);
 
 						break;
@@ -268,11 +268,13 @@ namespace Sudoku.Drawing
 		{
 			using var eliminationBrush = new SolidBrush(Preferences.EliminationColor);
 			using var cannibalBrush = new SolidBrush(Preferences.CannibalismColor);
-			foreach (var (t, c, d) in
-				from c in conclusions
-				where c.ConclusionType == ConclusionType.Elimination
-				select c)
+			foreach (var (t, c, d) in conclusions)
 			{
+				if (t != ConclusionType.Elimination)
+				{
+					continue;
+				}
+
 				bool isCannibalism;
 				unsafe
 				{
@@ -368,9 +370,8 @@ namespace Sudoku.Drawing
 			// This brush is used for drawing grouped nodes.
 			using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
 #endif
-			foreach (var link in links)
+			foreach (var (start, end, type) in links)
 			{
-				var (start, end, type) = link;
 				arrowPen.DashStyle = type switch
 				{
 					LinkType.Strong => DashStyle.Solid,
@@ -402,64 +403,76 @@ namespace Sudoku.Drawing
 				}
 #endif
 
-				// If the distance of two points is lower than the one of two adjacent candidates,
-				// the link will be emitted to draw because of too narrow.
-				double distance = Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
-				if (distance <= cw * SqrtOf2 + offset || distance <= ch * SqrtOf2 + offset)
-				{
-					continue;
-				}
-
-				// Check if another candidate lies in the direct line.
-				double deltaX = pt2x - pt1x, deltaY = pt2y - pt1y;
-				double alpha = Atan2(deltaY, deltaX);
-				double dx1 = deltaX, dy1 = deltaY;
-				bool through = false;
-				AdjustPoint(pt1, pt2, out var p1, out var p2, alpha, cw, offset);
-				foreach (var point in points)
-				{
-					if (point == pt1 || point == pt2)
-					{
-						// Self...
-						continue;
-					}
-
-					double dx2 = point.X - p1.X, dy2 = point.Y - p1.Y;
-					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
-						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
-					{
-						through = true;
-						break;
-					}
-				}
-
-				// Now cut the link.
-				CutLink(ref pt1, ref pt2, offset, cw, ch, pt1x, pt1y, pt2x, pt2y);
-
 				var penToDraw = type != LinkType.Line ? arrowPen : linePen;
-				if (through)
-				{
-					double bezierLength = 20;
-
-					// The end points are rotated 45 degrees
-					// (counterclockwise for the start point, clockwise for the end point).
-					PointF oldPt1 = new(pt1x, pt1y), oldPt2 = new(pt2x, pt2y);
-					RotatePoint(oldPt1, ref pt1, -RotateAngle);
-					RotatePoint(oldPt2, ref pt2, RotateAngle);
-
-					double aAlpha = alpha - RotateAngle;
-					double bx1 = pt1.X + bezierLength * Cos(aAlpha), by1 = pt1.Y + bezierLength * Sin(aAlpha);
-					aAlpha = alpha + RotateAngle;
-					double bx2 = pt2.X - bezierLength * Cos(aAlpha), by2 = pt2.Y - bezierLength * Sin(aAlpha);
-
-					g.DrawBezier(
-						penToDraw, pt1.X, pt1.Y, (float)bx1, (float)by1, (float)bx2, (float)by2, pt2.X, pt2.Y);
-				}
-				else
+				if (type == LinkType.Line)
 				{
 					// Draw the link.
 					g.DrawLine(penToDraw, pt1, pt2);
+				}
+				else
+				{
+					// If the distance of two points is lower than the one of two adjacent candidates,
+					// the link will be emitted to draw because of too narrow.
+					double distance = Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
+					if (distance <= cw * SqrtOf2 + offset || distance <= ch * SqrtOf2 + offset)
+					{
+						continue;
+					}
+
+					// Check if another candidate lies in the direct line.
+					double deltaX = pt2x - pt1x, deltaY = pt2y - pt1y;
+					double alpha = Atan2(deltaY, deltaX);
+					double dx1 = deltaX, dy1 = deltaY;
+					bool through = false;
+					AdjustPoint(pt1, pt2, out var p1, out var p2, alpha, cw, offset);
+					foreach (var point in points)
+					{
+						if (point == pt1 || point == pt2)
+						{
+							// Self...
+							continue;
+						}
+
+						double dx2 = point.X - p1.X, dy2 = point.Y - p1.Y;
+						if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
+							&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
+							&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
+						{
+							through = true;
+							break;
+						}
+					}
+
+					// Now cut the link.
+					CutLink(ref pt1, ref pt2, offset, cw, ch, pt1x, pt1y, pt2x, pt2y);
+
+					if (through)
+					{
+						double bezierLength = 20;
+
+						// The end points are rotated 45 degrees
+						// (counterclockwise for the start point, clockwise for the end point).
+						PointF oldPt1 = new(pt1x, pt1y), oldPt2 = new(pt2x, pt2y);
+						RotatePoint(oldPt1, ref pt1, -RotateAngle);
+						RotatePoint(oldPt2, ref pt2, RotateAngle);
+
+						double aAlpha = alpha - RotateAngle;
+						double bx1 =
+							pt1.X + bezierLength * Cos(aAlpha), by1 = pt1.Y + bezierLength * Sin(aAlpha);
+
+						aAlpha = alpha + RotateAngle;
+						double bx2 =
+							pt2.X - bezierLength * Cos(aAlpha), by2 = pt2.Y - bezierLength * Sin(aAlpha);
+
+						g.DrawBezier(
+							penToDraw, pt1.X, pt1.Y, (float)bx1, (float)by1, (float)bx2, (float)by2,
+							pt2.X, pt2.Y);
+					}
+					else
+					{
+						// Draw the link.
+						g.DrawLine(penToDraw, pt1, pt2);
+					}
 				}
 			}
 
@@ -637,7 +650,7 @@ namespace Sudoku.Drawing
 			{
 				var point = Converter.GetMousePointInCenter(cell, digit);
 				point.Y += vOffsetCandidate;
-				g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
+				g.DrawInt32(digit + 1, fCandidate, bCandidate, point, sf);
 			}
 
 			static bool overlapping(Conclusion conc, in int cell, in int digit) =>

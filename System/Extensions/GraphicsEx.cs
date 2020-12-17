@@ -10,6 +10,32 @@ namespace System.Extensions
 	public static class GraphicsEx
 	{
 		/// <summary>
+		/// Draw an <see cref="int"/> value onto the current graphics.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The graphics instance.</param>
+		/// <param name="value">The value to drawing onto.</param>
+		/// <param name="font">The font.</param>
+		/// <param name="brush">The brush.</param>
+		/// <param name="point">(<see langword="in"/> parameter) The point.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void DrawInt32(this Graphics @this, int value, Font font, Brush brush, in PointF point) =>
+			@this.DrawString(value.ToString(), font, brush, point);
+
+		/// <summary>
+		/// Draw an <see cref="int"/> value onto the current graphics.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The graphics instance.</param>
+		/// <param name="value">The value to drawing onto.</param>
+		/// <param name="font">The font.</param>
+		/// <param name="brush">The brush.</param>
+		/// <param name="point">(<see langword="in"/> parameter) The point.</param>
+		/// <param name="stringFormat">The string format instance.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void DrawInt32(
+			this Graphics @this, int value, Font font, Brush brush, in PointF point, StringFormat stringFormat) =>
+			@this.DrawString(value.ToString(), font, brush, point, stringFormat);
+
+		/// <summary>
 		/// Draw a cross sign (<c>x</c>).
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>

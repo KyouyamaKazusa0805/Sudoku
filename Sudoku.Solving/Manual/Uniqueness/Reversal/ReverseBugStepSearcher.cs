@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 							continue;
 						}
 
-						CheckType1(resultAccumulator, grid, d1, d2, possibleLoop, links, cell);
+						CheckType1(resultAccumulator, grid, d1, d2, currMap, links, cell);
 					}
 				}
 			}
