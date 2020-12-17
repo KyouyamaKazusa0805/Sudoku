@@ -8828,16 +8828,18 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
             <param name="Loop">All cells used.</param>
-            <param name="DigitsMask">The mask that contains all set bits of corresponding digits.</param>
+            <param name="Digit1">Indicates the digit 1.</param>
+            <param name="Digit2">Indicates the digit 2.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>reverse bi-value universal grave</b> technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
             <param name="Loop">All cells used.</param>
-            <param name="DigitsMask">The mask that contains all set bits of corresponding digits.</param>
+            <param name="Digit1">Indicates the digit 1.</param>
+            <param name="Digit2">Indicates the digit 2.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher">
             <summary>
@@ -8864,7 +8866,7 @@
             </param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Int16)">
             <summary>
             Check the type 1.
             </summary>
@@ -8873,8 +8875,22 @@
             <param name="d1">The digit 1 to check.</param>
             <param name="d2">The digit 2 to check.</param>
             <param name="loop">(<see langword="in"/> parameter) The cells of that loop.</param>
-            <param name="links">The links.</param>
             <param name="extraCell">Indicates the extra cell.</param>
+            <param name="links">The links.</param>
+            <param name="comparer">The comparer.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Int16)">
+            <summary>
+            Check the type 2.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="d1">The digit 1 to check.</param>
+            <param name="d2">The digit 2 to check.</param>
+            <param name="loop">(<see langword="in"/> parameter) The cells of that loop.</param>
+            <param name="extraCells">(<see langword="in"/> parameter) The cells of all extra cells.</param>
+            <param name="links">The links.</param>
+            <param name="comparer">The comparer.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo">
             <summary>
@@ -8916,6 +8932,116 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType2StepInfo">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave type 2</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="ExtraCells">All extra cells.</param>
+            <param name="Digit1">The digit 1 used.</param>
+            <param name="Digit2">The digit 2 used.</param>
+            <param name="ExtraDigit">The extra digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave type 2</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="ExtraCells">All extra cells.</param>
+            <param name="Digit1">The digit 1 used.</param>
+            <param name="Digit2">The digit 2 used.</param>
+            <param name="ExtraDigit">The extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType2StepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType2StepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType2StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType2StepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType3StepInfo">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave type 3</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="ExtraCells">All extra cells.</param>
+            <param name="Digit1">The digit 1 used.</param>
+            <param name="Digit2">The digit 2 used.</param>
+            <param name="DigitsMask">All extra digits used.</param>
+            <param name="IsNaked">Indicates whether the subset is naked.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16,System.Boolean)">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave type 3</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="ExtraCells">All extra cells.</param>
+            <param name="Digit1">The digit 1 used.</param>
+            <param name="Digit2">The digit 2 used.</param>
+            <param name="DigitsMask">All extra digits used.</param>
+            <param name="IsNaked">Indicates whether the subset is naked.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType3StepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType3StepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType3StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType3StepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType4StepInfo">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave type 4</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="ExtraCells">All extra cells.</param>
+            <param name="Digit1">The digit 1 used.</param>
+            <param name="Digit2">The digit 2 used.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
+            <summary>
+            Provides a usage of <b>reverse bi-value universal grave type 4</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">All cells used.</param>
+            <param name="ExtraCells">All extra cells.</param>
+            <param name="Digit1">The digit 1 used.</param>
+            <param name="Digit2">The digit 2 used.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType4StepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType4StepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType4StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType4StepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo">

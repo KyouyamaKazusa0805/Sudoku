@@ -10,8 +10,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	/// <param name="Loop">All cells used.</param>
-	/// <param name="DigitsMask">The mask that contains all set bits of corresponding digits.</param>
+	/// <param name="Digit1">Indicates the digit 1.</param>
+	/// <param name="Digit2">Indicates the digit 2.</param>
 	public abstract record ReverseBugStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, short DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, int Digit1, int Digit2)
 		: UniquenessStepInfo(Conclusions, Views);
 }

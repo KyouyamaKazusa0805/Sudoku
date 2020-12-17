@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -131,13 +130,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
 			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
 		{
-			static bool isSatisfyType3(int cell, in short comparer, in SudokuGrid grid) =>
+			static bool isSatisfiedType3(int cell, in short comparer, in SudokuGrid grid) =>
 				grid.GetCandidates(cell) is var mask && (mask & comparer) == 0 || mask == comparer;
 
 			bool satisfyType3;
 			unsafe
 			{
-				satisfyType3 = extraCellsMap.Any(&isSatisfyType3, comparer, grid);
+				satisfyType3 = extraCellsMap.Any(&isSatisfiedType3, comparer, grid);
 			}
 
 			if (!extraCellsMap.InOneRegion || satisfyType3)

@@ -34,16 +34,37 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 					var possibleLoop = ValueMaps[d1] | ValueMaps[d2];
 
 					int[] emptyMapCells = EmptyMap.Offsets;
-					for (int i = 0, length = emptyMapCells.Length; i < length; i++)
+					for (int size = 1; size <= 3/*10*/; size++)
 					{
-						int cell = emptyMapCells[i];
-						var currMap = possibleLoop + cell;
-						if (!ContainsValidPath(currMap, out _, out var links))
+						foreach (Cells cells in emptyMapCells.GetSubsets(size))
 						{
-							continue;
-						}
+							var currMap = possibleLoop | cells;
+							if (!ContainsValidPath(currMap, out _, out var links))
+							{
+								continue;
+							}
 
-						CheckType1(resultAccumulator, grid, d1, d2, currMap, links, cell);
+							short comparer = (short)(1 << d1 | 1 << d2);
+							switch (size)
+							{
+								case 1:
+								{
+									CheckType1(resultAccumulator, grid, d1, d2, currMap, cells.Offsets[0], links, comparer);
+									break;
+								}
+								case 2: /*fallthrough*/
+								{
+									CheckType3(resultAccumulator, grid, d1, d2, currMap, cells, links, comparer);
+									CheckType4(resultAccumulator, grid, d1, d2, currMap, cells, links, comparer);
+									goto default;
+								}
+								default:
+								{
+									CheckType2(resultAccumulator, grid, d1, d2, currMap, cells, links, comparer);
+									break;
+								}
+							}
+						}
 					}
 				}
 			}
@@ -145,9 +166,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		}
 
 
-		partial void CheckType1(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, int extraCell);
-		partial void CheckType2(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, in Cells extraCellsMap, IReadOnlyList<Link> links, short comparer);
-		partial void CheckType3(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, in Cells extraCellsMap, IReadOnlyList<Link> links, short comparer);
-		partial void CheckType4(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, in Cells extraCellsMap, IReadOnlyList<Link> links, short comparer);
+		partial void CheckType1(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, int extraCell, IReadOnlyList<Link> links, short comparer);
+		partial void CheckType2(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, in Cells extraCells, IReadOnlyList<Link> links, short comparer);
+		partial void CheckType3(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, in Cells extraCells, IReadOnlyList<Link> links, short comparer);
+		partial void CheckType4(IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, in Cells extraCells, IReadOnlyList<Link> links, short comparer);
 	}
 }
