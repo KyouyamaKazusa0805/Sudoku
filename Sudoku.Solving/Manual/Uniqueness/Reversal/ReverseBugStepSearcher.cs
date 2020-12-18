@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 						possibleEmptyMap |= RegionMaps[region] & EmptyMap;
 					}
 
-#if TOO_SLOW_THAT_I_DISABLE_THE_CODE
+#if SO_SLOW_THAT_I_DISABLED_THIS_BLOCK
 					int[] emptyMapCells = possibleEmptyMap.Offsets;
 					for (int size = 1; size <= 3/*10*/; size++)
 					{
