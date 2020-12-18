@@ -3812,6 +3812,24 @@
             <param name="isRow">Indicates whether the specified computation is for rows.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher">
+            <summary>
+            Encapsulates a <b>Hobiwan's fish</b> technique searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetPomEliminationsFirstly(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Get POM technique eliminations at first.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishStepInfo">
             <summary>
             Provides a usage of <b>fish</b> technique.
