@@ -1139,6 +1139,22 @@
             <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
             <returns>The difficulty level.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Extensions.CellsEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Cells"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.CellsEx.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Check whether the cells form an empty cell.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The empty cell grid map.</param>
+            <param name="block">The block.</param>
+            <param name="row">(<see langword="out"/> parameter) The row.</param>
+            <param name="column">(<see langword="out"/> parameter) The column.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Extensions.EnumerableEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
@@ -1150,22 +1166,6 @@
             Check whether the current loop is valid UL-shaped loop.
             </summary>
             <param name="loop">(<see langword="this"/> parameter) The loop.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.GridMapEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Cells"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.GridMapEx.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
-            <summary>
-            Check whether the cells form an empty cell.
-            </summary>
-            <param name="this">(<see langword="this in"/> parameter) The empty cell grid map.</param>
-            <param name="block">The block.</param>
-            <param name="row">(<see langword="out"/> parameter) The row.</param>
-            <param name="column">(<see langword="out"/> parameter) The column.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Extensions.Int32Ex">
@@ -1254,6 +1254,40 @@
             <param name="offset">The offset. The default value is 4.</param>
             <returns>All links.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Extensions.StepInfoEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.StepInfoEx.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the currrent technique information is an ALS technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.StepInfoEx.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the currrent technique information is a chaining-ruled technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.StepInfoEx.IsForcingChainsTechnique(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the currrent technique information is a forcing chains technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.StepInfoEx.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the currrent technique information is a uniqueness technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Extensions.SudokuGridEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
@@ -1279,40 +1313,6 @@
             <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.TechniqueInfoEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.TechniqueInfoEx.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the currrent technique information is an ALS technique.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.TechniqueInfoEx.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the currrent technique information is a chaining-ruled technique.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.TechniqueInfoEx.IsForcingChainsTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the currrent technique information is a forcing chains technique.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.TechniqueInfoEx.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the currrent technique information is a uniqueness technique.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
             <summary>
@@ -3817,11 +3817,35 @@
             Encapsulates a <b>Hobiwan's fish</b> technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.AllRowsMask">
+            <summary>
+            Indicates the mask that means all rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.AllColumnsMask">
+            <summary>
+            Indicates the mask that means all columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.AllRegions">
+            <summary>
+            Indictes the mask that means all regions.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Collections.Generic.IList{Sudoku.Data.Conclusion}})">
+            <summary>
+            Get all possible fish steps.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="size">The size to check.</param>
+            <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetPomEliminationsFirstly(Sudoku.Data.SudokuGrid@)">
             <summary>

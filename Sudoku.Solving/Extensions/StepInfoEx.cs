@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Extensions
 	/// Provides extension methods on <see cref="StepInfo"/>.
 	/// </summary>
 	/// <seealso cref="StepInfo"/>
-	public static class TechniqueInfoEx
+	public static class StepInfoEx
 	{
 		/// <summary>
 		/// Check whether the currrent technique information is an ALS technique.

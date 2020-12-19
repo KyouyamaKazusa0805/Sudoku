@@ -1,13 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
-using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
+using EliminationList = System.Collections.Generic.IReadOnlyDictionary<
+	int,
+	System.Collections.Generic.IList<Sudoku.Data.Conclusion>
+>;
+using Steps = System.Collections.Generic.IList<Sudoku.Solving.Manual.StepInfo>;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -16,6 +21,22 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </summary>
 	public sealed class ComplexFishStepSearcher : FishStepSearcher
 	{
+		/// <summary>
+		/// Indicates the mask that means all rows.
+		/// </summary>
+		private const int AllRowsMask = 0b111_111_111__000_000_000;
+
+		/// <summary>
+		/// Indicates the mask that means all columns.
+		/// </summary>
+		private const int AllColumnsMask = 0b111_111_111__000_000_000__000_000_000;
+
+		/// <summary>
+		/// Indictes the mask that means all regions.
+		/// </summary>
+		private const int AllRegions = 0b111_111_111__111_111_111__111_111_111;
+
+
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(80, nameof(TechniqueCode.FrankenSwordfish))
 		{
@@ -24,162 +45,272 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+		public override void GetAll(Steps accumulator, in SudokuGrid grid)
 		{
 			// Gather the POM eliminations to get all possible fish eliminations.
-			var dictionary = GetPomEliminationsFirstly(grid);
+			var pomElims = GetPomEliminationsFirstly(grid);
 
-			// Enumerate all possible digit.
-			for (int digit = 0; digit < 9; digit++)
+			var tempList = new List<StepInfo>();
+			for (int size = 2; size <= 5; size++)
 			{
-				// Check whether the digit contains possible eliminations in POM eliminations dictionary.
-				// If not, this digit doesn't contain any eliminations in fish, so we just skip the loop.
-				if (!dictionary.ContainsKey(digit))
-				{
-					continue;
-				}
+				GetAll(tempList, grid, size, pomElims);
+			}
 
-				// Enumerate all possible eliminations of the current digit.
-				foreach (var conclusion in dictionary[digit])
+			accumulator.AddRange(tempList);
+		}
+
+
+		/// <summary>
+		/// Get all possible fish steps.
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="size">The size to check.</param>
+		/// <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
+		[SkipLocalsInit]
+		private static void GetAll(Steps accumulator, in SudokuGrid grid, int size, EliminationList pomElims)
+		{
+			unsafe
+			{
+				// Iterate on different cases on whether searcher finds mutant fishes.
+				// If false, search for franken fishes.
+				foreach (bool searchForMutant in stackalloc[] { false, true })
 				{
-					// Get all possible regions to iterate.
-					// Here we should iterate on regions by the size.
-					int possibleCell = conclusion.Cell;
-					int[] regionsToIterateOn = CandMaps[digit].Regions.GetAllSets().ToArray();
-					for (int size = 2; size <= 4; size++)
+					// Iterate on each digit.
+					for (int digit = 0; digit < 9; digit++)
 					{
-						foreach (int[] baseSets in regionsToIterateOn.GetSubsets(size))
+						// Try to check the POM eliminations.
+						// If the digit as a key doesn't contain any list in that dictionary,
+						// just skip this loop.
+						if (!pomElims.ContainsKey(digit))
 						{
-							// Assume 'possibleCell' is filled with that digit,
-							// and eliminate peer cells, in order to confirm the last cells
-							// in base sets. They'll be cover sets list.
-							var baseMap = Cells.Empty;
-							foreach (int baseSet in baseSets)
-							{
-								baseMap |= RegionMaps[baseSet] & CandMaps[digit];
-							}
-							baseMap -= new Cells(possibleCell);
+							continue;
+						}
 
-							// Then we should remove base sets, in order to avoid appearing duplicate
-							// regions in enumerating.
-							int possibleCoverRegions = baseMap.Regions;
-							foreach (int baseSet in baseSets)
+						// Get the eliminations and convert it to an array.
+						int[] elims = (from conclusion in pomElims[digit] select conclusion.Cell).ToArray();
+
+						// Then iterate on each elimination.
+						foreach (int cell in elims)
+						{
+							// Try to assume the digit is true in the current cell,
+							// and we can get a map of all possible cells that can be filled with the digit.
+							var possibleMap = CandMaps[digit] - new Cells(cell);
+
+							// Get the table of all possible regions that contains that digit.
+							int[] baseTable = possibleMap.Regions.GetAllSets().ToArray();
+
+							// If the 'table.Length' property is lower than '2 * size',
+							// we can't find any possible complex fish now. Just skip it.
+							if (baseTable.Length < size << 1)
 							{
-								possibleCoverRegions &= ~(1 << baseSet);
+								continue;
 							}
 
-							// Now enumerate cover sets combinations.
-							// Because we have removed the peers, the number of cover sets should
-							// be enumerated should be 'size - 1' instead of 'size'.
-							int[] possibleCoverSets = possibleCoverRegions.GetAllSets().ToArray();
-							foreach (int[] coverSets in possibleCoverSets.GetSubsets(size - 1))
+							// Iterate on each base set combinations.
+							foreach (int[] baseSets in baseTable.GetSubsets(size))
 							{
-								// Now we check the coverage.
-								var coverMap = Cells.Empty;
-								foreach (int coverSet in coverSets)
+								// Get the mask representing the base sets used.
+								int baseSetsMask = 0;
+								foreach (int baseSet in baseSets)
 								{
-									coverMap |= RegionMaps[coverSet] & baseMap;
+									baseSetsMask |= 1 << baseSet;
 								}
 
-								// If now 'map' contains more cells than 'coverMap',
-								// the checking will be failed.
-								if (coverMap != baseMap)
+								// Get the mask for checking simple fish if searching for mutant ones.
+								byte baseMaskForCheckingSimpleFishIfSearchingForMutant;
+								if (searchForMutant)
+								{
+									baseMaskForCheckingSimpleFishIfSearchingForMutant = 0;
+									if ((baseSetsMask & AllRowsMask) != 0)
+									{
+										baseMaskForCheckingSimpleFishIfSearchingForMutant |= 1;
+									}
+									if ((baseSetsMask & AllColumnsMask) != 0)
+									{
+										baseMaskForCheckingSimpleFishIfSearchingForMutant |= 2;
+									}
+								}
+
+								// Get the primary map of endo-fins.
+								Cells tempMap = Cells.Empty, endofins = Cells.Empty;
+								for (int i = 0; i < baseSets.Length; i++)
+								{
+									int baseSet = baseSets[i];
+									if (i != 0)
+									{
+										endofins |= RegionMaps[baseSet] & tempMap;
+									}
+
+									tempMap |= RegionMaps[baseSet];
+								}
+								endofins &= possibleMap;
+
+								// We can't hold any endo-fins at present. The algorithm limits
+								// the whole technique structure can't contain endo-fins now.
+								// We just assume the possible elimination is true, then the last imcomplete
+								// structure can't contain any fins; otherwise, kraken fishes.
+								// Do you know why we only check endo-fins instead of checking both exo-fins
+								// and endo-fins? Because here the incomplete structure don't contain
+								// any exo-fins at all.
+								if (!endofins.IsEmpty)
 								{
 									continue;
 								}
 
-								// Try to iterate on three regions, and confirm the absolute cover sets
-								// and eliminations.
-								for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+								int usedInBaseSets = 0;
+								var baseMap = Cells.Empty;
+								foreach (int baseSet in baseSets)
 								{
-									int extraRegion = label.ToRegion(possibleCell);
-									if (baseSets.Contains(extraRegion))
+									baseMap |= RegionMaps[baseSet];
+									usedInBaseSets |= 1 << baseSet;
+								}
+
+								var actualBaseMap = baseMap;
+								baseMap &= possibleMap;
+
+								int z = baseMap.Regions & ~usedInBaseSets & AllRegions, count = 0;
+								int[] coverTable = new int[z.PopCount()];
+								foreach (int region in z)
+								{
+									coverTable[count++] = region;
+								}
+
+								if (count < size)
+								{
+									continue;
+								}
+
+								foreach (int[] coverSets in coverTable.GetSubsets(size - 1))
+								{
+									var coverMap = Cells.Empty;
+									int coverSetMask = 0;
+									for (int i = 0, length = coverSets.Length - 1; i < length; i++)
+									{
+										int coverSet = coverSets[i];
+										coverMap = RegionMaps[coverSet];
+										coverSetMask |= 1 << coverSet;
+									}
+
+									if (baseMap.Overlaps(coverMap))
 									{
 										continue;
 									}
 
-									baseMap |= RegionMaps[extraRegion] & baseMap;
-									coverMap |= RegionMaps[extraRegion] & CandMaps[digit];
-
-									if (baseMap != coverMap)
+									int[] currentCoverSets = new int[size - 1];
+									int usedInCoverSets = 0;
+									for (int i = 0, length = coverSets.Length - 1; i < length; i++)
 									{
-										continue;
+										currentCoverSets[i] = coverSets[i];
+										usedInCoverSets |= 1 << coverSets[i];
 									}
+									actualBaseMap &= CandMaps[digit];
 
-									// Check exo- and endo-fins.
-									Cells exofins = Cells.Empty, endofins = Cells.Empty, lastMap = Cells.Empty;
-									for (int i = 0, length = baseSets.Length; i < length; i++)
+									int region;
+									bool flag = false;
+									for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 									{
-										int region = baseSets[i];
-										exofins |= RegionMaps[region] & CandMaps[digit];
-
-										if (i != 0)
+										region = label.ToRegion(cell);
+										if ((usedInBaseSets >> region & 1) != 0
+											|| (usedInCoverSets >> region & 1) != 0)
 										{
-											endofins |= RegionMaps[region] & lastMap;
+											continue;
 										}
 
-										lastMap |= exofins;
+										usedInCoverSets |= 1 << region;
+										byte coverMaskForCheckingSimpleFishIfSearchingForMutant;
+										if (searchForMutant)
+										{
+											coverMaskForCheckingSimpleFishIfSearchingForMutant = 0;
+											if ((usedInCoverSets & AllRowsMask) != 0)
+											{
+												coverMaskForCheckingSimpleFishIfSearchingForMutant |= 1;
+											}
+											if ((usedInCoverSets & AllColumnsMask) != 0)
+											{
+												coverMaskForCheckingSimpleFishIfSearchingForMutant |= 2;
+											}
+										}
+
+										if ((usedInBaseSets & AllRowsMask) == usedInBaseSets
+											&& (usedInCoverSets & AllColumnsMask) == usedInCoverSets
+											|| (usedInBaseSets & AllColumnsMask) == usedInBaseSets
+											&& (usedInCoverSets & AllRowsMask) == usedInCoverSets
+											|| searchForMutant
+											&& *&baseMaskForCheckingSimpleFishIfSearchingForMutant != 3
+											&& *&coverMaskForCheckingSimpleFishIfSearchingForMutant != 3)
+										{
+											// Normal fish.
+											usedInCoverSets &= ~(1 << region);
+											continue;
+										}
+
+										if (!actualBaseMap.Overlaps(RegionMaps[region]))
+										{
+											continue;
+										}
+
+										flag = true;
+										break;
 									}
-									exofins -= coverMap;
-
-									var elimMap = coverMap;
-									if (!exofins.IsEmpty) elimMap &= exofins.PeerIntersection;
-									if (!endofins.IsEmpty) elimMap &= endofins.PeerIntersection;
-									elimMap &= CandMaps[digit];
-
-									if (elimMap.IsEmpty)
+									if (!flag)
 									{
 										continue;
 									}
 
-									// Gather the eliminations and cells or regions to highlight.
-									var conclusions = new List<Conclusion>();
-									foreach (int cell in elimMap)
+									endofins = Cells.Empty;
+									unsafe
 									{
-										conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+										coverMap |= RegionMaps[*&region];
 									}
 
-									var candidateOffsets = new List<DrawingInfo>();
-									foreach (int cell in baseMap)
+									// Insert into the current cover set list, in order to keep
+									// all cover sets are in order.
+									int j = size - 2;
+									for (; j >= 0; j--)
 									{
-										candidateOffsets.Add(new(0, cell * 9 + digit));
+										if (currentCoverSets[j] >= *&region)
+										{
+											currentCoverSets[j + 1] = currentCoverSets[j];
+										}
+										else
+										{
+											currentCoverSets[j + 1] = *&region;
+											break;
+										}
 									}
-									foreach (int cell in exofins)
+									if (j < 0)
 									{
-										candidateOffsets.Add(new(1, cell * 9 + digit));
-									}
-									foreach (int cell in endofins)
-									{
-										candidateOffsets.Add(new(3, cell * 9 + digit));
-									}
-
-									var regionOffsets = new List<DrawingInfo>();
-									foreach (int baseSet in baseSets)
-									{
-										regionOffsets.Add(new(0, baseSet));
-									}
-									foreach (int coverSet in new List<int>(coverSets) { extraRegion })
-									{
-										regionOffsets.Add(new(2, coverSet));
+										currentCoverSets[0] = *&region;
 									}
 
-									accumulator.Add(
-										new HobiwanFishStepInfo(
-											conclusions,
-											new View[]
-											{
-												new()
-												{
-													Candidates = candidateOffsets,
-													Regions = regionOffsets
-												}
-											},
-											digit,
-											baseSets,
-											coverSets,
-											exofins,
-											endofins,
-											exofins.IsEmpty && endofins.IsEmpty ? null : false));
+									for (j = 0; j < size; j++)
+									{
+										if (j > 0)
+										{
+											endofins |= RegionMaps[currentCoverSets[j]] & tempMap;
+										}
+
+										if (j == 0)
+										{
+											tempMap = RegionMaps[currentCoverSets[j]];
+										}
+										else
+										{
+											tempMap &= RegionMaps[currentCoverSets[j]];
+										}
+									}
+									endofins &= CandMaps[digit];
+
+									var exofins = actualBaseMap - coverMap - endofins;
+									var elimMap = coverMap - actualBaseMap & CandMaps[digit];
+									var fins = exofins | endofins;
+									if (!fins.IsEmpty)
+									{
+										elimMap &= fins.PeerIntersection & CandMaps[digit];
+									}
+
+									// TODO: Gather eliminations, views and step information.
 								}
 							}
 						}
@@ -194,7 +325,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-		private static IReadOnlyDictionary<int, IList<Conclusion>> GetPomEliminationsFirstly(in SudokuGrid grid)
+		private static EliminationList GetPomEliminationsFirstly(in SudokuGrid grid)
 		{
 			var tempList = new List<StepInfo>();
 			new PomStepSearcher().GetAll(tempList, grid);

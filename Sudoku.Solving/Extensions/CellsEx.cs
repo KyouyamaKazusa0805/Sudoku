@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Extensions
 	/// Provides extension methods on <see cref="Cells"/>.
 	/// </summary>
 	/// <seealso cref="Cells"/>
-	public static class GridMapEx
+	public static class CellsEx
 	{
 		/// <summary>
 		/// Check whether the cells form an empty cell.
