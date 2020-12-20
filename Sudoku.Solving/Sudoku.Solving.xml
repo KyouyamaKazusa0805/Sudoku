@@ -3847,15 +3847,6 @@
             <param name="size">The size to check.</param>
             <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.IsSashimi(System.Int32[],Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check whether the fish is sashimi one.
-            </summary>
-            <param name="baseSets">The base sets.</param>
-            <param name="fins">(<see langword="in"/> parameter) All fins.</param>
-            <param name="digit">The digit.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetPomEliminationsFirstly(Sudoku.Data.SudokuGrid@)">
             <summary>
             Get POM technique eliminations at first.
@@ -3902,6 +3893,15 @@
             <summary>
             Encapsulates a <b>fish</b> technique searcher.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.FishStepSearcher.IsSashimi(System.Int32[],Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi one.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">(<see langword="in"/> parameter) All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.HobiwanFishStepInfo">
             <summary>
@@ -4168,6 +4168,16 @@
             Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.RowWeight">
+            <summary>
+            The weights.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.ColumnWeight">
+            <summary>
+            The weights.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
@@ -4186,25 +4196,19 @@
             </param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetDirectView(Sudoku.Data.SudokuGrid@,System.Int32,System.ReadOnlySpan{System.Int32}@,System.ReadOnlySpan{System.Int32}@,System.Boolean,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetDirectView(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32[],System.Int32[],Sudoku.Data.Cells@,System.Boolean)">
             <summary>
             Get the direct fish view with the specified grid and the base sets.
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="digit">The digit.</param>
-            <param name="baseSets">(<see langword="in"/> parameter) The base sets.</param>
-            <param name="coverSets">(<see langword="in"/> parameter) The cover sets.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="fins">
+            (<see langword="in"/> parameter) The cells of the fin in the current fish.
+            </param>
             <param name="searchRow">Indicates whether the current searcher searches row.</param>
-            <param name="finCellsMap">(<see langword="in"/> parameter) The fins map.</param>
             <returns>The view.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetGridMap(Sudoku.Data.Cells@,System.ReadOnlySpan{System.Int32}@,Sudoku.Data.Cells@)">
-            <summary>
-            Record all cells in the all regions to a <see cref="T:Sudoku.Data.Cells"/> instance.
-            </summary>
-            <param name="map">(<see langword="ref"/> parameter) The map.</param>
-            <param name="regions">(<see langword="in"/> parameter) All region offsets.</param>
-            <param name="candMap">(<see langword="in"/> parameter) The candidate map.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.RegionMap">
             <summary>

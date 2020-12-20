@@ -41,7 +41,9 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(80, nameof(TechniqueCode.FrankenSwordfish))
 		{
-			DisplayLevel = 3
+			DisplayLevel = 3,
+			IsEnabled = false,
+			DisabledReason = DisabledReason.TooSlow | DisabledReason.HasBugs
 		};
 
 
@@ -390,28 +392,6 @@ namespace Sudoku.Solving.Manual.Fishes
 			}
 		}
 
-
-		/// <summary>
-		/// Check whether the fish is sashimi one.
-		/// </summary>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="fins">(<see langword="in"/> parameter) All fins.</param>
-		/// <param name="digit">The digit.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private static bool IsSashimi(int[] baseSets, in Cells fins, int digit)
-		{
-			bool isSashimi = false;
-			foreach (int baseSet in baseSets)
-			{
-				if ((RegionMaps[baseSet] - fins & CandMaps[digit]).Count == 1)
-				{
-					isSashimi = true;
-					break;
-				}
-			}
-
-			return isSashimi;
-		}
 
 		/// <summary>
 		/// Get POM technique eliminations at first.
