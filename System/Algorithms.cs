@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace System
@@ -8,6 +10,60 @@ namespace System
 	/// </summary>
 	public static class Algorithms
 	{
+		/// <summary>
+		/// Get all mask combinations.
+		/// </summary>
+		/// <param name="value">The mask.</param>
+		/// <returns>The result list.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static short[] GetMaskSubsets(short value) => (
+			from target in from size in Enumerable.Range(1, 9) select GetMaskSubsets(value, size)
+			select CreateBitsInt16(target)).ToArray();
+
+		/// <summary>
+		/// Get all mask combinations.
+		/// </summary>
+		/// <param name="value">The mask.</param>
+		/// <param name="size">The size.</param>
+		/// <returns>The result list.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static short[] GetMaskSubsets(short value, int size) => (
+			from target in value.GetAllSets().ToArray().GetSubsets(size)
+			select CreateBitsInt16(target)).ToArray();
+
+		/// <summary>
+		/// Create a <see cref="short"/> value, whose set bits are specified in the parameter
+		/// <paramref name="values"/>.
+		/// </summary>
+		/// <param name="values">The values.</param>
+		/// <returns>The mask result.</returns>
+		/// <remarks>
+		/// For example, if the <paramref name="values"/> are <c>{ 3, 6 }</c>, the return value
+		/// will be <c>1 &lt;&lt; 3 | 1 &lt;&lt; 6</c>.
+		/// </remarks>
+		public static short CreateBitsInt16(int[] values)
+		{
+			short result = 0;
+			foreach (int value in values)
+			{
+				result |= (short)(1 << value);
+			}
+
+			return result;
+		}
+
+		/// <inheritdoc cref="CreateBitsInt16(int[])"/>
+		public static short CreateBitsInt16(short[] values)
+		{
+			short result = 0;
+			foreach (int value in values)
+			{
+				result |= (short)(1 << value);
+			}
+
+			return result;
+		}
+
 		/// <summary>
 		/// To swap the two variables.
 		/// </summary>
@@ -54,7 +110,7 @@ namespace System
 		/// with the whole array.
 		/// </remarks>
 		[SkipLocalsInit]
-		public static IEnumerable<int[]> GetCombinations(this int[][] array)
+		public static IEnumerable<int[]> GetCombinations(int[][] array)
 		{
 			unsafe
 			{

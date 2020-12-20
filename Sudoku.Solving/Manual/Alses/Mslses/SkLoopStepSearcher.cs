@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				}
 
 				// Check all combinations.
-				short[] masks = GetCombinations(candidateMask).ToArray();
+				short[] masks = Algorithms.GetMaskSubsets(candidateMask);
 				for (int j = masks.Length - 1; j >= 0; j--)
 				{
 					short mask = masks[j];
@@ -191,26 +191,6 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							conclusions,
 							new View[] { new() { Candidates = candidateOffsets } },
 							cells));
-				}
-			}
-		}
-
-
-		/// <summary>
-		/// Get all combinations that contains all set bits from the specified number.
-		/// </summary>
-		/// <param name="seed">The specified number.</param>
-		/// <returns>All combinations.</returns>
-		private static IEnumerable<short> GetCombinations(short seed)
-		{
-			for (int i = 0; i < 9; i++)
-			{
-				foreach (short mask in new BitSubsetsGenerator(9, i))
-				{
-					if ((mask & seed) == mask)
-					{
-						yield return mask;
-					}
 				}
 			}
 		}

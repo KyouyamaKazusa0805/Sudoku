@@ -289,7 +289,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				? RegionLabel.Row.ToRegion(pos1)
 				: RegionLabel.Column.ToRegion(pos1)
 			};
-			foreach (short mask in GetCombinations(candidatesMask))
+			foreach (short mask in Algorithms.GetMaskSubsets(candidatesMask))
 			{
 				for (int i = 0; i < 2; i++)
 				{

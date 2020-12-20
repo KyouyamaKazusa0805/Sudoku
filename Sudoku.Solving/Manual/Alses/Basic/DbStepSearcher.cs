@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 
 							// Enumerate all digit combinations, and one digit always come from one ALS.
-							foreach (int[] digitSeries in linkCombinations.GetCombinations())
+							foreach (int[] digitSeries in Algorithms.GetCombinations(linkCombinations))
 							{
 								// Get each element by the specified index, and remove proper candidates.
 								for (int index = 0; index < size; index++)

@@ -988,16 +988,6 @@
             </summary>
             <returns>All true candidates.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllCombinations(System.Int16,System.Int32)">
-            <summary>
-            Get all combinations of a specified mask.
-            </summary>
-            <param name="mask">The mask.</param>
-            <param name="oneCount">
-            The number of <see langword="true"/> bits.
-            </param>
-            <returns>All combinations.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Checking.PuzzleAttributeChecker">
             <summary>
             Provides some puzzle attributes validation operations.
@@ -2212,13 +2202,6 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher.GetCombinations(System.Int16)">
-            <summary>
-            Get all combinations that contains all set bits from the specified number.
-            </summary>
-            <param name="seed">The specified number.</param>
-            <returns>All combinations.</returns>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher.SkLoopTable">
             <summary>
             The position table of all SK-loops.
@@ -3343,13 +3326,6 @@
             <param name="cellOffsets">The cell offsets.</param>
             <param name="candidateOffsets">The candidate offsets.</param>
             <returns>All mirror eliminations.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.GetCombinations(System.Int16)">
-            <summary>
-            Get all combinations that contains all set bits from the specified number.
-            </summary>
-            <param name="seed">The specified number.</param>
-            <returns>All combinations.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.JeStepInfo">
             <summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -213,7 +214,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					? RegionLabel.Row.ToRegion(l)
 					: RegionLabel.Column.ToRegion(l);
 				short locked = default;
-				foreach (short mask in GetCombinations(nonBase))
+				foreach (short mask in Algorithms.GetMaskSubsets(nonBase))
 				{
 					for (int i = 0; i < 2; i++)
 					{
@@ -323,26 +324,6 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 
 			return (targetElims, mirrorElims);
-		}
-
-
-		/// <summary>
-		/// Get all combinations that contains all set bits from the specified number.
-		/// </summary>
-		/// <param name="seed">The specified number.</param>
-		/// <returns>All combinations.</returns>
-		protected static IEnumerable<short> GetCombinations(short seed)
-		{
-			for (int i = 0; i < 9; i++)
-			{
-				foreach (short mask in new BitSubsetsGenerator(9, i))
-				{
-					if ((mask & seed) == mask)
-					{
-						yield return mask;
-					}
-				}
-			}
 		}
 	}
 }

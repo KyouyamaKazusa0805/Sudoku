@@ -48,13 +48,8 @@ namespace Sudoku.Data
 				"which is invalid in ref structures.");
 
 		/// <inheritdoc cref="object.ToString"/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override string ToString() =>
-			throw new NotSupportedException(
-				"This instance doesn't support this member, " +
-				"because this method will cause box and unbox operations, " +
-				"which is invalid in ref structures.");
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public override string ToString() => nameof(BitSubsetsGenerator);
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		public Enumerator GetEnumerator() => _enumerator;

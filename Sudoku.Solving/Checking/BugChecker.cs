@@ -5,8 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Solving.Manual;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Solving.Manual.StepSearcher;
 
 namespace Sudoku.Solving.Checking
 {
@@ -50,13 +50,13 @@ namespace Sudoku.Solving.Checking
 		[SkipLocalsInit]
 		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
-			StepSearcher.InitializeMaps(Puzzle);
+			InitializeMaps(Puzzle);
 
 			// Get the number of multivalue cells.
 			// If the number of that is greater than the specified number,
 			// here will return the default list directly.
 			int multivalueCellsCount = 0;
-			foreach (int value in StepSearcher.EmptyMap)
+			foreach (int value in EmptyMap)
 			{
 				switch (Puzzle.GetCandidates(value).PopCount())
 				{
@@ -71,7 +71,7 @@ namespace Sudoku.Solving.Checking
 			// Store all bivalue cells and construct the relations.
 			var span = (stackalloc int[3]);
 			var stack = new Cells[multivalueCellsCount + 1, 9];
-			foreach (int cell in StepSearcher.BivalueMap)
+			foreach (int cell in BivalueMap)
 			{
 				foreach (int digit in Puzzle.GetCandidates(cell))
 				{
@@ -98,11 +98,14 @@ namespace Sudoku.Solving.Checking
 			// The comments will help you to understand the processing.
 			short mask;
 			short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-			int[] multivalueCells = (StepSearcher.EmptyMap - StepSearcher.BivalueMap).Offsets;
+			int[] multivalueCells = (EmptyMap - BivalueMap).Offsets;
 			for (int i = 0, length = multivalueCells.Length; i < length; i++)
 			{
-				mask = Puzzle.GetCandidates(multivalueCells[i]); // eg. { 2, 4, 6 } (42)
-				short[] pairList = GetAllCombinations(mask, 2); // eg. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
+				// eg. { 2, 4, 6 } (42)
+				mask = Puzzle.GetCandidates(multivalueCells[i]);
+
+				// eg. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
+				short[] pairList = Algorithms.GetMaskSubsets(mask, 2);
 
 				// eg. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
 				pairs[i, 0] = (short)pairList.Length;
@@ -176,7 +179,7 @@ namespace Sudoku.Solving.Checking
 							// Take the cell that doesn't contain in the map above.
 							// Here, the cell is the "true candidate cell".
 							ref var map = ref resultMap[digit];
-							map = StepSearcher.CandMaps[digit] - stack[currentIndex, digit];
+							map = CandMaps[digit] - stack[currentIndex, digit];
 							foreach (int cell in map)
 							{
 								result.Add(cell * 9 + digit);
@@ -214,28 +217,5 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <returns>All true candidates.</returns>
 		public IReadOnlyList<int> GetAllTrueCandidates() => GetAllTrueCandidates(20);
-
-
-		/// <summary>
-		/// Get all combinations of a specified mask.
-		/// </summary>
-		/// <param name="mask">The mask.</param>
-		/// <param name="oneCount">
-		/// The number of <see langword="true"/> bits.
-		/// </param>
-		/// <returns>All combinations.</returns>
-		private static short[] GetAllCombinations(short mask, int oneCount)
-		{
-			var result = new List<short>();
-			foreach (short z in new BitSubsetsGenerator(9, oneCount))
-			{
-				if ((mask | z) == mask)
-				{
-					result.Add(z);
-				}
-			}
-
-			return result.ToArray();
-		}
 	}
 }
