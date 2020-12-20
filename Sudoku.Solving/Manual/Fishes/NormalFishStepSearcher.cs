@@ -146,8 +146,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						}
 						else
 						{
-							fins = baseLine - coverLine;
-							if (fins.IsEmpty || !fins.BlockMask.IsPowerOfTwo())
+							if ((fins = baseLine - coverLine).IsEmpty || !fins.BlockMask.IsPowerOfTwo())
 							{
 								continue;
 							}
