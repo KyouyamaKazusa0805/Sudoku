@@ -4168,33 +4168,25 @@
             Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.RowWeight">
-            <summary>
-            The weights.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.ColumnWeight">
-            <summary>
-            The weights.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean)">
             <summary>
-            Searches all basic fish of the specified size.
+            Get all possible normal fishes.
             </summary>
-            <param name="accumulator">The result accumulator.</param>
+            <param name="accumulator">The accumulator.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="size">The size.</param>
+            <param name="r">The possible row table to iterate.</param>
+            <param name="c">The possible column table to iterate.</param>
+            <param name="withFin">Indicates whether the searcher will check for the existence of fins.</param>
             <param name="searchRow">
-            Indicates the solver will searching rows or columns.
+            Indicates whether the searcher searches for fishes in the direction of rows.
             </param>
-            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetDirectView(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32[],System.Int32[],Sudoku.Data.Cells@,System.Boolean)">
             <summary>

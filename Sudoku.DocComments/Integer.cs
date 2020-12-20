@@ -20,7 +20,7 @@ namespace Sudoku.DocComments
 
 		/// <summary>
 		/// Find the first offset of set bit of the binary representation
-		/// of the specified value.If the value is 0, this method
+		/// of the specified value. If the value is 0, this method
 		/// will always return -1.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
