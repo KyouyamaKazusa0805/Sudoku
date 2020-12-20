@@ -99,14 +99,17 @@ namespace Sudoku.Solving.Manual.Fishes
 			int offsetBase = searchRow ? 9 : 18, offsetCover = searchRow ? 18 : 9;
 			for (int digit = 0; digit < 9; digit++)
 			{
+				// Check the validity of the distribution for the current digit.
 				int* pBase = searchRow ? r[digit] : c[digit], pCover = searchRow ? c[digit] : r[digit];
 				if (pBase == null || pBase[0] <= size)
 				{
 					continue;
 				}
 
+				// Iterate on the base set combination.
 				foreach (int[] baseSets in Pointer.GetArrayFromStart(pBase, 10, 1, true).GetSubsets(size))
 				{
+					// 'baseLine' is the map that contains all base set cells.
 					var baseLine = size switch
 					{
 						2 => CandMaps[digit] & (RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]),
@@ -121,8 +124,10 @@ namespace Sudoku.Solving.Manual.Fishes
 						
 					};
 
+					// Iterate on the cover set combination.
 					foreach (int[] coverSets in Pointer.GetArrayFromStart(pCover, 10, 1, true).GetSubsets(size))
 					{
+						// 'coverLine' is the map that contains all cover set cells.
 						var coverLine = size switch
 						{
 							2 => CandMaps[digit] & (RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]),
@@ -136,40 +141,54 @@ namespace Sudoku.Solving.Manual.Fishes
 									| RegionMaps[coverSets[2]] | RegionMaps[coverSets[3]])
 						};
 
+						// Now check the fins and the elimination cells.
 						Cells elimMap, fins = Cells.Empty;
 						if (!withFin)
 						{
+							// If the current searcher doesn't check fins,
+							// we'll just get the pure check:
+							// 1. Base set contain more cells than cover sets.
+							// 2. Elimination cells set isn't empty.
 							if (baseLine > coverLine || (elimMap = coverLine - baseLine).IsEmpty)
 							{
 								continue;
 							}
 						}
-						else
+						else // Should check fins.
 						{
+							// All fins should be in the same block.
 							if ((fins = baseLine - coverLine).IsEmpty || !fins.BlockMask.IsPowerOfTwo())
 							{
 								continue;
 							}
 
+							// Cover set shouldn't overlap with the block of all fins lying in.
 							int finBlock = fins.BlockMask.FindFirstSet();
 							if (!coverLine.Overlaps(RegionMaps[finBlock]))
 							{
 								continue;
 							}
 
+							// Don't intersect.
 							if (!RegionMaps[finBlock].Overlaps(coverLine - baseLine))
 							{
 								continue;
 							}
 
+							// Finally, get the elimination cells.
 							elimMap = coverLine - baseLine & RegionMaps[finBlock];
 						}
 
-						if (elimMap.IsEmpty)
+						// Check the fin type. If the size is 2 but the fin type is sashimi,
+						// we should skip the case (not to show this case, otherwise skyscrapers
+						// can't be shown). In fact, Skyscrapers are sashimi or siamese sashimi X-Wings.
+						bool? isSashimi = fins.IsEmpty ? null : IsSashimi(baseSets, fins, digit);
+						if (size == 2 && isSashimi is true)
 						{
 							continue;
 						}
 
+						// Gather the conclusions and candidates or regions to be highlighted.
 						var conclusions = new List<Conclusion>();
 						List<DrawingInfo> candidateOffsets = new(), regionOffsets = new();
 						foreach (int cell in elimMap)
@@ -196,6 +215,7 @@ namespace Sudoku.Solving.Manual.Fishes
 							regionOffsets.Add(new(2, coverSet));
 						}
 
+						// Gather the result.
 						accumulator.Add(
 							new NormalFishStepInfo(
 								conclusions,
@@ -208,7 +228,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								baseSets,
 								coverSets,
 								fins,
-								IsSashimi(baseSets, fins, digit)));
+								isSashimi));
 					}
 				}
 			}
