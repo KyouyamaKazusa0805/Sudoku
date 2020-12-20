@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			{
 				// Iterate on different cases on whether searcher finds mutant fishes.
 				// If false, search for franken fishes.
-				var currentCoverSets = (stackalloc int[size]);
+				int* currentCoverSets = stackalloc int[size];
 				foreach (bool searchForMutant in stackalloc[] { false, true })
 				{
 					// Iterate on each digit.
