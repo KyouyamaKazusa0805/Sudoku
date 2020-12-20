@@ -695,7 +695,7 @@ namespace Sudoku.Data
 				fixed (short* pGrid = grid)
 				{
 					int i = 1;
-					short* p = pGrid;
+					short* p = pGrid + 1;
 					while (i < Length)
 					{
 						if (p++[i++] != 0)
