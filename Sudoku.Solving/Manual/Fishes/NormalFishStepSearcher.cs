@@ -179,15 +179,6 @@ namespace Sudoku.Solving.Manual.Fishes
 							elimMap = coverLine - baseLine & RegionMaps[finBlock];
 						}
 
-						// Check the fin type. If the size is 2 but the fin type is sashimi,
-						// we should skip the case (not to show this case, otherwise skyscrapers
-						// can't be shown). In fact, Skyscrapers are sashimi or siamese sashimi X-Wings.
-						bool? isSashimi = fins.IsEmpty ? null : IsSashimi(baseSets, fins, digit);
-						if (size == 2 && isSashimi is true)
-						{
-							continue;
-						}
-
 						// Gather the conclusions and candidates or regions to be highlighted.
 						var conclusions = new List<Conclusion>();
 						List<DrawingInfo> candidateOffsets = new(), regionOffsets = new();
@@ -228,7 +219,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								baseSets,
 								coverSets,
 								fins,
-								isSashimi));
+								fins.IsEmpty ? null : IsSashimi(baseSets, fins, digit)));
 					}
 				}
 			}
