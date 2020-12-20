@@ -245,16 +245,12 @@ namespace Sudoku.Solving.Manual.Fishes
 						}
 						case false or null:
 						{
-							bool flag;
-							static bool i(int c, in bool searchRow, in int cell) =>
-								RegionMaps[(searchRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c)][cell];
 							unsafe
 							{
-								flag = ValueMaps[digit].Any(&i, searchRow, cell);
-							}
-							if (flag)
-							{
-								continue;
+								if (ValueMaps[digit].Any(&i, searchRow, cell))
+								{
+									continue;
+								}
 							}
 
 							var baseMap = Cells.Empty;
@@ -295,6 +291,9 @@ namespace Sudoku.Solving.Manual.Fishes
 			}
 
 			return new() { Cells = cellOffsets, Candidates = candidateOffsets };
+
+			static bool i(int c, in bool searchRow, in int cell) =>
+				RegionMaps[(searchRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c)][cell];
 		}
 	}
 }
