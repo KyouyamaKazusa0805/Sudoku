@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		{
 			foreach (var (allCellsMap, pairs, size) in Combinations)
 			{
-				if ((EmptyMap & allCellsMap) != allCellsMap)
+				if (!allCellsMap.AllIn(EmptyMap))
 				{
 					continue;
 				}

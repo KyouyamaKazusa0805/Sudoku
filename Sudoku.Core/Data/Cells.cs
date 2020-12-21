@@ -481,6 +481,15 @@ namespace Sudoku.Data
 		public readonly bool Overlaps(in Cells cells1, in Cells cells2) => !(this & cells1 & cells2).IsEmpty;
 
 		/// <summary>
+		/// Determine whether the map specified as the parameter should contain all cells in the current
+		/// one.
+		/// </summary>
+		/// <param name="other">(<see langword="in"/> parameter) The other map.</param>
+		/// <returns>The <see cref="bool"/> value.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly bool AllIn(in Cells other) => (this & other) == this;
+
+		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
 		/// </summary>
 		/// <param name="region">
@@ -507,6 +516,14 @@ namespace Sudoku.Data
 			region = -1;
 			return false;
 		}
+
+		/// <summary>
+		/// Determine whether the map contains the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly bool Contains(int cell) => this[cell];
 
 		/// <summary>
 		/// Get the subview mask of this map.

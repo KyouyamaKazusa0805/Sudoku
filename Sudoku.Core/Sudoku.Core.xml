@@ -819,6 +819,14 @@
             <param name="cells2">(<see langword="in"/> parameter) The second map to check.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
+        <member name="M:Sudoku.Data.Cells.AllIn(Sudoku.Data.Cells@)">
+            <summary>
+            Determine whether the map specified as the parameter should contain all cells in the current
+            one.
+            </summary>
+            <param name="other">(<see langword="in"/> parameter) The other map.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="M:Sudoku.Data.Cells.AllSetsAreInOneRegion(System.Int32@)">
             <summary>
             Indicates whether all cells in this instance are in one region.
@@ -833,6 +841,13 @@
             use the property <see cref="P:Sudoku.Data.Cells.InOneRegion"/> to improve the performance.
             </remarks>
             <seealso cref="P:Sudoku.Data.Cells.InOneRegion"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.Contains(System.Int32)">
+            <summary>
+            Determine whether the map contains the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.GetSubviewMask(System.Int32)">
             <summary>
