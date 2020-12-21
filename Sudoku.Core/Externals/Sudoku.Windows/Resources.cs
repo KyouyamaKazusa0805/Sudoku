@@ -5,10 +5,10 @@ using Sudoku.Globalization;
 namespace Sudoku.Windows
 {
 	/// <summary>
-	/// Indicates the resources used later but not in the namespace <see cref="Windows"/>.
+	/// Indicates the resources used later but not in the namespace Sudoku.<see cref="Windows"/>.
 	/// </summary>
 	/// <seealso cref="Windows"/>
-	public static partial class Resources
+	public static class Resources
 	{
 		/// <summary>
 		/// Indicates the current source.
@@ -20,6 +20,16 @@ namespace Sudoku.Windows
 		/// Indicates the current country code.
 		/// </summary>
 		public static CountryCode CountryCode { get; private set; } = CountryCode.EnUs;
+
+		/// <summary>
+		/// The language source for the globalization string "<c>en-us</c>".
+		/// </summary>
+		public static IDictionary<string, string>? LangSourceEnUs { get; internal set; }
+
+		/// <summary>
+		/// The language source for the globalization string "<c>zh-cn</c>".
+		/// </summary>
+		public static IDictionary<string, string>? LangSourceZhCn { get; internal set; }
 
 
 		/// <summary>
@@ -39,7 +49,7 @@ namespace Sudoku.Windows
 		/// </exception>
 		public static string GetValue(string key) =>
 			_dicPointer is not null && _dicPointer.TryGetValue(key, out string? result)
-			|| LangSourceEnUs.TryGetValue(key, out result)
+			|| LangSourceEnUs is not null && LangSourceEnUs.TryGetValue(key, out result)
 			? result
 			: throw new KeyNotFoundException();
 
@@ -52,7 +62,8 @@ namespace Sudoku.Windows
 		/// nor the default dictionary, the return value will be <see langword="null"/>.
 		/// </returns>
 		public static string? GetValueWithoutExceptions(string key) =>
-			_dicPointer.TryGetValue(key, out string? result) || LangSourceEnUs.TryGetValue(key, out result)
+			_dicPointer.TryGetValue(key, out string? result)
+			|| LangSourceEnUs is not null && LangSourceEnUs.TryGetValue(key, out result)
 			? result
 			: null;
 
@@ -60,13 +71,16 @@ namespace Sudoku.Windows
 		/// Get the dictionary with the specified globalization string.
 		/// </summary>
 		/// <param name="countryCode">The country code.</param>
+		/// <exception cref="ResourceDictionaryNotFoundException">
+		/// Throws when the language resource dictionary doesn't exist (i.e. <see langword="null"/>).
+		/// </exception>
 		private static void GetDictionary(CountryCode countryCode) =>
 			_dicPointer =
 				countryCode != CountryCode.Default
 				&& typeof(Resources)
-				.GetField($"LangSource{countryCode}", BindingFlags.NonPublic | BindingFlags.Static)?
+				.GetProperty($"LangSource{countryCode}", BindingFlags.Public | BindingFlags.Static)?
 				.GetValue(null) is IDictionary<string, string> r
 				? r
-				: LangSourceEnUs;
+				: LangSourceEnUs ?? throw new ResourceDictionaryNotFoundException(nameof(LangSourceEnUs));
 	}
 }

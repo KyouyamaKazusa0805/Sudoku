@@ -11,7 +11,6 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -19,7 +18,6 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
-using static Sudoku.Constants.Processings;
 using C = Sudoku.Data.ConclusionType;
 using CoreResources = Sudoku.Windows.Resources;
 using K = System.Windows.Input.Key;
@@ -53,6 +51,7 @@ namespace Sudoku.Windows
 			base.OnInitialized(e); // Call the base method.
 
 			LoadConfigIfWorth();
+			CheckResourceDictionaryFilesExistence();
 			ChangeLanguage(Settings.LanguageCode);
 			PreventYouOpeningTwoSameWindows();
 
@@ -418,6 +417,52 @@ namespace Sudoku.Windows
 		}
 
 		/// <summary>
+		/// Check the existence of language resource dictionary files.
+		/// </summary>
+		private void CheckResourceDictionaryFilesExistence(string folderPath = "lang")
+		{
+			// Check whether the folder exists.
+			const string pathDoesNotContainLanguageFiles = "The language resource dictionary file doesn't exist.";
+			if (!Directory.Exists(folderPath))
+			{
+				MessageBox.Show(
+					messageBoxText: pathDoesNotContainLanguageFiles,
+					caption: "Error",
+					button: MessageBoxButton.OK,
+					icon: MessageBoxImage.Error);
+
+				Environment.FailFast(pathDoesNotContainLanguageFiles);
+			}
+
+			// Check whether the resource dictionary files exist.
+			const string defaultLanguageFileName = "Resources.en-us.dic";
+			const string defaultLanguageFileIsRequired = "The file named '" + defaultLanguageFileName + "' is required.";
+			if (!File.Exists($@"{folderPath}\{defaultLanguageFileName}"))
+			{
+				MessageBox.Show(
+					messageBoxText: defaultLanguageFileIsRequired,
+					caption: "Error",
+					button: MessageBoxButton.OK,
+					icon: MessageBoxImage.Error);
+
+				Environment.FailFast(defaultLanguageFileIsRequired);
+			}
+
+			// Check whether the resource dictionary files are vaild.
+			const string languageFileIsInvalid = "The required resource dictionary file is invalid.";
+			if (CoreResources.LangSourceEnUs is null)
+			{
+				MessageBox.Show(
+					messageBoxText: languageFileIsInvalid,
+					caption: "Error",
+					button: MessageBoxButton.OK,
+					icon: MessageBoxImage.Error);
+
+				Environment.FailFast(languageFileIsInvalid);
+			}
+		}
+
+		/// <summary>
 		/// Save configurations if worth.
 		/// </summary>
 		/// <param name="path">
@@ -433,7 +478,7 @@ namespace Sudoku.Windows
 					string s = File.ReadAllText(path);
 					if (
 						JsonSerializer.Deserialize<WindowsSettings>(s, _serializerOptions)
-						is WindowsSettings settingsResult)
+						is var settingsResult and not null)
 					{
 						Settings = settingsResult;
 					}

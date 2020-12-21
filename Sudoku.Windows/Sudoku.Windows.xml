@@ -1208,6 +1208,11 @@
             </param>
             <seealso cref="P:System.Windows.UIElement.IsEnabled"/>
         </member>
+        <member name="M:Sudoku.Windows.MainWindow.CheckResourceDictionaryFilesExistence(System.String)">
+            <summary>
+            Check the existence of language resource dictionary files.
+            </summary>
+        </member>
         <member name="M:Sudoku.Windows.MainWindow.LoadConfigIfWorth(System.String)">
             <summary>
             Save configurations if worth.

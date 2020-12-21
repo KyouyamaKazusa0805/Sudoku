@@ -33,8 +33,14 @@ namespace Sudoku
 			static bool g(string path, [NotNullWhen(true)] out ResourceDictionary? result)
 			{
 				ResourceDictionary? r;
-				try { r = JsonSerializer.Deserialize<ResourceDictionary>(File.ReadAllText(path)); }
-				catch { r = null; }
+				try
+				{
+					r = JsonSerializer.Deserialize<ResourceDictionary>(File.ReadAllText(path));
+				}
+				catch
+				{
+					r = null;
+				}
 
 				if (r is not null)
 				{

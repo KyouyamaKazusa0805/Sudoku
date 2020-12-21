@@ -5120,9 +5120,49 @@
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Windows.ResourceDictionaryNotFoundException">
+            <summary>
+            Indicates an exception that throws when the resource dictionary doesn't exist.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.ResourceDictionaryNotFoundException.#ctor">
+            <summary>
+            Initializes an instance with the default behavior.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.ResourceDictionaryNotFoundException.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the name of the resource dictionary.
+            </summary>
+            <param name="resourceDictionaryName">The name of the resource dictionary.</param>
+        </member>
+        <member name="M:Sudoku.Windows.ResourceDictionaryNotFoundException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an instance with the specified message and the name of the resource dictionary.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="resourceDictionaryName">The name of the resource dictionary.</param>
+        </member>
+        <member name="M:Sudoku.Windows.ResourceDictionaryNotFoundException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Initializes an instance with the specified message, the name of the resource dictionary
+            and the inner exception.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="resourceDictionaryName">The name of the resource dictionary.</param>
+            <param name="inner">The inner exception.</param>
+        </member>
+        <member name="P:Sudoku.Windows.ResourceDictionaryNotFoundException.ResourceDictionaryName">
+            <summary>
+            Indicates the resource dictionary name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.ResourceDictionaryNotFoundException.Message">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Windows.Resources">
             <summary>
-            Indicates the resources used later but not in the namespace <see cref="N:Sudoku.Windows"/>.
+            Indicates the resources used later but not in the namespace Sudoku.<see cref="N:Sudoku.Windows"/>.
             </summary>
             <seealso cref="N:Sudoku.Windows"/>
         </member>
@@ -5134,6 +5174,16 @@
         <member name="P:Sudoku.Windows.Resources.CountryCode">
             <summary>
             Indicates the current country code.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.Resources.LangSourceEnUs">
+            <summary>
+            The language source for the globalization string "<c>en-us</c>".
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.Resources.LangSourceZhCn">
+            <summary>
+            The language source for the globalization string "<c>zh-cn</c>".
             </summary>
         </member>
         <member name="M:Sudoku.Windows.Resources.ChangeLanguage(Sudoku.Globalization.CountryCode)">
@@ -5168,24 +5218,9 @@
             Get the dictionary with the specified globalization string.
             </summary>
             <param name="countryCode">The country code.</param>
-        </member>
-        <member name="F:Sudoku.Windows.Resources.LangSourceEnUs">
-            <summary>
-            The language source for the globalization string "<c>en-us</c>".
-            </summary>
-            <remarks>
-            This field is not <see langword="readonly"/> because it can be initialized by the
-            module initializer.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Windows.Resources.LangSourceZhCn">
-            <summary>
-            The language source for the globalization string "<c>zh-cn</c>".
-            </summary>
-            <remarks>
-            This field is not <see langword="readonly"/> because it can be initialized by the
-            module initializer.
-            </remarks>
+            <exception cref="T:Sudoku.Windows.ResourceDictionaryNotFoundException">
+            Throws when the language resource dictionary doesn't exist (i.e. <see langword="null"/>).
+            </exception>
         </member>
         <member name="T:Sudoku.Models.GridProgressResult">
             <summary>
