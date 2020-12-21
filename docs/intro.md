@@ -34,7 +34,7 @@ Of course, you can also download the zip file.
 
 ### Compiling & Running
 
-Before running the program, you should download some files ahead of time (or check the existence of some files). Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt) in [this folder](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/require) for more information.
+Before running the program, you should download some files ahead of time (or check the existence of some files). Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/README.md) in [this folder](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/require) for more information.
 
 
 
