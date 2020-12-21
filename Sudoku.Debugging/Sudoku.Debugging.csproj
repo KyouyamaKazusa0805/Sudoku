@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
@@ -8,8 +8,9 @@
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 		<Description>Provides a console program used for debugging.</Description>
 		<LangVersion>9.0</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
 		<ProjectReference Include="..\Sudoku.IO\Sudoku.IO.csproj" />
