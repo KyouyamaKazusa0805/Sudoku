@@ -94,13 +94,9 @@ namespace Sudoku.Windows
 
 			SaveConfig();
 
-			SaveCoreResources();
-
 #if SUDOKU_RECOGNITION
 			_recognition?.Dispose();
 #endif
-
-			GC.Collect();
 
 			base.OnClosing(e);
 
@@ -297,17 +293,6 @@ namespace Sudoku.Windows
 			}
 		}
 #endif
-
-		/// <summary>
-		/// Save core resources.
-		/// </summary>
-		private void SaveCoreResources()
-		{
-			DirectoryEx.CreateIfDoesNotExist(Paths.LangSourceDirectory);
-
-			File.WriteAllText(Paths.LangSourceEnUs, JsonSerializer.Serialize(CoreResources.LangSourceEnUs));
-			File.WriteAllText(Paths.LangSourceZhCn, JsonSerializer.Serialize(CoreResources.LangSourceZhCn));
-		}
 
 		/// <summary>
 		/// Add short cuts during initialization.
