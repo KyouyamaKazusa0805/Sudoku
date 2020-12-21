@@ -1,4 +1,4 @@
-﻿namespace System
+﻿namespace Sudoku.Constants
 {
 	/// <summary>
 	/// The class that stores all regular expressions used in this solution.
@@ -74,10 +74,5 @@
 		/// Indicates the regular expression to match a digit.
 		/// </summary>
 		public const string Digit = @"\d";
-
-		/// <summary>
-		/// Indicates all null lines and header spaces in their lines.
-		/// </summary>
-		public const string NullLinesOrHeaderSpaces = @"(^\s*|(?<=\r\n)\s+)";
 	}
 }

@@ -91,6 +91,81 @@
         <member name="M:Sudoku.Constants.Processings.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Constants.RegularExpressions">
+            <summary>
+            The class that stores all regular expressions used in this solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.CommentLine">
+            <summary>
+            Indicates a comment line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.PmGridCandidates">
+            <summary>
+            Indicates each candidates group in the PM grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.ExtendedSusserEliminations">
+            <summary>
+            Indicates the eliminations in the extended susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.SimpleTable">
+            <summary>
+            Indicates the normal sudoku grid table (with only blank cells and numbers).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Susser">
+            <summary>
+            Indicates the susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.DigitOrEmptyCell">
+            <summary>
+            Indicates the regular expression of a digit or empty cell placeholder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.PmGridUnit_Old">
+            <summary>
+            Indicates the unit in the basic PM grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.PmGridUnit">
+            <summary>
+            Indicates the unit in the extended PM grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.ThreeDigitsCandidate">
+            <summary>
+            Indicates the candidate unit that used in the elimination list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.PmGridCandidatesUnit">
+            <summary>
+            Indicates the candidate list unit in the PM grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Cell">
+            <summary>
+            Indicates a cell string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Region">
+            <summary>
+            Indicates the region string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Candidate">
+            <summary>
+            Indicates a candidate string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Digit">
+            <summary>
+            Indicates the regular expression to match a digit.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.BitSubsetsGenerator">
             <summary>
             Encapsulates a bit combination generator.

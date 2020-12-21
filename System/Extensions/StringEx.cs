@@ -13,6 +13,11 @@ namespace System.Extensions
 	public static class StringEx
 	{
 		/// <summary>
+		/// Indicates all null lines and header spaces in their lines.
+		/// </summary>
+		private const string NullLinesOrHeaderSpaces = @"(^\s*|(?<=\r\n)\s+)";
+
+		/// <summary>
 		/// Check whether the specified string instance is satisfied
 		/// the specified regular expression pattern or not.
 		/// </summary>
@@ -211,7 +216,7 @@ namespace System.Extensions
 		/// </remarks>
 		public static string TrimVerbatim(this string @this) =>
 			Regex.Replace(
-				@this, RegularExpressions.NullLinesOrHeaderSpaces,
+				@this, NullLinesOrHeaderSpaces,
 				string.Empty, RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5));
 
 		/// <summary>

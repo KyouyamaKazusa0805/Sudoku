@@ -2,6 +2,7 @@
 using System.Extensions;
 using System.Linq;
 using System.Text;
+using Sudoku.Constants;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
