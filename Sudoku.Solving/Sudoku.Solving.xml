@@ -13,6 +13,59 @@
             <param name="IsSolved">Indicates whether the puzzle has been solved.</param>
             <param name="ElapsedTime">The elapsed time.</param>
         </member>
+        <member name="T:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter">
+            <summary>
+            Provides operations for analysis result formatting.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.#ctor(Sudoku.Solving.AnalysisResult)">
+            <summary>
+            Initializes an instance with the specified analysis result and format.
+            </summary>
+            <param name="result">The analysis result.</param>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.Result">
+            <summary>
+            Indicates the analysis result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.ToString(System.String,System.IFormatProvider,Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the string result.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="formatProvider">The format provider.</param>
+            <param name="countryCode">The country code.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the specified format contains other invalid characters
+            and the format provider can't work.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions)">
+            <summary>
+            Get the string result with the specified formatting options.
+            </summary>
+            <param name="options">The options.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the string result with the specified formatting options and the country code.
+            </summary>
+            <param name="options">The options.</param>
+            <param name="countryCode">The country code.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.SudokuGrid@,System.Boolean,System.TimeSpan@)">
             <summary>
             Provides an analysis result after a puzzle solved.
@@ -177,66 +230,13 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.ToString(Sudoku.Solving.AnalysisResultFormattingOptions)">
-            <inheritdoc cref="M:Sudoku.Solving.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions)"/>
+            <inheritdoc cref="M:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions)"/>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)">
-            <inheritdoc cref="M:Sudoku.Solving.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)"/>
+            <inheritdoc cref="M:Sudoku.Solving.AnalysisResult.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)"/>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.AnalysisResultFormatter">
-            <summary>
-            Provides operations for analysis result formatting.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResultFormatter.#ctor(Sudoku.Solving.AnalysisResult)">
-            <summary>
-            Initializes an instance with the specified analysis result and format.
-            </summary>
-            <param name="result">The analysis result.</param>
-        </member>
-        <member name="P:Sudoku.Solving.AnalysisResultFormatter.Result">
-            <summary>
-            Indicates the analysis result.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(System.String)">
-            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(System.String,System.IFormatProvider,Sudoku.Globalization.CountryCode)">
-            <summary>
-            Get the string result.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="formatProvider">The format provider.</param>
-            <param name="countryCode">The country code.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the specified format contains other invalid characters
-            and the format provider can't work.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions)">
-            <summary>
-            Get the string result with the specified formatting options.
-            </summary>
-            <param name="options">The options.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)">
-            <summary>
-            Get the string result with the specified formatting options and the country code.
-            </summary>
-            <param name="options">The options.</param>
-            <param name="countryCode">The country code.</param>
-            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Solving.AnalysisResultFormattingOptions">
             <summary>
