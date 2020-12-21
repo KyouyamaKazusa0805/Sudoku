@@ -366,7 +366,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										regionOffsets.Add(new(1, coverSet));
 									}
 
-									// Add into the 'accumualtor'.
+									// Add into the 'accumulator'.
 									accumulator.Add(
 										new HobiwanFishStepInfo(
 											conclusions,
@@ -383,7 +383,7 @@ namespace Sudoku.Solving.Manual.Fishes
 											coverSets,
 											exofins,
 											endofins,
-											fins.IsEmpty ? null : IsSashimi(baseSets, fins, digit)));
+											IsSashimi(baseSets, fins, digit)));
 								}
 							}
 						}

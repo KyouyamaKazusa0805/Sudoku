@@ -219,7 +219,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								baseSets,
 								coverSets,
 								fins,
-								fins.IsEmpty ? null : IsSashimi(baseSets, fins, digit)));
+								IsSashimi(baseSets, fins, digit)));
 					}
 				}
 			}
