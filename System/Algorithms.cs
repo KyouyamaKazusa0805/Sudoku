@@ -86,7 +86,7 @@ namespace System
 		/// <param name="c">The third value.</param>
 		/// <returns>Which is the most minimal one.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int Min(int a, int b, int c) => Math.Min(Math.Min(a, b), c);
+		public static int Min(int a, int b, int c) => a > b ? a > c ? a : c : b > c ? b : c;
 
 		/// <summary>
 		/// Get all combinations that each sub-array only choose one.
