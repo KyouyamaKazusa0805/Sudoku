@@ -74,5 +74,10 @@
 		/// Indicates the regular expression to match a digit.
 		/// </summary>
 		public const string Digit = @"\d";
+
+		/// <summary>
+		/// Indicates the regular expression to match a tab character.
+		/// </summary>
+		public const string Tab = @"\t";
 	}
 }

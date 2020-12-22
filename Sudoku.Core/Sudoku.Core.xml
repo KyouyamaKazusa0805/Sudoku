@@ -166,6 +166,11 @@
             Indicates the regular expression to match a digit.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Tab">
+            <summary>
+            Indicates the regular expression to match a tab character.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.BitSubsetsGenerator">
             <summary>
             Encapsulates a bit combination generator.

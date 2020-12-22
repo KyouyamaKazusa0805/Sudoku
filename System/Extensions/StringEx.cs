@@ -1,7 +1,6 @@
 ﻿#pragma warning disable CA2208
 
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace System.Extensions
@@ -167,24 +166,63 @@ namespace System.Extensions
 		/// Reserve all characters that satisfy the specified pattern.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
-		/// <param name="reservePattern">The pattern that reserved characters satisfied.</param>
+		/// <param name="reservePattern">
+		/// The pattern that reserved characters satisfied. All supported patterns are:
+		/// <list type="table">
+		/// <item>
+		/// <term><c>@"\d"</c></term>
+		/// <description>To match a digit.</description>
+		/// </item>
+		/// <item>
+		/// <term><c>@"\t"</c></term>
+		/// <description>To match a tab.</description>
+		/// </item>
+		/// <item>
+		/// <term><c>@"\w"</c></term>
+		/// <description>To match a letter, digit or underscore character <c>'_'</c>.</description>
+		/// </item>
+		/// </list>
+		/// </param>
 		/// <returns>The result string.</returns>
 		/// <remarks>
-		/// For example, if code is <c>"Hello, world!".Reserve(@"\w+")</c>, the return value
+		/// For example, if code is <c>"Hello, world!".Reserve(@"\w")</c>, the return value
 		/// won't contain any punctuation marks (i.e. <c>"Helloworld"</c>).
 		/// </remarks>
+		/// <exception cref="InvalidRegexStringException">
+		/// Throws when the <paramref name="reservePattern"/> is invalid (Please expand the description
+		/// of the parameter <paramref name="reservePattern"/> to learn about all valid patterns).
+		/// </exception>
 		public static string Reserve(this string @this, string reservePattern)
 		{
-			var sb = new StringBuilder();
-			foreach (char c in @this)
+			unsafe
 			{
-				if (c.ToString().SatisfyPattern(reservePattern))
+				delegate*<char, bool> predicate = reservePattern switch
 				{
-					sb.Append(c);
-				}
-			}
+					@"\d" => &char.IsDigit,
+					@"\t" => &isTab,
+					@"\w" => &isLetterDigitOrUnderscore,
+					_ => throw new InvalidRegexStringException("The current reserved pattern is invalid.")
+				};
 
-			return sb.ToString();
+				char* ptr = stackalloc char[@this.Length];
+				int count = 0;
+				fixed (char* p = @this)
+				{
+					char* q = p;
+					for (int i = 0; i < @this.Length; i++, q++)
+					{
+						if (predicate(*q))
+						{
+							ptr[count++] = *q;
+						}
+					}
+				}
+
+				return new string(ptr, 0, count);
+
+				static bool isTab(char c) => c == '\t';
+				static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
+			}
 		}
 
 		/// <summary>

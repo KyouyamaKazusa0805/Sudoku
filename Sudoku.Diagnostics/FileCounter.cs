@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Extensions;
 using System.IO;
 using System.Linq;
+using Sudoku.Constants;
 
 namespace Sudoku.Diagnostics
 {
@@ -120,7 +121,7 @@ namespace Sudoku.Diagnostics
 						charactersCount += s.Length;
 
 						// Remove header \t.
-						charactersCount -= s.Reserve(@"\t").Length;
+						charactersCount -= s.Reserve(RegularExpressions.Tab).Length;
 					}
 
 					resultLines += fileLines;
