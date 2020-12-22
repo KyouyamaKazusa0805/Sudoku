@@ -63,8 +63,13 @@ namespace Sudoku.Diagnostics
 		/// A <see cref="bool"/> value indicating whether the counter will search for bin or obj directory.
 		/// </param>
 		/// <param name="fileList">A file list.</param>
-		private FileCounter(string root, string? extension, bool withBinOrObjDirectory, IList<string> fileList) =>
-			(Root, Pattern, WithBinOrObjDirectory, FileList) = (root, $@".+\.{extension}$", withBinOrObjDirectory, fileList);
+		private FileCounter(string root, string? extension, bool withBinOrObjDirectory, IList<string> fileList)
+		{
+			Root = root;
+			Pattern = $@".+\.{extension}$";
+			WithBinOrObjDirectory = withBinOrObjDirectory;
+			FileList = fileList;
+		}
 
 
 		/// <summary>
