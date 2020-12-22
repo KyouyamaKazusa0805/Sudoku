@@ -385,7 +385,8 @@ namespace Sudoku.Data
 							else printTabLines('+', '+', '-', maxLengths);
 							break;
 						}
-						case 4 or 8: // Print tabs of mediate lines.
+						case 4:
+						case 8: // Print tabs of mediate lines.
 						{
 							if (SubtleGridLines) printTabLines(':', '+', '-', maxLengths);
 							else printTabLines('+', '+', '-', maxLengths);

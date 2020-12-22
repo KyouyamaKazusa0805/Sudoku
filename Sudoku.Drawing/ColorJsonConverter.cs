@@ -22,27 +22,34 @@ namespace Sudoku.Drawing
 		public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
 			const int length = 4;
-			var span = (stackalloc byte[length]);
-			for (int index = -1, i = 0; reader.Read() && i < length << 1; i++)
+			unsafe
 			{
-				switch (reader.TokenType)
+				byte* span = stackalloc byte[length];
+				for (int index = -1, i = 0; reader.Read() && i < length << 1; i++)
 				{
-					case JsonTokenType.PropertyName or JsonTokenType.String
-					when reader.GetString() is "A" or "R" or "G" or "B":
+					switch (reader.TokenType)
 					{
-						index++;
-						break;
-					}
-					case JsonTokenType.Number:
-					{
-						span[index] = reader.GetByte();
+						case JsonTokenType.PropertyName:
+						case JsonTokenType.String:
+						{
+							if (reader.GetString() is "A" or "R" or "G" or "B")
+							{
+								index++;
+							}
 
-						break;
+							break;
+						}
+						case JsonTokenType.Number:
+						{
+							span[index] = reader.GetByte();
+
+							break;
+						}
 					}
 				}
-			}
 
-			return Color.FromArgb(span[0], span[1], span[2], span[3]);
+				return Color.FromArgb(span[0], span[1], span[2], span[3]);
+			}
 		}
 
 		/// <inheritdoc/>

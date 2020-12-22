@@ -254,7 +254,8 @@ namespace Sudoku.Solving.Manual.Fishes
 							cellOffsets.Add(new(1, cell));
 							break;
 						}
-						case false or null:
+						case false:
+						case null:
 						{
 							unsafe
 							{

@@ -348,7 +348,7 @@ namespace Sudoku.Data
 		/// until this property called.
 		/// </remarks>
 		/// <seealso cref="CandidateMap"/>
-		public readonly	Cells[] DigitsMap
+		public readonly Cells[] DigitsMap
 		{
 			get
 			{
@@ -500,7 +500,8 @@ namespace Sudoku.Data
 			{
 				switch (GetStatus(i))
 				{
-					case CellStatus.Given or CellStatus.Modifiable:
+					case CellStatus.Given:
+					case CellStatus.Modifiable:
 					{
 						int curDigit = this[i];
 						foreach (int cell in PeerMaps[i])

@@ -157,7 +157,8 @@ namespace Sudoku.Drawing
 
 						break;
 					}
-					case CellStatus.Modifiable or CellStatus.Given:
+					case CellStatus.Modifiable:
+					case CellStatus.Given:
 					{
 						// Draw values.
 						var point = Converter.GetMousePointInCenter(cell);

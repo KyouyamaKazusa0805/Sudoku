@@ -421,7 +421,8 @@ namespace Sudoku.Data
 
 							break;
 						}
-						case '.' or '0':
+						case '.':
+						case '0':
 						{
 							// A placeholder.
 							// Do nothing but only move 1 step forward.

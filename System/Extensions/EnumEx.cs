@@ -27,7 +27,9 @@ namespace System.Extensions
 
 			switch (size)
 			{
-				case 1 or 2 or 4:
+				case 1:
+				case 2:
+				case 4:
 				{
 					int otherValue = As<TEnum, int>(ref other);
 					return (As<TEnum, int>(ref @this) & otherValue) == otherValue;
