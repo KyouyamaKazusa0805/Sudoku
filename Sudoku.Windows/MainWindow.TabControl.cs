@@ -11,7 +11,7 @@ namespace Sudoku.Windows
 			if (ReferenceEquals(_tabControlInfo.SelectedItem, _tabItemDrawing))
 			{
 				_currentViewIndex = -1;
-				_currentTechniqueInfo = null;
+				_currentStepInfo = null;
 				_currentPainter.View = null;
 
 				UpdateImageGrid();

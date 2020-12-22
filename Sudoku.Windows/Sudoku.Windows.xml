@@ -870,7 +870,7 @@
             </para>
             </remarks>
         </member>
-        <member name="F:Sudoku.Windows.MainWindow._currentTechniqueInfo">
+        <member name="F:Sudoku.Windows.MainWindow._currentStepInfo">
             <summary>
             The current technique information.
             </summary>

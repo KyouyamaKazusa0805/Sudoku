@@ -173,12 +173,12 @@ namespace Sudoku.Windows
 				case var key and (K.OemMinus or K.OemPlus):
 				{
 					// Get the previous view or the next view.
-					if (_currentViewIndex == -1 || _currentTechniqueInfo is null)
+					if (_currentViewIndex == -1 || _currentStepInfo is null)
 					{
 						return;
 					}
 
-					var views = _currentTechniqueInfo.Views;
+					var views = _currentStepInfo.Views;
 					int totalViewsCount = views.Count;
 					ref int i = ref _currentViewIndex;
 					i = Math.Abs(
@@ -328,7 +328,7 @@ namespace Sudoku.Windows
 
 			_currentPainter = new(_currentPainter.Converter, _currentPainter.Preferences, _puzzle);
 			_currentViewIndex = -1;
-			_currentTechniqueInfo = null;
+			_currentStepInfo = null;
 		}
 
 		/// <summary>

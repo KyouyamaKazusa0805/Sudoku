@@ -11,10 +11,10 @@ namespace Sudoku.Solving.Manual
 	/// <see cref="Node"/>s have been set to off before this rule cound be applied.
 	/// </summary>
 	/// <remarks>
-	/// This interface is used in <see cref="ChainingTechniqueInfo"/> only.
+	/// This interface is used in <see cref="ChainingStepInfo"/> only.
 	/// </remarks>
 	/// <seealso cref="Node"/>
-	/// <seealso cref="ChainingTechniqueInfo"/>
+	/// <seealso cref="ChainingStepInfo"/>
 	public interface IHasParentNodeInfo
 	{
 		/// <summary>

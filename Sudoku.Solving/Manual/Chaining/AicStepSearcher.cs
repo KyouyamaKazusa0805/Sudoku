@@ -171,7 +171,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 #if DOUBLE_LAYERED_ASSUMPTION
 		/// <summary>
-		/// Create a loop hint (i.e. a <see cref="LoopTechniqueInfo"/>).
+		/// Create a loop hint (i.e. a <see cref="LoopStepInfo"/>).
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="destOn">(<see langword="in"/> parameter) The start node.</param>
@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// If the number of conclusions are not zero (in other words, if worth), the information
 		/// will be returned; otherwise, <see langword="null"/>.
 		/// </returns>
-		/// <seealso cref="LoopTechniqueInfo"/>
+		/// <seealso cref="LoopStepInfo"/>
 #else
 		/// <summary>
 		/// Create a loop hint (i.e. a <see cref="LoopStepInfo"/>).

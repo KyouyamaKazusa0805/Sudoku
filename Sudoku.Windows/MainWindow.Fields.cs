@@ -135,7 +135,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <remarks>This field is used for rendering a <see cref="View"/>.</remarks>
 		/// <seealso cref="View"/>
-		private StepInfo? _currentTechniqueInfo;
+		private StepInfo? _currentStepInfo;
 
 		/// <summary>
 		/// Indicates the current target painter.

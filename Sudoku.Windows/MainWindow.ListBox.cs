@@ -24,7 +24,7 @@ namespace Sudoku.Windows
 				} && _analyisResult is { Steps: not null, StepGrids: not null })
 			{
 				var techniqueInfo = _analyisResult.Steps[n];
-				_currentTechniqueInfo = techniqueInfo;
+				_currentStepInfo = techniqueInfo;
 				_currentViewIndex = 0;
 
 				_currentPainter = _currentPainter with
@@ -47,7 +47,7 @@ namespace Sudoku.Windows
 			{
 				if (triplet.Item3 && triplet.Item2 is var info and var (_, _, _, conclusions, views))
 				{
-					_currentTechniqueInfo = info;
+					_currentStepInfo = info;
 					_currentViewIndex = 0;
 					_currentPainter.View = views[0];
 					_currentPainter.Conclusions = conclusions;
