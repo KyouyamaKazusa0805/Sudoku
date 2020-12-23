@@ -313,8 +313,9 @@
 	<sys:String x:Key="WhileCalculatingBackdoorsLevel0Or1">程序正尽可能得快地搜索所有后门（第 0 和 1 级）。请稍候。</sys:String>
 	<sys:String x:Key="TechniqueHeader">技巧名</sys:String>
 	<sys:String x:Key="TechniqueCount">数量</sys:String>
-	<sys:String x:Key="TechniqueTotal">当前项总分</sys:String>
-	<sys:String x:Key="TechniqueMax">当前项最高分</sys:String>
+	<sys:String x:Key="TechniqueTotal">总分</sys:String>
+	<sys:String x:Key="TechniqueMax">最高分</sys:String>
+	<sys:String x:Key="TechniqueDifficultyLevel">难度级别</sys:String>
 
 	<!-- Messagings -->
 	<sys:String x:Key="CaptionInfo">信息</sys:String>

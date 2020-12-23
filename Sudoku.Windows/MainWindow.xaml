@@ -3,9 +3,16 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Sudoku.Windows"
+		xmlns:localData="clr-namespace:Sudoku.Windows.Data"
 		mc:Ignorable="d" Title="{DynamicResource SolutionName}"
 		Height="800" Width="1200" SizeChanged="Window_SizeChanged">
 	<Window.Resources>
+		<local:WindowsSettings x:Key="globalSettings" />
+		<localData:DifficultyInfoToTextConverter x:Key="di2tcvt" />
+		<localData:DifficultyInfoToForegroundColorConverter x:Key="di2fgccvt" />
+		<localData:DifficultyInfoToBackgroundColorConverter x:Key="di2bgccvt" />
+		<localData:WidthConverter x:Key="wcvt" />
 		<Style TargetType="MenuItem">
 			<Setter Property="IsTabStop" Value="False"/>
 		</Style>
@@ -192,7 +199,7 @@
 						  x:Name="_menuItemAnalyzeBackdoor"
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
 			</MenuItem>
-			
+
 			<!-- Views -->
 			<MenuItem Header="{DynamicResource _menuItemViews}">
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowBugN}"
@@ -440,7 +447,56 @@
 				<!-- Summary -->
 				<TabItem Header="{DynamicResource _tabItemSummary}" x:Name="_tabItemSummary">
 					<Grid Background="#FFE5E5E5">
-						<ListView x:Name="_listViewSummary"/>
+						<ListView x:Name="_listViewSummary">
+							<ListView.View>
+								<GridView AllowsColumnReorder="False">
+									<GridView.Columns>
+										<GridViewColumn Header="{DynamicResource TechniqueHeader}"
+														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.47}">
+											<GridViewColumn.CellTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding Technique}" />
+												</DataTemplate>
+											</GridViewColumn.CellTemplate>
+										</GridViewColumn>
+										<GridViewColumn Header="{DynamicResource TechniqueCount}"
+														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.11}">
+											<GridViewColumn.CellTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding Count}" />
+												</DataTemplate>
+											</GridViewColumn.CellTemplate>
+										</GridViewColumn>
+										<GridViewColumn Header="{DynamicResource TechniqueTotal}"
+														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.11}">
+											<GridViewColumn.CellTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding Total}" />
+												</DataTemplate>
+											</GridViewColumn.CellTemplate>
+										</GridViewColumn>
+										<GridViewColumn Header="{DynamicResource TechniqueMax}"
+														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.11}">
+											<GridViewColumn.CellTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding Max}" />
+												</DataTemplate>
+											</GridViewColumn.CellTemplate>
+										</GridViewColumn>
+										<GridViewColumn Header="{DynamicResource TechniqueDifficultyLevel}"
+														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.15}">
+											<GridViewColumn.CellTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding DifficultyLevel,Converter={StaticResource di2tcvt}}"
+															   Foreground="{Binding DifficultyLevel,Converter={StaticResource di2fgccvt},ConverterParameter={StaticResource globalSettings}}"
+															   Background="{Binding DifficultyLevel,Converter={StaticResource di2bgccvt},ConverterParameter={StaticResource globalSettings}}"/>
+												</DataTemplate>
+											</GridViewColumn.CellTemplate>
+										</GridViewColumn>
+									</GridView.Columns>
+								</GridView>
+							</ListView.View>
+						</ListView>
 					</Grid>
 				</TabItem>
 

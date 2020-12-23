@@ -2,6 +2,7 @@
 using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using UnsafeOperations = System.Runtime.CompilerServices.Unsafe;
 
 namespace System
 {
@@ -87,6 +88,41 @@ namespace System
 		/// <returns>Which is the most minimal one.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int Min(int a, int b, int c) => a > b ? a > c ? a : c : b > c ? b : c;
+
+		/// <summary>
+		/// Check which enumeration field is greater.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
+		/// <param name="left">The left one.</param>
+		/// <param name="right">The right one.</param>
+		/// <returns>The comparsion result.</returns>
+		public static TEnum Max<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
+		{
+			unsafe
+			{
+				switch (sizeof(TEnum))
+				{
+					case 1:
+					case 2:
+					case 4:
+					{
+						int l = UnsafeOperations.As<TEnum, int>(ref left);
+						int r = UnsafeOperations.As<TEnum, int>(ref right);
+						return l > r ? left : right;
+					}
+					case 8:
+					{
+						long l = UnsafeOperations.As<TEnum, long>(ref left);
+						long r = UnsafeOperations.As<TEnum, long>(ref right);
+						return l > r ? left : right;
+					}
+					default:
+					{
+						return default;
+					}
+				}
+			}
+		}
 
 		/// <summary>
 		/// Get all combinations that each sub-array only choose one.

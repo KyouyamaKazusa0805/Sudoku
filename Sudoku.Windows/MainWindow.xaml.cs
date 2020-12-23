@@ -7,7 +7,6 @@ using System.Text.Json;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -26,6 +25,7 @@ using R = System.Windows.MessageBoxResult;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 using Sudoku.Data.Extensions;
 using System.Extensions;
+using Sudoku.Solving.Manual;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif
@@ -1043,6 +1043,7 @@ namespace Sudoku.Windows
 					string name = techniqueGroup.Key;
 					int count = techniqueGroup.Count();
 					decimal total = 0, maximum = 0;
+					var maxDifficultyLevel = DifficultyLevel.Unknown;
 					foreach (var step in techniqueGroup)
 					{
 						summary += step.Difficulty;
@@ -1050,29 +1051,15 @@ namespace Sudoku.Windows
 						total += step.Difficulty;
 						maximum = Math.Max(step.Difficulty, maximum);
 						summaryMax = Math.Max(step.Difficulty, maximum);
+						maxDifficultyLevel = Algorithms.Max(step.DifficultyLevel, maxDifficultyLevel);
 					}
 
-					collection.Add(new(name, count, total, maximum));
+					collection.Add(new(name, count, total, maximum, maxDifficultyLevel));
 				}
 
-				collection.Add(new(null, summaryCount, summary, summaryMax));
+				collection.Add(new(null, summaryCount, summary, summaryMax, DifficultyLevel.Unknown));
 
-				GridView view;
 				_listViewSummary.ItemsSource = collection;
-				_listViewSummary.View = view = new() { AllowsColumnReorder = false };
-				view.Columns.AddRange(
-					createGridViewColumn(LangSource["TechniqueHeader"], nameof(DifficultyInfo.Technique), .6),
-					createGridViewColumn(LangSource["TechniqueCount"], nameof(DifficultyInfo.Count), .1),
-					createGridViewColumn(LangSource["TechniqueTotal"], nameof(DifficultyInfo.Total), .15),
-					createGridViewColumn(LangSource["TechniqueMax"], nameof(DifficultyInfo.Max), .15));
-
-				GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
-					new()
-					{
-						Header = header,
-						DisplayMemberBinding = new Binding(name),
-						Width = _tabControlInfo.ActualWidth * widthScale - 4
-					};
 			}
 			else
 			{

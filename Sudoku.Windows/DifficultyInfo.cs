@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Windows
+﻿using Sudoku.Solving.Manual;
+
+namespace Sudoku.Windows
 {
 	/// <summary>
 	/// Indicates the difficulty information used for gather the technique information of a puzzle.
@@ -9,5 +11,7 @@
 	/// <param name="Count">The number of the technique used.</param>
 	/// <param name="Total">The total difficulty.</param>
 	/// <param name="Max">The maximum difficulty of all this technique instances.</param>
-	public sealed record DifficultyInfo(string? Technique, int Count, decimal Total, decimal Max);
+	/// <param name="DifficultyLevel">Indicates the difficulty level.</param>
+	public sealed record DifficultyInfo(
+		string? Technique, int Count, decimal Total, decimal Max, DifficultyLevel DifficultyLevel);
 }
