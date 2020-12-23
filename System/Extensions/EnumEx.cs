@@ -1,4 +1,4 @@
-﻿using static System.Runtime.CompilerServices.Unsafe;
+﻿using UnsafeOperations = System.Runtime.CompilerServices.Unsafe;
 
 namespace System.Extensions
 {
@@ -31,13 +31,13 @@ namespace System.Extensions
 				case 2:
 				case 4:
 				{
-					int otherValue = As<TEnum, int>(ref other);
-					return (As<TEnum, int>(ref @this) & otherValue) == otherValue;
+					int otherValue = UnsafeOperations.As<TEnum, int>(ref other);
+					return (UnsafeOperations.As<TEnum, int>(ref @this) & otherValue) == otherValue;
 				}
 				case 8:
 				{
-					long otherValue = As<TEnum, long>(ref other);
-					return (As<TEnum, long>(ref @this) & otherValue) == otherValue;
+					long otherValue = UnsafeOperations.As<TEnum, long>(ref other);
+					return (UnsafeOperations.As<TEnum, long>(ref @this) & otherValue) == otherValue;
 				}
 				default:
 				{

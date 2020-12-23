@@ -15,7 +15,12 @@ namespace System.Extensions
 		/// <param name="r">(<see langword="out"/> parameter) The red value.</param>
 		/// <param name="g">(<see langword="out"/> parameter) The green value.</param>
 		/// <param name="b">(<see langword="out"/> parameter) The blue value.</param>
-		public static void Deconstruct(this Color @this, out int a, out int r, out int g, out int b) =>
-			(a, r, g, b) = (@this.A, @this.R, @this.G, @this.B);
+		public static void Deconstruct(this Color @this, out int a, out int r, out int g, out int b)
+		{
+			a = @this.A;
+			r = @this.R;
+			g = @this.G;
+			b = @this.B;
+		}
 	}
 }

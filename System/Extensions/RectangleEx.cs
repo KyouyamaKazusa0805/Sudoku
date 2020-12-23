@@ -57,8 +57,11 @@ namespace System.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
 		/// <param name="point">(<see langword="out"/> parameter) The point.</param>
 		/// <param name="size">(<see langword="out"/> parameter) The size.</param>
-		public static void Deconstruct(this RectangleF @this, out PointF point, out SizeF size) =>
-			(point, size) = (new(@this.X, @this.Y), new(@this.Size));
+		public static void Deconstruct(this RectangleF @this, out PointF point, out SizeF size)
+		{
+			point = new(@this.X, @this.Y);
+			size = new(@this.Size);
+		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
@@ -67,7 +70,12 @@ namespace System.Extensions
 		/// <param name="width">(<see langword="out"/> parameter) The width.</param>
 		/// <param name="height">(<see langword="out"/> parameter) The height.</param>
 		public static void Deconstruct(
-			this RectangleF @this, out float x, out float y, out float width, out float height) =>
-			(x, y, width, height) = (@this.X, @this.Y, @this.Width, @this.Height);
+			this RectangleF @this, out float x, out float y, out float width, out float height)
+		{
+			x = @this.X;
+			y = @this.Y;
+			width = @this.Width;
+			height = @this.Height;
+		}
 	}
 }

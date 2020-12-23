@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA2208
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace System.Extensions
@@ -12,9 +10,16 @@ namespace System.Extensions
 	public static class StringEx
 	{
 		/// <summary>
-		/// Indicates all null lines and header spaces in their lines.
+		/// Indicates the regular expression to match all null lines and header spaces in their lines.
 		/// </summary>
 		private const string NullLinesOrHeaderSpaces = @"(^\s*|(?<=\r\n)\s+)";
+
+
+		/// <summary>
+		/// Indicates the time span that is used for matching.
+		/// </summary>
+		private static readonly TimeSpan MatchingTimeSpan = TimeSpan.FromSeconds(5);
+
 
 		/// <summary>
 		/// Check whether the specified string instance is satisfied
@@ -28,7 +33,9 @@ namespace System.Extensions
 		/// expression pattern.
 		/// </exception>
 		public static bool SatisfyPattern(this string @this, string pattern) =>
-			pattern.IsRegexPattern() ? @this.Match(pattern) == @this : throw new InvalidRegexStringException();
+			pattern.IsRegexPattern()
+			? @this.Match(pattern) == @this
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 		/// <summary>
 		/// Check whether the specified string instance can match the value
@@ -48,8 +55,8 @@ namespace System.Extensions
 		/// </exception>
 		public static bool IsMatch(this string @this, string pattern) =>
 			pattern.IsRegexPattern()
-			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5))
-			: throw new InvalidRegexStringException();
+			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 		/// <summary>
 		/// Searches the specified input string for the first occurrence of
@@ -73,7 +80,7 @@ namespace System.Extensions
 		public static string? Match(this string @this, string pattern) =>
 			pattern.IsRegexPattern()
 			? @this.Match(pattern, RegexOptions.None)
-			: throw new InvalidRegexStringException();
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 		/// <summary>
 		/// Searches the input string for the first occurrence of the specified regular
@@ -97,9 +104,9 @@ namespace System.Extensions
 		/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 		public static string? Match(this string @this, string pattern, RegexOptions regexOption)
 		{
-			_ = pattern.IsRegexPattern() ? 0 : throw new InvalidRegexStringException();
+			_ = pattern.IsRegexPattern() ? 0 : throw new InvalidRegexStringException { WrongRegexString = pattern };
 
-			var match = Regex.Match(@this, pattern, regexOption, TimeSpan.FromSeconds(5));
+			var match = Regex.Match(@this, pattern, regexOption, MatchingTimeSpan);
 			return match.Success ? match.Value : null;
 		}
 
@@ -125,7 +132,7 @@ namespace System.Extensions
 		public static string[] MatchAll(this string @this, string pattern) =>
 			pattern.IsRegexPattern()
 			? @this.MatchAll(pattern, RegexOptions.None)
-			: throw new InvalidRegexStringException();
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 		/// <summary>
 		/// Searches the specified input string for all occurrences of a
@@ -150,11 +157,12 @@ namespace System.Extensions
 		/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 		public static string[] MatchAll(this string @this, string pattern, RegexOptions regexOption)
 		{
-			_ = pattern.IsRegexPattern() ? 0 : throw new InvalidRegexStringException();
+			_ = pattern.IsRegexPattern() ? 0 : throw new InvalidRegexStringException { WrongRegexString = pattern };
+
+			var result = new List<string>();
 
 			// Do not use 'var' ('var' is 'object?').
-			var result = new List<string>();
-			foreach (Match match in Regex.Matches(@this, pattern, regexOption, TimeSpan.FromSeconds(5)))
+			foreach (Match match in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan))
 			{
 				result.Add(match.Value);
 			}
@@ -235,7 +243,7 @@ namespace System.Extensions
 		{
 			try
 			{
-				Regex.Match(string.Empty, @this, RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5));
+				Regex.Match(string.Empty, @this, RegexOptions.ExplicitCapture, MatchingTimeSpan);
 				return true;
 			}
 			catch (ArgumentException)
@@ -255,7 +263,7 @@ namespace System.Extensions
 		public static string TrimVerbatim(this string @this) =>
 			Regex.Replace(
 				@this, NullLinesOrHeaderSpaces,
-				string.Empty, RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5));
+				string.Empty, RegexOptions.ExplicitCapture, MatchingTimeSpan);
 
 		/// <summary>
 		/// Trim new-line characters from the tail of the string.

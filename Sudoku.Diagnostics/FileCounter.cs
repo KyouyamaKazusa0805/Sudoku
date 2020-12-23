@@ -120,7 +120,7 @@ namespace Sudoku.Diagnostics
 						fileLines++;
 						charactersCount += s.Length;
 
-						// Remove header \t.
+						// Remove leading \t.
 						charactersCount -= s.Reserve(RegularExpressions.Tab).Length;
 					}
 

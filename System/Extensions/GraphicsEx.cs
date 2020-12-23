@@ -40,12 +40,12 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
 		/// <param name="pen">The pen.</param>
-		/// <param name="rectangle">The rectangle.</param>
+		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle.</param>
 		/// <remarks>
 		/// This method will draw a cross sign and fill with the specified color, so you don't need
 		/// to find any fill methods.
 		/// </remarks>
-		public static void DrawCrossSign(this Graphics @this, Pen pen, RectangleF rectangle)
+		public static void DrawCrossSign(this Graphics @this, Pen pen, in RectangleF rectangle)
 		{
 			var (x, y, w, h) = rectangle;
 			PointF p1 = new(x, y + h), p2 = new(x + w, y), p3 = new(x, y), p4 = new(x + w, y + h);
@@ -59,9 +59,9 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
 		/// <param name="pen">The pen.</param>
-		/// <param name="rectangle">The rectangle.</param>
+		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void DrawCapsule(this Graphics @this, Pen pen, RectangleF rectangle) =>
+		public static void DrawCapsule(this Graphics @this, Pen pen, in RectangleF rectangle) =>
 			@this.DrawRoundedRectangle(pen, rectangle, 0);
 
 		/// <summary>
@@ -69,9 +69,9 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
 		/// <param name="brush">The brush.</param>
-		/// <param name="rectangle">The rectangle.</param>
+		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void FillCapsule(this Graphics @this, Brush brush, RectangleF rectangle) =>
+		public static void FillCapsule(this Graphics @this, Brush brush, in RectangleF rectangle) =>
 			@this.FillRoundedRectangle(brush, rectangle, 0);
 
 		/// <summary>
@@ -79,13 +79,14 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
 		/// <param name="pen">The pen.</param>
-		/// <param name="rectangle">The rectangle to draw.</param>
+		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle to draw.</param>
 		/// <param name="circleRadius">The radius of each vertex.</param>
 		/// <exception cref="ArgumentException">
 		/// Throws when <paramref name="circleRadius"/> is greater than the value in
 		/// <paramref name="rectangle"/>.
 		/// </exception>
-		public static void DrawRoundedRectangle(this Graphics @this, Pen pen, RectangleF rectangle, float circleRadius)
+		public static void DrawRoundedRectangle(
+			this Graphics @this, Pen pen, in RectangleF rectangle, float circleRadius)
 		{
 			_ = circleRadius > Math.Max(rectangle.Width, rectangle.Height) ? throw new ArgumentOutOfRangeException(nameof(circleRadius)) : 0;
 
@@ -105,10 +106,15 @@ namespace System.Extensions
 			p8.X += rectangle.Width - circleRadius;
 			p8.Y += rectangle.Height;
 			r1 = new(rectangle.X, rectangle.Y, circleRadius * 2, circleRadius * 2);
-			r2 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y, circleRadius * 2, circleRadius * 2);
-			r3 = new(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
+			r2 = new(
+				rectangle.X + rectangle.Width - 2 * circleRadius,
+				rectangle.Y, circleRadius * 2, circleRadius * 2);
+			r3 = new(
+				rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius,
+				circleRadius * 2, circleRadius * 2);
 			r4 = new(
-				rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y + rectangle.Height - 2 * circleRadius,
+				rectangle.X + rectangle.Width - 2 * circleRadius,
+				rectangle.Y + rectangle.Height - 2 * circleRadius,
 				circleRadius * 2, circleRadius * 2);
 
 			var path = new GraphicsPath();
@@ -130,13 +136,14 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
 		/// <param name="brush">The brush.</param>
-		/// <param name="rectangle">The rectangle to fill.</param>
+		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle to fill.</param>
 		/// <param name="circleRadius">The radius of each vertex.</param>
 		/// <exception cref="ArgumentException">
 		/// Throws when <paramref name="circleRadius"/> is greater than the value in
 		/// <paramref name="rectangle"/>.
 		/// </exception>
-		public static void FillRoundedRectangle(this Graphics @this, Brush brush, RectangleF rectangle, float circleRadius)
+		public static void FillRoundedRectangle(
+			this Graphics @this, Brush brush, in RectangleF rectangle, float circleRadius)
 		{
 			_ = circleRadius >= Math.Max(rectangle.Width, rectangle.Height) ? throw new ArgumentException("Specified argument is greater than the value in rectangle", nameof(circleRadius)) : 0;
 

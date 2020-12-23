@@ -27,7 +27,10 @@ namespace System.Extensions
 		/// <param name="this">(<see langword="this in"/> parameter) The range.</param>
 		/// <param name="start">(<see langword="out"/> parameter) The start index.</param>
 		/// <param name="end">(<see langword="out"/> parameter) The end index.</param>
-		public static void Deconstruct(this in Range @this, out Index start, out Index end) =>
-			(start, end) = (@this.Start, @this.End);
+		public static void Deconstruct(this in Range @this, out Index start, out Index end)
+		{
+			start = @this.Start;
+			end = @this.End;
+		}
 	}
 }
