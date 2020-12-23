@@ -1059,13 +1059,12 @@ namespace Sudoku.Windows
 
 				GridView view;
 				_listViewSummary.ItemsSource = collection;
-				_listViewSummary.View = view = new();
+				_listViewSummary.View = view = new() { AllowsColumnReorder = false };
 				view.Columns.AddRange(
 					createGridViewColumn(LangSource["TechniqueHeader"], nameof(DifficultyInfo.Technique), .6),
 					createGridViewColumn(LangSource["TechniqueCount"], nameof(DifficultyInfo.Count), .1),
 					createGridViewColumn(LangSource["TechniqueTotal"], nameof(DifficultyInfo.Total), .15),
 					createGridViewColumn(LangSource["TechniqueMax"], nameof(DifficultyInfo.Max), .15));
-				view.AllowsColumnReorder = false;
 
 				GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
 					new()
