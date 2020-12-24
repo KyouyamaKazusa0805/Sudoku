@@ -123,8 +123,8 @@ namespace Sudoku.Windows
 			{
 				case var key when key.IsDigit():
 				{
-					if (_pointConverter.GetCell(Mouse.GetPosition(_imageGrid).ToDPointF()) is var cell
-						&& cell == -1)
+					int cell = _pointConverter.GetCell(Mouse.GetPosition(_imageGrid).ToDPointF());
+					if (cell == -1)
 					{
 						return;
 					}

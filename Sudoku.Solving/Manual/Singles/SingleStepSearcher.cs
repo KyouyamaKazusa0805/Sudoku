@@ -233,49 +233,52 @@ namespace Sudoku.Solving.Manual.Singles
 		{
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (grid.GetStatus(cell) == CellStatus.Empty
-					&& grid.GetCandidates(cell) is var mask && mask.IsPowerOfTwo()
-					&& mask.FindFirstSet() is var digit)
+				if (grid.GetStatus(cell) == CellStatus.Empty)
 				{
-					List<(Cells, Cells)>? directLines = null;
-					if (_showDirectLines)
+					short mask = grid.GetCandidates(cell);
+					if (mask.IsPowerOfTwo())
 					{
-						directLines = new();
-						for (int i = 0; i < 9; i++)
+						int digit = mask.FindFirstSet();
+						List<(Cells, Cells)>? directLines = null;
+						if (_showDirectLines)
 						{
-							if (digit != i)
+							directLines = new();
+							for (int i = 0; i < 9; i++)
 							{
-								bool flag = false;
-								foreach (int peerCell in PeerMaps[cell])
+								if (digit != i)
 								{
-									if (grid[peerCell] == i)
+									bool flag = false;
+									foreach (int peerCell in PeerMaps[cell])
 									{
-										directLines.Add((new() { peerCell }, Cells.Empty));
-										flag = true;
-										break;
+										if (grid[peerCell] == i)
+										{
+											directLines.Add((new() { peerCell }, Cells.Empty));
+											flag = true;
+											break;
+										}
 									}
-								}
-								if (flag)
-								{
-									continue;
+									if (flag)
+									{
+										continue;
+									}
 								}
 							}
 						}
-					}
 
-					accumulator.Add(
-						new NakedSingleStepInfo(
-							new Conclusion[] { new(Assignment, cell, digit) },
-							new View[]
-							{
-								new()
+						accumulator.Add(
+							new NakedSingleStepInfo(
+								new Conclusion[] { new(Assignment, cell, digit) },
+								new View[]
 								{
-									Candidates = new DrawingInfo[] { new(0, cell * 9 + digit) },
-									DirectLines = directLines
-								}
-							},
-							cell,
-							digit));
+									new()
+									{
+										Candidates = new DrawingInfo[] { new(0, cell * 9 + digit) },
+										DirectLines = directLines
+									}
+								},
+								cell,
+								digit));
+					}
 				}
 			}
 		}

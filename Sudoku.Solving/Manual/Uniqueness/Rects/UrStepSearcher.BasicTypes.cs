@@ -37,7 +37,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ab   ab
 
 			// Get the summary mask.
-			if (grid.BitwiseOrMasks(otherCellsMap) is var mask && mask != comparer)
+			short mask = grid.BitwiseOrMasks(otherCellsMap);
+			if (mask != comparer)
 			{
 				return;
 			}
@@ -114,7 +115,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ab    ab
 
 			// Get the summary mask.
-			if (grid.BitwiseOrMasks(otherCellsMap) is var mask && mask != comparer)
+			short mask = grid.BitwiseOrMasks(otherCellsMap);
+			if (mask != comparer)
 			{
 				return;
 			}
@@ -465,7 +467,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			// Get the summary mask.
-			if ((grid.BitwiseOrMasks(otherCellsMap) ^ comparer) is var extraMask && extraMask.PopCount() != 1)
+			short extraMask = (short)(grid.BitwiseOrMasks(otherCellsMap) ^ comparer);
+			if (extraMask.PopCount() != 1)
 			{
 				return;
 			}

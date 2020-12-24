@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -298,6 +299,7 @@ namespace Sudoku.Solving
 
 				return sb.ToString();
 
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
 				void a(bool showSeparator) =>
 					sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);
 

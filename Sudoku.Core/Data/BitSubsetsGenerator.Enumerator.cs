@@ -29,8 +29,12 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="bitCount">The number of bits.</param>
 			/// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-			public Enumerator(int bitCount, int oneCount) =>
-				(Current, _mask, _isLast) = ((1 << oneCount) - 1, (1 << bitCount - oneCount) - 1, bitCount == 0);
+			public Enumerator(int bitCount, int oneCount)
+			{
+				Current = (1 << oneCount) - 1;
+				_mask = (1 << bitCount - oneCount) - 1;
+				_isLast = bitCount == 0;
+			}
 
 
 			/// <inheritdoc/>
@@ -50,7 +54,8 @@ namespace Sudoku.Data
 			/// <inheritdoc/>
 			public bool MoveNext()
 			{
-				if (hasNext(ref this) is var result && result && !_isLast)
+				bool result = hasNext(ref this);
+				if (result && !_isLast)
 				{
 					long smallest = Current & -Current;
 					long ripple = Current + smallest;

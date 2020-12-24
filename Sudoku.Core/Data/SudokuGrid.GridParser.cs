@@ -93,7 +93,8 @@ namespace Sudoku.Data
 			{
 				for (int trial = 0; trial < 8; trial++)
 				{
-					if (ParseFunctions[trial](ref this) is var grid && grid != Undefined)
+					var grid = ParseFunctions[trial](ref this);
+					if (grid != Undefined)
 					{
 						return grid;
 					}
@@ -129,7 +130,8 @@ namespace Sudoku.Data
 			private static SudokuGrid OnParsingSimpleMultilineGrid(ref GridParser parser)
 			{
 				string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.DigitOrEmptyCell);
-				if (matches.Length is var length && length is not (81 or 85))
+				int length = matches.Length;
+				if (length is not (81 or 85))
 				{
 					// Subtle grid outline will bring 2 '.'s on first line of the grid.
 					return Undefined;
@@ -349,7 +351,8 @@ namespace Sudoku.Data
 			/// <returns>The grid.</returns>
 			private static SudokuGrid OnParsingSimpleTable(ref GridParser parser)
 			{
-				if (parser.ParsingValue.Match(RegularExpressions.SimpleTable) is var match && match is null)
+				string? match = parser.ParsingValue.Match(RegularExpressions.SimpleTable);
+				if (match is null)
 				{
 					return Undefined;
 				}
@@ -483,7 +486,8 @@ namespace Sudoku.Data
 			{
 				if (compatibleFirst)
 				{
-					if (parser.ParsingValue is var parsingValue && parsingValue.Length < 729)
+					string parsingValue = parser.ParsingValue;
+					if (parsingValue.Length < 729)
 					{
 						return Undefined;
 					}
@@ -494,7 +498,8 @@ namespace Sudoku.Data
 						int i = 0;
 						for (char* p = pStr; i < 729; p++, i++)
 						{
-							if (*p is var c && c is not (>= '0' and <= '9' or '.'))
+							char c = *p;
+							if (c is not (>= '0' and <= '9' or '.'))
 							{
 								return Undefined;
 							}
@@ -521,7 +526,8 @@ namespace Sudoku.Data
 					var result = Empty;
 					for (int offset = 0; offset < 81; offset++)
 					{
-						if (matches[offset].Reserve(RegularExpressions.Digit) is var s && s.Length > 9)
+						string s = matches[offset].Reserve(RegularExpressions.Digit);
+						if (s.Length > 9)
 						{
 							// More than 9 characters.
 							return Undefined;

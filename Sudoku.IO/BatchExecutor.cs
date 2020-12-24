@@ -451,7 +451,8 @@ namespace Sudoku.IO
 
 			try
 			{
-				if (args[2] is var s && Path.GetDirectoryName(s) is string directoryName)
+				string s = args[2];
+				if (Path.GetDirectoryName(s) is string directoryName)
 				{
 					DirectoryEx.CreateIfDoesNotExist(directoryName);
 

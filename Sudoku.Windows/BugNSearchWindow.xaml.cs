@@ -53,11 +53,8 @@ namespace Sudoku.Windows
 					select new KeyedTuple<int, string>(candidate, str, 2)).ToArray();
 
 				_labelStatus.ClearValue(ContentProperty);
-				if (array.Length is var count && count == 0)
-				{
-					_labelStatus.Content = (string)LangSource["BugMultipleFailCase"];
-				}
-				else
+				int count = array.Length;
+				if (count != 0)
 				{
 					_listBoxTrueCandidates.ItemsSource = array;
 					string singularOrPlural = count == 1 ? string.Empty : "s";
@@ -65,6 +62,10 @@ namespace Sudoku.Windows
 						$"{LangSource[count == 1 ? "ThereIs" : "ThereAre"]} " +
 						$"{count} {LangSource[$"BugMultipleTrueCandidates{(count == 1 ? "Singular" : "Plural")}"]}. " +
 						LangSource["BugMultipleSuccessfulCase"];
+				}
+				else
+				{
+					_labelStatus.Content = (string)LangSource["BugMultipleFailCase"];
 				}
 			}
 		}

@@ -129,23 +129,29 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonOutputAnalysisResult_Click(object sender, RoutedEventArgs e)
 		{
-			if (
-				new SaveFileDialog
-				{
-					Filter = "Word document|*.docx|Text file|*.txt",
-					FilterIndex = 0,
-					Title = (string)Application.Current.Resources["TitleSavingPuzzles"]
-				} is var sfd && sfd.ShowDialog() is true
-				&& new AnalysisResultFileOutput(_analysisResult, _settings).TryExport(
-					sfd.FileName,
-					500,
-					_checkBoxOutputStepGrids.IsChecked.GetValueOrDefault(),
-					CreateFormat(),
-					PictureFileType.Png,
-					(AnalysisResultOutputType)(sfd.FilterIndex - 1),
-					Alignment.Middle))
+			var sfd = new SaveFileDialog
 			{
-				Messagings.SaveSuccess();
+				Filter = "Word document|*.docx|Text file|*.txt",
+				FilterIndex = 0,
+				Title = (string)Application.Current.Resources["TitleSavingPuzzles"]
+			};
+
+			if (sfd.ShowDialog() is true)
+			{
+				bool result = new AnalysisResultFileOutput(_analysisResult, _settings)
+					.TryExport(
+						sfd.FileName,
+						500,
+						_checkBoxOutputStepGrids.IsChecked ?? false,
+						CreateFormat(),
+						PictureFileType.Png,
+						(AnalysisResultOutputType)(sfd.FilterIndex - 1),
+						Alignment.Middle);
+
+				if (result)
+				{
+					Messagings.SaveSuccess();
+				}
 			}
 		}
 	}

@@ -59,7 +59,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			foreach (int cell in EmptyMap)
 			{
-				if (grid.GetCandidates(cell) is var mask && mask.PopCount() >= 2)
+				short mask = grid.GetCandidates(cell);
+				if (mask.PopCount() >= 2)
 				{
 					// Iterate on all candidates that aren't alone.
 					foreach (int digit in mask)
