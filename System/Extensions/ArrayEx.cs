@@ -56,6 +56,7 @@ namespace System.Extensions
 		/// <returns>All subsets.</returns>
 		public static IEnumerable<T[]> GetSubsets<T>(this T[] @this, int count)
 		{
+			// TODO: Add a new method ReadOnlySpan<T>.GetSubsets<T>().
 			if (count == 0)
 			{
 				return Array.Empty<T[]>();
