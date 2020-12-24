@@ -1,4 +1,5 @@
-﻿using UnsafeOperations = System.Runtime.CompilerServices.Unsafe;
+﻿using System.Collections.Generic;
+using UnsafeOperations = System.Runtime.CompilerServices.Unsafe;
 
 namespace System.Extensions
 {
@@ -8,6 +9,46 @@ namespace System.Extensions
 	/// <seealso cref="Enum"/>
 	public static class EnumEx
 	{
+		/// <summary>
+		/// Get all possible flags that the current enumeration field set.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The current enumeration type instance.</param>
+		/// <returns>All flags.</returns>
+		public static IEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
+		{
+			unsafe
+			{
+				return inner(@this, sizeof(TEnum));
+			}
+
+			static IEnumerator<TEnum> inner(TEnum @this, int size)
+			{
+				var array = Enum.GetValues<TEnum>();
+				for (int index = 0, length = array.Length; index < length; index++)
+				{
+					var field = array[index];
+					switch (size)
+					{
+						case 1 or 2 or 4
+						when UnsafeOperations.As<TEnum, int>(ref field) is var i && !i.IsPowerOfTwo():
+						case 8
+						when UnsafeOperations.As<TEnum, long>(ref field) is var l && !l.IsPowerOfTwo():
+						{
+							// We'll skip the field that keeps the default value (0), or the value isn't a
+							// normal flag.
+							continue;
+						}
+					}
+
+					if (@this.Flags(field))
+					{
+						yield return field;
+					}
+				}
+			}
+		}
+
 		/// <inheritdoc cref="Enum.HasFlag(Enum)"/>
 		/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The current enumeration type instance.</param>

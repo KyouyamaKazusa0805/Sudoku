@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Extensions;
 using System.Globalization;
 using System.Windows.Data;
 using Sudoku.Solving.Manual;
@@ -14,7 +15,25 @@ namespace Sudoku.Windows.Data
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var difficultyLevel = (DifficultyLevel)value;
-			return difficultyLevel == DifficultyLevel.Unknown ? string.Empty : difficultyLevel.ToString();
+			if (difficultyLevel == DifficultyLevel.Unknown)
+			{
+				return string.Empty;
+			}
+
+			DifficultyLevel min = default, max = default;
+			int i = 0;
+			foreach (var pos in difficultyLevel)
+			{
+				switch (i++)
+				{
+					case 0: min = pos; break;
+					case 1: max = pos; break;
+					default: goto Returning;
+				}
+			}
+
+		Returning:
+			return min == DifficultyLevel.Unknown ? string.Empty : i == 1 ? min.ToString() : $"{min} - {max}";
 		}
 
 		/// <inheritdoc/>

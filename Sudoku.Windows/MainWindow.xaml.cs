@@ -1043,6 +1043,7 @@ namespace Sudoku.Windows
 					string name = techniqueGroup.Key;
 					int count = techniqueGroup.Count();
 					decimal total = 0, maximum = 0;
+					var minDifficultyLevel = DifficultyLevel.LastResort;
 					var maxDifficultyLevel = DifficultyLevel.Unknown;
 					foreach (var step in techniqueGroup)
 					{
@@ -1051,10 +1052,11 @@ namespace Sudoku.Windows
 						total += step.Difficulty;
 						maximum = Math.Max(step.Difficulty, maximum);
 						summaryMax = Math.Max(step.Difficulty, maximum);
+						minDifficultyLevel = Algorithms.Min(step.DifficultyLevel, minDifficultyLevel);
 						maxDifficultyLevel = Algorithms.Max(step.DifficultyLevel, maxDifficultyLevel);
 					}
 
-					collection.Add(new(name, count, total, maximum, maxDifficultyLevel));
+					collection.Add(new(name, count, total, maximum, minDifficultyLevel | maxDifficultyLevel));
 				}
 
 				collection.Add(new(null, summaryCount, summary, summaryMax, DifficultyLevel.Unknown));

@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual
 	/// </summary>
 	[Flags]
 	/*closed*/
-	public enum DifficultyLevel : short
+	public enum DifficultyLevel : byte
 	{
 		/// <summary>
 		/// Indicates the difficulty level is unknown.
