@@ -109,7 +109,7 @@ namespace Sudoku.Data.Collections
 		/// Get the enumerator.
 		/// </summary>
 		/// <returns>The enumerator.</returns>
-		public IEnumerator<int> GetEnumerator() => _mask.GetEnumerator();
+		public ReadOnlySpan<int>.Enumerator GetEnumerator() => _mask.GetEnumerator();
 
 
 		/// <summary>

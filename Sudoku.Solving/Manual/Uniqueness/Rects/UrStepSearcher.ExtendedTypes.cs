@@ -1500,7 +1500,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									urCells,
 									arMode,
 									new[] { c1, c2 },
-									extraDigitsMask.GetAllSets(),
+									extraDigitsMask.GetAllSets().ToArray(),
 									otherCellsMap,
 									index));
 						}
@@ -1604,7 +1604,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											urCells,
 											arMode,
 											new[] { c1, c2, c3 },
-											extraDigitsMask.GetAllSets(),
+											extraDigitsMask.GetAllSets().ToArray(),
 											otherCellsMap,
 											index));
 								}
@@ -1712,7 +1712,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												urCells,
 												arMode,
 												new[] { c1, c2, c3, c4 },
-												extraDigitsMask.GetAllSets(),
+												extraDigitsMask.GetAllSets().ToArray(),
 												otherCellsMap,
 												index));
 									}

@@ -90,14 +90,16 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
-				static bool overlaps(int d, in int coverSet) => ValueMaps[d].Overlaps(RegionMaps[coverSet]);
 				var digits = mask.GetAllSets();
-				bool isOverlapped;
-				unsafe
+				bool isOverlapped = false;
+				foreach (int digit in digits)
 				{
-					isOverlapped = digits.Any(&overlaps, coverSet);
+					if (ValueMaps[digit].Overlaps(RegionMaps[coverSet]))
+					{
+						isOverlapped = true;
+						break;
+					}
 				}
-
 				if (isOverlapped)
 				{
 					continue;

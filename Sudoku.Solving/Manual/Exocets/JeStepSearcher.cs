@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						new List<Conclusion>(),
 						new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
 						exocet,
-						baseCandsMask.GetAllSets(),
+						baseCandsMask.GetAllSets().ToArray(),
 						null,
 						null,
 						targetElims,

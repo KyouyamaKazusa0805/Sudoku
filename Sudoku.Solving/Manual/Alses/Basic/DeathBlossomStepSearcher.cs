@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				while (n >= 0)
 				{
 					bool flag = true;
-					int digit = digits.ElementAt(n);
+					int digit = digits[n];
 					for (int i = stack[n] + 1; i <= death[pivot * 9 + digit, 0]; i++)
 					{
 						short value = (short)(alsList[death[pivot * 9 + digit, i]].DigitsMask & ~cands);

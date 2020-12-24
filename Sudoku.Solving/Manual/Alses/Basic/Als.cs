@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -76,7 +75,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		{
 			get
 			{
-				int[] digits = DigitsMask.GetAllSets().ToArray();
+				var digits = DigitsMask.GetAllSets().ToArray();
 				for (int i = 0, length = digits.Length; i < length - 1; i++)
 				{
 					for (int j = i + 1; j < length; j++)

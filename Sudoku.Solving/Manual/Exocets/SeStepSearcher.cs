@@ -207,7 +207,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							new List<Conclusion>(), // Special eliminations will use this empty list.
 							new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
 							exocet,
-							m.GetAllSets(),
+							m.GetAllSets().ToArray(),
 							endoTargetCell,
 							null,
 							targetElims,

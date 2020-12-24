@@ -76,10 +76,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						{
 							Cells = cellOffsets,
 							Candidates = candidateOffsets,
-							Regions = (
+							Regions =
 								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 								select new DrawingInfo(0, pos + (isRow ? 9 : 18))
-							).ToArray()
 						}
 					},
 					pattern,
@@ -147,10 +146,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						{
 							Cells = cellOffsets,
 							Candidates = candidateOffsets,
-							Regions = (
+							Regions =
 								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 								select new DrawingInfo(0, pos +(isRow ? 9 : 18))
-							).ToArray()
 						}
 					},
 					pattern,
@@ -239,11 +237,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 									{
 										Cells = cellOffsets,
 										Candidates = candidateOffsets,
-										Regions = (
+										Regions =
 											from pos
 											in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 											select new DrawingInfo(0, pos + (isRow ? 9 : 18))
-										).ToArray()
 									}
 								},
 								pattern,
@@ -329,10 +326,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 								{
 									Cells = cellOffsets,
 									Candidates = candidateOffsets,
-									Regions = (
+									Regions =
 										from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 										select new DrawingInfo(0, pos + (isRow ? 9 : 18))
-									).ToArray()
 								}
 							},
 							pattern,
@@ -447,10 +443,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						{
 							Cells = cellOffsets,
 							Candidates = candidateOffsets,
-							Regions = (
+							Regions =
 								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 								select new DrawingInfo(0, pos + (isRow ? 9 : 18))
-							).ToArray()
 						}
 					},
 					pattern,

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -45,7 +44,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				}
 
 				// Iterate on each cells which are not peers in 'c1'.
-				int[] digits = grid.GetCandidates(c1).GetAllSets().ToArray();
+				var digits = grid.GetCandidates(c1).GetAllSets();
 				foreach (int c2 in BivalueMap - new Cells(c1))
 				{
 					if (c2 < c1 || grid.GetCandidates(c1) != grid.GetCandidates(c2))

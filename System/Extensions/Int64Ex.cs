@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
@@ -50,25 +49,30 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
-		public static IEnumerable<int> GetAllSets(this long @this)
+		public static ReadOnlySpan<int> GetAllSets(this long @this)
 		{
 			if (@this == 0)
 			{
-				yield break;
+				return ReadOnlySpan<int>.Empty;
 			}
 
-			for (int i = 0; i < 64; i++, @this >>= 1)
+			int length = @this.PopCount();
+			var resultSpan = (stackalloc int[length]);
+			for (byte i = 0, p = 0; i < 64; i++, @this >>= 1)
 			{
-				if ((@this & 1L) != 0)
+				if ((@this & 1) != 0)
 				{
-					yield return i;
+					resultSpan[p++] = i;
 				}
 			}
+
+			return new(resultSpan.ToArray());
 		}
 
 		/// <inheritdoc cref="Integer.GetEnumerator(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IEnumerator<int> GetEnumerator(this long @this) => @this.GetAllSets().GetEnumerator();
+		public static ReadOnlySpan<int>.Enumerator GetEnumerator(this long @this) =>
+			@this.GetAllSets().GetEnumerator();
 
 		/// <inheritdoc cref="Integer.ReverseBits(ref Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

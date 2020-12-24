@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				// Iterate on each possible digit combination.
-				int[] allDigitsInThem = mask.GetAllSets().ToArray();
+				var allDigitsInThem = mask.GetAllSets();
 				for (int i = 0, length = allDigitsInThem.Length; i < length - 1; i++)
 				{
 					int d1 = allDigitsInThem[i];

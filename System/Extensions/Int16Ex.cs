@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
@@ -52,25 +51,33 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
-		public static IEnumerable<int> GetAllSets(this short @this)
+		public static ReadOnlySpan<int> GetAllSets(this short @this)
 		{
 			if (@this == 0)
 			{
-				yield break;
+				return ReadOnlySpan<int>.Empty;
 			}
 
-			for (int i = 0; i < 16; i++, @this >>= 1)
+			int length = @this.PopCount();
+			var resultSpan = (stackalloc int[length]);
+			for (byte i = 0, p = 0; i < 16; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0)
 				{
-					yield return i;
+					resultSpan[p++] = i;
 				}
 			}
+
+			return new(resultSpan.ToArray());
 		}
 
 		/// <inheritdoc cref="Integer.GetEnumerator(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IEnumerator<int> GetEnumerator(this short @this) => @this.GetAllSets().GetEnumerator();
+		public static ReadOnlySpan<int>.Enumerator GetEnumerator(this short @this)
+		{
+			var span = @this.GetAllSets();
+			return span.GetEnumerator();
+		}
 
 		/// <inheritdoc cref="Integer.ReverseBits(ref Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -80,42 +87,6 @@ namespace System.Extensions
 			@this = (short)(@this >> 2 & 0x3333 | (@this & 0x3333) << 2);
 			@this = (short)(@this >> 4 & 0x0F0F | (@this & 0x0F0F) << 4);
 			@this = (short)(@this >> 8 | @this << 8);
-		}
-
-		/// <summary>
-		/// <c>Where</c> method on <see cref="short"/> values to enable the usage of <see langword="where"/> clause.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
-		/// <param name="condition">The condition for each set bits.</param>
-		/// <returns>
-		/// All set bits satisfying the specified condition, representing as a <see cref="short"/> value.
-		/// </returns>
-		public static short Where(this short @this, Predicate<int> condition)
-		{
-			short result = 0;
-			foreach (int i in @this)
-			{
-				if (condition(i))
-				{
-					result |= (short)(1 << i);
-				}
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// <c>Where</c> method on <see cref="short"/> values to enable the usage of <see langword="select"/> clause.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
-		/// <param name="selector">The selector for each set bits.</param>
-		/// <returns>The result list using projection.</returns>
-		public static IEnumerable<TResult?> Select<TResult>(this short @this, Func<int, TResult?> selector)
-		{
-			foreach (int value in @this)
-			{
-				yield return selector(value);
-			}
 		}
 	}
 }

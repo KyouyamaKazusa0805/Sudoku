@@ -139,7 +139,7 @@ namespace Sudoku.Data.Collections
 		}
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-		public IEnumerator<int> GetEnumerator() => _mask.GetEnumerator();
+		public ReadOnlySpan<int>.Enumerator GetEnumerator() => _mask.GetEnumerator();
 
 		/// <summary>
 		/// Get the label of each region.
