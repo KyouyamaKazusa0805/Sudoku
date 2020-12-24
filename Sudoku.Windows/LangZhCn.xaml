@@ -314,7 +314,7 @@
 	<sys:String x:Key="TechniqueHeader">技巧名</sys:String>
 	<sys:String x:Key="TechniqueCount">数量</sys:String>
 	<sys:String x:Key="TechniqueTotal">总分</sys:String>
-	<sys:String x:Key="TechniqueMax">最高分</sys:String>
+	<sys:String x:Key="TechniqueRange">难度系数范围</sys:String>
 	<sys:String x:Key="TechniqueDifficultyLevel">难度级别</sys:String>
 
 	<!-- Messagings -->

@@ -420,10 +420,12 @@
             </param>
             <param name="Count">The number of the technique used.</param>
             <param name="Total">The total difficulty.</param>
-            <param name="Max">The maximum difficulty of all this technique instances.</param>
+            <param name="MinToMax">
+            The difficulty that describes minimum and maximum difficulty of the current technique.
+            </param>
             <param name="DifficultyLevel">Indicates the difficulty level.</param>
         </member>
-        <member name="M:Sudoku.Windows.DifficultyInfo.#ctor(System.String,System.Int32,System.Decimal,System.Decimal,Sudoku.Solving.Manual.DifficultyLevel)">
+        <member name="M:Sudoku.Windows.DifficultyInfo.#ctor(System.String,System.Int32,System.Decimal,System.String,Sudoku.Solving.Manual.DifficultyLevel)">
             <summary>
             Indicates the difficulty information used for gather the technique information of a puzzle.
             </summary>
@@ -432,7 +434,9 @@
             </param>
             <param name="Count">The number of the technique used.</param>
             <param name="Total">The total difficulty.</param>
-            <param name="Max">The maximum difficulty of all this technique instances.</param>
+            <param name="MinToMax">
+            The difficulty that describes minimum and maximum difficulty of the current technique.
+            </param>
             <param name="DifficultyLevel">Indicates the difficulty level.</param>
         </member>
         <member name="T:Sudoku.Windows.ExportAnalysisResultWindow">

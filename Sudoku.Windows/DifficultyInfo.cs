@@ -10,8 +10,10 @@ namespace Sudoku.Windows
 	/// </param>
 	/// <param name="Count">The number of the technique used.</param>
 	/// <param name="Total">The total difficulty.</param>
-	/// <param name="Max">The maximum difficulty of all this technique instances.</param>
+	/// <param name="MinToMax">
+	/// The difficulty that describes minimum and maximum difficulty of the current technique.
+	/// </param>
 	/// <param name="DifficultyLevel">Indicates the difficulty level.</param>
 	public sealed record DifficultyInfo(
-		string? Technique, int Count, decimal Total, decimal Max, DifficultyLevel DifficultyLevel);
+		string? Technique, int Count, decimal Total, string MinToMax, DifficultyLevel DifficultyLevel);
 }

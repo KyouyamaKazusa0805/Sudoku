@@ -452,7 +452,7 @@
 								<GridView AllowsColumnReorder="False">
 									<GridView.Columns>
 										<GridViewColumn Header="{DynamicResource TechniqueHeader}"
-														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.47}">
+														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.43}">
 											<GridViewColumn.CellTemplate>
 												<DataTemplate>
 													<TextBlock Text="{Binding Technique}" />
@@ -475,11 +475,11 @@
 												</DataTemplate>
 											</GridViewColumn.CellTemplate>
 										</GridViewColumn>
-										<GridViewColumn Header="{DynamicResource TechniqueMax}"
-														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.11}">
+										<GridViewColumn Header="{DynamicResource TechniqueRange}"
+														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.15}">
 											<GridViewColumn.CellTemplate>
 												<DataTemplate>
-													<TextBlock Text="{Binding Max}" />
+													<TextBlock Text="{Binding MinToMax}" />
 												</DataTemplate>
 											</GridViewColumn.CellTemplate>
 										</GridViewColumn>

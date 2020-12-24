@@ -314,7 +314,7 @@
 	<sys:String x:Key="TechniqueHeader">Technique</sys:String>
 	<sys:String x:Key="TechniqueCount">Count</sys:String>
 	<sys:String x:Key="TechniqueTotal">Total</sys:String>
-	<sys:String x:Key="TechniqueMax">Max</sys:String>
+	<sys:String x:Key="TechniqueRange">Range</sys:String>
 	<sys:String x:Key="TechniqueDifficultyLevel">Difficulty Level</sys:String>
 	
 	<!-- Messagings -->

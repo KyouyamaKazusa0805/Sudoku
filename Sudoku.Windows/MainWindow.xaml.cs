@@ -1042,7 +1042,7 @@ namespace Sudoku.Windows
 				{
 					string name = techniqueGroup.Key;
 					int count = techniqueGroup.Count();
-					decimal total = 0, maximum = 0;
+					decimal total = 0, minimum = decimal.MaxValue, maximum = 0;
 					var minDifficultyLevel = DifficultyLevel.LastResort;
 					var maxDifficultyLevel = DifficultyLevel.Unknown;
 					foreach (var step in techniqueGroup)
@@ -1050,16 +1050,31 @@ namespace Sudoku.Windows
 						summary += step.Difficulty;
 						summaryCount++;
 						total += step.Difficulty;
+						minimum = Math.Min(step.Difficulty, minimum);
 						maximum = Math.Max(step.Difficulty, maximum);
 						summaryMax = Math.Max(step.Difficulty, maximum);
 						minDifficultyLevel = Algorithms.Min(step.DifficultyLevel, minDifficultyLevel);
 						maxDifficultyLevel = Algorithms.Max(step.DifficultyLevel, maxDifficultyLevel);
 					}
 
-					collection.Add(new(name, count, total, maximum, minDifficultyLevel | maxDifficultyLevel));
+					if (minimum == maximum)
+					{
+						collection.Add(
+							new(
+								name, count, total, minimum.ToString("0.0"),
+								minDifficultyLevel | maxDifficultyLevel));
+					}
+					else
+					{
+						collection.Add(
+							new(
+								name, count, total, $"{minimum:0.0} - {maximum:0.0}",
+								minDifficultyLevel | maxDifficultyLevel));
+					}
 				}
 
-				collection.Add(new(null, summaryCount, summary, summaryMax, DifficultyLevel.Unknown));
+				collection.Add(
+					new(null, summaryCount, summary, summaryMax.ToString("0.0"), DifficultyLevel.Unknown));
 
 				_listViewSummary.ItemsSource = collection;
 			}
