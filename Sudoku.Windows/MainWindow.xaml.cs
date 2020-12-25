@@ -1038,6 +1038,7 @@ namespace Sudoku.Windows
 				// even if fields are public.
 				// Therefore, here may use anonymous type is okay, but using value tuples
 				// is bad.
+				var puzzleDifficultyLevel = DifficultyLevel.Unknown;
 				var collection = new List<DifficultyInfo>();
 				decimal summary = 0, summaryMax = 0;
 				int summaryCount = 0;
@@ -1058,10 +1059,12 @@ namespace Sudoku.Windows
 						total += step.Difficulty;
 						minimum = Math.Min(step.Difficulty, minimum);
 						maximum = Math.Max(step.Difficulty, maximum);
-						summaryMax = Math.Max(step.Difficulty, maximum);
 						minDifficultyLevel = Algorithms.Min(step.DifficultyLevel, minDifficultyLevel);
 						maxDifficultyLevel = Algorithms.Max(step.DifficultyLevel, maxDifficultyLevel);
 					}
+
+					summaryMax = Math.Max(summaryMax, maximum);
+					puzzleDifficultyLevel = Algorithms.Max(puzzleDifficultyLevel, maxDifficultyLevel);
 
 					if (minimum == maximum)
 					{
@@ -1080,7 +1083,7 @@ namespace Sudoku.Windows
 				}
 
 				collection.Add(
-					new(null, summaryCount, summary, summaryMax.ToString("0.0"), DifficultyLevel.Unknown));
+					new(null, summaryCount, summary, summaryMax.ToString("0.0"), puzzleDifficultyLevel));
 
 				_listViewSummary.ItemsSource = collection;
 			}

@@ -452,7 +452,7 @@
 								<GridView AllowsColumnReorder="False">
 									<GridView.Columns>
 										<GridViewColumn Header="{DynamicResource TechniqueHeader}"
-														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.43}">
+														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.33}">
 											<GridViewColumn.CellTemplate>
 												<DataTemplate>
 													<TextBlock Text="{Binding Technique}" />
@@ -484,7 +484,7 @@
 											</GridViewColumn.CellTemplate>
 										</GridViewColumn>
 										<GridViewColumn Header="{DynamicResource TechniqueDifficultyLevel}"
-														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.15}">
+														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.25}">
 											<GridViewColumn.CellTemplate>
 												<DataTemplate>
 													<TextBlock Text="{Binding DifficultyLevel,Converter={StaticResource di2tcvt}}"
