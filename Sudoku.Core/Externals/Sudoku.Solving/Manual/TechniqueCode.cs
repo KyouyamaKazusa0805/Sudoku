@@ -29,6 +29,12 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the hidden single.
 		/// </summary>
 		[TechniqueDisplay("Hidden Single")]
+		HiddenSingleBlock,
+
+		/// <summary>
+		/// Indicates the hidden single.
+		/// </summary>
+		[TechniqueDisplay("Hidden Single")]
 		HiddenSingleRow,
 
 		/// <summary>
@@ -36,12 +42,6 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		[TechniqueDisplay("Hidden Single")]
 		HiddenSingleColumn,
-
-		/// <summary>
-		/// Indicates the hidden single.
-		/// </summary>
-		[TechniqueDisplay("Hidden Single")]
-		HiddenSingleBlock,
 
 		/// <summary>
 		/// Indicates the naked single.

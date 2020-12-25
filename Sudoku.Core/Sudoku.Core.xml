@@ -3803,17 +3803,17 @@
             Indicates the last digit.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingleBlock">
+            <summary>
+            Indicates the hidden single.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingleRow">
             <summary>
             Indicates the hidden single.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingleColumn">
-            <summary>
-            Indicates the hidden single.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingleBlock">
             <summary>
             Indicates the hidden single.
             </summary>
