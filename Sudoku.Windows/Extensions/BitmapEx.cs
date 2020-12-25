@@ -27,17 +27,12 @@ namespace Sudoku.Windows.Extensions
 			var hBitmap = @this.GetHbitmap();
 			var result = Imaging.CreateBitmapSourceFromHBitmap(
 				hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-			DeleteObject(hBitmap);
+			delete(hBitmap);
 			return result;
-		}
 
-		/// <summary>
-		/// Delete the object.
-		/// </summary>
-		/// <param name="hObject">The handle of the object.</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		[method: DllImport("gdi32.dll")]
-		[return: MarshalAs(UnmanagedType.Bool)]
-		private static extern bool DeleteObject([In] IntPtr hObject);
+			[method: DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+			[return: MarshalAs(UnmanagedType.Bool)]
+			static extern bool delete([In] IntPtr hObject);
+		}
 	}
 }

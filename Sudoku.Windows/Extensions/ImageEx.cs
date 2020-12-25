@@ -13,7 +13,10 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The image.</param>
 		/// <param name="width">(<see langword="out"/> parameter) The width.</param>
 		/// <param name="height">(<see langword="out"/> parameter) The height.</param>
-		public static void Deconstruct(this Image @this, out double width, out double height) =>
-			(width, height) = (@this.Width, @this.Height);
+		public static void Deconstruct(this Image @this, out double width, out double height)
+		{
+			width = @this.Width;
+			height = @this.Height;
+		}
 	}
 }

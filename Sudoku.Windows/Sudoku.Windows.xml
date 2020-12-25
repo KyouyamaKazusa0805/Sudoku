@@ -530,13 +530,6 @@
             <returns>The target image result.</returns>
             <seealso cref="T:System.Windows.Media.ImageSource"/>
         </member>
-        <member name="M:Sudoku.Windows.Extensions.BitmapEx.DeleteObject(System.IntPtr)">
-            <summary>
-            Delete the object.
-            </summary>
-            <param name="hObject">The handle of the object.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
         <member name="T:Sudoku.Windows.Extensions.BitmapSourceEx">
             <summary>
             Provides extension methods on <see cref="T:System.Windows.Media.Imaging.BitmapSource"/>.
@@ -679,7 +672,7 @@
             </list>
             </exception>
         </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromHSL(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromHsl(System.Int32,System.Int32,System.Int32)">
             <summary>
             Get a new color from the specified H, S and L values.
             </summary>
@@ -688,7 +681,7 @@
             <param name="l">The L value.</param>
             <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
         </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromHexString(System.String)">
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromHex(System.String)">
             <summary>
             Get the specified color from the specified hex string such as "<c>#FFFFFF</c>".
             </summary>

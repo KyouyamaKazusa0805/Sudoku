@@ -147,7 +147,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="s">The S value.</param>
 		/// <param name="l">The L value.</param>
 		/// <returns>The <see cref="WColor"/>.</returns>
-		public static WColor FromHSL(int h, int s, int l)
+		public static WColor FromHsl(int h, int s, int l)
 		{
 			byte[] bytes = BitConverter.GetBytes(hls2Rgb(h, l, s));
 			return WColor.FromArgb(255, bytes[0], bytes[1], bytes[2]);
@@ -161,7 +161,7 @@ namespace Sudoku.Windows.Extensions
 		/// </summary>
 		/// <param name="hex">The hex string.</param>
 		/// <returns>The <see cref="WColor"/>.</returns>
-		public static WColor FromHexString(string hex) =>
+		public static WColor FromHex(string hex) =>
 			WColor.FromRgb(
 				Convert.ToByte(hex[1..3], 16),
 				Convert.ToByte(hex[3..5], 16),
