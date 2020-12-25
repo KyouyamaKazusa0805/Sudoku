@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 					for (int size = 2, min = Math.Min(relativeAlses.Count, _maxSize); size <= min; size++)
 					{
-						foreach (var combination in relativeAlses.ToArray().GetSubsets(size))
+						foreach (var combination in relativeAlses.GetSubsets(size))
 						{
 							// Throw-when-use-out mode.
 							var tempGrid = grid;

@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 				var globalElimMap = conclusionList[digit];
 				int mask = candMap.Regions;
-				var baseSetsList = mask.GetAllSets().ToArray().GetSubsets(size);
+				var baseSetsList = mask.GetAllSets().GetSubsets(size);
 
 				// Iterate on each combination.
 				foreach (int[] baseSets in baseSetsList)

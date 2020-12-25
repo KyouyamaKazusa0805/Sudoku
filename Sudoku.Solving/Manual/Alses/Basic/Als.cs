@@ -220,7 +220,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				list.AddRange(emptyCells);
 				for (int size = 2; size <= emptyCells.Length - 1; size++)
 				{
-					foreach (int[] cells in list.ToArray().GetSubsets(size))
+					foreach (int[] cells in list.GetSubsets(size))
 					{
 						var map = new Cells(cells);
 						if (map.BlockMask.IsPowerOfTwo() && region >= 9)

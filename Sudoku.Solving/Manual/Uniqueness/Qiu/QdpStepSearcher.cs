@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Annotations;
@@ -121,7 +120,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				// Iterate on each combination.
 				for (int size = 2, count = pairMask.PopCount(); size < count; size++)
 				{
-					foreach (int[] digits in pairMask.GetAllSets().ToArray().GetSubsets(size))
+					foreach (int[] digits in pairMask.GetAllSets().GetSubsets(size))
 					{
 						// Step 2: To determine whether the digits in pair cells
 						// will only appears in square cells.

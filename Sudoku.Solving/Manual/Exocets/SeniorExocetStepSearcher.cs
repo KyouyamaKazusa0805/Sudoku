@@ -94,7 +94,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					continue;
 				}
 				int bOrT = isRow ? b1 / 9 / 3 : b1 % 9 / 3; // Base or target (B or T).
-				foreach (int[] comb in tempTarget.ToArray().GetSubsets(2))
+				foreach (int[] comb in tempTarget.GetSubsets(2))
 				{
 					[MethodImpl(MethodImplOptions.AggressiveInlining)] static int a(int v) => v / 9 / 3;
 					[MethodImpl(MethodImplOptions.AggressiveInlining)] static int b(int v) => v % 9 / 3;

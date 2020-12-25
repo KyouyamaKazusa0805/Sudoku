@@ -12,6 +12,46 @@ namespace System
 	public static class Algorithms
 	{
 		/// <summary>
+		/// Sort the specified array.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
+		/// <param name="comparer">The method to compare two elements.</param>
+		/// <remarks>
+		/// If you want to use this method, please note that the <typeparamref name="T"/> may not be the built-in
+		/// types such as <see cref="int"/>, <see cref="float"/> or so on, because they can use operators directly.
+		/// </remarks>
+		[CLSCompliant(false)]
+		public static unsafe void Sort<T>(this T[] @this, delegate*<in T, in T, int> comparer)
+		{
+			q(0, @this.Length - 1, @this, comparer);
+
+			static void q(int l, int r, T[] @this, delegate*<in T, in T, int> comparer)
+			{
+				if (l < r)
+				{
+					int i = l, j = r - 1;
+					var middle = @this[(l + r) / 2];
+					while (true)
+					{
+						while (i < r && comparer(@this[i], middle) < 0) i++;
+						while (j > 0 && comparer(@this[j], middle) > 0) j--;
+						if (i == j) break;
+
+						var temp = @this[i];
+						@this[i] = @this[j];
+						@this[j] = temp;
+
+						if (comparer(@this[i], @this[j]) == 0) j--;
+					}
+
+					q(l, i, @this, comparer);
+					q(i + 1, r, @this, comparer);
+				}
+			}
+		}
+
+		/// <summary>
 		/// Get all mask combinations.
 		/// </summary>
 		/// <param name="value">The mask.</param>
@@ -29,7 +69,7 @@ namespace System
 		/// <returns>The result list.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static short[] GetMaskSubsets(short value, int size) => (
-			from target in value.GetAllSets().ToArray().GetSubsets(size)
+			from target in value.GetAllSets().GetSubsets(size)
 			select CreateBitsInt16(target)).ToArray();
 
 		/// <summary>

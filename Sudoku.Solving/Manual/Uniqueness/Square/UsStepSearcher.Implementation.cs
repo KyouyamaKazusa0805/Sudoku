@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using static Sudoku.Constants.Processings;
@@ -24,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				return;
 			}
 
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
+			foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -85,7 +84,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				return;
 			}
 
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
+			foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -139,7 +138,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		partial void CheckType3(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
+			foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -237,7 +236,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		partial void CheckType4(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
+			foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)

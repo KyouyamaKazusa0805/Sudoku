@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -53,7 +52,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				{
 					mask &= (short)~(1 << grid[cell]);
 				}
-				foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(size))
+				foreach (int[] digits in mask.GetAllSets().GetSubsets(size))
 				{
 					short tempMask = mask;
 					var map = Cells.Empty;
