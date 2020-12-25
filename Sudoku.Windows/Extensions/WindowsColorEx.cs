@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Sudoku.DocComments;
+using static System.Convert;
 using DColor = System.Drawing.Color;
 using WColor = System.Windows.Media.Color;
 
@@ -57,14 +58,6 @@ namespace Sudoku.Windows.Extensions
 		/// <returns>The target color.</returns>
 		public static DColor ToDColor(this in WColor @this) =>
 			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
-
-		/// <summary>
-		/// Convert <see cref="DColor"/> to <see cref="WColor"/>.
-		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
-		/// <returns>The target color.</returns>
-		public static WColor ToWColor(this in DColor @this) =>
-			WColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 
 		/// <summary>
 		/// Converts the <see cref="WColor"/> to the specified hex string.
@@ -162,9 +155,6 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="hex">The hex string.</param>
 		/// <returns>The <see cref="WColor"/>.</returns>
 		public static WColor FromHex(string hex) =>
-			WColor.FromRgb(
-				Convert.ToByte(hex[1..3], 16),
-				Convert.ToByte(hex[3..5], 16),
-				Convert.ToByte(hex[5..], 16));
+			WColor.FromRgb(ToByte(hex[1..3], 16), ToByte(hex[3..5], 16), ToByte(hex[5..], 16));
 	}
 }

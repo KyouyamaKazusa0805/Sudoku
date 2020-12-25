@@ -543,6 +543,19 @@
             <param name="bitmapSource">(<see langword="this"/> parameter) The bitmap source.</param>
             <returns>The image.</returns>
         </member>
+        <member name="T:Sudoku.Windows.Extensions.DrawingColorEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Color"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Color"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.DrawingColorEx.ToWColor(System.Drawing.Color@)">
+            <summary>
+            Convert <see cref="T:System.Drawing.Color"/> to <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <returns>The target color.</returns>
+        </member>
         <member name="T:Sudoku.Windows.Extensions.ImageEx">
             <summary>
             Provides extension methods on <see cref="T:System.Windows.Controls.Image"/>.
@@ -635,13 +648,6 @@
         <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToDColor(System.Windows.Media.Color@)">
             <summary>
             Convert <see cref="T:System.Windows.Media.Color"/> to <see cref="T:System.Drawing.Color"/>.
-            </summary>
-            <param name="this">(<see langword="this in"/> parameter) The color.</param>
-            <returns>The target color.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToWColor(System.Drawing.Color@)">
-            <summary>
-            Convert <see cref="T:System.Drawing.Color"/> to <see cref="T:System.Windows.Media.Color"/>.
             </summary>
             <param name="this">(<see langword="this in"/> parameter) The color.</param>
             <returns>The target color.</returns>
