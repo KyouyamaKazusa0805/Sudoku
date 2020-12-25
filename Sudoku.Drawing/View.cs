@@ -6,7 +6,7 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// Encapsulates a view when displaying the information on forms.
 	/// </summary>
-	public sealed record View
+	public sealed class View
 	{
 		/// <summary>
 		/// Indicates all cells used.

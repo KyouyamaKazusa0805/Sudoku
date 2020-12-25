@@ -11,24 +11,44 @@ namespace Sudoku.Drawing
 	/// Different with <see cref="View"/>, this data structure can add and remove the items
 	/// in the current collection.
 	/// </summary>
-	/// <param name="Cells">All cells used.</param>
-	/// <param name="Candidates">All candidates used.</param>
-	/// <param name="Regions">All regions used.</param>
-	/// <param name="Links">All links used.</param>
-	/// <param name="DirectLines">All direct lines.</param>
 	/// <seealso cref="View"/>
-	public sealed record MutableView(
-		ICollection<DrawingInfo>? Cells, ICollection<DrawingInfo>? Candidates,
-		ICollection<DrawingInfo>? Regions, ICollection<Link>? Links,
-		ICollection<(Cells Start, Cells End)>? DirectLines)
+	public sealed class MutableView
 	{
 		/// <inheritdoc cref="DefaultConstructor"/>
 		public MutableView()
-			: this(
-				new List<DrawingInfo>(), new List<DrawingInfo>(), new List<DrawingInfo>(), new List<Link>(),
-				new List<(Cells, Cells)>())
 		{
+			Cells = new List<DrawingInfo>();
+			Candidates = new List<DrawingInfo>();
+			Regions = new List<DrawingInfo>();
+			Links = new List<Link>();
+			DirectLines = new List<(Cells, Cells)>();
 		}
+
+
+		/// <summary>
+		/// Indicates all cells used.
+		/// </summary>
+		public ICollection<DrawingInfo>? Cells { get; init; }
+
+		/// <summary>
+		/// Indicates all candidates used.
+		/// </summary>
+		public ICollection<DrawingInfo>? Candidates { get; init; }
+
+		/// <summary>
+		/// Indicates all regions used.
+		/// </summary>
+		public ICollection<DrawingInfo>? Regions { get; init; }
+
+		/// <summary>
+		/// Indicates all links used.
+		/// </summary>
+		public ICollection<Link>? Links { get; init; }
+
+		/// <summary>
+		/// Indicates all direct lines.
+		/// </summary>
+		public ICollection<(Cells Start, Cells End)>? DirectLines { get; init; }
 
 
 		/// <summary>
