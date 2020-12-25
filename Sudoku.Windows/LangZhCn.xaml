@@ -578,4 +578,19 @@
 	<!-- Punctuation marks -->
 	<sys:String x:Key="Comma">，</sys:String>
 	<sys:String x:Key="Period">。</sys:String>
+
+	<!-- ColorPicker -->
+	<sys:String x:Key="ColorPickerTitle">请选择一个颜色……</sys:String>
+	<sys:String x:Key="ColorPickerButtonClose">关闭</sys:String>
+	<sys:String x:Key="ColorPickerButtonOk">选好嘞！</sys:String>
+	<sys:String x:Key="ColorPickerButtonMinimumView">&lt;&lt; 更少</sys:String>
+	<sys:String x:Key="ColorPickerButtonMaximumView">更多 &gt;&gt;</sys:String>
+
+	<!-- ColorPickerControl -->
+	<sys:String x:Key="ColorPickerControlTabItemPicker1">页面 1（RGB）</sys:String>
+	<sys:String x:Key="ColorPickerControlTabItemPicker2">页面 2（HSV）</sys:String>
+	<sys:String x:Key="ColorPickerControlLabelRgb">红、绿、蓝、透明度</sys:String>
+	<sys:String x:Key="ColorPickerControlLabelHsv">色调、饱和度、明度</sys:String>
+	<sys:String x:Key="ColorPickerControlLabelHue">色调</sys:String>
+	<sys:String x:Key="ColorPickerControlLabelCustomColor">自定义颜色（Ctrl+鼠标左键来设置）</sys:String>
 </ResourceDictionary>

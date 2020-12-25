@@ -16,9 +16,9 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Grid>
-			<TabControl x:Name="_tabControl" Margin="0,0,0,0" HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch">
-				<TabItem Header="Picker 1">
+			<TabControl x:Name="_tabControl" Margin="0,0,0,0"
+						HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<TabItem Header="{DynamicResource ColorPickerControlTabItemPicker1}">
 					<Grid>
 						<Image x:Name="_sampleImage"
 							   Source="pack://application:,,,/Sudoku.Windows;component/Resources/ColorPalette.png"
@@ -27,15 +27,15 @@
 							   MouseDown="SampleImage_MouseDown"/>
 					</Grid>
 				</TabItem>
-				<TabItem Header="Picker 2">
+				<TabItem Header="{DynamicResource ColorPickerControlTabItemPicker2}">
 					<Grid>
 						<Image x:Name="_sampleImage2"
 							   Source="pack://application:,,,/Sudoku.Windows;component/Resources/ColorSample.png"
 							   HorizontalAlignment="Left" Margin="2" VerticalAlignment="Top"
 							   Width="254" Height="254"
 							   MouseDown="SampleImage2_MouseDown"/>
-						<Label x:Name="_label" Content="Hue" HorizontalAlignment="Left" Margin="261,2,0,0"
-							   VerticalAlignment="Top"/>
+						<Label x:Name="_label" Content="{DynamicResource ColorPickerControlLabelHue}"
+							   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="261,2,0,0"/>
 						<Slider x:Name="_pickerHueSlider" HorizontalAlignment="Left" Margin="268,33,0,0"
 								VerticalAlignment="Top" Orientation="Vertical" Height="199" Maximum="360"
 								SmallChange="1" Minimum="1" LargeChange="30"
@@ -46,8 +46,8 @@
 		</Grid>
 
 		<Grid Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-			<Label x:Name="_rgbLabel" Content="Red, Green, Blue, Alpha" HorizontalAlignment="Left"
-				   VerticalAlignment="Top"/>
+			<Label x:Name="_rgbLabel" Content="{DynamicResource ColorPickerControlLabelRgb}"
+				   HorizontalAlignment="Left" VerticalAlignment="Top"/>
 			<c:ColorComponentSlider x:Name="_rSlider" HorizontalAlignment="Stretch" Margin="0,26,0,0"
 									VerticalAlignment="Top" FormatString="F0"
 									ValueChanged="RSlider_ValueChanged"/>
@@ -61,7 +61,8 @@
 									VerticalAlignment="Top" FormatString="F0"
 									ValueChanged="ASlider_ValueChanged"/>
 
-			<Label x:Name="_hsvLabel" Content="Hue, Saturation, Value" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top"/>
+			<Label x:Name="_hsvLabel" Content="{DynamicResource ColorPickerControlLabelHsv}"
+				   HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top"/>
 			<c:ColorComponentSlider x:Name="_hSlider" HorizontalAlignment="Stretch" Margin="0,169,0,0"
 									VerticalAlignment="Top" FormatString="F0"
 									ValueChanged="HSlider_ValueChanged"/>
@@ -74,7 +75,7 @@
 			<c:Swatch x:Name="_customColorSwatch" HorizontalAlignment="Left" Margin="4,289,0,0"
 					  VerticalAlignment="Stretch" Width="230" Editable="true"
 					  PickingColor="Swatch_PickColor"/>
-			<Label x:Name="_customColorsLabel" Content="Custom Colors (Ctrl+Click to set)"
+			<Label x:Name="_customColorsLabel" Content="{DynamicResource ColorPickerControlLabelCustomColor}"
 				   HorizontalAlignment="Left" Margin="0,258,0,0" VerticalAlignment="Top"/>
 		</Grid>
 

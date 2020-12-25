@@ -578,4 +578,19 @@
 	<!-- Punctuation marks -->
 	<sys:String x:Key="Comma">, </sys:String>
 	<sys:String x:Key="Period">. </sys:String>
+	
+	<!-- ColorPicker -->
+	<sys:String x:Key="ColorPickerTitle">Choose a color...</sys:String>
+	<sys:String x:Key="ColorPickerButtonClose">Close</sys:String>
+	<sys:String x:Key="ColorPickerButtonOk">OK</sys:String>
+	<sys:String x:Key="ColorPickerButtonMinimumView">&lt;&lt; Simple</sys:String>
+	<sys:String x:Key="ColorPickerButtonMaximumView">Advanced &gt;&gt;</sys:String>
+	
+	<!-- ColorPickerControl -->
+	<sys:String x:Key="ColorPickerControlTabItemPicker1">Picker 1 (RGB)</sys:String>
+	<sys:String x:Key="ColorPickerControlTabItemPicker2">Picker 2 (HSV)</sys:String>
+	<sys:String x:Key="ColorPickerControlLabelRgb">Red, Green, Blue, Alpha</sys:String>
+	<sys:String x:Key="ColorPickerControlLabelHsv">Hue, Saturation, Value</sys:String>
+	<sys:String x:Key="ColorPickerControlLabelHue">Hue</sys:String>
+	<sys:String x:Key="ColorPickerControlLabelCustomColor">Custom Colors (Ctrl+Click to set)</sys:String>
 </ResourceDictionary>

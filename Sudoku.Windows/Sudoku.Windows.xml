@@ -2321,14 +2321,14 @@
             ColorPicker
             </summary>
         </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPicker._widthMax">
+        <member name="F:Sudoku.Windows.Tooling.ColorPicker.WidthMaxValue">
             <summary>
-            The maximum width that the window lies.
+            The minimum or maximum width of the window.
             </summary>
         </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPicker._widthMin">
+        <member name="F:Sudoku.Windows.Tooling.ColorPicker.WidthMinValue">
             <summary>
-            The minimum width that the window lies.
+            The minimum or maximum width of the window.
             </summary>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPicker.#ctor">
@@ -3039,6 +3039,36 @@
         <member name="P:System.SystemClipboard.Image">
             <summary>
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

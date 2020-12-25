@@ -12,14 +12,9 @@ namespace Sudoku.Windows.Tooling
 	public partial class ColorPicker : Window
 	{
 		/// <summary>
-		/// The maximum width that the window lies.
+		/// The minimum or maximum width of the window.
 		/// </summary>
-		protected readonly int _widthMax = 574;
-
-		/// <summary>
-		/// The minimum width that the window lies.
-		/// </summary>
-		protected readonly int _widthMin = 342;
+		private const int WidthMaxValue = 574, WidthMinValue = 342;
 
 
 		/// <inheritdoc cref="DefaultConstructor"/>
@@ -52,14 +47,14 @@ namespace Sudoku.Windows.Tooling
 			if (SimpleMode)
 			{
 				SimpleMode = false;
-				_minMaxViewButton.Content = "<< Simple";
-				Width = _widthMax;
+				_buttonMinMaxView.Content = Application.Current.Resources["ColorPickerButtonMinimumView"];
+				Width = WidthMaxValue;
 			}
 			else
 			{
 				SimpleMode = true;
-				_minMaxViewButton.Content = "Advanced >>";
-				Width = _widthMin;
+				_buttonMinMaxView.Content = Application.Current.Resources["ColorPickerButtonMaximumView"];
+				Width = WidthMinValue;
 			}
 		}
 
@@ -71,14 +66,14 @@ namespace Sudoku.Windows.Tooling
 			if (SimpleMode)
 			{
 				SimpleMode = false;
-				_minMaxViewButton.Content = "<< Simple";
-				Width = _widthMax;
+				_buttonMinMaxView.Content = Application.Current.Resources["ColorPickerButtonMinimumView"];
+				Width = WidthMaxValue;
 			}
 			else
 			{
 				SimpleMode = true;
-				_minMaxViewButton.Content = "Advanced >>";
-				Width = _widthMin;
+				_buttonMinMaxView.Content = Application.Current.Resources["ColorPickerButtonMaximumView"];
+				Width = WidthMinValue;
 			}
 		}
 
