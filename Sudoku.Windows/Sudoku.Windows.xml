@@ -516,6 +516,40 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.Extensions.BitmapEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Bitmap"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.BitmapEx.ToImageSource(System.Drawing.Bitmap)">
+            <summary>
+            Convert the <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Windows.Media.ImageSource"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The bitmap image.</param>
+            <returns>The target image result.</returns>
+            <seealso cref="T:System.Windows.Media.ImageSource"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.BitmapEx.DeleteObject(System.IntPtr)">
+            <summary>
+            Delete the object.
+            </summary>
+            <param name="hObject">The handle of the object.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Windows.Extensions.BitmapSourceEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Media.Imaging.BitmapSource"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Media.Imaging.BitmapSource"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.BitmapSourceEx.GetBitmapImage(System.Windows.Media.Imaging.BitmapSource)">
+            <summary>
+            Get the <see cref="T:System.Windows.Media.Imaging.BitmapImage"/> from the specified <see cref="T:System.Windows.Media.Imaging.BitmapSource"/>.
+            </summary>
+            <param name="bitmapSource">(<see langword="this"/> parameter) The bitmap source.</param>
+            <returns>The image.</returns>
+        </member>
         <member name="T:Sudoku.Windows.Extensions.ImageEx">
             <summary>
             Provides extension methods on <see cref="T:System.Windows.Controls.Image"/>.
@@ -570,6 +604,140 @@
             <param name="this">(<see langword="this"/> parameter) The key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Windows.Extensions.WindowsColorEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Media.Color"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.GetHue(System.Windows.Media.Color@)">
+            <summary>
+            Get the hue from the specified <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <returns>A <see cref="T:System.Single"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.GetBrightness(System.Windows.Media.Color@)">
+            <summary>
+            Get the brightness from the specified <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <returns>A <see cref="T:System.Single"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.GetSaturation(System.Windows.Media.Color@)">
+            <summary>
+            Get the saturation from the specified <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <returns>A <see cref="T:System.Single"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.Deconstruct(System.Windows.Media.Color@,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
+            <param name="r">(<see langword="out"/> parameter) The red value.</param>
+            <param name="g">(<see langword="out"/> parameter) The green value.</param>
+            <param name="b">(<see langword="out"/> parameter) The blue value.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToDColor(System.Windows.Media.Color@)">
+            <summary>
+            Convert <see cref="T:System.Windows.Media.Color"/> to <see cref="T:System.Drawing.Color"/>.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <returns>The target color.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToWColor(System.Drawing.Color@)">
+            <summary>
+            Convert <see cref="T:System.Drawing.Color"/> to <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <returns>The target color.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToHexString(System.Windows.Media.Color@)">
+            <summary>
+            Converts the <see cref="T:System.Windows.Media.Color"/> to the specified hex string.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromAhsb(System.Int32,System.Single,System.Single,System.Single)">
+            <summary>
+            Get a color from alpha, hue, saturation and brightness.
+            </summary>
+            <param name="alpha">The alpha.</param>
+            <param name="hue">The hue.</param>
+            <param name="saturation">The saturation.</param>
+            <param name="brightness">The brightness.</param>
+            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when:
+            <list type="bullet">
+            <item><paramref name="alpha"/> is less than 0 or greater than 255.</item>
+            <item><paramref name="hue"/> is less than 0 or greater than 360.</item>
+            <item><paramref name="saturation"/> is less than 0 or greater than 1.</item>
+            <item><paramref name="brightness"/> is less than 0 or greater than 1.</item>
+            </list>
+            </exception>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromHSL(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get a new color from the specified H, S and L values.
+            </summary>
+            <param name="h">The H value.</param>
+            <param name="s">The S value.</param>
+            <param name="l">The L value.</param>
+            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromHexString(System.String)">
+            <summary>
+            Get the specified color from the specified hex string such as "<c>#FFFFFF</c>".
+            </summary>
+            <param name="hex">The hex string.</param>
+            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Windows.Extensions.WindowsPointEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Point"/>, <see cref="T:System.Drawing.Point"/>
+            and <see cref="T:System.Drawing.PointF"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Point"/>
+            <seealso cref="T:System.Drawing.Point"/>
+            <seealso cref="T:System.Drawing.PointF"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.Deconstruct(System.Windows.Point,System.Double@,System.Double@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="x">(<see langword="out"/> parameter) The x component.</param>
+            <param name="y">(<see langword="out"/> parameter) The y component.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.ToWPoint(System.Drawing.Point)">
+            <summary>
+            Convert a <see cref="T:System.Drawing.Point"/> to <see cref="T:System.Windows.Point"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
+            <returns>The result of conversion.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.ToDPoint(System.Windows.Point)">
+            <summary>
+            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.Point"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
+            <returns>The result of conversion.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.ToDPointF(System.Windows.Point)">
+            <summary>
+            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.PointF"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
+            <returns>The result of conversion.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.Truncate(System.Windows.Point)">
+            <summary>
+            To truncate the point.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The point to truncate.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Windows.Extensions.WindowsSizeEx">
             <summary>
             Provides extension methods on <see cref="T:System.Windows.Size"/>.
@@ -581,6 +749,20 @@
             <param name="this">(<see langword="this in"/> parameter) The size.</param>
             <param name="width">(<see langword="out"/> parameter) The width.</param>
             <param name="height">(<see langword="out"/> parameter) The height.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.ToDSizeF(System.Windows.Size)">
+            <summary>
+            Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The current size.</param>
+            <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.ToDSize(System.Windows.Size)">
+            <summary>
+            Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The current size.</param>
+            <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
         </member>
         <member name="T:Sudoku.Windows.MainWindow">
             <summary>
@@ -2120,6 +2302,12 @@
             <param name="colors">The colors to iterate on.</param>
             <returns>The list of colors.</returns>
         </member>
+        <member name="M:Sudoku.Windows.Tooling.ColorPalette.GetWebColors">
+            <summary>
+            Get all colors especially used for HTML.
+            </summary>
+            <returns>All colors.</returns>
+        </member>
         <member name="T:Sudoku.Windows.Tooling.ColorPicker">
             <summary>
             Interaction logic for <c>ColorPicker.xaml</c>.
@@ -2294,6 +2482,23 @@
             <summary>
             Update the image for HSV.
             </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.LoadFromXml``1(System.String)">
+            <summary>
+            Deserialize the file.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="filename">The file name.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.GetXmlText``1(``0)">
+            <summary>
+            Get the text from the specified text.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.InitializeComponent">
             <summary>
@@ -2624,112 +2829,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Tooling.Util">
-            <summary>
-            Methods for the internal utilities.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.ColorHLSToRGB(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Color HLS to RGB.
-            </summary>
-            <param name="h">The H value.</param>
-            <param name="l">The L value.</param>
-            <param name="s">The S value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.ColorFromHSL(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Get a new color from the specified H, S and L values.
-            </summary>
-            <param name="h">The H value.</param>
-            <param name="s">The S value.</param>
-            <param name="l">The L value.</param>
-            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.ToHexString(System.Windows.Media.Color)">
-            <summary>
-            Converts the <see cref="T:System.Windows.Media.Color"/> to the specified hex string.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The color.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.ColorFromHexString(System.String)">
-            <summary>
-            Get the specified color from the specified hex string such as "<c>#FFFFFF</c>".
-            </summary>
-            <param name="hex">The hex string.</param>
-            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.GetBitmapImage(System.Windows.Media.Imaging.BitmapSource)">
-            <summary>
-            Get the <see cref="T:System.Windows.Media.Imaging.BitmapImage"/> from the specified <see cref="T:System.Windows.Media.Imaging.BitmapSource"/>.
-            </summary>
-            <param name="bitmapSource">The bitmap source.</param>
-            <returns>The image.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.GetHue(System.Windows.Media.Color)">
-            <summary>
-            Get the hue from the specified <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The color.</param>
-            <returns>A <see cref="T:System.Single"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.GetBrightness(System.Windows.Media.Color)">
-            <summary>
-            Get the brightness from the specified <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The color.</param>
-            <returns>A <see cref="T:System.Single"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.GetSaturation(System.Windows.Media.Color)">
-            <summary>
-            Get the saturation from the specified <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The color.</param>
-            <returns>A <see cref="T:System.Single"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.FromAhsb(System.Int32,System.Single,System.Single,System.Single)">
-            <summary>
-            Get a color from alpha, hue, saturation and brightness.
-            </summary>
-            <param name="alpha">The alpha.</param>
-            <param name="hue">The hue.</param>
-            <param name="saturation">The saturation.</param>
-            <param name="brightness">The brightness.</param>
-            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.GetWebColors">
-            <summary>
-            Get all colors especially used for HTML.
-            </summary>
-            <returns>All colors.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.SaveToXml``1(``0,System.String)">
-            <summary>
-            Serialize the specified instance to the specified file.
-            </summary>
-            <typeparam name="T">The type of the specified instance.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="filename">The file name.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.GetXmlText``1(``0)">
-            <summary>
-            Get the text from the specified text.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Util.LoadFromXml``1(``0,System.String)">
-            <summary>
-            Deserialize the file.
-            </summary>
-            <typeparam name="T">The type of the instance.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="filename">The file name.</param>
-            <returns>The instance.</returns>
-        </member>
         <member name="T:Sudoku.Windows.Tooling.ValueChangedEventHandler">
             <summary>
             Indicates the event handler when the value is changed.
@@ -2900,118 +2999,6 @@
             The color table for each difficulty level.
             </summary>
         </member>
-        <member name="T:Sudoku.Drawing.Extensions.BitmapEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
-            </summary>
-            <seealso cref="T:System.Drawing.Bitmap"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ToImageSource(System.Drawing.Bitmap)">
-            <summary>
-            Convert the <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Windows.Media.ImageSource"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The bitmap image.</param>
-            <returns>The target image result.</returns>
-            <seealso cref="T:System.Windows.Media.ImageSource"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.DeleteObject(System.IntPtr)">
-            <summary>
-            Delete the object.
-            </summary>
-            <param name="hObject">The handle of the object.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="T:Sudoku.Drawing.Extensions.WindowsColorEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Media.Color"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsColorEx.Deconstruct(System.Windows.Media.Color,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The color.</param>
-            <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
-            <param name="r">(<see langword="out"/> parameter) The red value.</param>
-            <param name="g">(<see langword="out"/> parameter) The green value.</param>
-            <param name="b">(<see langword="out"/> parameter) The blue value.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsColorEx.ToDColor(System.Windows.Media.Color)">
-            <summary>
-            Convert <see cref="T:System.Windows.Media.Color"/> to <see cref="T:System.Drawing.Color"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The color.</param>
-            <returns>The target color.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsColorEx.ToWColor(System.Drawing.Color)">
-            <summary>
-            Convert <see cref="T:System.Drawing.Color"/> to <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The color.</param>
-            <returns>The target color.</returns>
-        </member>
-        <member name="T:Sudoku.Drawing.Extensions.WindowsPointEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Point"/>, <see cref="T:System.Drawing.Point"/>
-            and <see cref="T:System.Drawing.PointF"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Point"/>
-            <seealso cref="T:System.Drawing.Point"/>
-            <seealso cref="T:System.Drawing.PointF"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsPointEx.Deconstruct(System.Windows.Point,System.Double@,System.Double@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="x">(<see langword="out"/> parameter) The x component.</param>
-            <param name="y">(<see langword="out"/> parameter) The y component.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsPointEx.ToWPoint(System.Drawing.Point)">
-            <summary>
-            Convert a <see cref="T:System.Drawing.Point"/> to <see cref="T:System.Windows.Point"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
-            <returns>The result of conversion.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsPointEx.ToDPoint(System.Windows.Point)">
-            <summary>
-            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.Point"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
-            <returns>The result of conversion.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsPointEx.ToDPointF(System.Windows.Point)">
-            <summary>
-            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.PointF"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
-            <returns>The result of conversion.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsPointEx.Truncate(System.Windows.Point)">
-            <summary>
-            To truncate the point.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The point to truncate.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Drawing.Extensions.WindowsSizeEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Size"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Size"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsSizeEx.ToDSizeF(System.Windows.Size)">
-            <summary>
-            Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The current size.</param>
-            <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.WindowsSizeEx.ToDSize(System.Windows.Size)">
-            <summary>
-            Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The current size.</param>
-            <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
-        </member>
         <member name="T:System.SystemClipboard">
             <summary>
             Encapsulates a system clipboard (calls <see cref="T:System.Windows.Clipboard"/>).
@@ -3031,6 +3018,36 @@
         <member name="P:System.SystemClipboard.Image">
             <summary>
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

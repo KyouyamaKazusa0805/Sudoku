@@ -7,7 +7,7 @@ using System.Windows.Input;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
-using Sudoku.Drawing.Extensions;
+using Sudoku.Windows.Extensions;
 
 namespace Sudoku.Windows
 {

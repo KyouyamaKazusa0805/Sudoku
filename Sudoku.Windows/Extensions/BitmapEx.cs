@@ -7,7 +7,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Sudoku.Drawing.Extensions
+namespace Sudoku.Windows.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Bitmap"/>.

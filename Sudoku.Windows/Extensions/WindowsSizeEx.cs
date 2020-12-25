@@ -1,4 +1,7 @@
-﻿using Sudoku.DocComments;
+﻿using System.Runtime.CompilerServices;
+using Sudoku.DocComments;
+using DSize = System.Drawing.Size;
+using DSizeF = System.Drawing.SizeF;
 using WSize = System.Windows.Size;
 
 namespace Sudoku.Windows.Extensions
@@ -13,7 +16,26 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this in"/> parameter) The size.</param>
 		/// <param name="width">(<see langword="out"/> parameter) The width.</param>
 		/// <param name="height">(<see langword="out"/> parameter) The height.</param>
-		public static void Deconstruct(this in WSize @this, out double width, out double height) =>
-			(width, height) = (@this.Width, @this.Height);
+		public static void Deconstruct(this in WSize @this, out double width, out double height)
+		{
+			width = @this.Width;
+			height = @this.Height;
+		}
+
+		/// <summary>
+		/// Convert the current size instance to another instance of type <see cref="DSizeF"/>.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The current size.</param>
+		/// <returns>The another instance of type <see cref="DSizeF"/>.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static DSizeF ToDSizeF(this WSize @this) => new((float)@this.Width, (float)@this.Height);
+
+		/// <summary>
+		/// Convert the current size instance to another instance of type <see cref="DSizeF"/>.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The current size.</param>
+		/// <returns>The another instance of type <see cref="DSizeF"/>.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static DSize ToDSize(this WSize @this) => new((int)@this.Width, (int)@this.Height);
 	}
 }

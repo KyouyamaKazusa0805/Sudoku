@@ -13,10 +13,10 @@ using System.Windows.Data;
 using System.Windows.Media;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Drawing.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
+using Sudoku.Windows.Extensions;
 using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
 
 namespace Sudoku.Windows

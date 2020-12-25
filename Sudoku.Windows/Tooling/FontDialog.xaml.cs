@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.DocComments;
-using Sudoku.Drawing.Extensions;
+using Sudoku.Windows.Extensions;
 using static System.Drawing.StringAlignment;
 using static System.Drawing.Text.TextRenderingHint;
 using static System.Windows.Input.Key;

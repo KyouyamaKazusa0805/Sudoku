@@ -3,7 +3,7 @@ using DPoint = System.Drawing.Point;
 using DPointF = System.Drawing.PointF;
 using WPoint = System.Windows.Point;
 
-namespace Sudoku.Drawing.Extensions
+namespace Sudoku.Windows.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="WPoint"/>, <see cref="DPoint"/>
@@ -18,7 +18,11 @@ namespace Sudoku.Drawing.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
 		/// <param name="x">(<see langword="out"/> parameter) The x component.</param>
 		/// <param name="y">(<see langword="out"/> parameter) The y component.</param>
-		public static void Deconstruct(this WPoint @this, out double x, out double y) => (x, y) = (@this.X, @this.Y);
+		public static void Deconstruct(this WPoint @this, out double x, out double y)
+		{
+			x = @this.X;
+			y = @this.Y;
+		}
 
 		/// <summary>
 		/// Convert a <see cref="DPoint"/> to <see cref="WPoint"/>.

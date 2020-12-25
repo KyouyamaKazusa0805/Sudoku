@@ -3,8 +3,8 @@ using System.Extensions;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
-using Sudoku.Drawing.Extensions;
 using Sudoku.Solving.Manual;
+using Sudoku.Windows.Extensions;
 
 namespace Sudoku.Windows.Data
 {

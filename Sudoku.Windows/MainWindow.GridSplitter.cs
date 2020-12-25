@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls.Primitives;
 using Sudoku.DocComments;
-using Sudoku.Drawing.Extensions;
+using Sudoku.Windows.Extensions;
 
 namespace Sudoku.Windows
 {

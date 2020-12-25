@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using Sudoku.DocComments;
+using Sudoku.Windows.Extensions;
+using DColor = System.Drawing.Color;
+using WColor = System.Windows.Media.Color;
 
 namespace Sudoku.Windows.Tooling
 {
@@ -60,7 +64,7 @@ namespace Sudoku.Windows.Tooling
 			BuiltInColors.Clear();
 			BuiltInColors.AddRange(
 				GetColorSwatchItems(
-					new List<Color>()
+					new List<WColor>()
 					{
 						Colors.Black,
 						Colors.Red,
@@ -107,19 +111,19 @@ namespace Sudoku.Windows.Tooling
 						Colors.WhiteSmoke,
 						Colors.AliceBlue,
 
-						Color.FromArgb(255, 5, 5, 5),
-						Color.FromArgb(255, 15, 15, 15),
-						Color.FromArgb(255, 35, 35, 35),
-						Color.FromArgb(255, 55, 55, 55),
-						Color.FromArgb(255, 75, 75, 75),
-						Color.FromArgb(255, 95, 95, 95),
-						Color.FromArgb(255, 115, 115, 115),
-						Color.FromArgb(255, 135, 135, 135),
-						Color.FromArgb(255, 155, 155, 155),
-						Color.FromArgb(255, 175, 175, 175),
-						Color.FromArgb(255, 195, 195, 195),
-						Color.FromArgb(255, 215, 215, 215),
-						Color.FromArgb(255, 235, 235, 235),
+						WColor.FromArgb(255, 5, 5, 5),
+						WColor.FromArgb(255, 15, 15, 15),
+						WColor.FromArgb(255, 35, 35, 35),
+						WColor.FromArgb(255, 55, 55, 55),
+						WColor.FromArgb(255, 75, 75, 75),
+						WColor.FromArgb(255, 95, 95, 95),
+						WColor.FromArgb(255, 115, 115, 115),
+						WColor.FromArgb(255, 135, 135, 135),
+						WColor.FromArgb(255, 155, 155, 155),
+						WColor.FromArgb(255, 175, 175, 175),
+						WColor.FromArgb(255, 195, 195, 195),
+						WColor.FromArgb(255, 215, 215, 215),
+						WColor.FromArgb(255, 235, 235, 235),
 					}));
 
 			CustomColors.Clear();
@@ -133,7 +137,18 @@ namespace Sudoku.Windows.Tooling
 		/// </summary>
 		/// <param name="colors">The colors to iterate on.</param>
 		/// <returns>The list of colors.</returns>
-		protected IEnumerable<ColorSwatchItem> GetColorSwatchItems(IReadOnlyList<Color> colors) =>
+		protected IEnumerable<ColorSwatchItem> GetColorSwatchItems(IReadOnlyList<WColor> colors) =>
 			from color in colors select new ColorSwatchItem() { Color = color, HexString = color.ToHexString() };
+
+#pragma warning disable IDE0051
+		/// <summary>
+		/// Get all colors especially used for HTML.
+		/// </summary>
+		/// <returns>All colors.</returns>
+		private static IEnumerable<WColor> GetWebColors() => (
+			from @property in typeof(DColor).GetProperties(BindingFlags.Public | BindingFlags.Static)
+			where @property.PropertyType == typeof(DColor)
+			select DColor.FromName(@property.Name).ToWColor()).ToArray();
+#pragma warning restore IDE0051
 	}
 }

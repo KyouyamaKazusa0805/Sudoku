@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Sudoku.DocComments;
+using Sudoku.Windows.Extensions;
 
 namespace Sudoku.Windows.Tooling
 {
@@ -57,10 +58,7 @@ namespace Sudoku.Windows.Tooling
 					data.HexString = CurrentColor.ToHexString();
 				}
 
-				if (ColorPickerControl is not null)
-				{
-					ColorPickerControl.CustomColorsChanged();
-				}
+				ColorPickerControl?.CustomColorsChanged();
 			}
 			else
 			{

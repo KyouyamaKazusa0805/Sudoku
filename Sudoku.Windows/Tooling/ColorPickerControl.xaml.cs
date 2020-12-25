@@ -10,9 +10,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Xml;
+using System.Xml.Serialization;
 using Sudoku.DocComments;
-using Sudoku.Drawing.Extensions;
+using Sudoku.Windows.Extensions;
 using WColor = System.Windows.Media.Color;
+using WColorEx = Sudoku.Windows.Extensions.WindowsColorEx;
 using WPoint = System.Windows.Point;
 
 namespace Sudoku.Windows.Tooling
@@ -37,6 +40,7 @@ namespace Sudoku.Windows.Tooling
 		/// The color palette.
 		/// </summary>
 		private static ColorPalette? _colorPalette;
+
 
 		/// <summary>
 		/// The color swatch 1.
@@ -77,13 +81,18 @@ namespace Sudoku.Windows.Tooling
 			_colorPalette.CustomColors = _customColorSwatch.GetColors();
 			try
 			{
-				_colorPalette.SaveToXml(filename);
+				File.WriteAllText(filename, GetXmlText(_colorPalette));
 			}
-			catch { }
+			catch
+			{
+			}
 		}
 
 		public void LoadDefaultCustomPalette() =>
-			LoadCustomPalette(Path.Combine(ColorPickerSettings.CustomColorsDirectory, ColorPickerSettings.CustomColorsFilename));
+			LoadCustomPalette(
+				Path.Combine(
+					ColorPickerSettings.CustomColorsDirectory,
+					ColorPickerSettings.CustomColorsFilename));
 
 		public void LoadCustomPalette(string filename)
 		{
@@ -93,7 +102,7 @@ namespace Sudoku.Windows.Tooling
 			{
 				try
 				{
-					_colorPalette = _colorPalette.LoadFromXml(filename);
+					_colorPalette = LoadFromXml<ColorPalette>(filename);
 
 					_customColorSwatch.SwatchListBox.ItemsSource = _colorPalette!.CustomColors;
 
@@ -105,7 +114,9 @@ namespace Sudoku.Windows.Tooling
 					_swatch1.SwatchListBox.ItemsSource = _colorSwatch1;
 					_swatch2.SwatchListBox.ItemsSource = _colorSwatch2;
 				}
-				catch { }
+				catch
+				{
+				}
 			}
 		}
 
@@ -132,9 +143,11 @@ namespace Sudoku.Windows.Tooling
 			{
 				try
 				{
-					_colorPalette = _colorPalette.LoadFromXml(ColorPickerSettings.CustomPaletteFilename);
+					_colorPalette = LoadFromXml<ColorPalette>(ColorPickerSettings.CustomPaletteFilename);
 				}
-				catch { }
+				catch
+				{
+				}
 			}
 
 			if (_colorPalette is null)
@@ -143,7 +156,8 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			_colorSwatch1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
-			_colorSwatch2.AddRange(_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
+			_colorSwatch2.AddRange(
+				_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
 
 			_swatch1.SwatchListBox.ItemsSource = _colorSwatch1;
 			_swatch2.SwatchListBox.ItemsSource = _colorSwatch2;
@@ -319,7 +333,8 @@ namespace Sudoku.Windows.Tooling
 			{
 				var z = Color.GetValueOrDefault();
 				SetColor(
-					Util.FromAhsb((int)_aSlider._slider.Value, (float)value, z.GetSaturation(), z.GetBrightness()));
+					WColorEx.FromAhsb(
+						(int)_aSlider._slider.Value, (float)value, z.GetSaturation(), z.GetBrightness()));
 			}
 		}
 
@@ -329,7 +344,10 @@ namespace Sudoku.Windows.Tooling
 			if (!_isSettingValues)
 			{
 				var z = Color.GetValueOrDefault();
-				SetColor(Color = Util.FromAhsb((int)_aSlider._slider.Value, z.GetHue(), (float)value, z.GetBrightness()));
+				Color = WColorEx.FromAhsb(
+					(int)_aSlider._slider.Value, z.GetHue(), (float)value, z.GetBrightness());
+
+				SetColor(Color);
 			}
 		}
 
@@ -339,8 +357,10 @@ namespace Sudoku.Windows.Tooling
 			if (!_isSettingValues)
 			{
 				var z = Color.GetValueOrDefault();
-				SetColor(
-					Color = Util.FromAhsb((int)_aSlider._slider.Value, z.GetHue(), z.GetSaturation(), (float)value));
+				Color = WColorEx.FromAhsb(
+					(int)_aSlider._slider.Value, z.GetHue(), z.GetSaturation(), (float)value);
+
+				SetColor(Color);
 			}
 		}
 
@@ -376,11 +396,55 @@ namespace Sudoku.Windows.Tooling
 					float newHue = sliderHue + pixel.GetHue();
 					newHue = newHue >= 360 ? newHue - 360 : newHue;
 					writableImage.SetPixel(
-						x, y, Util.FromAhsb(255, newHue, pixel.GetSaturation(), pixel.GetBrightness()));
+						x, y, WColorEx.FromAhsb(255, newHue, pixel.GetSaturation(), pixel.GetBrightness()));
 				}
 			}
 
 			_sampleImage2.Source = writableImage;
+		}
+
+
+		/// <summary>
+		/// Deserialize the file.
+		/// </summary>
+		/// <typeparam name="T">The type of the instance.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="filename">The file name.</param>
+		/// <returns>The instance.</returns>
+		private static T? LoadFromXml<T>(string filename)
+		{
+			if (File.Exists(filename))
+			{
+				using var sr = new StreamReader(filename);
+				using var xr = new XmlTextReader(sr);
+				return new XmlSerializer(typeof(T)).Deserialize(xr) is T r ? r : default;
+			}
+			else
+			{
+				return default;
+			}
+		}
+
+		/// <summary>
+		/// Get the text from the specified text.
+		/// </summary>
+		/// <typeparam name="T">The type of the element.</typeparam>
+		/// <param name="this">The instance.</param>
+		/// <returns>The string.</returns>
+		private static string GetXmlText<T>(T @this)
+		{
+			using var sw = new StringWriter();
+			using var xmlWriter = XmlWriter.Create(
+				sw,
+				new()
+				{
+					Indent = true,
+					IndentChars = "    ",
+					NewLineOnAttributes = false
+				});
+
+			new XmlSerializer(typeof(T)).Serialize(xmlWriter, @this);
+			return sw.ToString();
 		}
 	}
 }
