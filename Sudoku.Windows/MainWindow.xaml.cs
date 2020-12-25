@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Drawing.Extensions;
 using Sudoku.Globalization;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
@@ -680,19 +679,17 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void UpdateUndoRedoControls()
 		{
+			_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps;
+			_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps;
 			_imageUndoIcon.Source =
 				new BitmapImage(
 					new(
-						$@"Resources/ImageIcon-Undo{
-							((_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps) ? string.Empty : "Disable")
-						}.png",
+						$@"Resources/ImageIcon-Undo{(_puzzle.HasUndoSteps ? string.Empty : "Disable")}.png",
 						UriKind.Relative));
 			_imageRedoIcon.Source =
 				new BitmapImage(
 					new(
-						$@"Resources/ImageIcon-Redo{
-							((_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps) ? string.Empty : "Disable")
-						}.png",
+						$@"Resources/ImageIcon-Redo{(_puzzle.HasRedoSteps ? string.Empty : "Disable")}.png",
 						UriKind.Relative));
 		}
 
@@ -1012,18 +1009,27 @@ namespace Sudoku.Windows
 				foreach (var step in _analyisResult.Steps!)
 				{
 					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
-					pathList.Add(
-						new()
-						{
-							Foreground = new SolidColorBrush(fore.ToWColor()),
-							Background = new SolidColorBrush(back.ToWColor()),
-							Content =
-								new StepTriplet(
-									$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
-							BorderThickness = default,
-							HorizontalContentAlignment = HorizontalAlignment.Left,
-							VerticalContentAlignment = VerticalAlignment.Center
-						});
+					var content =
+						new StepTriplet(
+							(Settings.ShowStepLabel, Settings.ShowStepDifficulty) switch
+							{
+								(true, true) => $"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}",
+								(true, false) => $"(#{i + 1}) {step.ToSimpleString()}",
+								(false, true) => $"({step.Difficulty}) {step.ToSimpleString()}",
+								_ => step.ToSimpleString()
+							},
+							i++,
+							step);
+
+					pathList.Add(new()
+					{
+						Foreground = new SolidColorBrush(fore.ToWColor()),
+						Background = new SolidColorBrush(back.ToWColor()),
+						Content = content,
+						BorderThickness = default,
+						HorizontalContentAlignment = HorizontalAlignment.Left,
+						VerticalContentAlignment = VerticalAlignment.Center
+					});
 				}
 				_listBoxPaths.ItemsSource = pathList;
 

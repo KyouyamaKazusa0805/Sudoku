@@ -215,7 +215,9 @@
 	<sys:String x:Key="SettingsSolveFromTheCurrent">Solve from the current puzzle</sys:String>
 	<sys:String x:Key="SettingsTextFormatPlaceholdersAreZero">Text format placeholders are '0'</sys:String>
 	<sys:String x:Key="SettingsPmCompatible">PM grid compatible</sys:String>
-	<sys:String x:Key="OnlyShowSameLevelStepsInFindAllSteps">Only shows same-level steps in Find All Steps</sys:String>
+	<sys:String x:Key="SettingsOnlyShowSameLevelStepsInFindAllSteps">Only shows same-level steps in Find All Steps</sys:String>
+	<sys:String x:Key="SettingsShowStepLabel">Show the label of each step in solving paths</sys:String>
+	<sys:String x:Key="SettingsShowStepDifficulty">Show the difficulty rating of each step in solving paths</sys:String>
 	<sys:String x:Key="SettingsTabSolving">Solving</sys:String>
 	<sys:String x:Key="SettingsSolvingChains">Chains</sys:String>
 	<sys:String x:Key="SettingsSolvingChainsMaxLength">Max length:</sys:String>

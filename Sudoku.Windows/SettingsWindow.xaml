@@ -65,9 +65,17 @@
 							  Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxPmGridCompatible_Click"/>
 					<CheckBox x:Name="_checkBoxOnlyShowSameLevelStepsInFindAllSteps"
-							  Content="{DynamicResource OnlyShowSameLevelStepsInFindAllSteps}"
+							  Content="{DynamicResource SettingsOnlyShowSameLevelStepsInFindAllSteps}"
 							  Grid.Row="5" VerticalAlignment="Center"
 							  Click="CheckBoxOnlyShowSameLevelStepsInFindAllSteps_Click"/>
+					<CheckBox x:Name="_checkBoxShowStepLabel"
+							  Content="{DynamicResource SettingsShowStepLabel}"
+							  Grid.Row="6" VerticalAlignment="Center"
+							  Click="CheckBoxShowStepLabel_Click"/>
+					<CheckBox x:Name="_checkBoxShowStepDifficulty"
+							  Content="{DynamicResource SettingsShowStepDifficulty}"
+							  Grid.Row="7" VerticalAlignment="Center"
+							  Click="CheckBoxShowStepDifficulty_Click"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="{DynamicResource SettingsTabSolving}">

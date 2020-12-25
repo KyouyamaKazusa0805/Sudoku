@@ -60,12 +60,17 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void InitializeSettingControls()
 		{
+			// Page 1.
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting;
 			_checkBoxEnableGcForcedly.IsChecked = Settings.MainManualSolver.EnableGarbageCollectionForcedly;
 			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent;
 			_checkBoxTextFormatPlaceholdersAreZero.IsChecked = Settings.TextFormatPlaceholdersAreZero;
 			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible;
 			_checkBoxOnlyShowSameLevelStepsInFindAllSteps.IsChecked = Settings.MainManualSolver.OnlyShowSameLevelTechniquesInFindAllSteps;
+			_checkBoxShowStepLabel.IsChecked = Settings.ShowStepLabel;
+			_checkBoxShowStepDifficulty.IsChecked = Settings.ShowStepDifficulty;
+
+			// Page 2.
 			_checkBoxAllowOverlappingAlses.IsChecked = Settings.MainManualSolver.AllowOverlappingAlses;
 			_checkBoxHighlightRegions.IsChecked = Settings.MainManualSolver.AlsHighlightRegionInsteadOfCell;
 			_checkBoxAllowAlsCycles.IsChecked = Settings.MainManualSolver.AllowAlsCycles;
@@ -82,6 +87,8 @@ namespace Sudoku.Windows
 			_numericUpDownMaximumEndofinsHobiwanFish.CurrentValue = Settings.MainManualSolver.HobiwanFishMaximumEndofinsCount;
 			_checkBoxHobiwanFishCheckTemplates.IsChecked = Settings.MainManualSolver.HobiwanFishCheckTemplates;
 			_checkBoxShowDirectLines.IsChecked = Settings.ShowDirectLines;
+
+			// Page 3.
 			_numericUpDownGridLineWidth.CurrentValue = (decimal)Settings.GridLineWidth;
 			_numericUpDownBlockLineWidth.CurrentValue = (decimal)Settings.BlockLineWidth;
 			_numericUpDownValueScale.CurrentValue = Settings.ValueScale;
@@ -219,6 +226,14 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxOnlyShowSameLevelStepsInFindAllSteps_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxOnlyShowSameLevelStepsInFindAllSteps.IsChecked = _manualSolver.OnlyShowSameLevelTechniquesInFindAllSteps ^= true;
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void CheckBoxShowStepLabel_Click(object sender, RoutedEventArgs e) =>
+			_assigments += () => _checkBoxShowStepLabel.IsChecked = Settings.ShowStepLabel ^= true;
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void CheckBoxShowStepDifficulty_Click(object sender, RoutedEventArgs e) =>
+			_assigments += () => _checkBoxShowStepDifficulty.IsChecked = Settings.ShowStepDifficulty ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxSearchExtendedUniqueRectangle_Click(object sender, RoutedEventArgs e) =>
