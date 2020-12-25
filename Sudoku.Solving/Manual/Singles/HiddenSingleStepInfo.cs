@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Globalization;
-using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -30,12 +27,7 @@ namespace Sudoku.Solving.Manual.Singles
 		public override TechniqueCode TechniqueCode =>
 			EnableAndIsLastDigit
 			? TechniqueCode.LastDigit
-			: Region.ToLabel() switch
-			{
-				RegionLabel.Row => TechniqueCode.HiddenSingleRow,
-				RegionLabel.Column => TechniqueCode.HiddenSingleColumn,
-				RegionLabel.Block => TechniqueCode.HiddenSingleBlock
-			};
+			: (TechniqueCode)((int)TechniqueCode.HiddenSingleBlock + (int)Region.ToLabel());
 
 
 		/// <inheritdoc/>
@@ -43,116 +35,9 @@ namespace Sudoku.Solving.Manual.Singles
 		{
 			string cellStr = new Cells { Cell }.ToString();
 			int v = Digit + 1;
-			return EnableAndIsLastDigit switch
-			{
-				true =>
-					new StringBuilder()
-					.Append(Name)
-					.Append(Resources.GetValue("Colon"))
-					.Append(Resources.GetValue("Space"))
-					.Append(cellStr)
-					.Append(Resources.GetValue("Equals"))
-					.Append(v)
-					.ToString(),
-				_ =>
-					new StringBuilder()
-					.Append(Name)
-					.Append(Resources.GetValue("Colon"))
-					.Append(Resources.GetValue("Space"))
-					.Append(cellStr)
-					.Append(Resources.GetValue("Equals"))
-					.Append(v)
-					.Append(Resources.GetValue("_HiddenSingleSimple1"))
-					.Append(new RegionCollection(Region).ToString())
-					.ToString()
-			};
-		}
-
-		/// <inheritdoc/>
-		public override string ToString(CountryCode countryCode)
-		{
-			return countryCode switch
-			{
-				CountryCode.ZhCn => toChinese(),
-				_ => base.ToString(countryCode)
-			};
-
-			string toChinese()
-			{
-				string cellStr = new Cells { Cell }.ToString();
-				int v = Digit + 1;
-				return EnableAndIsLastDigit switch
-				{
-					true =>
-						new StringBuilder()
-						.Append(Name)
-						.Append(Resources.GetValue("Colon"))
-						.Append(cellStr)
-						.Append(Resources.GetValue("Equals"))
-						.Append(v)
-						.ToString(),
-					_ =>
-						new StringBuilder()
-						.Append(Name)
-						.Append(Resources.GetValue("_HiddenSingleSimple1"))
-						.Append(new RegionCollection(Region).ToString())
-						.Append(Resources.GetValue("_HiddenSingleSimple2"))
-						.Append(cellStr)
-						.Append(Resources.GetValue("Equals"))
-						.Append(v)
-						.ToString()
-				};
-			}
-		}
-
-		/// <inheritdoc/>
-		public override string ToFullString(CountryCode countryCode)
-		{
-			return countryCode switch
-			{
-				CountryCode.ZhCn => toChinese(),
-				_ => base.ToFullString(countryCode)
-			};
-
-			string toChinese()
-			{
-				string cellStr = new Cells { Cell }.ToString();
-				string regionStr = new RegionCollection(Region).ToString();
-				int v = Digit + 1;
-				return EnableAndIsLastDigit switch
-				{
-					true =>
-						new StringBuilder()
-						.Append(Name)
-						.Append(Resources.GetValue("_LastDigit1"))
-						.Append(v)
-						.Append(Resources.GetValue("_LastDigit2"))
-						.Append(regionStr)
-						.Append(Resources.GetValue("_LastDigit3"))
-						.Append(v)
-						.Append(Resources.GetValue("_LastDigit4"))
-						.Append(cellStr)
-						.Append(Resources.GetValue("Equals"))
-						.Append(v)
-						.Append(Resources.GetValue("Period"))
-						.ToString(),
-					_ =>
-						new StringBuilder()
-						.Append(Name)
-						.Append(Resources.GetValue("_HiddenSingle1"))
-						.Append(regionStr)
-						.Append(Resources.GetValue("_HiddenSingle2"))
-						.Append(cellStr)
-						.Append(Resources.GetValue("_HiddenSingle3"))
-						.Append(v)
-						.Append(Resources.GetValue("_HiddenSingle4"))
-						.Append(cellStr)
-						.Append(Resources.GetValue("Equals"))
-						.Append(v)
-						.Append(Resources.GetValue("Period"))
-						.ToString()
-				};
-			}
+			return EnableAndIsLastDigit
+				? $"{Name}: {cellStr} = {v}"
+				: $"{Name}: {cellStr} = {v} in {new RegionCollection(Region).ToString()}";
 		}
 	}
 }

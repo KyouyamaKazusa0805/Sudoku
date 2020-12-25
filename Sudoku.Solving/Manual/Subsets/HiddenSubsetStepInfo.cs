@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Globalization;
-using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -39,76 +35,12 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			new StringBuilder()
-				.Append(Name)
-				.Append(Resources.GetValue("Colon"))
-				.Append(Resources.GetValue("Space"))
-				.Append(new DigitCollection(Digits).ToString())
-				.Append(Resources.GetValue("_HiddenSubsetSimple1"))
-				.Append(new RegionCollection(Region).ToString())
-				.Append(Resources.GetValue("GoesTo"))
-				.Append(new ConclusionCollection(Conclusions).ToString())
-				.ToString();
-
-		/// <inheritdoc/>
-		public override string ToString(CountryCode countryCode) =>
-			countryCode switch
-			{
-				CountryCode.ZhCn =>
-					new StringBuilder()
-					.Append(Name)
-					.Append(Resources.GetValue("Colon"))
-					.Append(Resources.GetValue("_HiddenSubsetSimple1"))
-					.Append(new RegionCollection(Region).ToString())
-					.Append(Resources.GetValue("_HiddenSubsetSimple2"))
-					.Append(new DigitCollection(Digits).ToString())
-					.Append(Resources.GetValue("_HiddenSubsetSimple3"))
-					.Append(Resources.GetValue("GoesTo"))
-					.Append(new ConclusionCollection(Conclusions).ToString())
-					.ToString(),
-				_ => base.ToString(countryCode)
-			};
-
-		/// <inheritdoc/>
-		public override string ToFullString(CountryCode countryCode)
+		public override string ToString()
 		{
-			return countryCode switch
-			{
-				CountryCode.ZhCn => toChinese(),
-				_ => base.ToFullString(countryCode)
-			};
-
-			string toChinese()
-			{
-				string digitsStr = new DigitCollection(Digits).ToString();
-				string cellsStr = Cells.ToString();
-				return new StringBuilder()
-					.Append(Name)
-					.Append(Resources.GetValue("Colon"))
-					.Append(Resources.GetValue("_HiddenSubset1"))
-					.Append(new RegionCollection(Region).ToString())
-					.Append(Resources.GetValue("_HiddenSubset2"))
-					.Append(digitsStr)
-					.Append(Resources.GetValue("_HiddenSubset3"))
-					.Append(cellsStr)
-					.Append(Resources.GetValue("_HiddenSubset4"))
-					.Append(cellsStr)
-					.Append(Resources.GetValue("_HiddenSubset5"))
-					.Append(Cells.Count)
-					.Append(Resources.GetValue("_HiddenSubset6"))
-					.Append(Digits.Count)
-					.Append(Resources.GetValue("_HiddenSubset7"))
-					.Append(digitsStr)
-					.Append(Resources.GetValue("_HiddenSubset8"))
-					.Append(Digits.Count)
-					.Append(Resources.GetValue("_HiddenSubset9"))
-					.Append(Resources.GetValue(Region.ToLabel().ToString()))
-					.Append(Resources.GetValue("_HiddenSubset10"))
-					.Append(new ConclusionCollection(Conclusions).ToString())
-					.Append(Resources.GetValue("Period"))
-					.ToString();
-			}
+			string digitStr = new DigitCollection(Digits).ToString();
+			string regionStr = new RegionCollection(Region).ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			return $"{Name}: {digitStr} in {regionStr} => {elimStr}";
 		}
 
 #if DOUBLE_LAYERED_ASSUMPTION

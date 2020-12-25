@@ -3,7 +3,6 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Globalization;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Windows;
 
@@ -15,7 +14,7 @@ namespace Sudoku.Solving.Manual
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+	public abstract record StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
 	{
 		/// <summary>
 		/// The names of all subsets by their sizes.
@@ -75,56 +74,6 @@ namespace Sudoku.Solving.Manual
 			}
 		}
 
-		/// <summary>
-		/// Returns a string that only contains the name and the basic information. Different with
-		/// <see cref="ToFullString()"/>, the method will only contains the basic introduction
-		/// about the technique.
-		/// For example, in the <see cref="ExocetStepInfo"/>, the detail will contain the several special
-		/// eliminations, in this method, those won't be displayed, But the method <see cref="ToFullString()"/>
-		/// will.
-		/// </summary>
-		/// <returns>The string instance.</returns>
-		/// <seealso cref="ExocetStepInfo"/>
-		/// <seealso cref="ToFullString()"/>
-		public abstract override string ToString();
-
-		/// <summary>
-		/// Returns a string that only contains the name and the conclusions.
-		/// </summary>
-		/// <returns>The string instance.</returns>
-		public string ToSimpleString() => $"{Name} => {new ConclusionCollection(Conclusions).ToString()}";
-
-		/// <summary>
-		/// Returns a string that contains the name, the conclusions and its all details.
-		/// This method is used for displaying details in text box control.
-		/// </summary>
-		/// <returns>The string instance.</returns>
-		public virtual string ToFullString() => ToString();
-
-		/// <summary>
-		/// Returns a string that only contains the name and the basic information with
-		/// the specified <see cref="CountryCode"/> to tell different country.
-		/// </summary>
-		/// <param name="countryCode">The country code.</param>
-		/// <returns>The string instance.</returns>
-		/// <seealso cref="CountryCode"/>
-		public virtual string ToString(CountryCode countryCode) => ToString();
-
-		/// <summary>
-		/// Returns a string that contains the name, the conclusions and its all details; with
-		/// a specified country as a parameter of type <see cref="CountryCode"/>.
-		/// This method is used for displaying details in text box control.
-		/// </summary>
-		/// <param name="countryCode">The country code.</param>
-		/// <returns>The string instance.</returns>
-		/// <seealso cref="CountryCode"/>
-		public virtual string ToFullString(CountryCode countryCode) =>
-			countryCode switch
-			{
-				CountryCode.EnUs => ToFullString(),
-				_ => ToString()
-			};
-
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
@@ -176,5 +125,31 @@ namespace Sudoku.Solving.Manual
 			conclusions = Conclusions;
 			views = Views;
 		}
+
+		/// <summary>
+		/// Returns a string that only contains the name and the basic information. Different with
+		/// <see cref="ToFullString()"/>, the method will only contains the basic introduction
+		/// about the technique.
+		/// For example, in the <see cref="ExocetStepInfo"/>, the detail will contain the several special
+		/// eliminations, in this method, those won't be displayed, But the method <see cref="ToFullString()"/>
+		/// will.
+		/// </summary>
+		/// <returns>The string instance.</returns>
+		/// <seealso cref="ExocetStepInfo"/>
+		/// <seealso cref="ToFullString()"/>
+		public abstract override string ToString();
+
+		/// <summary>
+		/// Returns a string that only contains the name and the conclusions.
+		/// </summary>
+		/// <returns>The string instance.</returns>
+		public string ToSimpleString() => $"{Name} => {new ConclusionCollection(Conclusions).ToString()}";
+
+		/// <summary>
+		/// Returns a string that contains the name, the conclusions and its all details.
+		/// This method is used for displaying details in text box control.
+		/// </summary>
+		/// <returns>The string instance.</returns>
+		public virtual string ToFullString() => ToString();
 	}
 }

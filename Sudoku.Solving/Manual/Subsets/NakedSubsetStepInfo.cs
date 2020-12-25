@@ -1,13 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
-using System.Linq;
-using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Globalization;
-using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -58,83 +52,12 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			new StringBuilder()
-				.Append(Name)
-				.Append(Resources.GetValue("Colon"))
-				.Append(Resources.GetValue("Space"))
-				.Append(new DigitCollection(Digits).ToString())
-				.Append(Resources.GetValue("_NakedSubsetSimple1"))
-				.Append(new RegionCollection(Region).ToString())
-				.Append(Resources.GetValue("GoesTo"))
-				.Append(new ConclusionCollection(Conclusions).ToString())
-				.ToString();
-
-		/// <inheritdoc/>
-		public override string ToString(CountryCode countryCode) =>
-			countryCode switch
-			{
-				CountryCode.ZhCn =>
-					new StringBuilder()
-					.Append(Name)
-					.Append(Resources.GetValue("Colon"))
-					.Append(Resources.GetValue("_NakedSubsetSimple1"))
-					.Append(new RegionCollection(Region).ToString())
-					.Append(Resources.GetValue("_NakedSubsetSimple2"))
-					.Append(new DigitCollection(Digits).ToString())
-					.Append(Resources.GetValue("_NakedSubsetSimple3"))
-					.Append(Resources.GetValue("GoesTo"))
-					.Append(new ConclusionCollection(Conclusions).ToString())
-					.ToString(),
-				_ => base.ToString(countryCode)
-			};
-
-		/// <inheritdoc/>
-		public override string ToFullString(CountryCode countryCode)
+		public override string ToString()
 		{
-			return countryCode switch
-			{
-				CountryCode.ZhCn => toChinese(),
-				_ => base.ToFullString(countryCode)
-			};
-
-			string toChinese()
-			{
-				string regionStr = new RegionCollection(Region).ToString();
-				string digitsStr = new DigitCollection(Digits).ToString();
-				string cellsStr = Cells.ToString();
-				return new StringBuilder()
-					.Append(Name)
-					.Append(Resources.GetValue("Colon"))
-					.Append(Resources.GetValue("_NakedSubset1"))
-					.Append(regionStr)
-					.Append(Resources.GetValue("_NakedSubset2"))
-					.Append(cellsStr)
-					.Append(Resources.GetValue("_NakedSubset3"))
-					.Append(digitsStr)
-					.Append(Resources.GetValue("_NakedSubset4"))
-					.Append(regionStr)
-					.Append(Resources.GetValue("_NakedSubset5"))
-					.Append(cellsStr)
-					.Append(Resources.GetValue("_NakedSubset6"))
-					.Append(Cells.Count)
-					.Append(Resources.GetValue("_NakedSubset7"))
-					.Append(digitsStr)
-					.Append(Resources.GetValue("_NakedSubset8"))
-					.Append(Digits.Count)
-					.Append(Resources.GetValue("_NakedSubset9"))
-					.AppendJoin(Resources.GetValue("_NakedSubset10"), from digit in Digits select digit + 1)
-					.Append(Resources.GetValue("_NakedSubset11"))
-					.Append(Resources.GetValue(Region.ToLabel().ToString()))
-					.Append(Resources.GetValue("_NakedSubset12"))
-					.Append(digitsStr)
-					.Append(Resources.GetValue("_NakedSubset13"))
-					.Append(regionStr)
-					.Append(Resources.GetValue("_NakedSubset14"))
-					.Append(new ConclusionCollection(Conclusions).ToString())
-					.Append(Resources.GetValue("Period"))
-					.ToString();
-			}
+			string digitStr = new DigitCollection(Digits).ToString();
+			string regionStr = new RegionCollection(Region).ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			return $"{Name}: {digitStr} in {regionStr} => {elimStr}";
 		}
 
 #if DOUBLE_LAYERED_ASSUMPTION

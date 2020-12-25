@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Globalization;
-using Sudoku.Windows;
 #if DOUBLE_LAYERED_ASSUMPTION
 using static Sudoku.Solving.TechniqueSearcher;
 #endif
@@ -39,74 +35,12 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			new StringBuilder()
-				.Append(Name)
-				.Append(Resources.GetValue("Colon"))
-				.Append(Resources.GetValue("Space"))
-				.Append(Digit + 1)
-				.Append(Resources.GetValue("_LcSimple1"))
-				.Append(new RegionCollection(BaseSet).ToString())
-				.Append(Resources.GetValue("Backslash"))
-				.Append(new RegionCollection(CoverSet).ToString())
-				.Append(Resources.GetValue("GoesTo"))
-				.Append(new ConclusionCollection(Conclusions).ToString())
-				.ToString();
-
-		/// <inheritdoc/>
-		public override string ToString(CountryCode countryCode) =>
-			countryCode switch
-			{
-				CountryCode.ZhCn =>
-					new StringBuilder()
-					.Append(Name)
-					.Append(Resources.GetValue("Colon"))
-					.Append(Resources.GetValue("_LcSimple1"))
-					.Append(new RegionCollection(BaseSet).ToString())
-					.Append(Resources.GetValue("Backslash"))
-					.Append(new RegionCollection(CoverSet).ToString())
-					.Append(Resources.GetValue("_LcSimple2"))
-					.Append(Digit + 1)
-					.Append(Resources.GetValue("_LcSimple3"))
-					.Append(Resources.GetValue("GoesTo"))
-					.Append(new ConclusionCollection(Conclusions).ToString())
-					.ToString(),
-				_ => base.ToString(countryCode)
-			};
-
-		/// <inheritdoc/>
-		public override string ToFullString(CountryCode countryCode)
+		public override string ToString()
 		{
-			return countryCode switch
-			{
-				CountryCode.ZhCn => toChinese(),
-				_ => base.ToFullString(countryCode)
-			};
-
-			string toChinese()
-			{
-				string regionChineseName = Resources.GetValue(CoverSet.ToLabel().ToString());
-				int digit = Digit + 1;
-				return new StringBuilder()
-					.Append(Name)
-					.Append(Resources.GetValue("Colon"))
-					.Append(Resources.GetValue("_Lc1"))
-					.Append(digit)
-					.Append(Resources.GetValue("_Lc2"))
-					.Append(new RegionCollection(BaseSet).ToString())
-					.Append(Resources.GetValue("_Lc3"))
-					.Append(regionChineseName)
-					.Append(Resources.GetValue("_Lc4"))
-					.Append(new RegionCollection(CoverSet).ToString())
-					.Append(Resources.GetValue("_Lc5"))
-					.Append(regionChineseName)
-					.Append(Resources.GetValue("_Lc6"))
-					.Append(digit)
-					.Append(Resources.GetValue("_Lc7"))
-					.Append(new ConclusionCollection(Conclusions).ToString())
-					.Append(Resources.GetValue("Period"))
-					.ToString();
-			}
+			string baseSetStr = new RegionCollection(BaseSet).ToString();
+			string coverSetStr = new RegionCollection(CoverSet).ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			return $@"{Name}: {Digit + 1} in {baseSetStr}\{coverSetStr} => {elimStr}";
 		}
 
 #if DOUBLE_LAYERED_ASSUMPTION

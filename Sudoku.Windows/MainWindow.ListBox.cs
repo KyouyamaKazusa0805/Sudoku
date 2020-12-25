@@ -34,7 +34,7 @@ namespace Sudoku.Windows
 					Conclusions = techniqueInfo.Conclusions
 				};
 
-				_textBoxInfo.Text = techniqueInfo.ToFullString(Settings.LanguageCode);
+				_textBoxInfo.Text = techniqueInfo.ToString();
 
 				UpdateImageGrid();
 			}
@@ -52,7 +52,7 @@ namespace Sudoku.Windows
 					_currentPainter.View = views[0];
 					_currentPainter.Conclusions = conclusions;
 
-					_textBoxInfo.Text = info.ToFullString(Settings.LanguageCode);
+					_textBoxInfo.Text = info.ToString();
 
 					UpdateImageGrid();
 				}
