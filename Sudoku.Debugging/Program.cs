@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Sudoku.Constants;
@@ -25,6 +26,33 @@ using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Windows;
 using static System.Console;
+
+unsafe
+{
+	short* s = stackalloc short[81];
+
+	for (int i = 0; i < 81; i++)
+	{
+		s[i] = (short)(i + 1);
+	}
+
+	printArray(s, 81);
+
+	Unsafe.CopyBlock(s + 1, s, 80 * sizeof(short));
+
+	printArray(s, 81);
+
+	static void printArray(short* arr, int length)
+	{
+		for (int i = 0; i < length; i++)
+		{
+			Write(arr[i]);
+			Write(',');
+		}
+
+		WriteLine();
+	}
+}
 
 #if BATCH_RATING || false
 string path = @"C:\Users\Howdy\Desktop\p.txt";
@@ -73,7 +101,7 @@ stopwatch.Stop();
 ReadKey();
 #endif
 
-#if FILE_COUNTER || true
+#if FILE_COUNTER || false
 string root = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName;
 
 WriteLine(new FileCounter(root, "cs", withBinOrObjDirectory: false).CountUp());

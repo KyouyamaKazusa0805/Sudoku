@@ -768,39 +768,6 @@
             <param name="map">The map.</param>
             <returns>The position.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Strlen(System.Char*)">
-            <summary>
-            Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
-            </summary>
-            <param name="ptr">The pointer.</param>
-            <returns>The total length.</returns>
-            <remarks>
-            In C#, this function is unsafe because the implementation of
-            <see cref="T:System.String"/> types between C and C# is totally different.
-            In C, <see cref="T:System.String"/> is like a <see cref="T:System.Char"/>* or a
-            <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
-            However, C# not.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Memcpy(System.Void*,System.Void*,System.Int32)">
-            <summary>
-            Copies the specified memory to the destination memory block,
-            with the specified value indicating the size unit.
-            </summary>
-            <param name="dest">The pointer to the destination block.</param>
-            <param name="src">The pointer to the destination block.</param>
-            <param name="size">The number of the size unit.</param>
-            <returns>Same as <paramref name="dest"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Memset(System.Void*,System.Int32,System.Int32)">
-            <summary>
-            Assign the specified memory block to the specified value.
-            </summary>
-            <param name="src">The source pointer.</param>
-            <param name="value">The value to assign.</param>
-            <param name="size">The size of the size unit.</param>
-            <returns>Same as <paramref name="src"/>.</returns>
-        </member>
         <member name="T:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State">
             <summary>
             To describe a state for a current grid using binary values.

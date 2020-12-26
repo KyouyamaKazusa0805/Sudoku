@@ -22,7 +22,7 @@ namespace Sudoku.Data.Stepping
 			{
 				fixed (short* pGrid = grid)
 				{
-					Unsafe.CopyBlock(pGrid, (short*)OldMasks, 0);
+					Unsafe.CopyBlock(pGrid, (short*)OldMasks, sizeof(short) * 81);
 				}
 			}
 		}
@@ -34,7 +34,7 @@ namespace Sudoku.Data.Stepping
 			{
 				fixed (short* pGrid = grid)
 				{
-					Unsafe.CopyBlock(pGrid, (short*)NewMasks, 0);
+					Unsafe.CopyBlock(pGrid, (short*)NewMasks, sizeof(short) * 81);
 				}
 			}
 		}

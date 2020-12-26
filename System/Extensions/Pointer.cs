@@ -10,6 +10,25 @@
 	public static unsafe class Pointer
 	{
 		/// <summary>
+		/// Get the length of the specified string which is represented by a <see cref="char"/>*.
+		/// </summary>
+		/// <param name="ptr">The pointer.</param>
+		/// <returns>The total length.</returns>
+		/// <remarks>
+		/// In C#, this function is unsafe because the implementation of
+		/// <see cref="string"/> types between C and C# is totally different.
+		/// In C, <see cref="string"/> is like a <see cref="char"/>* or a
+		/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
+		/// However, C# not.
+		/// </remarks>
+		public static int StringLengthOf(char* ptr)
+		{
+			int result = 0;
+			for (char* p = ptr; *p != '\0'; p++, result++) ;
+			return result;
+		}
+
+		/// <summary>
 		/// Get the new array from the pointer, with the specified start index.
 		/// </summary>
 		/// <typeparam name="TUnmanaged">

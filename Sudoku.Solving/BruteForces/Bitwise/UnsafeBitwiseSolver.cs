@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
@@ -271,7 +272,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						g->Bands[band] = BitSet27;
 					}
 
-					Memset(g->PrevBands, 0, 108); // sizeof(_g->PrevBands)
+					Unsafe.InitBlock(g->PrevBands, 0, 108); // 108: sizeof(_g->PrevBands)
 					g->UnsolvedCells[0] = g->UnsolvedCells[1] = g->UnsolvedCells[2] = BitSet27;
 					g->UnsolvedRows[0] = g->UnsolvedRows[1] = g->UnsolvedRows[2] = BitSet27;
 					g->Pairs[0] = g->Pairs[1] = g->Pairs[2] = 0;
@@ -282,7 +283,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				}
 			}
 
-			switch (Strlen(board))
+			switch (Pointer.StringLengthOf(board))
 			{
 				case 81:
 				{
@@ -791,7 +792,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 							if (--tries != 0)
 							{
 								// First of pair.
-								Memcpy(_g + 1, _g, sizeof(State));
+								Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(State));
 								_g->Bands[band] ^= map;
 								_g++;
 								SetSolvedMask(band, map);
@@ -829,7 +830,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				{
 					if ((_g->Bands[band] & cellMask) != 0)
 					{
-						Memcpy(_g + 1, _g, sizeof(State)); // Eliminate option in the current stack entry.
+						// Eliminate option in the current stack entry.
+						Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(State));
 						_g->Bands[band] ^= cellMask;
 						_g++;
 						SetSolvedMask(band, cellMask);     // And try it out in a nested stack entry.
@@ -917,72 +919,5 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <returns>The position.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static byte BitPos(uint map) => MultiplyDeBruijnBitPosition32[map * 0x077CB531U >> 27];
-
-		#region Unsafe methods
-		/// <summary>
-		/// Get the length of the specified string which is represented by a <see cref="char"/>*.
-		/// </summary>
-		/// <param name="ptr">The pointer.</param>
-		/// <returns>The total length.</returns>
-		/// <remarks>
-		/// In C#, this function is unsafe because the implementation of
-		/// <see cref="string"/> types between C and C# is totally different.
-		/// In C, <see cref="string"/> is like a <see cref="char"/>* or a
-		/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
-		/// However, C# not.
-		/// </remarks>
-		private static int Strlen(char* ptr)
-		{
-			int result = 0;
-			for (char* p = ptr; *p != '\0'; p++, result++) ;
-			return result;
-		}
-
-		/// <summary>
-		/// Copies the specified memory to the destination memory block,
-		/// with the specified value indicating the size unit.
-		/// </summary>
-		/// <param name="dest">The pointer to the destination block.</param>
-		/// <param name="src">The pointer to the destination block.</param>
-		/// <param name="size">The number of the size unit.</param>
-		/// <returns>Same as <paramref name="dest"/>.</returns>
-		[return: MaybeNull]
-		private static void* Memcpy(void* dest, void* src, int size)
-		{
-			if (src == null || dest == null || size < 0)
-			{
-				return null;
-			}
-
-			char* tempDest = (char*)dest, tempSrc = (char*)src;
-			int n = size;
-			while (n-- > 0)
-			{
-				*tempDest++ = *tempSrc++;
-			}
-
-			return dest;
-		}
-
-		/// <summary>
-		/// Assign the specified memory block to the specified value.
-		/// </summary>
-		/// <param name="src">The source pointer.</param>
-		/// <param name="value">The value to assign.</param>
-		/// <param name="size">The size of the size unit.</param>
-		/// <returns>Same as <paramref name="src"/>.</returns>
-		[return: NotNullIfNotNull("src")]
-		private static void* Memset(void* src, int value, int size)
-		{
-			void* p = src;
-			while (size-- != 0)
-			{
-				*(byte*)src = (byte)value;
-				src = (byte*)src + 1;
-			}
-
-			return p;
-		}
-		#endregion
 	}
 }

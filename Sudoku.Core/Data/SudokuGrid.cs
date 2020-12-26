@@ -145,8 +145,8 @@ namespace Sudoku.Data
 
 			fixed (short* pArray = masks, pValues = _values, pInitialValues = _initialValues)
 			{
-				Unsafe.CopyBlock(pValues, pArray, 0);
-				Unsafe.CopyBlock(pInitialValues, pArray, 0);
+				Unsafe.CopyBlock(pValues, pArray, sizeof(short) * 81);
+				Unsafe.CopyBlock(pInitialValues, pArray, sizeof(short) * 81);
 			}
 		}
 
@@ -788,7 +788,7 @@ namespace Sudoku.Data
 		{
 			fixed (short* pValues = _values, pInitialValues = _initialValues)
 			{
-				Unsafe.CopyBlock(pValues, pInitialValues, 0);
+				Unsafe.CopyBlock(pValues, pInitialValues, sizeof(short) * 81);
 			}
 		}
 
@@ -829,7 +829,7 @@ namespace Sudoku.Data
 		{
 			fixed (short* pValues = _values, pInitialValues = _initialValues)
 			{
-				Unsafe.CopyBlock(pInitialValues, pValues, 0);
+				Unsafe.CopyBlock(pInitialValues, pValues, sizeof(short) * 81);
 			}
 		}
 

@@ -39,7 +39,7 @@ namespace Sudoku.Data.Stepping
 					{
 						fixed (short* pGrid = grid)
 						{
-							Unsafe.CopyBlock(pGrid, grid.InitialMaskPinnableReference, 0);
+							Unsafe.CopyBlock(pGrid, grid.InitialMaskPinnableReference, sizeof(short) * 81);
 						}
 
 						break;
