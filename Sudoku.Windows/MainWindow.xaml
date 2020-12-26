@@ -487,9 +487,13 @@
 														Width="{Binding Path=ActualWidth,ElementName=_tabControlInfo,Converter={StaticResource wcvt},ConverterParameter=0.25}">
 											<GridViewColumn.CellTemplate>
 												<DataTemplate>
-													<TextBlock Text="{Binding DifficultyLevel,Converter={StaticResource di2tcvt}}"
-															   Foreground="{Binding DifficultyLevel,Converter={StaticResource di2fgccvt},ConverterParameter={StaticResource globalSettings}}"
-															   Background="{Binding DifficultyLevel,Converter={StaticResource di2bgccvt},ConverterParameter={StaticResource globalSettings}}"/>
+													<Border x:Name="_summaryBorderDifficultyLevel"
+															CornerRadius="3" Padding="1.5,1.5,1.5,1.5"
+															Background="{Binding DifficultyLevel,Converter={StaticResource di2bgccvt},ConverterParameter={StaticResource globalSettings}}"
+															BorderBrush="{Binding DifficultyLevel,Converter={StaticResource di2fgccvt},ConverterParameter={StaticResource globalSettings}}">
+														<TextBlock Text="{Binding DifficultyLevel,Converter={StaticResource di2tcvt}}"
+																   Foreground="{Binding Path=BorderBrush,ElementName=_summaryBorderDifficultyLevel}"/>
+													</Border>
 												</DataTemplate>
 											</GridViewColumn.CellTemplate>
 										</GridViewColumn>
