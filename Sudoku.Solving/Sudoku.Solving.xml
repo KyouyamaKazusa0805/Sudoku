@@ -9392,5 +9392,10 @@
             Encapsulates a <b>wing</b> technique solver.
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.DisableDisplayingAttribute">
+            <summary>
+            To mark on a technique searcher, to disable displaying in priority tab page in settings window.
+            </summary>
+        </member>
     </members>
 </doc>

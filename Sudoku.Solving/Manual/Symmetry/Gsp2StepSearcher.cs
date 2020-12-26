@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
+using Sudoku.Windows;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -13,6 +14,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// <summary>
 	/// Encapsulates a <b>Gurth's symmetrical placement 2</b> (GSP2) technique searcher.
 	/// </summary>
+	[DisableDisplaying]
 	public sealed class Gsp2StepSearcher : SymmetryStepSearcher
 	{
 		/// <summary>

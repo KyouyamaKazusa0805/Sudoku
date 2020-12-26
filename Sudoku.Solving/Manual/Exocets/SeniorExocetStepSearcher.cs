@@ -9,6 +9,7 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
+using Sudoku.Windows;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 
@@ -18,6 +19,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Encapsulates a <b>senior exocet</b> (SE) technique searcher.
 	/// </summary>
 	[Obsolete("Please use '" + nameof(SeStepSearcher) + "' instead.", true)]
+	[DisableDisplaying]
 	public sealed class SeniorExocetStepSearcher : ExocetStepSearcher
 	{
 		/// <inheritdoc/>

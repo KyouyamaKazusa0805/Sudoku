@@ -7,12 +7,14 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
+using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
 	/// <summary>
 	/// Encapsulates a <b>death blossom</b> technique.
 	/// </summary>
+	[DisableDisplaying]
 	public sealed class DbStepSearcher : AlsStepSearcher
 	{
 		/// <summary>

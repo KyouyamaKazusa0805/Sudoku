@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Extensions;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -157,19 +158,22 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void InitializePriorityControls()
 		{
-			_listBoxPriority.SetValue(
-				ItemsControl.ItemsSourceProperty,
-				from @type in
-					from @type in Assembly.Load("Sudoku.Solving").GetTypes()
-					where !@type.IsAbstract && @type.IsSubclassOf(typeof(StepSearcher))
-					select @type
-				let prior = TechniqueProperties.GetPropertiesFrom(@type)!.Priority
+			_listBoxPriority.ItemsSource =
+				from type in
+					from type in Assembly.Load("Sudoku.Solving").GetTypes()
+					where
+						!type.IsAbstract // Type isn't abstract.
+						&& type.IsSubclassOf<StepSearcher>() // Type should be a step searcher.
+						&& !type.IsDefined<ObsoleteAttribute>() // Type shouldn't be obsolete.
+						&& !type.IsDefined<DisableDisplayingAttribute>() // Type should be enabled to display.
+					select type
+				let prior = TechniqueProperties.GetPropertiesFrom(type)!.Priority
 				orderby prior
-				let v = @type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
+				let v = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
 				where v is not null
 				let p = ((TechniqueProperties)v).DisplayLabel
-				let c = new StepTriplet(CoreResources.GetValue($"Progress{p}"), prior, @type)
-				select new ListBoxItem { Content = c });
+				let c = new StepTriplet(CoreResources.GetValue($"Progress{p}"), prior, type)
+				select new ListBoxItem { Content = c };
 
 			_listBoxPriority.SelectedIndex = 0;
 			var (_, priority, selectedType, _) = (StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
@@ -577,8 +581,8 @@ namespace Sudoku.Windows
 					SelectedItem: ListBoxItem { Content: StepTriplet triplet } listBoxItem
 				} listBox)
 			{
-				var (_, priority, @type, _) = triplet;
-				var (isEnabled, isReadOnly) = TechniqueProperties.GetPropertiesFrom(@type)!;
+				var (_, priority, type, _) = triplet;
+				var (isEnabled, isReadOnly) = TechniqueProperties.GetPropertiesFrom(type)!;
 				_checkBoxIsEnabled.IsChecked = isEnabled;
 				_checkBoxIsEnabled.IsEnabled = !isReadOnly;
 				_textBoxPriority.Text = priority.ToString();
