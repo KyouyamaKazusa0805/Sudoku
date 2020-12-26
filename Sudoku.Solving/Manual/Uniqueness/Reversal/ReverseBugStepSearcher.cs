@@ -5,7 +5,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Runtime;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 

@@ -4,10 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -58,7 +55,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 			for (int pivot = 0; pivot < 81; pivot++)
 			{
-				if (grid.GetStatus(pivot) != Empty
+				if (grid.GetStatus(pivot) != CellStatus.Empty
 					|| checkedCandidates[pivot] != grid.GetCandidates(pivot)
 					|| checkedCandidates[pivot].PopCount() > _maxPetals)
 				{
@@ -128,7 +125,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 							foreach (int cell in elimMap)
 							{
-								conclusions.Add(new(Elimination, cell, d));
+								conclusions.Add(new(ConclusionType.Elimination, cell, d));
 							}
 						}
 

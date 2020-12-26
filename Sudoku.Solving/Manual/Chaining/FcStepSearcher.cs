@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
-using Grid = Sudoku.Data.SudokuGrid;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
-using System.Extensions;
-using Sudoku.Data.Extensions;
+using Grid = Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -413,7 +411,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				Cells = cellOffset,
 				Candidates = candidateOffsets,
-				Links  = links
+				Links = links
 			});
 
 			candidateOffsets = new List<DrawingInfo>(destOff.GetCandidateOffsets())
@@ -439,7 +437,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			});
 
 			return new BinaryChainingStepInfo(
-				new Conclusion[] { new(Assignment, target.Cell, target.Digit) },
+				new Conclusion[] { new(ConclusionType.Assignment, target.Cell, target.Digit) },
 				views,
 				source,
 				destOn,
@@ -475,7 +473,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			views.Add(new()
 			{
 				Cells = cellOffset,
-				Candidates  = candidateOffsets.AsReadOnlyList(),
+				Candidates = candidateOffsets.AsReadOnlyList(),
 				Links = links
 			});
 
@@ -499,7 +497,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			});
 
 			return new BinaryChainingStepInfo(
-				new Conclusion[] { new(Elimination, target.Cell, target.Digit) },
+				new Conclusion[] { new(ConclusionType.Elimination, target.Cell, target.Digit) },
 				views,
 				source,
 				destOn,
@@ -559,13 +557,19 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Insert the global view at head.
 			views.Insert(0, new()
 			{
-				Cells  = new DrawingInfo[] { new(0, sourceCell) },
+				Cells = new DrawingInfo[] { new(0, sourceCell) },
 				Candidates = globalCandidates,
 				Links = globalLinks
 			});
 
 			return new CellChainingStepInfo(
-				new Conclusion[] { new(targetIsOn ? Assignment : Elimination, target.Cell, target.Digit) },
+				new Conclusion[]
+				{
+					new(
+						targetIsOn ? ConclusionType.Assignment : ConclusionType.Elimination,
+						target.Cell,
+						target.Digit)
+				},
 				views,
 				sourceCell,
 				chains,
@@ -628,7 +632,13 @@ namespace Sudoku.Solving.Manual.Chaining
 			});
 
 			return new RegionChainingStepInfo(
-				new Conclusion[] { new(targetIsOn ? Assignment : Elimination, target.Cell, target.Digit) },
+				new Conclusion[]
+				{
+					new(
+						targetIsOn ? ConclusionType.Assignment : ConclusionType.Elimination,
+						target.Cell,
+						target.Digit)
+				},
 				views,
 				region,
 				digit,

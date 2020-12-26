@@ -3,8 +3,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -37,7 +35,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 				accumulator.Add(
 					new PomStepInfo(
-						(from cell in template select new Conclusion(Elimination, cell, digit)).ToArray(),
+						(
+							from cell in template
+							select new Conclusion(ConclusionType.Elimination, cell, digit)
+						).ToArray(),
 						new View[] { new() }));
 			}
 		}

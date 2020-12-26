@@ -2,7 +2,6 @@
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu

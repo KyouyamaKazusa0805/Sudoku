@@ -3,7 +3,7 @@ using Sudoku.DocComments;
 using Sudoku.Solving.Manual;
 using static System.Reflection.BindingFlags;
 
-namespace Sudoku.Solving.Annotations
+namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Indicates the properties while searching aiming to <see cref="StepSearcher"/>s.

@@ -4,9 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -178,7 +176,8 @@ namespace Sudoku.Solving.Manual.Alses
 												{
 													if ((blockMask >> digit & 1) != 0)
 													{
-														conclusions.Add(new(Elimination, cell, digit));
+														conclusions.Add(
+															new(ConclusionType.Elimination, cell, digit));
 													}
 												}
 											}
@@ -188,13 +187,15 @@ namespace Sudoku.Solving.Manual.Alses
 												{
 													if ((lineMask >> digit & 1) != 0)
 													{
-														conclusions.Add(new(Elimination, cell, digit));
+														conclusions.Add(
+															new(ConclusionType.Elimination, cell, digit));
 													}
 												}
 											}
 											foreach (int cell in elimMapIsolated)
 											{
-												conclusions.Add(new(Elimination, cell, digitIsolated));
+												conclusions.Add(
+													new(ConclusionType.Elimination, cell, digitIsolated));
 											}
 											if (conclusions.Count == 0)
 											{

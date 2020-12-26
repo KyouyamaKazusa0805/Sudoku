@@ -3,13 +3,13 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 
 namespace Sudoku.Solving.Manual.Symmetry
 {
 	/// <summary>
 	/// Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
 	/// </summary>
+	[DirectSearcher]
 	public sealed class GspStepSearcher : SymmetryStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>

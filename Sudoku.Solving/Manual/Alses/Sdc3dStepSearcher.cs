@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -133,7 +131,7 @@ namespace Sudoku.Solving.Manual.Alses
 								}
 								elimMapBlock &= blockMap - currentBlockMap;
 
-								for (int j = 1; j < Min(9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count); j++)
+								for (int j = 1; j < Algorithms.Min(9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count); j++)
 								{
 									foreach (int[] selectedRowCells in rowMap.Offsets.GetSubsets(j))
 									{
@@ -154,7 +152,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 										for (
 											int k = 1;
-											k <= Min(
+											k <= Algorithms.Min(
 												9 - i - j - currentBlockMap.Count - currentRowMap.Count,
 												rowMap.Count, columnMap.Count);
 											k++)
@@ -222,21 +220,24 @@ namespace Sudoku.Solving.Manual.Alses
 													{
 														foreach (int cell in elimMapBlock & CandMaps[digit])
 														{
-															conclusions.Add(new(Elimination, cell, digit));
+															conclusions.Add(
+																new(ConclusionType.Elimination, cell, digit));
 														}
 													}
 													foreach (int digit in rowMask)
 													{
 														foreach (int cell in elimMapRow & CandMaps[digit])
 														{
-															conclusions.Add(new(Elimination, cell, digit));
+															conclusions.Add(
+																new(ConclusionType.Elimination, cell, digit));
 														}
 													}
 													foreach (int digit in columnMask)
 													{
 														foreach (int cell in elimMapColumn & CandMaps[digit])
 														{
-															conclusions.Add(new(Elimination, cell, digit));
+															conclusions.Add(
+																new(ConclusionType.Elimination, cell, digit));
 														}
 													}
 													if (conclusions.Count == 0)

@@ -6,11 +6,9 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -70,8 +68,9 @@ namespace Sudoku.Solving.Manual.Sdps
 
 						foreach (var (map, guardians, links) in loops)
 						{
-							var elims = from c in guardians.PeerIntersection & CandMaps[digit]
-										select new Conclusion(Elimination, c, digit);
+							var elims =
+								from c in guardians.PeerIntersection & CandMaps[digit]
+								select new Conclusion(ConclusionType.Elimination, c, digit);
 							if (elims.None())
 							{
 								continue;

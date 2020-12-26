@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;

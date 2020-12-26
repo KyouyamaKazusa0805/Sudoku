@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Subsets;

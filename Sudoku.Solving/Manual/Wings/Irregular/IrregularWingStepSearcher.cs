@@ -6,7 +6,6 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Wings.Irregular
 {
@@ -105,7 +104,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 							var conclusions = new List<Conclusion>();
 							foreach (int offset in elimMap)
 							{
-								conclusions.Add(new(Elimination, offset, elimDigit));
+								conclusions.Add(new(ConclusionType.Elimination, offset, elimDigit));
 							}
 
 							accumulator.Add(

@@ -6,7 +6,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Alses.Basic

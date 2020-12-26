@@ -4,12 +4,8 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Singles;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.LinkType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -60,7 +56,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				foreach (int cell in CandMaps[digit])
 				{
-					_tempConclusions.Add(new(Assignment, cell, digit));
+					_tempConclusions.Add(new(ConclusionType.Assignment, cell, digit));
 					var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
 
 					// Try to fill this cell.
@@ -75,7 +71,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					{
 						tempAccumulator.Add(
 							new BowmanBingoStepInfo(
-								new Conclusion[] { new(Elimination, startCandidate) },
+								new Conclusion[] { new(ConclusionType.Elimination, startCandidate) },
 								new View[]
 								{
 									new()
@@ -140,7 +136,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				result.Add(
 					new BowmanBingoStepInfo(
-						new Conclusion[] { new(Elimination, startCandidate) },
+						new Conclusion[] { new(ConclusionType.Elimination, startCandidate) },
 						new View[]
 						{
 							new()
@@ -171,7 +167,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				var (_, c1) = _tempConclusions[i];
 				var (_, c2) = _tempConclusions[i + 1];
-				result.Add(new(c1, c2, Default));
+				result.Add(new(c1, c2, LinkType.Default));
 			}
 
 			return result;
@@ -229,7 +225,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 			static bool isValid(int c, in SudokuGrid grid, in int cell) =>
 				grid.GetStatus(c) is var status
-				&& (status != Empty && grid[c] != grid[cell] || status == Empty)
+				&& (status != CellStatus.Empty && grid[c] != grid[cell] || status == CellStatus.Empty)
 				&& grid.GetCandidates(c) != 0;
 		}
 	}

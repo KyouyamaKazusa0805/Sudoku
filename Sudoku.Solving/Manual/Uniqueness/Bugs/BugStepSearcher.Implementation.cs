@@ -6,7 +6,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -36,7 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var conclusions = new List<Conclusion>();
 			foreach (int cell in elimMap)
 			{
-				conclusions.Add(new(Elimination, cell, digit));
+				conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 			}
 
 			var candidateOffsets = new List<DrawingInfo>();
@@ -116,7 +115,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							{
 								if ((mask >> digit & 1) != 0)
 								{
-									conclusions.Add(new(Elimination, cell, digit));
+									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 								}
 							}
 						}
@@ -244,7 +243,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								continue;
 							}
 
-							conclusions.Add(new(Elimination, cell, d));
+							conclusions.Add(new(ConclusionType.Elimination, cell, d));
 						}
 					}
 
@@ -306,7 +305,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			{
 				if (grid.Exists(candidate / 9, candidate % 9) is true)
 				{
-					conclusions.Add(new(Elimination, candidate));
+					conclusions.Add(new(ConclusionType.Elimination, candidate));
 				}
 			}
 			if (conclusions.Count == 0)
@@ -362,7 +361,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				{
 					if (grid.Exists(peer, anotherDigit) is true)
 					{
-						conclusions.Add(new(Elimination, peer, anotherDigit));
+						conclusions.Add(new(ConclusionType.Elimination, peer, anotherDigit));
 					}
 				}
 				if (conclusions.Count == 0)

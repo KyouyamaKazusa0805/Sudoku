@@ -4,9 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -117,7 +115,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									wDigitsMask |= (short)(1 << w);
 									foreach (int cell in tempMap)
 									{
-										conclusions.Add(new(Elimination, cell, w));
+										conclusions.Add(new(ConclusionType.Elimination, cell, w));
 									}
 								}
 

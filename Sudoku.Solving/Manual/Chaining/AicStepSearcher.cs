@@ -4,9 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -216,7 +214,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					{
 						if (grid.Exists(candidate / 9, candidate % 9) is true)
 						{
-							conclusions.Add(new(Elimination, candidate));
+							conclusions.Add(new(ConclusionType.Elimination, candidate));
 						}
 					}
 				}
@@ -281,7 +279,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					if (grid.Exists(candidate / 9, candidate % 9) is true)
 					{
-						conclusions.Add(new(Elimination, candidate));
+						conclusions.Add(new(ConclusionType.Elimination, candidate));
 					}
 				}
 			}

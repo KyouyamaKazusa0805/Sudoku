@@ -3,9 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -15,7 +13,10 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class TwoStrongLinksStepSearcher : SdpStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(40, nameof(TechniqueCode.TurbotFish)) { DisplayLevel = 2 };
+		public static TechniqueProperties Properties { get; } = new(40, nameof(TechniqueCode.TurbotFish))
+		{
+			DisplayLevel = 2
+		};
 
 
 		/// <inheritdoc/>
@@ -88,7 +89,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 						foreach (int cell in gridMap)
 						{
-							conclusions.Add(new(Elimination, cell, digit));
+							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
 						if (conclusions.Count == 0)
 						{

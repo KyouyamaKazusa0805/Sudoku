@@ -5,9 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -66,7 +64,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in elimMap)
 						{
-							conclusions.Add(new(Elimination, cell, digit));
+							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
 
 						var candidateOffsets = new List<DrawingInfo>();

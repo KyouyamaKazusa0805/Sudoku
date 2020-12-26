@@ -298,254 +298,6 @@
             Indicates the analysis result will show the steps.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Annotations.DirectSearcherAttribute">
-            <summary>
-            <para>
-            Indicates the technique searcher can or can't be used in some scenarios
-            where they aren't in traversing mode to call
-            <see cref="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)"/>
-            in <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s one by one.
-            </para>
-            <para>
-            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="P:Sudoku.Solving.Manual.StepSearcher.CandMaps"/> in its method
-            <see cref="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)"/>.
-            </para>
-            </summary>
-            <remarks>
-            <para>
-            All disallowed properties are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.DigitMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.ValueMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.CandMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.BivalueMap"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.EmptyMap"/></item>
-            </list>
-            The disallowed method is:
-            <list type="bullet">
-            <item><see cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/></item>
-            </list>
-            </para>
-            <para>
-            Those properties or methods can optimize the performance to analyze a sudoku grid, but
-            sometimes they may cause a potential bug that is hard to find and fix. The attribute
-            is created and used for solving the problem.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Solving.Annotations.DirectSearcherAttribute.IsAllow">
-            <summary>
-            Indicates the ability that can or can't be used in non-traversing scenarios.
-            The default value is <see langword="true"/>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Annotations.DisabledReason">
-            <summary>
-            Indicates a reason why the searcher is disabled.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Annotations.DisabledReason.None">
-            <summary>
-            Indicates the searcher is normal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Annotations.DisabledReason.LastResort">
-            <summary>
-            Indicates the searcher searches for last resorts, which don't need to show.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Annotations.DisabledReason.HasBugs">
-            <summary>
-            Indicates the searcher has bugs while searching.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Annotations.DisabledReason.TooSlow">
-            <summary>
-            Indicates the searcher runs so slowly that the author himself can't stand to use it.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Annotations.DisabledReason.Unstable">
-            <summary>
-            Indicates the searcher can get correct <see cref="T:Sudoku.Solving.Manual.StepInfo"/>s, but the difference
-            of the difficulty among them are too big.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Annotations.DisabledReason.HighAllocation">
-            <summary>
-            Indicates the searcher will cause a lot of memory allocation.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Annotations.TechniqueProperties">
-            <summary>
-            Indicates the properties while searching aiming to <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.#ctor(System.Int32,System.String)">
-            <summary>
-            Initializes an instance with the specified priority.
-            </summary>
-            <param name="priority">The priority.</param>
-            <param name="displayLabel">The display label.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.IsEnabled">
-            <summary>
-            Indicates whether the technique is enabled. The default value is <see langword="true"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.IsReadOnly">
-            <summary>
-            Indicates whether the property is read-only, which can't be modified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.OnlyEnableInAnalysis">
-            <summary>
-            Indicates whether the searcher is only used in analyzing a sudoku grid.
-            If <see langword="true"/>, when in find-all-step mode, this searcher will be disabled.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.Priority">
-            <summary>
-            Indicates the priority of this technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLevel">
-            <summary>
-            Indicates the display level of this technique.
-            </summary>
-            <remarks>
-            <para>
-            The display level means the which level the technique is at. All higher leveled techniques
-            won't display on the screen when the searchers at the current level have found technique
-            instances.
-            </para>
-            <para>
-            This attribute is used on <see cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>. For example, if Alternating Inference Chain (AIC)
-            is at level 1 and Forcing Chains (FC) is at level 2, when we find any AIC technique instances,
-            FC won't be checked at the same time in order to enhance the performance.
-            </para>
-            <para>
-            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
-            </para>
-            <para>
-            Note that the property is different with <see cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLabel"/>.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>
-            <seealso cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLabel"/>
-        </member>
-        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLabel">
-            <summary>
-            Indicates the display label of this technique. The program will process and handle the
-            value to the specified technique name.
-            </summary>
-            <remarks>
-            Note that the property is different with <see cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLevel"/>.
-            </remarks>
-            <seealso cref="P:Sudoku.Solving.Annotations.TechniqueProperties.DisplayLevel"/>
-        </member>
-        <member name="P:Sudoku.Solving.Annotations.TechniqueProperties.DisabledReason">
-            <summary>
-            Indicates whether the current searcher has bug to fix, or something else to describe why
-            the searcher is (or should be) disabled.
-            The default value is <see cref="F:Sudoku.Solving.Annotations.DisabledReason.LastResort"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Solving.Annotations.DisabledReason.LastResort"/>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isEnabled">
-            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
-            </param>
-            <param name="isReadOnly">
-            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isEnabled">
-            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
-            </param>
-            <param name="isReadOnly">
-            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
-            </param>
-            <param name="priority">
-            (<see langword="out"/> parameter) Indicates the priority of the technique.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Annotations.DisabledReason@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isEnabled">
-            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
-            </param>
-            <param name="isReadOnly">
-            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
-            </param>
-            <param name="priority">
-            (<see langword="out"/> parameter) Indicates the priority of the technique.
-            </param>
-            <param name="disabledReason">
-            (<see langword="out"/> parameter) Indicates why this technique is disabled.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Annotations.DisabledReason@,System.Boolean@,System.Int32@,System.String@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isEnabled">
-            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
-            </param>
-            <param name="isReadOnly">
-            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
-            </param>
-            <param name="priority">
-            (<see langword="out"/> parameter) Indicates the priority of the technique.
-            </param>
-            <param name="disabledReason">
-            (<see langword="out"/> parameter) Indicates why this technique is disabled.
-            </param>
-            <param name="onlyEnableInAnalysis">
-            (<see langword="out"/> parameter) Indicates whether the searcher is enabled only in traversing mode.
-            </param>
-            <param name="displayLevel">
-            (<see langword="out"/> parameter) Indicates the display level.
-            </param>
-            <param name="displayLabel">
-            (<see langword="out"/> parameter) Indicates the display label.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.GetPropertiesFrom``1">
-            <summary>
-            Get the specified properties using reflection.
-            </summary>
-            <typeparam name="TTechniqueSearcher">The type of the searcher.</typeparam>
-            <returns>
-            The properties instance. If the searcher is <see langword="abstract"/> type
-            or not <see cref="T:Sudoku.Solving.Manual.StepSearcher"/> at all,
-            the return value will be <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.GetPropertiesFrom(Sudoku.Solving.Manual.StepSearcher)">
-            <summary>
-            Get the specified properties using reflection.
-            </summary>
-            <param name="searcher">The searcher.</param>
-            <returns>
-            The properties instance. If the searcher is <see langword="abstract"/> type,
-            the return value will be <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueProperties.GetPropertiesFrom(System.Type)">
-            <summary>
-            Get the specified properties using reflection.
-            </summary>
-            <param name="type">The type of the specified searcher.</param>
-            <returns>
-            The properties instance. If the searcher is <see langword="abstract"/> type
-            or not <see cref="T:Sudoku.Solving.Manual.StepSearcher"/> at all,
-            the return value will be <see langword="null"/>.
-            </returns>
-        </member>
         <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
             <summary>
             Provides a solver using backtracking method.
@@ -1095,6 +847,85 @@
             </summary>
             <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
             <returns>The difficulty level.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.DirectSearcherAttribute">
+            <summary>
+            <para>
+            Indicates the technique searcher can or can't be used in some scenarios
+            where they aren't in traversing mode to call
+            <see cref="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)"/>
+            in <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s one by one.
+            </para>
+            <para>
+            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
+            properties such as <see cref="P:Sudoku.Solving.Manual.StepSearcher.CandMaps"/> in its method
+            <see cref="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)"/>.
+            </para>
+            </summary>
+            <remarks>
+            <para>
+            All disallowed properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.DigitMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.ValueMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.CandMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.BivalueMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.EmptyMap"/></item>
+            </list>
+            The disallowed method is:
+            <list type="bullet">
+            <item><see cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/></item>
+            </list>
+            </para>
+            <para>
+            Those properties or methods can optimize the performance to analyze a sudoku grid, but
+            sometimes they may cause a potential bug that is hard to find and fix. The attribute
+            is created and used for solving the problem.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.DirectSearcherAttribute.IsAllow">
+            <summary>
+            Indicates the ability that can or can't be used in non-traversing scenarios.
+            The default value is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.DisabledReason">
+            <summary>
+            Indicates a reason why the searcher is disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DisabledReason.None">
+            <summary>
+            Indicates the searcher is normal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DisabledReason.LastResort">
+            <summary>
+            Indicates the searcher searches for last resorts, which don't need to show.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DisabledReason.HasBugs">
+            <summary>
+            Indicates the searcher has bugs while searching.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DisabledReason.TooSlow">
+            <summary>
+            Indicates the searcher runs so slowly that the author himself can't stand to use it.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DisabledReason.Unstable">
+            <summary>
+            Indicates the searcher can get correct <see cref="T:Sudoku.Solving.Manual.StepInfo"/>s, but the difference
+            of the difficulty among them are too big.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DisabledReason.HighAllocation">
+            <summary>
+            Indicates the searcher will cause a lot of memory allocation.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Extensions.CellsEx">
             <summary>
@@ -9391,6 +9222,175 @@
             <summary>
             Encapsulates a <b>wing</b> technique solver.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.TechniqueProperties">
+            <summary>
+            Indicates the properties while searching aiming to <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueProperties.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes an instance with the specified priority.
+            </summary>
+            <param name="priority">The priority.</param>
+            <param name="displayLabel">The display label.</param>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueProperties.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled. The default value is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueProperties.IsReadOnly">
+            <summary>
+            Indicates whether the property is read-only, which can't be modified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueProperties.OnlyEnableInAnalysis">
+            <summary>
+            Indicates whether the searcher is only used in analyzing a sudoku grid.
+            If <see langword="true"/>, when in find-all-step mode, this searcher will be disabled.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueProperties.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueProperties.DisplayLevel">
+            <summary>
+            Indicates the display level of this technique.
+            </summary>
+            <remarks>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            This attribute is used on <see cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>. For example, if Alternating Inference Chain (AIC)
+            is at level 1 and Forcing Chains (FC) is at level 2, when we find any AIC technique instances,
+            FC won't be checked at the same time in order to enhance the performance.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            <para>
+            Note that the property is different with <see cref="P:Sudoku.Solving.TechniqueProperties.DisplayLabel"/>.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>
+            <seealso cref="P:Sudoku.Solving.TechniqueProperties.DisplayLabel"/>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueProperties.DisplayLabel">
+            <summary>
+            Indicates the display label of this technique. The program will process and handle the
+            value to the specified technique name.
+            </summary>
+            <remarks>
+            Note that the property is different with <see cref="P:Sudoku.Solving.TechniqueProperties.DisplayLevel"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.TechniqueProperties.DisplayLevel"/>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueProperties.DisabledReason">
+            <summary>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            The default value is <see cref="F:Sudoku.Solving.DisabledReason.LastResort"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.DisabledReason.LastResort"/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="isEnabled">
+            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+            </param>
+            <param name="isReadOnly">
+            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="isEnabled">
+            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+            </param>
+            <param name="isReadOnly">
+            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+            </param>
+            <param name="priority">
+            (<see langword="out"/> parameter) Indicates the priority of the technique.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.DisabledReason@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="isEnabled">
+            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+            </param>
+            <param name="isReadOnly">
+            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+            </param>
+            <param name="priority">
+            (<see langword="out"/> parameter) Indicates the priority of the technique.
+            </param>
+            <param name="disabledReason">
+            (<see langword="out"/> parameter) Indicates why this technique is disabled.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.DisabledReason@,System.Boolean@,System.Int32@,System.String@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="isEnabled">
+            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+            </param>
+            <param name="isReadOnly">
+            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+            </param>
+            <param name="priority">
+            (<see langword="out"/> parameter) Indicates the priority of the technique.
+            </param>
+            <param name="disabledReason">
+            (<see langword="out"/> parameter) Indicates why this technique is disabled.
+            </param>
+            <param name="onlyEnableInAnalysis">
+            (<see langword="out"/> parameter) Indicates whether the searcher is enabled only in traversing mode.
+            </param>
+            <param name="displayLevel">
+            (<see langword="out"/> parameter) Indicates the display level.
+            </param>
+            <param name="displayLabel">
+            (<see langword="out"/> parameter) Indicates the display label.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueProperties.GetPropertiesFrom``1">
+            <summary>
+            Get the specified properties using reflection.
+            </summary>
+            <typeparam name="TTechniqueSearcher">The type of the searcher.</typeparam>
+            <returns>
+            The properties instance. If the searcher is <see langword="abstract"/> type
+            or not <see cref="T:Sudoku.Solving.Manual.StepSearcher"/> at all,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueProperties.GetPropertiesFrom(Sudoku.Solving.Manual.StepSearcher)">
+            <summary>
+            Get the specified properties using reflection.
+            </summary>
+            <param name="searcher">The searcher.</param>
+            <returns>
+            The properties instance. If the searcher is <see langword="abstract"/> type,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueProperties.GetPropertiesFrom(System.Type)">
+            <summary>
+            Get the specified properties using reflection.
+            </summary>
+            <param name="type">The type of the specified searcher.</param>
+            <returns>
+            The properties instance. If the searcher is <see langword="abstract"/> type
+            or not <see cref="T:Sudoku.Solving.Manual.StepSearcher"/> at all,
+            the return value will be <see langword="null"/>.
+            </returns>
         </member>
         <member name="T:Sudoku.Windows.DisableDisplayingAttribute">
             <summary>

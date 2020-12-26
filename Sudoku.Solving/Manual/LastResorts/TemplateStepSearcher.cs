@@ -5,9 +5,7 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Runtime;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -72,7 +70,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in resultMap)
 				{
-					conclusions.Add(new(Assignment, cell, digit));
+					conclusions.Add(new(ConclusionType.Assignment, cell, digit));
 				}
 
 				if (conclusions.Count == 0)
@@ -112,7 +110,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in resultMap)
 				{
-					conclusions.Add(new(Elimination, cell, digit));
+					conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 				}
 
 				if (conclusions.Count == 0)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving.Annotations
+namespace Sudoku.Solving
 {
 	/// <summary>
 	/// <para>

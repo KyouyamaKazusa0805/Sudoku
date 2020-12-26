@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
@@ -47,7 +45,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					{
 						var curMap = linkForEachDigit + digit;
 						*curMap = CandMaps[digit] & map;
-						n += Min(
+						n += Algorithms.Min(
 							curMap->RowMask.PopCount(), 
 							curMap->ColumnMask.PopCount(),
 							curMap->BlockMask.PopCount());
@@ -65,7 +63,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							short rMask = currentMap.RowMask;
 							short cMask = currentMap.ColumnMask;
 							short bMask = currentMap.BlockMask;
-							int temp = Min(rMask.PopCount(), cMask.PopCount(), bMask.PopCount());
+							int temp = Algorithms.Min(rMask.PopCount(), cMask.PopCount(), bMask.PopCount());
 							var elimMap = Cells.Empty;
 							int check = 0;
 							if (rMask.PopCount() == temp)
@@ -116,7 +114,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 									canL[digit].AddAnyway(cell);
 								}
 
-								conclusions.Add(new(Elimination, cell, digit));
+								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
 						}
 

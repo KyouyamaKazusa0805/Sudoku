@@ -7,11 +7,9 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
 using Sudoku.Windows;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -155,11 +153,12 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					// Get all true base eliminations.
 					var trueBaseElims = new TrueBase();
-					if (tbCands != 0 && (grid.GetStatus(v1) != Empty || grid.GetStatus(v2) != Empty))
+					if (tbCands != 0
+						&& (grid.GetStatus(v1) != CellStatus.Empty || grid.GetStatus(v2) != CellStatus.Empty))
 					{
 						for (int j = 0; j < 2; j++)
 						{
-							if (grid.GetStatus(comb[j]) != Empty)
+							if (grid.GetStatus(comb[j]) != CellStatus.Empty)
 							{
 								continue;
 							}
@@ -511,7 +510,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			in SudokuGrid grid, CompatibilityTest compatibilityElims,
 			in Cells baseCellsMap, short baseCandidatesMask, int t1, int t2)
 		{
-			if ((grid.GetStatus(t1), grid.GetStatus(t2)) is (not Empty, not Empty))
+			if ((grid.GetStatus(t1), grid.GetStatus(t2)) is (not CellStatus.Empty, not CellStatus.Empty))
 			{
 				return;
 			}

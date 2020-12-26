@@ -5,7 +5,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
@@ -49,7 +48,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			var conclusions = new List<Conclusion>();
 			foreach (int digit in mask)
 			{
-				conclusions.Add(new(Elimination, elimCell, digit));
+				conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
 			}
 
 			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
@@ -117,7 +116,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			var conclusions = new List<Conclusion>();
 			foreach (int cell in elimMap)
 			{
-				conclusions.Add(new(Elimination, cell, extraDigit));
+				conclusions.Add(new(ConclusionType.Elimination, cell, extraDigit));
 			}
 
 			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
@@ -195,7 +194,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						{
 							foreach (int cell in allCellsMap - cells & CandMaps[digit])
 							{
-								conclusions.Add(new(Elimination, cell, digit));
+								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -300,7 +299,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap)
 					{
-						conclusions.Add(new(Elimination, cell, elimDigit));
+						conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
 					}
 
 					var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
@@ -405,7 +404,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			{
 				if (grid.Exists(candidate / 9, candidate % 9) is true)
 				{
-					conclusions.Add(new(Elimination, candidate));
+					conclusions.Add(new(ConclusionType.Elimination, candidate));
 				}
 			}
 			if (conclusions.Count == 0)

@@ -4,7 +4,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Uniqueness;

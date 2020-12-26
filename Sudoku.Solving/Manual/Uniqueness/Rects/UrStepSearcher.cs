@@ -6,9 +6,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -215,17 +213,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				switch (grid.GetStatus(urCell))
 				{
-					case Given:
-					case Modifiable when !arMode:
+					case CellStatus.Given:
+					case CellStatus.Modifiable when !arMode:
 					{
 						return false;
 					}
-					case Empty when arMode:
+					case CellStatus.Empty when arMode:
 					{
 						emptyCountWhenArMode++;
 						break;
 					}
-					case Modifiable:
+					case CellStatus.Modifiable:
 					{
 						modifiableCount++;
 						break;

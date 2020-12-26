@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
-using static System.Algorithms;
-using static System.Math;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
@@ -42,7 +39,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			// Iterate on the size.
 			// Note that the greatest size is determined by two factors: the size that you specified
 			// and the number of bi-value cells in the grid.
-			for (int size = 3, count = Min(_size, BivalueMap.Count); size <= count; size++)
+			for (int size = 3, count = Math.Min(_size, BivalueMap.Count); size <= count; size++)
 			{
 				// Iterate on each pivot cell.
 				foreach (int pivot in EmptyMap)
@@ -132,7 +129,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in elimMap)
 						{
-							conclusions.Add(new(Elimination, cell, zDigit));
+							conclusions.Add(new(ConclusionType.Elimination, cell, zDigit));
 						}
 
 						// Gather highlight candidates.

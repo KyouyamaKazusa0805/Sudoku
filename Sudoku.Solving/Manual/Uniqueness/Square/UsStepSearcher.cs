@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Solving.Annotations;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Square
 {

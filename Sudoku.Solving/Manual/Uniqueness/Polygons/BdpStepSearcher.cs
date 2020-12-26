@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
-using Sudoku.Solving.Annotations;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {

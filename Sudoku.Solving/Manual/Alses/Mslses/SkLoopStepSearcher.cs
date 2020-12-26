@@ -6,9 +6,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
@@ -44,7 +41,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				// Get the values count ('n') and pairs list ('pairs').
 				for (i = 0; i < 8; i++)
 				{
-					if (grid.GetStatus(cells[i << 1]) != Empty)
+					if (grid.GetStatus(cells[i << 1]) != CellStatus.Empty)
 					{
 						n++;
 					}
@@ -53,7 +50,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						pairs[i] |= grid.GetCandidates(cells[i << 1]);
 					}
 
-					if (grid.GetStatus(cells[(i << 1) + 1]) != Empty)
+					if (grid.GetStatus(cells[(i << 1) + 1]) != CellStatus.Empty)
 					{
 						n++;
 					}
@@ -151,7 +148,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							{
 								foreach (int digit in cands)
 								{
-									conclusions.Add(new(Elimination, cell, digit));
+									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 								}
 							}
 						}

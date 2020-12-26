@@ -2,9 +2,6 @@
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -17,6 +14,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// This searcher is a trick, because it will check the assignments on
 	/// the terminal grid (I mean, the answer grid).
 	/// </remarks>
+	[DirectSearcher]
 	public sealed class BfStepSearcher : LastResortStepSearcher
 	{
 		/// <summary>
@@ -64,12 +62,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			foreach (int offset in TryAndErrorOrder)
 			{
-				if (grid.GetStatus(offset) == Empty)
+				if (grid.GetStatus(offset) == CellStatus.Empty)
 				{
 					int cand = offset * 9 + _solution[offset];
 					accumulator.Add(
 						new BfStepInfo(
-							new Conclusion[] { new(Assignment, cand) },
+							new Conclusion[] { new(ConclusionType.Assignment, cand) },
 							new View[] { new() { Candidates = new DrawingInfo[] { new(0, cand) } } }));
 				}
 			}

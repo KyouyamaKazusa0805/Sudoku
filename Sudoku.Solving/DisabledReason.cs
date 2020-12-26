@@ -1,7 +1,7 @@
 ﻿using System;
 using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving.Annotations
+namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Indicates a reason why the searcher is disabled.

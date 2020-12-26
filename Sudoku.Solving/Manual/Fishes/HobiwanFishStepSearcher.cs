@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.LastResorts;
-using static System.Algorithms;
-using static System.Math;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -178,7 +175,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					var coverCombinationsDoNotContainElim = new RegionMap(mask);
 					var coverCombinationsContainElim = coverCombinations - coverCombinationsDoNotContainElim;
 					for (int internalSize = 1;
-						internalSize <= Min(coverCombinationsContainElim.Count, size);
+						internalSize <= Math.Min(coverCombinationsContainElim.Count, size);
 						internalSize++)
 					{
 						foreach (int[] comb in coverCombinationsContainElim.ToArray().GetSubsets(internalSize))
@@ -267,12 +264,12 @@ namespace Sudoku.Solving.Manual.Fishes
 								foreach (int cell in elimMap)
 								{
 									// Normal eliminations.
-									conclusions.Add(new(Elimination, cell, digit));
+									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 								}
 								foreach (int cell in two)
 								{
 									// Cannibalisms.
-									conclusions.Add(new(Elimination, cell, digit));
+									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 								}
 
 								var regionOffsets = new List<DrawingInfo>();

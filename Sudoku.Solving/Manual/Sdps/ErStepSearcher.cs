@@ -4,10 +4,8 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -87,7 +85,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Empty rectangle.
 						accumulator.Add(
 							new ErStepInfo(
-								new Conclusion[] { new(Elimination, elimCell, digit) },
+								new Conclusion[] { new(ConclusionType.Elimination, elimCell, digit) },
 								new View[]
 								{
 									new()

@@ -4,9 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -102,7 +100,7 @@ namespace Sudoku.Solving.Manual.Singles
 				int digit = grid.GetCandidates(resultCell).FindFirstSet();
 				accumulator.Add(
 					new FullHouseStepInfo(
-						new Conclusion[] { new(Assignment, resultCell, digit) },
+						new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) },
 						new View[]
 						{
 							new()
@@ -205,7 +203,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 					accumulator.Add(
 						new HiddenSingleStepInfo(
-							new Conclusion[] { new(Assignment, resultCell, digit) },
+							new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) },
 							new View[]
 							{
 								new()
@@ -267,7 +265,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 						accumulator.Add(
 							new NakedSingleStepInfo(
-								new Conclusion[] { new(Assignment, cell, digit) },
+								new Conclusion[] { new(ConclusionType.Assignment, cell, digit) },
 								new View[]
 								{
 									new()

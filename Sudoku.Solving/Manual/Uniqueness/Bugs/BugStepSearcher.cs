@@ -2,9 +2,7 @@
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -53,7 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					// BUG + 1 found.
 					accumulator.Add(
 						new BugType1StepInfo(
-							new Conclusion[] { new(Assignment, trueCandidates[0]) },
+							new Conclusion[] { new(ConclusionType.Assignment, trueCandidates[0]) },
 							new View[]
 							{
 								new() { Candidates = new DrawingInfo[] { new(0, trueCandidates[0]) } }

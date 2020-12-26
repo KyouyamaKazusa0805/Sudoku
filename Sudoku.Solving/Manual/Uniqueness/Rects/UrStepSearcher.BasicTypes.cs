@@ -5,9 +5,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
-using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -47,11 +44,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var conclusions = new List<Conclusion>();
 			if (grid.Exists(cornerCell, d1) is true)
 			{
-				conclusions.Add(new(Elimination, cornerCell, d1));
+				conclusions.Add(new(ConclusionType.Elimination, cornerCell, d1));
 			}
 			if (grid.Exists(cornerCell, d2) is true)
 			{
-				conclusions.Add(new(Elimination, cornerCell, d2));
+				conclusions.Add(new(ConclusionType.Elimination, cornerCell, d2));
 			}
 			if (conclusions.Count == 0)
 			{
@@ -138,13 +135,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var conclusions = new List<Conclusion>();
 			foreach (int cell in elimMap)
 			{
-				conclusions.Add(new(Elimination, cell, extraDigit));
+				conclusions.Add(new(ConclusionType.Elimination, cell, extraDigit));
 			}
 
 			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in urCells)
 			{
-				if (grid.GetStatus(cell) == Empty)
+				if (grid.GetStatus(cell) == CellStatus.Empty)
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
@@ -175,10 +172,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					},
 					(arMode, isType5) switch
 					{
-						(true, true) => AType5,
-						(true, false) => AType2,
-						(false, true) => Type5,
-						(false, false) => Type2
+						(true, true) => UrTypeCode.AType5,
+						(true, false) => UrTypeCode.AType2,
+						(false, true) => UrTypeCode.Type5,
+						(false, false) => UrTypeCode.Type2
 					},
 					d1,
 					d2,
@@ -213,7 +210,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  abx   aby
 			static bool isSatisfiedType3(int cell, in short comparer, in bool arMode, in SudokuGrid grid) =>
 				grid.GetCandidates(cell) is var mask && (mask & comparer) == 0
-				|| mask == comparer || arMode && grid.GetStatus(cell) != Empty;
+				|| mask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty;
 
 			bool satisfiedType3;
 			unsafe
@@ -261,7 +258,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							foreach (int cell in (iterationMap - iteratedCells) & CandMaps[digit])
 							{
-								conclusions.Add(new(Elimination, cell, digit));
+								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -272,7 +269,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var cellOffsets = new List<DrawingInfo>();
 						foreach (int cell in urCells)
 						{
-							if (grid.GetStatus(cell) != Empty)
+							if (grid.GetStatus(cell) != CellStatus.Empty)
 							{
 								cellOffsets.Add(new(0, cell));
 							}
@@ -281,7 +278,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int cell in urCells)
 						{
-							if (grid.GetStatus(cell) == Empty)
+							if (grid.GetStatus(cell) == CellStatus.Empty)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
@@ -378,13 +375,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap)
 					{
-						conclusions.Add(new(Elimination, cell, elimDigit));
+						conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
 					}
 
 					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int cell in urCells)
 					{
-						if (grid.GetStatus(cell) != Empty)
+						if (grid.GetStatus(cell) != CellStatus.Empty)
 						{
 							continue;
 						}
@@ -428,7 +425,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									Regions = new DrawingInfo[] { new(0, region) }
 								}
 							},
-							Type4,
+							UrTypeCode.Type4,
 							d1,
 							d2,
 							urCells,
@@ -484,7 +481,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int cell in cellsThatContainsExtraDigit.PeerIntersection & CandMaps[extraDigit])
 			{
-				conclusions.Add(new(Elimination, cell, extraDigit));
+				conclusions.Add(new(ConclusionType.Elimination, cell, extraDigit));
 			}
 			if (conclusions.Count == 0)
 			{
@@ -494,7 +491,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in urCells)
 			{
-				if (grid.GetStatus(cell) != Empty)
+				if (grid.GetStatus(cell) != CellStatus.Empty)
 				{
 					continue;
 				}
@@ -523,7 +520,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							Candidates = candidateOffsets
 						}
 					},
-					arMode ? AType5 : Type5,
+					arMode ? UrTypeCode.AType5 : UrTypeCode.Type5,
 					d1,
 					d2,
 					urCells,
@@ -596,7 +593,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap)
 				{
-					conclusions.Add(new(Elimination, cell, digit));
+					conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 				}
 
 				var candidateOffsets = new List<DrawingInfo>();
@@ -639,7 +636,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								Regions = new DrawingInfo[] { new(0, region1), new(0, region2) }
 							}
 						},
-						Type6,
+						UrTypeCode.Type6,
 						d1,
 						d2,
 						urCells,
@@ -705,7 +702,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int cell in urCells)
 				{
-					if (grid.GetStatus(cell) != Empty)
+					if (grid.GetStatus(cell) != CellStatus.Empty)
 					{
 						continue;
 					}
@@ -737,7 +734,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				accumulator.Add(
 					new HiddenUrStepInfo(
-						new Conclusion[] { new(Elimination, abzCell, elimDigit) },
+						new Conclusion[] { new(ConclusionType.Elimination, abzCell, elimDigit) },
 						new View[]
 						{
 							new()
