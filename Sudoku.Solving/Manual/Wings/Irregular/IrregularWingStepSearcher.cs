@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Wings.Irregular
