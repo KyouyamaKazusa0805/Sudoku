@@ -357,7 +357,7 @@ namespace Sudoku.Data
 						int comparer =
 							Math.Max(
 								candidatesCount,
-								GetStatusFromMask(value) switch
+								MaskGetStatus(value) switch
 								{
 									// The output will be '<digit>' and consist of 3 characters.
 									CellStatus.Given => Math.Max(candidatesCount, 3),
@@ -435,7 +435,7 @@ namespace Sudoku.Data
 									{
 										// Get digit.
 										short value = valuesByRow[i];
-										var cellStatus = GetStatusFromMask(value);
+										var cellStatus = MaskGetStatus(value);
 
 										value &= MaxCandidatesMask;
 										int d = value == 0
@@ -606,14 +606,6 @@ namespace Sudoku.Data
 					"%" => new(true) { Excel = true },
 					_ => throw new FormatException("The specified format is invalid.")
 				};
-
-			/// <summary>
-			/// Get cell status for a value.
-			/// </summary>
-			/// <param name="value">The value.</param>
-			/// <returns>The cell status.</returns>
-			private static CellStatus GetStatusFromMask(short value) =>
-				(CellStatus)(value >> 9 & (int)CellStatus.All);
 		}
 	}
 }

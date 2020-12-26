@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data.Stepping
 {
@@ -8,7 +9,7 @@ namespace Sudoku.Data.Stepping
 	/// <param name="OldMasks">Indicates the table of new grid masks.</param>
 	/// <param name="NewMasks">Indicates the table of old grid masks.</param>
 	/// <remarks>
-	/// Note that <see langword="record"/>s can't support pointers at present. Therefore,
+	/// Note that <see langword="record"/>s doesn't support pointers at present. Therefore,
 	/// I use <see cref="IntPtr"/> instead.
 	/// </remarks>
 	/// <seealso cref="IntPtr"/>
@@ -21,7 +22,7 @@ namespace Sudoku.Data.Stepping
 			{
 				fixed (short* pGrid = grid)
 				{
-					SudokuGrid.InternalCopy(pGrid, (short*)OldMasks);
+					Unsafe.CopyBlock(pGrid, (short*)OldMasks, 0);
 				}
 			}
 		}
@@ -33,7 +34,7 @@ namespace Sudoku.Data.Stepping
 			{
 				fixed (short* pGrid = grid)
 				{
-					SudokuGrid.InternalCopy(pGrid, (short*)NewMasks);
+					Unsafe.CopyBlock(pGrid, (short*)NewMasks, 0);
 				}
 			}
 		}

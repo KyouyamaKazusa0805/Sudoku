@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using UnsafeOperations = System.Runtime.CompilerServices.Unsafe;
+using System.Runtime.CompilerServices;
 
 namespace System.Extensions
 {
@@ -31,9 +31,9 @@ namespace System.Extensions
 					switch (size)
 					{
 						case 1 or 2 or 4
-						when UnsafeOperations.As<TEnum, int>(ref field) is var i && !i.IsPowerOfTwo():
+						when Unsafe.As<TEnum, int>(ref field) is var i && !i.IsPowerOfTwo():
 						case 8
-						when UnsafeOperations.As<TEnum, long>(ref field) is var l && !l.IsPowerOfTwo():
+						when Unsafe.As<TEnum, long>(ref field) is var l && !l.IsPowerOfTwo():
 						{
 							// We'll skip the field that keeps the default value (0), or the value isn't a
 							// normal flag.
@@ -72,13 +72,13 @@ namespace System.Extensions
 				case 2:
 				case 4:
 				{
-					int otherValue = UnsafeOperations.As<TEnum, int>(ref other);
-					return (UnsafeOperations.As<TEnum, int>(ref @this) & otherValue) == otherValue;
+					int otherValue = Unsafe.As<TEnum, int>(ref other);
+					return (Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue;
 				}
 				case 8:
 				{
-					long otherValue = UnsafeOperations.As<TEnum, long>(ref other);
-					return (UnsafeOperations.As<TEnum, long>(ref @this) & otherValue) == otherValue;
+					long otherValue = Unsafe.As<TEnum, long>(ref other);
+					return (Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue;
 				}
 				default:
 				{

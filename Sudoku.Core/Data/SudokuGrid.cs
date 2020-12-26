@@ -145,8 +145,8 @@ namespace Sudoku.Data
 
 			fixed (short* pArray = masks, pValues = _values, pInitialValues = _initialValues)
 			{
-				InternalCopy(pValues, pArray);
-				InternalCopy(pInitialValues, pArray);
+				Unsafe.CopyBlock(pValues, pArray, 0);
+				Unsafe.CopyBlock(pInitialValues, pArray, 0);
 			}
 		}
 
@@ -670,9 +670,29 @@ namespace Sudoku.Data
 			}
 
 #if DEBUG
+			// The debugger can't recognize fixed buffer.
+			// The fixed buffer whose code is like:
+			//
+			// private fixed short _values[81];
+			//
+			// However, internally, the field '_values' is implemented
+			// with a fixed buffer using a inner struct, which is just like:
+			//
+			// [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
+			// private struct FixedBuffer
+			// {
+			//     public short _internalValue;
+			// }
+			//
+			// And that field:
+			//
+			// private FixedBuffer _fixedField;
+			//
+			// From the code we can learn that only 2 bytes of the inner struct can be detected,
+			// because the buffer struct only contains 2 bytes data.
 			if (debuggerUndefined(this))
 			{
-				return "<Debugger can't recognize fixed buffer.>";
+				return "<Debugger can't recognize the fixed buffer>";
 			}
 #endif
 
@@ -718,7 +738,7 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell.</param>
 		/// <returns>The cell status.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly CellStatus GetStatus(int cell) => (CellStatus)(_values[cell] >> 9 & (int)CellStatus.All);
+		public readonly CellStatus GetStatus(int cell) => MaskGetStatus(_values[cell]);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -768,7 +788,7 @@ namespace Sudoku.Data
 		{
 			fixed (short* pValues = _values, pInitialValues = _initialValues)
 			{
-				InternalCopy(pValues, pInitialValues);
+				Unsafe.CopyBlock(pValues, pInitialValues, 0);
 			}
 		}
 
@@ -809,7 +829,7 @@ namespace Sudoku.Data
 		{
 			fixed (short* pValues = _values, pInitialValues = _initialValues)
 			{
-				InternalCopy(pInitialValues, pValues);
+				Unsafe.CopyBlock(pInitialValues, pValues, 0);
 			}
 		}
 
@@ -976,15 +996,12 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Internal copy.
+		/// To get the cell status through a mask.
 		/// </summary>
-		/// <param name="dest">The destination pointer.</param>
-		/// <param name="src">The source pointer.</param>
-		internal static void InternalCopy(short* dest, short* src)
-		{
-			int i = 0;
-			for (short* p = dest, q = src; i < Length; *p++ = *q++, i++) ;
-		}
+		/// <param name="mask">The mask.</param>
+		/// <returns>The cell status.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static CellStatus MaskGetStatus(short mask) => (CellStatus)(mask >> 9 & (int)CellStatus.All);
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

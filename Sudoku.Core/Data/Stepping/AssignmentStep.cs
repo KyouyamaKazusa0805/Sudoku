@@ -1,4 +1,5 @@
-﻿using static Sudoku.Constants.Processings;
+﻿using System.Runtime.CompilerServices;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Stepping
 {
@@ -38,7 +39,7 @@ namespace Sudoku.Data.Stepping
 					{
 						fixed (short* pGrid = grid)
 						{
-							SudokuGrid.InternalCopy(pGrid, grid.InitialMaskPinnableReference);
+							Unsafe.CopyBlock(pGrid, grid.InitialMaskPinnableReference, 0);
 						}
 
 						break;

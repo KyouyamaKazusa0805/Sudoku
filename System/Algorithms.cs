@@ -2,7 +2,6 @@
 using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using UnsafeOperations = System.Runtime.CompilerServices.Unsafe;
 
 namespace System
 {
@@ -146,14 +145,14 @@ namespace System
 					case 2:
 					case 4:
 					{
-						int l = UnsafeOperations.As<TEnum, int>(ref left);
-						int r = UnsafeOperations.As<TEnum, int>(ref right);
+						int l = Unsafe.As<TEnum, int>(ref left);
+						int r = Unsafe.As<TEnum, int>(ref right);
 						return l < r ? left : right;
 					}
 					case 8:
 					{
-						long l = UnsafeOperations.As<TEnum, long>(ref left);
-						long r = UnsafeOperations.As<TEnum, long>(ref right);
+						long l = Unsafe.As<TEnum, long>(ref left);
+						long r = Unsafe.As<TEnum, long>(ref right);
 						return l < r ? left : right;
 					}
 					default:
@@ -181,14 +180,14 @@ namespace System
 					case 2:
 					case 4:
 					{
-						int l = UnsafeOperations.As<TEnum, int>(ref left);
-						int r = UnsafeOperations.As<TEnum, int>(ref right);
+						int l = Unsafe.As<TEnum, int>(ref left);
+						int r = Unsafe.As<TEnum, int>(ref right);
 						return l > r ? left : right;
 					}
 					case 8:
 					{
-						long l = UnsafeOperations.As<TEnum, long>(ref left);
-						long r = UnsafeOperations.As<TEnum, long>(ref right);
+						long l = Unsafe.As<TEnum, long>(ref left);
+						long r = Unsafe.As<TEnum, long>(ref right);
 						return l > r ? left : right;
 					}
 					default:

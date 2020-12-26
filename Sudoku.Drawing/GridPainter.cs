@@ -141,7 +141,7 @@ namespace Sudoku.Drawing
 			for (int cell = 0; cell < 81; cell++)
 			{
 				short mask = grid.GetMask(cell);
-				var status = (CellStatus)(mask >> 9 & (int)CellStatus.All);
+				var status = SudokuGrid.MaskGetStatus(mask);
 				switch (status)
 				{
 					case CellStatus.Empty when Preferences.ShowCandidates:
