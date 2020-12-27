@@ -8294,22 +8294,12 @@
             </summary>
             <remarks>
             All types can be found in
-            <a href="https://github.com/Sunnie-Shine/Sudoku/wiki/The-gallery-of-Unique-Rectangles">this link</a>.
+            <a href="https://github.com/SunnieShine/Sudoku/discussions/81">this link</a>.
             </remarks>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus1">
-            <summary>
-            Indicates the type 1 (UR + 1).
-            </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type1">
             <summary>
             Indicates the type 1 (UR + 1).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2x">
-            <summary>
-            Indicates the type 2 (UR + 2x).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type2">
@@ -8320,11 +8310,6 @@
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type3">
             <summary>
             Indicates the type 3 (UR + 2X).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2X1SL">
-            <summary>
-            Indicates the type 4 (UR + 2X / 1SL).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type4">
@@ -8462,11 +8447,6 @@
             Indicates the UR-SdC.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus1">
-            <summary>
-            Indicates the type 1 (AR + 1).
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType1">
             <summary>
             Indicates the type 1 (AR + 1).
@@ -8475,11 +8455,6 @@
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType2">
             <summary>
             Indicates the type 2 (AR + 2x).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2X">
-            <summary>
-            Indicates the type 3 (AR + 2X).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType3">

@@ -2,7 +2,7 @@
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using static Sudoku.Solving.Annotations.TechniqueDisplayAttribute;
+using static Sudoku.Solving.TechniqueDisplayAttribute;
 #if DOUBLE_LAYERED_ASSUMPTION
 using Sudoku.Data.Extensions;
 using static Sudoku.Constants.Processings;

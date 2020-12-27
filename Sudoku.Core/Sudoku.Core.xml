@@ -3717,23 +3717,23 @@
             </summary>
             <param name="pair">(<see langword="in"/> parameter) The pair value.</param>
         </member>
-        <member name="T:Sudoku.Solving.Annotations.AliasAttribute">
+        <member name="T:Sudoku.Solving.AliasAttribute">
             <summary>
             To mark on a enum field to give an alias.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Annotations.AliasAttribute.#ctor(System.String)">
+        <member name="M:Sudoku.Solving.AliasAttribute.#ctor(System.String)">
             <summary>
             Initializes an instance with the enum field.
             </summary>
             <param name="fieldName">The field name.</param>
         </member>
-        <member name="P:Sudoku.Solving.Annotations.AliasAttribute.FieldName">
+        <member name="P:Sudoku.Solving.AliasAttribute.FieldName">
             <summary>
             The field name.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Annotations.AliasAttribute.Convert``2(``0)">
+        <member name="M:Sudoku.Solving.AliasAttribute.Convert``2(``0)">
             <summary>
             Convert the specified enum field to the specified type field.
             </summary>
@@ -3741,40 +3741,6 @@
             <typeparam name="TEnumTarget">The target enum type to convert to.</typeparam>
             <param name="enumField">The enum field.</param>
             <returns>The result. Return <see langword="null"/> when the conversion is failed.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute">
-            <summary>
-            <para>
-            To mark on a technique searcher class to provide additional displaying messages
-            which are used in UI forms, such as technique priority settings form.
-            </para>
-            <para>
-            You can use this instance to mark on a enumeration field such as <see cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
-            to show the name on the screen also.
-            </para>
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an instance with the specified displaying name.
-            </summary>
-            <param name="displayName">The name.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.DisplayName">
-            <summary>
-            Indicates the display name of this technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.GetDisplayName``1(``0)">
-            <summary>
-            Get the display name of the specified enum field.
-            </summary>
-            <typeparam name="TEnum">The type of the enum field.</typeparam>
-            <param name="enumField">The enum field to check.</param>
-            <returns>
-            The display name. Return <see langword="null"/> when the field doesn't mark this attribute.
-            </returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.TechniqueCode">
             <summary>
@@ -5192,6 +5158,40 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.TechniqueDisplayAttribute">
+            <summary>
+            <para>
+            To mark on a technique searcher class to provide additional displaying messages
+            which are used in UI forms, such as technique priority settings form.
+            </para>
+            <para>
+            You can use this instance to mark on a enumeration field such as <see cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
+            to show the name on the screen also.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueDisplayAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the specified displaying name.
+            </summary>
+            <param name="displayName">The name.</param>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueDisplayAttribute.DisplayName">
+            <summary>
+            Indicates the display name of this technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueDisplayAttribute.GetDisplayName``1(``0)">
+            <summary>
+            Get the display name of the specified enum field.
+            </summary>
+            <typeparam name="TEnum">The type of the enum field.</typeparam>
+            <param name="enumField">The enum field to check.</param>
+            <returns>
+            The display name. Return <see langword="null"/> when the field doesn't mark this attribute.
+            </returns>
         </member>
         <member name="T:Sudoku.Windows.ResourceDictionaryNotFoundException">
             <summary>

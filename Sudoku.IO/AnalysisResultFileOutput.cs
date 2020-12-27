@@ -4,7 +4,6 @@ using NPOI.XWPF.UserModel;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.IO

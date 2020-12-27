@@ -1,5 +1,5 @@
 ﻿using NPOI.XWPF.UserModel;
-using Sudoku.Solving.Annotations;
+using Sudoku.Solving;
 
 namespace Sudoku.IO
 {

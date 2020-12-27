@@ -6,7 +6,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Models;
 using Sudoku.Runtime;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;

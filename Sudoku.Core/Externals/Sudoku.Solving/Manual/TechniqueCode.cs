@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Annotations;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Represents a technique instance, which is used for comparison.
