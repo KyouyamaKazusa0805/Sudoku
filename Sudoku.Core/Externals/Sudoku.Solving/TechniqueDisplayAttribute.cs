@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using Sudoku.Solving.Manual;
-using static System.AttributeTargets;
 
 namespace Sudoku.Solving
 {
@@ -16,7 +15,7 @@ namespace Sudoku.Solving
 	/// </para>
 	/// </summary>
 	/// <seealso cref="TechniqueCode"/>
-	[AttributeUsage(Class | Field, Inherited = false)]
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Field, Inherited = false)]
 	public sealed class TechniqueDisplayAttribute : Attribute
 	{
 		/// <summary>
