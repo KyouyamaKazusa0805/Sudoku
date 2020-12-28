@@ -1,7 +1,6 @@
 ﻿#pragma warning disable IDE1006
 
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,18 +45,19 @@ namespace Sudoku.Windows
 				_listBoxTrueCandidates.ClearValue(ItemsControl.ItemsSourceProperty);
 				_labelStatus.Content = (string)LangSource["BugMultipleWhileSearching"];
 
-				var array = (
-					from candidate in await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64)
-					orderby candidate
-					let str = new Candidates { candidate }.ToString()
-					select new KeyedTuple<int, string>(candidate, str, 2)).ToArray();
+				var trueCandidates = await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64);
+				var array = new KeyedTuple<int, string>[trueCandidates.Count];
+				int i = 0;
+				foreach (int candidate in new Candidates(trueCandidates))
+				{
+					array[i++] = new(candidate, new Candidates { candidate }.ToString(), 2);
+				}
 
 				_labelStatus.ClearValue(ContentProperty);
 				int count = array.Length;
 				if (count != 0)
 				{
 					_listBoxTrueCandidates.ItemsSource = array;
-					string singularOrPlural = count == 1 ? string.Empty : "s";
 					_labelStatus.Content =
 						$"{LangSource[count == 1 ? "ThereIs" : "ThereAre"]} " +
 						$"{count} {LangSource[$"BugMultipleTrueCandidates{(count == 1 ? "Singular" : "Plural")}"]}. " +

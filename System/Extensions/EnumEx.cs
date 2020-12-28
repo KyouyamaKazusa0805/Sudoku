@@ -10,6 +10,27 @@ namespace System.Extensions
 	public static class EnumEx
 	{
 		/// <summary>
+		/// To get all possible flags from a specified enumeration instance.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of that enumeration.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The field.</param>
+		/// <returns>All flags.</returns>
+		public static TEnum[] GetAllFlags<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
+		{
+			unsafe
+			{
+				var buffer = stackalloc TEnum[Enum.GetValues<TEnum>().Length];
+				int i = 0;
+				foreach (var flag in @this)
+				{
+					buffer[i++] = flag;
+				}
+
+				return new Span<TEnum>(buffer, i).ToArray();
+			}
+		}
+
+		/// <summary>
 		/// Get all possible flags that the current enumeration field set.
 		/// </summary>
 		/// <typeparam name="TEnum">The type of the enumeration.</typeparam>

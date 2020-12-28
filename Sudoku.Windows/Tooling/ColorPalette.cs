@@ -127,9 +127,10 @@ namespace Sudoku.Windows.Tooling
 					}));
 
 			CustomColors.Clear();
-			CustomColors.AddRange(
-				from color in Enumerable.Repeat(Colors.White, NumColorsCustomSwatch)
-				select new ColorSwatchItem() { Color = color, HexString = color.ToHexString() });
+			foreach (var color in Enumerable.Repeat(Colors.White, NumColorsCustomSwatch))
+			{
+				CustomColors.Add(new() { Color = color, HexString = color.ToHexString() });
+			}
 		}
 
 		/// <summary>
@@ -137,18 +138,27 @@ namespace Sudoku.Windows.Tooling
 		/// </summary>
 		/// <param name="colors">The colors to iterate on.</param>
 		/// <returns>The list of colors.</returns>
-		protected IEnumerable<ColorSwatchItem> GetColorSwatchItems(IReadOnlyList<WColor> colors) =>
-			from color in colors select new ColorSwatchItem() { Color = color, HexString = color.ToHexString() };
+		protected ColorSwatchItem[] GetColorSwatchItems(IReadOnlyList<WColor> colors)
+		{
+			var result = new ColorSwatchItem[colors.Count];
+			int i = 0;
+			foreach (var color in colors)
+			{
+				result[i++] = new() { Color = color, HexString = color.ToHexString() };
+			}
+
+			return result;
+		}
 
 #pragma warning disable IDE0051
 		/// <summary>
 		/// Get all colors especially used for HTML.
 		/// </summary>
 		/// <returns>All colors.</returns>
-		private static IEnumerable<WColor> GetWebColors() => (
+		private static IEnumerable<WColor> GetWebColors() =>
 			from @property in typeof(DColor).GetProperties(BindingFlags.Public | BindingFlags.Static)
 			where @property.PropertyType == typeof(DColor)
-			select DColor.FromName(@property.Name).ToWColor()).ToArray();
+			select DColor.FromName(@property.Name).ToWColor();
 #pragma warning restore IDE0051
 	}
 }

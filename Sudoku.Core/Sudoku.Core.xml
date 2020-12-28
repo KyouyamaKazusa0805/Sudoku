@@ -5423,9 +5423,15 @@
             Indicates a puzzle generating progress result.
             </summary>
         </member>
+        <member name="M:Sudoku.Models.PuzzleGeneratingProgressResult.#ctor(Sudoku.Globalization.CountryCode)">
+            <summary>
+            Initializes an instance with the specified country code.
+            </summary>
+            <param name="countryCode">The country code.</param>
+        </member>
         <member name="M:Sudoku.Models.PuzzleGeneratingProgressResult.#ctor(System.Int32,Sudoku.Globalization.CountryCode)">
             <summary>
-            Initializes an instance with the specified trial times and globalization string.
+            Initializes an instance with the specified trial times and country code.
             </summary>
             <param name="generatingTrial">The number of the trial times.</param>
             <param name="countryCode">The country code.</param>

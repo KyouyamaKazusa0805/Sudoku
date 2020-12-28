@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
-		private AnalysisResult SolveSeMode(
+		private unsafe AnalysisResult SolveSeMode(
 			in SudokuGrid grid, ref SudokuGrid cloneation, IList<StepInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
@@ -90,12 +90,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					bool allConclusionsAreValid;
-					unsafe
-					{
-						allConclusionsAreValid = selection.All(&InternalChecking, solution);
-					}
-
+					bool allConclusionsAreValid = selection.All(&InternalChecking, solution);
 					if (!CheckConclusionValidityAfterSearched || allConclusionsAreValid)
 					{
 						foreach (var step in selection)

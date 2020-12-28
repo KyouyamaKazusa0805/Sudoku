@@ -51,7 +51,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
 			}
 
-			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+			var cellsMap = square | pair;
+			var cellOffsets = new DrawingInfo[cellsMap.Count];
+			int i = 0;
+			foreach (int cell in cellsMap)
+			{
+				cellOffsets[i++] = new(0, cell);
+			}
+
 			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int digit in comparer)
 			{
@@ -119,7 +126,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				conclusions.Add(new(ConclusionType.Elimination, cell, extraDigit));
 			}
 
-			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+			var cellsMap = square | pair;
+			var cellOffsets = new DrawingInfo[cellsMap.Count];
+			int i = 0;
+			foreach (int cell in cellsMap)
+			{
+				cellOffsets[i++] = new(0, cell);
+			}
 			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int digit in comparer)
 			{
@@ -202,7 +215,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							continue;
 						}
 
-						var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+						var cellsMap = square | pair;
+						var cellOffsets = new DrawingInfo[cellsMap.Count];
+						int i = 0;
+						foreach (int cell in cellsMap)
+						{
+							cellOffsets[i++] = new(0, cell);
+						}
 						var candidateOffsets = new List<DrawingInfo>();
 						foreach (int digit in comparer)
 						{
@@ -302,7 +321,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
 					}
 
-					var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+					var cellsMap = square | pair;
+					var cellOffsets = new DrawingInfo[cellsMap.Count];
+					int i = 0;
+					foreach (int cell in cellsMap)
+					{
+						cellOffsets[i++] = new(0, cell);
+					}
 					var candidateOffsets = new List<DrawingInfo>();
 					foreach (int d in comparer)
 					{
@@ -412,7 +437,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				return;
 			}
 
-			var cellOffsets = (from cell in square | pair select new DrawingInfo(0, cell)).ToArray();
+			var cellsMap = square | pair;
+			var cellOffsets = new DrawingInfo[cellsMap.Count];
+			int i = 0;
+			foreach (int cell in cellsMap)
+			{
+				cellOffsets[i++] = new(0, cell);
+			}
 			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int d in comparer)
 			{

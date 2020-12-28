@@ -32,7 +32,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(80, nameof(TechniqueCode.DeathBlossom))
 		{
-			DisplayLevel = 3
+			DisplayLevel = 3,
+			IsEnabled = false,
+			DisabledReason = DisabledReason.HasBugs
 		};
 
 
@@ -173,12 +175,16 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 										candidateOffsets.Add(new(0, nullCell * 9 + d));
 									}
 
+									var conclusions = new Conclusion[elimMap.Count];
+									int index = 0;
+									foreach (int c in elimMap)
+									{
+										conclusions[index++] = new(ConclusionType.Elimination, c, digit);
+									}
+
 									accumulator.Add(
 										new DbStepInfo(
-											(
-												from c in elimMap
-												select new Conclusion(ConclusionType.Elimination, c, digit)
-											).ToArray(),
+											conclusions,
 											new View[] { new() { Candidates = candidateOffsets } },
 											nullCell,
 											alsMappingRelation));

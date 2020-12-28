@@ -9,7 +9,13 @@ namespace Sudoku.Models
 	public struct PuzzleGeneratingProgressResult : IProgressResult
 	{
 		/// <summary>
-		/// Initializes an instance with the specified trial times and globalization string.
+		/// Initializes an instance with the specified country code.
+		/// </summary>
+		/// <param name="countryCode">The country code.</param>
+		public PuzzleGeneratingProgressResult(CountryCode countryCode) : this() => CountryCode = countryCode;
+
+		/// <summary>
+		/// Initializes an instance with the specified trial times and country code.
 		/// </summary>
 		/// <param name="generatingTrial">The number of the trial times.</param>
 		/// <param name="countryCode">The country code.</param>

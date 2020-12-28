@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -9,10 +8,7 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Windows;
 using static Sudoku.Constants.Processings;
-using EliminationList = System.Collections.Generic.IReadOnlyDictionary<
-	int,
-	System.Collections.Generic.IList<Sudoku.Data.Conclusion>
->;
+using EliminationList = System.Collections.Generic.IReadOnlyDictionary<int, System.Collections.Generic.IList<Sudoku.Data.Conclusion>>;
 using Steps = System.Collections.Generic.IList<Sudoku.Solving.Manual.StepInfo>;
 
 namespace Sudoku.Solving.Manual.Fishes
@@ -92,8 +88,14 @@ namespace Sudoku.Solving.Manual.Fishes
 							continue;
 						}
 
-						// Get the eliminations and convert it to an array.
-						int[] elims = (from conclusion in pomElims[digit] select conclusion.Cell).ToArray();
+						// Get the eliminations of this digit.
+						var pomElimsOfThisDigit = pomElims[digit];
+						int[] elims = new int[pomElimsOfThisDigit.Count];
+						int index = 0;
+						foreach (var conclusion in pomElimsOfThisDigit)
+						{
+							elims[index++] = conclusion.Cell;
+						}
 
 						// Then iterate on each elimination.
 						foreach (int cell in elims)

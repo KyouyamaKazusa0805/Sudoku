@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			DisplayLevel = 3,
 			IsReadOnly = true,
 			IsEnabled = false,
-			DisabledReason = DisabledReason.TooSlow | DisabledReason.LastResort
+			DisabledReason = DisabledReason.LastResort
 		};
 
 
@@ -69,6 +69,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 					}
 					else
 					{
+						var candidateOffsets = new DrawingInfo[_tempConclusions.Count];
+						int i = 0;
+						foreach (var (_, candidate) in _tempConclusions)
+						{
+							candidateOffsets[i++] = new(0, candidate);
+						}
+
 						tempAccumulator.Add(
 							new BowmanBingoStepInfo(
 								new Conclusion[] { new(ConclusionType.Elimination, startCandidate) },
@@ -76,14 +83,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 								{
 									new()
 									{
-										Candidates = (
-											from conclusion in _tempConclusions
-											select new DrawingInfo(0, conclusion.Cell * 9 + conclusion.Digit)
-										).ToArray(),
+										Candidates = candidateOffsets,
 										Links = GetLinks()
 									}
 								},
-								_tempConclusions.ToArray()));
+								_tempConclusions.AsReadOnlyList()));
 					}
 
 					// Undo the operation.
@@ -134,6 +138,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 			else
 			{
+				var candidateOffsets = new DrawingInfo[_tempConclusions.Count];
+				int i = 0;
+				foreach (var (_, candidate) in _tempConclusions)
+				{
+					candidateOffsets[i++] = new(0, candidate);
+				}
+
 				result.Add(
 					new BowmanBingoStepInfo(
 						new Conclusion[] { new(ConclusionType.Elimination, startCandidate) },
@@ -141,14 +152,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 						{
 							new()
 							{
-								Candidates = (
-									from tempConclusion in _tempConclusions
-									select new DrawingInfo(0, tempConclusion.Cell * 9 + tempConclusion.Digit)
-								).ToArray(),
+								Candidates = candidateOffsets,
 								Links = GetLinks()
 							}
 						},
-						_tempConclusions.ToArray()));
+						_tempConclusions.AsReadOnlyList()));
 			}
 
 			// Undo grid.

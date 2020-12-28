@@ -124,10 +124,16 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									continue;
 								}
 
-								// Record highlight cell and candidate offsets.
+								// Gather highlight cells and candidates.
 								var cellOffsets = new List<DrawingInfo>();
-								cellOffsets.AddRange(from cell in map1 select new DrawingInfo(-1, cell));
-								cellOffsets.AddRange(from cell in map2 select new DrawingInfo(-2, cell));
+								foreach (int cell in map1)
+								{
+									cellOffsets.Add(new(-1, cell));
+								}
+								foreach (int cell in map2)
+								{
+									cellOffsets.Add(new(-2, cell));
+								}
 
 								int[] offsets = cpMap.Offsets;
 								var candidateOffsets = new List<DrawingInfo>
@@ -139,30 +145,42 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								{
 									foreach (int digit in grid.GetCandidates(cell))
 									{
-										candidateOffsets.Add(
-											new(
-												true switch
-												{
-													_ when digit == x => 1,
-													_ when (wDigitsMask >> digit & 1) != 0 => 2,
-													_ => -1
-												},
-												cell * 9 + digit));
+										sbyte id;
+										if (digit == x)
+										{
+											id = 1;
+										}
+										else if ((wDigitsMask >> digit & 1) != 0)
+										{
+											id = 2;
+										}
+										else
+										{
+											id = -1;
+										}
+
+										candidateOffsets.Add(new(id, cell * 9 + digit));
 									}
 								}
 								foreach (int cell in map2)
 								{
 									foreach (int digit in grid.GetCandidates(cell))
 									{
-										candidateOffsets.Add(
-											new(
-												true switch
-												{
-													_ when digit == x => 1,
-													_ when (wDigitsMask >> digit & 1) != 0 => 2,
-													_ => -2
-												},
-												cell * 9 + digit));
+										sbyte id;
+										if (digit == x)
+										{
+											id = 1;
+										}
+										else if ((wDigitsMask >> digit & 1) != 0)
+										{
+											id = 2;
+										}
+										else
+										{
+											id = -2;
+										}
+
+										candidateOffsets.Add(new(id, cell * 9 + digit));
 									}
 								}
 

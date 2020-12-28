@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -78,19 +77,17 @@ namespace Sudoku.Solving.Manual.LastResorts
 					continue;
 				}
 
+				var candidateOffsets = new DrawingInfo[conclusions.Count];
+				int i = 0;
+				foreach (var (_, candidate) in conclusions)
+				{
+					candidateOffsets[i++] = new(0, candidate);
+				}
+
 				result.Add(
 					new TemplateStepInfo(
 						conclusions,
-						new View[]
-						{
-							new()
-							{
-								Candidates = (
-									from conclusion in conclusions
-									select new DrawingInfo(0, conclusion.Cell * 9 + conclusion.Digit)
-								).ToArray()
-							}
-						},
+						new View[] { new() { Candidates = candidateOffsets } },
 						false));
 			}
 		}

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -68,23 +67,32 @@ namespace Sudoku.Solving.Manual.Sdps
 
 						foreach (var (map, guardians, links) in loops)
 						{
-							var elims =
-								from c in guardians.PeerIntersection & CandMaps[digit]
-								select new Conclusion(ConclusionType.Elimination, c, digit);
-							if (elims.None())
+							var elimMap = guardians.PeerIntersection & CandMaps[digit];
+							if (elimMap.IsEmpty)
 							{
 								continue;
 							}
 
+							var conclusions = new Conclusion[elimMap.Count];
+							int i = 0;
+							foreach (int c in elimMap)
+							{
+								conclusions[i++] = new(ConclusionType.Elimination, c, digit);
+							}
+
 							var candidateOffsets = new List<DrawingInfo>();
-							candidateOffsets.AddRange(
-								from c in map select new DrawingInfo(0, c * 9 + digit));
-							candidateOffsets.AddRange(
-								from c in guardians select new DrawingInfo(1, c * 9 + digit));
+							foreach (int c in map)
+							{
+								candidateOffsets.Add(new(0, c * 9 + digit));
+							}
+							foreach (int c in guardians)
+							{
+								candidateOffsets.Add(new(1, c * 9 + digit));
+							}
 
 							resultAccumulator.Add(
 								new GuardianStepInfo(
-									elims.ToArray(),
+									conclusions,
 									new View[] { new() { Candidates = candidateOffsets, Links = links } },
 									digit,
 									map,

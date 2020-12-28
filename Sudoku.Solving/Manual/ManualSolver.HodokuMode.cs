@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
-		private AnalysisResult SolveNaively(
+		private unsafe AnalysisResult SolveNaively(
 			in SudokuGrid grid, ref SudokuGrid cloneation, List<StepInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
@@ -120,12 +120,7 @@ namespace Sudoku.Solving.Manual
 
 				if (FastSearch)
 				{
-					bool allConclusionsAreVaild;
-					unsafe
-					{
-						allConclusionsAreVaild = bag.All(&InternalChecking, solution);
-					}
-
+					bool allConclusionsAreVaild = bag.All(&InternalChecking, solution);
 					if (!CheckConclusionValidityAfterSearched || allConclusionsAreVaild)
 					{
 						foreach (var step in bag)

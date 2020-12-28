@@ -308,10 +308,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </summary>
 		/// <param name="urCells">The all UR cells used.</param>
 		/// <returns>The list of highlight cells.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static IReadOnlyList<DrawingInfo> GetHighlightCells(int[] urCells) =>
-			(from cell in urCells select new DrawingInfo(0, cell)).ToArray();
+		private static IReadOnlyList<DrawingInfo> GetHighlightCells(int[] urCells)
+		{
+			var result = new DrawingInfo[4];
+			for (int i = 0; i < 4; i++)
+			{
+				result[i] = new(0, urCells[i]);
+			}
 
+			return result;
+		}
 
 		partial void CheckType1(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index);
 		partial void CheckType2(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);

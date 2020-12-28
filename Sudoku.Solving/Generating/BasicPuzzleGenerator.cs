@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Extensions;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +42,7 @@ namespace Sudoku.Solving.Generating
 		{
 			PuzzleGeneratingProgressResult defaultValue = default;
 			var pr = new PuzzleGeneratingProgressResult(
-				default, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
+				countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			progress?.Report(defaultValue);
 
@@ -52,10 +51,8 @@ namespace Sudoku.Solving.Generating
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
-			var allTypes = from type in Enum.GetValues<SymmetryType>()
-						   where type != None && symmetricalType.Flags(type)
-						   select type;
-			int count = allTypes.Count();
+			var allTypes = symmetricalType.GetAllFlags();
+			int count = allTypes.Length;
 			if (count == 0)
 			{
 				allTypes = new[] { None };
@@ -65,7 +62,7 @@ namespace Sudoku.Solving.Generating
 			string result;
 			do
 			{
-				var selectedType = allTypes.ElementAt(IPuzzleGenerator.Rng.Next(count));
+				var selectedType = allTypes[IPuzzleGenerator.Rng.Next(count)];
 				tempSb.CopyTo(solution);
 
 				var totalMap = Cells.Empty;

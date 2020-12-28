@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -171,8 +170,14 @@ namespace Sudoku.Solving.Manual.Intersections
 					}
 				}
 
-				var valueCells = from cell in (cellsMap | ahsCells) - EmptyMap select new DrawingInfo(0, cell);
-				bool hasValueCell = valueCells.Any();
+				var map = (cellsMap | ahsCells) - EmptyMap;
+				var valueCells = new DrawingInfo[map.Count];
+				int i = 0;
+				foreach (int cell in map)
+				{
+					valueCells[i++] = new(0, cell);
+				}
+				bool hasValueCell = valueCells.Length != 0;
 				result.Add(
 					new AlcStepInfo(
 						conclusions,
@@ -180,7 +185,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						{
 							new()
 							{
-								Cells = hasValueCell ? valueCells.ToArray() : null,
+								Cells = hasValueCell ? valueCells : null,
 								Candidates = candidateOffsets,
 								Regions = new DrawingInfo[] { new(0, baseSet), new(1, coverSet) }
 							}

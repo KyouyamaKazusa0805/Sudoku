@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -204,12 +203,18 @@ namespace Sudoku.Solving.Manual.Alses
 
 											// Record highlight candidates and cells.
 											var cellOffsets = new List<DrawingInfo>();
-											cellOffsets.AddRange(
-												from cell in currentBlockMap select new DrawingInfo(0, cell));
-											cellOffsets.AddRange(
-												from cell in currentLineMap select new DrawingInfo(1, cell));
-											cellOffsets.AddRange(
-												from cell in currentInterMap select new DrawingInfo(2, cell));
+											foreach (int cell in currentBlockMap)
+											{
+												cellOffsets.Add(new(0, cell));
+											}
+											foreach (int cell in currentLineMap)
+											{
+												cellOffsets.Add(new(1, cell));
+											}
+											foreach (int cell in currentInterMap)
+											{
+												cellOffsets.Add(new(2, cell));
+											}
 
 											var candidateOffsets = new List<DrawingInfo>();
 											foreach (int cell in currentBlockMap)
@@ -236,14 +241,21 @@ namespace Sudoku.Solving.Manual.Alses
 											{
 												foreach (int digit in grid.GetCandidates(cell))
 												{
-													candidateOffsets.Add(
-														new(
-															true switch
-															{
-																_ when digitIsolated == digit => 2,
-																_ when (blockMask >> digit & 1) != 0 => 0,
-																_ => 1
-															}, cell * 9 + digit));
+													sbyte id;
+													if (digitIsolated == digit)
+													{
+														id = 2;
+													}
+													else if ((blockMask >> digit & 1) != 0)
+													{
+														id = 0;
+													}
+													else
+													{
+														id = 1;
+													}
+
+													candidateOffsets.Add(new(id, cell * 9 + digit));
 												}
 											}
 

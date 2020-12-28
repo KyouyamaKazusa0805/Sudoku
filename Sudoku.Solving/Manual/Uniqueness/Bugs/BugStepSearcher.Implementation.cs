@@ -18,8 +18,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="trueCandidates">All true candidates.</param>
 		partial void CheckType2(IList<StepInfo> accumulator, IReadOnlyList<int> trueCandidates)
 		{
-			var selection = from candidate in trueCandidates select candidate / 9;
-			var map = new Cells(selection).PeerIntersection;
+			int[] cells = new int[trueCandidates.Count];
+			int i = 0;
+			foreach (int candidate in trueCandidates)
+			{
+				cells[i++] = candidate / 9;
+			}
+			var map = new Cells(cells).PeerIntersection;
 			if (map.IsEmpty)
 			{
 				return;
@@ -50,7 +55,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					conclusions,
 					new View[] { new() { Candidates = candidateOffsets } },
 					digit,
-					selection.ToArray()));
+					cells));
 		}
 
 		/// <summary>
@@ -253,6 +258,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						continue;
 					}
 
+					var candidateOffsets = new DrawingInfo[trueCandidates.Count + 2];
+					int i = 0;
+					foreach (int candidate in trueCandidates)
+					{
+						candidateOffsets[i++] = new(0, candidate);
+					}
+					candidateOffsets[^2] = new(1, c1 * 9 + conjuagtePairDigit);
+					candidateOffsets[^1] = new(1, c2 * 9 + conjuagtePairDigit);
+
 					// BUG type 4.
 					accumulator.Add(
 						new BugType4StepInfo(
@@ -261,13 +275,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							{
 								new()
 								{
-									Candidates = new List<DrawingInfo>(
-										from candidate in trueCandidates
-										select new DrawingInfo(0, candidate))
-									{
-										new(1, c1 * 9 + conjuagtePairDigit),
-										new(1, c2 * 9 + conjuagtePairDigit)
-									},
+									Candidates = candidateOffsets,
 									Regions = new DrawingInfo[] { new(0, region) }
 								}
 							},
@@ -313,19 +321,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				return;
 			}
 
+			var candidateOffsets = new DrawingInfo[trueCandidates.Count];
+			int i = 0;
+			foreach (int candidate in trueCandidates)
+			{
+				candidateOffsets[i++] = new(0, candidate);
+			}
+
 			// BUG + n.
 			accumulator.Add(
 				new BugMultipleStepInfo(
 					conclusions,
-					new View[]
-					{
-						new()
-						{
-							Candidates = (
-								from candidate in trueCandidates select new DrawingInfo(0, candidate)
-							).ToArray()
-						}
-					},
+					new View[] { new() { Candidates = candidateOffsets } },
 					trueCandidates));
 		}
 
@@ -369,14 +376,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					continue;
 				}
 
-				var cellOffsets = new DrawingInfo[] { new(0, cell) };
-				var candidateOffsets = (
-					from candidate in trueCandidates select new DrawingInfo(0, candidate)
-				).ToArray();
+				var candidateOffsets = new DrawingInfo[trueCandidates.Count];
+				int i = 0;
+				foreach (int candidate in trueCandidates)
+				{
+					candidateOffsets[i++] = new(0, candidate);
+				}
+
 				accumulator.Add(
 					new BugXzStepInfo(
 						conclusions,
-						new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
+						new View[]
+						{
+							new()
+							{
+								Cells = new DrawingInfo[] { new(0, cell) },
+								Candidates = candidateOffsets
+							}
+						},
 						mask,
 						new[] { c1, c2 },
 						cell));

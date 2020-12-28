@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Runtime;
 using Sudoku.Solving.Manual;
-using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Checking
 {
@@ -100,7 +97,8 @@ namespace Sudoku.Solving.Checking
 		/// <exception cref="InvalidOperationException">
 		/// Throws when the grid is invalid (has no solution or multiple solutions).
 		/// </exception>
-		private static void SearchForBackdoors(IList<IReadOnlyList<Conclusion>> result, in SudokuGrid grid, int depth)
+		private static void SearchForBackdoors(
+			IList<IReadOnlyList<Conclusion>> result, in SudokuGrid grid, int depth)
 		{
 			_ = !grid.IsValid(out SudokuGrid solution) ? throw new InvalidOperationException("The puzzle doesn't have unique solution.") : 0;
 
@@ -113,7 +111,7 @@ namespace Sudoku.Solving.Checking
 					// All candidates will be marked.
 					for (int c = 0; c < 81; c++)
 					{
-						if (grid.GetStatus(c) != Empty)
+						if (grid.GetStatus(c) != CellStatus.Empty)
 						{
 							continue;
 						}
@@ -121,7 +119,10 @@ namespace Sudoku.Solving.Checking
 						int z = solution[c];
 						foreach (int d in grid.GetCandidates(c))
 						{
-							result.Add(new Conclusion[] { new(d == z ? Assignment : Elimination, c, d) });
+							result.Add(new Conclusion[]
+							{
+								new(d == z ? ConclusionType.Assignment : ConclusionType.Elimination, c, d) }
+							);
 						}
 					}
 				}
@@ -129,7 +130,7 @@ namespace Sudoku.Solving.Checking
 				{
 					for (int cell = 0; cell < 81; cell++)
 					{
-						if (tempGrid.GetStatus(cell) != Empty)
+						if (tempGrid.GetStatus(cell) != CellStatus.Empty)
 						{
 							continue;
 						}
@@ -140,7 +141,7 @@ namespace Sudoku.Solving.Checking
 						if (TestSolver.CanSolve(tempGrid))
 						{
 							// Solve successfully.
-							result.Add(new Conclusion[] { new(Assignment, cell, digit) });
+							result.Add(new Conclusion[] { new(ConclusionType.Assignment, cell, digit) });
 						}
 
 						// Restore data.
@@ -154,16 +155,24 @@ namespace Sudoku.Solving.Checking
 
 			// Store all incorrect candidates to prepare for search elimination backdoors.
 			var temp = grid;
-			int[] incorrectCandidates = (
-				from cell in Enumerable.Range(0, 81)
-				where temp.GetStatus(cell) == Empty
-				let value = solution[cell]
-				from digit in Enumerable.Range(0, 9)
-				where temp[cell, digit] && value != digit
-				select cell * 9 + digit).ToArray();
+			var incorrectCandidates = new List<int>();
+			for (int cell = 0; cell < 81; cell++)
+			{
+				if (temp.GetStatus(cell) == CellStatus.Empty)
+				{
+					int value = solution[cell];
+					for (int digit = 0; digit < 9; digit++)
+					{
+						if (temp[cell, digit] && value != digit)
+						{
+							incorrectCandidates.Add(cell * 9 + digit);
+						}
+					}
+				}
+			}
 
 			// Search backdoors (Eliminations).
-			for (int i1 = 0, count = incorrectCandidates.Length; i1 < count + 1 - depth; i1++)
+			for (int i1 = 0, count = incorrectCandidates.Count; i1 < count + 1 - depth; i1++)
 			{
 				int c1 = incorrectCandidates[i1];
 				tempGrid[c1 / 9, c1 % 9] = false;
@@ -172,7 +181,7 @@ namespace Sudoku.Solving.Checking
 				{
 					if (TestSolver.CanSolve(tempGrid))
 					{
-						result.Add(new Conclusion[] { new(Elimination, c1) });
+						result.Add(new Conclusion[] { new(ConclusionType.Elimination, c1) });
 					}
 				}
 				else // depth > 1
@@ -186,7 +195,11 @@ namespace Sudoku.Solving.Checking
 						{
 							if (TestSolver.CanSolve(tempGrid))
 							{
-								result.Add(new Conclusion[] { new(Elimination, c1), new(Elimination, c2) });
+								result.Add(new Conclusion[]
+								{
+									new(ConclusionType.Elimination, c1),
+									new(ConclusionType.Elimination, c2)
+								});
 							}
 						}
 						else // depth == 3
@@ -198,13 +211,12 @@ namespace Sudoku.Solving.Checking
 
 								if (TestSolver.CanSolve(tempGrid))
 								{
-									result.Add(
-										new Conclusion[]
-										{
-											new(Elimination, c1),
-											new(Elimination, c2),
-											new(Elimination, c3)
-										});
+									result.Add(new Conclusion[]
+									{
+										new(ConclusionType.Elimination, c1),
+										new(ConclusionType.Elimination, c2),
+										new(ConclusionType.Elimination, c3)
+									});
 								}
 
 								tempGrid[c3 / 9, c3 % 9] = true;

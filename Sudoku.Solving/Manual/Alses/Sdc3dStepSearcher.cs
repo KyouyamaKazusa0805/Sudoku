@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -246,15 +245,18 @@ namespace Sudoku.Solving.Manual.Alses
 													}
 
 													var cellOffsets = new List<DrawingInfo>();
-													cellOffsets.AddRange(
-														from cell in currentRowMap | rbCurrentMap
-														select new DrawingInfo(0, cell));
-													cellOffsets.AddRange(
-														from cell in currentColumnMap | cbCurrentMap
-														select new DrawingInfo(1, cell));
-													cellOffsets.AddRange(
-														from cell in currentBlockMap
-														select new DrawingInfo(2, cell));
+													foreach (int cell in currentRowMap | rbCurrentMap)
+													{
+														cellOffsets.Add(new(0, cell));
+													}
+													foreach (int cell in currentColumnMap | cbCurrentMap)
+													{
+														cellOffsets.Add(new(1, cell));
+													}
+													foreach (int cell in currentBlockMap)
+													{
+														cellOffsets.Add(new(2, cell));
+													}
 
 													var candidateOffsets = new List<DrawingInfo>();
 													foreach (int digit in rowMask)

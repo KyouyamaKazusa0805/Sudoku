@@ -55,10 +55,23 @@ namespace System
 		/// </summary>
 		/// <param name="value">The mask.</param>
 		/// <returns>The result list.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static short[] GetMaskSubsets(short value) => (
-			from target in from size in Enumerable.Range(1, 9) select GetMaskSubsets(value, size)
-			select CreateBitsInt16(target)).ToArray();
+		public static short[] GetMaskSubsets(short value)
+		{
+			short[][] maskSubsets = new short[9][];
+			for (int size = 1; size <= 9; size++)
+			{
+				maskSubsets[size - 1] = GetMaskSubsets(value, size);
+			}
+
+			short[] result = new short[9];
+			for (int i = 0; i < 9; i++)
+			{
+				short[] target = maskSubsets[i];
+				result[i] = CreateBitsInt16(target);
+			}
+
+			return result;
+		}
 
 		/// <summary>
 		/// Get all mask combinations.
@@ -67,9 +80,11 @@ namespace System
 		/// <param name="size">The size.</param>
 		/// <returns>The result list.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static short[] GetMaskSubsets(short value, int size) => (
+		public static short[] GetMaskSubsets(short value, int size) =>
+		(
 			from target in value.GetAllSets().GetSubsets(size)
-			select CreateBitsInt16(target)).ToArray();
+			select CreateBitsInt16(target)
+		).ToArray();
 
 		/// <summary>
 		/// Create a <see cref="short"/> value, whose set bits are specified in the parameter

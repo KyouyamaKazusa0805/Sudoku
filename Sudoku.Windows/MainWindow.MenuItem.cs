@@ -808,12 +808,14 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_currentPainter.View = new()
+				var candidateOffsets = new DrawingInfo[trueCandidates.Count];
+				int i = 0;
+				foreach (int candidate in trueCandidates)
 				{
-					Candidates = (
-						from candidate in trueCandidates select new DrawingInfo(0, candidate)
-					).ToArray()
-				};
+					candidateOffsets[i++] = new(0, candidate);
+				}
+
+				_currentPainter.View = new() { Candidates = candidateOffsets };
 				_currentPainter.Conclusions = null;
 
 				UpdateImageGrid();

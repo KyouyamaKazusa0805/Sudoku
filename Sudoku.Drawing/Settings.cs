@@ -45,10 +45,7 @@ namespace Sudoku.Drawing
 		/// <param name="newSetting">The new settings.</param>
 		protected void InternalCoverBy(Settings newSetting)
 		{
-			foreach (var property in
-				from prop in GetType().GetProperties()
-				where prop.CanWrite
-				select prop)
+			foreach (var property in from prop in GetType().GetProperties() where prop.CanWrite select prop)
 			{
 				property.SetValue(this, property.GetValue(newSetting));
 			}
