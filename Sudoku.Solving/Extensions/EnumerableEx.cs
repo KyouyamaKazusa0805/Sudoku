@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -51,7 +50,7 @@ namespace Sudoku.Solving.Extensions
 					}
 				}
 
-				(*&isOdd).Flip();
+				*&isOdd = !*&isOdd;
 			}
 
 			return visitedEvenRegions == visitedOddRegions;

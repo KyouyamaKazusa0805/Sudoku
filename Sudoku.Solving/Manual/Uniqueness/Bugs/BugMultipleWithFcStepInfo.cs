@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Extensions;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Windows;
-using static System.Math;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -22,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <summary>
 		/// The difficulty for the number of true candidates.
 		/// </summary>
-		public decimal CountDifficulty => Floor((decimal)Sqrt(2 * Candidates.Count + .5)) / 10;
+		public decimal CountDifficulty => Math.Floor((decimal)Math.Sqrt(2 * Candidates.Count + .5)) / 10;
 
 		/// <summary>
 		/// The length difficluty.
@@ -34,7 +33,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				decimal result = 0;
 				int ceil = 4;
 				int length = Complexity - 2;
-				for (bool isOdd = false; length > ceil; isOdd.Flip())
+				for (bool isOdd = false; length > ceil; isOdd = !isOdd)
 				{
 					result += .1M;
 					ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;

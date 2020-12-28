@@ -1,6 +1,4 @@
-﻿using System.Extensions;
-
-namespace Sudoku.Solving.Extensions
+﻿namespace Sudoku.Solving.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="int"/>.
@@ -31,7 +29,7 @@ namespace Sudoku.Solving.Extensions
 			}
 #else
 			int ceil = 4;
-			for (bool isOdd = false; length > ceil; isOdd.Flip())
+			for (bool isOdd = false; length > ceil; isOdd = !isOdd)
 			{
 				added += .1M;
 				ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using static Sudoku.Solving.TechniqueDisplayAttribute;
 #if DOUBLE_LAYERED_ASSUMPTION
 using Sudoku.Data.Extensions;
 using static Sudoku.Constants.Processings;
@@ -77,7 +75,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				decimal result = 0;
 				int ceil = 4;
 				int length = Complexity - 2;
-				for (bool isOdd = false; length > ceil; isOdd.Flip())
+				for (bool isOdd = false; length > ceil; isOdd = !isOdd)
 				{
 					result += .1M;
 					ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
@@ -264,10 +262,10 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				0 => string.Empty,
 				1 => " (+)",
-				2 => $" (+ {GetDisplayName(TechniqueCode.Aic)})",
+				2 => $" (+ {TechniqueDisplayAttribute.GetDisplayName(TechniqueCode.Aic)})",
 				3 => $" (+ Multiple Forcing Chains)",
-				4 => $" (+ {GetDisplayName(TechniqueCode.DynamicFc)})",
-				_ => $" (+ {GetDisplayName(TechniqueCode.DynamicFc)}{GetNestedSuffix(level - 3)})"
+				4 => $" (+ {TechniqueDisplayAttribute.GetDisplayName(TechniqueCode.DynamicFc)})",
+				_ => $" (+ {TechniqueDisplayAttribute.GetDisplayName(TechniqueCode.DynamicFc)}{GetNestedSuffix(level - 3)})"
 			};
 
 #if DOUBLE_LAYERED_ASSUMPTION
