@@ -31,23 +31,14 @@ Gitee: [Sunnie-Shine/Sudoku](https://gitee.com/Sunnie-Shine/Sudoku)
 
 ## 如何使用
 
-### 代码
+请参看如下链接：
 
-只需要你克隆这个仓库就可以带走所有的代码了！
-
-```bash
-git clone https://github.com/Sunnie-Shine/Sudoku.git
-```
+* 中英双语介绍：[此链接](https://github.com/SunnieShine/Sudoku/issues/83)
+* 中文介绍：[此链接](https://gitee.com/Sunnie-Shine/Sudoku/issues/I2B1L0)
 
 
 
-### 编译和运行
-
-在运行程序的时候，你需要提前下载一些文件（或者是确认一些文件是否存在）。请参看这个[文件夹](https://github.com/Sunnie-Shine/Sudoku/tree/master/required)下的这个[文件](https://github.com/Sunnie-Shine/Sudoku/blob/master/required/README.md)以获取更多相关信息。
-
-
-
-### 文件夹
+## 文件夹
 
 这个解决方案由如下文件夹构成：
 
