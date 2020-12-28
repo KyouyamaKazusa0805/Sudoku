@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					tempTarget.Add(check.Offsets[0]);
+					tempTarget.Add(check[0]);
 				}
 				if (tempTarget.Count == 0)
 				{
@@ -278,7 +278,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					int endoTargetCell = comb[s[v1] ? 0 : 1];
+					int endoTargetCell = comb[s.Contains(v1) ? 0 : 1];
 					short m1 = grid.GetCandidates(b1), m2 = grid.GetCandidates(b2), m = (short)(m1 | m2);
 					foreach (int digit in m1)
 					{
@@ -297,7 +297,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						{
 							foreach (int cell in RegionCells[region])
 							{
-								if (/*!tempCrosslineMap[cell] && */b1 != cell && b2 != cell && !extraMap[cell])
+								if (/*!tempCrosslineMap[cell] && */b1 != cell && b2 != cell
+									&& !extraMap.Contains(cell))
 								{
 									extraMap.AddAnyway(cell);
 									cellOffsets.Add(new(4, cell));
@@ -390,7 +391,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			int digit, in Cells baseElimMap, in Cells tempCrossline, ref Span<int> extraRegionsMask)
 		{
 			int region, p;
-			foreach (int[] combination in tempCrossline.Offsets.GetSubsets(3))
+			foreach (int[] combination in tempCrossline.ToArray().GetSubsets(3))
 			{
 				var (a, b, c) = (combination[0], combination[1], combination[2]);
 				int r1 = RegionLabel.Row.ToRegion(a), c1 = RegionLabel.Column.ToRegion(a);
@@ -444,7 +445,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				bool flag = false;
 				var baseElimsMap = (baseCellsMap & digitMaps[digit]).PeerIntersection;
-				foreach (int[] combination in (tempCrossline & digitMaps[digit]).Offsets.GetSubsets(3))
+				foreach (int[] combination in (tempCrossline & digitMaps[digit]).ToArray().GetSubsets(3))
 				{
 					var (a, b, c) = (combination[0], combination[1], combination[2]);
 					int r1 = RegionLabel.Row.ToRegion(a), c1 = RegionLabel.Column.ToRegion(a);

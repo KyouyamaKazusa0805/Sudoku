@@ -173,7 +173,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			{
 				if (r1 != 0)
 				{
-					if (RegionMaps[r1][cell])
+					if (RegionMaps[r1].Contains(r1))
 					{
 						for (int i = 0; i < 9; i++)
 						{

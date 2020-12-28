@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Generating
 				do
 				{
 					int cell;
-					do cell = IPuzzleGenerator.Rng.Next(0, 81); while (totalMap[cell]);
+					do cell = IPuzzleGenerator.Rng.Next(0, 81); while (totalMap.Contains(cell));
 
 					int r = cell / 9, c = cell % 9;
 

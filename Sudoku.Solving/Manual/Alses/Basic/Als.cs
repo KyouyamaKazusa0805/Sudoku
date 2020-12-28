@@ -158,7 +158,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			int i = 0;
 			foreach (int cell in RegionCells[Region])
 			{
-				if (Map[cell])
+				if (Map.Contains(cell))
 				{
 					mask |= (short)(1 << i);
 				}
@@ -215,7 +215,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					continue;
 				}
 
-				int[] emptyCells = tempMap.Offsets;
+				int[] emptyCells = tempMap.ToArray();
 				list.Clear();
 				list.AddRange(emptyCells);
 				for (int size = 2; size <= emptyCells.Length - 1; size++)

@@ -297,7 +297,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					continue;
 				}
 
-				int[] emptyCellsArray = tempEmptyCells.Offsets;
+				int[] emptyCellsArray = tempEmptyCells.ToArray();
 				for (int i = 1; i < emptyCellsArray.Length; i++)
 				{
 					foreach (int[] cells in emptyCellsArray.GetSubsets(i))

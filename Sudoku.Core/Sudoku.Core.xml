@@ -841,16 +841,6 @@
             value are set <see langword="true"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Cells.Offsets">
-            <summary>
-            Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Cells.PeerIntersection">
-            <summary>
-            Indicates the map of cells, which is the peer intersections.
-            </summary>
-        </member>
         <member name="P:Sudoku.Data.Cells.CoveredRegions">
             <summary>
             Indicates all regions covered. This property is used to check all regions that all cells
@@ -872,15 +862,24 @@
             and the region 19 (column 2).
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Cells.Index(System.Int32)">
+        <member name="P:Sudoku.Data.Cells.Offsets">
             <summary>
-            Gets or sets a <see cref="T:System.Boolean"/> value on the specified cell
-            offset.
+            Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
             </summary>
-            <param name="cell">The cell offset.</param>
-            <value>A <see cref="T:System.Boolean"/> value on assignment.</value>
+        </member>
+        <member name="P:Sudoku.Data.Cells.PeerIntersection">
+            <summary>
+            Indicates the map of cells, which is the peer intersections.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Cells.SetOffset(System.Int32)">
+            <summary>
+            Get the cell offset at the specified position index.
+            </summary>
+            <param name="index">The index of position of all set bits.</param>
             <returns>
-            A <see cref="T:System.Boolean"/> value indicating whether the cell has digit.
+            This cell offset at the specified position index. If the value is invalid,
+            the return value will be <c>-1</c>.
             </returns>
         </member>
         <member name="M:Sudoku.Data.Cells.Deconstruct(System.Int64@,System.Int64@)">
@@ -951,6 +950,12 @@
         </member>
         <member name="M:Sudoku.Data.Cells.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.ToArray">
+            <summary>
+            Get all set cell offsets and returns them as an array.
+            </summary>
+            <returns>An array of all set cell offsets.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -1047,6 +1052,13 @@
             <summary>
             Clear all bits.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Cells.InternalAdd(System.Int32,System.Boolean)">
+            <summary>
+            The internal operation for adding a cell.
+            </summary>
+            <param name="cell">The cell to add into.</param>
+            <param name="value">The value to add.</param>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Equality(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>

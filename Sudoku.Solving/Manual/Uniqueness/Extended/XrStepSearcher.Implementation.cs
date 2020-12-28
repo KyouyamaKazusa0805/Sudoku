@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			var candidateOffsets = new List<DrawingInfo>();
 			foreach (int cell in allCellsMap)
 			{
-				if (cell == extraCells.Offsets[0])
+				if (cell == extraCells[0])
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		{
 			foreach (int region in extraCellsMap.CoveredRegions)
 			{
-				int[] otherCells = ((RegionMaps[region] & EmptyMap) - allCellsMap).Offsets;
+				int[] otherCells = ((RegionMaps[region] & EmptyMap) - allCellsMap).ToArray();
 				for (int size = 1; size < otherCells.Length; size++)
 				{
 					foreach (int[] cells in otherCells.GetSubsets(size))
@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					// Type 1 found.
 					// Check eliminations.
 					var conclusions = new List<Conclusion>();
-					int extraCell = extraCellsMap.Offsets[0];
+					int extraCell = extraCellsMap[0];
 					foreach (int digit in normalDigits)
 					{
 						if (grid.Exists(extraCell, digit) is true)
@@ -257,7 +257,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				case 2:
 				{
 					// Type 4.
-					int[] offsets = extraCellsMap.Offsets;
+					int[] offsets = extraCellsMap.ToArray();
 					short m1 = grid.GetCandidates(offsets[0]), m2 = grid.GetCandidates(offsets[1]);
 					short conjugateMask = (short)(m1 & m2 & normalDigits);
 					if (conjugateMask == 0)

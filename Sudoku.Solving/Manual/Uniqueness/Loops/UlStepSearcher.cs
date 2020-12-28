@@ -128,7 +128,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								// The loop is closed. Now construct the result pair.
 								loops.Add((loopMap, tempLoop.GetLinks()));
 							}
-							else if (!loopMap[nextCell] && grid[nextCell, d1] && grid[nextCell, d2])
+							else if (!loopMap.Contains(nextCell) && grid[nextCell, d1] && grid[nextCell, d2])
 							{
 								// Here, unique loop can be found if and only if
 								// two cells both contain 'd1' and 'd2'.

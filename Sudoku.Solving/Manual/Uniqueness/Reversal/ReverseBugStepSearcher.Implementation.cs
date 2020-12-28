@@ -151,7 +151,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 					return;
 				}
 
-				int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).Offsets;
+				int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
 				for (int size = otherDigitsMask.PopCount() - 1, count = otherCells.Length; size < count; size++)
 				{
 					foreach (int[] cells in otherCells.GetSubsets(size))
@@ -245,7 +245,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 						continue;
 					}
 
-					int[] offsets = extraCells.Offsets;
+					int[] offsets = extraCells.ToArray();
 					int first = offsets[0], second = offsets[1];
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(first, otherDigit) is true)

@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 						}
 
-						if (appearing.PeerIntersection[cell])
+						if (appearing.PeerIntersection.Contains(cell))
 						{
 							relativeAlses.Add(als);
 						}

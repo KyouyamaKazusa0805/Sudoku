@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					continue;
 				}
 
-				int elimCell = extraDigitMap.Offsets[0];
+				int elimCell = extraDigitMap[0];
 				short cellMask = grid.GetCandidates(elimCell);
 				short elimMask = (short)(cellMask & ~(1 << extraDigit));
 				if (elimMask == 0)
@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 				foreach (int region in tempMap.CoveredRegions)
 				{
-					int[] allCells = ((RegionMaps[region] & EmptyMap) - pattern).Offsets;
+					int[] allCells = ((RegionMaps[region] & EmptyMap) - pattern).ToArray();
 					for (int size = extraDigitsMask.PopCount() - 1, count = allCells.Length; size < count; size++)
 					{
 						foreach (int[] cells in allCells.GetSubsets(size))

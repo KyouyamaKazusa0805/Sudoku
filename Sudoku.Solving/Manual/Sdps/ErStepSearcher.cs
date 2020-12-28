@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							continue;
 						}
 
-						int[] t = (linkMap - (i < 6 ? RegionMaps[column] : RegionMaps[row])).Offsets;
+						int[] t = (linkMap - (i < 6 ? RegionMaps[column] : RegionMaps[row])).ToArray();
 						int elimRegion = i < 6 ? t[0] % 9 + 18 : t[0] / 9 + 9;
 						var elimCellMap = i < 6
 						? CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[row]
@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							continue;
 						}
 
-						int elimCell = elimCellMap.Offsets[0];
+						int elimCell = elimCellMap[0];
 						if (grid.Exists(elimCell, digit) is not true)
 						{
 							continue;

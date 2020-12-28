@@ -203,16 +203,15 @@ namespace Sudoku.Windows
 				case var key when key.IsArrow() && _focusedCells.Count == 1:
 				{
 					// Move the focused cell.
-					int cell = _focusedCells.Offsets[0];
+					int cell = _focusedCells[0];
 					_focusedCells.Clear();
-					_focusedCells.AddAnyway(
-						e.Key switch
-						{
-							K.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
-							K.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
-							K.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
-							K.Right => (cell + 1) % 81
-						});
+					_focusedCells.AddAnyway(e.Key switch
+					{
+						K.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
+						K.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
+						K.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
+						K.Right => (cell + 1) % 81
+					});
 
 					_currentPainter.FocusedCells = _focusedCells;
 
@@ -235,7 +234,7 @@ namespace Sudoku.Windows
 				case K.Tab:
 				{
 					// Move to next box row.
-					int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.Offsets[0];
+					int cell = _focusedCells.IsEmpty ? 0 : _focusedCells[0];
 					_focusedCells.Clear();
 					_focusedCells.AddAnyway((cell + 3) % 81);
 

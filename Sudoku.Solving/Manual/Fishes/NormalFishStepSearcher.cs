@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </param>
 		/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 		/// <returns>The view.</returns>
-		private static View GetDirectView(
+		private static unsafe View GetDirectView(
 			in SudokuGrid grid, int digit, int[] baseSets, int[] coverSets, in Cells fins, bool searchRow)
 		{
 			// Get the highlight cells (necessary).
@@ -248,7 +248,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					switch (grid.Exists(cell, digit))
 					{
-						case true when fins[cell]:
+						case true when fins.Contains(cell):
 						{
 							cellOffsets.Add(new(1, cell));
 							break;
@@ -256,12 +256,9 @@ namespace Sudoku.Solving.Manual.Fishes
 						case false:
 						case null:
 						{
-							unsafe
+							if (ValueMaps[digit].Any(&i, searchRow, cell))
 							{
-								if (ValueMaps[digit].Any(&i, searchRow, cell))
-								{
-									continue;
-								}
+								continue;
 							}
 
 							var baseMap = Cells.Empty;
@@ -275,7 +272,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								coverMap |= RegionMaps[c];
 							}
 							baseMap &= coverMap;
-							if (baseMap[cell])
+							if (baseMap.Contains(cell))
 							{
 								continue;
 							}
@@ -304,7 +301,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			return new() { Cells = cellOffsets, Candidates = candidateOffsets };
 
 			static bool i(int c, in bool searchRow, in int cell) =>
-				RegionMaps[(searchRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c)][cell];
+				RegionMaps[(searchRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c)].Contains(cell);
 		}
 	}
 }

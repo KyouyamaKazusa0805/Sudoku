@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					continue;
 				}
 
-				int elimCell = mapContainingThatDigit.Offsets[0];
+				int elimCell = mapContainingThatDigit[0];
 				short elimMask = (short)(grid.GetCandidates(elimCell) & tempMask);
 				if (elimMask == 0)
 				{
@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int cell in map)
 				{
-					if (mapContainingThatDigit[cell])
+					if (mapContainingThatDigit.Contains(cell))
 					{
 						continue;
 					}
@@ -177,7 +177,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 					// Iterate on the cells by the specified size.
 					var iterationCellsMap = (RegionMaps[region] - currentMap) & EmptyMap;
-					int[] iterationCells = iterationCellsMap.Offsets;
+					int[] iterationCells = iterationCellsMap.ToArray();
 					short otherDigitsMask = (short)(orMask & ~tempMask);
 					for (int size = otherDigitsMask.PopCount() - 1; size < iterationCellsMap.Count; size++)
 					{

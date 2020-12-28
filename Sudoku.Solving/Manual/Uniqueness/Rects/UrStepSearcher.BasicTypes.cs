@@ -240,7 +240,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
 				for (int size = otherDigitsMask.PopCount() - 1; size < iterationMap.Count; size++)
 				{
-					foreach (int[] iteratedCells in iterationMap.Offsets.GetSubsets(size))
+					foreach (int[] iteratedCells in iterationMap.ToArray().GetSubsets(size))
 					{
 						short tempMask = 0;
 						foreach (int cell in iteratedCells)
@@ -386,7 +386,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						if (otherCellsMap[cell])
+						if (otherCellsMap.Contains(cell))
 						{
 							if (d1 != elimDigit && grid.Exists(cell, d1) is true)
 							{
@@ -412,7 +412,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					int[] offsets = otherCellsMap.Offsets;
+					int[] offsets = otherCellsMap.ToArray();
 					accumulator.Add(
 						new UrPlusStepInfo(
 							conclusions,
@@ -558,7 +558,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			int[] offsets = otherCellsMap.Offsets;
+			int[] offsets = otherCellsMap.ToArray();
 			int o1 = offsets[0], o2 = offsets[1];
 			int r1 = RegionLabel.Row.ToRegion(corner1), c1 = RegionLabel.Column.ToRegion(corner1);
 			int r2 = RegionLabel.Row.ToRegion(corner2), c2 = RegionLabel.Column.ToRegion(corner2);
@@ -599,7 +599,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var candidateOffsets = new List<DrawingInfo>();
 				foreach (int cell in urCells)
 				{
-					if (otherCellsMap[cell])
+					if (otherCellsMap.Contains(cell))
 					{
 						if (d1 != digit && grid.Exists(cell, d1) is true)
 						{
@@ -683,7 +683,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
-				int[] offsets = adjacentCellsMap.Offsets;
+				int[] offsets = adjacentCellsMap.ToArray();
 				int abxCell = offsets[0], abyCell = offsets[1];
 				Cells map1 = new() { abzCell, abxCell }, map2 = new() { abzCell, abyCell };
 				if (!IsConjugatePair(digit, map1, map1.CoveredLine)
@@ -707,7 +707,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					if (otherCellsMap[cell])
+					if (otherCellsMap.Contains(cell))
 					{
 						if ((cell != abzCell || d1 != elimDigit) && grid.Exists(cell, d1) is true)
 						{

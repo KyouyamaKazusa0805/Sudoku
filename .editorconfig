@@ -297,6 +297,9 @@ dotnet_diagnostic.CS3001.severity = error
 # CS3002: Return type is not CLS-compliant
 dotnet_diagnostic.CS3002.severity = error
 
+# CS3003: Type is not CLS-compliant
+dotnet_diagnostic.CS3003.severity = error
+
 # CS3005: Identifier differing only in case is not CLS-compliant
 dotnet_diagnostic.CS3005.severity = error
 

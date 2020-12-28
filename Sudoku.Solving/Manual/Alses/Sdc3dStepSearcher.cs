@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 				static void a(IList<Cells> list, in Cells emptyMap)
 				{
-					int[] offsets = emptyMap.Offsets;
+					int[] offsets = emptyMap.ToArray();
 					switch (emptyMap.Count)
 					{
 						case 2:
@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Alses
 						// Iterate on the number of the cells that should be selected in block.
 						for (int i = 0; i < blockMap.Count; i++)
 						{
-							foreach (int[] selectedBlockCells in blockMap.Offsets.GetSubsets(i))
+							foreach (int[] selectedBlockCells in blockMap.ToArray().GetSubsets(i))
 							{
 								short blockMask = 0;
 								var currentBlockMap = new Cells(selectedBlockCells);
@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 								for (int j = 1; j < Algorithms.Min(9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count); j++)
 								{
-									foreach (int[] selectedRowCells in rowMap.Offsets.GetSubsets(j))
+									foreach (int[] selectedRowCells in rowMap.ToArray().GetSubsets(j))
 									{
 										short rowMask = 0;
 										var currentRowMap = new Cells(selectedRowCells);
@@ -156,7 +156,8 @@ namespace Sudoku.Solving.Manual.Alses
 												rowMap.Count, columnMap.Count);
 											k++)
 										{
-											foreach (int[] selectedColumnCells in columnMap.Offsets.GetSubsets(k))
+											foreach (int[] selectedColumnCells in
+												columnMap.ToArray().GetSubsets(k))
 											{
 												short columnMask = 0;
 												var currentColumnMap = new Cells(selectedColumnCells);

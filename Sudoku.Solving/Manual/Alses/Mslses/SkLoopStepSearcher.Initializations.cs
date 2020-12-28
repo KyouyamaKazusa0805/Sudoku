@@ -77,12 +77,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							{
 								SkLoopTable[n][pos++] = cell;
 							}
-							int[] cells = (all & RegionMaps[b]).Offsets;
+							int[] cells = (all & RegionMaps[b]).ToArray();
 							SkLoopTable[n][pos++] = cells[2];
 							SkLoopTable[n][pos++] = cells[3];
 							SkLoopTable[n][pos++] = cells[0];
 							SkLoopTable[n][pos++] = cells[1];
-							cells = (all & RegionMaps[c]).Offsets;
+							cells = (all & RegionMaps[c]).ToArray();
 							SkLoopTable[n][pos++] = cells[2];
 							SkLoopTable[n][pos++] = cells[3];
 							SkLoopTable[n][pos++] = cells[0];

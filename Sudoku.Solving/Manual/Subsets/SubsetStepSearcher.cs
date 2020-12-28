@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				}
 
 				// Iterate on each combination.
-				foreach (int[] cells in currentEmptyMap.Offsets.GetSubsets(size))
+				foreach (int[] cells in currentEmptyMap.ToArray().GetSubsets(size))
 				{
 					short mask = 0;
 					foreach (int cell in cells)

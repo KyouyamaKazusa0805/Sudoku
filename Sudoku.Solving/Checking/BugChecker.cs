@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Checking
 			// The comments will help you to understand the processing.
 			short mask;
 			short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-			int[] multivalueCells = (EmptyMap - BivalueMap).Offsets;
+			int[] multivalueCells = (EmptyMap - BivalueMap).ToArray();
 			for (int i = 0, length = multivalueCells.Length; i < length; i++)
 			{
 				// eg. { 2, 4, 6 } (42)

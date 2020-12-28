@@ -194,8 +194,9 @@ namespace Sudoku.Data
 		/// <seealso cref="PeerMaps"/>
 		private Cells(int offset, bool setItself)
 		{
+			// Don't merge two sentences to one.
 			this = PeerMaps[offset];
-			this[offset] = setItself;
+			InternalAdd(offset, setItself);
 		}
 
 		/// <summary>
@@ -289,9 +290,49 @@ namespace Sudoku.Data
 		public int Count { readonly get; private set; }
 
 		/// <summary>
+		/// Indicates all regions covered. This property is used to check all regions that all cells
+		/// of this instance covered. For example, if the cells are { 0, 1 }, the property
+		/// <see cref="CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
+		/// however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property won't contain
+		/// any regions.
+		/// </summary>
+		/// <remarks>
+		/// The return value will be an <see cref="int"/> value indicating each regions. Bits set 1 are
+		/// covered regions.
+		/// </remarks>
+		public readonly int CoveredRegions
+		{
+			get
+			{
+				int resultRegions = 0;
+				for (int i = BlockOffset; i < Limit; i++)
+				{
+					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+					{
+						resultRegions |= 1 << i;
+					}
+				}
+
+				return resultRegions;
+			}
+		}
+
+		/// <summary>
+		/// All regions that the map spanned. This property is used to check all regions that all cells of
+		/// this instance spanned. For example, if the cells are { 0, 1 }, the property
+		/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
+		/// and the region 19 (column 2).
+		/// </summary>
+		public readonly int Regions
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
+		}
+
+		/// <summary>
 		/// Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
 		/// </summary>
-		public readonly int[] Offsets
+		private readonly int[] Offsets
 		{
 			get
 			{
@@ -361,86 +402,49 @@ namespace Sudoku.Data
 			}
 		}
 
+
 		/// <summary>
-		/// Indicates all regions covered. This property is used to check all regions that all cells
-		/// of this instance covered. For example, if the cells are { 0, 1 }, the property
-		/// <see cref="CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
-		/// however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property won't contain
-		/// any regions.
+		/// Get the cell offset at the specified position index.
 		/// </summary>
-		/// <remarks>
-		/// The return value will be an <see cref="int"/> value indicating each regions. Bits set 1 are
-		/// covered regions.
-		/// </remarks>
-		public readonly int CoveredRegions
+		/// <param name="index">The index of position of all set bits.</param>
+		/// <returns>
+		/// This cell offset at the specified position index. If the value is invalid,
+		/// the return value will be <c>-1</c>.
+		/// </returns>
+		[IndexerName("SetOffset")]
+		public readonly int this[int index]
 		{
 			get
 			{
-				int resultRegions = 0;
-				for (int i = BlockOffset; i < Limit; i++)
+				if (IsEmpty)
 				{
-					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
-					{
-						resultRegions |= 1 << i;
-					}
+					return -1;
 				}
 
-				return resultRegions;
-			}
-		}
-
-		/// <summary>
-		/// All regions that the map spanned. This property is used to check all regions that all cells of
-		/// this instance spanned. For example, if the cells are { 0, 1 }, the property
-		/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
-		/// and the region 19 (column 2).
-		/// </summary>
-		public readonly int Regions
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
-		}
-
-
-		/// <summary>
-		/// Gets or sets a <see cref="bool"/> value on the specified cell
-		/// offset.
-		/// </summary>
-		/// <param name="cell">The cell offset.</param>
-		/// <value>A <see cref="bool"/> value on assignment.</value>
-		/// <returns>
-		/// A <see cref="bool"/> value indicating whether the cell has digit.
-		/// </returns>
-		[IndexerName("Index")]
-		public bool this[int cell]
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			readonly get => ((stackalloc[] { _low, _high }[cell / Shifting] >> cell % Shifting) & 1L) != 0;
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			set
-			{
-				if (cell is >= 0 and < 81)
+				long value;
+				int i, pos = -1;
+				if (_low != 0)
 				{
-					ref long v = ref cell / Shifting == 0 ? ref _low : ref _high;
-					bool older = this[cell];
-					if (value)
+					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
 					{
-						v |= 1L << cell % Shifting;
-						if (!older)
+						if ((value & 1) != 0 && ++pos == index)
 						{
-							Count++;
-						}
-					}
-					else
-					{
-						v &= ~(1L << cell % Shifting);
-						if (older)
-						{
-							Count--;
+							return i;
 						}
 					}
 				}
+				if (_high != 0)
+				{
+					for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
+					{
+						if ((value & 1) != 0 && ++pos == index)
+						{
+							return i;
+						}
+					}
+				}
+
+				return -1;
 			}
 		}
 
@@ -523,7 +527,14 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Contains(int cell) => this[cell];
+		public readonly bool Contains(int cell)
+		{
+			unsafe
+			{
+				long* ptr = stackalloc[] { _low, _high };
+				return ((ptr[cell / Shifting] >> cell % Shifting) & 1L) != 0;
+			}
+		}
 
 		/// <summary>
 		/// Get the subview mask of this map.
@@ -535,7 +546,7 @@ namespace Sudoku.Data
 			short p = 0, i = 0;
 			foreach (int cell in RegionCells[region])
 			{
-				if (this[cell])
+				if (Contains(cell))
 				{
 					p |= (short)(1 << i);
 				}
@@ -554,6 +565,13 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly int GetHashCode() =>
 			GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
+
+		/// <summary>
+		/// Get all set cell offsets and returns them as an array.
+		/// </summary>
+		/// <returns>An array of all set cell offsets.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly int[] ToArray() => Offsets;
 
 		/// <inheritdoc cref="object.ToString"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -583,18 +601,6 @@ namespace Sudoku.Data
 
 			static string tableToString(in Cells @this)
 			{
-				// Cells(2):
-				// * * * | * * * | * * *
-				// * * * | . . . | . . .
-				// * * * | . . . | . . .
-				// ------+-------+------
-				// . . * | . . . | . . .
-				// . . * | . . . | . . .
-				// . . * | . . . | . . .
-				// ------+-------+------
-				// . . * | . . . | . . .
-				// . . * | . . . | . . .
-				// . . * | . . . | . . .
 				var sb = new StringBuilder();
 				for (int i = 0; i < 3; i++)
 				{
@@ -605,7 +611,8 @@ namespace Sudoku.Data
 							for (int columnLine = 0; columnLine < 3; columnLine++)
 							{
 								sb
-									.Append(@this[(i * 3 + bandLine) * 9 + j * 3 + columnLine] ? '*' : '.')
+									.Append(
+										@this.Contains((i * 3 + bandLine) * 9 + j * 3 + columnLine) ? '*' : '.')
 									.Append(' ');
 							}
 
@@ -768,11 +775,11 @@ namespace Sudoku.Data
 		{
 			if (offset >= 0) // Positive or zero.
 			{
-				this[offset] = true;
+				InternalAdd(offset, true);
 			}
 			else // Negative values.
 			{
-				this[~offset] = false;
+				InternalAdd(~offset, false);
 			}
 		}
 
@@ -786,7 +793,7 @@ namespace Sudoku.Data
 		/// </remarks>
 		/// <seealso cref="Add(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void AddAnyway(int offset) => this[offset] = true;
+		public void AddAnyway(int offset) => InternalAdd(offset, true);
 
 		/// <summary>
 		/// Set the specified cells as <see langword="true"/> value.
@@ -822,13 +829,44 @@ namespace Sudoku.Data
 		/// </remarks>
 		/// <seealso cref="Add(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Remove(int offset) => this[offset] = false;
+		public void Remove(int offset) => InternalAdd(offset, false);
 
 		/// <summary>
 		/// Clear all bits.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Clear() => _low = _high = Count = 0;
+
+		/// <summary>
+		/// The internal operation for adding a cell.
+		/// </summary>
+		/// <param name="cell">The cell to add into.</param>
+		/// <param name="value">The value to add.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void InternalAdd(int cell, bool value)
+		{
+			if (cell is >= 0 and < 81)
+			{
+				ref long v = ref cell / Shifting == 0 ? ref _low : ref _high;
+				bool older = Contains(cell);
+				if (value)
+				{
+					v |= 1L << cell % Shifting;
+					if (!older)
+					{
+						Count++;
+					}
+				}
+				else
+				{
+					v &= ~(1L << cell % Shifting);
+					if (older)
+					{
+						Count--;
+					}
+				}
+			}
+		}
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

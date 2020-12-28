@@ -123,7 +123,7 @@ namespace Sudoku.Solving.Manual.Sdps
 									continue;
 								}
 
-								int anotherCell = otherCellsMap.Offsets[0];
+								int anotherCell = otherCellsMap[0];
 								if (tempLoop.Count is var count and >= 5 && (count & 1) != 0
 									&& tempLoop[0] == anotherCell)
 								{
@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Sdps
 										CreateGuardianMap(cell, anotherCell, digit, guardians),
 										tempLoop.GetLinks()));
 								}
-								else if (!loopMap[anotherCell])
+								else if (!loopMap.Contains(anotherCell))
 								{
 									f(
 										anotherCell,

@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 							foreach (int cell in elimMap)
 							{
-								if (map[cell])
+								if (map.Contains(cell))
 								{
 									canL[digit].AddAnyway(cell);
 								}
@@ -141,7 +141,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 								foreach (int cand in cands)
 								{
-									if (!canL[cand][cell])
+									if (!canL[cand].Contains(cell))
 									{
 										candidateOffsets.Add(
 											new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));

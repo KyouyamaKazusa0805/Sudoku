@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// Get all locked members.
-				int[] mq1o = mq1.Offsets, mq2o = mq2.Offsets, mr1o = mr1.Offsets, mr2o = mr2.Offsets;
+				int[] mq1o = mq1.ToArray(), mq2o = mq2.ToArray(), mr1o = mr1.ToArray(), mr2o = mr2.ToArray();
 				int v1 = grid.GetCandidates(mq1o[0]) | grid.GetCandidates(mq1o[1]);
 				int v2 = grid.GetCandidates(mq2o[0]) | grid.GetCandidates(mq2o[1]);
 				short temp = (short)(v1 | v2);

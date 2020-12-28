@@ -172,7 +172,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var targetElims = new Target();
 			var mirrorElims = new Mirror();
-			int[] offsets = mirror.Offsets;
+			int[] offsets = mirror.ToArray();
 			int l = offsets[0], r = offsets[1];
 			short mirrorCandsMask = (short)(grid.GetCandidates(l) | grid.GetCandidates(r));
 			short commonBase = (short)(mirrorCandsMask & baseCandidateMask & grid.GetCandidates(target));

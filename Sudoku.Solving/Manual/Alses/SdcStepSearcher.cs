@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					list.Clear();
-					int[] offsets = emptyCellsInInterMap.Offsets;
+					int[] offsets = emptyCellsInInterMap.ToArray();
 					switch (emptyCellsInInterMap.Count)
 					{
 						case 2:
@@ -94,7 +94,7 @@ namespace Sudoku.Solving.Manual.Alses
 						for (int i = 1; i < blockMap.Count; i++)
 						{
 							// Iterate on each combination in block.
-							foreach (int[] selectedCellsInBlock in blockMap.Offsets.GetSubsets(i))
+							foreach (int[] selectedCellsInBlock in blockMap.ToArray().GetSubsets(i))
 							{
 								short blockMask = 0;
 								var currentBlockMap = new Cells(selectedCellsInBlock);
@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Alses
 								for (int j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
 								{
 									// Iterate on each combination in line.
-									foreach (int[] selectedCellsInLine in lineMap.Offsets.GetSubsets(j))
+									foreach (int[] selectedCellsInLine in lineMap.ToArray().GetSubsets(j))
 									{
 										short lineMask = 0;
 										var currentLineMap = new Cells(selectedCellsInLine);

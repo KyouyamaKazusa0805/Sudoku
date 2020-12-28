@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			// Iterate on each cells.
 			for (int c1 = 0; c1 < 72; c1++)
 			{
-				if (!BivalueMap[c1] || !EmptyMap[c1])
+				if (!BivalueMap.Contains(c1) || !EmptyMap.Contains(c1))
 				{
 					continue;
 				}

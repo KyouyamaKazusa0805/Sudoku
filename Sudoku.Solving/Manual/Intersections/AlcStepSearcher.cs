@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			IList<StepInfo> result, in SudokuGrid grid, int size, int baseSet, int coverSet,
 			in Cells a, in Cells b, in Cells c)
 		{
-			foreach (int[] cells in (a & EmptyMap).Offsets.GetSubsets(size - 1))
+			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{
 				short mask = grid.BitwiseOrMasks(cells);
 				if (mask.PopCount() != size)
@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Intersections
 				var conclusions = new List<Conclusion>();
 				foreach (int aCell in a)
 				{
-					if (cellsMap[aCell])
+					if (cellsMap.Contains(aCell))
 					{
 						continue;
 					}

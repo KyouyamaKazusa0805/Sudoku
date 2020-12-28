@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									cellOffsets.Add(new(-2, cell));
 								}
 
-								int[] offsets = cpMap.Offsets;
+								int[] offsets = cpMap.ToArray();
 								var candidateOffsets = new List<DrawingInfo>
 								{
 									new(0, offsets[0] * 9 + x),

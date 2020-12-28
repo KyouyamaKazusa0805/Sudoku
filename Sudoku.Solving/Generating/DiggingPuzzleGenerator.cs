@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Generating
 					while (true)
 					{
 						int cell = IPuzzleGenerator.Rng.Next(0, 81);
-						if (!map[cell])
+						if (!map.Contains(cell))
 						{
 							map.AddAnyway(cell);
 							break;

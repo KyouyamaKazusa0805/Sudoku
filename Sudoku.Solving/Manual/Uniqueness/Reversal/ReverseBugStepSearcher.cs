@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			IReadOnlyList<Link>? tempLinks = null;
 			try
 			{
-				f(cells.Offsets[0], (RegionLabel)byte.MaxValue, cells, ref flag);
+				f(cells[0], (RegionLabel)byte.MaxValue, cells, ref flag);
 			}
 			catch (SudokuRuntimeException)
 			{
@@ -169,7 +169,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 								// TODO: Grouping cells.
 							}
 						}
-						else if (!loopMap[nextCell])
+						else if (!loopMap.Contains(nextCell))
 						{
 							f(nextCell, label, cells, ref flag);
 						}

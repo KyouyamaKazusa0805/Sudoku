@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					if ((temp & RegionMaps[cover[i]]) is { Count: 1 } check)
 					{
-						tempTarget.Add(check.Offsets[0]);
+						tempTarget.Add(check[0]);
 					}
 				}
 				if (tempTarget.Count == 0)
@@ -190,7 +190,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 					var candidateOffsets = new List<DrawingInfo>();
 
-					int endoTargetCell = comb[s[v1] ? 0 : 1];
+					int endoTargetCell = comb[s.Contains(v1) ? 0 : 1];
 					short m1 = grid.GetCandidates(b1), m2 = grid.GetCandidates(b2), m = (short)(m1 | m2);
 					foreach (int digit in m1)
 					{

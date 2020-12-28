@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
 			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap)
 		{
-			int extraCell = extraCellsMap.Offsets[0];
+			int extraCell = extraCellsMap[0];
 			var conclusions = new List<Conclusion>();
 			if (grid.Exists(extraCell, d1) is true)
 			{
@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					return;
 				}
 
-				int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).Offsets;
+				int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
 				for (int size = otherDigitsMask.PopCount() - 1, count = otherCells.Length; size < count; size++)
 				{
 					foreach (int[] cells in otherCells.GetSubsets(size))
@@ -265,7 +265,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						continue;
 					}
 
-					int[] offsets = extraCellsMap.Offsets;
+					int[] offsets = extraCellsMap.ToArray();
 					int first = offsets[0], second = offsets[1];
 					var conclusions = new List<Conclusion>();
 					if (grid.Exists(first, otherDigit) is true)
