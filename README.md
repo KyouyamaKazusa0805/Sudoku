@@ -14,7 +14,7 @@ English introduction: [Click me!](https://sunnieshine.github.io/Sudoku/)
 
 GitHub: [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku)
 
-Gitee: [SunnieShine/Sudoku](https://gitee.com/Sunnie-Shine/Sudoku)
+Gitee: [Sunnie-Shine/Sudoku](https://gitee.com/Sunnie-Shine/Sudoku)
 
 
 
@@ -39,13 +39,11 @@ Gitee: [SunnieShine/Sudoku](https://gitee.com/Sunnie-Shine/Sudoku)
 git clone https://github.com/Sunnie-Shine/Sudoku.git
 ```
 
-当然，你也可以下载 zip 文件。
-
 
 
 ### 编译和运行
 
-在运行程序的时候，你需要提前下载一些文件（或者是确认一些文件是否存在）。请参看这个[文件夹](https://github.com/Sunnie-Shine/Sudoku/tree/master/required)下的这个[文件](https://github.com/Sunnie-Shine/Sudoku/blob/master/required/ReadMe.md)以获取更多相关信息。
+在运行程序的时候，你需要提前下载一些文件（或者是确认一些文件是否存在）。请参看这个[文件夹](https://github.com/Sunnie-Shine/Sudoku/tree/master/required)下的这个[文件](https://github.com/Sunnie-Shine/Sudoku/blob/master/required/README.md)以获取更多相关信息。
 
 
 
