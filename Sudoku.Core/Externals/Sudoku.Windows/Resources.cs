@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using Sudoku.Globalization;
 
 namespace Sudoku.Windows
@@ -10,6 +14,16 @@ namespace Sudoku.Windows
 	/// <seealso cref="Windows"/>
 	public static class Resources
 	{
+		/// <summary>
+		/// Indicates the default options.
+		/// </summary>
+		private static readonly JsonSerializerOptions DefaultOptions = new()
+		{
+			Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+			WriteIndented = true
+		};
+
+
 		/// <summary>
 		/// Indicates the current source.
 		/// </summary>
@@ -37,6 +51,74 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <param name="countryCode">The country code.</param>
 		public static void ChangeLanguage(CountryCode countryCode) => GetDictionary(CountryCode = countryCode);
+
+		/// <summary>
+		/// Try to serialize the instance whose name is specified as a string.
+		/// </summary>
+		/// <param name="instanceNameToSerialize">The instance that is to serialize.</param>
+		/// <param name="path">The path to serialize.</param>
+		/// <returns>The <see cref="bool"/> value indicating whether the operation is successful.</returns>
+		public static bool Serialize(string instanceNameToSerialize, string path)
+		{
+			try
+			{
+				var propertyInfo = typeof(Resources).GetProperty(instanceNameToSerialize);
+				if (propertyInfo is null)
+				{
+					return false;
+				}
+
+				if (propertyInfo.GetValue(null) is not IDictionary<string, string> instance)
+				{
+					return false;
+				}
+
+				string json = JsonSerializer.Serialize(instance, DefaultOptions);
+				File.WriteAllText(path, json);
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Try to deserialize the file specified as a file path, and converts it to the instance.
+		/// </summary>
+		/// <param name="instanceNameToDeserialize">The instance to covert to.</param>
+		/// <param name="path">The file path.</param>
+		/// <returns>The <see cref="bool"/> value indicating whether the operaton is successful.</returns>
+		public static bool Deserialize(string instanceNameToDeserialize, string path)
+		{
+			try
+			{
+				if (!File.Exists(path))
+				{
+					return false;
+				}
+
+				string json = File.ReadAllText(path);
+				var instance = JsonSerializer.Deserialize<IDictionary<string, string>>(json, DefaultOptions);
+				if (instance is null)
+				{
+					return false;
+				}
+
+				var propertyInfo = typeof(Resources).GetProperty(instanceNameToDeserialize);
+				if (propertyInfo is null)
+				{
+					return false;
+				}
+
+				propertyInfo.SetValue(null, instance);
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
 
 		/// <summary>
 		/// Get the value with the specified key.

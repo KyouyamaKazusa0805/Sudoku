@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Runtime.CompilerServices;
-using System.Text.Json;
+using Sudoku.Runtime;
 using Sudoku.Windows;
-using ResourceDictionary = System.Collections.Generic.IDictionary<string, string>;
 
 namespace Sudoku
 {
@@ -15,44 +13,33 @@ namespace Sudoku
 		/// <summary>
 		/// The initialize method.
 		/// </summary>
+		/// <exception cref="SudokuRuntimeException">
+		/// Throws when the deserialization operation is failed.
+		/// </exception>
 		[ModuleInitializer]
 		public static void Initialize()
 		{
-			string path = @"lang\Resources.en-us.dic";
-			if (File.Exists(path) && g(path, out var obj1))
+			DeserializeResourceDictionary(nameof(Resources.LangSourceEnUs), @"lang\Resources.en-us.dic");
+			DeserializeResourceDictionary(nameof(Resources.LangSourceZhCn), @"lang\Resources.zh-cn.dic");
+		}
+
+		/// <summary>
+		/// Deserialize the resource dictionary. If failed, throw the exception.
+		/// </summary>
+		/// <param name="langSourceInstanceName">The name of the language resource instance.</param>
+		/// <param name="path">The path to deserialize.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static void DeserializeResourceDictionary(string langSourceInstanceName, string path)
+		{
+			if (!Resources.Deserialize(langSourceInstanceName, path))
 			{
-				Resources.LangSourceEnUs = obj1;
+				throwException(path);
 			}
 
-			path = @"lang\Resources.zh-cn.dic";
-			if (File.Exists(path) && g(path, out var obj2))
-			{
-				Resources.LangSourceZhCn = obj2;
-			}
-
-			static bool g(string path, [NotNullWhen(true)] out ResourceDictionary? result)
-			{
-				ResourceDictionary? r;
-				try
-				{
-					r = JsonSerializer.Deserialize<ResourceDictionary>(File.ReadAllText(path));
-				}
-				catch
-				{
-					r = null;
-				}
-
-				if (r is not null)
-				{
-					result = r;
-					return true;
-				}
-				else
-				{
-					result = null;
-					return false;
-				}
-			}
+			[DoesNotReturn]
+			static void throwException(string path) =>
+				throw new SudokuRuntimeException(
+					$"Please check the existence of the resource dictionary file (path {path}).");
 		}
 	}
 }

@@ -13,6 +13,16 @@
             <summary>
             The initialize method.
             </summary>
+            <exception cref="T:Sudoku.Runtime.SudokuRuntimeException">
+            Throws when the deserialization operation is failed.
+            </exception>
+        </member>
+        <member name="M:Sudoku.AssemblyInitializer.DeserializeResourceDictionary(System.String,System.String)">
+            <summary>
+            Deserialize the resource dictionary. If failed, throw the exception.
+            </summary>
+            <param name="langSourceInstanceName">The name of the language resource instance.</param>
+            <param name="path">The path to deserialize.</param>
         </member>
         <member name="T:Sudoku.Constants.Processings">
             <summary>
@@ -5239,6 +5249,11 @@
             </summary>
             <seealso cref="N:Sudoku.Windows"/>
         </member>
+        <member name="F:Sudoku.Windows.Resources.DefaultOptions">
+            <summary>
+            Indicates the default options.
+            </summary>
+        </member>
         <member name="F:Sudoku.Windows.Resources._dicPointer">
             <summary>
             Indicates the current source.
@@ -5264,6 +5279,22 @@
             To change the current language with the specified country code.
             </summary>
             <param name="countryCode">The country code.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Resources.Serialize(System.String,System.String)">
+            <summary>
+            Try to serialize the instance whose name is specified as a string.
+            </summary>
+            <param name="instanceNameToSerialize">The instance that is to serialize.</param>
+            <param name="path">The path to serialize.</param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating whether the operation is successful.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Resources.Deserialize(System.String,System.String)">
+            <summary>
+            Try to deserialize the file specified as a file path, and converts it to the instance.
+            </summary>
+            <param name="instanceNameToDeserialize">The instance to covert to.</param>
+            <param name="path">The file path.</param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating whether the operaton is successful.</returns>
         </member>
         <member name="M:Sudoku.Windows.Resources.GetValue(System.String)">
             <summary>

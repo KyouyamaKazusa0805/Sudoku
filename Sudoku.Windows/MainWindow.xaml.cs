@@ -91,12 +91,21 @@ namespace Sudoku.Windows
 				return;
 			}
 
+#if DEBUG && false
+			// Serialize the resource dictionaries.
+			CoreResources.Serialize(nameof(CoreResources.LangSourceEnUs), Paths.LangSourceEnUs);
+			CoreResources.Serialize(nameof(CoreResources.LangSourceZhCn), Paths.LangSourceZhCn);
+#endif
+
+			// Save the configuration file.
 			SaveConfig();
 
 #if SUDOKU_RECOGNITION
+			// Dispose the OCR tools.
 			_recognition?.Dispose();
 #endif
 
+			// Call base.OnClosing to close the window (collect the garbage memory).
 			base.OnClosing(e);
 
 #if SUDOKU_RECOGNITION
