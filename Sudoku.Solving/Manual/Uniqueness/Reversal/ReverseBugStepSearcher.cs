@@ -18,7 +18,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(56, nameof(TechniqueCode.ReverseUrType1))
 		{
-			DisplayLevel = 2
+			DisplayLevel = 2,
+			IsEnabled = false,
+			DisabledReason = DisabledReason.TooSlow
 		};
 
 

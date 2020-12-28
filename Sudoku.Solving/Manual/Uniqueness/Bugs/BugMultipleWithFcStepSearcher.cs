@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			{
 				foreach (var p in cellToOn)
 				{
-					if (CreateEliminationHint(trueCandidates, p, valueToOn) is BugMultipleWithFcStepInfo hint)
+					if (CreateEliminationHint(trueCandidates, p, valueToOn) is var hint and not null)
 					{
 						tempAccumulator.Add(hint);
 					}
@@ -85,7 +85,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			{
 				foreach (var p in cellToOff)
 				{
-					if (CreateEliminationHint(trueCandidates, p, valueToOff) is BugMultipleWithFcStepInfo hint)
+					if (CreateEliminationHint(trueCandidates, p, valueToOff) is var hint and not null)
 					{
 						tempAccumulator.Add(hint);
 					}
