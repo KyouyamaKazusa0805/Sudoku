@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 			{
 				conclusions.Add(new(ConclusionType.Elimination, extraCell, d2));
 			}
-			if (conclusions.Count != 0)
+			if (conclusions.Count == 0)
 			{
 				return;
 			}
