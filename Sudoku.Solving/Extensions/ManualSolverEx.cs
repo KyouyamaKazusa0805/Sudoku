@@ -10,6 +10,7 @@ using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
+using Sudoku.Solving.Manual.Miscellaneous;
 using Sudoku.Solving.Manual.Sdps;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
@@ -98,6 +99,7 @@ namespace Sudoku.Solving.Extensions
 				new GuardianStepSearcher(),
 				new BugStepSearcher(@this.UseExtendedBugSearcher),
 				new EripStepSearcher(),
+				new BivalueOddagonStepSearcher(),
 				new AicStepSearcher(),
 				new AlsXzStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
 				new AlsXyWingStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
@@ -107,7 +109,7 @@ namespace Sudoku.Solving.Extensions
 				new FcStepSearcher(nishio: true, multiple: false, dynamic: true),
 				new FcStepSearcher(nishio: false, multiple: true, dynamic: false),
 				new BugMultipleWithFcStepSearcher(),
-				//new HobiwanFishStepSearcher(@this.HobiwanFishMaximumSize, @this.HobiwanFishMaximumExofinsCount, @this.HobiwanFishMaximumEndofinsCount, @this.HobiwanFishCheckTemplates),
+				new HobiwanFishStepSearcher(@this.HobiwanFishMaximumSize, @this.HobiwanFishMaximumExofinsCount, @this.HobiwanFishMaximumEndofinsCount, @this.HobiwanFishCheckTemplates),
 				new FcStepSearcher(nishio: false, multiple: true, dynamic: true),
 				new JeStepSearcher(@this.CheckAdvancedInExocet),
 				new SeStepSearcher(@this.CheckAdvancedInExocet),

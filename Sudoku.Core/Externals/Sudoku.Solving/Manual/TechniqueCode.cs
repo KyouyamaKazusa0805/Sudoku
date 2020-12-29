@@ -1274,6 +1274,30 @@
 		Guardian,
 
 		/// <summary>
+		/// Indicates the bi-value oddagon type 1.
+		/// </summary>
+		[TechniqueDisplay("Bivalue Oddagon Type 1")]
+		BivalueOddagonType1,
+
+		/// <summary>
+		/// Indicates the bi-value oddagon type 2.
+		/// </summary>
+		[TechniqueDisplay("Bivalue Oddagon Type 2")]
+		BivalueOddagonType2,
+
+		/// <summary>
+		/// Indicates the bi-value oddagon type 3.
+		/// </summary>
+		[TechniqueDisplay("Bivalue Oddagon Type 3")]
+		BivalueOddagonType3,
+
+		/// <summary>
+		/// Indicates the bi-value oddagon type 4.
+		/// </summary>
+		[TechniqueDisplay("Bivalue Oddagon Type 4")]
+		BivalueOddagonType4,
+
+		/// <summary>
 		/// Indicates the X-Chain.
 		/// </summary>
 		[TechniqueDisplay("X-Chain")]

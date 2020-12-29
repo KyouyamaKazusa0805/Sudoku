@@ -4874,6 +4874,26 @@
             Indicates the guardian.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BivalueOddagonType1">
+            <summary>
+            Indicates the bi-value oddagon type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BivalueOddagonType2">
+            <summary>
+            Indicates the bi-value oddagon type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BivalueOddagonType3">
+            <summary>
+            Indicates the bi-value oddagon type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BivalueOddagonType4">
+            <summary>
+            Indicates the bi-value oddagon type 4.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.XChain">
             <summary>
             Indicates the X-Chain.

@@ -574,6 +574,10 @@
 	<sys:String x:Key="GroupTemplateDelete">没有办法的办法</sys:String>
 	<sys:String x:Key="GroupBowmanBingo">没有办法的办法</sys:String>
 	<sys:String x:Key="GroupBruteForce">没有办法的办法</sys:String>
+	<sys:String x:Key="GroupBivalueOddagonType1">其它</sys:String>
+	<sys:String x:Key="GroupBivalueOddagonType2">其它</sys:String>
+	<sys:String x:Key="GroupBivalueOddagonType3">其它</sys:String>
+	<sys:String x:Key="GroupBivalueOddagonType4">其它</sys:String>
 
 	<!-- Punctuation marks -->
 	<sys:String x:Key="Comma">，</sys:String>

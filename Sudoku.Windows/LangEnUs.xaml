@@ -574,6 +574,10 @@
 	<sys:String x:Key="GroupTemplateDelete">Last Resorts</sys:String>
 	<sys:String x:Key="GroupBowmanBingo">Last Resorts</sys:String>
 	<sys:String x:Key="GroupBruteForce">Last Resorts</sys:String>
+	<sys:String x:Key="GroupBivalueOddagonType1">Miscellaneous</sys:String>
+	<sys:String x:Key="GroupBivalueOddagonType2">Miscellaneous</sys:String>
+	<sys:String x:Key="GroupBivalueOddagonType3">Miscellaneous</sys:String>
+	<sys:String x:Key="GroupBivalueOddagonType4">Miscellaneous</sys:String>
 
 	<!-- Punctuation marks -->
 	<sys:String x:Key="Comma">, </sys:String>
