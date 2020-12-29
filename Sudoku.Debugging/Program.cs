@@ -1,4 +1,22 @@
-﻿#if BATCH_RATING || false
+﻿using System;
+using Sudoku.Data;
+using Sudoku.Globalization;
+using Sudoku.Solving;
+using Sudoku.Solving.BruteForces.Backtracking;
+
+// Define a sudoku grid using the string code.
+var grid = SudokuGrid.Parse("250010000001089402940700000510200000000000000000007031000001026807640100000020043");
+
+// Now define a instance for solving the puzzle.
+var solver = new BacktrackingSolver();
+
+// Solve this puzzle.
+var analysisResult = solver.Solve(grid);
+
+// Output the result.
+Console.WriteLine(analysisResult.ToString(AnalysisResultFormattingOptions.ShowDifficulty, CountryCode.ZhCn));
+
+#if BATCH_RATING || false
 #pragma warning disable IDE1006
 
 using System;
@@ -56,7 +74,7 @@ stopwatch.Stop();
 ReadKey();
 #endif
 
-#if FILE_COUNTER || true
+#if FILE_COUNTER || false
 using System;
 using System.IO;
 using Sudoku.Diagnostics;

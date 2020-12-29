@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Runtime;
 using Sudoku.Windows;
-using static System.Linq.Enumerable;
 using static System.Math;
-using static System.StringComparison;
 
 namespace Sudoku.Solving.BruteForces.Linqing
 {
@@ -45,27 +44,26 @@ namespace Sudoku.Solving.BruteForces.Linqing
 		/// <returns>The result strings (i.e. All solutions).</returns>
 		private static IReadOnlyList<string> SolveStrings(string puzzle)
 		{
-			const string digitChars = "123456789";
-			static int index(string solution) => solution.IndexOf('0', OrdinalIgnoreCase);
-
+			const string values = "123456789";
 			var result = new List<string> { puzzle };
-			while (result.Count > 0 && index(result[0]) != -1)
+
+			while (result.Count > 0 && result[0].IndexOf('0', StringComparison.OrdinalIgnoreCase) != -1)
 			{
 				result = (
 					from solution in result
-					let i = index(solution)
-					let c = i % 9
-					let b = i - i % 27 + c - i % 3
-					from @char in digitChars
-					where (
-						from i in Range(0, 9)
-						let inRow = solution[i - c + i] == @char
-						let inColumn = solution[c + i * 9] == @char
-						let inBlock = solution[b + i % 3 + (int)Floor(i / 3F) * 9] == @char
+					let index = solution.IndexOf('0', StringComparison.OrdinalIgnoreCase)
+					let column = index % 9
+					let block = index - index % 27 + column - index % 3
+					from value in values
+					where !(
+						from i in Enumerable.Range(0, 9)
+						let inRow = solution[index - column + i] == value
+						let inColumn = solution[column + i * 9] == value
+						let inBlock = solution[block + i % 3 + (int)Floor(i / 3f) * 9] == value
 						where inRow || inColumn || inBlock
 						select i
-					).None()
-					select $"{solution[..i]}{@char}{solution[(i + 1)..]}").ToList();
+					).Any()
+					select $"{solution[0..index]}{value}{solution[(index + 1)..]}").ToList();
 			}
 
 			return result;
