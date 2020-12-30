@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -148,17 +148,13 @@ namespace Sudoku.Solving.Manual.Sdps
 				}
 			}
 
-			unsafe
-			{
-				var set = new Set<GuardianStepInfo>(resultAccumulator);
-				resultAccumulator.Clear();
-				resultAccumulator.AddRange(set);
-				resultAccumulator.Sort(&cmp);
-				accumulator.AddRange(resultAccumulator);
-			}
-
-			static int cmp(in GuardianStepInfo l, in GuardianStepInfo r) =>
-				(l.Loop.Count + l.Guardians.Count).CompareTo(r.Loop.Count + r.Guardians.Count);
+			var set = new Set<GuardianStepInfo>(resultAccumulator);
+			resultAccumulator.Clear();
+			resultAccumulator.AddRange(set);
+			accumulator.AddRange(
+				from info in resultAccumulator
+				orderby info.Loop.Count, info.Guardians.Count
+				select info);
 		}
 
 		/// <summary>

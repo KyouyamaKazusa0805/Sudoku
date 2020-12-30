@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -82,26 +83,13 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 					}
 				}
 
-				unsafe
-				{
-					var set = new Set<BivalueOddagonStepInfo>(resultAccumulator);
-					resultAccumulator.Clear();
-					resultAccumulator.AddRange(set);
-					resultAccumulator.Sort(&cmp);
-					accumulator.AddRange(resultAccumulator);
-				}
-
-				static int cmp(in BivalueOddagonStepInfo l, in BivalueOddagonStepInfo r)
-				{
-					int ll = l.Loop.Count, rr = r.Loop.Count;
-					if (ll > rr) return 1;
-					else if (ll < rr) return -1;
-
-					TechniqueCode lt = l.TechniqueCode, rt = r.TechniqueCode;
-					if (lt > rt) return 1;
-					else if (lt < rt) return -1;
-					else return 0;
-				}
+				var set = new Set<BivalueOddagonStepInfo>(resultAccumulator);
+				resultAccumulator.Clear();
+				resultAccumulator.AddRange(set);
+				accumulator.AddRange(
+					from info in resultAccumulator
+					orderby info.Loop.Count, info.TechniqueCode
+					select info);
 
 				/*Don't convert to method or static local function*/
 				void f(
