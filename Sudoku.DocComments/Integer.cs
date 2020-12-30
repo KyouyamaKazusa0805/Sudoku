@@ -16,6 +16,9 @@ namespace Sudoku.DocComments
 		/// </summary>
 		///	<param name="this">(<see langword="this"/> parameter) The value.</param>
 		///	<returns>A <see cref="bool"/> value indicating that.</returns>
+		///	<remarks>
+		///	The equivalent code: <c>(x &amp; (x - 1)) != 0</c>.
+		/// </remarks>
 		public static bool IsPowerOfTwo(Integer @this) => throw new NotImplementedException();
 
 		/// <summary>
@@ -23,6 +26,9 @@ namespace Sudoku.DocComments
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <remarks>
+		///	The equivalent code: <c>(x &amp; 1) != 0</c>.
+		/// </remarks>
 		public static bool IsOdd(Integer @this) => throw new NotImplementedException();
 
 		/// <summary>
@@ -30,6 +36,9 @@ namespace Sudoku.DocComments
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <remarks>
+		///	The equivalent code: <c>(x &amp; 1) == 0</c>.
+		/// </remarks>
 		public static bool IsEven(Integer @this) => throw new NotImplementedException();
 
 		/// <summary>
@@ -38,6 +47,9 @@ namespace Sudoku.DocComments
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="bitPosition">The position of that bit to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <remarks>
+		///	The equivalent code: <c>(x &gt;&gt; i &amp; 1) != 0</c>.
+		/// </remarks>
 		public static bool ContainsBit(Integer @this, int bitPosition) => throw new NotImplementedException();
 
 		/// <summary>
@@ -46,6 +58,9 @@ namespace Sudoku.DocComments
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="other">The other value to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <remarks>
+		///	The equivalent code: <c>(x &amp; y) != 0</c>.
+		/// </remarks>
 		public static bool Overlaps(Integer @this, Integer other) => throw new NotImplementedException();
 
 		/// <summary>
@@ -54,6 +69,9 @@ namespace Sudoku.DocComments
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="other">The other value to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <remarks>
+		///	The equivalent code: <c>(x &amp; ~y) != 0</c>.
+		/// </remarks>
 		public static bool ExceptOverlaps(Integer @this, Integer other) => throw new NotImplementedException();
 
 		/// <summary>
