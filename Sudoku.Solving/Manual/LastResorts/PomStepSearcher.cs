@@ -1,6 +1,7 @@
 ﻿#pragma warning disable IDE0055
 
 using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -59,7 +60,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if ((grid.GetCandidates(cell) >> digit & 1) == 0)
+					if (!grid.GetCandidates(cell).ContainsBit(digit))
 					{
 						invalidPos[digit].AddAnyway(cell);
 					}

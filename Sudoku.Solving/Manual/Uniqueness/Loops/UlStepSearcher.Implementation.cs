@@ -202,7 +202,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
-									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									new(otherDigitsMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in cells)

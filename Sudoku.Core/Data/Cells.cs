@@ -348,7 +348,7 @@ namespace Sudoku.Data
 				{
 					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
 					{
-						if ((value & 1) != 0)
+						if (value.IsOdd())
 						{
 							result[pos++] = i;
 						}
@@ -358,7 +358,7 @@ namespace Sudoku.Data
 				{
 					for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
 					{
-						if ((value & 1) != 0)
+						if (value.IsOdd())
 						{
 							result[pos++] = i;
 						}
@@ -427,7 +427,7 @@ namespace Sudoku.Data
 				{
 					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
 					{
-						if ((value & 1) != 0 && ++pos == index)
+						if (value.IsOdd() && ++pos == index)
 						{
 							return i;
 						}
@@ -437,7 +437,7 @@ namespace Sudoku.Data
 				{
 					for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
 					{
-						if ((value & 1) != 0 && ++pos == index)
+						if (value.IsOdd() && ++pos == index)
 						{
 							return i;
 						}

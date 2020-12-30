@@ -220,7 +220,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								short initialMask = initialGrid.GetCandidateMask(currentCell);
 								foreach (int digit in (short)(actMask | initialMask))
 								{
-									if ((initialMask >> digit & 1) != 0 && (actMask >> digit & 1) == 0)
+									if (initialMask.ContainsBit(digit) && !actMask.ContainsBit(digit))
 									{
 										result.Add(new(currentCell, digit, false));
 									}

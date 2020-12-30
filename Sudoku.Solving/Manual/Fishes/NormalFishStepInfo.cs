@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					short mask = currentGrid.GetCandidateMask(cell);
 					short initialMask = initialGrid.GetCandidateMask(cell);
-					if ((initialMask >> Digit & 1) != 0 && (mask >> Digit & 1) == 0)
+					if (initialMask.ContainsBit(Digit) && !mask.ContainsBit(Digit))
 					{
 						bool isInCoverSet = false;
 						foreach (int coverSet in CoverSets)

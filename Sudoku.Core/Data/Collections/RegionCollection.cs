@@ -63,7 +63,7 @@ namespace Sudoku.Data.Collections
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[IndexerName("Region")]
-		public bool this[int region] => (_mask >> region & 1) != 0;
+		public bool this[int region] => _mask.ContainsBit(region);
 
 
 		/// <inheritdoc/>

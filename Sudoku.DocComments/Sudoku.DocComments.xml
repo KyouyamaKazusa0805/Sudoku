@@ -217,6 +217,28 @@
             <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.DocComments.Integer.IsOdd(Sudoku.DocComments.Integer)">
+            <summary>
+            Indicates whether the current value is an odd.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.IsEven(Sudoku.DocComments.Integer)">
+            <summary>
+            Indicates whether the current value is an even.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.DocComments.Integer.ContainsBit(Sudoku.DocComments.Integer,System.Int32)">
+            <summary>
+            Indicates whether the current value contains the bit specified as <paramref name="bitPosition"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="bitPosition">The position of that bit to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:Sudoku.DocComments.Integer.FindFirstSet(Sudoku.DocComments.Integer)">
             <summary>
             Find the first offset of set bit of the binary representation
@@ -372,6 +394,11 @@
             <summary>
             Indicates the searcher properties.
             </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="T:Sudoku.DocComments.StaticConstructor">
             <summary>

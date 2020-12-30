@@ -19,6 +19,28 @@ namespace Sudoku.DocComments
 		public static bool IsPowerOfTwo(Integer @this) => throw new NotImplementedException();
 
 		/// <summary>
+		/// Indicates whether the current value is an odd.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsOdd(Integer @this) => throw new NotImplementedException();
+
+		/// <summary>
+		/// Indicates whether the current value is an even.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsEven(Integer @this) => throw new NotImplementedException();
+
+		/// <summary>
+		/// Indicates whether the current value contains the bit specified as <paramref name="bitPosition"/>.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="bitPosition">The position of that bit to check.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool ContainsBit(Integer @this, int bitPosition) => throw new NotImplementedException();
+
+		/// <summary>
 		/// Find the first offset of set bit of the binary representation
 		/// of the specified value. If the value is 0, this method
 		/// will always return -1.

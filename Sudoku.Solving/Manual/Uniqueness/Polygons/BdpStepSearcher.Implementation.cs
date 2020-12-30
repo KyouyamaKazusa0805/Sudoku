@@ -221,7 +221,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									candidateOffsets.Add(
+										new(tempMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in otherCellsMap)

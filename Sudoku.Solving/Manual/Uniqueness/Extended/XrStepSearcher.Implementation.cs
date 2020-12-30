@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new((mask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								candidateOffsets.Add(new(mask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in cells)

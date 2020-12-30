@@ -73,7 +73,7 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		/// <param name="digit">The digit.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool Contains(int digit) => (_mask >> digit & 1) != 0;
+		public bool Contains(int digit) => _mask.ContainsBit(digit);
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[EditorBrowsable(EditorBrowsableState.Never)]

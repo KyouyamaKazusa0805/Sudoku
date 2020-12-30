@@ -14,6 +14,18 @@ namespace System.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsPowerOfTwo(this long @this) => @this != 0 && (@this & (@this - 1L)) == 0;
 
+		/// <inheritdoc cref="Integer.IsOdd(Integer)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool IsOdd(this long @this) => (@this & 1) != 0;
+
+		/// <inheritdoc cref="Integer.IsEven(Integer)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool IsEven(this long @this) => (@this & 1) == 0;
+
+		/// <inheritdoc cref="Integer.ContainsBit(Integer, int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool ContainsBit(this long @this, int bitPosition) => (@this >> bitPosition & 1) != 0;
+
 		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
 		public static int FindFirstSet(this long @this) => BitOperations.TrailingZeroCount(@this);
 
@@ -60,7 +72,7 @@ namespace System.Extensions
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 64; i++, @this >>= 1)
 			{
-				if ((@this & 1) != 0)
+				if (@this.IsOdd())
 				{
 					resultSpan[p++] = i;
 				}

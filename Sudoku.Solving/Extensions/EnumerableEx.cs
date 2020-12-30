@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -28,7 +29,7 @@ namespace Sudoku.Solving.Extensions
 					int region = label.ToRegion(cell);
 					if (*&isOdd)
 					{
-						if ((visitedOddRegions >> region & 1) != 0)
+						if (visitedOddRegions.ContainsBit(region))
 						{
 							return false;
 						}
@@ -39,7 +40,7 @@ namespace Sudoku.Solving.Extensions
 					}
 					else
 					{
-						if ((visitedEvenRegions >> region & 1) != 0)
+						if (visitedEvenRegions.ContainsBit(region))
 						{
 							return false;
 						}

@@ -355,7 +355,7 @@ namespace Sudoku.Data
 				return GetMap(&p);
 
 				static bool p(in SudokuGrid @this, int cell, int digit) =>
-					(@this.GetCandidates(cell) >> digit & 1) != 0;
+					@this.GetCandidates(cell).ContainsBit(digit);
 			}
 		}
 
@@ -469,7 +469,7 @@ namespace Sudoku.Data
 		public bool this[int cell, int digit]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			readonly get => (_values[cell] >> digit & 1) != 0;
+			readonly get => _values[cell].ContainsBit(digit);
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set

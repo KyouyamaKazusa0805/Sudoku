@@ -226,8 +226,8 @@ namespace Sudoku.Solving.Manual.Fishes
 									{
 										// Check whether the region is both used in base sets and cover sets.
 										region = label.ToRegion(cell);
-										if ((usedInBaseSets >> region & 1) != 0
-											|| (usedInCoverSets >> region & 1) != 0)
+										if (usedInBaseSets.ContainsBit(region)
+											|| usedInCoverSets.ContainsBit(region))
 										{
 											continue;
 										}

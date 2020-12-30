@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Sdps
 								}
 
 								int anotherCell = otherCellsMap[0];
-								if (tempLoop.Count is var count and >= 5 && (count & 1) != 0
+								if (tempLoop.Count is var count and >= 5 && count.IsOdd()
 									&& tempLoop[0] == anotherCell)
 								{
 									loops.Add((

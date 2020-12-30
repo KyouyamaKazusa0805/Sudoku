@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Extensions;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
@@ -58,7 +59,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							short blockMask = overlap.BlockMask;
 							for (int i = 0, count = 0; count < 4 && i < 16; i++)
 							{
-								if ((blockMask >> i & 1) != 0)
+								if (blockMask.ContainsBit(i))
 								{
 									s[count++] = i;
 								}

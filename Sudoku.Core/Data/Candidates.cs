@@ -211,7 +211,7 @@ namespace Sudoku.Data
 						int i = 0;
 						for (long value = *p; i < Shifting; i++, value >>= 1)
 						{
-							if ((value & 1) != 0)
+							if (value.IsOdd())
 							{
 								return blockPos * Shifting + i;
 							}

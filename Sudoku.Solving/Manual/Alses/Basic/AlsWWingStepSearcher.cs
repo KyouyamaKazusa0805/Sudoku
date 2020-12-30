@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 										{
 											id = 1;
 										}
-										else if ((wDigitsMask >> digit & 1) != 0)
+										else if (wDigitsMask.ContainsBit(digit))
 										{
 											id = 2;
 										}
@@ -171,7 +171,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 										{
 											id = 1;
 										}
-										else if ((wDigitsMask >> digit & 1) != 0)
+										else if (wDigitsMask.ContainsBit(digit))
 										{
 											id = 2;
 										}

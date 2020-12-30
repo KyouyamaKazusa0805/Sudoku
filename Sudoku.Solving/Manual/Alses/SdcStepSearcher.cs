@@ -173,7 +173,7 @@ namespace Sudoku.Solving.Manual.Alses
 											{
 												foreach (int digit in grid.GetCandidates(cell))
 												{
-													if ((blockMask >> digit & 1) != 0)
+													if (blockMask.ContainsBit(digit))
 													{
 														conclusions.Add(
 															new(ConclusionType.Elimination, cell, digit));
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Alses
 											{
 												foreach (int digit in grid.GetCandidates(cell))
 												{
-													if ((lineMask >> digit & 1) != 0)
+													if (lineMask.ContainsBit(digit))
 													{
 														conclusions.Add(
 															new(ConclusionType.Elimination, cell, digit));
@@ -246,7 +246,7 @@ namespace Sudoku.Solving.Manual.Alses
 													{
 														id = 2;
 													}
-													else if ((blockMask >> digit & 1) != 0)
+													else if (blockMask.ContainsBit(digit))
 													{
 														id = 0;
 													}
