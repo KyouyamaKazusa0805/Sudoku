@@ -93,7 +93,13 @@ namespace Sudoku.IO
 						var r = para.CreateRun();
 						r.AddPicture(
 							picStream,
-							(int)AliasAttribute.Convert<PictureFileType, PictureType>(pictureFileType)!.Value,
+							(int)(pictureFileType switch
+							{
+								PictureFileType.Jpg => PictureType.JPEG,
+								PictureFileType.Png => PictureType.PNG,
+								PictureFileType.Bmp => PictureType.BMP,
+								PictureFileType.Gif => PictureType.GIF
+							}),
 							curPictureName, size * Emu, size * Emu);
 						r.SetText(step.ToFullString());
 

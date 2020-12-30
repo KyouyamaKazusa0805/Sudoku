@@ -3739,31 +3739,6 @@
             </summary>
             <param name="pair">(<see langword="in"/> parameter) The pair value.</param>
         </member>
-        <member name="T:Sudoku.Solving.AliasAttribute">
-            <summary>
-            To mark on a enum field to give an alias.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.AliasAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an instance with the enum field.
-            </summary>
-            <param name="fieldName">The field name.</param>
-        </member>
-        <member name="P:Sudoku.Solving.AliasAttribute.FieldName">
-            <summary>
-            The field name.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.AliasAttribute.Convert``2(``0)">
-            <summary>
-            Convert the specified enum field to the specified type field.
-            </summary>
-            <typeparam name="TEnumBase">The base type of the enum field.</typeparam>
-            <typeparam name="TEnumTarget">The target enum type to convert to.</typeparam>
-            <param name="enumField">The enum field.</param>
-            <returns>The result. Return <see langword="null"/> when the conversion is failed.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.TechniqueCode">
             <summary>
             Represents a technique instance, which is used for comparison.
