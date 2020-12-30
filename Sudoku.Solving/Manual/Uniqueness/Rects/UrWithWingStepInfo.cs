@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	/// <param name="TypeCode">The type code.</param>
+	/// <param name="TechniqueCode2">The technique code.</param>
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Cells">All cells.</param>
@@ -22,9 +22,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record UrWithWingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		UrTypeCode TypeCode, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
+		TechniqueCode TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
 		IEnumerable<int> ExtraCells, IEnumerable<int> ExtraDigits, IEnumerable<int> Pivots, int AbsoluteOffset)
-		: UrStepInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		: UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <summary>
 		/// Indicates the difficulty rating extra.
@@ -47,11 +47,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates the extra difficulty on wing size.
 		/// </summary>
 		private decimal WingSizeExtraDifficulty =>
-			ExtraDifficulty[TypeCode - (IsAvoidable ? UrTypeCode.AXyWing : UrTypeCode.XyWing)];
+			ExtraDifficulty[TechniqueCode switch
+			{
+				TechniqueCode.UrXyWing or TechniqueCode.ArXyWing => 0,
+				TechniqueCode.UrXyzWing or TechniqueCode.ArXyzWing => 1,
+				TechniqueCode.UrWxyzWing or TechniqueCode.ArWxyzWing => 2
+			}];
 
 
 		/// <inheritdoc/>
-		public override string ToString() => ToStringInternal();
+		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
 		protected override string? GetAdditional()

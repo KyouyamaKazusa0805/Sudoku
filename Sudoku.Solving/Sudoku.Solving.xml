@@ -7807,7 +7807,7 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode2">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -7818,14 +7818,14 @@
             <param name="XyCell">The cell that only contains X and Y digit.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle + 2D (or 3X)</b> or
             <b>avoidable rectangle + 2D (or 3X)</b> technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode2">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -7855,7 +7855,7 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode2">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -7863,14 +7863,14 @@
             <param name="ConjugatePairs">All conjugate pairs.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair},System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle plus</b> (UR+) or
             <b>avoidable rectangle plus</b> (AR+) technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode2">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -7897,31 +7897,31 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode2">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode2">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.ShowDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.ShowDifficulty">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.Name">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueCode">
@@ -7935,35 +7935,6 @@
             Get additional string.
             </summary>
             <returns>The additional string.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.ToStringInternal">
-            <summary>
-            Same as <see cref="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.ToString"/> but this is implementation part.
-            </summary>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.System#IComparable{Sudoku#Solving#Manual#Uniqueness#Rects#UrStepInfo}#CompareTo(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.InternalComparsion(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
-            <summary>
-            Internal comparsion.
-            </summary>
-            <param name="l">The left comparer.</param>
-            <param name="r">The right comparer.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating the result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.op_GreaterThan(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.op_GreaterThanOrEqual(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.op_LessThan(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.op_LessThanOrEqual(Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo,Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher">
             <summary>
@@ -8434,7 +8405,7 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -8442,14 +8413,14 @@
             <param name="ExtraDigit">The extra digit.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) type 2 (or type 5) technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -8525,236 +8496,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.GetAdditional">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode">
-            <summary>
-            Indicates the type code for each UR type. Some types have the another name,
-            which have been listed also.
-            </summary>
-            <remarks>
-            All types can be found in
-            <a href="https://github.com/SunnieShine/Sudoku/discussions/81">this link</a>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type1">
-            <summary>
-            Indicates the type 1 (UR + 1).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type2">
-            <summary>
-            Indicates the type 2 (UR + 2x).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type3">
-            <summary>
-            Indicates the type 3 (UR + 2X).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type4">
-            <summary>
-            Indicates the type 4 (UR + 2X / 1SL).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2d_Lower">
-            <summary>
-            Indicates the type 5 (UR + 2d).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3x_Lower">
-            <summary>
-            Indicates the type 5 (UR + 3x).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type5">
-            <summary>
-            Indicates the type 5 (UR + 2d or UR + 3x).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Type6">
-            <summary>
-            Indicates the type 6.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Hidden">
-            <summary>
-            Indicates the hidden UR (UR + 3C / 2SL).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3C2SL">
-            <summary>
-            Indicates the hidden UR (UR + 3C / 2SL).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2D_Upper">
-            <summary>
-            Indicates the UR + 2D.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2B1SL">
-            <summary>
-            Indicates the UR + 2B / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus2D1SL">
-            <summary>
-            Indicates the UR + 2D / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3X_Upper">
-            <summary>
-            Indicates the UR + 3X.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3x1SL_Lower">
-            <summary>
-            Indicates the UR + 3x / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3X1SL_Upper">
-            <summary>
-            Indicates the UR + 3X / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3X2SL">
-            <summary>
-            Indicates the UR + 3X / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3N2SL">
-            <summary>
-            Indicates the UR + 3N / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3U2SL">
-            <summary>
-            Indicates the UR + 3U / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus3E2SL">
-            <summary>
-            Indicates the UR + 3E / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4x1SL_Lower">
-            <summary>
-            Indicates the UR + 4x / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4X1SL_Upper">
-            <summary>
-            Indicates the UR + 4X / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4x2SL_Lower">
-            <summary>
-            Indicates the UR + 4x / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4X2SL_Upper">
-            <summary>
-            Indicates the UR + 4X / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4X3SL">
-            <summary>
-            Indicates the UR + 4X / 3SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Plus4C3SL">
-            <summary>
-            Indicates the UR + 4C / 3SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.XyWing">
-            <summary>
-            Indicates the UR-XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.XyzWing">
-            <summary>
-            Indicates the UR-XYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.WxyzWing">
-            <summary>
-            Indicates the UR-WXYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Sdc">
-            <summary>
-            Indicates the UR-SdC.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType1">
-            <summary>
-            Indicates the type 1 (AR + 1).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType2">
-            <summary>
-            Indicates the type 2 (AR + 2x).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType3">
-            <summary>
-            Indicates the type 3 (AR + 2X).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2d_Lower">
-            <summary>
-            Indicates the type 5 (AR + 2d).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3x_Lower">
-            <summary>
-            Indicates the type 5 (AR + 3x).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType5">
-            <summary>
-            Indicates the type 5 (AR + 2d or AR + 3x).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AHidden">
-            <summary>
-            Indicates the hidden AR (AR + 3C / 2SL).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3C2SL">
-            <summary>
-            Indicates the hidden AR (AR + 3C / 2SL).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2D_Upper">
-            <summary>
-            Indicates the AR + 2D.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3X_Upper">
-            <summary>
-            Indicates the AR + 3X.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AXyWing">
-            <summary>
-            Indicates the AR-XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AXyzWing">
-            <summary>
-            Indicates the AR-XYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AWxyzWing">
-            <summary>
-            Indicates the AR-WXYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.ASdc">
-            <summary>
-            Indicates the AR-SdC.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
@@ -8762,7 +8503,7 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode2">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -8772,14 +8513,14 @@
             <param name="Pivots">The pivot cells.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) with wings technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
+            <param name="TechniqueCode2">The technique code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>

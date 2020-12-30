@@ -10,7 +10,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	/// <param name="TypeCode">The type code.</param>
+	/// <param name="TechniqueCode">The technique code.</param>
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Cells">All cells.</param>
@@ -18,9 +18,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="ExtraDigit">The extra digit.</param>
 	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record UrType2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, UrTypeCode TypeCode,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, TechniqueCode TechniqueCode,
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int ExtraDigit, int AbsoluteOffset)
-		: UrStepInfo(Conclusions, Views, TypeCode, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		: UrStepInfo(Conclusions, Views, TechniqueCode, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.6M;
@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc/>
-		public override string ToString() => ToStringInternal();
+		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
 		protected override string GetAdditional() => $"extra digit {ExtraDigit + 1}";

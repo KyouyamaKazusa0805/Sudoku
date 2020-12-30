@@ -22,10 +22,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<ConjugatePair> ConjugatePairs,
 		int AbsoluteOffset)
 		: UrPlusStepInfo(
-			Conclusions, Views, IsAvoidable ? UrTypeCode.AHidden : UrTypeCode.Hidden,
+			Conclusions, Views, IsAvoidable ? TechniqueCode.HiddenAr : TechniqueCode.HiddenUr,
 			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
-		public override string ToString() => ToStringInternal();
+		public override string ToString() => base.ToString();
 	}
 }

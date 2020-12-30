@@ -63,8 +63,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			if (tempList.Count != 0)
 			{
 				tempList.Distinct();
-				tempList.Sort();
-				accumulator.AddRange(tempList);
+				accumulator.AddRange(
+					from info in tempList
+					orderby info.TechniqueCode, info.AbsoluteOffset
+					select info);
 			}
 		}
 
@@ -74,7 +76,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="gathered">The list stored the result.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-		private void GetAll(IList<UrStepInfo> gathered, in SudokuGrid grid, bool arMode)
+		private unsafe void GetAll(IList<UrStepInfo> gathered, in SudokuGrid grid, bool arMode)
 		{
 			// Iterate on each possible UR structure.
 			for (int index = 0, l = PossibleUrList.Length; index < l; index++)
@@ -109,12 +111,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							(grid.GetCandidates(c) & comparer).PopCount() != 2;
 
 						short comparer = (short)(1 << d1 | 1 << d2);
-						bool isNotPossibleUr;
-						unsafe
-						{
-							isNotPossibleUr = urCells.All(&v, comparer, grid);
-						}
-
+						bool isNotPossibleUr = urCells.All(&v, comparer, grid);
 						if (!arMode && isNotPossibleUr)
 						{
 							continue;
@@ -271,9 +268,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			? urCells[3]
 			: cell == urCells[1]
 			? urCells[2]
-			: cell == urCells[2]
-			? urCells[1]
-			: urCells[0];
+			: cell == urCells[2] ? urCells[1] : urCells[0];
 
 		/// <summary>
 		/// Get a cell that is in the same region of the specified cell lies in.

@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<int> ExtraDigits,
 		IReadOnlyList<int> ExtraCells, int Region, bool IsNaked, int AbsoluteOffset)
 		: UrStepInfo(
-			Conclusions, Views, IsAvoidable ? UrTypeCode.AType3 : UrTypeCode.Type3,
+			Conclusions, Views, IsAvoidable ? TechniqueCode.ArType3 : TechniqueCode.UrType3,
 			Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc/>
-		public override string ToString() => ToStringInternal();
+		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
 		protected override string GetAdditional()
