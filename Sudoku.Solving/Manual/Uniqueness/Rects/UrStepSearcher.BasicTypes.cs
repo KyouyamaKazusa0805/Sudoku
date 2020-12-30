@@ -208,112 +208,115 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ↓ corner1, corner2
 			// (ab ) (ab )
 			//  abx   aby
-			static bool isSatisfiedType3(int cell, in short comparer, in bool arMode, in SudokuGrid grid) =>
-				grid.GetCandidates(cell) is var mask && !mask.Overlaps(comparer)
-				|| mask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty;
-
-			unsafe
+			bool satisfiedType3 = false;
+			foreach (int cell in otherCellsMap)
 			{
-				bool satisfiedType3 = otherCellsMap.Any(&isSatisfiedType3, comparer, arMode, grid);
-				if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer || satisfiedType3)
+				short currentMask = grid.GetCandidates(cell);
+				if (!currentMask.Overlaps(comparer)
+					|| currentMask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty)
+				{
+					satisfiedType3 = true;
+					break;
+				}
+			}
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer || satisfiedType3)
+			{
+				return;
+			}
+
+			short mask = grid.BitwiseOrMasks(otherCellsMap);
+			if ((mask & comparer) != comparer)
+			{
+				return;
+			}
+
+			short otherDigitsMask = (short)(mask ^ comparer);
+			foreach (int region in otherCellsMap.CoveredRegions)
+			{
+				if ((ValueMaps[d1] | ValueMaps[d2]).Overlaps(RegionMaps[region]))
 				{
 					return;
 				}
 
-				short mask = grid.BitwiseOrMasks(otherCellsMap);
-				if ((mask & comparer) != comparer)
+				var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
+				for (int size = otherDigitsMask.PopCount() - 1; size < iterationMap.Count; size++)
 				{
-					return;
-				}
-
-				short otherDigitsMask = (short)(mask ^ comparer);
-				foreach (int region in otherCellsMap.CoveredRegions)
-				{
-					if ((ValueMaps[d1] | ValueMaps[d2]).Overlaps(RegionMaps[region]))
+					foreach (int[] iteratedCells in iterationMap.ToArray().GetSubsets(size))
 					{
-						return;
-					}
-
-					var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
-					for (int size = otherDigitsMask.PopCount() - 1; size < iterationMap.Count; size++)
-					{
-						foreach (int[] iteratedCells in iterationMap.ToArray().GetSubsets(size))
+						short tempMask = 0;
+						foreach (int cell in iteratedCells)
 						{
-							short tempMask = 0;
-							foreach (int cell in iteratedCells)
-							{
-								tempMask |= grid.GetCandidates(cell);
-							}
-							if (tempMask.Overlaps(comparer) || tempMask.PopCount() - 1 != size
-								|| (tempMask & otherDigitsMask) != otherDigitsMask)
-							{
-								continue;
-							}
+							tempMask |= grid.GetCandidates(cell);
+						}
+						if (tempMask.Overlaps(comparer) || tempMask.PopCount() - 1 != size
+							|| (tempMask & otherDigitsMask) != otherDigitsMask)
+						{
+							continue;
+						}
 
-							var conclusions = new List<Conclusion>();
-							foreach (int digit in tempMask)
+						var conclusions = new List<Conclusion>();
+						foreach (int digit in tempMask)
+						{
+							foreach (int cell in (iterationMap - iteratedCells) & CandMaps[digit])
 							{
-								foreach (int cell in (iterationMap - iteratedCells) & CandMaps[digit])
-								{
-									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
-								}
+								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
-							if (conclusions.Count == 0)
-							{
-								continue;
-							}
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
 
-							var cellOffsets = new List<DrawingInfo>();
-							foreach (int cell in urCells)
+						var cellOffsets = new List<DrawingInfo>();
+						foreach (int cell in urCells)
+						{
+							if (grid.GetStatus(cell) != CellStatus.Empty)
 							{
-								if (grid.GetStatus(cell) != CellStatus.Empty)
-								{
-									cellOffsets.Add(new(0, cell));
-								}
+								cellOffsets.Add(new(0, cell));
 							}
+						}
 
-							var candidateOffsets = new List<DrawingInfo>();
-							foreach (int cell in urCells)
-							{
-								if (grid.GetStatus(cell) == CellStatus.Empty)
-								{
-									foreach (int digit in grid.GetCandidates(cell))
-									{
-										candidateOffsets.Add(
-											new(tempMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
-									}
-								}
-							}
-							foreach (int cell in iteratedCells)
+						var candidateOffsets = new List<DrawingInfo>();
+						foreach (int cell in urCells)
+						{
+							if (grid.GetStatus(cell) == CellStatus.Empty)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add(new(1, cell * 9 + digit));
+									candidateOffsets.Add(
+										new(tempMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
 								}
 							}
+						}
+						foreach (int cell in iteratedCells)
+						{
+							foreach (int digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add(new(1, cell * 9 + digit));
+							}
+						}
 
-							accumulator.Add(
-								new UrType3StepInfo(
-									conclusions,
-									new View[]
-									{
+						accumulator.Add(
+							new UrType3StepInfo(
+								conclusions,
+								new View[]
+								{
 									new()
 									{
 										Cells = arMode ? cellOffsets : null,
 										Candidates = candidateOffsets,
 										Regions = new DrawingInfo[] { new(0, region) }
 									}
-									},
-									d1,
-									d2,
-									urCells,
-									arMode,
-									otherDigitsMask.GetAllSets().ToArray(),
-									iteratedCells,
-									region,
-									true,
-									index));
-						}
+								},
+								d1,
+								d2,
+								urCells,
+								arMode,
+								otherDigitsMask.GetAllSets().ToArray(),
+								iteratedCells,
+								region,
+								true,
+								index));
 					}
 				}
 			}

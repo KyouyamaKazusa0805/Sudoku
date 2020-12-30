@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Extensions;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
@@ -267,25 +266,35 @@ namespace Sudoku.Drawing
 		/// <param name="offset">The drawing offset.</param>
 		private void DrawEliminations(Graphics g, IEnumerable<Conclusion> conclusions, float offset)
 		{
-			unsafe
+			using var eliminationBrush = new SolidBrush(Preferences.EliminationColor);
+			using var cannibalBrush = new SolidBrush(Preferences.CannibalismColor);
+			foreach (var (t, c, d) in conclusions)
 			{
-				using var eliminationBrush = new SolidBrush(Preferences.EliminationColor);
-				using var cannibalBrush = new SolidBrush(Preferences.CannibalismColor);
-				foreach (var (t, c, d) in conclusions)
+				if (t != ConclusionType.Elimination)
 				{
-					if (t != ConclusionType.Elimination)
-					{
-						continue;
-					}
-
-					bool isCannibalism = View?.Candidates?.Any(&overlapping, c, d) ?? false;
-					g.FillEllipse(
-						isCannibalism ? cannibalBrush : eliminationBrush,
-						Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
+					continue;
 				}
-			}
 
-			static bool overlapping(DrawingInfo pair, in int c, in int d) => pair.Value == c * 9 + d;
+				bool isCannibalism = false;
+				if (View is null or { Candidates: null })
+				{
+					goto Drawing;
+				}
+
+				foreach (var (_, value) in View.Candidates)
+				{
+					if (value == c * 9 + d)
+					{
+						isCannibalism = true;
+						break;
+					}
+				}
+
+			Drawing:
+				g.FillEllipse(
+					isCannibalism ? cannibalBrush : eliminationBrush,
+					Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
+			}
 		}
 
 		/// <summary>
@@ -598,37 +607,49 @@ namespace Sudoku.Drawing
 				LineAlignment = StringAlignment.Center
 			};
 
-			unsafe
+			foreach (var (id, candidate) in candidates)
 			{
-				foreach (var (id, candidate) in candidates)
+				int cell = candidate / 9, digit = candidate % 9;
+				bool isOverlapped = false;
+				if (Conclusions is null)
 				{
-					int cell = candidate / 9, digit = candidate % 9;
-					bool isOverlapped = Conclusions?.Any(&overlapping, cell, digit) ?? false;
+					goto IsOverlapped;
+				}
 
-					if (!isOverlapped)
+				foreach (var conclusion in Conclusions)
+				{
+					if (conclusion.ConclusionType == ConclusionType.Elimination
+						&& conclusion.Cell == cell && conclusion.Digit == digit)
 					{
-						if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
-						{
-							using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
-							g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+						isOverlapped = true;
+						break;
+					}
+				}
 
-							// In direct view, candidates should be drawn also.
-							if (!Preferences.ShowCandidates)
-							{
-								d(cell, digit, vOffsetCandidate);
-							}
+			IsOverlapped:
+				if (!isOverlapped)
+				{
+					if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
+					{
+						using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
+						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+
+						// In direct view, candidates should be drawn also.
+						if (!Preferences.ShowCandidates)
+						{
+							d(cell, digit, vOffsetCandidate);
 						}
-						else if (Preferences.PaletteColors.TryGetValue(id, out var color))
-						{
-							// In the normal case, I'll draw these circles.
-							using var brush = new SolidBrush(color);
-							g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+					}
+					else if (Preferences.PaletteColors.TryGetValue(id, out var color))
+					{
+						// In the normal case, I'll draw these circles.
+						using var brush = new SolidBrush(color);
+						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
-							// In direct view, candidates should be drawn also.
-							if (!Preferences.ShowCandidates)
-							{
-								d(cell, digit, vOffsetCandidate);
-							}
+						// In direct view, candidates should be drawn also.
+						if (!Preferences.ShowCandidates)
+						{
+							d(cell, digit, vOffsetCandidate);
 						}
 					}
 				}
@@ -651,9 +672,6 @@ namespace Sudoku.Drawing
 				point.Y += vOffsetCandidate;
 				g.DrawInt32(digit + 1, fCandidate, bCandidate, point, sf);
 			}
-
-			static bool overlapping(Conclusion conc, in int cell, in int digit) =>
-				conc.ConclusionType == ConclusionType.Elimination && conc.Cell == cell && conc.Digit == digit;
 		}
 
 		/// <summary>

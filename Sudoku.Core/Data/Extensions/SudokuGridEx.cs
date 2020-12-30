@@ -84,11 +84,14 @@ namespace Sudoku.Data.Extensions
 		/// <returns>The <see cref="bool"/> result.</returns>
 		public static bool Duplicate(this in SudokuGrid @this, int cell, int digit)
 		{
-			static bool dupe(int c, in SudokuGrid grid, in int digit) => grid[c] == digit;
-			unsafe
+			foreach (int peerCell in PeerMaps[cell])
 			{
-				return PeerMaps[cell].Any(&dupe, @this, digit);
+				if (@this[peerCell] == digit)
+				{
+					return true;
+				}
 			}
+			return false;
 		}
 
 		/// <summary>

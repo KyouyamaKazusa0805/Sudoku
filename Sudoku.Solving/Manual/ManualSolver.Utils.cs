@@ -105,21 +105,5 @@ namespace Sudoku.Solving.Manual
 			progressResult.CurrentCellsCount = cloneation.EmptiesCount;
 			progress.Report(progressResult);
 		}
-
-		/// <summary>
-		/// The internal selector.
-		/// </summary>
-		/// <param name="info">The information.</param>
-		/// <returns>The decimal selection.</returns>
-		private static decimal InternalSelector(StepInfo info) => info.Difficulty;
-
-		/// <summary>
-		/// Internal checking.
-		/// </summary>
-		/// <param name="info">The technique information.</param>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
-		/// <returns>The result.</returns>
-		private static bool InternalChecking(StepInfo info, in SudokuGrid solution) =>
-			CheckConclusionsValidity(solution, info.Conclusions);
 	}
 }

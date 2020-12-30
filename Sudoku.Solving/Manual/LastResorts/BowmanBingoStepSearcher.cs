@@ -226,15 +226,19 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <returns>The result.</returns>
 		private static bool IsValidGrid(in SudokuGrid grid, int cell)
 		{
-			unsafe
+			bool result = true;
+			foreach (int peerCell in Peers[cell])
 			{
-				return Peers[cell].All(&isValid, grid, cell);
+				var status = grid.GetStatus(peerCell);
+				if (!(status != CellStatus.Empty && grid[peerCell] != grid[cell] || status == CellStatus.Empty)
+					|| grid.GetCandidates(peerCell) == 0)
+				{
+					result = false;
+					break;
+				}
 			}
 
-			static bool isValid(int c, in SudokuGrid grid, in int cell) =>
-				grid.GetStatus(c) is var status
-				&& (status != CellStatus.Empty && grid[c] != grid[cell] || status == CellStatus.Empty)
-				&& grid.GetCandidates(c) != 0;
+			return result;
 		}
 	}
 }

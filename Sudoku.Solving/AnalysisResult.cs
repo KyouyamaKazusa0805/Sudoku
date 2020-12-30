@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -54,7 +53,9 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		public decimal MaxDifficulty =>
-			Steps?.None() ?? true ? 20.0M : Steps.Max(static info => info.ShowDifficulty ? info.Difficulty : 0);
+			Steps is null || !Steps.Any()
+			? 20.0M
+			: Steps.Max(static info => info.ShowDifficulty ? info.Difficulty : 0);
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>

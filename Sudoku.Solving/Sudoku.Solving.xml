@@ -5094,21 +5094,6 @@
             <param name="progress">The progress reporter.</param>
             <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.InternalSelector(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            The internal selector.
-            </summary>
-            <param name="info">The information.</param>
-            <returns>The decimal selection.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.InternalChecking(Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Internal checking.
-            </summary>
-            <param name="info">The technique information.</param>
-            <param name="solution">(<see langword="in"/> parameter) The solution.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo">
             <summary>
             Provides a usage of <b>bi-value oddagon</b> technique.

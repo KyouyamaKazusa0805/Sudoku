@@ -117,7 +117,16 @@ namespace Sudoku.Solving.Manual
 
 				if (FastSearch)
 				{
-					bool allConclusionsAreVaild = bag.All(&InternalChecking, solution);
+					bool allConclusionsAreVaild = true;
+					foreach (var element in bag)
+					{
+						if (!CheckConclusionsValidity(solution, element.Conclusions))
+						{
+							allConclusionsAreVaild = false;
+							break;
+						}
+					}
+
 					if (!CheckConclusionValidityAfterSearched || allConclusionsAreVaild)
 					{
 						foreach (var step in bag)
@@ -169,9 +178,8 @@ namespace Sudoku.Solving.Manual
 				}
 				else
 				{
-					StepInfo? step;
-					step = OptimizedApplyingOrder
-						? bag.GetElementByMinSelector<StepInfo, decimal>(&InternalSelector)
+					var step = OptimizedApplyingOrder
+						? (from info in bag orderby info.Difficulty select info).FirstOrDefault()
 						: bag.FirstOrDefault();
 
 					if (step is null)

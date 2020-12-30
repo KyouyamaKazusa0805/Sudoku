@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 
@@ -137,11 +135,21 @@ namespace Sudoku.Drawing
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsCell(int cell)
 		{
-			static bool internalChecking(DrawingInfo p, in int cell) => p.Value == cell;
-			unsafe
+			if (Cells is null)
 			{
-				return Cells?.Any(&internalChecking, cell) ?? false;
+				goto Returns;
 			}
+
+			foreach (var (_, value) in Cells)
+			{
+				if (value == cell)
+				{
+					return true;
+				}
+			}
+
+		Returns:
+			return false;
 		}
 
 		/// <summary>
@@ -151,11 +159,21 @@ namespace Sudoku.Drawing
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsCandidate(int candidate)
 		{
-			static bool internalChecking(DrawingInfo p, in int candidate) => p.Value == candidate;
-			unsafe
+			if (Candidates is null)
 			{
-				return Candidates?.Any(&internalChecking, candidate) ?? false;
+				goto Returns;
 			}
+
+			foreach (var (_, value) in Candidates)
+			{
+				if (value == candidate)
+				{
+					return true;
+				}
+			}
+
+		Returns:
+			return false;
 		}
 
 		/// <summary>
@@ -165,11 +183,21 @@ namespace Sudoku.Drawing
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsRegion(int region)
 		{
-			static bool internalChecking(DrawingInfo p, in int region) => p.Value == region;
-			unsafe
+			if (Regions is null)
 			{
-				return Regions?.Any(&internalChecking, region) ?? false;
+				goto Returns;
 			}
+
+			foreach (var (_, value) in Regions)
+			{
+				if (value == region)
+				{
+					return true;
+				}
+			}
+
+		Returns:
+			return false;
 		}
 
 		/// <summary>

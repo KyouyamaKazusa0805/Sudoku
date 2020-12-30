@@ -85,12 +85,21 @@ namespace Sudoku.Solving.Manual
 				{
 					decimal minDiff = bag.Min(static info => info.Difficulty);
 					var selection = from info in bag where info.Difficulty == minDiff select info;
-					if (selection.None())
+					if (!selection.Any())
 					{
 						continue;
 					}
 
-					bool allConclusionsAreValid = selection.All(&InternalChecking, solution);
+					bool allConclusionsAreValid = true;
+					foreach (var element in selection)
+					{
+						if (!CheckConclusionsValidity(solution, element.Conclusions))
+						{
+							allConclusionsAreValid = false;
+							break;
+						}
+					}
+
 					if (!CheckConclusionValidityAfterSearched || allConclusionsAreValid)
 					{
 						foreach (var step in selection)
@@ -132,7 +141,7 @@ namespace Sudoku.Solving.Manual
 				}
 				else
 				{
-					var step = bag.GetElementByMinSelector<StepInfo, decimal>(&InternalSelector);
+					var step = (from info in bag orderby info.Difficulty select info).FirstOrDefault();
 					if (step is null)
 					{
 						// If current step can't find any steps,

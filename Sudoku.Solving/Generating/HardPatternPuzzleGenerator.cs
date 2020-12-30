@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Extensions;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sudoku.Data;
@@ -95,7 +96,7 @@ namespace Sudoku.Solving.Generating
 						var grid = SudokuGrid.Parse(solution.ToString());
 						if ((
 							backdoorFilterDepth != -1
-							&& BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).None()
+							&& !BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).Any()
 							|| backdoorFilterDepth == -1)
 							&& (
 							difficultyLevel != DifficultyLevel.Unknown

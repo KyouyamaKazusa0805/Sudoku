@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -129,105 +128,108 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
 			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
 		{
-			static bool isSatisfiedType3(int cell, in short comparer, in SudokuGrid grid) =>
-				grid.GetCandidates(cell) is var mask && !mask.Overlaps(comparer) || mask == comparer;
-
-			unsafe
+			bool satisfyType3 = false;
+			foreach (int cell in extraCellsMap)
 			{
-				bool satisfyType3 = extraCellsMap.Any(&isSatisfiedType3, comparer, grid);
-				if (!extraCellsMap.InOneRegion || satisfyType3)
+				short mask = grid.GetCandidates(cell);
+				if (!mask.Overlaps(comparer) || mask == comparer)
+				{
+					satisfyType3 = true;
+					break;
+				}
+			}
+			if (!extraCellsMap.InOneRegion || satisfyType3)
+			{
+				return;
+			}
+
+			short m = 0;
+			foreach (int cell in extraCellsMap)
+			{
+				m |= grid.GetCandidates(cell);
+			}
+			if ((m & comparer) != comparer)
+			{
+				return;
+			}
+
+			short otherDigitsMask = (short)(m & ~comparer);
+			foreach (int region in extraCellsMap.CoveredRegions)
+			{
+				if ((ValueMaps[d1] | ValueMaps[d2]).Overlaps(RegionMaps[region]))
 				{
 					return;
 				}
 
-				short m = 0;
-				foreach (int cell in extraCellsMap)
+				int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
+				for (int size = otherDigitsMask.PopCount() - 1, count = otherCells.Length; size < count; size++)
 				{
-					m |= grid.GetCandidates(cell);
-				}
-				if ((m & comparer) != comparer)
-				{
-					return;
-				}
-
-				short otherDigitsMask = (short)(m & ~comparer);
-				foreach (int region in extraCellsMap.CoveredRegions)
-				{
-					if ((ValueMaps[d1] | ValueMaps[d2]).Overlaps(RegionMaps[region]))
+					foreach (int[] cells in otherCells.GetSubsets(size))
 					{
-						return;
-					}
-
-					int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
-					for (int size = otherDigitsMask.PopCount() - 1, count = otherCells.Length; size < count; size++)
-					{
-						foreach (int[] cells in otherCells.GetSubsets(size))
+						short mask = 0;
+						foreach (int cell in cells)
 						{
-							short mask = 0;
-							foreach (int cell in cells)
-							{
-								mask |= grid.GetCandidates(cell);
-							}
-
-							if (mask.PopCount() != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
-							{
-								continue;
-							}
-
-							var elimMap = (RegionMaps[region] & EmptyMap) - cells - loop;
-							if (elimMap.IsEmpty)
-							{
-								continue;
-							}
-
-							var conclusions = new List<Conclusion>();
-							foreach (int digit in mask)
-							{
-								foreach (int cell in elimMap & CandMaps[digit])
-								{
-									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
-								}
-							}
-							if (conclusions.Count == 0)
-							{
-								continue;
-							}
-
-							var candidateOffsets = new List<DrawingInfo>();
-							foreach (int cell in loop)
-							{
-								foreach (int digit in grid.GetCandidates(cell))
-								{
-									candidateOffsets.Add(
-										new(otherDigitsMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
-								}
-							}
-							foreach (int cell in cells)
-							{
-								foreach (int digit in grid.GetCandidates(cell))
-								{
-									candidateOffsets.Add(new(1, cell * 9 + digit));
-								}
-							}
-
-							accumulator.AddIfDoesNotContain(
-								new UlType3StepInfo(
-									conclusions,
-									new View[]
-									{
-										new()
-										{
-											Candidates = candidateOffsets,
-											Regions = new DrawingInfo[] { new(0, region) },
-											Links = links
-										}
-									},
-									d1,
-									d2,
-									loop,
-									mask,
-									cells));
+							mask |= grid.GetCandidates(cell);
 						}
+
+						if (mask.PopCount() != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
+						{
+							continue;
+						}
+
+						var elimMap = (RegionMaps[region] & EmptyMap) - cells - loop;
+						if (elimMap.IsEmpty)
+						{
+							continue;
+						}
+
+						var conclusions = new List<Conclusion>();
+						foreach (int digit in mask)
+						{
+							foreach (int cell in elimMap & CandMaps[digit])
+							{
+								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						var candidateOffsets = new List<DrawingInfo>();
+						foreach (int cell in loop)
+						{
+							foreach (int digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add(
+									new(otherDigitsMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
+							}
+						}
+						foreach (int cell in cells)
+						{
+							foreach (int digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add(new(1, cell * 9 + digit));
+							}
+						}
+
+						accumulator.AddIfDoesNotContain(
+							new UlType3StepInfo(
+								conclusions,
+								new View[]
+								{
+									new()
+									{
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[] { new(0, region) },
+										Links = links
+									}
+								},
+								d1,
+								d2,
+								loop,
+								mask,
+								cells));
 					}
 				}
 			}

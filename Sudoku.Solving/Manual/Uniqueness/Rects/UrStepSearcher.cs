@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="gathered">The list stored the result.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-		private unsafe void GetAll(IList<UrStepInfo> gathered, in SudokuGrid grid, bool arMode)
+		private void GetAll(IList<UrStepInfo> gathered, in SudokuGrid grid, bool arMode)
 		{
 			// Iterate on each possible UR structure.
 			for (int index = 0, l = PossibleUrList.Length; index < l; index++)
@@ -107,11 +107,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						// All possible UR patterns should contain at least one cell
 						// that contains both 'd1' and 'd2'.
-						static bool v(int c, in short comparer, in SudokuGrid grid) =>
-							(grid.GetCandidates(c) & comparer).PopCount() != 2;
-
 						short comparer = (short)(1 << d1 | 1 << d2);
-						bool isNotPossibleUr = urCells.All(&v, comparer, grid);
+						bool isNotPossibleUr = true;
+						foreach (int cell in urCells)
+						{
+							if ((grid.GetCandidates(cell) & comparer).PopCount() == 2)
+							{
+								isNotPossibleUr = false;
+								break;
+							}
+						}
 						if (!arMode && isNotPossibleUr)
 						{
 							continue;
