@@ -692,7 +692,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					int digit;
 					for (digit = 0; digit < 9; digit++)
 					{
-						// Requires finding which digit they are for
+						// Requires finding for which digit they are.
 						if ((_g->Bands[digit * 3 + subBand] & bit) != 0)
 						{
 							SetSolvedMask(digit * 3 + subBand, bit);

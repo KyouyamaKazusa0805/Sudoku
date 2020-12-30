@@ -209,7 +209,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// (ab ) (ab )
 			//  abx   aby
 			static bool isSatisfiedType3(int cell, in short comparer, in bool arMode, in SudokuGrid grid) =>
-				grid.GetCandidates(cell) is var mask && (mask & comparer) == 0
+				grid.GetCandidates(cell) is var mask && !mask.Overlaps(comparer)
 				|| mask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty;
 
 			bool satisfiedType3;
@@ -247,7 +247,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							tempMask |= grid.GetCandidates(cell);
 						}
-						if ((tempMask & comparer) != 0 || tempMask.PopCount() - 1 != size
+						if (tempMask.Overlaps(comparer) || tempMask.PopCount() - 1 != size
 							|| (tempMask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;

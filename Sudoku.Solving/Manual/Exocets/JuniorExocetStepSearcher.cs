@@ -230,7 +230,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			int x, in SudokuGrid grid, short baseCandidatesMask, List<DrawingInfo> cellOffsets,
 			List<DrawingInfo> candidateOffsets)
 		{
-			if ((grid.GetCandidates(tq1) & baseCandidatesMask) != 0)
+			if (grid.GetCandidates(tq1).Overlaps(baseCandidatesMask))
 			{
 				short mask1 = grid.GetCandidates(tr1), mask2 = grid.GetCandidates(tr2);
 				short m1d = (short)(mask1 & baseCandidatesMask), m2d = (short)(mask2 & baseCandidatesMask);
@@ -240,7 +240,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					(m1d, m2d) switch { (not 0, 0) => tr1, (0, not 0) => tr2, _ => -1 },
 					cellOffsets, candidateOffsets);
 			}
-			else if ((grid.GetCandidates(tq2) & baseCandidatesMask) != 0)
+			else if (grid.GetCandidates(tq2).Overlaps(baseCandidatesMask))
 			{
 				short mask1 = grid.GetCandidates(tq1), mask2 = grid.GetCandidates(tq2);
 				short m1d = (short)(mask1 & baseCandidatesMask), m2d = (short)(mask2 & baseCandidatesMask);
@@ -272,7 +272,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			short candidateMask = (short)(grid.GetCandidates(cell) & ~temp);
 			if (grid.GetStatus(cell) == CellStatus.Empty && candidateMask != 0
-				&& (grid.GetCandidates(cell) & baseCandidatesMask) != 0)
+				&& grid.GetCandidates(cell).Overlaps(baseCandidatesMask))
 			{
 				foreach (int digit in candidateMask)
 				{
@@ -350,7 +350,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			otherCandidatesMask = -1;
 
 			short m1 = grid.GetCandidates(pos1), m2 = grid.GetCandidates(pos2);
-			if ((baseCandidatesMask & m1) != 0 ^ (baseCandidatesMask & m2) != 0)
+			if (baseCandidatesMask.Overlaps(m1) ^ baseCandidatesMask.Overlaps(m2))
 			{
 				// One cell contains the digit that base candidate holds,
 				// and another one doesn't contain.
@@ -388,7 +388,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						int p = RegionCells[span[i]][j];
 						if (p == pos1 || p == pos2 || grid.GetStatus(p) != CellStatus.Empty
-							|| (grid.GetCandidates(p) & mask) == 0)
+							|| !grid.GetCandidates(p).Overlaps(mask))
 						{
 							continue;
 						}
@@ -401,8 +401,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						for (int j = 0; j < 9; j++)
 						{
 							int p = RegionCells[span[i]][j];
-							if (grid.GetStatus(p) != CellStatus.Empty || (grid.GetCandidates(p) & mask) == 0
-								|| (grid.GetCandidates(p) & ~mask) == 0 || p == pos1 || p == pos2)
+							if (grid.GetStatus(p) != CellStatus.Empty || !grid.GetCandidates(p).Overlaps(mask)
+								|| !grid.GetCandidates(p).ExceptOverlaps(mask) || p == pos1 || p == pos2)
 							{
 								continue;
 							}
@@ -492,7 +492,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					var (pos1, pos2) = j == 1 ? (b1, b2) : (b2, b1);
 					short ck = (short)(grid.GetCandidates(pos1) & playground[i]);
 					if (ck != 0 && !ck.IsPowerOfTwo()
-						|| (grid.GetCandidates(pos1) & ~(ck | playground[i == 1 ? 2 : 1])) != 0)
+						|| grid.GetCandidates(pos1).ExceptOverlaps((short)(ck | playground[i == 1 ? 2 : 1])))
 					{
 						continue;
 					}

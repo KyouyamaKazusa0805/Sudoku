@@ -227,7 +227,7 @@ namespace Sudoku.Data
 			{
 				for (int i = BlockOffset; i < Limit; i++)
 				{
-					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+					if (!_high.ExceptOverlaps(CoverTable[i, 0]) && !_low.ExceptOverlaps(CoverTable[i, 1]))
 					{
 						return true;
 					}
@@ -273,7 +273,7 @@ namespace Sudoku.Data
 			{
 				for (int i = RowOffset; i < Limit; i++)
 				{
-					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+					if (!_high.ExceptOverlaps(CoverTable[i, 0]) && !_low.ExceptOverlaps(CoverTable[i, 1]))
 					{
 						return i;
 					}
@@ -307,7 +307,7 @@ namespace Sudoku.Data
 				int resultRegions = 0;
 				for (int i = BlockOffset; i < Limit; i++)
 				{
-					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+					if (!_high.ExceptOverlaps(CoverTable[i, 0]) && !_low.ExceptOverlaps(CoverTable[i, 1]))
 					{
 						resultRegions |= 1 << i;
 					}
@@ -510,7 +510,7 @@ namespace Sudoku.Data
 		{
 			for (int i = BlockOffset; i < Limit; i++)
 			{
-				if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+				if (!_high.ExceptOverlaps(CoverTable[i, 0]) && !_low.ExceptOverlaps(CoverTable[i, 1]))
 				{
 					region = i;
 					return true;

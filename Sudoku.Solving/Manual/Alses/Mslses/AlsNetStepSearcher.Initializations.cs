@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						rowMap |= RegionMaps[row + 9];
 					}
 
-					if ((rowMask & a) == 0 || (rowMask & b) == 0 || (rowMask & c) == 0)
+					if (!rowMask.Overlaps(a) || !rowMask.Overlaps(b) || !rowMask.Overlaps(c))
 					{
 						continue;
 					}
@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							columnMap |= RegionMaps[column + 18];
 						}
 
-						if ((columnMask & a) == 0 || (columnMask & b) == 0 || (columnMask & c) == 0)
+						if (!columnMask.Overlaps(a) || !columnMask.Overlaps(b) || !columnMask.Overlaps(c))
 						{
 							continue;
 						}

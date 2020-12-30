@@ -26,6 +26,14 @@ namespace System.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool ContainsBit(this byte @this, int bitPosition) => (@this >> bitPosition & 1) != 0;
 
+		/// <inheritdoc cref="Integer.Overlaps(Integer, Integer)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool Overlaps(this byte @this, byte other) => (@this & other) != 0;
+
+		/// <inheritdoc cref="Integer.ExceptOverlaps(Integer, Integer)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool ExceptOverlaps(this byte @this, byte other) => (@this & ~other) != 0;
+
 		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int FindFirstSet(this byte @this) => BitOperations.TrailingZeroCount(@this);

@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			in Cells extraCells, IReadOnlyList<Link> links, short comparer)
 		{
 			static bool isSatisfiedType3(int cell, in short comparer, in SudokuGrid grid) =>
-				grid.GetCandidates(cell) is var mask && (mask & comparer) == 0 || mask == comparer;
+				grid.GetCandidates(cell) is var mask && !mask.Overlaps(comparer) || mask == comparer;
 
 			bool satisfyType3;
 			unsafe

@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
 		{
 			static bool isSatisfiedType3(int cell, in short comparer, in SudokuGrid grid) =>
-				grid.GetCandidates(cell) is var mask && (mask & comparer) == 0 || mask == comparer;
+				grid.GetCandidates(cell) is var mask && !mask.Overlaps(comparer) || mask == comparer;
 
 			bool satisfyType3;
 			unsafe

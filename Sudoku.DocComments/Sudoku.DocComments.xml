@@ -239,6 +239,14 @@
             <param name="bitPosition">The position of that bit to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.DocComments.Integer.Overlaps(Sudoku.DocComments.Integer,Sudoku.DocComments.Integer)">
+            <summary>
+            Determine whether the current value overlaps the specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="other">The other value to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:Sudoku.DocComments.Integer.FindFirstSet(Sudoku.DocComments.Integer)">
             <summary>
             Find the first offset of set bit of the binary representation

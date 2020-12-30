@@ -41,6 +41,22 @@ namespace Sudoku.DocComments
 		public static bool ContainsBit(Integer @this, int bitPosition) => throw new NotImplementedException();
 
 		/// <summary>
+		/// Determine whether the current value overlaps the specified value.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="other">The other value to check.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool Overlaps(Integer @this, Integer other) => throw new NotImplementedException();
+
+		/// <summary>
+		/// Determine whether the current value overlaps the negation of the specified value.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="other">The other value to check.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool ExceptOverlaps(Integer @this, Integer other) => throw new NotImplementedException();
+
+		/// <summary>
 		/// Find the first offset of set bit of the binary representation
 		/// of the specified value. If the value is 0, this method
 		/// will always return -1.

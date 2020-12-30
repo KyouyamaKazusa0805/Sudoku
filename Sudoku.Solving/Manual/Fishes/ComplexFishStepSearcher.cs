@@ -129,11 +129,11 @@ namespace Sudoku.Solving.Manual.Fishes
 								if (searchForMutant)
 								{
 									baseMaskForCheckingMutantFish = 0;
-									if ((baseSetsMask & AllRowsMask) != 0)
+									if (baseSetsMask.Overlaps(AllRowsMask))
 									{
 										baseMaskForCheckingMutantFish |= RegionLabel.Row;
 									}
-									if ((baseSetsMask & AllColumnsMask) != 0)
+									if (baseSetsMask.Overlaps(AllColumnsMask))
 									{
 										baseMaskForCheckingMutantFish |= RegionLabel.Column;
 									}
@@ -238,11 +238,11 @@ namespace Sudoku.Solving.Manual.Fishes
 										if (searchForMutant)
 										{
 											coverMaskForCheckingMutantFish = 0;
-											if ((usedInCoverSets & AllRowsMask) != 0)
+											if (usedInCoverSets.Overlaps(AllRowsMask))
 											{
 												coverMaskForCheckingMutantFish |= RegionLabel.Row;
 											}
-											if ((usedInCoverSets & AllColumnsMask) != 0)
+											if (usedInCoverSets.Overlaps(AllColumnsMask))
 											{
 												coverMaskForCheckingMutantFish |= RegionLabel.Column;
 											}
