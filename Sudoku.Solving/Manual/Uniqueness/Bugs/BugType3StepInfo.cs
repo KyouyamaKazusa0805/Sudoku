@@ -17,13 +17,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	public sealed record BugType3StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		IReadOnlyList<int> TrueCandidates, IReadOnlyList<int> Digits,
-		IReadOnlyList<int> Cells, bool IsNaked) : UniquenessStepInfo(Conclusions, Views)
+		IReadOnlyList<int> Cells, bool IsNaked) : BugStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.6M + Digits.Count * .1M + (IsNaked ? 0 : .1M);
-
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+		public override decimal Difficulty => base.Difficulty + Digits.Count * .1M + (IsNaked ? 0 : .1M);
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.BugType3;

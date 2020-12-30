@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Chains">The sub-chains.</param>
 	public sealed record BugMultipleWithFcStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates,
-		IReadOnlyDictionary<int, Node> Chains) : UniquenessStepInfo(Conclusions, Views)
+		IReadOnlyDictionary<int, Node> Chains) : BugStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty for the number of true candidates.
@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		}
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.5M + CountDifficulty + LengthDifficulty;
+		public override decimal Difficulty => base.Difficulty - .1M + CountDifficulty + LengthDifficulty;
 
 		/// <summary>
 		/// The total length of all sub-chains gathered.

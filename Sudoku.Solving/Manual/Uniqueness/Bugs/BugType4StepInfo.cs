@@ -16,13 +16,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	public sealed record BugType4StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		IReadOnlyList<int> Digits, IReadOnlyList<int> Cells, in ConjugatePair ConjugatePair)
-		: UniquenessStepInfo(Conclusions, Views)
+		: BugStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.7M;
-
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+		public override decimal Difficulty => base.Difficulty + .1M;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.BugType4;

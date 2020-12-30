@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Candidates">All candidates used.</param>
 	public sealed record BugMultipleStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates)
-		: UniquenessStepInfo(Conclusions, Views)
+		: BugStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The table of extra difficulty values.
@@ -30,10 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override string Name => $"{Resources.GetValue("Bug")} + {Candidates.Count}";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.7M + ExtraDifficulty[Candidates.Count - 1];
-
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+		public override decimal Difficulty => base.Difficulty + .1M + ExtraDifficulty[Candidates.Count - 1];
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.BugMultiple;

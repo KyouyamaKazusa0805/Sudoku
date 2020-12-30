@@ -11,14 +11,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	public sealed record BugType1StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: UniquenessStepInfo(Conclusions, Views)
+		: BugStepInfo(Conclusions, Views)
 	{
-		/// <inheritdoc/>
-		public override decimal Difficulty => 5.6M;
-
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.BugType1;
 

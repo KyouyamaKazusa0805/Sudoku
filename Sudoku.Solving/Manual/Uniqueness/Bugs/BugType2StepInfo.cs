@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Cells">All cell offsets.</param>
 	public sealed record BugType2StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, IReadOnlyList<int> Cells)
-		: UniquenessStepInfo(Conclusions, Views)
+		: BugStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The table of extra difficulty values.
@@ -27,10 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.6M + ExtraDifficulty[Cells.Count - 1];
-
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+		public override decimal Difficulty => base.Difficulty + ExtraDifficulty[Cells.Count - 1];
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.BugType2;

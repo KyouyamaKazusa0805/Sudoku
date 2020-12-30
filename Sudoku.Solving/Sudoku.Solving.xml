@@ -6244,9 +6244,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -6343,6 +6340,32 @@
             <returns>The result information instance.</returns>
             <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Collections.Generic.IReadOnlyList{System.Int32})"/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo">
+            <summary>
+            Provides a usage of <b>bivalue universal grave</b> (BUG) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <summary>
+            Provides a usage of <b>bivalue universal grave</b> (BUG) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher">
             <summary>
             Encapsulates a <b>bivalue universal grave</b> (BUG) technique searcher.
@@ -6430,12 +6453,6 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1StepInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1StepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1StepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -6466,9 +6483,6 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2StepInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2StepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2StepInfo.TechniqueCode">
@@ -6502,9 +6516,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3StepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3StepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3StepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -6534,9 +6545,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4StepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4StepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4StepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -6564,9 +6572,6 @@
             <param name="ExtraCell">The extra cell.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzStepInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzStepInfo.TechniqueCode">
