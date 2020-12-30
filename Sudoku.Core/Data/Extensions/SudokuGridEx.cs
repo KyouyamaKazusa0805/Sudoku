@@ -1,5 +1,4 @@
-﻿using System.Extensions;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
 
