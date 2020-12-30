@@ -5129,6 +5129,12 @@
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo.Equals(Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher">
             <summary>
             Encapsulates a <b>bi-value oddagon</b> technique searcher.
@@ -5139,6 +5145,13 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.IsValidLoop(Sudoku.Data.Cells@)">
+            <summary>
+            To check whether the loop is valid.
+            </summary>
+            <param name="cells">(<see langword="in"/> parameter) The loop.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@)">
             <summary>
@@ -5151,6 +5164,45 @@
             <param name="loop">(<see langword="in"/> parameter) The loop.</param>
             <param name="links">The links.</param>
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="links">The links.</param>
+            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="links">The links.</param>
+            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="links">The links.</param>
+            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo">
             <summary>
@@ -5183,13 +5235,111 @@
         <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo.Equals(Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo.GetHashCode">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo">
+            <summary>
+            Provides a usage of <b>bi-value oddagon type 2</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">The loop used.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="ExtraDigit">The extra digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides a usage of <b>bi-value oddagon type 2</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">The loop used.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="ExtraDigit">The extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo">
+            <summary>
+            Provides a usage of <b>bi-value oddagon type 3</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">The loop used.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="ExtraDigits">All extra digits.</param>
+            <param name="ExtraCells">All extra cells.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
+            <summary>
+            Provides a usage of <b>bi-value oddagon type 3</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">The loop used.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="ExtraDigits">All extra digits.</param>
+            <param name="ExtraCells">All extra cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType4StepInfo">
+            <summary>
+            Provides a usage of <b>bi-value oddagon type 4</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">The loop used.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="ConjugatePair">The conjugate pair.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
+            <summary>
+            Provides a usage of <b>bi-value oddagon type 4</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">The loop used.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="ConjugatePair">The conjugate pair.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType4StepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType4StepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType4StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType4StepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.ErStepInfo">

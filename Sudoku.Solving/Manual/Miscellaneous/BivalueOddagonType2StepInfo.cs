@@ -6,23 +6,23 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.Miscellaneous
 {
 	/// <summary>
-	/// Provides a usage of <b>bi-value oddagon type 1</b> technique.
+	/// Provides a usage of <b>bi-value oddagon type 2</b> technique.
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	/// <param name="Loop">The loop used.</param>
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
-	/// <param name="ExtraCell">The extra cell.</param>
-	public sealed record BivalueOddagonType1StepInfo(
+	/// <param name="ExtraDigit">The extra digit.</param>
+	public sealed record BivalueOddagonType2StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, int Digit1, int Digit2,
-		int ExtraCell) : BivalueOddagonStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
+		int ExtraDigit) : BivalueOddagonStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.0M;
+		public override decimal Difficulty => 5.1M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.BivalueOddagonType1;
+		public override TechniqueCode TechniqueCode => TechniqueCode.BivalueOddagonType2;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -31,11 +31,10 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellStr = new Cells { ExtraCell }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$"{Name}: If the digits {Digit1 + 1} and {Digit2 + 1} in the cell {cellStr} are both removed, " +
-				$"the loop {Loop} will form an error structure => {elimStr}";
+				$"{Name}: If all digit {ExtraDigit + 1} in cells {Loop} are removed, " +
+				$"the loop will from an error structure => {elimStr}";
 		}
 	}
 }

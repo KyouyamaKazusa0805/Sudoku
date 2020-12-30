@@ -94,7 +94,13 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 				static int cmp(in BivalueOddagonStepInfo l, in BivalueOddagonStepInfo r)
 				{
 					int ll = l.Loop.Count, rr = r.Loop.Count;
-					return ll.CompareTo(rr);
+					if (ll > rr) return 1;
+					else if (ll < rr) return -1;
+
+					TechniqueCode lt = l.TechniqueCode, rt = r.TechniqueCode;
+					if (lt > rt) return 1;
+					else if (lt < rt) return -1;
+					else return 0;
 				}
 
 				/*Don't convert to method or static local function*/
@@ -122,14 +128,15 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 
 						foreach (int nextCell in cellsMap)
 						{
-							if (tempLoop[0] == nextCell && tempLoop.Count >= 5 && (tempLoop.Count & 1) != 0)
+							if (tempLoop[0] == nextCell && tempLoop.Count >= 5 && (tempLoop.Count & 1) != 0
+								&& IsValidLoop(loopMap))
 							{
 								// The loop is closed. Now construct the result pair.
 								loops.Add((loopMap, tempLoop.GetLinks()));
 							}
 							else if (!loopMap.Contains(nextCell) && grid[nextCell, d1] && grid[nextCell, d2])
 							{
-								// Here, unique loop can be found if and only if
+								// Here, a loop can be found if and only if
 								// two cells both contain 'd1' and 'd2'.
 								// Incomplete ULs can't be found at present.
 								short nextCellMask = grid.GetCandidates(nextCell);
@@ -161,6 +168,25 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 					tempLoop.RemoveLastElement();
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// To check whether the loop is valid.
+		/// </summary>
+		/// <param name="cells">(<see langword="in"/> parameter) The loop.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		private static bool IsValidLoop(in Cells cells)
+		{
+			foreach (int region in cells.Regions)
+			{
+				if ((cells & RegionMaps[region]).Count >= 3)
+				{
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 		partial void CheckType1(IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap);
