@@ -86,10 +86,7 @@ namespace Sudoku.Solving.Manual
 					return l > r ? 1 : l < r ? -1 : 0;
 				}
 
-				unsafe
-				{
-					searchers.Sort(&cmp);
-				}
+				searchers.Sort(&cmp);
 			}
 
 			var bag = new List<StepInfo>();
@@ -173,12 +170,9 @@ namespace Sudoku.Solving.Manual
 				else
 				{
 					StepInfo? step;
-					unsafe
-					{
-						step = OptimizedApplyingOrder
+					step = OptimizedApplyingOrder
 						? bag.GetElementByMinSelector<StepInfo, decimal>(&InternalSelector)
 						: bag.FirstOrDefault();
-					}
 
 					if (step is null)
 					{

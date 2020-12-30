@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -92,15 +93,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 			}
 
-			unsafe
-			{
-				tempAccumulator.Sort(&cmp);
-			}
-
-			accumulator.AddRange(tempAccumulator);
-
-			static int cmp(in BugMultipleWithFcStepInfo left, in BugMultipleWithFcStepInfo right) =>
-				left.Complexity - right.Complexity;
+			accumulator.AddRange(from info in tempAccumulator orderby info.Complexity select info);
 		}
 
 		/// <summary>

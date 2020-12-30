@@ -229,9 +229,9 @@ namespace Sudoku.Solving.Manual.Exocets
 							}
 						}
 
-						if (target != -1)
+						unsafe
 						{
-							unsafe
+							if (target != -1)
 							{
 								var (tempTargetElims, tempMirrorElims) =
 									CheckMirror(
@@ -390,40 +390,40 @@ namespace Sudoku.Solving.Manual.Exocets
 		private bool DeepCrosslineCheck(
 			int digit, in Cells baseElimMap, in Cells tempCrossline, ref Span<int> extraRegionsMask)
 		{
-			int region, p;
-			foreach (int[] combination in tempCrossline.ToArray().GetSubsets(3))
+			unsafe
 			{
-				var (a, b, c) = (combination[0], combination[1], combination[2]);
-				int r1 = RegionLabel.Row.ToRegion(a), c1 = RegionLabel.Column.ToRegion(a);
-				int r2 = RegionLabel.Row.ToRegion(b), c2 = RegionLabel.Column.ToRegion(b);
-				int r3 = RegionLabel.Row.ToRegion(c), c3 = RegionLabel.Column.ToRegion(c);
-				if (r1 == r2 || r1 == r3 || r2 == r3 || c1 == c2 || c1 == c3 || c2 == c3)
+				int region, p;
+				foreach (int[] combination in tempCrossline.ToArray().GetSubsets(3))
 				{
-					continue;
-				}
-
-				bool flag = false;
-				var check = DigitMaps[digit] - (PeerMaps[a] | PeerMaps[b] | PeerMaps[c] | baseElimMap);
-				for (region = 9, p = 0; p < 27; region = (region + 1) % 27, p++)
-				{
-					if (!RegionMaps[region].Overlaps(check))
+					var (a, b, c) = (combination[0], combination[1], combination[2]);
+					int r1 = RegionLabel.Row.ToRegion(a), c1 = RegionLabel.Column.ToRegion(a);
+					int r2 = RegionLabel.Row.ToRegion(b), c2 = RegionLabel.Column.ToRegion(b);
+					int r3 = RegionLabel.Row.ToRegion(c), c3 = RegionLabel.Column.ToRegion(c);
+					if (r1 == r2 || r1 == r3 || r2 == r3 || c1 == c2 || c1 == c3 || c2 == c3)
 					{
-						flag = true;
-						break;
+						continue;
+					}
+
+					bool flag = false;
+					var check = DigitMaps[digit] - (PeerMaps[a] | PeerMaps[b] | PeerMaps[c] | baseElimMap);
+					for (region = 9, p = 0; p < 27; region = (region + 1) % 27, p++)
+					{
+						if (!RegionMaps[region].Overlaps(check))
+						{
+							flag = true;
+							break;
+						}
+					}
+
+					if (!flag)
+					{
+						return false;
 					}
 				}
 
-				if (!flag)
-				{
-					return false;
-				}
-			}
-
-			unsafe
-			{
 				extraRegionsMask[digit] |= 1 << *&region;
+				return true;
 			}
-			return true;
 		}
 
 		/// <summary>

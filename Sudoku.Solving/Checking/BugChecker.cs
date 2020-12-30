@@ -52,154 +52,153 @@ namespace Sudoku.Solving.Checking
 		{
 			InitializeMaps(Puzzle);
 
-			// Get the number of multivalue cells.
-			// If the number of that is greater than the specified number,
-			// here will return the default list directly.
-			int multivalueCellsCount = 0;
-			foreach (int value in EmptyMap)
+			unsafe
 			{
-				switch (Puzzle.GetCandidates(value).PopCount())
+				// Get the number of multivalue cells.
+				// If the number of that is greater than the specified number,
+				// here will return the default list directly.
+				int multivalueCellsCount = 0;
+				foreach (int value in EmptyMap)
 				{
-					case 1:
-					case > 2 when ++multivalueCellsCount > maximumEmptyCells:
+					switch (Puzzle.GetCandidates(value).PopCount())
 					{
-						return Array.Empty<int>();
-					}
-				}
-			}
-
-			// Store all bivalue cells and construct the relations.
-			var span = (stackalloc int[3]);
-			var stack = new Cells[multivalueCellsCount + 1, 9];
-			foreach (int cell in BivalueMap)
-			{
-				foreach (int digit in Puzzle.GetCandidates(cell))
-				{
-					ref var map = ref stack[0, digit];
-					map.AddAnyway(cell);
-
-					span[0] = RegionLabel.Row.ToRegion(cell);
-					span[1] = RegionLabel.Column.ToRegion(cell);
-					span[2] = RegionLabel.Block.ToRegion(cell);
-					foreach (int region in span)
-					{
-						if ((map & RegionMaps[region]).Count > 2)
+						case 1:
+						case > 2 when ++multivalueCellsCount > maximumEmptyCells:
 						{
-							// The specified region contains at least three positions to fill with the digit,
-							// which is invalid in any BUG + n patterns.
 							return Array.Empty<int>();
 						}
 					}
 				}
-			}
 
-			// Store all multivalue cells.
-			// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
-			// The comments will help you to understand the processing.
-			short mask;
-			short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-			int[] multivalueCells = (EmptyMap - BivalueMap).ToArray();
-			for (int i = 0, length = multivalueCells.Length; i < length; i++)
-			{
-				// eg. { 2, 4, 6 } (42)
-				mask = Puzzle.GetCandidates(multivalueCells[i]);
-
-				// eg. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
-				short[] pairList = Algorithms.GetMaskSubsets(mask, 2);
-
-				// eg. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
-				pairs[i, 0] = (short)pairList.Length;
-				for (int z = 1, pairListLength = pairList.Length; z <= pairListLength; z++)
+				// Store all bivalue cells and construct the relations.
+				var span = (stackalloc int[3]);
+				var stack = new Cells[multivalueCellsCount + 1, 9];
+				foreach (int cell in BivalueMap)
 				{
-					pairs[i, z] = pairList[z - 1];
-				}
-			}
-
-			// Now check the pattern.
-			// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
-			// combinations; otherwise, none will be found.
-			var playground = (stackalloc int[3]);
-			int currentIndex = 1;
-			int[] chosen = new int[multivalueCellsCount + 1];
-			var resultMap = new Cells[9];
-			var result = new List<int>();
-			do
-			{
-				int i;
-				int currentCell = multivalueCells[currentIndex - 1];
-				bool @continue = false;
-				for (i = chosen[currentIndex] + 1; i <= pairs[currentIndex - 1, 0]; i++)
-				{
-					@continue = true;
-					mask = pairs[currentIndex - 1, i];
-					foreach (int digit in pairs[currentIndex - 1, i])
+					foreach (int digit in Puzzle.GetCandidates(cell))
 					{
-						var temp = stack[currentIndex - 1, digit];
-						temp.AddAnyway(currentCell);
+						ref var map = ref stack[0, digit];
+						map.AddAnyway(cell);
 
-						playground[0] = RegionLabel.Block.ToRegion(currentCell);
-						playground[1] = RegionLabel.Row.ToRegion(currentCell);
-						playground[2] = RegionLabel.Column.ToRegion(currentCell);
-						foreach (int region in playground)
+						span[0] = RegionLabel.Row.ToRegion(cell);
+						span[1] = RegionLabel.Column.ToRegion(cell);
+						span[2] = RegionLabel.Block.ToRegion(cell);
+						foreach (int region in span)
 						{
-							if ((temp & RegionMaps[region]).Count > 2)
+							if ((map & RegionMaps[region]).Count > 2)
 							{
-								@continue = false;
-								break;
+								// The specified region contains at least three positions to fill with the digit,
+								// which is invalid in any BUG + n patterns.
+								return Array.Empty<int>();
 							}
 						}
-
-						if (!@continue) break;
 					}
-
-					if (@continue) break;
 				}
 
-				if (@continue)
+				// Store all multivalue cells.
+				// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
+				// The comments will help you to understand the processing.
+				short mask;
+				short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
+				int[] multivalueCells = (EmptyMap - BivalueMap).ToArray();
+				for (int i = 0, length = multivalueCells.Length; i < length; i++)
 				{
-					for (int z = 0; z < stack.GetLength(1); z++)
-					{
-						stack[currentIndex, z] = stack[currentIndex - 1, z];
-					}
+					// eg. { 2, 4, 6 } (42)
+					mask = Puzzle.GetCandidates(multivalueCells[i]);
 
-					chosen[currentIndex] = i;
-					int pos1;
-					unsafe
-					{
-						pos1 = (&mask)->FindFirstSet();
-					}
+					// eg. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
+					short[] pairList = Algorithms.GetMaskSubsets(mask, 2);
 
-					stack[currentIndex, pos1].AddAnyway(currentCell);
-					stack[currentIndex, mask.GetNextSet(pos1)].AddAnyway(currentCell);
-					if (currentIndex == multivalueCellsCount)
+					// eg. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
+					pairs[i, 0] = (short)pairList.Length;
+					for (int z = 1, pairListLength = pairList.Length; z <= pairListLength; z++)
 					{
-						// Iterate on each digit.
-						for (int digit = 0; digit < 9; digit++)
+						pairs[i, z] = pairList[z - 1];
+					}
+				}
+
+				// Now check the pattern.
+				// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
+				// combinations; otherwise, none will be found.
+				var playground = (stackalloc int[3]);
+				int currentIndex = 1;
+				int[] chosen = new int[multivalueCellsCount + 1];
+				var resultMap = new Cells[9];
+				var result = new List<int>();
+				do
+				{
+					int i;
+					int currentCell = multivalueCells[currentIndex - 1];
+					bool @continue = false;
+					for (i = chosen[currentIndex] + 1; i <= pairs[currentIndex - 1, 0]; i++)
+					{
+						@continue = true;
+						mask = pairs[currentIndex - 1, i];
+						foreach (int digit in pairs[currentIndex - 1, i])
 						{
-							// Take the cell that doesn't contain in the map above.
-							// Here, the cell is the "true candidate cell".
-							ref var map = ref resultMap[digit];
-							map = CandMaps[digit] - stack[currentIndex, digit];
-							foreach (int cell in map)
+							var temp = stack[currentIndex - 1, digit];
+							temp.AddAnyway(currentCell);
+
+							playground[0] = RegionLabel.Block.ToRegion(currentCell);
+							playground[1] = RegionLabel.Row.ToRegion(currentCell);
+							playground[2] = RegionLabel.Column.ToRegion(currentCell);
+							foreach (int region in playground)
 							{
-								result.Add(cell * 9 + digit);
+								if ((temp & RegionMaps[region]).Count > 2)
+								{
+									@continue = false;
+									break;
+								}
 							}
+
+							if (!@continue) break;
 						}
 
-						return result;
+						if (@continue) break;
+					}
+
+					if (@continue)
+					{
+						for (int z = 0; z < stack.GetLength(1); z++)
+						{
+							stack[currentIndex, z] = stack[currentIndex - 1, z];
+						}
+
+						chosen[currentIndex] = i;
+						int pos1 = (*&mask).FindFirstSet();
+
+						stack[currentIndex, pos1].AddAnyway(currentCell);
+						stack[currentIndex, mask.GetNextSet(pos1)].AddAnyway(currentCell);
+						if (currentIndex == multivalueCellsCount)
+						{
+							// Iterate on each digit.
+							for (int digit = 0; digit < 9; digit++)
+							{
+								// Take the cell that doesn't contain in the map above.
+								// Here, the cell is the "true candidate cell".
+								ref var map = ref resultMap[digit];
+								map = CandMaps[digit] - stack[currentIndex, digit];
+								foreach (int cell in map)
+								{
+									result.Add(cell * 9 + digit);
+								}
+							}
+
+							return result;
+						}
+						else
+						{
+							currentIndex++;
+						}
 					}
 					else
 					{
-						currentIndex++;
+						chosen[currentIndex--] = 0;
 					}
-				}
-				else
-				{
-					chosen[currentIndex--] = 0;
-				}
-			} while (currentIndex > 0);
+				} while (currentIndex > 0);
 
-			return result;
+				return result;
+			}
 		}
 
 		/// <summary>

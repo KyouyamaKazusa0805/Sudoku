@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -83,20 +84,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					}
 				}
 
-				unsafe
-				{
-					var set = new Set<UlStepInfo>(resultAccumulator);
-					resultAccumulator.Clear();
-					resultAccumulator.AddRange(set);
-					resultAccumulator.Sort(&cmp);
-					accumulator.AddRange(resultAccumulator);
-				}
-
-				static int cmp(in UlStepInfo l, in UlStepInfo r)
-				{
-					int ll = l.Loop.Count, rr = r.Loop.Count;
-					return ll.CompareTo(rr);
-				}
+				var set = new Set<UlStepInfo>(resultAccumulator);
+				resultAccumulator.Clear();
+				resultAccumulator.AddRange(set);
+				accumulator.AddRange(from info in resultAccumulator orderby info.Loop.Count select info);
 
 				/*Don't convert to method or static local function*/
 				void f(

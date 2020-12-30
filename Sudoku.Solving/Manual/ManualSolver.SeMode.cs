@@ -132,12 +132,7 @@ namespace Sudoku.Solving.Manual
 				}
 				else
 				{
-					StepInfo? step;
-					unsafe
-					{
-						step = bag.GetElementByMinSelector<StepInfo, decimal>(&InternalSelector);
-					}
-
+					var step = bag.GetElementByMinSelector<StepInfo, decimal>(&InternalSelector);
 					if (step is null)
 					{
 						// If current step can't find any steps,

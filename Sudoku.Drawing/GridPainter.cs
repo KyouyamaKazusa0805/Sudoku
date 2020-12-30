@@ -267,24 +267,22 @@ namespace Sudoku.Drawing
 		/// <param name="offset">The drawing offset.</param>
 		private void DrawEliminations(Graphics g, IEnumerable<Conclusion> conclusions, float offset)
 		{
-			using var eliminationBrush = new SolidBrush(Preferences.EliminationColor);
-			using var cannibalBrush = new SolidBrush(Preferences.CannibalismColor);
-			foreach (var (t, c, d) in conclusions)
+			unsafe
 			{
-				if (t != ConclusionType.Elimination)
+				using var eliminationBrush = new SolidBrush(Preferences.EliminationColor);
+				using var cannibalBrush = new SolidBrush(Preferences.CannibalismColor);
+				foreach (var (t, c, d) in conclusions)
 				{
-					continue;
-				}
+					if (t != ConclusionType.Elimination)
+					{
+						continue;
+					}
 
-				bool isCannibalism;
-				unsafe
-				{
-					isCannibalism = View?.Candidates?.Any(&overlapping, c, d) ?? false;
+					bool isCannibalism = View?.Candidates?.Any(&overlapping, c, d) ?? false;
+					g.FillEllipse(
+						isCannibalism ? cannibalBrush : eliminationBrush,
+						Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
 				}
-
-				g.FillEllipse(
-					isCannibalism ? cannibalBrush : eliminationBrush,
-					Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
 			}
 
 			static bool overlapping(DrawingInfo pair, in int c, in int d) => pair.Value == c * 9 + d;
@@ -600,38 +598,37 @@ namespace Sudoku.Drawing
 				LineAlignment = StringAlignment.Center
 			};
 
-			foreach (var (id, candidate) in candidates)
+			unsafe
 			{
-				int cell = candidate / 9, digit = candidate % 9;
-				bool isOverlapped;
-				unsafe
+				foreach (var (id, candidate) in candidates)
 				{
-					isOverlapped = Conclusions?.Any(&overlapping, cell, digit) ?? false;
-				}
+					int cell = candidate / 9, digit = candidate % 9;
+					bool isOverlapped = Conclusions?.Any(&overlapping, cell, digit) ?? false;
 
-				if (!isOverlapped)
-				{
-					if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
+					if (!isOverlapped)
 					{
-						using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
-						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
-
-						// In direct view, candidates should be drawn also.
-						if (!Preferences.ShowCandidates)
+						if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 						{
-							d(cell, digit, vOffsetCandidate);
+							using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
+							g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+
+							// In direct view, candidates should be drawn also.
+							if (!Preferences.ShowCandidates)
+							{
+								d(cell, digit, vOffsetCandidate);
+							}
 						}
-					}
-					else if (Preferences.PaletteColors.TryGetValue(id, out var color))
-					{
-						// In the normal case, I'll draw these circles.
-						using var brush = new SolidBrush(color);
-						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
-
-						// In direct view, candidates should be drawn also.
-						if (!Preferences.ShowCandidates)
+						else if (Preferences.PaletteColors.TryGetValue(id, out var color))
 						{
-							d(cell, digit, vOffsetCandidate);
+							// In the normal case, I'll draw these circles.
+							using var brush = new SolidBrush(color);
+							g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+
+							// In direct view, candidates should be drawn also.
+							if (!Preferences.ShowCandidates)
+							{
+								d(cell, digit, vOffsetCandidate);
+							}
 						}
 					}
 				}
