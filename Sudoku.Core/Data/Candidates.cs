@@ -261,7 +261,7 @@ namespace Sudoku.Data
 		public bool this[int candidate]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			readonly get => ((_innerBinary[candidate / Shifting] >> candidate % Shifting) & 1) != 0;
+			readonly get => _innerBinary[candidate / Shifting].ContainsBit(candidate % Shifting);
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set

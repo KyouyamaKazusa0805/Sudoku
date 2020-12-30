@@ -39,7 +39,7 @@ namespace System.Extensions
 		{
 			for (int i = index + 1; i < 16; i++)
 			{
-				if ((@this & 1 << i) != 0)
+				if (@this.ContainsBit(i))
 				{
 					return i;
 				}

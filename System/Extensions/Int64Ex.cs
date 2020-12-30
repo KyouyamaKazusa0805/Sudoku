@@ -37,7 +37,7 @@ namespace System.Extensions
 		{
 			for (int i = index + 1; i < 64; i++)
 			{
-				if ((@this & 1L << i) != 0)
+				if (@this.ContainsBit(i))
 				{
 					return i;
 				}
@@ -51,7 +51,7 @@ namespace System.Extensions
 		{
 			for (int i = 0, count = -1; i < 64; i++, @this >>= 1)
 			{
-				if ((@this & 1L) != 0 && ++count == order)
+				if (@this.IsOdd() && ++count == order)
 				{
 					return i;
 				}

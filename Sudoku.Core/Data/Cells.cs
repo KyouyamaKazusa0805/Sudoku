@@ -532,7 +532,7 @@ namespace Sudoku.Data
 			unsafe
 			{
 				long* ptr = stackalloc[] { _low, _high };
-				return ((ptr[cell / Shifting] >> cell % Shifting) & 1L) != 0;
+				return ptr[cell / Shifting].ContainsBit(cell % Shifting);
 			}
 		}
 
