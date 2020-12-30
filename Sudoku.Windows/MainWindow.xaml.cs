@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Extensions;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Converters;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,9 +13,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
+using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using C = Sudoku.Data.ConclusionType;
@@ -22,9 +26,6 @@ using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using R = System.Windows.MessageBoxResult;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
-using Sudoku.Data.Extensions;
-using System.Extensions;
-using Sudoku.Solving.Manual;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif

@@ -2,10 +2,9 @@
 using System.Drawing;
 using System.Extensions;
 using System.Runtime.CompilerServices;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Sudoku.Drawing
+namespace System.Text.Json.Converters
 {
 	/// <summary>
 	/// Indicates a color JSON converter.

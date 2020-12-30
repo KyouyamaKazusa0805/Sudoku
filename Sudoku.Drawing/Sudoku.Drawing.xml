@@ -4,20 +4,6 @@
         <name>Sudoku.Drawing</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Drawing.ColorJsonConverter">
-            <summary>
-            Indicates a color JSON converter.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Drawing.ColorJsonConverter.CanConvert(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.ColorJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Drawing.Extensions.ColorId">
             <summary>
             Extracts the extension methods for color ID.
