@@ -66,23 +66,19 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static SudokuGrid MirrorLeftRight(this in SudokuGrid @this)
+		public static unsafe SudokuGrid MirrorLeftRight(this in SudokuGrid @this)
 		{
 			var result = @this;
-			unsafe
+			fixed (short* pThis = @this, pResult = result)
 			{
-				fixed (short* pThis = @this, pResult = result)
+				for (int i = 0; i < 9; i++)
 				{
-					for (int i = 0; i < 9; i++)
+					for (int j = 0; j < 9; j++)
 					{
-						for (int j = 0; j < 9; j++)
-						{
-							pResult[i * 9 + j] = pThis[i * 9 + (8 - j)];
-						}
+						pResult[i * 9 + j] = pThis[i * 9 + (8 - j)];
 					}
 				}
 			}
-
 			return result;
 		}
 
@@ -91,23 +87,19 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static SudokuGrid MirrorTopBottom(this in SudokuGrid @this)
+		public static unsafe SudokuGrid MirrorTopBottom(this in SudokuGrid @this)
 		{
 			var result = @this;
-			unsafe
+			fixed (short* pThis = @this, pResult = result)
 			{
-				fixed (short* pThis = @this, pResult = result)
+				for (int i = 0; i < 9; i++)
 				{
-					for (int i = 0; i < 9; i++)
+					for (int j = 0; j < 9; j++)
 					{
-						for (int j = 0; j < 9; j++)
-						{
-							pResult[i * 9 + j] = pThis[(8 - i) * 9 + j];
-						}
+						pResult[i * 9 + j] = pThis[(8 - i) * 9 + j];
 					}
 				}
 			}
-
 			return result;
 		}
 
@@ -116,23 +108,19 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static SudokuGrid MirrorDiagonal(this in SudokuGrid @this)
+		public static unsafe SudokuGrid MirrorDiagonal(this in SudokuGrid @this)
 		{
 			var result = @this;
-			unsafe
+			fixed (short* pThis = @this, pResult = result)
 			{
-				fixed (short* pThis = @this, pResult = result)
+				for (int i = 0; i < 9; i++)
 				{
-					for (int i = 0; i < 9; i++)
+					for (int j = 0; j < 9; j++)
 					{
-						for (int j = 0; j < 9; j++)
-						{
-							pResult[i * 9 + j] = pThis[j * 9 + i];
-						}
+						pResult[i * 9 + j] = pThis[j * 9 + i];
 					}
 				}
 			}
-
 			return result;
 		}
 
@@ -149,19 +137,16 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static SudokuGrid MirrorAntidiagonal(this in SudokuGrid @this)
+		public static unsafe SudokuGrid MirrorAntidiagonal(this in SudokuGrid @this)
 		{
 			var result = @this;
-			unsafe
+			fixed (short* pThis = @this, pResult = result)
 			{
-				fixed (short* pThis = @this, pResult = result)
+				for (int i = 0; i < 9; i++)
 				{
-					for (int i = 0; i < 9; i++)
+					for (int j = 0; j < 9; j++)
 					{
-						for (int j = 0; j < 9; j++)
-						{
-							pResult[i * 9 + j] = pThis[(8 - j) * 9 + (8 - i)];
-						}
+						pResult[i * 9 + j] = pThis[(8 - j) * 9 + (8 - i)];
 					}
 				}
 			}
@@ -174,17 +159,14 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static SudokuGrid RotateClockwise(this in SudokuGrid @this)
+		public static unsafe SudokuGrid RotateClockwise(this in SudokuGrid @this)
 		{
 			var result = @this;
-			unsafe
+			fixed (short* pThis = @this, pResult = result)
 			{
-				fixed (short* pThis = @this, pResult = result)
+				for (int cell = 0; cell < 81; cell++)
 				{
-					for (int cell = 0; cell < 81; cell++)
-					{
-						pResult[cell] = pThis[ClockwiseTable[cell]];
-					}
+					pResult[cell] = pThis[ClockwiseTable[cell]];
 				}
 			}
 
@@ -196,17 +178,14 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static SudokuGrid RotateCounterclockwise(this in SudokuGrid @this)
+		public static unsafe SudokuGrid RotateCounterclockwise(this in SudokuGrid @this)
 		{
 			var result = @this;
-			unsafe
+			fixed (short* pThis = @this, pResult = result)
 			{
-				fixed (short* pThis = @this, pResult = result)
+				for (int cell = 0; cell < 81; cell++)
 				{
-					for (int cell = 0; cell < 81; cell++)
-					{
-						pResult[cell] = pThis[CounterclockwiseTable[cell]];
-					}
+					pResult[cell] = pThis[CounterclockwiseTable[cell]];
 				}
 			}
 
@@ -218,17 +197,14 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static SudokuGrid RotatePi(this in SudokuGrid @this)
+		public static unsafe SudokuGrid RotatePi(this in SudokuGrid @this)
 		{
 			var result = @this;
-			unsafe
+			fixed (short* pThis = @this, pResult = result)
 			{
-				fixed (short* pThis = @this, pResult = result)
+				for (int cell = 0; cell < 81; cell++)
 				{
-					for (int cell = 0; cell < 81; cell++)
-					{
-						pResult[cell] = pThis[PiRotateTable[cell]];
-					}
+					pResult[cell] = pThis[PiRotateTable[cell]];
 				}
 			}
 
@@ -246,21 +222,18 @@ namespace Sudoku.Data.Extensions
 		/// Throws when two specified region argument is not in valid range (0..27)
 		/// or two regions are not in same region type.
 		/// </exception>
-		public static SudokuGrid SwapTwoRegions(this in SudokuGrid @this, int region1, int region2)
+		public static unsafe SudokuGrid SwapTwoRegions(this in SudokuGrid @this, int region1, int region2)
 		{
 			_ = region1 is < 0 or >= 18 ? throw new ArgumentException("The specified argument is out of valid range.", nameof(region1)) : 0;
 			_ = region2 is < 0 or >= 18 ? throw new ArgumentException("The specified argument is out of valid range.", nameof(region2)) : 0;
 			_ = region1 / 9 != region2 / 9 ? throw new ArgumentException("Two region should be the same region type.", nameof(region1)) : 0;
 
 			var result = @this;
-			unsafe
+			fixed (short* pThis = @this, pResult = result)
 			{
-				fixed (short* pThis = @this, pResult = result)
+				for (int i = 0; i < 9; i++)
 				{
-					for (int i = 0; i < 9; i++)
-					{
-						Swap(ref pResult[RegionCells[region1][i]], ref pThis[RegionCells[region2][i]]);
-					}
+					Swap(ref pResult[RegionCells[region1][i]], ref pThis[RegionCells[region2][i]]);
 				}
 			}
 

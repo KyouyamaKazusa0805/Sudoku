@@ -81,29 +81,26 @@ namespace System.Extensions
 		/// <seealso cref="Enum.HasFlag(Enum)"/>
 		public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
 		{
-			int size;
 			unsafe
 			{
-				size = sizeof(TEnum);
-			}
-
-			switch (size)
-			{
-				case 1:
-				case 2:
-				case 4:
+				switch (sizeof(TEnum))
 				{
-					int otherValue = Unsafe.As<TEnum, int>(ref other);
-					return (Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue;
-				}
-				case 8:
-				{
-					long otherValue = Unsafe.As<TEnum, long>(ref other);
-					return (Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue;
-				}
-				default:
-				{
-					throw new ArgumentException("The parameter should be one of the values 1, 2, 4.", nameof(@this));
+					case 1:
+					case 2:
+					case 4:
+					{
+						int otherValue = Unsafe.As<TEnum, int>(ref other);
+						return (Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue;
+					}
+					case 8:
+					{
+						long otherValue = Unsafe.As<TEnum, long>(ref other);
+						return (Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue;
+					}
+					default:
+					{
+						throw new ArgumentException("The parameter should be one of the values 1, 2, 4.", nameof(@this));
+					}
 				}
 			}
 		}

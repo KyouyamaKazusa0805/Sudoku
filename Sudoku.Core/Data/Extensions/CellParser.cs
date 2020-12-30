@@ -24,11 +24,8 @@ namespace Sudoku.Data.Extensions
 			}
 
 			string copied = str.Trim();
-			unsafe
-			{
-				if (rcb(copied, out byte c)) { cell = c; return true; }
-				if (k9(copied, out c)) { cell = c; return true; }
-			}
+			if (rcb(copied, out byte c)) { cell = c; return true; }
+			if (k9(copied, out c)) { cell = c; return true; }
 
 		Return:
 			cell = default;

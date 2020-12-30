@@ -33,32 +33,31 @@ namespace Sudoku.Solving.Manual.Exocets
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			// TODO: Extend SE eliminations checking.
-			var compatibleCells = (stackalloc int[4]);
-			var cover = (stackalloc int[8]);
-			foreach (var exocet in Patterns)
+			unsafe
 			{
-				var (baseMap, targetMap, _) = exocet;
-				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
-				if (grid.GetCandidates(b1).PopCount() < 2 || grid.GetCandidates(b2).PopCount() < 2)
+				int* compatibleCells = stackalloc int[4], cover = stackalloc int[8];
+				foreach (var exocet in Patterns)
 				{
-					continue;
-				}
+					var (baseMap, targetMap, _) = exocet;
+					var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
+					if (grid.GetCandidates(b1).PopCount() < 2 || grid.GetCandidates(b2).PopCount() < 2)
+					{
+						continue;
+					}
 
-				bool isRow = baseMap.CoveredLine < 18;
-				var tempCrosslineMap = s | targetMap;
-				short baseCandsMask = (short)(grid.GetCandidates(b1) | grid.GetCandidates(b2));
+					bool isRow = baseMap.CoveredLine < 18;
+					var tempCrosslineMap = s | targetMap;
+					short baseCandsMask = (short)(grid.GetCandidates(b1) | grid.GetCandidates(b2));
 
-				int i = 0;
-				int r = RegionLabel.Row.ToRegion(b1) - 9, c = RegionLabel.Column.ToRegion(b1) - 18;
-				foreach (int pos in SudokuGrid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))
-				{
-					cover[i++] = isRow ? pos + 9 : pos + 18;
-				}
+					int i = 0;
+					int r = RegionLabel.Row.ToRegion(b1) - 9, c = RegionLabel.Column.ToRegion(b1) - 18;
+					foreach (int pos in SudokuGrid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))
+					{
+						cover[i++] = isRow ? pos + 9 : pos + 18;
+					}
 
-				i = 0;
-				Cells temp;
-				unsafe
-				{
+					i = 0;
+					Cells temp;
 					foreach (int digit in baseCandsMask)
 					{
 						if (i++ == 0)
@@ -71,148 +70,148 @@ namespace Sudoku.Solving.Manual.Exocets
 						}
 					}
 					*&temp &= tempCrosslineMap;
-				}
 
-				var tempTarget = new List<int>();
-				for (i = 0; i < 8; i++)
-				{
-					if ((temp & RegionMaps[cover[i]]) is { Count: 1 } check)
+					var tempTarget = new List<int>();
+					for (i = 0; i < 8; i++)
 					{
-						tempTarget.Add(check[0]);
+						if ((temp & RegionMaps[cover[i]]) is { Count: 1 } check)
+						{
+							tempTarget.Add(check[0]);
+						}
 					}
-				}
-				if (tempTarget.Count == 0)
-				{
-					continue;
-				}
-
-				int bOrT = isRow ? b1 / 9 / 3 : b1 % 9 / 3; // Base or target (B or T).
-				foreach (int[] comb in tempTarget.GetSubsets(2))
-				{
-					[MethodImpl(MethodImplOptions.AggressiveInlining)] static int a(int v) => v / 9 / 3;
-					[MethodImpl(MethodImplOptions.AggressiveInlining)] static int b(int v) => v % 9 / 3;
-
-					int v1 = comb[0], v2 = comb[1];
-					if (isRow ? a(v1) == bOrT && a(v2) == bOrT : b(v1) == bOrT && b(v2) == bOrT)
+					if (tempTarget.Count == 0)
 					{
 						continue;
 					}
 
-					int row1 = RegionLabel.Row.ToRegion(v1), column1 = RegionLabel.Column.ToRegion(v1);
-					int row2 = RegionLabel.Row.ToRegion(v2), column2 = RegionLabel.Column.ToRegion(v2);
-					if (isRow ? column1 == column2 : row1 == row2)
+					int bOrT = isRow ? b1 / 9 / 3 : b1 % 9 / 3; // Base or target (B or T).
+					foreach (int[] comb in tempTarget.GetSubsets(2))
 					{
-						continue;
-					}
+						[MethodImpl(MethodImplOptions.AggressiveInlining)] static int a(int v) => v / 9 / 3;
+						[MethodImpl(MethodImplOptions.AggressiveInlining)] static int b(int v) => v % 9 / 3;
 
-					short elimDigits = (short)((
-						grid.GetCandidates(v1) | grid.GetCandidates(v2)
-					) & ~baseCandsMask);
-					if (!CheckCrossline(baseMap, tempCrosslineMap, baseCandsMask, v1, v2, isRow))
-					{
-						continue;
-					}
-
-					// Get all target eliminations.
-					var targetElims = new Target();
-					short cands = (short)(elimDigits & grid.GetCandidates(v1));
-					if (cands != 0)
-					{
-						foreach (int digit in cands)
+						int v1 = comb[0], v2 = comb[1];
+						if (isRow ? a(v1) == bOrT && a(v2) == bOrT : b(v1) == bOrT && b(v2) == bOrT)
 						{
-							targetElims.Add(new(ConclusionType.Elimination, v1, digit));
+							continue;
 						}
-					}
-					cands = (short)(elimDigits & grid.GetCandidates(v2));
-					if (cands != 0)
-					{
-						foreach (int digit in cands)
+
+						int row1 = RegionLabel.Row.ToRegion(v1), column1 = RegionLabel.Column.ToRegion(v1);
+						int row2 = RegionLabel.Row.ToRegion(v2), column2 = RegionLabel.Column.ToRegion(v2);
+						if (isRow ? column1 == column2 : row1 == row2)
 						{
-							targetElims.Add(new(ConclusionType.Elimination, v2, digit));
+							continue;
 						}
-					}
 
-					short tbCands = 0;
-					for (int j = 0; j < 2; j++)
-					{
-						if (grid.GetCandidates(comb[j]).PopCount() == 1)
+						short elimDigits = (short)((
+							grid.GetCandidates(v1) | grid.GetCandidates(v2)
+						) & ~baseCandsMask);
+						if (!CheckCrossline(baseMap, tempCrosslineMap, baseCandsMask, v1, v2, isRow))
 						{
-							tbCands |= grid.GetCandidates(comb[j]);
+							continue;
 						}
-					}
 
-					// Get all true base eliminations.
-					var trueBaseElims = new TrueBase();
-					if (tbCands != 0 && (
-						grid.GetStatus(v1) != CellStatus.Empty || grid.GetStatus(v2) != CellStatus.Empty))
-					{
-						for (int j = 0; j < 2; j++)
+						// Get all target eliminations.
+						var targetElims = new Target();
+						short cands = (short)(elimDigits & grid.GetCandidates(v1));
+						if (cands != 0)
 						{
-							if (grid.GetStatus(comb[j]) != CellStatus.Empty)
-							{
-								continue;
-							}
-
-							if ((cands = (short)(grid.GetCandidates(comb[j]) & tbCands)) == 0)
-							{
-								continue;
-							}
-
 							foreach (int digit in cands)
 							{
-								trueBaseElims.Add(new(ConclusionType.Elimination, comb[j], digit));
+								targetElims.Add(new(ConclusionType.Elimination, v1, digit));
 							}
 						}
-					}
-
-					if (tbCands != 0)
-					{
-						foreach (int digit in tbCands)
+						cands = (short)(elimDigits & grid.GetCandidates(v2));
+						if (cands != 0)
 						{
-							var elimMap = (baseMap & CandMaps[digit]).PeerIntersection & CandMaps[digit];
-							foreach (int cell in elimMap)
+							foreach (int digit in cands)
 							{
-								trueBaseElims.Add(new(ConclusionType.Elimination, cell, digit));
+								targetElims.Add(new(ConclusionType.Elimination, v2, digit));
 							}
 						}
-					}
 
-					if (targetElims.Count == 0 && trueBaseElims.Count == 0)
-					{
-						continue;
-					}
+						short tbCands = 0;
+						for (int j = 0; j < 2; j++)
+						{
+							if (grid.GetCandidates(comb[j]).PopCount() == 1)
+							{
+								tbCands |= grid.GetCandidates(comb[j]);
+							}
+						}
 
-					// Get mirror and compatibility test eliminations.
-					var cellOffsets = new List<DrawingInfo> { new(0, b1), new(0, b2) };
-					foreach (int cell in tempCrosslineMap)
-					{
-						cellOffsets.Add(new(cell == v1 || cell == v2 ? 1 : 2, cell));
-					}
-					var candidateOffsets = new List<DrawingInfo>();
+						// Get all true base eliminations.
+						var trueBaseElims = new TrueBase();
+						if (tbCands != 0 && (
+							grid.GetStatus(v1) != CellStatus.Empty || grid.GetStatus(v2) != CellStatus.Empty))
+						{
+							for (int j = 0; j < 2; j++)
+							{
+								if (grid.GetStatus(comb[j]) != CellStatus.Empty)
+								{
+									continue;
+								}
 
-					int endoTargetCell = comb[s.Contains(v1) ? 0 : 1];
-					short m1 = grid.GetCandidates(b1), m2 = grid.GetCandidates(b2), m = (short)(m1 | m2);
-					foreach (int digit in m1)
-					{
-						candidateOffsets.Add(new(0, b1 * 9 + digit));
-					}
-					foreach (int digit in m2)
-					{
-						candidateOffsets.Add(new(0, b2 * 9 + digit));
-					}
+								if ((cands = (short)(grid.GetCandidates(comb[j]) & tbCands)) == 0)
+								{
+									continue;
+								}
 
-					accumulator.Add(
-						new SeStepInfo(
-							new List<Conclusion>(), // Special eliminations will use this empty list.
-							new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
-							exocet,
-							m.GetAllSets().ToArray(),
-							endoTargetCell,
-							null,
-							targetElims,
-							trueBaseElims,
-							null,
-							null));
+								foreach (int digit in cands)
+								{
+									trueBaseElims.Add(new(ConclusionType.Elimination, comb[j], digit));
+								}
+							}
+						}
+
+						if (tbCands != 0)
+						{
+							foreach (int digit in tbCands)
+							{
+								var elimMap = (baseMap & CandMaps[digit]).PeerIntersection & CandMaps[digit];
+								foreach (int cell in elimMap)
+								{
+									trueBaseElims.Add(new(ConclusionType.Elimination, cell, digit));
+								}
+							}
+						}
+
+						if (targetElims.Count == 0 && trueBaseElims.Count == 0)
+						{
+							continue;
+						}
+
+						// Get mirror and compatibility test eliminations.
+						var cellOffsets = new List<DrawingInfo> { new(0, b1), new(0, b2) };
+						foreach (int cell in tempCrosslineMap)
+						{
+							cellOffsets.Add(new(cell == v1 || cell == v2 ? 1 : 2, cell));
+						}
+						var candidateOffsets = new List<DrawingInfo>();
+
+						int endoTargetCell = comb[s.Contains(v1) ? 0 : 1];
+						short m1 = grid.GetCandidates(b1), m2 = grid.GetCandidates(b2), m = (short)(m1 | m2);
+						foreach (int digit in m1)
+						{
+							candidateOffsets.Add(new(0, b1 * 9 + digit));
+						}
+						foreach (int digit in m2)
+						{
+							candidateOffsets.Add(new(0, b2 * 9 + digit));
+						}
+
+						accumulator.Add(
+							new SeStepInfo(
+								new List<Conclusion>(), // Special eliminations will use this empty list.
+								new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
+								exocet,
+								m.GetAllSets().ToArray(),
+								endoTargetCell,
+								null,
+								targetElims,
+								trueBaseElims,
+								null,
+								null));
+					}
 				}
 			}
 		}
