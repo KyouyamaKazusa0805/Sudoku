@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <returns>The result.</returns>
 		private static void GetAll(IList<StepInfo> result, in SudokuGrid grid, int size)
 		{
-			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
+			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
 				if (c.Overlaps(EmptyMap))
 				{

@@ -76,15 +76,17 @@ namespace Sudoku.DocComments
 
 		/// <summary>
 		/// Find the first offset of set bit of the binary representation
-		/// of the specified value. If the value is 0, this method
-		/// will always return -1.
+		/// of the specified value.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>
-		/// An <see cref="int"/> value indicating that. Please note that if the value is 0,
+		/// <para>An <see cref="int"/> value indicating that.</para>
+		/// <para>
+		/// Please note that if the value is 0,
 		/// the return value will be always 32 (for <see cref="int"/>) or 64 (for <see cref="long"/>).
 		/// The method simply calls the method <see cref="BitOperations.TrailingZeroCount(int)"/>
 		/// or <see cref="BitOperations.TrailingZeroCount(long)"/>.
+		/// </para>
 		/// </returns>
 		/// <seealso cref="BitOperations.TrailingZeroCount(int)"/>
 		/// <seealso cref="BitOperations.TrailingZeroCount(long)"/>

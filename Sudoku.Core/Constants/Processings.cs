@@ -10,6 +10,31 @@ namespace Sudoku.Constants
 	public static partial class Processings
 	{
 		/// <summary>
+		/// The table of all blocks to iterate for each blocks.
+		/// </summary>
+		public static readonly byte[][] IntersectionBlockTable = new byte[54][]
+		{
+			new byte[] { 1, 2 }, new byte[] { 0, 2 }, new byte[] { 0, 1 },
+			new byte[] { 1, 2 }, new byte[] { 0, 2 }, new byte[] { 0, 1 },
+			new byte[] { 1, 2 }, new byte[] { 0, 2 }, new byte[] { 0, 1 },
+			new byte[] { 4, 5 }, new byte[] { 3, 5 }, new byte[] { 3, 4 },
+			new byte[] { 4, 5 }, new byte[] { 3, 5 }, new byte[] { 3, 4 },
+			new byte[] { 4, 5 }, new byte[] { 3, 5 }, new byte[] { 3, 4 },
+			new byte[] { 7, 8 }, new byte[] { 6, 8 }, new byte[] { 6, 7 },
+			new byte[] { 7, 8 }, new byte[] { 6, 8 }, new byte[] { 6, 7 },
+			new byte[] { 7, 8 }, new byte[] { 6, 8 }, new byte[] { 6, 7 },
+			new byte[] { 3, 6 }, new byte[] { 0, 6 }, new byte[] { 0, 3 },
+			new byte[] { 3, 6 }, new byte[] { 0, 6 }, new byte[] { 0, 3 },
+			new byte[] { 3, 6 }, new byte[] { 0, 6 }, new byte[] { 0, 3 },
+			new byte[] { 4, 7 }, new byte[] { 1, 7 }, new byte[] { 1, 4 },
+			new byte[] { 4, 7 }, new byte[] { 1, 7 }, new byte[] { 1, 4 },
+			new byte[] { 4, 7 }, new byte[] { 1, 7 }, new byte[] { 1, 4 },
+			new byte[] { 5, 8 }, new byte[] { 2, 8 }, new byte[] { 2, 5 },
+			new byte[] { 5, 8 }, new byte[] { 2, 8 }, new byte[] { 2, 5 },
+			new byte[] { 5, 8 }, new byte[] { 2, 8 }, new byte[] { 2, 5 }
+		};
+
+		/// <summary>
 		/// <para>Indicates a table for each cell's peers.</para>
 		/// </summary>
 		/// <example>
@@ -170,6 +195,9 @@ namespace Sudoku.Constants
 		/// In addition, in this data structure, "<c>CoverSet</c>" is a block and "<c>BaseSet</c>" is a line.
 		/// </para>
 		/// </summary>
-		public static readonly IReadOnlyDictionary<(byte, byte), (Cells, Cells, Cells)> IntersectionMaps;
+		public static readonly IReadOnlyDictionary<
+			(byte Line, byte Block),
+			(Cells LineMap, Cells BlockMap, Cells IntersectionMap, byte[] OtherBlocks)
+		> IntersectionMaps;
 	}
 }

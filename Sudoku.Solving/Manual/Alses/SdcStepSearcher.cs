@@ -41,12 +41,12 @@ namespace Sudoku.Solving.Manual.Alses
 			var list = new List<Cells>(4);
 			foreach (bool cannibalMode in stackalloc[] { false, true })
 			{
-				foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
+				foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 				{
 					var emptyCellsInInterMap = c & EmptyMap;
 					if (emptyCellsInInterMap.Count < 2)
 					{
-						// The intersection needs at least two cells.
+						// The intersection needs at least two empty cells.
 						continue;
 					}
 

@@ -7875,6 +7875,84 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.GetAdditional">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle + sue de coq</b> (UR + SDC) or
+            <b>avoidable rectangle + sue de coq</b> (AR + SDC) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="Cells">All cells used.</param>
+            <param name="IsAvoidable">Indicates whether the instance is an AR.</param>
+            <param name="AbsoluteOffset">The absolute offset.</param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the current SdC used is cannibal.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The block cells.</param>
+            <param name="LineCells">The line cells.</param>
+            <param name="IntersectionCells">The intersection cells.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Provides a usage of <b>unique rectangle + sue de coq</b> (UR + SDC) or
+            <b>avoidable rectangle + sue de coq</b> (AR + SDC) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="Cells">All cells used.</param>
+            <param name="IsAvoidable">Indicates whether the instance is an AR.</param>
+            <param name="AbsoluteOffset">The absolute offset.</param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the current SdC used is cannibal.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The block cells.</param>
+            <param name="LineCells">The line cells.</param>
+            <param name="IntersectionCells">The intersection cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.SdCDifficulty">
+            <summary>
+            The extra difficulty that assesses SDC's size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.IsolatedDifficulty">
+            <summary>
+            The extra difficulty that assesses isolated digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.CannibalDifficulty">
+            <summary>
+            The extra difficulty that assesses cannibalism.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.ArDifficulty">
+            <summary>
+            The extra difficulty that assesses whether the structure is an AR.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
@@ -8338,6 +8416,54 @@
             </param>
             <param name="size">The size of the wing to search.</param>
             <param name="index">The index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckSdc(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+SdC.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">
+            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            </param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckGeneralizedSdc(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,System.Boolean,System.Int32,System.Int32,System.Int32[],System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            The internal checking method on 
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="arMode">Indicates whether the current mode is to search for ARs.</param>
+            <param name="cannibalMode">Indicates whether the current mode is to search for cannibal SdCs.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+            <param name="urCells">All UR cells used.</param>
+            <param name="line">The line region used.</param>
+            <param name="block">The block region used.</param>
+            <param name="lineMask">The line mask.</param>
+            <param name="blockMask">The block mask.</param>
+            <param name="selectedInterMask">The intersection mask that calculated from selected cells.</param>
+            <param name="otherDigitsMask">The other digits.</param>
+            <param name="elimMapLine">
+            (<see langword="in"/> parameter) The elimination map for line region.
+            </param>
+            <param name="elimMapBlock">
+            (<see langword="in"/> parameter) The elimination map for block region.
+            </param>
+            <param name="currentLineMap">(<see langword="in"/> parameter) The current line map.</param>
+            <param name="currentBlockMap">(<see langword="in"/> parameter) The current block map.</param>
+            <param name="currentInterMap">(<see langword="in"/> parameter) The current intersection map.</param>
+            <param name="i">The number of block cells for the current combination.</param>
+            <param name="j">The number of line cells for the current combination.</param>
+            <param name="index">The index of the UR list.</param>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.PossibleUrList">
             <summary>

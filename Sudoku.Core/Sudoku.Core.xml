@@ -30,6 +30,11 @@
             the static constructor.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.Processings.IntersectionBlockTable">
+            <summary>
+            The table of all blocks to iterate for each blocks.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.Processings.Peers">
             <summary>
             <para>Indicates a table for each cell's peers.</para>

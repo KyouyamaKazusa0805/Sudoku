@@ -934,7 +934,7 @@
 		/// <summary>
 		/// Indicates the UR sue de coq.
 		/// </summary>
-		//[TechniqueDisplay("Unique Rectangle + Sue de Coq")]
+		[TechniqueDisplay("Unique Rectangle + Sue de Coq")]
 		UrSdc,
 
 		/// <summary>
@@ -1000,7 +1000,7 @@
 		/// <summary>
 		/// Indicates the AR sue de coq.
 		/// </summary>
-		//[TechniqueDisplay("Avoidable Rectangle + Sue de Coq")]
+		[TechniqueDisplay("Avoidable Rectangle + Sue de Coq")]
 		ArSdc,
 
 		/// <summary>

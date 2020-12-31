@@ -6,7 +6,7 @@
 		/// <para>The table of all UR cells.</para>
 		/// <para>You <b>can't</b> modify any values in this table.</para>
 		/// </summary>
-		public static readonly int[][] PossibleUrList =
+		private static readonly int[][] PossibleUrList =
 		{
 			new[] { 0, 3, 9, 12 }, new[] { 0, 4, 9, 13 }, new[] { 0, 5, 9, 14 }, new[] { 0, 6, 9, 15 }, new[] { 0, 7, 9, 16 }, new[] { 0, 8, 9, 17 }, new[] { 1, 3, 10, 12 }, new[] { 1, 4, 10, 13 }, new[] { 1, 5, 10, 14 },
 			new[] { 1, 6, 10, 15 }, new[] { 1, 7, 10, 16 }, new[] { 1, 8, 10, 17 }, new[] { 2, 3, 11, 12 }, new[] { 2, 4, 11, 13 }, new[] { 2, 5, 11, 14 }, new[] { 2, 6, 11, 15 }, new[] { 2, 7, 11, 16 }, new[] { 2, 8, 11, 17 },

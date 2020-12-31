@@ -55,6 +55,7 @@
 					"UrType1StepInfo.cs": [ "UrStepInfo.cs" ],
 					"UrType2StepInfo.cs": [ "UrStepInfo.cs" ],
 					"UrType3StepInfo.cs": [ "UrStepInfo.cs" ],
+					"UrSdcStepInfo.cs": [ "UrStepInfo.cs" ],
 					"HiddenUrStepInfo.cs": [ "UrStepInfo.cs" ],
 					"Ur2DOr3XStepInfo.cs": [ "UrStepInfo.cs" ],
 					"UrPlusStepInfo.cs": [ "UrStepInfo.cs" ],

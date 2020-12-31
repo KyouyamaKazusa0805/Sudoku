@@ -1733,5 +1733,328 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				// TODO: Finish processing Subtype 2.
 			}
 		}
+
+		/// <summary>
+		/// Check UR+SdC.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">
+		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// </param>
+		/// <param name="index">The index.</param>
+		partial void CheckSdc(
+			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer,
+			int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		{
+			//           |   xyz
+			//  ab+ ab+  | abxyz abxyz
+			//           |   xyz
+			// ----------+------------
+			// (ab)(ab)  |
+			//  ↑ corner1, corner2
+			bool notSatisfiedType3 = false;
+			short mergedMaskInOtherCells = 0;
+			foreach (int cell in otherCellsMap)
+			{
+				short currentMask = grid.GetCandidates(cell);
+				mergedMaskInOtherCells |= currentMask;
+				if (!currentMask.Overlaps(comparer)
+					|| currentMask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty)
+				{
+					notSatisfiedType3 = true;
+					break;
+				}
+			}
+
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer || notSatisfiedType3
+				|| (mergedMaskInOtherCells & comparer) != comparer)
+			{
+				return;
+			}
+
+			// Check whether the corners spanned two blocks. If so, UR+SdC can't be found.
+			if (!otherCellsMap.BlockMask.IsPowerOfTwo())
+			{
+				return;
+			}
+
+			short otherDigitsMask = (short)(mergedMaskInOtherCells & ~comparer);
+			byte line = (byte)otherCellsMap.CoveredLine;
+			byte block = (byte)(otherCellsMap.CoveredRegions & ~(1 << line)).FindFirstSet();
+			var (a, _, _, d) = IntersectionMaps[(line, block)];
+			var list = new List<Cells>(4);
+			foreach (bool cannibalMode in stackalloc[] { false, true })
+			{
+				foreach (byte otherBlock in d)
+				{
+					var emptyCellsInInterMap = RegionMaps[otherBlock] & RegionMaps[line] & EmptyMap;
+					if (emptyCellsInInterMap.Count < 2)
+					{
+						// The intersection needs at least two empty cells.
+						continue;
+					}
+
+					Cells b = RegionMaps[otherBlock] - RegionMaps[line], c = a & b;
+
+					list.Clear();
+					int[] offsets = emptyCellsInInterMap.ToArray();
+					switch (emptyCellsInInterMap.Count)
+					{
+						case 2:
+						{
+							list.Add(new() { offsets[0], offsets[1] });
+
+							break;
+						}
+						case 3:
+						{
+							int i = offsets[0], j = offsets[1], k = offsets[2];
+							list.Add(new() { i, j });
+							list.Add(new() { j, k });
+							list.Add(new() { i, k });
+							list.Add(new() { i, j, k });
+
+							break;
+						}
+					}
+
+					// Iterate on each intersection combination.
+					foreach (var currentInterMap in list)
+					{
+						short selectedInterMask = grid.BitwiseOrMasks(currentInterMap);
+						if (selectedInterMask.PopCount() <= currentInterMap.Count + 1)
+						{
+							// The intersection combination is an ALS or a normal subset,
+							// which is invalid in SdCs.
+							continue;
+						}
+
+						var blockMap = (b | c - currentInterMap) & EmptyMap;
+						var lineMap = (a & EmptyMap) - otherCellsMap;
+
+						// Iterate on the number of the cells that should be selected in block.
+						for (int i = 1; i <= blockMap.Count - 1; i++)
+						{
+							// Iterate on each combination in block.
+							foreach (int[] selectedCellsInBlock in blockMap.ToArray().GetSubsets(i))
+							{
+								bool flag = false;
+								foreach (int digit in otherDigitsMask)
+								{
+									foreach (int cell in selectedCellsInBlock)
+									{
+										if (grid.Exists(cell, digit) is true)
+										{
+											flag = true;
+											break;
+										}
+									}
+								}
+								if (flag)
+								{
+									continue;
+								}
+
+								var currentBlockMap = new Cells(selectedCellsInBlock);
+								Cells elimMapBlock = Cells.Empty, elimMapLine = Cells.Empty;
+
+								// Get the links of the block.
+								short blockMask = grid.BitwiseOrMasks(selectedCellsInBlock);
+
+								// Get the elimination map in the block.
+								foreach (int digit in blockMask)
+								{
+									elimMapBlock |= CandMaps[digit];
+								}
+								elimMapBlock &= blockMap - currentBlockMap;
+
+								foreach (int digit in otherDigitsMask)
+								{
+									elimMapLine |= CandMaps[digit];
+								}
+								elimMapLine &= lineMap - currentInterMap;
+
+								CheckGeneralizedSdc(
+									accumulator, grid, arMode, cannibalMode, d1, d2, urCells,
+									line, otherBlock, otherDigitsMask, blockMask, selectedInterMask,
+									otherDigitsMask, elimMapLine, elimMapBlock, otherCellsMap, currentBlockMap,
+									currentInterMap, i, 0, index);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// The internal checking method on 
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="arMode">Indicates whether the current mode is to search for ARs.</param>
+		/// <param name="cannibalMode">Indicates whether the current mode is to search for cannibal SdCs.</param>
+		/// <param name="digit1">The digit 1.</param>
+		/// <param name="digit2">The digit 2.</param>
+		/// <param name="urCells">All UR cells used.</param>
+		/// <param name="line">The line region used.</param>
+		/// <param name="block">The block region used.</param>
+		/// <param name="lineMask">The line mask.</param>
+		/// <param name="blockMask">The block mask.</param>
+		/// <param name="selectedInterMask">The intersection mask that calculated from selected cells.</param>
+		/// <param name="otherDigitsMask">The other digits.</param>
+		/// <param name="elimMapLine">
+		/// (<see langword="in"/> parameter) The elimination map for line region.
+		/// </param>
+		/// <param name="elimMapBlock">
+		/// (<see langword="in"/> parameter) The elimination map for block region.
+		/// </param>
+		/// <param name="currentLineMap">(<see langword="in"/> parameter) The current line map.</param>
+		/// <param name="currentBlockMap">(<see langword="in"/> parameter) The current block map.</param>
+		/// <param name="currentInterMap">(<see langword="in"/> parameter) The current intersection map.</param>
+		/// <param name="i">The number of block cells for the current combination.</param>
+		/// <param name="j">The number of line cells for the current combination.</param>
+		/// <param name="index">The index of the UR list.</param>
+		private static void CheckGeneralizedSdc(
+			IList<UrStepInfo> accumulator, in SudokuGrid grid, bool arMode, bool cannibalMode, int digit1,
+			int digit2, int[] urCells, int line, int block, short lineMask, short blockMask,
+			short selectedInterMask, short otherDigitsMask, in Cells elimMapLine, in Cells elimMapBlock,
+			in Cells currentLineMap, in Cells currentBlockMap, in Cells currentInterMap, int i, int j,
+			int index)
+		{
+			short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
+			short maskIsolated = (short)(
+				cannibalMode ? (lineMask & blockMask & selectedInterMask) : maskOnlyInInter);
+			if (!cannibalMode && (
+				blockMask.Overlaps(lineMask)
+				|| maskIsolated != 0 && !maskIsolated.IsPowerOfTwo())
+				|| cannibalMode && !maskIsolated.IsPowerOfTwo())
+			{
+				return;
+			}
+
+			var elimMapIsolated = Cells.Empty;
+			int digitIsolated = maskIsolated.FindFirstSet();
+			if (digitIsolated != 32)
+			{
+				elimMapIsolated =
+				(
+					cannibalMode
+					? (currentBlockMap | currentLineMap) & CandMaps[digitIsolated]
+					: currentInterMap & CandMaps[digitIsolated]
+				).PeerIntersection & CandMaps[digitIsolated] & EmptyMap;
+			}
+
+			if (currentInterMap.Count + i + j + 1 ==
+				blockMask.PopCount() + lineMask.PopCount() + maskOnlyInInter.PopCount()
+				&& (!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty || !elimMapIsolated.IsEmpty))
+			{
+				// Check eliminations.
+				var conclusions = new List<Conclusion>();
+				foreach (int cell in elimMapBlock)
+				{
+					foreach (int digit in grid.GetCandidates(cell))
+					{
+						if (blockMask.ContainsBit(digit))
+						{
+							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+						}
+					}
+				}
+				foreach (int cell in elimMapLine)
+				{
+					foreach (int digit in grid.GetCandidates(cell))
+					{
+						if (lineMask.ContainsBit(digit))
+						{
+							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+						}
+					}
+				}
+				foreach (int cell in elimMapIsolated)
+				{
+					conclusions.Add(new(ConclusionType.Elimination, cell, digitIsolated));
+				}
+				if (conclusions.Count == 0)
+				{
+					return;
+				}
+
+				// Record highlight candidates and cells.
+				var candidateOffsets = new List<DrawingInfo>();
+				foreach (int cell in urCells)
+				{
+					foreach (int digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(
+							new(otherDigitsMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
+					}
+				}
+				foreach (int cell in currentBlockMap)
+				{
+					foreach (int digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(
+							new(!cannibalMode && digit == digitIsolated ? 3 : 2, cell * 9 + digit));
+					}
+				}
+				foreach (int cell in currentInterMap)
+				{
+					foreach (int digit in grid.GetCandidates(cell))
+					{
+						sbyte id;
+						if (digitIsolated == digit)
+						{
+							id = 3;
+						}
+						else if (otherDigitsMask.ContainsBit(digit))
+						{
+							id = 1;
+						}
+						else
+						{
+							id = 2;
+						}
+
+						candidateOffsets.Add(new(id, cell * 9 + digit));
+					}
+				}
+
+				accumulator.Add(
+					new UrSdcStepInfo(
+						conclusions,
+						new View[]
+						{
+							new()
+							{
+								Cells = arMode ? GetHighlightCells(urCells) : null,
+								Candidates = candidateOffsets,
+								Regions = new DrawingInfo[] { new(0, block), new(2, line) }
+							}
+						},
+						digit1,
+						digit2,
+						urCells,
+						arMode,
+						index,
+						block,
+						line,
+						blockMask,
+						lineMask,
+						selectedInterMask,
+						cannibalMode,
+						maskIsolated,
+						currentBlockMap,
+						currentLineMap,
+						currentInterMap));
+			}
+		}
 	}
 }

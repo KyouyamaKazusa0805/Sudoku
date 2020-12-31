@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			unsafe
 			{
 				int* r = stackalloc int[2];
-				foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
+				foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 				{
 					if (!EmptyMap.Overlaps(c))
 					{
