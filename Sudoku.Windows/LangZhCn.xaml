@@ -479,6 +479,7 @@
 	<sys:String x:Key="GroupUrXyWing">唯一性技巧&gt;矩形&gt;拓展类型</sys:String>
 	<sys:String x:Key="GroupUrXyzWing">唯一性技巧&gt;矩形&gt;拓展类型</sys:String>
 	<sys:String x:Key="GroupUrWxyzWing">唯一性技巧&gt;矩形&gt;拓展类型</sys:String>
+	<sys:String x:Key="GroupUrSdc">唯一性技巧&gt;矩形&gt;拓展类型</sys:String>
 	<sys:String x:Key="GroupArType1">唯一性技巧&gt;矩形</sys:String>
 	<sys:String x:Key="GroupArType2">唯一性技巧&gt;矩形</sys:String>
 	<sys:String x:Key="GroupArType3">唯一性技巧&gt;矩形</sys:String>
@@ -489,6 +490,7 @@
 	<sys:String x:Key="GroupArXyWing">唯一性技巧&gt;矩形&gt;拓展类型</sys:String>
 	<sys:String x:Key="GroupArXyzWing">唯一性技巧&gt;矩形&gt;拓展类型</sys:String>
 	<sys:String x:Key="GroupArWxyzWing">唯一性技巧&gt;矩形&gt;拓展类型</sys:String>
+	<sys:String x:Key="GroupArSdc">唯一性技巧&gt;矩形&gt;拓展类型</sys:String>
 	<sys:String x:Key="GroupUlType1">唯一性技巧&gt;环</sys:String>
 	<sys:String x:Key="GroupUlType2">唯一性技巧&gt;环</sys:String>
 	<sys:String x:Key="GroupUlType3">唯一性技巧&gt;环</sys:String>

@@ -479,6 +479,7 @@
 	<sys:String x:Key="GroupUrXyWing">Uniqueness&gt;Rectangles&gt;Extended</sys:String>
 	<sys:String x:Key="GroupUrXyzWing">Uniqueness&gt;Rectangles&gt;Extended</sys:String>
 	<sys:String x:Key="GroupUrWxyzWing">Uniqueness&gt;Rectangles&gt;Extended</sys:String>
+	<sys:String x:Key="GroupUrSdc">Uniqueness&gt;Rectangles&gt;Extended</sys:String>
 	<sys:String x:Key="GroupArType1">Uniqueness&gt;Rectangles</sys:String>
 	<sys:String x:Key="GroupArType2">Uniqueness&gt;Rectangles</sys:String>
 	<sys:String x:Key="GroupArType3">Uniqueness&gt;Rectangles</sys:String>
@@ -489,6 +490,7 @@
 	<sys:String x:Key="GroupArXyWing">Uniqueness&gt;Rectangles&gt;Extended</sys:String>
 	<sys:String x:Key="GroupArXyzWing">Uniqueness&gt;Rectangles&gt;Extended</sys:String>
 	<sys:String x:Key="GroupArWxyzWing">Uniqueness&gt;Rectangles&gt;Extended</sys:String>
+	<sys:String x:Key="GroupArSdc">Uniqueness&gt;Rectangles&gt;Extended</sys:String>
 	<sys:String x:Key="GroupUlType1">Uniqueness&gt;Loops</sys:String>
 	<sys:String x:Key="GroupUlType2">Uniqueness&gt;Loops</sys:String>
 	<sys:String x:Key="GroupUlType3">Uniqueness&gt;Loops</sys:String>
