@@ -268,12 +268,14 @@ namespace Sudoku.Solving.Manual.Alses
 														{
 															Cells = AlsShowRegions ? null : cellOffsets,
 															Candidates = AlsShowRegions ? candidateOffsets : null,
-															Regions = AlsShowRegions
-															? new DrawingInfo[]
-															{
-																new(0, coverSet), new(1, baseSet)
-															}
-															: null
+															Regions =
+																AlsShowRegions
+																? new DrawingInfo[]
+																{
+																	new(0, coverSet),
+																	new(2, baseSet)
+																}
+																: null
 														}
 													},
 													coverSet,

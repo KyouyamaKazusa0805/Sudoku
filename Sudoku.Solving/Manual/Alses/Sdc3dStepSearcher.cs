@@ -300,7 +300,7 @@ namespace Sudoku.Solving.Manual.Alses
 																	Regions = AlsShowRegions
 																	? new DrawingInfo[]
 																	{
-																		new(0, r), new(1, c), new(2, b)
+																		new(0, r), new(2, c), new(3, b)
 																	}
 																	: null
 																}

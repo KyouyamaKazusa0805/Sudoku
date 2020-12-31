@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									new()
 									{
 										Candidates = candidateOffsets,
-										Regions = new DrawingInfo[] { new(0, r[0]) }
+										Regions = new DrawingInfo[] { new(0, r[0]), new(2, r[1]) }
 									}
 								},
 								digit,

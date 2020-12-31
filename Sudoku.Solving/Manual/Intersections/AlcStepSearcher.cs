@@ -187,7 +187,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							{
 								Cells = hasValueCell ? valueCells : null,
 								Candidates = candidateOffsets,
-								Regions = new DrawingInfo[] { new(0, baseSet), new(1, coverSet) }
+								Regions = new DrawingInfo[] { new(0, baseSet), new(2, coverSet) }
 							}
 						},
 						mask,
