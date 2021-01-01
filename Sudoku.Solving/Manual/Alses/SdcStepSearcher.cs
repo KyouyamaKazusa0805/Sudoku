@@ -241,21 +241,12 @@ namespace Sudoku.Solving.Manual.Alses
 											{
 												foreach (int digit in grid.GetCandidates(cell))
 												{
-													sbyte id;
-													if (digitIsolated == digit)
-													{
-														id = 2;
-													}
-													else if (blockMask.ContainsBit(digit))
-													{
-														id = 0;
-													}
-													else
-													{
-														id = 1;
-													}
-
-													candidateOffsets.Add(new(id, cell * 9 + digit));
+													candidateOffsets.Add(
+														new(
+															digitIsolated == digit
+															? 2
+															: blockMask.ContainsBit(digit) ? 0 : 1,
+															cell * 9 + digit));
 												}
 											}
 

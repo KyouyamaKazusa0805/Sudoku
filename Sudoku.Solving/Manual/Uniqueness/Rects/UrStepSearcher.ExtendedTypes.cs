@@ -1455,21 +1455,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									foreach (int digit in grid.GetCandidates(cell))
 									{
-										long id;
-										if (digit == elimDigit)
-										{
-											id = otherCellsMap.Contains(cell) ? 2 : 0;
-										}
-										else if (extraDigitsMask.ContainsBit(digit))
-										{
-											id = 1;
-										}
-										else
-										{
-											id = 0;
-										}
-
-										candidateOffsets.Add(new(id, cell * 9 + digit));
+										candidateOffsets.Add(
+											new(
+												digit == elimDigit
+												? otherCellsMap.Contains(cell) ? 2 : 0
+												: extraDigitsMask.ContainsBit(digit) ? 1 : 0,
+												cell * 9 + digit));
 									}
 								}
 							}
@@ -2009,21 +2000,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						sbyte id;
-						if (digitIsolated == digit)
-						{
-							id = 3;
-						}
-						else if (otherDigitsMask.ContainsBit(digit))
-						{
-							id = 1;
-						}
-						else
-						{
-							id = 2;
-						}
-
-						candidateOffsets.Add(new(id, cell * 9 + digit));
+						candidateOffsets.Add(
+							new(
+								digitIsolated == digit ? 3 : otherDigitsMask.ContainsBit(digit) ? 1 : 2,
+								cell * 9 + digit));
 					}
 				}
 
