@@ -6,7 +6,7 @@ using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving.Generating
+namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Provides a puzzle generator with the technique filter.

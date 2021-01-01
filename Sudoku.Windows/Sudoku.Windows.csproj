@@ -42,6 +42,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
+		<ProjectReference Include="..\Sudoku.Generating\Sudoku.Generating.csproj" />
 		<ProjectReference Include="..\Sudoku.IO\Sudoku.IO.csproj" />
 		<ProjectReference Include="..\Sudoku.Recognition\Sudoku.Recognition.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />

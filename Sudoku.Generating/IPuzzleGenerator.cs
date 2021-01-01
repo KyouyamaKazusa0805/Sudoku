@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Sudoku.Data;
 
-namespace Sudoku.Solving.Generating
+namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Provides data for all derived puzzle generators.

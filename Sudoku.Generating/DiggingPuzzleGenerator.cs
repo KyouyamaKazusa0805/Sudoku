@@ -3,7 +3,7 @@ using Sudoku.Data;
 using Sudoku.Solving.BruteForces.Bitwise;
 using static Sudoku.Constants.Processings;
 
-namespace Sudoku.Solving.Generating
+namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Encapsulates a puzzle generator, whose basic algorithm is digging

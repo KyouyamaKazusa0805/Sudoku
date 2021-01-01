@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Sudoku.DocComments;
-using Sudoku.Solving.Generating;
+using Sudoku.Generating;
 
 namespace Sudoku.Windows
 {

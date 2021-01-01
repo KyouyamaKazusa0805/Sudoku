@@ -9,7 +9,7 @@ using Sudoku.Globalization;
 using Sudoku.Models;
 using static Sudoku.Data.SymmetryType;
 
-namespace Sudoku.Solving.Generating
+namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Encapsulates a puzzle generator, which provides the symmetry type constraint

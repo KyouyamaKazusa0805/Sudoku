@@ -10,7 +10,7 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using static System.Algorithms;
 
-namespace Sudoku.Solving.Generating
+namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Provides an extended puzzle generator.

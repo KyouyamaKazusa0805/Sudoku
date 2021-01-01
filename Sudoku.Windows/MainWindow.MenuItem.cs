@@ -18,7 +18,7 @@ using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Generating;
+using Sudoku.Generating;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
