@@ -1264,6 +1264,73 @@
             </summary>
             <returns>The task.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Generating.TechniqueCodeFilter">
+            <summary>
+            Encapsulates a technique code filter that contains some of technique codes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Generating.TechniqueCodeFilter._internalList">
+            <summary>
+            The internal list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.#ctor(Sudoku.Solving.Manual.TechniqueCode[])">
+            <summary>
+            Initializes an instance with the specified technique codes.
+            </summary>
+            <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.#ctor(System.Collections.BitArray)">
+            <summary>
+            Initializes an instance with the specified bit array.
+            </summary>
+            <param name="bitArray">The bit array.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Generating.TechniqueCodeFilter.Count">
+            <summary>
+            The total number of techniques.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Add(Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            To add a technique code.
+            </summary>
+            <param name="techniqueCode">The technique code.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.TechniqueCode})">
+            <summary>
+            Add a serial of technique codes to this list.
+            </summary>
+            <param name="techniqueCodes">The codes.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Remove(Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            To remove a technique code.
+            </summary>
+            <param name="techniqueCode">The technique code.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Contains(Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            To determine whether the specified filter contains the technique.
+            </summary>
+            <param name="techniqueCode">The technique code to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator">
             <summary>
             Provides a puzzle generator with the technique filter.
@@ -1282,7 +1349,7 @@
         <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate(Sudoku.Solving.Manual.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
+        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate(Sudoku.Solving.Generating.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
             <summary>
             To generate a puzzle that contains the specified technique code.
             </summary>
@@ -1294,7 +1361,7 @@
             <param name="countryCode">The country code.</param>
             <returns>The puzzle.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.GenerateAsync(Sudoku.Solving.Manual.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
+        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.GenerateAsync(Sudoku.Solving.Generating.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
             <summary>
             To generate a puzzle that contains the specified technique code asynchronizedly.
             </summary>

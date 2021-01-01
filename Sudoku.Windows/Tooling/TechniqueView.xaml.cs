@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using Sudoku.DocComments;
+using Sudoku.Solving.Generating;
 using Sudoku.Solving.Manual;
 using static Sudoku.Windows.MainWindow;
 using CoreResources = Sudoku.Windows.Resources;

@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.DocComments;
+using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving.Manual
+namespace Sudoku.Solving.Generating
 {
 	/// <summary>
 	/// Encapsulates a technique code filter that contains some of technique codes.
