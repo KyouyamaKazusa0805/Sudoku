@@ -17,7 +17,7 @@ namespace Sudoku.DocComments
 		///	<param name="this">(<see langword="this"/> parameter) The value.</param>
 		///	<returns>A <see cref="bool"/> value indicating that.</returns>
 		///	<remarks>
-		///	The equivalent code: <c>(x &amp; (x - 1)) != 0</c>.
+		///	The equivalent code: <c>x != 0 &amp;&amp; (x &amp; (x - 1)) != 0</c>.
 		/// </remarks>
 		public static bool IsPowerOfTwo(Integer @this) => throw new NotImplementedException();
 
