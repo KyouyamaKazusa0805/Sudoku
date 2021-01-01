@@ -8,7 +8,6 @@ using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
-using static System.Algorithms;
 
 namespace Sudoku.Generating
 {
@@ -25,7 +24,11 @@ namespace Sudoku.Generating
 		/// <summary>
 		/// Indicates the swapping factor.
 		/// </summary>
-		private static readonly int[,] SwappingFactor = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
+		private static readonly int[,] SwappingFactor =
+		{
+			{ 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 },
+			{ 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 }
+		};
 
 		/// <summary>
 		/// The backdoor searcher.
@@ -58,8 +61,7 @@ namespace Sudoku.Generating
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			progress?.Report(defaultValue);
 
-			var puzzle = new StringBuilder() { Length = 81 };
-			var solution = new StringBuilder() { Length = 81 };
+			StringBuilder puzzle = new() { Length = 81 }, solution = new() { Length = 81 };
 			var emptyGridStr = new StringBuilder(SudokuGrid.EmptyString);
 
 			while (true)
@@ -147,19 +149,21 @@ namespace Sudoku.Generating
 
 			for (int i = 23; i >= 0; i--)
 			{
-				Swap(ref pattern[i], ref pattern[(int)((i + 1) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[(int)((i + 1) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 47; i >= 24; i--)
 			{
-				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(
+					ref pattern[i], ref pattern[24 + (int)((i - 23) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 53; i >= 48; i--)
 			{
-				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(
+					ref pattern[i], ref pattern[48 + (int)((i - 47) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 80; i >= 54; i--)
 			{
-				Swap(ref pattern[i], ref pattern[54 + (int)(27 * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[54 + (int)(27 * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 		}
 
@@ -172,19 +176,21 @@ namespace Sudoku.Generating
 		{
 			for (int i = 23; i >= 0; i--)
 			{
-				Swap(ref pattern[i], ref pattern[(int)((i + 1) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[(int)((i + 1) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 47; i >= 24; i--)
 			{
-				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(
+					ref pattern[i], ref pattern[24 + (int)((i - 23) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 53; i >= 48; i--)
 			{
-				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(
+					ref pattern[i], ref pattern[48 + (int)((i - 47) * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 			for (int i = 80; i >= 54; i--)
 			{
-				Swap(ref pattern[i], ref pattern[54 + (int)(27 * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[54 + (int)(27 * IPuzzleGenerator.Rng.NextDouble())]);
 			}
 		}
 	}

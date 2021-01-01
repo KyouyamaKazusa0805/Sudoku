@@ -15,7 +15,7 @@ namespace System.Extensions
 		/// <typeparam name="TEnum">The type of that enumeration.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The field.</param>
 		/// <returns>All flags.</returns>
-		public static TEnum[] GetAllFlags<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
+		public static ReadOnlySpan<TEnum> GetAllFlags<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 		{
 			unsafe
 			{
@@ -26,7 +26,7 @@ namespace System.Extensions
 					buffer[i++] = flag;
 				}
 
-				return new Span<TEnum>(buffer, i).ToArray();
+				return new Span<TEnum>(buffer, i);
 			}
 		}
 

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
-using static Sudoku.Data.SymmetryType;
 
 namespace Sudoku.Generating
 {
@@ -18,7 +17,7 @@ namespace Sudoku.Generating
 	public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 	{
 		/// <inheritdoc/>
-		public override SudokuGrid Generate() => Generate(28, Central, null, CountryCode.Default);
+		public override SudokuGrid Generate() => Generate(28, SymmetryType.Central, null, CountryCode.Default);
 
 		/// <summary>
 		/// Generate a puzzle with the specified information.
@@ -55,7 +54,11 @@ namespace Sudoku.Generating
 			int count = allTypes.Length;
 			if (count == 0)
 			{
-				allTypes = new[] { None };
+				unsafe
+				{
+					var z = stackalloc[] { SymmetryType.None };
+					allTypes = new ReadOnlySpan<SymmetryType>(z, 1);
+				}
 			}
 
 			var tempSb = new StringBuilder(solution.ToString());
@@ -77,26 +80,26 @@ namespace Sudoku.Generating
 					var tempMap = Cells.Empty;
 					foreach (int tCell in selectedType switch
 					{
-						Central => stackalloc[] { r * 9 + c, (8 - r) * 9 + 8 - c },
-						Diagonal => stackalloc[] { r * 9 + c, c * 9 + r },
-						AntiDiagonal => stackalloc[] { r * 9 + c, (8 - c) * 9 + 8 - r },
-						XAxis => stackalloc[] { r * 9 + c, (8 - r) * 9 + c },
-						YAxis => stackalloc[] { r * 9 + c, r * 9 + 8 - c },
-						DiagonalBoth => stackalloc[]
+						SymmetryType.Central => stackalloc[] { r * 9 + c, (8 - r) * 9 + 8 - c },
+						SymmetryType.Diagonal => stackalloc[] { r * 9 + c, c * 9 + r },
+						SymmetryType.AntiDiagonal => stackalloc[] { r * 9 + c, (8 - c) * 9 + 8 - r },
+						SymmetryType.XAxis => stackalloc[] { r * 9 + c, (8 - r) * 9 + c },
+						SymmetryType.YAxis => stackalloc[] { r * 9 + c, r * 9 + 8 - c },
+						SymmetryType.DiagonalBoth => stackalloc[]
 						{
 							r * 9 + c,
 							c * 9 + r,
 							(8 - c) * 9 + 8 - r,
 							(8 - r) * 9 + 8 - c
 						},
-						AxisBoth => stackalloc[]
+						SymmetryType.AxisBoth => stackalloc[]
 						{
 							r * 9 + c,
 							(8 - r) * 9 + c,
 							r * 9 + 8 - c,
 							(8 - r) * 9 + 8 - c
 						},
-						All => stackalloc[]
+						SymmetryType.All => stackalloc[]
 						{
 							r * 9 + c,
 							r * 9 + (8 - c),
@@ -107,7 +110,7 @@ namespace Sudoku.Generating
 							(8 - c) * 9 + r,
 							(8 - c) * 9 + (8 - r)
 						},
-						None => stackalloc[] { r * 9 + c }
+						SymmetryType.None => stackalloc[] { r * 9 + c }
 					})
 					{
 						solution[tCell] = '0';

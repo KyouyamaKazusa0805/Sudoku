@@ -927,6 +927,20 @@
             Indicates the searcher will cause a lot of memory allocation.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Extensions.AnalysisResultEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.AnalysisResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.AnalysisResult"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.AnalysisResultEx.Contains(Sudoku.Solving.AnalysisResult,Sudoku.TechniqueCode)">
+            <summary>
+            To check whether the specified analysis result contains the specified technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="code">The technique code to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Extensions.CellsEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
