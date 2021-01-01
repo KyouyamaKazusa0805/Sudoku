@@ -2394,16 +2394,6 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.ShowDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.BaseDifficulty">
-            <summary>
-            The base difficulty.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.LengthDifficulty">
-            <summary>
-            The length difficulty.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.Complexity">
             <summary>
             The total complexity.
@@ -2415,6 +2405,16 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.BaseDifficulty">
+            <summary>
+            The base difficulty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.LengthDifficulty">
+            <summary>
+            The length difficulty.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.IsXyChain">
             <summary>
             Indicates whether the specified chain is an XY-Chain.
@@ -2425,13 +2425,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.GetHashCode">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.GetNestedSuffix(System.Int32)">
-            <summary>
-            Get the nested suffix with the specified level.
-            </summary>
-            <param name="level">The level.</param>
-            <returns>The name suffix.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingStepSearcher">
             <summary>

@@ -26,15 +26,12 @@ namespace Sudoku.Solving.Manual
 		/// Initializes an instance with the specified technique codes.
 		/// </summary>
 		/// <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
-		public TechniqueCodeFilter(params TechniqueCode[]? techniqueCodes)
+		public TechniqueCodeFilter(params TechniqueCode[] techniqueCodes)
 		{
-			if (techniqueCodes is not null)
+			foreach (var techniqueCode in techniqueCodes)
 			{
-				foreach (var techniqueCode in techniqueCodes)
-				{
-					_internalList[(int)techniqueCode] = true;
-					Count++;
-				}
+				_internalList[(int)techniqueCode] = true;
+				Count++;
 			}
 		}
 

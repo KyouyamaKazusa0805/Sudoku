@@ -5181,40 +5181,6 @@
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.TechniqueDisplayAttribute">
-            <summary>
-            <para>
-            To mark on a technique searcher class to provide additional displaying messages
-            which are used in UI forms, such as technique priority settings form.
-            </para>
-            <para>
-            You can use this instance to mark on a enumeration field such as <see cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
-            to show the name on the screen also.
-            </para>
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueDisplayAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an instance with the specified displaying name.
-            </summary>
-            <param name="displayName">The name.</param>
-        </member>
-        <member name="P:Sudoku.Solving.TechniqueDisplayAttribute.DisplayName">
-            <summary>
-            Indicates the display name of this technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueDisplayAttribute.GetDisplayName``1(``0)">
-            <summary>
-            Get the display name of the specified enum field.
-            </summary>
-            <typeparam name="TEnum">The type of the enum field.</typeparam>
-            <param name="enumField">The enum field to check.</param>
-            <returns>
-            The display name. Return <see langword="null"/> when the field doesn't mark this attribute.
-            </returns>
-        </member>
         <member name="T:Sudoku.Windows.ResourceDictionaryNotFoundException">
             <summary>
             Indicates an exception that throws when the resource dictionary doesn't exist.

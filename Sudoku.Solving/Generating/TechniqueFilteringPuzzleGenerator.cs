@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Extensions;
 using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Manual;
-using static Sudoku.Solving.Manual.TechniqueCode;
 
 namespace Sudoku.Solving.Generating
 {
@@ -20,11 +18,15 @@ namespace Sudoku.Solving.Generating
 		/// </summary>
 		private static readonly TechniqueCodeFilter DefaultFilter =
 			new(
-				LastDigit, FullHouse,
-				HiddenSingleRow, HiddenSingleColumn, HiddenSingleBlock, NakedSingle,
-				NakedPair, NakedPairPlus, HiddenPair, LockedPair,
-				NakedTriple, NakedTriplePlus, HiddenTriple, LockedTriple,
-				NakedQuadruple, NakedQuadruplePlus, HiddenQuadruple);
+				TechniqueCode.LastDigit, TechniqueCode.FullHouse,
+				TechniqueCode.HiddenSingleRow, TechniqueCode.HiddenSingleColumn,
+				TechniqueCode.HiddenSingleBlock, TechniqueCode.NakedSingle,
+				TechniqueCode.NakedPair, TechniqueCode.NakedPairPlus,
+				TechniqueCode.HiddenPair, TechniqueCode.LockedPair,
+				TechniqueCode.NakedTriple, TechniqueCode.NakedTriplePlus,
+				TechniqueCode.HiddenTriple, TechniqueCode.LockedTriple,
+				TechniqueCode.NakedQuadruple, TechniqueCode.NakedQuadruplePlus,
+				TechniqueCode.HiddenQuadruple);
 
 		/// <summary>
 		/// The default manual solver.
@@ -57,7 +59,6 @@ namespace Sudoku.Solving.Generating
 			progress?.Report(progressResult);
 
 			techniqueCodeFilter ??= DefaultFilter;
-
 
 			while (true)
 			{

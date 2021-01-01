@@ -50,46 +50,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <summary>
-		/// The base difficulty.
-		/// </summary>
-		public decimal BaseDifficulty =>
-			this switch
-			{
-				{ IsNishio: true } => 7.5M,
-				{ IsDynamic: true } => Level switch
-				{
-					0 => 8.5M,
-					1 => 8.5M + .5M * Level,
-					>= 2 => 9.5M + .5M * (Level - 2)
-				},
-				{ IsMultiple: true } => 8.0M
-			};
-
-		/// <summary>
-		/// The length difficulty.
-		/// </summary>
-		public decimal LengthDifficulty
-		{
-			get
-			{
-				decimal result = 0;
-				int ceil = 4;
-				int length = Complexity - 2;
-				for (bool isOdd = false; length > ceil; isOdd = !isOdd)
-				{
-					result += .1M;
-					ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
-				}
-
-				return result;
-			}
-		}
-
-		/// <summary>
 		/// The total complexity.
 		/// </summary>
 		public int Complexity => FlatComplexity;
-
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -113,6 +76,42 @@ namespace Sudoku.Solving.Manual.Chaining
 				},
 				_ => TechniqueCode.Aic
 			};
+
+		/// <summary>
+		/// The base difficulty.
+		/// </summary>
+		protected decimal BaseDifficulty =>
+			this switch
+			{
+				{ IsNishio: true } => 7.5M,
+				{ IsDynamic: true } => Level switch
+				{
+					0 => 8.5M,
+					1 => 8.5M + .5M * Level,
+					>= 2 => 9.5M + .5M * (Level - 2)
+				},
+				{ IsMultiple: true } => 8.0M
+			};
+
+		/// <summary>
+		/// The length difficulty.
+		/// </summary>
+		protected decimal LengthDifficulty
+		{
+			get
+			{
+				decimal result = 0;
+				int ceil = 4;
+				int length = Complexity - 2;
+				for (bool isOdd = false; length > ceil; isOdd = !isOdd)
+				{
+					result += .1M;
+					ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
+				}
+
+				return result;
+			}
+		}
 
 		/// <summary>
 		/// Indicates whether the specified chain is an XY-Chain.
@@ -250,7 +249,6 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 			}
 		}
-#endif
 
 		/// <summary>
 		/// Get the nested suffix with the specified level.
@@ -262,13 +260,12 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				0 => string.Empty,
 				1 => " (+)",
-				2 => $" (+ {TechniqueDisplayAttribute.GetDisplayName(TechniqueCode.Aic)})",
+				2 => $" (+ Alternating Inference Chains)",
 				3 => $" (+ Multiple Forcing Chains)",
-				4 => $" (+ {TechniqueDisplayAttribute.GetDisplayName(TechniqueCode.DynamicFc)})",
-				_ => $" (+ {TechniqueDisplayAttribute.GetDisplayName(TechniqueCode.DynamicFc)}{GetNestedSuffix(level - 3)})"
+				4 => $" (+ Dynamic Forcing Chains)",
+				_ => $" (+ Dynamic Forcing Chains{GetNestedSuffix(level - 3)})"
 			};
 
-#if DOUBLE_LAYERED_ASSUMPTION
 		/// <inheritdoc/>
 		IEnumerable<Node> IHasParentNodeInfo.GetRuleParents(in SudokuGrid initialGrid, in SudokuGrid currentGrid)
 		{
