@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Extensions;
 using System.Linq;
+using System.Threading;
 using Sudoku.Data;
 using Sudoku.Models;
 using Sudoku.Runtime;
@@ -32,6 +33,7 @@ namespace Sudoku.Solving.Manual
 		/// The progress used for report the current state. If we don't need, the value should
 		/// be assigned <see langword="null"/>.
 		/// </param>
+		/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver can't solved due to wrong handling.
@@ -39,7 +41,8 @@ namespace Sudoku.Solving.Manual
 		/// <seealso cref="GridProgressResult"/>
 		private unsafe AnalysisResult SolveSeMode(
 			in SudokuGrid grid, ref SudokuGrid cloneation, IList<StepInfo> steps, in SudokuGrid solution,
-			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
+			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress,
+			CancellationToken? cancellationToken)
 		{
 			var searchers = this.GetSeModeSearchers(solution);
 			var stepGrids = new List<SudokuGrid>();
@@ -106,7 +109,8 @@ namespace Sudoku.Solving.Manual
 						{
 							if (
 								RecordStep(
-									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result,
+									cancellationToken))
 							{
 								stopwatch.Stop();
 								return result;
@@ -153,7 +157,10 @@ namespace Sudoku.Solving.Manual
 					if (!CheckConclusionValidityAfterSearched
 						|| CheckConclusionsValidity(solution, step.Conclusions))
 					{
-						if (RecordStep(steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result))
+						if (
+							RecordStep(
+								steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result,
+								cancellationToken))
 						{
 							// The puzzle has been solved.
 							// :)

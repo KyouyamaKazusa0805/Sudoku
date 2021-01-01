@@ -4451,25 +4451,41 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveAsync(Sudoku.Data.SudokuGrid,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveAsync(Sudoku.Data.SudokuGrid,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode,System.Nullable{System.Threading.CancellationToken})">
             <summary>
             To solve the specified puzzle in asynchronous way.
             </summary>
             <param name="grid">The grid.</param>
             <param name="progress">The progress.</param>
             <param name="countryCode">The country code.</param>
+            <param name="cancellationToken">
+            The cancellation token that is used to cancel the operation. If the value is <see langword="null"/>,
+            the method won't support cancellation.
+            </param>
             <returns>The task of the execution.</returns>
+            <remarks>
+            <para>
+            If the task is cancelled, the inner result value (i.e. the value of the property
+            <see cref="P:System.Threading.Tasks.Task`1.Result"/>) should be <see langword="null"/>. In this way, we can raise
+            an exception called <see cref="T:System.OperationCanceledException"/>.
+            </para>
+            <para>
+            However, please <b>don't</b> raise this exception here, because here is in the asynchronized
+            environment and we can't process and handle any exception here.
+            </para>
+            </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode,System.Nullable{System.Threading.CancellationToken})">
             <summary>
             To solve the puzzle.
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
             <param name="progress">The progress instance to report the state.</param>
             <param name="countryCode">The country code.</param>
+            <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <returns>The analysis result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.List{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.List{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult},System.Nullable{System.Threading.CancellationToken})">
             <summary>
             Solve naively.
             </summary>
@@ -4489,13 +4505,14 @@
             The progress used for report the current state. If we don't need, the value should
             be assigned <see langword="null"/>.
             </param>
+            <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.Runtime.WrongHandlingException">
             Throws when the solver can't solved due to wrong handling.
             </exception>
             <seealso cref="T:Sudoku.Models.GridProgressResult"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveSeMode(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveSeMode(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Models.GridProgressResult@,System.IProgress{Sudoku.Models.IProgressResult},System.Nullable{System.Threading.CancellationToken})">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
@@ -4515,6 +4532,7 @@
             The progress used for report the current state. If we don't need, the value should
             be assigned <see langword="null"/>.
             </param>
+            <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.Runtime.WrongHandlingException">
             Throws when the solver can't solved due to wrong handling.
@@ -4868,7 +4886,7 @@
             <para>The value is <c>5</c> in default case.</para>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordStep(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Diagnostics.Stopwatch,System.Collections.Generic.IList{Sudoku.Data.SudokuGrid},Sudoku.Solving.AnalysisResult@)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordStep(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Diagnostics.Stopwatch,System.Collections.Generic.IList{Sudoku.Data.SudokuGrid},Sudoku.Solving.AnalysisResult@,System.Nullable{System.Threading.CancellationToken})">
             <summary>
             Bound with on-solving methods returns the solving state.
             </summary>
@@ -4879,7 +4897,11 @@
             <param name="stopwatch">The stopwatch.</param>
             <param name="stepGrids">The step grids.</param>
             <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
+            <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.OperationCanceledException">
+            Throws when the current operation is cancelled.
+            </exception>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.SudokuGrid@,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>

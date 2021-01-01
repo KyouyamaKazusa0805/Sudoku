@@ -23,6 +23,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
 using System.Extensions;
+using System.Threading;
 #if SUDOKU_RECOGNITION
 using System.Drawing;
 #endif
@@ -456,7 +457,7 @@ namespace Sudoku.Windows
 							33, symmetry, dialog.DefaultReporting, Settings.LanguageCode
 						);
 
-					dialog.CloseAnyway();
+					dialog.Close();
 
 					EnableGeneratingControls();
 					SwitchOnGeneratingComboBoxesDisplaying();
@@ -499,7 +500,7 @@ namespace Sudoku.Windows
 							Settings.LanguageCode
 						);
 
-					dialog.CloseAnyway();
+					dialog.Close();
 
 					EnableGeneratingControls();
 					SwitchOnGeneratingComboBoxesDisplaying();
@@ -538,7 +539,7 @@ namespace Sudoku.Windows
 				}
 
 			Last:
-				dialog.CloseAnyway();
+				dialog.Close();
 
 				EnableGeneratingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();
@@ -611,79 +612,100 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (!await internalOperation(false) && !await internalOperation(true))
+			var cts = new CancellationTokenSource();
+			try
 			{
-				Messagings.FailedToApplyPuzzle();
-				e.Handled = true;
-				return;
+				if (!await internalOperation(cts))
+				{
+					Messagings.FailedToApplyPuzzle();
+					e.Handled = true;
+					return;
+				}
 			}
-
-			async Task<bool> internalOperation(bool sukakuMode)
+			catch (OperationCanceledException)
 			{
-				if (_puzzle.IsSolved)
-				{
-					Messagings.PuzzleAlreadySolved();
-					return !(e.Handled = true);
-				}
-
-				var sb = new StringBuilder(SudokuGrid.EmptyString);
-				if (sukakuMode)
-				{
-					string puzzleString = _puzzle.ToString("~");
-					if (new UnsafeBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
-					{
-						return !(e.Handled = true);
-					}
-				}
-				else
-				{
-					for (int cell = 0; cell < 81; cell++)
-					{
-						sb[cell] += (char)(_puzzle[cell] + 1);
-					}
-
-					if (new UnsafeBitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
-					{
-						return !(e.Handled = true);
-					}
-				}
-
-				// Update status.
-				ClearItemSourcesWhenGeneratedOrSolving();
-				_textBoxInfo.Text = (string)LangSource["WhileSolving"];
-				DisableSolvingControls();
-
-				// Run the solver asynchronizedly, during solving you can do other work.
-				var dialog = new ProgressWindow();
-				dialog.Show();
-
-				if (_puzzle.GivensCount == 0)
-				{
-					_puzzle.Fix();
-				}
-
-				if ((Settings.SolveFromCurrent, sukakuMode) == (false, false))
-				{
-					_puzzle.Reset();
-				}
-
-				_puzzle.ClearStack();
-
-				_analyisResult =
-					await _manualSolver.SolveAsync(
-						(SudokuGrid)_puzzle, dialog.DefaultReporting, Settings.LanguageCode
-					);
-
-				UpdateImageGrid();
-
-				dialog.CloseAnyway();
-
-				// Solved. Now update the technique summary.
+				// If here, the task has been already cancelled.
 				EnableSolvingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();
 				DisplayDifficultyInfoAfterAnalyzed();
+			}
+			finally
+			{
+				cts.Dispose();
+			}
 
-				return true;
+			async Task<bool> internalOperation(CancellationTokenSource cts)
+			{
+				for (int i = 0; i < 2; i++)
+				{
+					bool sukakuMode = i != 0;
+					if (_puzzle.IsSolved)
+					{
+						Messagings.PuzzleAlreadySolved();
+						continue;
+					}
+
+					var sb = new StringBuilder(SudokuGrid.EmptyString);
+					if (sukakuMode)
+					{
+						string puzzleString = _puzzle.ToString("~");
+						if (new UnsafeBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
+						{
+							continue;
+						}
+					}
+					else
+					{
+						for (int cell = 0; cell < 81; cell++)
+						{
+							sb[cell] += (char)(_puzzle[cell] + 1);
+						}
+
+						if (new UnsafeBitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
+						{
+							continue;
+						}
+					}
+
+					// Update status.
+					ClearItemSourcesWhenGeneratedOrSolving();
+					_textBoxInfo.Text = (string)LangSource["WhileSolving"];
+					DisableSolvingControls();
+
+					// Run the solver asynchronizedly, during solving you can do other work.
+					var dialog = new ProgressWindow { CancellationTokenSource = cts };
+					dialog.Show();
+
+					if (_puzzle.GivensCount == 0)
+					{
+						_puzzle.Fix();
+					}
+
+					if (!Settings.SolveFromCurrent && !sukakuMode)
+					{
+						_puzzle.Reset();
+					}
+
+					_puzzle.ClearStack();
+
+					_analyisResult =
+						await _manualSolver.SolveAsync(
+							(SudokuGrid)_puzzle, dialog.DefaultReporting, Settings.LanguageCode, cts.Token
+						) ?? throw new OperationCanceledException();
+
+					UpdateImageGrid();
+
+					dialog.Close();
+
+					// Solved. Now update the technique summary.
+					EnableSolvingControls();
+					SwitchOnGeneratingComboBoxesDisplaying();
+					DisplayDifficultyInfoAfterAnalyzed();
+
+					return true;
+				}
+
+				return false;
 			}
 		}
 

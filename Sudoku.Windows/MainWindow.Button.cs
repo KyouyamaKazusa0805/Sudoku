@@ -89,7 +89,7 @@ namespace Sudoku.Windows
 						.ToString()));
 				_listBoxTechniques.ItemsSource = srcView;
 
-				dialog?.CloseAnyway();
+				dialog?.Close();
 			}
 		}
 

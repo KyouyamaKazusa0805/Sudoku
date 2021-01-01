@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Models;
@@ -23,12 +25,16 @@ namespace Sudoku.Solving.Manual
 		/// <param name="stopwatch">The stopwatch.</param>
 		/// <param name="stepGrids">The step grids.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
+		/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <exception cref="OperationCanceledException">
+		/// Throws when the current operation is cancelled.
+		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordStep(
 			IList<StepInfo> steps, StepInfo step, in SudokuGrid grid,
 			ref SudokuGrid cloneation, Stopwatch stopwatch, IList<SudokuGrid> stepGrids,
-			[NotNullWhen(true)] out AnalysisResult? result)
+			[NotNullWhen(true)] out AnalysisResult? result, CancellationToken? cancellationToken)
 		{
 			bool needAdd = false;
 			foreach (var (t, c, d) in step.Conclusions)
@@ -62,6 +68,8 @@ namespace Sudoku.Solving.Manual
 					return true;
 				}
 			}
+
+			cancellationToken?.ThrowIfCancellationRequested();
 
 			result = null;
 			return false;
