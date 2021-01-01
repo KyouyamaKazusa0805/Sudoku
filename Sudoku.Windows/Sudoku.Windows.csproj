@@ -32,6 +32,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="icon-32.ico" />
+		<None Remove="icon-64.ico" />
 		<None Remove="Sudoku.Windows.xml" />
 	</ItemGroup>
 
