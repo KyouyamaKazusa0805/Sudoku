@@ -170,7 +170,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 								tempMask |= grid.GetCandidates(cell);
 							}
 
-							if (tempMask.PopCount() != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
+							if (tempMask.PopCount() != size + 1 || !tempMask.Covers(extraDigitsMask))
 							{
 								continue;
 							}

@@ -90,12 +90,12 @@ namespace System.Extensions
 					case 4:
 					{
 						int otherValue = Unsafe.As<TEnum, int>(ref other);
-						return (Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue;
+						return Unsafe.As<TEnum, int>(ref @this).Covers(otherValue);
 					}
 					case 8:
 					{
 						long otherValue = Unsafe.As<TEnum, long>(ref other);
-						return (Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue;
+						return Unsafe.As<TEnum, long>(ref @this).Covers(otherValue);
 					}
 					default:
 					{

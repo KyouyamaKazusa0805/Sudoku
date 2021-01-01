@@ -34,6 +34,10 @@ namespace System.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool ExceptOverlaps(this byte @this, byte other) => (@this & ~other) != 0;
 
+		/// <inheritdoc cref="Integer.Covers(Integer, Integer)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool Covers(this byte @this, byte other) => (@this & other) == other;
+
 		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int FindFirstSet(this byte @this) => BitOperations.TrailingZeroCount(@this);

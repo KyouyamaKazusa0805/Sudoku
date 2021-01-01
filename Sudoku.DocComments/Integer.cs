@@ -75,6 +75,17 @@ namespace Sudoku.DocComments
 		public static bool ExceptOverlaps(Integer @this, Integer other) => throw new NotImplementedException();
 
 		/// <summary>
+		/// Determine whether the bits of the current value fully covers the ones of the specified value.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="other">The other value to check.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <remarks>
+		/// The equivalent code: <c>(x &amp; y) == y</c>.
+		/// </remarks>
+		public static bool Covers(Integer @this, Integer other) => throw new NotImplementedException();
+
+		/// <summary>
 		/// Find the first offset of set bit of the binary representation
 		/// of the specified value.
 		/// </summary>

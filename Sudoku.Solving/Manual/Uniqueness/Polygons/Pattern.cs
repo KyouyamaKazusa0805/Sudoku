@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 
@@ -59,7 +60,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <summary>
 		/// Indicates whether the specified pattern is a heptagon.
 		/// </summary>
-		public bool IsHeptagon => (_mask >> 28 & 127) == 127;
+		public bool IsHeptagon => (_mask >> 28).Covers(127);
 
 		/// <summary>
 		/// Indicates the map of pair 1 cells.

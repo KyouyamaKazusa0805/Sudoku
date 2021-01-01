@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Chaining
 #if DOUBLE_LAYERED_ASSUMPTION
 				var destOff = getReversedLoop(destOn);
 #endif
-				if ((destOn.Chain.Count & 1) != 1
+				if (destOn.Chain.Count.IsEven()
 					&&
 #if DOUBLE_LAYERED_ASSUMPTION
 					CreateLoopHint(grid, destOn, destOff, xEnabled, yEnabled)

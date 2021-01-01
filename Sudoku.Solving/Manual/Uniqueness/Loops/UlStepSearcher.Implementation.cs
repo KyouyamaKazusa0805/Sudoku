@@ -148,7 +148,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			{
 				m |= grid.GetCandidates(cell);
 			}
-			if ((m & comparer) != comparer)
+			if (!m.Covers(comparer))
 			{
 				return;
 			}
@@ -172,7 +172,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							mask |= grid.GetCandidates(cell);
 						}
 
-						if (mask.PopCount() != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
+						if (mask.PopCount() != size + 1 || !mask.Covers(otherDigitsMask))
 						{
 							continue;
 						}

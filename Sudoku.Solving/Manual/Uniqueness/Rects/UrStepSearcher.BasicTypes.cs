@@ -225,7 +225,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			short mask = grid.BitwiseOrMasks(otherCellsMap);
-			if ((mask & comparer) != comparer)
+			if (!mask.Covers(comparer))
 			{
 				return;
 			}
@@ -249,7 +249,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							tempMask |= grid.GetCandidates(cell);
 						}
 						if (tempMask.Overlaps(comparer) || tempMask.PopCount() - 1 != size
-							|| (tempMask & otherDigitsMask) != otherDigitsMask)
+							|| !tempMask.Covers(otherDigitsMask))
 						{
 							continue;
 						}

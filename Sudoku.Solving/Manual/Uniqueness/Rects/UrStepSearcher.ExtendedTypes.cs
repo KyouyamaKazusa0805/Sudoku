@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short o = (short)(o1 | o2);
 			if ((o.PopCount(), o1.PopCount(), o2.PopCount(), o1 & comparer, o2 & comparer) is
 				not (4, <= 3, <= 3, not 0, not 0)
-				|| (o & comparer) != comparer)
+				|| !o.Covers(comparer))
 			{
 				return;
 			}
@@ -469,7 +469,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					mask.PopCount(), m1.PopCount(), m2.PopCount(), m3.PopCount(),
 					m1 & comparer, m2 & comparer, m3 & comparer
 				) is not (4, <= 3, <= 3, <= 3, not 0, not 0, not 0)
-				|| (mask & comparer) != comparer)
+				|| !mask.Covers(comparer))
 			{
 				return;
 			}
@@ -1375,7 +1375,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				short mask2 = grid.GetCandidates(otherCell2);
 				short mask = (short)(mask1 | mask2);
 
-				if (mask.PopCount() != 2 + size || (mask & comparer) != comparer
+				if (mask.PopCount() != 2 + size || !mask.Covers(comparer)
 					|| mask1 == comparer || mask2 == comparer)
 				{
 					return;
@@ -1766,7 +1766,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer || notSatisfiedType3
-				|| (mergedMaskInOtherCells & comparer) != comparer)
+				|| !mergedMaskInOtherCells.Covers(comparer))
 			{
 				return;
 			}
