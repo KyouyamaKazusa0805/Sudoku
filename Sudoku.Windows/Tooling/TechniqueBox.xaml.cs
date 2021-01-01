@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using Sudoku.DocComments;
-using Sudoku.Solving.Manual;
 
 namespace Sudoku.Windows.Tooling
 {

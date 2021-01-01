@@ -1277,7 +1277,7 @@
         <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.#ctor">
             <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.#ctor(Sudoku.Solving.Manual.TechniqueCode[])">
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.#ctor(Sudoku.TechniqueCode[])">
             <summary>
             Initializes an instance with the specified technique codes.
             </summary>
@@ -1294,28 +1294,28 @@
             The total number of techniques.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Add(Sudoku.Solving.Manual.TechniqueCode)">
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Add(Sudoku.TechniqueCode)">
             <summary>
             To add a technique code.
             </summary>
             <param name="techniqueCode">The technique code.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.TechniqueCode})">
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.AddRange(System.Collections.Generic.IEnumerable{Sudoku.TechniqueCode})">
             <summary>
             Add a serial of technique codes to this list.
             </summary>
             <param name="techniqueCodes">The codes.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Remove(Sudoku.Solving.Manual.TechniqueCode)">
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Remove(Sudoku.TechniqueCode)">
             <summary>
             To remove a technique code.
             </summary>
             <param name="techniqueCode">The technique code.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Contains(Sudoku.Solving.Manual.TechniqueCode)">
+        <member name="M:Sudoku.Solving.Generating.TechniqueCodeFilter.Contains(Sudoku.TechniqueCode)">
             <summary>
             To determine whether the specified filter contains the technique.
             </summary>
@@ -7863,7 +7863,7 @@
             <param name="XyCell">The cell that only contains X and Y digit.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle + 2D (or 3X)</b> or
             <b>avoidable rectangle + 2D (or 3X)</b> technique.
@@ -7908,7 +7908,7 @@
             <param name="ConjugatePairs">All conjugate pairs.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair},System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle plus</b> (UR+) or
             <b>avoidable rectangle plus</b> (AR+) technique.
@@ -8027,7 +8027,7 @@
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) technique.
@@ -8584,7 +8584,7 @@
             <param name="ExtraDigit">The extra digit.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) type 2 (or type 5) technique.
@@ -8684,7 +8684,7 @@
             <param name="Pivots">The pivot cells.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.TechniqueCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) with wings technique.
