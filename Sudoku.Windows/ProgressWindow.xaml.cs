@@ -42,8 +42,15 @@ namespace Sudoku.Windows
 		/// <inheritdoc/>
 		protected override void OnClosing(CancelEventArgs e)
 		{
-			CancellationTokenSource?.Cancel();
-			base.OnClosing(e);
+			if (CancellationTokenSource is null)
+			{
+				e.Cancel = true;
+			}
+			else
+			{
+				CancellationTokenSource.Cancel();
+				base.OnClosing(e);
+			}
 		}
 	}
 }
