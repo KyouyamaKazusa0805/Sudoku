@@ -8,7 +8,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Authors>Sunnie</Authors>
 		<Description>Provides the extension methods for the System library instances.</Description>
-		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
+		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>

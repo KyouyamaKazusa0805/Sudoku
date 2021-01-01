@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
@@ -8,7 +8,7 @@
 		<DocumentationFile>.\Sudoku.IO.xml</DocumentationFile>
 		<Authors>Sunnie</Authors>
 		<Description>The IO operations for sudoku.</Description>
-		<Copyright>Copyright (c) Sunnie 2020</Copyright>
+		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>

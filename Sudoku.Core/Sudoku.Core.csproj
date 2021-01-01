@@ -7,7 +7,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Authors>Sunnie</Authors>
 		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
-		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
+		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<LangVersion>9.0</LangVersion>
 		<DocumentationFile>.\Sudoku.Core.xml</DocumentationFile>
 		<Optimize>false</Optimize>

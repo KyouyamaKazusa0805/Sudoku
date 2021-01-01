@@ -5,7 +5,7 @@
 		<Nullable>enable</Nullable>
 		<Authors>Sunnie</Authors>
 		<Description>The drawing operation library.</Description>
-		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
+		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<LangVersion>9.0</LangVersion>
 		<DocumentationFile>.\Sudoku.Drawing.xml</DocumentationFile>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>

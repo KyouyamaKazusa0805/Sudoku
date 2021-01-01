@@ -9,7 +9,7 @@
 		<Authors>Sunnie</Authors>
 		<Product>Sunnie's sudoku solution</Product>
 		<Description>This is Sunnie's sudoku solution, you can use this to analyze, generate or solve sudokus.</Description>
-		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
+		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<ApplicationIcon>icon-64.ico</ApplicationIcon>
 		<PackageProjectUrl>https://github.com/Sunnie-Shine/Sudoku</PackageProjectUrl>
 		<AssemblyVersion>0.1.0.0</AssemblyVersion>

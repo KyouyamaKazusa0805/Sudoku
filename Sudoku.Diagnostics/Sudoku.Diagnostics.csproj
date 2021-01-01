@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<Authors>Sunnie</Authors>
 		<Description>This project encapsulates operations for diagnosing the whole solution, such as checking the number of code lines.</Description>
-		<Copyright>Copyright (c) Sunnie 2020</Copyright>
+		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
