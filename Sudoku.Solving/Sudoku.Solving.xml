@@ -1163,13 +1163,27 @@
             This solver will provide the settings of the searching operation.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.AllStepSearcher.Search(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode)">
+        <member name="M:Sudoku.Solving.Manual.AllStepSearcher.Search(Sudoku.Data.SudokuGrid@,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode,System.Nullable{System.Threading.CancellationToken})">
             <summary>
             Search for all possible steps in a grid.
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="progress">The progress.</param>
             <param name="countryCode">The country code.</param>
+            <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
+            <returns>The result grouped by technique names.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is cancelled.</exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AllStepSearcher.SearchAsync(Sudoku.Data.SudokuGrid,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode,System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="progress">The progress.</param>
+            <param name="countryCode">The country code.</param>
+            <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
+            <returns>The task of that searching.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is cancelled.</exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsStepInfo">
             <summary>

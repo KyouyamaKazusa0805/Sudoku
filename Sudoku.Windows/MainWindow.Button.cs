@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Extensions;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,9 +27,24 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void ButtonFindAllSteps_Click(object sender, RoutedEventArgs e)
 		{
-			await internalOperation();
+			CancellationTokenSource? cts = null;
+			try
+			{
+				cts = new();
+				await internalOperation(cts);
+			}
+			catch (OperationCanceledException)
+			{
+				EnableSolvingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
+				_textBoxInfo.Text = "已取消搜索操作。";
+			}
+			finally
+			{
+				cts?.Dispose();
+			}
 
-			async Task internalOperation()
+			async Task internalOperation(CancellationTokenSource cts)
 			{
 				var valueGrid = (SudokuGrid)_puzzle;
 				if (!valueGrid.IsValid())
@@ -46,12 +62,11 @@ namespace Sudoku.Windows
 				_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
 				DisableSolvingControls();
 
-				(dialog = new()).Show();
-				var techniqueGroups = await Task.Run(() =>
-				{
-					return new AllStepSearcher(Settings.MainManualSolver)
-					.Search(valueGrid, dialog.DefaultReporting, Settings.LanguageCode);
-				});
+				(dialog = new() { CancellationTokenSource = cts }).Show();
+				var techniqueGroups =
+					await new AllStepSearcher(Settings.MainManualSolver).SearchAsync(
+						valueGrid, dialog.DefaultReporting, Settings.LanguageCode, cts.Token
+					) ?? throw new OperationCanceledException();
 
 				EnableSolvingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();

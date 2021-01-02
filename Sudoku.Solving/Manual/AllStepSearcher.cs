@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
@@ -47,8 +49,12 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="countryCode">The country code.</param>
+		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
+		/// <returns>The result grouped by technique names.</returns>
+		/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
 		public IEnumerable<IGrouping<string, StepInfo>> Search(
-			in SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode)
+			in SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode,
+			CancellationToken? cancellationToken)
 		{
 			if (grid.IsSolved || !grid.IsValid(out bool? sukaku))
 			{
@@ -105,6 +111,11 @@ namespace Sudoku.Solving.Manual
 					}
 				}
 
+				if (cancellationToken is { IsCancellationRequested: true })
+				{
+					throw new OperationCanceledException();
+				}
+
 				// Update the progress result.
 				if (progress is not null)
 				{
@@ -139,6 +150,37 @@ namespace Sudoku.Solving.Manual
 
 			// Return the result.
 			return from step in Enumerable.Distinct(bag) group step by step.Name;
+		}
+
+
+		/// <summary>
+		/// Search for all possible steps in a grid.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="progress">The progress.</param>
+		/// <param name="countryCode">The country code.</param>
+		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
+		/// <returns>The task of that searching.</returns>
+		/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
+		public async Task<IEnumerable<IGrouping<string, StepInfo>>?> SearchAsync(
+			SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode,
+			CancellationToken? cancellationToken)
+		{
+			return cancellationToken is { } t
+				? await Task.Factory.StartNew(innerSearch, t)
+				: await Task.Factory.StartNew(innerSearch);
+
+			IEnumerable<IGrouping<string, StepInfo>>? innerSearch()
+			{
+				try
+				{
+					return Search(grid, progress, countryCode, cancellationToken);
+				}
+				catch (OperationCanceledException)
+				{
+					return null;
+				}
+			}
 		}
 	}
 }
