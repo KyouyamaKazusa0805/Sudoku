@@ -20,11 +20,7 @@ using Sudoku.Globalization;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
-using C = Sudoku.Data.ConclusionType;
 using CoreResources = Sudoku.Windows.Resources;
-using K = System.Windows.Input.Key;
-using M = System.Windows.Input.ModifierKeys;
-using R = System.Windows.MessageBoxResult;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
@@ -40,8 +36,10 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		#region Constructor
 		/// <inheritdoc cref="DefaultConstructor"/>
 		public MainWindow() => InitializeComponent();
+		#endregion
 
 
 		#region Overriden methods
@@ -86,7 +84,7 @@ namespace Sudoku.Windows
 		protected override void OnClosing(CancelEventArgs e)
 		{
 			// Ask when worth.
-			if (Settings.AskWhileQuitting && Messagings.AskWhileQuitting() == R.No)
+			if (Settings.AskWhileQuitting && Messagings.AskWhileQuitting() == MessageBoxResult.No)
 			{
 				e.Cancel = true;
 				return;
@@ -143,10 +141,10 @@ namespace Sudoku.Windows
 						return;
 					}
 
-					int digit = e.Key.IsDigitUpsideAlphabets() ? e.Key - K.D1 : e.Key - K.NumPad1;
+					int digit = e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
 					switch (Keyboard.Modifiers)
 					{
-						case M.None:
+						case ModifierKeys.None:
 						{
 							// Input a digit.
 							// Input or eliminate a digit.
@@ -165,7 +163,7 @@ namespace Sudoku.Windows
 
 							break;
 						}
-						case M.Shift:
+						case ModifierKeys.Shift:
 						{
 							// Eliminate a digit.
 							_puzzle[cell, digit] = true;
@@ -179,7 +177,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case var key and (K.OemMinus or K.OemPlus):
+				case var key and (Key.OemMinus or Key.OemPlus):
 				{
 					// Get the previous view or the next view.
 					if (_currentViewIndex == -1 || _currentStepInfo is null)
@@ -192,7 +190,7 @@ namespace Sudoku.Windows
 					ref int i = ref _currentViewIndex;
 					i = Math.Abs(
 					(
-						key == K.OemMinus ? i - 1 is var j && j < 0 ? j + totalViewsCount : j : i + 1
+						key == Key.OemMinus ? i - 1 is var j && j < 0 ? j + totalViewsCount : j : i + 1
 					) % totalViewsCount);
 
 					_currentPainter.View = views[i];
@@ -208,10 +206,10 @@ namespace Sudoku.Windows
 					_focusedCells.Clear();
 					_focusedCells.AddAnyway(e.Key switch
 					{
-						K.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
-						K.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
-						K.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
-						K.Right => (cell + 1) % 81
+						Key.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
+						Key.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
+						Key.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
+						Key.Right => (cell + 1) % 81
 					});
 
 					_currentPainter.FocusedCells = _focusedCells;
@@ -220,7 +218,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case K.Space:
+				case Key.Space:
 				{
 					// View the intersection.
 					_previewMap = _focusedCells;
@@ -232,7 +230,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case K.Tab:
+				case Key.Tab:
 				{
 					// Move to next box row.
 					int cell = _focusedCells.IsEmpty ? 0 : _focusedCells[0];
@@ -245,7 +243,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case K.Escape:
+				case Key.Escape:
 				{
 					// Clear focused cells.
 					ClearViews();
@@ -264,7 +262,7 @@ namespace Sudoku.Windows
 		{
 			base.OnKeyUp(e);
 
-			if (_previewMap.HasValue && e.Key == K.Space)
+			if (_previewMap.HasValue && e.Key == Key.Space)
 			{
 				_focusedCells = _previewMap.Value;
 
@@ -307,22 +305,22 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void DefineShortCuts()
 		{
-			AddShortCut(K.C, M.Control, null, MenuItemEditCopy_Click);
-			AddShortCut(K.H, M.Control, _menuItemGenerateHardPattern, MenuItemGenerateHardPattern_Click);
-			AddShortCut(K.O, M.Control, _menuItemFileOpen, MenuItemFileOpen_Click);
-			AddShortCut(K.P, M.Control, null, MenuItemFileGetSnapshot_Click);
-			AddShortCut(K.S, M.Control, null, MenuItemFileSave_Click);
-			AddShortCut(K.V, M.Control, _menuItemEditPaste, MenuItemEditPaste_Click);
-			AddShortCut(K.Y, M.Control, _menuItemEditRedo, MenuItemEditRedo_Click);
-			AddShortCut(K.Z, M.Control, _menuItemEditUndo, MenuItemEditUndo_Click);
-			AddShortCut(K.F5, M.Control, _menuItemEditRecomputeCandidates, MenuItemEditRecomputeCandidates_Click);
-			AddShortCut(K.OemTilde, M.Control, _menuItemEditFix, MenuItemEditFix_Click);
-			AddShortCut(K.F9, M.None, _menuItemAnalyzeAnalyze, MenuItemAnalyzeAnalyze_Click);
-			AddShortCut(K.F10, M.None, _menuItemAnalyzeSolve, MenuItemAnalyzeSolve_Click);
-			AddShortCut(K.F4, M.Alt, null, MenuItemFileQuit_Click);
-			AddShortCut(K.N, M.Control | M.Shift, _menuItemEditClear, MenuItemEditClear_Click);
-			AddShortCut(K.C, M.Control | M.Shift, null, MenuItemEditCopyCurrentGrid_Click);
-			AddShortCut(K.OemTilde, M.Control | M.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
+			AddShortCut(Key.C, ModifierKeys.Control, null, MenuItemEditCopy_Click);
+			AddShortCut(Key.H, ModifierKeys.Control, _menuItemGenerateHardPattern, MenuItemGenerateHardPattern_Click);
+			AddShortCut(Key.O, ModifierKeys.Control, _menuItemFileOpen, MenuItemFileOpen_Click);
+			AddShortCut(Key.P, ModifierKeys.Control, null, MenuItemFileGetSnapshot_Click);
+			AddShortCut(Key.S, ModifierKeys.Control, null, MenuItemFileSave_Click);
+			AddShortCut(Key.V, ModifierKeys.Control, _menuItemEditPaste, MenuItemEditPaste_Click);
+			AddShortCut(Key.Y, ModifierKeys.Control, _menuItemEditRedo, MenuItemEditRedo_Click);
+			AddShortCut(Key.Z, ModifierKeys.Control, _menuItemEditUndo, MenuItemEditUndo_Click);
+			AddShortCut(Key.F5, ModifierKeys.Control, _menuItemEditRecomputeCandidates, MenuItemEditRecomputeCandidates_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control, _menuItemEditFix, MenuItemEditFix_Click);
+			AddShortCut(Key.F9, ModifierKeys.None, _menuItemAnalyzeAnalyze, MenuItemAnalyzeAnalyze_Click);
+			AddShortCut(Key.F10, ModifierKeys.None, _menuItemAnalyzeSolve, MenuItemAnalyzeSolve_Click);
+			AddShortCut(Key.F4, ModifierKeys.Alt, null, MenuItemFileQuit_Click);
+			AddShortCut(Key.N, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditClear, MenuItemEditClear_Click);
+			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, null, MenuItemEditCopyCurrentGrid_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
 		}
 
 		/// <summary>
@@ -345,7 +343,7 @@ namespace Sudoku.Windows
 		private void LoadDatabaseIfWorth()
 		{
 			if (Settings.CurrentPuzzleDatabase is null
-				|| Messagings.AskWhileLoadingAndCoveringDatabase() != R.Yes)
+				|| Messagings.AskWhileLoadingAndCoveringDatabase() != MessageBoxResult.Yes)
 			{
 				return;
 			}
@@ -520,7 +518,7 @@ namespace Sudoku.Windows
 		/// <param name="executed">The execution.</param>
 		/// <seealso cref="UIElement.IsEnabled"/>
 		private void AddShortCut(
-			K key, M modifierKeys, UIElement? matchControl, ExecutedRoutedEventHandler executed)
+			Key key, ModifierKeys modifierKeys, UIElement? matchControl, ExecutedRoutedEventHandler executed)
 		{
 			var command = new RoutedCommand();
 			command.InputGestures.Add(new KeyGesture(key, modifierKeys));
@@ -1166,8 +1164,8 @@ namespace Sudoku.Windows
 				int digit = solution[c];
 				switch (t)
 				{
-					case C.Assignment when digit != d:
-					case C.Elimination when digit == d:
+					case ConclusionType.Assignment when digit != d:
+					case ConclusionType.Elimination when digit == d:
 					{
 						return false;
 					}
