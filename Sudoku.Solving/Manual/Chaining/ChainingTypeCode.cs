@@ -7,9 +7,29 @@
 	public enum ChainingTypeCode : byte
 	{
 		/// <summary>
+		/// Indicates the M-Wing.
+		/// </summary>
+		MWing = 1,
+
+		/// <summary>
+		/// Indicates the split wing.
+		/// </summary>
+		SplitWing,
+
+		/// <summary>
+		/// Indicates the local wing.
+		/// </summary>
+		LocalWing,
+
+		/// <summary>
+		/// Indicates the hybrid wing.
+		/// </summary>
+		HybridWing,
+
+		/// <summary>
 		/// Indicates the X-Chain.
 		/// </summary>
-		XChain = 1,
+		XChain,
 
 		/// <summary>
 		/// Indicates the X-Cycle (Fishy Cycle).

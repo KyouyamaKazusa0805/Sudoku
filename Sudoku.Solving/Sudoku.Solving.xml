@@ -1973,6 +1973,9 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.SortKey">
             <inheritdoc/>
         </member>
@@ -1989,6 +1992,35 @@
             <summary>
             Indicates whether the specified chain is an X-Chain.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.IsMWing">
+            <summary>
+            Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.IsSplitWing">
+            <summary>
+            Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.IsHybridWing">
+            <summary>
+            Indicates whether the chain is Hybrid-Wing.
+            This wing has two types:
+            <list type="bullet">
+            <item><c>(x = y) - y = (y - z) = z</c></item>
+            <item><c>(x = y) - (y = z) - z = z</c></item>
+            </list>
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.IsLocalWing">
+            <summary>
+            Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicStepInfo.ToString">
             <inheritdoc/>
@@ -2313,6 +2345,26 @@
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTypeCode">
             <summary>
             Indicates a type code for a chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.MWing">
+            <summary>
+            Indicates the M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.SplitWing">
+            <summary>
+            Indicates the split wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.LocalWing">
+            <summary>
+            Indicates the local wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.HybridWing">
+            <summary>
+            Indicates the hybrid wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.XChain">
