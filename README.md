@@ -20,8 +20,6 @@ GitHub: [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku)
 
 Gitee: [Sunnie-Shine/Sudoku](https://gitee.com/Sunnie-Shine/Sudoku)
 
-GitHub pages: [Sudoku](https://sunnieshine.github.io/Sudoku/index)
-
 
 
 ## Programming language and IDE using
