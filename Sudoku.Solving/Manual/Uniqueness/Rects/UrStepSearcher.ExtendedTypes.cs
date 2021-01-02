@@ -2008,7 +2008,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				accumulator.Add(
-					new UrSdcStepInfo(
+					new UrWithSdcStepInfo(
 						conclusions,
 						new View[]
 						{

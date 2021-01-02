@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="BlockCells">The block cells.</param>
 	/// <param name="LineCells">The line cells.</param>
 	/// <param name="IntersectionCells">The intersection cells.</param>
-	public sealed record UrSdcStepInfo(
+	public sealed record UrWithSdcStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
 		int[] Cells, bool IsAvoidable, int AbsoluteOffset, int Block, int Line, short BlockMask,
 		short LineMask, short IntersectionMask, bool IsCannibalistic, short IsolatedDigitsMask,

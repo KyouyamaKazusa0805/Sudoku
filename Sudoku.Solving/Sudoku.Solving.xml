@@ -7700,84 +7700,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.GetAdditional">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo">
-            <summary>
-            Provides a usage of <b>unique rectangle + sue de coq</b> (UR + SDC) or
-            <b>avoidable rectangle + sue de coq</b> (AR + SDC) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Digit1">The digit 1.</param>
-            <param name="Digit2">The digit 2.</param>
-            <param name="Cells">All cells used.</param>
-            <param name="IsAvoidable">Indicates whether the instance is an AR.</param>
-            <param name="AbsoluteOffset">The absolute offset.</param>
-            <param name="Block">The block.</param>
-            <param name="Line">The line.</param>
-            <param name="BlockMask">The block mask.</param>
-            <param name="LineMask">The line mask.</param>
-            <param name="IntersectionMask">The intersection mask.</param>
-            <param name="IsCannibalistic">Indicates whether the current SdC used is cannibal.</param>
-            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
-            <param name="BlockCells">The block cells.</param>
-            <param name="LineCells">The line cells.</param>
-            <param name="IntersectionCells">The intersection cells.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Provides a usage of <b>unique rectangle + sue de coq</b> (UR + SDC) or
-            <b>avoidable rectangle + sue de coq</b> (AR + SDC) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Digit1">The digit 1.</param>
-            <param name="Digit2">The digit 2.</param>
-            <param name="Cells">All cells used.</param>
-            <param name="IsAvoidable">Indicates whether the instance is an AR.</param>
-            <param name="AbsoluteOffset">The absolute offset.</param>
-            <param name="Block">The block.</param>
-            <param name="Line">The line.</param>
-            <param name="BlockMask">The block mask.</param>
-            <param name="LineMask">The line mask.</param>
-            <param name="IntersectionMask">The intersection mask.</param>
-            <param name="IsCannibalistic">Indicates whether the current SdC used is cannibal.</param>
-            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
-            <param name="BlockCells">The block cells.</param>
-            <param name="LineCells">The line cells.</param>
-            <param name="IntersectionCells">The intersection cells.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.SdCDifficulty">
-            <summary>
-            The extra difficulty that assesses SDC's size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.IsolatedDifficulty">
-            <summary>
-            The extra difficulty that assesses isolated digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.CannibalDifficulty">
-            <summary>
-            The extra difficulty that assesses cannibalism.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.ArDifficulty">
-            <summary>
-            The extra difficulty that assesses whether the structure is an AR.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrSdcStepInfo.GetAdditional">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
@@ -8430,6 +8352,84 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle + sue de coq</b> (UR + SDC) or
+            <b>avoidable rectangle + sue de coq</b> (AR + SDC) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="Cells">All cells used.</param>
+            <param name="IsAvoidable">Indicates whether the instance is an AR.</param>
+            <param name="AbsoluteOffset">The absolute offset.</param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the current SdC used is cannibal.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The block cells.</param>
+            <param name="LineCells">The line cells.</param>
+            <param name="IntersectionCells">The intersection cells.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Provides a usage of <b>unique rectangle + sue de coq</b> (UR + SDC) or
+            <b>avoidable rectangle + sue de coq</b> (AR + SDC) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="Cells">All cells used.</param>
+            <param name="IsAvoidable">Indicates whether the instance is an AR.</param>
+            <param name="AbsoluteOffset">The absolute offset.</param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the current SdC used is cannibal.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The block cells.</param>
+            <param name="LineCells">The line cells.</param>
+            <param name="IntersectionCells">The intersection cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.SdCDifficulty">
+            <summary>
+            The extra difficulty that assesses SDC's size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.IsolatedDifficulty">
+            <summary>
+            The extra difficulty that assesses isolated digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.CannibalDifficulty">
+            <summary>
+            The extra difficulty that assesses cannibalism.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.ArDifficulty">
+            <summary>
+            The extra difficulty that assesses whether the structure is an AR.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.GetAdditional">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo">
