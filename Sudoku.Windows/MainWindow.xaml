@@ -91,7 +91,7 @@
 						  x:Name="_menuItemEditRedo" IsEnabled="False"
 						  Click="MenuItemEditRedo_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemClearStack}"
-						  x:Name="_menuItemClearStack"
+						  x:Name="_menuItemEditClearStack"
 						  Click="MenuItemClearStack_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemEditRecomputeCandidates}" InputGestureText="F5"
 						  x:Name="_menuItemEditRecomputeCandidates"
@@ -203,10 +203,10 @@
 			<!-- Views -->
 			<MenuItem Header="{DynamicResource _menuItemViews}">
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowBugN}"
-						  x:Name="_menuItemAnalyzeShowBugN"
+						  x:Name="_menuItemViewsBugNView"
 						  Click="MenuItemViewsShowBugN_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeBackdoorView}"
-						  x:Name="_menuItemAnalyzeBackdoorView"
+						  x:Name="_menuItemViewsBackdoorView"
 						  Click="MenuItemViewsBackdoorView_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemViewsGspView}"
 						  x:Name="_menuItemViewsGspView"
