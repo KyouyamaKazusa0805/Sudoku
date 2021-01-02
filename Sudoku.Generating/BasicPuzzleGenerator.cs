@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Globalization;
@@ -17,7 +18,8 @@ namespace Sudoku.Generating
 	public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 	{
 		/// <inheritdoc/>
-		public override SudokuGrid Generate() => Generate(28, SymmetryType.Central, null, CountryCode.Default);
+		public override SudokuGrid? Generate() =>
+			Generate(28, SymmetryType.Central, null, CountryCode.Default, null);
 
 		/// <summary>
 		/// Generate a puzzle with the specified information.
@@ -32,12 +34,14 @@ namespace Sudoku.Generating
 		/// </param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="countryCode">The country code.</param>
+		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
 		/// <returns>The grid.</returns>
+		/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
 		/// <seealso cref="SymmetryType"/>
 		[SkipLocalsInit]
 		public SudokuGrid Generate(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult>? progress,
-			CountryCode countryCode = CountryCode.Default)
+			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
 		{
 			PuzzleGeneratingProgressResult defaultValue = default;
 			var pr = new PuzzleGeneratingProgressResult(
@@ -119,6 +123,11 @@ namespace Sudoku.Generating
 					}
 				} while (81 - totalMap.Count > max);
 
+				if (cancellationToken is { IsCancellationRequested: true })
+				{
+					throw new OperationCanceledException();
+				}
+
 				if (progress is not null)
 				{
 					progressResult.GeneratingTrial++;
@@ -142,12 +151,29 @@ namespace Sudoku.Generating
 		/// </param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="countryCode">The country code.</param>
+		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
 		/// <returns>The task.</returns>
 		/// <seealso cref="SymmetryType"/>
-		public async Task<SudokuGrid> GenerateAsync(
+		public async Task<SudokuGrid?> GenerateAsync(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult> progress,
-			CountryCode countryCode = CountryCode.Default) =>
-			await Task.Run(() => Generate(max, symmetricalType, progress, countryCode));
+			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
+		{
+			return cancellationToken is { } t
+				? await Task.Factory.StartNew(innerGenerate, t)
+				: await Task.Factory.StartNew(innerGenerate);
+
+			SudokuGrid? innerGenerate()
+			{
+				try
+				{
+					return Generate(max, symmetricalType, progress, countryCode, cancellationToken);
+				}
+				catch (Exception)
+				{
+					return null;
+				}
+			}
+		}
 
 		/// <inheritdoc/>
 		/// <exception cref="NotImplementedException">Always throws.</exception>

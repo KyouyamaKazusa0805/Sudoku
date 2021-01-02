@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Globalization;
@@ -35,7 +36,7 @@ namespace Sudoku.Generating
 
 
 		/// <inheritdoc/>
-		public override SudokuGrid Generate() => Generate(DefaultFilter, null, CountryCode.Default);
+		public override SudokuGrid? Generate() => Generate(DefaultFilter, null, CountryCode.Default);
 
 
 		/// <summary>
@@ -47,10 +48,12 @@ namespace Sudoku.Generating
 		/// </param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="countryCode">The country code.</param>
+		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
 		/// <returns>The puzzle.</returns>
-		public SudokuGrid Generate(
+		/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
+		public SudokuGrid? Generate(
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
-			CountryCode countryCode = CountryCode.Default)
+			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
 		{
 			PuzzleGeneratingProgressResult defaultValue = default;
 			var pr = new PuzzleGeneratingProgressResult(
@@ -62,8 +65,14 @@ namespace Sudoku.Generating
 
 			while (true)
 			{
-				var puzzle = Generate(-1, progress, countryCode: countryCode);
-				if (ManualSolver.Solve(puzzle).Any(step => techniqueCodeFilter.Contains(step.TechniqueCode)))
+				var puzzle =
+					Generate(-1, progress, countryCode: countryCode, cancellationToken: cancellationToken);
+
+#if DEBUG
+				System.Diagnostics.Contracts.Contract.Assert(puzzle.HasValue);
+#endif
+
+				if (ManualSolver.Solve(puzzle.Value).Any(step => techniqueCodeFilter.Contains(step.TechniqueCode)))
 				{
 					return puzzle;
 				}
@@ -79,10 +88,27 @@ namespace Sudoku.Generating
 		/// </param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="countryCode">The globalization string.</param>
+		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
 		/// <returns>The task.</returns>
-		public async Task<SudokuGrid> GenerateAsync(
+		public async Task<SudokuGrid?> GenerateAsync(
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
-			CountryCode countryCode = CountryCode.Default) =>
-			await Task.Run(() => Generate(techniqueCodeFilter, progress, countryCode));
+			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
+		{
+			return cancellationToken is { } t
+				? await Task.Factory.StartNew(innerGenerate, t)
+				: await Task.Factory.StartNew(innerGenerate);
+
+			SudokuGrid? innerGenerate()
+			{
+				try
+				{
+					return Generate(techniqueCodeFilter, progress, countryCode, cancellationToken);
+				}
+				catch (OperationCanceledException)
+				{
+					return null;
+				}
+			}
+		}
 	}
 }

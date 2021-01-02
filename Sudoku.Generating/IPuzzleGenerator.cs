@@ -18,13 +18,15 @@ namespace Sudoku.Generating
 		/// <summary>
 		/// Generates a puzzle.
 		/// </summary>
-		/// <returns>The puzzle.</returns>
-		SudokuGrid Generate();
+		/// <returns>
+		/// The puzzle. If the operation is cancelled, the return value will be <see langword="null"/>.
+		/// </returns>
+		SudokuGrid? Generate();
 
 		/// <summary>
 		/// Generates a puzzle asynchronizedly.
 		/// </summary>
 		/// <returns>The task.</returns>
-		public async Task<SudokuGrid> GenerateAsync() => await Task.Run(Generate);
+		public async Task<SudokuGrid?> GenerateAsync() => await Task.Run(Generate);
 	}
 }

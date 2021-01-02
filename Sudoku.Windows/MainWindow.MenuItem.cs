@@ -217,12 +217,20 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			// Batch.
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog(); // Save puzzle picture.
-			MenuItemFileSave_Click(sender, e); // Save puzzle text.
-			MenuItemAnalyzeSolve_Click(sender, e); // Solve the puzzle.
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog(); // Save solution picture.
-			MenuItemFileSave_Click(sender, e); // Save solution text.
+			// Save puzzle picture.
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog();
+
+			// Save puzzle text.
+			MenuItemFileSave_Click(sender, e);
+
+			// Solve the puzzle.
+			MenuItemAnalyzeSolve_Click(sender, e);
+
+			// Save solution picture.
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog();
+
+			// Save solution text.
+			MenuItemFileSave_Click(sender, e);
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -431,9 +439,24 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemGenerateWithSymmetry_Click(object sender, RoutedEventArgs e)
 		{
-			await internalOperation();
+			CancellationTokenSource? cts = null;
+			try
+			{
+				cts = new();
+				await internalOperation(cts);
+			}
+			catch (OperationCanceledException)
+			{
+				EnableGeneratingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
+				ClearItemSourcesWhenGeneratedOrSolving();
+			}
+			finally
+			{
+				cts?.Dispose();
+			}
 
-			async Task internalOperation()
+			async Task internalOperation(CancellationTokenSource cts)
 			{
 				if (_database is null || Messagings.AskWhileGeneratingWithDatabase() == MessageBoxResult.Yes)
 				{
@@ -446,7 +469,7 @@ namespace Sudoku.Windows
 
 					// These two value should be assigned first, rather than 
 					// inlining in the asynchronized environment.
-					var dialog = new ProgressWindow();
+					var dialog = new ProgressWindow { CancellationTokenSource = cts };
 					dialog.Show();
 
 					int si = _comboBoxSymmetry.SelectedIndex;
@@ -454,8 +477,8 @@ namespace Sudoku.Windows
 					//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
 					Puzzle =
 						await new BasicPuzzleGenerator().GenerateAsync(
-							33, symmetry, dialog.DefaultReporting, Settings.LanguageCode
-						);
+							33, symmetry, dialog.DefaultReporting, Settings.LanguageCode, cts.Token
+						) ?? throw new OperationCanceledException();
 
 					dialog.Close();
 
@@ -470,9 +493,24 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemGenerateHardPattern_Click(object sender, RoutedEventArgs e)
 		{
-			await internalOperation();
+			CancellationTokenSource? cts = null;
+			try
+			{
+				cts = new();
+				await internalOperation(cts);
+			}
+			catch (OperationCanceledException)
+			{
+				EnableGeneratingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
+				ClearItemSourcesWhenGeneratedOrSolving();
+			}
+			finally
+			{
+				cts?.Dispose();
+			}
 
-			async Task internalOperation()
+			async Task internalOperation(CancellationTokenSource cts)
 			{
 				if (_database is null || Messagings.AskWhileGeneratingWithDatabase() == MessageBoxResult.Yes)
 				{
@@ -486,7 +524,7 @@ namespace Sudoku.Windows
 
 					// Here two variables can't be moved into the lambda expression
 					// because the lambda expression will be executed in asynchornized way.
-					var dialog = new ProgressWindow();
+					var dialog = new ProgressWindow { CancellationTokenSource = cts };
 					dialog.Show();
 
 					int index = _comboBoxBackdoorFilteringDepth.SelectedIndex;
@@ -497,8 +535,9 @@ namespace Sudoku.Windows
 							index - 1,
 							dialog.DefaultReporting,
 							(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex,
-							Settings.LanguageCode
-						);
+							Settings.LanguageCode,
+							cts.Token
+						) ?? throw new OperationCanceledException();
 
 					dialog.Close();
 
@@ -513,13 +552,28 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
 		{
-			await internalOperation();
+			CancellationTokenSource? cts = null;
+			try
+			{
+				cts = new();
+				await internalOperation(cts);
+			}
+			catch (OperationCanceledException)
+			{
+				EnableGeneratingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
+				ClearItemSourcesWhenGeneratedOrSolving();
+			}
+			finally
+			{
+				cts?.Dispose();
+			}
 
-			async Task internalOperation()
+			async Task internalOperation(CancellationTokenSource cts)
 			{
 				DisableGeneratingControls();
 
-				var dialog = new ProgressWindow();
+				var dialog = new ProgressWindow { CancellationTokenSource = cts };
 				dialog.Show();
 
 				var window = new TechniqueViewWindow();
@@ -534,8 +588,8 @@ namespace Sudoku.Windows
 
 					Puzzle =
 						await new TechniqueFilteringPuzzleGenerator().GenerateAsync(
-							filter, dialog.DefaultReporting, Settings.LanguageCode
-						);
+							filter, dialog.DefaultReporting, Settings.LanguageCode, cts.Token
+						) ?? throw new OperationCanceledException();
 				}
 
 			Last:
@@ -612,9 +666,10 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			var cts = new CancellationTokenSource();
+			CancellationTokenSource? cts = null;
 			try
 			{
+				cts = new();
 				if (!await internalOperation(cts))
 				{
 					Messagings.FailedToApplyPuzzle();
@@ -631,7 +686,7 @@ namespace Sudoku.Windows
 			}
 			finally
 			{
-				cts.Dispose();
+				cts?.Dispose();
 			}
 
 			async Task<bool> internalOperation(CancellationTokenSource cts)

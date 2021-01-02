@@ -56,7 +56,7 @@ namespace Sudoku.Generating
 		}
 
 		/// <inheritdoc/>
-		public abstract SudokuGrid Generate();
+		public abstract SudokuGrid? Generate();
 
 		/// <summary>
 		/// To create the pattern.

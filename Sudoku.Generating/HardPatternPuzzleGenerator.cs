@@ -2,6 +2,7 @@
 using System.Extensions;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Globalization;
@@ -37,7 +38,7 @@ namespace Sudoku.Generating
 
 
 		/// <inheritdoc/>
-		public override SudokuGrid Generate() => Generate(-1, null);
+		public override SudokuGrid? Generate() => Generate(-1, null);
 
 		/// <summary>
 		/// To generate a sudoku grid with a backdoor filter depth.
@@ -49,11 +50,13 @@ namespace Sudoku.Generating
 		/// <param name="progress">The progress.</param>
 		/// <param name="difficultyLevel">The difficulty level.</param>
 		/// <param name="countryCode">The country code.</param>
+		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
 		/// <returns>The grid.</returns>
-		public SudokuGrid Generate(
+		/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
+		public SudokuGrid? Generate(
 			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
 			DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
-			CountryCode countryCode = CountryCode.Default)
+			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
 		{
 			PuzzleGeneratingProgressResult
 				defaultValue = default,
@@ -74,6 +77,11 @@ namespace Sudoku.Generating
 				CreatePattern(holeCells);
 				for (int trial = 0; trial < 1000; trial++)
 				{
+					if (cancellationToken is { IsCancellationRequested: true })
+					{
+						throw new OperationCanceledException();
+					}
+
 					for (int cell = 0; cell < 81; cell++)
 					{
 						int p = holeCells[cell];
@@ -124,12 +132,29 @@ namespace Sudoku.Generating
 		/// <param name="progress">The progress.</param>
 		/// <param name="difficultyLevel">The difficulty level.</param>
 		/// <param name="countryCode">The country code.</param>
+		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
 		/// <returns>The task.</returns>
-		public async Task<SudokuGrid> GenerateAsync(
+		public async Task<SudokuGrid?> GenerateAsync(
 			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
 			DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
-			CountryCode countryCode = CountryCode.Default) =>
-			await Task.Run(() => Generate(backdoorFilterDepth, progress, difficultyLevel, countryCode));
+			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
+		{
+			return cancellationToken is { } t
+				? await Task.Factory.StartNew(innerGenerate, t)
+				: await Task.Factory.StartNew(innerGenerate);
+
+			SudokuGrid? innerGenerate()
+			{
+				try
+				{
+					return Generate(backdoorFilterDepth, progress, difficultyLevel, countryCode, cancellationToken);
+				}
+				catch (OperationCanceledException)
+				{
+					return null;
+				}
+			}
+		}
 
 		/// <inheritdoc/>
 		protected sealed override void CreatePattern(int[] pattern)

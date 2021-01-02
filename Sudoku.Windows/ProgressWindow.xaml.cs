@@ -18,6 +18,7 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// Indicates the cancellation token source used for cancelling a task.
+		/// If the value is <see langword="null"/>, the operation won't support cancellation.
 		/// </summary>
 		public CancellationTokenSource? CancellationTokenSource { get; init; }
 
