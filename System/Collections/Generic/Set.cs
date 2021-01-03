@@ -69,13 +69,6 @@ namespace System.Collections.Generic
 		public void Sort(Comparison<T> comparison) => ((List<T>)_list).Sort(comparison);
 
 		/// <summary>
-		/// Sort the list with the specified comparsion.
-		/// </summary>
-		/// <param name="comparison">The comparsion.</param>
-		[CLSCompliant(false)]
-		public unsafe void Sort(delegate*<in T, in T, int> comparison) => _list.Sort(comparison);
-
-		/// <summary>
 		/// Add an element into the set.
 		/// </summary>
 		/// <param name="item">The item.</param>
