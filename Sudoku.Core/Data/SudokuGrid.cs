@@ -474,18 +474,21 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				short copied = _values[cell];
-				if (value)
+				if (cell is >= 0 and < 81 && digit is >= 0 and < 9)
 				{
-					_values[cell] |= (short)(1 << digit);
-				}
-				else
-				{
-					_values[cell] &= (short)~(1 << digit);
-				}
+					short copied = _values[cell];
+					if (value)
+					{
+						_values[cell] |= (short)(1 << digit);
+					}
+					else
+					{
+						_values[cell] &= (short)~(1 << digit);
+					}
 
-				// To trigger the event.
-				ValueChanged(ref this, new(cell, copied, _values[cell], -1));
+					// To trigger the event.
+					ValueChanged(ref this, new(cell, copied, _values[cell], -1));
+				}
 			}
 		}
 
