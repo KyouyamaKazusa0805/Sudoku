@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -26,135 +27,138 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			// Check POM eliminations first.
-			var eliminationMaps = (stackalloc Cells[9]);
-			var infos = new List<StepInfo>();
-			new PomStepSearcher().GetAll(infos, grid);
-			foreach (PomStepInfo info in infos)
+			unsafe
 			{
-				ref var map = ref eliminationMaps[info.Digit];
-				foreach (var conclusion in info.Conclusions)
+				// Check POM eliminations first.
+				var eliminationMaps = stackalloc Cells[9];
+				var infos = new List<StepInfo>();
+				new PomStepSearcher().GetAll(infos, grid);
+				foreach (PomStepInfo info in infos)
 				{
-					map.AddAnyway(conclusion.Cell);
-				}
-			}
-
-			var resultAccumulator = new List<GuardianStepInfo>();
-			for (int digit = 0; digit < 9; digit++)
-			{
-				var eliminations = eliminationMaps[digit];
-				if (eliminations.IsEmpty)
-				{
-					continue;
-				}
-
-				foreach (int elimination in eliminations)
-				{
-					var loops = new List<(Cells, Cells, IReadOnlyList<Link>)>();
-					var tempLoop = new List<int>();
-					var globalMap = CandMaps[digit] - new Cells(elimination);
-					foreach (int cell in globalMap)
+					var pMap = eliminationMaps + info.Digit;
+					foreach (var conclusion in info.Conclusions)
 					{
-						var loopMap = Cells.Empty;
-						loops.Clear();
-						tempLoop.Clear();
-						f(cell, (RegionLabel)byte.MaxValue, Cells.Empty);
+						pMap->AddAnyway(conclusion.Cell);
+					}
+				}
 
-						if (loops.Count == 0)
-						{
-							continue;
-						}
+				var resultAccumulator = new List<GuardianStepInfo>();
+				for (int digit = 0; digit < 9; digit++)
+				{
+					var eliminations = eliminationMaps[digit];
+					if (eliminations.IsEmpty)
+					{
+						continue;
+					}
 
-						foreach (var (map, guardians, links) in loops)
+					foreach (int elimination in eliminations)
+					{
+						var loops = new List<(Cells, Cells, IReadOnlyList<Link>)>();
+						var tempLoop = new List<int>();
+						var globalMap = CandMaps[digit] - new Cells(elimination);
+						foreach (int cell in globalMap)
 						{
-							var elimMap = guardians.PeerIntersection & CandMaps[digit];
-							if (elimMap.IsEmpty)
+							var loopMap = Cells.Empty;
+							loops.Clear();
+							tempLoop.Clear();
+							f(cell, (RegionLabel)byte.MaxValue, Cells.Empty);
+
+							if (loops.Count == 0)
 							{
 								continue;
 							}
 
-							var conclusions = new Conclusion[elimMap.Count];
-							int i = 0;
-							foreach (int c in elimMap)
+							foreach (var (map, guardians, links) in loops)
 							{
-								conclusions[i++] = new(ConclusionType.Elimination, c, digit);
-							}
-
-							var candidateOffsets = new List<DrawingInfo>();
-							foreach (int c in map)
-							{
-								candidateOffsets.Add(new(0, c * 9 + digit));
-							}
-							foreach (int c in guardians)
-							{
-								candidateOffsets.Add(new(1, c * 9 + digit));
-							}
-
-							resultAccumulator.Add(
-								new GuardianStepInfo(
-									conclusions,
-									new View[] { new() { Candidates = candidateOffsets, Links = links } },
-									digit,
-									map,
-									guardians));
-						}
-
-						// This function is used for recursion.
-						// You can't change it to the static local function or normal methods,
-						// because it'll cause stack-overflowing.
-						// One example is:
-						// 009050007060030080000009200100700800002400005080000040010820600000010000300007010
-						void f(int cell, RegionLabel lastLabel, Cells guardians)
-						{
-							loopMap.AddAnyway(cell);
-							tempLoop.Add(cell);
-
-							for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
-							{
-								if (label == lastLabel)
+								var elimMap = guardians.PeerIntersection & CandMaps[digit];
+								if (elimMap.IsEmpty)
 								{
 									continue;
 								}
 
-								int region = label.ToRegion(cell);
-								var otherCellsMap = RegionMaps[region] & globalMap - cell;
-								if (otherCellsMap.Count != 1)
+								var conclusions = new Conclusion[elimMap.Count];
+								int i = 0;
+								foreach (int c in elimMap)
 								{
-									continue;
+									conclusions[i++] = new(ConclusionType.Elimination, c, digit);
 								}
 
-								int anotherCell = otherCellsMap[0];
-								if (tempLoop.Count is var count and >= 5 && count.IsOdd()
-									&& tempLoop[0] == anotherCell)
+								var candidateOffsets = new List<DrawingInfo>();
+								foreach (int c in map)
 								{
-									loops.Add((
-										loopMap,
-										CreateGuardianMap(cell, anotherCell, digit, guardians),
-										tempLoop.GetLinks()));
+									candidateOffsets.Add(new(0, c * 9 + digit));
 								}
-								else if (!loopMap.Contains(anotherCell))
+								foreach (int c in guardians)
 								{
-									f(
-										anotherCell,
-										label,
-										CreateGuardianMap(cell, anotherCell, digit, guardians));
+									candidateOffsets.Add(new(1, c * 9 + digit));
 								}
+
+								resultAccumulator.Add(
+									new GuardianStepInfo(
+										conclusions,
+										new View[] { new() { Candidates = candidateOffsets, Links = links } },
+										digit,
+										map,
+										guardians));
 							}
 
-							loopMap.Remove(cell);
-							tempLoop.RemoveLastElement();
+							// This function is used for recursion.
+							// You can't change it to the static local function or normal methods,
+							// because it'll cause stack-overflowing.
+							// One example is:
+							// 009050007060030080000009200100700800002400005080000040010820600000010000300007010
+							void f(int cell, RegionLabel lastLabel, Cells guardians)
+							{
+								loopMap.AddAnyway(cell);
+								tempLoop.Add(cell);
+
+								for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+								{
+									if (label == lastLabel)
+									{
+										continue;
+									}
+
+									int region = label.ToRegion(cell);
+									var otherCellsMap = RegionMaps[region] & globalMap - cell;
+									if (otherCellsMap.Count != 1)
+									{
+										continue;
+									}
+
+									int anotherCell = otherCellsMap[0];
+									if (tempLoop.Count >= 5 && tempLoop.Count.IsOdd()
+										&& tempLoop[0] == anotherCell)
+									{
+										loops.Add((
+											loopMap,
+											CreateGuardianMap(cell, anotherCell, digit, guardians),
+											tempLoop.GetLinks()));
+									}
+									else if (!loopMap.Contains(anotherCell))
+									{
+										f(
+											anotherCell,
+											label,
+											CreateGuardianMap(cell, anotherCell, digit, guardians));
+									}
+								}
+
+								loopMap.Remove(cell);
+								tempLoop.RemoveLastElement();
+							}
 						}
 					}
 				}
-			}
 
-			var set = new Set<GuardianStepInfo>(resultAccumulator);
-			resultAccumulator.Clear();
-			resultAccumulator.AddRange(set);
-			accumulator.AddRange(
-				from info in resultAccumulator
-				orderby info.Loop.Count, info.Guardians.Count
-				select info);
+				var set = new Set<GuardianStepInfo>(resultAccumulator);
+				resultAccumulator.Clear();
+				resultAccumulator.AddRange(set);
+				accumulator.AddRange(
+					from info in resultAccumulator
+					orderby info.Loop.Count, info.Guardians.Count
+					select info);
+			}
 		}
 
 		/// <summary>
