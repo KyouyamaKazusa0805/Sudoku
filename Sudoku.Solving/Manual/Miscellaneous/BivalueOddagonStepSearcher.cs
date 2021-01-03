@@ -83,11 +83,13 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 					}
 				}
 
-				var set = new Set<BivalueOddagonStepInfo>(resultAccumulator);
-				resultAccumulator.Clear();
-				resultAccumulator.AddRange(set);
+				if (resultAccumulator.Count == 0)
+				{
+					continue;
+				}
+
 				accumulator.AddRange(
-					from info in resultAccumulator
+					from info in resultAccumulator.RemoveDuplicateItems()
 					orderby info.Loop.Count, info.TechniqueCode
 					select info);
 

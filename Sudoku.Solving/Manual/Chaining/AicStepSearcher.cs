@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -38,7 +39,10 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			accumulator.AddRange(SortInfo(tempAccumulator));
+			accumulator.AddRange(
+				from info in tempAccumulator.RemoveDuplicateItems()
+				orderby info.Difficulty, info.Complexity, info.SortKey
+				select info);
 		}
 
 		/// <summary>

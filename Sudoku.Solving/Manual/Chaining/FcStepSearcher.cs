@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
-using Grid = Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Indicates the grid that is used in processing.
 		/// </summary>
-		private Grid _savedGrid;
+		private SudokuGrid _savedGrid;
 
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public sealed override void GetAll(IList<StepInfo> accumulator, in Grid grid)
+		public sealed override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			var tempGrid = grid;
 			var tempAccumulator = new List<ChainingStepInfo>();
@@ -66,7 +66,10 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			accumulator.AddRange(SortInfo(tempAccumulator));
+			accumulator.AddRange(
+				from info in tempAccumulator.RemoveDuplicateItems()
+				orderby info.Difficulty, info.Complexity, info.SortKey
+				select info);
 		}
 
 		/// <summary>
@@ -76,14 +79,15 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="source">(<see langword="in"/> parameter) The source.</param>
 		/// <param name="offNodes">All nodes that is off.</param>
 		/// <returns>All nodes.</returns>
-		protected virtual IEnumerable<Node>? Advanced(in Grid grid, in Grid source, Set<Node> offNodes) => null;
+		protected virtual IEnumerable<Node>? Advanced(
+			in SudokuGrid grid, in SudokuGrid source, Set<Node> offNodes) => null;
 
 		/// <summary>
 		/// Search for chains of each type.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
 		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
-		private void GetAll(IList<ChainingStepInfo> accumulator, ref Grid grid)
+		private void GetAll(IList<ChainingStepInfo> accumulator, ref SudokuGrid grid)
 		{
 			// Iterate on empty cells.
 			foreach (int cell in EmptyMap)
@@ -169,7 +173,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="doReduction">Indicates whether the method executes double chaining.</param>
 		/// <param name="doContradiction">Indicates whether the method executes contradiction chaining.</param>
 		private void DoBinaryChaining(
-			IList<ChainingStepInfo> accumulator, ref Grid grid, in Node pOn, in Node pOff,
+			IList<ChainingStepInfo> accumulator, ref SudokuGrid grid, in Node pOn, in Node pOff,
 			Set<Node> onToOn, Set<Node> onToOff, bool doReduction, bool doContradiction)
 		{
 			Set<Node> offToOn = new(), offToOff = new();
@@ -232,7 +236,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
 		/// <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
 		private void DoRegionChaining(
-			IList<ChainingStepInfo> accumulator, ref Grid grid, int cell, int digit,
+			IList<ChainingStepInfo> accumulator, ref SudokuGrid grid, int cell, int digit,
 			Set<Node> onToOn, Set<Node> onToOff)
 		{
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
@@ -300,7 +304,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="toOn">The list to <c>on</c> nodes.</param>
 		/// <param name="toOff">The list to <c>off</c> nodes.</param>
 		/// <returns>The result.</returns>
-		private (Node On, Node Off)? DoChaining(ref Grid grid, Set<Node> toOn, Set<Node> toOff)
+		private (Node On, Node Off)? DoChaining(ref SudokuGrid grid, Set<Node> toOn, Set<Node> toOff)
 		{
 			_savedGrid = grid;
 
@@ -518,7 +522,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="outcomes">All outcomes (conclusions).</param>
 		/// <returns>The information instance.</returns>
 		private CellChainingStepInfo CreateCellFcHint(
-			in Grid grid, int sourceCell, in Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
+			in SudokuGrid grid, int sourceCell, in Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
 		{
 			var (targetCandidate, targetIsOn) = target;
 

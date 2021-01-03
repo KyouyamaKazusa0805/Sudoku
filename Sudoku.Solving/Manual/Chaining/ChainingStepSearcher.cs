@@ -227,17 +227,5 @@ namespace Sudoku.Solving.Manual.Chaining
 				return result;
 			}
 		}
-
-		/// <summary>
-		/// Remove duplicate information instances and sort them.
-		/// </summary>
-		/// <param name="accumulator">The accumulator.</param>
-		/// <returns>The result list.</returns>
-		protected static IQueryable<ChainingStepInfo> SortInfo(IEnumerable<ChainingStepInfo> accumulator) =>
-		(
-			from info in new Set<ChainingStepInfo>(accumulator)
-			orderby info.Difficulty, info.Complexity, info.SortKey
-			select info
-		).AsQueryable();
 	}
 }

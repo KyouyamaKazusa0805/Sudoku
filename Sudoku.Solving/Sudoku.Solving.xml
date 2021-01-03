@@ -2335,13 +2335,6 @@
             Throws when the parent node of the specified node cannot be found.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepSearcher.SortInfo(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Chaining.ChainingStepInfo})">
-            <summary>
-            Remove duplicate information instances and sort them.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <returns>The result list.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTypeCode">
             <summary>
             Indicates a type code for a chain.

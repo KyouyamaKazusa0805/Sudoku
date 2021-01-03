@@ -150,11 +150,13 @@ namespace Sudoku.Solving.Manual.Sdps
 					}
 				}
 
-				var set = new Set<GuardianStepInfo>(resultAccumulator);
-				resultAccumulator.Clear();
-				resultAccumulator.AddRange(set);
+				if (resultAccumulator.Count == 0)
+				{
+					return;
+				}
+
 				accumulator.AddRange(
-					from info in resultAccumulator
+					from info in resultAccumulator.RemoveDuplicateItems()
 					orderby info.Loop.Count, info.Guardians.Count
 					select info);
 			}

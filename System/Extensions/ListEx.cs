@@ -11,6 +11,21 @@ namespace System.Extensions
 	public static class ListEx
 	{
 		/// <summary>
+		/// Remove duplicate items in the specified list.
+		/// </summary>
+		/// <typeparam name="T">The type of each elements.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
+		public static List<T> RemoveDuplicateItems<T>(this List<T> @this) where T : IEquatable<T>
+		{
+			var set = new Set<T>(@this);
+			@this.Clear();
+			@this.AddRange(set);
+
+			return @this;
+		}
+
+		/// <summary>
 		/// Remove the last element of the specified list, which is equivalent to code:
 		/// <code>
 		/// list.RemoveAt(list.Count - 1);

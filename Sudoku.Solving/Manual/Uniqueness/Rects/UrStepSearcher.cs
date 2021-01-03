@@ -60,14 +60,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			GetAll(tempList, grid, true);
 
 			// Sort and remove duplicate instances if worth.
-			if (tempList.Count != 0)
+			if (tempList.Count == 0)
 			{
-				tempList.Distinct();
-				accumulator.AddRange(
-					from info in tempList
-					orderby info.TechniqueCode, info.AbsoluteOffset
-					select info);
+				return;
 			}
+
+			accumulator.AddRange(
+				from info in tempList.RemoveDuplicateItems()
+				orderby info.TechniqueCode, info.AbsoluteOffset
+				select info);
 		}
 
 		/// <summary>

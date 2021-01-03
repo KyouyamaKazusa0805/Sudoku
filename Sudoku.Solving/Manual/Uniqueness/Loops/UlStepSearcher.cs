@@ -84,10 +84,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					}
 				}
 
-				var set = new Set<UlStepInfo>(resultAccumulator);
-				resultAccumulator.Clear();
-				resultAccumulator.AddRange(set);
-				accumulator.AddRange(from info in resultAccumulator orderby info.Loop.Count select info);
+				if (resultAccumulator.Count == 0)
+				{
+					continue;
+				}
+
+				accumulator.AddRange(
+					from info in resultAccumulator.RemoveDuplicateItems()
+					orderby info.Loop.Count
+					select info);
 
 				/*Don't convert to method or static local function*/
 				void f(
