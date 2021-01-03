@@ -60,14 +60,50 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the event triggered when the value is changed.
 		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// In Visual Basic .NET, we can't use function pointers. therefore, we can't expose
+		/// this API. In order to avoid CLS incompliant, in this scenario the type is <see cref="IntPtr"/>
+		/// instead.
+		/// </para>
+		/// <para>
+		/// Please note that the concrete signature is:
+		/// <code>
+		/// void ValueChanged(ref SudokuGrid, in ValueChangedArgs);
+		/// </code>
+		/// </para>
+		/// </remarks>
+		/// <seealso cref="IntPtr"/>
+#if CSHARP
 		[CLSCompliant(false)]
 		public static readonly delegate*<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
+#else
+		public static readonly IntPtr ValueChanged;
+#endif
 
 		/// <summary>
 		/// Indicates the event triggered when should re-compute candidates.
 		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// In Visual Basic .NET, we can't use function pointers. therefore, we can't expose
+		/// this API. In order to avoid CLS incompliant, in this scenario the type is <see cref="IntPtr"/>
+		/// instead.
+		/// </para>
+		/// <para>
+		/// Please note that the concrete signature is:
+		/// <code>
+		/// void RefreshingCandidates(ref SudokuGrid);
+		/// </code>
+		/// </para>
+		/// </remarks>
+		/// <seealso cref="IntPtr"/>
+#if CSHARP
 		[CLSCompliant(false)]
 		public static readonly delegate*<ref SudokuGrid, void> RefreshingCandidates;
+#else
+		public static readonly IntPtr RefreshingCandidates;
+#endif
 
 		/// <summary>
 		/// Indicates the default grid that all values are initialized 0, which is same as
@@ -168,8 +204,15 @@ namespace Sudoku.Data
 			}
 
 			// Initializes events.
+#if CSHARP
 			ValueChanged = &onValueChanged;
 			RefreshingCandidates = &onRefreshingCandidates;
+#else
+			delegate*<ref SudokuGrid, in ValueChangedArgs, void> fpOnValueChanged = &onValueChanged;
+			delegate*<ref SudokuGrid, void> fpOnRefreshingCandidates = &onRefreshingCandidates;
+			ValueChanged = (IntPtr)fpOnValueChanged;
+			RefreshingCandidates = (IntPtr)fpOnRefreshingCandidates;
+#endif
 
 			static void onValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
 			{
@@ -433,7 +476,11 @@ namespace Sudoku.Data
 						// If 'value' is -1, we should reset the grid.
 						// Note that reset candidates may not trigger the event.
 						_values[cell] = DefaultMask;
+#if CSHARP
 						RefreshingCandidates(ref this);
+#else
+						((delegate*<ref SudokuGrid, void>)RefreshingCandidates)(ref this);
+#endif
 
 						break;
 					}
@@ -447,7 +494,13 @@ namespace Sudoku.Data
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
+#if CSHARP
 						ValueChanged(ref this, new(cell, copy, result, value));
+#else
+						((delegate*<ref SudokuGrid, in ValueChangedArgs, void>)ValueChanged)(
+							ref this, new(cell, copy, result, value)
+						);
+#endif
 
 						break;
 					}
@@ -487,7 +540,13 @@ namespace Sudoku.Data
 					}
 
 					// To trigger the event.
+#if CSHARP
 					ValueChanged(ref this, new(cell, copied, _values[cell], -1));
+#else
+					((delegate*<ref SudokuGrid, in ValueChangedArgs, void>)ValueChanged)(
+						ref this, new(cell, copied, _values[cell], -1)
+					);
+#endif
 				}
 			}
 		}
@@ -807,7 +866,13 @@ namespace Sudoku.Data
 			short copy = mask;
 			mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
 
+#if CSHARP
 			ValueChanged(ref this, new(cell, copy, mask, -1));
+#else
+			((delegate*<ref SudokuGrid, in ValueChangedArgs, void>)ValueChanged)(
+				ref this, new(cell, copy, mask, -1)
+			);
+#endif
 		}
 
 		/// <summary>
@@ -822,7 +887,13 @@ namespace Sudoku.Data
 			short copy = m;
 			m = mask;
 
+#if CSHARP
 			ValueChanged(ref this, new(cell, copy, m, -1));
+#else
+			((delegate*<ref SudokuGrid, in ValueChangedArgs, void>)ValueChanged)(
+				ref this, new(cell, copy, m, -1)
+			);
+#endif
 		}
 
 		/// <summary>
