@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			? TechniqueCode.HybridWing
 			: IsLocalWing
 			? TechniqueCode.LocalWing
-			: Target.Chain is var chain && (chain[^2].Digit == chain[1].Digit)
+			: Target.Chain is var chain && chain[^2].Digit == chain[1].Digit
 			? IsXyChain ? TechniqueCode.XyChain : TechniqueCode.Aic
 			: Conclusions.Count switch
 			{

@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Chaining
 #else
 		in Node Target
 #endif
-		) : ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
+	) : ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
@@ -46,11 +46,9 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			IsXCycle switch
-			{
-				true => TechniqueCode.FishyCycle,
-				_ => IsXyChain switch { true => TechniqueCode.XyCycle, _ => TechniqueCode.ContinuousNiceLoop }
-			};
+			IsXCycle
+			? TechniqueCode.FishyCycle
+			: IsXyChain ? TechniqueCode.XyCycle : TechniqueCode.ContinuousNiceLoop;
 
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey => Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());
