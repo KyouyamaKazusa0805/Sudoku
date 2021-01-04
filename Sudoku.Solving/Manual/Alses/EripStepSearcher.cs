@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Alses
 						int z = (interMap & regionMap)[0];
 						var c1Map = RegionMaps[new Cells { z, c1 }.CoveredLine];
 						var c2Map = RegionMaps[new Cells { z, c2 }.CoveredLine];
-						foreach (int elimCell in new Cells(c1Map | c2Map) { ~c1, ~c2 } - erMap)
+						foreach (int elimCell in (c1Map | c2Map) - c1 - c2 - erMap)
 						{
 							if (grid.Exists(elimCell, d1) is true)
 							{

@@ -185,7 +185,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			tempMap &= CandMaps[digit];
 			tempMap |= guardians;
 
-			return new(tempMap) { ~cell1, ~cell2 };
+			return tempMap - cell1 - cell2;
 		}
 	}
 }

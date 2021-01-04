@@ -114,37 +114,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// (Copy constructor) To copy an instance with the specified information.
-		/// </summary>
-		/// <param name="another">(<see langword="in"/> parameter) Another instance.</param>
-		/// <remarks>
-		/// <para>
-		/// This constructor is only used for adding or removing some extra cells like:
-		/// <code>
-		/// var y = new Cells(x) { [i] = true };
-		/// </code>
-		/// or
-		/// <code>
-		/// var y = new Cells(x) { i };
-		/// </code>
-		/// </para>
-		/// <para>
-		/// Similarly, the following code is also okay:
-		/// <code>
-		/// var y = new Cells(x) { [i] = false };
-		/// </code>
-		/// or
-		/// <code>
-		/// var y = new Cells(x) { ~i };
-		/// </code>
-		/// where <c>~i</c> means assigning <see langword="false"/> value to the position
-		/// whose the corresponding value is <c>i</c>.
-		/// </para>
-		/// </remarks>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Cells(in Cells another) => this = another;
-
-		/// <summary>
 		/// Initializes an instance with a series of cell offsets.
 		/// </summary>
 		/// <param name="offsets">cell offsets.</param>
@@ -182,11 +151,6 @@ namespace Sudoku.Data
 		/// <param name="setItself">
 		/// A <see cref="bool"/> value indicating whether this initialization
 		/// will set the bit of itself.
-		/// If the value is <see langword="false"/>, it will be equivalent
-		/// to below:
-		/// <code>
-		/// var map = new Cells(offset) { [offset] = false };
-		/// </code>
 		/// </param>
 		/// <remarks>
 		/// If you want to use this constructor, please use <see cref="PeerMaps"/> instead.
@@ -194,7 +158,7 @@ namespace Sudoku.Data
 		/// <seealso cref="PeerMaps"/>
 		private Cells(int offset, bool setItself)
 		{
-			// Don't merge two sentences to one.
+			// Don't merge those two to one.
 			this = PeerMaps[offset];
 			InternalAdd(offset, setItself);
 		}
@@ -902,11 +866,6 @@ namespace Sudoku.Data
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <param name="cell">The cell to add.</param>
 		/// <returns>The result of the map.</returns>
-		/// <remarks>
-		/// I strongly recommend you should use <see cref="Cells(in Cells)"/> instead
-		/// when more than one cell should be added into the map.
-		/// </remarks>
-		/// <seealso cref="Cells(in Cells)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator +(in Cells map, int cell) => new(map) { cell };
 
@@ -917,11 +876,6 @@ namespace Sudoku.Data
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The result of the map.</returns>
-		/// <remarks>
-		/// I strongly recommend you should use <see cref="Cells(in Cells)"/> instead
-		/// when more than one cell should be removed from the map.
-		/// </remarks>
-		/// <seealso cref="Cells(in Cells)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator -(in Cells map, int cell) => new(map) { ~cell };
 

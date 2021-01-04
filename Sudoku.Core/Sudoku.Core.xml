@@ -731,36 +731,6 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Data.Cells.#ctor(Sudoku.Data.Cells@)">
-            <summary>
-            (Copy constructor) To copy an instance with the specified information.
-            </summary>
-            <param name="another">(<see langword="in"/> parameter) Another instance.</param>
-            <remarks>
-            <para>
-            This constructor is only used for adding or removing some extra cells like:
-            <code>
-            var y = new Cells(x) { [i] = true };
-            </code>
-            or
-            <code>
-            var y = new Cells(x) { i };
-            </code>
-            </para>
-            <para>
-            Similarly, the following code is also okay:
-            <code>
-            var y = new Cells(x) { [i] = false };
-            </code>
-            or
-            <code>
-            var y = new Cells(x) { ~i };
-            </code>
-            where <c>~i</c> means assigning <see langword="false"/> value to the position
-            whose the corresponding value is <c>i</c>.
-            </para>
-            </remarks>
-        </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
@@ -790,11 +760,6 @@
             <param name="setItself">
             A <see cref="T:System.Boolean"/> value indicating whether this initialization
             will set the bit of itself.
-            If the value is <see langword="false"/>, it will be equivalent
-            to below:
-            <code>
-            var map = new Cells(offset) { [offset] = false };
-            </code>
             </param>
             <remarks>
             If you want to use this constructor, please use <see cref="F:Sudoku.Constants.Processings.PeerMaps"/> instead.
@@ -1095,11 +1060,6 @@
             <param name="map">(<see langword="in"/> parameter) The map.</param>
             <param name="cell">The cell to add.</param>
             <returns>The result of the map.</returns>
-            <remarks>
-            I strongly recommend you should use <see cref="M:Sudoku.Data.Cells.#ctor(Sudoku.Data.Cells@)"/> instead
-            when more than one cell should be added into the map.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Cells.#ctor(Sudoku.Data.Cells@)"/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,System.Int32)">
             <summary>
@@ -1109,11 +1069,6 @@
             <param name="map">(<see langword="in"/> parameter) The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The result of the map.</returns>
-            <remarks>
-            I strongly recommend you should use <see cref="M:Sudoku.Data.Cells.#ctor(Sudoku.Data.Cells@)"/> instead
-            when more than one cell should be removed from the map.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Cells.#ctor(Sudoku.Data.Cells@)"/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_OnesComplement(Sudoku.Data.Cells@)">
             <summary>
