@@ -7,6 +7,10 @@
 		mc:Ignorable="d"
 		Title="{DynamicResource SettingsTitle}" Height="600" Width="800" ResizeMode="CanMinimize">
 	<Window.Resources>
+		<Style TargetType="ListBox">
+			<Setter Property="HorizontalContentAlignment" Value="Left" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
 		<Style TargetType="c:NumericUpDown">
 			<Setter Property="HorizontalAlignment" Value="Center"/>
 			<Setter Property="VerticalAlignment" Value="Center"/>

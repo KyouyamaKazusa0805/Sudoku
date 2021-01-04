@@ -170,8 +170,8 @@ namespace Sudoku.Windows
 				select new ListBoxItem
 				{
 					Content = c,
-					HorizontalAlignment = HorizontalAlignment.Left,
-					VerticalAlignment = VerticalAlignment.Center
+					HorizontalContentAlignment = HorizontalAlignment.Left,
+					VerticalContentAlignment = VerticalAlignment.Center
 				};
 
 			_listBoxPriority.SelectedIndex = 0;
