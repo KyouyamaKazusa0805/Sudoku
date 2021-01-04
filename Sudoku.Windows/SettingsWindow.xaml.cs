@@ -160,15 +160,19 @@ namespace Sudoku.Windows
 		{
 			_listBoxPriority.ItemsSource =
 				from type in Assembly.Load("Sudoku.Solving").GetTypes()
-				where !type.IsAbstract && type.IsSubclassOf<StepSearcher>()
-				where !type.IsDefined<ObsoleteAttribute>()
+				where !type.IsAbstract && type.IsSubclassOf<StepSearcher>() && !type.IsDefined<ObsoleteAttribute>()
 				let prior = TechniqueProperties.GetPropertiesFrom(type)!.Priority
 				orderby prior
 				let v = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
 				let casted = v as TechniqueProperties
-				where !(casted?.DisabledReason.Flags(DisabledReason.HasBugs) ?? !false)
+				where casted is not null && !casted.DisabledReason.Flags(DisabledReason.HasBugs)
 				let c = new StepTriplet(CoreResources.GetValue($"Progress{casted.DisplayLabel}"), prior, type)
-				select new ListBoxItem { Content = c };
+				select new ListBoxItem
+				{
+					Content = c,
+					HorizontalAlignment = HorizontalAlignment.Left,
+					VerticalAlignment = VerticalAlignment.Center
+				};
 
 			_listBoxPriority.SelectedIndex = 0;
 			var (_, priority, selectedType, _) = (StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
