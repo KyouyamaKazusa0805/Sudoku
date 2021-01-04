@@ -18,7 +18,8 @@ namespace Sudoku.Solving
 	/// <param name="IsSolved">Indicates whether the puzzle has been solved.</param>
 	/// <param name="ElapsedTime">The elapsed time.</param>
 	public sealed partial record AnalysisResult(
-		string SolverName, in SudokuGrid Puzzle, bool IsSolved, in TimeSpan ElapsedTime) : IEnumerable<StepInfo>, IFormattable
+		string SolverName, in SudokuGrid Puzzle, bool IsSolved, in TimeSpan ElapsedTime)
+		: IEnumerable<StepInfo>, IFormattable
 	{
 		/// <summary>
 		/// Indicates the additional texts that we should describe.
