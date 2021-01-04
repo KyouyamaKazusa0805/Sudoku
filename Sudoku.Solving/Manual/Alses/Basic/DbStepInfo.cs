@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					.ToString();
 			}
 
-			static string converter(in KeyValuePair<int, Als> pair) =>
+			static string converter(KeyValuePair<int, Als> pair) =>
 				$"{pair.Key + 1} - {pair.Value}{separator}";
 		}
 	}

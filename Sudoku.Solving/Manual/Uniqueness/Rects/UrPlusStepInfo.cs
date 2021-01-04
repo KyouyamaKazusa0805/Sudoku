@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			unsafe string g()
 			{
 				const string separator = ", ";
-				static string? converter(in ConjugatePair cp) => $"{cp}{separator}";
+				static string? converter(ConjugatePair cp) => $"{cp}{separator}";
 				return new StringBuilder()
 					.AppendRange<ConjugatePair, string?>(ConjugatePairs, &converter)
 					.RemoveFromEnd(separator.Length)

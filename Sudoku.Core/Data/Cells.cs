@@ -629,7 +629,7 @@ namespace Sudoku.Data
 			static unsafe string normalToString(in Cells @this)
 			{
 				const string leftCurlyBrace = "{ ", rightCurlyBrace = " }", separator = ", ";
-				static int converter(in int v) => v + 1;
+				static int converter(int v) => v + 1;
 				var sbRow = new StringBuilder();
 				var dic = new Dictionary<int, ICollection<int>>();
 				foreach (int cell in @this)

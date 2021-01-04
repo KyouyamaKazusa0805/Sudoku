@@ -141,7 +141,7 @@ namespace System.Extensions
 		[CLSCompliant(false)]
 		public static unsafe StringBuilder AppendRange<TElement, TOther>(
 			this StringBuilder @this, IEnumerable<TElement?> contentList,
-			delegate*<in TElement?, TOther?> converter)
+			delegate*<TElement?, TOther?> converter)
 		{
 			foreach (var content in contentList)
 			{

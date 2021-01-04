@@ -36,23 +36,18 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override string ToString()
 		{
+			const string separator = ", ";
 			string pivotStr = new Cells { Pivot }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Cell {pivotStr} - {g(this)} => {elimStr}";
 
-			static unsafe string g(DeathBlossomStepInfo @this)
-			{
-				const string separator = ", ";
-				static string converter(in KeyValuePair<int, Als> pair)
-				{
-					var (digit, als) = pair;
-					return $"{digit + 1} - {als}{separator}";
-				}
-				return new StringBuilder()
-					.AppendRange<KeyValuePair<int, Als>, string>(@this.Alses, &converter)
-					.RemoveFromEnd(separator.Length)
-					.ToString();
-			}
+			static unsafe string g(DeathBlossomStepInfo @this) =>
+				new StringBuilder()
+				.AppendRange<KeyValuePair<int, Als>, string>(@this.Alses, &converter)
+				.RemoveFromEnd(separator.Length)
+				.ToString();
+
+			static string converter(KeyValuePair<int, Als> pair) => $"{pair.Key + 1} - {pair.Value}{separator}";
 		}
 	}
 }
