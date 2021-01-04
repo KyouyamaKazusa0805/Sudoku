@@ -37,7 +37,6 @@ namespace Sudoku.Windows
 			{
 				EnableSolvingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();
-				_textBoxInfo.Text = "已取消搜索操作。";
 			}
 			finally
 			{
