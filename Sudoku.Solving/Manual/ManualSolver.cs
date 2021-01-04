@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
-using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Windows;
 
@@ -102,7 +101,7 @@ namespace Sudoku.Solving.Manual
 						grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
 						cancellationToken);
 				}
-				catch (WrongHandlingException ex)
+				catch (SudokuHandlingException ex)
 				{
 					return new(SolverName, grid, false, TimeSpan.Zero) { Additional = ex.Message };
 				}

@@ -1,6 +1,4 @@
-﻿using Sudoku.Runtime;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	partial class ManualSolver
 	{
@@ -72,7 +70,7 @@ namespace Sudoku.Solving.Manual
 		/// Indicates whether the solver will check the validity of the conclusions
 		/// after searched them. If the conclusions eliminate the wrong digits or
 		/// assign to the wrong cells, it will report the error
-		/// (i.e. throw a <see cref="WrongHandlingException"/>).
+		/// (i.e. throw a <see cref="SudokuHandlingException"/>).
 		/// </para>
 		/// <para>
 		/// The value is <see langword="true"/> in default case. If the value is
@@ -86,7 +84,7 @@ namespace Sudoku.Solving.Manual
 		/// the grid has no solution at present.
 		/// </para>
 		/// </summary>
-		/// <seealso cref="WrongHandlingException"/>
+		/// <seealso cref="SudokuHandlingException"/>
 		public bool CheckConclusionValidityAfterSearched { get; set; } = true;
 
 		/// <summary>

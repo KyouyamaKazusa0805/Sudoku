@@ -1,6 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
-using Sudoku.Runtime;
 using Sudoku.Windows;
 
 namespace Sudoku
@@ -13,7 +12,7 @@ namespace Sudoku
 		/// <summary>
 		/// The initialize method.
 		/// </summary>
-		/// <exception cref="SudokuRuntimeException">
+		/// <exception cref="SudokuHandlingException">
 		/// Throws when the deserialization operation is failed.
 		/// </exception>
 		[ModuleInitializer]
@@ -28,18 +27,19 @@ namespace Sudoku
 		/// </summary>
 		/// <param name="langSourceInstanceName">The name of the language resource instance.</param>
 		/// <param name="path">The path to deserialize.</param>
+		/// <exception cref="SudokuHandlingException">
+		/// Throws when the specified files don't exist.
+		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static void DeserializeResourceDictionary(string langSourceInstanceName, string path)
 		{
 			if (!Resources.Deserialize(langSourceInstanceName, path))
 			{
-				throwException(path);
+				throw new SudokuHandlingException<string, string>(
+					errorCode: 401,
+					Assembly.GetExecutingAssembly().FullName!,
+					path);
 			}
-
-			[DoesNotReturn]
-			static void throwException(string path) =>
-				throw new SudokuRuntimeException(
-					$"Please check the existence of the resource dictionary file (path {path}).");
 		}
 	}
 }

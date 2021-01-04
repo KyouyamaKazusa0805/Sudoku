@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Runtime;
 using Sudoku.Windows;
 using static System.Math;
 
@@ -20,6 +19,9 @@ namespace Sudoku.Solving.BruteForces.Linqing
 
 
 		/// <inheritdoc/>
+		/// <exception cref="SudokuHandlingException">
+		/// Throws when the puzzle doesn't contain a unique solution.
+		/// </exception>
 		public AnalysisResult Solve(in SudokuGrid grid)
 		{
 			var stopwatch = new Stopwatch();
@@ -30,9 +32,9 @@ namespace Sudoku.Solving.BruteForces.Linqing
 
 			return results.Count switch
 			{
-				0 => throw new NoSolutionException(grid),
+				0 => throw new SudokuHandlingException<SudokuGrid>(errorCode: 102, grid),
 				1 => new(SolverName, grid, true, stopwatch.Elapsed) { Solution = SudokuGrid.Parse(results[0]) },
-				_ => throw new MultipleSolutionsException(grid)
+				_ => throw new SudokuHandlingException<SudokuGrid>(errorCode: 101, grid)
 			};
 		}
 

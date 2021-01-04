@@ -46,8 +46,8 @@ namespace Sudoku.Recognition
 		/// </summary>
 		/// <param name="field">The field.</param>
 		/// <returns>The grid.</returns>
-		/// <exception cref="RecognitionException">
-		/// Throws when the processing is wrong or unhandleable.
+		/// <exception cref="SudokuHandlingException">
+		/// Throws when the processing is wrong or unhandlable.
 		/// </exception>
 		public SudokuGrid RecognizeDigits(Field field)
 		{
@@ -59,13 +59,13 @@ namespace Sudoku.Recognition
 				{
 					// Recognize digit from cell.
 					int recognition = RecognizeCellNumber(field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2)));
-					if (recognition == 0)
+					if (recognition == -1)
 					{
 						continue;
 					}
 
 					int cell = x * 9 + y, digit = recognition - 1;
-					_ = result[cell, digit] ? throw new RecognitionException($"Recognition error. Cannot fill the cell r{x + 1}c{y + 1} with the digit {digit + 1}.") : 0;
+					_ = !result[cell, digit] ? throw new SudokuHandlingException<int, int>(302, cell, digit) : 0;
 
 					result[cell] = digit;
 				}
@@ -83,7 +83,7 @@ namespace Sudoku.Recognition
 		/// The result value (must be between 1 and 9). If the recognition is failed,
 		/// the value will be <c>0</c>.
 		/// </returns>
-		/// <exception cref="RecognitionException">Throws when the OCR engine error.</exception>
+		/// <exception cref="SudokuHandlingException">Throws when the OCR engine error.</exception>
 		private int RecognizeCellNumber(Field cellImg)
 		{
 			_ = _ocr is null ? throw new NullReferenceException($"{nameof(_ocr)} cannot be null here.") : 0;
@@ -97,7 +97,7 @@ namespace Sudoku.Recognition
 			Cv.Threshold(imgGray, imgThresholded, ThOcrMin, ThOcrMax, ThresholdType.Binary);
 
 			_ocr.SetImage(imgThresholded);
-			_ = _ocr.Recognize() != 0 ? throw new RecognitionException("Tessaract Error. Cannot to recognize cell image.") : 0;
+			_ = _ocr.Recognize() != 0 ? throw new SudokuHandlingException(errorCode: 303) : 0;
 
 			var characters = _ocr.GetCharacters();
 			string numberText = string.Empty;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Extensions;
 using System.Threading.Tasks;
 using Sudoku.Data;
-using Sudoku.Runtime;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving.Checking
@@ -34,7 +33,7 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
-		/// <exception cref="SudokuRuntimeException">Throws when the specified grid is invalid.</exception>
+		/// <exception cref="SudokuHandlingException">Throws when the specified grid is invalid.</exception>
 		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoors(in SudokuGrid grid, int depth)
 		{
 			if (depth is < 0 or > 3)
@@ -42,7 +41,7 @@ namespace Sudoku.Solving.Checking
 				return Array.Empty<IReadOnlyList<Conclusion>>();
 			}
 
-			_ = !grid.IsValid() ? throw new SudokuRuntimeException() : 0;
+			_ = !grid.IsValid() ? throw new SudokuHandlingException(errorCode: 202) : 0;
 
 			var result = new List<IReadOnlyList<Conclusion>>();
 			for (int dep = 0; dep <= depth; dep++)

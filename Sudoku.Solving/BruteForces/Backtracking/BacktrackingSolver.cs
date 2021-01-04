@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Runtime;
 using Sudoku.Windows;
 
 namespace Sudoku.Solving.BruteForces.Backtracking
@@ -23,6 +22,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 
 
 		/// <inheritdoc/>
+		/// <exception cref="SudokuHandlingException">Throws when the puzzle contains no solutions.</exception>
 		public AnalysisResult Solve(in SudokuGrid grid)
 		{
 			_grid = grid;
@@ -40,7 +40,10 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 
 				return new(SolverName, grid, true, stopwatch.Elapsed)
 				{
-					Solution = new(result ?? throw new NoSolutionException(grid), GridCreatingOption.MinusOne)
+					Solution =
+						new(
+							result ?? throw new SudokuHandlingException<SudokuGrid>(errorCode: 102, grid),
+							GridCreatingOption.MinusOne)
 				};
 			}
 			catch (Exception ex)
@@ -62,13 +65,16 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 		/// </param>
 		/// <param name="gridValues">All grid values.</param>
 		/// <param name="finishedCellsCount">The number of cells had finished.</param>
+		/// <exception cref="SudokuHandlingException">
+		/// Throws when the puzzle contains multiple solutions.
+		/// </exception>
 		private void BacktrackinglySolve(
 			ref int solutionsCount, ref int[]? result, int[] gridValues, int finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
 			{
 				// Solution found.
-				_ = ++solutionsCount > 1 ? throw new MultipleSolutionsException(_grid) : 0;
+				_ = ++solutionsCount > 1 ? throw new SudokuHandlingException<SudokuGrid>(errorCode: 101, _grid) : 0;
 
 				// We should catch the result.
 				// If we use normal assignment, we well get the

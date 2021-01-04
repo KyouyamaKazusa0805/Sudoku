@@ -5,7 +5,6 @@ using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
-using Sudoku.Runtime;
 
 namespace Sudoku.Solving.BruteForces.Bitwise
 {
@@ -67,6 +66,9 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 
 
 		/// <inheritdoc/>
+		/// <exception cref="SudokuHandlingException">
+		/// Throws when the puzzle doesn't contain a unique solution.
+		/// </exception>
 		[SkipLocalsInit]
 		public AnalysisResult Solve(in SudokuGrid grid)
 		{
@@ -83,12 +85,12 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 
 				return _numSolutions switch
 				{
-					0 => throw new NoSolutionException(grid),
+					0 => throw new SudokuHandlingException<SudokuGrid>(errorCode: 102, grid),
 					1 => new(SolverName, grid, true, stopwatch.Elapsed)
 					{
 						Solution = SudokuGrid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength)),
 					},
-					_ => throw new MultipleSolutionsException(grid)
+					_ => throw new SudokuHandlingException<SudokuGrid>(errorCode: 101, grid),
 				};
 			}
 		}

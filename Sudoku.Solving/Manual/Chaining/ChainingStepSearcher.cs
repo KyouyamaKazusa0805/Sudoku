@@ -1,9 +1,7 @@
 ﻿using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Runtime;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using static Sudoku.Constants.Processings;
 
@@ -171,7 +169,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="source">(<see langword="in"/> parameter) The source grid.</param>
 		/// <param name="offNodes">All off nodes.</param>
-		/// <exception cref="SudokuRuntimeException">
+		/// <exception cref="SudokuHandlingException">
 		/// Throws when the parent node of the specified node cannot be found.
 		/// </exception>
 		private static void AddHiddenParentsOfCell(
@@ -184,7 +182,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				(p.Parents ??= new List<Node>()).Add(
 					offNodes.Contains(parent)
 					? parent
-					: throw new SudokuRuntimeException("Parent node not found."));
+					: throw new SudokuHandlingException(errorCode: 501));
 			}
 		}
 
@@ -196,7 +194,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="source">(<see langword="in"/> parameter) The source grid.</param>
 		/// <param name="currRegion">The current region label.</param>
 		/// <param name="offNodes">All off nodes.</param>
-		/// <exception cref="SudokuRuntimeException">
+		/// <exception cref="SudokuHandlingException">
 		/// Throws when the parent node of the specified node cannot be found.
 		/// </exception>
 		private static void AddHiddenParentsOfRegion(
@@ -210,7 +208,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				(p.Parents ??= new List<Node>()).Add(
 					offNodes.Contains(parent)
 					? parent
-					: throw new SudokuRuntimeException("Parent node not found."));
+					: throw new SudokuHandlingException(errorCode: 501));
 			}
 
 			static short m(in SudokuGrid grid, int digit, int region)

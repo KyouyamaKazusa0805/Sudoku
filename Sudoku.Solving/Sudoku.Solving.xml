@@ -313,6 +313,7 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the puzzle contains no solutions.</exception>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.BacktrackinglySolve(System.Int32@,System.Int32[]@,System.Int32[],System.Int32)">
             <summary>
@@ -326,6 +327,9 @@
             </param>
             <param name="gridValues">All grid values.</param>
             <param name="finishedCellsCount">The number of cells had finished.</param>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the puzzle contains multiple solutions.
+            </exception>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.IsValid(System.Int32[],System.Int32,System.Int32)">
             <summary>
@@ -391,6 +395,9 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the puzzle doesn't contain a unique solution.
+            </exception>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(System.String,System.String@,System.Int32)">
             <summary>
@@ -590,6 +597,9 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the puzzle doesn't contain a unique solution.
+            </exception>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.SolveStrings(System.String)">
             <summary>
@@ -624,7 +634,7 @@
             where value 0 is for searching for assignments.
             </param>
             <returns>All backdoors.</returns>
-            <exception cref="T:Sudoku.Runtime.SudokuRuntimeException">Throws when the specified grid is invalid.</exception>
+            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the specified grid is invalid.</exception>
         </member>
         <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExact(Sudoku.Data.SudokuGrid@,System.Int32)">
             <summary>
@@ -2323,7 +2333,7 @@
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="source">(<see langword="in"/> parameter) The source grid.</param>
             <param name="offNodes">All off nodes.</param>
-            <exception cref="T:Sudoku.Runtime.SudokuRuntimeException">
+            <exception cref="T:Sudoku.SudokuHandlingException">
             Throws when the parent node of the specified node cannot be found.
             </exception>
         </member>
@@ -2336,7 +2346,7 @@
             <param name="source">(<see langword="in"/> parameter) The source grid.</param>
             <param name="currRegion">The current region label.</param>
             <param name="offNodes">All off nodes.</param>
-            <exception cref="T:Sudoku.Runtime.SudokuRuntimeException">
+            <exception cref="T:Sudoku.SudokuHandlingException">
             Throws when the parent node of the specified node cannot be found.
             </exception>
         </member>
@@ -4442,9 +4452,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
-            Throws when the puzzle is not unique.
-            </exception>
+            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the puzzle is invalid to process.</exception>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.GetAllTemplateSet(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <summary>
@@ -4571,7 +4579,7 @@
             </param>
             <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <returns>The analysis result.</returns>
-            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
+            <exception cref="T:Sudoku.SudokuHandlingException">
             Throws when the solver can't solved due to wrong handling.
             </exception>
             <seealso cref="T:Sudoku.Models.GridProgressResult"/>
@@ -4598,7 +4606,7 @@
             </param>
             <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <returns>The analysis result.</returns>
-            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
+            <exception cref="T:Sudoku.SudokuHandlingException">
             Throws when the solver can't solved due to wrong handling.
             </exception>
             <seealso cref="T:Sudoku.Models.GridProgressResult"/>
@@ -4669,7 +4677,7 @@
             Indicates whether the solver will check the validity of the conclusions
             after searched them. If the conclusions eliminate the wrong digits or
             assign to the wrong cells, it will report the error
-            (i.e. throw a <see cref="T:Sudoku.Runtime.WrongHandlingException"/>).
+            (i.e. throw a <see cref="T:Sudoku.SudokuHandlingException"/>).
             </para>
             <para>
             The value is <see langword="true"/> in default case. If the value is
@@ -4683,7 +4691,7 @@
             the grid has no solution at present.
             </para>
             </summary>
-            <seealso cref="T:Sudoku.Runtime.WrongHandlingException"/>
+            <seealso cref="T:Sudoku.SudokuHandlingException"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckGurthSymmetricalPlacement">
             <summary>
@@ -8600,7 +8608,7 @@
             <param name="links">
             (<see langword="out"/> parameter) If found any valid loop, the value will be 
             </param>
-            <returns></returns>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Int16)">
             <summary>

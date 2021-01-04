@@ -216,8 +216,8 @@
             </summary>
             <param name="field">The field.</param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.Recognition.RecognitionException">
-            Throws when the processing is wrong or unhandleable.
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the processing is wrong or unhandlable.
             </exception>
         </member>
         <member name="M:Sudoku.Recognition.InternalServiceProvider.RecognizeCellNumber(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
@@ -229,7 +229,7 @@
             The result value (must be between 1 and 9). If the recognition is failed,
             the value will be <c>0</c>.
             </returns>
-            <exception cref="T:Sudoku.Recognition.RecognitionException">Throws when the OCR engine error.</exception>
+            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the OCR engine error.</exception>
         </member>
         <member name="M:Sudoku.Recognition.InternalServiceProvider.InitTesseract(System.String,System.String)">
             <summary>
@@ -239,23 +239,6 @@
             <param name="lang">The language. The default value is <c>"eng"</c>.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't found.</exception>
-        </member>
-        <member name="T:Sudoku.Recognition.RecognitionException">
-            <summary>
-            Represents an error that the OCR tools can't work normally.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Recognition.RecognitionException.#ctor">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Recognition.RecognitionException.#ctor(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Recognition.RecognitionException.#ctor(System.String,System.Exception)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Recognition.RecognitionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Recognition.RecognitionServiceProvider">
             <summary>
@@ -284,7 +267,7 @@
             </summary>
             <param name="image">The image.</param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.Recognition.RecognitionException">
+            <exception cref="T:Sudoku.SudokuHandlingException">
             Throws when the tool has not initialized yet.
             </exception>
         </member>

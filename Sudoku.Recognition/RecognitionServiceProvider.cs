@@ -48,7 +48,7 @@ namespace Sudoku.Recognition
 		/// </summary>
 		/// <param name="image">The image.</param>
 		/// <returns>The grid.</returns>
-		/// <exception cref="RecognitionException">
+		/// <exception cref="SudokuHandlingException">
 		/// Throws when the tool has not initialized yet.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -60,9 +60,7 @@ namespace Sudoku.Recognition
 				return _recognizingServiceProvider.RecognizeDigits(gridRecognizer.Recognize());
 			}
 
-			throw new RecognitionException(
-				"The recognizer has not initialized.",
-				new NullReferenceException("The tool is current null."));
+			throw new SudokuHandlingException(errorCode: 301);
 		}
 
 		/// <summary>

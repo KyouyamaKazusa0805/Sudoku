@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data
 {
@@ -39,7 +37,6 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => false;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override int GetHashCode() => 0;
 

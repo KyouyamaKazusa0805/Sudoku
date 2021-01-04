@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading;
 using Sudoku.Data;
 using Sudoku.Models;
-using Sudoku.Runtime;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;
@@ -36,7 +35,7 @@ namespace Sudoku.Solving.Manual
 		/// </param>
 		/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
 		/// <returns>The analysis result.</returns>
-		/// <exception cref="WrongHandlingException">
+		/// <exception cref="SudokuHandlingException">
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
@@ -72,7 +71,10 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						throw new WrongHandlingException(grid);
+						throw new SudokuHandlingException<SudokuGrid, string>(
+							errorCode: 201,
+							grid,
+							tempStep.ToString());
 					}
 				}
 			}
@@ -173,11 +175,10 @@ namespace Sudoku.Solving.Manual
 							}
 						}
 
-						string stepGridStr = cloneation.ToString("#");
-						throw new WrongHandlingException(
+						throw new SudokuHandlingException<SudokuGrid, string>(
+							errorCode: 201,
 							grid,
-							$"The specified step is wrong: {wrongStep}, {Environment.NewLine}" +
-							$"the current grid: {stepGridStr}.");
+							wrongStep!.ToString());
 					}
 				}
 				else
@@ -224,11 +225,10 @@ namespace Sudoku.Solving.Manual
 						goto Restart;
 					}
 
-					string stepGridStr = cloneation.ToString("#");
-					throw new WrongHandlingException(
+					throw new SudokuHandlingException<SudokuGrid, string>(
+						errorCode: 201,
 						grid,
-						$"The specified step is wrong: {step}, {Environment.NewLine}" +
-						$"the current grid: {stepGridStr}.");
+						step.ToString());
 				}
 			}
 

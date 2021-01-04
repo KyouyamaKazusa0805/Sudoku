@@ -8,7 +8,6 @@ using System.Windows.Controls;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
-using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Windows.Constants;
 using static Sudoku.Windows.MainWindow;
@@ -57,7 +56,7 @@ namespace Sudoku.Windows
 				return await Task.Run(() =>
 				{
 					try { return new BackdoorSearcher().SearchForBackdoors(_puzzle, _depth); }
-					catch (SudokuRuntimeException) { return null; }
+					catch (SudokuHandlingException) { return null; }
 				});
 			}
 

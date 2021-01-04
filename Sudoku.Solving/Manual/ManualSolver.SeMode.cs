@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading;
 using Sudoku.Data;
 using Sudoku.Models;
-using Sudoku.Runtime;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Uniqueness;
 
@@ -35,7 +34,7 @@ namespace Sudoku.Solving.Manual
 		/// </param>
 		/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
 		/// <returns>The analysis result.</returns>
-		/// <exception cref="WrongHandlingException">
+		/// <exception cref="SudokuHandlingException">
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
@@ -140,7 +139,11 @@ namespace Sudoku.Solving.Manual
 								break;
 							}
 						}
-						throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
+
+						throw new SudokuHandlingException<SudokuGrid, string>(
+							errorCode: 201,
+							grid,
+							wrongStep!.ToString());
 					}
 				}
 				else
@@ -184,7 +187,10 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
+						throw new SudokuHandlingException<SudokuGrid, string>(
+							errorCode: 201,
+							grid,
+							step.ToString());
 					}
 				}
 			}

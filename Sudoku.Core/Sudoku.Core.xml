@@ -13,7 +13,7 @@
             <summary>
             The initialize method.
             </summary>
-            <exception cref="T:Sudoku.Runtime.SudokuRuntimeException">
+            <exception cref="T:Sudoku.SudokuHandlingException">
             Throws when the deserialization operation is failed.
             </exception>
         </member>
@@ -23,6 +23,9 @@
             </summary>
             <param name="langSourceInstanceName">The name of the language resource instance.</param>
             <param name="path">The path to deserialize.</param>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the specified files don't exist.
+            </exception>
         </member>
         <member name="T:Sudoku.Constants.Processings">
             <summary>
@@ -218,7 +221,6 @@
         </member>
         <member name="M:Sudoku.Data.BitSubsetsGenerator.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.BitSubsetsGenerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -4010,163 +4012,73 @@
         <member name="M:Sudoku.Models.TechniqueProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Runtime.MultipleSolutionsException">
+        <member name="T:Sudoku.SudokuHandlingException">
             <summary>
-            Represents an error that the puzzle has multiple solutions while solving.
+            Proivdes an exception that should thrown when the operation is error to handle or something is wrong.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Initializes an instance with a grid.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+        <member name="M:Sudoku.SudokuHandlingException.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@,System.String)">
+        <member name="M:Sudoku.SudokuHandlingException.#ctor(System.Int32)">
             <summary>
-            Initializes an instance with a grid and an error message.
+            Initializes an instance with the error code.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="message">The error message.</param>
+            <param name="errorCode">The error code.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@,System.String,System.Exception)">
+        <member name="P:Sudoku.SudokuHandlingException.ErrorCode">
             <summary>
-            Initializes an instance with a grid, an error message and an inner exception.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="message">The error message.</param>
-            <param name="inner">The inner exception.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes an instance with a grid, a serialization information instance and
-            a streaming context instance.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="info">The streaming information.</param>
-            <param name="context">The streaming context.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.MultipleSolutionsException.Message">
-            <summary>
-            Indicates the error message.
+            Indicates the error code.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.MultipleSolutionsException.Grid">
-            <summary>
-            The grid.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.NoSolutionException">
-            <summary>
-            Represents an error that the puzzle has no solution while solving.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Initializes an instance with a grid.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@,System.String)">
-            <summary>
-            Initializes an instance with a grid and an error message.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="message">The error message.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@,System.String,System.Exception)">
-            <summary>
-            Initializes an instance with a grid, an error message and an inner exception.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="message">The error message.</param>
-            <param name="inner">The inner exception.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes an instance with a grid, a serialization information instance and
-            a streaming context instance.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="info">The streaming information.</param>
-            <param name="context">The streaming context.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.NoSolutionException.Message">
-            <summary>
-            Indicates the error message.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.NoSolutionException.Grid">
-            <summary>
-            The grid.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.SudokuRuntimeException">
-            <summary>
-            Represents an error that the puzzle has no solution while solving.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.SudokuRuntimeException.#ctor">
+        <member name="P:Sudoku.SudokuHandlingException.Message">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.SudokuRuntimeException.#ctor(System.String)">
+        <member name="T:Sudoku.SudokuHandlingException`1">
+            <summary>
+            Proivdes an exception that should thrown when the operation is error to handle or something is wrong.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SudokuHandlingException`1.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="M:Sudoku.SudokuHandlingException`1.#ctor(System.Int32,`0)">
+            <summary>
+            Initializes an instance with the error code and the argument.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="arg">The arg 1.</param>
+        </member>
+        <member name="P:Sudoku.SudokuHandlingException`1.Arg1">
+            <summary>
+            Indicates the argument 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SudokuHandlingException`1.Message">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.SudokuRuntimeException.#ctor(System.String,System.Exception)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.SudokuRuntimeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Runtime.SudokuRuntimeException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Runtime.WrongHandlingException">
+        <member name="T:Sudoku.SudokuHandlingException`2">
             <summary>
-            Represents an error that the puzzle has wrong handling while solving with
-            manual logic tools.
+            Proivdes an exception that should thrown when the operation is error to handle or something is wrong.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Initializes an instance with a grid.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+        <member name="M:Sudoku.SudokuHandlingException`2.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.SudokuGrid@,System.String)">
+        <member name="M:Sudoku.SudokuHandlingException`2.#ctor(System.Int32,`0,`1)">
             <summary>
-            Initializes an instance with a grid and an error message.
+            Initializes an instance with the error code and the argument.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="wrongInfo">The error message.</param>
+            <param name="errorCode">The error code.</param>
+            <param name="arg1">The arg 1.</param>
+            <param name="arg2">The arg 2.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.SudokuGrid@,System.String,System.Exception)">
+        <member name="P:Sudoku.SudokuHandlingException`2.Arg2">
             <summary>
-            Initializes an instance with a grid, an error message and an inner exception.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="wrongInfo">The error message.</param>
-            <param name="inner">The inner exception.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.SudokuGrid@,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes an instance with a grid, a serialization information instance and
-            a streaming context instance.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="info">The streaming information.</param>
-            <param name="context">The streaming context.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.WrongHandlingException.WrongInfo">
-            <summary>
-            Indicates the wrong information.
+            Indicates the argument 2.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.WrongHandlingException.Grid">
-            <summary>
-            The grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.WrongHandlingException.Message">
+        <member name="P:Sudoku.SudokuHandlingException`2.Message">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.TechniqueCode">

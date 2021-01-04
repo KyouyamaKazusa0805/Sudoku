@@ -4,7 +4,6 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
-using Sudoku.Runtime;
 using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
 
@@ -103,7 +102,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// <param name="links">
 		/// (<see langword="out"/> parameter) If found any valid loop, the value will be 
 		/// </param>
-		/// <returns></returns>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		private static bool ContainsValidPath(
 			in Cells cells,
 			[NotNullWhen(true)] out IReadOnlyList<int>? list,
@@ -117,7 +116,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			{
 				f(cells[0], (RegionLabel)byte.MaxValue, cells, ref flag);
 			}
-			catch (SudokuRuntimeException)
+			catch (SudokuHandlingException)
 			{
 			}
 
@@ -164,7 +163,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 								tempLinks = tempLoop.GetLinks();
 
 								// Break the recursion.
-								throw new SudokuRuntimeException();
+								throw new SudokuHandlingException();
 							}
 							else
 							{

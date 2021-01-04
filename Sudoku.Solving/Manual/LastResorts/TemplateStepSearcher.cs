@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 
 namespace Sudoku.Solving.Manual.LastResorts
@@ -38,12 +37,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		/// <exception cref="WrongHandlingException">
-		/// Throws when the puzzle is not unique.
-		/// </exception>
+		/// <exception cref="SudokuHandlingException">Throws when the puzzle is invalid to process.</exception>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			_ = !grid.IsValid(out SudokuGrid solution) ? throw new WrongHandlingException(grid) : 0;
+			_ = !grid.IsValid(out SudokuGrid solution) ? throw new SudokuHandlingException(errorCode: 202) : 0;
 
 			if (!_templateDeleteOnly)
 			{
