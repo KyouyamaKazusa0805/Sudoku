@@ -927,6 +927,11 @@
             Indicates the searcher will cause a lot of memory allocation.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.DisabledReason.Deprecated">
+            <summary>
+            Indicates the searcher is deprecated now.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Extensions.AnalysisResultEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Solving.AnalysisResult"/>.
@@ -9340,11 +9345,6 @@
             or not <see cref="T:Sudoku.Solving.Manual.StepSearcher"/> at all,
             the return value will be <see langword="null"/>.
             </returns>
-        </member>
-        <member name="T:Sudoku.Windows.DisableDisplayingAttribute">
-            <summary>
-            To mark on a technique searcher, to disable displaying in priority tab page in settings window.
-            </summary>
         </member>
     </members>
 </doc>

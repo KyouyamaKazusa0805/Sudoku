@@ -6,7 +6,6 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Windows;
 using static Sudoku.Constants.Processings;
 using EliminationList = System.Collections.Generic.IReadOnlyDictionary<int, System.Collections.Generic.IList<Sudoku.Data.Conclusion>>;
 using Steps = System.Collections.Generic.IList<Sudoku.Solving.Manual.StepInfo>;
@@ -16,7 +15,6 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// <summary>
 	/// Encapsulates a <b>Hobiwan's fish</b> technique searcher.
 	/// </summary>
-	[DisableDisplaying]
 	public sealed class ComplexFishStepSearcher : FishStepSearcher
 	{
 		/// <summary>

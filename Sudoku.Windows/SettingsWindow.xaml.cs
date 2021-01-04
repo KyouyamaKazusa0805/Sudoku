@@ -159,20 +159,15 @@ namespace Sudoku.Windows
 		private void InitializePriorityControls()
 		{
 			_listBoxPriority.ItemsSource =
-				from type in
-					from type in Assembly.Load("Sudoku.Solving").GetTypes()
-					where
-						!type.IsAbstract // Type isn't abstract.
-						&& type.IsSubclassOf<StepSearcher>() // Type should be a step searcher.
-						&& !type.IsDefined<ObsoleteAttribute>() // Type shouldn't be obsolete.
-						&& !type.IsDefined<DisableDisplayingAttribute>() // Type should be enabled to display.
-					select type
+				from type in Assembly.Load("Sudoku.Solving").GetTypes()
+				where !type.IsAbstract && type.IsSubclassOf<StepSearcher>()
+				where !type.IsDefined<ObsoleteAttribute>()
 				let prior = TechniqueProperties.GetPropertiesFrom(type)!.Priority
 				orderby prior
 				let v = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
-				where v is not null
-				let p = ((TechniqueProperties)v).DisplayLabel
-				let c = new StepTriplet(CoreResources.GetValue($"Progress{p}"), prior, type)
+				let casted = v as TechniqueProperties
+				where !(casted?.DisabledReason.Flags(DisabledReason.HasBugs) ?? !false)
+				let c = new StepTriplet(CoreResources.GetValue($"Progress{casted.DisplayLabel}"), prior, type)
 				select new ListBoxItem { Content = c };
 
 			_listBoxPriority.SelectedIndex = 0;

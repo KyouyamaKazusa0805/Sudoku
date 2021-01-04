@@ -8,7 +8,6 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
-using Sudoku.Windows;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Exocets
@@ -17,7 +16,6 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Encapsulates a <b>senior exocet</b> (SE) technique searcher.
 	/// </summary>
 	[Obsolete("Please use '" + nameof(SeStepSearcher) + "' instead.", true)]
-	[DisableDisplaying]
 	public sealed class SeniorExocetStepSearcher : ExocetStepSearcher
 	{
 		/// <inheritdoc/>
@@ -30,7 +28,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public static TechniqueProperties Properties { get; } = new(96, nameof(TechniqueCode.Se))
 		{
 			IsEnabled = false,
-			DisabledReason = DisabledReason.HasBugs
+			DisabledReason = DisabledReason.HasBugs | DisabledReason.Deprecated
 		};
 
 

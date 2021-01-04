@@ -40,5 +40,10 @@ namespace Sudoku.Solving
 		/// Indicates the searcher will cause a lot of memory allocation.
 		/// </summary>
 		HighAllocation = 16,
+
+		/// <summary>
+		/// Indicates the searcher is deprecated now.
+		/// </summary>
+		Deprecated = 32,
 	}
 }
