@@ -913,7 +913,7 @@
             <param name="cells2">(<see langword="in"/> parameter) The second map to check.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Data.Cells.AllIn(Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Data.Cells.Covers(Sudoku.Data.Cells@)">
             <summary>
             Determine whether the map specified as the parameter should contain all cells in the current
             one.

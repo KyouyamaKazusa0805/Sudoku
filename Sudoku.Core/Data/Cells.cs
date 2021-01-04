@@ -491,7 +491,7 @@ namespace Sudoku.Data
 		/// <param name="other">(<see langword="in"/> parameter) The other map.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool AllIn(in Cells other) => (this & other) == this;
+		public readonly bool Covers(in Cells other) => (this & other) == other;
 
 		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
@@ -564,7 +564,7 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly int GetHashCode() =>
-			GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
+			nameof(Cells).GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
 
 		/// <summary>
 		/// Get all set cell offsets and returns them as an array.
