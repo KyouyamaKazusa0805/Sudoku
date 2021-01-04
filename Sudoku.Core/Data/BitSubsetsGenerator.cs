@@ -40,12 +40,8 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never), DoesNotReturn]
-		public override int GetHashCode() =>
-			throw new NotSupportedException(
-				"This instance doesn't support this member, " +
-				"because this method will cause box and unbox operations, " +
-				"which is invalid in ref structures.");
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public override int GetHashCode() => 0;
 
 		/// <inheritdoc cref="object.ToString"/>
 		[EditorBrowsable(EditorBrowsableState.Never)]
