@@ -433,7 +433,7 @@ namespace Sudoku.Drawing
 					double alpha = Atan2(deltaY, deltaX);
 					double dx1 = deltaX, dy1 = deltaY;
 					bool through = false;
-					AdjustPoint(pt1, pt2, out var p1, out var p2, alpha, cw, offset);
+					adjust(pt1, pt2, out var p1, out var p2, alpha, cw, offset);
 					foreach (var point in points)
 					{
 						if (point == pt1 || point == pt2)
@@ -453,7 +453,7 @@ namespace Sudoku.Drawing
 					}
 
 					// Now cut the link.
-					CutLink(ref pt1, ref pt2, offset, cw, ch, pt1x, pt1y, pt2x, pt2y);
+					cut(ref pt1, ref pt2, offset, cw, ch, pt1x, pt1y, pt2x, pt2y);
 
 					if (through)
 					{
@@ -462,8 +462,8 @@ namespace Sudoku.Drawing
 						// The end points are rotated 45 degrees
 						// (counterclockwise for the start point, clockwise for the end point).
 						PointF oldPt1 = new(pt1x, pt1y), oldPt2 = new(pt2x, pt2y);
-						RotatePoint(oldPt1, ref pt1, -RotateAngle);
-						RotatePoint(oldPt2, ref pt2, RotateAngle);
+						rotate(oldPt1, ref pt1, -RotateAngle);
+						rotate(oldPt2, ref pt2, RotateAngle);
 
 						double aAlpha = alpha - RotateAngle;
 						double bx1 =
@@ -486,7 +486,7 @@ namespace Sudoku.Drawing
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void RotatePoint(in PointF pt1, ref PointF pt2, double angle)
+			static void rotate(in PointF pt1, ref PointF pt2, double angle)
 			{
 				// Translate 'pt2' to (0, 0).
 				pt2.X -= pt1.X;
@@ -503,7 +503,7 @@ namespace Sudoku.Drawing
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void AdjustPoint(
+			static void adjust(
 				in PointF pt1, in PointF pt2, out PointF p1, out PointF p2, double alpha,
 				double candidateSize, float offset)
 			{
@@ -519,7 +519,7 @@ namespace Sudoku.Drawing
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void CutLink(
+			static void cut(
 				ref PointF pt1, ref PointF pt2, float offset, float cw, float ch,
 				float pt1x, float pt1y, float pt2x, float pt2y)
 			{
@@ -609,17 +609,15 @@ namespace Sudoku.Drawing
 
 			foreach (var (id, candidate) in candidates)
 			{
-				int cell = candidate / 9, digit = candidate % 9;
 				bool isOverlapped = false;
 				if (Conclusions is null)
 				{
 					goto IsOverlapped;
 				}
 
-				foreach (var conclusion in Conclusions)
+				foreach (var (concType, concCandidate) in Conclusions)
 				{
-					if (conclusion.ConclusionType == ConclusionType.Elimination
-						&& conclusion.Cell == cell && conclusion.Digit == digit)
+					if (concType == ConclusionType.Elimination && concCandidate == candidate)
 					{
 						isOverlapped = true;
 						break;
@@ -629,6 +627,7 @@ namespace Sudoku.Drawing
 			IsOverlapped:
 				if (!isOverlapped)
 				{
+					int cell = candidate / 9, digit = candidate % 9;
 					if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 					{
 						using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
@@ -655,7 +654,7 @@ namespace Sudoku.Drawing
 				}
 			}
 
-			if (!Preferences.ShowCandidates && Conclusions is not null)
+			if (this is { Preferences: { ShowCandidates: false }, Conclusions: not null })
 			{
 				foreach (var (type, cell, digit) in Conclusions)
 				{
@@ -666,6 +665,7 @@ namespace Sudoku.Drawing
 				}
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			void d(int cell, int digit, float vOffsetCandidate)
 			{
 				var point = Converter.GetMousePointInCenter(cell, digit);
@@ -708,6 +708,7 @@ namespace Sudoku.Drawing
 		/// <param name="size">The size.</param>
 		/// <param name="scale">The scale.</param>
 		/// <returns>The font.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static Font GetFontByScale(string fontName, float size, decimal scale) =>
 			new(fontName, size * (float)scale, FontStyle.Regular);
 	}
