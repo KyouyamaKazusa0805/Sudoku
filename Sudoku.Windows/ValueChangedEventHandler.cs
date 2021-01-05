@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Windows.Tooling
+﻿namespace Sudoku.Windows
 {
 	/// <summary>
 	/// Indicates the event handler when the value is changed.

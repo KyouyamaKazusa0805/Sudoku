@@ -1589,6 +1589,12 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.PickingColorEventHandler">
+            <summary>
+            Indicates the event handler triggering when the color is start to pick.
+            </summary>
+            <param name="color">(<see langword="in"/> parameter) The color.</param>
+        </member>
         <member name="T:Sudoku.Windows.PictureSavingPreferencesWindow">
             <summary>
             Interaction logic for <c>PictureSavingPreferencesWindow.xaml</c>.
@@ -2215,7 +2221,7 @@
             Toggle simple advanced view.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPicker.ShowDialog(System.Nullable{System.Windows.Media.Color}@,Sudoku.Windows.Tooling.ColorPickerOptions,Sudoku.Windows.Tooling.PickingColorEventHandler)">
+        <member name="M:Sudoku.Windows.Tooling.ColorPicker.ShowDialog(System.Nullable{System.Windows.Media.Color}@,Sudoku.Windows.Tooling.ColorPickerOptions,Sudoku.Windows.PickingColorEventHandler)">
             <summary>
             Show the dialog.
             </summary>
@@ -2343,28 +2349,28 @@
             <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.Swatch_PickColor(System.Windows.Media.Color)">
-            <inheritdoc cref="T:Sudoku.Windows.Tooling.PickingColorEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.PickingColorEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.RSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.Tooling.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.GSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.Tooling.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.BSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.Tooling.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.ASlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.Tooling.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.HSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.Tooling.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.SSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.Tooling.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.LSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.Tooling.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.PickerHueSlider_OnValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
             <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
@@ -2577,12 +2583,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Tooling.PickingColorEventHandler">
-            <summary>
-            Indicates the event handler triggering when the color is start to pick.
-            </summary>
-            <param name="color">(<see langword="in"/> parameter) The color.</param>
-        </member>
         <member name="T:Sudoku.Windows.Tooling.Swatch">
             <summary>
             Interaction logic for <c>Swatch.xaml</c>.
@@ -2723,7 +2723,7 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Tooling.ValueChangedEventHandler">
+        <member name="T:Sudoku.Windows.ValueChangedEventHandler">
             <summary>
             Indicates the event handler when the value is changed.
             </summary>
