@@ -9,6 +9,7 @@ using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
+using static Sudoku.Generating.IPuzzleGenerator;
 
 namespace Sudoku.Generating
 {
@@ -139,9 +140,7 @@ namespace Sudoku.Generating
 			DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
 			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
 		{
-			return cancellationToken is { } t
-				? await Task.Factory.StartNew(innerGenerate, t)
-				: await Task.Factory.StartNew(innerGenerate);
+			return await (cancellationToken is { } t ? Task.Run(innerGenerate, t) : Task.Run(innerGenerate));
 
 			SudokuGrid? innerGenerate()
 			{
@@ -162,7 +161,7 @@ namespace Sudoku.Generating
 			int a = 54, b = 0;
 			for (int i = 0; i < 9; i++)
 			{
-				int n = (int)(IPuzzleGenerator.Rng.NextDouble() * 6);
+				int n = (int)(Rng.NextDouble() * 6);
 				for (int j = 0; j < 3; j++)
 				{
 					for (int k = 0; k < 3; k++)
@@ -174,21 +173,19 @@ namespace Sudoku.Generating
 
 			for (int i = 23; i >= 0; i--)
 			{
-				Algorithms.Swap(ref pattern[i], ref pattern[(int)((i + 1) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[(int)((i + 1) * Rng.NextDouble())]);
 			}
 			for (int i = 47; i >= 24; i--)
 			{
-				Algorithms.Swap(
-					ref pattern[i], ref pattern[24 + (int)((i - 23) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * Rng.NextDouble())]);
 			}
 			for (int i = 53; i >= 48; i--)
 			{
-				Algorithms.Swap(
-					ref pattern[i], ref pattern[48 + (int)((i - 47) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * Rng.NextDouble())]);
 			}
 			for (int i = 80; i >= 54; i--)
 			{
-				Algorithms.Swap(ref pattern[i], ref pattern[54 + (int)(27 * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[54 + (int)(27 * Rng.NextDouble())]);
 			}
 		}
 
@@ -201,21 +198,19 @@ namespace Sudoku.Generating
 		{
 			for (int i = 23; i >= 0; i--)
 			{
-				Algorithms.Swap(ref pattern[i], ref pattern[(int)((i + 1) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[(int)((i + 1) * Rng.NextDouble())]);
 			}
 			for (int i = 47; i >= 24; i--)
 			{
-				Algorithms.Swap(
-					ref pattern[i], ref pattern[24 + (int)((i - 23) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * Rng.NextDouble())]);
 			}
 			for (int i = 53; i >= 48; i--)
 			{
-				Algorithms.Swap(
-					ref pattern[i], ref pattern[48 + (int)((i - 47) * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * Rng.NextDouble())]);
 			}
 			for (int i = 80; i >= 54; i--)
 			{
-				Algorithms.Swap(ref pattern[i], ref pattern[54 + (int)(27 * IPuzzleGenerator.Rng.NextDouble())]);
+				Algorithms.Swap(ref pattern[i], ref pattern[54 + (int)(27 * Rng.NextDouble())]);
 			}
 		}
 	}
