@@ -13,6 +13,7 @@ namespace System
 		/// Gets or sets <see cref="DataFormats.UnicodeText"/> data
 		/// on the clipboard.
 		/// </summary>
+		/// <value>The string value to set.</value>
 		public static string Text
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -25,6 +26,7 @@ namespace System
 		/// <summary>
 		/// Sets the data object on the clipboard.
 		/// </summary>
+		/// <value>The data object to set.</value>
 		public static object DataObject
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -34,6 +36,7 @@ namespace System
 		/// <summary>
 		/// Sets <see cref="DataFormats.Bitmap"/> data on the clipboard.
 		/// </summary>
+		/// <value>The bitmap source to set.</value>
 		public static BitmapSource Image
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
