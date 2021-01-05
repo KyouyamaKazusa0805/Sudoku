@@ -7,14 +7,11 @@
 		<Authors>Sunnie</Authors>
 		<Description>This project encapsulates the operation and constants for globalization interactions.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
+		<DocumentationFile>.\Sudoku.Globalization.xml</DocumentationFile>
 	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DocumentationFile>.\Sudoku.Globalization.xml</DocumentationFile>
-	</PropertyGroup>
-
+	
 	<ItemGroup>
-	  <None Remove="Sudoku.Globalization.xml" />
+		<None Remove="Sudoku.Globalization.xml" />
 	</ItemGroup>
 
 </Project>

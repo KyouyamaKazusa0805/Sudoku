@@ -5,9 +5,6 @@
 		<Description>This project is only used for providing with doc comments.</Description>
 		<Authors>Sunnie</Authors>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>.\Sudoku.DocComments.xml</DocumentationFile>
 	</PropertyGroup>
 

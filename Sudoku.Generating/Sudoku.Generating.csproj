@@ -7,18 +7,16 @@
 		<Authors>Sunnie</Authors>
 		<Description>The project used for generating sudoku puzzles.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DocumentationFile>.\Sudoku.Generating.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
+		<None Remove="Sudoku.Generating.xml" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 	</ItemGroup>
 
 </Project>

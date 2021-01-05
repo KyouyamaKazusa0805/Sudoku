@@ -14,7 +14,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Sudoku.Recognition.xml" />
+		<None Remove="Sudoku.Recognition.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
