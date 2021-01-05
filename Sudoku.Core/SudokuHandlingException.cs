@@ -14,7 +14,6 @@ namespace Sudoku
 		{
 		}
 
-
 		/// <summary>
 		/// Initializes an instance with the error code.
 		/// </summary>
