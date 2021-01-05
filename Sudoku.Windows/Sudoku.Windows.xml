@@ -2572,7 +2572,7 @@
             <summary>
             Indicates the event handler triggering when the color is start to pick.
             </summary>
-            <param name="color">The color.</param>
+            <param name="color">(<see langword="in"/> parameter) The color.</param>
         </member>
         <member name="T:Sudoku.Windows.Tooling.PickingColorHandlerEventHandler">
             <summary>
