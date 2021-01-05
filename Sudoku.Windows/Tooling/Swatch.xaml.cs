@@ -36,7 +36,7 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// The event triggering while picking colors.
 		/// </summary>
-		public event PickingColorHandlerEventHandler? PickingColor;
+		public event PickingColorEventHandler? PickingColor;
 
 
 		/// <inheritdoc cref="Events.MouseDown(object?, System.EventArgs)"/>

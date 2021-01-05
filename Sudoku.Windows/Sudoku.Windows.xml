@@ -2574,12 +2574,6 @@
             </summary>
             <param name="color">(<see langword="in"/> parameter) The color.</param>
         </member>
-        <member name="T:Sudoku.Windows.Tooling.PickingColorHandlerEventHandler">
-            <summary>
-            Indicates the event handler when a color is picking.
-            </summary>
-            <param name="color">(<see langword="in"/> parameter) The color.</param>
-        </member>
         <member name="T:Sudoku.Windows.Tooling.Swatch">
             <summary>
             Interaction logic for <c>Swatch.xaml</c>.
