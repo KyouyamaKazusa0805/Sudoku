@@ -3156,6 +3156,14 @@
             <seealso cref="P:Sudoku.Data.SudokuGrid.EmptyCells"/>
             <seealso cref="P:Sudoku.Data.SudokuGrid.BivalueCells"/>
         </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
+            <summary>
+            To determine whether two sudoku grid is totally same.
+            </summary>
+            <param name="left">The left one.</param>
+            <param name="right">The right one.</param>
+            <returns>The <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char}@)">
             <summary>
             <para>Parses a string value and converts to this type.</para>

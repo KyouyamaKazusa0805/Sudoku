@@ -596,22 +596,8 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[CLSCompliant(false)]
-		public readonly bool Equals(in SudokuGrid other)
-		{
-			fixed (short* pThis = this, pOther = other)
-			{
-				int i = 0;
-				for (short* l = pThis, r = pOther; i < Length; i++, l++, r++)
-				{
-					if (*l != *r)
-					{
-						return false;
-					}
-				}
-
-				return true;
-			}
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly bool Equals(in SudokuGrid other) => Equals(this, other);
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -957,6 +943,29 @@ namespace Sudoku.Data
 
 
 		/// <summary>
+		/// To determine whether two sudoku grid is totally same.
+		/// </summary>
+		/// <param name="left">The left one.</param>
+		/// <param name="right">The right one.</param>
+		/// <returns>The <see cref="bool"/> result indicating that.</returns>
+		public static bool Equals(in SudokuGrid left, in SudokuGrid right)
+		{
+			fixed (short* pThis = left, pOther = right)
+			{
+				int i = 0;
+				for (short* l = pThis, r = pOther; i < Length; i++, l++, r++)
+				{
+					if (*l != *r)
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
+		}
+
+		/// <summary>
 		/// <para>Parses a string value and converts to this type.</para>
 		/// <para>
 		/// If you want to parse a PM grid, we recommend you use the method
@@ -1080,7 +1089,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in SudokuGrid left, in SudokuGrid right) => left.Equals(right);
+		public static bool operator ==(in SudokuGrid left, in SudokuGrid right) => Equals(left, right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
