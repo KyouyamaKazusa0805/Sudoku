@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Sudoku.DocComments;
 
@@ -31,6 +32,7 @@ namespace Sudoku.Windows.Tooling
 		public event ValueChangedEventHandler? ValueChanged;
 
 
+		/// <inheritdoc cref="Events.ValueChanged(object?, EventArgs)"/>
 		private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
 			double value = _slider.Value;
@@ -43,6 +45,7 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="Events.TextChanged(object?, EventArgs)"/>
 		private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (!_updatingValues && double.TryParse(_textBox.Text, out double parsedValue))

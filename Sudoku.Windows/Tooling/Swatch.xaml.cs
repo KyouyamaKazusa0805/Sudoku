@@ -70,6 +70,7 @@ namespace Sudoku.Windows.Tooling
 		/// Get all colors.
 		/// </summary>
 		/// <returns>The colors.</returns>
-		internal ICollection<ColorSwatchItem> GetColors() => SwatchListBox.ItemsSource as List<ColorSwatchItem> ?? new();
+		internal ICollection<ColorSwatchItem> GetColors() =>
+			SwatchListBox.ItemsSource as List<ColorSwatchItem> ?? new();
 	}
 }

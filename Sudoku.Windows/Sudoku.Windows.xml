@@ -2113,6 +2113,12 @@
             The event triggering while value changed.
             </summary>
         </member>
+        <member name="M:Sudoku.Windows.Tooling.ColorComponentSlider.Slider_ValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.Tooling.ColorComponentSlider.TextBox_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
+        </member>
         <member name="M:Sudoku.Windows.Tooling.ColorComponentSlider.InitializeComponent">
             <summary>
             InitializeComponent
@@ -2572,7 +2578,7 @@
             <summary>
             Indicates the event handler when a color is picking.
             </summary>
-            <param name="color">The color.</param>
+            <param name="color">(<see langword="in"/> parameter) The color.</param>
         </member>
         <member name="T:Sudoku.Windows.Tooling.Swatch">
             <summary>
