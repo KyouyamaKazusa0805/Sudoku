@@ -21,6 +21,17 @@ namespace Sudoku
 		/// <param name="errorCode">The error code.</param>
 		public SudokuHandlingException(int errorCode) => ErrorCode = errorCode;
 
+		/// <summary>
+		/// Initializes an instance with the inner exception. If called this method,
+		/// the <see cref="ErrorCode"/> always keeps the value 601.
+		/// </summary>
+		/// <param name="innerException">The inner exception.</param>
+		/// <seealso cref="ErrorCode"/>
+		public SudokuHandlingException(Exception innerException)
+			: base(
+				$"The inner exception is thrown: {innerException.Message}, of type {innerException.GetType()}",
+				innerException) => ErrorCode = 601;
+
 
 		/// <summary>
 		/// Indicates the error code.
@@ -33,7 +44,9 @@ namespace Sudoku
 			{
 				301 => "The recognizer has not initialized.",
 				303 => "Tesseract is wrong: can't recognize any cell image.",
+				402 => "Color palette is current null.",
 				501 => "Parent node can't be found.",
+				601 => $"The inner exception that thrown: {InnerException?.Message ?? "<Unknown>"}.",
 				_ => string.Empty
 			};
 	}
@@ -69,6 +82,7 @@ namespace Sudoku
 				101 when Arg1 is SudokuGrid g => $"The specified grid {g:#} contains multiple solutions.",
 				102 when Arg1 is SudokuGrid g => $"The specified grid {g:#} contains no valid solution.",
 				202 when Arg1 is SudokuGrid g => $"The specified grid {g:#} is invalid.",
+				403 when Arg1 is string r => $"The specified resource dictionary can't be found: {r}.",
 				_ => string.Empty
 			};
 	}

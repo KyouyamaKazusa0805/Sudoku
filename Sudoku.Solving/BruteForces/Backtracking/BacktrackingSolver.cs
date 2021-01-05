@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Windows;
@@ -46,7 +45,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 							GridCreatingOption.MinusOne)
 				};
 			}
-			catch (Exception ex)
+			catch (SudokuHandlingException ex) when (ex.ErrorCode == 101)
 			{
 				stopwatch.Stop();
 

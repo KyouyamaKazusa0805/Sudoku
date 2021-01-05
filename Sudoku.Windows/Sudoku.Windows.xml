@@ -2279,6 +2279,30 @@
             The event triggering while picking colors.
             </summary>
         </member>
+        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.SaveCustomPalette(System.String)">
+            <summary>
+            Save the custom palette to your drives.
+            </summary>
+            <param name="filename">The file name that you want to save.</param>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the color palette is currently <see langword="null"/>;
+            or throws when the process has encountered an error while writing the serialization string.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.LoadDefaultCustomPalette">
+            <summary>
+            Load the default custom palette.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.LoadCustomPalette(System.String)">
+            <summary>
+            Load the custom palette from the specified file using deserialization.
+            </summary>
+            <param name="filename">The file name to load from.</param>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the color palette is currently <see langword="null"/>.
+            </exception>
+        </member>
         <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.CustomColorsChanged">
             <summary>
             Execute when the custom color is changed.

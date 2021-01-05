@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text.Encodings.Web;
@@ -77,7 +76,7 @@ namespace Sudoku.Windows
 				File.WriteAllText(path, json);
 				return true;
 			}
-			catch (Exception)
+			catch
 			{
 				return false;
 			}
@@ -114,7 +113,7 @@ namespace Sudoku.Windows
 				propertyInfo.SetValue(null, instance);
 				return true;
 			}
-			catch (Exception)
+			catch
 			{
 				return false;
 			}
@@ -153,7 +152,7 @@ namespace Sudoku.Windows
 		/// Get the dictionary with the specified globalization string.
 		/// </summary>
 		/// <param name="countryCode">The country code.</param>
-		/// <exception cref="ResourceDictionaryNotFoundException">
+		/// <exception cref="SudokuHandlingException">
 		/// Throws when the language resource dictionary doesn't exist (i.e. <see langword="null"/>).
 		/// </exception>
 		private static void GetDictionary(CountryCode countryCode) =>
@@ -161,8 +160,7 @@ namespace Sudoku.Windows
 				countryCode != CountryCode.Default
 				&& typeof(Resources)
 				.GetProperty($"LangSource{countryCode}", BindingFlags.Public | BindingFlags.Static)?
-				.GetValue(null) is IDictionary<string, string> r
-				? r
-				: LangSourceEnUs ?? throw new ResourceDictionaryNotFoundException(nameof(LangSourceEnUs));
+				.GetValue(null) is IDictionary<string, string> r ? r : LangSourceEnUs
+				?? throw new SudokuHandlingException<string>(errorCode: 403, nameof(LangSourceEnUs));
 	}
 }

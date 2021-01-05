@@ -158,9 +158,7 @@ namespace Sudoku.Generating
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult> progress,
 			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
 		{
-			return cancellationToken is { } t
-				? await Task.Factory.StartNew(innerGenerate, t)
-				: await Task.Factory.StartNew(innerGenerate);
+			return await (cancellationToken is { } t ? Task.Run(innerGenerate, t) : Task.Run(innerGenerate));
 
 			SudokuGrid? innerGenerate()
 			{
@@ -168,7 +166,7 @@ namespace Sudoku.Generating
 				{
 					return Generate(max, symmetricalType, progress, countryCode, cancellationToken);
 				}
-				catch (Exception)
+				catch (OperationCanceledException)
 				{
 					return null;
 				}

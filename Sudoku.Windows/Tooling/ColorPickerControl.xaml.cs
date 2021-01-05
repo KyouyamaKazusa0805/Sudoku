@@ -74,29 +74,56 @@ namespace Sudoku.Windows.Tooling
 		public event PickingColorEventHandler? PickingColor;
 
 
+		/// <summary>
+		/// Save the custom palette to your drives.
+		/// </summary>
+		/// <param name="filename">The file name that you want to save.</param>
+		/// <exception cref="SudokuHandlingException">
+		/// Throws when the color palette is currently <see langword="null"/>;
+		/// or throws when the process has encountered an error while writing the serialization string.
+		/// </exception>
 		public void SaveCustomPalette(string filename)
 		{
-			_ = _colorPalette is null ? throw new Exception("Color palette is current null.") : 0;
+			_ = _colorPalette is null ? throw new SudokuHandlingException(errorCode: 402) : 0;
 
 			_colorPalette.CustomColors = _customColorSwatch.GetColors();
 			try
 			{
 				File.WriteAllText(filename, GetXmlText(_colorPalette));
 			}
-			catch
+			catch (Exception ex)
+			{
+				throw new SudokuHandlingException(ex);
+			}
+		}
+
+		/// <summary>
+		/// Load the default custom palette.
+		/// </summary>
+		public void LoadDefaultCustomPalette()
+		{
+			try
+			{
+				LoadCustomPalette(
+					Path.Combine(
+						ColorPickerSettings.CustomColorsDirectory,
+						ColorPickerSettings.CustomColorsFilename));
+			}
+			catch (SudokuHandlingException ex) when (ex.ErrorCode is 402 or 601)
 			{
 			}
 		}
 
-		public void LoadDefaultCustomPalette() =>
-			LoadCustomPalette(
-				Path.Combine(
-					ColorPickerSettings.CustomColorsDirectory,
-					ColorPickerSettings.CustomColorsFilename));
-
+		/// <summary>
+		/// Load the custom palette from the specified file using deserialization.
+		/// </summary>
+		/// <param name="filename">The file name to load from.</param>
+		/// <exception cref="SudokuHandlingException">
+		/// Throws when the color palette is currently <see langword="null"/>.
+		/// </exception>
 		public void LoadCustomPalette(string filename)
 		{
-			_ = _colorPalette is null ? throw new Exception("Color palette is current null.") : 0;
+			_ = _colorPalette is null ? throw new SudokuHandlingException(errorCode: 402) : 0;
 
 			if (File.Exists(filename))
 			{
@@ -114,8 +141,9 @@ namespace Sudoku.Windows.Tooling
 					_swatch1.SwatchListBox.ItemsSource = _colorSwatch1;
 					_swatch2.SwatchListBox.ItemsSource = _colorSwatch2;
 				}
-				catch
+				catch (Exception ex)
 				{
+					throw new SudokuHandlingException(ex);
 				}
 			}
 		}
@@ -127,7 +155,13 @@ namespace Sudoku.Windows.Tooling
 		{
 			if (ColorPickerSettings.UsingCustomPalette)
 			{
-				SaveCustomPalette(ColorPickerSettings.CustomPaletteFilename);
+				try
+				{
+					SaveCustomPalette(ColorPickerSettings.CustomPaletteFilename);
+				}
+				catch (SudokuHandlingException ex) when (ex.ErrorCode == 601)
+				{
+				}
 			}
 		}
 

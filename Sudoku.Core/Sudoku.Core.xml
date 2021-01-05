@@ -3737,46 +3737,6 @@
             </summary>
             <param name="pair">(<see langword="in"/> parameter) The pair value.</param>
         </member>
-        <member name="T:Sudoku.Windows.ResourceDictionaryNotFoundException">
-            <summary>
-            Indicates an exception that throws when the resource dictionary doesn't exist.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.ResourceDictionaryNotFoundException.#ctor">
-            <summary>
-            Initializes an instance with the default behavior.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.ResourceDictionaryNotFoundException.#ctor(System.String)">
-            <summary>
-            Initializes an instance with the name of the resource dictionary.
-            </summary>
-            <param name="resourceDictionaryName">The name of the resource dictionary.</param>
-        </member>
-        <member name="M:Sudoku.Windows.ResourceDictionaryNotFoundException.#ctor(System.String,System.String)">
-            <summary>
-            Initializes an instance with the specified message and the name of the resource dictionary.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="resourceDictionaryName">The name of the resource dictionary.</param>
-        </member>
-        <member name="M:Sudoku.Windows.ResourceDictionaryNotFoundException.#ctor(System.String,System.String,System.Exception)">
-            <summary>
-            Initializes an instance with the specified message, the name of the resource dictionary
-            and the inner exception.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="resourceDictionaryName">The name of the resource dictionary.</param>
-            <param name="inner">The inner exception.</param>
-        </member>
-        <member name="P:Sudoku.Windows.ResourceDictionaryNotFoundException.ResourceDictionaryName">
-            <summary>
-            Indicates the resource dictionary name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.ResourceDictionaryNotFoundException.Message">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Windows.Resources">
             <summary>
             Indicates the resources used later but not in the namespace Sudoku.<see cref="N:Sudoku.Windows"/>.
@@ -3856,7 +3816,7 @@
             Get the dictionary with the specified globalization string.
             </summary>
             <param name="countryCode">The country code.</param>
-            <exception cref="T:Sudoku.Windows.ResourceDictionaryNotFoundException">
+            <exception cref="T:Sudoku.SudokuHandlingException">
             Throws when the language resource dictionary doesn't exist (i.e. <see langword="null"/>).
             </exception>
         </member>
@@ -4033,6 +3993,14 @@
             Initializes an instance with the error code.
             </summary>
             <param name="errorCode">The error code.</param>
+        </member>
+        <member name="M:Sudoku.SudokuHandlingException.#ctor(System.Exception)">
+            <summary>
+            Initializes an instance with the inner exception. If called this method,
+            the <see cref="P:Sudoku.SudokuHandlingException.ErrorCode"/> always keeps the value 601.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <seealso cref="P:Sudoku.SudokuHandlingException.ErrorCode"/>
         </member>
         <member name="P:Sudoku.SudokuHandlingException.ErrorCode">
             <summary>
