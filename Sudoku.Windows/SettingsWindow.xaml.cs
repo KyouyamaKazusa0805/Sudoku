@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Sudoku.DocComments;
-using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
@@ -136,10 +135,10 @@ namespace Sudoku.Windows
 		private void ChangeColor(Button button, in Color color)
 		{
 			button.Background = new SolidColorBrush(color);
-			button.Foreground = new SolidColorBrush(getReverseForegroundColor(color));
-
-			static Color getReverseForegroundColor(in Color color) =>
-				(.299 * color.R + .587 * color.G + .114 * color.B) / 255 > .5 ? Colors.Black : Colors.White;
+			button.Foreground =
+				new SolidColorBrush(
+					(.299 * color.R + .587 * color.G + .114 * color.B) / 255 > .5 ? Colors.Black : Colors.White
+				);
 		}
 
 		/// <summary>
@@ -310,8 +309,10 @@ namespace Sudoku.Windows
 			{
 				_assigments += () =>
 				{
-					_labelModifiableFontName.FontFamily = new FontFamily(
-						Settings.ModifiableFontName = dialog.SelectedFont.Name);
+					_labelModifiableFontName.FontFamily =
+						new FontFamily(
+							Settings.ModifiableFontName = dialog.SelectedFont.Name
+						);
 					_labelModifiableFontName.Content = dialog.SelectedFont.Name;
 				};
 			}
@@ -334,7 +335,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonBackgroundColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -348,7 +349,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonGivenColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -362,7 +363,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonModifiableColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -376,7 +377,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -390,7 +391,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonFocusColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -404,7 +405,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonGridLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -418,7 +419,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonBlockLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -432,7 +433,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonChainColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -446,7 +447,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCrosshatchingOutlineColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -460,7 +461,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCrosshatchingValuesColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -474,7 +475,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCrossSignColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && color is not null)
+			if (ColorPicker.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -532,7 +533,8 @@ namespace Sudoku.Windows
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxAllowOverlappingAlses_Click(object sender, RoutedEventArgs e) =>
-			_assigments += () => _checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlappingAlses ^= true;
+			_assigments += () =>
+			_checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlappingAlses ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxHighlightRegions_Click(object sender, RoutedEventArgs e) =>
@@ -559,11 +561,13 @@ namespace Sudoku.Windows
 
 		/// <inheritdoc cref="Events.ValueChanged(object?, EventArgs)"/>
 		private void NumericUpDownMaxRegularWingSize_ValueChanged(object sender, RoutedEventArgs e) =>
-			_assigments += () => _manualSolver.CheckRegularWingSize = (int)_numericUpDownMaxRegularWingSize.CurrentValue;
+			_assigments += () =>
+			_manualSolver.CheckRegularWingSize = (int)_numericUpDownMaxRegularWingSize.CurrentValue;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e) =>
-			_assigments += () => _checkBoxUseExtendedBugSearcher.IsChecked = _manualSolver.UseExtendedBugSearcher ^= true;
+			_assigments += () =>
+			_checkBoxUseExtendedBugSearcher.IsChecked = _manualSolver.UseExtendedBugSearcher ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e) =>
