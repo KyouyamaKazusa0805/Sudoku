@@ -5,7 +5,6 @@ using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Windows;
-using static System.Math;
 
 namespace Sudoku.Solving.BruteForces.Linqing
 {
@@ -57,15 +56,17 @@ namespace Sudoku.Solving.BruteForces.Linqing
 					let column = index % 9
 					let block = index - index % 27 + column - index % 3
 					from value in values
-					where !(
-						from i in Enumerable.Range(0, 9)
-						let inRow = solution[index - column + i] == value
-						let inColumn = solution[column + i * 9] == value
-						let inBlock = solution[block + i % 3 + (int)Floor(i / 3f) * 9] == value
-						where inRow || inColumn || inBlock
-						select i
-					).Any()
-					select $"{solution[0..index]}{value}{solution[(index + 1)..]}").ToList();
+					where !query(solution, index, column, block, value).Any()
+					select $"{solution[0..index]}{value}{solution[(index + 1)..]}"
+				).ToList();
+
+				IEnumerable<int> query(string solution, int index, int column, int block, char value) =>
+					from i in Enumerable.Range(0, 9)
+					let inRow = solution[index - column + i] == value
+					let inColumn = solution[column + i * 9] == value
+					let inBlock = solution[block + i % 3 + (int)Math.Floor(i / 3F) * 9] == value
+					where inRow || inColumn || inBlock
+					select i;
 			}
 
 			return result;
