@@ -28,7 +28,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the handler that finish all assignments.
 		/// </summary>
-		private Assignment? _assigments;
+		private Action? _assigments;
 
 
 		/// <summary>

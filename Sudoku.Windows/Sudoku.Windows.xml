@@ -40,11 +40,6 @@
             Application Entry Point.
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Assignment">
-            <summary>
-            Indicates the assignment handler.
-            </summary>
-        </member>
         <member name="T:Sudoku.Windows.BackdoorWindow">
             <summary>
             Interaction logic for <c>BackdoorWindow.xaml</c>.
