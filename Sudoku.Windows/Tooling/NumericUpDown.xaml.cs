@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Sudoku.DocComments;
 
@@ -62,6 +63,7 @@ namespace Sudoku.Windows.Tooling
 		public event RoutedEventHandler? ValueChanged;
 
 
+		/// <inheritdoc cref="Events.TextChanged(object?, EventArgs)"/>
 		private void TextBoxInner_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (sender is TextBox textBox)
@@ -77,9 +79,11 @@ namespace Sudoku.Windows.Tooling
 			}
 		}
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonUp_Click(object sender, RoutedEventArgs e) =>
 			_textBoxInner.Text = (CurrentValue += IncreasingUnit).ToString();
 
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonDown_Click(object sender, RoutedEventArgs e) =>
 			_textBoxInner.Text = (CurrentValue -= IncreasingUnit).ToString();
 	}

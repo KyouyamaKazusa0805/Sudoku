@@ -2563,6 +2563,15 @@
             Indicates the event triggering when the value changed.
             </summary>
         </member>
+        <member name="M:Sudoku.Windows.Tooling.NumericUpDown.TextBoxInner_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.Tooling.NumericUpDown.ButtonUp_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.Tooling.NumericUpDown.ButtonDown_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
         <member name="M:Sudoku.Windows.Tooling.NumericUpDown.InitializeComponent">
             <summary>
             InitializeComponent
