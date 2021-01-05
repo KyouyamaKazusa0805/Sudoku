@@ -869,7 +869,7 @@
             </para>
             <para>
             If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="!:StepSearcher.CandMaps"/> in its method
+            properties such as <see cref="P:Sudoku.Solving.Manual.FastProperties.CandMaps"/> in its method
             <see cref="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)"/>.
             </para>
             </summary>
@@ -877,15 +877,15 @@
             <para>
             All disallowed properties are:
             <list type="bullet">
-            <item><see cref="!:StepSearcher.DigitMaps"/></item>
-            <item><see cref="!:StepSearcher.ValueMaps"/></item>
-            <item><see cref="!:StepSearcher.CandMaps"/></item>
-            <item><see cref="!:StepSearcher.BivalueMap"/></item>
-            <item><see cref="!:StepSearcher.EmptyMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.FastProperties.DigitMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.FastProperties.ValueMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.FastProperties.CandMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.FastProperties.BivalueMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.FastProperties.EmptyMap"/></item>
             </list>
             The disallowed method is:
             <list type="bullet">
-            <item><see cref="!:StepSearcher.InitializeMaps(in SudokuGrid)"/></item>
+            <item><see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/></item>
             </list>
             </para>
             <para>
@@ -895,6 +895,7 @@
             </para>
             </remarks>
             <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.FastProperties"/>
         </member>
         <member name="P:Sudoku.Solving.DirectSearcherAttribute.IsAllow">
             <summary>
