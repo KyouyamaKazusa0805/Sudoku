@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -195,8 +196,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <returns>All ALSes searched.</returns>
 		public static IEnumerable<Als> GetAllAlses(SudokuGrid grid)
 		{
-			var bivalueMap = StepSearcher.BivalueMap;
-			var emptyMap = StepSearcher.EmptyMap;
+			var bivalueMap = BivalueMap;
+			var emptyMap = EmptyMap;
 
 			// Get all bi-value-cell ALSes.
 			foreach (int cell in bivalueMap)

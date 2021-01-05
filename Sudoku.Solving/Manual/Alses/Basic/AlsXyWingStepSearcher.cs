@@ -4,7 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using static Sudoku.Data.ConclusionType;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								finalZ |= (short)(1 << digit);
 								foreach (int cell in elimMap)
 								{
-									conclusions.Add(new(Elimination, cell, digit));
+									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 								}
 							}
 							if (conclusions.Count == 0)

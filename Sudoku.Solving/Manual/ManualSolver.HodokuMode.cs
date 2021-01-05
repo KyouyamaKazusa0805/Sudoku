@@ -9,6 +9,7 @@ using Sudoku.Models;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual
 {
@@ -99,7 +100,7 @@ namespace Sudoku.Solving.Manual
 			stopwatch.Start();
 
 		Restart:
-			StepSearcher.InitializeMaps(cloneation);
+			InitializeMaps(cloneation);
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];

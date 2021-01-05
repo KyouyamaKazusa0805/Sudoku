@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Extensions
 			while (true)
 			{
 				steps.Clear();
-				StepSearcher.InitializeMaps(@this);
+				FastProperties.InitializeMaps(@this);
 				for (int i = 0, length = SstsSearchers.Length; i < length; i++)
 				{
 					var searcher = SstsSearchers[i];

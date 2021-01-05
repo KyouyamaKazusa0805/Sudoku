@@ -2,6 +2,7 @@
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {

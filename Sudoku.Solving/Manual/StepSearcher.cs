@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 
 namespace Sudoku.Solving.Manual
 {
@@ -10,7 +8,7 @@ namespace Sudoku.Solving.Manual
 	/// Encapsulates a step finder that used in solving in <see cref="ManualSolver"/>.
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public abstract partial class StepSearcher
+	public abstract class StepSearcher
 	{
 		/// <summary>
 		/// Take a technique step after searched all solving steps.
@@ -30,20 +28,5 @@ namespace Sudoku.Solving.Manual
 		/// <param name="accumulator">The accumulator to store technique information.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid to search for techniques.</param>
 		public abstract void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid);
-
-
-		/// <summary>
-		/// Initialize the maps that used later.
-		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		public static void InitializeMaps(in SudokuGrid grid)
-		{
-			var (e, b, c, d, v) = grid;
-			EmptyMap = e;
-			BivalueMap = b;
-			CandMaps = c;
-			DigitMaps = d;
-			ValueMaps = v;
-		}
 	}
 }

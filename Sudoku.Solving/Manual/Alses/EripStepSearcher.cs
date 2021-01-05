@@ -5,7 +5,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -92,11 +92,11 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							if (grid.Exists(elimCell, d1) is true)
 							{
-								conclusions.Add(new(Elimination, elimCell, d1));
+								conclusions.Add(new(ConclusionType.Elimination, elimCell, d1));
 							}
 							if (grid.Exists(elimCell, d2) is true)
 							{
-								conclusions.Add(new(Elimination, elimCell, d2));
+								conclusions.Add(new(ConclusionType.Elimination, elimCell, d2));
 							}
 						}
 						if (conclusions.Count == 0)

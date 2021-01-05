@@ -1,9 +1,13 @@
 ﻿using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Singles;
 
 namespace Sudoku.Solving.Manual
 {
-	partial class StepSearcher
+	/// <summary>
+	/// Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
+	/// </summary>
+	internal static class FastProperties
 	{
 		/// <summary>
 		/// The empty cells map.
@@ -14,7 +18,7 @@ namespace Sudoku.Solving.Manual
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleStepSearcher"/>
-		internal static Cells EmptyMap { get; private set; }
+		public static Cells EmptyMap { get; private set; }
 
 		/// <summary>
 		/// The bi-value cells map.
@@ -25,7 +29,7 @@ namespace Sudoku.Solving.Manual
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleStepSearcher"/>
-		internal static Cells BivalueMap { get; private set; }
+		public static Cells BivalueMap { get; private set; }
 
 		/// <summary>
 		/// The candidate maps.
@@ -36,7 +40,7 @@ namespace Sudoku.Solving.Manual
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleStepSearcher"/>
-		internal static Cells[] CandMaps { get; private set; } = null!;
+		public static Cells[] CandMaps { get; private set; } = null!;
 
 		/// <summary>
 		/// The digit maps.
@@ -47,7 +51,7 @@ namespace Sudoku.Solving.Manual
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 		/// <seealso cref="SingleStepSearcher"/>
-		internal static Cells[] DigitMaps { get; private set; } = null!;
+		public static Cells[] DigitMaps { get; private set; } = null!;
 
 		/// <summary>
 		/// The value maps.
@@ -57,6 +61,21 @@ namespace Sudoku.Solving.Manual
 		/// not use this field on <see cref="SingleStepSearcher"/> instance.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
-		internal static Cells[] ValueMaps { get; private set; } = null!;
+		public static Cells[] ValueMaps { get; private set; } = null!;
+
+
+		/// <summary>
+		/// Initialize the maps that used later.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		public static void InitializeMaps(in SudokuGrid grid)
+		{
+			var (e, b, c, d, v) = grid;
+			EmptyMap = e;
+			BivalueMap = b;
+			CandMaps = c;
+			DigitMaps = d;
+			ValueMaps = v;
+		}
 	}
 }

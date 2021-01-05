@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Chaining
 {

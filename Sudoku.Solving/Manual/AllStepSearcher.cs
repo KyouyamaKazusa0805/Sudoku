@@ -66,7 +66,7 @@ namespace Sudoku.Solving.Manual
 			// Note that the parameter is unnecessary to pass.
 			var searchers = _solver.GetHodokuModeSearchers();
 
-			StepSearcher.InitializeMaps(grid);
+			FastProperties.InitializeMaps(grid);
 			int i = -1;
 			var bag = new List<StepInfo>();
 			var progressResult = new TechniqueProgressResult(

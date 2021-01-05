@@ -1,5 +1,6 @@
 ﻿using Sudoku.Data;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Fishes
 {

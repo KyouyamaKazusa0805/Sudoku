@@ -5,8 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Solving.Manual;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Checking
 {
@@ -19,6 +19,7 @@ namespace Sudoku.Solving.Checking
 		/// Initializes an instance with the specified grid.
 		/// </summary>
 		/// <param name="puzzle">(<see langword="in"/> parameter) The current puzzle grid.</param>
+		/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
 		public BugChecker(in SudokuGrid puzzle) =>
 			Puzzle = puzzle.IsValid()
 				? puzzle
@@ -50,7 +51,7 @@ namespace Sudoku.Solving.Checking
 		[SkipLocalsInit]
 		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
-			StepSearcher.InitializeMaps(Puzzle);
+			InitializeMaps(Puzzle);
 
 			unsafe
 			{
@@ -58,7 +59,7 @@ namespace Sudoku.Solving.Checking
 				// If the number of that is greater than the specified number,
 				// here will return the default list directly.
 				int multivalueCellsCount = 0;
-				foreach (int value in StepSearcher.EmptyMap)
+				foreach (int value in EmptyMap)
 				{
 					switch (Puzzle.GetCandidates(value).PopCount())
 					{
@@ -73,7 +74,7 @@ namespace Sudoku.Solving.Checking
 				// Store all bivalue cells and construct the relations.
 				var span = (stackalloc int[3]);
 				var stack = new Cells[multivalueCellsCount + 1, 9];
-				foreach (int cell in StepSearcher.BivalueMap)
+				foreach (int cell in BivalueMap)
 				{
 					foreach (int digit in Puzzle.GetCandidates(cell))
 					{
@@ -100,7 +101,7 @@ namespace Sudoku.Solving.Checking
 				// The comments will help you to understand the processing.
 				short mask;
 				short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-				int[] multivalueCells = (StepSearcher.EmptyMap - StepSearcher.BivalueMap).ToArray();
+				int[] multivalueCells = (EmptyMap - BivalueMap).ToArray();
 				for (int i = 0, length = multivalueCells.Length; i < length; i++)
 				{
 					// eg. { 2, 4, 6 } (42)
@@ -177,7 +178,7 @@ namespace Sudoku.Solving.Checking
 								// Take the cell that doesn't contain in the map above.
 								// Here, the cell is the "true candidate cell".
 								ref var map = ref resultMap[digit];
-								map = StepSearcher.CandMaps[digit] - stack[currentIndex, digit];
+								map = CandMaps[digit] - stack[currentIndex, digit];
 								foreach (int cell in map)
 								{
 									result.Add(cell * 9 + digit);

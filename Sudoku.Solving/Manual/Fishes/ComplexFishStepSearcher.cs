@@ -7,6 +7,7 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Solving.Manual.FastProperties;
 using EliminationList = System.Collections.Generic.IReadOnlyDictionary<int, System.Collections.Generic.IList<Sudoku.Data.Conclusion>>;
 using Steps = System.Collections.Generic.IList<Sudoku.Solving.Manual.StepInfo>;
 

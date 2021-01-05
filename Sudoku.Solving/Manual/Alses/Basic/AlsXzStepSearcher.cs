@@ -6,7 +6,7 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.ConclusionType;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 						foreach (int cell in elimMap)
 						{
-							conclusions.Add(new(Elimination, cell, elimDigit));
+							conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
 						}
 
 						finalZ |= (short)(1 << elimDigit);
@@ -131,7 +131,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							foreach (int cell in (RegionMaps[house[k]] & CandMaps[digit]) - map)
 							{
-								conclusions.Add(new(Elimination, cell, digit));
+								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
 
 							k++;
@@ -149,7 +149,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							foreach (int digit in grid.GetCandidates(cell) & (mask1 & ~rccMask))
 							{
-								conclusions.Add(new(Elimination, cell, digit));
+								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
 						}
 						tempMap = CandMaps[mask2.FindFirstSet()];
@@ -162,7 +162,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							foreach (int digit in grid.GetCandidates(cell) & (mask2 & ~rccMask))
 							{
-								conclusions.Add(new(Elimination, cell, digit));
+								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
 						}
 					}

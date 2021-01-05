@@ -679,6 +679,7 @@
             Initializes an instance with the specified grid.
             </summary>
             <param name="puzzle">(<see langword="in"/> parameter) The current puzzle grid.</param>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="P:Sudoku.Solving.Checking.BugChecker.IsBugPattern">
             <summary>
@@ -868,7 +869,7 @@
             </para>
             <para>
             If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="P:Sudoku.Solving.Manual.StepSearcher.CandMaps"/> in its method
+            properties such as <see cref="!:StepSearcher.CandMaps"/> in its method
             <see cref="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)"/>.
             </para>
             </summary>
@@ -876,15 +877,15 @@
             <para>
             All disallowed properties are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.DigitMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.ValueMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.CandMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.BivalueMap"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.StepSearcher.EmptyMap"/></item>
+            <item><see cref="!:StepSearcher.DigitMaps"/></item>
+            <item><see cref="!:StepSearcher.ValueMaps"/></item>
+            <item><see cref="!:StepSearcher.CandMaps"/></item>
+            <item><see cref="!:StepSearcher.BivalueMap"/></item>
+            <item><see cref="!:StepSearcher.EmptyMap"/></item>
             </list>
             The disallowed method is:
             <list type="bullet">
-            <item><see cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/></item>
+            <item><see cref="!:StepSearcher.InitializeMaps(in SudokuGrid)"/></item>
             </list>
             </para>
             <para>
@@ -3463,6 +3464,71 @@
             <param name="isRow">Indicates whether the specified computation is for rows.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.FastProperties">
+            <summary>
+            Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.FastProperties.EmptyMap">
+            <summary>
+            The empty cells map.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
+            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.FastProperties.BivalueMap">
+            <summary>
+            The bi-value cells map.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
+            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.FastProperties.CandMaps">
+            <summary>
+            The candidate maps.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
+            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.FastProperties.DigitMaps">
+            <summary>
+            The digit maps.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
+            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.FastProperties.ValueMaps">
+            <summary>
+            The value maps.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
+            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Initialize the maps that used later.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher">
             <summary>
             Encapsulates a <b>Hobiwan's fish</b> technique searcher.
@@ -5549,10 +5615,10 @@
             <inheritdoc/>
             <remarks>
             Note that this technique searcher will be used in other functions,
-            so we should not use base maps like '<see cref="P:Sudoku.Solving.Manual.StepSearcher.EmptyMap"/>'.
+            so we should not use base maps like '<see cref="!:StepSearcher.EmptyMap"/>'.
             Those maps will be initialized in the special cases.
             </remarks>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcher.EmptyMap"/>
+            <seealso cref="!:StepSearcher.EmptyMap"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetFullHouses(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <summary>
@@ -5708,66 +5774,6 @@
             </summary>
             <param name="accumulator">The accumulator to store technique information.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid to search for techniques.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Initialize the maps that used later.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcher.EmptyMap">
-            <summary>
-            The empty cells map.
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
-            </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcher.BivalueMap">
-            <summary>
-            The bi-value cells map.
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
-            </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcher.CandMaps">
-            <summary>
-            The candidate maps.
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
-            </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcher.DigitMaps">
-            <summary>
-            The digit maps.
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
-            </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcher.ValueMaps">
-            <summary>
-            The value maps.
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
-            </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.StepSearcher.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetStepInfo">
             <summary>
