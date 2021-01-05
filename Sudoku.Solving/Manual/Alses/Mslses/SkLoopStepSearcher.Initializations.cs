@@ -1,5 +1,4 @@
 ﻿using System.Extensions;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using static Sudoku.Constants.Processings;
@@ -20,7 +19,6 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
-		[SkipLocalsInit]
 		static SkLoopStepSearcher()
 		{
 			// Initialize for region maps.

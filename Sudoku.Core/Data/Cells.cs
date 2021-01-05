@@ -454,6 +454,13 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="other">(<see langword="in"/> parameter) The other map.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
+		/// <remarks>
+		/// There're two different expressions can describe this:
+		/// <list type="bullet">
+		/// <item><c>(<see langword="this"/> &amp; other) == other</c></item>
+		/// <item><c>(<see langword="this"/> | other) == <see langword="this"/></c></item>
+		/// </list>
+		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Covers(in Cells other) => (this & other) == other;
 

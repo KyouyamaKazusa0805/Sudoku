@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		{
 			foreach (var pattern in Patterns)
 			{
-				if ((EmptyMap | pattern) != EmptyMap)
+				if (!EmptyMap.Covers(pattern))
 				{
 					continue;
 				}

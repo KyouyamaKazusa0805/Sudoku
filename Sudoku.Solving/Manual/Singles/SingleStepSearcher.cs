@@ -225,53 +225,57 @@ namespace Sudoku.Solving.Manual.Singles
 		{
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (grid.GetStatus(cell) == CellStatus.Empty)
+				if (grid.GetStatus(cell) != CellStatus.Empty)
 				{
-					short mask = grid.GetCandidates(cell);
-					if (mask.IsPowerOfTwo())
+					continue;
+				}
+
+				short mask = grid.GetCandidates(cell);
+				if (!mask.IsPowerOfTwo())
+				{
+					continue;
+				}
+
+				int digit = mask.FindFirstSet();
+				List<(Cells, Cells)>? directLines = null;
+				if (_showDirectLines)
+				{
+					directLines = new();
+					for (int i = 0; i < 9; i++)
 					{
-						int digit = mask.FindFirstSet();
-						List<(Cells, Cells)>? directLines = null;
-						if (_showDirectLines)
+						if (digit != i)
 						{
-							directLines = new();
-							for (int i = 0; i < 9; i++)
+							bool flag = false;
+							foreach (int peerCell in PeerMaps[cell])
 							{
-								if (digit != i)
+								if (grid[peerCell] == i)
 								{
-									bool flag = false;
-									foreach (int peerCell in PeerMaps[cell])
-									{
-										if (grid[peerCell] == i)
-										{
-											directLines.Add((new() { peerCell }, Cells.Empty));
-											flag = true;
-											break;
-										}
-									}
-									if (flag)
-									{
-										continue;
-									}
+									directLines.Add((new() { peerCell }, Cells.Empty));
+									flag = true;
+									break;
 								}
 							}
+							if (flag)
+							{
+								continue;
+							}
 						}
-
-						accumulator.Add(
-							new NakedSingleStepInfo(
-								new Conclusion[] { new(ConclusionType.Assignment, cell, digit) },
-								new View[]
-								{
-									new()
-									{
-										Candidates = new DrawingInfo[] { new(0, cell * 9 + digit) },
-										DirectLines = directLines
-									}
-								},
-								cell,
-								digit));
 					}
 				}
+
+				accumulator.Add(
+					new NakedSingleStepInfo(
+						new Conclusion[] { new(ConclusionType.Assignment, cell, digit) },
+						new View[]
+						{
+							new()
+							{
+								Candidates = new DrawingInfo[] { new(0, cell * 9 + digit) },
+								DirectLines = directLines
+							}
+						},
+						cell,
+						digit));
 			}
 		}
 	}

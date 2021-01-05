@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -69,8 +68,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
-		[SkipLocalsInit]
-		static ExocetStepSearcher()
+		static unsafe ExocetStepSearcher()
 		{
 			int[,] s = { { 3, 4, 5, 6, 7, 8 }, { 0, 1, 2, 6, 7, 8 }, { 0, 1, 2, 3, 4, 5 } };
 			int[,] b =
@@ -97,7 +95,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{3, 6}, {0, 6}, {0, 3}, {4, 7}, {1, 7}, {1, 4}, {5, 8}, {2, 8}, {2, 5}
 			};
 
-			var t = (stackalloc int[3]);
+			int* t = stackalloc int[3];
 			var crossline = (stackalloc int[25]); // Only use [7]..[24].
 			int n = 0;
 			for (int i = 0; i < 18; i++)
@@ -164,7 +162,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		/// <returns>All mirror eliminations.</returns>
-		[SkipLocalsInit]
 		protected (Target, Mirror) CheckMirror(
 			in SudokuGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
 			in Cells mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets,

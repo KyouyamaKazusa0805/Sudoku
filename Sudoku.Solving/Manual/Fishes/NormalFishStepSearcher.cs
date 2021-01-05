@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -27,6 +28,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			unsafe
 			{
 				int** r = stackalloc int*[9], c = stackalloc int*[9];
+				Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
+				Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
 
 				for (int digit = 0; digit < 9; digit++)
 				{
@@ -46,6 +49,8 @@ namespace Sudoku.Solving.Manual.Fishes
 								if (r[digit] == null)
 								{
 									int* ptr = stackalloc int[10];
+									Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
+
 									r[digit] = ptr;
 								}
 #pragma warning restore CA2014
@@ -58,6 +63,8 @@ namespace Sudoku.Solving.Manual.Fishes
 								if (c[digit] == null)
 								{
 									int* ptr = stackalloc int[10];
+									Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
+
 									c[digit] = ptr;
 								}
 #pragma warning restore CA2014

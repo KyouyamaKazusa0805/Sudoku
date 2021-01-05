@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -104,12 +102,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
 				}
 
-				unsafe
+				if (IsIncompleteUr(candidateOffsets))
 				{
-					if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
-					{
-						continue;
-					}
+					return;
 				}
 
 				accumulator.Add(
@@ -465,12 +460,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short m1 = grid.GetCandidates(c1), m2 = grid.GetCandidates(c2), m3 = grid.GetCandidates(c3);
 			short mask = (short)((short)(m1 | m2) | m3);
 
-			if (
+			if
+			(
 				(
 					mask.PopCount(), m1.PopCount(), m2.PopCount(), m3.PopCount(),
 					m1 & comparer, m2 & comparer, m3 & comparer
 				) is not (4, <= 3, <= 3, <= 3, not 0, not 0, not 0)
-				|| !mask.Covers(comparer))
+				|| !mask.Covers(comparer)
+			)
 			{
 				return;
 			}
@@ -527,12 +524,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
 				}
-				unsafe
+				if (IsIncompleteUr(candidateOffsets))
 				{
-					if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
-					{
-						continue;
-					}
+					return;
 				}
 
 				accumulator.Add(
@@ -1197,7 +1191,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
 		/// </param>
 		/// <param name="index">The index.</param>
-		[SkipLocalsInit]
 		partial void Check4C3SL(
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
@@ -1473,12 +1466,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
 							}
-							unsafe
+							if (IsIncompleteUr(candidateOffsets))
 							{
-								if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
-								{
-									continue;
-								}
+								return;
 							}
 
 							accumulator.Add(
@@ -1577,12 +1567,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									{
 										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c3 * 9 + digit));
 									}
-									unsafe
+									if (IsIncompleteUr(candidateOffsets))
 									{
-										if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
-										{
-											continue;
-										}
+										return;
 									}
 
 									accumulator.Add(
@@ -1685,12 +1672,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										{
 											candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c4 * 9 + digit));
 										}
-										unsafe
+										if (IsIncompleteUr(candidateOffsets))
 										{
-											if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
-											{
-												continue;
-											}
+											return;
 										}
 
 										accumulator.Add(

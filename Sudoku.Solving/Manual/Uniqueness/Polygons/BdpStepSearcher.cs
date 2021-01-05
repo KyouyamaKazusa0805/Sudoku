@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			for (int i = 0, end = EmptyMap.Count == 7 ? 14580 : 11664; i < end; i++)
 			{
 				var pattern = Patterns[i];
-				if ((EmptyMap | pattern.Map) != EmptyMap)
+				if (!EmptyMap.Covers(pattern.Map))
 				{
 					// The pattern contains non-empty cells.
 					continue;

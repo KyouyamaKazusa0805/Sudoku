@@ -51,18 +51,17 @@ namespace Sudoku.Solving.Manual.Alses
 
 				static void a(IList<Cells> list, in Cells emptyMap)
 				{
-					int[] offsets = emptyMap.ToArray();
 					switch (emptyMap.Count)
 					{
 						case 2:
 						{
-							list.Add(new() { offsets[0], offsets[1] });
+							list.Add(new() { emptyMap[0], emptyMap[1] });
 
 							break;
 						}
 						case 3:
 						{
-							int i = offsets[0], j = offsets[1], k = offsets[2];
+							int i = emptyMap[0], j = emptyMap[1], k = emptyMap[2];
 							list.Add(new() { i, j });
 							list.Add(new() { i, k });
 							list.Add(new() { j, k });
@@ -131,7 +130,17 @@ namespace Sudoku.Solving.Manual.Alses
 								}
 								elimMapBlock &= blockMap - currentBlockMap;
 
-								for (int j = 1; j < Algorithms.Min(9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count); j++)
+								for
+								(
+									int
+										j = 1,
+										limit =
+											Algorithms.Min(
+												9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count
+											);
+									j < limit;
+									j++
+								)
 								{
 									foreach (int[] selectedRowCells in rowMap.ToArray().GetSubsets(j))
 									{
@@ -150,12 +159,16 @@ namespace Sudoku.Solving.Manual.Alses
 										}
 										elimMapRow &= RegionMaps[r] - rbCurrentMap - currentRowMap;
 
-										for (
+										for
+										(
 											int k = 1;
-											k <= Algorithms.Min(
-												9 - i - j - currentBlockMap.Count - currentRowMap.Count,
-												rowMap.Count, columnMap.Count);
-											k++)
+											k <=
+												Algorithms.Min(
+													9 - i - j - currentBlockMap.Count - currentRowMap.Count,
+													rowMap.Count, columnMap.Count
+												);
+											k++
+										)
 										{
 											foreach (int[] selectedColumnCells in
 												columnMap.ToArray().GetSubsets(k))

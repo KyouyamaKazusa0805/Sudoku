@@ -6,7 +6,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a conclusion representation while solving in logic.
 	/// </summary>
-	public readonly struct Conclusion : IValueEquatable<Conclusion>
+	public readonly struct Conclusion : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IComparable<Conclusion>
 	{
 		/// <summary>
 		/// Initializes an instance with a conclusion type, a cell offset and a digit.
@@ -101,6 +101,10 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);
+
+		/// <inheritdoc/>
+		[CLSCompliant(false)]
+		public readonly int CompareTo(in Conclusion other) => GetHashCode() - other.GetHashCode();
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() =>

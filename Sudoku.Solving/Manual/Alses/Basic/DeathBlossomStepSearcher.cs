@@ -230,7 +230,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				}
 			}
 
-			accumulator.AddRange(from info in tempAccumulator orderby info.PetalsCount, info.Pivot select info);
+			accumulator.AddRange(
+				from info in tempAccumulator.RemoveDuplicateItems()
+				orderby info.PetalsCount, info.Pivot
+				select info);
 		}
 
 		/// <summary>

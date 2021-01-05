@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -44,7 +43,6 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		[SkipLocalsInit]
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			foreach (var exocet in Patterns)
@@ -340,7 +338,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
-		[SkipLocalsInit]
 		private bool CheckTarget(
 			in SudokuGrid grid, int pos1, int pos2, int baseCandidatesMask,
 			out short otherCandidatesMask, out int otherRegion)
@@ -445,7 +442,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// (<see langword="out"/> parameter) The swordfish eliminations.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating whether the pattern exists.</returns>
-		[SkipLocalsInit]
 		private bool CheckBibiPattern(
 			in SudokuGrid grid, short baseCandidatesMask, int b1, int b2,
 			int tq1, int tq2, int tr1, int tr2, in Cells crossline, bool isRow,

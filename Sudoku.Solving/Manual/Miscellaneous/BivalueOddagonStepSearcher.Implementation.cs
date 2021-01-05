@@ -130,18 +130,18 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 			IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
 			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
 		{
-			bool satisfyType3 = false;
+			bool notSatisfiedType3 = false;
 			foreach (int cell in extraCellsMap)
 			{
 				short mask = grid.GetCandidates(cell);
 				if (!mask.Overlaps(comparer) || mask == comparer)
 				{
-					satisfyType3 = true;
+					notSatisfiedType3 = true;
 					break;
 				}
 			}
 
-			if (!extraCellsMap.InOneRegion || satisfyType3)
+			if (!extraCellsMap.InOneRegion || notSatisfiedType3)
 			{
 				return;
 			}

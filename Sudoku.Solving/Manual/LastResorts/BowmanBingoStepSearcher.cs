@@ -99,9 +99,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 			accumulator.AddRange(
 				from info in tempAccumulator
-				orderby info.ContradictionSeries.Count
-				let conclusion = info.ContradictionSeries[0]
-				orderby conclusion.Cell * 9 + conclusion.Digit
+				orderby info.ContradictionSeries.Count, info.ContradictionSeries[0]
 				select info);
 		}
 

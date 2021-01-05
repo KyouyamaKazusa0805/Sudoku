@@ -16,8 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
-		partial void CheckType1(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
+		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
 			if (mask.PopCount() != 5)
 			{
@@ -136,8 +135,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
-		partial void CheckType3(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
+		partial void CheckType3(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
 			foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 			{
@@ -235,8 +233,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
 		/// <param name="mask">The mask.</param>
-		partial void CheckType4(
-			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
+		partial void CheckType4(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
 			foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 			{

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -23,7 +22,6 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		[SkipLocalsInit]
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			unsafe

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -48,7 +47,6 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
 		/// <returns>All true candidates.</returns>
-		[SkipLocalsInit]
 		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
 			InitializeMaps(Puzzle);

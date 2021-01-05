@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Get masks.
 						short mask1 = (RegionMaps[r1] & CandMaps[digit]).GetSubviewMask(r1);
 						short mask2 = (RegionMaps[r2] & CandMaps[digit]).GetSubviewMask(r2);
-						if ((mask1.PopCount(), mask2.PopCount()) != (2, 2))
+						if (mask1.PopCount() != 2 || mask2.PopCount() != 2)
 						{
 							continue;
 						}
@@ -81,13 +81,13 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Two strong link found.
 						// Record all eliminations.
 						int head = cells1[headIndex], tail = cells2[tailIndex];
-						var conclusions = new List<Conclusion>();
 						var gridMap = PeerMaps[head] & PeerMaps[tail] & CandMaps[digit];
 						if (gridMap.IsEmpty)
 						{
 							continue;
 						}
 
+						var conclusions = new List<Conclusion>();
 						foreach (int cell in gridMap)
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));

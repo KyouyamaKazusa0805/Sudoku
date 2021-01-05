@@ -133,7 +133,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </exception>
 		private static Cells CreateInstance(in SudokuGrid grid, int digit)
 		{
-			_ = grid.IsSolved ? 0 : throw new ArgumentException("The specified sudoku grid has not been solved.", nameof(grid));
+			_ = !grid.IsSolved ? throw new ArgumentException("The specified sudoku grid has not been solved.", nameof(grid)) : 0;
 
 			var result = Cells.Empty;
 			for (int cell = 0; cell < 81; cell++)

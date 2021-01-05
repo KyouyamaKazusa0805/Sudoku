@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -19,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="trueCandidates">All true candidates.</param>
 		partial void CheckType2(IList<StepInfo> accumulator, IReadOnlyList<int> trueCandidates)
 		{
-			int[] cells = new int[trueCandidates.Count];
+			var cells = (stackalloc int[trueCandidates.Count]);
 			int i = 0;
 			foreach (int candidate in trueCandidates)
 			{
@@ -56,7 +55,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					conclusions,
 					new View[] { new() { Candidates = candidateOffsets } },
 					digit,
-					cells));
+					cells.ToArray()));
 		}
 
 		/// <summary>
@@ -407,7 +406,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// </summary>
 		/// <param name="list">The list of all true candidates.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		[SkipLocalsInit]
 		private static unsafe bool CheckSingleDigit(IReadOnlyList<int> list)
 		{
 			int i = 0, comparer;

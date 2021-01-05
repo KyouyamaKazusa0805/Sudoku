@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					int region1 = new Cells { triplet[0], triplet[1] }.CoveredLine;
 					int region2 = new Cells { triplet[0], triplet[2] }.CoveredLine;
 					int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
-					(int incre1, int incre2) = i switch
+					var (incre1, incre2) = i switch
 					{
 						0 or 1 or 2 or 3 => (9, 1),
 						4 or 5 => (9, 2),
@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				int region1 = new Cells { quad[0], quad[1] }.CoveredLine;
 				int region2 = new Cells { quad[0], quad[2] }.CoveredLine;
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
-				(int incre1, int incre2) = i switch
+				var (incre1, incre2) = i switch
 				{
 					0 or 1 or 2 or 3 => (9, 1),
 					4 or 5 => (9, 2),
@@ -134,7 +134,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					for (int i2 = 0; i2 < 6; i2++)
 					{
 						// Now check extra digits.
-						var allCells = new List<int>(quad) { pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1] };
+						var allCells = new List<int>(quad)
+						{
+							pair1[i1, 0],
+							pair1[i1, 1],
+							pair2[i2, 0],
+							pair2[i2, 1]
+						};
 
 						long v = 0;
 						for (int z = 0; z < allCells.Count; z++)

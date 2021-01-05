@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -253,7 +252,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// the value will be <c>-1</c>.
 		/// </param>
 		/// <returns>The <see cref="bool"/> value.</returns>
-		[SkipLocalsInit]
 		private bool CheckTarget(
 			in SudokuGrid grid, int pos1, int pos2, int baseCandsMask, out short otherCandsMask)
 		{

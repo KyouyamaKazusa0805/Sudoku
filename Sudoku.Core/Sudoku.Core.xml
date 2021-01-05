@@ -887,6 +887,13 @@
             </summary>
             <param name="other">(<see langword="in"/> parameter) The other map.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
+            <remarks>
+            There're two different expressions can describe this:
+            <list type="bullet">
+            <item><c>(<see langword="this"/> &amp; other) == other</c></item>
+            <item><c>(<see langword="this"/> | other) == <see langword="this"/></c></item>
+            </list>
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.Cells.AllSetsAreInOneRegion(System.Int32@)">
             <summary>
@@ -1510,6 +1517,9 @@
         </member>
         <member name="M:Sudoku.Data.Conclusion.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.CompareTo(Sudoku.Data.Conclusion@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

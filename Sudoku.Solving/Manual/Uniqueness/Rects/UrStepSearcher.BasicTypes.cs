@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -151,12 +150,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 			}
 
-			unsafe
+			if (IsIncompleteUr(candidateOffsets))
 			{
-				if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
-				{
-					return;
-				}
+				return;
 			}
 
 			bool isType5 = !new Cells { corner1, corner2 }.InOneRegion;
@@ -209,18 +205,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ↓ corner1, corner2
 			// (ab ) (ab )
 			//  abx   aby
-			bool satisfiedType3 = false;
+			bool notSatisfiedType3 = false;
 			foreach (int cell in otherCellsMap)
 			{
 				short currentMask = grid.GetCandidates(cell);
 				if (!currentMask.Overlaps(comparer)
 					|| currentMask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty)
 				{
-					satisfiedType3 = true;
+					notSatisfiedType3 = true;
 					break;
 				}
 			}
-			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer || satisfiedType3)
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer || notSatisfiedType3)
 			{
 				return;
 			}
@@ -504,12 +500,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
-			unsafe
+			if (IsIncompleteUr(candidateOffsets))
 			{
-				if (!_allowIncompleteUr && candidateOffsets.Count(&CheckHighlightType) != 8)
-				{
-					return;
-				}
+				return;
 			}
 
 			accumulator.Add(

@@ -14,18 +14,36 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
 	/// </summary>
-	public class FcStepSearcher : ChainingStepSearcher
+	public
+#if !DOUBLE_LAYERED_ASSUMPTION
+	sealed
+#endif
+	class FcStepSearcher : ChainingStepSearcher
 	{
 		/// <summary>
 		/// Indicates the information.
 		/// </summary>
-		protected readonly bool IsNishio, IsMultiple, IsDynamic;
+#pragma warning disable IDE1006
+#if DOUBLE_LAYERED_ASSUMPTION
+		protected
+#else
+		private
+#endif
+		readonly bool IsNishio, IsMultiple, IsDynamic;
+#pragma warning restore IDE1006
 
 
 		/// <summary>
 		/// Indicates the level of the searching depth.
 		/// </summary>
-		protected int Level;
+#pragma warning disable IDE1006
+#if DOUBLE_LAYERED_ASSUMPTION
+		protected
+#else
+		private readonly
+#endif
+		int Level;
+#pragma warning restore IDE1006
 
 		/// <summary>
 		/// Indicates the grid that is used in processing.
@@ -80,8 +98,14 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="source">(<see langword="in"/> parameter) The source.</param>
 		/// <param name="offNodes">All nodes that is off.</param>
 		/// <returns>All nodes.</returns>
-		protected virtual IEnumerable<Node>? Advanced(
-			in SudokuGrid grid, in SudokuGrid source, Set<Node> offNodes) => null;
+#pragma warning disable IDE0060
+#if DOUBLE_LAYERED_ASSUMPTION
+		protected virtual
+#else
+		private
+#endif
+		IEnumerable<Node>? Advanced(in SudokuGrid grid, in SudokuGrid source, Set<Node> offNodes) => null;
+#pragma warning restore IDE0060
 
 		/// <summary>
 		/// Search for chains of each type.

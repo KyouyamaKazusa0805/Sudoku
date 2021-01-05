@@ -120,17 +120,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop,
 			in Cells extraCells, IReadOnlyList<Link> links, short comparer)
 		{
-			bool satisfyType3 = false;
+			bool notSatisfiedType3 = false;
 			foreach (int cell in extraCells)
 			{
 				short mask = grid.GetCandidates(cell);
 				if (!mask.Overlaps(comparer) || mask == comparer)
 				{
-					satisfyType3 = true;
+					notSatisfiedType3 = true;
 					break;
 				}
 			}
-			if (!extraCells.InOneRegion || satisfyType3)
+			if (!extraCells.InOneRegion || notSatisfiedType3)
 			{
 				return;
 			}

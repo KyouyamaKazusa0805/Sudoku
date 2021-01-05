@@ -21,7 +21,8 @@
             <param name="symmetricalType">
             The symmetry type flags. The <see cref="T:Sudoku.Data.SymmetryType"/> is
             a flag type, you can use bit operators to accumulate multiple
-            symmetrical types such as <c><see cref="!:AntiDiagonal"/> | <see cref="!:Diagonal"/></c>,
+            symmetrical types such as
+            <c><see cref="F:Sudoku.Data.SymmetryType.AntiDiagonal"/> | <see cref="F:Sudoku.Data.SymmetryType.Diagonal"/></c>,
             which means that the solver will generate anti-diagonal type or
             diagonal type puzzles.
             </param>
@@ -40,7 +41,8 @@
             <param name="symmetricalType">
             The symmetry type flags. The <see cref="T:Sudoku.Data.SymmetryType"/> is
             a flag type, you can use bit operators to accumulate multiple
-            symmetrical types such as <c><see cref="!:AntiDiagonal"/> | <see cref="!:Diagonal"/></c>,
+            symmetrical types such as
+            <c><see cref="F:Sudoku.Data.SymmetryType.AntiDiagonal"/> | <see cref="F:Sudoku.Data.SymmetryType.Diagonal"/></c>,
             which means that the solver will generate anti-diagonal type or
             diagonal type puzzles.
             </param>

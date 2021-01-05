@@ -9,46 +9,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	partial class XrStepSearcher
 	{
 		/// <summary>
-		/// The table of regions to traverse.
-		/// </summary>
-		private static readonly int[,] Regions =
-		{
-			{ 9, 10 }, { 9, 11 }, { 10, 11 },
-			{ 12, 13 }, { 12, 14 }, { 13, 14 },
-			{ 15, 16 }, { 15, 17 }, { 16, 17 },
-			{ 18, 19 }, { 18, 20 }, { 19, 20 },
-			{ 21, 22 }, { 21, 23 }, { 22, 23 },
-			{ 24, 25 }, { 24, 26 }, { 25, 26 }
-		};
-
-		/// <summary>
-		/// The fit type XRs table (row direction).
-		/// </summary>
-		private static readonly int[,] FitTableRow =
-		{
-			{ 0, 3 }, { 0, 4 }, { 0, 5 }, { 0, 6 }, { 0, 7 }, { 0, 8 },
-			{ 1, 3 }, { 1, 4 }, { 1, 5 }, { 1, 6 }, { 1, 7 }, { 1, 8 },
-			{ 2, 3 }, { 2, 4 }, { 2, 5 }, { 2, 6 }, { 2, 7 }, { 2, 8 },
-			{ 3, 6 }, { 3, 7 }, { 3, 8 },
-			{ 4, 6 }, { 4, 7 }, { 4, 8 },
-			{ 5, 6 }, { 5, 7 }, { 5, 8 },
-		};
-
-		/// <summary>
-		/// The fit type XRs table (column direction).
-		/// </summary>
-		private static readonly int[,] FitTableColumn =
-		{
-			{ 0, 27 }, { 0, 36 }, { 0, 45 }, { 0, 54 }, { 0, 63 }, { 0, 72 },
-			{ 9, 27 }, { 9, 36 }, { 9, 45 }, { 9, 54 }, { 9, 63 }, { 9, 72 },
-			{ 18, 27 }, { 18, 36 }, { 18, 45 }, { 18, 54 }, { 18, 63 }, { 18, 72 },
-			{ 27, 54 }, { 27, 63 }, { 27, 72 },
-			{ 36, 54 }, { 36, 63 }, { 36, 72 },
-			{ 45, 54 }, { 45, 63 }, { 45, 72 },
-		};
-
-
-		/// <summary>
 		/// All combinations.
 		/// </summary>
 		private static readonly IReadOnlyList<(Cells, IReadOnlyList<(int, int)>, int)> Combinations;
@@ -57,6 +17,34 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc cref="StaticConstructor"/>
 		static XrStepSearcher()
 		{
+			int[,] Regions =
+			{
+				{ 9, 10 }, { 9, 11 }, { 10, 11 },
+				{ 12, 13 }, { 12, 14 }, { 13, 14 },
+				{ 15, 16 }, { 15, 17 }, { 16, 17 },
+				{ 18, 19 }, { 18, 20 }, { 19, 20 },
+				{ 21, 22 }, { 21, 23 }, { 22, 23 },
+				{ 24, 25 }, { 24, 26 }, { 25, 26 }
+			},
+			FitTableRow =
+			{
+				{ 0, 3 }, { 0, 4 }, { 0, 5 }, { 0, 6 }, { 0, 7 }, { 0, 8 },
+				{ 1, 3 }, { 1, 4 }, { 1, 5 }, { 1, 6 }, { 1, 7 }, { 1, 8 },
+				{ 2, 3 }, { 2, 4 }, { 2, 5 }, { 2, 6 }, { 2, 7 }, { 2, 8 },
+				{ 3, 6 }, { 3, 7 }, { 3, 8 },
+				{ 4, 6 }, { 4, 7 }, { 4, 8 },
+				{ 5, 6 }, { 5, 7 }, { 5, 8 },
+			},
+			FitTableColumn =
+			{
+				{ 0, 27 }, { 0, 36 }, { 0, 45 }, { 0, 54 }, { 0, 63 }, { 0, 72 },
+				{ 9, 27 }, { 9, 36 }, { 9, 45 }, { 9, 54 }, { 9, 63 }, { 9, 72 },
+				{ 18, 27 }, { 18, 36 }, { 18, 45 }, { 18, 54 }, { 18, 63 }, { 18, 72 },
+				{ 27, 54 }, { 27, 63 }, { 27, 72 },
+				{ 36, 54 }, { 36, 63 }, { 36, 72 },
+				{ 45, 54 }, { 45, 63 }, { 45, 72 },
+			};
+
 			var combinations = new List<(Cells, IReadOnlyList<(int, int)>, int)>();
 
 			// Fit type. e.g.

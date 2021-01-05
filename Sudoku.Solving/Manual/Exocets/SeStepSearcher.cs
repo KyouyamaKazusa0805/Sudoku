@@ -30,7 +30,6 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		[SkipLocalsInit]
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			// TODO: Extend SE eliminations checking.
@@ -107,7 +106,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						short elimDigits = (short)((
 							grid.GetCandidates(v1) | grid.GetCandidates(v2)
 						) & ~baseCandsMask);
-						if (!CheckCrossline(baseMap, tempCrosslineMap, baseCandsMask, v1, v2, isRow))
+						if (!CheckCrossline(tempCrosslineMap, baseCandsMask, v1, v2, isRow))
 						{
 							continue;
 						}
@@ -220,19 +219,15 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Check the cross-line cells.
 		/// </summary>
-		/// <param name="baseMap">(<see langword="in"/> parameter) The base cells map.</param>
 		/// <param name="tempCrossline">(<see langword="in"/> parameter) The cross-line map.</param>
 		/// <param name="baseCandidatesMask">The base candidate mask.</param>
 		/// <param name="t1">The target cell 1.</param>
 		/// <param name="t2">The target cell 2.</param>
 		/// <param name="isRow">Indicates whether the specified computation is for rows.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
-		[SkipLocalsInit]
-		private bool CheckCrossline(
-			in Cells baseMap, in Cells tempCrossline, short baseCandidatesMask, int t1, int t2, bool isRow)
+		private bool CheckCrossline(in Cells tempCrossline, short baseCandidatesMask, int t1, int t2, bool isRow)
 		{
 			var xx = new Cells { t1, t2 };
-			var tempMask = (stackalloc int[9]);
 			foreach (int digit in baseCandidatesMask)
 			{
 				bool flag = true;
@@ -242,10 +237,10 @@ namespace Sudoku.Solving.Manual.Exocets
 					flag = false;
 				}
 
-				if (flag)
-				{
-					continue;
-				}
+				//if (flag)
+				//{
+				//	continue;
+				//}
 
 				if (!flag)
 				{

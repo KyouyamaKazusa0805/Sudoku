@@ -28,7 +28,8 @@ namespace Sudoku.Generating
 		/// <param name="symmetricalType">
 		/// The symmetry type flags. The <see cref="SymmetryType"/> is
 		/// a flag type, you can use bit operators to accumulate multiple
-		/// symmetrical types such as <c><see cref="AntiDiagonal"/> | <see cref="Diagonal"/></c>,
+		/// symmetrical types such as
+		/// <c><see cref="SymmetryType.AntiDiagonal"/> | <see cref="SymmetryType.Diagonal"/></c>,
 		/// which means that the solver will generate anti-diagonal type or
 		/// diagonal type puzzles.
 		/// </param>
@@ -145,7 +146,8 @@ namespace Sudoku.Generating
 		/// <param name="symmetricalType">
 		/// The symmetry type flags. The <see cref="SymmetryType"/> is
 		/// a flag type, you can use bit operators to accumulate multiple
-		/// symmetrical types such as <c><see cref="AntiDiagonal"/> | <see cref="Diagonal"/></c>,
+		/// symmetrical types such as
+		/// <c><see cref="SymmetryType.AntiDiagonal"/> | <see cref="SymmetryType.Diagonal"/></c>,
 		/// which means that the solver will generate anti-diagonal type or
 		/// diagonal type puzzles.
 		/// </param>

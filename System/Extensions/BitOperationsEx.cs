@@ -10,6 +10,82 @@ namespace System.Extensions
 	/// <seealso cref="BitOperations"/>
 	public static class BitOperationsEx
 	{
+		public static byte SkipSetBit(this byte @this, int setBitPosCount)
+		{
+			byte result = @this;
+			for (int i = 0, count = 0; i < 8; i++)
+			{
+				if (@this.ContainsBit(i))
+				{
+					result &= (byte)~(1 << i);
+
+					if (++count == setBitPosCount)
+					{
+						break;
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public static short SkipSetBit(this short @this, int setBitPosCount)
+		{
+			short result = @this;
+			for (int i = 0, count = 0; i < 16; i++)
+			{
+				if (@this.ContainsBit(i))
+				{
+					result &= (short)~(1 << i);
+
+					if (++count == setBitPosCount)
+					{
+						break;
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public static int SkipSetBit(this int @this, int setBitPosCount)
+		{
+			int result = @this;
+			for (int i = 0, count = 0; i < 32; i++)
+			{
+				if (@this.ContainsBit(i))
+				{
+					result &= ~(1 << i);
+
+					if (++count == setBitPosCount)
+					{
+						break;
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public static long SkipSetBit(this long @this, int setBitPosCount)
+		{
+			long result = @this;
+			for (int i = 0, count = 0; i < 64; i++)
+			{
+				if (@this.ContainsBit(i))
+				{
+					result &= ~(1 << i);
+
+					if (++count == setBitPosCount)
+					{
+						break;
+					}
+				}
+			}
+
+			return result;
+		}
+
 		/// <inheritdoc cref="Integer.IsPowerOfTwo(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsPowerOfTwo(this byte @this) => @this != 0 && (@this & (@this - 1)) == 0;

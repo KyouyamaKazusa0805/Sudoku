@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -66,7 +65,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="size">The size to check.</param>
 		/// <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
-		[SkipLocalsInit]
 		private static void GetAll(Steps accumulator, in SudokuGrid grid, int size, EliminationList pomElims)
 		{
 			unsafe

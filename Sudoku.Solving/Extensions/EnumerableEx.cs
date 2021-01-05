@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 
@@ -17,7 +16,6 @@ namespace Sudoku.Solving.Extensions
 		/// </summary>
 		/// <param name="loop">(<see langword="this"/> parameter) The loop.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		[SkipLocalsInit]
 		public static unsafe bool IsValidLoop(this IEnumerable<int> loop)
 		{
 			int visitedOddRegions = 0, visitedEvenRegions = 0;

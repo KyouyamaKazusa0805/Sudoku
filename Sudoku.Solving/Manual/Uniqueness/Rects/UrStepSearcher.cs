@@ -266,6 +266,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		private static bool CheckHighlightType(in DrawingInfo pair) => pair.Id == 0;
 
 		/// <summary>
+		/// Check whether the highlight UR candidates is incomplete.
+		/// </summary>
+		/// <param name="list">The list to check.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private unsafe bool IsIncompleteUr(IEnumerable<DrawingInfo> list) =>
+			!_allowIncompleteUr && list.Count(&CheckHighlightType) != 8;
+
+		/// <summary>
 		/// Get a cell that can't see each other.
 		/// </summary>
 		/// <param name="urCells">The UR cells.</param>

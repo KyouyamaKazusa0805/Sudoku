@@ -3453,11 +3453,10 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.SeStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeStepSearcher.CheckCrossline(Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeStepSearcher.CheckCrossline(Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check the cross-line cells.
             </summary>
-            <param name="baseMap">(<see langword="in"/> parameter) The base cells map.</param>
             <param name="tempCrossline">(<see langword="in"/> parameter) The cross-line map.</param>
             <param name="baseCandidatesMask">The base candidate mask.</param>
             <param name="t1">The target cell 1.</param>
@@ -6731,21 +6730,6 @@
             <param name="normalDigits">The normal digits mask.</param>
             <param name="extraCellsMap">(<see langword="in"/> parameter) The map of extra cells.</param>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.Regions">
-            <summary>
-            The table of regions to traverse.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.FitTableRow">
-            <summary>
-            The fit type XRs table (row direction).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.FitTableColumn">
-            <summary>
-            The fit type XRs table (column direction).
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.Combinations">
             <summary>
             All combinations.
@@ -7698,17 +7682,6 @@
             <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
             <param name="comparer">The mask comparer.</param>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.BaseLineIterator">
-            <summary>
-            The base line iterator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.StartCells">
-            <summary>
-            The start cells iterator (used as a <see cref="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Pair"/>).
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Pair"/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.#cctor">
             <inheritdoc cref="M:Sudoku.DocComments.DefaultConstructor.#ctor"/>
         </member>
@@ -8056,6 +8029,13 @@
             </summary>
             <param name="pair">(<see langword="in"/> parameter) The pair.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.IsIncompleteUr(System.Collections.Generic.IEnumerable{Sudoku.Drawing.DrawingInfo})">
+            <summary>
+            Check whether the highlight UR candidates is incomplete.
+            </summary>
+            <param name="list">The list to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.GetDiagonalCell(System.Int32[],System.Int32)">
             <summary>
@@ -9039,11 +9019,6 @@
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
             <param name="mask">The mask.</param>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.ChuteIterator">
-            <summary>
-            The chute iterator.
-            </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.Patterns">
             <summary>

@@ -24,16 +24,15 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			int[] bivalueCells = BivalueMap.ToArray();
-			for (int i = 0, length = bivalueCells.Length; i < length - 1; i++)
+			for (int i = 0, length = BivalueMap.Count; i < length - 1; i++)
 			{
-				int c1 = bivalueCells[i];
+				int c1 = BivalueMap[i];
 
 				short mask = grid.GetCandidates(c1);
 				int d1 = mask.FindFirstSet(), d2 = mask.GetNextSet(d1);
 				for (int j = i + 1; j < length; j++)
 				{
-					int c2 = bivalueCells[j];
+					int c2 = BivalueMap[j];
 
 					// Check the candidates that cell holds is totally same with 'c1'.
 					if (grid.GetCandidates(c2) != mask)
