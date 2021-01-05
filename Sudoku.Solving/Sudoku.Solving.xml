@@ -5614,12 +5614,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-            <remarks>
-            Note that this technique searcher will be used in other functions,
-            so we should not use base maps like '<see cref="!:StepSearcher.EmptyMap"/>'.
-            Those maps will be initialized in the special cases.
-            </remarks>
-            <seealso cref="!:StepSearcher.EmptyMap"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetFullHouses(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <summary>

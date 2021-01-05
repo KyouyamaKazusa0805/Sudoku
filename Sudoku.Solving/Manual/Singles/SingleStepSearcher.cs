@@ -49,12 +49,6 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		/// <remarks>
-		/// Note that this technique searcher will be used in other functions,
-		/// so we should not use base maps like '<see cref="StepSearcher.EmptyMap"/>'.
-		/// Those maps will be initialized in the special cases.
-		/// </remarks>
-		/// <seealso cref="StepSearcher.EmptyMap"/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			GetFullHouses(accumulator, grid);
