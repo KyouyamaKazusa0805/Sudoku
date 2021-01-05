@@ -527,8 +527,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly int GetHashCode() =>
-			nameof(Cells).GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
+		public override readonly int GetHashCode() => ToString("b").GetHashCode();
 
 		/// <summary>
 		/// Get all set cell offsets and returns them as an array.
@@ -558,7 +557,7 @@ namespace Sudoku.Data
 					1 when Offsets[0] is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
 					_ => normalToString(this)
 				},
-				"B" or "b" => binaryToString(this),
+				"B" or "b" => binaryToString(this, false),
 				"T" or "t" => tableToString(this),
 				_ => throw new FormatException("The specified format is invalid.")
 			};
@@ -648,7 +647,7 @@ namespace Sudoku.Data
 				return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
 			}
 
-			static unsafe string binaryToString(in Cells @this)
+			static string binaryToString(in Cells @this, bool withSeparator)
 			{
 				var sb = new StringBuilder();
 				int i;
@@ -657,7 +656,7 @@ namespace Sudoku.Data
 				{
 					sb.Append(value & 1);
 				}
-				sb.Append(' ');
+				_ = withSeparator ? sb.Append(' ') : default;
 				for (; i < 41; i++, value >>= 1)
 				{
 					sb.Append(value & 1);
@@ -666,7 +665,7 @@ namespace Sudoku.Data
 				{
 					sb.Append(value & 1);
 				}
-				sb.Append(' ');
+				_ = withSeparator ? sb.Append(' ') : default;
 				for (; i < 81; i++, value >>= 1)
 				{
 					sb.Append(value & 1);

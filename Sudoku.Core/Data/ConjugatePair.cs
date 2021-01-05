@@ -85,7 +85,7 @@ namespace Sudoku.Data
 		public bool Equals(in ConjugatePair other) => Map == other.Map && Digit == other.Digit;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		public override int GetHashCode() => Map.GetHashCode() ^ Digit;
+		public override int GetHashCode() => Map.GetHashCode() ^ Digit << 17;
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => $"{new Cells { From }} == {new Cells { To }}({Digit + 1})";
