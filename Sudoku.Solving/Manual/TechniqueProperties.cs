@@ -1,9 +1,8 @@
 ﻿using System;
 using Sudoku.DocComments;
-using Sudoku.Solving.Manual;
 using static System.Reflection.BindingFlags;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Indicates the properties while searching aiming to <see cref="StepSearcher"/>s.

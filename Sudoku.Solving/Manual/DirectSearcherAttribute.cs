@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// <para>
