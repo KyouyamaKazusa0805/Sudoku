@@ -55,17 +55,8 @@ namespace Sudoku.Generating
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
-			var allTypes = symmetricalType.GetAllFlags();
+			var allTypes = symmetricalType.GetAllFlags() ?? new[] { SymmetryType.None };
 			int count = allTypes.Length;
-			if (count == 0)
-			{
-				unsafe
-				{
-					var z = stackalloc[] { SymmetryType.None };
-					allTypes = new ReadOnlySpan<SymmetryType>(z, 1);
-				}
-			}
-
 			var tempSb = new StringBuilder(solution.ToString());
 			string result;
 			do

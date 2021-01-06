@@ -14,11 +14,15 @@ namespace System.Extensions
 		/// </summary>
 		/// <typeparam name="TEnum">The type of that enumeration.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The field.</param>
-		/// <returns>All flags.</returns>
-		public static ReadOnlySpan<TEnum> GetAllFlags<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
+		/// <returns>
+		/// All flags. If the enumeration field doesn't contain any flags,
+		/// the return value will be <see langword="null"/>.
+		/// </returns>
+		public static TEnum[]? GetAllFlags<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 		{
 			unsafe
 			{
+				// Create a buffer to record all possible flags.
 				var buffer = stackalloc TEnum[Enum.GetValues<TEnum>().Length];
 				int i = 0;
 				foreach (var flag in @this)
@@ -26,7 +30,25 @@ namespace System.Extensions
 					buffer[i++] = flag;
 				}
 
-				return new Span<TEnum>(buffer, i);
+				if (i == 0)
+				{
+					return null;
+				}
+
+				// Returns the instance and copy the values.
+				var result = new TEnum[i];
+				fixed (TEnum* ptr = result)
+				{
+					Unsafe.CopyBlock(ptr, buffer, (uint)(sizeof(TEnum) * i));
+				}
+
+				// Returns the value.
+				return result;
+
+				// Don't return a new instance with the pointer.
+				// The pointee is allocated in the stack, which will be cleared after the method popped out
+				// the method stack.
+				//return new Span<TEnum>(buffer, i);
 			}
 		}
 
