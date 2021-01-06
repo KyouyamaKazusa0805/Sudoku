@@ -10,6 +10,7 @@ namespace System.Extensions
 	/// <seealso cref="BitOperations"/>
 	public static class BitOperationsEx
 	{
+		/// <inheritdoc cref="Integer.SkipSetBit(Integer, int)"/>
 		public static byte SkipSetBit(this byte @this, int setBitPosCount)
 		{
 			byte result = @this;
@@ -29,6 +30,7 @@ namespace System.Extensions
 			return result;
 		}
 
+		/// <inheritdoc cref="Integer.SkipSetBit(Integer, int)"/>
 		public static short SkipSetBit(this short @this, int setBitPosCount)
 		{
 			short result = @this;
@@ -48,6 +50,7 @@ namespace System.Extensions
 			return result;
 		}
 
+		/// <inheritdoc cref="Integer.SkipSetBit(Integer, int)"/>
 		public static int SkipSetBit(this int @this, int setBitPosCount)
 		{
 			int result = @this;
@@ -67,6 +70,7 @@ namespace System.Extensions
 			return result;
 		}
 
+		/// <inheritdoc cref="Integer.SkipSetBit(Integer, int)"/>
 		public static long SkipSetBit(this long @this, int setBitPosCount)
 		{
 			long result = @this;
