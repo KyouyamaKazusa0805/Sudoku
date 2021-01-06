@@ -43,8 +43,7 @@ namespace Sudoku.Solving.Extensions
 		/// such as <see cref="BfStepSearcher"/>.
 		/// </param>
 		/// <returns>The result.</returns>
-		public static StepSearcher[][] GetSeModeSearchers(
-			this ManualSolver @this, in SudokuGrid? solution = null)
+		public static StepSearcher[][] GetSeModeSearchers(this ManualSolver @this, in SudokuGrid? solution)
 		{
 			var list = @this.GetHodokuModeSearchers(solution);
 			var dic = new Dictionary<int, IList<StepSearcher>>();
@@ -74,8 +73,7 @@ namespace Sudoku.Solving.Extensions
 		/// such as <see cref="BfStepSearcher"/>. The default value is <see langword="null"/>.
 		/// </param>
 		/// <returns>The result.</returns>
-		public static StepSearcher[] GetHodokuModeSearchers(
-			this ManualSolver @this, in SudokuGrid? solution = null)
+		public static StepSearcher[] GetHodokuModeSearchers(this ManualSolver @this, in SudokuGrid? solution)
 		{
 			var result = new List<StepSearcher>
 			{

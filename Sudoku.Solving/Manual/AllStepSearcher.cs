@@ -64,13 +64,16 @@ namespace Sudoku.Solving.Manual
 			bool onlyShowSameLevelTechniquesInFindAllSteps = _solver.OnlyShowSameLevelTechniquesInFindAllSteps;
 
 			// Note that the parameter is unnecessary to pass.
-			var searchers = _solver.GetHodokuModeSearchers();
+			var searchers = _solver.GetHodokuModeSearchers(null);
 
 			FastProperties.InitializeMaps(grid);
 			int i = -1;
 			var bag = new List<StepInfo>();
-			var progressResult = new TechniqueProgressResult(
-				searchers.Length, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
+			var progressResult =
+				new TechniqueProgressResult(
+					searchers.Length,
+					countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode
+				);
 			foreach (var searcher in searchers)
 			{
 				// Check whether the searcher is only used for analyzing a sudoku grid.
@@ -149,7 +152,7 @@ namespace Sudoku.Solving.Manual
 			}
 
 			// Return the result.
-			return from step in Enumerable.Distinct(bag) group step by step.Name;
+			return from step in bag group step by step.Name;
 		}
 
 
@@ -166,9 +169,7 @@ namespace Sudoku.Solving.Manual
 			SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode,
 			CancellationToken? cancellationToken)
 		{
-			return cancellationToken is { } t
-				? await Task.Factory.StartNew(innerSearch, t)
-				: await Task.Factory.StartNew(innerSearch);
+			return await (cancellationToken is { } t ? Task.Run(innerSearch, t) : Task.Run(innerSearch));
 
 			IEnumerable<IGrouping<string, StepInfo>>? innerSearch()
 			{

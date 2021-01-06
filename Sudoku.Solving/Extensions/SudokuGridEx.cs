@@ -4,6 +4,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
+using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Extensions
 {
@@ -41,23 +42,21 @@ namespace Sudoku.Solving.Extensions
 		{
 			var steps = new List<StepInfo>();
 
-			while (true)
+		Again:
+			steps.Clear();
+			InitializeMaps(@this);
+			for (int i = 0, length = SstsSearchers.Length; i < length; i++)
 			{
-				steps.Clear();
-				FastProperties.InitializeMaps(@this);
-				for (int i = 0, length = SstsSearchers.Length; i < length; i++)
+				var searcher = SstsSearchers[i];
+				searcher.GetAll(steps, @this);
+				if (steps.Count == 0)
 				{
-					var searcher = SstsSearchers[i];
-					searcher.GetAll(steps, @this);
-					if (steps.Count == 0)
-					{
-						continue;
-					}
+					goto Again;
+				}
 
-					foreach (var step in steps)
-					{
-						step.ApplyTo(ref @this);
-					}
+				foreach (var step in steps)
+				{
+					step.ApplyTo(ref @this);
 				}
 			}
 		}
