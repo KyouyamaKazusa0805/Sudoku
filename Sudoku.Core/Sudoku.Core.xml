@@ -5192,11 +5192,6 @@
             Indicates the bi-value oddagon type 3.
             </summary>
         </member>
-        <member name="F:Sudoku.TechniqueCode.BivalueOddagonType4">
-            <summary>
-            Indicates the bi-value oddagon type 4.
-            </summary>
-        </member>
         <member name="F:Sudoku.TechniqueCode.XChain">
             <summary>
             Indicates the X-Chain.

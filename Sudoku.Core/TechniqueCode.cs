@@ -1127,11 +1127,6 @@
 		BivalueOddagonType3,
 
 		/// <summary>
-		/// Indicates the bi-value oddagon type 4.
-		/// </summary>
-		BivalueOddagonType4,
-
-		/// <summary>
 		/// Indicates the X-Chain.
 		/// </summary>
 		XChain,

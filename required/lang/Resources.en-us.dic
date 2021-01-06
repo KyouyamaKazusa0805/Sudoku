@@ -248,6 +248,7 @@
   "UrXyzWing": "Unique Rectangle + XYZ-Wing",
   "UrWxyzWing": "Unique Rectangle + WXYZ-Wing",
   "UrSdc": "Unique Rectangle + Sue de Coq",
+  "AdvancedUr": "Unique Rectangle (+)",
   "ArType1": "Avoidable Rectangle Type 1",
   "ArType2": "Avoidable Rectangle Type 2",
   "ArType3": "Avoidable Rectangle Type 3",
@@ -307,7 +308,6 @@
   "BivalueOddagonType1": "Bivalue Oddagon Type 1",
   "BivalueOddagonType2": "Bivalue Oddagon Type 2",
   "BivalueOddagonType3": "Bivalue Oddagon Type 3",
-  "BivalueOddagonType4": "Bivalue Oddagon Type 4",
   "XChain": "X-Chain",
   "YChain": "Y-Chain",
   "FishyCycle": "Fishy Cycle",
@@ -355,10 +355,5 @@
   "TemplateSet": "Template Set",
   "TemplateDelete": "Template Delete",
   "BowmanBingo": "Bowman's Bingo",
-  "BruteForce": "Brute Force",
-  "_HiddenSingleSimple1": " in ",
-  "_LcSimple1": " in ",
-  "_NakedSubsetSimple1": " in ",
-  "_HiddenSubsetSimple1": " in ",
-  "_NormalFishSimple1": " in "
+  "BruteForce": "Brute Force"
 }

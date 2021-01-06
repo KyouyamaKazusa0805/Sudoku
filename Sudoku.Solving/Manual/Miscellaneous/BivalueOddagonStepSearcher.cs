@@ -76,7 +76,6 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 							if (extraCellsMap.Count == 2)
 							{
 								CheckType3(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer);
-								CheckType4(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer);
 							}
 
 							break;
@@ -180,9 +179,9 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 			return true;
 		}
 
+
 		partial void CheckType1(IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap);
 		partial void CheckType2(IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer);
 		partial void CheckType3(IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer);
-		partial void CheckType4(IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer);
 	}
 }
