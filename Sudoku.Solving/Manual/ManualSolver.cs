@@ -50,9 +50,7 @@ namespace Sudoku.Solving.Manual
 			SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode = CountryCode.EnUs,
 			CancellationToken? cancellationToken = null)
 		{
-			return cancellationToken is { } ct
-				? await Task.Factory.StartNew(innerAnalysis, ct)
-				: await Task.Factory.StartNew(innerAnalysis);
+			return await (cancellationToken is { } ct ? Task.Run(innerAnalysis, ct) : Task.Run(innerAnalysis));
 
 			AnalysisResult? innerAnalysis()
 			{
