@@ -1,20 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Globalization;
-using Sudoku.Solving;
-using Sudoku.Solving.BruteForces.Backtracking;
+using Sudoku.Solving.Manual;
+using Sudoku.Solving.Manual.LastResorts;
 
-// Define a sudoku grid using the string code.
-var grid = SudokuGrid.Parse("250010000001089402940700000510200000000000000000007031000001026807640100000020043");
+var grid = SudokuGrid.Parse("600000400091084000400206090020035004007000100000960032010003008000050240008000017");
+var list = new List<StepInfo>();
 
-// Now define a instance for solving the puzzle.
-var solver = new BacktrackingSolver();
+FastProperties.InitializeMaps(grid);
+new PomStepSearcher().GetAll(list, grid);
 
-// Solve this puzzle.
-var analysisResult = solver.Solve(grid);
-
-// Output the result.
-Console.WriteLine(analysisResult.ToString(AnalysisResultFormattingOptions.ShowDifficulty, CountryCode.ZhCn));
+if (list.Count != 0)
+{
+	foreach (PomStepInfo step in list)
+	{
+		Console.WriteLine(step);
+	}
+}
 
 #if BATCH_RATING || false
 #pragma warning disable IDE1006

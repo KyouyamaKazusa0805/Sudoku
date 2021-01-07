@@ -12,7 +12,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>pattern overlay method</b> (POM) technique searcher.
 	/// </summary>
-	[DirectSearcher]
 	public sealed class PomStepSearcher : LastResortStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
