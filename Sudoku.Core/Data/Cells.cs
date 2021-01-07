@@ -911,6 +911,16 @@ namespace Sudoku.Data
 		public static Cells operator -(in Cells left, in Cells right) => left & ~right;
 
 		/// <summary>
+		/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> cells
+		/// but not in <paramref name="right"/> cells.
+		/// </summary>
+		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
+		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
+		/// <returns>The result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Cells operator -(IEnumerable<int> left, in Cells right) => new Cells(left) - right;
+
+		/// <summary>
 		/// Get all cells that two <see cref="Cells"/>s both contain.
 		/// </summary>
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>

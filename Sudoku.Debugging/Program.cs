@@ -1,21 +1,145 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Extensions;
+using System.Text;
+using System.Threading;
 using Sudoku.Data;
-using Sudoku.Solving.Manual;
-using Sudoku.Solving.Manual.LastResorts;
+using Sudoku.Data.Extensions;
+using Sudoku.Solving.Extensions;
+using static Sudoku.Constants.Processings;
 
-var grid = SudokuGrid.Parse("600000400091084000400206090020035004007000100000960032010003008000050240008000017");
-var list = new List<StepInfo>();
+var sb = new StringBuilder();
+int cell = 0;
+IList<int> listThatPointsTo = null!;
+bool isFinished = false;
 
-FastProperties.InitializeMaps(grid);
-new PomStepSearcher().GetAll(list, grid);
+var stopwatch = Stopwatch.StartNew();
+new Thread(method) { IsBackground = true }.Start();
+new Thread(display) { IsBackground = true }.Start();
 
-if (list.Count != 0)
+while (!isFinished) ;
+
+stopwatch.Stop();
+
+void display()
 {
-	foreach (PomStepInfo step in list)
+	int[] tempArray = new int[15];
+	while (!isFinished)
 	{
-		Console.WriteLine(step);
+		Thread.Sleep(3000);
+		for (int i = 0; i < listThatPointsTo.Count; i++)
+		{
+			tempArray[i] = listThatPointsTo[i];
+		}
+
+		sb.Clear();
+		foreach (int cell in tempArray[..listThatPointsTo.Count])
+		{
+			sb.Append($"r{cell / 9 + 1}c{cell % 9 + 1}, ");
+		}
+
+		Console.Clear();
+		Console.WriteLine($"Cells: {sb}, start cell: r{cell / 9 + 1}c{cell % 9 + 1}");
+		Console.WriteLine($"Time elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
 	}
+}
+
+void method()
+{
+	var loops = new List<Cells>();
+	var tempLoop = new List<int>();
+
+	listThatPointsTo = tempLoop;
+	for (; cell < 81; cell++)
+	{
+		Console.Clear();
+		Console.WriteLine($"The current cell: r{cell / 9 + 1}c{cell % 9 + 1}");
+		Console.WriteLine($"Time elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
+
+		loops.Clear();
+		tempLoop.Clear();
+
+		var loopMap = Cells.Empty;
+
+		f(cell, (RegionLabel)byte.MaxValue);
+
+		void f(int cell, RegionLabel lastLabel)
+		{
+			if (loopMap.Count > 14)
+			{
+				return;
+			}
+
+			loopMap.AddAnyway(cell);
+			tempLoop.Add(cell);
+
+			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+			{
+				if (label == lastLabel)
+				{
+					continue;
+				}
+
+				int region = label.ToRegion(cell);
+				var cellsMap = RegionMaps[region] - cell;
+				if (cellsMap.IsEmpty)
+				{
+					continue;
+				}
+
+				foreach (int nextCell in cellsMap)
+				{
+					if (tempLoop[0] == nextCell && tempLoop.Count >= 6 && tempLoop.IsValidLoop())
+					{
+						int z = loops.Count % 100;
+						Console.Clear();
+						Console.WriteLine($@"Found: {loops.Count + 1}{(
+							loops.Count % 100 / 10 != 1
+							? z switch { 1 => "st", 2 => "nd", 3 => "rd", _ => "th" }
+							: "th")} loop.");
+						Console.WriteLine($"Time elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
+
+						loops.Add(loopMap);
+					}
+					else if (!loopMap.Contains(nextCell))
+					{
+						bool flag = false;
+						for (int i = 0; i < tempLoop.Count - 2; i++)
+						{
+							var temp = new Cells { tempLoop[i], tempLoop[i + 1] };
+							foreach (int r in temp.CoveredRegions)
+							{
+								if (RegionMaps[r].Contains(tempLoop[i + 2]))
+								{
+									flag = true;
+									goto Check;
+								}
+							}
+						}
+
+					Check:
+						if (flag)
+						{
+							continue;
+						}
+
+						f(nextCell, label);
+					}
+				}
+			}
+
+			// Backtracking.
+			loopMap.Remove(cell);
+			tempLoop.RemoveLastElement();
+			listThatPointsTo = tempLoop;
+		}
+	}
+
+	Console.WriteLine($"Found {loops.Count} possible UL loops.");
+	Console.WriteLine($"Time elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
+
+	isFinished = true;
 }
 
 #if BATCH_RATING || false
