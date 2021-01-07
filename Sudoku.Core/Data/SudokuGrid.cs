@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define CSHARP
+
+using System;
 using System.Diagnostics;
 using System.Extensions;
 using System.Runtime.CompilerServices;
@@ -205,52 +207,14 @@ namespace Sudoku.Data
 
 			// Initializes events.
 #if CSHARP
-			ValueChanged = &onValueChanged;
-			RefreshingCandidates = &onRefreshingCandidates;
+			ValueChanged = &OnValueChanged;
+			RefreshingCandidates = &OnRefreshingCandidates;
 #else
-			delegate*<ref SudokuGrid, in ValueChangedArgs, void> fpOnValueChanged = &onValueChanged;
-			delegate*<ref SudokuGrid, void> fpOnRefreshingCandidates = &onRefreshingCandidates;
+			delegate*<ref SudokuGrid, in ValueChangedArgs, void> fpOnValueChanged = &OnValueChanged;
+			delegate*<ref SudokuGrid, void> fpOnRefreshingCandidates = &OnRefreshingCandidates;
 			ValueChanged = (IntPtr)fpOnValueChanged;
 			RefreshingCandidates = (IntPtr)fpOnRefreshingCandidates;
 #endif
-
-			static void onValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
-			{
-				if (e is { Cell: var cell, SetValue: var setValue and not -1 })
-				{
-					foreach (int peerCell in PeerMaps[cell])
-					{
-						if (@this.GetStatus(peerCell) == CellStatus.Empty)
-						{
-							// Please don't do this to avoid invoking recursively.
-							//@this[peerCell, setValue] = false;
-
-							@this._values[peerCell] &= (short)~(1 << setValue);
-						}
-					}
-				}
-			}
-
-			static void onRefreshingCandidates(ref SudokuGrid @this)
-			{
-				for (int i = 0; i < Length; i++)
-				{
-					if (@this.GetStatus(i) == CellStatus.Empty)
-					{
-						// Remove all appeared digits.
-						short mask = MaxCandidatesMask;
-						foreach (int cell in PeerMaps[i])
-						{
-							if (@this[cell] is var digit and not -1)
-							{
-								mask &= (short)~(1 << digit);
-							}
-						}
-
-						@this._values[i] = (short)(EmptyMask | mask);
-					}
-				}
-			}
 		}
 
 
@@ -1085,6 +1049,55 @@ namespace Sudoku.Data
 		/// <returns>The cell status.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static CellStatus MaskGetStatus(short mask) => (CellStatus)(mask >> 9 & (int)CellStatus.All);
+
+		/// <summary>
+		/// The method that is pointed by the function pointer <see cref="ValueChanged"/>.
+		/// </summary>
+		/// <param name="this">(<see langword="ref"/> parameter) The sudoku grid.</param>
+		/// <param name="e">(<see langword="in"/> parameter) The event arguments.</param>
+		/// <seealso cref="ValueChanged"/>
+		private static void OnValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
+		{
+			if (e is { Cell: var cell, SetValue: var setValue and not -1 })
+			{
+				foreach (int peerCell in PeerMaps[cell])
+				{
+					if (@this.GetStatus(peerCell) == CellStatus.Empty)
+					{
+						// You can't do this because of being invoked recursively.
+						//@this[peerCell, setValue] = false;
+
+						@this._values[peerCell] &= (short)~(1 << setValue);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// The method that is pointed by the function pointer <see cref="RefreshingCandidates"/>.
+		/// </summary>
+		/// <param name="this">(<see langword="ref"/> parameter) The sudoku grid.</param>
+		/// <seealso cref="RefreshingCandidates"/>
+		private static void OnRefreshingCandidates(ref SudokuGrid @this)
+		{
+			for (int i = 0; i < Length; i++)
+			{
+				if (@this.GetStatus(i) == CellStatus.Empty)
+				{
+					// Remove all appeared digits.
+					short mask = MaxCandidatesMask;
+					foreach (int cell in PeerMaps[i])
+					{
+						if (@this[cell] is var digit and not -1)
+						{
+							mask &= (short)~(1 << digit);
+						}
+					}
+
+					@this._values[i] = (short)(EmptyMask | mask);
+				}
+			}
+		}
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

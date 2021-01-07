@@ -294,6 +294,39 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Indicates the map of cells, which is the peer intersections.
+		/// </summary>
+		public readonly Cells PeerIntersection
+		{
+			get
+			{
+				long lowerBits = 0, higherBits = 0;
+				int i = 0;
+				foreach (int offset in Offsets)
+				{
+					long low = 0, high = 0;
+					foreach (int peer in Peers[offset])
+					{
+						(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
+					}
+
+					if (i++ == 0)
+					{
+						lowerBits = low;
+						higherBits = high;
+					}
+					else
+					{
+						lowerBits &= low;
+						higherBits &= high;
+					}
+				}
+
+				return new(higherBits, lowerBits);
+			}
+		}
+
+		/// <summary>
 		/// Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
 		/// </summary>
 		private readonly int[] Offsets
@@ -330,39 +363,6 @@ namespace Sudoku.Data
 				}
 
 				return result.ToArray();
-			}
-		}
-
-		/// <summary>
-		/// Indicates the map of cells, which is the peer intersections.
-		/// </summary>
-		public readonly Cells PeerIntersection
-		{
-			get
-			{
-				long lowerBits = 0, higherBits = 0;
-				int i = 0;
-				foreach (int offset in Offsets)
-				{
-					long low = 0, high = 0;
-					foreach (int peer in Peers[offset])
-					{
-						(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
-					}
-
-					if (i++ == 0)
-					{
-						lowerBits = low;
-						higherBits = high;
-					}
-					else
-					{
-						lowerBits &= low;
-						higherBits &= high;
-					}
-				}
-
-				return new(higherBits, lowerBits);
 			}
 		}
 

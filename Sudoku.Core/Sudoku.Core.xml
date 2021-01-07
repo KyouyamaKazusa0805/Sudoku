@@ -834,14 +834,14 @@
             and the region 19 (column 2).
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Cells.Offsets">
-            <summary>
-            Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Data.Cells.PeerIntersection">
             <summary>
             Indicates the map of cells, which is the peer intersections.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Cells.Offsets">
+            <summary>
+            Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Cells.SetOffset(System.Int32)">
@@ -3263,6 +3263,21 @@
             </summary>
             <param name="mask">The mask.</param>
             <returns>The cell status.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.OnValueChanged(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
+            <summary>
+            The method that is pointed by the function pointer <see cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>.
+            </summary>
+            <param name="this">(<see langword="ref"/> parameter) The sudoku grid.</param>
+            <param name="e">(<see langword="in"/> parameter) The event arguments.</param>
+            <seealso cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.OnRefreshingCandidates(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            The method that is pointed by the function pointer <see cref="F:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>.
+            </summary>
+            <param name="this">(<see langword="ref"/> parameter) The sudoku grid.</param>
+            <seealso cref="F:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.op_Equality(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
