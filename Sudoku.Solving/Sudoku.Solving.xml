@@ -8688,6 +8688,12 @@
             <param name="Digit1">Indicates the digit 1.</param>
             <param name="Digit2">Indicates the digit 2.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher">
             <summary>
             Encapsulates a <b>reverse bi-value universal grave</b> technique searcher.

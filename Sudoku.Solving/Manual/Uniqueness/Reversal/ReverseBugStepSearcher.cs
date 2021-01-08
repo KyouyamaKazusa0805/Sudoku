@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Extensions;
@@ -16,7 +17,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(56, nameof(TechniqueCode.ReverseUrType1))
 		{
-			DisplayLevel = 2
+			DisplayLevel = 2,
+			IsEnabled = false,
+			DisabledReason = DisabledReason.TooSlow
 		};
 
 
@@ -85,7 +88,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 				}
 			}
 
-			accumulator.AddRange(resultAccumulator);
+			accumulator.AddRange(
+				from info in resultAccumulator.RemoveDuplicateItems()
+				orderby info.TechniqueCode
+				select info);
 		}
 
 		/// <summary>
