@@ -1912,6 +1912,21 @@
             <param name="this">(<see langword="this"/> parameter) The type.</param>
             <returns>The name.</returns>
         </member>
+        <member name="T:Sudoku.Data.Extensions.UndoableGridEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Stepping.UndoableGrid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Stepping.UndoableGrid"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.UndoableGridEx.Duplicate(Sudoku.Data.Stepping.UndoableGrid,System.Int32,System.Int32)">
+            <summary>
+            Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Data.GridCreatingOption">
             <summary>
             Indicates teh grid creating option.

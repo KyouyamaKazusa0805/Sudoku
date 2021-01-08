@@ -128,32 +128,17 @@ namespace Sudoku.Windows
 			// Get all cases for being pressed keys.
 			switch (e.Key)
 			{
-				case var key when key.IsDigit():
+				case var key
+				when key.IsDigit()
+				&& _pointConverter.GetCell(Mouse.GetPosition(_imageGrid).ToDPointF()) is var cell and not -1
+				&& _puzzle.GetStatus(cell) != CellStatus.Given:
 				{
-					int cell = _pointConverter.GetCell(Mouse.GetPosition(_imageGrid).ToDPointF());
-					if (cell == -1)
-					{
-						return;
-					}
-
-					if (_puzzle.GetStatus(cell) == CellStatus.Given)
-					{
-						return;
-					}
-
 					int digit = e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
 					switch (Keyboard.Modifiers)
 					{
-						case ModifierKeys.None:
+						// Input a digit.
+						case ModifierKeys.None when digit == -1 || !_puzzle.Duplicate(cell, digit):
 						{
-							// Input a digit.
-							// Input or eliminate a digit.
-							if (digit != -1 && ((SudokuGrid)_puzzle).Duplicate(cell, digit))
-							{
-								// Input is invalid. We can't let you fill this cell with this digit.
-								return;
-							}
-
 							_puzzle[cell] = digit;
 							if (digit != -1 && _puzzle.GetStatus(cell) == CellStatus.Modifiable)
 							{
@@ -163,9 +148,9 @@ namespace Sudoku.Windows
 
 							break;
 						}
+						// Eliminate a digit.
 						case ModifierKeys.Shift:
 						{
-							// Eliminate a digit.
 							_puzzle[cell, digit] = true;
 
 							break;
@@ -177,14 +162,10 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case var key and (Key.OemMinus or Key.OemPlus):
+				case var key and (Key.OemMinus or Key.OemPlus)
+				when _currentViewIndex != -1 && _currentStepInfo is not null:
 				{
 					// Get the previous view or the next view.
-					if (_currentViewIndex == -1 || _currentStepInfo is null)
-					{
-						return;
-					}
-
 					var views = _currentStepInfo.Views;
 					int totalViewsCount = views.Count;
 					ref int i = ref _currentViewIndex;
