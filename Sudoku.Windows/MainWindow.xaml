@@ -6,7 +6,8 @@
 		xmlns:local="clr-namespace:Sudoku.Windows"
 		xmlns:localData="clr-namespace:Sudoku.Windows.Data"
 		mc:Ignorable="d" Title="{DynamicResource SolutionName}"
-		Height="800" Width="1200" SizeChanged="Window_SizeChanged">
+		Height="800" Width="1200" SizeChanged="Window_SizeChanged"
+		WindowStartupLocation="CenterScreen">
 	<Window.Resources>
 		<local:WindowsSettings x:Key="globalSettings" />
 		<localData:DifficultyInfoToTextConverter x:Key="di2tcvt" />

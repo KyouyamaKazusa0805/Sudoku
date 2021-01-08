@@ -24,11 +24,21 @@
             </summary>
         </member>
         <member name="T:Sudoku.Windows.App">
-            <summary>Interaction logic for <c>App.xaml</c>.</summary>
-            <remarks>Nothing is here.</remarks>
+            <summary>
+            Interaction logic for <c>App.xaml</c>.
+            </summary>
             <summary>
             App
             </summary>
+        </member>
+        <member name="M:Sudoku.Windows.App.DoNothing(System.String[])">
+            <summary>
+            Do nothing. This method is only used for a placeholder.
+            </summary>
+            <returns>Always return <see langword="true"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.App.OnStartup(System.Windows.StartupEventArgs)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Windows.App.InitializeComponent">
             <summary>
@@ -2927,6 +2937,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The bitmap source to set.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>
