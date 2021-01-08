@@ -391,9 +391,8 @@
         <member name="T:Sudoku.Drawing.PointConverter">
             <summary>
             Provides converting operations for <see cref="T:System.Drawing.Point"/> and
-            <see cref="T:System.Drawing.PointF"/> usages in the window. For example, this class
-            will calculate and convert between the drawing coordinates and
-            the mouse coordinates.
+            <see cref="T:System.Drawing.PointF"/> usages in the window to calculate and convert
+            between the drawing coordinates and the mouse coordinates.
             </summary>
             <seealso cref="T:System.Drawing.Point"/>
             <seealso cref="T:System.Drawing.PointF"/>
@@ -418,11 +417,11 @@
             <param name="width">The width.</param>
             <param name="height">The height.</param>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF)">
+        <member name="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.SizeF@)">
             <summary>
             Initializes an instance with the specified <see cref="T:System.Drawing.SizeF"/>.
             </summary>
-            <param name="size">The size.</param>
+            <param name="size">(<see langword="in"/> parameter) The size.</param>
             <seealso cref="T:System.Drawing.SizeF"/>
         </member>
         <member name="P:Sudoku.Drawing.PointConverter.ControlSize">
@@ -450,6 +449,9 @@
             Indicates the absolutely points in grid cross-lines.
             This property will be assigned later (and not <see langword="null"/>).
             </summary>
+            <remarks>
+            Note that the size of this 2D array is always 28 by 28.
+            </remarks>
         </member>
         <member name="M:Sudoku.Drawing.PointConverter.GetCell(System.Drawing.PointF)">
             <summary>

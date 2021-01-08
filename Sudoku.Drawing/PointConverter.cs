@@ -8,9 +8,8 @@ namespace Sudoku.Drawing
 {
 	/// <summary>
 	/// Provides converting operations for <see cref="Point"/> and
-	/// <see cref="PointF"/> usages in the window. For example, this class
-	/// will calculate and convert between the drawing coordinates and
-	/// the mouse coordinates.
+	/// <see cref="PointF"/> usages in the window to calculate and convert
+	/// between the drawing coordinates and the mouse coordinates.
 	/// </summary>
 	/// <seealso cref="Point"/>
 	/// <seealso cref="PointF"/>
@@ -44,9 +43,9 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Initializes an instance with the specified <see cref="SizeF"/>.
 		/// </summary>
-		/// <param name="size">The size.</param>
+		/// <param name="size">(<see langword="in"/> parameter) The size.</param>
 		/// <seealso cref="SizeF"/>
-		public PointConverter(SizeF size)
+		public PointConverter(in SizeF size)
 		{
 			// Initialize sizes.
 			{
@@ -96,6 +95,9 @@ namespace Sudoku.Drawing
 		/// Indicates the absolutely points in grid cross-lines.
 		/// This property will be assigned later (and not <see langword="null"/>).
 		/// </summary>
+		/// <remarks>
+		/// Note that the size of this 2D array is always 28 by 28.
+		/// </remarks>
 		internal PointF[,] GridPoints { get; }
 
 
@@ -107,17 +109,16 @@ namespace Sudoku.Drawing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int GetCell(PointF point)
 		{
-			var (x, y) = point.Truncate();
-			x -= Offset;
-			y -= Offset;
+			var (x, y) = point.WithOffset(-Offset);
 			if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
 			{
 				// Invalid case.
 				return -1;
 			}
 
-			var (cw, ch) = CellSize.Truncate();
-			return y / ch * 9 + x / cw is var result and >= 0 and < 81 ? result : -1;
+			var (cw, ch) = CellSize;
+			int result = (int)(y / ch) * 9 + (int)(x / cw);
+			return result is >= 0 and < 81 ? result : -1;
 		}
 
 		/// <summary>
@@ -157,11 +158,8 @@ namespace Sudoku.Drawing
 		{
 			var (cw, ch) = CandidateSize;
 			int min = map.SetAt(0), max = map.SetAt(^1);
-			PointF pt1 = GetMousePointInCenter(min / 9, min % 9), pt2 = GetMousePointInCenter(max / 9, max % 9);
-			pt1.X -= cw / 2;
-			pt1.Y -= ch / 2;
-			pt2.X += cw / 2;
-			pt2.Y += ch / 2;
+			var pt1 = GetMousePointInCenter(min / 9, min % 9).WithOffset(-cw / 2, -ch / 2);
+			var pt2 = GetMousePointInCenter(max / 9, max % 9).WithOffset(cw / 2, ch / 2);
 			return RectangleEx.CreateInstance(pt1, pt2);
 		}
 

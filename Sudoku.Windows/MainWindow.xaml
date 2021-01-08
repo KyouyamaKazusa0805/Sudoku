@@ -362,7 +362,7 @@
 
 			<!-- Inner row 0 -->
 			<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-				   x:Name="_imageGrid" Grid.Row="0" Grid.Column="0" Width="576" Height="576"
+				   x:Name="_imageGrid" Grid.Row="0" Grid.Column="0" Width="600" Height="600"
 				   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
 				   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"
 				   MouseRightButtonUp="ImageGrid_MouseRightButtonUp"
