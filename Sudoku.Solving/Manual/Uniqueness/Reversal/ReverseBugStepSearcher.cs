@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Solving.Extensions;
 using static Sudoku.Constants.Processings;
@@ -18,9 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(56, nameof(TechniqueCode.ReverseUrType1))
 		{
-			DisplayLevel = 2,
-			IsEnabled = false,
-			DisabledReason = DisabledReason.TooSlow
+			DisplayLevel = 2
 		};
 
 
@@ -28,160 +24,146 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			var resultAccumulator = new List<ReverseBugStepInfo>();
-			for (int d1 = 0; d1 < 8; d1++)
+
+			// Gather all value cells.
+			var valueMap = Cells.Empty;
+			foreach (var eachValueMap in ValueMaps)
 			{
-				for (int d2 = d1 + 1; d2 < 9; d2++)
+				valueMap |= eachValueMap;
+			}
+
+			// Now iterate on each combination of pair cells.
+			int[] possibleCells = valueMap.ToArray();
+			for (int i = 0, length = possibleCells.Length - 1; i < length; i++)
+			{
+				int cell1 = possibleCells[i];
+				foreach (int cell2 in (PeerMaps[cell1] & valueMap) - cell1)
 				{
-					Cells possibleLoop = ValueMaps[d1] | ValueMaps[d2], possibleEmptyMap = Cells.Empty;
-					foreach (int region in possibleLoop.Regions)
+					if (cell2 < cell1)
 					{
-						possibleEmptyMap |= RegionMaps[region] & EmptyMap;
+						continue;
 					}
 
-#if SO_SLOW_THAT_I_DISABLED_THIS_BLOCK
-					int[] emptyMapCells = possibleEmptyMap.Offsets;
-					for (int size = 1; size <= 3/*10*/; size++)
+					// Find all possible loops.
+					// Iterate on each loop.
+					int d1 = grid.GetCandidates(cell1).FindFirstSet();
+					int d2 = grid.GetCandidates(cell2).FindFirstSet();
+					short comparer = (short)(1 << d1 | 1 << d2);
+					var loops = FindPossibleLoops(grid, cell1, cell2, d1, d2);
+					if (loops.Count == 0)
 					{
-						foreach (Cells cells in emptyMapCells.GetSubsets(size))
-						{
-							var currMap = possibleLoop | cells;
-							if (!ContainsValidPath(currMap, out _, out var links))
-							{
-								continue;
-							}
+						continue;
+					}
 
-							short comparer = (short)(1 << d1 | 1 << d2);
-							switch (size)
+					foreach (var (loop, links) in loops)
+					{
+						var extraCells = EmptyMap & loop;
+						switch (extraCells.Count)
+						{
+							//case 0:
+							//{
+							//	throw new SudokuHandlingException();
+							//}
+							case 1:
 							{
-								case 1:
-								{
-									CheckType1(resultAccumulator, grid, d1, d2, currMap, cells.Offsets[0], links, comparer);
-									break;
-								}
-								case 2: /*fallthrough*/
-								{
-									CheckType3(resultAccumulator, grid, d1, d2, currMap, cells, links, comparer);
-									CheckType4(resultAccumulator, grid, d1, d2, currMap, cells, links, comparer);
-									goto default;
-								}
-								default:
-								{
-									CheckType2(resultAccumulator, grid, d1, d2, currMap, cells, links, comparer);
-									break;
-								}
+								CheckType1(resultAccumulator, grid, d1, d2, loop, extraCells[0], links, comparer);
+								break;
+							}
+							case 2: /*fallthrough*/
+							{
+								CheckType3(resultAccumulator, grid, d1, d2, loop, extraCells, links, comparer);
+								CheckType4(resultAccumulator, grid, d1, d2, loop, extraCells, links, comparer);
+								goto default;
+							}
+							default:
+							{
+								CheckType2(resultAccumulator, grid, d1, d2, loop, extraCells, links, comparer);
+								break;
 							}
 						}
 					}
-#else
-					foreach (int cell in possibleEmptyMap)
-					{
-						var currMap = possibleLoop + cell;
-						if (!ContainsValidPath(currMap, out _, out var links))
-						{
-							continue;
-						}
-
-						short comparer = (short)(1 << d1 | 1 << d2);
-						CheckType1(resultAccumulator, grid, d1, d2, currMap, cell, links, comparer);
-					}
-#endif
 				}
 			}
 
 			accumulator.AddRange(resultAccumulator);
 		}
 
-
 		/// <summary>
-		/// Check whether the specified cells form a valid unique loop (or rectangle).
+		/// Find all possible loops used for checking each type.
 		/// </summary>
-		/// <param name="cells">(<see langword="in"/> parameter) The cells.</param>
-		/// <param name="list">
-		/// (<see langword="out"/> parameter) If found any valid loop, the value will be the cells in order;
-		/// otherwise, <see langword="null"/>.
-		/// </param>
-		/// <param name="links">
-		/// (<see langword="out"/> parameter) If found any valid loop, the value will be 
-		/// </param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private static bool ContainsValidPath(
-			in Cells cells,
-			[NotNullWhen(true)] out IReadOnlyList<int>? list,
-			[NotNullWhen(true)] out IReadOnlyList<Link>? links)
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="cell1">The cell 1.</param>
+		/// <param name="cell2">The cell 2.</param>
+		/// <param name="d1">The digit 1.</param>
+		/// <param name="d2">The digit 2.</param>
+		/// <returns>All possible loops.</returns>
+		private static IReadOnlyList<(Cells Loop, IReadOnlyList<Link> Links)> FindPossibleLoops(
+			in SudokuGrid grid, int cell1, int cell2, int d1, int d2)
 		{
-			bool flag = false;
-			var loopMap = Cells.Empty;
-			var tempLoop = new List<int>();
-			IReadOnlyList<Link>? tempLinks = null;
+			var result = new List<(Cells, IReadOnlyList<Link>)>();
+			var loop = new List<int> { cell1 };
+			Cells pairMap = new() { cell1, cell2 }, loopMap = new() { cell1 };
+			short digitsMask = (short)(1 << d1 | 1 << d2);
+
 			try
 			{
-				f(cells[0], (RegionLabel)byte.MaxValue, cells, ref flag);
+				f(grid, ValueMaps[d1] | ValueMaps[d2], cell2, d1, digitsMask, 2);
 			}
 			catch (SudokuHandlingException)
 			{
+				return result;
 			}
 
-			if (flag)
+			void f(
+				in SudokuGrid grid, in Cells values,
+				int cell, int anotherDigit, short digitsMask, int lastEmptyCellsCount)
 			{
-				list = tempLoop;
-				links = tempLinks!;
-				return true;
-			}
-			else
-			{
-				list = null;
-				links = null;
-				return false;
-			}
+				if (lastEmptyCellsCount < 0)
+				{
+					return;
+				}
 
-			void f(int cell, RegionLabel lastLabel, in Cells cells, ref bool flag)
-			{
-				tempLoop.Add(cell);
+				loop.Add(cell);
 				loopMap.AddAnyway(cell);
 
-				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+				foreach (int nextCell in
+					PeerMaps[cell] - new Cells { loop[^2], cell }.PeerIntersection
+					& DigitMaps[anotherDigit])
 				{
-					if (label == lastLabel)
+					if (loop[0] == nextCell && loop.Count >= 4 && loop.IsValidLoop())
 					{
-						continue;
-					}
-
-					int region = label.ToRegion(cell);
-					var cellsMap = RegionMaps[region] & cells - cell;
-					if (cellsMap.IsEmpty)
-					{
-						continue;
-					}
-
-					foreach (int nextCell in cellsMap)
-					{
-						if (tempLoop[0] == nextCell && tempLoop.Count >= 4 && tempLoop.IsValidLoop())
+						// The loop is valid.
+						if (values == loopMap - EmptyMap)
 						{
-							if (loopMap == cells)
-							{
-								// The loop is closed. Now construct the result pair.
-								flag = true;
-								tempLinks = tempLoop.GetLinks();
+							result.Add((loopMap, loop.GetLinks()));
 
-								// Break the recursion.
-								throw new SudokuHandlingException();
-							}
-							else
-							{
-								// TODO: Grouping cells.
-							}
+							throw new SudokuHandlingException();
 						}
-						else if (!loopMap.Contains(nextCell))
+						else
 						{
-							f(nextCell, label, cells, ref flag);
+							// TODO: Grouping the loop into several separate ones.
 						}
+					}
+					else if (!loopMap.Contains(nextCell))
+					{
+						short mask = (short)(digitsMask & ~grid.GetCandidates(nextCell));
+						if (mask == 0)
+						{
+							continue;
+						}
+
+						f(
+							grid, values, nextCell, mask.FindFirstSet(), digitsMask,
+							EmptyMap.Contains(nextCell) ? lastEmptyCellsCount - 1 : lastEmptyCellsCount);
 					}
 				}
 
 				// Backtracking.
-				tempLoop.RemoveLastElement();
+				loop.RemoveLastElement();
 				loopMap.Remove(cell);
 			}
+
+			return result;
 		}
 
 

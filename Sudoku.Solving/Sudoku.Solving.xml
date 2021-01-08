@@ -8699,19 +8699,16 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.ContainsValidPath(Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link}@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.FindPossibleLoops(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Check whether the specified cells form a valid unique loop (or rectangle).
+            Find all possible loops used for checking each type.
             </summary>
-            <param name="cells">(<see langword="in"/> parameter) The cells.</param>
-            <param name="list">
-            (<see langword="out"/> parameter) If found any valid loop, the value will be the cells in order;
-            otherwise, <see langword="null"/>.
-            </param>
-            <param name="links">
-            (<see langword="out"/> parameter) If found any valid loop, the value will be 
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="cell1">The cell 1.</param>
+            <param name="cell2">The cell 2.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <returns>All possible loops.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Int16)">
             <summary>
