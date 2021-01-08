@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 	/// <param name="Digit2">The digit 2.</param>
 	public abstract record BivalueOddagonStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, int Digit1, int Digit2)
-		: StepInfo(Conclusions, Views), IEquatable<BivalueOddagonStepInfo>
+		: StepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public virtual bool Equals(BivalueOddagonStepInfo? other) =>
