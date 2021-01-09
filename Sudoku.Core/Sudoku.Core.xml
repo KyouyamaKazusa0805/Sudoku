@@ -1102,13 +1102,10 @@
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Subtraction(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.Cells@)">
-            <summary>
-            Get a <see cref="T:Sudoku.Data.Cells"/> that contains all <paramref name="left"/> cells
-            but not in <paramref name="right"/> cells.
-            </summary>
-            <param name="left">(<see langword="in"/> parameter) The left instance.</param>
-            <param name="right">(<see langword="in"/> parameter) The right instance.</param>
-            <returns>The result.</returns>
+            <inheritdoc cref="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,Sudoku.Data.Cells@)"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,Sudoku.Data.Cells@)"/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_BitwiseAnd(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
