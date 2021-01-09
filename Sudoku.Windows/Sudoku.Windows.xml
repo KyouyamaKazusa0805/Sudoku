@@ -31,15 +31,6 @@
             App
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.App.DoNothing(System.String[])">
-            <summary>
-            Do nothing. This method is only used for a placeholder.
-            </summary>
-            <returns>Always return <see langword="true"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.App.OnStartup(System.Windows.StartupEventArgs)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Windows.App.InitializeComponent">
             <summary>
             InitializeComponent

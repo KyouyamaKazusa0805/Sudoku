@@ -12,7 +12,6 @@
 		"add": {
 			"fileToFile": {
 				"add": {
-					"App.InternalMethods.cs": [ "App.xaml" ],
 					"BdpType1StepInfo.cs": [ "BdpStepInfo.cs" ],
 					"BdpType2StepInfo.cs": [ "BdpStepInfo.cs" ],
 					"BdpType3StepInfo.cs": [ "BdpStepInfo.cs" ],
