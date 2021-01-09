@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -31,7 +30,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			var alses = Als.GetAllAlses(grid).ToArray();
+			var alses = Als.GetAllAlses(grid);
 
 			// Gather all conjugate pairs.
 			var conjugatePairs = new ICollection<ConjugatePair>?[9];

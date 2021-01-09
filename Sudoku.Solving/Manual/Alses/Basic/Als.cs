@@ -194,15 +194,16 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All ALSes searched.</returns>
-		public static IEnumerable<Als> GetAllAlses(SudokuGrid grid)
+		public static Als[] GetAllAlses(SudokuGrid grid)
 		{
 			var bivalueMap = BivalueMap;
 			var emptyMap = EmptyMap;
 
 			// Get all bi-value-cell ALSes.
+			var result = new List<Als>();
 			foreach (int cell in bivalueMap)
 			{
-				yield return new(grid.GetCandidates(cell), new() { cell }, PeerMaps[cell] & emptyMap);
+				result.Add(new(grid.GetCandidates(cell), new() { cell }, PeerMaps[cell] & emptyMap));
 			}
 
 			// Get all non-bi-value-cell ALSes.
@@ -243,15 +244,18 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 
 						int coveredLine = map.CoveredLine;
-						yield return new(
-							digitsMask,
-							map,
-							(region, coveredLine) is ( < 9, >= 9)
-							? ((regionMap | RegionMaps[coveredLine]) & emptyMap) - map
-							: tempMap - map);
+						result.Add(
+							new(
+								digitsMask,
+								map,
+								(region, coveredLine) is ( < 9, >= 9)
+								? ((regionMap | RegionMaps[coveredLine]) & emptyMap) - map
+								: tempMap - map));
 					}
 				}
 			}
+
+			return result.ToArray();
 		}
 
 

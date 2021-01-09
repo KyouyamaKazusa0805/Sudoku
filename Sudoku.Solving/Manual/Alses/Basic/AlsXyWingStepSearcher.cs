@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -31,7 +30,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
 			var rccs = new List<(Als Left, Als Right, short Mask)>();
-			var alses = Als.GetAllAlses(grid).ToArray();
+			var alses = Als.GetAllAlses(grid);
 
 			// Gather all RCCs.
 			for (int i = 0, length = alses.Length; i < length - 1; i++)

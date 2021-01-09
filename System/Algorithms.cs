@@ -81,10 +81,7 @@ namespace System
 		/// <returns>The result list.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static short[] GetMaskSubsets(short value, int size) =>
-		(
-			from target in value.GetAllSets().GetSubsets(size)
-			select CreateBitsInt16(target)
-		).ToArray();
+			(from target in value.GetAllSets().GetSubsets(size) select CreateBitsInt16(target)).ToArray();
 
 		/// <summary>
 		/// Create a <see cref="short"/> value, whose set bits are specified in the parameter
