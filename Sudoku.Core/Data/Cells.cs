@@ -231,21 +231,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the covered line.
 		/// </summary>
-		public readonly int CoveredLine
-		{
-			get
-			{
-				for (int i = RowOffset; i < Limit; i++)
-				{
-					if (!_high.ExceptOverlaps(CoverTable[i, 0]) && !_low.ExceptOverlaps(CoverTable[i, 1]))
-					{
-						return i;
-					}
-				}
-
-				return -1;
-			}
-		}
+		public readonly int CoveredLine => (CoveredRegions & ~511).FindFirstSet();
 
 		/// <summary>
 		/// Indicates the total number of cells where the corresponding
