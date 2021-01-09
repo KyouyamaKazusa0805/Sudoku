@@ -1791,16 +1791,6 @@
             Indicates the searchers list.
             </summary>
         </member>
-        <member name="F:Sudoku.Windows.SettingsWindow._undoStack">
-            <summary>
-            Indicates the undo stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.SettingsWindow._redoStack">
-            <summary>
-            Indicates the redo stack.
-            </summary>
-        </member>
         <member name="F:Sudoku.Windows.SettingsWindow._assigments">
             <summary>
             Indicates the handler that finish all assignments.
@@ -1818,9 +1808,6 @@
             <summary>
             Indicates the result settings.
             </summary>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.OnKeyDown(System.Windows.Input.KeyEventArgs)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Windows.SettingsWindow.InitializeSettingControls">
             <summary>

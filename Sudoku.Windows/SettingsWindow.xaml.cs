@@ -30,15 +30,15 @@ namespace Sudoku.Windows
 		/// </summary>
 		private readonly ObservableCollection<ListBoxItem> _priorityControls = new();
 
-		/// <summary>
-		/// Indicates the undo stack.
-		/// </summary>
-		private readonly Stack<ObservableCollection<ListBoxItem>> _undoStack = new();
-
-		/// <summary>
-		/// Indicates the redo stack.
-		/// </summary>
-		private readonly Stack<ObservableCollection<ListBoxItem>> _redoStack = new();
+		///// <summary>
+		///// Indicates the undo stack.
+		///// </summary>
+		//private readonly Stack<ObservableCollection<ListBoxItem>> _undoStack = new();
+		//
+		///// <summary>
+		///// Indicates the redo stack.
+		///// </summary>
+		//private readonly Stack<ObservableCollection<ListBoxItem>> _redoStack = new();
 
 
 		/// <summary>
@@ -71,41 +71,41 @@ namespace Sudoku.Windows
 		public WindowsSettings Settings { get; }
 
 
-		/// <inheritdoc/>
-		protected override void OnKeyDown(KeyEventArgs e)
-		{
-			switch (e.Key)
-			{
-				case Key.Z when Keyboard.Modifiers == ModifierKeys.Control && _undoStack.Count != 0:
-				{
-					// Undo a step.
-					var triplets = _undoStack.Pop();
-					_redoStack.Push(triplets);
-
-					// Then cover the old list.
-					for (int i = 0; i < triplets.Count; i++)
-					{
-						_priorityControls[i] = triplets[i];
-					}
-
-					break;
-				}
-				case Key.Y when Keyboard.Modifiers == ModifierKeys.Control && _redoStack.Count != 0:
-				{
-					// Redo a step.
-					var triplets = _redoStack.Pop();
-					_undoStack.Push(triplets);
-
-					// Then cover the old list.
-					for (int i = 0; i < triplets.Count; i++)
-					{
-						_priorityControls[i] = triplets[i];
-					}
-
-					break;
-				}
-			}
-		}
+		///// <inheritdoc/>
+		//protected override void OnKeyDown(KeyEventArgs e)
+		//{
+		//	switch (e.Key)
+		//	{
+		//		case Key.Z when Keyboard.Modifiers == ModifierKeys.Control && _undoStack.Count != 0:
+		//		{
+		//			// Undo a step.
+		//			var triplets = _undoStack.Pop();
+		//			_redoStack.Push(triplets);
+		//
+		//			// Then cover the old list.
+		//			for (int i = 0; i < triplets.Count; i++)
+		//			{
+		//				_priorityControls[i] = triplets[i];
+		//			}
+		//
+		//			break;
+		//		}
+		//		case Key.Y when Keyboard.Modifiers == ModifierKeys.Control && _redoStack.Count != 0:
+		//		{
+		//			// Redo a step.
+		//			var triplets = _redoStack.Pop();
+		//			_undoStack.Push(triplets);
+		//
+		//			// Then cover the old list.
+		//			for (int i = 0; i < triplets.Count; i++)
+		//			{
+		//				_priorityControls[i] = triplets[i];
+		//			}
+		//
+		//			break;
+		//		}
+		//	}
+		//}
 
 		/// <summary>
 		/// Initialize setting controls.
