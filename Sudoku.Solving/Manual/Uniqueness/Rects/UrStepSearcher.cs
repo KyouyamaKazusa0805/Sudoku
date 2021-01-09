@@ -258,21 +258,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			(RegionMaps[region] & CandMaps[digit]) == map;
 
 		/// <summary>
-		/// Check highlight type.
-		/// </summary>
-		/// <param name="pair">(<see langword="in"/> parameter) The pair.</param>
-		/// <returns>The result.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool CheckHighlightType(in DrawingInfo pair) => pair.Id == 0;
-
-		/// <summary>
 		/// Check whether the highlight UR candidates is incomplete.
 		/// </summary>
 		/// <param name="list">The list to check.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private unsafe bool IsIncompleteUr(IEnumerable<DrawingInfo> list) =>
-			!_allowIncompleteUr && list.Count(&CheckHighlightType) != 8;
+			!_allowIncompleteUr && list.Count(static pair => pair.Id == 0) != 8;
 
 		/// <summary>
 		/// Get a cell that can't see each other.

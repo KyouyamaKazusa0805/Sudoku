@@ -7985,13 +7985,6 @@
             <param name="region">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckHighlightType(Sudoku.Drawing.DrawingInfo@)">
-            <summary>
-            Check highlight type.
-            </summary>
-            <param name="pair">(<see langword="in"/> parameter) The pair.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.IsIncompleteUr(System.Collections.Generic.IEnumerable{Sudoku.Drawing.DrawingInfo})">
             <summary>
             Check whether the highlight UR candidates is incomplete.

@@ -39,27 +39,5 @@ namespace System.Extensions
 
 			return true;
 		}
-
-		/// <summary>
-		/// Count up all elements satisfying the specified condition.
-		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
-		/// <param name="selector">The condition to check, specified as a function pointer.</param>
-		/// <returns>The number of all elements satisfying the condition.</returns>
-		[CLSCompliant(false)]
-		public static unsafe int Count<T>(this IEnumerable<T> @this, delegate*<in T, bool> selector)
-		{
-			int count = 0;
-			foreach (var element in @this)
-			{
-				if (selector(element))
-				{
-					count++;
-				}
-			}
-
-			return count;
-		}
 	}
 }
