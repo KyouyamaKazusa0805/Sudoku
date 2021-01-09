@@ -1786,6 +1786,21 @@
             The manual solver used.
             </summary>
         </member>
+        <member name="F:Sudoku.Windows.SettingsWindow._priorityControls">
+            <summary>
+            Indicates the searchers list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.SettingsWindow._undoStack">
+            <summary>
+            Indicates the undo stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.SettingsWindow._redoStack">
+            <summary>
+            Indicates the redo stack.
+            </summary>
+        </member>
         <member name="F:Sudoku.Windows.SettingsWindow._assigments">
             <summary>
             Indicates the handler that finish all assignments.
@@ -1803,6 +1818,9 @@
             <summary>
             Indicates the result settings.
             </summary>
+        </member>
+        <member name="M:Sudoku.Windows.SettingsWindow.OnKeyDown(System.Windows.Input.KeyEventArgs)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Windows.SettingsWindow.InitializeSettingControls">
             <summary>
@@ -2021,6 +2039,12 @@
         </member>
         <member name="M:Sudoku.Windows.SettingsWindow.TextBoxPriority_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.SettingsWindow.PriorityControl_PreviewMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.PreviewMouseLeftButtonDown(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.SettingsWindow.PriorityControl_Drop(System.Object,System.Windows.DragEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Drop(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.SettingsWindow.InitializeComponent">
             <summary>
@@ -2928,6 +2952,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The bitmap source to set.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

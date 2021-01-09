@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(32, nameof(TechniqueCode.RegionFc))
+		public static TechniqueProperties Properties { get; } = new(33, nameof(TechniqueCode.RegionFc))
 		{
 			DisplayLevel = 3
 		};
@@ -98,14 +98,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="source">(<see langword="in"/> parameter) The source.</param>
 		/// <param name="offNodes">All nodes that is off.</param>
 		/// <returns>All nodes.</returns>
-#pragma warning disable IDE0060
 #if DOUBLE_LAYERED_ASSUMPTION
-		protected virtual
+		protected virtual IEnumerable<Node>? Advanced(in SudokuGrid grid, in SudokuGrid source, Set<Node> offNodes) => null;
 #else
-		private
-#endif
-		IEnumerable<Node>? Advanced(in SudokuGrid grid, in SudokuGrid source, Set<Node> offNodes) => null;
+#pragma warning disable IDE0060
+		private IEnumerable<Node>? Advanced(in SudokuGrid grid, in SudokuGrid source, Set<Node> offNodes) => null;
 #pragma warning restore IDE0060
+#endif
 
 		/// <summary>
 		/// Search for chains of each type.

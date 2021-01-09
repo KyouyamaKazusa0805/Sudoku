@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Extensions;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using Sudoku.DocComments;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
-using CoreResources = Sudoku.Windows.Resources;
 using StepTriplet = System.KeyedTuple<string, int, System.Type>;
 
 namespace Sudoku.Windows
@@ -23,6 +24,21 @@ namespace Sudoku.Windows
 		/// The manual solver used.
 		/// </summary>
 		private readonly ManualSolver _manualSolver;
+
+		/// <summary>
+		/// Indicates the searchers list.
+		/// </summary>
+		private readonly ObservableCollection<ListBoxItem> _priorityControls = new();
+
+		/// <summary>
+		/// Indicates the undo stack.
+		/// </summary>
+		private readonly Stack<ObservableCollection<ListBoxItem>> _undoStack = new();
+
+		/// <summary>
+		/// Indicates the redo stack.
+		/// </summary>
+		private readonly Stack<ObservableCollection<ListBoxItem>> _redoStack = new();
 
 
 		/// <summary>
@@ -54,6 +70,42 @@ namespace Sudoku.Windows
 		/// </summary>
 		public WindowsSettings Settings { get; }
 
+
+		/// <inheritdoc/>
+		protected override void OnKeyDown(KeyEventArgs e)
+		{
+			switch (e.Key)
+			{
+				case Key.Z when Keyboard.Modifiers == ModifierKeys.Control && _undoStack.Count != 0:
+				{
+					// Undo a step.
+					var triplets = _undoStack.Pop();
+					_redoStack.Push(triplets);
+
+					// Then cover the old list.
+					for (int i = 0; i < triplets.Count; i++)
+					{
+						_priorityControls[i] = triplets[i];
+					}
+
+					break;
+				}
+				case Key.Y when Keyboard.Modifiers == ModifierKeys.Control && _redoStack.Count != 0:
+				{
+					// Redo a step.
+					var triplets = _redoStack.Pop();
+					_undoStack.Push(triplets);
+
+					// Then cover the old list.
+					for (int i = 0; i < triplets.Count; i++)
+					{
+						_priorityControls[i] = triplets[i];
+					}
+
+					break;
+				}
+			}
+		}
 
 		/// <summary>
 		/// Initialize setting controls.
@@ -157,22 +209,37 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void InitializePriorityControls()
 		{
-			_listBoxPriority.ItemsSource =
-				from type in Assembly.Load("Sudoku.Solving").GetTypes()
-				where !type.IsAbstract && type.IsSubclassOf<StepSearcher>() && !type.IsDefined<ObsoleteAttribute>()
-				let prior = TechniqueProperties.GetPropertiesFrom(type)!.Priority
-				orderby prior
-				let v = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
-				let casted = v as TechniqueProperties
-				where casted is not null && !casted.DisabledReason.Flags(DisabledReason.HasBugs)
-				let c = new StepTriplet(CoreResources.GetValue($"Progress{casted.DisplayLabel}"), prior, type)
-				select new ListBoxItem
+			// Set the styles.
+			var itemContainerStyle = new Style(typeof(ListBoxItem));
+			var setters = itemContainerStyle.Setters;
+			setters.Add(new Setter(AllowDropProperty, true));
+			setters.Add(
+				new EventSetter(
+					PreviewMouseLeftButtonDownEvent,
+					new MouseButtonEventHandler(PriorityControl_PreviewMouseLeftButtonDown)));
+			setters.Add(
+				new EventSetter(
+					DropEvent,
+					new DragEventHandler(PriorityControl_Drop)));
+			_listBoxPriority.ItemContainerStyle = itemContainerStyle;
+
+			// Set the controls.
+			_priorityControls.AddRange(
+				from triplet in StepSearcher.AllStepSearchers
+				let props = triplet.Properties
+				select new ListBoxItem()
 				{
-					Content = c,
+					Content = new StepTriplet(
+						$"({props.Priority}) {triplet.SearcherName}", props.Priority, triplet.CurrentType
+					),
 					HorizontalContentAlignment = HorizontalAlignment.Left,
 					VerticalContentAlignment = VerticalAlignment.Center
-				};
+				});
 
+			// Assign.
+			_listBoxPriority.ItemsSource = _priorityControls;
+
+			// Update the view.
 			_listBoxPriority.SelectedIndex = 0;
 			var (_, priority, selectedType, _) = (StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
 			_checkBoxIsEnabled.IsEnabled = !TechniqueProperties.GetPropertiesFrom(selectedType)!.IsReadOnly;
@@ -617,6 +684,71 @@ namespace Sudoku.Windows
 				TechniqueProperties.GetPropertiesFrom(
 					((StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
 				)!.Priority = value;
+			}
+		}
+
+		/// <inheritdoc cref="Events.PreviewMouseLeftButtonDown(object?, EventArgs)"/>
+		private void PriorityControl_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (sender is not ListBoxItem draggedItem)
+			{
+				return;
+			}
+
+			var type = ((StepTriplet)draggedItem.Content).Item3;
+			if (TechniqueProperties.GetPropertiesFrom(type)!.IsReadOnly)
+			{
+				// We can't modify the status of any fixed technique searchers.
+				return;
+			}
+
+			DragDrop.DoDragDrop(draggedItem, draggedItem, DragDropEffects.Move);
+			draggedItem.IsSelected = true;
+		}
+
+		/// <inheritdoc cref="Events.Drop(object?, EventArgs)"/>
+		private void PriorityControl_Drop(object sender, DragEventArgs e)
+		{
+			var droppedItem = (ListBoxItem)e.Data.GetData(typeof(ListBoxItem));
+			var targetItem = (ListBoxItem)sender;
+
+			int removedIndex = _listBoxPriority.Items.IndexOf(droppedItem);
+			int targetIndex = _listBoxPriority.Items.IndexOf(targetItem);
+
+			bool shouldRefresh = false;
+			if (removedIndex < targetIndex)
+			{
+				_priorityControls.Insert(targetIndex + 1, droppedItem);
+				_priorityControls.RemoveAt(removedIndex);
+
+				shouldRefresh = true;
+			}
+			else
+			{
+				int newRemovedIndex = removedIndex + 1;
+				if (_priorityControls.Count + 1 > newRemovedIndex)
+				{
+					_priorityControls.Insert(targetIndex, droppedItem);
+					_priorityControls.RemoveAt(newRemovedIndex);
+
+					shouldRefresh = true;
+				}
+			}
+
+			// Refresh the list.
+			if (shouldRefresh)
+			{
+				for (int index = 0; index < _priorityControls.Count; index++)
+				{
+					var (name, _, type, _) = (StepTriplet)_priorityControls[index].Content;
+
+					_priorityControls[index].Content = new StepTriplet(
+						$"({index}) {name[(name.IndexOf(')') + 2)..]}",
+						index,
+						type
+					);
+					TechniqueProperties.GetPropertiesFrom(type)!.Priority = index;
+				}
 			}
 		}
 	}

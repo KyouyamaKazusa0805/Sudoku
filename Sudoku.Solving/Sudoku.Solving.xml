@@ -5708,6 +5708,15 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.StepSearcher.AllStepSearchers">
+            <summary>
+            Indicates all step searchers and their type info used in the current solution.
+            </summary>
+            <remarks>
+            Please note that the return value is a list of elements that contain its type and its
+            searcher properties.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Solving.Manual.StepSearcher.GetOne(Sudoku.Data.SudokuGrid@)">
             <summary>
             Take a technique step after searched all solving steps.

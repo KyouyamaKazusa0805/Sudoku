@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	public sealed partial class AlsNetStepSearcher : MslsStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(37, nameof(TechniqueCode.Msls))
+		public static TechniqueProperties Properties { get; } = new(36, nameof(TechniqueCode.Msls))
 		{
 			DisplayLevel = 4
 		};

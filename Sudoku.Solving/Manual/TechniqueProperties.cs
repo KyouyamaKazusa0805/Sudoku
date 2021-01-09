@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Sudoku.DocComments;
 using static System.Reflection.BindingFlags;
 

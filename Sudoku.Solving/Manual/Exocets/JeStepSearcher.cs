@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(35, nameof(TechniqueCode.Je))
+		public static TechniqueProperties Properties { get; } = new(34, nameof(TechniqueCode.Je))
 		{
 			DisplayLevel = 4
 		};

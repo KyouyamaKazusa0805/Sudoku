@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
+using System.Reflection;
 using Sudoku.Data;
+using static Sudoku.Windows.Resources;
 
 namespace Sudoku.Solving.Manual
 {
@@ -10,6 +14,24 @@ namespace Sudoku.Solving.Manual
 	/// <seealso cref="ManualSolver"/>
 	public abstract class StepSearcher
 	{
+		/// <summary>
+		/// Indicates all step searchers and their type info used in the current solution.
+		/// </summary>
+		/// <remarks>
+		/// Please note that the return value is a list of elements that contain its type and its
+		/// searcher properties.
+		/// </remarks>
+		public static IEnumerable<(Type CurrentType, string SearcherName, TechniqueProperties Properties)> AllStepSearchers =>
+			from type in Assembly.GetExecutingAssembly().GetTypes()
+			where !type.IsAbstract && type.IsSubclassOf<StepSearcher>() && !type.IsDefined<ObsoleteAttribute>()
+			let prior = TechniqueProperties.GetPropertiesFrom(type)!.Priority
+			orderby prior
+			let v = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
+			let casted = v as TechniqueProperties
+			where casted is not null && !casted.DisabledReason.Flags(DisabledReason.HasBugs)
+			select (type, GetValue($"Progress{casted.DisplayLabel}"), casted);
+
+
 		/// <summary>
 		/// Take a technique step after searched all solving steps.
 		/// </summary>

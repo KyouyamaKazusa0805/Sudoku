@@ -106,5 +106,19 @@ namespace Sudoku.DocComments
 		/// <param name="sender">The control to trigger <c>MouseMove</c> event.</param>
 		/// <param name="e">The event information, whose value is specified as a parameter.</param>
 		public void MouseMove(object? sender, EventArgs e) => throw new NotImplementedException();
+
+		/// <summary>
+		/// Trigger execution before the mouse left button is down.
+		/// </summary>
+		/// <param name="sender">The control to trigger <c>PreviewMouseLeftButtonDown</c> event.</param>
+		/// <param name="e">The event information, whose value is specified as a parameter.</param>
+		public void PreviewMouseLeftButtonDown(object? sender, EventArgs e) => throw new NotImplementedException();
+
+		/// <summary>
+		/// Trigger execution when the control is dropped.
+		/// </summary>
+		/// <param name="sender">The control to trigger <c>Drop</c> event.</param>
+		/// <param name="e">The event information, whose value is specified as a parameter.</param>
+		public void Drop(object? sender, EventArgs e) => throw new NotImplementedException();
 	}
 }
