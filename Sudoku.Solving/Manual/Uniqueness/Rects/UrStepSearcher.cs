@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(45, nameof(TechniqueCode.UrType1))
+		public static TechniqueProperties Properties { get; } = new(8, nameof(TechniqueCode.UrType1))
 		{
 			DisplayLevel = 2
 		};

@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	public sealed class SubsetStepSearcher : StepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(30, nameof(TechniqueCode.NakedPair))
+		public static TechniqueProperties Properties { get; } = new(3, nameof(TechniqueCode.NakedPair))
 		{
 			DisplayLevel = 2
 		};

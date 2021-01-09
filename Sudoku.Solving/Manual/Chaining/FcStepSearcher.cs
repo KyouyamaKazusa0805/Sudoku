@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(80, nameof(TechniqueCode.RegionFc))
+		public static TechniqueProperties Properties { get; } = new(32, nameof(TechniqueCode.RegionFc))
 		{
 			DisplayLevel = 3
 		};

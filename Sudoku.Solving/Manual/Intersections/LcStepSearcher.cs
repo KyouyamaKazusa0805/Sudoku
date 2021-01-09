@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	public sealed class LcStepSearcher : IntersectionStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(26, nameof(TechniqueCode.Pointing))
+		public static TechniqueProperties Properties { get; } = new(2, nameof(TechniqueCode.Pointing))
 		{
 			DisplayLevel = 1
 		};

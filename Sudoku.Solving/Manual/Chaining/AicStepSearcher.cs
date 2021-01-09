@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	public sealed class AicStepSearcher : ChainingStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(46, nameof(TechniqueCode.Aic))
+		public static TechniqueProperties Properties { get; } = new(13, nameof(TechniqueCode.Aic))
 		{
 			DisplayLevel = 2
 		};

@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(58, nameof(TechniqueCode.QdpType1))
+		public static TechniqueProperties Properties { get; } = new(26, nameof(TechniqueCode.QdpType1))
 		{
 			DisplayLevel = 2
 		};

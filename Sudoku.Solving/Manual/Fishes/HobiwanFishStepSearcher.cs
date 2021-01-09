@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(80, nameof(TechniqueCode.FrankenSwordfish))
+		public static TechniqueProperties Properties { get; } = new(31, nameof(TechniqueCode.FrankenSwordfish))
 		{
 			DisplayLevel = 3,
 			IsEnabled = false,

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	public sealed partial class SkLoopStepSearcher : MslsStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(96, nameof(TechniqueCode.SkLoop))
+		public static TechniqueProperties Properties { get; } = new(38, nameof(TechniqueCode.SkLoop))
 		{
 			DisplayLevel = 4
 		};

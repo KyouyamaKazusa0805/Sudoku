@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed partial class ErStepSearcher : SdpStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(46, nameof(TechniqueCode.EmptyRectangle))
+		public static TechniqueProperties Properties { get; } = new(12, nameof(TechniqueCode.EmptyRectangle))
 		{
 			DisplayLevel = 2
 		};

@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class TwoStrongLinksStepSearcher : SdpStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(40, nameof(TechniqueCode.TurbotFish))
+		public static TechniqueProperties Properties { get; } = new(5, nameof(TechniqueCode.TurbotFish))
 		{
 			DisplayLevel = 2
 		};

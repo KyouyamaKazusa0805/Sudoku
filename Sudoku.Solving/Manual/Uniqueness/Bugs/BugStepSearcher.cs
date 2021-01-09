@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(56, nameof(TechniqueCode.BugType1))
+		public static TechniqueProperties Properties { get; } = new(25, nameof(TechniqueCode.BugType1))
 		{
 			DisplayLevel = 2
 		};

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed class EripStepSearcher : AlsStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(60, nameof(TechniqueCode.Erip))
+		public static TechniqueProperties Properties { get; } = new(28, nameof(TechniqueCode.Erip))
 		{
 			DisplayLevel = 2
 		};

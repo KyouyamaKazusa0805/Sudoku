@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(55, nameof(TechniqueCode.BowmanBingo))
+		public static TechniqueProperties Properties { get; } = new(19, nameof(TechniqueCode.BowmanBingo))
 		{
 			DisplayLevel = 3,
 			IsReadOnly = true,
