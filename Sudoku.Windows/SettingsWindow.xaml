@@ -347,31 +347,13 @@
 						<ColumnDefinition/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
-					<ListBox Grid.Row="0" Grid.Column="0" x:Name="_listBoxPriority"
-							 SelectionChanged="ListBoxPriority_SelectionChanged"/>
-					<GroupBox Grid.Row="0" Grid.Column="1" Header="{DynamicResource SettingsPriority}"
-							  Width="200" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top">
-						<Grid>
-							<Grid.RowDefinitions>
-								<RowDefinition/>
-								<RowDefinition/>
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-							</Grid.ColumnDefinitions>
-							<CheckBox Content="{DynamicResource SettingsPriorityIsEnabled}"
-									  Grid.Row="0" Grid.Column="0"
-									  Grid.ColumnSpan="2" x:Name="_checkBoxIsEnabled"
-									  HorizontalAlignment="Center" VerticalAlignment="Center"
-									  Click="CheckBoxIsEnabled_Click"/>
-							<Label Content="{DynamicResource SettingsPriorityValue}"
-								   HorizontalAlignment="Right"
-								   VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
-							<TextBox Grid.Row="1" Grid.Column="1" x:Name="_textBoxPriority"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-									 TextChanged="TextBoxPriority_TextChanged"/>
-						</Grid>
+					<ListBox Grid.Row="0" Grid.Column="0" x:Name="_listBoxPriority"/>
+					<GroupBox Header="{DynamicResource SettingsPriorityGroupBoxTips}"
+							  Grid.Row="0" Grid.Column="1">
+						<TextBlock Grid.Row="0" Grid.Column="1"
+								   FontSize="16"
+								   Text="{DynamicResource SettingsPriorityIntro}"
+								   TextWrapping="Wrap"/>
 					</GroupBox>
 				</Grid>
 			</TabItem>

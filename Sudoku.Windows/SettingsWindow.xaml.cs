@@ -241,9 +241,6 @@ namespace Sudoku.Windows
 
 			// Update the view.
 			_listBoxPriority.SelectedIndex = 0;
-			var (_, priority, selectedType, _) = (StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
-			_checkBoxIsEnabled.IsEnabled = !TechniqueProperties.GetPropertiesFrom(selectedType)!.IsReadOnly;
-			_textBoxPriority.Text = priority.ToString();
 		}
 
 		/// <summary>
@@ -640,25 +637,6 @@ namespace Sudoku.Windows
 		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxEnableGcForcedly.IsEnabled = _manualSolver.EnableGarbageCollectionForcedly ^= true;
-
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
-		private void ListBoxPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			if (
-				sender is ListBox
-				{
-					SelectedIndex: not -1,
-					SelectedItem: ListBoxItem { Content: StepTriplet triplet } listBoxItem
-				} listBox)
-			{
-				var (_, priority, type, _) = triplet;
-				var (isEnabled, isReadOnly) = TechniqueProperties.GetPropertiesFrom(type)!;
-				_checkBoxIsEnabled.IsChecked = isEnabled;
-				_checkBoxIsEnabled.IsEnabled = !isReadOnly;
-				_textBoxPriority.Text = priority.ToString();
-				_textBoxPriority.IsReadOnly = isReadOnly;
-			}
-		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowDirectLines_Click(object sender, RoutedEventArgs e) =>

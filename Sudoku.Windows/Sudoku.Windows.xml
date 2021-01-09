@@ -2028,9 +2028,6 @@
         <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxEnableGcForcedly_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ListBoxPriority_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxShowDirectLines_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>

@@ -264,6 +264,16 @@
 	<sys:String x:Key="SettingsDrawingCrosshathcingOutlineColor">Crosshatching outline color:</sys:String>
 	<sys:String x:Key="SettingsDrawingCrosshatchingValuesColor">Crosshatching values color:</sys:String>
 	<sys:String x:Key="SettingsDrawingCrossSignColor">Cross sign color:</sys:String>
+	<sys:String x:Key="SettingsPriorityGroupBoxTips">Tips</sys:String>
+	<sys:String x:Key="SettingsPriorityIntro">
+		You can use drag &amp; drop to adjust the priority of each technique. The priority is a value
+		to ensure the calculation order during analyzing a sudoku puzzle. The priority value is greater,
+		the later of that technique used. The priority value is displayed in the parens of the list box
+		item.&#10;&#13;
+		When you want to adjust and modify the priority of one technique, just drag it and drop to the
+		place wherever you want. However, please note that the page doesn't save after you close the program.
+		It is saved in only the current program you using.
+	</sys:String>
 	<sys:String x:Key="SettingsPriority">Priority</sys:String>
 	<sys:String x:Key="SettingsPriorityIsEnabled">Is enabled</sys:String>
 	<sys:String x:Key="SettingsPriorityValue">Priority value:</sys:String>

@@ -264,6 +264,13 @@
 	<sys:String x:Key="SettingsDrawingCrosshathcingOutlineColor">排除数背景圆圈轮廓颜色：</sys:String>
 	<sys:String x:Key="SettingsDrawingCrosshatchingValuesColor">排除数背景圆圈颜色：</sys:String>
 	<sys:String x:Key="SettingsDrawingCrossSignColor">叉叉颜色：</sys:String>
+	<sys:String x:Key="SettingsPriorityGroupBoxTips">提示</sys:String>
+	<sys:String x:Key="SettingsPriorityIntro">
+		你可以使用拖动的方式来调整每一个技巧的优先级。技巧优先级是一个数字，这个数字用来表示和保证技巧计算和使用的先后顺序。
+		如果数值越大，这个技巧就会越靠后计算和使用。优先级数值都显示在每一个列表格子里的这个小括号里。&#10;&#13;
+		如果你需要调整某个技巧的优先级，只需要拖动它到你想要的那个地方就可以了。但请注意的是，这个程序在你关闭后是不会保存的。
+		它仅对当前程序有效。
+	</sys:String>
 	<sys:String x:Key="SettingsPriority">优先级</sys:String>
 	<sys:String x:Key="SettingsPriorityIsEnabled">是否启用</sys:String>
 	<sys:String x:Key="SettingsPriorityValue">优先级数值：</sys:String>
