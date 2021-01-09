@@ -8,26 +8,20 @@
 	public sealed record AntiEliminationStep(int Digit, int Cell) : IStep
 	{
 		/// <inheritdoc/>
-		public void UndoStepTo(UndoableGrid grid)
+		public unsafe void UndoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
-				{
-					pGrid[Cell] |= (short)(1 << Digit);
-				}
+				pGrid[Cell] |= (short)(1 << Digit);
 			}
 		}
 
 		/// <inheritdoc/>
-		public void DoStepTo(UndoableGrid grid)
+		public unsafe void DoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
-				{
-					pGrid[Cell] &= (short)~(1 << Digit);
-				}
+				pGrid[Cell] &= (short)~(1 << Digit);
 			}
 		}
 	}

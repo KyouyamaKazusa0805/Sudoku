@@ -200,37 +200,34 @@ namespace System.Extensions
 		/// Throws when the <paramref name="reservePattern"/> is invalid (Please expand the description
 		/// of the parameter <paramref name="reservePattern"/> to learn about all valid patterns).
 		/// </exception>
-		public static string Reserve(this string @this, string reservePattern)
+		public static unsafe string Reserve(this string @this, string reservePattern)
 		{
-			unsafe
+			delegate*<char, bool> predicate = reservePattern switch
 			{
-				delegate*<char, bool> predicate = reservePattern switch
-				{
-					@"\d" => &char.IsDigit,
-					@"\t" => &isTab,
-					@"\w" => &isLetterDigitOrUnderscore,
-					_ => throw new InvalidRegexStringException("The current reserved pattern is invalid.")
-				};
+				@"\d" => &char.IsDigit,
+				@"\t" => &isTab,
+				@"\w" => &isLetterDigitOrUnderscore,
+				_ => throw new InvalidRegexStringException("The current reserved pattern is invalid.")
+			};
 
-				char* ptr = stackalloc char[@this.Length];
-				int count = 0;
-				fixed (char* p = @this)
+			char* ptr = stackalloc char[@this.Length];
+			int count = 0;
+			fixed (char* p = @this)
+			{
+				char* q = p;
+				for (int i = 0; i < @this.Length; i++, q++)
 				{
-					char* q = p;
-					for (int i = 0; i < @this.Length; i++, q++)
+					if (predicate(*q))
 					{
-						if (predicate(*q))
-						{
-							ptr[count++] = *q;
-						}
+						ptr[count++] = *q;
 					}
 				}
-
-				return new string(ptr, 0, count);
-
-				static bool isTab(char c) => c == '\t';
-				static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
 			}
+
+			return new string(ptr, 0, count);
+
+			static bool isTab(char c) => c == '\t';
+			static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
 		}
 
 		/// <summary>

@@ -22,71 +22,68 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+		public override unsafe void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			unsafe
+			int* r = stackalloc int[2];
+			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
-				int* r = stackalloc int[2];
-				foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
+				if (!EmptyMap.Overlaps(c))
 				{
-					if (!EmptyMap.Overlaps(c))
+					continue;
+				}
+
+				short m = (short)(grid.BitwiseOrMasks(c) & (grid.BitwiseOrMasks(a) ^ grid.BitwiseOrMasks(b)));
+				if (m == 0)
+				{
+					continue;
+				}
+
+				foreach (int digit in m)
+				{
+					Cells elimMap;
+					if (a.Overlaps(CandMaps[digit]))
+					{
+						r[0] = coverSet;
+						r[1] = baseSet;
+						elimMap = a & CandMaps[digit];
+					}
+					else
+					{
+						r[0] = baseSet;
+						r[1] = coverSet;
+						elimMap = b & CandMaps[digit];
+					}
+					if (elimMap.IsEmpty)
 					{
 						continue;
 					}
 
-					short m = (short)(grid.BitwiseOrMasks(c) & (grid.BitwiseOrMasks(a) ^ grid.BitwiseOrMasks(b)));
-					if (m == 0)
+					var conclusions = new List<Conclusion>();
+					foreach (int cell in elimMap)
 					{
-						continue;
+						conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 					}
 
-					foreach (int digit in m)
+					var candidateOffsets = new List<DrawingInfo>();
+					foreach (int cell in c & CandMaps[digit])
 					{
-						Cells elimMap;
-						if (a.Overlaps(CandMaps[digit]))
-						{
-							r[0] = coverSet;
-							r[1] = baseSet;
-							elimMap = a & CandMaps[digit];
-						}
-						else
-						{
-							r[0] = baseSet;
-							r[1] = coverSet;
-							elimMap = b & CandMaps[digit];
-						}
-						if (elimMap.IsEmpty)
-						{
-							continue;
-						}
+						candidateOffsets.Add(new(0, cell * 9 + digit));
+					}
 
-						var conclusions = new List<Conclusion>();
-						foreach (int cell in elimMap)
-						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
-						}
-
-						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int cell in c & CandMaps[digit])
-						{
-							candidateOffsets.Add(new(0, cell * 9 + digit));
-						}
-
-						accumulator.Add(
-							new LcStepInfo(
-								conclusions,
-								new View[]
+					accumulator.Add(
+						new LcStepInfo(
+							conclusions,
+							new View[]
+							{
+								new()
 								{
-									new()
-									{
-										Candidates = candidateOffsets,
-										Regions = new DrawingInfo[] { new(0, r[0]), new(2, r[1]) }
-									}
-								},
-								digit,
-								r[0],
-								r[1]));
-					}
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[] { new(0, r[0]), new(2, r[1]) }
+								}
+							},
+							digit,
+							r[0],
+							r[1]));
 				}
 			}
 		}

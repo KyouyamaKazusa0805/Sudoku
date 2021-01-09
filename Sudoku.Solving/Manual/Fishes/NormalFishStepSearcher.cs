@@ -23,65 +23,62 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+		public override unsafe void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			unsafe
+			int** r = stackalloc int*[9], c = stackalloc int*[9];
+			Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
+			Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
+
+			for (int digit = 0; digit < 9; digit++)
 			{
-				int** r = stackalloc int*[9], c = stackalloc int*[9];
-				Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
-				Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
-
-				for (int digit = 0; digit < 9; digit++)
+				if (ValueMaps[digit].Count > 5)
 				{
-					if (ValueMaps[digit].Count > 5)
-					{
-						continue;
-					}
+					continue;
+				}
 
-					// Gather.
-					for (int region = 9; region < 27; region++)
+				// Gather.
+				for (int region = 9; region < 27; region++)
+				{
+					if (RegionMaps[region].Overlaps(CandMaps[digit]))
 					{
-						if (RegionMaps[region].Overlaps(CandMaps[digit]))
+						if (region < 18)
 						{
-							if (region < 18)
-							{
 #pragma warning disable CA2014
-								if (r[digit] == null)
-								{
-									int* ptr = stackalloc int[10];
-									Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
+							if (r[digit] == null)
+							{
+								int* ptr = stackalloc int[10];
+								Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
 
-									r[digit] = ptr;
-								}
+								r[digit] = ptr;
+							}
 #pragma warning restore CA2014
 
-								r[digit][++r[digit][0]] = region;
-							}
-							else
-							{
+							r[digit][++r[digit][0]] = region;
+						}
+						else
+						{
 #pragma warning disable CA2014
-								if (c[digit] == null)
-								{
-									int* ptr = stackalloc int[10];
-									Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
+							if (c[digit] == null)
+							{
+								int* ptr = stackalloc int[10];
+								Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
 
-									c[digit] = ptr;
-								}
+								c[digit] = ptr;
+							}
 #pragma warning restore CA2014
 
-								c[digit][++c[digit][0]] = region;
-							}
+							c[digit][++c[digit][0]] = region;
 						}
 					}
 				}
+			}
 
-				for (int size = 2; size <= 4; size++)
-				{
-					GetAll(accumulator, grid, size, r, c, withFin: false, searchRow: true);
-					GetAll(accumulator, grid, size, r, c, withFin: false, searchRow: false);
-					GetAll(accumulator, grid, size, r, c, withFin: true, searchRow: true);
-					GetAll(accumulator, grid, size, r, c, withFin: true, searchRow: false);
-				}
+			for (int size = 2; size <= 4; size++)
+			{
+				GetAll(accumulator, grid, size, r, c, withFin: false, searchRow: true);
+				GetAll(accumulator, grid, size, r, c, withFin: false, searchRow: false);
+				GetAll(accumulator, grid, size, r, c, withFin: true, searchRow: true);
+				GetAll(accumulator, grid, size, r, c, withFin: true, searchRow: false);
 			}
 		}
 

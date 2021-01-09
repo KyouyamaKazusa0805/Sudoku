@@ -18,37 +18,35 @@ namespace System.Text.Json.Converters
 
 		/// <inheritdoc/>
 		[SkipLocalsInit]
-		public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		public override unsafe Color Read(
+			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
 			const int length = 4;
-			unsafe
+			byte* span = stackalloc byte[length];
+			for (int index = -1, i = 0; reader.Read() && i < length << 1; i++)
 			{
-				byte* span = stackalloc byte[length];
-				for (int index = -1, i = 0; reader.Read() && i < length << 1; i++)
+				switch (reader.TokenType)
 				{
-					switch (reader.TokenType)
+					case JsonTokenType.PropertyName:
+					case JsonTokenType.String:
 					{
-						case JsonTokenType.PropertyName:
-						case JsonTokenType.String:
+						if (reader.GetString() is "A" or "R" or "G" or "B")
 						{
-							if (reader.GetString() is "A" or "R" or "G" or "B")
-							{
-								index++;
-							}
-
-							break;
+							index++;
 						}
-						case JsonTokenType.Number:
-						{
-							span[index] = reader.GetByte();
 
-							break;
-						}
+						break;
+					}
+					case JsonTokenType.Number:
+					{
+						span[index] = reader.GetByte();
+
+						break;
 					}
 				}
-
-				return Color.FromArgb(span[0], span[1], span[2], span[3]);
 			}
+
+			return Color.FromArgb(span[0], span[1], span[2], span[3]);
 		}
 
 		/// <inheritdoc/>

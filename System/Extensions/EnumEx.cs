@@ -18,38 +18,35 @@ namespace System.Extensions
 		/// All flags. If the enumeration field doesn't contain any flags,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
-		public static TEnum[]? GetAllFlags<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
+		public static unsafe TEnum[]? GetAllFlags<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 		{
-			unsafe
+			// Create a buffer to record all possible flags.
+			var buffer = stackalloc TEnum[Enum.GetValues<TEnum>().Length];
+			int i = 0;
+			foreach (var flag in @this)
 			{
-				// Create a buffer to record all possible flags.
-				var buffer = stackalloc TEnum[Enum.GetValues<TEnum>().Length];
-				int i = 0;
-				foreach (var flag in @this)
-				{
-					buffer[i++] = flag;
-				}
-
-				if (i == 0)
-				{
-					return null;
-				}
-
-				// Returns the instance and copy the values.
-				var result = new TEnum[i];
-				fixed (TEnum* ptr = result)
-				{
-					Unsafe.CopyBlock(ptr, buffer, (uint)(sizeof(TEnum) * i));
-				}
-
-				// Returns the value.
-				return result;
-
-				// Don't return a new instance with the pointer.
-				// The pointee is allocated in the stack, which will be cleared after the method popped out
-				// the method stack.
-				//return new Span<TEnum>(buffer, i);
+				buffer[i++] = flag;
 			}
+
+			if (i == 0)
+			{
+				return null;
+			}
+
+			// Returns the instance and copy the values.
+			var result = new TEnum[i];
+			fixed (TEnum* ptr = result)
+			{
+				Unsafe.CopyBlock(ptr, buffer, (uint)(sizeof(TEnum) * i));
+			}
+
+			// Returns the value.
+			return result;
+
+			// Don't return a new instance with the pointer.
+			// The pointee is allocated in the stack, which will be cleared after the method popped out
+			// the method stack.
+			//return new Span<TEnum>(buffer, i);
 		}
 
 		/// <summary>
@@ -73,10 +70,8 @@ namespace System.Extensions
 					var field = array[index];
 					switch (size)
 					{
-						case 1 or 2 or 4
-						when Unsafe.As<TEnum, int>(ref field) is var i && !i.IsPowerOfTwo():
-						case 8
-						when Unsafe.As<TEnum, long>(ref field) is var l && !l.IsPowerOfTwo():
+						case 1 or 2 or 4 when Unsafe.As<TEnum, int>(ref field) is var i && !i.IsPowerOfTwo():
+						case 8 when Unsafe.As<TEnum, long>(ref field) is var l && !l.IsPowerOfTwo():
 						{
 							// We'll skip the field that keeps the default value (0), or the value isn't a
 							// normal flag.
@@ -101,28 +96,25 @@ namespace System.Extensions
 		/// This method is same as <see cref="Enum.HasFlag(Enum)"/>, but without boxing and unboxing operations.
 		/// </remarks>
 		/// <seealso cref="Enum.HasFlag(Enum)"/>
-		public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
+		public static unsafe bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
 		{
-			unsafe
+			switch (sizeof(TEnum))
 			{
-				switch (sizeof(TEnum))
+				case 1:
+				case 2:
+				case 4:
 				{
-					case 1:
-					case 2:
-					case 4:
-					{
-						int otherValue = Unsafe.As<TEnum, int>(ref other);
-						return Unsafe.As<TEnum, int>(ref @this).Covers(otherValue);
-					}
-					case 8:
-					{
-						long otherValue = Unsafe.As<TEnum, long>(ref other);
-						return Unsafe.As<TEnum, long>(ref @this).Covers(otherValue);
-					}
-					default:
-					{
-						throw new ArgumentException("The parameter should be one of the values 1, 2, 4.", nameof(@this));
-					}
+					int otherValue = Unsafe.As<TEnum, int>(ref other);
+					return Unsafe.As<TEnum, int>(ref @this).Covers(otherValue);
+				}
+				case 8:
+				{
+					long otherValue = Unsafe.As<TEnum, long>(ref other);
+					return Unsafe.As<TEnum, long>(ref @this).Covers(otherValue);
+				}
+				default:
+				{
+					throw new ArgumentException("The parameter should be one of the values 1, 2, 4.", nameof(@this));
 				}
 			}
 		}

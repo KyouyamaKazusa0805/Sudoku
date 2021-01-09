@@ -165,7 +165,7 @@ namespace Sudoku.Data.Stepping
 		{
 			fixed (short* pGrid = _innerGrid)
 			{
-				_undoStack.Push(new ResetStep((IntPtr)_innerGrid.InitialMaskPinnableReference, (IntPtr)pGrid));
+				_undoStack.Push(new ResetStep(new(_innerGrid.InitialMaskPinnableReference), new(pGrid)));
 			}
 			_innerGrid.Reset();
 		}

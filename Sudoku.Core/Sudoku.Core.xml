@@ -1206,12 +1206,6 @@
             The internal collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(Sudoku.Data.Conclusion@)">
-            <summary>
-            Initializes an instance with one conclusion.
-            </summary>
-            <param name="conclusion">(<see langword="in"/> parameter) The conclusion.</param>
-        </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Span{Sudoku.Data.Conclusion}@)">
             <summary>
             Initializes an instance with the specified collection.
@@ -1351,12 +1345,6 @@
             <summary>
             The internal collection.
             </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link@)">
-            <summary>
-            Initializes an instance with one link.
-            </summary>
-            <param name="link">(<see langword="in"/> parameter) The chain link.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(System.Span{Sudoku.Data.Link}@)">
             <summary>
@@ -2832,39 +2820,11 @@
             <summary>
             Indicates the event triggered when the value is changed.
             </summary>
-            <remarks>
-            <para>
-            In Visual Basic .NET, we can't use function pointers. therefore, we can't expose
-            this API. In order to avoid CLS incompliant, in this scenario the type is <see cref="T:System.IntPtr"/>
-            instead.
-            </para>
-            <para>
-            Please note that the concrete signature is:
-            <code>
-            void ValueChanged(ref SudokuGrid, in ValueChangedArgs);
-            </code>
-            </para>
-            </remarks>
-            <seealso cref="T:System.IntPtr"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.RefreshingCandidates">
             <summary>
             Indicates the event triggered when should re-compute candidates.
             </summary>
-            <remarks>
-            <para>
-            In Visual Basic .NET, we can't use function pointers. therefore, we can't expose
-            this API. In order to avoid CLS incompliant, in this scenario the type is <see cref="T:System.IntPtr"/>
-            instead.
-            </para>
-            <para>
-            Please note that the concrete signature is:
-            <code>
-            void RefreshingCandidates(ref SudokuGrid);
-            </code>
-            </para>
-            </remarks>
-            <seealso cref="T:System.IntPtr"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.Undefined">
             <summary>

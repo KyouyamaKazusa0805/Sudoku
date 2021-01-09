@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Data.Stepping
 {
@@ -13,55 +14,48 @@ namespace Sudoku.Data.Stepping
 	public sealed record AssignmentStep(int Digit, int Cell, short Mask, in Cells InnerMap) : IStep
 	{
 		/// <inheritdoc/>
-		public void UndoStepTo(UndoableGrid grid)
+		public unsafe void UndoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
+				pGrid[Cell] = Mask;
+				foreach (int peerCell in InnerMap)
 				{
-					pGrid[Cell] = Mask;
-					foreach (int peerCell in InnerMap)
-					{
-						pGrid[peerCell] &= (short)~(1 << Digit);
-					}
+					pGrid[peerCell] &= (short)~(1 << Digit);
 				}
 			}
 		}
 
 		/// <inheritdoc/>
-		public void DoStepTo(UndoableGrid grid)
+		public unsafe void DoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			switch (Digit)
 			{
-				switch (Digit)
+				case -1 when grid.GetStatus(Cell) == CellStatus.Modifiable:
 				{
-					case -1 when grid.GetStatus(Cell) == CellStatus.Modifiable:
+					fixed (short* pGrid = grid)
 					{
-						fixed (short* pGrid = grid)
-						{
-							Unsafe.CopyBlock(pGrid, grid.InitialMaskPinnableReference, sizeof(short) * 81);
-						}
-
-						break;
+						Unsafe.CopyBlock(pGrid, grid.InitialMaskPinnableReference, sizeof(short) * 81);
 					}
-					case >= 0 and < 9:
-					{
-						fixed (short* pGrid = grid)
-						{
-							pGrid[Cell] = (short)(
-								SudokuGrid.ModifiableMask | SudokuGrid.MaxCandidatesMask & ~(1 << Digit));
 
-							foreach (int cell in Peers[Cell])
+					break;
+				}
+				case >= 0 and < 9:
+				{
+					fixed (short* pGrid = grid)
+					{
+						pGrid[Cell] = (short)(ModifiableMask | MaxCandidatesMask & ~(1 << Digit));
+
+						foreach (int cell in Peers[Cell])
+						{
+							if (grid.GetStatus(cell) == CellStatus.Empty)
 							{
-								if (grid.GetStatus(cell) == CellStatus.Empty)
-								{
-									pGrid[cell] |= (short)(1 << Digit);
-								}
+								pGrid[cell] |= (short)(1 << Digit);
 							}
 						}
-
-						break;
 					}
+
+					break;
 				}
 			}
 		}

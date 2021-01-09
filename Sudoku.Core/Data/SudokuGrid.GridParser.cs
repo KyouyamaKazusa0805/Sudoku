@@ -60,14 +60,10 @@ namespace Sudoku.Data
 					&OnParsingSukaku_2
 				};
 
-				static SudokuGrid OnParsingPencilMarked_1(ref GridParser @this) =>
-					OnParsingPencilMarked(ref @this, @this.CompatibleFirst);
-				static SudokuGrid OnParsingPencilMarked_2(ref GridParser @this) =>
-					OnParsingPencilMarked(ref @this, !@this.CompatibleFirst);
-				static SudokuGrid OnParsingSukaku_1(ref GridParser @this) =>
-					OnParsingSukaku(ref @this, @this.CompatibleFirst);
-				static SudokuGrid OnParsingSukaku_2(ref GridParser @this) =>
-					OnParsingSukaku(ref @this, !@this.CompatibleFirst);
+				static SudokuGrid OnParsingPencilMarked_1(ref GridParser @this) => OnParsingPencilMarked(ref @this, @this.CompatibleFirst);
+				static SudokuGrid OnParsingPencilMarked_2(ref GridParser @this) => OnParsingPencilMarked(ref @this, !@this.CompatibleFirst);
+				static SudokuGrid OnParsingSukaku_1(ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
+				static SudokuGrid OnParsingSukaku_2(ref GridParser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
 			}
 
 

@@ -498,13 +498,10 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Contains(int cell)
+		public readonly unsafe bool Contains(int cell)
 		{
-			unsafe
-			{
-				long* ptr = stackalloc[] { _low, _high };
-				return ptr[cell / Shifting].ContainsBit(cell % Shifting);
-			}
+			long* ptr = stackalloc[] { _low, _high };
+			return ptr[cell / Shifting].ContainsBit(cell % Shifting);
 		}
 
 		/// <summary>

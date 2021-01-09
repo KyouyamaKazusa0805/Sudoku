@@ -16,26 +16,20 @@ namespace Sudoku.Data.Stepping
 	public sealed record ResetStep(IntPtr OldMasks, IntPtr NewMasks) : IStep
 	{
 		/// <inheritdoc/>
-		public void DoStepTo(UndoableGrid grid)
+		public unsafe void DoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
-				{
-					Unsafe.CopyBlock(pGrid, (short*)OldMasks, sizeof(short) * 81);
-				}
+				Unsafe.CopyBlock(pGrid, (short*)OldMasks, sizeof(short) * 81);
 			}
 		}
 
 		/// <inheritdoc/>
-		public void UndoStepTo(UndoableGrid grid)
+		public unsafe void UndoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
-				{
-					Unsafe.CopyBlock(pGrid, (short*)NewMasks, sizeof(short) * 81);
-				}
+				Unsafe.CopyBlock(pGrid, (short*)NewMasks, sizeof(short) * 81);
 			}
 		}
 	}

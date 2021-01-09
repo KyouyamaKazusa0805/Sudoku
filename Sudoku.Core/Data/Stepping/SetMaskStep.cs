@@ -9,26 +9,20 @@
 	public sealed record SetMaskStep(int Cell, short OldMask, short NewMask) : IStep
 	{
 		/// <inheritdoc/>
-		public void DoStepTo(UndoableGrid grid)
+		public unsafe void DoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
-				{
-					pGrid[Cell] = NewMask;
-				}
+				pGrid[Cell] = NewMask;
 			}
 		}
 
 		/// <inheritdoc/>
-		public void UndoStepTo(UndoableGrid grid)
+		public unsafe void UndoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
-				{
-					pGrid[Cell] = OldMask;
-				}
+				pGrid[Cell] = OldMask;
 			}
 		}
 	}

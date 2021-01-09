@@ -9,26 +9,20 @@
 	public sealed record SetStatusStep(int Cell, CellStatus OldStatus, CellStatus NewStatus) : IStep
 	{
 		/// <inheritdoc/>
-		public void DoStepTo(UndoableGrid grid)
+		public unsafe void DoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
-				{
-					pGrid[Cell] = (short)((int)NewStatus << 9 | pGrid[Cell] & SudokuGrid.MaxCandidatesMask);
-				}
+				pGrid[Cell] = (short)((int)NewStatus << 9 | pGrid[Cell] & SudokuGrid.MaxCandidatesMask);
 			}
 		}
 
 		/// <inheritdoc/>
-		public void UndoStepTo(UndoableGrid grid)
+		public unsafe void UndoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
-				{
-					pGrid[Cell] = (short)((int)OldStatus << 9 | pGrid[Cell] & SudokuGrid.MaxCandidatesMask);
-				}
+				pGrid[Cell] = (short)((int)OldStatus << 9 | pGrid[Cell] & SudokuGrid.MaxCandidatesMask);
 			}
 		}
 	}

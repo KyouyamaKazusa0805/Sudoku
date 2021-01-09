@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data.Stepping
+﻿using static Sudoku.Data.SudokuGrid;
+
+namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates a fix step.
@@ -7,32 +9,25 @@
 	public sealed record FixStep(in Cells AllCells) : IStep
 	{
 		/// <inheritdoc/>
-		public void DoStepTo(UndoableGrid grid)
+		public unsafe void DoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
+				foreach (int cell in AllCells)
 				{
-					foreach (int cell in AllCells)
-					{
-						pGrid[cell] = (short)(SudokuGrid.GivenMask | pGrid[cell] & SudokuGrid.MaxCandidatesMask);
-					}
+					pGrid[cell] = (short)(GivenMask | pGrid[cell] & MaxCandidatesMask);
 				}
 			}
 		}
 
 		/// <inheritdoc/>
-		public void UndoStepTo(UndoableGrid grid)
+		public unsafe void UndoStepTo(UndoableGrid grid)
 		{
-			unsafe
+			fixed (short* pGrid = grid)
 			{
-				fixed (short* pGrid = grid)
+				foreach (int cell in AllCells)
 				{
-					foreach (int cell in AllCells)
-					{
-						pGrid[cell] = (short)(
-							SudokuGrid.ModifiableMask | pGrid[cell] & SudokuGrid.MaxCandidatesMask);
-					}
+					pGrid[cell] = (short)(ModifiableMask | pGrid[cell] & MaxCandidatesMask);
 				}
 			}
 		}

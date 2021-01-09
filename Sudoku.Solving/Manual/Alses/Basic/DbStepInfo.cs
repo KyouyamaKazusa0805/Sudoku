@@ -41,13 +41,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Cell {pivotStr} - {g()} => {elimStr}";
 
-			unsafe string g()
-			{
-				return new StringBuilder()
-					.AppendRange<KeyValuePair<int, Als>, string>(Alses, &converter)
-					.RemoveFromEnd(separator.Length)
-					.ToString();
-			}
+			unsafe string g() =>
+				new StringBuilder()
+				.AppendRange<KeyValuePair<int, Als>, string>(Alses, &converter)
+				.RemoveFromEnd(separator.Length)
+				.ToString();
 
 			static string converter(KeyValuePair<int, Als> pair) =>
 				$"{pair.Key + 1} - {pair.Value}{separator}";

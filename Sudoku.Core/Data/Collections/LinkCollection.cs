@@ -20,16 +20,6 @@ namespace Sudoku.Data.Collections
 
 
 		/// <summary>
-		/// Initializes an instance with one link.
-		/// </summary>
-		/// <param name="link">(<see langword="in"/> parameter) The chain link.</param>
-		public unsafe LinkCollection(in Link link)
-		{
-			void* ptr = stackalloc[] { link };
-			_collection = new(ptr, 1);
-		}
-
-		/// <summary>
 		/// Initializes an instance with the specified collection.
 		/// </summary>
 		/// <param name="collection">(<see langword="in"/> parameter) The collection.</param>

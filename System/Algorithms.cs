@@ -150,30 +150,27 @@ namespace System
 		/// <param name="left">The left one.</param>
 		/// <param name="right">The right one.</param>
 		/// <returns>The comparsion result.</returns>
-		public static TEnum Min<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
+		public static unsafe TEnum Min<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
 		{
-			unsafe
+			switch (sizeof(TEnum))
 			{
-				switch (sizeof(TEnum))
+				case 1:
+				case 2:
+				case 4:
 				{
-					case 1:
-					case 2:
-					case 4:
-					{
-						int l = Unsafe.As<TEnum, int>(ref left);
-						int r = Unsafe.As<TEnum, int>(ref right);
-						return l < r ? left : right;
-					}
-					case 8:
-					{
-						long l = Unsafe.As<TEnum, long>(ref left);
-						long r = Unsafe.As<TEnum, long>(ref right);
-						return l < r ? left : right;
-					}
-					default:
-					{
-						return default;
-					}
+					int l = Unsafe.As<TEnum, int>(ref left);
+					int r = Unsafe.As<TEnum, int>(ref right);
+					return l < r ? left : right;
+				}
+				case 8:
+				{
+					long l = Unsafe.As<TEnum, long>(ref left);
+					long r = Unsafe.As<TEnum, long>(ref right);
+					return l < r ? left : right;
+				}
+				default:
+				{
+					return default;
 				}
 			}
 		}
@@ -185,30 +182,27 @@ namespace System
 		/// <param name="left">The left one.</param>
 		/// <param name="right">The right one.</param>
 		/// <returns>The comparsion result.</returns>
-		public static TEnum Max<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
+		public static unsafe TEnum Max<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
 		{
-			unsafe
+			switch (sizeof(TEnum))
 			{
-				switch (sizeof(TEnum))
+				case 1:
+				case 2:
+				case 4:
 				{
-					case 1:
-					case 2:
-					case 4:
-					{
-						int l = Unsafe.As<TEnum, int>(ref left);
-						int r = Unsafe.As<TEnum, int>(ref right);
-						return l > r ? left : right;
-					}
-					case 8:
-					{
-						long l = Unsafe.As<TEnum, long>(ref left);
-						long r = Unsafe.As<TEnum, long>(ref right);
-						return l > r ? left : right;
-					}
-					default:
-					{
-						return default;
-					}
+					int l = Unsafe.As<TEnum, int>(ref left);
+					int r = Unsafe.As<TEnum, int>(ref right);
+					return l > r ? left : right;
+				}
+				case 8:
+				{
+					long l = Unsafe.As<TEnum, long>(ref left);
+					long r = Unsafe.As<TEnum, long>(ref right);
+					return l > r ? left : right;
+				}
+				default:
+				{
+					return default;
 				}
 			}
 		}
@@ -235,48 +229,45 @@ namespace System
 		/// with the whole array.
 		/// </remarks>
 		[SkipLocalsInit]
-		public static IEnumerable<int[]> GetCombinations(int[][] array)
+		public static unsafe IEnumerable<int[]> GetCombinations(int[][] array)
 		{
-			unsafe
+			int length = array.GetLength(0), resultCount = 1;
+			int* tempArray = stackalloc int[length];
+			for (int i = 0; i < length; i++)
 			{
-				int length = array.GetLength(0), resultCount = 1;
-				int* tempArray = stackalloc int[length];
-				for (int i = 0; i < length; i++)
+				tempArray[i] = -1;
+				resultCount *= array[i].Length;
+			}
+
+			int[][] result = new int[resultCount][];
+			int m = -1, n = -1;
+			do
+			{
+				if (m < length - 1)
 				{
-					tempArray[i] = -1;
-					resultCount *= array[i].Length;
+					m++;
 				}
 
-				int[][] result = new int[resultCount][];
-				int m = -1, n = -1;
-				do
+				int* value = tempArray + m;
+				(*value)++;
+				if (*value > array[m].Length - 1)
 				{
-					if (m < length - 1)
-					{
-						m++;
-					}
+					*value = -1;
+					m -= 2; // Backtrack.
+				}
 
-					int* value = tempArray + m;
-					(*value)++;
-					if (*value > array[m].Length - 1)
+				if (m == length - 1)
+				{
+					n++;
+					result[n] = new int[m + 1];
+					for (int i = 0; i <= m; i++)
 					{
-						*value = -1;
-						m -= 2; // Backtrack.
+						result[n][i] = array[i][tempArray[i]];
 					}
+				}
+			} while (m >= -1);
 
-					if (m == length - 1)
-					{
-						n++;
-						result[n] = new int[m + 1];
-						for (int i = 0; i <= m; i++)
-						{
-							result[n][i] = array[i][tempArray[i]];
-						}
-					}
-				} while (m >= -1);
-
-				return result;
-			}
+			return result;
 		}
 	}
 }

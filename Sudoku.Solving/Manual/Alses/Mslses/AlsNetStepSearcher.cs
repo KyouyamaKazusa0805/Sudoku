@@ -24,137 +24,134 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+		public override unsafe void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			unsafe
+			short* linkForEachRegion = stackalloc short[27];
+			var linkForEachDigit = stackalloc Cells[9];
+			foreach (var pattern in Patterns)
 			{
-				short* linkForEachRegion = stackalloc short[27];
-				var linkForEachDigit = stackalloc Cells[9];
-				foreach (var pattern in Patterns)
+				var map = EmptyMap & pattern;
+				if (pattern.Count < 12
+					&& (pattern.Count - map.Count, pattern.Count - map.Count) is not ( <= 1, <= 2))
 				{
-					var map = EmptyMap & pattern;
-					if (pattern.Count < 12
-						&& (pattern.Count - map.Count, pattern.Count - map.Count) is not ( <= 1, <= 2))
-					{
-						continue;
-					}
+					continue;
+				}
 
-					int n = 0, count = map.Count;
+				int n = 0, count = map.Count;
+				for (int digit = 0; digit < 9; digit++)
+				{
+					var curMap = linkForEachDigit + digit;
+					*curMap = CandMaps[digit] & map;
+					n += Algorithms.Min(
+						curMap->RowMask.PopCount(),
+						curMap->ColumnMask.PopCount(),
+						curMap->BlockMask.PopCount());
+				}
+
+				if (n == count)
+				{
+					short canF = 0;
+					var canL = new Cells[9];
+					var conclusions = new List<Conclusion>();
+					var candidateOffsets = new List<DrawingInfo>();
 					for (int digit = 0; digit < 9; digit++)
 					{
-						var curMap = linkForEachDigit + digit;
-						*curMap = CandMaps[digit] & map;
-						n += Algorithms.Min(
-							curMap->RowMask.PopCount(), 
-							curMap->ColumnMask.PopCount(),
-							curMap->BlockMask.PopCount());
-					}
-
-					if (n == count)
-					{
-						short canF = 0;
-						var canL = new Cells[9];
-						var conclusions = new List<Conclusion>();
-						var candidateOffsets = new List<DrawingInfo>();
-						for (int digit = 0; digit < 9; digit++)
+						var currentMap = linkForEachDigit[digit];
+						short rMask = currentMap.RowMask;
+						short cMask = currentMap.ColumnMask;
+						short bMask = currentMap.BlockMask;
+						int temp = Algorithms.Min(rMask.PopCount(), cMask.PopCount(), bMask.PopCount());
+						var elimMap = Cells.Empty;
+						int check = 0;
+						if (rMask.PopCount() == temp)
 						{
-							var currentMap = linkForEachDigit[digit];
-							short rMask = currentMap.RowMask;
-							short cMask = currentMap.ColumnMask;
-							short bMask = currentMap.BlockMask;
-							int temp = Algorithms.Min(rMask.PopCount(), cMask.PopCount(), bMask.PopCount());
-							var elimMap = Cells.Empty;
-							int check = 0;
-							if (rMask.PopCount() == temp)
+							check++;
+							foreach (int i in rMask)
 							{
-								check++;
-								foreach (int i in rMask)
-								{
-									int region = i + 9;
-									linkForEachRegion[region] |= (short)(1 << digit);
-									elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
-								}
+								int region = i + 9;
+								linkForEachRegion[region] |= (short)(1 << digit);
+								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
-							if (cMask.PopCount() == temp)
+						}
+						if (cMask.PopCount() == temp)
+						{
+							check++;
+							foreach (int i in cMask)
 							{
-								check++;
-								foreach (int i in cMask)
-								{
-									int region = i + 18;
-									linkForEachRegion[region] |= (short)(1 << digit);
-									elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
-								}
+								int region = i + 18;
+								linkForEachRegion[region] |= (short)(1 << digit);
+								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
-							if (bMask.PopCount() == temp)
+						}
+						if (bMask.PopCount() == temp)
+						{
+							check++;
+							foreach (int i in bMask)
 							{
-								check++;
-								foreach (int i in bMask)
-								{
-									linkForEachRegion[i] |= (short)(1 << digit);
-									elimMap |= (CandMaps[digit] & RegionMaps[i] & map).PeerIntersection;
-								}
-							}
-
-							if (check > 1)
-							{
-								canF |= (short)(1 << digit);
-							}
-
-							elimMap &= CandMaps[digit];
-							if (elimMap.IsEmpty)
-							{
-								continue;
-							}
-
-							foreach (int cell in elimMap)
-							{
-								if (map.Contains(cell))
-								{
-									canL[digit].AddAnyway(cell);
-								}
-
-								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+								linkForEachRegion[i] |= (short)(1 << digit);
+								elimMap |= (CandMaps[digit] & RegionMaps[i] & map).PeerIntersection;
 							}
 						}
 
-						if (conclusions.Count == 0)
+						if (check > 1)
+						{
+							canF |= (short)(1 << digit);
+						}
+
+						elimMap &= CandMaps[digit];
+						if (elimMap.IsEmpty)
 						{
 							continue;
 						}
 
-						for (int region = 0; region < 27; region++)
+						foreach (int cell in elimMap)
 						{
-							short linkMask = linkForEachRegion[region];
-							if (linkMask == 0)
+							if (map.Contains(cell))
+							{
+								canL[digit].AddAnyway(cell);
+							}
+
+							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+						}
+					}
+
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					for (int region = 0; region < 27; region++)
+					{
+						short linkMask = linkForEachRegion[region];
+						if (linkMask == 0)
+						{
+							continue;
+						}
+
+						foreach (int cell in map & RegionMaps[region])
+						{
+							short cands = (short)(grid.GetCandidates(cell) & linkMask);
+							if (cands == 0)
 							{
 								continue;
 							}
 
-							foreach (int cell in map & RegionMaps[region])
+							foreach (int cand in cands)
 							{
-								short cands = (short)(grid.GetCandidates(cell) & linkMask);
-								if (cands == 0)
+								if (!canL[cand].Contains(cell))
 								{
-									continue;
-								}
-
-								foreach (int cand in cands)
-								{
-									if (!canL[cand].Contains(cell))
-									{
-										candidateOffsets.Add(
-											new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
-									}
+									candidateOffsets.Add(
+										new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
 								}
 							}
 						}
-
-						accumulator.Add(
-							new AlsNetStepInfo(
-								conclusions,
-								new View[] { new() { Candidates = candidateOffsets } },
-								map));
 					}
+
+					accumulator.Add(
+						new AlsNetStepInfo(
+							conclusions,
+							new View[] { new() { Candidates = candidateOffsets } },
+							map));
 				}
 			}
 		}

@@ -5,7 +5,6 @@ using System.Extensions;
 using System.Linq;
 using System.Text;
 using Sudoku.DocComments;
-using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Data.Collections
 {
@@ -19,16 +18,6 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		private readonly Span<Conclusion> _collection;
 
-
-		/// <summary>
-		/// Initializes an instance with one conclusion.
-		/// </summary>
-		/// <param name="conclusion">(<see langword="in"/> parameter) The conclusion.</param>
-		public unsafe ConclusionCollection(in Conclusion conclusion)
-		{
-			void* ptr = stackalloc[] { conclusion };
-			_collection = new(ptr, 1);
-		}
 
 		/// <summary>
 		/// Initializes an instance with the specified collection.
@@ -130,7 +119,7 @@ namespace Sudoku.Data.Collections
 					bool hasOnlyOneType = selection.HasOnlyOneElement();
 					foreach (var typeGroup in selection)
 					{
-						string op = typeGroup.Key == Assignment ? " = " : " <> ";
+						string op = typeGroup.Key == ConclusionType.Assignment ? " = " : " <> ";
 						foreach (var digitGroup in
 							from conclusion in typeGroup
 							group conclusion by conclusion.Digit)
@@ -156,7 +145,6 @@ namespace Sudoku.Data.Collections
 				}
 				else
 				{
-					static string? converter(in Conclusion conc, in string? separator) => $"{conc}{separator}";
 					sb
 						.AppendRange<Conclusion, string?, string?>(conclusions, &converter, separator)
 						.RemoveFromEnd(separator.Length);
@@ -165,16 +153,8 @@ namespace Sudoku.Data.Collections
 				return sb.ToString();
 			}
 
-			static int cmp(in Conclusion left, in Conclusion right)
-			{
-				var (t1, c1, d1) = left;
-				var (t2, c2, d2) = right;
-				if (t1 > t2) return 1;
-				if (t1 < t2) return -1;
-				if (d1 > d2) return 1;
-				if (d1 < d2) return -1;
-				return 0;
-			}
+			static int cmp(in Conclusion left, in Conclusion right) => left.CompareTo(right);
+			static string? converter(in Conclusion conc, in string? separator) => $"{conc}{separator}";
 		}
 
 
