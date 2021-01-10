@@ -466,12 +466,10 @@ namespace Sudoku.Drawing
 						rotate(oldPt2, ref pt2, RotateAngle);
 
 						double aAlpha = alpha - RotateAngle;
-						double bx1 =
-							pt1.X + bezierLength * Cos(aAlpha), by1 = pt1.Y + bezierLength * Sin(aAlpha);
+						double bx1 = pt1.X + bezierLength * Cos(aAlpha), by1 = pt1.Y + bezierLength * Sin(aAlpha);
 
 						aAlpha = alpha + RotateAngle;
-						double bx2 =
-							pt2.X - bezierLength * Cos(aAlpha), by2 = pt2.Y - bezierLength * Sin(aAlpha);
+						double bx2 = pt2.X - bezierLength * Cos(aAlpha), by2 = pt2.Y - bezierLength * Sin(aAlpha);
 
 						g.DrawBezier(
 							penToDraw, pt1.X, pt1.Y, (float)bx1, (float)by1, (float)bx2, (float)by2,
