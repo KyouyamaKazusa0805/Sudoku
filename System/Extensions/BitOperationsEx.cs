@@ -12,6 +12,7 @@ namespace System.Extensions
 	public static class BitOperationsEx
 	{
 		/// <inheritdoc cref="Integer.SkipSetBit(Integer, int)"/>
+		[Obsolete("We can only use the method on a " + nameof(Int16) + " mask.", true, DiagnosticId = "BAN")]
 		public static byte SkipSetBit(this byte @this, int setBitPosCount)
 		{
 			byte result = @this;
@@ -52,6 +53,7 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.SkipSetBit(Integer, int)"/>
+		[Obsolete("We can only use the method on a " + nameof(Int16) + " mask.", true, DiagnosticId = "BAN")]
 		public static int SkipSetBit(this int @this, int setBitPosCount)
 		{
 			int result = @this;
@@ -72,6 +74,7 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.SkipSetBit(Integer, int)"/>
+		[Obsolete("We can only use the method on a " + nameof(Int16) + " mask.", true, DiagnosticId = "BAN")]
 		public static long SkipSetBit(this long @this, int setBitPosCount)
 		{
 			long result = @this;
