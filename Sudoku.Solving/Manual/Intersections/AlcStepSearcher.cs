@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
-				if (c.Overlaps(EmptyMap))
+				if (!(c & EmptyMap).IsEmpty)
 				{
 					// Process for 2 cases.
 					GetAll(result, grid, size, baseSet, coverSet, a, b, c);

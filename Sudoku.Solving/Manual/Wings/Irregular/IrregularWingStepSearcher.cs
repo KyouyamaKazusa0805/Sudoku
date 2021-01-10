@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					}
 
 					var intersection = PeerMaps[c1] & PeerMaps[c2];
-					if (!EmptyMap.Overlaps(intersection))
+					if ((EmptyMap & intersection).IsEmpty)
 					{
 						continue;
 					}

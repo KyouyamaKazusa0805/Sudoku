@@ -3,7 +3,6 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Extensions;
 using System.Runtime.InteropServices;
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -206,13 +205,13 @@ namespace Sudoku.Recognition.Extensions
 
 							for (int j = 0; j < cols; j++, v <<= 1)
 							{
-								if (!j.Overlaps(7))
+								if ((j & 7) == 0)
 								{
 									//fetch the next byte 
 									v = row[j >> 3];
 								}
 
-								imagedata[i, j, 0] = !v.Overlaps(mask) ? byte.MinValue : byte.MaxValue;
+								imagedata[i, j, 0] = (v & mask) == 0 ? byte.MinValue : byte.MaxValue;
 							}
 						}
 					}

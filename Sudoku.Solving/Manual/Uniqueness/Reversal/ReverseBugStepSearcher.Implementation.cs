@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			foreach (int cell in extraCells)
 			{
 				short mask = grid.GetCandidates(cell);
-				if (!mask.Overlaps(comparer) || mask == comparer)
+				if ((mask & comparer) == 0 || mask == comparer)
 				{
 					notSatisfiedType3 = true;
 					break;

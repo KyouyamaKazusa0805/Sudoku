@@ -154,38 +154,6 @@ namespace System.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool ContainsBit(this long @this, int bitPosition) => (@this >> bitPosition & 1) != 0;
 
-		/// <inheritdoc cref="Integer.Overlaps(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Overlaps(this byte @this, byte other) => (@this & other) != 0;
-
-		/// <inheritdoc cref="Integer.Overlaps(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Overlaps(this short @this, short other) => (@this & other) != 0;
-
-		/// <inheritdoc cref="Integer.Overlaps(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Overlaps(this int @this, int other) => (@this & other) != 0;
-
-		/// <inheritdoc cref="Integer.Overlaps(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Overlaps(this long @this, long other) => (@this & other) != 0;
-
-		/// <inheritdoc cref="Integer.ExceptOverlaps(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool ExceptOverlaps(this byte @this, byte other) => (@this & ~other) != 0;
-
-		/// <inheritdoc cref="Integer.ExceptOverlaps(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool ExceptOverlaps(this short @this, short other) => (@this & ~other) != 0;
-
-		/// <inheritdoc cref="Integer.ExceptOverlaps(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool ExceptOverlaps(this int @this, int other) => (@this & ~other) != 0;
-
-		/// <inheritdoc cref="Integer.ExceptOverlaps(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool ExceptOverlaps(this long @this, long other) => (@this & ~other) != 0;
-
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
 		public static int GetNextSet(this byte @this, int index)
 		{

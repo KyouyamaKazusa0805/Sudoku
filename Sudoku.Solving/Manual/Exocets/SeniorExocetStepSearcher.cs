@@ -202,22 +202,22 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						for (int k = 0; k < 2; k++)
 						{
-							if (comb[k] == tq1 && !baseCandidatesMask.Overlaps(grid.GetCandidates(tr2)))
+							if (comb[k] == tq1 && (baseCandidatesMask & grid.GetCandidates(tr2)) == 0)
 							{
 								target = comb[k];
 								mir = mq1;
 							}
-							if (comb[k] == tq2 && !baseCandidatesMask.Overlaps(grid.GetCandidates(tr1)))
+							if (comb[k] == tq2 && (baseCandidatesMask & grid.GetCandidates(tr1)) == 0)
 							{
 								target = comb[k];
 								mir = mq2;
 							}
-							if (comb[k] == tr1 && !baseCandidatesMask.Overlaps(grid.GetCandidates(tq2)))
+							if (comb[k] == tr1 && (baseCandidatesMask & grid.GetCandidates(tq2)) == 0)
 							{
 								target = comb[k];
 								mir = mr1;
 							}
-							if (comb[k] == tr2 && !baseCandidatesMask.Overlaps(grid.GetCandidates(tq1)))
+							if (comb[k] == tr2 && (baseCandidatesMask & grid.GetCandidates(tq1)) == 0)
 							{
 								target = comb[k];
 								mir = mr2;

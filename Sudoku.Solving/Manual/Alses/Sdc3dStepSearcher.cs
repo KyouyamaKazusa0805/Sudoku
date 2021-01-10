@@ -189,9 +189,9 @@ namespace Sudoku.Solving.Manual.Alses
 												}
 												elimMapColumn &= RegionMaps[c] - cbCurrentMap - currentColumnMap;
 
-												if (blockMask.Overlaps(rowMask)
-													&& rowMask.Overlaps(columnMask)
-													&& columnMask.Overlaps(blockMask))
+												if ((blockMask & rowMask) != 0
+													&& (rowMask & columnMask) != 0
+													&& (columnMask & blockMask) != 0)
 												{
 													continue;
 												}
@@ -206,7 +206,7 @@ namespace Sudoku.Solving.Manual.Alses
 												{
 													mask |= grid.GetCandidates(cell);
 												}
-												if (mask.Overlaps(rowMask))
+												if ((mask & rowMask) != 0)
 												{
 													// At least one digit spanned two regions.
 													continue;
@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Manual.Alses
 												{
 													mask |= grid.GetCandidates(cell);
 												}
-												if (mask.Overlaps(columnMask))
+												if ((mask & columnMask) != 0)
 												{
 													continue;
 												}

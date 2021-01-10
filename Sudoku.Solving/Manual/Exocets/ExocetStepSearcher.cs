@@ -224,7 +224,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								continue;
 							}
 
-							if (grid.GetCandidates(p).Overlaps(mask))
+							if ((grid.GetCandidates(p) & mask) != 0)
 							{
 								count++;
 							}
@@ -235,7 +235,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							for (int j = 0; j < 9; j++)
 							{
 								int p = RegionCells[regions[i]][j];
-								if (!grid.GetCandidates(p).Overlaps(mask)
+								if ((grid.GetCandidates(p) & mask) == 0
 									|| grid.GetStatus(p) != CellStatus.Empty || p == onlyOne)
 								{
 									continue;
@@ -246,7 +246,7 @@ namespace Sudoku.Solving.Manual.Exocets
 									candidateOffsets.Add(new(3, p * 9 + digit));
 								}
 
-								if (p == l || p == r || !grid.GetCandidates(p).ExceptOverlaps(mask))
+								if (p == l || p == r || (grid.GetCandidates(p) & ~mask) == 0)
 								{
 									continue;
 								}
@@ -274,7 +274,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						}
 
 						short mask1 = grid.GetCandidates(l), mask2 = grid.GetCandidates(r);
-						bool m1Locked = mask1.Overlaps(locked), m2Locked = mask2.Overlaps(locked);
+						bool m1Locked = (mask1 & locked) != 0, m2Locked = (mask2 & locked) != 0;
 						if (PopCount((uint)locked) == 1 && m1Locked ^ m2Locked)
 						{
 							short targetMask = (short)(grid.GetCandidates(target) & baseCandidateMask);

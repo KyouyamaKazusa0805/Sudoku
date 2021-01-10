@@ -210,7 +210,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			foreach (int cell in otherCellsMap)
 			{
 				short currentMask = grid.GetCandidates(cell);
-				if (!currentMask.Overlaps(comparer)
+				if ((currentMask & comparer) == 0
 					|| currentMask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty)
 				{
 					notSatisfiedType3 = true;
@@ -246,7 +246,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							tempMask |= grid.GetCandidates(cell);
 						}
-						if (tempMask.Overlaps(comparer) || PopCount((uint)tempMask) - 1 != size
+						if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size
 							|| (tempMask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;

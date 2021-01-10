@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Manual.Alses
 										short maskOnlyInInter = (short)(
 											selectedInterMask & ~(blockMask | lineMask));
 										if (!cannibalMode && (
-											blockMask.Overlaps(lineMask)
+											(blockMask & lineMask) != 0
 											|| maskIsolated != 0 && !maskIsolated.IsPowerOfTwo())
 											|| cannibalMode && !maskIsolated.IsPowerOfTwo())
 										{

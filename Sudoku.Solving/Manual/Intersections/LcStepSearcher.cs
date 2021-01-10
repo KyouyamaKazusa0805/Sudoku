@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			int* r = stackalloc int[2];
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
-				if (!EmptyMap.Overlaps(c))
+				if ((EmptyMap & c).IsEmpty)
 				{
 					continue;
 				}

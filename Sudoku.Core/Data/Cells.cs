@@ -197,7 +197,7 @@ namespace Sudoku.Data
 			{
 				for (int i = BlockOffset; i < Limit; i++)
 				{
-					if (!_high.ExceptOverlaps(CoverTable[i, 0]) && !_low.ExceptOverlaps(CoverTable[i, 1]))
+					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
 					{
 						return true;
 					}
@@ -263,7 +263,7 @@ namespace Sudoku.Data
 				int resultRegions = 0;
 				for (int i = BlockOffset; i < Limit; i++)
 				{
-					if (!_high.ExceptOverlaps(CoverTable[i, 0]) && !_low.ExceptOverlaps(CoverTable[i, 1]))
+					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
 					{
 						resultRegions |= 1 << i;
 					}
@@ -432,15 +432,6 @@ namespace Sudoku.Data
 		public readonly bool Overlaps(in Cells other) => !(this & other).IsEmpty;
 
 		/// <summary>
-		/// Indicates whether this map overlaps one of two specified ones.
-		/// </summary>
-		/// <param name="cells1">(<see langword="in"/> parameter) The first map to check.</param>
-		/// <param name="cells2">(<see langword="in"/> parameter) The second map to check.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Overlaps(in Cells cells1, in Cells cells2) => !(this & cells1 & cells2).IsEmpty;
-
-		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
 		/// </summary>
 		/// <param name="region">
@@ -457,7 +448,7 @@ namespace Sudoku.Data
 		{
 			for (int i = BlockOffset; i < Limit; i++)
 			{
-				if (!_high.ExceptOverlaps(CoverTable[i, 0]) && !_low.ExceptOverlaps(CoverTable[i, 1]))
+				if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
 				{
 					region = i;
 					return true;

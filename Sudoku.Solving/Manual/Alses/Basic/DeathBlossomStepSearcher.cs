@@ -263,7 +263,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 					foreach (int cell in temp)
 					{
-						if (!digitsMask.ExceptOverlaps(grid.GetCandidates(cell)))
+						if ((digitsMask & ~grid.GetCandidates(cell)) == 0)
 						{
 							continue;
 						}

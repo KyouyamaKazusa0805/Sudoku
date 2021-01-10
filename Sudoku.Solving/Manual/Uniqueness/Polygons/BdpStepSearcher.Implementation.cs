@@ -190,7 +190,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							{
 								comparer |= grid.GetCandidates(cell);
 							}
-							if (tempMask.Overlaps(comparer) || PopCount((uint)tempMask) - 1 != size
+							if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size
 								|| (tempMask & otherDigitsMask) != otherDigitsMask)
 							{
 								continue;

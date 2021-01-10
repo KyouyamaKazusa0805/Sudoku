@@ -35,10 +35,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						var pairMap = new Cells { c1, c2 };
 						if
 						(
-							baseLineMap.Overlaps(pairMap) || baseLineMap.Overlaps(
-								RegionMaps[RegionLabel.Block.ToRegion(c1)]
-								| RegionMaps[RegionLabel.Block.ToRegion(c2)]
-							)
+							!(baseLineMap & pairMap).IsEmpty || !(
+								baseLineMap & (
+									RegionMaps[RegionLabel.Block.ToRegion(c1)]
+									| RegionMaps[RegionLabel.Block.ToRegion(c2)]
+								)
+							).IsEmpty
 						)
 						{
 							continue;

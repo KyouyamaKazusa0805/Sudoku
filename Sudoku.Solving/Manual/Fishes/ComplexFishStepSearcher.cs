@@ -125,11 +125,11 @@ namespace Sudoku.Solving.Manual.Fishes
 							if (searchForMutant)
 							{
 								baseMaskForCheckingMutantFish = 0;
-								if (baseSetsMask.Overlaps(AllRowsMask))
+								if ((baseSetsMask & AllRowsMask) != 0)
 								{
 									baseMaskForCheckingMutantFish |= RegionLabel.Row;
 								}
-								if (baseSetsMask.Overlaps(AllColumnsMask))
+								if ((baseSetsMask & AllColumnsMask) != 0)
 								{
 									baseMaskForCheckingMutantFish |= RegionLabel.Column;
 								}
@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								}
 
 								// Base sets shouldn't overlap with cover sets.
-								if (baseMap.Overlaps(coverMap))
+								if (!(baseMap & coverMap).IsEmpty)
 								{
 									continue;
 								}
@@ -234,11 +234,11 @@ namespace Sudoku.Solving.Manual.Fishes
 									if (searchForMutant)
 									{
 										coverMaskForCheckingMutantFish = 0;
-										if (usedInCoverSets.Overlaps(AllRowsMask))
+										if ((usedInCoverSets & AllRowsMask) != 0)
 										{
 											coverMaskForCheckingMutantFish |= RegionLabel.Row;
 										}
-										if (usedInCoverSets.Overlaps(AllColumnsMask))
+										if ((usedInCoverSets & AllColumnsMask) != 0)
 										{
 											coverMaskForCheckingMutantFish |= RegionLabel.Column;
 										}

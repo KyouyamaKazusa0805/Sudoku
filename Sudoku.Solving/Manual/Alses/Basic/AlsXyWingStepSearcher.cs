@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					var als2 = alses[j];
 					var (_, mask2, map2) = als2;
 					var map = map1 | map2;
-					if (map.InOneRegion || map1.Overlaps(map2))
+					if (map.InOneRegion || !(map1 & map2).IsEmpty)
 					{
 						continue;
 					}
@@ -103,7 +103,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					if (!AllowOverlapping && (aMap.Overlaps(bMap) || aMap.Overlaps(cMap) || bMap.Overlaps(cMap)))
+					if (!AllowOverlapping
+						&& (!(aMap & bMap).IsEmpty || !(aMap & cMap).IsEmpty || !(bMap & cMap).IsEmpty))
 					{
 						continue;
 					}

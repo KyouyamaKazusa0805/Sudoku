@@ -199,7 +199,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									coverSetMap |= RegionMaps[coverSet];
 								}
 
-								if (_checkPom && !coverSetMap.Overlaps(globalElimMap))
+								if (_checkPom && (coverSetMap & globalElimMap).IsEmpty)
 								{
 									// God view: The cover set combination must contain the eliminations
 									// that found before.

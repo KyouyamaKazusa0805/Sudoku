@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				{
 					var als2 = alses[j];
 					var (_, region2, mask2, map2, _, _) = als2;
-					if (map1.Overlaps(map2) || (map1 | map2).InOneRegion)
+					if (!(map1 & map2).IsEmpty || (map1 | map2).InOneRegion)
 					{
 						continue;
 					}
@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							foreach (var conjugatePair in conjPairs)
 							{
 								var cpMap = conjugatePair.Map;
-								if (cpMap.Overlaps(map1) || cpMap.Overlaps(map2))
+								if (!(cpMap & map1).IsEmpty || !(cpMap & map2).IsEmpty)
 								{
 									// Conjugate pair can't overlap with the ALS structure.
 									continue;

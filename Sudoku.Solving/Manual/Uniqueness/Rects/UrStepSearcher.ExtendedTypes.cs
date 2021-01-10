@@ -1389,7 +1389,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					int c1 = cells[i1];
 					short m1 = grid.GetCandidates(c1);
-					if (!m1.ExceptOverlaps(extraDigitsMask))
+					if ((m1 & ~extraDigitsMask) == 0)
 					{
 						continue;
 					}
@@ -1398,7 +1398,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						int c2 = cells[i2];
 						short m2 = grid.GetCandidates(c2);
-						if (!m2.ExceptOverlaps(extraDigitsMask))
+						if ((m2 & ~extraDigitsMask) == 0)
 						{
 							continue;
 						}
@@ -1499,7 +1499,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								int c3 = cells[i3];
 								short m3 = grid.GetCandidates(c3);
-								if (!m3.ExceptOverlaps(extraDigitsMask))
+								if ((m3 & ~extraDigitsMask) == 0)
 								{
 									continue;
 								}
@@ -1600,7 +1600,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									{
 										int c4 = cells[i4];
 										short m4 = grid.GetCandidates(c4);
-										if (!m4.ExceptOverlaps(extraDigitsMask))
+										if ((m4 & ~extraDigitsMask) == 0)
 										{
 											continue;
 										}
@@ -1743,7 +1743,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				short currentMask = grid.GetCandidates(cell);
 				mergedMaskInOtherCells |= currentMask;
-				if (!currentMask.Overlaps(comparer)
+				if ((currentMask & comparer) == 0
 					|| currentMask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty)
 				{
 					notSatisfiedType3 = true;
@@ -1910,7 +1910,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short maskIsolated = (short)(
 				cannibalMode ? (lineMask & blockMask & selectedInterMask) : maskOnlyInInter);
 			if (!cannibalMode && (
-				blockMask.Overlaps(lineMask)
+				(blockMask & lineMask) != 0
 				|| maskIsolated != 0 && !maskIsolated.IsPowerOfTwo())
 				|| cannibalMode && !maskIsolated.IsPowerOfTwo())
 			{
