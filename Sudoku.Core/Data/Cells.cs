@@ -237,7 +237,11 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the covered line.
 		/// </summary>
-		public readonly int CoveredLine => TrailingZeroCount(CoveredRegions & ~511);
+		public readonly int CoveredLine
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TrailingZeroCount(CoveredRegions & ~511);
+		}
 
 		/// <summary>
 		/// Indicates the total number of cells where the corresponding
