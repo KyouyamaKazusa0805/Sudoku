@@ -935,11 +935,6 @@
         </member>
         <member name="M:Sudoku.Data.Cells.ToString(System.String)">
             <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
-            <remarks>
-            The format can be <c><see langword="null"/></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>.
-            If the former three, the return value will be a cell notation collection;
-            otherwise, the binary representation.
-            </remarks>
             <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
         </member>
         <member name="M:Sudoku.Data.Cells.ToString(System.String,System.IFormatProvider)">

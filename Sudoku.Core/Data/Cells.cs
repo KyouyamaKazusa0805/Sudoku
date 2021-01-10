@@ -516,11 +516,6 @@ namespace Sudoku.Data
 		public override readonly string ToString() => ToString(null);
 
 		/// <inheritdoc cref="Formattable.ToString(string?)"/>
-		/// <remarks>
-		/// The format can be <c><see langword="null"/></c>, <c>N</c>, <c>n</c>, <c>B</c> or <c>b</c>.
-		/// If the former three, the return value will be a cell notation collection;
-		/// otherwise, the binary representation.
-		/// </remarks>
 		/// <exception cref="FormatException">Throws when the format is invalid.</exception>
 		public readonly string ToString(string? format)
 		{
