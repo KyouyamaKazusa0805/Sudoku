@@ -154,7 +154,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 										var elimMapIsolated = Cells.Empty;
 										int digitIsolated = maskIsolated.FindFirstSet();
-										if (digitIsolated != 32)
+										if (digitIsolated != BitOperationsEx.InvalidFirstSet)
 										{
 											elimMapIsolated =
 											(

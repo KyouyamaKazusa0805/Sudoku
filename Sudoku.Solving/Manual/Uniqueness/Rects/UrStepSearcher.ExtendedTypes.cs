@@ -1918,7 +1918,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			var elimMapIsolated = Cells.Empty;
 			int digitIsolated = maskIsolated.FindFirstSet();
-			if (digitIsolated != 32)
+			if (digitIsolated != BitOperationsEx.InvalidFirstSet)
 			{
 				elimMapIsolated =
 				(

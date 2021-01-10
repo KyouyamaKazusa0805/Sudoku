@@ -10,6 +10,19 @@ namespace System.Extensions
 	/// <seealso cref="BitOperations"/>
 	public static class BitOperationsEx
 	{
+		/// <summary>
+		/// Indicates the invalid result when the method <see cref="BitOperations.PopCount(uint)"/> called.
+		/// </summary>
+		/// <seealso cref="BitOperations.PopCount(uint)"/>
+		public const int InvalidFirstSet = 32;
+
+		/// <summary>
+		/// Indicates the invalid result when the method <see cref="BitOperations.PopCount(ulong)"/> called.
+		/// </summary>
+		/// <seealso cref="BitOperations.PopCount(ulong)"/>
+		public const int InvalidFirstSetLong = 64;
+
+
 		/// <inheritdoc cref="Integer.SkipSetBit(Integer, int)"/>
 		public static byte SkipSetBit(this byte @this, int setBitPosCount)
 		{
