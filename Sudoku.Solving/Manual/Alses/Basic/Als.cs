@@ -248,7 +248,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							new(
 								digitsMask,
 								map,
-								(region, coveredLine) is ( < 9, >= 9)
+								(region, coveredLine) is ( < 9, >= 9 and not BitOperationsEx.InvalidFirstSet)
 								? ((regionMap | RegionMaps[coveredLine]) & emptyMap) - map
 								: tempMap - map));
 					}

@@ -231,10 +231,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the covered line.
 		/// </summary>
-		public readonly int CoveredLine =>
-			(CoveredRegions & ~511).FindFirstSet() is var result and not BitOperationsEx.InvalidFirstSet
-			? result
-			: -1;
+		public readonly int CoveredLine => (CoveredRegions & ~511).FindFirstSet();
 
 		/// <summary>
 		/// Indicates the total number of cells where the corresponding
