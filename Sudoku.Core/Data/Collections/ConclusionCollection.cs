@@ -146,7 +146,7 @@ namespace Sudoku.Data.Collections
 				else
 				{
 					sb
-						.AppendRange<Conclusion, string?, string?>(conclusions, &converter, separator)
+						.AppendRange(conclusions, conc => $"{conc}{separator}")
 						.RemoveFromEnd(separator.Length);
 				}
 
@@ -154,7 +154,6 @@ namespace Sudoku.Data.Collections
 			}
 
 			static int cmp(in Conclusion left, in Conclusion right) => left.CompareTo(right);
-			static string? converter(in Conclusion conc, in string? separator) => $"{conc}{separator}";
 		}
 
 

@@ -38,18 +38,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		protected sealed override string GetAdditional()
 		{
+			const string separator = ", ";
 			bool singular = ConjugatePairs.Count == 1;
 			return $"{(singular ? "a " : string.Empty)}conjugate pair{(singular ? string.Empty : "s")} {g()}";
 
-			unsafe string g()
-			{
-				const string separator = ", ";
-				static string? converter(ConjugatePair cp) => $"{cp}{separator}";
-				return new StringBuilder()
-					.AppendRange<ConjugatePair, string?>(ConjugatePairs, &converter)
-					.RemoveFromEnd(separator.Length)
-					.ToString();
-			}
+			string g() =>
+				new StringBuilder()
+				.AppendRange(ConjugatePairs, static cp => $"{cp}{separator}")
+				.RemoveFromEnd(separator.Length)
+				.ToString();
 		}
 	}
 }

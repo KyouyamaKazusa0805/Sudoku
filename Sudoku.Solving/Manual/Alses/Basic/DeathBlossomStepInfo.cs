@@ -41,13 +41,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Cell {pivotStr} - {g(this)} => {elimStr}";
 
-			static unsafe string g(DeathBlossomStepInfo @this) =>
+			static string g(DeathBlossomStepInfo @this) =>
 				new StringBuilder()
-				.AppendRange<KeyValuePair<int, Als>, string>(@this.Alses, &converter)
+				.AppendRange(@this.Alses, static pair => $"{pair.Key + 1} - {pair.Value}{separator}")
 				.RemoveFromEnd(separator.Length)
 				.ToString();
-
-			static string converter(KeyValuePair<int, Als> pair) => $"{pair.Key + 1} - {pair.Value}{separator}";
 		}
 	}
 }

@@ -559,10 +559,9 @@ namespace Sudoku.Data
 				return sb.ToString();
 			}
 
-			static unsafe string normalToString(in Cells @this)
+			static string normalToString(in Cells @this)
 			{
 				const string leftCurlyBrace = "{ ", rightCurlyBrace = " }", separator = ", ";
-				static int converter(int v) => v + 1;
 				var sbRow = new StringBuilder();
 				var dic = new Dictionary<int, ICollection<int>>();
 				foreach (int cell in @this)
@@ -582,7 +581,7 @@ namespace Sudoku.Data
 						.Append('r')
 						.Append(row + 1)
 						.Append('c')
-						.AppendRange<int, int>(dic[row], &converter)
+						.AppendRange(dic[row], static v => (v + 1).ToString())
 						.Append(separator);
 				}
 				sbRow.RemoveFromEnd(separator.Length);
@@ -606,7 +605,7 @@ namespace Sudoku.Data
 				{
 					sbColumn
 						.Append('r')
-						.AppendRange<int, int>(dic[column], &converter)
+						.AppendRange(dic[column], static v => (v + 1).ToString())
 						.Append('c')
 						.Append(column + 1)
 						.Append(separator);
