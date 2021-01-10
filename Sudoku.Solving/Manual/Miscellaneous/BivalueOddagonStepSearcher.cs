@@ -119,7 +119,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 
 						foreach (int nextCell in cellsMap)
 						{
-							if (tempLoop[0] == nextCell && tempLoop.Count >= 5 && tempLoop.Count.IsOdd()
+							if (tempLoop[0] == nextCell && tempLoop.Count >= 5 && (tempLoop.Count & 1) != 0
 								&& IsValidLoop(loopMap))
 							{
 								// The loop is closed. Now construct the result pair.

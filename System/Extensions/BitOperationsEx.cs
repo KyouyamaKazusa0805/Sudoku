@@ -106,38 +106,6 @@ namespace System.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsPowerOfTwo(this long @this) => @this != 0 && (@this & (@this - 1L)) == 0;
 
-		/// <inheritdoc cref="Integer.IsOdd(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsOdd(this byte @this) => (@this & 1) != 0;
-
-		/// <inheritdoc cref="Integer.IsOdd(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsOdd(this short @this) => (@this & 1) != 0;
-
-		/// <inheritdoc cref="Integer.IsOdd(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsOdd(this int @this) => (@this & 1) != 0;
-
-		/// <inheritdoc cref="Integer.IsOdd(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsOdd(this long @this) => (@this & 1) != 0;
-
-		/// <inheritdoc cref="Integer.IsEven(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsEven(this byte @this) => (@this & 1) == 0;
-
-		/// <inheritdoc cref="Integer.IsEven(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsEven(this short @this) => (@this & 1) == 0;
-
-		/// <inheritdoc cref="Integer.IsEven(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsEven(this int @this) => (@this & 1) == 0;
-
-		/// <inheritdoc cref="Integer.IsEven(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsEven(this long @this) => (@this & 1) == 0;
-
 		/// <inheritdoc cref="Integer.ContainsBit(Integer, int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool ContainsBit(this byte @this, int bitPosition) => (@this >> bitPosition & 1) != 0;
@@ -215,7 +183,7 @@ namespace System.Extensions
 		{
 			for (int i = 0, count = -1; i < 8; i++, @this >>= 1)
 			{
-				if (@this.IsOdd() && ++count == order)
+				if ((@this & 1) != 0 && ++count == order)
 				{
 					return i;
 				}
@@ -229,7 +197,7 @@ namespace System.Extensions
 		{
 			for (int i = 0, count = -1; i < 16; i++, @this >>= 1)
 			{
-				if (@this.IsOdd() && ++count == order)
+				if ((@this & 1) != 0 && ++count == order)
 				{
 					return i;
 				}
@@ -243,7 +211,7 @@ namespace System.Extensions
 		{
 			for (int i = 0, count = -1; i < 32; i++, @this >>= 1)
 			{
-				if (@this.IsOdd() && ++count == order)
+				if ((@this & 1) != 0 && ++count == order)
 				{
 					return i;
 				}
@@ -257,7 +225,7 @@ namespace System.Extensions
 		{
 			for (int i = 0, count = -1; i < 64; i++, @this >>= 1)
 			{
-				if (@this.IsOdd() && ++count == order)
+				if ((@this & 1) != 0 && ++count == order)
 				{
 					return i;
 				}
@@ -279,7 +247,7 @@ namespace System.Extensions
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 8; i++, @this >>= 1)
 			{
-				if (@this.IsOdd())
+				if ((@this & 1) != 0)
 				{
 					resultSpan[p++] = i;
 				}
@@ -300,7 +268,7 @@ namespace System.Extensions
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 16; i++, @this >>= 1)
 			{
-				if (@this.IsOdd())
+				if ((@this & 1) != 0)
 				{
 					resultSpan[p++] = i;
 				}
@@ -321,7 +289,7 @@ namespace System.Extensions
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 32; i++, @this >>= 1)
 			{
-				if (@this.IsOdd())
+				if ((@this & 1) != 0)
 				{
 					resultSpan[p++] = i;
 				}
@@ -342,7 +310,7 @@ namespace System.Extensions
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 64; i++, @this >>= 1)
 			{
-				if (@this.IsOdd())
+				if ((@this & 1) != 0)
 				{
 					resultSpan[p++] = i;
 				}

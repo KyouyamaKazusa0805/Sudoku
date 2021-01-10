@@ -317,7 +317,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 
 						for (int digit = 0, temp = mask; digit < 9; digit++, temp >>= 1)
 						{
-							if (temp.IsOdd() && !EliminateDigit(cell, digit))
+							if ((temp & 1) != 0 && !EliminateDigit(cell, digit))
 							{
 								return false;
 							}
