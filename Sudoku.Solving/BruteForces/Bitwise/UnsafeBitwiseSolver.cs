@@ -120,7 +120,9 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// The inner solver.
 		/// </summary>
 		/// <param name="puzzle">The puzzle.</param>
-		/// <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
+		/// <param name="solution">
+		/// The solution. <see langword="null"/> if you don't want to use the value.
+		/// </param>
 		/// <param name="limit">The limit.</param>
 		/// <returns>The number of all solutions.</returns>
 		public long Solve(string puzzle, StringBuilder? solution, int limit)
