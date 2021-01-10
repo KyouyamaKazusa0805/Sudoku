@@ -7,7 +7,7 @@ namespace Sudoku.Recognition.Constants
 	/// <summary>
 	/// Define the internal settings.
 	/// </summary>
-	internal static class Processings
+	internal static class Constants
 	{
 		/// <summary>
 		/// Indicates the maximum size.

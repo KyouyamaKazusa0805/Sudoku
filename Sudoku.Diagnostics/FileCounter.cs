@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Extensions;
 using System.IO;
 using System.Linq;
-using Sudoku.Constants;
+using static Sudoku.Constants;
 
 namespace Sudoku.Diagnostics
 {

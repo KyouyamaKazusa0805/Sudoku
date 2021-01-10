@@ -8,7 +8,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
 using Sudoku.Recognition.Extensions;
-using static Sudoku.Recognition.Constants.Processings;
+using static Sudoku.Recognition.Constants.Constants;
 using Cv = Emgu.CV.CvInvoke;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 

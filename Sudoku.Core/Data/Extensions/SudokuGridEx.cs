@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Data.Extensions
 {

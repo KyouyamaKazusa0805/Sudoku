@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using static System.Algorithms;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Data.Extensions
 {

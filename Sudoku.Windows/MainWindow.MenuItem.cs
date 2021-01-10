@@ -21,9 +21,9 @@ using Sudoku.Solving.Checking;
 using Sudoku.Generating;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
-using Sudoku.Windows.Constants;
 using System.Extensions;
 using System.Threading;
+using static Sudoku.Windows.Constants;
 #if SUDOKU_RECOGNITION
 using System.Drawing;
 #endif

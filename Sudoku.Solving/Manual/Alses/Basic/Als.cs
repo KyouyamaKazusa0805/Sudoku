@@ -5,7 +5,7 @@ using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
@@ -248,7 +248,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							new(
 								digitsMask,
 								map,
-								(region, coveredLine) is ( < 9, >= 9 and not BitOperationsEx.InvalidFirstSet)
+								(region, coveredLine) is ( < 9, >= 9 and not Constants.InvalidFirstSet)
 								? ((regionMap | RegionMaps[coveredLine]) & emptyMap) - map
 								: tempMap - map));
 					}

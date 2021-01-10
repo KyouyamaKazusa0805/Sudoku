@@ -16,8 +16,8 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
-using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
+using static Sudoku.Windows.Constants;
 using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
 
 namespace Sudoku.Windows

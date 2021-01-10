@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Solving.Extensions;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 
 const string separator = ", ";
 

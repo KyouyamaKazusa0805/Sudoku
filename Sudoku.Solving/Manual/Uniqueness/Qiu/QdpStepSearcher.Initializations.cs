@@ -1,7 +1,7 @@
 ﻿using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {

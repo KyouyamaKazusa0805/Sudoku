@@ -1,5 +1,5 @@
 ﻿using Sudoku.Data;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Extensions
 {

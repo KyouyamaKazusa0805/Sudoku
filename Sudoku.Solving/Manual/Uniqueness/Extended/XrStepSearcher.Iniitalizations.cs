@@ -2,7 +2,7 @@
 using Sudoku.DocComments;
 using System.Collections.Generic;
 using System.Extensions;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {

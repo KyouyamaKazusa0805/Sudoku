@@ -1,0 +1,22 @@
+﻿using System.Numerics;
+
+namespace Sudoku
+{
+	/// <summary>
+	/// Encapsulates the class that stores all constants used in the whole project.
+	/// </summary>
+	public static partial class Constants
+	{
+		/// <summary>
+		/// Indicates the invalid return value when called <see cref="BitOperations.PopCount(uint)"/>.
+		/// </summary>
+		/// <seealso cref="BitOperations.PopCount(uint)"/>
+		public const int InvalidFirstSet = 32;
+
+		/// <summary>
+		/// Indicates the invalid return value when called <see cref="BitOperations.PopCount(ulong)"/>.
+		/// </summary>
+		/// <seealso cref="BitOperations.PopCount(ulong)"/>
+		public const int InvalidFirstSetLong = 64;
+	}
+}

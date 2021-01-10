@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Sudoku.Data;
 using Sudoku.Solving.BruteForces.Bitwise;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Generating
 {

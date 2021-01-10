@@ -4,7 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Extensions;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Reversal

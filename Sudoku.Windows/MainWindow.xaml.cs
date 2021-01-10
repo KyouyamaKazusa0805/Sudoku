@@ -18,8 +18,8 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Solving.Manual;
-using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
+using static Sudoku.Windows.Constants;
 using CoreResources = Sudoku.Windows.Resources;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 #if SUDOKU_RECOGNITION

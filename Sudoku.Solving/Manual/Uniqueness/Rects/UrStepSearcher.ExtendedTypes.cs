@@ -3,7 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -1918,7 +1918,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			var elimMapIsolated = Cells.Empty;
 			int digitIsolated = maskIsolated.FindFirstSet();
-			if (digitIsolated != BitOperationsEx.InvalidFirstSet)
+			if (digitIsolated != Constants.InvalidFirstSet)
 			{
 				elimMapIsolated =
 				(

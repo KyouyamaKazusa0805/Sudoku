@@ -7,7 +7,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.LastResorts;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Fishes

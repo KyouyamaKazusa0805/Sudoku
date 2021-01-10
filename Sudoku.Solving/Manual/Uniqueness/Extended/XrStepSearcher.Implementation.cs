@@ -3,7 +3,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using System.Collections.Generic;
 using System.Extensions;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended

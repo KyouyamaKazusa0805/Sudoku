@@ -9,7 +9,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
-using Sudoku.Windows.Constants;
+using static Sudoku.Windows.Constants;
 using static Sudoku.Windows.MainWindow;
 
 namespace Sudoku.Windows

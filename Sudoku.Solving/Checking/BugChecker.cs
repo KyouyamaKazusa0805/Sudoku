@@ -4,7 +4,7 @@ using System.Extensions;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Checking

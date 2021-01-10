@@ -27,87 +27,22 @@
             Throws when the specified files don't exist.
             </exception>
         </member>
-        <member name="T:Sudoku.Constants.Processings">
+        <member name="T:Sudoku.Constants">
             <summary>
-            The tables for grid processing. All fields will be initialized in
-            the static constructor.
+            Encapsulates the class that stores all constants used in the whole project.
             </summary>
         </member>
-        <member name="F:Sudoku.Constants.Processings.IntersectionBlockTable">
+        <member name="F:Sudoku.Constants.InvalidFirstSet">
             <summary>
-            The table of all blocks to iterate for each blocks.
+            Indicates the invalid return value when called <see cref="M:System.Numerics.BitOperations.PopCount(System.UInt32)"/>.
             </summary>
+            <seealso cref="M:System.Numerics.BitOperations.PopCount(System.UInt32)"/>
         </member>
-        <member name="F:Sudoku.Constants.Processings.Peers">
+        <member name="F:Sudoku.Constants.InvalidFirstSetLong">
             <summary>
-            <para>Indicates a table for each cell's peers.</para>
+            Indicates the invalid return value when called <see cref="M:System.Numerics.BitOperations.PopCount(System.UInt64)"/>.
             </summary>
-            <example>
-            '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
-            </example>
-        </member>
-        <member name="F:Sudoku.Constants.Processings.RegionCells">
-            <summary>
-            <para>
-            The map of all cell offsets in its specified region.
-            The indices is between 0 and 26, where <c>0..9</c> is for block 1 to 9,
-            <c>9..18</c> is for row 1 to 9 and <c>18..27</c> is for column 1 to 9.
-            </para>
-            </summary>
-            <example>
-            '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
-            </example>
-        </member>
-        <member name="F:Sudoku.Constants.Processings.RegionMaps">
-            <summary>
-            Indicates all grid maps that a grid contains.
-            </summary>
-            <example>
-            '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
-            </example>
-        </member>
-        <member name="F:Sudoku.Constants.Processings.PeerMaps">
-            <summary>
-            Indicates the peer maps using <see cref="F:Sudoku.Constants.Processings.Peers"/> table.
-            </summary>
-            <seealso cref="F:Sudoku.Constants.Processings.Peers"/>
-        </member>
-        <member name="F:Sudoku.Constants.Processings.IntersectionMaps">
-            <summary>
-            <para>
-            Indicates all maps that forms the each intersection. The pattern will be like:
-            <code>
-            .-------.-------.-------.
-            | C C C | A A A | A A A |
-            | B B B | . . . | . . . |
-            | B B B | . . . | . . . |
-            '-------'-------'-------'
-            </code>
-            </para>
-            <para>
-            In addition, in this data structure, "<c>CoverSet</c>" is a block and "<c>BaseSet</c>" is a line.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-            <remarks>
-            The initialization order between static constructor and static fields
-            may be annoying, so I use static constructor.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Constants.Processings.ValueTupleComparer">
-            <summary>
-            The inner comparer of <see cref="T:System.ValueTuple`2"/> used in
-            the field <see cref="F:Sudoku.Constants.Processings.IntersectionMaps"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Constants.Processings.IntersectionMaps"/>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Constants.Processings.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
-            <inheritdoc/>
+            <seealso cref="M:System.Numerics.BitOperations.PopCount(System.UInt64)"/>
         </member>
         <member name="T:Sudoku.Constants.RegularExpressions">
             <summary>
@@ -188,6 +123,88 @@
             <summary>
             Indicates the regular expression to match a tab character.
             </summary>
+        </member>
+        <member name="T:Sudoku.Constants.Tables">
+            <summary>
+            The tables for grid processing. All fields will be initialized in
+            the static constructor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.Tables.IntersectionBlockTable">
+            <summary>
+            The table of all blocks to iterate for each blocks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.Tables.Peers">
+            <summary>
+            <para>Indicates a table for each cell's peers.</para>
+            </summary>
+            <example>
+            '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
+            </example>
+        </member>
+        <member name="F:Sudoku.Constants.Tables.RegionCells">
+            <summary>
+            <para>
+            The map of all cell offsets in its specified region.
+            The indices is between 0 and 26, where <c>0..9</c> is for block 1 to 9,
+            <c>9..18</c> is for row 1 to 9 and <c>18..27</c> is for column 1 to 9.
+            </para>
+            </summary>
+            <example>
+            '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
+            </example>
+        </member>
+        <member name="F:Sudoku.Constants.Tables.RegionMaps">
+            <summary>
+            Indicates all grid maps that a grid contains.
+            </summary>
+            <example>
+            '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
+            </example>
+        </member>
+        <member name="F:Sudoku.Constants.Tables.PeerMaps">
+            <summary>
+            Indicates the peer maps using <see cref="F:Sudoku.Constants.Tables.Peers"/> table.
+            </summary>
+            <seealso cref="F:Sudoku.Constants.Tables.Peers"/>
+        </member>
+        <member name="F:Sudoku.Constants.Tables.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection. The pattern will be like:
+            <code>
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            </code>
+            </para>
+            <para>
+            In addition, in this data structure, "<c>CoverSet</c>" is a block and "<c>BaseSet</c>" is a line.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Constants.Tables.#cctor">
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+            <remarks>
+            The initialization order between static constructor and static fields
+            may be annoying, so I use static constructor.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Constants.Tables.ValueTupleComparer">
+            <summary>
+            The inner comparer of <see cref="T:System.ValueTuple`2"/> used in
+            the field <see cref="F:Sudoku.Constants.Tables.IntersectionMaps"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Constants.Tables.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.Constants.Tables.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Constants.Tables.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.BitSubsetsGenerator">
             <summary>
@@ -689,10 +706,10 @@
             </summary>
             <param name="offset">The cell offset.</param>
             <remarks>
-            If you don't want to set itself, you may use <see cref="F:Sudoku.Constants.Processings.PeerMaps"/>
+            If you don't want to set itself, you may use <see cref="F:Sudoku.Constants.Tables.PeerMaps"/>
             instead.
             </remarks>
-            <seealso cref="F:Sudoku.Constants.Processings.PeerMaps"/>
+            <seealso cref="F:Sudoku.Constants.Tables.PeerMaps"/>
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Int32[])">
             <summary>
@@ -764,9 +781,9 @@
             will set the bit of itself.
             </param>
             <remarks>
-            If you want to use this constructor, please use <see cref="F:Sudoku.Constants.Processings.PeerMaps"/> instead.
+            If you want to use this constructor, please use <see cref="F:Sudoku.Constants.Tables.PeerMaps"/> instead.
             </remarks>
-            <seealso cref="F:Sudoku.Constants.Processings.PeerMaps"/>
+            <seealso cref="F:Sudoku.Constants.Tables.PeerMaps"/>
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Int64,System.Int64)">
             <summary>
