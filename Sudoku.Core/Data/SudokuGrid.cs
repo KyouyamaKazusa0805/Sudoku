@@ -5,12 +5,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
 using Formatter = Sudoku.Data.SudokuGrid.GridFormatter;
 using Parser = Sudoku.Data.SudokuGrid.GridParser;
 using ParsingOption = Sudoku.Data.GridParsingOption;
-using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data
 {
@@ -62,13 +62,13 @@ namespace Sudoku.Data
 		/// Indicates the event triggered when the value is changed.
 		/// </summary>
 		[CLSCompliant(false)]
-		public static readonly delegate*<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
+		public static readonly delegate* managed<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
 
 		/// <summary>
 		/// Indicates the event triggered when should re-compute candidates.
 		/// </summary>
 		[CLSCompliant(false)]
-		public static readonly delegate*<ref SudokuGrid, void> RefreshingCandidates;
+		public static readonly delegate* managed<ref SudokuGrid, void> RefreshingCandidates;
 
 		/// <summary>
 		/// Indicates the default grid that all values are initialized 0, which is same as
@@ -795,7 +795,7 @@ namespace Sudoku.Data
 		/// <seealso cref="CandidateMap"/>
 		/// <seealso cref="DigitsMap"/>
 		/// <seealso cref="ValuesMap"/>
-		private readonly Cells[] GetMap(delegate*<in SudokuGrid, int, int, bool> predicate)
+		private readonly Cells[] GetMap(delegate* managed<in SudokuGrid, int, int, bool> predicate)
 		{
 			var result = new Cells[9];
 			for (int digit = 0; digit < 9; digit++)
@@ -820,7 +820,7 @@ namespace Sudoku.Data
 		/// <returns>The cells.</returns>
 		/// <seealso cref="EmptyCells"/>
 		/// <seealso cref="BivalueCells"/>
-		private readonly Cells GetCells(delegate*<in SudokuGrid, int, bool> predicate)
+		private readonly Cells GetCells(delegate* managed<in SudokuGrid, int, bool> predicate)
 		{
 			var result = Cells.Empty;
 			for (int cell = 0; cell < 81; cell++)

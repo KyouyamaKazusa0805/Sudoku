@@ -21,11 +21,11 @@ namespace System
 		/// types such as <see cref="int"/>, <see cref="float"/> or so on, because they can use operators directly.
 		/// </remarks>
 		[CLSCompliant(false)]
-		public static unsafe void Sort<T>(this T[] @this, delegate*<in T, in T, int> comparer)
+		public static unsafe void Sort<T>(this T[] @this, delegate* managed<in T, in T, int> comparer)
 		{
 			q(0, @this.Length - 1, @this, comparer);
 
-			static void q(int l, int r, T[] @this, delegate*<in T, in T, int> comparer)
+			static void q(int l, int r, T[] @this, delegate* managed<in T, in T, int> comparer)
 			{
 				if (l < r)
 				{

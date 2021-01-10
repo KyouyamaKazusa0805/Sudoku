@@ -141,7 +141,7 @@ namespace System.Extensions
 		[CLSCompliant(false)]
 		public static unsafe StringBuilder AppendRange<TElement, TOther>(
 			this StringBuilder @this, IEnumerable<TElement?> contentList,
-			delegate*<TElement?, TOther?> converter)
+			delegate* managed<TElement?, TOther?> converter)
 		{
 			foreach (var content in contentList)
 			{
@@ -170,7 +170,7 @@ namespace System.Extensions
 		[CLSCompliant(false)]
 		public static unsafe StringBuilder AppendRange<TElement, TAuxiliary, TResult>(
 			this StringBuilder @this, IEnumerable<TElement?> contentList,
-			delegate*<in TElement?, in TAuxiliary?, TResult?> converter, in TAuxiliary value)
+			delegate* managed<in TElement?, in TAuxiliary?, TResult?> converter, in TAuxiliary value)
 		{
 			foreach (var content in contentList)
 			{
