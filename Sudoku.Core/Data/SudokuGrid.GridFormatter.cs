@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data
 {
@@ -351,7 +352,7 @@ namespace Sudoku.Data
 
 						// Iteration on each candidate.
 						// Counts the number of candidates.
-						candidatesCount += value.PopCount();
+						candidatesCount += PopCount((uint)value);
 
 						// Compares the values.
 						int comparer =
@@ -438,9 +439,10 @@ namespace Sudoku.Data
 										var cellStatus = MaskGetStatus(value);
 
 										value &= MaxCandidatesMask;
-										int d = value == 0
+										int d =
+											value == 0
 											? -1
-											: (cellStatus != CellStatus.Empty ? value.FindFirstSet() : -1) + 1;
+											: (cellStatus != CellStatus.Empty ? TrailingZeroCount(value) : -1) + 1;
 										string s;
 										switch (cellStatus)
 										{

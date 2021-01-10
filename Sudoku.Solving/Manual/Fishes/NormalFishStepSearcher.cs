@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -166,7 +167,7 @@ namespace Sudoku.Solving.Manual.Fishes
 							}
 
 							// Cover set shouldn't overlap with the block of all fins lying in.
-							int finBlock = fins.BlockMask.FindFirstSet();
+							int finBlock = TrailingZeroCount(fins.BlockMask);
 							if (!coverLine.Overlaps(RegionMaps[finBlock]))
 							{
 								continue;

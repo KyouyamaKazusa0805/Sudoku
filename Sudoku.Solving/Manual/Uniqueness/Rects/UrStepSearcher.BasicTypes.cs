@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -119,13 +120,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int extraMask = (grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) ^ comparer;
-			if (extraMask.PopCount() != 1)
+			if (PopCount((uint)extraMask) != 1)
 			{
 				return;
 			}
 
 			// Type 2 or 5 found. Now check elimination.
-			int extraDigit = extraMask.FindFirstSet();
+			int extraDigit = TrailingZeroCount(extraMask);
 			var elimMap = new Cells { corner1, corner2 }.PeerIntersection & CandMaps[extraDigit];
 			if (elimMap.IsEmpty)
 			{
@@ -236,7 +237,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
-				for (int size = otherDigitsMask.PopCount() - 1; size < iterationMap.Count; size++)
+				for (int size = PopCount((uint)otherDigitsMask) - 1; size < iterationMap.Count; size++)
 				{
 					foreach (int[] iteratedCells in iterationMap.ToArray().GetSubsets(size))
 					{
@@ -245,7 +246,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							tempMask |= grid.GetCandidates(cell);
 						}
-						if (tempMask.Overlaps(comparer) || tempMask.PopCount() - 1 != size
+						if (tempMask.Overlaps(comparer) || PopCount((uint)tempMask) - 1 != size
 							|| !tempMask.Covers(otherDigitsMask))
 						{
 							continue;
@@ -364,7 +365,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					// Yes, Type 4 found.
 					// Now check elimination.
-					int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
+					int elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
 					var elimMap = otherCellsMap & CandMaps[elimDigit];
 					if (elimMap.IsEmpty)
 					{
@@ -464,13 +465,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			// Get the summary mask.
 			short extraMask = (short)(grid.BitwiseOrMasks(otherCellsMap) ^ comparer);
-			if (extraMask.PopCount() != 1)
+			if (PopCount((uint)extraMask) != 1)
 			{
 				return;
 			}
 
 			// Type 5 found. Now check elimination.
-			int extraDigit = extraMask.FindFirstSet();
+			int extraDigit = TrailingZeroCount(extraMask);
 			var conclusions = new List<Conclusion>();
 			var cellsThatContainsExtraDigit = otherCellsMap & CandMaps[extraDigit];
 			if (cellsThatContainsExtraDigit.HasOnlyOneElement())
@@ -689,7 +690,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				// Hidden UR found. Now check eliminations.
-				int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
+				int elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
 				if (grid.Exists(abzCell, elimDigit) is not true)
 				{
 					continue;

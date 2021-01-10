@@ -6,6 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -52,7 +53,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// The number of different candidates in base cells can't be greater than 5.
 				short baseCandsMask = (short)(grid.GetCandidates(b1) | grid.GetCandidates(b2));
-				if (baseCandsMask.PopCount() > 5)
+				if (PopCount((uint)baseCandsMask) > 5)
 				{
 					continue;
 				}
@@ -109,7 +110,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					&& nonBaseQ > 0
 					&& grid.GetStatus(tq1) == CellStatus.Empty ^ grid.GetStatus(tq2) == CellStatus.Empty)
 				{
-					int conjugatPairDigit = nonBaseQ.FindFirstSet();
+					int conjugatPairDigit = TrailingZeroCount(nonBaseQ);
 					if (grid.Exists(tq1, conjugatPairDigit) is true)
 					{
 						candidateOffsets.Add(new(1, tq1 * 9 + conjugatPairDigit));
@@ -126,7 +127,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					&& nonBaseR > 0
 					&& grid.GetStatus(tr1) == CellStatus.Empty ^ grid.GetStatus(tr2) == CellStatus.Empty)
 				{
-					int conjugatPairDigit = nonBaseR.FindFirstSet();
+					int conjugatPairDigit = TrailingZeroCount(nonBaseR);
 					if (grid.Exists(tr1, conjugatPairDigit) is true)
 					{
 						candidateOffsets.Add(new(1, tr1 * 9 + conjugatPairDigit));
@@ -212,7 +213,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var crosslinePerCandidate = crossline & DigitMaps[digit];
 				short r = crosslinePerCandidate.RowMask, c = crosslinePerCandidate.ColumnMask;
-				if ((r.PopCount(), c.PopCount()) is not ( > 2, > 2))
+				if ((PopCount((uint)r), PopCount((uint)c)) is not ( > 2, > 2))
 				{
 					continue;
 				}
@@ -304,7 +305,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						count++;
 					}
 
-					if (count == mask.PopCount() - 1)
+					if (count == PopCount((uint)mask) - 1)
 					{
 						for (int j = 0; j < 9; j++)
 						{

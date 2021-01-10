@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using static System.Numerics.BitOperations;
 
 namespace System.Extensions
 {
@@ -21,7 +22,7 @@ namespace System.Extensions
 			int result = 0;
 			foreach (int integer in integers)
 			{
-				result += integer.PopCount();
+				result += PopCount((uint)integer);
 			}
 
 			return result;

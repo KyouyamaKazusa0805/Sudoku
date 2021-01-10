@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -70,7 +71,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				}
 				else
 				{
-					string digitStr = (ZDigitsMask.FindFirstSet() + 1).ToString();
+					string digitStr = (TrailingZeroCount(ZDigitsMask) + 1).ToString();
 					string cellsStr = (Als1.Map | Als2.Map).ToString();
 					return $"{Name}: Only the digit {digitStr} can be duplicate in cells {cellsStr} => {elimStr}";
 				}

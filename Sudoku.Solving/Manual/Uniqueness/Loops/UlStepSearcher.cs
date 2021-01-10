@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Solving.Extensions;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -37,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			foreach (int cell in BivalueMap)
 			{
 				short mask = grid.GetCandidates(cell);
-				int d1 = mask.FindFirstSet(), d2 = mask.GetNextSet(d1);
+				int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
 				var loopMap = Cells.Empty;
 				loops.Clear();
 				tempLoop.Clear();
@@ -133,7 +134,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								short nextCellMask = grid.GetCandidates(nextCell);
 								exDigitsMask |= nextCellMask;
 								exDigitsMask &= (short)~((1 << d1) | (1 << d2));
-								int digitsCount = nextCellMask.PopCount();
+								int digitsCount = PopCount((uint)nextCellMask);
 
 								// We can continue if:
 								// - The cell has exactly 2 digits of the loop.

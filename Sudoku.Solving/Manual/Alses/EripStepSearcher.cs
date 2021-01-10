@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -29,7 +30,7 @@ namespace Sudoku.Solving.Manual.Alses
 				int c1 = BivalueMap[i];
 
 				short mask = grid.GetCandidates(c1);
-				int d1 = mask.FindFirstSet(), d2 = mask.GetNextSet(d1);
+				int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
 				for (int j = i + 1; j < length; j++)
 				{
 					int c2 = BivalueMap[j];

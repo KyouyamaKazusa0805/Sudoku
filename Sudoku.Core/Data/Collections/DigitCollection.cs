@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Extensions;
 using System.Text;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data.Collections
 {
@@ -58,7 +59,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Get the number of digits in the collection.
 		/// </summary>
-		public int Count => _mask.PopCount();
+		public int Count => PopCount((uint)_mask);
 
 
 		/// <inheritdoc/>
@@ -92,7 +93,7 @@ namespace Sudoku.Data.Collections
 
 			if (_mask.IsPowerOfTwo())
 			{
-				return (_mask.FindFirstSet() + 1).ToString();
+				return (TrailingZeroCount(_mask) + 1).ToString();
 			}
 
 			string separator = format ?? string.Empty;

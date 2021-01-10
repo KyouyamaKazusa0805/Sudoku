@@ -4,6 +4,7 @@ using System.Extensions;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -57,7 +58,7 @@ namespace Sudoku.Solving.Checking
 			int multivalueCellsCount = 0;
 			foreach (int value in EmptyMap)
 			{
-				switch (Puzzle.GetCandidates(value).PopCount())
+				switch (PopCount((uint)Puzzle.GetCandidates(value)))
 				{
 					case 1:
 					case > 2 when ++multivalueCellsCount > maximumEmptyCells:
@@ -162,7 +163,7 @@ namespace Sudoku.Solving.Checking
 					}
 
 					chosen[currentIndex] = i;
-					int pos1 = (*&mask).FindFirstSet();
+					int pos1 = TrailingZeroCount(*&mask);
 
 					stack[currentIndex, pos1].AddAnyway(currentCell);
 					stack[currentIndex, mask.GetNextSet(pos1)].AddAnyway(currentCell);

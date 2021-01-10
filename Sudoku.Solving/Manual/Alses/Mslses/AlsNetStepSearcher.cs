@@ -4,6 +4,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -40,12 +41,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				int n = 0, count = map.Count;
 				for (int digit = 0; digit < 9; digit++)
 				{
-					var curMap = linkForEachDigit + digit;
-					*curMap = CandMaps[digit] & map;
+					var pMap = linkForEachDigit + digit;
+					*pMap = CandMaps[digit] & map;
 					n += Algorithms.Min(
-						curMap->RowMask.PopCount(),
-						curMap->ColumnMask.PopCount(),
-						curMap->BlockMask.PopCount());
+						PopCount((uint)pMap->RowMask),
+						PopCount((uint)pMap->ColumnMask),
+						PopCount((uint)pMap->BlockMask));
 				}
 
 				if (n == count)
@@ -60,10 +61,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						short rMask = currentMap.RowMask;
 						short cMask = currentMap.ColumnMask;
 						short bMask = currentMap.BlockMask;
-						int temp = Algorithms.Min(rMask.PopCount(), cMask.PopCount(), bMask.PopCount());
+						int temp = Algorithms.Min(PopCount((uint)rMask), PopCount((uint)cMask), PopCount((uint)bMask));
 						var elimMap = Cells.Empty;
 						int check = 0;
-						if (rMask.PopCount() == temp)
+						if (PopCount((uint)rMask) == temp)
 						{
 							check++;
 							foreach (int i in rMask)
@@ -73,7 +74,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
-						if (cMask.PopCount() == temp)
+						if (PopCount((uint)cMask) == temp)
 						{
 							check++;
 							foreach (int i in cMask)
@@ -83,7 +84,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
-						if (bMask.PopCount() == temp)
+						if (PopCount((uint)bMask) == temp)
 						{
 							check++;
 							foreach (int i in bMask)

@@ -6,6 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
+using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -63,7 +64,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			foreach (int cell in EmptyMap)
 			{
 				short mask = grid.GetCandidates(cell);
-				if (mask.PopCount() >= 2)
+				if (PopCount((uint)mask) >= 2)
 				{
 					// Iterate on all candidates that aren't alone.
 					foreach (int digit in mask)
@@ -91,7 +92,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			IList<ChainingStepInfo> accumulator, in SudokuGrid grid, in Node pOn,
 			bool xEnabled, bool yEnabled)
 		{
-			if (grid.GetCandidates(pOn.Cell).PopCount() > 2 && !xEnabled)
+			if (PopCount((uint)grid.GetCandidates(pOn.Cell)) > 2 && !xEnabled)
 			{
 				// Y-Chains can only start with the bivalue cell.
 				return;

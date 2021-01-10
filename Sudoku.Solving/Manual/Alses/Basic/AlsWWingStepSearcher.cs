@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -60,7 +61,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					}
 
 					var mask = (short)(mask1 & mask2);
-					if (mask.PopCount() < 2)
+					if (PopCount((uint)mask) < 2)
 					{
 						continue;
 					}
@@ -172,7 +173,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 												{
 													new(-1, region1),
 													new(-2, region2),
-													new(0, conjugatePair.Regions.FindFirstSet())
+													new(0, TrailingZeroCount(conjugatePair.Regions))
 												}
 												: null
 											}

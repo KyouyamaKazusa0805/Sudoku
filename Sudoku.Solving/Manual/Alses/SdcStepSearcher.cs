@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -82,7 +83,7 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							selectedInterMask |= grid.GetCandidates(cell);
 						}
-						if (selectedInterMask.PopCount() <= currentInterMap.Count + 1)
+						if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 						{
 							// The intersection combination is an ALS or a normal subset,
 							// which is invalid in SdCs.
@@ -153,7 +154,7 @@ namespace Sudoku.Solving.Manual.Alses
 										}
 
 										var elimMapIsolated = Cells.Empty;
-										int digitIsolated = maskIsolated.FindFirstSet();
+										int digitIsolated = TrailingZeroCount(maskIsolated);
 										if (digitIsolated != Constants.InvalidFirstSet)
 										{
 											elimMapIsolated =
@@ -165,7 +166,7 @@ namespace Sudoku.Solving.Manual.Alses
 										}
 
 										if (currentInterMap.Count + i + j ==
-											blockMask.PopCount() + lineMask.PopCount() + maskOnlyInInter.PopCount()
+											PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
 											&& (!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty
 												|| !elimMapIsolated.IsEmpty))
 										{

@@ -4,6 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -58,13 +59,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			{
 				if (grid.GetStatus(pivot) != CellStatus.Empty
 					|| checkedCandidates[pivot] != grid.GetCandidates(pivot)
-					|| checkedCandidates[pivot].PopCount() > _maxPetals)
+					|| PopCount((uint)checkedCandidates[pivot]) > _maxPetals)
 				{
 					continue;
 				}
 
 				short cands = grid.GetCandidates(pivot);
-				int digitsCount = cands.PopCount();
+				int digitsCount = PopCount((uint)cands);
 				short[] allZ = new short[digitsCount];
 				int[] stack = new int[digitsCount];
 
@@ -316,14 +317,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							cands |= grid.GetCandidates(cell);
 						}
-						if (cands.PopCount() != i + 1)
+						if (PopCount((uint)cands) != i + 1)
 						{
 							// Not an ALS.
 							continue;
 						}
 
 						var map = new Cells(cells);
-						if ((map.BlockMask.PopCount(), region) is (1, >= 9))
+						if ((PopCount((uint)map.BlockMask), region) is (1, >= 9))
 						{
 							// If the current cells are in the same block and same line (i.e. in mini-line),
 							// we will process them in blocks.

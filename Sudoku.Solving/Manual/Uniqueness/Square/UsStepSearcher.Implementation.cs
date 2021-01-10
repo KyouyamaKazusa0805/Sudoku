@@ -2,6 +2,7 @@
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -18,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="mask">The mask.</param>
 		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
-			if (mask.PopCount() != 5)
+			if (PopCount((uint)mask) != 5)
 			{
 				return;
 			}
@@ -31,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					digitsMask |= (short)(1 << digit);
 				}
 
-				int extraDigit = (mask & ~digitsMask).FindFirstSet();
+				int extraDigit = TrailingZeroCount(mask & ~digitsMask);
 				var extraDigitMap = CandMaps[extraDigit] & pattern;
 				if (extraDigitMap.Count != 1)
 				{
@@ -79,7 +80,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <param name="mask">The mask.</param>
 		partial void CheckType2(IList<StepInfo> accumulator, in Cells pattern, short mask)
 		{
-			if (mask.PopCount() != 5)
+			if (PopCount((uint)mask) != 5)
 			{
 				return;
 			}
@@ -92,7 +93,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					digitsMask |= (short)(1 << digit);
 				}
 
-				int extraDigit = (mask & ~digitsMask).FindFirstSet();
+				int extraDigit = TrailingZeroCount(mask & ~digitsMask);
 				var elimMap = (CandMaps[extraDigit] & pattern).PeerIntersection & CandMaps[extraDigit];
 				if (elimMap.IsEmpty)
 				{
@@ -159,7 +160,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				foreach (int region in tempMap.CoveredRegions)
 				{
 					int[] allCells = ((RegionMaps[region] & EmptyMap) - pattern).ToArray();
-					for (int size = extraDigitsMask.PopCount() - 1, count = allCells.Length; size < count; size++)
+					for (int size = PopCount((uint)extraDigitsMask) - 1, count = allCells.Length; size < count; size++)
 					{
 						foreach (int[] cells in allCells.GetSubsets(size))
 						{
@@ -169,7 +170,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 								tempMask |= grid.GetCandidates(cell);
 							}
 
-							if (tempMask.PopCount() != size + 1 || !tempMask.Covers(extraDigitsMask))
+							if (PopCount((uint)tempMask) != size + 1 || !tempMask.Covers(extraDigitsMask))
 							{
 								continue;
 							}

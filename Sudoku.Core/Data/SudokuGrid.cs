@@ -10,6 +10,7 @@ using static Sudoku.Constants.Tables;
 using Formatter = Sudoku.Data.SudokuGrid.GridFormatter;
 using Parser = Sudoku.Data.SudokuGrid.GridParser;
 using ParsingOption = Sudoku.Data.GridParsingOption;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data
 {
@@ -205,7 +206,7 @@ namespace Sudoku.Data
 				{
 					if (GetStatus(i) == CellStatus.Empty)
 					{
-						count += GetCandidates(i).PopCount();
+						count += PopCount((uint)GetCandidates(i));
 					}
 				}
 
@@ -273,7 +274,7 @@ namespace Sudoku.Data
 			{
 				return GetCells(&p);
 
-				static bool p(in SudokuGrid @this, int cell) => @this.GetCandidates(cell).PopCount() == 2;
+				static bool p(in SudokuGrid @this, int cell) => PopCount((uint)@this.GetCandidates(cell)) == 2;
 			}
 		}
 
@@ -382,7 +383,7 @@ namespace Sudoku.Data
 			{
 				CellStatus.Undefined => -2,
 				CellStatus.Empty => -1,
-				CellStatus.Modifiable or CellStatus.Given => _values[cell].FindFirstSet()
+				CellStatus.Modifiable or CellStatus.Given => TrailingZeroCount(_values[cell])
 			};
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -113,7 +114,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						bool isNotPossibleUr = true;
 						foreach (int cell in urCells)
 						{
-							if ((grid.GetCandidates(cell) & comparer).PopCount() == 2)
+							if (PopCount((uint)(grid.GetCandidates(cell) & comparer)) == 2)
 							{
 								isNotPossibleUr = false;
 								break;

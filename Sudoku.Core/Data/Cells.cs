@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Data
@@ -168,7 +169,12 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="high">Higher 40 bits.</param>
 		/// <param name="low">Lower 41 bits.</param>
-		private Cells(long high, long low) => Count = (_high = high).PopCount() + (_low = low).PopCount();
+		private Cells(long high, long low)
+		{
+			_high = high;
+			_low = low;
+			Count = PopCount((ulong)_high) + PopCount((ulong)_low);
+		}
 
 
 		/// <summary>
@@ -231,7 +237,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the covered line.
 		/// </summary>
-		public readonly int CoveredLine => (CoveredRegions & ~511).FindFirstSet();
+		public readonly int CoveredLine => TrailingZeroCount(CoveredRegions & ~511);
 
 		/// <summary>
 		/// Indicates the total number of cells where the corresponding

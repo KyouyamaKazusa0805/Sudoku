@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -57,7 +58,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 					// If the number of digits that both two ALSes contain is only one (or zero),
 					// the ALS-XZ won't be formed.
-					if (xzMask.PopCount() < 2 || map.AllSetsAreInOneRegion(out int region))
+					if (PopCount((uint)xzMask) < 2 || map.AllSetsAreInOneRegion(out int region))
 					{
 						continue;
 					}
@@ -104,7 +105,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						finalZ |= (short)(1 << elimDigit);
 					}
 
-					if (AllowAlsCycles && rccMask.PopCount() == 2)
+					if (AllowAlsCycles && PopCount((uint)rccMask) == 2)
 					{
 						// Doubly linked ALS-XZ.
 						isDoublyLinked = true;
@@ -139,7 +140,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 						// Possible eliminations.
 						var tempMap = map;
-						tempMap = CandMaps[mask1.FindFirstSet()];
+						tempMap = CandMaps[TrailingZeroCount(mask1)];
 						foreach (int digit in mask1.SkipSetBit(1))
 						{
 							tempMap |= CandMaps[digit];
@@ -152,7 +153,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
 						}
-						tempMap = CandMaps[mask2.FindFirstSet()];
+						tempMap = CandMaps[TrailingZeroCount(mask2)];
 						foreach (int digit in mask2.SkipSetBit(1))
 						{
 							tempMap |= CandMaps[digit];

@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
@@ -22,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		: XrStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => 4.5M + ExtraDifficulty[Size] + .1M * ExtraDigitsMask.PopCount();
+		public override decimal Difficulty => 4.5M + ExtraDifficulty[Size] + .1M * PopCount((uint)ExtraDigitsMask);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

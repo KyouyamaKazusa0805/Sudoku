@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
@@ -42,7 +43,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <summary>
 		/// Indicates the size of this regular wing.
 		/// </summary>
-		public int Size => DigitsMask.PopCount();
+		public int Size => PopCount((uint)DigitsMask);
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

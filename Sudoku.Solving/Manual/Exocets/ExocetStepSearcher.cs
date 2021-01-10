@@ -6,8 +6,8 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
-using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -230,13 +230,13 @@ namespace Sudoku.Solving.Manual.Exocets
 							}
 						}
 
-						if (count == mask.PopCount() - 1)
+						if (count == PopCount((uint)mask) - 1)
 						{
 							for (int j = 0; j < 9; j++)
 							{
 								int p = RegionCells[regions[i]][j];
 								if (!grid.GetCandidates(p).Overlaps(mask)
-									|| grid.GetStatus(p) != Empty || p == onlyOne)
+									|| grid.GetStatus(p) != CellStatus.Empty || p == onlyOne)
 								{
 									continue;
 								}
@@ -275,7 +275,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						short mask1 = grid.GetCandidates(l), mask2 = grid.GetCandidates(r);
 						bool m1Locked = mask1.Overlaps(locked), m2Locked = mask2.Overlaps(locked);
-						if (locked.PopCount() == 1 && m1Locked ^ m2Locked)
+						if (PopCount((uint)locked) == 1 && m1Locked ^ m2Locked)
 						{
 							short targetMask = (short)(grid.GetCandidates(target) & baseCandidateMask);
 							short candidateMask = (short)(

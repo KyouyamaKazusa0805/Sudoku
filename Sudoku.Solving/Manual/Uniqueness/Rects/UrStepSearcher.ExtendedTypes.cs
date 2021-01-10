@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -42,7 +43,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int[] otherCells = otherCellsMap.ToArray();
 			short o1 = grid.GetCandidates(otherCells[0]), o2 = grid.GetCandidates(otherCells[1]);
 			short o = (short)(o1 | o2);
-			if ((o.PopCount(), o1.PopCount(), o2.PopCount(), o1 & comparer, o2 & comparer) is
+			if ((PopCount((uint)o), PopCount((uint)o1), PopCount((uint)o2), o1 & comparer, o2 & comparer) is
 				not (4, <= 3, <= 3, not 0, not 0)
 				|| !o.Covers(comparer))
 			{
@@ -50,7 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			short xyMask = (short)(o ^ comparer);
-			int x = xyMask.FindFirstSet(), y = xyMask.GetNextSet(x);
+			int x = TrailingZeroCount(xyMask), y = xyMask.GetNextSet(x);
 			var inter = new Cells(otherCells).PeerIntersection - urCells;
 			foreach (int possibleXyCell in inter)
 			{
@@ -190,7 +191,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								continue;
 							}
 
-							int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
+							int elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
 							var conclusions = new List<Conclusion>();
 							if (grid.Exists(elimCell, elimDigit) is true)
 							{
@@ -463,7 +464,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			if
 			(
 				(
-					mask.PopCount(), m1.PopCount(), m2.PopCount(), m3.PopCount(),
+					PopCount((uint)mask), PopCount((uint)m1), PopCount((uint)m2), PopCount((uint)m3),
 					m1 & comparer, m2 & comparer, m3 & comparer
 				) is not (4, <= 3, <= 3, <= 3, not 0, not 0, not 0)
 				|| !mask.Covers(comparer)
@@ -473,7 +474,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			short xyMask = (short)(mask ^ comparer);
-			int x = xyMask.FindFirstSet();
+			int x = TrailingZeroCount(xyMask);
 			int y = xyMask.GetNextSet(x);
 			var inter = otherCellsMap.PeerIntersection - urCells;
 			foreach (int possibleXyCell in inter)
@@ -1369,7 +1370,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				short mask2 = grid.GetCandidates(otherCell2);
 				short mask = (short)(mask1 | mask2);
 
-				if (mask.PopCount() != 2 + size || !mask.Covers(comparer)
+				if (PopCount((uint)mask) != 2 + size || !mask.Covers(comparer)
 					|| mask1 == comparer || mask2 == comparer)
 				{
 					return;
@@ -1406,7 +1407,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							// Check XY-Wing.
 							short m = (short)((short)(m1 | m2) ^ extraDigitsMask);
-							if ((m.PopCount(), (m1 & m2).PopCount()) != (1, 1))
+							if ((PopCount((uint)m), PopCount((uint)(m1 & m2))) != (1, 1))
 							{
 								continue;
 							}
@@ -1416,7 +1417,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							bool flag = true;
 							foreach (int cell in stackalloc[] { c1, c2 })
 							{
-								int extraDigit = (grid.GetCandidates(cell) & ~m).FindFirstSet();
+								int extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
 								if (!(testMap & CandMaps[extraDigit]).Contains(cell))
 								{
 									flag = false;
@@ -1430,7 +1431,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							// Now check eliminations.
 							var conclusions = new List<Conclusion>();
-							int elimDigit = m.FindFirstSet();
+							int elimDigit = TrailingZeroCount(m);
 							var elimMap = new Cells { c1, c2 }.PeerIntersection & CandMaps[elimDigit];
 							if (elimMap.IsEmpty)
 							{
@@ -1507,7 +1508,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									// Check XYZ-Wing.
 									short m = (short)(((short)(m1 | m2) | m3) ^ extraDigitsMask);
-									if ((m.PopCount(), (m1 & m2 & m3).PopCount()) != (1, 1))
+									if ((PopCount((uint)m), PopCount((uint)(m1 & m2 & m3))) != (1, 1))
 									{
 										continue;
 									}
@@ -1517,7 +1518,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									bool flag = true;
 									foreach (int cell in stackalloc[] { c1, c2, c3 })
 									{
-										int extraDigit = (grid.GetCandidates(cell) & ~m).FindFirstSet();
+										int extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
 										if (!(testMap & CandMaps[extraDigit]).Contains(cell))
 										{
 											flag = false;
@@ -1531,7 +1532,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									// Now check eliminations.
 									var conclusions = new List<Conclusion>();
-									int elimDigit = m.FindFirstSet();
+									int elimDigit = TrailingZeroCount(m);
 									var elimMap = new Cells { c1, c2, c3 }.PeerIntersection & CandMaps[elimDigit];
 									if (elimMap.IsEmpty)
 									{
@@ -1606,7 +1607,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 										// Check WXYZ-Wing.
 										short m = (short)((short)((short)((short)(m1 | m2) | m3) | m4) ^ extraDigitsMask);
-										if ((m.PopCount(), (m1 & m2 & m3 & m4).PopCount()) != (1, 1))
+										if ((PopCount((uint)m), PopCount((uint)(m1 & m2 & m3 & m4))) != (1, 1))
 										{
 											continue;
 										}
@@ -1616,7 +1617,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										bool flag = true;
 										foreach (int cell in stackalloc[] { c1, c2, c3, c4 })
 										{
-											int extraDigit = (grid.GetCandidates(cell) & ~m).FindFirstSet();
+											int extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
 											if (!(testMap & CandMaps[extraDigit]).Contains(cell))
 											{
 												flag = false;
@@ -1630,7 +1631,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 										// Now check eliminations.
 										var conclusions = new List<Conclusion>();
-										int elimDigit = m.FindFirstSet();
+										int elimDigit = TrailingZeroCount(m);
 										var elimMap = new Cells { c1, c2, c3, c4 }.PeerIntersection & CandMaps[elimDigit];
 										if (elimMap.IsEmpty)
 										{
@@ -1764,7 +1765,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			short otherDigitsMask = (short)(mergedMaskInOtherCells & ~comparer);
 			byte line = (byte)otherCellsMap.CoveredLine;
-			byte block = (byte)(otherCellsMap.CoveredRegions & ~(1 << line)).FindFirstSet();
+			byte block = (byte)TrailingZeroCount(otherCellsMap.CoveredRegions & ~(1 << line));
 			var (a, _, _, d) = IntersectionMaps[(line, block)];
 			var list = new List<Cells>(4);
 			foreach (bool cannibalMode in stackalloc[] { false, true })
@@ -1806,7 +1807,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					foreach (var currentInterMap in list)
 					{
 						short selectedInterMask = grid.BitwiseOrMasks(currentInterMap);
-						if (selectedInterMask.PopCount() <= currentInterMap.Count + 1)
+						if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 						{
 							// The intersection combination is an ALS or a normal subset,
 							// which is invalid in SdCs.
@@ -1917,7 +1918,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			var elimMapIsolated = Cells.Empty;
-			int digitIsolated = maskIsolated.FindFirstSet();
+			int digitIsolated = TrailingZeroCount(maskIsolated);
 			if (digitIsolated != Constants.InvalidFirstSet)
 			{
 				elimMapIsolated =
@@ -1929,7 +1930,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			if (currentInterMap.Count + i + j + 1 ==
-				blockMask.PopCount() + lineMask.PopCount() + maskOnlyInInter.PopCount()
+				PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
 				&& (!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty || !elimMapIsolated.IsEmpty))
 			{
 				// Check eliminations.

@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -25,7 +26,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			short cornerMask2, short centerMask, in Cells map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
-			if (orMask.PopCount() != (pattern.IsHeptagon ? 4 : 5))
+			if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
 			{
 				return;
 			}
@@ -39,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					tempMask |= (short)(1 << digit);
 				}
 
-				int otherDigit = (orMask & ~tempMask).FindFirstSet();
+				int otherDigit = TrailingZeroCount(orMask & ~tempMask);
 				var mapContainingThatDigit = map & CandMaps[otherDigit];
 				if (mapContainingThatDigit.Count != 1)
 				{
@@ -97,7 +98,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			short cornerMask2, short centerMask, in Cells map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
-			if (orMask.PopCount() != (pattern.IsHeptagon ? 4 : 5))
+			if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
 			{
 				return;
 			}
@@ -111,7 +112,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					tempMask |= (short)(1 << digit);
 				}
 
-				int otherDigit = (orMask & ~tempMask).FindFirstSet();
+				int otherDigit = TrailingZeroCount(orMask & ~tempMask);
 				var mapContainingThatDigit = map & CandMaps[otherDigit];
 				var elimMap = (mapContainingThatDigit.PeerIntersection - map) & CandMaps[otherDigit];
 				if (elimMap.IsEmpty)
@@ -180,7 +181,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					var iterationCellsMap = (RegionMaps[region] - currentMap) & EmptyMap;
 					int[] iterationCells = iterationCellsMap.ToArray();
 					short otherDigitsMask = (short)(orMask & ~tempMask);
-					for (int size = otherDigitsMask.PopCount() - 1; size < iterationCellsMap.Count; size++)
+					for (int size = PopCount((uint)otherDigitsMask) - 1; size < iterationCellsMap.Count; size++)
 					{
 						foreach (int[] combination in iterationCells.GetSubsets(size))
 						{
@@ -189,7 +190,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							{
 								comparer |= grid.GetCandidates(cell);
 							}
-							if (tempMask.Overlaps(comparer) || tempMask.PopCount() - 1 != size
+							if (tempMask.Overlaps(comparer) || PopCount((uint)tempMask) - 1 != size
 								|| !tempMask.Covers(otherDigitsMask))
 							{
 								continue;
@@ -333,7 +334,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						}
 
 						// Type 4 forms. Now check eliminations.
-						int finalDigit = (tempMask & ~combinationMask).FindFirstSet();
+						int finalDigit = TrailingZeroCount(tempMask & ~combinationMask);
 						var elimMap = combinationMap & CandMaps[finalDigit];
 						if (elimMap.IsEmpty)
 						{

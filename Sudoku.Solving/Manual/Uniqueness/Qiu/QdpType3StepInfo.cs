@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
@@ -19,7 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		short ExtraDigitsMask, IReadOnlyList<int> ExtraCells) : QdpStepInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => base.Difficulty + ExtraDigitsMask.PopCount() * .1M;
+		public override decimal Difficulty => base.Difficulty + PopCount((uint)ExtraDigitsMask) * .1M;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.QdpType3;

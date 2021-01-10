@@ -6,6 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -117,7 +118,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			foreach (int cell in EmptyMap)
 			{
 				short mask = grid.GetCandidates(cell);
-				int count = mask.PopCount();
+				int count = PopCount((uint)mask);
 				switch (count)
 				{
 					case > 2:

@@ -5,6 +5,7 @@ using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data.Collections
 {
@@ -53,7 +54,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Indicates the number of regions that contain in this collection.
 		/// </summary>
-		public int Count => _mask.PopCount();
+		public int Count => PopCount((uint)_mask);
 
 
 		/// <summary>
@@ -87,7 +88,7 @@ namespace Sudoku.Data.Collections
 
 			if (Count == 1)
 			{
-				int region = _mask.FindFirstSet();
+				int region = TrailingZeroCount(_mask);
 				return $"{GetLabel(region / 9)}{region % 9 + 1}";
 			}
 

@@ -4,6 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -32,7 +33,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				return;
 			}
 
-			int extraDigit = otherDigitsMask.FindFirstSet();
+			int extraDigit = TrailingZeroCount(otherDigitsMask);
 			var map = pair & CandMaps[extraDigit];
 			if (map.Count != 1)
 			{
@@ -113,7 +114,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				return;
 			}
 
-			int extraDigit = otherDigitsMask.FindFirstSet();
+			int extraDigit = TrailingZeroCount(otherDigitsMask);
 			var map = pair & CandMaps[extraDigit];
 			var elimMap = map.PeerIntersection & CandMaps[extraDigit];
 			if (elimMap.IsEmpty)
@@ -188,7 +189,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			{
 				var allCellsMap = (RegionMaps[region] & EmptyMap) - pair;
 				int[] allCells = allCellsMap.ToArray();
-				for (int size = otherDigitsMask.PopCount() - 1; size < allCells.Length; size++)
+				for (int size = PopCount((uint)otherDigitsMask) - 1; size < allCells.Length; size++)
 				{
 					foreach (int[] cells in allCells.GetSubsets(size))
 					{
@@ -198,7 +199,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							mask |= grid.GetCandidates(cell);
 						}
 
-						if (!mask.Covers(comparer) || mask.PopCount() != size + 1)
+						if (!mask.Covers(comparer) || PopCount((uint)mask) != size + 1)
 						{
 							continue;
 						}
@@ -309,7 +310,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						continue;
 					}
 
-					int elimDigit = (comparer & ~(1 << digit)).FindFirstSet();
+					int elimDigit = TrailingZeroCount(comparer & ~(1 << digit));
 					var elimMap = pair & CandMaps[elimDigit];
 					if (elimMap.IsEmpty)
 					{
@@ -378,7 +379,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			in Cells baseLine, in Pattern pattern, short comparer)
 		{
 			// Firstly, we should check the cells in the block that the square cells lying on.
-			int block = square.BlockMask.FindFirstSet();
+			int block = TrailingZeroCount(square.BlockMask);
 			var otherCellsMap = (RegionMaps[block] & EmptyMap) - square;
 			var tempMap = Cells.Empty;
 			var pairDigits = comparer.GetAllSets();

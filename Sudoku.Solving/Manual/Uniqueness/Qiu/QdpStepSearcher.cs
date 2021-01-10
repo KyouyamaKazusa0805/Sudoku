@@ -2,6 +2,7 @@
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -106,7 +107,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					}
 				}
 
-				if (!distinctionMask.IsPowerOfTwo() || appearedParts != appearedDigitsMask.PopCount())
+				if (!distinctionMask.IsPowerOfTwo() || appearedParts != PopCount((uint)appearedDigitsMask))
 				{
 					continue;
 				}
@@ -118,7 +119,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				}
 
 				// Iterate on each combination.
-				for (int size = 2, count = pairMask.PopCount(); size < count; size++)
+				for (int size = 2, count = PopCount((uint)pairMask); size < count; size++)
 				{
 					foreach (int[] digits in pairMask.GetAllSets().GetSubsets(size))
 					{
@@ -155,7 +156,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							comparer |= (short)(1 << digit);
 						}
 						short otherDigitsMask = (short)(pairMask & ~comparer);
-						if (appearingMap == (tempMap & RegionMaps[square.BlockMask.FindFirstSet()]))
+						if (appearingMap == (tempMap & RegionMaps[TrailingZeroCount(square.BlockMask)]))
 						{
 							// Qdp forms.
 							// Now check each type.

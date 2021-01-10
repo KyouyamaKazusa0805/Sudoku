@@ -202,37 +202,6 @@ namespace System.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool Covers(this long @this, long other) => (@this & other) == other;
 
-		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int FindFirstSet(this byte @this) => BitOperations.TrailingZeroCount(@this);
-
-		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int FindFirstSet(this short @this) => BitOperations.TrailingZeroCount(@this);
-
-		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int FindFirstSet(this int @this) => BitOperations.TrailingZeroCount(@this);
-
-		/// <inheritdoc cref="Integer.FindFirstSet(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int FindFirstSet(this long @this) => BitOperations.TrailingZeroCount(@this);
-
-		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int PopCount(this byte @this) => BitOperations.PopCount(@this);
-
-		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int PopCount(this short @this) => BitOperations.PopCount((uint)@this);
-
-		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
-		public static int PopCount(this int @this) => BitOperations.PopCount((uint)@this);
-
-		/// <inheritdoc cref="Integer.PopCount(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int PopCount(this long @this) => BitOperations.PopCount((ulong)@this);
-
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
 		public static int GetNextSet(this byte @this, int index)
 		{
@@ -354,7 +323,7 @@ namespace System.Extensions
 				return ReadOnlySpan<int>.Empty;
 			}
 
-			int length = @this.PopCount();
+			int length = BitOperations.PopCount(@this);
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 8; i++, @this >>= 1)
 			{
@@ -375,7 +344,7 @@ namespace System.Extensions
 				return ReadOnlySpan<int>.Empty;
 			}
 
-			int length = @this.PopCount();
+			int length = BitOperations.PopCount((uint)@this);
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 16; i++, @this >>= 1)
 			{
@@ -396,7 +365,7 @@ namespace System.Extensions
 				return ReadOnlySpan<int>.Empty;
 			}
 
-			int length = @this.PopCount();
+			int length = BitOperations.PopCount((uint)@this);
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 32; i++, @this >>= 1)
 			{
@@ -417,7 +386,7 @@ namespace System.Extensions
 				return ReadOnlySpan<int>.Empty;
 			}
 
-			int length = @this.PopCount();
+			int length = BitOperations.PopCount((ulong)@this);
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 64; i++, @this >>= 1)
 			{

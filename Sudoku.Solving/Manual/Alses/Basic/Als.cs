@@ -5,6 +5,7 @@ using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -238,7 +239,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							digitsMask |= grid.GetCandidates(cell);
 						}
-						if (digitsMask.PopCount() - 1 != size)
+						if (PopCount((uint)digitsMask) - 1 != size)
 						{
 							continue;
 						}

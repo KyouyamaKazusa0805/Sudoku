@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
@@ -28,7 +29,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <summary>
 		/// Indicates the extra difficulty.
 		/// </summary>
-		private decimal ExtraDifficulty => ExtraDigitsMask.PopCount() * .1M;
+		private decimal ExtraDifficulty => PopCount((uint)ExtraDigitsMask) * .1M;
 
 
 		/// <inheritdoc/>

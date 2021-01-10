@@ -3,6 +3,7 @@ using Sudoku.Data.Extensions;
 using System.Collections.Generic;
 using System.Extensions;
 using System.Runtime.CompilerServices;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -90,7 +91,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				short mask = (short)(grid.GetCandidates(p.Cell) & ~(1 << p.Digit));
 				if (g(grid, p.Cell, isDynamic) && mask.IsPowerOfTwo())
 				{
-					var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p)
+					var pOn = new Node(p.Cell, TrailingZeroCount(mask), true, p)
 #if DOUBLE_LAYERED_ASSUMPTION
 					{
 						Cause = Cause.NakedSingle
@@ -139,7 +140,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static bool g(in SudokuGrid grid, int cell, bool isDynamic) =>
-				isDynamic ? grid.GetCandidates(cell).PopCount() == 2 : BivalueMap.Contains(cell);
+				isDynamic ? PopCount((uint)grid.GetCandidates(cell)) == 2 : BivalueMap.Contains(cell);
 
 			static Cells h(in SudokuGrid grid, int digit, int region, bool isDynamic)
 			{

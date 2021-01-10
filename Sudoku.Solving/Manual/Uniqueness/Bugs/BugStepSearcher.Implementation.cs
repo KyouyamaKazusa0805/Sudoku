@@ -4,6 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -102,7 +103,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						{
 							mask |= grid.GetCandidates(cell);
 						}
-						if (mask.PopCount() != size + 1)
+						if (PopCount((uint)mask) != size + 1)
 						{
 							continue;
 						}
@@ -209,7 +210,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				{
 					// Check whether forms a conjugate pair.
 					short mask = (RegionMaps[region] & CandMaps[conjuagtePairDigit]).GetSubviewMask(region);
-					if (mask.PopCount() != 2)
+					if (PopCount((uint)mask) != 2)
 					{
 						continue;
 					}

@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -83,7 +84,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 				return;
 			}
 
-			int extraDigit = mask.FindFirstSet();
+			int extraDigit = TrailingZeroCount(mask);
 			var elimMap = (extraCellsMap & CandMaps[extraDigit]).PeerIntersection & CandMaps[extraDigit];
 			if (elimMap.IsEmpty)
 			{
@@ -165,7 +166,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 				}
 
 				int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
-				for (int size = otherDigitsMask.PopCount() - 1, count = otherCells.Length; size < count; size++)
+				for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Length; size < count; size++)
 				{
 					foreach (int[] cells in otherCells.GetSubsets(size))
 					{
@@ -175,7 +176,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 							mask |= grid.GetCandidates(cell);
 						}
 
-						if (mask.PopCount() != size + 1 || !mask.Covers(otherDigitsMask))
+						if (PopCount((uint)mask) != size + 1 || !mask.Covers(otherDigitsMask))
 						{
 							continue;
 						}

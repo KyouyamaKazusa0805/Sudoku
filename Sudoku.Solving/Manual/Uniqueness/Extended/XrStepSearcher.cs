@@ -2,6 +2,7 @@
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
@@ -72,17 +73,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					(count >= 2 ? ref normalDigits : ref extraDigits) |= (short)(1 << digit);
 				}
 
-				if (normalDigits.PopCount() != size)
+				if (PopCount((uint)normalDigits) != size)
 				{
 					// The number of normal digits are not enough.
 					continue;
 				}
 
-				if (resultMask.PopCount() == size + 1)
+				if (PopCount((uint)resultMask) == size + 1)
 				{
 					// Possible type 1 or 2 found.
 					// Now check extra cells.
-					int extraDigit = extraDigits.FindFirstSet();
+					int extraDigit = TrailingZeroCount(extraDigits);
 					var extraCellsMap = allCellsMap & CandMaps[extraDigit];
 					if (extraCellsMap.IsEmpty)
 					{

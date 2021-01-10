@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Data
@@ -103,7 +104,7 @@ namespace Sudoku.Data
 				{
 					long v = binary[i];
 					*p++ = v;
-					count += v.PopCount();
+					count += PopCount((ulong)v);
 				}
 			}
 
@@ -125,7 +126,7 @@ namespace Sudoku.Data
 			fixed (long* pThis = _innerBinary)
 			{
 				long* p = pThis;
-				for (int i = 0; i < BufferLength; i++, *p++ = *binary++, count += binary->PopCount()) ;
+				for (int i = 0; i < BufferLength; i++, *p++ = *binary++, count += PopCount((ulong)*binary)) ;
 			}
 
 			Count = count;

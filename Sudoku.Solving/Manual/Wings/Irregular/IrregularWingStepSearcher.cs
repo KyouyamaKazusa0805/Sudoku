@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -79,7 +80,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 							}
 
 							short mask = map.GetSubviewMask(region);
-							int pos1 = mask.FindFirstSet(), pos2 = mask.GetNextSet(pos1);
+							int pos1 = TrailingZeroCount(mask), pos2 = mask.GetNextSet(pos1);
 							int bridgeStart = RegionCells[region][pos1], bridgeEnd = RegionCells[region][pos2];
 							if (c1 == bridgeStart || c2 == bridgeStart || c1 == bridgeEnd || c2 == bridgeEnd)
 							{

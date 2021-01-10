@@ -8,6 +8,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets.Eliminations;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -41,7 +42,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
-				if (grid.GetCandidates(b1).PopCount() < 2 || grid.GetCandidates(b2).PopCount() < 2)
+				if (PopCount((uint)grid.GetCandidates(b1)) < 2 || PopCount((uint)grid.GetCandidates(b2)) < 2)
 				{
 					continue;
 				}
@@ -139,7 +140,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					short tbCands = 0;
 					for (int j = 0; j < 2; j++)
 					{
-						if (grid.GetCandidates(comb[j]).PopCount() == 1)
+						if (PopCount((uint)grid.GetCandidates(comb[j])) == 1)
 						{
 							tbCands |= grid.GetCandidates(comb[j]);
 						}
@@ -343,7 +344,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				bool flag = true;
 				var temp = (tempCrossline & DigitMaps[digit]) - xx;
-				if ((isRow ? temp.RowMask : temp.ColumnMask).PopCount() > 2)
+				if (PopCount((uint)(isRow ? temp.RowMask : temp.ColumnMask)) > 2)
 				{
 					flag = false;
 				}
@@ -465,7 +466,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						if (combination[i] == t2) n |= 2;
 					}
 
-					if (n.PopCount() == 2)
+					if (PopCount((uint)n) == 2)
 					{
 						continue;
 					}

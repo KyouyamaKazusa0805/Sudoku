@@ -5,6 +5,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.LastResorts;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -175,7 +176,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 							// Now check the possible cover sets to iterate.
 							int z = baseMap.Regions & ~usedInBaseSets & AllRegions, count = 0;
-							int[] coverTable = new int[z.PopCount()];
+							int[] coverTable = new int[PopCount((uint)z)];
 							foreach (int region in z)
 							{
 								coverTable[count++] = region;

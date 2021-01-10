@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -81,7 +82,7 @@ namespace Sudoku.Solving.Manual.Alses
 					{
 						rbSelectedInterMask |= grid.GetCandidates(cell);
 					}
-					if (rbSelectedInterMask.PopCount() <= rbCurrentMap.Count + 1)
+					if (PopCount((uint)rbSelectedInterMask) <= rbCurrentMap.Count + 1)
 					{
 						continue;
 					}
@@ -93,7 +94,7 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							cbSelectedInterMask |= grid.GetCandidates(cell);
 						}
-						if (cbSelectedInterMask.PopCount() <= cbCurrentMap.Count + 1)
+						if (PopCount((uint)cbSelectedInterMask) <= cbCurrentMap.Count + 1)
 						{
 							continue;
 						}
@@ -224,8 +225,8 @@ namespace Sudoku.Solving.Manual.Alses
 												short rbMaskOnlyInInter = (short)(rbSelectedInterMask & ~mask);
 												short cbMaskOnlyInInter = (short)(cbSelectedInterMask & ~mask);
 												if (cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1 ==
-													blockMask.PopCount() + rowMask.PopCount() + columnMask.PopCount()
-													+ rbMaskOnlyInInter.PopCount() + cbMaskOnlyInInter.PopCount()
+													PopCount((uint)blockMask) + PopCount((uint)rowMask) + PopCount((uint)columnMask)
+													+ PopCount((uint)rbMaskOnlyInInter) + PopCount((uint)cbMaskOnlyInInter)
 													&& (!elimMapRow.IsEmpty || !elimMapColumn.IsEmpty
 														|| !elimMapBlock.IsEmpty))
 												{

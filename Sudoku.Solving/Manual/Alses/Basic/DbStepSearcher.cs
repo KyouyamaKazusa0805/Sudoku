@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
@@ -81,7 +82,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							foreach (var als in combination)
 							{
 								short otherDigitsMask = (short)(als.DigitsMask & ~digit);
-								int[] otherDigitsList = new int[otherDigitsMask.PopCount()];
+								int[] otherDigitsList = new int[PopCount((uint)otherDigitsMask)];
 								int otherDigitIndex = 0;
 								foreach (int otherDigit in otherDigitsMask)
 								{

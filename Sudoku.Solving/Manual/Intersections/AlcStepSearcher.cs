@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -84,7 +85,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{
 				short mask = grid.BitwiseOrMasks(cells);
-				if (mask.PopCount() != size)
+				if (PopCount((uint)mask) != size)
 				{
 					continue;
 				}
@@ -109,7 +110,7 @@ namespace Sudoku.Solving.Manual.Intersections
 				{
 					ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
 				}
-				if (ahsMask.PopCount() != size - 1)
+				if (PopCount((uint)ahsMask) != size - 1)
 				{
 					continue;
 				}

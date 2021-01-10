@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -32,7 +33,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Get masks.
 						short mask1 = (RegionMaps[r1] & CandMaps[digit]).GetSubviewMask(r1);
 						short mask2 = (RegionMaps[r2] & CandMaps[digit]).GetSubviewMask(r2);
-						if (mask1.PopCount() != 2 || mask2.PopCount() != 2)
+						if (PopCount((uint)mask1) != 2 || PopCount((uint)mask2) != 2)
 						{
 							continue;
 						}

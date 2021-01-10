@@ -4,6 +4,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -24,7 +25,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <summary>
 		/// Indicates the size.
 		/// </summary>
-		public int Size => DigitsMask.PopCount();
+		public int Size => PopCount((uint)DigitsMask);
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + (HasValueCell ? ExtraDifficulty : 0);

@@ -3,6 +3,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using System.Collections.Generic;
 using System.Extensions;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -128,7 +129,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							mask |= grid.GetCandidates(cell);
 						}
 
-						if (!mask.Covers(extraDigits) || mask.PopCount() != size + 1)
+						if (!mask.Covers(extraDigits) || PopCount((uint)mask) != size + 1)
 						{
 							continue;
 						}

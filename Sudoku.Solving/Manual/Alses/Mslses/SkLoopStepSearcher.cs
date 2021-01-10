@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
@@ -57,12 +58,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						pairs[i] |= grid.GetCandidates(cells[(i << 1) + 1]);
 					}
 
-					if ((n, pairs[i].PopCount(), pairs[i]) is not ( <= 4, <= 5, not 0))
+					if ((n, PopCount((uint)pairs[i]), pairs[i]) is not ( <= 4, <= 5, not 0))
 					{
 						break;
 					}
 
-					candidateCount += pairs[i].PopCount();
+					candidateCount += PopCount((uint)pairs[i]);
 				}
 
 				// Check validity: If the number of candidate appearing is lower than 32 - (n * 2),
@@ -95,7 +96,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 					// Check the associativity:
 					// Each pair should find the digits that can combine with the next pair.
-					int linkCount = (tempLink[0] = mask).PopCount();
+					int linkCount = PopCount((uint)(tempLink[0] = mask));
 					int k = 1;
 					for (; k < 8; k++)
 					{
@@ -105,7 +106,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							break;
 						}
 
-						linkCount += (tempLink[k] = candidateMask).PopCount();
+						linkCount += PopCount((uint)(tempLink[k] = candidateMask));
 					}
 
 					if (k < 8 || linkCount != 16 - n)

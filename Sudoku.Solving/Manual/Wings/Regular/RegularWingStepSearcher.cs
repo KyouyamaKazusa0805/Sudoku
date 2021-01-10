@@ -4,6 +4,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -46,7 +47,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				foreach (int pivot in EmptyMap)
 				{
 					short mask = grid.GetCandidates(pivot);
-					int candsCount = mask.PopCount();
+					int candsCount = PopCount((uint)mask);
 					if (candsCount != size && candsCount != size - 1)
 					{
 						// Candidates are not enough.
@@ -92,7 +93,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 							inter &= m;
 						}
 
-						if (union.PopCount() != size || inter != 0 && !inter.IsPowerOfTwo())
+						if (PopCount((uint)union) != size || inter != 0 && !inter.IsPowerOfTwo())
 						{
 							continue;
 						}
@@ -107,7 +108,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						}
 
 						// The pattern should be "az, bz, cz, dz, ... , abcd(z)".
-						int zDigit = maskToCheck.FindFirstSet();
+						int zDigit = TrailingZeroCount(maskToCheck);
 						var cellsMap = new Cells(cells);
 						if ((cellsMap + pivot & CandMaps[zDigit]).Count != (isIncomplete ? size - 1 : size))
 						{
@@ -152,7 +153,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								conclusions,
 								new View[] { new() { Candidates = candidateOffsets } },
 								pivot,
-								mask.PopCount(),
+								PopCount((uint)mask),
 								union,
 								cells));
 					}

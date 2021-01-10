@@ -4,6 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Extensions;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -49,8 +50,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 
 					// Find all possible loops.
 					// Iterate on each loop.
-					int d1 = grid.GetCandidates(cell1).FindFirstSet();
-					int d2 = grid.GetCandidates(cell2).FindFirstSet();
+					int d1 = TrailingZeroCount(grid.GetCandidates(cell1));
+					int d2 = TrailingZeroCount(grid.GetCandidates(cell2));
 					short comparer = (short)(1 << d1 | 1 << d2);
 					var loops = FindPossibleLoops(grid, cell1, cell2, d1, d2);
 					if (loops.Count == 0)
@@ -159,7 +160,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 						}
 
 						f(
-							grid, values, nextCell, mask.FindFirstSet(), digitsMask,
+							grid, values, nextCell, TrailingZeroCount(mask), digitsMask,
 							EmptyMap.Contains(nextCell) ? lastEmptyCellsCount - 1 : lastEmptyCellsCount);
 					}
 				}

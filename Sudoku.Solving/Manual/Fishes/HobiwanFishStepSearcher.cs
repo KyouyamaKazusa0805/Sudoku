@@ -7,6 +7,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.LastResorts;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -105,7 +106,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var candMap = CandMaps[digit];
-				if (_checkPom && conclusionList[digit].IsEmpty || candMap.RowMask.PopCount() <= size)
+				if (_checkPom && conclusionList[digit].IsEmpty || PopCount((uint)candMap.RowMask) <= size)
 				{
 					// This digit doesn't contain any conclusions or
 					// No available fish can be found.

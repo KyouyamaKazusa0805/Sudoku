@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.Singles
@@ -91,7 +92,7 @@ namespace Sudoku.Solving.Manual.Singles
 					continue;
 				}
 
-				int digit = grid.GetCandidates(resultCell).FindFirstSet();
+				int digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 				accumulator.Add(
 					new FullHouseStepInfo(
 						new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) },
@@ -236,7 +237,7 @@ namespace Sudoku.Solving.Manual.Singles
 					continue;
 				}
 
-				int digit = mask.FindFirstSet();
+				int digit = TrailingZeroCount(mask);
 				List<(Cells, Cells)>? directLines = null;
 				if (_showDirectLines)
 				{

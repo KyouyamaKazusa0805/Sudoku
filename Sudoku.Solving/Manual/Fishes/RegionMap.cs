@@ -6,6 +6,7 @@ using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -61,7 +62,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates how many regions are used now.
 		/// </summary>
-		public readonly int Count => Mask.PopCount();
+		public readonly int Count => PopCount((uint)Mask);
 
 		/// <summary>
 		/// Indicates all regions used.
