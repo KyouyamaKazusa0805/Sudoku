@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[IndexerName("Region")]
-		public readonly bool this[int region] => Mask.ContainsBit(region);
+		public readonly bool this[int region] => (Mask >> region & 1) != 0;
 
 
 		/// <inheritdoc/>

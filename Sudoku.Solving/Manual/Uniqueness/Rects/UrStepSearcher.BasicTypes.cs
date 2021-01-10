@@ -282,7 +282,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
-										new(tempMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
+										new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
 						}

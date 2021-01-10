@@ -136,7 +136,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			result = Cells.Empty;
 			foreach (int cell in Map)
 			{
-				if (grid.GetCandidates(cell).ContainsBit(digit))
+				if ((grid.GetCandidates(cell) >> digit & 1) != 0)
 				{
 					result.AddAnyway(cell);
 				}

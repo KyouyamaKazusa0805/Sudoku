@@ -511,7 +511,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				int b = RegionLabel.Block.ToRegion(currentTarget);
 				foreach (int digit in baseCandidatesMask)
 				{
-					if (!grid.GetCandidates(currentTarget).ContainsBit(digit))
+					if ((grid.GetCandidates(currentTarget) >> digit & 1) == 0)
 					{
 						continue;
 					}

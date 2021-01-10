@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			{
 				short mask = currentGrid.GetCandidateMask(cell);
 				short initialMask = initialGrid.GetCandidateMask(cell);
-				if (initialMask.ContainsBit(Digit) && !mask.ContainsBit(Digit))
+				if ((initialMask >> Digit & 1) != 0 && !(mask >> Digit & 1) != 0)
 				{
 					bool isInCoverSet = false;
 					foreach (int otherCell in RegionCells[CoverSet] & EmptyMap)

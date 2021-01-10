@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							short blockMask = overlap.BlockMask;
 							for (int i = 0, count = 0; count < 4 && i < 16; i++)
 							{
-								if (blockMask.ContainsBit(i))
+								if ((blockMask >> i & 1) != 0)
 								{
 									s[count++] = i;
 								}

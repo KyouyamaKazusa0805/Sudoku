@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					int count = 0;
 					foreach (var (l, r) in pairs)
 					{
-						if ((grid.GetCandidates(l) & grid.GetCandidates(r)).ContainsBit(digit))
+						if (((grid.GetCandidates(l) & grid.GetCandidates(r)) >> digit & 1) != 0)
 						{
 							// Both two cells contain same digit.
 							count++;

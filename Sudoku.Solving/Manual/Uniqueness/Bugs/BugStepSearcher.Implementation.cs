@@ -119,7 +119,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								if (mask.ContainsBit(digit))
+								if ((mask >> digit & 1) != 0)
 								{
 									conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 								}

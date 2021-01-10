@@ -468,7 +468,7 @@ namespace Sudoku.Data
 		public readonly unsafe bool Contains(int cell)
 		{
 			long* ptr = stackalloc[] { _low, _high };
-			return ptr[cell / Shifting].ContainsBit(cell % Shifting);
+			return (ptr[cell / Shifting] >> cell % Shifting & 1) != 0;
 		}
 
 		/// <summary>

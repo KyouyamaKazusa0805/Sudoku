@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(!comparer.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
+							candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
 						}
 					}
 					else
@@ -208,7 +208,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								if (urCell == corner1 || urCell == corner2)
 								{
 									int coveredRegions = new Cells { urCell, otherCell }.CoveredRegions;
-									if (coveredRegions.ContainsBit(region))
+									if ((coveredRegions >> region & 1) != 0)
 									{
 										foreach (int d in grid.GetCandidates(urCell))
 										{
@@ -510,7 +510,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(!comparer.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
+							candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
 						}
 					}
 					else
@@ -1454,7 +1454,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											new(
 												digit == elimDigit
 												? otherCellsMap.Contains(cell) ? 2 : 0
-												: extraDigitsMask.ContainsBit(digit) ? 1 : 0,
+												: (extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
 												cell * 9 + digit));
 									}
 								}
@@ -1552,7 +1552,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											foreach (int digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
-													new(extraDigitsMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
+													new((extraDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 											}
 										}
 									}
@@ -1652,7 +1652,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												{
 													candidateOffsets.Add(
 														new(
-															extraDigitsMask.ContainsBit(digit) ? 1 : 0,
+															(extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
 															cell * 9 + digit));
 												}
 											}
@@ -1939,7 +1939,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						if (blockMask.ContainsBit(digit))
+						if ((blockMask >> digit & 1) != 0)
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
@@ -1949,7 +1949,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						if (lineMask.ContainsBit(digit))
+						if ((lineMask >> digit & 1) != 0)
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
@@ -1971,7 +1971,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							new(otherDigitsMask.ContainsBit(digit) ? 1 : 0, cell * 9 + digit));
+							new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in currentBlockMap)
@@ -1988,7 +1988,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						candidateOffsets.Add(
 							new(
-								digitIsolated == digit ? 3 : otherDigitsMask.ContainsBit(digit) ? 1 : 2,
+								digitIsolated == digit ? 3 : (otherDigitsMask >> digit & 1) != 0 ? 1 : 2,
 								cell * 9 + digit));
 					}
 				}

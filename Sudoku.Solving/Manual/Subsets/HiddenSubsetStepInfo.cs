@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				short initialMask = initialGrid.GetCandidateMask(cell);
 				foreach (int digit in Digits)
 				{
-					if (initialMask.ContainsBit(digit))
+					if ((initialMask >> digit & 1) != 0)
 					{
 						result.Add(new(cell, digit, false));
 					}

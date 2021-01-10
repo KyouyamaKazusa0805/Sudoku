@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								{
 									foreach (int digit in grid.GetCandidates(cell))
 									{
-										sbyte id = digit == x ? 1 : wDigitsMask.ContainsBit(digit) ? 2 : -1;
+										sbyte id = digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : -1;
 										candidateOffsets.Add(new(id, cell * 9 + digit));
 									}
 								}
@@ -154,7 +154,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								{
 									foreach (int digit in grid.GetCandidates(cell))
 									{
-										sbyte id = digit == x ? 1 : wDigitsMask.ContainsBit(digit) ? 2 : -2;
+										sbyte id = digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : -2;
 										candidateOffsets.Add(new(id, cell * 9 + digit));
 									}
 								}

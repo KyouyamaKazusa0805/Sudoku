@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
+using static System.Numerics.BitOperations;
 
 namespace System.Extensions
 {
@@ -16,7 +17,7 @@ namespace System.Extensions
 			byte result = @this;
 			for (int i = 0, count = 0; i < 8; i++)
 			{
-				if (@this.ContainsBit(i))
+				if ((@this >> i & 1) != 0)
 				{
 					result &= (byte)~(1 << i);
 
@@ -36,7 +37,7 @@ namespace System.Extensions
 			short result = @this;
 			for (int i = 0, count = 0; i < 16; i++)
 			{
-				if (@this.ContainsBit(i))
+				if ((@this >> i & 1) != 0)
 				{
 					result &= (short)~(1 << i);
 
@@ -56,7 +57,7 @@ namespace System.Extensions
 			int result = @this;
 			for (int i = 0, count = 0; i < 32; i++)
 			{
-				if (@this.ContainsBit(i))
+				if ((@this >> i & 1) != 0)
 				{
 					result &= ~(1 << i);
 
@@ -76,7 +77,7 @@ namespace System.Extensions
 			long result = @this;
 			for (int i = 0, count = 0; i < 64; i++)
 			{
-				if (@this.ContainsBit(i))
+				if ((@this >> i & 1) != 0)
 				{
 					result &= ~(1 << i);
 
@@ -106,28 +107,12 @@ namespace System.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsPowerOfTwo(this long @this) => @this != 0 && (@this & (@this - 1L)) == 0;
 
-		/// <inheritdoc cref="Integer.ContainsBit(Integer, int)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool ContainsBit(this byte @this, int bitPosition) => (@this >> bitPosition & 1) != 0;
-
-		/// <inheritdoc cref="Integer.ContainsBit(Integer, int)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool ContainsBit(this short @this, int bitPosition) => (@this >> bitPosition & 1) != 0;
-
-		/// <inheritdoc cref="Integer.ContainsBit(Integer, int)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool ContainsBit(this int @this, int bitPosition) => (@this >> bitPosition & 1) != 0;
-
-		/// <inheritdoc cref="Integer.ContainsBit(Integer, int)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool ContainsBit(this long @this, int bitPosition) => (@this >> bitPosition & 1) != 0;
-
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
 		public static int GetNextSet(this byte @this, int index)
 		{
 			for (int i = index + 1; i < 8; i++)
 			{
-				if (@this.ContainsBit(i))
+				if ((@this >> i & 1) != 0)
 				{
 					return i;
 				}
@@ -141,7 +126,7 @@ namespace System.Extensions
 		{
 			for (int i = index + 1; i < 16; i++)
 			{
-				if (@this.ContainsBit(i))
+				if ((@this >> i & 1) != 0)
 				{
 					return i;
 				}
@@ -155,7 +140,7 @@ namespace System.Extensions
 		{
 			for (int i = index + 1; i < 32; i++)
 			{
-				if (@this.ContainsBit(i))
+				if ((@this >> i & 1) != 0)
 				{
 					return i;
 				}
@@ -169,7 +154,7 @@ namespace System.Extensions
 		{
 			for (int i = index + 1; i < 64; i++)
 			{
-				if (@this.ContainsBit(i))
+				if ((@this >> i & 1) != 0)
 				{
 					return i;
 				}
@@ -243,7 +228,7 @@ namespace System.Extensions
 				return ReadOnlySpan<int>.Empty;
 			}
 
-			int length = BitOperations.PopCount(@this);
+			int length = PopCount(@this);
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 8; i++, @this >>= 1)
 			{
@@ -264,7 +249,7 @@ namespace System.Extensions
 				return ReadOnlySpan<int>.Empty;
 			}
 
-			int length = BitOperations.PopCount((uint)@this);
+			int length = PopCount((uint)@this);
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 16; i++, @this >>= 1)
 			{
@@ -285,7 +270,7 @@ namespace System.Extensions
 				return ReadOnlySpan<int>.Empty;
 			}
 
-			int length = BitOperations.PopCount((uint)@this);
+			int length = PopCount((uint)@this);
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 32; i++, @this >>= 1)
 			{
@@ -306,7 +291,7 @@ namespace System.Extensions
 				return ReadOnlySpan<int>.Empty;
 			}
 
-			int length = BitOperations.PopCount((ulong)@this);
+			int length = PopCount((ulong)@this);
 			var resultSpan = (stackalloc int[length]);
 			for (byte i = 0, p = 0; i < 64; i++, @this >>= 1)
 			{
