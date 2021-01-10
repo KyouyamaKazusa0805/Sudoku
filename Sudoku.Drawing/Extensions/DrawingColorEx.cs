@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using Sudoku.DocComments;
 
-namespace System.Extensions
+namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Color"/>.

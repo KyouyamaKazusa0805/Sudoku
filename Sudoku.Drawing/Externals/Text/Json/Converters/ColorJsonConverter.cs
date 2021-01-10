@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
+using Sudoku.Drawing.Extensions;
 
 namespace System.Text.Json.Converters
 {

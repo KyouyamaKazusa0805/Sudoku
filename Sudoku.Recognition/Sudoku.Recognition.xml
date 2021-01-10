@@ -4,62 +4,62 @@
         <name>Sudoku.Recognition</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Recognition.Constants.Constants">
+        <member name="T:Sudoku.Recognition.Constants">
             <summary>
             Define the internal settings.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.MaxSize">
+        <member name="F:Sudoku.Recognition.Constants.MaxSize">
             <summary>
             Indicates the maximum size.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.RSize">
+        <member name="F:Sudoku.Recognition.Constants.RSize">
             <summary>
             Indicates the R-size.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.ThresholdMin">
+        <member name="F:Sudoku.Recognition.Constants.ThresholdMin">
             <summary>
             Indicates the minimum threshold.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.ThresholdMax">
+        <member name="F:Sudoku.Recognition.Constants.ThresholdMax">
             <summary>
             Indicates the maximum threshold.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.L2Gradient">
+        <member name="F:Sudoku.Recognition.Constants.L2Gradient">
             <summary>
             Indicates the L2Gradient.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.Font">
+        <member name="F:Sudoku.Recognition.Constants.Font">
             <summary>
             Indicates the font.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.FontSize">
+        <member name="F:Sudoku.Recognition.Constants.FontSize">
             <summary>
             Indicates the font size.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.FontSizePr">
+        <member name="F:Sudoku.Recognition.Constants.FontSizePr">
             <summary>
             Indicates the font size pr.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.ChainApprox">
+        <member name="F:Sudoku.Recognition.Constants.ChainApprox">
             <summary>
             Indicates the ChainApprox.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.ThOcrMin">
+        <member name="F:Sudoku.Recognition.Constants.ThOcrMin">
             <summary>
             Indicates the ThOcrMin.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.Constants.ThOcrMax">
+        <member name="F:Sudoku.Recognition.Constants.ThOcrMax">
             <summary>
             Indicates the ThOcrMax.
             </summary>

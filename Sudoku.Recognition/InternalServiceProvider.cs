@@ -8,7 +8,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.OCR;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using static Sudoku.Recognition.Constants.Constants;
+using static Sudoku.Recognition.Constants;
 using Cv = Emgu.CV.CvInvoke;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 #if MUST_DOWNLOAD_TRAINED_DATA

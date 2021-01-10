@@ -2,7 +2,7 @@
 
 using Emgu.CV.CvEnum;
 
-namespace Sudoku.Recognition.Constants
+namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Define the internal settings.
