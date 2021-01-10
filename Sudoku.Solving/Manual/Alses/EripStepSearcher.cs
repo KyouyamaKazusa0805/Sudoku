@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							m |= grid.GetCandidates(cell);
 						}
-						if (!m.Covers(mask))
+						if ((m & mask) != mask)
 						{
 							continue;
 						}

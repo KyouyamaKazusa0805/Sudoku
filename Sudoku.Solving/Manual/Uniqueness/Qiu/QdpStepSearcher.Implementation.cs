@@ -199,7 +199,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							mask |= grid.GetCandidates(cell);
 						}
 
-						if (!mask.Covers(comparer) || PopCount((uint)mask) != size + 1)
+						if ((mask & comparer) != comparer || PopCount((uint)mask) != size + 1)
 						{
 							continue;
 						}

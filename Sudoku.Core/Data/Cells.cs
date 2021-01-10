@@ -441,22 +441,6 @@ namespace Sudoku.Data
 		public readonly bool Overlaps(in Cells cells1, in Cells cells2) => !(this & cells1 & cells2).IsEmpty;
 
 		/// <summary>
-		/// Determine whether the map specified as the parameter should contain all cells in the current
-		/// one.
-		/// </summary>
-		/// <param name="other">(<see langword="in"/> parameter) The other map.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
-		/// <remarks>
-		/// There're two different expressions can describe this:
-		/// <list type="bullet">
-		/// <item><c>(<see langword="this"/> &amp; other) == other</c></item>
-		/// <item><c>(<see langword="this"/> | other) == <see langword="this"/></c></item>
-		/// </list>
-		/// </remarks>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Covers(in Cells other) => (this & other) == other;
-
-		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
 		/// </summary>
 		/// <param name="region">

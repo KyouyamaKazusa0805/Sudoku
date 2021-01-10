@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							mask |= grid.GetCandidates(cell);
 						}
 
-						if (!mask.Covers(extraDigits) || PopCount((uint)mask) != size + 1)
+						if ((mask & extraDigits) != extraDigits || PopCount((uint)mask) != size + 1)
 						{
 							continue;
 						}

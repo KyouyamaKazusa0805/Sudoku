@@ -152,7 +152,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 			{
 				m |= grid.GetCandidates(cell);
 			}
-			if (!m.Covers(comparer))
+			if ((m & comparer) != comparer)
 			{
 				return;
 			}
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 							mask |= grid.GetCandidates(cell);
 						}
 
-						if (PopCount((uint)mask) != size + 1 || !mask.Covers(otherDigitsMask))
+						if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;
 						}

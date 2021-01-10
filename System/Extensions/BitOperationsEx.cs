@@ -186,22 +186,6 @@ namespace System.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool ExceptOverlaps(this long @this, long other) => (@this & ~other) != 0;
 
-		/// <inheritdoc cref="Integer.Covers(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Covers(this byte @this, byte other) => (@this & other) == other;
-
-		/// <inheritdoc cref="Integer.Covers(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Covers(this short @this, short other) => (@this & other) == other;
-
-		/// <inheritdoc cref="Integer.Covers(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Covers(this int @this, int other) => (@this & other) == other;
-
-		/// <inheritdoc cref="Integer.Covers(Integer, Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Covers(this long @this, long other) => (@this & other) == other;
-
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
 		public static int GetNextSet(this byte @this, int index)
 		{
