@@ -65,12 +65,11 @@ namespace Sudoku.Generating
 
 			while (true)
 			{
-				var puzzle =
-					Generate(-1, progress, countryCode: countryCode, cancellationToken: cancellationToken);
-
-#if DEBUG
-				System.Diagnostics.Contracts.Contract.Assert(puzzle.HasValue);
-#endif
+				var puzzle = Generate(-1, progress, countryCode: countryCode, cancellationToken: cancellationToken);
+				if (puzzle is null)
+				{
+					continue;
+				}
 
 				if (ManualSolver.Solve(puzzle.Value).Any(step => techniqueCodeFilter.Contains(step.TechniqueCode)))
 				{

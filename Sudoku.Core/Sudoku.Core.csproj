@@ -10,7 +10,6 @@
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<LangVersion>9.0</LangVersion>
 		<DocumentationFile>.\Sudoku.Core.xml</DocumentationFile>
-		<Optimize>false</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
