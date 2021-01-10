@@ -108,6 +108,7 @@ namespace System.Extensions
 		public static bool IsPowerOfTwo(this long @this) => @this != 0 && (@this & (@this - 1L)) == 0;
 
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
+		[Obsolete("We can only use the method on a " + nameof(Int16) + " mask.", true, DiagnosticId = "BAN")]
 		public static int GetNextSet(this byte @this, int index)
 		{
 			for (int i = index + 1; i < 8; i++)
@@ -136,6 +137,7 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
+		[Obsolete("We can only use the method on a " + nameof(Int16) + " mask.", true, DiagnosticId = "BAN")]
 		public static int GetNextSet(this int @this, int index)
 		{
 			for (int i = index + 1; i < 32; i++)
@@ -150,6 +152,7 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
+		[Obsolete("We can only use the method on a " + nameof(Int16) + " mask.", true, DiagnosticId = "BAN")]
 		public static int GetNextSet(this long @this, int index)
 		{
 			for (int i = index + 1; i < 64; i++)
@@ -164,6 +167,7 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.SetAt(Integer, int)"/>
+		[Obsolete("This method is no longer in use.", false, DiagnosticId = "DEPRECATED")]
 		public static int SetAt(this byte @this, int order)
 		{
 			for (int i = 0, count = -1; i < 8; i++, @this >>= 1)
@@ -178,6 +182,7 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.SetAt(Integer, int)"/>
+		[Obsolete("This method is no longer in use.", false, DiagnosticId = "DEPRECATED")]
 		public static int SetAt(this short @this, int order)
 		{
 			for (int i = 0, count = -1; i < 16; i++, @this >>= 1)
@@ -192,6 +197,7 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.SetAt(Integer, int)"/>
+		[Obsolete("This method is no longer in use.", false, DiagnosticId = "DEPRECATED")]
 		public static int SetAt(this int @this, int order)
 		{
 			for (int i = 0, count = -1; i < 32; i++, @this >>= 1)
@@ -206,6 +212,7 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.SetAt(Integer, int)"/>
+		[Obsolete("This method is no longer in use.", false, DiagnosticId = "DEPRECATED")]
 		public static int SetAt(this long @this, int order)
 		{
 			for (int i = 0, count = -1; i < 64; i++, @this >>= 1)
@@ -326,6 +333,7 @@ namespace System.Extensions
 
 		/// <inheritdoc cref="Integer.ReverseBits(ref Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("This method is no longer in use.", false, DiagnosticId = "DEPRECATED")]
 		public static void ReverseBits(this ref byte @this)
 		{
 			@this = (byte)(@this >> 1 & 0x55 | (@this & 0x55) << 1);
@@ -335,6 +343,7 @@ namespace System.Extensions
 
 		/// <inheritdoc cref="Integer.ReverseBits(ref Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("This method is no longer in use.", false, DiagnosticId = "DEPRECATED")]
 		public static void ReverseBits(this ref short @this)
 		{
 			@this = (short)(@this >> 1 & 0x5555 | (@this & 0x5555) << 1);
@@ -345,6 +354,7 @@ namespace System.Extensions
 
 		/// <inheritdoc cref="Integer.ReverseBits(ref Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("This method is no longer in use.", false, DiagnosticId = "DEPRECATED")]
 		public static void ReverseBits(this ref int @this)
 		{
 			@this = @this >> 1 & 0x55555555 | (@this & 0x55555555) << 1;
@@ -356,6 +366,7 @@ namespace System.Extensions
 
 		/// <inheritdoc cref="Integer.ReverseBits(ref Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("This method is no longer in use.", false, DiagnosticId = "DEPRECATED")]
 		public static void ReverseBits(this ref long @this)
 		{
 			@this = @this >> 1 & 0x55555555_55555555L | (@this & 0x55555555_55555555L) << 1;
