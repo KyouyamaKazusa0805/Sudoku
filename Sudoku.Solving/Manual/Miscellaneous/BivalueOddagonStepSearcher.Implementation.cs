@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 			}
 			mask &= (short)~comparer;
 
-			if (!mask.IsPowerOfTwo())
+			if (mask == 0 || (mask & mask - 1) != 0)
 			{
 				return;
 			}

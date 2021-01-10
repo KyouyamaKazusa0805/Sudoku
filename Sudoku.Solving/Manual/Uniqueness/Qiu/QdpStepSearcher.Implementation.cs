@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in Cells pair, in Cells square,
 			in Cells baseLine, in Pattern pattern, short comparer, short otherDigitsMask)
 		{
-			if (!otherDigitsMask.IsPowerOfTwo())
+			if (otherDigitsMask == 0 || (otherDigitsMask & otherDigitsMask - 1) != 0)
 			{
 				return;
 			}
@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in Cells pair,
 			in Cells square, in Cells baseLine, in Pattern pattern, short comparer, short otherDigitsMask)
 		{
-			if (!otherDigitsMask.IsPowerOfTwo())
+			if (otherDigitsMask == 0 || (otherDigitsMask & otherDigitsMask - 1) != 0)
 			{
 				return;
 			}

@@ -70,12 +70,17 @@ namespace System.Extensions
 					var field = array[index];
 					switch (size)
 					{
-						case 1 or 2 or 4 when Unsafe.As<TEnum, int>(ref field) is var i && !i.IsPowerOfTwo():
-						case 8 when Unsafe.As<TEnum, long>(ref field) is var l && !l.IsPowerOfTwo():
+						case 1:
+						case 2:
+						case 4:
 						{
-							// We'll skip the field that keeps the default value (0), or the value isn't a
-							// normal flag.
-							continue;
+							int i = Unsafe.As<TEnum, int>(ref field);
+							if (i == 0 || (i & i - 1) != 0) continue; else break;
+						}
+						case 8:
+						{
+							long l = Unsafe.As<TEnum, long>(ref field);
+							if (l == 0 || (l & l - 1L) != 0) continue; else break;
 						}
 					}
 

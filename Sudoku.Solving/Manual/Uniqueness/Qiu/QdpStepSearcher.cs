@@ -107,7 +107,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					}
 				}
 
-				if (!distinctionMask.IsPowerOfTwo() || appearedParts != PopCount((uint)appearedDigitsMask))
+				if (distinctionMask == 0 || (distinctionMask & distinctionMask - 1) != 0
+					|| appearedParts != PopCount((uint)appearedDigitsMask))
 				{
 					continue;
 				}

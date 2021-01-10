@@ -1758,7 +1758,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			// Check whether the corners spanned two blocks. If so, UR+SdC can't be found.
-			if (!otherCellsMap.BlockMask.IsPowerOfTwo())
+			short blockMaskInOtherCells = otherCellsMap.BlockMask;
+			if (blockMaskInOtherCells == 0 || (blockMaskInOtherCells & blockMaskInOtherCells - 1) != 0)
 			{
 				return;
 			}
@@ -1911,8 +1912,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				cannibalMode ? (lineMask & blockMask & selectedInterMask) : maskOnlyInInter);
 			if (!cannibalMode && (
 				(blockMask & lineMask) != 0
-				|| maskIsolated != 0 && !maskIsolated.IsPowerOfTwo())
-				|| cannibalMode && !maskIsolated.IsPowerOfTwo())
+				|| maskIsolated != 0 && (maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0))
+				|| cannibalMode && (maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0))
 			{
 				return;
 			}

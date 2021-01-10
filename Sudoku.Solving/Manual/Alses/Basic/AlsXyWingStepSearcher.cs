@@ -74,7 +74,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				for (int j = i + 1; j < count; j++)
 				{
 					var (als21, als22, mask2) = rccs[j];
-					if (mask1 == mask2 && mask1.IsPowerOfTwo() && mask2.IsPowerOfTwo())
+					if (mask1 == mask2 && mask1 != 0 && (mask1 & mask1 - 1) == 0
+						&& mask2 != 0 && (mask2 & mask2 - 1) == 0)
 					{
 						// Cannot form a XY-Wing.
 						continue;

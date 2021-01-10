@@ -226,7 +226,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					foreach (int[] cells in list.GetSubsets(size))
 					{
 						var map = new Cells(cells);
-						if (map.BlockMask.IsPowerOfTwo() && region >= 9)
+						if (map.BlockMask != 0 && (map.BlockMask & map.BlockMask - 1) == 0 && region >= 9)
 						{
 							// All ALS cells lying on a box-row or a box-column
 							// will be processed as a block ALS.

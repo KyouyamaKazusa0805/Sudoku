@@ -142,13 +142,23 @@ namespace Sudoku.Solving.Manual.Alses
 										short maskIsolated = (short)(
 											cannibalMode
 											? (lineMask & blockMask & selectedInterMask)
-											: (selectedInterMask & ~(blockMask | lineMask)));
+											: (selectedInterMask & ~(blockMask | lineMask))
+										);
 										short maskOnlyInInter = (short)(
-											selectedInterMask & ~(blockMask | lineMask));
-										if (!cannibalMode && (
-											(blockMask & lineMask) != 0
-											|| maskIsolated != 0 && !maskIsolated.IsPowerOfTwo())
-											|| cannibalMode && !maskIsolated.IsPowerOfTwo())
+											selectedInterMask & ~(blockMask | lineMask)
+										);
+										if
+										(
+											!cannibalMode && (
+												(blockMask & lineMask) != 0
+												|| maskIsolated != 0 && (
+													maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0
+												)
+											)
+											|| cannibalMode && (
+												maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0
+											)
+										)
 										{
 											continue;
 										}

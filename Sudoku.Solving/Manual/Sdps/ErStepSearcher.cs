@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -46,7 +45,8 @@ namespace Sudoku.Solving.Manual.Sdps
 							continue;
 						}
 
-						if (linkMap.BlockMask.IsPowerOfTwo()
+						short blockMask = linkMap.BlockMask;
+						if (blockMask != 0 && (blockMask & blockMask - 1) == 0
 							|| i < 6 && !linkMap.Overlaps(RegionMaps[column])
 							|| i >= 6 && !linkMap.Overlaps(RegionMaps[row]))
 						{

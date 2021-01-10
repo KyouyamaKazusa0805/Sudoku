@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -232,7 +231,7 @@ namespace Sudoku.Solving.Manual.Singles
 				}
 
 				short mask = grid.GetCandidates(cell);
-				if (!mask.IsPowerOfTwo())
+				if (mask == 0 || (mask & mask - 1) != 0)
 				{
 					continue;
 				}

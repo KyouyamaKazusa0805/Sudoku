@@ -93,7 +93,8 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 							inter &= m;
 						}
 
-						if (PopCount((uint)union) != size || inter != 0 && !inter.IsPowerOfTwo())
+						if (PopCount((uint)union) != size || inter != 0
+							&& (inter == 0 || (inter & inter - 1) != 0))
 						{
 							continue;
 						}
@@ -102,7 +103,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						bool isIncomplete = inter == 0;
 						short interWithoutPivot = (short)(union & ~grid.GetCandidates(pivot));
 						short maskToCheck = isIncomplete ? interWithoutPivot : inter;
-						if (!maskToCheck.IsPowerOfTwo())
+						if (maskToCheck == 0 || (maskToCheck & maskToCheck - 1) != 0)
 						{
 							continue;
 						}

@@ -91,7 +91,7 @@ namespace Sudoku.Data.Collections
 				return "{ }";
 			}
 
-			if (_mask.IsPowerOfTwo())
+			if ((_mask & _mask - 1) == 0)
 			{
 				return (TrailingZeroCount(_mask) + 1).ToString();
 			}

@@ -161,13 +161,15 @@ namespace Sudoku.Solving.Manual.Fishes
 						else // Should check fins.
 						{
 							// All fins should be in the same block.
-							if ((fins = baseLine - coverLine).IsEmpty || !fins.BlockMask.IsPowerOfTwo())
+							fins = baseLine - coverLine;
+							short blockMask = fins.BlockMask;
+							if (fins.IsEmpty || blockMask == 0 || (blockMask & blockMask - 1) != 0)
 							{
 								continue;
 							}
 
 							// Cover set shouldn't overlap with the block of all fins lying in.
-							int finBlock = TrailingZeroCount(fins.BlockMask);
+							int finBlock = TrailingZeroCount(blockMask);
 							if (!coverLine.Overlaps(RegionMaps[finBlock]))
 							{
 								continue;

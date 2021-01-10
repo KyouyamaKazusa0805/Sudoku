@@ -94,22 +94,6 @@ namespace System.Extensions
 			return result;
 		}
 
-		/// <inheritdoc cref="Integer.IsPowerOfTwo(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsPowerOfTwo(this byte @this) => @this != 0 && (@this & (@this - 1)) == 0;
-
-		/// <inheritdoc cref="Integer.IsPowerOfTwo(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsPowerOfTwo(this short @this) => @this != 0 && (@this & (@this - 1)) == 0;
-
-		/// <inheritdoc cref="Integer.IsPowerOfTwo(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsPowerOfTwo(this int @this) => @this != 0 && (@this & (@this - 1)) == 0;
-
-		/// <inheritdoc cref="Integer.IsPowerOfTwo(Integer)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsPowerOfTwo(this long @this) => @this != 0 && (@this & (@this - 1L)) == 0;
-
 		/// <inheritdoc cref="Integer.GetNextSet(Integer, int)"/>
 		[Obsolete("We can only use the method on a " + nameof(Int16) + " mask.", true, DiagnosticId = "BAN")]
 		public static int GetNextSet(this byte @this, int index)

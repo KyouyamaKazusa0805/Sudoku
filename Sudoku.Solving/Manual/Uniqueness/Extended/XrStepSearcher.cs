@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				foreach (var (l, r) in pairs)
 				{
 					short tempMask = (short)(grid.GetCandidates(l) & grid.GetCandidates(r));
-					if (tempMask == 0 || tempMask.IsPowerOfTwo())
+					if (tempMask == 0 || (tempMask & tempMask - 1) == 0)
 					{
 						checkKindsFlag = false;
 						break;

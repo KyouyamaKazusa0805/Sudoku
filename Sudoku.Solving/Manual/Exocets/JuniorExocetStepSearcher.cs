@@ -460,7 +460,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				for (int j = 0; j < 4; j++)
 				{
 					int p = RegionCells[BibiIter[block, j]][i];
-					if (grid.GetCandidates(p).IsPowerOfTwo())
+					short mask = grid.GetCandidates(p);
+					if (mask != 0 && (mask & mask - 1) == 0)
 					{
 						temp[j] |= grid.GetCandidates(p);
 					}
@@ -487,7 +488,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					var (pos1, pos2) = j == 1 ? (b1, b2) : (b2, b1);
 					short ck = (short)(grid.GetCandidates(pos1) & playground[i]);
-					if (ck != 0 && !ck.IsPowerOfTwo()
+					if (ck != 0 && (ck == 0 || (ck & ck - 1) != 0)
 						|| (grid.GetCandidates(pos1) & ~(short)(ck | playground[i == 1 ? 2 : 1])) != 0)
 					{
 						continue;

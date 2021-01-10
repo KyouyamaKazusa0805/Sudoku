@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				// First rule: If there's only two candidates in this cell, the other one gets on.
 				short mask = (short)(grid.GetCandidates(p.Cell) & ~(1 << p.Digit));
-				if (g(grid, p.Cell, isDynamic) && mask.IsPowerOfTwo())
+				if (g(grid, p.Cell, isDynamic) && mask != 0 && (mask & mask - 1) == 0)
 				{
 					var pOn = new Node(p.Cell, TrailingZeroCount(mask), true, p)
 #if DOUBLE_LAYERED_ASSUMPTION
