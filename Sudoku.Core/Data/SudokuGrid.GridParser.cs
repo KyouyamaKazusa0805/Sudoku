@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Sudoku.DocComments;
 using static Sudoku.Constants;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data
 {
@@ -24,7 +25,7 @@ namespace Sudoku.Data
 			/// Initializes an instance with parsing data.
 			/// </summary>
 			/// <param name="parsingValue">The string to parse.</param>
-			public GridParser(string parsingValue) : this(parsingValue, compatibleFirst: false)
+			public GridParser(string parsingValue) : this(parsingValue, false)
 			{
 			}
 
@@ -52,16 +53,13 @@ namespace Sudoku.Data
 				{
 					&OnParsingSimpleTable,
 					&OnParsingSimpleMultilineGrid,
-					&OnParsingPencilMarked_1,
-					&OnParsingPencilMarked_2,
+					&OnParsingPencilMarked,
 					&OnParsingSusser,
 					&OnParsingExcel,
 					&OnParsingSukaku_1,
 					&OnParsingSukaku_2
 				};
 
-				static SudokuGrid OnParsingPencilMarked_1(ref GridParser @this) => OnParsingPencilMarked(ref @this, @this.CompatibleFirst);
-				static SudokuGrid OnParsingPencilMarked_2(ref GridParser @this) => OnParsingPencilMarked(ref @this, !@this.CompatibleFirst);
 				static SudokuGrid OnParsingSukaku_1(ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
 				static SudokuGrid OnParsingSukaku_2(ref GridParser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
 			}
@@ -87,12 +85,47 @@ namespace Sudoku.Data
 			/// <exception cref="ArgumentException">Throws when failed to parse.</exception>
 			public SudokuGrid Parse()
 			{
-				for (int trial = 0; trial < 8; trial++)
+				// Optimization: We can check some concrete type to reduce the unncessary parsing.
+				if (ParsingValue.Length == 729)
 				{
-					var grid = ParseFunctions[trial](ref this);
+					// The sukaku should be of length 729.
+					var grid = OnParsingExcel(ref this);
 					if (grid != Undefined)
 					{
 						return grid;
+					}
+				}
+				else if (ParsingValue.Contains("-+-"))
+				{
+					// The multi-line grid should be with the mark '-' and '+'.
+					for (int trial = 1; trial <= 3; trial++)
+					{
+						var grid = ParseFunctions[trial](ref this);
+						if (grid != Undefined)
+						{
+							return grid;
+						}
+					}
+				}
+				else if (ParsingValue.Contains('\t'))
+				{
+					// The excel grid should be with '\t'.
+					var grid = OnParsingExcel(ref this);
+					if (grid != Undefined)
+					{
+						return grid;
+					}
+				}
+				else
+				{
+					// Other cases.
+					for (int trial = 0; trial < 8; trial++)
+					{
+						var grid = ParseFunctions[trial](ref this);
+						if (grid != Undefined)
+						{
+							return grid;
+						}
 					}
 				}
 
@@ -109,8 +142,7 @@ namespace Sudoku.Data
 				{
 					GridParsingOption.Susser => OnParsingSusser(ref this),
 					GridParsingOption.Table => OnParsingSimpleMultilineGrid(ref this),
-					GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this, treatSingleValueAsGiven: false),
-					GridParsingOption.PencilMarkedTreatSingleAsGiven => OnParsingPencilMarked(ref this, treatSingleValueAsGiven: true),
+					GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this),
 					GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
 					GridParsingOption.Sukaku => OnParsingSukaku(ref this, compatibleFirst: false),
 					GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, compatibleFirst: true),
@@ -213,12 +245,8 @@ namespace Sudoku.Data
 			/// Parse the PM grid.
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
-			/// <param name="treatSingleValueAsGiven">
-			/// The value indicating whether the parsing should treat
-			/// the modifiable values as given ones.
-			/// </param>
 			/// <returns>The result.</returns>
-			private static SudokuGrid OnParsingPencilMarked(ref GridParser parser, bool treatSingleValueAsGiven)
+			private static SudokuGrid OnParsingPencilMarked(ref GridParser parser)
 			{
 				// Older regular expression pattern:
 				// string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit_Old);
@@ -228,11 +256,10 @@ namespace Sudoku.Data
 					return Undefined;
 				}
 
-				var series = (stackalloc bool[9]);
 				var result = Empty;
 				for (int cell = 0; cell < 81; cell++)
 				{
-					string s = matches[cell].Reserve(RegularExpressions.Digit);
+					string s = matches[cell]/*.Reserve(RegularExpressions.Digit)*/;
 					int length = s.Length;
 					if (length > 9)
 					{
@@ -240,34 +267,7 @@ namespace Sudoku.Data
 						return Undefined;
 					}
 
-					if (treatSingleValueAsGiven)
-					{
-						// This options means that all characters matched will
-						// contain only digit characters.
-						// Check the length is 1 or not.
-						// The string has only one character, which means that
-						// the digit character is the given of the cell.
-						if (length == 1)
-						{
-							// To assign the value, and to trigger the event
-							// to modify all information of peers.
-							result[cell] = s[0] - '1';
-							result.SetStatus(cell, CellStatus.Given);
-						}
-						else
-						{
-							series.Fill(false);
-							foreach (char c in s)
-							{
-								series[c - '1'] = true;
-							}
-							for (int digit = 0; digit < 9; digit++)
-							{
-								result[cell, digit] = series[digit];
-							}
-						}
-					}
-					else if (s.Contains('<'))
+					if (s.Contains('<'))
 					{
 						// All values will be treated as normal characters:
 						// '<digit>', '*digit*' and 'candidates'.
@@ -319,14 +319,28 @@ namespace Sudoku.Data
 						// Candidates.
 						// Here don't need to check the length of the string,
 						// and also all characters are digit characters.
-						series.Fill(false);
+						short mask = 0;
 						foreach (char c in s)
 						{
-							series[c - '1'] = true;
+							mask |= (short)(1 << c - '1');
 						}
-						for (int digit = 0; digit < 9; digit++)
+
+						if (mask == 0)
 						{
-							result[cell, digit] = series[digit];
+							return Undefined;
+						}
+
+						if ((mask & mask - 1) == 0)
+						{
+							result[cell] = TrailingZeroCount(mask);
+							result.SetStatus(cell, CellStatus.Given);
+						}
+						else
+						{
+							for (int digit = 0; digit < 9; digit++)
+							{
+								result[cell, digit] = (mask >> digit & 1) != 0;
+							}
 						}
 					}
 					else
@@ -518,7 +532,6 @@ namespace Sudoku.Data
 						return Undefined;
 					}
 
-					var series = (stackalloc bool[9]);
 					var result = Empty;
 					for (int offset = 0; offset < 81; offset++)
 					{
@@ -529,14 +542,28 @@ namespace Sudoku.Data
 							return Undefined;
 						}
 
-						series.Fill(false);
+						short mask = 0;
 						foreach (char c in s)
 						{
-							series[c - '1'] = true;
+							mask |= (short)(1 << c - '1');
 						}
+
+						if (mask == 0)
+						{
+							return Undefined;
+						}
+
+						// We don't need to set the value as a given because the current parsing
+						// if for sukakus, rather than normal sudokus.
+						//if ((mask & mask - 1) == 0)
+						//{
+						//	result[offset] = TrailingZeroCount(mask);
+						//	result.SetStatus(offset, CellStatus.Given);
+						//}
+
 						for (int digit = 0; digit < 9; digit++)
 						{
-							result[offset, digit] = series[digit];
+							result[offset, digit] = (mask >> digit & 1) != 0;
 						}
 					}
 

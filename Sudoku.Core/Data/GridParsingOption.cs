@@ -52,35 +52,6 @@
 
 		/// <summary>
 		/// <para>
-		/// Indicates the pencil marked grid (PM grid), which means all
-		/// grid candidates will be displayed using a table. In addition,
-		/// all single digit will be treated as a given digit.
-		/// </para>
-		/// <para>
-		/// For example:
-		/// <code>
-		/// .--------------.--------------.-------------.
-		/// | 4   8    59  | 157  15   2  | 3   79  6   |
-		/// | 3   1    256 | 578  568  9  | 25  78  4   |
-		/// | 56  79   279 | 4    568  3  | 29  1   58  |
-		/// :--------------+--------------+-------------:
-		/// | 9   3    8   | 2    4    6  | 7   5   1   |
-		/// | 7   5    1   | 3    9    8  | 4   6   2   |
-		/// | 2   6    4   | 15   7    15 | 8   3   9   |
-		/// :--------------+--------------+-------------:
-		/// | 56  2    567 | 9    138  47 | 16  48  38  |
-		/// | 1   479  679 | 58   358  47 | 69  2   358 |
-		/// | 8   49   3   | 6    2    15 | 15  49  7   |
-		/// '--------------'--------------'-------------'
-		/// </code>
-		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
-		/// in this table.)
-		/// </para>
-		/// </summary>
-		PencilMarkedTreatSingleAsGiven,
-
-		/// <summary>
-		/// <para>
 		/// Indicates the table format, which means all grid values
 		/// will be displayed using a table with empty cell character
 		/// <c>'0'</c> or <c>'.'</c>.
