@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -125,21 +126,15 @@ namespace Sudoku.Solving
 			{
 				if (Steps is null)
 				{
-					goto NotSolvedOrSolvingStepsIsNull;
+					return 20M;
 				}
 
 				if (IsSolved)
 				{
-					for (int i = 1, count = Steps.Count; i < count; i++)
-					{
-						if (Steps[i - 1] is { ShowDifficulty: true } info && Steps[i] is SingleStepInfo)
-						{
-							return info.Difficulty;
-						}
-					}
+					int index = Steps.FindIndexOf(static element => element is SingleStepInfo);
+					return Steps.Slice(0, index).Max(static step => step.Difficulty);
 				}
 
-			NotSolvedOrSolvingStepsIsNull:
 				return 20M;
 			}
 		}
