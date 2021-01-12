@@ -565,13 +565,6 @@
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Candidates.AssignFixedArray(System.Int32,System.Boolean)">
-            <summary>
-            Calls the method while initializing.
-            </summary>
-            <param name="candidate">The candidate.</param>
-            <param name="setItself">Indicates whether the map should set itself.</param>
-        </member>
         <member name="M:Sudoku.Data.Candidates.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Get the map of candidates, which is the peer intersections from the specified candidates.

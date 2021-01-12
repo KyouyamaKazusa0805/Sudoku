@@ -75,7 +75,23 @@ namespace Sudoku.Data
 		public Candidates(int candidate, bool setItself)
 		{
 			Count = setItself ? 29 : 28;
-			AssignFixedArray(candidate, setItself);
+			assign(ref this, candidate, setItself);
+
+			static void assign(ref Candidates @this, int candidate, bool setItself)
+			{
+				int cell = candidate / 9, digit = candidate % 9;
+				foreach (int c in PeerMaps[cell])
+				{
+					@this[c * 9 + digit] = true;
+				}
+				for (int d = 0; d < 9; d++)
+				{
+					if (d != digit || d == digit && setItself)
+					{
+						@this[cell * 9 + d] = true;
+					}
+				}
+			}
 		}
 
 		/// <summary>
@@ -560,27 +576,6 @@ namespace Sudoku.Data
 			Count = 0;
 		}
 
-		/// <summary>
-		/// Calls the method while initializing.
-		/// </summary>
-		/// <param name="candidate">The candidate.</param>
-		/// <param name="setItself">Indicates whether the map should set itself.</param>
-		private void AssignFixedArray(int candidate, bool setItself)
-		{
-			int cell = candidate / 9, digit = candidate % 9;
-			foreach (int c in PeerMaps[cell])
-			{
-				this[c * 9 + digit] = true;
-			}
-			for (int d = 0; d < 9; d++)
-			{
-				if (d != digit || d == digit && setItself)
-				{
-					this[cell * 9 + d] = true;
-				}
-			}
-		}
-
 
 		/// <summary>
 		/// Get the map of candidates, which is the peer intersections from the specified candidates.
@@ -595,7 +590,7 @@ namespace Sudoku.Data
 				result &= new Candidates(candidate, false);
 			}
 
-			return new(result);
+			return result;
 		}
 
 
