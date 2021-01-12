@@ -132,7 +132,12 @@ namespace Sudoku.Solving
 				if (IsSolved)
 				{
 					int index = Steps.FindIndexOf(static element => element is SingleStepInfo);
-					return Steps.Slice(0, index).Max(static step => step.Difficulty);
+					return index switch
+					{
+						-1 => 20M,
+						0 => Steps[0].Difficulty,
+						_ => Steps.Slice(0, index).Max(static step => step.Difficulty)
+					};
 				}
 
 				return 20M;
