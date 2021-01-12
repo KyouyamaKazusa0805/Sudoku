@@ -473,6 +473,12 @@
             </summary>
             <returns>An array of cell offsets.</returns>
         </member>
+        <member name="M:Sudoku.Data.Candidates.GetPinnableReference">
+            <summary>
+            Get the first position of the inner binary array.
+            </summary>
+            <returns>The reference of the first position.</returns>
+        </member>
         <member name="M:Sudoku.Data.Candidates.GetSubviewMask(System.Int32,System.Int32)">
             <summary>
             Get the subview mask of this map.

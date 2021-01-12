@@ -385,6 +385,12 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Get the first position of the inner binary array.
+		/// </summary>
+		/// <returns>The reference of the first position.</returns>
+		public readonly ref readonly long GetPinnableReference() => ref _innerBinary[0];
+
+		/// <summary>
 		/// Get the subview mask of this map.
 		/// </summary>
 		/// <param name="region">The region.</param>
