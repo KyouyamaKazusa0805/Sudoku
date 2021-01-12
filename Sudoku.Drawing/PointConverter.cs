@@ -143,7 +143,7 @@ namespace Sudoku.Drawing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public PointF GetMouseCenter(Candidates map)
 		{
-			int min = map.SetAt(0), max = map.SetAt(^1);
+			int min = map[0], max = map[^1];
 			var (x1, y1) = GetMousePointInCenter(min / 9, min % 9);
 			var (x2, y2) = GetMousePointInCenter(max / 9, max % 9);
 			return new((x1 + x2) / 2, (y1 + y2) / 2);
@@ -158,7 +158,7 @@ namespace Sudoku.Drawing
 		public RectangleF GetMouseRectangle(Candidates map)
 		{
 			var (cw, ch) = CandidateSize;
-			int min = map.SetAt(0), max = map.SetAt(^1);
+			int min = map[0], max = map[^1];
 			var pt1 = GetMousePointInCenter(min / 9, min % 9).WithOffset(-cw / 2, -ch / 2);
 			var pt2 = GetMousePointInCenter(max / 9, max % 9).WithOffset(cw / 2, ch / 2);
 			return RectangleEx.CreateInstance(pt1, pt2);

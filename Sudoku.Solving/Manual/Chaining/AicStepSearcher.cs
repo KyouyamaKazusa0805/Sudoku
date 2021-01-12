@@ -214,7 +214,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			foreach (var (start, end, type) in links)
 			{
 				if (type == LinkType.Weak
-					&& new Candidates { start, end }.PeerIntersection is { IsNotEmpty: true } elimMap)
+					&& new Candidates { start, end }.PeerIntersection is { IsEmpty: false } elimMap)
 				{
 					foreach (int candidate in elimMap)
 					{

@@ -82,13 +82,13 @@ namespace Sudoku.Data
 				int cell = candidate / 9, digit = candidate % 9;
 				foreach (int c in PeerMaps[cell])
 				{
-					@this[c * 9 + digit] = true;
+					@this.InternalAdd(c * 9 + digit, true);
 				}
 				for (int d = 0; d < 9; d++)
 				{
 					if (d != digit || d == digit && setItself)
 					{
-						@this[cell * 9 + d] = true;
+						@this.InternalAdd(cell * 9 + d, true);
 					}
 				}
 			}
@@ -161,7 +161,7 @@ namespace Sudoku.Data
 		{
 			foreach (int cell in map)
 			{
-				this[cell * 9 + digit] = true;
+				InternalAdd(cell * 9 + digit, true);
 			}
 		}
 
@@ -182,65 +182,13 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// Indicates whether the map has no set bits.
-		/// This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
 		/// </summary>
-		/// <seealso cref="IsNotEmpty"/>
 		public readonly bool IsEmpty => Count == 0;
-
-		/// <summary>
-		/// Indicates whether the map has at least one set bit.
-		/// This property is equivalent to code '<c>!this.IsEmpty</c>'.
-		/// </summary>
-		/// <seealso cref="IsEmpty"/>
-		public readonly bool IsNotEmpty => Count != 0;
 
 		/// <summary>
 		/// Indicates how many bits are set <see langword="true"/>.
 		/// </summary>
 		public int Count { readonly get; private set; }
-
-		/// <summary>
-		/// Gets the first set bit position. If the current map is empty,
-		/// the return value will be <c>-1</c>.
-		/// </summary>
-		/// <remarks>
-		/// The property will use the same process with <see cref="Offsets"/>,
-		/// but the <see langword="yield"/> clause will be replaced with normal <see langword="return"/>s.
-		/// </remarks>
-		/// <seealso cref="Offsets"/>
-		public readonly int First
-		{
-			get
-			{
-				if (IsEmpty)
-				{
-					return -1;
-				}
-
-				fixed (long* pArray = _innerBinary)
-				{
-					int blockPos = 0;
-					for (long* p = pArray; blockPos < BufferLength; blockPos++, p++)
-					{
-						if (*p == 0)
-						{
-							continue;
-						}
-
-						int i = 0;
-						for (long value = *p; i < Shifting; i++, value >>= 1)
-						{
-							if ((value & 1) != 0)
-							{
-								return blockPos * Shifting + i;
-							}
-						}
-					}
-				}
-
-				return default; // Here is only used for a placeholder.
-			}
-		}
 
 		/// <summary>
 		/// Indicates the map of cells, which is the peer intersections.
@@ -263,7 +211,7 @@ namespace Sudoku.Data
 				int count = 0;
 				for (int i = 0; i < 729; i++)
 				{
-					if (this[i])
+					if (Contains(i))
 					{
 						result[count++] = i;
 					}
@@ -275,41 +223,26 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Gets or sets the result set case of the specified index.
+		/// Gets the result set candidate at the specified index.
 		/// </summary>
-		/// <param name="candidate">The candidate offset (index).</param>
-		/// <value>The <see cref="bool"/> value to set.</value>
-		/// <returns>A <see cref="bool"/> value.</returns>
+		/// <param name="index">The index.</param>
+		/// <returns>
+		/// The candidate at that index. If the index is invalid, the return value will be -1.
+		/// </returns>
 		[IndexerName("Candidate")]
-		public bool this[int candidate]
+		public readonly int this[int index]
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			readonly get => (_innerBinary[candidate / Shifting] >> candidate % Shifting & 1) != 0;
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			set
+			get
 			{
-				fixed (long* pArray = _innerBinary)
+				for (int i = 0, count = -1; i < 729; i++)
 				{
-					long* block = pArray + candidate / Shifting;
-					bool older = this[candidate];
-					if (value)
+					if (Contains(i) && ++count == index)
 					{
-						*block |= 1L << candidate % Shifting;
-						if (!older)
-						{
-							Count++;
-						}
-					}
-					else
-					{
-						*block &= ~(1L << candidate % Shifting);
-						if (older)
-						{
-							Count--;
-						}
+						return i;
 					}
 				}
+
+				return -1;
 			}
 		}
 
@@ -333,36 +266,13 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Indicates whether this map overlaps another one.
+		/// Check whether the specified candidate is in the current list.
 		/// </summary>
-		/// <param name="other">(<see langword="in"/> parameter) The other map.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
+		/// <param name="candidate">The candidate to check.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Overlaps(in Candidates other) => (this & other).IsNotEmpty;
-
-		/// <summary>
-		/// Get a n-th index of the <see langword="true"/> bit in this instance.
-		/// </summary>
-		/// <param name="index">The true bit index order.</param>
-		/// <returns>The real index.</returns>
-		/// <remarks>
-		/// If you want to select the first set bit, please use <see cref="First"/> instead.
-		/// </remarks>
-		/// <seealso cref="First"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int SetAt(int index) => index == 0 ? First : Offsets.ElementAt(index);
-
-		/// <summary>
-		/// Get a n-th index of the <see langword="true"/> bit in this instance.
-		/// </summary>
-		/// <param name="index">(<see langword="in"/> parameter) The true bit index order.</param>
-		/// <returns>The real index.</returns>
-		/// <remarks>
-		/// If you want to select the first set bit, please use <see cref="First"/> instead.
-		/// </remarks>
-		/// <seealso cref="First"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int SetAt(in Index index) => Offsets.ElementAt(index.GetOffset(Count));
+		public readonly bool Contains(int candidate) =>
+			(_innerBinary[candidate / Shifting] >> candidate % Shifting & 1) != 0;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override readonly int GetHashCode()
@@ -373,7 +283,7 @@ namespace Sudoku.Data
 				@base ^= _innerBinary[i];
 			}
 
-			return (int)(@base & 0xABCDEF);
+			return (int)(@base & int.MaxValue);
 		}
 
 		/// <summary>
@@ -400,7 +310,7 @@ namespace Sudoku.Data
 			short p = 0;
 			for (int i = 0; i < RegionCells[region].Length; i++)
 			{
-				if (this[RegionCells[region][i] * 9 + digit])
+				if (Contains(RegionCells[region][i] * 9 + digit))
 				{
 					p |= (short)(1 << i);
 				}
@@ -420,7 +330,7 @@ namespace Sudoku.Data
 				}
 				case 1:
 				{
-					int candidate = First, cell = candidate / 9, digit = candidate % 9;
+					int candidate = this[0], cell = candidate / 9, digit = candidate % 9;
 					return $"r{cell / 9 + 1}c{cell % 9 + 1}({digit + 1})";
 				}
 				default:
@@ -455,7 +365,7 @@ namespace Sudoku.Data
 			var result = Cells.Empty;
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (this[cell * 9 + digit])
+				if (Contains(cell * 9 + digit))
 				{
 					result.AddAnyway(cell);
 				}
@@ -478,65 +388,47 @@ namespace Sudoku.Data
 		/// negative, the offset will be assigned <see langword="false"/>
 		/// into the corresponding bit position of its absolute value.
 		/// </param>
-		/// <remarks>
-		/// <para>
-		/// For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
-		/// <code>
-		/// var map = new Cells(xxx) { ~1 };
-		/// </code>
-		/// which is equivalent to:
-		/// <code>
-		/// var map = new Cells(xxx);
-		/// map[1] = false;
-		/// </code>
-		/// </para>
-		/// <para>
-		/// Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
-		/// to describe the value is a negative one. As the belowing example, -2 is described as <c>~1</c>,
-		/// so the offset is 1, rather than 2.
-		/// </para>
-		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Add(int offset)
 		{
 			switch (offset)
 			{
-				case >= 0 when !this[offset]:
+				case >= 0 when !Contains(offset):
 				{
-					this[offset] = true;
+					InternalAdd(offset, true);
 					break;
 				}
-				case < 0 when this[~offset]:
+				case < 0 when Contains(~offset):
 				{
-					this[~offset] = false;
+					InternalAdd(~offset, false);
 					break;
 				}
 			}
 		}
 
 		/// <summary>
-		/// Set the specified cell as <see langword="true"/> value.
+		/// Set the specified candidate as <see langword="true"/> value.
 		/// </summary>
-		/// <param name="offset">The cell offset.</param>
+		/// <param name="candidate">The candidate offset.</param>
 		/// <remarks>
 		/// Different with <see cref="Add(int)"/>, the method will process negative values,
 		/// but this won't.
 		/// </remarks>
 		/// <seealso cref="Add(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void AddAnyway(int offset) => this[offset] = true;
+		public void AddAnyway(int candidate) => InternalAdd(candidate, true);
 
 		/// <summary>
-		/// Set the specified cell as <see langword="false"/> value.
+		/// Set the specified candidate as <see langword="false"/> value.
 		/// </summary>
-		/// <param name="offset">The cell offset.</param>
+		/// <param name="candidate">The cell offset.</param>
 		/// <remarks>
 		/// Different with <see cref="Add(int)"/>, this method <b>can't</b> receive
 		/// the negative value as the parameter.
 		/// </remarks>
 		/// <seealso cref="Add(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Remove(int offset) => this[offset] = false;
+		public void Remove(int candidate) => InternalAdd(candidate, false);
 
 		/// <summary>
 		/// Set the specified candidates as <see langword="true"/> value.
@@ -546,7 +438,7 @@ namespace Sudoku.Data
 		{
 			foreach (int candidate in candidates)
 			{
-				Add(candidate);
+				AddAnyway(candidate);
 			}
 		}
 
@@ -558,7 +450,7 @@ namespace Sudoku.Data
 		{
 			foreach (int candidate in candidates)
 			{
-				Add(candidate);
+				AddAnyway(candidate);
 			}
 		}
 
@@ -579,6 +471,37 @@ namespace Sudoku.Data
 			}
 
 			Count = 0;
+		}
+
+		/// <summary>
+		/// The add method.
+		/// </summary>
+		/// <param name="candidate">The candidate.</param>
+		/// <param name="value">The value.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void InternalAdd(int candidate, bool value)
+		{
+			fixed (long* pArray = _innerBinary)
+			{
+				long* block = pArray + candidate / Shifting;
+				bool older = Contains(candidate);
+				if (value)
+				{
+					*block |= 1L << candidate % Shifting;
+					if (!older)
+					{
+						Count++;
+					}
+				}
+				else
+				{
+					*block &= ~(1L << candidate % Shifting);
+					if (older)
+					{
+						Count--;
+					}
+				}
+			}
 		}
 
 

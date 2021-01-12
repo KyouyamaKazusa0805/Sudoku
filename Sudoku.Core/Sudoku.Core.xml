@@ -384,32 +384,12 @@
         <member name="P:Sudoku.Data.Candidates.IsEmpty">
             <summary>
             Indicates whether the map has no set bits.
-            This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
             </summary>
-            <seealso cref="P:Sudoku.Data.Candidates.IsNotEmpty"/>
-        </member>
-        <member name="P:Sudoku.Data.Candidates.IsNotEmpty">
-            <summary>
-            Indicates whether the map has at least one set bit.
-            This property is equivalent to code '<c>!this.IsEmpty</c>'.
-            </summary>
-            <seealso cref="P:Sudoku.Data.Candidates.IsEmpty"/>
         </member>
         <member name="P:Sudoku.Data.Candidates.Count">
             <summary>
             Indicates how many bits are set <see langword="true"/>.
             </summary>
-        </member>
-        <member name="P:Sudoku.Data.Candidates.First">
-            <summary>
-            Gets the first set bit position. If the current map is empty,
-            the return value will be <c>-1</c>.
-            </summary>
-            <remarks>
-            The property will use the same process with <see cref="P:Sudoku.Data.Candidates.Offsets"/>,
-            but the <see langword="yield"/> clause will be replaced with normal <see langword="return"/>s.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.Candidates.Offsets"/>
         </member>
         <member name="P:Sudoku.Data.Candidates.PeerIntersection">
             <summary>
@@ -423,11 +403,12 @@
         </member>
         <member name="P:Sudoku.Data.Candidates.Candidate(System.Int32)">
             <summary>
-            Gets or sets the result set case of the specified index.
+            Gets the result set candidate at the specified index.
             </summary>
-            <param name="candidate">The candidate offset (index).</param>
-            <value>The <see cref="T:System.Boolean"/> value to set.</value>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+            <param name="index">The index.</param>
+            <returns>
+            The candidate at that index. If the index is invalid, the return value will be -1.
+            </returns>
         </member>
         <member name="M:Sudoku.Data.Candidates.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -435,34 +416,12 @@
         <member name="M:Sudoku.Data.Candidates.Equals(Sudoku.Data.Candidates@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Candidates.Overlaps(Sudoku.Data.Candidates@)">
+        <member name="M:Sudoku.Data.Candidates.Contains(System.Int32)">
             <summary>
-            Indicates whether this map overlaps another one.
+            Check whether the specified candidate is in the current list.
             </summary>
-            <param name="other">(<see langword="in"/> parameter) The other map.</param>
-            <returns>The <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Candidates.SetAt(System.Int32)">
-            <summary>
-            Get a n-th index of the <see langword="true"/> bit in this instance.
-            </summary>
-            <param name="index">The true bit index order.</param>
-            <returns>The real index.</returns>
-            <remarks>
-            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.Candidates.First"/> instead.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.Candidates.First"/>
-        </member>
-        <member name="M:Sudoku.Data.Candidates.SetAt(System.Index@)">
-            <summary>
-            Get a n-th index of the <see langword="true"/> bit in this instance.
-            </summary>
-            <param name="index">(<see langword="in"/> parameter) The true bit index order.</param>
-            <returns>The real index.</returns>
-            <remarks>
-            If you want to select the first set bit, please use <see cref="P:Sudoku.Data.Candidates.First"/> instead.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.Candidates.First"/>
+            <param name="candidate">The candidate to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Data.Candidates.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -513,30 +472,12 @@
             negative, the offset will be assigned <see langword="false"/>
             into the corresponding bit position of its absolute value.
             </param>
-            <remarks>
-            <para>
-            For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
-            <code>
-            var map = new Cells(xxx) { ~1 };
-            </code>
-            which is equivalent to:
-            <code>
-            var map = new Cells(xxx);
-            map[1] = false;
-            </code>
-            </para>
-            <para>
-            Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
-            to describe the value is a negative one. As the belowing example, -2 is described as <c>~1</c>,
-            so the offset is 1, rather than 2.
-            </para>
-            </remarks>
         </member>
         <member name="M:Sudoku.Data.Candidates.AddAnyway(System.Int32)">
             <summary>
-            Set the specified cell as <see langword="true"/> value.
+            Set the specified candidate as <see langword="true"/> value.
             </summary>
-            <param name="offset">The cell offset.</param>
+            <param name="candidate">The candidate offset.</param>
             <remarks>
             Different with <see cref="M:Sudoku.Data.Candidates.Add(System.Int32)"/>, the method will process negative values,
             but this won't.
@@ -545,9 +486,9 @@
         </member>
         <member name="M:Sudoku.Data.Candidates.Remove(System.Int32)">
             <summary>
-            Set the specified cell as <see langword="false"/> value.
+            Set the specified candidate as <see langword="false"/> value.
             </summary>
-            <param name="offset">The cell offset.</param>
+            <param name="candidate">The cell offset.</param>
             <remarks>
             Different with <see cref="M:Sudoku.Data.Candidates.Add(System.Int32)"/>, this method <b>can't</b> receive
             the negative value as the parameter.
@@ -570,6 +511,13 @@
             <summary>
             Clear all bits.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.InternalAdd(System.Int32,System.Boolean)">
+            <summary>
+            The add method.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="value">The value.</param>
         </member>
         <member name="M:Sudoku.Data.Candidates.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
