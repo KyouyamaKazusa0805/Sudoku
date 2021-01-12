@@ -51,13 +51,15 @@ namespace Sudoku.Solving.Extensions
 				searcher.GetAll(steps, @this);
 				if (steps.Count == 0)
 				{
-					goto Again;
+					continue;
 				}
 
 				foreach (var step in steps)
 				{
 					step.ApplyTo(ref @this);
 				}
+
+				goto Again;
 			}
 		}
 	}
