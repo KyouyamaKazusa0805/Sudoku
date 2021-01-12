@@ -516,7 +516,6 @@ namespace Sudoku.Data
 		/// This array. All elements are between 0 to 9, where 0 means the
 		/// cell is <see cref="CellStatus.Empty"/> now.
 		/// </returns>
-		[SkipLocalsInit]
 		public readonly int[] ToArray()
 		{
 			var span = (stackalloc int[Length]);

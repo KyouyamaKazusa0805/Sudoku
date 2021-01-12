@@ -38,7 +38,6 @@ namespace Sudoku.Data
 
 
 			/// <inheritdoc/>
-			[SkipLocalsInit]
 			public long Current { readonly get; private set; }
 
 			/// <inheritdoc/>

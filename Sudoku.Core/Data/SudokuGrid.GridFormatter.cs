@@ -188,7 +188,6 @@ namespace Sudoku.Data
 			/// <exception cref="ArgumentException">
 			/// Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
 			/// </exception>
-			[SkipLocalsInit]
 			private string ToSukakuString(in SudokuGrid grid)
 			{
 				if (Multiline)

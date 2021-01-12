@@ -39,7 +39,6 @@ namespace Sudoku.Generating
 		/// <returns>The grid.</returns>
 		/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
 		/// <seealso cref="SymmetryType"/>
-		[SkipLocalsInit]
 		public SudokuGrid Generate(
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult>? progress,
 			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
