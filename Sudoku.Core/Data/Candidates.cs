@@ -142,7 +142,10 @@ namespace Sudoku.Data
 			fixed (long* pThis = _innerBinary)
 			{
 				long* p = pThis;
-				for (int i = 0; i < BufferLength; i++, *p++ = *binary++, count += PopCount((ulong)*binary)) ;
+				for (int i = 0; i < BufferLength; i++, *p++ = *binary++)
+				{
+					count += PopCount((ulong)*binary);
+				}
 			}
 
 			Count = count;
@@ -159,7 +162,6 @@ namespace Sudoku.Data
 			foreach (int cell in map)
 			{
 				this[cell * 9 + digit] = true;
-				Count++;
 			}
 		}
 
@@ -248,22 +250,26 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates all indices of set bits.
 		/// </summary>
-		private readonly IEnumerable<int> Offsets
+		private readonly int[] Offsets
 		{
 			get
 			{
 				if (Count == 0)
 				{
-					yield break;
+					return Array.Empty<int>();
 				}
 
+				int[] result = new int[Count];
+				int count = 0;
 				for (int i = 0; i < 729; i++)
 				{
 					if (this[i])
 					{
-						yield return i;
+						result[count++] = i;
 					}
 				}
+
+				return result;
 			}
 		}
 
@@ -272,8 +278,8 @@ namespace Sudoku.Data
 		/// Gets or sets the result set case of the specified index.
 		/// </summary>
 		/// <param name="candidate">The candidate offset (index).</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
 		/// <value>The <see cref="bool"/> value to set.</value>
+		/// <returns>A <see cref="bool"/> value.</returns>
 		[IndexerName("Candidate")]
 		public bool this[int candidate]
 		{
@@ -285,7 +291,7 @@ namespace Sudoku.Data
 			{
 				fixed (long* pArray = _innerBinary)
 				{
-					long* block = &pArray[candidate / Shifting];
+					long* block = pArray + candidate / Shifting;
 					bool older = this[candidate];
 					if (value)
 					{
@@ -375,14 +381,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>An array of cell offsets.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int[] ToArray()
-		{
-			// To avoid the implicitly copy, we use the pointer to point to the same memory.
-			fixed (Candidates* @this = &this)
-			{
-				return @this->Offsets.ToArray();
-			}
-		}
+		public readonly int[] ToArray() => Offsets;
 
 		/// <summary>
 		/// Get the first position of the inner binary array.
@@ -466,7 +465,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
-		public readonly IEnumerator<int> GetEnumerator() => Offsets.GetEnumerator();
+		public readonly IEnumerator<int> GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

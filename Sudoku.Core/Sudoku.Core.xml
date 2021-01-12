@@ -426,8 +426,8 @@
             Gets or sets the result set case of the specified index.
             </summary>
             <param name="candidate">The candidate offset (index).</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
             <value>The <see cref="T:System.Boolean"/> value to set.</value>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Data.Candidates.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
