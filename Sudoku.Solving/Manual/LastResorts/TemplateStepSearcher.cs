@@ -42,7 +42,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <exception cref="SudokuHandlingException">Throws when the puzzle is invalid to process.</exception>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			_ = !grid.IsValid(out SudokuGrid solution) ? throw new SudokuHandlingException(errorCode: 202) : 0;
+			if (!grid.IsValid(out SudokuGrid solution))
+			{
+				throw new SudokuHandlingException<SudokuGrid>(errorCode: 202, grid);
+			}
 
 			if (!_templateDeleteOnly)
 			{
@@ -129,12 +132,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// The grid map that contains all cells of a digit appearing
 		/// in the solution.
 		/// </returns>
-		/// <exception cref="ArgumentException">
-		/// Throws when the puzzle has not been solved.
-		/// </exception>
+		/// <exception cref="SudokuHandlingException">Throws when the puzzle has not been solved.</exception>
 		private static Cells CreateInstance(in SudokuGrid grid, int digit)
 		{
-			_ = !grid.IsSolved ? throw new ArgumentException("The specified sudoku grid has not been solved.", nameof(grid)) : 0;
+			if (!grid.IsSolved)
+			{
+				throw new SudokuHandlingException<SudokuGrid>(errorCode: 203, grid);
+			}
 
 			var result = Cells.Empty;
 			for (int cell = 0; cell < 81; cell++)

@@ -142,7 +142,10 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
 		internal SudokuGrid(short[] masks)
 		{
-			_ = masks.Length != Length ? throw new ArgumentException($"The length of the array argument should be {Length}.", nameof(masks)) : masks;
+			if (masks.Length != Length)
+			{
+				throw new ArgumentException($"The length of the array argument should be {Length}.", nameof(masks));
+			}
 
 			fixed (short* pArray = masks, pValues = _values, pInitialValues = _initialValues)
 			{

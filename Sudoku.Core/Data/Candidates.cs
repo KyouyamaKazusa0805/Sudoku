@@ -110,7 +110,10 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
 		public Candidates(long[] binary)
 		{
-			_ = binary.Length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.", nameof(binary)) : 0;
+			if (binary.Length != BufferLength)
+			{
+				throw new ArgumentException($"The length of the array should be {BufferLength}.", nameof(binary));
+			}
 
 			int count = 0;
 			fixed (long* pThis = _innerBinary)
@@ -136,7 +139,10 @@ namespace Sudoku.Data
 		[CLSCompliant(false)]
 		public Candidates(long* binary, int length)
 		{
-			_ = length != BufferLength ? throw new ArgumentException("The specified argument is invalid due to its length.", nameof(length)) : 0;
+			if (length != BufferLength)
+			{
+				throw new ArgumentException($"Argument 'length' should be {BufferLength}.", nameof(length));
+			}
 
 			int count = 0;
 			fixed (long* pThis = _innerBinary)

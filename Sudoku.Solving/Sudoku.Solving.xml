@@ -667,7 +667,7 @@
             <param name="result">The result list.</param>
             <param name="grid">(<see langword="in"/> parameter) A sudoku grid to search backdoors.</param>
             <param name="depth">The depth to search.</param>
-            <exception cref="T:System.InvalidOperationException">
+            <exception cref="T:Sudoku.SudokuHandlingException">
             Throws when the grid is invalid (has no solution or multiple solutions).
             </exception>
         </member>
@@ -4550,9 +4550,7 @@
             The grid map that contains all cells of a digit appearing
             in the solution.
             </returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the puzzle has not been solved.
-            </exception>
+            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the puzzle has not been solved.</exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.LightManualSolver">
             <summary>

@@ -159,7 +159,10 @@ namespace System.Extensions
 		/// </exception>
 		public static void CopyTo(this StringBuilder @this, StringBuilder to)
 		{
-			_ = @this.Length > to.Length ? throw new ArgumentException("The specified string builder doesn't have enough space to copy.", nameof(@this)) : 0;
+			if (@this.Length > to.Length)
+			{
+				throw new ArgumentException("The specified string builder doesn't have enough space to copy.", nameof(@this));
+			}
 
 			for (int i = 0; i < @this.Length; i++)
 			{

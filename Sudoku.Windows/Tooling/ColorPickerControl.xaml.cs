@@ -84,7 +84,10 @@ namespace Sudoku.Windows.Tooling
 		/// </exception>
 		public void SaveCustomPalette(string filename)
 		{
-			_ = _colorPalette is null ? throw new SudokuHandlingException(errorCode: 402) : 0;
+			if (_colorPalette is null)
+			{
+				throw new SudokuHandlingException(errorCode: 402);
+			}
 
 			_colorPalette.CustomColors = _customColorSwatch.GetColors();
 			try
@@ -123,7 +126,10 @@ namespace Sudoku.Windows.Tooling
 		/// </exception>
 		public void LoadCustomPalette(string filename)
 		{
-			_ = _colorPalette is null ? throw new SudokuHandlingException(errorCode: 402) : 0;
+			if (_colorPalette is null)
+			{
+				throw new SudokuHandlingException(errorCode: 402);
+			}
 
 			if (File.Exists(filename))
 			{

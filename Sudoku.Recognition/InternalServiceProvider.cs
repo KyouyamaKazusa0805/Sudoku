@@ -65,7 +65,10 @@ namespace Sudoku.Recognition
 					}
 
 					int cell = x * 9 + y, digit = recognition - 1;
-					_ = !result[cell, digit] ? throw new SudokuHandlingException<int, int>(302, cell, digit) : 0;
+					if (!result[cell, digit])
+					{
+						throw new SudokuHandlingException<int, int>(302, cell, digit);
+					}
 
 					result[cell] = digit;
 				}
@@ -86,7 +89,10 @@ namespace Sudoku.Recognition
 		/// <exception cref="SudokuHandlingException">Throws when the OCR engine error.</exception>
 		private int RecognizeCellNumber(Field cellImg)
 		{
-			_ = _ocr is null ? throw new NullReferenceException($"{nameof(_ocr)} cannot be null here.") : 0;
+			if (_ocr is null)
+			{
+				throw new NullReferenceException($"{nameof(_ocr)} cannot be null here.");
+			}
 
 			// Convert the image to gray-scale and filter out the noise
 			var imgGray = new Mat();
@@ -97,7 +103,10 @@ namespace Sudoku.Recognition
 			Cv.Threshold(imgGray, imgThresholded, ThOcrMin, ThOcrMax, ThresholdType.Binary);
 
 			_ocr.SetImage(imgThresholded);
-			_ = _ocr.Recognize() != 0 ? throw new SudokuHandlingException(errorCode: 303) : 0;
+			if (_ocr.Recognize() != 0)
+			{
+				throw new SudokuHandlingException(errorCode: 303);
+			}
 
 			var characters = _ocr.GetCharacters();
 			string numberText = string.Empty;

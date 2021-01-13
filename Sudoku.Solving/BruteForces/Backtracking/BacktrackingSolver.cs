@@ -73,7 +73,10 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 			if (finishedCellsCount == 81)
 			{
 				// Solution found.
-				_ = ++solutionsCount > 1 ? throw new SudokuHandlingException<SudokuGrid>(errorCode: 101, _grid) : 0;
+				if (++solutionsCount > 1)
+				{
+					throw new SudokuHandlingException<SudokuGrid>(errorCode: 101, _grid);
+				}
 
 				// We should catch the result.
 				// If we use normal assignment, we well get the

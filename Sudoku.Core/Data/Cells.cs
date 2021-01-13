@@ -549,11 +549,21 @@ namespace Sudoku.Data
 									.Append(' ');
 							}
 
-							_ = j != 2 ? sb.Append("| ") : sb.AppendLine();
+							if (j != 2)
+							{
+								sb.Append("| ");
+							}
+							else
+							{
+								sb.AppendLine();
+							}
 						}
 					}
 
-					_ = i != 2 ? sb.AppendLine("------+-------+------") : default;
+					if (i != 2)
+					{
+						sb.AppendLine("------+-------+------");
+					}
 				}
 
 				return sb.ToString();
@@ -574,7 +584,10 @@ namespace Sudoku.Data
 					dic[cell / 9].Add(cell % 9);
 				}
 				bool addCurlyBraces = dic.Count > 1;
-				_ = addCurlyBraces ? sbRow.Append(leftCurlyBrace) : default;
+				if (addCurlyBraces)
+				{
+					sbRow.Append(leftCurlyBrace);
+				}
 				foreach (int row in dic.Keys)
 				{
 					sbRow
@@ -585,7 +598,10 @@ namespace Sudoku.Data
 						.Append(separator);
 				}
 				sbRow.RemoveFromEnd(separator.Length);
-				_ = addCurlyBraces ? sbRow.Append(rightCurlyBrace) : default;
+				if (addCurlyBraces)
+				{
+					sbRow.Append(rightCurlyBrace);
+				}
 
 				dic.Clear();
 				var sbColumn = new StringBuilder();
@@ -599,7 +615,10 @@ namespace Sudoku.Data
 					dic[cell % 9].Add(cell / 9);
 				}
 				addCurlyBraces = dic.Count > 1;
-				_ = addCurlyBraces ? sbColumn.Append(leftCurlyBrace) : default;
+				if (addCurlyBraces)
+				{
+					sbColumn.Append(leftCurlyBrace);
+				}
 
 				foreach (int column in dic.Keys)
 				{
@@ -611,7 +630,10 @@ namespace Sudoku.Data
 						.Append(separator);
 				}
 				sbColumn.RemoveFromEnd(separator.Length);
-				_ = addCurlyBraces ? sbColumn.Append(rightCurlyBrace) : default;
+				if (addCurlyBraces)
+				{
+					sbColumn.Append(rightCurlyBrace);
+				}
 
 				return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
 			}
@@ -625,7 +647,10 @@ namespace Sudoku.Data
 				{
 					sb.Append(value & 1);
 				}
-				_ = withSeparator ? sb.Append(' ') : default;
+				if (withSeparator)
+				{
+					sb.Append(' ');
+				}
 				for (; i < 41; i++, value >>= 1)
 				{
 					sb.Append(value & 1);
@@ -634,7 +659,10 @@ namespace Sudoku.Data
 				{
 					sb.Append(value & 1);
 				}
-				_ = withSeparator ? sb.Append(' ') : default;
+				if (withSeparator)
+				{
+					sb.Append(' ');
+				}
 				for (; i < 81; i++, value >>= 1)
 				{
 					sb.Append(value & 1);

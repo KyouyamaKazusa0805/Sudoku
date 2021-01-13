@@ -89,7 +89,10 @@ namespace Sudoku.Drawing.Extensions
 		public static void DrawRoundedRectangle(
 			this Graphics @this, Pen pen, in RectangleF rectangle, float circleRadius)
 		{
-			_ = circleRadius > Math.Max(rectangle.Width, rectangle.Height) ? throw new ArgumentOutOfRangeException(nameof(circleRadius)) : 0;
+			if (circleRadius > Math.Max(rectangle.Width, rectangle.Height))
+			{
+				throw new ArgumentOutOfRangeException(nameof(circleRadius));
+			}
 
 			RectangleF r1, r2, r3, r4;
 			PointF p1, p2, p3, p4, p5, p6, p7, p8;
@@ -146,7 +149,10 @@ namespace Sudoku.Drawing.Extensions
 		public static void FillRoundedRectangle(
 			this Graphics @this, Brush brush, in RectangleF rectangle, float circleRadius)
 		{
-			_ = circleRadius >= Math.Max(rectangle.Width, rectangle.Height) ? throw new ArgumentException("Specified argument is greater than the value in rectangle", nameof(circleRadius)) : 0;
+			if (circleRadius >= Math.Max(rectangle.Width, rectangle.Height))
+			{
+				throw new ArgumentException("Specified argument is greater than the value in rectangle", nameof(circleRadius));
+			}
 
 			RectangleF r1, r2, r3, r4;
 			PointF p1, p2, p3, p4, p5, p6, p7, p8;

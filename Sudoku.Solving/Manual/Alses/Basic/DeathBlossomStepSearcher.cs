@@ -273,8 +273,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						int candidate = cell * 9 + digit;
 						death[candidate, 0]++;
 
-						int value;
-						_ = (value = death[candidate, 0]) > max ? (max = value) : 0;
+						int value = death[candidate, 0];
+						if (value > max)
+						{
+							max = value;
+						}
 
 						death[candidate, value] = i;
 					}

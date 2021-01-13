@@ -41,6 +41,8 @@ namespace Sudoku
 		public override string Message =>
 			ErrorCode switch
 			{
+				202 => "The specified grid is invalid.",
+				203 => "The function can be used and called if and only if the grid has been solved.",
 				301 => "The recognizer has not initialized.",
 				303 => "Tesseract is wrong: can't recognize any cell image.",
 				402 => "Color palette is current null.",
@@ -81,6 +83,7 @@ namespace Sudoku
 				101 when Arg1 is SudokuGrid g => $"The specified grid {g:#} contains multiple solutions.",
 				102 when Arg1 is SudokuGrid g => $"The specified grid {g:#} contains no valid solution.",
 				202 when Arg1 is SudokuGrid g => $"The specified grid {g:#} is invalid.",
+				203 when Arg1 is SudokuGrid g => $"The function can be used if and only if specified grid {g:#} should be solved.",
 				403 when Arg1 is string r => $"The specified resource dictionary can't be found: {r}.",
 				_ => string.Empty
 			};

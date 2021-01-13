@@ -97,7 +97,10 @@ namespace Sudoku.Windows.Tooling
 						parentId++;
 					}
 
-					_ = parentId == categories.Count ? throw new InvalidOperationException() : 0;
+					if (parentId == categories.Count)
+					{
+						throw new InvalidOperationException();
+					}
 				}
 				else
 				{

@@ -104,7 +104,10 @@ namespace System.Extensions
 		/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 		public static string? Match(this string @this, string pattern, RegexOptions regexOption)
 		{
-			_ = pattern.IsRegexPattern() ? 0 : throw new InvalidRegexStringException { WrongRegexString = pattern };
+			if (!pattern.IsRegexPattern())
+			{
+				throw new InvalidRegexStringException { WrongRegexString = pattern };
+			}
 
 			var match = Regex.Match(@this, pattern, regexOption, MatchingTimeSpan);
 			return match.Success ? match.Value : null;
@@ -157,7 +160,10 @@ namespace System.Extensions
 		/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 		public static string[] MatchAll(this string @this, string pattern, RegexOptions regexOption)
 		{
-			_ = pattern.IsRegexPattern() ? 0 : throw new InvalidRegexStringException { WrongRegexString = pattern };
+			if (!pattern.IsRegexPattern())
+			{
+				throw new InvalidRegexStringException { WrongRegexString = pattern };
+			}
 
 			var result = new List<string>();
 
