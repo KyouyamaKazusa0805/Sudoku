@@ -17,29 +17,43 @@ namespace System.Text.Json.Converters
 
 
 		/// <inheritdoc/>
+		/// <exception cref="JsonException">
+		/// Throws when the current token valis isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
+		/// </exception>
 		[SkipLocalsInit]
 		public override unsafe Color Read(
 			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
 			const int length = 4;
 			byte* span = stackalloc byte[length];
-			for (int index = -1, i = 0; reader.Read() && i < length << 1; i++)
+			for (int i = 0; reader.Read() && i < length << 1; i++)
 			{
+				byte* ptr;
+				if ((i & 1) == 0)
+				{
+					ptr = null;
+				}
+
 				switch (reader.TokenType)
 				{
 					case JsonTokenType.PropertyName:
 					case JsonTokenType.String:
 					{
-						if (reader.GetString() is "A" or "R" or "G" or "B")
+						string? token = reader.GetString()?.ToLower();
+						ptr = token switch
 						{
-							index++;
-						}
+							"a" => span,
+							"r" => span + 1,
+							"g" => span + 2,
+							"b" => span + 3,
+							var str => throw new JsonException($"Can't check the current token '{str}' as a correct token.")
+						};
 
 						break;
 					}
-					case JsonTokenType.Number:
+					case JsonTokenType.Number when *&ptr != null:
 					{
-						span[index] = reader.GetByte();
+						*ptr = reader.GetByte();
 
 						break;
 					}

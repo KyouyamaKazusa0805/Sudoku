@@ -1049,6 +1049,9 @@
         </member>
         <member name="M:System.Text.Json.Converters.ColorJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the current token valis isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
+            </exception>
         </member>
         <member name="M:System.Text.Json.Converters.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
