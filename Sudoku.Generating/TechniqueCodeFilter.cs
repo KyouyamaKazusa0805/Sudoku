@@ -10,12 +10,12 @@ namespace Sudoku.Generating
 	/// <summary>
 	/// Encapsulates a technique code filter that contains some of technique codes.
 	/// </summary>
-	public sealed class TechniqueCodeFilter : ICloneable<TechniqueCodeFilter>, IEnumerable<TechniqueCode>
+	public sealed class TechniqueCodeFilter : ICloneable<TechniqueCodeFilter>, IEnumerable<Technique>
 	{
 		/// <summary>
 		/// The internal list.
 		/// </summary>
-		private readonly BitArray _internalList = new(Enum.GetValues<TechniqueCode>().Length);
+		private readonly BitArray _internalList = new(Enum.GetValues<Technique>().Length);
 
 
 		/// <inheritdoc cref="DefaultConstructor"/>
@@ -27,7 +27,7 @@ namespace Sudoku.Generating
 		/// Initializes an instance with the specified technique codes.
 		/// </summary>
 		/// <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
-		public TechniqueCodeFilter(params TechniqueCode[] techniqueCodes)
+		public TechniqueCodeFilter(params Technique[] techniqueCodes)
 		{
 			foreach (var techniqueCode in techniqueCodes)
 			{
@@ -58,7 +58,7 @@ namespace Sudoku.Generating
 		/// </summary>
 		/// <param name="techniqueCode">The technique code.</param>
 		/// <returns>The current instance.</returns>
-		public TechniqueCodeFilter Add(TechniqueCode techniqueCode)
+		public TechniqueCodeFilter Add(Technique techniqueCode)
 		{
 			if (!Contains(techniqueCode))
 			{
@@ -74,7 +74,7 @@ namespace Sudoku.Generating
 		/// </summary>
 		/// <param name="techniqueCodes">The codes.</param>
 		/// <returns>The current instance.</returns>
-		public TechniqueCodeFilter AddRange(IEnumerable<TechniqueCode> techniqueCodes)
+		public TechniqueCodeFilter AddRange(IEnumerable<Technique> techniqueCodes)
 		{
 			foreach (var techniqueCode in techniqueCodes)
 			{
@@ -89,7 +89,7 @@ namespace Sudoku.Generating
 		/// </summary>
 		/// <param name="techniqueCode">The technique code.</param>
 		/// <returns>The current instance.</returns>
-		public TechniqueCodeFilter Remove(TechniqueCode techniqueCode)
+		public TechniqueCodeFilter Remove(Technique techniqueCode)
 		{
 			if (Contains(techniqueCode))
 			{
@@ -105,16 +105,16 @@ namespace Sudoku.Generating
 		/// </summary>
 		/// <param name="techniqueCode">The technique code to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public bool Contains(TechniqueCode techniqueCode) => _internalList[(int)techniqueCode];
+		public bool Contains(Technique techniqueCode) => _internalList[(int)techniqueCode];
 
 		/// <inheritdoc/>
-		public IEnumerator<TechniqueCode> GetEnumerator()
+		public IEnumerator<Technique> GetEnumerator()
 		{
 			for (int i = 0, count = _internalList.Count; i < count; i++)
 			{
 				if (_internalList[i])
 				{
-					yield return (TechniqueCode)i;
+					yield return (Technique)i;
 				}
 			}
 		}

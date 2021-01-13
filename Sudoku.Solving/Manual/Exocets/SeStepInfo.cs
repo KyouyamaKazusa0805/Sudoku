@@ -42,8 +42,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		public override decimal Difficulty => 9.6M + (ContainsExtraRegions ? 0 : .2M);
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
-			ContainsExtraRegions ? TechniqueCode.ComplexSe : TechniqueCode.Se;
+		public override Technique TechniqueCode =>
+			ContainsExtraRegions ? Technique.ComplexSe : Technique.Se;
 
 
 		/// <inheritdoc/>

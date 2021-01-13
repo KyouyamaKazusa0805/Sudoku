@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(9, nameof(TechniqueCode.AlmostLockedPair))
+		public static TechniqueProperties Properties { get; } = new(9, nameof(Technique.AlmostLockedPair))
 		{
 			DisplayLevel = 2
 		};

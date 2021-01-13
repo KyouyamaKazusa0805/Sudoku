@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		int Candidate) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.UsType1;
+		public override Technique TechniqueCode => Technique.UsType1;
 
 
 		/// <inheritdoc/>

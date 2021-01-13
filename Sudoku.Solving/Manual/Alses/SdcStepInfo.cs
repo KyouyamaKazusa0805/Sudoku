@@ -36,8 +36,8 @@ namespace Sudoku.Solving.Manual.Alses
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
-			IsCannibalistic ? TechniqueCode.CannibalizedSdc : TechniqueCode.Sdc;
+		public override Technique TechniqueCode =>
+			IsCannibalistic ? Technique.CannibalizedSdc : Technique.Sdc;
 
 
 		/// <inheritdoc/>

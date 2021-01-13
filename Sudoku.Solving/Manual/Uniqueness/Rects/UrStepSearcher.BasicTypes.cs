@@ -171,10 +171,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					},
 					(arMode, isType5) switch
 					{
-						(true, true) => TechniqueCode.ArType5,
-						(true, false) => TechniqueCode.ArType2,
-						(false, true) => TechniqueCode.UrType5,
-						(false, false) => TechniqueCode.UrType2
+						(true, true) => Technique.ArType5,
+						(true, false) => Technique.ArType2,
+						(false, true) => Technique.UrType5,
+						(false, false) => Technique.UrType2
 					},
 					d1,
 					d2,
@@ -426,7 +426,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									Regions = new DrawingInfo[] { new(0, region) }
 								}
 							},
-							TechniqueCode.UrType4,
+							Technique.UrType4,
 							d1,
 							d2,
 							urCells,
@@ -518,7 +518,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							Candidates = candidateOffsets
 						}
 					},
-					arMode ? TechniqueCode.ArType5 : TechniqueCode.UrType5,
+					arMode ? Technique.ArType5 : Technique.UrType5,
 					d1,
 					d2,
 					urCells,
@@ -634,7 +634,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								Regions = new DrawingInfo[] { new(0, region1), new(0, region2) }
 							}
 						},
-						TechniqueCode.UrType6,
+						Technique.UrType6,
 						d1,
 						d2,
 						urCells,

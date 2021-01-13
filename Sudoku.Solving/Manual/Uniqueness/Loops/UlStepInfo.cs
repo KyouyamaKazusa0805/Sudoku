@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueCode TechniqueCode => Enum.Parse<TechniqueCode>($"UlType{Type}");
+		public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UlType{Type}");
 
 		/// <summary>
 		/// Indicates the base difficulty.

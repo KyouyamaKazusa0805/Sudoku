@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public abstract record UrStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		TechniqueCode TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset)
+		Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset)
 		: UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueCode TechniqueCode => TechniqueCode2;
+		public sealed override Technique TechniqueCode => TechniqueCode2;
 
 
 		/// <inheritdoc/>

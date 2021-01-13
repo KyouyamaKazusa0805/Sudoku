@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(6, nameof(TechniqueCode.XyWing))
+		public static TechniqueProperties Properties { get; } = new(6, nameof(Technique.XyWing))
 		{
 			DisplayLevel = 2
 		};

@@ -36,7 +36,7 @@ namespace Sudoku.Windows.Tooling
 		{
 			var list = new List<TechniqueBox>();
 			foreach (var (name, technique, category) in
-				from technique in Enum.GetValues<TechniqueCode>()
+				from technique in Enum.GetValues<Technique>()
 				let nullableCategory = LangSource[$"Group{technique}"] as string
 				where nullableCategory is not null
 				select (CoreResources.GetValue(technique.ToString()), technique, nullableCategory))
@@ -49,9 +49,9 @@ namespace Sudoku.Windows.Tooling
 
 				box.CheckingChanged += (sender, _) =>
 				{
-					if (sender is CheckBox { Content: KeyedTuple<string, TechniqueCode> pair } box)
+					if (sender is CheckBox { Content: KeyedTuple<string, Technique> pair } box)
 					{
-						Func<TechniqueCode, TechniqueCodeFilter?> f = box.IsChecked switch
+						Func<Technique, TechniqueCodeFilter?> f = box.IsChecked switch
 						{
 							true => ChosenTechniques.Add,
 							false => ChosenTechniques.Remove,

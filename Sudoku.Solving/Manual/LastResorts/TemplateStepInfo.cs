@@ -28,8 +28,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
-			IsTemplateDeletion ? TechniqueCode.TemplateDelete : TechniqueCode.TemplateSet;
+		public override Technique TechniqueCode =>
+			IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
 
 
 		/// <inheritdoc/>

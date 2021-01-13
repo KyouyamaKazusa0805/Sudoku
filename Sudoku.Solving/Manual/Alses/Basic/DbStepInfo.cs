@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override decimal Difficulty => 8.0M + PetalsCount * .1M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.DeathBlossom;
+		public override Technique TechniqueCode => Technique.DeathBlossom;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

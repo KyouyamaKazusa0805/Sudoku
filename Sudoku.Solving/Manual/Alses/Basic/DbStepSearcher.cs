@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(80, nameof(TechniqueCode.DeathBlossom))
+		public static TechniqueProperties Properties { get; } = new(80, nameof(Technique.DeathBlossom))
 		{
 			DisplayLevel = 3,
 			IsEnabled = false,

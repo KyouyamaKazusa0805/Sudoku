@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override decimal Difficulty => base.Difficulty + .1M + ExtraDifficulty[Candidates.Count - 1];
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.BugMultiple;
+		public override Technique TechniqueCode => Technique.BugMultiple;
 
 
 		/// <inheritdoc/>

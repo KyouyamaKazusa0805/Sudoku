@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override decimal Difficulty => base.Difficulty + .2M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.BugXz;
+		public override Technique TechniqueCode => Technique.BugXz;
 
 
 		/// <inheritdoc/>

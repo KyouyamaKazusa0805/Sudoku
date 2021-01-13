@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	public sealed class NormalFishStepSearcher : FishStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(4, nameof(TechniqueCode.XWing))
+		public static TechniqueProperties Properties { get; } = new(4, nameof(Technique.XWing))
 		{
 			DisplayLevel = 2
 		};

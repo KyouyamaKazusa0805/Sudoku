@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		short LineMask, short IntersectionMask, bool IsCannibalistic, short IsolatedDigitsMask,
 		in Cells BlockCells, in Cells LineCells, in Cells IntersectionCells)
 		: UrStepInfo(
-			Conclusions, Views, IsAvoidable ? TechniqueCode.ArSdc : TechniqueCode.UrSdc,
+			Conclusions, Views, IsAvoidable ? Technique.ArSdc : Technique.UrSdc,
 			Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>

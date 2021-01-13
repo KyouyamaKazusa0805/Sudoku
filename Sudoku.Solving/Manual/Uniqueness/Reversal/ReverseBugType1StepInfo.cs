@@ -28,8 +28,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		public override decimal Difficulty => 5.6M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
-			Loop.Count == 4 ? TechniqueCode.ReverseUrType1 : TechniqueCode.ReverseUlType1;
+		public override Technique TechniqueCode =>
+			Loop.Count == 4 ? Technique.ReverseUrType1 : Technique.ReverseUlType1;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

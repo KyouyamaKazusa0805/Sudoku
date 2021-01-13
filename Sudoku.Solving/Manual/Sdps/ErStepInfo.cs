@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.EmptyRectangle;
+		public override Technique TechniqueCode => Technique.EmptyRectangle;
 
 
 		/// <inheritdoc/>

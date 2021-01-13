@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.Gsp;
+		public override Technique TechniqueCode => Technique.Gsp;
 
 
 		/// <inheritdoc/>

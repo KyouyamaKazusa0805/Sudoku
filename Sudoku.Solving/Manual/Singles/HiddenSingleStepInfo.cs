@@ -25,10 +25,10 @@ namespace Sudoku.Solving.Manual.Singles
 			EnableAndIsLastDigit switch { true => 1.1M, _ => Region switch { < 9 => 1.2M, _ => 1.5M } };
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
+		public override Technique TechniqueCode =>
 			EnableAndIsLastDigit
-			? TechniqueCode.LastDigit
-			: (TechniqueCode)((int)TechniqueCode.HiddenSingleBlock + (int)Region.ToLabel());
+			? Technique.LastDigit
+			: (Technique)((int)Technique.HiddenSingleBlock + (int)Region.ToLabel());
 
 
 		/// <inheritdoc/>

@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		: BdpStepInfo(Conclusions, Views, Map, DigitsMask)
 	{
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.BdpType1;
+		public override Technique TechniqueCode => Technique.BdpType1;
 
 
 		/// <inheritdoc/>

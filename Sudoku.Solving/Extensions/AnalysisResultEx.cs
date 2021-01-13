@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
 		/// <param name="code">The technique code to check.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool Contains(this AnalysisResult @this, TechniqueCode code)
+		public static bool Contains(this AnalysisResult @this, Technique code)
 		{
 			if (@this.IsSolved)
 			{

@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override decimal Difficulty => 5.4M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.BdpType2;
+		public override Technique TechniqueCode => Technique.BdpType2;
 
 
 		/// <inheritdoc/>

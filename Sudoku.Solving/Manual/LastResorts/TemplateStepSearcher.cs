@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(21, nameof(TechniqueCode.TemplateSet))
+		public static TechniqueProperties Properties { get; } = new(21, nameof(Technique.TemplateSet))
 		{
 			DisplayLevel = 3,
 			IsEnabled = false,

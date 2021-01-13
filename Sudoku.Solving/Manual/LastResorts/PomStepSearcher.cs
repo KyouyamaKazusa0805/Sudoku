@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public sealed class PomStepSearcher : LastResortStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(20, nameof(TechniqueCode.Pom))
+		public static TechniqueProperties Properties { get; } = new(20, nameof(Technique.Pom))
 		{
 			DisplayLevel = 3,
 			IsEnabled = false,

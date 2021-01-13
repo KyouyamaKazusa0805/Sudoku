@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.AlsWWing;
+		public override Technique TechniqueCode => Technique.AlsWWing;
 
 
 		/// <inheritdoc/>

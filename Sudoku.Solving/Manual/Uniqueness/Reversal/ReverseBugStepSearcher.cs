@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 	public sealed partial class ReverseBugStepSearcher : UniquenessStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(24, nameof(TechniqueCode.ReverseUrType1))
+		public static TechniqueProperties Properties { get; } = new(24, nameof(Technique.ReverseUrType1))
 		{
 			DisplayLevel = 2,
 			IsEnabled = false,

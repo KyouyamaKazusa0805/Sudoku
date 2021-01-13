@@ -36,7 +36,7 @@ namespace Sudoku.Windows.Tooling
 		private void GetAllTechniques()
 		{
 			var selection =
-				from technique in Enum.GetValues<TechniqueCode>()
+				from technique in Enum.GetValues<Technique>()
 				let nullableCategory = LangSource[$"Group{technique}"] as string
 				where nullableCategory is not null
 				select (

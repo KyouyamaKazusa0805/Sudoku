@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	public sealed partial class XrStepSearcher : UniquenessStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(11, nameof(TechniqueCode.XrType1))
+		public static TechniqueProperties Properties { get; } = new(11, nameof(Technique.XrType1))
 		{
 			DisplayLevel = 2
 		};

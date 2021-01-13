@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<ConjugatePair> ConjugatePairs,
 		int AbsoluteOffset)
 		: UrPlusStepInfo(
-			Conclusions, Views, IsAvoidable ? TechniqueCode.HiddenAr : TechniqueCode.HiddenUr,
+			Conclusions, Views, IsAvoidable ? Technique.HiddenAr : Technique.HiddenUr,
 			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset)
 	{
 		/// <inheritdoc/>

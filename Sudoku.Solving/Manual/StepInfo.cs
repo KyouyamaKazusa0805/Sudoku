@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual
 		/// The technique code of this instance used for comparison
 		/// (e.g. search for specified puzzle that contains this technique).
 		/// </summary>
-		public abstract TechniqueCode TechniqueCode { get; }
+		public abstract Technique TechniqueCode { get; }
 
 		/// <summary>
 		/// The difficulty level of this step.

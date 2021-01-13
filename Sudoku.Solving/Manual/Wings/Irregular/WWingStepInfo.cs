@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.WWing;
+		public override Technique TechniqueCode => Technique.WWing;
 
 
 		/// <inheritdoc/>

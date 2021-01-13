@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	public sealed partial class UlStepSearcher : UniquenessStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(10, nameof(TechniqueCode.UlType1))
+		public static TechniqueProperties Properties { get; } = new(10, nameof(Technique.UlType1))
 		{
 			DisplayLevel = 2
 		};

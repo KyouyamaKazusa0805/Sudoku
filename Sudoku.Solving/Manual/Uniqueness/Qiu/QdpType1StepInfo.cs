@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		: QdpStepInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.QdpType1;
+		public override Technique TechniqueCode => Technique.QdpType1;
 
 
 		/// <inheritdoc/>

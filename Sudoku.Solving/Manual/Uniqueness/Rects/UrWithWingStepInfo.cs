@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record UrWithWingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		TechniqueCode TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
+		Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
 		IEnumerable<int> ExtraCells, IEnumerable<int> ExtraDigits, IEnumerable<int> Pivots, int AbsoluteOffset)
 		: UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
@@ -50,9 +50,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		private decimal WingSizeExtraDifficulty =>
 			ExtraDifficulty[TechniqueCode switch
 			{
-				TechniqueCode.UrXyWing or TechniqueCode.ArXyWing => 0,
-				TechniqueCode.UrXyzWing or TechniqueCode.ArXyzWing => 1,
-				TechniqueCode.UrWxyzWing or TechniqueCode.ArWxyzWing => 2
+				Technique.UrXyWing or Technique.ArXyWing => 0,
+				Technique.UrXyzWing or Technique.ArXyzWing => 1,
+				Technique.UrWxyzWing or Technique.ArWxyzWing => 2
 			}];
 
 

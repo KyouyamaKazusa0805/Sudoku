@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(17, nameof(TechniqueCode.BdpType1))
+		public static TechniqueProperties Properties { get; } = new(17, nameof(Technique.BdpType1))
 		{
 			DisplayLevel = 2
 		};

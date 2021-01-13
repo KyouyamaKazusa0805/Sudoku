@@ -26,8 +26,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override decimal Difficulty =>
 			TechniqueCode switch
 			{
-				TechniqueCode.MWing => 4.5M,
-				TechniqueCode.SplitWing or TechniqueCode.HybridWing or TechniqueCode.LocalWing => 4.8M,
+				Technique.MWing => 4.5M,
+				Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
 				_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + (FlatComplexity - 2).GetExtraDifficultyByLength()
 			};
 
@@ -38,8 +38,8 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel =>
-			TechniqueCode is TechniqueCode.MWing or TechniqueCode.SplitWing
-			or TechniqueCode.HybridWing or TechniqueCode.LocalWing
+			TechniqueCode is Technique.MWing or Technique.SplitWing
+			or Technique.HybridWing or Technique.LocalWing
 			? DifficultyLevel.Hard
 			: DifficultyLevel.Fiendish;
 
@@ -53,24 +53,24 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
+		public override Technique TechniqueCode =>
 			IsXChain
-			? TechniqueCode.XChain
+			? Technique.XChain
 			: IsMWing
-			? TechniqueCode.MWing
+			? Technique.MWing
 			: IsSplitWing
-			? TechniqueCode.SplitWing
+			? Technique.SplitWing
 			: IsHybridWing
-			? TechniqueCode.HybridWing
+			? Technique.HybridWing
 			: IsLocalWing
-			? TechniqueCode.LocalWing
+			? Technique.LocalWing
 			: Target.Chain is var chain && chain[^2].Digit == chain[1].Digit
-			? IsXyChain ? TechniqueCode.XyChain : TechniqueCode.Aic
+			? IsXyChain ? Technique.XyChain : Technique.Aic
 			: Conclusions.Count switch
 			{
-				1 => TechniqueCode.DiscontinuousNiceLoop,
-				2 => TechniqueCode.XyXChain,
-				_ => TechniqueCode.Aic
+				1 => Technique.DiscontinuousNiceLoop,
+				2 => Technique.XyXChain,
+				_ => Technique.Aic
 			};
 
 		/// <summary>

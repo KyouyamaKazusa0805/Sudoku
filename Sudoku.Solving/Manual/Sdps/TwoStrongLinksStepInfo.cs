@@ -23,9 +23,9 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override decimal Difficulty =>
 			TechniqueCode switch
 			{
-				TechniqueCode.TurbotFish => 4.2M,
-				TechniqueCode.Skyscraper => 4.0M,
-				TechniqueCode.TwoStringKite => 4.1M,
+				Technique.TurbotFish => 4.2M,
+				Technique.Skyscraper => 4.0M,
+				Technique.TwoStringKite => 4.1M,
 				_ => throw new NotSupportedException("The specified value is invalid.")
 			};
 
@@ -33,12 +33,12 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
+		public override Technique TechniqueCode =>
 			(BaseRegion / 9, TargetRegion / 9) switch
 			{
-				(0, _) or (_, 0) => TechniqueCode.TurbotFish,
-				(1, 1) or (2, 2) => TechniqueCode.Skyscraper,
-				(1, 2) or (2, 1) => TechniqueCode.TwoStringKite,
+				(0, _) or (_, 0) => Technique.TurbotFish,
+				(1, 1) or (2, 2) => Technique.Skyscraper,
+				(1, 2) or (2, 1) => Technique.TwoStringKite,
 				_ => throw new NotSupportedException("The specified value is invalid.")
 			};
 

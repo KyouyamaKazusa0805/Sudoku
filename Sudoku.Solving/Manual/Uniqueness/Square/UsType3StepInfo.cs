@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		public override decimal Difficulty => base.Difficulty + ExtraDifficulty;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.UsType3;
+		public override Technique TechniqueCode => Technique.UsType3;
 
 		/// <summary>
 		/// Indicates the extra difficulty.

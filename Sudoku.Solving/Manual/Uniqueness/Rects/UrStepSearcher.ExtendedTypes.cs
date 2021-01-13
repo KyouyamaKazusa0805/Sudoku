@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								Candidates = candidateOffsets
 							}
 						},
-						arMode ? TechniqueCode.ArPlus2D : TechniqueCode.UrPlus2D,
+						arMode ? Technique.ArPlus2D : Technique.UrPlus2D,
 						d1,
 						d2,
 						urCells,
@@ -266,7 +266,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											Regions = new DrawingInfo[] { new(0, region) }
 										}
 									},
-									TechniqueCode.UrPlus2B1SL,
+									Technique.UrPlus2B1SL,
 									d1,
 									d2,
 									urCells,
@@ -416,7 +416,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											Regions = new DrawingInfo[] { new(0, region) }
 										}
 									},
-									TechniqueCode.UrPlus2D1SL,
+									Technique.UrPlus2D1SL,
 									d1,
 									d2,
 									urCells,
@@ -542,7 +542,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								Candidates = candidateOffsets
 							}
 						},
-						arMode ? TechniqueCode.ArPlus3X : TechniqueCode.UrPlus3X,
+						arMode ? Technique.ArPlus3X : Technique.UrPlus3X,
 						d1,
 						d2,
 						urCells,
@@ -659,7 +659,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								}
 							}
 						},
-						TechniqueCode.UrPlus3X2SL,
+						Technique.UrPlus3X2SL,
 						d1,
 						d2,
 						urCells,
@@ -787,7 +787,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									}
 								}
 							},
-							TechniqueCode.UrPlus3N2SL,
+							Technique.UrPlus3N2SL,
 							d1,
 							d2,
 							urCells,
@@ -910,7 +910,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									}
 								}
 							},
-							TechniqueCode.UrPlus3U2SL,
+							Technique.UrPlus3U2SL,
 							d1,
 							d2,
 							urCells,
@@ -1033,7 +1033,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									}
 								}
 							},
-							TechniqueCode.UrPlus3E2SL,
+							Technique.UrPlus3E2SL,
 							d1,
 							d2,
 							urCells,
@@ -1166,7 +1166,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									}
 								}
 							},
-							TechniqueCode.UrPlus4X3SL,
+							Technique.UrPlus4X3SL,
 							d1,
 							d2,
 							urCells,
@@ -1311,7 +1311,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										}
 									}
 								},
-								TechniqueCode.UrPlus4C3SL,
+								Technique.UrPlus4C3SL,
 								d1,
 								d2,
 								urCells,
@@ -1484,7 +1484,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											Candidates = candidateOffsets
 										}
 									},
-									arMode ? TechniqueCode.ArXyWing : TechniqueCode.UrXyWing,
+									arMode ? Technique.ArXyWing : Technique.UrXyWing,
 									d1,
 									d2,
 									urCells,
@@ -1585,7 +1585,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 													Candidates = candidateOffsets
 												}
 											},
-											arMode ? TechniqueCode.ArXyzWing : TechniqueCode.UrXyzWing,
+											arMode ? Technique.ArXyzWing : Technique.UrXyzWing,
 											d1,
 											d2,
 											urCells,
@@ -1690,7 +1690,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 														Candidates = candidateOffsets
 													}
 												},
-												arMode ? TechniqueCode.ArWxyzWing : TechniqueCode.UrWxyzWing,
+												arMode ? Technique.ArWxyzWing : Technique.UrWxyzWing,
 												d1,
 												d2,
 												urCells,

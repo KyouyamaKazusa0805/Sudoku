@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 		public override decimal Difficulty => 5.0M + (ExtraCells.Count >> 1) * .1M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.BivalueOddagonType3;
+		public override Technique TechniqueCode => Technique.BivalueOddagonType3;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class GuardianStepSearcher : SdpStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(18, nameof(TechniqueCode.Guardian))
+		public static TechniqueProperties Properties { get; } = new(18, nameof(Technique.Guardian))
 		{
 			DisplayLevel = 2
 		};

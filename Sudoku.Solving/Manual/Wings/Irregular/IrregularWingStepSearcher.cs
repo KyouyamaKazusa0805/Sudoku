@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	public sealed class IrregularWingStepSearcher : StepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(7, nameof(TechniqueCode.WWing))
+		public static TechniqueProperties Properties { get; } = new(7, nameof(Technique.WWing))
 		{
 			DisplayLevel = 2
 		};

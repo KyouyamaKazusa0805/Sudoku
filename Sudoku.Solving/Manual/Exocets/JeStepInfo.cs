@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			(SwordfishEliminations?.Conclusions is null ? 0 : .2M);
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.Je;
+		public override Technique TechniqueCode => Technique.Je;
 
 
 		/// <inheritdoc/>

@@ -35,12 +35,12 @@ namespace Sudoku.Solving.Manual.Intersections
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
+		public override Technique TechniqueCode =>
 			Size switch
 			{
-				2 => TechniqueCode.AlmostLockedPair,
-				3 => TechniqueCode.AlmostLockedTriple,
-				4 => TechniqueCode.AlmostLockedQuadruple,
+				2 => Technique.AlmostLockedPair,
+				3 => Technique.AlmostLockedTriple,
+				4 => Technique.AlmostLockedQuadruple,
 				_ => throw new NotSupportedException("The current instance doesn't support.")
 			};
 

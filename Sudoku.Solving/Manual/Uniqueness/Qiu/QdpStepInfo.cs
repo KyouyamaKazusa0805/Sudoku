@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public override decimal Difficulty => 5.8M;
 
 		/// <inheritdoc/>
-		public abstract override TechniqueCode TechniqueCode { get; }
+		public abstract override Technique TechniqueCode { get; }
 
 		/// <inheritdoc/>
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;

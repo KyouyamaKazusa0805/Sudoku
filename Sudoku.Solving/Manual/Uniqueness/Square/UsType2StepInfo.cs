@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		public override decimal Difficulty => base.Difficulty + .1M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.UsType2;
+		public override Technique TechniqueCode => Technique.UsType2;
 
 
 		/// <inheritdoc/>

@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override decimal Difficulty => base.Difficulty + Digits.Count * .1M + (IsNaked ? 0 : .1M);
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.BugType3;
+		public override Technique TechniqueCode => Technique.BugType3;
 
 
 		/// <inheritdoc/>

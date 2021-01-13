@@ -63,23 +63,23 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			};
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
+		public override Technique TechniqueCode =>
 			InternalName switch
 			{
-				"XY-Wing" => TechniqueCode.XyWing,
-				"XYZ-Wing" => TechniqueCode.XyzWing,
-				"WXYZ-Wing" => TechniqueCode.WxyzWing,
-				"VWXYZ-Wing" => TechniqueCode.VwxyzWing,
-				"UVWXYZ-Wing" => TechniqueCode.UvwxyzWing,
-				"TUVWXYZ-Wing" => TechniqueCode.TuvwxyzWing,
-				"STUVWXYZ-Wing" => TechniqueCode.StuvwxyzWing,
-				"RSTUVWXYZ-Wing" => TechniqueCode.RstuvwxyzWing,
-				"Incomplete WXYZ-Wing" => TechniqueCode.IncompleteWxyzWing,
-				"Incomplete VWXYZ-Wing" => TechniqueCode.IncompleteVwxyzWing,
-				"Incomplete UVWXYZ-Wing" => TechniqueCode.IncompleteUvwxyzWing,
-				"Incomplete TUVWXYZ-Wing" => TechniqueCode.IncompleteTuvwxyzWing,
-				"Incomplete STUVWXYZ-Wing" => TechniqueCode.IncompleteStuvwxyzWing,
-				"Incomplete RSTUVWXYZ-Wing" => TechniqueCode.IncompleteRstuvwxyzWing
+				"XY-Wing" => Technique.XyWing,
+				"XYZ-Wing" => Technique.XyzWing,
+				"WXYZ-Wing" => Technique.WxyzWing,
+				"VWXYZ-Wing" => Technique.VwxyzWing,
+				"UVWXYZ-Wing" => Technique.UvwxyzWing,
+				"TUVWXYZ-Wing" => Technique.TuvwxyzWing,
+				"STUVWXYZ-Wing" => Technique.StuvwxyzWing,
+				"RSTUVWXYZ-Wing" => Technique.RstuvwxyzWing,
+				"Incomplete WXYZ-Wing" => Technique.IncompleteWxyzWing,
+				"Incomplete VWXYZ-Wing" => Technique.IncompleteVwxyzWing,
+				"Incomplete UVWXYZ-Wing" => Technique.IncompleteUvwxyzWing,
+				"Incomplete TUVWXYZ-Wing" => Technique.IncompleteTuvwxyzWing,
+				"Incomplete STUVWXYZ-Wing" => Technique.IncompleteStuvwxyzWing,
+				"Incomplete RSTUVWXYZ-Wing" => Technique.IncompleteRstuvwxyzWing
 			};
 
 		/// <summary>

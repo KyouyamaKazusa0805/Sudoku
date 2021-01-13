@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record Ur2DOr3XStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		TechniqueCode TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
+		Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
 		int XDigit, int YDigit, int XyCell, int AbsoluteOffset)
 		: UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{

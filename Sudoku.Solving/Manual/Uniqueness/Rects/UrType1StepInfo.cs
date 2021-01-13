@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset)
 		: UrStepInfo(
-			Conclusions, Views, IsAvoidable ? TechniqueCode.ArType1 : TechniqueCode.UrType1,
+			Conclusions, Views, IsAvoidable ? Technique.ArType1 : Technique.UrType1,
 			Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>

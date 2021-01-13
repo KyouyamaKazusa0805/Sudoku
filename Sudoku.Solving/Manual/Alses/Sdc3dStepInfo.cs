@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Alses
 		public override decimal Difficulty => 5.5M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.Sdc3d;
+		public override Technique TechniqueCode => Technique.Sdc3d;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

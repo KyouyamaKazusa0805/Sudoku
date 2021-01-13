@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		int Digit1, int Digit2, in Cells ConjugateRegion) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.UsType4;
+		public override Technique TechniqueCode => Technique.UsType4;
 
 
 		/// <inheritdoc/>

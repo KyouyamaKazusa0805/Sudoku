@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(22, nameof(TechniqueCode.Sdc3d))
+		public static TechniqueProperties Properties { get; } = new(22, nameof(Technique.Sdc3d))
 		{
 			DisplayLevel = 2
 		};

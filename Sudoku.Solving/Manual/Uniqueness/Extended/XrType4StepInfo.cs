@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		public override decimal Difficulty => base.Difficulty + .1M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.XrType4;
+		public override Technique TechniqueCode => Technique.XrType4;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

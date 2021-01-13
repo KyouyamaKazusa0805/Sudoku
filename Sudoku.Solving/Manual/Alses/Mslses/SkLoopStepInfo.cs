@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.SkLoop;
+		public override Technique TechniqueCode => Technique.SkLoop;
 
 
 		/// <inheritdoc/>

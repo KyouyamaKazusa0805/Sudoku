@@ -4,7 +4,7 @@
 	/// Represents a technique instance, which is used for comparison.
 	/// </summary>
 	/*closed*/
-	public enum TechniqueCode : short
+	public enum Technique : short
 	{
 		/// <summary>
 		/// The placeholder of this enumeration type.

@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.DeathBlossom;
+		public override Technique TechniqueCode => Technique.DeathBlossom;
 
 
 		/// <inheritdoc/>

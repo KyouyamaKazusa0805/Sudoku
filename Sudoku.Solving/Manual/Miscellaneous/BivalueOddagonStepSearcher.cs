@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 	public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(14, nameof(TechniqueCode.BivalueOddagonType1))
+		public static TechniqueProperties Properties { get; } = new(14, nameof(Technique.BivalueOddagonType1))
 		{
 			DisplayLevel = 2
 		};

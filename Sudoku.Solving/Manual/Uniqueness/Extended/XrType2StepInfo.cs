@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.XrType2;
+		public override Technique TechniqueCode => Technique.XrType2;
 
 
 		/// <inheritdoc/>

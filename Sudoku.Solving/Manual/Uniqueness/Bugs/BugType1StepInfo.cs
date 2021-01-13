@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		: BugStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.BugType1;
+		public override Technique TechniqueCode => Technique.BugType1;
 
 
 		/// <inheritdoc/>

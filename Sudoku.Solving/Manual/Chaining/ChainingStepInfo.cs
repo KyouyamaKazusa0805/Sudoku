@@ -59,23 +59,23 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
+		public override Technique TechniqueCode =>
 			this switch
 			{
-				{ IsNishio: true } => TechniqueCode.NishioFc,
+				{ IsNishio: true } => Technique.NishioFc,
 				{ IsDynamic: true } => SortKey switch
 				{
-					ChainingTypeCode.DynamicRegionFc => TechniqueCode.DynamicRegionFc,
-					ChainingTypeCode.DynamicCellFc => TechniqueCode.DynamicCellFc,
-					ChainingTypeCode.DynamicContradictionFc => TechniqueCode.DynamicContradictionFc,
-					ChainingTypeCode.DynamicDoubleFc => TechniqueCode.DynamicDoubleFc
+					ChainingTypeCode.DynamicRegionFc => Technique.DynamicRegionFc,
+					ChainingTypeCode.DynamicCellFc => Technique.DynamicCellFc,
+					ChainingTypeCode.DynamicContradictionFc => Technique.DynamicContradictionFc,
+					ChainingTypeCode.DynamicDoubleFc => Technique.DynamicDoubleFc
 				},
 				{ IsMultiple: true } => SortKey switch
 				{
-					ChainingTypeCode.RegionFc => TechniqueCode.RegionFc,
-					ChainingTypeCode.CellFc => TechniqueCode.CellFc,
+					ChainingTypeCode.RegionFc => Technique.RegionFc,
+					ChainingTypeCode.CellFc => Technique.CellFc,
 				},
-				_ => TechniqueCode.Aic
+				_ => Technique.Aic
 			};
 
 		/// <summary>

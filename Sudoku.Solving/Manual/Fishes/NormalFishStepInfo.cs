@@ -50,8 +50,8 @@ namespace Sudoku.Solving.Manual.Fishes
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
-			Enum.Parse<TechniqueCode>(InternalName.Replace(" ", string.Empty).Replace("-", string.Empty));
+		public override Technique TechniqueCode =>
+			Enum.Parse<Technique>(InternalName.Replace(" ", string.Empty).Replace("-", string.Empty));
 
 		/// <summary>
 		/// Indicates the base difficulty.

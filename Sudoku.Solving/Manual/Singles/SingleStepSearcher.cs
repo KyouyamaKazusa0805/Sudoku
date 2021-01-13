@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(1, nameof(TechniqueCode.NakedSingle))
+		public static TechniqueProperties Properties { get; } = new(1, nameof(Technique.NakedSingle))
 		{
 			DisplayLevel = 0,
 			IsReadOnly = true

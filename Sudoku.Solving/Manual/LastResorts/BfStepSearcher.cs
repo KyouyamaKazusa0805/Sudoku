@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(38, nameof(TechniqueCode.BruteForce))
+		public static TechniqueProperties Properties { get; } = new(38, nameof(Technique.BruteForce))
 		{
 			IsReadOnly = true,
 			DisplayLevel = 10,

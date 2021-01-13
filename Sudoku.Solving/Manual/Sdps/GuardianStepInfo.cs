@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override decimal Difficulty => 5.5M + .1M * (Loop.Count + (Guardians.Count >> 1) >> 1);
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.Guardian;
+		public override Technique TechniqueCode => Technique.Guardian;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

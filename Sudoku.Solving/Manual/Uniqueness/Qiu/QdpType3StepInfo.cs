@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public override decimal Difficulty => base.Difficulty + PopCount((uint)ExtraDigitsMask) * .1M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.QdpType3;
+		public override Technique TechniqueCode => Technique.QdpType3;
 
 
 		/// <inheritdoc/>

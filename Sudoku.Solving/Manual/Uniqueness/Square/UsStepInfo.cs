@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
-		public abstract override TechniqueCode TechniqueCode { get; }
+		public abstract override Technique TechniqueCode { get; }
 
 
 		/// <inheritdoc/>

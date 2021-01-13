@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	public sealed class BugMultipleWithFcStepSearcher : UniquenessStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(27, nameof(TechniqueCode.BugMultipleFc))
+		public static TechniqueProperties Properties { get; } = new(27, nameof(Technique.BugMultipleFc))
 		{
 			DisplayLevel = 3
 		};

@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		public override decimal Difficulty => 4.5M + (Cells.Count >> 1 - 2) * .1M;
 
 		/// <inheritdoc/>
-		public abstract override TechniqueCode TechniqueCode { get; }
+		public abstract override Technique TechniqueCode { get; }
 
 		/// <inheritdoc/>
 		public sealed override bool ShowDifficulty => true;

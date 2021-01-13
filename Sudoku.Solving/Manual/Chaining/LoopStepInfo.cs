@@ -46,10 +46,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
+		public override Technique TechniqueCode =>
 			IsXCycle
-			? TechniqueCode.FishyCycle
-			: IsXyChain ? TechniqueCode.XyCycle : TechniqueCode.ContinuousNiceLoop;
+			? Technique.FishyCycle
+			: IsXyChain ? Technique.XyCycle : Technique.ContinuousNiceLoop;
 
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey => Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());

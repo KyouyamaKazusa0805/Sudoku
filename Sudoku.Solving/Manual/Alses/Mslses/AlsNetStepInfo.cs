@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override decimal Difficulty => 9.4M + (decimal)Floor((Sqrt(1 + 8 * Cells.Count) - 1) / 2) * .1M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.Msls;
+		public override Technique TechniqueCode => Technique.Msls;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

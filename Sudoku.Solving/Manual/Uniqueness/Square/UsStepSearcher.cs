@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	public sealed partial class UsStepSearcher : UniquenessStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(16, nameof(TechniqueCode.UsType1))
+		public static TechniqueProperties Properties { get; } = new(16, nameof(Technique.UsType1))
 		{
 			DisplayLevel = 2
 		};

@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(35, nameof(TechniqueCode.Se))
+		public static TechniqueProperties Properties { get; } = new(35, nameof(Technique.Se))
 		{
 			IsEnabled = false,
 			DisabledReason = DisabledReason.HasBugs | DisabledReason.Deprecated

@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public override decimal Difficulty => base.Difficulty + .2M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.QdpType4;
+		public override Technique TechniqueCode => Technique.QdpType4;
 
 
 		/// <inheritdoc/>
