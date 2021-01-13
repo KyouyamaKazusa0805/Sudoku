@@ -126,23 +126,23 @@
             <seealso cref="T:System.Drawing.Size"/>
             <seealso cref="T:System.Drawing.SizeF"/>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.DrawingSizeEx.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
+        <member name="M:Sudoku.Drawing.Extensions.DrawingSizeEx.Deconstruct(System.Drawing.Size@,System.Int32@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
+            <param name="this">(<see langword="this in"/> parameter) The size instance.</param>
             <param name="width">(<see langword="out"/> parameter) The width.</param>
             <param name="height">(<see langword="out"/> parameter) The height.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.DrawingSizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
+        <member name="M:Sudoku.Drawing.Extensions.DrawingSizeEx.Deconstruct(System.Drawing.SizeF@,System.Single@,System.Single@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The size instance.</param>
+            <param name="this">(<see langword="this in"/> parameter) The size instance.</param>
             <param name="width">(<see langword="out"/> parameter) The width.</param>
             <param name="height">(<see langword="out"/> parameter) The height.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.DrawingSizeEx.Truncate(System.Drawing.SizeF)">
+        <member name="M:Sudoku.Drawing.Extensions.DrawingSizeEx.Truncate(System.Drawing.SizeF@)">
             <summary>
             To truncate the size.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The size.</param>
+            <param name="this">(<see langword="this in"/> parameter) The size.</param>
             <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Drawing.Extensions.GraphicsEx">
@@ -232,47 +232,47 @@
             <seealso cref="T:System.Drawing.Rectangle"/>
             <seealso cref="T:System.Drawing.RectangleF"/>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.CreateInstance(System.Drawing.Point,System.Drawing.Point)">
+        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.CreateInstance(System.Drawing.Point@,System.Drawing.Point@)">
             <summary>
             Create an instance with two points.
             </summary>
-            <param name="leftUp">The left up point.</param>
-            <param name="rightDown">The right down point.</param>
+            <param name="leftUp">(<see langword="in"/> parameter) The left up point.</param>
+            <param name="rightDown">(<see langword="in"/> parameter) The right down point.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.CreateInstance(System.Drawing.PointF,System.Drawing.PointF)">
+        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.CreateInstance(System.Drawing.PointF@,System.Drawing.PointF@)">
             <summary>
             Create an instance with two points.
             </summary>
-            <param name="leftUp">The left up point.</param>
-            <param name="rightDown">The right down point.</param>
+            <param name="leftUp">(<see langword="in"/> parameter) The left up point.</param>
+            <param name="rightDown">(<see langword="in"/> parameter) The right down point.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.Zoom(System.Drawing.RectangleF,System.Single)">
+        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.Zoom(System.Drawing.RectangleF@,System.Single)">
             <summary>
             Zoom in or out the rectangle by the specified offset.
             If the offset is positive, the rectangle will be larger; otherwise, smaller.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
+            <param name="this">(<see langword="this in"/> parameter) The rectangle.</param>
             <param name="offset">The offset to zoom in or out.</param>
             <returns>The new rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.Truncate(System.Drawing.RectangleF)">
+        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.Truncate(System.Drawing.RectangleF@)">
             <summary>
             Truncate the specified rectangle.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
+            <param name="this">(<see langword="this in"/> parameter) The rectangle.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.RectangleEx.Deconstruct(System.Drawing.RectangleF,System.Drawing.PointF@,System.Drawing.SizeF@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
+            <param name="this">(<see langword="this in"/> parameter) The rectangle.</param>
             <param name="point">(<see langword="out"/> parameter) The point.</param>
             <param name="size">(<see langword="out"/> parameter) The size.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.Deconstruct(System.Drawing.RectangleF,System.Single@,System.Single@,System.Single@,System.Single@)">
+        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.Deconstruct(System.Drawing.RectangleF@,System.Single@,System.Single@,System.Single@,System.Single@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
+            <param name="this">(<see langword="this in"/> parameter) The rectangle.</param>
             <param name="x">(<see langword="out"/> parameter) The x.</param>
             <param name="y">(<see langword="out"/> parameter) The y.</param>
             <param name="width">(<see langword="out"/> parameter) The width.</param>
@@ -675,32 +675,32 @@
             Note that the size of this 2D array is always 28 by 28.
             </remarks>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetCell(System.Drawing.PointF)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetCell(System.Drawing.PointF@)">
             <summary>
             Get the focus cell offset via a mouse point.
             </summary>
-            <param name="point">The mouse point.</param>
+            <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
             <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetCandidate(System.Drawing.PointF)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetCandidate(System.Drawing.PointF@)">
             <summary>
             Get the focus candidate offset via a mouse point.
             </summary>
-            <param name="point">The mouse point.</param>
+            <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
             <returns>The candidate offset.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetMouseCenter(Sudoku.Data.Candidates)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseCenter(Sudoku.Data.Candidates@)">
             <summary>
             Get the center mouse point of all candidates.
             </summary>
-            <param name="map">The map of candidates.</param>
+            <param name="map">(<see langword="in"/> parameter) The map of candidates.</param>
             <returns>The center mouse point.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangle(Sudoku.Data.Candidates)">
+        <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangle(Sudoku.Data.Candidates@)">
             <summary>
             Get the rectangle from all candidates.
             </summary>
-            <param name="map">The candidates.</param>
+            <param name="map">(<see langword="in"/> parameter) The candidates.</param>
             <returns>The rectangle.</returns>
         </member>
         <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangleViaCell(System.Int32)">

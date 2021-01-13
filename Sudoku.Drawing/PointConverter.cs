@@ -105,10 +105,10 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Get the focus cell offset via a mouse point.
 		/// </summary>
-		/// <param name="point">The mouse point.</param>
+		/// <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
 		/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public int GetCell(PointF point)
+		public int GetCell(in PointF point)
 		{
 			var (x, y) = point.WithOffset(-Offset);
 			if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
@@ -125,10 +125,10 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Get the focus candidate offset via a mouse point.
 		/// </summary>
-		/// <param name="point">The mouse point.</param>
+		/// <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
 		/// <returns>The candidate offset.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public int GetCandidate(PointF point)
+		public int GetCandidate(in PointF point)
 		{
 			var (x, y) = point;
 			var (cw, ch) = CandidateSize;
@@ -138,10 +138,10 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Get the center mouse point of all candidates.
 		/// </summary>
-		/// <param name="map">The map of candidates.</param>
+		/// <param name="map">(<see langword="in"/> parameter) The map of candidates.</param>
 		/// <returns>The center mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PointF GetMouseCenter(Candidates map)
+		public PointF GetMouseCenter(in Candidates map)
 		{
 			int min = map[0], max = map[^1];
 			var (x1, y1) = GetMousePointInCenter(min / 9, min % 9);
@@ -152,10 +152,10 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Get the rectangle from all candidates.
 		/// </summary>
-		/// <param name="map">The candidates.</param>
+		/// <param name="map">(<see langword="in"/> parameter) The candidates.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RectangleF GetMouseRectangle(Candidates map)
+		public RectangleF GetMouseRectangle(in Candidates map)
 		{
 			var (cw, ch) = CandidateSize;
 			int min = map[0], max = map[^1];
