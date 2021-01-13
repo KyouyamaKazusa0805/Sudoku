@@ -39,5 +39,36 @@ namespace System.Extensions
 
 			return true;
 		}
+
+		/// <summary>
+		/// Get the index of the whole list, whose corresponding element is satisfy the specified condition.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="predicate">The condition to check.</param>
+		/// <returns>
+		/// The index of the element satisfied the condition. If the list can't find that element,
+		/// return -1 as the result.
+		/// </returns>
+		public static int IndexOf<T>(this IEnumerable<T> @this, Predicate<T> predicate)
+		{
+			if (!@this.Any())
+			{
+				return -1;
+			}
+
+			int index = 0;
+			foreach (var element in @this)
+			{
+				if (predicate(element))
+				{
+					return index;
+				}
+
+				index++;
+			}
+
+			return -1;
+		}
 	}
 }
