@@ -6,6 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
+using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
 

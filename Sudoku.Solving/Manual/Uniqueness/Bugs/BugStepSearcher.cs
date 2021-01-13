@@ -3,6 +3,7 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Checking;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 #if DOUBLE_LAYERED_ASSUMPTION
 using Sudoku.Data.Extensions;
 using static Sudoku.Constants.Processings;

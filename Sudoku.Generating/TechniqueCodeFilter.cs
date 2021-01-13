@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.DocComments;
+using Sudoku.Techniques;
 
 namespace Sudoku.Generating
 {

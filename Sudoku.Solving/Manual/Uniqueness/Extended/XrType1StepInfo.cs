@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
@@ -15,9 +16,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask)
 		: XrStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
-		/// <inheritdoc/>
-		public override decimal Difficulty => 4.5M + ExtraDifficulty[Cells.Count];
-
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Sdps
 {

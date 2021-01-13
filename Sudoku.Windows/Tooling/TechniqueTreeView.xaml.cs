@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using Sudoku.DocComments;
+using Sudoku.Techniques;
 using static Sudoku.Windows.MainWindow;
 using CoreResources = Sudoku.Windows.Resources;
 
@@ -34,14 +35,15 @@ namespace Sudoku.Windows.Tooling
 		/// </exception>
 		private void GetAllTechniques()
 		{
-			var selection = from technique in Enum.GetValues<TechniqueCode>()
-							let nullableCategory = LangSource[$"Group{technique}"] as string
-							where nullableCategory is not null
-							select (
-								technique,
-								(int)technique,
-								CoreResources.GetValue(technique.ToString()),
-								Category: nullableCategory);
+			var selection =
+				from technique in Enum.GetValues<TechniqueCode>()
+				let nullableCategory = LangSource[$"Group{technique}"] as string
+				where nullableCategory is not null
+				select (
+					technique,
+					(int)technique,
+					CoreResources.GetValue(technique.ToString()),
+					Category: nullableCategory);
 
 			var categories = new List<string>((from quadruple in selection select quadruple.Category).Distinct());
 

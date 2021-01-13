@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.LastResorts

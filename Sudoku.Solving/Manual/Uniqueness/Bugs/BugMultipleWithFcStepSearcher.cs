@@ -7,6 +7,7 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Chaining;
+using Sudoku.Techniques;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs

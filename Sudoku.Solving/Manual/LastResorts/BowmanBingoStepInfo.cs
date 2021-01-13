@@ -3,6 +3,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {

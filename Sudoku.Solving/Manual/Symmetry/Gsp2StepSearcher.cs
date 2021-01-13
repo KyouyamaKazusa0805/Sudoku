@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.Symmetry

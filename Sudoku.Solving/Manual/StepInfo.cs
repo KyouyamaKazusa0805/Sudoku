@@ -4,6 +4,7 @@ using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets;
+using Sudoku.Techniques;
 using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual

@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {

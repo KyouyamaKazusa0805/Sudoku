@@ -3,6 +3,7 @@ using System.Extensions;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {

@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Wings.Regular

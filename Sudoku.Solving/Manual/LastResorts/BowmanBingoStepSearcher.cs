@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Singles;
+using Sudoku.Techniques;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 

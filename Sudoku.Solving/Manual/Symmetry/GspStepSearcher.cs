@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.DocComments;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Symmetry
 {

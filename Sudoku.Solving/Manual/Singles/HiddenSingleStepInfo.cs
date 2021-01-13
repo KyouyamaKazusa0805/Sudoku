@@ -3,6 +3,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Singles
 {

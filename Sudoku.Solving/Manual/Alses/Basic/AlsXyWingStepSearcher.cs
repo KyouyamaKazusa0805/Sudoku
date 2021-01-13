@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses.Basic

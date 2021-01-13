@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Extensions
+﻿using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="AnalysisResult"/>.

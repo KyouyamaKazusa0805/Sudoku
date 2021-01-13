@@ -2,6 +2,7 @@
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
+using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
 

@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
+using Sudoku.Techniques;
 using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Chaining

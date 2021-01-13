@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
@@ -17,16 +18,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask)
 		: UniquenessStepInfo(Conclusions, Views)
 	{
-		/// <summary>
-		/// The difficulty extra.
-		/// </summary>
-		protected static readonly decimal[] ExtraDifficulty = { 0, 0, 0, 0, .1M, 0, .2M, 0, .3M, 0, .4M, 0, .5M, 0, .6M };
-
-
-		/// <summary>
-		/// Indicates the size of the instance.
-		/// </summary>
-		public int Size => Cells.Count >> 1;
+		/// <inheritdoc/>
+		public override decimal Difficulty => 4.5M + (Cells.Count >> 1 - 2) * .1M;
 
 		/// <inheritdoc/>
 		public abstract override TechniqueCode TechniqueCode { get; }

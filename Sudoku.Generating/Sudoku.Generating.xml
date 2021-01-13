@@ -189,7 +189,7 @@
         <member name="M:Sudoku.Generating.TechniqueCodeFilter.#ctor">
             <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueCodeFilter.#ctor(Sudoku.TechniqueCode[])">
+        <member name="M:Sudoku.Generating.TechniqueCodeFilter.#ctor(Sudoku.Techniques.TechniqueCode[])">
             <summary>
             Initializes an instance with the specified technique codes.
             </summary>
@@ -206,28 +206,28 @@
             The total number of techniques.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueCodeFilter.Add(Sudoku.TechniqueCode)">
+        <member name="M:Sudoku.Generating.TechniqueCodeFilter.Add(Sudoku.Techniques.TechniqueCode)">
             <summary>
             To add a technique code.
             </summary>
             <param name="techniqueCode">The technique code.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueCodeFilter.AddRange(System.Collections.Generic.IEnumerable{Sudoku.TechniqueCode})">
+        <member name="M:Sudoku.Generating.TechniqueCodeFilter.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Techniques.TechniqueCode})">
             <summary>
             Add a serial of technique codes to this list.
             </summary>
             <param name="techniqueCodes">The codes.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueCodeFilter.Remove(Sudoku.TechniqueCode)">
+        <member name="M:Sudoku.Generating.TechniqueCodeFilter.Remove(Sudoku.Techniques.TechniqueCode)">
             <summary>
             To remove a technique code.
             </summary>
             <param name="techniqueCode">The technique code.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueCodeFilter.Contains(Sudoku.TechniqueCode)">
+        <member name="M:Sudoku.Generating.TechniqueCodeFilter.Contains(Sudoku.Techniques.TechniqueCode)">
             <summary>
             To determine whether the specified filter contains the technique.
             </summary>

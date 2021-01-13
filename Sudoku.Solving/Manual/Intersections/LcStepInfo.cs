@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 #if DOUBLE_LAYERED_ASSUMPTION
 using static Sudoku.Solving.TechniqueSearcher;
 #endif
