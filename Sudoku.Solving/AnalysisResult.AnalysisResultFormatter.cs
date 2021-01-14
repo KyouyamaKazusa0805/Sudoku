@@ -131,8 +131,7 @@ namespace Sudoku.Solving
 							}
 
 							var info = steps[i];
-							string infoStr =
-								options.Flags(ShowSimple) ? info.ToSimpleString() : info.ToString();
+							string infoStr = options.Flags(ShowSimple) ? info.ToSimpleString() : info.ToString();
 							bool showDiff = options.Flags(ShowDifficulty) && info.ShowDifficulty;
 
 							string d = $"{$"({info.Difficulty}",5:0.0}";
@@ -166,7 +165,7 @@ namespace Sudoku.Solving
 				}
 
 				// Print solving step statistics (if worth).
-				if (Result.Steps is var solvingSteps and not null)
+				if (Result.Steps is { } solvingSteps)
 				{
 					var solvingStepsGrouped = new List<IGrouping<string, StepInfo>>(
 						from step in solvingSteps

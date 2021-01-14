@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Extensions
 			for (int i = 0, count = chain.Count; i < count; i++)
 			{
 				var p = chain[i];
-				if (p.Parents is var parents and not null)
+				if (p.Parents is { } parents)
 				{
 					foreach (var pr in parents)
 					{

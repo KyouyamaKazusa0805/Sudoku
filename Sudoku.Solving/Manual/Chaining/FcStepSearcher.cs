@@ -390,7 +390,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					// Get advanced relations (i.e. FCs (+) in Sudoku Explainer).
 					if (Level > 0 && pendingOn.Count == 0 && pendingOff.Count == 0
-						&& Advanced(grid, _savedGrid, toOff) is var list and not null)
+						&& Advanced(grid, _savedGrid, toOff) is { } list)
 					{
 						foreach (var pOff in list)
 						{

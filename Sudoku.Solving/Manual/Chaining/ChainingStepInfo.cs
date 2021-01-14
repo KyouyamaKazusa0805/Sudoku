@@ -121,7 +121,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			get
 			{
-				if (Views[0].Links is var links and not null)
+				if (Views[0].Links is { } links)
 				{
 					for (int i = 0; i < links.Count; i += 2)
 					{
@@ -240,7 +240,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							}
 						}
 
-						if (p.Parents is var parents and not null)
+						if (p.Parents is { } parents)
 						{
 							next.AddRange(parents);
 						}

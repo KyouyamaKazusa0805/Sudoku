@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual
 #else
 					new GspStepSearcher();
 #endif
-				if (symmetrySearcher.GetOne(cloneation) is var tempStep and not null)
+				if (symmetrySearcher.GetOne(cloneation) is { } tempStep)
 				{
 					if (CheckConclusionsValidity(solution, tempStep.Conclusions))
 					{

@@ -85,7 +85,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						// Iterate on each conjugate pair.
 						short wDigitsMask = 0;
 						var conclusions = new List<Conclusion>();
-						if (conjugatePairs[x] is var conjPairs and not null)
+						if (conjugatePairs[x] is { } conjPairs)
 						{
 							foreach (var conjugatePair in conjPairs)
 							{

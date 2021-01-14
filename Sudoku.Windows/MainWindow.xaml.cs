@@ -448,9 +448,7 @@ namespace Sudoku.Windows
 				try
 				{
 					string s = File.ReadAllText(path);
-					if (
-						JsonSerializer.Deserialize<WindowsSettings>(s, _serializerOptions)
-						is var settingsResult and not null)
+					if (JsonSerializer.Deserialize<WindowsSettings>(s, _serializerOptions) is { } settingsResult)
 					{
 						Settings = settingsResult;
 					}

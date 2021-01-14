@@ -140,7 +140,7 @@ namespace Sudoku.Solving.Manual
 		{
 			for (int i = 0; i < 729; i++)
 			{
-				if (_causes[i] is var cause and not null)
+				if (_causes[i] is { } cause)
 				{
 					yield return (i, cause);
 				}

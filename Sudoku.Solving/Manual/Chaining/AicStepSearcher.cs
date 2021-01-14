@@ -131,14 +131,14 @@ namespace Sudoku.Solving.Manual.Chaining
 #else
 					CreateLoopHint(grid, destOn, xEnabled, yEnabled)
 #endif
-					is var result and not null)
+					is { } result)
 				{
 					accumulator.Add(result);
 				}
 			}
 			foreach (var target in chains)
 			{
-				if (CreateAicHint(grid, target, xEnabled, yEnabled) is var result and not null)
+				if (CreateAicHint(grid, target, xEnabled, yEnabled) is { } result)
 				{
 					accumulator.Add(result);
 				}
