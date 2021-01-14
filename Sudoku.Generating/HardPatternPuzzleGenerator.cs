@@ -156,7 +156,7 @@ namespace Sudoku.Generating
 		}
 
 		/// <inheritdoc/>
-		protected sealed override void CreatePattern(int[] pattern)
+		protected sealed override unsafe void CreatePattern(int[] pattern)
 		{
 			int a = 54, b = 0;
 			for (int i = 0; i < 9; i++)
@@ -166,26 +166,29 @@ namespace Sudoku.Generating
 				{
 					for (int k = 0; k < 3; k++)
 					{
-						pattern[(k == SwappingFactor[n, j] ? ref a : ref b)++] = BlockFactor[i] + j * 9 + k;
+						pattern[(*(k == SwappingFactor[n, j] ? &a : &b))++] = BlockFactor[i] + j * 9 + k;
 					}
 				}
 			}
 
-			for (int i = 23; i >= 0; i--)
+			fixed (int* pPattern = pattern)
 			{
-				Algorithms.Swap(ref pattern[i], ref pattern[(int)((i + 1) * Rng.NextDouble())]);
-			}
-			for (int i = 47; i >= 24; i--)
-			{
-				Algorithms.Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * Rng.NextDouble())]);
-			}
-			for (int i = 53; i >= 48; i--)
-			{
-				Algorithms.Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * Rng.NextDouble())]);
-			}
-			for (int i = 80; i >= 54; i--)
-			{
-				Algorithms.Swap(ref pattern[i], ref pattern[54 + (int)(27 * Rng.NextDouble())]);
+				for (int i = 23; i >= 0; i--)
+				{
+					Algorithms.Swap(pPattern + i, pPattern + (int)((i + 1) * Rng.NextDouble()));
+				}
+				for (int i = 47; i >= 24; i--)
+				{
+					Algorithms.Swap(pPattern + i, pPattern + 24 + (int)((i - 23) * Rng.NextDouble()));
+				}
+				for (int i = 53; i >= 48; i--)
+				{
+					Algorithms.Swap(pPattern + i, pPattern + 48 + (int)((i - 47) * Rng.NextDouble()));
+				}
+				for (int i = 80; i >= 54; i--)
+				{
+					Algorithms.Swap(pPattern + i, pPattern + 54 + (int)(27 * Rng.NextDouble()));
+				}
 			}
 		}
 
@@ -194,23 +197,26 @@ namespace Sudoku.Generating
 		/// To re-create the pattern.
 		/// </summary>
 		/// <param name="pattern">The pattern array.</param>
-		private static void RecreatePattern(int[] pattern)
+		private static unsafe void RecreatePattern(int[] pattern)
 		{
-			for (int i = 23; i >= 0; i--)
+			fixed (int* pPattern = pattern)
 			{
-				Algorithms.Swap(ref pattern[i], ref pattern[(int)((i + 1) * Rng.NextDouble())]);
-			}
-			for (int i = 47; i >= 24; i--)
-			{
-				Algorithms.Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * Rng.NextDouble())]);
-			}
-			for (int i = 53; i >= 48; i--)
-			{
-				Algorithms.Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * Rng.NextDouble())]);
-			}
-			for (int i = 80; i >= 54; i--)
-			{
-				Algorithms.Swap(ref pattern[i], ref pattern[54 + (int)(27 * Rng.NextDouble())]);
+				for (int i = 23; i >= 0; i--)
+				{
+					Algorithms.Swap(pPattern + i, pPattern + (int)((i + 1) * Rng.NextDouble()));
+				}
+				for (int i = 47; i >= 24; i--)
+				{
+					Algorithms.Swap(pPattern + i, pPattern + 24 + (int)((i - 23) * Rng.NextDouble()));
+				}
+				for (int i = 53; i >= 48; i--)
+				{
+					Algorithms.Swap(pPattern + i, pPattern + 48 + (int)((i - 47) * Rng.NextDouble()));
+				}
+				for (int i = 80; i >= 54; i--)
+				{
+					Algorithms.Swap(pPattern + i, pPattern + 54 + (int)(27 * Rng.NextDouble()));
+				}
 			}
 		}
 	}

@@ -117,17 +117,19 @@ namespace System
 		}
 
 		/// <summary>
-		/// To swap the two variables.
+		/// To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
 		/// </summary>
-		/// <typeparam name="T">The type of the variable.</typeparam>
+		/// <typeparam name="TUnmanaged">The type of the variable.</typeparam>
 		/// <param name="left">The left variable.</param>
 		/// <param name="right">The right variable.</param>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Swap<T>(ref T? left, ref T? right)
+		public static unsafe void Swap<TUnmanaged>(TUnmanaged* left, TUnmanaged* right)
+			where TUnmanaged : unmanaged
 		{
-			var temp = left;
-			left = right;
-			right = temp;
+			var temp = *left;
+			*left = *right;
+			*right = temp;
 		}
 
 		/// <summary>

@@ -212,7 +212,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			{
 				for (int i = 0; i < 9; i++)
 				{
-					Algorithms.Swap(ref pGrid[RegionCells[region1][i]], ref pGrid[RegionCells[region2][i]]);
+					Algorithms.Swap(pGrid + RegionCells[region1][i], pGrid + RegionCells[region2][i]);
 				}
 			}
 		}
