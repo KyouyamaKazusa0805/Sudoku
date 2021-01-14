@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#define HIDDEN_SINGLE_BLOCK_FIRST
+
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -116,105 +118,151 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		private void GetHiddenSinglesOrLastDigits(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
+#if HIDDEN_SINGLE_BLOCK_FIRST
+			for (int region = 0; region < 9; region++)
+			{
+				for (int digit = 0; digit < 9; digit++)
+				{
+					if (!GetHiddenSinglesOrLastDigits(accumulator, grid, digit, region))
+					{
+						continue;
+					}
+				}
+			}
+
+			for (int region = 9; region < 27; region++)
+			{
+				for (int digit = 0; digit < 9; digit++)
+				{
+					if (!GetHiddenSinglesOrLastDigits(accumulator, grid, digit, region))
+					{
+						continue;
+					}
+				}
+			}
+#else
 			for (int digit = 0; digit < 9; digit++)
 			{
 				for (int region = 0; region < 27; region++)
 				{
-					var map = RegionMaps[region];
-					int count = 0, resultCell = -1;
-					bool flag = true;
-					foreach (int cell in map)
-					{
-						if (grid.Exists(cell, digit) is true)
-						{
-							resultCell = cell;
-							if (++count > 1)
-							{
-								flag = false;
-								break;
-							}
-						}
-					}
-					if (!flag || count == 0)
+					if (!GetHiddenSinglesOrLastDigits(accumulator, grid, digit, region))
 					{
 						continue;
 					}
-
-					bool enableAndIsLastDigit = false;
-					var cellOffsets = new List<DrawingInfo>();
-					if (_enableLastDigit)
-					{
-						// Sum up the number of appearing in the grid of 'digit'.
-						int digitCount = 0;
-						for (int i = 0; i < 81; i++)
-						{
-							if (grid[i] == digit)
-							{
-								digitCount++;
-								cellOffsets.Add(new(0, i));
-							}
-						}
-
-						enableAndIsLastDigit = digitCount == 8;
-					}
-
-					List<(Cells, Cells)>? directLines = null;
-					if (!enableAndIsLastDigit && _showDirectLines)
-					{
-						directLines = new();
-
-						// Step 1: Get all source cells that makes the result cell
-						// can't be filled with the result digit.
-						Cells crosshatchingCells = Cells.Empty, tempMap = Cells.Empty;
-						foreach (int cell in RegionCells[region])
-						{
-							if (cell != resultCell && grid.GetStatus(cell) == CellStatus.Empty)
-							{
-								tempMap.AddAnyway(cell);
-							}
-						}
-						foreach (int cell in tempMap)
-						{
-							foreach (int peerCell in PeerMaps[cell])
-							{
-								if (cell != resultCell && grid[peerCell] == digit)
-								{
-									crosshatchingCells.AddAnyway(peerCell);
-								}
-							}
-						}
-
-						// Step 2: Get all removed cells in this region.
-						foreach (int cell in crosshatchingCells)
-						{
-							var removableCells = PeerMaps[cell] & tempMap;
-							if (!removableCells.IsEmpty)
-							{
-								directLines.Add((new() { cell }, removableCells));
-								tempMap -= removableCells;
-							}
-						}
-					}
-
-					accumulator.Add(
-						new HiddenSingleStepInfo(
-							new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) },
-							new View[]
-							{
-								new()
-								{
-									Cells = enableAndIsLastDigit ? cellOffsets : null,
-									Candidates = new DrawingInfo[] { new(0, resultCell * 9 + digit) },
-									Regions = enableAndIsLastDigit ? null : new DrawingInfo[] { new(0, region) },
-									DirectLines = directLines
-								}
-							},
-							resultCell,
-							digit,
-							region,
-							enableAndIsLastDigit));
 				}
 			}
+#endif
+		}
+
+		/// <summary>
+		/// Called by <see cref="GetHiddenSinglesOrLastDigits(IList{StepInfo}, in SudokuGrid)"/>.
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="region">The region.</param>
+		/// <returns>
+		/// Returns a <see cref="bool"/> value indicating whether the searching is successful.
+		/// </returns>
+		/// <seealso cref="GetHiddenSinglesOrLastDigits(IList{StepInfo}, in SudokuGrid)"/>
+		private bool GetHiddenSinglesOrLastDigits(
+			IList<StepInfo> accumulator, in SudokuGrid grid, int digit, int region)
+		{
+			var map = RegionMaps[region];
+			int count = 0, resultCell = -1;
+			bool flag = true;
+			foreach (int cell in map)
+			{
+				if (grid.Exists(cell, digit) is true)
+				{
+					resultCell = cell;
+					if (++count > 1)
+					{
+						flag = false;
+						break;
+					}
+				}
+			}
+			if (!flag || count == 0)
+			{
+				return false;
+			}
+
+			bool enableAndIsLastDigit = false;
+			var cellOffsets = new List<DrawingInfo>();
+			if (_enableLastDigit)
+			{
+				// Sum up the number of appearing in the grid of 'digit'.
+				int digitCount = 0;
+				for (int i = 0; i < 81; i++)
+				{
+					if (grid[i] == digit)
+					{
+						digitCount++;
+						cellOffsets.Add(new(0, i));
+					}
+				}
+
+				enableAndIsLastDigit = digitCount == 8;
+			}
+
+			List<(Cells, Cells)>? directLines = null;
+			if (!enableAndIsLastDigit && _showDirectLines)
+			{
+				directLines = new();
+
+				// Step 1: Get all source cells that makes the result cell
+				// can't be filled with the result digit.
+				Cells crosshatchingCells = Cells.Empty, tempMap = Cells.Empty;
+				foreach (int cell in RegionCells[region])
+				{
+					if (cell != resultCell && grid.GetStatus(cell) == CellStatus.Empty)
+					{
+						tempMap.AddAnyway(cell);
+					}
+				}
+				foreach (int cell in tempMap)
+				{
+					foreach (int peerCell in PeerMaps[cell])
+					{
+						if (cell != resultCell && grid[peerCell] == digit)
+						{
+							crosshatchingCells.AddAnyway(peerCell);
+						}
+					}
+				}
+
+				// Step 2: Get all removed cells in this region.
+				foreach (int cell in crosshatchingCells)
+				{
+					var removableCells = PeerMaps[cell] & tempMap;
+					if (!removableCells.IsEmpty)
+					{
+						directLines.Add((new() { cell }, removableCells));
+						tempMap -= removableCells;
+					}
+				}
+			}
+
+			accumulator.Add(
+				new HiddenSingleStepInfo(
+					new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) },
+					new View[]
+					{
+						new()
+						{
+							Cells = enableAndIsLastDigit ? cellOffsets : null,
+							Candidates = new DrawingInfo[] { new(0, resultCell * 9 + digit) },
+							Regions = enableAndIsLastDigit ? null : new DrawingInfo[] { new(0, region) },
+							DirectLines = directLines
+						}
+					},
+					resultCell,
+					digit,
+					region,
+					enableAndIsLastDigit));
+
+			return true;
 		}
 
 		/// <summary>
