@@ -10,6 +10,70 @@ namespace System.Extensions
 	public static class EnumEx
 	{
 		/// <summary>
+		/// Check which enumeration field is less.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
+		/// <param name="left">The left one.</param>
+		/// <param name="right">The right one.</param>
+		/// <returns>The comparsion result.</returns>
+		public static unsafe TEnum Min<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
+		{
+			switch (sizeof(TEnum))
+			{
+				case 1:
+				case 2:
+				case 4:
+				{
+					int l = Unsafe.As<TEnum, int>(ref left);
+					int r = Unsafe.As<TEnum, int>(ref right);
+					return l < r ? left : right;
+				}
+				case 8:
+				{
+					long l = Unsafe.As<TEnum, long>(ref left);
+					long r = Unsafe.As<TEnum, long>(ref right);
+					return l < r ? left : right;
+				}
+				default:
+				{
+					return default;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Check which enumeration field is greater.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
+		/// <param name="left">The left one.</param>
+		/// <param name="right">The right one.</param>
+		/// <returns>The comparsion result.</returns>
+		public static unsafe TEnum Max<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
+		{
+			switch (sizeof(TEnum))
+			{
+				case 1:
+				case 2:
+				case 4:
+				{
+					int l = Unsafe.As<TEnum, int>(ref left);
+					int r = Unsafe.As<TEnum, int>(ref right);
+					return l > r ? left : right;
+				}
+				case 8:
+				{
+					long l = Unsafe.As<TEnum, long>(ref left);
+					long r = Unsafe.As<TEnum, long>(ref right);
+					return l > r ? left : right;
+				}
+				default:
+				{
+					return default;
+				}
+			}
+		}
+
+		/// <summary>
 		/// To get all possible flags from a specified enumeration instance.
 		/// </summary>
 		/// <typeparam name="TEnum">The type of that enumeration.</typeparam>
@@ -42,11 +106,6 @@ namespace System.Extensions
 
 			// Returns the value.
 			return result;
-
-			// Don't return a new instance with the pointer.
-			// The pointee is allocated in the stack, which will be cleared after the method popped out
-			// the method stack.
-			//return new Span<TEnum>(buffer, i);
 		}
 
 		/// <summary>

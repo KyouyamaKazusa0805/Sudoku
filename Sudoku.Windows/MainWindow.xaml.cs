@@ -1071,12 +1071,12 @@ namespace Sudoku.Windows
 						total += step.Difficulty;
 						minimum = Math.Min(step.Difficulty, minimum);
 						maximum = Math.Max(step.Difficulty, maximum);
-						minDifficultyLevel = Algorithms.Min(step.DifficultyLevel, minDifficultyLevel);
-						maxDifficultyLevel = Algorithms.Max(step.DifficultyLevel, maxDifficultyLevel);
+						minDifficultyLevel = EnumEx.Min(step.DifficultyLevel, minDifficultyLevel);
+						maxDifficultyLevel = EnumEx.Max(step.DifficultyLevel, maxDifficultyLevel);
 					}
 
 					summaryMax = Math.Max(summaryMax, maximum);
-					puzzleDifficultyLevel = Algorithms.Max(puzzleDifficultyLevel, maxDifficultyLevel);
+					puzzleDifficultyLevel = EnumEx.Max(puzzleDifficultyLevel, maxDifficultyLevel);
 
 					if (minimum == maximum)
 					{
