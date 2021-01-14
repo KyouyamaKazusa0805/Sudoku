@@ -138,17 +138,20 @@ namespace Sudoku.Windows
 
 			if (sfd.ShowDialog() is true)
 			{
-				bool result = new AnalysisResultFileOutput(_analysisResult, _settings)
-					.TryExport(
+				if
+				(
+					new AnalysisResultFileOutput(
+						_analysisResult, _settings
+					).TryExport(
 						sfd.FileName,
-						500,
+						1000,
 						_checkBoxOutputStepGrids.IsChecked ?? false,
 						CreateFormat(),
 						PictureFileType.Png,
 						(AnalysisResultOutputType)(sfd.FilterIndex - 1),
-						Alignment.Middle);
-
-				if (result)
+						Alignment.Middle
+					)
+				)
 				{
 					Messagings.SaveSuccess();
 				}

@@ -14,6 +14,11 @@ namespace Sudoku.IO
 	public sealed class AnalysisResultFileOutput
 	{
 		/// <summary>
+		/// Indicates the target size of an image to draw into the document.
+		/// </summary>
+		private const int TargetSize = 550;
+
+		/// <summary>
 		/// The converter from pixels to real output size.
 		/// </summary>
 		private const int Emu = 9525;
@@ -74,37 +79,50 @@ namespace Sudoku.IO
 					// Get all pictures, and input into the document.
 					for (int i = 0; i < steps.Count; i++)
 					{
-						var (step, grid) = (steps[i], stepGrids[i]);
+						var step = steps[i];
+						var grid = stepGrids[i];
 
-						string curPictureName = $"{i + 1}.png";
+						string curPictureName = $"{i + 1:D3}.png";
 						string curPicturePath = $@"{directoryPath}\{curPictureName}";
-						using var image = new GridPainter(new(size, size), Settings, grid)
+
+						// Insert picture.
 						{
-							View = step.Views[0],
-							Conclusions = step.Conclusions
-						}.Draw();
-
-						image.Save(curPicturePath);
-
-						using var picStream = new FileStream(curPicturePath, FileMode.Open, FileAccess.Read);
-
-						var para = doc.CreateParagraph();
-						para.Alignment = (ParagraphAlignment)(int)(alignment + 1);
-						var r = para.CreateRun();
-						r.AddPicture(
-							picStream,
-							(int)(pictureFileType switch
+							using var image = new GridPainter(new(size, size), Settings, grid)
 							{
-								PictureFileType.Jpg => PictureType.JPEG,
-								PictureFileType.Png => PictureType.PNG,
-								PictureFileType.Bmp => PictureType.BMP,
-								PictureFileType.Gif => PictureType.GIF
-							}),
-							curPictureName, size * Emu, size * Emu);
-						r.SetText(step.ToFullString());
+								View = step.Views[0],
+								Conclusions = step.Conclusions
+							}.Draw();
 
-						// Bug fix: The document cannot be opened due to NPOI inserting pictures.
-						r.GetCTR().GetDrawingList()[0].inline[0].docPr.id = 1;
+							image.Save(curPicturePath);
+
+							using var picStream = new FileStream(curPicturePath, FileMode.Open, FileAccess.Read);
+
+							var paraPic = doc.CreateParagraph();
+							paraPic.Alignment = (ParagraphAlignment)(int)(alignment + 1);
+							var runPic = paraPic.CreateRun();
+							runPic.AddPicture(
+								picStream,
+								(int)(pictureFileType switch
+								{
+									PictureFileType.Jpg => PictureType.JPEG,
+									PictureFileType.Png => PictureType.PNG,
+									PictureFileType.Bmp => PictureType.BMP,
+									PictureFileType.Gif => PictureType.GIF
+								}),
+								curPictureName, TargetSize * Emu, TargetSize * Emu);
+
+							// Bug fix: The document cannot be opened due to NPOI inserting pictures.
+							runPic.GetCTR().GetDrawingList()[0].inline[0].docPr.id = 1;
+						}
+
+						// Insert description.
+						{
+							var paraText = doc.CreateParagraph();
+							paraText.Alignment = ParagraphAlignment.LEFT;
+
+							var runText = paraText.CreateRun();
+							runText.SetText(step.ToFullString());
+						}
 					}
 
 					// Output the document.

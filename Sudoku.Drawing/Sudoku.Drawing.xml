@@ -4,6 +4,21 @@
         <name>Sudoku.Drawing</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Drawing.Extensions.BitmapEx">
+            <summary>
+            Provides extension methos on <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Bitmap"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ZoomTo(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            Zoom a picture.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The bitmap instance.</param>
+            <param name="newWidth">The new width.</param>
+            <param name="newHeight">The new height.</param>
+            <returns>The new bitmap instance that has been zoomed.</returns>
+        </member>
         <member name="T:Sudoku.Drawing.Extensions.ColorId">
             <summary>
             Extracts the extension methods for color ID.

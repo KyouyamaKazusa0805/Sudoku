@@ -29,6 +29,11 @@
             Encapsulates a instance for saving analysis result.
             </summary>
         </member>
+        <member name="F:Sudoku.IO.AnalysisResultFileOutput.TargetSize">
+            <summary>
+            Indicates the target size of an image to draw into the document.
+            </summary>
+        </member>
         <member name="F:Sudoku.IO.AnalysisResultFileOutput.Emu">
             <summary>
             The converter from pixels to real output size.
