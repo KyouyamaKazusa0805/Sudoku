@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -44,7 +43,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				{
 					var pMap = linkForEachDigit + digit;
 					*pMap = CandMaps[digit] & map;
-					n += Algorithms.Min(
+					n += MathEx.Min(
 						PopCount((uint)pMap->RowMask),
 						PopCount((uint)pMap->ColumnMask),
 						PopCount((uint)pMap->BlockMask));
@@ -62,7 +61,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						short rMask = currentMap.RowMask;
 						short cMask = currentMap.ColumnMask;
 						short bMask = currentMap.BlockMask;
-						int temp = Algorithms.Min(PopCount((uint)rMask), PopCount((uint)cMask), PopCount((uint)bMask));
+						int temp = MathEx.Min(PopCount((uint)rMask), PopCount((uint)cMask), PopCount((uint)bMask));
 						var elimMap = Cells.Empty;
 						int check = 0;
 						if (PopCount((uint)rMask) == temp)

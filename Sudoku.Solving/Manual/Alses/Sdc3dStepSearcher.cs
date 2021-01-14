@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -136,10 +135,9 @@ namespace Sudoku.Solving.Manual.Alses
 								(
 									int
 										j = 1,
-										limit =
-											Algorithms.Min(
-												9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count
-											);
+										limit = MathEx.Min(
+											9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count
+										);
 									j < limit;
 									j++
 								)
@@ -164,11 +162,10 @@ namespace Sudoku.Solving.Manual.Alses
 										for
 										(
 											int k = 1;
-											k <=
-												Algorithms.Min(
-													9 - i - j - currentBlockMap.Count - currentRowMap.Count,
-													rowMap.Count, columnMap.Count
-												);
+											k <= MathEx.Min(
+												9 - i - j - currentBlockMap.Count - currentRowMap.Count,
+												rowMap.Count, columnMap.Count
+											);
 											k++
 										)
 										{

@@ -141,19 +141,9 @@ namespace System
 		}
 
 		/// <summary>
-		/// Get the minimal one of three values.
-		/// </summary>
-		/// <param name="a">The first value.</param>
-		/// <param name="b">The second value.</param>
-		/// <param name="c">The third value.</param>
-		/// <returns>Which is the most minimal one.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int Min(int a, int b, int c) => a > b ? a > c ? a : c : b > c ? b : c;
-
-		/// <summary>
 		/// Get all combinations that each sub-array only choose one.
 		/// </summary>
-		/// <param name="array">The jigsaw array.</param>
+		/// <param name="this">The jigsaw array.</param>
 		/// <returns>
 		/// All combinations that each sub-array choose one. For example, if the array is
 		/// <c>{ { 1, 2, 3 }, { 1, 3 }, { 1, 4, 7, 10 } }</c>, all combinations are:
@@ -172,14 +162,14 @@ namespace System
 		/// with the whole array.
 		/// </remarks>
 		[SkipLocalsInit]
-		public static unsafe IEnumerable<int[]> GetExtractedCombinations(this int[][] array)
+		public static unsafe IEnumerable<int[]> GetExtractedCombinations(this int[][] @this)
 		{
-			int length = array.GetLength(0), resultCount = 1;
+			int length = @this.GetLength(0), resultCount = 1;
 			int* tempArray = stackalloc int[length];
 			for (int i = 0; i < length; i++)
 			{
 				tempArray[i] = -1;
-				resultCount *= array[i].Length;
+				resultCount *= @this[i].Length;
 			}
 
 			int[][] result = new int[resultCount][];
@@ -193,7 +183,7 @@ namespace System
 
 				int* value = tempArray + m;
 				(*value)++;
-				if (*value > array[m].Length - 1)
+				if (*value > @this[m].Length - 1)
 				{
 					*value = -1;
 					m -= 2; // Backtrack.
@@ -205,7 +195,7 @@ namespace System
 					result[n] = new int[m + 1];
 					for (int i = 0; i <= m; i++)
 					{
-						result[n][i] = array[i][tempArray[i]];
+						result[n][i] = @this[i][tempArray[i]];
 					}
 				}
 			} while (m >= -1);
