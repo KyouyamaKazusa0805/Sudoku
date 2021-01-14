@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace System
@@ -79,9 +78,18 @@ namespace System
 		/// <param name="value">The mask.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>The result list.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static short[] GetMaskSubsets(short value, int size) =>
-			(from target in value.GetAllSets().GetSubsets(size) select CreateBitsInt16(target)).ToArray();
+		public static short[] GetMaskSubsets(short value, int size)
+		{
+			var listToIterate = value.GetAllSets().GetSubsets(size);
+			short[] result = new short[listToIterate.Count];
+			int index = 0;
+			foreach (var target in listToIterate)
+			{
+				result[index++] = CreateBitsInt16(target);
+			}
+
+			return result;
+		}
 
 		/// <summary>
 		/// Create a <see cref="short"/> value, whose set bits are specified in the parameter
@@ -164,7 +172,7 @@ namespace System
 		/// with the whole array.
 		/// </remarks>
 		[SkipLocalsInit]
-		public static unsafe IEnumerable<int[]> GetCombinations(int[][] array)
+		public static unsafe IEnumerable<int[]> GetExtractedCombinations(this int[][] array)
 		{
 			int length = array.GetLength(0), resultCount = 1;
 			int* tempArray = stackalloc int[length];

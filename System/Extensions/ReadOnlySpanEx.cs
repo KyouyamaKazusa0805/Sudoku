@@ -41,7 +41,7 @@ namespace System.Extensions
 		/// <param name="this">(<see langword="this in"/> parameter) The array.</param>
 		/// <param name="count">The number of elements you want to take.</param>
 		/// <returns>All subsets.</returns>
-		public static IEnumerable<T[]> GetSubsets<T>(this in ReadOnlySpan<T> @this, int count)
+		public static IReadOnlyCollection<T[]> GetSubsets<T>(this in ReadOnlySpan<T> @this, int count)
 		{
 			if (count == 0)
 			{
