@@ -190,7 +190,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						{
 #if DEBUG
 							System.Diagnostics.Contracts.Contract.Assert(
-								this is LoopStepInfo || p.Parents is null or { Count: 0 });
+								this is LoopStepInfo || p.Parents is not { Count: not 0 });
 #endif
 							switch (this)
 							{

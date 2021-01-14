@@ -96,7 +96,7 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				if (Parents is null or { Count: 0 })
+				if (Parents is not { Count: not 0 })
 				{
 					return this;
 				}
@@ -223,7 +223,7 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString()
 		{
-			if (Parents is null or { Count: 0 })
+			if (Parents is not { Count: not 0 })
 			{
 				return $"Candidate: {new Cells { Cell }}({Digit + 1})";
 			}

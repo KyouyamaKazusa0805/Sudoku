@@ -276,7 +276,7 @@ namespace Sudoku.Drawing
 				}
 
 				bool isCannibalism = false;
-				if (View is null or { Candidates: null })
+				if (View is not { Candidates: not null })
 				{
 					goto Drawing;
 				}

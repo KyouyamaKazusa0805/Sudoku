@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 					foreach (int x in mask)
 					{
-						if (conjugatePairs[x] is null or { Count: 0 })
+						if (conjugatePairs[x] is not { Count: not 0 })
 						{
 							continue;
 						}
