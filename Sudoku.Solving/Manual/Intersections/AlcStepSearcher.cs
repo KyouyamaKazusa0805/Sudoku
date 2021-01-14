@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -85,7 +86,11 @@ namespace Sudoku.Solving.Manual.Intersections
 		{
 			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{
-				short mask = grid.BitwiseOrMasks(cells);
+				short mask = 0;
+				foreach (int cell in cells)
+				{
+					mask |= grid.GetCandidates(cell);
+				}
 				if (PopCount((uint)mask) != size)
 				{
 					continue;

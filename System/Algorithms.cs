@@ -7,7 +7,7 @@ namespace System
 	/// <summary>
 	/// Provides all algorithm processing methods.
 	/// </summary>
-	public static class Algorithms
+	public static partial class Algorithms
 	{
 		/// <summary>
 		/// Sort the specified array.
@@ -138,6 +138,85 @@ namespace System
 			var temp = *left;
 			*left = *right;
 			*right = temp;
+		}
+
+		/// <summary>
+		/// Get all subsets that each element is chosen at most once.
+		/// Note that the null set <c>{ }</c> doesn't belong to the result.
+		/// </summary>
+		/// <param name="this">The array of elements.</param>
+		/// <returns>
+		/// The subsets of the list. For example, if the input array is <c>{ 1, 2, 3 }</c>, the output
+		/// should be as follows:
+		/// <list type="table">
+		/// <item><c>{ 1 }</c></item>
+		/// <item><c>{ 2 }</c></item>
+		/// <item><c>{ 3 }</c></item>
+		/// <item><c>{ 1, 2 }</c></item>
+		/// <item><c>{ 1, 3 }</c></item>
+		/// <item><c>{ 2, 3 }</c></item>
+		/// <item><c>{ 1, 2, 3 }</c></item>
+		/// </list>
+		/// 7 cases (without null set) in total.
+		/// </returns>
+		public static IEnumerable<T[]> GetSubsets<T>(this IReadOnlyList<T> @this)
+		{
+			for (int size = 1, count = @this.Count; size <= count; size++)
+			{
+				foreach (var subset in @this.GetSubsets(size))
+				{
+					yield return subset;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Get all subsets from the specified number of the values to take.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
+		/// <param name="count">The number of elements you want to take.</param>
+		/// <returns>
+		/// The subsets of the list. For example, if the input array is <c>{ 1, 2, 3 }</c> and
+		/// the argument <paramref name="count"/> is 2, the output should be as follows:
+		/// <list type="table">
+		/// <item><c>{ 1, 2 }</c>, <c>{ 1, 3 }</c>, <c>{ 2, 3 }</c></item>
+		/// </list>
+		/// 3 cases in total.
+		/// </returns>
+		public static IEnumerable<T[]> GetSubsets<T>(this IReadOnlyList<T> @this, int count)
+		{
+			if (count == 0)
+			{
+				return Array.Empty<T[]>();
+			}
+
+			var result = new List<T[]>();
+			g(@this.Count, count, count, stackalloc int[count], @this, result);
+			return result;
+
+			static void g(
+				int last, int count, int index, in Span<int> tempArray, IReadOnlyList<T> @this,
+				in IList<T[]> resultList)
+			{
+				for (int i = last; i >= index; i--)
+				{
+					tempArray[index - 1] = i - 1;
+					if (index > 1)
+					{
+						g(i - 1, count, index - 1, tempArray, @this, resultList);
+					}
+					else
+					{
+						var temp = new T[count];
+						for (int j = 0; j < tempArray.Length; j++)
+						{
+							temp[j] = @this[tempArray[j]];
+						}
+
+						resultList.Add(temp);
+					}
+				}
+			}
 		}
 
 		/// <summary>

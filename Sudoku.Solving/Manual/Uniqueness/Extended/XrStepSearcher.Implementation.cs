@@ -6,6 +6,7 @@ using System.Extensions;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
+using System;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
