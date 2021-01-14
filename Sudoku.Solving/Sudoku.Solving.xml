@@ -6280,7 +6280,7 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.TraceableGrid.Item(System.Int32)">
+        <member name="P:Sudoku.Solving.Manual.TraceableGrid.Cause(System.Int32)">
             <summary>
             Get the bound step of a specified candidate.
             </summary>
@@ -6290,7 +6290,7 @@
             the return value will be <see langword="null"/>.
             </returns>
         </member>
-        <member name="P:Sudoku.Solving.Manual.TraceableGrid.Item(System.Int32,System.Int32)">
+        <member name="P:Sudoku.Solving.Manual.TraceableGrid.Cause(System.Int32,System.Int32)">
             <summary>
             Get the bound step of a specified candidate.
             </summary>
@@ -6349,13 +6349,11 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.TraceableGrid.Parse(System.String)">
             <summary>
-            Parse a specified sudoku grid code into an instance.
+            Parse a string code representing a possible sudoku grid, and convert it to
+            <see cref="T:Sudoku.Solving.Manual.TraceableGrid"/> instance.
             </summary>
-            <param name="str">The code of a possible sudoku grid.</param>
-            <returns>The instance.</returns>
-            <remarks>
-            If the parse is failed, inner the method will cause an exception.
-            </remarks>
+            <param name="str">The string code.</param>
+            <returns>The instance parsed.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.TraceableGrid.op_Equality(Sudoku.Solving.Manual.TraceableGrid,Sudoku.Data.SudokuGrid@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>

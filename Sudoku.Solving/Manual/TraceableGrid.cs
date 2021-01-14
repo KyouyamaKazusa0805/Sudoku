@@ -47,6 +47,7 @@ namespace Sudoku.Solving.Manual
 		/// The bound step information instance. If the grid doesn't bind with the conclusion,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
+		[IndexerName("Cause")]
 		public StepInfo? this[int candidate]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -62,6 +63,7 @@ namespace Sudoku.Solving.Manual
 		/// The bound step information instance. If the grid doesn't bind with the conclusion,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
+		[IndexerName("Cause")]
 		public StepInfo? this[int cell, int digit]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -169,13 +171,11 @@ namespace Sudoku.Solving.Manual
 		}
 
 		/// <summary>
-		/// Parse a specified sudoku grid code into an instance.
+		/// Parse a string code representing a possible sudoku grid, and convert it to
+		/// <see cref="TraceableGrid"/> instance.
 		/// </summary>
-		/// <param name="str">The code of a possible sudoku grid.</param>
-		/// <returns>The instance.</returns>
-		/// <remarks>
-		/// If the parse is failed, inner the method will cause an exception.
-		/// </remarks>
+		/// <param name="str">The string code.</param>
+		/// <returns>The instance parsed.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static TraceableGrid Parse(string str) => SudokuGrid.Parse(str);
 
