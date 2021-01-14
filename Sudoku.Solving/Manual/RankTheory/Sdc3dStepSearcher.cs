@@ -9,20 +9,13 @@ using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
-namespace Sudoku.Solving.Manual.Alses
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Encapsulates a <b>3-dimension sue de coq</b> technique.
 	/// </summary>
-	public sealed class Sdc3dStepSearcher : AlsStepSearcher
+	public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 	{
-		/// <inheritdoc/>
-		public Sdc3dStepSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles)
-			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
-		{
-		}
-
-
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(22, nameof(Technique.Sdc3d))
 		{
@@ -307,15 +300,11 @@ namespace Sudoku.Solving.Manual.Alses
 															{
 																new()
 																{
-																	Cells = AlsShowRegions ? null : cellOffsets,
-																	Candidates =
-																		AlsShowRegions ? candidateOffsets : null,
-																	Regions = AlsShowRegions
-																	? new DrawingInfo[]
+																	Candidates = candidateOffsets,
+																	Regions = new DrawingInfo[]
 																	{
 																		new(0, r), new(2, c), new(3, b)
 																	}
-																	: null
 																}
 															},
 															rowMask,

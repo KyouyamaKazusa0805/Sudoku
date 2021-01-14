@@ -5,7 +5,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Alses
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Provides a usage of <b>sue de coq</b> (SdC) technique.
@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Alses
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
 		bool IsCannibalistic, short IsolatedDigitsMask, in Cells BlockCells, in Cells LineCells,
-		in Cells IntersectionCells) : AlsStepInfo(Conclusions, Views)
+		in Cells IntersectionCells) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

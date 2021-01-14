@@ -1771,119 +1771,6 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Sdc3dStepInfo">
-            <summary>
-            Provides a usage of <b>3-dimension sue de coq</b> technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="RowDigitsMask">The row digits mask.</param>
-            <param name="ColumnDigitsMask">The column digits mask.</param>
-            <param name="BlockDigitsMask">The block digits mask.</param>
-            <param name="RowCells">The row cells map.</param>
-            <param name="ColumnCells">The column cells map.</param>
-            <param name="BlockCells">The block cells map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Provides a usage of <b>3-dimension sue de coq</b> technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="RowDigitsMask">The row digits mask.</param>
-            <param name="ColumnDigitsMask">The column digits mask.</param>
-            <param name="BlockDigitsMask">The block digits mask.</param>
-            <param name="RowCells">The row cells map.</param>
-            <param name="ColumnCells">The column cells map.</param>
-            <param name="BlockCells">The block cells map.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Sdc3dStepInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Sdc3dStepInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Sdc3dStepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dStepInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Sdc3dStepSearcher">
-            <summary>
-            Encapsulates a <b>3-dimension sue de coq</b> technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Sdc3dStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Sdc3dStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.SdcStepInfo">
-            <summary>
-            Provides a usage of <b>sue de coq</b> (SdC) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Block">The block.</param>
-            <param name="Line">The line.</param>
-            <param name="BlockMask">The block mask.</param>
-            <param name="LineMask">The line mask.</param>
-            <param name="IntersectionMask">The intersection mask.</param>
-            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
-            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
-            <param name="BlockCells">The map of block cells.</param>
-            <param name="LineCells">The map of line cells.</param>
-            <param name="IntersectionCells">The map of intersection cells.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Provides a usage of <b>sue de coq</b> (SdC) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Block">The block.</param>
-            <param name="Line">The line.</param>
-            <param name="BlockMask">The block mask.</param>
-            <param name="LineMask">The line mask.</param>
-            <param name="IntersectionMask">The intersection mask.</param>
-            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
-            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
-            <param name="BlockCells">The map of block cells.</param>
-            <param name="LineCells">The map of line cells.</param>
-            <param name="IntersectionCells">The map of intersection cells.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.SdcStepInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.SdcStepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.SdcStepInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SdcStepInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.SdcStepSearcher">
-            <summary>
-            Encapsulates a <b>sue de coq</b> (SdC) technique searcher.
-            Cannibalistic SdCs can be found also.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SdcStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.SdcStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SdcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.AicStepInfo">
             <summary>
             Provides a usage of <b>(grouped) alternating inference chain</b> technique.
@@ -5057,7 +4944,7 @@
             <param name="progress">The progress reporter.</param>
             <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo">
+        <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo">
             <summary>
             Provides a usage of <b>bi-value oddagon</b> technique.
             </summary>
@@ -5067,7 +4954,7 @@
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>bi-value oddagon</b> technique.
             </summary>
@@ -5077,31 +4964,31 @@
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo.Equals(Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.Equals(Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo.GetHashCode">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher">
             <summary>
             Encapsulates a <b>bi-value oddagon</b> technique searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.Properties">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.IsValidLoop(Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.IsValidLoop(Sudoku.Data.Cells@)">
             <summary>
             To check whether the loop is valid.
             </summary>
             <param name="cells">(<see langword="in"/> parameter) The loop.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@)">
             <summary>
             Check type 1.
             </summary>
@@ -5113,7 +5000,7 @@
             <param name="links">The links.</param>
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 2.
             </summary>
@@ -5126,7 +5013,7 @@
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 3.
             </summary>
@@ -5139,7 +5026,7 @@
             <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo">
+        <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType1StepInfo">
             <summary>
             Provides a usage of <b>bi-value oddagon type 1</b> technique.
             </summary>
@@ -5150,7 +5037,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="ExtraCell">The extra cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>bi-value oddagon type 1</b> technique.
             </summary>
@@ -5161,19 +5048,19 @@
             <param name="Digit2">The digit 2.</param>
             <param name="ExtraCell">The extra cell.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType1StepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType1StepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType1StepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType1StepInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType1StepInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo">
+        <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType2StepInfo">
             <summary>
             Provides a usage of <b>bi-value oddagon type 2</b> technique.
             </summary>
@@ -5184,7 +5071,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>bi-value oddagon type 2</b> technique.
             </summary>
@@ -5195,19 +5082,19 @@
             <param name="Digit2">The digit 2.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType2StepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType2StepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType2StepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType2StepInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType2StepInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo">
+        <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo">
             <summary>
             Provides a usage of <b>bi-value oddagon type 3</b> technique.
             </summary>
@@ -5219,7 +5106,7 @@
             <param name="ExtraDigits">All extra digits.</param>
             <param name="ExtraCells">All extra cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>bi-value oddagon type 3</b> technique.
             </summary>
@@ -5231,16 +5118,142 @@
             <param name="ExtraDigits">All extra digits.</param>
             <param name="ExtraCells">All extra cells.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Miscellaneous.BivalueOddagonType3StepInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.RankTheoryStepInfo">
+            <summary>
+            Provides a usage of <b>rank theory</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.RankTheoryStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <summary>
+            Provides a usage of <b>rank theory</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.RankTheoryStepSearcher">
+            <summary>
+            Encapsulates a <b>rank theory</b> technique searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo">
+            <summary>
+            Provides a usage of <b>3-dimension sue de coq</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="RowDigitsMask">The row digits mask.</param>
+            <param name="ColumnDigitsMask">The column digits mask.</param>
+            <param name="BlockDigitsMask">The block digits mask.</param>
+            <param name="RowCells">The row cells map.</param>
+            <param name="ColumnCells">The column cells map.</param>
+            <param name="BlockCells">The block cells map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Provides a usage of <b>3-dimension sue de coq</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="RowDigitsMask">The row digits mask.</param>
+            <param name="ColumnDigitsMask">The column digits mask.</param>
+            <param name="BlockDigitsMask">The block digits mask.</param>
+            <param name="RowCells">The row cells map.</param>
+            <param name="ColumnCells">The column cells map.</param>
+            <param name="BlockCells">The block cells map.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.Sdc3dStepSearcher">
+            <summary>
+            Encapsulates a <b>3-dimension sue de coq</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.Sdc3dStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.SdcStepInfo">
+            <summary>
+            Provides a usage of <b>sue de coq</b> (SdC) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The map of block cells.</param>
+            <param name="LineCells">The map of line cells.</param>
+            <param name="IntersectionCells">The map of intersection cells.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Provides a usage of <b>sue de coq</b> (SdC) technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The map of block cells.</param>
+            <param name="LineCells">The map of line cells.</param>
+            <param name="IntersectionCells">The map of intersection cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.SdcStepSearcher">
+            <summary>
+            Encapsulates a <b>sue de coq</b> (SdC) technique searcher.
+            Cannibalistic SdCs can be found also.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.SdcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.ErStepInfo">

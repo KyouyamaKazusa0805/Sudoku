@@ -4,7 +4,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Miscellaneous
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Provides a usage of <b>bi-value oddagon type 3</b> technique.

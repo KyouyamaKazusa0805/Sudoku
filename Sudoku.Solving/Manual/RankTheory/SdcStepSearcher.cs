@@ -8,21 +8,14 @@ using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
-namespace Sudoku.Solving.Manual.Alses
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Encapsulates a <b>sue de coq</b> (SdC) technique searcher.
 	/// Cannibalistic SdCs can be found also.
 	/// </summary>
-	public sealed class SdcStepSearcher : AlsStepSearcher
+	public sealed class SdcStepSearcher : RankTheoryStepSearcher
 	{
-		/// <inheritdoc/>
-		public SdcStepSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles)
-			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
-		{
-		}
-
-
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(15, nameof(Technique.Sdc))
 		{
@@ -271,16 +264,12 @@ namespace Sudoku.Solving.Manual.Alses
 													{
 														new()
 														{
-															Cells = AlsShowRegions ? null : cellOffsets,
-															Candidates = AlsShowRegions ? candidateOffsets : null,
-															Regions =
-																AlsShowRegions
-																? new DrawingInfo[]
-																{
-																	new(0, coverSet),
-																	new(2, baseSet)
-																}
-																: null
+															Candidates = candidateOffsets,
+															Regions = new DrawingInfo[]
+															{
+																new(0, coverSet),
+																new(2, baseSet)
+															}
 														}
 													},
 													coverSet,

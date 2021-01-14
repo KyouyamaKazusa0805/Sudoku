@@ -5,7 +5,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Alses
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Provides a usage of <b>3-dimension sue de coq</b> technique.
@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed record Sdc3dStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		short RowDigitsMask, short ColumnDigitsMask, short BlockDigitsMask,
-		in Cells RowCells, in Cells ColumnCells, in Cells BlockCells) : AlsStepInfo(Conclusions, Views)
+		in Cells RowCells, in Cells ColumnCells, in Cells BlockCells) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M;

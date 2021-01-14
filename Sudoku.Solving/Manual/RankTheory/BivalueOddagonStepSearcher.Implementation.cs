@@ -7,7 +7,7 @@ using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
-namespace Sudoku.Solving.Manual.Miscellaneous
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	partial class BivalueOddagonStepSearcher
 	{

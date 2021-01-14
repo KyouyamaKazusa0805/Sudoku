@@ -10,7 +10,7 @@ using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Solving.Manual.Miscellaneous;
+using Sudoku.Solving.Manual.RankTheory;
 using Sudoku.Solving.Manual.Sdps;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
@@ -89,7 +89,8 @@ namespace Sudoku.Solving.Extensions
 				new UlStepSearcher(),
 				new ErStepSearcher(),
 				new AlcStepSearcher(@this.CheckAlmostLockedQuadruple),
-				new SdcStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
+				new SdcStepSearcher(),
+				new Sdc3dStepSearcher(),
 				new BdpStepSearcher(),
 				new ReverseBugStepSearcher(),
 				new QdpStepSearcher(),

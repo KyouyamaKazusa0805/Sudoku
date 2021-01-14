@@ -10,12 +10,12 @@ using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
-namespace Sudoku.Solving.Manual.Miscellaneous
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Encapsulates a <b>bi-value oddagon</b> technique searcher.
 	/// </summary>
-	public sealed partial class BivalueOddagonStepSearcher : StepSearcher
+	public sealed partial class BivalueOddagonStepSearcher : RankTheoryStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(14, nameof(Technique.BivalueOddagonType1))

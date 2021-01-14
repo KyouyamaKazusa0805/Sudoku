@@ -4,26 +4,26 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Miscellaneous
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
-	/// Provides a usage of <b>bi-value oddagon type 2</b> technique.
+	/// Provides a usage of <b>bi-value oddagon type 1</b> technique.
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	/// <param name="Loop">The loop used.</param>
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
-	/// <param name="ExtraDigit">The extra digit.</param>
-	public sealed record BivalueOddagonType2StepInfo(
+	/// <param name="ExtraCell">The extra cell.</param>
+	public sealed record BivalueOddagonType1StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, int Digit1, int Digit2,
-		int ExtraDigit) : BivalueOddagonStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
+		int ExtraCell) : BivalueOddagonStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.1M;
+		public override decimal Difficulty => 5.0M;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode => Technique.BivalueOddagonType2;
+		public override Technique TechniqueCode => Technique.BivalueOddagonType1;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -32,10 +32,11 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 		/// <inheritdoc/>
 		public override string ToString()
 		{
+			string cellStr = new Cells { ExtraCell }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$"{Name}: If all digit {ExtraDigit + 1} in cells {Loop} are removed, " +
-				$"the loop will from an error structure => {elimStr}";
+				$"{Name}: If the cell {cellStr} only contains the digits {Digit1 + 1} and {Digit2 + 1} " +
+				$"(or one of those two), the loop {Loop} will form an error structure => {elimStr}";
 		}
 	}
 }

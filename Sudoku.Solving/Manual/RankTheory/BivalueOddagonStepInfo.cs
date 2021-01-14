@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 
-namespace Sudoku.Solving.Manual.Miscellaneous
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Provides a usage of <b>bi-value oddagon</b> technique.
@@ -15,7 +14,7 @@ namespace Sudoku.Solving.Manual.Miscellaneous
 	/// <param name="Digit2">The digit 2.</param>
 	public abstract record BivalueOddagonStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, int Digit1, int Digit2)
-		: StepInfo(Conclusions, Views)
+		: RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public virtual bool Equals(BivalueOddagonStepInfo? other) =>
