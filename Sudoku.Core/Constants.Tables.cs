@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0079
+#pragma warning disable 8618
+
+using System.Collections.Generic;
 using Sudoku.Data;
 
 namespace Sudoku
