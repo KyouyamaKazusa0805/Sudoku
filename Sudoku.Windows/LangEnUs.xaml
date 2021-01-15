@@ -170,7 +170,7 @@
 	<sys:String x:Key="ExportAnalysisResultLabelInfo">Please select the options to export:</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowSeparators">Show separators</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowIndices">Show step indices</sys:String>
-	<sys:String x:Key="ExportAnalysisResultShowLogic">Show logic of each step</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowLogic">Hide logic of each step</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowBottleneck">Show bottleneck step</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowDifficulty">Show difficulty rating of each step</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowStepsAfterBottleneck">Show steps after bottleneck</sys:String>

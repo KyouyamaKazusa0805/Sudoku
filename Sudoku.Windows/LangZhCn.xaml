@@ -170,7 +170,7 @@
 	<sys:String x:Key="ExportAnalysisResultLabelInfo">请选择需要导出的选项：</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowSeparators">显示分隔符</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowIndices">显示每一步骤的索引（编号）</sys:String>
-	<sys:String x:Key="ExportAnalysisResultShowLogic">显示每一步的逻辑</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowLogic">隐藏每一步的具体逻辑</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowBottleneck">显示卡点步骤</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowDifficulty">显示每一步的难度系数</sys:String>
 	<sys:String x:Key="ExportAnalysisResultShowStepsAfterBottleneck">显示卡点后的步骤</sys:String>
