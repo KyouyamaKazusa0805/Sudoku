@@ -246,7 +246,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates the color 12.
 		/// </summary>
-		public Color Color12 { get; set; } = Color.FromArgb(255, 210, 210);
+		public Color Color12 { get; set; } = Color.FromArgb(255, 118, 132);
 
 		/// <summary>
 		/// Indicates the color 13.
