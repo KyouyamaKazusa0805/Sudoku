@@ -16,7 +16,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
-using Sudoku.Solving.BruteForces.Bitwise;
+using Sudoku.Solving.BruteForces;
 using Sudoku.Solving.Checking;
 using Sudoku.Generating;
 using Sudoku.Solving.Manual;

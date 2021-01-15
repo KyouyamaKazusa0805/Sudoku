@@ -4,7 +4,7 @@ using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
-using Sudoku.Solving.BruteForces.Bitwise;
+using Sudoku.Solving.BruteForces;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving.Checking

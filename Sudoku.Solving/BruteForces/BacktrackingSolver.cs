@@ -3,7 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Windows;
 
-namespace Sudoku.Solving.BruteForces.Backtracking
+namespace Sudoku.Solving.BruteForces
 {
 	/// <summary>
 	/// Provides a solver using backtracking method.

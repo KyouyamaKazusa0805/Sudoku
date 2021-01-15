@@ -298,24 +298,24 @@
             Indicates the analysis result will show the steps.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
+        <member name="T:Sudoku.Solving.BruteForces.BacktrackingSolver">
             <summary>
             Provides a solver using backtracking method.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver._grid">
+        <member name="F:Sudoku.Solving.BruteForces.BacktrackingSolver._grid">
             <summary>
             The temporary grid to solve.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.SolverName">
+        <member name="P:Sudoku.Solving.BruteForces.BacktrackingSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.Solve(Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
             <exception cref="T:Sudoku.SudokuHandlingException">Throws when the puzzle contains no solutions.</exception>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.BacktrackinglySolve(System.Int32@,System.Int32[]@,System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.BacktrackinglySolve(System.Int32@,System.Int32[]@,System.Int32[],System.Int32)">
             <summary>
             Solve backtrackingly.
             </summary>
@@ -331,7 +331,7 @@
             Throws when the puzzle contains multiple solutions.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.IsValid(System.Int32[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.IsValid(System.Int32[],System.Int32,System.Int32)">
             <summary>
             To decide the current row and column index is valid.
             </summary>
@@ -340,7 +340,28 @@
             <param name="c">The current column index.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver">
+        <member name="T:Sudoku.Solving.BruteForces.OneLineLinqSolver">
+            <summary>
+            Provides a solver using LINQ method.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.OneLineLinqSolver.SolverName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.OneLineLinqSolver.Solve(Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the puzzle doesn't contain a unique solution.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.OneLineLinqSolver.SolveStrings(System.String)">
+            <summary>
+            Internal solving method.
+            </summary>
+            <param name="puzzle">The puzzle string, with placeholder character '0'.</param>
+            <returns>The result strings (i.e. All solutions).</returns>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver">
             <summary>
             Define an unsafe bitwise solver.
             </summary>
@@ -349,57 +370,57 @@
             I change the programming language to C# to decrease the native calling.
             </remarks>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BitSet27">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.BitSet27">
             <summary>
             All pencil marks set - 27 bits per band.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BufferLength">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.BufferLength">
             <summary>
             The buffer length of a solution puzzle.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._stack">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver._stack">
             <summary>
             Stack to store current and previous states.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._g">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver._g">
             <summary>
             Pointer to the currently active slot.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._numSolutions">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver._numSolutions">
             <summary>
             The number of solutions found so far.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._limitSolutions">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver._limitSolutions">
             <summary>
             The max number of solution we're looking for.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._singleApplied">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver._singleApplied">
             <summary>
-            Nasty global flag telling if <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
+            Nasty global flag telling if <see cref="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
             </summary>
-            <seealso cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ApplySingleOrEmptyCells"/>
+            <seealso cref="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.ApplySingleOrEmptyCells"/>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver._solution">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver._solution">
             <summary>
             Pointer to where to store the first solution. This value can be <see langword="null"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SolverName">
+        <member name="P:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
             <exception cref="T:Sudoku.SudokuHandlingException">
             Throws when the puzzle doesn't contain a unique solution.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(System.String,System.String@,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Solve(System.String,System.String@,System.Int32)">
             <summary>
             The inner solver.
             </summary>
@@ -411,7 +432,7 @@
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
             <summary>
             The inner solver.
             </summary>
@@ -422,16 +443,16 @@
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.CheckValidity(System.String)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.CheckValidity(System.String)">
             <summary>
-            Same as <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
+            Same as <see cref="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
             any <see langword="out"/> parameters.
             </summary>
             <param name="grid">The grid.</param>
             <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
-            <seealso cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)"/>
+            <seealso cref="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)"/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.CheckValidity(System.String,System.String@)">
             <summary>
             Check the validity of the puzzle.
             </summary>
@@ -439,23 +460,23 @@
             <param name="solutionIfUnique">(<see langword="out"/> parameter) The solution if the puzzle is unique.</param>
             <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
             <summary>
-            Set a cell as solved - used in <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InitSudoku(System.Char*)"/>.
+            Set a cell as solved - used in <see cref="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.InitSudoku(System.Char*)"/>.
             </summary>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.EliminateDigit(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.EliminateDigit(System.Int32,System.Int32)">
             <summary>
-            Eliminate a digit - used in <see cref="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InitSudoku(System.Char*)"/>.
+            Eliminate a digit - used in <see cref="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.InitSudoku(System.Char*)"/>.
             </summary>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.SetSolvedMask(System.Int32,System.UInt32)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.SetSolvedMask(System.Int32,System.UInt32)">
             <summary>
             Set a cell as solved - used in various guess routines.
             </summary>
@@ -463,26 +484,26 @@
             <param name="mask">The mask.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InitSudoku(System.Char*)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.InitSudoku(System.Char*)">
             <summary>
             Setup everything and load the puzzle.
             </summary>
             <param name="board">The puzzle string.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Update">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Update">
             <summary>
             Core of fast processing.
             </summary>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ApplySingleOrEmptyCells">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.ApplySingleOrEmptyCells">
             <summary>
             Find singles, bi-value cells, and impossible cells.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.InternalSolve(System.Char*,System.Char*,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.InternalSolve(System.Char*,System.Char*,System.Int32)">
             <summary>
             The internal solving method.
             </summary>
@@ -491,124 +512,103 @@
             <param name="limit">The limitation for the number of all final solutions.</param>
             <returns>The number of solutions found.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.ExtractSolution(System.Char*)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.ExtractSolution(System.Char*)">
             <summary>
             Extract solution as a character string.
             </summary>
             <param name="solution">
-            The solution pointer. <b>The buffer should be at least <see cref="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BufferLength"/>
+            The solution pointer. <b>The buffer should be at least <see cref="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.BufferLength"/>
             of value of length.</b>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.GuessBiValueInCell">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.GuessBiValueInCell">
             <summary>
             Try both options for cells with exactly two pencil marks.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.GuessFirstCell">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.GuessFirstCell">
             <summary>
             Guess all possibilities in first unsolved cell.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.Guess">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Guess">
             <summary>
             Either already solved, or guess and recurse.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.FullUpdate">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.FullUpdate">
             <summary>
             Get as far as possible without guessing.
             </summary>
             <returns>An <see cref="T:System.Byte"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.BitPos(System.UInt32)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.BitPos(System.UInt32)">
             <summary>
             Get the bit position.
             </summary>
             <param name="map">The map.</param>
             <returns>The position.</returns>
         </member>
-        <member name="T:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State">
+        <member name="T:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.State">
             <summary>
             To describe a state for a current grid using binary values.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.Bands">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.State.Bands">
             <summary>
             Pencil marks in bands by digit.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.PrevBands">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.State.PrevBands">
             <summary>
             Value of bands last time it was calculated.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.UnsolvedCells">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.State.UnsolvedCells">
             <summary>
             Bit vector of unsolved cells.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.UnsolvedRows">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.State.UnsolvedRows">
             <summary>
             Bit vector of unsolved rows - three bits per band.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.State.Pairs">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.State.Pairs">
             <summary>
             Bit vector of cells with exactly two pencil marks.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblComplexMask">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.TblComplexMask">
             <summary>
             To keep mini rows still valid.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblMaskSingle">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.TblMaskSingle">
             <summary>
             Kill in other blocks locked column/box.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblShrinkSingle">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.TblShrinkSingle">
             <summary>
             Keep only rows with single.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblRowUniq">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.TblRowUniq">
             <remarks>
             1 is row not defined in block mode <c>1</c> to <c>111</c>.
             </remarks>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblColumnSingle">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.TblColumnSingle">
             <summary>
             Single in column applied to shrunk block.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BruteForces.Bitwise.UnsafeBitwiseSolver.TblRowMask">
+        <member name="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.TblRowMask">
             <summary>
             Rows where single found: <c>000</c> to <c>111</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver">
-            <summary>
-            Provides a solver using LINQ method.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.SolverName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-            <exception cref="T:Sudoku.SudokuHandlingException">
-            Throws when the puzzle doesn't contain a unique solution.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.SolveStrings(System.String)">
-            <summary>
-            Internal solving method.
-            </summary>
-            <param name="puzzle">The puzzle string, with placeholder character '0'.</param>
-            <returns>The result strings (i.e. All solutions).</returns>
         </member>
         <member name="T:Sudoku.Solving.Checking.BackdoorSearcher">
             <summary>

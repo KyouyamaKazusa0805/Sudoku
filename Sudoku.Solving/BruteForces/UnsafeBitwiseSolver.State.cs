@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.BruteForces.Bitwise
+﻿namespace Sudoku.Solving.BruteForces
 {
 	partial class UnsafeBitwiseSolver
 	{

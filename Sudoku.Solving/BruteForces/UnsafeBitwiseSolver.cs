@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
 
-namespace Sudoku.Solving.BruteForces.Bitwise
+namespace Sudoku.Solving.BruteForces
 {
 	/// <summary>
 	/// Define an unsafe bitwise solver.

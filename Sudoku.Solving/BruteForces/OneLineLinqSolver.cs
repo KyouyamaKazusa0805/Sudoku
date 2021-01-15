@@ -6,7 +6,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Windows;
 
-namespace Sudoku.Solving.BruteForces.Linqing
+namespace Sudoku.Solving.BruteForces
 {
 	/// <summary>
 	/// Provides a solver using LINQ method.
