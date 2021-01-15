@@ -214,13 +214,14 @@ namespace Sudoku.Solving
 					{
 						sb
 							.Append("  (---")
-							.Append(total.ToString().PadLeft(6))
+							.Append(total.ToString().PadLeft(8))
 							.Append(')')
 							.Append(' ');
 					}
 
 					sb
 						.Append(stepsCount.ToString().PadLeft(3))
+						.Append(' ')
 						.Append(
 							stepsCount == 1
 							? GetValue("AnalysisResultStepSingular")
