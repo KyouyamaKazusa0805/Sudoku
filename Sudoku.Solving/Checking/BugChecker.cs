@@ -19,11 +19,11 @@ namespace Sudoku.Solving.Checking
 		/// Initializes an instance with the specified grid.
 		/// </summary>
 		/// <param name="puzzle">(<see langword="in"/> parameter) The current puzzle grid.</param>
-		/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
+		/// <exception cref="SudokuHandlingException">Throws when the puzzle is invalid.</exception>
 		public BugChecker(in SudokuGrid puzzle) =>
 			Puzzle = puzzle.IsValid()
 				? puzzle
-				: throw new ArgumentException("The specified grid doesn't have a unique solution.", nameof(puzzle));
+				: throw new SudokuHandlingException<SudokuGrid>(errorCode: 202, puzzle);
 
 
 		/// <summary>

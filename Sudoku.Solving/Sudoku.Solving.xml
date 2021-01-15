@@ -681,7 +681,7 @@
             Initializes an instance with the specified grid.
             </summary>
             <param name="puzzle">(<see langword="in"/> parameter) The current puzzle grid.</param>
-            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
+            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="P:Sudoku.Solving.Checking.BugChecker.IsBugPattern">
             <summary>
