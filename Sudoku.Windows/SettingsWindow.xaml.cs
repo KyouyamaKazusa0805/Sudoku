@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Extensions;
 using System.Linq;
@@ -230,7 +229,7 @@ namespace Sudoku.Windows
 				select new ListBoxItem()
 				{
 					Content = new StepTriplet(
-						$"({props.Priority}) {triplet.SearcherName}", props.Priority, triplet.CurrentType
+						$"({props.Priority.ToString()}) {triplet.SearcherName}", props.Priority, triplet.CurrentType
 					),
 					HorizontalContentAlignment = HorizontalAlignment.Left,
 					VerticalContentAlignment = VerticalAlignment.Center
@@ -254,7 +253,7 @@ namespace Sudoku.Windows
 			if (sender is Button button && ColorPicker.ShowDialog(out var color) && color.HasValue)
 			{
 				var target = color.Value.ToDColor();
-				typeof(WindowsSettings).GetProperty($"Color{colorIndex}")!.SetValue(settings, target);
+				typeof(WindowsSettings).GetProperty($"Color{colorIndex.ToString()}")!.SetValue(settings, target);
 				ChangeColor(button, target.ToWColor());
 			}
 		}
@@ -721,7 +720,7 @@ namespace Sudoku.Windows
 					var (name, _, type, _) = (StepTriplet)_priorityControls[index].Content;
 
 					_priorityControls[index].Content = new StepTriplet(
-						$"({index}) {name[(name.IndexOf(')') + 2)..]}",
+						$"({index.ToString()}) {name[(name.IndexOf(')') + 2)..]}",
 						index,
 						type
 					);

@@ -31,7 +31,7 @@ namespace Sudoku.Windows
 			InitializeComponent();
 
 			_puzzle = puzzle;
-			_labelGrid.Content = $"{LangSource["BugMultipleGrid"]}{_puzzle:#}";
+			_labelGrid.Content = $"{LangSource["BugMultipleGrid"]}{_puzzle.ToString("#")}";
 		}
 
 
@@ -60,12 +60,12 @@ namespace Sudoku.Windows
 					_listBoxTrueCandidates.ItemsSource = array;
 					_labelStatus.Content =
 						$"{LangSource[count == 1 ? "ThereIs" : "ThereAre"]} " +
-						$"{count} {LangSource[$"BugMultipleTrueCandidates{(count == 1 ? "Singular" : "Plural")}"]}. " +
+						$"{count.ToString()} {LangSource[$"BugMultipleTrueCandidates{(count == 1 ? "Singular" : "Plural")}"]}. " +
 						LangSource["BugMultipleSuccessfulCase"];
 				}
 				else
 				{
-					_labelStatus.Content = (string)LangSource["BugMultipleFailCase"];
+					_labelStatus.Content = LangSource["BugMultipleFailCase"];
 				}
 			}
 		}

@@ -190,9 +190,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
-			string baseCells = new Cells { Base1, Base2 }.ToString();
-			string targetCells = new Cells { TargetQ1, TargetQ2, TargetR1, TargetR2 }.ToString();
-			return $"Exocet: base {baseCells}, target {targetCells}";
+			string baseCellsStr = new Cells { Base1, Base2 }.ToString();
+			string targetCellsStr = new Cells { TargetQ1, TargetQ2, TargetR1, TargetR2 }.ToString();
+			return $"Exocet: base {baseCellsStr}, target {targetCellsStr}";
 		}
 
 

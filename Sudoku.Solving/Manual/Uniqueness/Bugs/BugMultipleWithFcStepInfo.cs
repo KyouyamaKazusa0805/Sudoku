@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		}
 
 		/// <inheritdoc/>
-		public override string Name => $"{Resources.GetValue("Bug")} + {Candidates.Count} (+)";
+		public override string Name => $"{Resources.GetValue("Bug")} + {Candidates.Count.ToString()} (+)";
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugMultipleFc;

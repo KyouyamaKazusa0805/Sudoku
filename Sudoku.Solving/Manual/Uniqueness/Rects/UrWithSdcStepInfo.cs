@@ -71,8 +71,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
-			var digits = new DigitCollection((LineMask | BlockMask).GetAllSets()).ToString();
-			var mergedCells = LineCells | BlockCells;
+			string digits = new DigitCollection((LineMask | BlockMask).GetAllSets()).ToString();
+			string mergedCells = (LineCells | BlockCells).ToString();
 			return $"a generalized Sue de Coq in cells {mergedCells} of digits {digits}";
 		}
 	}

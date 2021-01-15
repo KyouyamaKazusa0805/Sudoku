@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 		{
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$"{Name}: If all digit {ExtraDigit + 1} in cells {Loop} are removed, " +
+				$"{Name}: If all digit {(ExtraDigit + 1).ToString()} in cells {Loop.ToString()} are removed, " +
 				$"the loop will from an error structure => {elimStr}";
 		}
 	}

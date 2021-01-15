@@ -88,7 +88,8 @@ namespace Sudoku.Data
 		public override int GetHashCode() => Map.GetHashCode() ^ Digit << 17;
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override string ToString() => $"{new Cells { From }} == {new Cells { To }}({Digit + 1})";
+		public override string ToString() =>
+			$"{new Cells { From }.ToString()} == {new Cells { To }.ToString()}({(Digit + 1).ToString()})";
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

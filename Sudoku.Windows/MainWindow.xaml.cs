@@ -345,7 +345,7 @@ namespace Sudoku.Windows
 			int current = Settings.CurrentPuzzleNumber;
 			int max = _puzzlesText.Length;
 			LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
-			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
 			_textBoxJumpTo.IsEnabled = true;
 			UpdateDatabaseControls(current != 0, current != 0, current != max - 1, current != max - 1);
 		}
@@ -1005,13 +1005,13 @@ namespace Sudoku.Windows
 			if (_analyisResult.IsSolved)
 			{
 				_textBoxInfo.Text =
-					$"{_analyisResult.SolvingStepsCount} " +
+					$"{_analyisResult.SolvingStepsCount.ToString()} " +
 					$@"{(LangSource[_analyisResult.SolvingStepsCount == 1 ? "StepSingular" : "StepPlural"])}" +
 					$"{(Settings.LanguageCode == CountryCode.EnUs ? " " : string.Empty)}" +
 					$"{LangSource["Comma"]}" +
 					$"{(Settings.LanguageCode == CountryCode.EnUs ? " " : string.Empty)}" +
 					$"{LangSource["TimeElapsed"]}" +
-					$"{_analyisResult.ElapsedTime:hh\\:mm\\.ss\\.fff}" +
+					$"{_analyisResult.ElapsedTime.ToString("hh\\:mm\\.ss\\.fff")}" +
 					$"{LangSource["Period"]}";
 
 				int i = 0;
@@ -1023,9 +1023,9 @@ namespace Sudoku.Windows
 						new StepTriplet(
 							(Settings.ShowStepLabel, Settings.ShowStepDifficulty) switch
 							{
-								(true, true) => $"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}",
-								(true, false) => $"(#{i + 1}) {step.ToSimpleString()}",
-								(false, true) => $"({step.Difficulty}) {step.ToSimpleString()}",
+								(true, true) => $"(#{(i + 1).ToString()}, {step.Difficulty.ToString()}) {step.ToSimpleString()}",
+								(true, false) => $"(#{(i + 1).ToString()}) {step.ToSimpleString()}",
+								(false, true) => $"({step.Difficulty.ToString()}) {step.ToSimpleString()}",
 								_ => step.ToSimpleString()
 							},
 							i++,
@@ -1087,7 +1087,7 @@ namespace Sudoku.Windows
 					{
 						collection.Add(
 							new(
-								name, count, total, $"{minimum:0.0} - {maximum:0.0}",
+								name, count, total, $"{minimum.ToString("0.0")} - {maximum.ToString("0.0")}",
 								minDifficultyLevel | maxDifficultyLevel));
 					}
 				}

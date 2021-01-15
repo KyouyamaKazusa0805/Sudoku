@@ -38,8 +38,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string wStr = new DigitCollection(WDigitsMask.GetAllSets()).ToString();
 			return
-				$"{Name}: Two ALSes {Als1}, {Als2} connected by " +
-				$"{ConjugatePair}, W = {wStr}, X = {X + 1} => {elimStr}";
+				$"{Name}: Two ALSes {Als1.ToString()}, {Als2.ToString()} connected by " +
+				$"{ConjugatePair.ToString()}, W = {wStr}, X = {(X + 1).ToString()} => {elimStr}";
 		}
 	}
 }

@@ -155,12 +155,35 @@ namespace Sudoku.Windows
 		/// <exception cref="SudokuHandlingException">
 		/// Throws when the language resource dictionary doesn't exist (i.e. <see langword="null"/>).
 		/// </exception>
-		private static void GetDictionary(CountryCode countryCode) =>
-			_dicPointer =
-				countryCode != CountryCode.Default
-				&& typeof(Resources)
-				.GetProperty($"LangSource{countryCode}", BindingFlags.Public | BindingFlags.Static)?
-				.GetValue(null) is IDictionary<string, string> r ? r : LangSourceEnUs
-				?? throw new SudokuHandlingException<string>(errorCode: 403, nameof(LangSourceEnUs));
+		private static void GetDictionary(CountryCode countryCode)
+		{
+			var defaultDictionary = LangSourceEnUs ?? throw new SudokuHandlingException<string>(errorCode: 403, nameof(LangSourceEnUs));
+			if (countryCode == CountryCode.Default)
+			{
+				goto DefaultAssignment;
+			}
+
+			if
+			(
+				typeof(Resources).GetProperty(
+					$"LangSource{countryCode.ToString()}",
+					BindingFlags.Public | BindingFlags.Static
+				) is not { } propInfo
+			)
+			{
+				goto DefaultAssignment;
+			}
+
+			if (propInfo.GetValue(null) is not IDictionary<string, string> r)
+			{
+				goto DefaultAssignment;
+			}
+
+			_dicPointer = r;
+			return;
+
+		DefaultAssignment:
+			_dicPointer = defaultDictionary;
+		}
 	}
 }

@@ -37,7 +37,7 @@ namespace Sudoku.Windows.Tooling
 		{
 			var selection =
 				from technique in Enum.GetValues<Technique>()
-				let nullableCategory = LangSource[$"Group{technique}"] as string
+				let nullableCategory = LangSource[$"Group{technique.ToString()}"] as string
 				where nullableCategory is not null
 				select (
 					technique,

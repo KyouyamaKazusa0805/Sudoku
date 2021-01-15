@@ -225,7 +225,7 @@ namespace Sudoku.Data
 		{
 			if (Parents is not { Count: not 0 })
 			{
-				return $"Candidate: {new Cells { Cell }}({Digit + 1})";
+				return $"Candidate: {new Cells { Cell }.ToString()}({(Digit + 1).ToString()})";
 			}
 			else
 			{
@@ -236,7 +236,7 @@ namespace Sudoku.Data
 					nodes.Add(node.Cell * 9 + node.Digit);
 				}
 
-				return $"Candidate: {new Cells { Cell }}({Digit + 1}), Parent(s): {nodes}";
+				return $"Candidate: {new Cells { Cell }.ToString()}({(Digit + 1).ToString()}), Parent(s): {nodes.ToString()}";
 			}
 		}
 

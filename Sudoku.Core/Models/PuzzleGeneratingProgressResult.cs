@@ -42,6 +42,6 @@ namespace Sudoku.Models
 		public override string ToString() =>
 			GeneratingTrial == 1
 			? Resources.GetValue("GeneratingProgressSingular")
-			: $"{GeneratingTrial} {Resources.GetValue("GeneratingProgressPlural")}";
+			: $"{GeneratingTrial.ToString()} {Resources.GetValue("GeneratingProgressPlural")}";
 	}
 }

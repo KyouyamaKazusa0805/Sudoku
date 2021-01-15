@@ -89,7 +89,7 @@ namespace Sudoku.Data.Collections
 			if (Count == 1)
 			{
 				int region = TrailingZeroCount(_mask);
-				return $"{GetLabel(region / 9)}{region % 9 + 1}";
+				return $"{GetLabel(region / 9)}{(region % 9 + 1).ToString()}";
 			}
 
 			var dic = new Dictionary<int, ICollection<int>>();

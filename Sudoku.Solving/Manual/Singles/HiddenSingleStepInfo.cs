@@ -37,8 +37,8 @@ namespace Sudoku.Solving.Manual.Singles
 			string cellStr = new Cells { Cell }.ToString();
 			int v = Digit + 1;
 			return EnableAndIsLastDigit
-				? $"{Name}: {cellStr} = {v}"
-				: $"{Name}: {cellStr} = {v} in {new RegionCollection(Region).ToString()}";
+				? $"{Name}: {cellStr} = {v.ToString()}"
+				: $"{Name}: {cellStr} = {v.ToString()} in {new RegionCollection(Region).ToString()}";
 		}
 	}
 }

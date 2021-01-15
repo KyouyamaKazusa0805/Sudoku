@@ -64,8 +64,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			string regionStr = new RegionCollection(Region).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$"{Name}: It can be proved using chains that digit {Digit + 1} from {regionStr} are false" +
-				$" => {elimStr}";
+				$"{Name}: It can be proved using chains that digit {(Digit + 1).ToString()} from {regionStr} " +
+				$"are false => {elimStr}";
 		}
 	}
 }

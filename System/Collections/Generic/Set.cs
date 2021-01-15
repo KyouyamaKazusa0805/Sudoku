@@ -247,7 +247,7 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public override string ToString() => $"Set (Count = {Count})";
+		public override string ToString() => $"Set (Count = {Count.ToString()})";
 
 		/// <inheritdoc/>
 		public IEnumerator<T> GetEnumerator() => _list.GetEnumerator();

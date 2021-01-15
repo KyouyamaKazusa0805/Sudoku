@@ -38,8 +38,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			string cellsStr = Loop.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$"{Name}: We can't fill with the digit {(ConjugatePair.Digit == Digit1 ? Digit2 : Digit1) + 1} " +
-				$"bacause of the conjugate pair {ConjugatePair}, " +
+				$"{Name}: We can't fill with the digit " +
+				$"{((ConjugatePair.Digit == Digit1 ? Digit2 : Digit1) + 1).ToString()} " +
+				$"bacause of the conjugate pair {ConjugatePair.ToString()}, " +
 				$"otherwise the deadly pattern in cells {cellsStr} will be formed => {elimStr}";
 		}
 	}

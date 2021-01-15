@@ -34,6 +34,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
-		protected override string GetAdditional() => $"extra digit {ExtraDigit + 1}";
+		protected override string GetAdditional() => $"extra digit {(ExtraDigit + 1).ToString()}";
 	}
 }

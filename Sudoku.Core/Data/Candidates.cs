@@ -112,7 +112,7 @@ namespace Sudoku.Data
 		{
 			if (binary.Length != BufferLength)
 			{
-				throw new ArgumentException($"The length of the array should be {BufferLength}.", nameof(binary));
+				throw new ArgumentException($"The length of the array should be {BufferLength.ToString()}.", nameof(binary));
 			}
 
 			int count = 0;
@@ -141,7 +141,7 @@ namespace Sudoku.Data
 		{
 			if (length != BufferLength)
 			{
-				throw new ArgumentException($"Argument 'length' should be {BufferLength}.", nameof(length));
+				throw new ArgumentException($"Argument 'length' should be {BufferLength.ToString()}.", nameof(length));
 			}
 
 			int count = 0;
@@ -337,7 +337,7 @@ namespace Sudoku.Data
 				case 1:
 				{
 					int candidate = this[0], cell = candidate / 9, digit = candidate % 9;
-					return $"r{cell / 9 + 1}c{cell % 9 + 1}({digit + 1})";
+					return $"r{(cell / 9 + 1).ToString()}c{(cell % 9 + 1).ToString()}({(digit + 1).ToString()})";
 				}
 				default:
 				{

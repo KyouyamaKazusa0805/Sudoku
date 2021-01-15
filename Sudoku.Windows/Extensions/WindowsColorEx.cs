@@ -67,7 +67,7 @@ namespace Sudoku.Windows.Extensions
 		public static string ToHexString(this in WColor @this)
 		{
 			var (a, r, g, b) = @this;
-			return $"#{a:X2}{r:X2}{g:X2}{b:X2}";
+			return $"#{a.ToString("X2")}{r.ToString("X2")}{g.ToString("X2")}{b.ToString("X2")}";
 		}
 
 		/// <summary>

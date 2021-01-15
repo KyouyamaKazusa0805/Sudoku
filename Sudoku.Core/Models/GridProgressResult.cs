@@ -84,8 +84,8 @@ namespace Sudoku.Models
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString() =>
-			$"{Resources.GetValue("UnsolvedCells")}{CurrentCellsCount}" +
-			$"{Resources.GetValue("UnsolvedCandidates")}{CurrentCandidatesCount}";
+			$"{Resources.GetValue("UnsolvedCells")}{CurrentCellsCount.ToString()}" +
+			$"{Resources.GetValue("UnsolvedCandidates")}{CurrentCandidatesCount.ToString()}";
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override readonly bool Equals(object? obj) =>

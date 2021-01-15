@@ -418,12 +418,6 @@ namespace Sudoku.Data
 								else
 								{
 									// Why isn't the character a digit character?
-									// Throws an exception to report this case.
-									//throw new ArgumentException(
-									//	message: $"Argument can't be parsed and converted to target type {typeof(Grid)}.",
-									//	innerException: new ArgumentException(
-									//		message: "The value after the specified argument is not a digit.",
-									//		paramName: nameof(i)));
 									return Undefined;
 								}
 							}

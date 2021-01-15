@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			string digitsStr = new DigitCollection(SubsetDigitsMask.GetAllSets()).ToString();
 			string subsetCellsStr = new Cells(SubsetCells).ToString();
 			return
-				$"{Name}: Digits {Digit1 + 1}, {Digit2 + 1} in cells {cellsStr} " +
+				$"{Name}: Digits {(Digit1 + 1).ToString()}, {(Digit2 + 1).ToString()} in cells {cellsStr} " +
 				$"with the naked {subsetName} with extra digits {digitsStr} " +
 				$"in cells {subsetCellsStr} => {elimStr}";
 		}

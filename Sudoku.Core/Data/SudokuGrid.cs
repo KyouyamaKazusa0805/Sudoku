@@ -144,7 +144,7 @@ namespace Sudoku.Data
 		{
 			if (masks.Length != Length)
 			{
-				throw new ArgumentException($"The length of the array argument should be {Length}.", nameof(masks));
+				throw new ArgumentException($"The length of the array argument should be {Length.ToString()}.", nameof(masks));
 			}
 
 			fixed (short* pArray = masks, pValues = _values, pInitialValues = _initialValues)

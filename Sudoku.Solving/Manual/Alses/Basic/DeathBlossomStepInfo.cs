@@ -40,11 +40,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			const string separator = ", ";
 			string pivotStr = new Cells { Pivot }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Cell {pivotStr} - {g(this)} => {elimStr}";
+			return $"{Name}: Cell {pivotStr} - {g()} => {elimStr}";
 
-			static string g(DeathBlossomStepInfo @this) =>
+			string g() =>
 				new StringBuilder()
-				.AppendRange(@this.Alses, static pair => $"{pair.Key + 1} - {pair.Value}{separator}")
+				.AppendRange(Alses, static pair => $"{(pair.Key + 1).ToString()} - {pair.Value.ToString()}{separator}")
 				.RemoveFromEnd(separator.Length)
 				.ToString();
 		}

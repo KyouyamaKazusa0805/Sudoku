@@ -167,9 +167,9 @@ namespace Sudoku.Solving.Manual.Fishes
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string baseSets = new RegionCollection(BaseSets).ToString();
 			string coverSets = new RegionCollection(CoverSets).ToString();
-			string exo = Exofins.IsEmpty ? string.Empty : $"f{Exofins} ";
-			string endo = Endofins.IsEmpty ? string.Empty : $"ef{Endofins} ";
-			return $@"{Name}: {Digit + 1} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
+			string exo = Exofins.IsEmpty ? string.Empty : $"f{Exofins.ToString()} ";
+			string endo = Endofins.IsEmpty ? string.Empty : $"ef{Endofins.ToString()} ";
+			return $@"{Name}: {(Digit + 1).ToString()} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
 		}
 
 		/// <summary>

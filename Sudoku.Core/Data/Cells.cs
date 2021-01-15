@@ -524,7 +524,7 @@ namespace Sudoku.Data
 				null or "N" or "n" => Count switch
 				{
 					0 => "{ }",
-					1 when Offsets[0] is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
+					1 when Offsets[0] is var cell => $"r{(cell / 9 + 1).ToString()}c{(cell % 9 + 1).ToString()}",
 					_ => normalToString(this)
 				},
 				"B" or "b" => binaryToString(this, false),

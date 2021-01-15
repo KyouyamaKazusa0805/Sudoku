@@ -57,7 +57,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 					let block = index - index % 27 + column - index % 3
 					from value in values
 					where !query(solution, index, column, block, value).Any()
-					select $"{solution[0..index]}{value}{solution[(index + 1)..]}"
+					select $"{solution[0..index]}{value.ToString()}{solution[(index + 1)..]}"
 				).ToList();
 
 				IEnumerable<int> query(string solution, int index, int column, int block, char value) =>

@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			string conclusionsStr = new ConclusionCollection(Conclusions).ToString();
 			int digit = Digit + 1;
-			return $"{Name}: Digit {digit} => {conclusionsStr}";
+			return $"{Name}: Digit {digit.ToString()} => {conclusionsStr}";
 		}
 	}
 }

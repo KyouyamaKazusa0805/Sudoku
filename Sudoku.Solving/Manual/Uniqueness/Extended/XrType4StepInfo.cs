@@ -31,6 +31,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
-		protected override string? GetAdditional() => $"the conjugate pair {ConjugatePair}";
+		protected override string? GetAdditional() => $"the conjugate pair {ConjugatePair.ToString()}";
 	}
 }

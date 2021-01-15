@@ -85,7 +85,7 @@ namespace Sudoku.Windows
 			public static void LoadDatabase(int puzzlesCount) =>
 				MessageBox.Show(
 					LangSource["LoadInfo"] +
-					$" {puzzlesCount} {LangSource["LoadPuzzles"]}",
+					$" {puzzlesCount.ToString()} {LangSource["LoadPuzzles"]}",
 					(string)LangSource["CaptionInfo"]);
 
 			/// <summary>

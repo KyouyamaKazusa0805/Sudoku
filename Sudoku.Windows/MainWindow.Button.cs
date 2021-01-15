@@ -115,7 +115,7 @@ namespace Sudoku.Windows
 			LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 			UpdateDatabaseControls(false, false, true, true);
 
-			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -128,7 +128,7 @@ namespace Sudoku.Windows
 			bool condition = Settings.CurrentPuzzleNumber != 0;
 			UpdateDatabaseControls(condition, condition, true, true);
 
-			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -141,7 +141,7 @@ namespace Sudoku.Windows
 			bool condition = Settings.CurrentPuzzleNumber != _puzzlesText.Length - 1;
 			UpdateDatabaseControls(true, true, condition, condition);
 
-			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -152,7 +152,7 @@ namespace Sudoku.Windows
 			LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 			UpdateDatabaseControls(true, true, false, false);
 
-			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>

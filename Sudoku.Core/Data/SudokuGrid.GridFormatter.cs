@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using System.Text;
 using static System.Numerics.BitOperations;
 
@@ -285,8 +284,9 @@ namespace Sudoku.Data
 						status switch
 						{
 							CellStatus.Empty => Placeholder.ToString(),
-							CellStatus.Modifiable => WithModifiables ? $"+{grid[cell] + 1}" : $"{Placeholder}",
-							CellStatus.Given => $"{grid[cell] + 1}"
+							CellStatus.Modifiable =>
+								WithModifiables ? $"+{(grid[cell] + 1).ToString()}" : $"{Placeholder.ToString()}",
+							CellStatus.Given => $"{(grid[cell] + 1).ToString()}"
 						});
 
 					cell++;
@@ -448,12 +448,12 @@ namespace Sudoku.Data
 											case CellStatus.Given:
 											case CellStatus.Modifiable when formatter.TreatValueAsGiven:
 											{
-												s = $"<{d}>";
+												s = $"<{d.ToString()}>";
 												break;
 											}
 											case CellStatus.Modifiable:
 											{
-												s = $"*{d}*";
+												s = $"*{d.ToString()}*";
 												break;
 											}
 											default:
@@ -499,7 +499,7 @@ namespace Sudoku.Data
 			/// <returns>The result.</returns>
 			private string ToMultiLineSimpleGridCore(in SudokuGrid grid)
 			{
-				string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
+				string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder.ToString()}!" : Placeholder.ToString());
 				return new StringBuilder()
 					.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
 					.Append("| ").Append(t[0]).Append(' ').Append(t[1]).Append(' ').Append(t[2])

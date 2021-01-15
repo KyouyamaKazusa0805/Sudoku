@@ -16,7 +16,7 @@ namespace Sudoku.Windows
 				LoadPuzzle(_puzzlesText[Settings.CurrentPuzzleNumber = value].TrimEndNewLine());
 				UpdateDatabaseControls(value != 0, value != 0, value != max - 1, value != max - 1);
 
-				_labelPuzzleNumber.Content = $"{value + 1}/{max}";
+				_labelPuzzleNumber.Content = $"{(value + 1).ToString()}/{max}";
 			}
 		}
 	}

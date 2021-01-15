@@ -80,10 +80,10 @@ namespace Sudoku
 		public override string Message =>
 			ErrorCode switch
 			{
-				101 when Arg1 is SudokuGrid g => $"The specified grid {g:#} contains multiple solutions.",
-				102 when Arg1 is SudokuGrid g => $"The specified grid {g:#} contains no valid solution.",
-				202 when Arg1 is SudokuGrid g => $"The specified grid {g:#} is invalid.",
-				203 when Arg1 is SudokuGrid g => $"The function can be used if and only if specified grid {g:#} should be solved.",
+				101 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} contains multiple solutions.",
+				102 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} contains no valid solution.",
+				202 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} is invalid.",
+				203 when Arg1 is SudokuGrid g => $"The function can be used if and only if specified grid {g.ToString("#")} should be solved.",
 				403 when Arg1 is string r => $"The specified resource dictionary can't be found: {r}.",
 				_ => string.Empty
 			};
@@ -119,9 +119,10 @@ namespace Sudoku
 			ErrorCode switch
 			{
 				201 when Arg1 is SudokuGrid g && Arg2 is string info =>
-					$"The specified grid {g:#} can't go on to be solved due to the step: {info} is wrong.",
+					$"The specified grid {g.ToString("#")} can't go on to be solved due to the step: {info} is wrong.",
 				302 when Arg1 is int cell && Arg2 is int digit =>
-					$"Recognizer error: can't fill the cell {new Cells { cell }} with the digit {digit + 1}.",
+					$"Recognizer error: can't fill the cell {new Cells { cell }.ToString()} with the digit " +
+					$"{(digit + 1).ToString()}.",
 				401 when Arg1 is string assembly && Arg2 is string path =>
 					$"The assembly {assembly} can't be loaded. " +
 					$"The large possibility of the problem raised is that the required files don't exist. " +

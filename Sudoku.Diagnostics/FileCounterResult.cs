@@ -24,11 +24,11 @@ namespace Sudoku.Diagnostics
 		/// <inheritdoc/>
 		public override string ToString() =>
 			$"Results:\n" +
-			$"* Code lines: {ResultLines}\n" +
-			$"* Files: {FilesCount}\n" +
-			$"* Characters: {CharactersCount}\n" +
-			$"* Bytes: {SizeUnitConverter.Convert(Bytes, out var unit):.000} {Tostring(unit)} ({Bytes} Bytes)\n" +
-			$"* Time elapsed: {Elapsed:hh\\:mm\\.ss\\.fff}\n" +
+			$"* Code lines: {ResultLines.ToString()}\n" +
+			$"* Files: {FilesCount.ToString()}\n" +
+			$"* Characters: {CharactersCount.ToString()}\n" +
+			$"* Bytes: {SizeUnitConverter.Convert(Bytes, out var unit).ToString(".000")} {Tostring(unit)} ({Bytes.ToString()} Bytes)\n" +
+			$"* Time elapsed: {Elapsed.ToString("hh\\:mm\\.ss\\.fff")}\n" +
 			"\n" +
 			"About more information, please call each property in this instance.";
 

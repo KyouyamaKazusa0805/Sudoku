@@ -40,7 +40,7 @@ namespace Sudoku.Windows
 			InitializeComponent();
 
 			_puzzle = puzzle;
-			_labelGrid.Content = $"{LangSource["BackdoorGrid"]}{_puzzle:#}";
+			_labelGrid.Content = $"{LangSource["BackdoorGrid"]}{_puzzle.ToString("#")}";
 		}
 
 

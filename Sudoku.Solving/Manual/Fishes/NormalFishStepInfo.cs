@@ -83,8 +83,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			string coverSetStr = new RegionCollection(CoverSets).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$@"{Name}: {Digit + 1} in {baseSetStr}\{coverSetStr}" +
-				$"{(Fins.IsEmpty ? string.Empty : $" f{Fins}")} => {elimStr}";
+				$@"{Name}: {(Digit + 1).ToString()} in {baseSetStr}\{coverSetStr}" +
+				$"{(Fins.IsEmpty ? string.Empty : $" f{Fins.ToString()}")} => {elimStr}";
 		}
 
 #if DOUBLE_LAYERED_ASSUMPTION

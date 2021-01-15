@@ -82,7 +82,7 @@ namespace Sudoku.IO
 						var step = steps[i];
 						var grid = stepGrids[i];
 
-						string curPictureName = $"{i + 1:D3}.png";
+						string curPictureName = $"{(i + 1).ToString("D3")}.png";
 						string curPicturePath = $@"{directoryPath}\{curPictureName}";
 
 						// Insert picture.

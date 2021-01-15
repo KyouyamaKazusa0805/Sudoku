@@ -109,10 +109,10 @@ namespace Sudoku.Windows
 			{
 				("$f", Path.GetFileNameWithoutExtension(filePath)),
 				("$e", Path.GetExtension(filePath)),
-				("$D", $"{today:yyyyMMdd}"),
-				("$d", $"{today:yyyy-MM-dd}"),
+				("$D", today.ToString("yyyyMMdd")),
+				("$d", today.ToString("yyyy-MM-dd")),
 #if AUTHOR_RESERVED
-				("!D", $"{thisThursday:yyyyMMdd}"),
+				("!D", thisThursday.ToString("yyyyMMdd")),
 #endif
 			};
 

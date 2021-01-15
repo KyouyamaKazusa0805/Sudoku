@@ -33,7 +33,9 @@ namespace Sudoku.Windows.Data
 			}
 
 		Returning:
-			return min == DifficultyLevel.Unknown ? string.Empty : i == 1 ? min.ToString() : $"{min} - {max}";
+			return min == DifficultyLevel.Unknown
+				? string.Empty
+				: i == 1 ? min.ToString() : $"{min.ToString()} - {max.ToString()}";
 		}
 
 		/// <inheritdoc/>

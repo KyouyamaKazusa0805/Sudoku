@@ -41,7 +41,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		protected override string GetAdditional()
 		{
 			string xyCellStr = new Cells { XyCell }.ToString();
-			return $"X = {XDigit + 1}, Y = {YDigit + 1} and a bi-value cell {xyCellStr}";
+			return
+				$"X = {(XDigit + 1).ToString()}, Y = {(YDigit + 1).ToString()} and a bi-value cell {xyCellStr}";
 		}
 	}
 }

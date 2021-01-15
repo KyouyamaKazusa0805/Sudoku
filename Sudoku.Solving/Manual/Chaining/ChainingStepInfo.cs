@@ -261,9 +261,9 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				0 => string.Empty,
 				1 => " (+)",
-				2 => $" (+ Alternating Inference Chains)",
-				3 => $" (+ Multiple Forcing Chains)",
-				4 => $" (+ Dynamic Forcing Chains)",
+				2 => " (+ Alternating Inference Chains)",
+				3 => " (+ Multiple Forcing Chains)",
+				4 => " (+ Dynamic Forcing Chains)",
 				_ => $" (+ Dynamic Forcing Chains{GetNestedSuffix(level - 3)})"
 			};
 

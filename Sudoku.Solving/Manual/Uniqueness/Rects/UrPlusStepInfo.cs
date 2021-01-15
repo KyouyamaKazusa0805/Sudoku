@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			string g() =>
 				new StringBuilder()
-				.AppendRange(ConjugatePairs, static cp => $"{cp}{separator}")
+				.AppendRange(ConjugatePairs, static cp => $"{cp.ToString()}{separator}")
 				.RemoveFromEnd(separator.Length)
 				.ToString();
 		}

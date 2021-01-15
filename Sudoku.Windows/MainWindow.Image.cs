@@ -158,9 +158,17 @@ namespace Sudoku.Windows
 			}
 
 			static MenuItem s(MainWindow @this, BindingFlags flags, int i) =>
-				(MenuItem)@this.GetType().GetField($"_menuItemImageGridSet{i + 1}", flags)!.GetValue(@this)!;
+				(MenuItem)
+				@this
+				.GetType()
+				.GetField($"_menuItemImageGridSet{(i + 1).ToString()}", flags)!
+				.GetValue(@this)!;
 			static MenuItem d(MainWindow @this, BindingFlags flags, int i) =>
-				(MenuItem)@this.GetType().GetField($"_menuItemImageGridDelete{i + 1}", flags)!.GetValue(@this)!;
+				(MenuItem)
+				@this
+				.GetType()
+				.GetField($"_menuItemImageGridDelete{(i + 1).ToString()}", flags)!
+				.GetValue(@this)!;
 		}
 
 		/// <inheritdoc cref="Events.MouseRightButtonUp(object?, EventArgs)"/>

@@ -93,7 +93,7 @@ namespace Sudoku.Windows
 					UpdateDatabaseControls(false, false, true, true);
 
 					_textBoxJumpTo.IsEnabled = true;
-					_labelPuzzleNumber.Content = $"1/{_puzzlesText.Length}";
+					_labelPuzzleNumber.Content = $"1/{_puzzlesText.Length.ToString()}";
 				}
 			}
 		}
@@ -912,7 +912,7 @@ namespace Sudoku.Windows
 
 				UpdateImageGrid();
 
-				_textBoxInfo.Text = $"{LangSource["AllTrueCandidates"]}{new Candidates(trueCandidates)}";
+				_textBoxInfo.Text = $"{LangSource["AllTrueCandidates"]}{new Candidates(trueCandidates).ToString()}";
 			}
 		}
 

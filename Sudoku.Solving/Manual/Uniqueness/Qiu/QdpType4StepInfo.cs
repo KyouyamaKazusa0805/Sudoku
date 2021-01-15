@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			return
 				$"{Name}: Cells {patternStr} will be a deadly pattern " +
 				$"if another digit in either cells lying " +
-				$"on the conjugate pair {ConjugatePair} is true => {elimStr}";
+				$"on the conjugate pair {ConjugatePair.ToString()} is true => {elimStr}";
 		}
 	}
 }

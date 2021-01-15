@@ -85,7 +85,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					ZDigitsMask != 0
 					? $", z = {new DigitCollection(ZDigitsMask.GetAllSets()).ToString()}"
 					: string.Empty;
-				return $"{Name}: ALS 1: {Als1}, ALS 2: {Als2}, x = {xStr}{zResultStr} => {elimStr}";
+				return $"{Name}: ALS 1: {Als1.ToString()}, ALS 2: {Als2.ToString()}, x = {xStr}{zResultStr} => {elimStr}";
 			}
 		}
 	}

@@ -134,8 +134,8 @@ namespace Sudoku.Solving
 							string infoStr = options.Flags(ShowSimple) ? info.ToSimpleString() : info.ToString();
 							bool showDiff = options.Flags(ShowDifficulty) && info.ShowDifficulty;
 
-							string d = $"{$"({info.Difficulty}",5:0.0}";
-							string s = $"{i + 1,4}";
+							string d = $"({info.Difficulty.ToString("0.0")}".PadLeft(5);
+							string s = (i + 1).ToString().PadLeft(4);
 							string labelInfo = (options.Flags(ShowStepLabel), showDiff) switch
 							{
 								(true, true) => $"{s}, {d}) ",
@@ -154,7 +154,7 @@ namespace Sudoku.Solving
 								.Append(GetValue("AnalysisResultBottleneckStep"))
 								.Append(
 									options.Flags(ShowStepLabel)
-									? $"{GetValue("AnalysisResultInStep")}{bIndex + 1}{GetValue("Colon")}"
+									? $"{GetValue("AnalysisResultInStep")}{(bIndex + 1).ToString()}{GetValue("Colon")}"
 									: string.Empty)
 								.Append(' ')
 								.AppendLine(bInfo);
@@ -175,10 +175,10 @@ namespace Sudoku.Solving
 					if (options.Flags(ShowStepDetail))
 					{
 						sb
-							.AppendFormat("{0,6}", GetValue("AnalysisResultMin"))
+							.Append(GetValue("AnalysisResultMin").PadLeft(6))
 							.Append(',')
 							.Append(' ')
-							.AppendFormat("{0,6}", GetValue("AnalysisResultTotal"))
+							.Append(GetValue("AnalysisResultTotal").PadLeft(6))
 							.AppendLine(GetValue("AnalysisResultTechniqueUsing"));
 					}
 
@@ -194,16 +194,16 @@ namespace Sudoku.Solving
 								currentMinimum = Math.Min(currentMinimum, difficulty);
 							}
 							sb
-								.AppendFormat("{0,6}", $"({currentMinimum:0.0}")
+								.Append($"({currentMinimum.ToString("0.0")}".PadLeft(6))
 								.Append(',')
 								.Append(' ')
-								.AppendFormat("{0,6:0.0}", currentTotal)
+								.Append(currentTotal.ToString("0.0").PadLeft(6))
 								.Append(')')
 								.Append(' ');
 						}
 
 						sb
-							.AppendFormat("{0,3}", solvingStepsGroup.Count())
+							.Append(solvingStepsGroup.Count().ToString().PadLeft(3))
 							.Append(' ')
 							.Append('*')
 							.Append(' ')
@@ -213,14 +213,14 @@ namespace Sudoku.Solving
 					if (options.Flags(ShowStepDetail))
 					{
 						sb
-							.AppendFormat("{0,6}", "(---")
-							.AppendFormat("{0,6}", total)
+							.Append("  (---")
+							.Append(total.ToString().PadLeft(6))
 							.Append(')')
 							.Append(' ');
 					}
 
 					sb
-						.AppendFormat("{0,3}", stepsCount)
+						.Append(stepsCount.ToString().PadLeft(3))
 						.Append(
 							stepsCount == 1
 							? GetValue("AnalysisResultStepSingular")

@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: Digits {digitsStr} in all empty cells may form a deadly pattern " +
-				$"when {anchor} is only last the digit {AnchorLastDigit + 1} => {elimStr}";
+				$"when {anchor} is only last the digit {(AnchorLastDigit + 1).ToString()} => {elimStr}";
 		}
 	}
 }

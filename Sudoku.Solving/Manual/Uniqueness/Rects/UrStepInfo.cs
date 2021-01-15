@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string? additional = GetAdditional();
 			return
-				$"{Name}: Digits {d1} and {d2} in {cellsStr}" +
+				$"{Name}: Digits {d1.ToString()} and {d2.ToString()} in {cellsStr}" +
 				$"{(additional is null ? string.Empty : $" with {additional}")} => {elimStr}";
 		}
 

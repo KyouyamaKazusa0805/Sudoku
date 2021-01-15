@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		{
 			string cellsStr = new Cells(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {Cells.Count} Cells {cellsStr} => {elimStr}";
+			return $"{Name}: {Cells.Count.ToString()} Cells {cellsStr} => {elimStr}";
 		}
 	}
 }

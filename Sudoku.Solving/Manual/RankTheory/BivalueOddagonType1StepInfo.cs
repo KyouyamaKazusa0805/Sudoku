@@ -35,8 +35,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 			string cellStr = new Cells { ExtraCell }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$"{Name}: If the cell {cellStr} only contains the digits {Digit1 + 1} and {Digit2 + 1} " +
-				$"(or one of those two), the loop {Loop} will form an error structure => {elimStr}";
+				$"{Name}: If the cell {cellStr} only contains the digits " +
+				$"{(Digit1 + 1).ToString()} and {(Digit2 + 1).ToString()} " +
+				$"(or one of those two), the loop {Loop.ToString()} will form an error structure => {elimStr}";
 		}
 	}
 }

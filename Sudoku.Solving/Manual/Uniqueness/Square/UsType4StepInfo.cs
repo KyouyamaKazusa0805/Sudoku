@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			return
 				$"{Name}: Digits {digitsStr} in cells {cellsStr} can avoid to form a deadly pattern " +
 				$"if and only if the conjugate region {conjStr} can't set the digit " +
-				$"neither {Digit1 + 1} nor {Digit2 + 1} => {elimStr}";
+				$"neither {(Digit1 + 1).ToString()} nor {(Digit2 + 1).ToString()} => {elimStr}";
 		}
 	}
 }

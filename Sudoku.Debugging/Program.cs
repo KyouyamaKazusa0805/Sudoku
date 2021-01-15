@@ -38,12 +38,12 @@ try
 
 		await File.AppendAllTextAsync(
 			resultPath,
-			$"{grid}\t{total:0.0} {max:0.0} {pearl:0.0} {diamond:0.0} {stepCount} {chainingTechniquesCount}\r\n");
+			$"{grid.ToString()}\t{total.ToString("0.0")} {max.ToString("0.0")} {pearl.ToString("0.0")} {diamond.ToString("0.0")} {stepCount.ToString()} {chainingTechniquesCount.ToString()}\r\n");
 
 		Clear();
 		WriteLine(
-			$"Current: {i + 1}/{length} ({(i + 1) * 100M / (decimal)length:0.000}%), " +
-			$"Elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
+			$"Current: {(i + 1).ToString()}/{length.ToString()} ({((i + 1) * 100M / (decimal)length).ToString("0.000")}%), " +
+			$"Elapsed: {stopwatch.Elapsed.ToString("hh\\:mm\\:ss\\.fff")}");
 	}
 }
 catch (Exception e)

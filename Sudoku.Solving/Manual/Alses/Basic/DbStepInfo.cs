@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 			string g() =>
 				new StringBuilder()
-				.AppendRange(Alses, static pair => $"{pair.Key + 1} - {pair.Value}{separator}")
+				.AppendRange(Alses, static pair => $"{(pair.Key + 1).ToString()} - {pair.Value.ToString()}{separator}")
 				.RemoveFromEnd(separator.Length)
 				.ToString();
 		}

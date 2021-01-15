@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: Cells {patternStr} will be a deadly pattern " +
-				$"if the extra digits {ExtraDigit + 1} in pair cells is both false => {elimStr}";
+				$"if the extra digits {(ExtraDigit + 1).ToString()} in pair cells is both false => {elimStr}";
 		}
 	}
 }

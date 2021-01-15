@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			int digit = Digit + 1;
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Digit {digit} => {elimStr}";
+			return $"{Name}: Digit {digit.ToString()} => {elimStr}";
 		}
 	}
 }
