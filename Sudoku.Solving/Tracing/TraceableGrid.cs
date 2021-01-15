@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
+using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving.Manual
+namespace Sudoku.Solving.Tracing
 {
 	/// <summary>
 	/// Encapsulates a sudoku grid that all steps can be traced.
@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual
 	/// <remarks>
 	/// Note that this data structure doesn't check any causes in equality methods.
 	/// </remarks>
-	public sealed class TraceableGrid : IEnumerable<(int Candidate, StepInfo Info)>, IEquatable<TraceableGrid?>, IFormattable
+	public sealed class TraceableGrid : IEquatable<TraceableGrid?>, IFormattable, ITraceable
 	{
 		/// <summary>
 		/// Indicates the iner sudoku grid.
@@ -39,14 +39,7 @@ namespace Sudoku.Solving.Manual
 		}
 
 
-		/// <summary>
-		/// Get the bound step of a specified candidate.
-		/// </summary>
-		/// <param name="candidate">The candidate.</param>
-		/// <returns>
-		/// The bound step information instance. If the grid doesn't bind with the conclusion,
-		/// the return value will be <see langword="null"/>.
-		/// </returns>
+		/// <inheritdoc/>
 		[IndexerName("Cause")]
 		public StepInfo? this[int candidate]
 		{
@@ -54,15 +47,7 @@ namespace Sudoku.Solving.Manual
 			get => _causes[candidate];
 		}
 
-		/// <summary>
-		/// Get the bound step of a specified candidate.
-		/// </summary>
-		/// <param name="cell">The cell of that candidate.</param>
-		/// <param name="digit">The digit of that candidate.</param>
-		/// <returns>
-		/// The bound step information instance. If the grid doesn't bind with the conclusion,
-		/// the return value will be <see langword="null"/>.
-		/// </returns>
+		/// <inheritdoc/>
 		[IndexerName("Cause")]
 		public StepInfo? this[int cell, int digit]
 		{
@@ -71,10 +56,7 @@ namespace Sudoku.Solving.Manual
 		}
 
 
-		/// <summary>
-		/// To bind a specified step with a candidate, which is specified in the step.
-		/// </summary>
-		/// <param name="stepInfo">The step information.</param>
+		/// <inheritdoc/>
 		public void BindStep(StepInfo stepInfo)
 		{
 			foreach (var (t, c, d) in stepInfo.Conclusions)
@@ -148,10 +130,6 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 		}
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
 		/// <inheritdoc cref="SudokuGrid.TryParse(string, out SudokuGrid)"/>
