@@ -3357,6 +3357,40 @@
             <summary>
             Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
             </summary>
+            <remarks>
+            <para>
+            The whole class is a <see langword="static"/> one, which means you can't use <see langword="new"/>
+            clause to create a new instance of this type. In contrast, the class is used for providing with
+            <see langword="static"/> properties used in a cyclic manual searching
+            (i.e. in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>).
+            </para>
+            <para>
+            Some step searchers rely on this class. If you want to call them alone, you should ensure the method
+            <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> in this class is called before using these properties.
+            </para>
+            <para>
+            If a step searcher doesn't rely on this class, it'll be marked an attribute named
+            <see cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>. If you find that the step searcher marks that attribute,
+            you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
+            can't call it everywhere unless you call the method <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>.
+            </para>
+            <para>
+            Please note, all names of properties in this class can also be found in <see cref="T:Sudoku.Data.SudokuGrid"/>,
+            which means you can also call the property by <see cref="T:Sudoku.Data.SudokuGrid"/>. Of course, some of them
+            doesn't contain the same one in <see cref="T:Sudoku.Data.SudokuGrid"/>, but you can find a same property whose
+            execution logic (handling logic) is totally same.
+            For example, <see cref="P:Sudoku.Solving.Manual.FastProperties.EmptyMap"/> is same as <see cref="P:Sudoku.Data.SudokuGrid.EmptyCells"/>. The difference
+            between them is that you shouldn't use <see cref="P:Sudoku.Solving.Manual.FastProperties.EmptyMap"/> until you have called
+            <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>, while <see cref="P:Sudoku.Data.SudokuGrid.EmptyCells"/> can be used
+            everywhere, because it isn't an instant property (which means the calculation begins
+            when you called them, i.e. lazy ones; in contrast, some properties only store values directly,
+            so their values can be got instantly, i.e. instant ones).
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+            <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.FastProperties.EmptyMap">
             <summary>
