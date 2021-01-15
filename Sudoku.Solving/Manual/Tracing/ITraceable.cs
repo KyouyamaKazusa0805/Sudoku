@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving.Tracing
+namespace Sudoku.Solving.Manual.Tracing
 {
 	/// <summary>
 	/// Define a traceable instance.
@@ -36,6 +36,18 @@ namespace Sudoku.Solving.Tracing
 		/// </summary>
 		/// <param name="stepInfo">The step information.</param>
 		void BindStep(StepInfo stepInfo);
+
+		/// <summary>
+		/// Bind a series of steps.
+		/// </summary>
+		/// <param name="stepInfos">The steps to bind.</param>
+		public void BindSteps(IEnumerable<StepInfo> stepInfos)
+		{
+			foreach (var step in stepInfos)
+			{
+				BindStep(step);
+			}
+		}
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<(int, StepInfo)>)this).GetEnumerator();

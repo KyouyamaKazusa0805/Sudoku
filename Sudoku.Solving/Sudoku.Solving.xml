@@ -5757,6 +5757,32 @@
             <param name="accumulator">The accumulator to store technique information.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid to search for techniques.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.StepSearcher.BindOne(Sudoku.Solving.Manual.Tracing.TraceableGrid)">
+            <summary>
+            To bind a step.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepSearcher.BindAll(Sudoku.Solving.Manual.Tracing.TraceableGrid)">
+            <summary>
+            To bind all steps.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepSearcher.BindWhen(Sudoku.Solving.Manual.Tracing.TraceableGrid,System.Predicate{Sudoku.Solving.Manual.StepInfo})">
+            <summary>
+            To bind all steps that satisfy the specified condition.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="condition">The condition.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepSearcher.InternalOnBinding(Sudoku.Solving.Manual.Tracing.TraceableGrid)">
+            <summary>
+            The method that is called by binding ones.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible steps that may be bound.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetStepInfo">
             <summary>
             Provides a usage of <b>hidden subset</b> technique.
@@ -6255,6 +6281,163 @@
             or not <see cref="T:Sudoku.Solving.Manual.StepSearcher"/> at all,
             the return value will be <see langword="null"/>.
             </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Tracing.ITraceable">
+            <summary>
+            Define a traceable instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Tracing.ITraceable.Item(System.Int32)">
+            <summary>
+            Get the bound step of a specified candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <returns>
+            The bound step information instance. If the grid doesn't bind with the conclusion,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Tracing.ITraceable.Item(System.Int32,System.Int32)">
+            <summary>
+            Get the bound step of a specified candidate.
+            </summary>
+            <param name="cell">The cell of that candidate.</param>
+            <param name="digit">The digit of that candidate.</param>
+            <returns>
+            The bound step information instance. If the grid doesn't bind with the conclusion,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.ITraceable.BindStep(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            To bind a specified step with a candidate, which is specified in the step.
+            </summary>
+            <param name="stepInfo">The step information.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.ITraceable.BindSteps(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.StepInfo})">
+            <summary>
+            Bind a series of steps.
+            </summary>
+            <param name="stepInfos">The steps to bind.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.ITraceable.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Tracing.TraceableGrid">
+            <summary>
+            Encapsulates a sudoku grid that all steps can be traced.
+            </summary>
+            <remarks>
+            Note that this data structure doesn't check any causes in equality methods.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Tracing.TraceableGrid._innerGrid">
+            <summary>
+            Indicates the iner sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Tracing.TraceableGrid._causes">
+            <summary>
+            Indictaes the table that holds reasons why the candidate has been eliminated.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.#ctor(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Initializes an instance with the specified iner sudoku grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Tracing.TraceableGrid.Cause(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Tracing.TraceableGrid.Cause(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.BindStep(Sudoku.Solving.Manual.StepInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.Equals(Sudoku.Solving.Manual.Tracing.TraceableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.GetPinnableReference">
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetPinnableReference"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.GetCause(System.Int32)">
+            <summary>
+            Get the reason why the candidate has been eliminated.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <returns>
+            The reason to cause the elimination. If the candidate isn't eliminated,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.TryParse(System.String,Sudoku.Solving.Manual.Tracing.TraceableGrid@)">
+            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.TryParse(System.String,Sudoku.Data.SudokuGrid@)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.Parse(System.String)">
+            <summary>
+            Parse a string code representing a possible sudoku grid, and convert it to
+            <see cref="T:Sudoku.Solving.Manual.Tracing.TraceableGrid"/> instance.
+            </summary>
+            <param name="str">The string code.</param>
+            <returns>The instance parsed.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Equality(Sudoku.Solving.Manual.Tracing.TraceableGrid,Sudoku.Data.SudokuGrid@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Equality(Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Tracing.TraceableGrid)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Equality(Sudoku.Solving.Manual.Tracing.TraceableGrid,Sudoku.Solving.Manual.Tracing.TraceableGrid)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Inequality(Sudoku.Solving.Manual.Tracing.TraceableGrid,Sudoku.Data.SudokuGrid@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Inequality(Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Tracing.TraceableGrid)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Inequality(Sudoku.Solving.Manual.Tracing.TraceableGrid,Sudoku.Solving.Manual.Tracing.TraceableGrid)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Addition(Sudoku.Solving.Manual.Tracing.TraceableGrid,Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            To bind a step information with a candidate, and returns the reference of <paramref name="grid"/>.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="stepInfo">The step information.</param>
+            <returns>The reference of <paramref name="grid"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Implicit(Sudoku.Data.SudokuGrid@)~Sudoku.Solving.Manual.Tracing.TraceableGrid">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Data.SudokuGrid"/> to <see cref="T:Sudoku.Solving.Manual.Tracing.TraceableGrid"/>.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Explicit(Sudoku.Solving.Manual.Tracing.TraceableGrid)~Sudoku.Data.SudokuGrid">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Solving.Manual.Tracing.TraceableGrid"/> to <see cref="T:Sudoku.Data.SudokuGrid"/>.
+            </summary>
+            <param name="grid">The grid.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo">
             <summary>
@@ -9303,157 +9486,6 @@
             <summary>
             Encapsulates a <b>wing</b> technique solver.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Tracing.ITraceable">
-            <summary>
-            Define a traceable instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Tracing.ITraceable.Item(System.Int32)">
-            <summary>
-            Get the bound step of a specified candidate.
-            </summary>
-            <param name="candidate">The candidate.</param>
-            <returns>
-            The bound step information instance. If the grid doesn't bind with the conclusion,
-            the return value will be <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="P:Sudoku.Solving.Tracing.ITraceable.Item(System.Int32,System.Int32)">
-            <summary>
-            Get the bound step of a specified candidate.
-            </summary>
-            <param name="cell">The cell of that candidate.</param>
-            <param name="digit">The digit of that candidate.</param>
-            <returns>
-            The bound step information instance. If the grid doesn't bind with the conclusion,
-            the return value will be <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.ITraceable.BindStep(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            To bind a specified step with a candidate, which is specified in the step.
-            </summary>
-            <param name="stepInfo">The step information.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.ITraceable.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Tracing.TraceableGrid">
-            <summary>
-            Encapsulates a sudoku grid that all steps can be traced.
-            </summary>
-            <remarks>
-            Note that this data structure doesn't check any causes in equality methods.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Solving.Tracing.TraceableGrid._innerGrid">
-            <summary>
-            Indicates the iner sudoku grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Tracing.TraceableGrid._causes">
-            <summary>
-            Indictaes the table that holds reasons why the candidate has been eliminated.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.#ctor(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Initializes an instance with the specified iner sudoku grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Tracing.TraceableGrid.Cause(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Tracing.TraceableGrid.Cause(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.BindStep(Sudoku.Solving.Manual.StepInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.Equals(Sudoku.Solving.Tracing.TraceableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.GetPinnableReference">
-            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetPinnableReference"/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.ToString(System.String)">
-            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.GetCause(System.Int32)">
-            <summary>
-            Get the reason why the candidate has been eliminated.
-            </summary>
-            <param name="candidate">The candidate.</param>
-            <returns>
-            The reason to cause the elimination. If the candidate isn't eliminated,
-            the return value will be <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.TryParse(System.String,Sudoku.Solving.Tracing.TraceableGrid@)">
-            <inheritdoc cref="M:Sudoku.Data.SudokuGrid.TryParse(System.String,Sudoku.Data.SudokuGrid@)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.Parse(System.String)">
-            <summary>
-            Parse a string code representing a possible sudoku grid, and convert it to
-            <see cref="T:Sudoku.Solving.Tracing.TraceableGrid"/> instance.
-            </summary>
-            <param name="str">The string code.</param>
-            <returns>The instance parsed.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.op_Equality(Sudoku.Solving.Tracing.TraceableGrid,Sudoku.Data.SudokuGrid@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.op_Equality(Sudoku.Data.SudokuGrid@,Sudoku.Solving.Tracing.TraceableGrid)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.op_Equality(Sudoku.Solving.Tracing.TraceableGrid,Sudoku.Solving.Tracing.TraceableGrid)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.op_Inequality(Sudoku.Solving.Tracing.TraceableGrid,Sudoku.Data.SudokuGrid@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.op_Inequality(Sudoku.Data.SudokuGrid@,Sudoku.Solving.Tracing.TraceableGrid)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.op_Inequality(Sudoku.Solving.Tracing.TraceableGrid,Sudoku.Solving.Tracing.TraceableGrid)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.op_Addition(Sudoku.Solving.Tracing.TraceableGrid,Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            To bind a step information with a candidate, and returns the reference of <paramref name="grid"/>.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="stepInfo">The step information.</param>
-            <returns>The reference of <paramref name="grid"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.op_Implicit(Sudoku.Data.SudokuGrid@)~Sudoku.Solving.Tracing.TraceableGrid">
-            <summary>
-            Implicit cast from <see cref="T:Sudoku.Data.SudokuGrid"/> to <see cref="T:Sudoku.Solving.Tracing.TraceableGrid"/>.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Tracing.TraceableGrid.op_Explicit(Sudoku.Solving.Tracing.TraceableGrid)~Sudoku.Data.SudokuGrid">
-            <summary>
-            Explicit cast from <see cref="T:Sudoku.Solving.Tracing.TraceableGrid"/> to <see cref="T:Sudoku.Data.SudokuGrid"/>.
-            </summary>
-            <param name="grid">The grid.</param>
         </member>
     </members>
 </doc>

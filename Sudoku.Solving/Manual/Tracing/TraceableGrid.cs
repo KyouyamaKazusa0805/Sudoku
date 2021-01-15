@@ -6,7 +6,7 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving.Tracing
+namespace Sudoku.Solving.Manual.Tracing
 {
 	/// <summary>
 	/// Encapsulates a sudoku grid that all steps can be traced.
