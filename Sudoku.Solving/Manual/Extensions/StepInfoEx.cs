@@ -1,11 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
-using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Alses.Basic;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Solving.Manual.Uniqueness;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Solving.Manual.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="StepInfo"/>.

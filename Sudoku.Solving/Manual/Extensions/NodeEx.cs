@@ -4,7 +4,7 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Chaining;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Solving.Manual.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Node"/>.

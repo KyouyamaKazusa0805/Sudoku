@@ -861,195 +861,6 @@
             <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
             <returns>The difficulty level.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Extensions.AnalysisResultEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.AnalysisResult"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.AnalysisResult"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.AnalysisResultEx.Contains(Sudoku.Solving.AnalysisResult,Sudoku.Techniques.Technique)">
-            <summary>
-            To check whether the specified analysis result contains the specified technique.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="code">The technique code to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.CellsEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Cells"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.CellsEx.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
-            <summary>
-            Check whether the cells form an empty cell.
-            </summary>
-            <param name="this">(<see langword="this in"/> parameter) The empty cell grid map.</param>
-            <param name="block">The block.</param>
-            <param name="row">(<see langword="out"/> parameter) The row.</param>
-            <param name="column">(<see langword="out"/> parameter) The column.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.EnumerableEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.EnumerableEx.IsValidLoop(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Check whether the current loop is valid UL-shaped loop.
-            </summary>
-            <param name="loop">(<see langword="this"/> parameter) The loop.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.Int32Ex">
-            <summary>
-            Provides extension methods on <see cref="T:System.Int32"/>.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.Int32Ex.GetExtraDifficultyByLength(System.Int32)">
-            <summary>
-            Get extra difficulty rating for a chain node sequence.
-            </summary>
-            <param name="length">(<see langword="this"/> parameter) The length.</param>
-            <returns>The difficulty.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.ManualSolverEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.ManualSolverEx.GetSeModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
-            <summary>
-            Get the searchers to enumerate on Sudoku Explainer mode.
-            </summary>
-            <param name="this">(<see langword="this"/> paraemeter) The manual solver.</param>
-            <param name="solution">
-            (<see langword="in"/> paraemeter) The solution for a sudoku grid.
-            This parameter is necessary because some technique searchers will use this value,
-            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>.
-            </param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.ManualSolverEx.GetHodokuModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
-            <summary>
-            Get the searchers to enumerate on Hodoku mode.
-            </summary>
-            <param name="this">(<see langword="this"/> paraemeter) The manual solver.</param>
-            <param name="solution">
-            (<see langword="in"/> paraemeter) The solution for a sudoku grid.
-            This parameter is necessary because some technique searchers will use this value,
-            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>. The default value is <see langword="null"/>.
-            </param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.NodeEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Node"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Node"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.NodeEx.GetCandidateOffsets(Sudoku.Data.Node@,System.Boolean)">
-            <summary>
-            Get highlight candidate offsets through the specified target node.
-            </summary>
-            <param name="target">(<see langword="this in"/> parameter) The target node.</param>
-            <param name="simpleChain">
-            Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Chaining.AicStepSearcher"/>. The
-            default value is <see langword="false"/>.
-            </param>
-            <returns>The candidate offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.NodeEx.GetLinks(Sudoku.Data.Node@,System.Boolean)">
-            <summary>
-            Get the links through the specified target node.
-            </summary>
-            <param name="target">(<see langword="this in"/> parameter) The target node.</param>
-            <param name="showAllLinks">
-            Indicates whether the current chain will display all chains (even contains the weak links
-            from the elimination node). The default value is <see langword="false"/>. If you want to
-            draw the AIC, the elimination weak links don't need drawing.
-            </param>
-            <returns>The link.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.ReadOnlyListEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.ReadOnlyListEx.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The list of cells.</param>
-            <param name="offset">The offset. The default value is 4.</param>
-            <returns>All links.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.StepInfoEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.StepInfoEx.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the currrent technique information is an ALS technique.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.StepInfoEx.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the currrent technique information is a chaining-ruled technique.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.StepInfoEx.IsForcingChainsTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the currrent technique information is a forcing chains technique.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.StepInfoEx.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the currrent technique information is a uniqueness technique.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.SudokuGridEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
-        </member>
-        <member name="F:Sudoku.Solving.Extensions.SudokuGridEx.SstsSearchers">
-            <summary>
-            All available SSTS searchers.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.SudokuGridEx.Clean(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            To clean the grid.
-            </summary>
-            <param name="this">(<see langword="this ref"/> parameter) The grid.</param>
-            <remarks>
-            "To clean a grid" means we process this grid to fill with singles that is found
-            in <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>, and remove eliminations that is found
-            in <see cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>.
-            The process won't stop until the puzzle cannot use these techniques.
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>
-        </member>
         <member name="T:Sudoku.Solving.ISolver">
             <summary>
             Indicates an instance used for solving a sudoku puzzle.
@@ -3352,6 +3163,195 @@
             <param name="t2">The target cell 2.</param>
             <param name="isRow">Indicates whether the specified computation is for rows.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.AnalysisResultEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.AnalysisResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.AnalysisResult"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.AnalysisResultEx.Contains(Sudoku.Solving.AnalysisResult,Sudoku.Techniques.Technique)">
+            <summary>
+            To check whether the specified analysis result contains the specified technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="code">The technique code to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.CellsEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Cells"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.CellsEx.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Check whether the cells form an empty cell.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The empty cell grid map.</param>
+            <param name="block">The block.</param>
+            <param name="row">(<see langword="out"/> parameter) The row.</param>
+            <param name="column">(<see langword="out"/> parameter) The column.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.EnumerableEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.EnumerableEx.IsValidLoop(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Check whether the current loop is valid UL-shaped loop.
+            </summary>
+            <param name="loop">(<see langword="this"/> parameter) The loop.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.Int32Ex">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int32"/>.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.Int32Ex.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">(<see langword="this"/> parameter) The length.</param>
+            <returns>The difficulty.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.ManualSolverEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.ManualSolverEx.GetSeModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
+            <summary>
+            Get the searchers to enumerate on Sudoku Explainer mode.
+            </summary>
+            <param name="this">(<see langword="this"/> paraemeter) The manual solver.</param>
+            <param name="solution">
+            (<see langword="in"/> paraemeter) The solution for a sudoku grid.
+            This parameter is necessary because some technique searchers will use this value,
+            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>.
+            </param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.ManualSolverEx.GetHodokuModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
+            <summary>
+            Get the searchers to enumerate on Hodoku mode.
+            </summary>
+            <param name="this">(<see langword="this"/> paraemeter) The manual solver.</param>
+            <param name="solution">
+            (<see langword="in"/> paraemeter) The solution for a sudoku grid.
+            This parameter is necessary because some technique searchers will use this value,
+            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>. The default value is <see langword="null"/>.
+            </param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.NodeEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Node"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Node"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.NodeEx.GetCandidateOffsets(Sudoku.Data.Node@,System.Boolean)">
+            <summary>
+            Get highlight candidate offsets through the specified target node.
+            </summary>
+            <param name="target">(<see langword="this in"/> parameter) The target node.</param>
+            <param name="simpleChain">
+            Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Chaining.AicStepSearcher"/>. The
+            default value is <see langword="false"/>.
+            </param>
+            <returns>The candidate offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.NodeEx.GetLinks(Sudoku.Data.Node@,System.Boolean)">
+            <summary>
+            Get the links through the specified target node.
+            </summary>
+            <param name="target">(<see langword="this in"/> parameter) The target node.</param>
+            <param name="showAllLinks">
+            Indicates whether the current chain will display all chains (even contains the weak links
+            from the elimination node). The default value is <see langword="false"/>. If you want to
+            draw the AIC, the elimination weak links don't need drawing.
+            </param>
+            <returns>The link.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.ReadOnlyListEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.ReadOnlyListEx.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+            <summary>
+            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The list of cells.</param>
+            <param name="offset">The offset. The default value is 4.</param>
+            <returns>All links.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.StepInfoEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the currrent technique information is an ALS technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the currrent technique information is a chaining-ruled technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsForcingChainsTechnique(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the currrent technique information is a forcing chains technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the currrent technique information is a uniqueness technique.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.SudokuGridEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Extensions.SudokuGridEx.SstsSearchers">
+            <summary>
+            All available SSTS searchers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.SudokuGridEx.Clean(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            To clean the grid.
+            </summary>
+            <param name="this">(<see langword="this ref"/> parameter) The grid.</param>
+            <remarks>
+            "To clean a grid" means we process this grid to fill with singles that is found
+            in <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>, and remove eliminations that is found
+            in <see cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>.
+            The process won't stop until the puzzle cannot use these techniques.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.FastProperties">
             <summary>

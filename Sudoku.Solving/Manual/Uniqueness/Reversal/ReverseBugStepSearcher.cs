@@ -3,7 +3,7 @@ using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Solving.Extensions;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;

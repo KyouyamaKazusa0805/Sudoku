@@ -6,7 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Extensions;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Techniques;
 using static Sudoku.Constants.Tables;

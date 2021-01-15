@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using Sudoku.Data;
 using Sudoku.Models;
-using Sudoku.Solving.Extensions;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.Uniqueness;
 using static Sudoku.Solving.Manual.FastProperties;
 

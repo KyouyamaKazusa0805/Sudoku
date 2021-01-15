@@ -7,7 +7,7 @@ using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Extensions;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.Uniqueness;
 using Sudoku.Windows;
 

@@ -1,7 +1,7 @@
 ﻿using Sudoku.Data;
 using static Sudoku.Constants.Tables;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Solving.Manual.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Cells"/>.

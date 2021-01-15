@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
 using static Sudoku.Solving.Manual.FastProperties;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Solving.Manual.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="SudokuGrid"/>.

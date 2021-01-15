@@ -1,6 +1,6 @@
 ﻿using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Solving.Manual.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="AnalysisResult"/>.

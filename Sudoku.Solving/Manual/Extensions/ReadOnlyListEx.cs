@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Solving.Manual.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="IReadOnlyList{T}"/>.

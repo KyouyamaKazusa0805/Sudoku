@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
 using Sudoku.Solving.Manual.Alses.Mslses;
@@ -25,7 +24,7 @@ using Sudoku.Solving.Manual.Uniqueness.Square;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Solving.Manual.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ManualSolver"/>.
