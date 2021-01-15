@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.FastProperties;
@@ -45,9 +44,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					continue;
 				}
 
-				short cornerMask1 = grid.BitwiseOrMasks(pattern.Pair1Map);
-				short cornerMask2 = grid.BitwiseOrMasks(pattern.Pair2Map);
-				short centerMask = grid.BitwiseOrMasks(pattern.CenterCellsMap);
+				short cornerMask1 = 0, cornerMask2 = 0, centerMask =0;
+				foreach (int cell in pattern.Pair1Map)
+				{
+					cornerMask1 |= grid.GetCandidates(cell);
+				}
+				foreach (int cell in pattern.Pair2Map)
+				{
+					cornerMask2 |= grid.GetCandidates(cell);
+				}
+				foreach (int cell in pattern.CenterCellsMap)
+				{
+					centerMask |= grid.GetCandidates(cell);
+				}
+
 				CheckType1(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, pattern.Map);
 				CheckType2(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, pattern.Map);
 				CheckType3(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, pattern.Map);

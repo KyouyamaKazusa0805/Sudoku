@@ -1809,7 +1809,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					// Iterate on each intersection combination.
 					foreach (var currentInterMap in list)
 					{
-						short selectedInterMask = grid.BitwiseOrMasks(currentInterMap);
+						short selectedInterMask = 0;
+						foreach (int cell in currentInterMap)
+						{
+							selectedInterMask |= grid.GetCandidates(cell);
+						}
 						if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 						{
 							// The intersection combination is an ALS or a normal subset,
@@ -1847,7 +1851,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								Cells elimMapBlock = Cells.Empty, elimMapLine = Cells.Empty;
 
 								// Get the links of the block.
-								short blockMask = grid.BitwiseOrMasks(selectedCellsInBlock);
+								short blockMask = 0;
+								foreach (int cell in selectedCellsInBlock)
+								{
+									blockMask |= grid.GetCandidates(cell);
+								}
 
 								// Get the elimination map in the block.
 								foreach (int digit in blockMask)

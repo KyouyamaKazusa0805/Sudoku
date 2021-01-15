@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
@@ -33,7 +32,21 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
-				short m = (short)(grid.BitwiseOrMasks(c) & (grid.BitwiseOrMasks(a) ^ grid.BitwiseOrMasks(b)));
+				short maskA = 0, maskB = 0, maskC = 0;
+				foreach (int cell in a)
+				{
+					maskA |= grid.GetCandidates(cell);
+				}
+				foreach (int cell in b)
+				{
+					maskB |= grid.GetCandidates(cell);
+				}
+				foreach (int cell in c)
+				{
+					maskC |= grid.GetCandidates(cell);
+				}
+
+				short m = (short)(maskC & (maskA ^ maskB));
 				if (m == 0)
 				{
 					continue;

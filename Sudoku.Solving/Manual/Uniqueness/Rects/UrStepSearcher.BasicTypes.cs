@@ -37,7 +37,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ab   ab
 
 			// Get the summary mask.
-			short mask = grid.BitwiseOrMasks(otherCellsMap);
+			short mask = 0;
+			foreach (int cell in otherCellsMap)
+			{
+				mask |= grid.GetCandidates(cell);
+			}
 			if (mask != comparer)
 			{
 				return;
@@ -115,7 +119,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ab    ab
 
 			// Get the summary mask.
-			short mask = grid.BitwiseOrMasks(otherCellsMap);
+			short mask = 0;
+			foreach (int cell in otherCellsMap)
+			{
+				mask |= grid.GetCandidates(cell);
+			}
 			if (mask != comparer)
 			{
 				return;
@@ -224,7 +232,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			short mask = grid.BitwiseOrMasks(otherCellsMap);
+			short mask = 0;
+			foreach (int cell in otherCellsMap)
+			{
+				mask |= grid.GetCandidates(cell);
+			}
 			if ((mask & comparer) != comparer)
 			{
 				return;
@@ -466,7 +478,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			// Get the summary mask.
-			short extraMask = (short)(grid.BitwiseOrMasks(otherCellsMap) ^ comparer);
+			short otherCellsMask = 0;
+			foreach (int cell in otherCellsMap)
+			{
+				otherCellsMask |= grid.GetCandidates(cell);
+			}
+
+			short extraMask = (short)(otherCellsMask ^ comparer);
 			if (PopCount((uint)extraMask) != 1)
 			{
 				return;

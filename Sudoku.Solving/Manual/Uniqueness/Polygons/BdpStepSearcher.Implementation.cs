@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -164,7 +163,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			foreach (int region in map.Regions)
 			{
 				Cells currentMap = RegionMaps[region] & map, otherCellsMap = map - currentMap;
-				short otherMask = grid.BitwiseOrMasks(otherCellsMap);
+				short otherMask = 0;
+				foreach (int cell in otherCellsMap)
+				{
+					otherMask |= grid.GetCandidates(cell);
+				}
 
 				foreach (int[] digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 				{
@@ -284,7 +287,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			foreach (int region in map.Regions)
 			{
 				Cells currentMap = RegionMaps[region] & map, otherCellsMap = map - currentMap;
-				short otherMask = grid.BitwiseOrMasks(otherCellsMap);
+				short otherMask = 0;
+				foreach (int cell in otherCellsMap)
+				{
+					otherMask |= grid.GetCandidates(cell);
+				}
 
 				// Iterate on each possible digit combination.
 				// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values
