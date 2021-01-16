@@ -31,46 +31,74 @@ namespace Sudoku.Data.Stepping
 		/// Initializes an instance with the specified mask array.
 		/// </summary>
 		/// <param name="masks">The mask array.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public UndoableGrid(short[] masks) => _innerGrid = new(masks);
 
 		/// <summary>
 		/// Initializes an instance with the specified sudoku grid (value type).
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private UndoableGrid(in SudokuGrid grid) => _innerGrid = grid;
 
 
 		/// <summary>
 		/// Indicates whether the grid has any undo steps available.
 		/// </summary>
-		public bool HasUndoSteps => _undoStack.Count != 0;
+		public bool HasUndoSteps
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _undoStack.Count != 0;
+		}
 
 		/// <summary>
 		/// Indicates whether the grid has any redo steps available.
 		/// </summary>
-		public bool HasRedoSteps => _redoStack.Count != 0;
+		public bool HasRedoSteps
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _redoStack.Count != 0;
+		}
 
 		/// <inheritdoc cref="SudokuGrid.IsSolved"/>
-		public bool IsSolved => _innerGrid.IsSolved;
+		public bool IsSolved
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _innerGrid.IsSolved;
+		}
 
 		/// <inheritdoc cref="SudokuGrid.GivensCount"/>
-		public int GivensCount => _innerGrid.GivensCount;
+		public int GivensCount
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _innerGrid.GivensCount;
+		}
 
 		/// <inheritdoc cref="SudokuGrid.InitialMaskPinnableReference"/>
 		[CLSCompliant(false)]
-		public short* InitialMaskPinnableReference => _innerGrid.InitialMaskPinnableReference;
+		public short* InitialMaskPinnableReference
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _innerGrid.InitialMaskPinnableReference;
+		}
 
 		/// <summary>
 		/// Indicates the inner grid.
 		/// </summary>
-		public ref SudokuGrid InnerGrid => ref _innerGrid;
+		public ref SudokuGrid InnerGrid
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ref _innerGrid;
+		}
 
 
 		/// <inheritdoc cref="SudokuGrid.this[int]"/>
 		public int this[int cell]
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => _innerGrid[cell];
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				fixed (short* pGrid = _innerGrid)
@@ -86,8 +114,10 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc cref="SudokuGrid.this[int, int]"/>
 		public bool this[int cell, int digit]
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => _innerGrid[cell, digit];
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				_undoStack.Push(value ? new EliminationStep(digit, cell) : new AntiEliminationStep(digit, cell));
@@ -275,23 +305,29 @@ namespace Sudoku.Data.Stepping
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(UndoableGrid left, UndoableGrid right) =>
 			left._innerGrid == right._innerGrid;
 
 		/// <inheritdoc cref="Operators.operator =="/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(in SudokuGrid left, UndoableGrid right) => left == right._innerGrid;
 
 		/// <inheritdoc cref="Operators.operator =="/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(UndoableGrid left, in SudokuGrid right) => left._innerGrid == right;
 
 		/// <inheritdoc cref="Operators.operator !="/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(UndoableGrid left, UndoableGrid right) =>
 			left._innerGrid != right._innerGrid;
 
 		/// <inheritdoc cref="Operators.operator !="/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(in SudokuGrid left, UndoableGrid right) => left != right._innerGrid;
 
 		/// <inheritdoc cref="Operators.operator !="/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(UndoableGrid left, in SudokuGrid right) => left._innerGrid != right;
 
 
@@ -300,6 +336,7 @@ namespace Sudoku.Data.Stepping
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <remarks>The cast won't use neither box nor unbox operations.</remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static explicit operator SudokuGrid(UndoableGrid grid) => grid._innerGrid;
 
 		/// <summary>
@@ -307,6 +344,7 @@ namespace Sudoku.Data.Stepping
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <remarks>The cast won't use neither box nor unbox operations.</remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator UndoableGrid(in SudokuGrid grid) => new(grid);
 	}
 }
