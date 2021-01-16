@@ -11,15 +11,10 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxPaths_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (_listBoxPaths.SelectedIndex == -1)
-			{
-				e.Handled = true;
-				return;
-			}
-
 			if (
 				sender is ListBox
 				{
+					SelectedIndex: not -1,
 					SelectedItem: ListBoxItem { Content: StepTriplet { Item2: var n, Item3: var s } }
 				} && _analyisResult is { Steps: not null, StepGrids: not null })
 			{

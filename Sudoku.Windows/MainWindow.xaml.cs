@@ -232,7 +232,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case Key.Escape:
+				case Key.Delete:
 				{
 					// Clear focused cells.
 					ClearViews();
