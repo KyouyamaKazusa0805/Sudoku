@@ -7,22 +7,17 @@ namespace Sudoku.Data.Stepping
 	/// <summary>
 	/// Encapsulates an assignment step.
 	/// </summary>
-	/// <param name="Digit">The digit.</param>
-	/// <param name="Cell">The cell.</param>
-	/// <param name="Mask">The old mask to undo.</param>
-	/// <param name="InnerMap">The map which contains all cells that contains the digit.</param>
-	public sealed record AssignmentStep(int Digit, int Cell, short Mask, in Cells InnerMap) : IStep
+	/// <param name="Cell">The current cell to fill with a digit.</param>
+	/// <param name="Digit">The current digit to assign.</param>
+	/// <param name="Snapshot">The grid snapshot.</param>
+	public sealed record AssignmentStep(int Cell, int Digit, in SudokuGrid Snapshot) : IStep
 	{
 		/// <inheritdoc/>
 		public unsafe void UndoStepTo(UndoableGrid grid)
 		{
-			fixed (short* pGrid = grid)
+			fixed (short* pGrid = grid, pTemp = Snapshot)
 			{
-				pGrid[Cell] = Mask;
-				foreach (int peerCell in InnerMap)
-				{
-					pGrid[peerCell] &= (short)~(1 << Digit);
-				}
+				Unsafe.CopyBlock(pGrid, pTemp, sizeof(short) * 81);
 			}
 		}
 

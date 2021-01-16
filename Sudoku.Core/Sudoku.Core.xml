@@ -2310,19 +2310,17 @@
             <summary>
             Encapsulates an assignment step.
             </summary>
-            <param name="Digit">The digit.</param>
-            <param name="Cell">The cell.</param>
-            <param name="Mask">The old mask to undo.</param>
-            <param name="InnerMap">The map which contains all cells that contains the digit.</param>
+            <param name="Cell">The current cell to fill with a digit.</param>
+            <param name="Digit">The current digit to assign.</param>
+            <param name="Snapshot">The grid snapshot.</param>
         </member>
-        <member name="M:Sudoku.Data.Stepping.AssignmentStep.#ctor(System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.#ctor(System.Int32,System.Int32,Sudoku.Data.SudokuGrid@)">
             <summary>
             Encapsulates an assignment step.
             </summary>
-            <param name="Digit">The digit.</param>
-            <param name="Cell">The cell.</param>
-            <param name="Mask">The old mask to undo.</param>
-            <param name="InnerMap">The map which contains all cells that contains the digit.</param>
+            <param name="Cell">The current cell to fill with a digit.</param>
+            <param name="Digit">The current digit to assign.</param>
+            <param name="Snapshot">The grid snapshot.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.AssignmentStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
@@ -2476,13 +2474,8 @@
         </member>
         <member name="T:Sudoku.Data.Stepping.UndoableGrid">
             <summary>
-            Provides an undoable sudoku grid. This data structure is nearly same
-            as <see cref="T:Sudoku.Data.SudokuGrid"/>, but only add two methods <see cref="M:Sudoku.Data.Stepping.UndoableGrid.Undo"/>
-            and <see cref="M:Sudoku.Data.Stepping.UndoableGrid.Redo"/>.
+            Provides an undoable sudoku grid.
             </summary>
-            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
-            <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Undo"/>
-            <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Redo"/>
         </member>
         <member name="F:Sudoku.Data.Stepping.UndoableGrid._undoStack">
             <summary>

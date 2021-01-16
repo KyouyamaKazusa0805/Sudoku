@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
-using static Sudoku.Constants.Tables;
 using static Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Data.Stepping
 {
 	/// <summary>
-	/// Provides an undoable sudoku grid. This data structure is nearly same
-	/// as <see cref="SudokuGrid"/>, but only add two methods <see cref="Undo"/>
-	/// and <see cref="Redo"/>.
+	/// Provides an undoable sudoku grid.
 	/// </summary>
-	/// <seealso cref="SudokuGrid"/>
-	/// <seealso cref="Undo"/>
-	/// <seealso cref="Redo"/>
 #if DEBUG
 	[DebuggerDisplay("{ToString(\"#.\")}")]
 #endif
@@ -79,18 +73,9 @@ namespace Sudoku.Data.Stepping
 
 			set
 			{
-				var map = Cells.Empty;
-				foreach (int peerCell in PeerMaps[cell])
-				{
-					if (GetStatus(peerCell) == CellStatus.Empty)
-					{
-						map.AddAnyway(peerCell);
-					}
-				}
-
 				fixed (short* pGrid = _innerGrid)
 				{
-					_undoStack.Push(new AssignmentStep(value, cell, pGrid[cell], map));
+					_undoStack.Push(new AssignmentStep(cell, value, _innerGrid));
 				}
 
 				// Do step.
@@ -290,22 +275,24 @@ namespace Sudoku.Data.Stepping
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(UndoableGrid left, UndoableGrid right) => left.Equals(right);
+		public static bool operator ==(UndoableGrid left, UndoableGrid right) =>
+			left._innerGrid == right._innerGrid;
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in SudokuGrid left, UndoableGrid right) => right.Equals(left);
+		public static bool operator ==(in SudokuGrid left, UndoableGrid right) => left == right._innerGrid;
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(UndoableGrid left, in SudokuGrid right) => left.Equals(right);
+		public static bool operator ==(UndoableGrid left, in SudokuGrid right) => left._innerGrid == right;
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(UndoableGrid left, UndoableGrid right) => !(left == right);
+		public static bool operator !=(UndoableGrid left, UndoableGrid right) =>
+			left._innerGrid != right._innerGrid;
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in SudokuGrid left, UndoableGrid right) => !(left == right);
+		public static bool operator !=(in SudokuGrid left, UndoableGrid right) => left != right._innerGrid;
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(UndoableGrid left, in SudokuGrid right) => !(left == right);
+		public static bool operator !=(UndoableGrid left, in SudokuGrid right) => left._innerGrid != right;
 
 
 		/// <summary>
