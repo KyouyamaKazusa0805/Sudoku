@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sudoku.Windows": {
+      "commandName": "Project",
+      "commandLineArgs": "--grid %empty"
+    }
+  }
+}

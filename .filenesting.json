@@ -1,80 +1,81 @@
 /*
-	This file stores all file nesting rules based on this whole solution.
+  This file stores all file nesting rules based on this whole solution.
 
-	For more information, please visit this website:
-	https://docs.microsoft.com/en-us/visualstudio/ide/file-nesting-solution-explorer?view=vs-2019
-	for details.
+  For more information, please visit this website:
+  https://docs.microsoft.com/en-us/visualstudio/ide/file-nesting-solution-explorer?view=vs-2019
+  for details.
 
-	Visual Studio preview version supports custom file nesting.
+  Visual Studio preview version supports custom file nesting.
 */
 {
-	"dependentFileProviders": {
-		"add": {
-			"fileToFile": {
-				"add": {
-					"BdpType1StepInfo.cs": [ "BdpStepInfo.cs" ],
-					"BdpType2StepInfo.cs": [ "BdpStepInfo.cs" ],
-					"BdpType3StepInfo.cs": [ "BdpStepInfo.cs" ],
-					"BdpType4StepInfo.cs": [ "BdpStepInfo.cs" ],
-					"BivalueOddagonType1StepInfo.cs": [ "BivalueOddagonStepInfo.cs" ],
-					"BivalueOddagonType2StepInfo.cs": [ "BivalueOddagonStepInfo.cs" ],
-					"BivalueOddagonType3StepInfo.cs": [ "BivalueOddagonStepInfo.cs" ],
-					"BivalueOddagonType4StepInfo.cs": [ "BivalueOddagonStepInfo.cs" ],
-					"BugMultipleStepInfo.cs": [ "BugStepInfo.cs" ],
-					"BugMultipleWithFcStepInfo.cs": [ "BugStepInfo.cs" ],
-					"BugType1StepInfo.cs": [ "BugStepInfo.cs" ],
-					"BugType2StepInfo.cs": [ "BugStepInfo.cs" ],
-					"BugType3StepInfo.cs": [ "BugStepInfo.cs" ],
-					"BugType4StepInfo.cs": [ "BugStepInfo.cs" ],
-					"BugXzStepInfo.cs": [ "BugStepInfo.cs" ],
-					"HiddenUrStepInfo.cs": [ "UrStepInfo.cs" ],
-					"MainWindow.Button.cs": [ "MainWindow.xaml" ],
-					"MainWindow.ComboBox.cs": [ "MainWindow.xaml" ],
-					"MainWindow.ContextMenu.cs": [ "MainWindow.xaml" ],
-					"MainWindow.Fields.cs": [ "MainWindow.xaml" ],
-					"MainWindow.GridSplitter.cs": [ "MainWindow.xaml" ],
-					"MainWindow.Image.cs": [ "MainWindow.xaml" ],
-					"MainWindow.ListBox.cs": [ "MainWindow.xaml" ],
-					"MainWindow.MenuItem.cs": [ "MainWindow.xaml" ],
-					"MainWindow.Properties.cs": [ "MainWindow.xaml" ],
-					"MainWindow.TabControl.cs": [ "MainWindow.xaml" ],
-					"MainWindow.TextBox.cs": [ "MainWindow.xaml" ],
-					"MainWindow.xaml.cs": [ "MainWindow.xaml" ],
-					"QdpLockedTypeStepInfo.cs": [ "QdpStepInfo.cs" ],
-					"QdpType1StepInfo.cs": [ "QdpStepInfo.cs" ],
-					"QdpType2StepInfo.cs": [ "QdpStepInfo.cs" ],
-					"QdpType3StepInfo.cs": [ "QdpStepInfo.cs" ],
-					"QdpType4StepInfo.cs": [ "QdpStepInfo.cs" ],
-					"ReverseBugType1StepInfo.cs": [ "ReverseBugStepInfo.cs" ],
-					"ReverseBugType2StepInfo.cs": [ "ReverseBugStepInfo.cs" ],
-					"ReverseBugType3StepInfo.cs": [ "ReverseBugStepInfo.cs" ],
-					"ReverseBugType4StepInfo.cs": [ "ReverseBugStepInfo.cs" ],
-					"UlType1StepInfo.cs": [ "UlStepInfo.cs" ],
-					"UlType2StepInfo.cs": [ "UlStepInfo.cs" ],
-					"UlType3StepInfo.cs": [ "UlStepInfo.cs" ],
-					"UlType4StepInfo.cs": [ "UlStepInfo.cs" ],
-					"Ur2DOr3XStepInfo.cs": [ "UrStepInfo.cs" ],
-					"UrPlusStepInfo.cs": [ "UrStepInfo.cs" ],
-					"UrType1StepInfo.cs": [ "UrStepInfo.cs" ],
-					"UrType2StepInfo.cs": [ "UrStepInfo.cs" ],
-					"UrType3StepInfo.cs": [ "UrStepInfo.cs" ],
-					"UrWithSdcStepInfo.cs": [ "UrStepInfo.cs" ],
-					"UrWithWingStepInfo.cs": [ "UrStepInfo.cs" ],
-					"UsType1StepInfo.cs": [ "UsStepInfo.cs" ],
-					"UsType2StepInfo.cs": [ "UsStepInfo.cs" ],
-					"UsType3StepInfo.cs": [ "UsStepInfo.cs" ],
-					"UsType4StepInfo.cs": [ "UsStepInfo.cs" ],
-					"XrType1StepInfo.cs": [ "XrStepInfo.cs" ],
-					"XrType2StepInfo.cs": [ "XrStepInfo.cs" ],
-					"XrType3StepInfo.cs": [ "XrStepInfo.cs" ],
-					"XrType4StepInfo.cs": [ "XrStepInfo.cs" ]
-				}
-			},
-			"pathSegment": {
-				"add": {
-					".cs": [ ".cs" ]
-				}
-			}
-		}
-	}
+  "dependentFileProviders": {
+    "add": {
+      "fileToFile": {
+        "add": {
+          "App.InternalMethods.cs": [ "App.xaml" ],
+          "BdpType1StepInfo.cs": [ "BdpStepInfo.cs" ],
+          "BdpType2StepInfo.cs": [ "BdpStepInfo.cs" ],
+          "BdpType3StepInfo.cs": [ "BdpStepInfo.cs" ],
+          "BdpType4StepInfo.cs": [ "BdpStepInfo.cs" ],
+          "BivalueOddagonType1StepInfo.cs": [ "BivalueOddagonStepInfo.cs" ],
+          "BivalueOddagonType2StepInfo.cs": [ "BivalueOddagonStepInfo.cs" ],
+          "BivalueOddagonType3StepInfo.cs": [ "BivalueOddagonStepInfo.cs" ],
+          "BivalueOddagonType4StepInfo.cs": [ "BivalueOddagonStepInfo.cs" ],
+          "BugMultipleStepInfo.cs": [ "BugStepInfo.cs" ],
+          "BugMultipleWithFcStepInfo.cs": [ "BugStepInfo.cs" ],
+          "BugType1StepInfo.cs": [ "BugStepInfo.cs" ],
+          "BugType2StepInfo.cs": [ "BugStepInfo.cs" ],
+          "BugType3StepInfo.cs": [ "BugStepInfo.cs" ],
+          "BugType4StepInfo.cs": [ "BugStepInfo.cs" ],
+          "BugXzStepInfo.cs": [ "BugStepInfo.cs" ],
+          "HiddenUrStepInfo.cs": [ "UrStepInfo.cs" ],
+          "MainWindow.Button.cs": [ "MainWindow.xaml" ],
+          "MainWindow.ComboBox.cs": [ "MainWindow.xaml" ],
+          "MainWindow.ContextMenu.cs": [ "MainWindow.xaml" ],
+          "MainWindow.Fields.cs": [ "MainWindow.xaml" ],
+          "MainWindow.GridSplitter.cs": [ "MainWindow.xaml" ],
+          "MainWindow.Image.cs": [ "MainWindow.xaml" ],
+          "MainWindow.ListBox.cs": [ "MainWindow.xaml" ],
+          "MainWindow.MenuItem.cs": [ "MainWindow.xaml" ],
+          "MainWindow.Properties.cs": [ "MainWindow.xaml" ],
+          "MainWindow.TabControl.cs": [ "MainWindow.xaml" ],
+          "MainWindow.TextBox.cs": [ "MainWindow.xaml" ],
+          "MainWindow.xaml.cs": [ "MainWindow.xaml" ],
+          "QdpLockedTypeStepInfo.cs": [ "QdpStepInfo.cs" ],
+          "QdpType1StepInfo.cs": [ "QdpStepInfo.cs" ],
+          "QdpType2StepInfo.cs": [ "QdpStepInfo.cs" ],
+          "QdpType3StepInfo.cs": [ "QdpStepInfo.cs" ],
+          "QdpType4StepInfo.cs": [ "QdpStepInfo.cs" ],
+          "ReverseBugType1StepInfo.cs": [ "ReverseBugStepInfo.cs" ],
+          "ReverseBugType2StepInfo.cs": [ "ReverseBugStepInfo.cs" ],
+          "ReverseBugType3StepInfo.cs": [ "ReverseBugStepInfo.cs" ],
+          "ReverseBugType4StepInfo.cs": [ "ReverseBugStepInfo.cs" ],
+          "UlType1StepInfo.cs": [ "UlStepInfo.cs" ],
+          "UlType2StepInfo.cs": [ "UlStepInfo.cs" ],
+          "UlType3StepInfo.cs": [ "UlStepInfo.cs" ],
+          "UlType4StepInfo.cs": [ "UlStepInfo.cs" ],
+          "Ur2DOr3XStepInfo.cs": [ "UrStepInfo.cs" ],
+          "UrPlusStepInfo.cs": [ "UrStepInfo.cs" ],
+          "UrType1StepInfo.cs": [ "UrStepInfo.cs" ],
+          "UrType2StepInfo.cs": [ "UrStepInfo.cs" ],
+          "UrType3StepInfo.cs": [ "UrStepInfo.cs" ],
+          "UrWithSdcStepInfo.cs": [ "UrStepInfo.cs" ],
+          "UrWithWingStepInfo.cs": [ "UrStepInfo.cs" ],
+          "UsType1StepInfo.cs": [ "UsStepInfo.cs" ],
+          "UsType2StepInfo.cs": [ "UsStepInfo.cs" ],
+          "UsType3StepInfo.cs": [ "UsStepInfo.cs" ],
+          "UsType4StepInfo.cs": [ "UsStepInfo.cs" ],
+          "XrType1StepInfo.cs": [ "XrStepInfo.cs" ],
+          "XrType2StepInfo.cs": [ "XrStepInfo.cs" ],
+          "XrType3StepInfo.cs": [ "XrStepInfo.cs" ],
+          "XrType4StepInfo.cs": [ "XrStepInfo.cs" ]
+        }
+      },
+      "pathSegment": {
+        "add": {
+          ".cs": [ ".cs" ]
+        }
+      }
+    }
+  }
 }

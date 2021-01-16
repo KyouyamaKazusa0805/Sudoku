@@ -31,6 +31,9 @@
             App
             </summary>
         </member>
+        <member name="M:Sudoku.Windows.App.Application_Startup(System.Object,System.Windows.StartupEventArgs)">
+            <inheritdoc cref="M:System.Windows.Application.OnStartup(System.Windows.StartupEventArgs)"/>
+        </member>
         <member name="M:Sudoku.Windows.App.InitializeComponent">
             <summary>
             InitializeComponent
@@ -1387,7 +1390,13 @@
             <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+        </member>
+        <member name="M:Sudoku.Windows.MainWindow.#ctor(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Initializes an instance with the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.OnInitialized(System.EventArgs)">
             <inheritdoc/>

@@ -36,9 +36,15 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		#region Constructor
-		/// <inheritdoc cref="DefaultConstructor"/>
+		#region Constructors
+		/// <inheritdoc cref="StaticConstructor"/>
 		public MainWindow() => InitializeComponent();
+
+		/// <summary>
+		/// Initializes an instance with the specified grid.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		public MainWindow(in SudokuGrid grid) : this() => Puzzle = grid;
 		#endregion
 
 
