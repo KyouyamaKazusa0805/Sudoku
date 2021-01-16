@@ -916,6 +916,12 @@
         <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor14_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
+        <member name="M:Sudoku.Windows.MainWindow.ButtonStartDrawingChain_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.MainWindow.ButtonEndDrawingChain_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
         <member name="M:Sudoku.Windows.MainWindow.ComboBoxMode_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
         </member>
@@ -1036,6 +1042,11 @@
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Windows.MainWindow._startCand">
+            <summary>
+            Indicates the start candidate that is used for drawing a chain.
+            </summary>
+        </member>
         <member name="F:Sudoku.Windows.MainWindow._currentViewIndex">
             <summary>
             The current view index.
@@ -1148,6 +1159,9 @@
         </member>
         <member name="M:Sudoku.Windows.MainWindow.ImageGrid_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.MouseRightButtonDown(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.MainWindow.ImageGrid_MouseLeftButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <inheritdoc cref="!:Events.MouseLeftButtonUp(object?, EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.ImageGrid_MouseRightButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.MouseRightButtonUp(System.Object,System.EventArgs)"/>

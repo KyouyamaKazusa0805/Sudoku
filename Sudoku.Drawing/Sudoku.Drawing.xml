@@ -571,6 +571,12 @@
             </summary>
             <param name="region">The region.</param>
         </member>
+        <member name="M:Sudoku.Drawing.MutableView.RemoveLink(System.Int32)">
+            <summary>
+            Remove the link from the list, where the link is specified as a start candidate.
+            </summary>
+            <param name="startCandidate">The start candidate to check.</param>
+        </member>
         <member name="M:Sudoku.Drawing.MutableView.RemoveLink(Sudoku.Data.Link@)">
             <summary>
             Remove the link from the list.
@@ -609,6 +615,14 @@
             </summary>
             <param name="region">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.ContainsLink(System.Int32)">
+            <summary>
+            Indicates whether the list contains the specified link where the start candidate is same
+            as the argument <paramref name="startCandidate"/>.
+            </summary>
+            <param name="startCandidate">The start candidate.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.ContainsLink(Sudoku.Data.Link@)">
             <summary>

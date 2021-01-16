@@ -73,6 +73,13 @@ namespace Sudoku.DocComments
 		public void MouseRightButtonDown(object? sender, EventArgs e) => throw new NotImplementedException();
 
 		/// <summary>
+		/// Trigger execution when the left button in mouse is pressed up.
+		/// </summary>
+		/// <param name="sender">The control to trigger <c>MouseLeftButtonUp</c> event.</param>
+		/// <param name="e">The event information, whose value is specified as a parameter.</param>
+		public void MouseLeftButtonUp(object? sender, EventArgs e) => throw new NotImplementedException();
+
+		/// <summary>
 		/// Trigger execution when the right button in mouse is pressed up.
 		/// </summary>
 		/// <param name="sender">The control to trigger <c>MouseRightButtonUp</c> event.</param>

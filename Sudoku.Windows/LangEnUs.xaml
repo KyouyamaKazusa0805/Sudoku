@@ -133,6 +133,8 @@
 	<sys:String x:Key="_labelChooseColorForCandidates">Choose color for candidates:</sys:String>
 	<sys:String x:Key="_labelChooseColorForRegions">Choose color for regions:</sys:String>
 	<sys:String x:Key="_buttonColorReset">Reset!</sys:String>
+	<sys:String x:Key="_buttonStartDrawingChain">Start drawing chains!</sys:String>
+	<sys:String x:Key="_buttonEndDrawingChain">End drawing chains!</sys:String>
 
 	<sys:String x:Key="TooltipUndo">Undo a step.</sys:String>
 	<sys:String x:Key="TooltipRedo">Redo a step.</sys:String>

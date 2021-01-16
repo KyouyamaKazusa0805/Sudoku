@@ -26,27 +26,27 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates all cells used.
 		/// </summary>
-		public ICollection<DrawingInfo>? Cells { get; init; }
+		public ICollection<DrawingInfo>? Cells { get; set; }
 
 		/// <summary>
 		/// Indicates all candidates used.
 		/// </summary>
-		public ICollection<DrawingInfo>? Candidates { get; init; }
+		public ICollection<DrawingInfo>? Candidates { get; set; }
 
 		/// <summary>
 		/// Indicates all regions used.
 		/// </summary>
-		public ICollection<DrawingInfo>? Regions { get; init; }
+		public ICollection<DrawingInfo>? Regions { get; set; }
 
 		/// <summary>
 		/// Indicates all links used.
 		/// </summary>
-		public ICollection<Link>? Links { get; init; }
+		public ICollection<Link>? Links { get; set; }
 
 		/// <summary>
 		/// Indicates all direct lines.
 		/// </summary>
-		public ICollection<(Cells Start, Cells End)>? DirectLines { get; init; }
+		public ICollection<(Cells Start, Cells End)>? DirectLines { get; set; }
 
 
 		/// <summary>
@@ -54,34 +54,36 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="cell">The cell.</param>
-		public void AddCell(long id, int cell) => Cells?.Add(new(id, cell));
+		public void AddCell(long id, int cell) => (Cells ??= new List<DrawingInfo>()).Add(new(id, cell));
 
 		/// <summary>
 		/// Add a candidate into the list.
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="candidate">The cell.</param>
-		public void AddCandidate(long id, int candidate) => Candidates?.Add(new(id, candidate));
+		public void AddCandidate(long id, int candidate) =>
+			(Candidates ??= new List<DrawingInfo>()).Add(new(id, candidate));
 
 		/// <summary>
 		/// Add a region into the list.
 		/// </summary>
 		/// <param name="id">The color ID.</param>
 		/// <param name="region">The region.</param>
-		public void AddRegion(long id, int region) => Regions?.Add(new(id, region));
+		public void AddRegion(long id, int region) => (Regions ??= new List<DrawingInfo>()).Add(new(id, region));
 
 		/// <summary>
 		/// Add a link into the list.
 		/// </summary>
 		/// <param name="inference">The link.</param>
-		public void AddLink(in Link inference) => Links?.Add(inference);
+		public void AddLink(in Link inference) => (Links ??= new List<Link>()).Add(inference);
 
 		/// <summary>
 		/// Add a direct link into the list.
 		/// </summary>
 		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
 		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
-		public void AddDirectLine(in Cells start, in Cells end) => DirectLines?.Add((start, end));
+		public void AddDirectLine(in Cells start, in Cells end) =>
+			(DirectLines ??= new List<(Cells, Cells)>()).Add((start, end));
 
 		/// <summary>
 		/// Remove the cell from the list.
@@ -102,6 +104,36 @@ namespace Sudoku.Drawing
 		/// <param name="region">The region.</param>
 		public void RemoveRegion(int region) =>
 			(Regions as List<DrawingInfo>)?.RemoveAll(p => p.Value == region);
+
+		/// <summary>
+		/// Remove the link from the list, where the link is specified as a start candidate.
+		/// </summary>
+		/// <param name="startCandidate">The start candidate to check.</param>
+		public void RemoveLink(int startCandidate)
+		{
+			if (Links is null)
+			{
+				return;
+			}
+
+			Link? linkToRemove = null;
+			foreach (var link in Links)
+			{
+				var (start, _) = link;
+				if (start == startCandidate)
+				{
+					linkToRemove = link;
+					break;
+				}
+			}
+
+			if (linkToRemove is not { } removeOne)
+			{
+				return;
+			}
+
+			Links.Remove(removeOne);
+		}
 
 		/// <summary>
 		/// Remove the link from the list.
@@ -197,6 +229,30 @@ namespace Sudoku.Drawing
 			}
 
 		Returns:
+			return false;
+		}
+
+		/// <summary>
+		/// Indicates whether the list contains the specified link where the start candidate is same
+		/// as the argument <paramref name="startCandidate"/>.
+		/// </summary>
+		/// <param name="startCandidate">The start candidate.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public bool ContainsLink(int startCandidate)
+		{
+			if (Links is null)
+			{
+				return false;
+			}
+
+			foreach (var (start, _) in Links)
+			{
+				if (start == startCandidate)
+				{
+					return true;
+				}
+			}
+
 			return false;
 		}
 

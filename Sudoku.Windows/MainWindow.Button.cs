@@ -460,5 +460,19 @@ namespace Sudoku.Windows
 			_currentColor = 9;
 			_customDrawingMode = 2;
 		}
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void ButtonStartDrawingChain_Click(object sender, RoutedEventArgs e)
+		{
+			_customDrawingMode = 3;
+			_startCand = -1;
+		}
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void ButtonEndDrawingChain_Click(object sender, RoutedEventArgs e)
+		{
+			_customDrawingMode = -1;
+			_startCand = -1;
+		}
 	}
 }

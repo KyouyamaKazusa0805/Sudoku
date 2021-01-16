@@ -59,6 +59,11 @@ namespace Sudoku.Windows
 		private int _customDrawingMode = -1;
 
 		/// <summary>
+		/// Indicates the start candidate that is used for drawing a chain.
+		/// </summary>
+		private int _startCand = -1;
+
+		/// <summary>
 		/// The current view index.
 		/// </summary>
 		private int _currentViewIndex = -1;

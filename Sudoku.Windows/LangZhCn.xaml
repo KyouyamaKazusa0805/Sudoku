@@ -133,6 +133,8 @@
 	<sys:String x:Key="_labelChooseColorForCandidates">为候选数选择颜色：</sys:String>
 	<sys:String x:Key="_labelChooseColorForRegions">为区域选择颜色：</sys:String>
 	<sys:String x:Key="_buttonColorReset">重置颜色！</sys:String>
+	<sys:String x:Key="_buttonStartDrawingChain">开始画链！</sys:String>
+	<sys:String x:Key="_buttonEndDrawingChain">结束画链！</sys:String>
 
 	<sys:String x:Key="TooltipUndo">撤销当前步骤。</sys:String>
 	<sys:String x:Key="TooltipRedo">将后一个步骤还原。</sys:String>

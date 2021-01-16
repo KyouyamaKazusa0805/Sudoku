@@ -34,7 +34,7 @@ namespace Sudoku.Windows
 				{
 					case ModifierKeys.None:
 					{
-						if (_currentColor == int.MinValue)
+						if (_customDrawingMode != 3 && _currentColor == int.MinValue)
 						{
 							_focusedCells.Clear();
 							_focusedCells.AddAnyway(getCell());
@@ -56,16 +56,22 @@ namespace Sudoku.Windows
 
 									break;
 								}
-								case 1 when getCandidate() is var candidate and not (< 0 or >= 729): // Candidate.
+								case 1 when getCandidate() is var cand and >= 0 and < 729: // Candidate.
 								{
-									if (_view.ContainsCandidate(candidate))
+									if (_view.ContainsCandidate(cand))
 									{
-										_view.RemoveCandidate(candidate);
+										_view.RemoveCandidate(cand);
 									}
 									else
 									{
-										_view.AddCandidate(_currentColor, candidate);
+										_view.AddCandidate(_currentColor, cand);
 									}
+
+									break;
+								}
+								case 3 when getCandidate() is var cand and >= 0 and < 729: // Chain.
+								{
+									_startCand = cand;
 
 									break;
 								}
@@ -171,10 +177,48 @@ namespace Sudoku.Windows
 				.GetValue(@this)!;
 		}
 
+		/// <inheritdoc cref="Events.MouseLeftButtonUp(object?, EventArgs)"/>
+		private void ImageGrid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			if (sender is not Image image || _customDrawingMode == -1)
+			{
+				e.Handled = true;
+				return;
+			}
+
+			int getCandidate() => _pointConverter.GetCandidate(e.GetPosition(image).ToDPointF());
+
+			switch (Keyboard.Modifiers)
+			{
+				case ModifierKeys.None:
+				{
+					switch (_customDrawingMode)
+					{
+						case 3 when getCandidate() is var cand and >= 0 and < 729 && _startCand != -1: // Chain.
+						{
+							_view.AddLink(new(_startCand, cand, LinkType.Strong));
+
+							_startCand = -1;
+
+							break;
+						}
+					}
+
+					_currentPainter.FocusedCells = null;
+					_currentPainter.CustomView = _view;
+					_currentPainter.Conclusions = null;
+
+					UpdateImageGrid();
+
+					break;
+				}
+			}
+		}
+
 		/// <inheritdoc cref="Events.MouseRightButtonUp(object?, EventArgs)"/>
 		private void ImageGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
 		{
-			if ((sender, _customDrawingMode) is not (Image image, not -1))
+			if (sender is not Image image || _customDrawingMode == -1)
 			{
 				e.Handled = true;
 				return;
@@ -206,13 +250,7 @@ namespace Sudoku.Windows
 								int c2 = RegionLabel.Column.ToRegion(second);
 								int b1 = RegionLabel.Block.ToRegion(first);
 								int b2 = RegionLabel.Block.ToRegion(second);
-								int region = (r1 == r2, c1 == c2, b1 == b2) switch
-								{
-									(true, _, _) => r1,
-									(_, true, _) => c1,
-									(_, _, true) => b1,
-									_ => -1
-								};
+								int region = r1 == r2 ? r1 : c1 == c2 ? c1 : b1 == b2 ? b1 : -1;
 								if (region != -1)
 								{
 									if (_view.ContainsRegion(region))
@@ -257,12 +295,11 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			Action<object, RoutedEventArgs> a =
-				_comboBoxMode.SelectedIndex switch
-				{
-					0 => MenuItemGenerateWithSymmetry_Click,
-					1 => MenuItemGenerateHardPattern_Click
-				};
+			Action<object, RoutedEventArgs> a = _comboBoxMode.SelectedIndex switch
+			{
+				0 => MenuItemGenerateWithSymmetry_Click,
+				1 => MenuItemGenerateHardPattern_Click
+			};
 
 			a(sender, e);
 		}

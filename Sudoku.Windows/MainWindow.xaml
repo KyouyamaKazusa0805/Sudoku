@@ -102,7 +102,8 @@
 						  x:Name="_menuItemEditCopy"
 						  Click="MenuItemEditCopy_Click"/>
 				<MenuItem Header="{DynamicResource _menuItemEditCopyAs}">
-					<MenuItem Header="{DynamicResource _menuItemEditCopyCurrentGrid}" InputGestureText="Ctrl + Shift + C"
+					<MenuItem Header="{DynamicResource _menuItemEditCopyCurrentGrid}"
+							  InputGestureText="Ctrl + Shift + C"
 							  x:Name="_menuItemEditCopyCurrentGrid"
 							  Click="MenuItemEditCopyCurrentGrid_Click"/>
 					<MenuItem Header="{DynamicResource _menuItemEditCopyHodokuLibrary}"
@@ -366,6 +367,7 @@
 				   x:Name="_imageGrid" Grid.Row="0" Grid.Column="0" Width="600" Height="600"
 				   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
 				   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"
+				   MouseLeftButtonUp="ImageGrid_MouseLeftButtonUp"
 				   MouseRightButtonUp="ImageGrid_MouseRightButtonUp"
 				   ContextMenuOpening="ImageGrid_ContextMenuOpening"
 				   Panel.ZIndex="1">
@@ -583,7 +585,8 @@
 							<RowDefinition/>
 							<RowDefinition/>
 							<RowDefinition/>
-							<RowDefinition Height="3*"/>
+							<RowDefinition/>
+							<RowDefinition Height="2*"/>
 						</Grid.RowDefinitions>
 						<Grid Grid.Row="0">
 							<Grid.RowDefinitions>
@@ -773,6 +776,22 @@
 									HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
 									Background="White"
 									Click="ButtonCellReset_Click"/>
+						</Grid>
+						<Grid Grid.Row="3">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Button x:Name="_buttonStartDrawingChain"
+									Content="{DynamicResource _buttonStartDrawingChain}"
+									Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+									Margin="150,0,0,0"
+									Click="ButtonStartDrawingChain_Click"/>
+							<Button x:Name="_buttonEndDrawingChain"
+									Content="{DynamicResource _buttonEndDrawingChain}"
+									Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+									Margin="0,0,150,0"
+									Click="ButtonEndDrawingChain_Click"/>
 						</Grid>
 					</Grid>
 				</TabItem>

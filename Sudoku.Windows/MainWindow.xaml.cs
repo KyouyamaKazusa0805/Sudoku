@@ -125,13 +125,15 @@ namespace Sudoku.Windows
 		{
 			base.OnKeyDown(e);
 
+			int getCell() => _pointConverter.GetCell(Mouse.GetPosition(_imageGrid).ToDPointF());
+			int getCandidate() => _pointConverter.GetCandidate(Mouse.GetPosition(_imageGrid).ToDPointF());
+
 			// Get all cases for being pressed keys.
 			switch (e.Key)
 			{
 				case var key
 				when key.IsDigit()
-				&& _pointConverter.GetCell(Mouse.GetPosition(_imageGrid).ToDPointF()) is var cell and not -1
-				&& _puzzle.GetStatus(cell) != CellStatus.Given:
+				&& getCell() is var cell and not -1 && _puzzle.GetStatus(cell) != CellStatus.Given:
 				{
 					int digit = e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
 					switch (Keyboard.Modifiers)
@@ -232,6 +234,17 @@ namespace Sudoku.Windows
 					UpdateImageGrid();
 
 					_textBoxInfo.ClearValue(TextBox.TextProperty);
+
+					break;
+				}
+				case Key.Oem2 when getCandidate() is var cand and >= 0 and < 729: // Oem2: slash key '/'.
+				{
+					// Remove link.
+					_startCand = -1;
+
+					_view.RemoveLink(cand);
+
+					UpdateImageGrid();
 
 					break;
 				}
