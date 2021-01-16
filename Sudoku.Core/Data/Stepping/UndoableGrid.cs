@@ -60,21 +60,27 @@ namespace Sudoku.Data.Stepping
 			get => _redoStack.Count != 0;
 		}
 
-		/// <inheritdoc cref="SudokuGrid.IsSolved"/>
+		/// <summary>
+		/// Indicates whether the grid has been already solved.
+		/// </summary>
 		public bool IsSolved
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => _innerGrid.IsSolved;
 		}
 
-		/// <inheritdoc cref="SudokuGrid.GivensCount"/>
+		/// <summary>
+		/// Indicates the number of given cells.
+		/// </summary>
 		public int GivensCount
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => _innerGrid.GivensCount;
 		}
 
-		/// <inheritdoc cref="SudokuGrid.InitialMaskPinnableReference"/>
+		/// <summary>
+		/// Indicates the pointer that points to the initial grid field of the inner grid.
+		/// </summary>
 		[CLSCompliant(false)]
 		public short* InitialMaskPinnableReference
 		{
@@ -92,7 +98,12 @@ namespace Sudoku.Data.Stepping
 		}
 
 
-		/// <inheritdoc cref="SudokuGrid.this[int]"/>
+		/// <summary>
+		/// Get the result digit of a specified cell, or set the specified digit to a cell.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <value>The digit you want to set.</value>
+		/// <returns>The result digit.</returns>
 		public int this[int cell]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -111,7 +122,16 @@ namespace Sudoku.Data.Stepping
 			}
 		}
 
-		/// <inheritdoc cref="SudokuGrid.this[int, int]"/>
+		/// <summary>
+		/// Get whether the specified candidate is currently set, or set the status to a candidate.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <param name="digit">The digit.</param>
+		/// <value>
+		/// The <see cref="bool"/> status you want to set. If <see langword="false"/>, the candidate
+		/// should be deleted.
+		/// </value>
+		/// <returns>The <see cref="bool"/> result indicating whether the candidate is set.</returns>
 		public bool this[int cell, int digit]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

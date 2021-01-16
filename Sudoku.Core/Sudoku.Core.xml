@@ -2515,13 +2515,19 @@
             </summary>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.IsSolved">
-            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.IsSolved"/>
+            <summary>
+            Indicates whether the grid has been already solved.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.GivensCount">
-            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.GivensCount"/>
+            <summary>
+            Indicates the number of given cells.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.InitialMaskPinnableReference">
-            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.InitialMaskPinnableReference"/>
+            <summary>
+            Indicates the pointer that points to the initial grid field of the inner grid.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.InnerGrid">
             <summary>
@@ -2529,10 +2535,24 @@
             </summary>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.Item(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.Value(System.Int32)"/>
+            <summary>
+            Get the result digit of a specified cell, or set the specified digit to a cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <value>The digit you want to set.</value>
+            <returns>The result digit.</returns>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.Item(System.Int32,System.Int32)">
-            <inheritdoc cref="P:Sudoku.Data.SudokuGrid.Value(System.Int32,System.Int32)"/>
+            <summary>
+            Get whether the specified candidate is currently set, or set the status to a candidate.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <value>
+            The <see cref="T:System.Boolean"/> status you want to set. If <see langword="false"/>, the candidate
+            should be deleted.
+            </value>
+            <returns>The <see cref="T:System.Boolean"/> result indicating whether the candidate is set.</returns>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Fix">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.Fix"/>
