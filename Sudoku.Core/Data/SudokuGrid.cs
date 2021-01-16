@@ -160,15 +160,10 @@ namespace Sudoku.Data
 		{
 			// Initializes the empty grid.
 			Empty = new();
-			fixed (short* p = Empty._values)
+			fixed (short* p = Empty._values, q = Empty._initialValues)
 			{
 				int i = 0;
-				for (short* ptr = p; i < Length; i++, *ptr++ = DefaultMask) ;
-			}
-			fixed (short* p = Empty._initialValues)
-			{
-				int i = 0;
-				for (short* ptr = p; i < Length; i++, *ptr++ = DefaultMask) ;
+				for (short* ptrP = p, ptrQ = q; i < Length; *ptrP++ = *ptrQ++ = DefaultMask, i++) ;
 			}
 
 			// Initializes events.
