@@ -69,8 +69,15 @@ namespace Sudoku.Windows
 
 									break;
 								}
+								case 2 when getCell() is var cell and >= 0 and < 81: // Region.
+								{
+									_selectedCellsWhileDrawingRegions.AddAnyway(cell);
+
+									break;
+								}
 								case 3 when getCandidate() is var cand and >= 0 and < 729: // Chain.
 								{
+									// Normal mode: record the current candidate.
 									_startCand = cand;
 
 									break;
@@ -131,11 +138,8 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.MouseRightButtonDown(object?, EventArgs)"/>
 		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			int cell = _pointConverter.GetCell((_currentRightClickPos = e.GetPosition(_imageGrid)).ToDPointF());
-			_selectedCellsWhileDrawingRegions.AddAnyway(cell);
-
 			// Disable all menu items.
-			var flags = BindingFlags.NonPublic | BindingFlags.Instance;
+			const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
 			for (int i = 0; i < 9; i++)
 			{
 				s(this, flags, i).Visibility = Visibility.Collapsed;
@@ -143,6 +147,7 @@ namespace Sudoku.Windows
 			}
 
 			// Check whether the cell is invalid.
+			int cell = _pointConverter.GetCell((_currentRightClickPos = e.GetPosition(_imageGrid)).ToDPointF());
 			if (cell == -1)
 			{
 				e.Handled = true;
@@ -157,7 +162,8 @@ namespace Sudoku.Windows
 			}
 
 			// Then enable some of them.
-			foreach (int i in _puzzle.GetCandidateMask(_pointConverter.GetCell(_currentRightClickPos.ToDPointF())))
+			int chosenCell = _pointConverter.GetCell(_currentRightClickPos.ToDPointF());
+			foreach (int i in _puzzle.GetCandidates(chosenCell))
 			{
 				s(this, flags, i).Visibility = Visibility.Visible;
 				d(this, flags, i).Visibility = Visibility.Visible;
@@ -186,6 +192,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
+			int getCell() => _pointConverter.GetCell(e.GetPosition(image).ToDPointF());
 			int getCandidate() => _pointConverter.GetCandidate(e.GetPosition(image).ToDPointF());
 
 			switch (Keyboard.Modifiers)
@@ -194,6 +201,54 @@ namespace Sudoku.Windows
 				{
 					switch (_customDrawingMode)
 					{
+						case 2 when _customDrawingMode != -1: // Region.
+						{
+							int cell = getCell();
+							_selectedCellsWhileDrawingRegions.AddAnyway(cell);
+
+							if (_selectedCellsWhileDrawingRegions.Count != 2)
+							{
+								e.Handled = true;
+								return;
+							}
+
+							switch (Keyboard.Modifiers)
+							{
+								case ModifierKeys.None when _currentColor == int.MinValue:
+								{
+									_focusedCells.Clear();
+									_focusedCells.AddAnyway(cell);
+
+									break;
+								}
+							}
+
+							int first = _selectedCellsWhileDrawingRegions[0];
+							int second = _selectedCellsWhileDrawingRegions[1];
+							int r1 = RegionLabel.Row.ToRegion(first);
+							int r2 = RegionLabel.Row.ToRegion(second);
+							int c1 = RegionLabel.Column.ToRegion(first);
+							int c2 = RegionLabel.Column.ToRegion(second);
+							int b1 = RegionLabel.Block.ToRegion(first);
+							int b2 = RegionLabel.Block.ToRegion(second);
+							int region = r1 == r2 ? r1 : c1 == c2 ? c1 : b1 == b2 ? b1 : -1;
+							if (region != -1)
+							{
+								if (_view.ContainsRegion(region))
+								{
+									_view.RemoveRegion(region);
+								}
+								else
+								{
+									_view.AddRegion(_currentColor, region);
+								}
+							}
+
+							_selectedCellsWhileDrawingRegions.Clear();
+							_currentPainter.FocusedCells = _focusedCells;
+
+							break;
+						}
 						case 3 when getCandidate() is var cand and >= 0 and < 729 && _startCand != -1: // Chain.
 						{
 							_view.AddLink(new(_startCand, cand, LinkType.Strong));
@@ -213,75 +268,6 @@ namespace Sudoku.Windows
 					break;
 				}
 			}
-		}
-
-		/// <inheritdoc cref="Events.MouseRightButtonUp(object?, EventArgs)"/>
-		private void ImageGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			if (sender is not Image image || _customDrawingMode == -1)
-			{
-				e.Handled = true;
-				return;
-			}
-
-			int cell = _pointConverter.GetCell(e.GetPosition(image).ToDPointF());
-			_selectedCellsWhileDrawingRegions.AddAnyway(cell);
-
-			switch (Keyboard.Modifiers)
-			{
-				case ModifierKeys.None:
-				{
-					if (_currentColor == int.MinValue)
-					{
-						_focusedCells.Clear();
-						_focusedCells.AddAnyway(cell);
-					}
-					else
-					{
-						switch (_customDrawingMode)
-						{
-							case 2 when _selectedCellsWhileDrawingRegions.Count == 2: // Region.
-							{
-								int[] offsets = _selectedCellsWhileDrawingRegions.ToArray();
-								int first = offsets[0], second = offsets[1];
-								int r1 = RegionLabel.Row.ToRegion(first);
-								int r2 = RegionLabel.Row.ToRegion(second);
-								int c1 = RegionLabel.Column.ToRegion(first);
-								int c2 = RegionLabel.Column.ToRegion(second);
-								int b1 = RegionLabel.Block.ToRegion(first);
-								int b2 = RegionLabel.Block.ToRegion(second);
-								int region = r1 == r2 ? r1 : c1 == c2 ? c1 : b1 == b2 ? b1 : -1;
-								if (region != -1)
-								{
-									if (_view.ContainsRegion(region))
-									{
-										_view.RemoveRegion(region);
-									}
-									else
-									{
-										_view.AddRegion(_currentColor, region);
-									}
-								}
-
-								break;
-							}
-						}
-
-						_currentPainter.FocusedCells = null;
-						_currentPainter.CustomView = _view;
-						_currentPainter.Conclusions = null;
-
-						UpdateImageGrid();
-					}
-
-					break;
-				}
-			}
-
-			_selectedCellsWhileDrawingRegions.Clear();
-			_currentPainter.FocusedCells = _focusedCells;
-
-			UpdateImageGrid();
 		}
 
 		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>

@@ -332,6 +332,7 @@ namespace Sudoku.Windows
 		{
 			_focusedCells.Clear();
 
+			_view.Clear();
 			_currentPainter = new(_currentPainter.Converter, _currentPainter.Preferences, _puzzle);
 			_currentViewIndex = -1;
 			_currentStepInfo = null;

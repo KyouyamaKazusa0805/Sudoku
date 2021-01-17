@@ -614,6 +614,49 @@
             <param name="this">(<see langword="this"/> parameter) The key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Windows.Extensions.PointEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Point"/>, <see cref="T:System.Drawing.Point"/>
+            and <see cref="T:System.Drawing.PointF"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Point"/>
+            <seealso cref="T:System.Drawing.Point"/>
+            <seealso cref="T:System.Drawing.PointF"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.PointEx.Deconstruct(System.Windows.Point@,System.Double@,System.Double@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">(<see langword="this in"/> parameter) The instance.</param>
+            <param name="x">(<see langword="out"/> parameter) The x component.</param>
+            <param name="y">(<see langword="out"/> parameter) The y component.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.PointEx.ToWPoint(System.Drawing.Point@)">
+            <summary>
+            Convert a <see cref="T:System.Drawing.Point"/> to <see cref="T:System.Windows.Point"/>.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The point to convert.</param>
+            <returns>The result of conversion.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.PointEx.ToDPoint(System.Windows.Point@)">
+            <summary>
+            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.Point"/>.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The point to convert.</param>
+            <returns>The result of conversion.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.PointEx.ToDPointF(System.Windows.Point@)">
+            <summary>
+            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.PointF"/>.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The point to convert.</param>
+            <returns>The result of conversion.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.PointEx.Truncate(System.Windows.Point@)">
+            <summary>
+            To truncate the point.
+            </summary>
+            <param name="this">(<see langword="this in"/> parameter) The point to truncate.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Windows.Extensions.WindowsColorEx">
             <summary>
             Provides extension methods on <see cref="T:System.Windows.Media.Color"/>.
@@ -697,49 +740,6 @@
             </summary>
             <param name="hex">The hex string.</param>
             <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Windows.Extensions.WindowsPointEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Point"/>, <see cref="T:System.Drawing.Point"/>
-            and <see cref="T:System.Drawing.PointF"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Point"/>
-            <seealso cref="T:System.Drawing.Point"/>
-            <seealso cref="T:System.Drawing.PointF"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.Deconstruct(System.Windows.Point,System.Double@,System.Double@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="x">(<see langword="out"/> parameter) The x component.</param>
-            <param name="y">(<see langword="out"/> parameter) The y component.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.ToWPoint(System.Drawing.Point)">
-            <summary>
-            Convert a <see cref="T:System.Drawing.Point"/> to <see cref="T:System.Windows.Point"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
-            <returns>The result of conversion.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.ToDPoint(System.Windows.Point)">
-            <summary>
-            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.Point"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
-            <returns>The result of conversion.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.ToDPointF(System.Windows.Point)">
-            <summary>
-            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.PointF"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
-            <returns>The result of conversion.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsPointEx.Truncate(System.Windows.Point)">
-            <summary>
-            To truncate the point.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The point to truncate.</param>
-            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Windows.Extensions.WindowsSizeEx">
             <summary>
@@ -1006,10 +1006,10 @@
             </summary>
             <remarks>
             This field is used for the methods <see cref="M:Sudoku.Windows.MainWindow.ImageGrid_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)"/>,
-            <see cref="M:Sudoku.Windows.MainWindow.ImageGrid_MouseRightButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)"/> and <see cref="M:Sudoku.Windows.MainWindow.ButtonCellReset_Click(System.Object,System.Windows.RoutedEventArgs)"/>.
+            <see cref="!:ImageGrid_MouseRightButtonUp"/> and <see cref="M:Sudoku.Windows.MainWindow.ButtonCellReset_Click(System.Object,System.Windows.RoutedEventArgs)"/>.
             </remarks>
             <seealso cref="M:Sudoku.Windows.MainWindow.ImageGrid_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)"/>
-            <seealso cref="M:Sudoku.Windows.MainWindow.ImageGrid_MouseRightButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)"/>
+            <seealso cref="!:ImageGrid_MouseRightButtonUp"/>
             <seealso cref="M:Sudoku.Windows.MainWindow.ButtonCellReset_Click(System.Object,System.Windows.RoutedEventArgs)"/>
         </member>
         <member name="F:Sudoku.Windows.MainWindow._serializerOptions">
@@ -1165,9 +1165,6 @@
         </member>
         <member name="M:Sudoku.Windows.MainWindow.ImageGrid_MouseLeftButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.MouseLeftButtonUp(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ImageGrid_MouseRightButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseRightButtonUp(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.ImageUndoIcon_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.MouseLeftButtonDown(System.Object,System.EventArgs)"/>

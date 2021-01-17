@@ -368,7 +368,6 @@
 				   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
 				   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"
 				   MouseLeftButtonUp="ImageGrid_MouseLeftButtonUp"
-				   MouseRightButtonUp="ImageGrid_MouseRightButtonUp"
 				   ContextMenuOpening="ImageGrid_ContextMenuOpening"
 				   Panel.ZIndex="1">
 				<Image.ContextMenu>

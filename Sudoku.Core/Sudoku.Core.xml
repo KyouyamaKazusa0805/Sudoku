@@ -2575,7 +2575,7 @@
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetMask(System.Int32)">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetMask(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetCandidateMask(System.Int32)">
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetCandidates(System.Int32)">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.GetCandidates(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetPinnableReference">

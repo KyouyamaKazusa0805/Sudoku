@@ -12,13 +12,13 @@ namespace Sudoku.Windows.Extensions
 	/// <seealso cref="WPoint"/>
 	/// <seealso cref="DPoint"/>
 	/// <seealso cref="DPointF"/>
-	public static class WindowsPointEx
+	public static class PointEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The instance.</param>
 		/// <param name="x">(<see langword="out"/> parameter) The x component.</param>
 		/// <param name="y">(<see langword="out"/> parameter) The y component.</param>
-		public static void Deconstruct(this WPoint @this, out double x, out double y)
+		public static void Deconstruct(this in WPoint @this, out double x, out double y)
 		{
 			x = @this.X;
 			y = @this.Y;
@@ -27,29 +27,29 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Convert a <see cref="DPoint"/> to <see cref="WPoint"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The point to convert.</param>
 		/// <returns>The result of conversion.</returns>
-		public static WPoint ToWPoint(this DPoint @this) => new(@this.X, @this.Y);
+		public static WPoint ToWPoint(this in DPoint @this) => new(@this.X, @this.Y);
 
 		/// <summary>
 		/// Convert a <see cref="WPoint"/> to <see cref="DPoint"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The point to convert.</param>
 		/// <returns>The result of conversion.</returns>
-		public static DPoint ToDPoint(this WPoint @this) => new((int)@this.X, (int)@this.Y);
+		public static DPoint ToDPoint(this in WPoint @this) => new((int)@this.X, (int)@this.Y);
 
 		/// <summary>
 		/// Convert a <see cref="WPoint"/> to <see cref="DPointF"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The point to convert.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The point to convert.</param>
 		/// <returns>The result of conversion.</returns>
-		public static DPointF ToDPointF(this WPoint @this) => new((float)@this.X, (float)@this.Y);
+		public static DPointF ToDPointF(this in WPoint @this) => new((float)@this.X, (float)@this.Y);
 
 		/// <summary>
 		/// To truncate the point.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The point to truncate.</param>
+		/// <param name="this">(<see langword="this in"/> parameter) The point to truncate.</param>
 		/// <returns>The result.</returns>
-		public static WPoint Truncate(this WPoint @this) => new((int)@this.X, (int)@this.Y);
+		public static WPoint Truncate(this in WPoint @this) => new((int)@this.X, (int)@this.Y);
 	}
 }
