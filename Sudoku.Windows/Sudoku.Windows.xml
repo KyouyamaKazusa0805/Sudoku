@@ -1004,13 +1004,6 @@
             <summary>
             The custom view.
             </summary>
-            <remarks>
-            This field is used for the methods <see cref="M:Sudoku.Windows.MainWindow.ImageGrid_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)"/>,
-            <see cref="!:ImageGrid_MouseRightButtonUp"/> and <see cref="M:Sudoku.Windows.MainWindow.ButtonCellReset_Click(System.Object,System.Windows.RoutedEventArgs)"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Windows.MainWindow.ImageGrid_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)"/>
-            <seealso cref="!:ImageGrid_MouseRightButtonUp"/>
-            <seealso cref="M:Sudoku.Windows.MainWindow.ButtonCellReset_Click(System.Object,System.Windows.RoutedEventArgs)"/>
         </member>
         <member name="F:Sudoku.Windows.MainWindow._serializerOptions">
             <summary>

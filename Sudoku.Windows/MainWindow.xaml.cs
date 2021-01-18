@@ -159,7 +159,7 @@ namespace Sudoku.Windows
 						// Eliminate a digit.
 						case ModifierKeys.Shift:
 						{
-							_puzzle[cell, digit] = true;
+							_puzzle[cell, digit] = false;
 
 							break;
 						}
@@ -955,7 +955,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void DeleteADigit(int cell, int digit)
 		{
-			_puzzle[cell, digit] = true;
+			_puzzle[cell, digit] = false;
 
 			UpdateUndoRedoControls();
 			UpdateImageGrid();
