@@ -344,8 +344,11 @@ namespace Sudoku.Data
 					const string separator = ", ";
 					var sb = new StringBuilder();
 
-					int[] candidates = ToArray();
-					foreach (var digitGroup in from candidate in candidates group candidate by candidate % 9)
+					foreach (var digitGroup in
+						from candidate in Offsets
+						group candidate by candidate % 9 into digitGroups
+						orderby digitGroups.Key
+						select digitGroups)
 					{
 						sb
 							.Append(new Cells(from candidate in digitGroup select candidate / 9).ToString())
