@@ -33,14 +33,17 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		{
 			if (BivalueMap.Count < 2)
 			{
+				// The grid with possible W-Wing structure should
+				// contain at least two empty cells (start and end cell).
 				return;
 			}
 
 			// Iterate on each cells.
 			for (int c1 = 0; c1 < 72; c1++)
 			{
-				if (!BivalueMap.Contains(c1) || !EmptyMap.Contains(c1))
+				if (!BivalueMap.Contains(c1))
 				{
+					// The cell isn't a bi-value cell.
 					continue;
 				}
 
@@ -48,67 +51,80 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				var digits = grid.GetCandidates(c1).GetAllSets();
 				foreach (int c2 in BivalueMap - new Cells(c1))
 				{
-					if (c2 < c1 || grid.GetCandidates(c1) != grid.GetCandidates(c2))
+					if (c2 < c1)
 					{
+						// To avoid duplicate structures found.
+						continue;
+					}
+
+					if (grid.GetCandidates(c1) != grid.GetCandidates(c2))
+					{
+						// Two cells may contain different kinds of digits.
 						continue;
 					}
 
 					var intersection = PeerMaps[c1] & PeerMaps[c2];
 					if ((EmptyMap & intersection).IsEmpty)
 					{
+						// The structure doesn't contain any possible eliminations.
 						continue;
 					}
 
-					for (int region = 9; region < 27; region++)
+					// Iterate on each region.
+					for (int region = 0; region < 27; region++)
 					{
-						if (region < 18 && (
-							RegionLabel.Row.ToRegion(c1) == region
-							|| RegionLabel.Row.ToRegion(c2) == region)
-							|| region >= 18 && (
-							RegionLabel.Column.ToRegion(c1) == region
-							|| RegionLabel.Column.ToRegion(c2) == region))
+						if (region == RegionLabel.Block.ToRegion(c1)
+							|| region == RegionLabel.Row.ToRegion(c1)
+							|| region == RegionLabel.Column.ToRegion(c1)
+							|| region == RegionLabel.Block.ToRegion(c2)
+							|| region == RegionLabel.Row.ToRegion(c2)
+							|| region == RegionLabel.Column.ToRegion(c2))
 						{
+							// The region to search for conjugate pairs shouldn't
+							// be the same as those two cells' regions.
 							continue;
 						}
 
-						for (int i = 0; i < 2; i++)
+						// Iterate on each digit to search for the conjugate pair.
+						foreach (int digit in digits)
 						{
-							int digit = digits[i];
-							var map = RegionMaps[region] & CandMaps[digit];
-							if (map.Count != 2)
+							// Now search for conjuagte pair.
+							var conjugateRegion = CandMaps[digit] & RegionMaps[region];
+							if (conjugateRegion.Count != 2)
+							{
+								// The current region doesn't contain the conjugate pair of this digit.
+								continue;
+							}
+
+							// Check whether the cells are the same region as the head and the tail cell.
+							int a = conjugateRegion[0], b = conjugateRegion[1];
+							if
+							(
+								!(
+									new Cells { c1, a }.InOneRegion && new Cells { c2, b }.InOneRegion
+									|| new Cells { c1, b }.InOneRegion && new Cells { c2, a }.InOneRegion
+								)
+							)
 							{
 								continue;
 							}
 
-							short mask = map.GetSubviewMask(region);
-							int pos1 = TrailingZeroCount(mask), pos2 = mask.GetNextSet(pos1);
-							int bridgeStart = RegionCells[region][pos1], bridgeEnd = RegionCells[region][pos2];
-							if (c1 == bridgeStart || c2 == bridgeStart || c1 == bridgeEnd || c2 == bridgeEnd)
-							{
-								continue;
-							}
-
-							static bool c(int c1, int c2) => (PeerMaps[c1] & PeerMaps[c2]).InOneRegion;
-							if (!(c(bridgeStart, c1) && c(bridgeEnd, c2))
-								&& !(c(bridgeStart, c2) && c(bridgeEnd, c1)))
-							{
-								continue;
-							}
-
-							// W-Wing found.
-							int elimDigit = i == 0 ? digits[1] : digits[0];
-							var elimMap = intersection & CandMaps[elimDigit];
+							// Check for eliminations.
+							int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
+							var elimMap = CandMaps[anotherDigit] & new Cells { c1, c2 }.PeerIntersection;
 							if (elimMap.IsEmpty)
 							{
 								continue;
 							}
 
+							// Gather the eliminations.
 							var conclusions = new List<Conclusion>();
-							foreach (int offset in elimMap)
+							foreach (int cell in elimMap)
 							{
-								conclusions.Add(new(ConclusionType.Elimination, offset, elimDigit));
+								conclusions.Add(new(ConclusionType.Elimination, cell, anotherDigit));
 							}
 
+							// Now W-Wing found. Store it into the accumulator.
 							accumulator.Add(
 								new WWingStepInfo(
 									conclusions,
@@ -118,19 +134,19 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 										{
 											Candidates = new DrawingInfo[]
 											{
-												new(1, c1 * 9 + elimDigit),
-												new(0, c1 * 9 + digit),
-												new(0, bridgeStart * 9 + digit),
-												new(0, bridgeEnd * 9 + digit),
-												new(0, c2 * 9 + digit),
-												new(1, c2 * 9 + elimDigit)
+												new(0, c1 * 9 + anotherDigit),
+												new(0, c2 * 9 + anotherDigit),
+												new(1, c1 * 9 + digit),
+												new(1, c2 * 9 + digit),
+												new(1, a * 9 + digit),
+												new(1, b * 9 + digit)
 											},
 											Regions = new DrawingInfo[] { new(0, region) }
 										}
 									},
-									c1,
-									c2,
-									new(bridgeStart, bridgeEnd, digit)));
+									a,
+									b,
+									new(conjugateRegion, digit)));
 						}
 					}
 				}
