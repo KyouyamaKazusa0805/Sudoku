@@ -368,23 +368,23 @@ namespace Sudoku.Solving.Manual.Fishes
 								}
 
 								// Add into the 'accumulator'.
-								accumulator.Add(
-									new HobiwanFishStepInfo(
-										conclusions,
-										new View[]
-										{
-											new()
-											{
-												Candidates = candidateOffsets,
-												Regions = regionOffsets
-											}
-										},
-										digit,
-										baseSets,
-										coverSets,
-										exofins,
-										endofins,
-										IsSashimi(baseSets, fins, digit)));
+								//accumulator.Add(
+								//	new HobiwanFishStepInfo(
+								//		conclusions,
+								//		new View[]
+								//		{
+								//			new()
+								//			{
+								//				Candidates = candidateOffsets,
+								//				Regions = regionOffsets
+								//			}
+								//		},
+								//		digit,
+								//		baseSets,
+								//		coverSets,
+								//		exofins,
+								//		endofins,
+								//		IsSashimi(baseSets, fins, digit)));
 							}
 						}
 					}
