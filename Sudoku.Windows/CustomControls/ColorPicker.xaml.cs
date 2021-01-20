@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0051
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
 using System.IO;
@@ -43,14 +41,14 @@ namespace Sudoku.Windows.CustomControls
 
 
 		/// <summary>
-		/// The color swatch 1.
+		/// The color sample list 1.
 		/// </summary>
-		private readonly ICollection<ColorSwatchItem> _colorSwatch1 = new List<ColorSwatchItem>();
+		private readonly ICollection<ColorSampleItem> _colorSampleList1 = new List<ColorSampleItem>();
 
 		/// <summary>
-		/// The color swatch 2.
+		/// The color sample list 2.
 		/// </summary>
-		private readonly ICollection<ColorSwatchItem> _colorSwatch2 = new List<ColorSwatchItem>();
+		private readonly ICollection<ColorSampleItem> _colorSampleList2 = new List<ColorSampleItem>();
 
 		/// <summary>
 		/// Indicates whether the program is modifying the value now.
@@ -89,7 +87,7 @@ namespace Sudoku.Windows.CustomControls
 				throw new SudokuHandlingException(errorCode: 402);
 			}
 
-			_colorPalette.CustomColors = _customColorSwatch.GetColors();
+			_colorPalette.CustomColors = _customColorSampleList.GetColors();
 			try
 			{
 				File.WriteAllText(filename, GetXmlText(_colorPalette));
@@ -137,15 +135,15 @@ namespace Sudoku.Windows.CustomControls
 				{
 					_colorPalette = LoadFromXml<ColorPickerPalette>(filename);
 
-					_customColorSwatch._swatchListBox.ItemsSource = _colorPalette!.CustomColors;
+					_customColorSampleList._colorSampleList.ItemsSource = _colorPalette!.CustomColors;
 
-					_colorSwatch1.Clear();
-					_colorSwatch2.Clear();
-					_colorSwatch1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
-					_colorSwatch2.AddRange(
+					_colorSampleList1.Clear();
+					_colorSampleList2.Clear();
+					_colorSampleList1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
+					_colorSampleList2.AddRange(
 						_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
-					_swatch1._swatchListBox.ItemsSource = _colorSwatch1;
-					_swatch2._swatchListBox.ItemsSource = _colorSwatch2;
+					_swatch1._colorSampleList.ItemsSource = _colorSampleList1;
+					_swatch2._colorSampleList.ItemsSource = _colorSampleList2;
 				}
 				catch (Exception ex)
 				{
@@ -176,7 +174,7 @@ namespace Sudoku.Windows.CustomControls
 		{
 			base.OnInitialized(e);
 
-			Swatch.ColorPickerControl = this;
+			ColorSample.ColorPickerControl = this;
 
 			// Load from file if possible.
 			if (ColorPickerSettings.UsingCustomPalette && File.Exists(ColorPickerSettings.CustomPaletteFilename))
@@ -195,21 +193,21 @@ namespace Sudoku.Windows.CustomControls
 				(_colorPalette = new()).InitializeDefaults();
 			}
 
-			_colorSwatch1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
-			_colorSwatch2.AddRange(
+			_colorSampleList1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
+			_colorSampleList2.AddRange(
 				_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
 
-			_swatch1._swatchListBox.ItemsSource = _colorSwatch1;
-			_swatch2._swatchListBox.ItemsSource = _colorSwatch2;
+			_swatch1._colorSampleList.ItemsSource = _colorSampleList1;
+			_swatch2._colorSampleList.ItemsSource = _colorSampleList2;
 
 			if (ColorPickerSettings.UsingCustomPalette)
 			{
-				_customColorSwatch._swatchListBox.ItemsSource = _colorPalette.CustomColors;
+				_customColorSampleList._colorSampleList.ItemsSource = _colorPalette.CustomColors;
 			}
 			else
 			{
 				_customColorsLabel.Visibility = Visibility.Collapsed;
-				_customColorSwatch.Visibility = Visibility.Collapsed;
+				_customColorSampleList.Visibility = Visibility.Collapsed;
 			}
 
 			_rSlider._slider.Maximum = 255;
@@ -254,7 +252,7 @@ namespace Sudoku.Windows.CustomControls
 			var z = color.Value;
 			Color = z;
 
-			_customColorSwatch.CurrentColor = z;
+			_customColorSampleList.CurrentColor = z;
 
 			_isSettingValues = true;
 
@@ -324,7 +322,7 @@ namespace Sudoku.Windows.CustomControls
 			SampleImageClick((BitmapSource)_sampleImage2.Source, e.GetPosition(_sampleImage2));
 
 		/// <inheritdoc cref="PickingColorEventHandler"/>
-		private void Swatch_PickingColor(in WColor color) => SetColor(color);
+		private void ColorSample_PickingColor(in WColor color) => SetColor(color);
 
 		/// <inheritdoc cref="ValueChangedEventHandler"/>
 		private void RSlider_ValueChanged(double value)

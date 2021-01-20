@@ -43,20 +43,20 @@ namespace Sudoku.Windows.CustomControls
 		/// <inheritdoc cref="DefaultConstructor"/>
 		public ColorPickerPalette()
 		{
-			BuiltInColors = new List<ColorSwatchItem>();
-			CustomColors = new List<ColorSwatchItem>();
+			BuiltInColors = new List<ColorSampleItem>();
+			CustomColors = new List<ColorSampleItem>();
 		}
 
 
 		/// <summary>
 		/// Indicates the built-in colors list.
 		/// </summary>
-		public ICollection<ColorSwatchItem> BuiltInColors { get; set; }
+		public ICollection<ColorSampleItem> BuiltInColors { get; set; }
 
 		/// <summary>
 		/// Indicates the custom colors list.
 		/// </summary>
-		public ICollection<ColorSwatchItem> CustomColors { get; set; }
+		public ICollection<ColorSampleItem> CustomColors { get; set; }
 
 
 		/// <summary>
@@ -67,12 +67,12 @@ namespace Sudoku.Windows.CustomControls
 			BuiltInColors.Clear();
 			BuiltInColors.AddRange(
 				from color in ColorPalette.PaletteColors
-				select new ColorSwatchItem() { Color = color, HexString = color.ToHexString() });
+				select new ColorSampleItem() { Color = color, HexString = color.ToHexString() });
 
 			CustomColors.Clear();
 			CustomColors.AddRange(
 				from color in Enumerable.Repeat(Colors.White, NumColorsCustomSwatch)
-				select new ColorSwatchItem() { Color = color, HexString = color.ToHexString() });
+				select new ColorSampleItem() { Color = color, HexString = color.ToHexString() });
 		}
 
 		/// <summary>

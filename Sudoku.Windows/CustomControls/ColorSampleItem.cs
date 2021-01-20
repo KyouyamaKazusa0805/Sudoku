@@ -3,9 +3,9 @@
 namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
-	/// The swatch item.
+	/// The color sample item.
 	/// </summary>
-	public sealed class ColorSwatchItem
+	public sealed class ColorSampleItem
 	{
 		/// <summary>
 		/// Indicates the color.

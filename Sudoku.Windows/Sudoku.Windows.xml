@@ -534,14 +534,14 @@
             The color palette.
             </summary>
         </member>
-        <member name="F:Sudoku.Windows.CustomControls.ColorPicker._colorSwatch1">
+        <member name="F:Sudoku.Windows.CustomControls.ColorPicker._colorSampleList1">
             <summary>
-            The color swatch 1.
+            The color sample list 1.
             </summary>
         </member>
-        <member name="F:Sudoku.Windows.CustomControls.ColorPicker._colorSwatch2">
+        <member name="F:Sudoku.Windows.CustomControls.ColorPicker._colorSampleList2">
             <summary>
-            The color swatch 2.
+            The color sample list 2.
             </summary>
         </member>
         <member name="F:Sudoku.Windows.CustomControls.ColorPicker._isSettingValues">
@@ -619,7 +619,7 @@
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SampleImage2_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
         </member>
-        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.Swatch_PickingColor(System.Windows.Media.Color@)">
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.ColorSample_PickingColor(System.Windows.Media.Color@)">
             <inheritdoc cref="T:Sudoku.Windows.PickingColorEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.RSlider_ValueChanged(System.Double)">
@@ -762,17 +762,62 @@
             Indicates the custom palette file name.
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.CustomControls.ColorSwatchItem">
+        <member name="T:Sudoku.Windows.CustomControls.ColorSample">
             <summary>
-            The swatch item.
+            Interaction logic for <c>ColorSample.xaml</c>.
+            </summary>
+            <summary>
+            ColorSample
             </summary>
         </member>
-        <member name="P:Sudoku.Windows.CustomControls.ColorSwatchItem.Color">
+        <member name="M:Sudoku.Windows.CustomControls.ColorSample.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorSample.Editable">
+            <summary>
+            Indicates whether the current color can be editable.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorSample.CurrentColor">
+            <summary>
+            Indicates the current color chosen.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorSample.ColorPickerControl">
+            <summary>
+            Indicates the color picker control instance.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Windows.CustomControls.ColorSample.PickingColor">
+            <summary>
+            The event triggering while picking colors.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorSample.Border_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorSample.GetColors">
+            <summary>
+            Get all colors.
+            </summary>
+            <returns>The colors.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorSample.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.ColorSampleItem">
+            <summary>
+            The color sample item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorSampleItem.Color">
             <summary>
             Indicates the color.
             </summary>
         </member>
-        <member name="P:Sudoku.Windows.CustomControls.ColorSwatchItem.HexString">
+        <member name="P:Sudoku.Windows.CustomControls.ColorSampleItem.HexString">
             <summary>
             Indicates the hex string.
             </summary>
@@ -894,51 +939,6 @@
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.CustomControls.Swatch">
-            <summary>
-            Interaction logic for <c>Swatch.xaml</c>.
-            </summary>
-            <summary>
-            Swatch
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.Swatch.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.CustomControls.Swatch.Editable">
-            <summary>
-            Indicates whether the current color can be editable.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.CustomControls.Swatch.CurrentColor">
-            <summary>
-            Indicates the current color chosen.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.CustomControls.Swatch.ColorPickerControl">
-            <summary>
-            Indicates the color picker control instance.
-            </summary>
-        </member>
-        <member name="E:Sudoku.Windows.CustomControls.Swatch.PickingColor">
-            <summary>
-            The event triggering while picking colors.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.Swatch.Border_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.Swatch.GetColors">
-            <summary>
-            Get all colors.
-            </summary>
-            <returns>The colors.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.Swatch.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>

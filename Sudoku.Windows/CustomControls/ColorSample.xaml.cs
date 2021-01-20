@@ -8,12 +8,12 @@ using Sudoku.Windows.Extensions;
 namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
-	/// Interaction logic for <c>Swatch.xaml</c>.
+	/// Interaction logic for <c>ColorSample.xaml</c>.
 	/// </summary>
-	public partial class Swatch : UserControl
+	public partial class ColorSample : UserControl
 	{
 		/// <inheritdoc cref="DefaultConstructor"/>
-		public Swatch() => InitializeComponent();
+		public ColorSample() => InitializeComponent();
 
 
 		/// <summary>
@@ -52,7 +52,7 @@ namespace Sudoku.Windows.CustomControls
 			{
 				border.Background = new SolidColorBrush(CurrentColor);
 
-				if (border.DataContext is ColorSwatchItem data)
+				if (border.DataContext is ColorSampleItem data)
 				{
 					data.Color = CurrentColor;
 					data.HexString = CurrentColor.ToHexString();
@@ -70,7 +70,7 @@ namespace Sudoku.Windows.CustomControls
 		/// Get all colors.
 		/// </summary>
 		/// <returns>The colors.</returns>
-		internal ICollection<ColorSwatchItem> GetColors() =>
-			_swatchListBox.ItemsSource as List<ColorSwatchItem> ?? new();
+		internal ICollection<ColorSampleItem> GetColors() =>
+			_colorSampleList.ItemsSource as List<ColorSampleItem> ?? new();
 	}
 }

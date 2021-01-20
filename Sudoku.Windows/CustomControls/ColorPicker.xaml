@@ -72,9 +72,9 @@
 			<c:ColorComponentSlider x:Name="_lSlider" HorizontalAlignment="Stretch" Margin="0,225,0,0"
 									VerticalAlignment="Top"
 									ValueChanged="LSlider_ValueChanged"/>
-			<c:Swatch x:Name="_customColorSwatch" HorizontalAlignment="Left" Margin="4,289,0,0"
-					  VerticalAlignment="Stretch" Width="230" Editable="true"
-					  PickingColor="Swatch_PickColor"/>
+			<c:ColorSample x:Name="_customColorSampleList" HorizontalAlignment="Left" Margin="4,289,0,0"
+						   VerticalAlignment="Stretch" Width="230" Editable="true"
+						   PickingColor="ColorSample_PickingColor"/>
 			<Label x:Name="_customColorsLabel" Content="{DynamicResource ColorPickerControlLabelCustomColor}"
 				   HorizontalAlignment="Left" Margin="0,258,0,0" VerticalAlignment="Top"/>
 		</Grid>
@@ -88,13 +88,13 @@
 				<Border x:Name="_colorDisplayBorder" HorizontalAlignment="Left" VerticalAlignment="Top"
 						BorderBrush="Black" Background="White" BorderThickness="2"
 						Width="58" Height="58"/>
-				<c:Swatch x:Name="_swatch1" HorizontalAlignment="Left" Height="60" Margin="60,0,0,0"
+				<c:ColorSample x:Name="_swatch1" HorizontalAlignment="Left" Height="60" Margin="60,0,0,0"
 						  VerticalAlignment="Top" Width="260"
-						  PickingColor="Swatch_PickingColor"/>
+						  PickingColor="ColorSample_PickingColor"/>
 			</Grid>
-			<c:Swatch x:Name="_swatch2" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1"
+			<c:ColorSample x:Name="_swatch2" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1"
 					  VerticalAlignment="Stretch"
-					  PickingColor="Swatch_PickingColor"/>
+					  PickingColor="ColorSample_PickingColor"/>
 		</Grid>
 	</Grid>
 </UserControl>
