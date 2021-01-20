@@ -1,11 +1,11 @@
 ﻿using System.Windows.Media;
 
-namespace Sudoku.Windows.CustomControls
+namespace Sudoku.Windows.Media
 {
 	/// <summary>
-	/// The color sample item.
+	/// The color information, which contains the color instance and its string representation of a hex value.
 	/// </summary>
-	public sealed class ColorSampleItem
+	public sealed class ColorInfo
 	{
 		/// <summary>
 		/// Indicates the color.

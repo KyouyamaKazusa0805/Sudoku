@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Sudoku.DocComments;
 using Sudoku.Windows.Extensions;
+using Sudoku.Windows.Media;
 
 namespace Sudoku.Windows.CustomControls
 {
@@ -52,7 +53,7 @@ namespace Sudoku.Windows.CustomControls
 			{
 				border.Background = new SolidColorBrush(CurrentColor);
 
-				if (border.DataContext is ColorSampleItem data)
+				if (border.DataContext is ColorInfo data)
 				{
 					data.Color = CurrentColor;
 					data.HexString = CurrentColor.ToHexString();
@@ -70,7 +71,6 @@ namespace Sudoku.Windows.CustomControls
 		/// Get all colors.
 		/// </summary>
 		/// <returns>The colors.</returns>
-		internal ICollection<ColorSampleItem> GetColors() =>
-			_colorSampleList.ItemsSource as List<ColorSampleItem> ?? new();
+		internal ICollection<ColorInfo> GetColors() => _colorSampleList.ItemsSource as List<ColorInfo> ?? new();
 	}
 }

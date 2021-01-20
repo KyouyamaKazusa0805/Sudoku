@@ -807,21 +807,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.CustomControls.ColorSampleItem">
-            <summary>
-            The color sample item.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.CustomControls.ColorSampleItem.Color">
-            <summary>
-            Indicates the color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.CustomControls.ColorSampleItem.HexString">
-            <summary>
-            Indicates the hex string.
-            </summary>
-        </member>
         <member name="T:Sudoku.Windows.CustomControls.FontDialog">
             <summary>
             Interaction logic for <c>FontDialog.xaml</c>.
@@ -2224,6 +2209,21 @@
         <member name="M:Sudoku.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.Media.ColorInfo">
+            <summary>
+            The color information, which contains the color instance and its string representation of a hex value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.Media.ColorInfo.Color">
+            <summary>
+            Indicates the color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.Media.ColorInfo.HexString">
+            <summary>
+            Indicates the hex string.
             </summary>
         </member>
         <member name="T:Sudoku.Windows.Media.ColorPalette">

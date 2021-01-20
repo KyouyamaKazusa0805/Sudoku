@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable IDE0051
+
+using System;
 using System.Collections.Generic;
 using System.Extensions;
 using System.IO;
@@ -12,6 +14,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Sudoku.DocComments;
 using Sudoku.Windows.Extensions;
+using Sudoku.Windows.Media;
 using WColor = System.Windows.Media.Color;
 using WColorEx = Sudoku.Windows.Extensions.WindowsColorEx;
 using WPoint = System.Windows.Point;
@@ -43,12 +46,12 @@ namespace Sudoku.Windows.CustomControls
 		/// <summary>
 		/// The color sample list 1.
 		/// </summary>
-		private readonly ICollection<ColorSampleItem> _colorSampleList1 = new List<ColorSampleItem>();
+		private readonly ICollection<ColorInfo> _colorSampleList1 = new List<ColorInfo>();
 
 		/// <summary>
 		/// The color sample list 2.
 		/// </summary>
-		private readonly ICollection<ColorSampleItem> _colorSampleList2 = new List<ColorSampleItem>();
+		private readonly ICollection<ColorInfo> _colorSampleList2 = new List<ColorInfo>();
 
 		/// <summary>
 		/// Indicates whether the program is modifying the value now.
