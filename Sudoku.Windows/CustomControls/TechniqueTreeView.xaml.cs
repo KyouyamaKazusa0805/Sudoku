@@ -113,29 +113,19 @@ namespace Sudoku.Windows.CustomControls
 
 			// Create nodes.
 			var list = new List<TreeNode<string>>(
-				from category in parentList
-				select new TreeNode<string>()
-				{
-					Content = category.Content,
-					Id = category.Id,
-					ParentId = category.ParentId
-				});
+				from c in parentList
+				select new TreeNode<string>() { Content = c.Content, Id = c.Id, ParentId = c.ParentId }
+			);
 
 			// The last step: get all techniques.
 			var allNodes = new List<TreeNode<string>>(list);
 			foreach (var node in list)
 			{
-				foreach (var (_, techniqueId, displayName, category) in selection)
+				foreach (var (_, techId, name, category) in selection)
 				{
 					if (node.Content == category)
 					{
-						allNodes.Add(
-							new()
-							{
-								Content = displayName,
-								Id = techniqueId + 1000,
-								ParentId = node.Id
-							});
+						allNodes.Add(new() { Content = name, Id = techId + 1000, ParentId = node.Id });
 					}
 				}
 			}
@@ -172,8 +162,7 @@ namespace Sudoku.Windows.CustomControls
 		/// <returns>All sub-nodes.</returns>
 		private ICollection<TreeNode<string>> GetSubnodes(int parentId, ICollection<TreeNode<string>> nodes)
 		{
-			var mainNodes = new List<TreeNode<string>>(
-				from node in nodes where node.ParentId == parentId select node);
+			var mainNodes = new List<TreeNode<string>>(from n in nodes where n.ParentId == parentId select n);
 			var otherNodes = nodes.Except(mainNodes).ToList();
 			foreach (var mainNode in mainNodes)
 			{

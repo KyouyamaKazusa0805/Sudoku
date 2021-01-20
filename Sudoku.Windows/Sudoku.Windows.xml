@@ -170,7 +170,7 @@
             Toggle simple advanced view.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.ColorPickerWindow.ShowDialog(System.Nullable{System.Windows.Media.Color}@,Sudoku.Windows.CustomControls.ColorPickerOptions,Sudoku.Windows.PickingColorEventHandler)">
+        <member name="M:Sudoku.Windows.ColorPickerWindow.ShowDialog(System.Nullable{System.Windows.Media.Color}@,Sudoku.Windows.CustomControls.ColorPickerOptions,Sudoku.Windows.CustomControls.PickingColorEventHandler)">
             <summary>
             Show the dialog.
             </summary>
@@ -620,28 +620,28 @@
             <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.ColorSample_PickingColor(System.Windows.Media.Color@)">
-            <inheritdoc cref="T:Sudoku.Windows.PickingColorEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.CustomControls.PickingColorEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.RSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.CustomControls.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.GSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.CustomControls.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.BSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.CustomControls.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.ASlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.CustomControls.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.HSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.CustomControls.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.CustomControls.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.LSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+            <inheritdoc cref="T:Sudoku.Windows.CustomControls.ValueChangedEventHandler"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.PickerHueSlider_OnValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
             <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
@@ -928,6 +928,12 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.CustomControls.PickingColorEventHandler">
+            <summary>
+            Indicates the event handler triggering when the color is start to pick.
+            </summary>
+            <param name="color">(<see langword="in"/> parameter) The color.</param>
+        </member>
         <member name="T:Sudoku.Windows.CustomControls.TechniqueBox">
             <summary>
             Interaction logic for <c>TechniqueBox.xaml</c>.
@@ -1023,7 +1029,13 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.DifficultyInfo">
+        <member name="T:Sudoku.Windows.CustomControls.ValueChangedEventHandler">
+            <summary>
+            Indicates the event handler when the value is changed.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Sudoku.Windows.Data.DifficultyInfo">
             <summary>
             Indicates the difficulty information used for gather the technique information of a puzzle.
             </summary>
@@ -1037,7 +1049,7 @@
             </param>
             <param name="DifficultyLevel">Indicates the difficulty level.</param>
         </member>
-        <member name="M:Sudoku.Windows.DifficultyInfo.#ctor(System.String,System.Int32,System.Decimal,System.String,Sudoku.Solving.Manual.DifficultyLevel)">
+        <member name="M:Sudoku.Windows.Data.DifficultyInfo.#ctor(System.String,System.Int32,System.Decimal,System.String,Sudoku.Solving.Manual.DifficultyLevel)">
             <summary>
             Indicates the difficulty information used for gather the technique information of a puzzle.
             </summary>
@@ -2241,12 +2253,6 @@
             Indicates the color palette that is shown on the control.
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.PickingColorEventHandler">
-            <summary>
-            Indicates the event handler triggering when the color is start to pick.
-            </summary>
-            <param name="color">(<see langword="in"/> parameter) The color.</param>
-        </member>
         <member name="T:Sudoku.Windows.PictureSavingPreferencesWindow">
             <summary>
             Interaction logic for <c>PictureSavingPreferencesWindow.xaml</c>.
@@ -2752,12 +2758,6 @@
             <summary>
             InitializeComponent
             </summary>
-        </member>
-        <member name="T:Sudoku.Windows.ValueChangedEventHandler">
-            <summary>
-            Indicates the event handler when the value is changed.
-            </summary>
-            <param name="value">The value.</param>
         </member>
         <member name="T:Sudoku.Windows.WindowsSettings">
             <summary>

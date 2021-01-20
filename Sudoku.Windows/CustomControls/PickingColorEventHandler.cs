@@ -1,6 +1,6 @@
 ﻿using WColor = System.Windows.Media.Color;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
 	/// Indicates the event handler triggering when the color is start to pick.

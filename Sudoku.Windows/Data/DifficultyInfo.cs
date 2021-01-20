@@ -1,6 +1,6 @@
 ﻿using Sudoku.Solving.Manual;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows.Data
 {
 	/// <summary>
 	/// Indicates the difficulty information used for gather the technique information of a puzzle.
@@ -15,5 +15,6 @@ namespace Sudoku.Windows
 	/// </param>
 	/// <param name="DifficultyLevel">Indicates the difficulty level.</param>
 	public sealed record DifficultyInfo(
-		string? Technique, int Count, decimal Total, string MinToMax, DifficultyLevel DifficultyLevel);
+		string? Technique, int Count, decimal Total, string MinToMax, DifficultyLevel DifficultyLevel
+	);
 }

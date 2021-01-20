@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Windows
+﻿namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
 	/// Indicates the event handler when the value is changed.

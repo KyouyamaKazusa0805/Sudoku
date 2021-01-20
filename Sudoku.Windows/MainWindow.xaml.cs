@@ -9,7 +9,6 @@ using System.Text.Json.Converters;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using Sudoku.Windows.Extensions;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -19,10 +18,12 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
 using Sudoku.Solving.Manual;
+using Sudoku.Windows.Data;
+using Sudoku.Windows.Extensions;
+using Sudoku.Windows.Media;
 using static Sudoku.Windows.Constants;
 using CoreResources = Sudoku.Windows.Resources;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
-using Sudoku.Windows.Media;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif
