@@ -3,13 +3,14 @@ using System.Extensions;
 using System.Windows;
 using System.Windows.Media;
 using Sudoku.DocComments;
+using Sudoku.Windows.CustomControls;
 
-namespace Sudoku.Windows.Tooling
+namespace Sudoku.Windows
 {
 	/// <summary>
-	/// Interaction logic for <c>ColorPicker.xaml</c>.
+	/// Interaction logic for <c>ColorPickerWindow.xaml</c>.
 	/// </summary>
-	public partial class ColorPicker : Window
+	public partial class ColorPickerWindow : Window
 	{
 		/// <summary>
 		/// The minimum or maximum width of the window.
@@ -18,7 +19,7 @@ namespace Sudoku.Windows.Tooling
 
 
 		/// <inheritdoc cref="DefaultConstructor"/>
-		public ColorPicker() => InitializeComponent();
+		public ColorPickerWindow() => InitializeComponent();
 
 
 		/// <summary>
@@ -99,8 +100,8 @@ namespace Sudoku.Windows.Tooling
 				ColorPickerSettings.UsingCustomPalette = true;
 			}
 
-			var instance = new ColorPicker();
-			color = instance._colorPicker.Color;
+			var instance = new ColorPickerWindow();
+			color = instance._colorPickerMain.Color;
 
 			if (flags.Flags(ColorPickerOptions.SimpleView))
 			{
@@ -109,17 +110,17 @@ namespace Sudoku.Windows.Tooling
 
 			if (ColorPickerSettings.UsingCustomPalette)
 			{
-				instance._colorPicker.LoadDefaultCustomPalette();
+				instance._colorPickerMain.LoadDefaultCustomPalette();
 			}
 
 			if (customPreviewEventHandler is not null)
 			{
-				instance._colorPicker.PickingColor += customPreviewEventHandler;
+				instance._colorPickerMain.PickingColor += customPreviewEventHandler;
 			}
 
 			if (instance.ShowDialog() is true)
 			{
-				color = instance._colorPicker.Color ?? default;
+				color = instance._colorPickerMain.Color ?? default;
 				return true;
 			}
 

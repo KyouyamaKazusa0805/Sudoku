@@ -130,6 +130,65 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.ColorPickerWindow">
+            <summary>
+            Interaction logic for <c>ColorPickerWindow.xaml</c>.
+            </summary>
+            <summary>
+            ColorPickerWindow
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.ColorPickerWindow.WidthMaxValue">
+            <summary>
+            The minimum or maximum width of the window.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.ColorPickerWindow.WidthMinValue">
+            <summary>
+            The minimum or maximum width of the window.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.ColorPickerWindow.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.ColorPickerWindow.SimpleMode">
+            <summary>
+            Indicates whether the mode is simple mode (only shows basic options).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.ColorPickerWindow.OkButton_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.ColorPickerWindow.CloseButton_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.ColorPickerWindow.MinMaxViewButton_OnClick(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.ColorPickerWindow.ToggleSimpleAdvancedView">
+            <summary>
+            Toggle simple advanced view.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.ColorPickerWindow.ShowDialog(System.Nullable{System.Windows.Media.Color}@,Sudoku.Windows.CustomControls.ColorPickerOptions,Sudoku.Windows.PickingColorEventHandler)">
+            <summary>
+            Show the dialog.
+            </summary>
+            <param name="color">(<see langword="out"/> parameter) The color selected.</param>
+            <param name="flags">The flags that the control should enable.</param>
+            <param name="customPreviewEventHandler">
+            The event handler. The default value is <see langword="null"/>.
+            </param>
+            <returns>
+            Return <see langword="true"/> if a user has chosen a color successfully;
+            otherwise, <see langword="false"/> (i.e. user canceled).
+            </returns>
+        </member>
+        <member name="M:Sudoku.Windows.ColorPickerWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Sudoku.Windows.Constants">
             <summary>
             Encapsulates a class that contains constants used in the whole project.
@@ -365,6 +424,570 @@
         <member name="F:Sudoku.Windows.Constants.Paths.LangSourceZhCn">
             <summary>
             Indicates the language source dictionary (Chinese).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.ColorComponentSlider">
+            <summary>
+            Interaction logic for <c>ColorComponentSlider.xaml</c>.
+            </summary>
+            <summary>
+            ColorComponentSlider
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorComponentSlider._updatingValues">
+            <summary>
+            Indicates the updating values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorComponentSlider.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorComponentSlider.FormatString">
+            <summary>
+            The format string.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Windows.CustomControls.ColorComponentSlider.ValueChanged">
+            <summary>
+            The event triggering while value changed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorComponentSlider.Slider_ValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorComponentSlider.TextBox_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorComponentSlider.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.ColorPicker">
+            <summary>
+            Interaction logic for <c>ColorPicker.xaml</c>.
+            </summary>
+            <summary>
+            ColorPicker
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPicker.NumColorsFirstSwatch">
+            <summary>
+            The number of first-line swatches.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPicker.NumColorsSecondSwatch">
+            <summary>
+            The number of second-line swatches.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPicker._colorPalette">
+            <summary>
+            The color palette.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPicker._colorSwatch1">
+            <summary>
+            The color swatch 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPicker._colorSwatch2">
+            <summary>
+            The color swatch 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPicker._isSettingValues">
+            <summary>
+            Indicates whether the program is modifying the value now.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorPicker.Color">
+            <summary>
+            Indicates the selected color.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Windows.CustomControls.ColorPicker.PickingColor">
+            <summary>
+            The event triggering while picking colors.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SaveCustomPalette(System.String)">
+            <summary>
+            Save the custom palette to your drives.
+            </summary>
+            <param name="filename">The file name that you want to save.</param>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the color palette is currently <see langword="null"/>;
+            or throws when the process has encountered an error while writing the serialization string.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.LoadDefaultCustomPalette">
+            <summary>
+            Load the default custom palette.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.LoadCustomPalette(System.String)">
+            <summary>
+            Load the custom palette from the specified file using deserialization.
+            </summary>
+            <param name="filename">The file name to load from.</param>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the color palette is currently <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.CustomColorsChanged">
+            <summary>
+            Execute when the custom color is changed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.OnInitialized(System.EventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SetColor(System.Nullable{System.Windows.Media.Color})">
+            <summary>
+            Set the current color.
+            </summary>
+            <param name="color">The color.</param>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SampleImageClick(System.Windows.Media.Imaging.BitmapSource,System.Windows.Point)">
+            <summary>
+            Execute when the sample image is clicked.
+            </summary>
+            <param name="img">The image.</param>
+            <param name="pos">The point.</param>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SampleImage_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.ColorPickerControl_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseMove(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.ColorPickerControl_MouseUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseUp(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SampleImage2_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.Swatch_PickingColor(System.Windows.Media.Color@)">
+            <inheritdoc cref="T:Sudoku.Windows.PickingColorEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.RSlider_ValueChanged(System.Double)">
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.GSlider_ValueChanged(System.Double)">
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.BSlider_ValueChanged(System.Double)">
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.ASlider_ValueChanged(System.Double)">
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.HSlider_ValueChanged(System.Double)">
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SSlider_ValueChanged(System.Double)">
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.LSlider_ValueChanged(System.Double)">
+            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.PickerHueSlider_OnValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.UpdateImageForHSV">
+            <summary>
+            Update the image for HSV.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.LoadFromXml``1(System.String)">
+            <summary>
+            Deserialize the file.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="filename">The file name.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.GetXmlText``1(``0)">
+            <summary>
+            Get the text from the specified text.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.ColorPickerOptions">
+            <summary>
+            Indicates the option using in initialization for a <see cref="T:Sudoku.Windows.ColorPickerWindow"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPickerOptions.None">
+            <summary>
+            Indicates the initialization is default.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPickerOptions.SimpleView">
+            <summary>
+            Indicates the initialization should show the colors only.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPickerOptions.LoadCustomPalette">
+            <summary>
+            Indicates the initialization will display the custom palette.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.ColorPickerPalette">
+            <summary>
+            The color palette.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPickerPalette.NumColorsFirstSwatch">
+            <summary>
+            The number of first color swatches.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPickerPalette.NumColorsCustomSwatch">
+            <summary>
+            The number of custom color swatches.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPickerPalette.NumColorsSecondSwatch">
+            <summary>
+            The number of second color swatches.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPickerPalette.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorPickerPalette.BuiltInColors">
+            <summary>
+            Indicates the built-in colors list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorPickerPalette.CustomColors">
+            <summary>
+            Indicates the custom colors list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPickerPalette.InitializeDefaults">
+            <summary>
+            Initialize default values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.ColorPickerPalette.GetWebColors">
+            <summary>
+            Get all colors especially used for HTML.
+            </summary>
+            <returns>All colors.</returns>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.ColorPickerSettings">
+            <summary>
+            Indicates the color picker settings.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPickerSettings.CustomColorsFilename">
+            <summary>
+            Indicates the XML file name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPickerSettings.CustomColorsDirectory">
+            <summary>
+            Indicates the directory that custom colors saved.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.ColorPickerSettings.UsingCustomPalette">
+            <summary>
+            Indicates whether the current environment can use custom palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorPickerSettings.CustomPaletteFilename">
+            <summary>
+            Indicates the custom palette file name.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.ColorSwatchItem">
+            <summary>
+            The swatch item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorSwatchItem.Color">
+            <summary>
+            Indicates the color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.ColorSwatchItem.HexString">
+            <summary>
+            Indicates the hex string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.FontDialog">
+            <summary>
+            Interaction logic for <c>FontDialog.xaml</c>.
+            </summary>
+            <summary>
+            FontDialog
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.FontDialog.SampleText">
+            <summary>
+            Indicates the sample text.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.FontDialog._brush">
+            <summary>
+            The internal brush.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.FontDialog._isDisposed">
+            <summary>
+            Indicates whether the specified instance has been already disposed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.FontDialog.SelectedFont">
+            <summary>
+            Indicates the current selected font.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.OnInitialized(System.EventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.DrawString">
+            <summary>
+            To draw the text.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.ButtonApply_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.ButtonCancel_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.ListBoxStyle_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.ListBoxFonts_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.TextBoxSize_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.TextBoxSize_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.PreviewKeyDown(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.FontDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.NumericUpDown">
+            <summary>
+            Interaction logic for <c>NumericUpDown.xaml</c>.
+            </summary>
+            <summary>
+            NumericUpDown
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.NumericUpDown._currentValue">
+            <summary>
+            Indicates the current value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.NumericUpDown.CurrentValue">
+            <summary>
+            Indicates the current value.
+            </summary>
+            <value>The value to set.</value>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.NumericUpDown.MinValue">
+            <summary>
+            Indicates the minimum value the control supports.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.NumericUpDown.MaxValue">
+            <summary>
+            Indicates the maximum value the control supports.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.NumericUpDown.IncreasingUnit">
+            <summary>
+            Indicates the increasing unit.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Windows.CustomControls.NumericUpDown.ValueChanged">
+            <summary>
+            Indicates the event triggering when the value changed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.TextBoxInner_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.ButtonUp_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.ButtonDown_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.Swatch">
+            <summary>
+            Interaction logic for <c>Swatch.xaml</c>.
+            </summary>
+            <summary>
+            Swatch
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.Swatch.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.Swatch.Editable">
+            <summary>
+            Indicates whether the current color can be editable.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.Swatch.CurrentColor">
+            <summary>
+            Indicates the current color chosen.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.Swatch.ColorPickerControl">
+            <summary>
+            Indicates the color picker control instance.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Windows.CustomControls.Swatch.PickingColor">
+            <summary>
+            The event triggering while picking colors.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.Swatch.Border_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.Swatch.GetColors">
+            <summary>
+            Get all colors.
+            </summary>
+            <returns>The colors.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.Swatch.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.TechniqueBox">
+            <summary>
+            Interaction logic for <c>TechniqueBox.xaml</c>.
+            </summary>
+            <summary>
+            TechniqueBox
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueBox.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.TechniqueBox.Category">
+            <summary>
+            Indicates the gategory.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.TechniqueBox.Technique">
+            <summary>
+            Indicates the technique.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Windows.CustomControls.TechniqueBox.CheckingChanged">
+            <summary>
+            Indicates whether the check box changed the status.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueBox.CheckBox_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueBox.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.TechniqueTreeView">
+            <summary>
+            Interaction logic for <c>TechniqueTreeView.xaml</c>.
+            </summary>
+            <summary>
+            TechniqueTreeView
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueTreeView.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueTreeView.OnInitialized(System.EventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueTreeView.GetAllTechniques">
+            <summary>
+            Get all techniques to display.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when parent Id doesn't equal to the number of all categories.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueTreeView.GetSubnodes(System.Int32,System.Collections.Generic.ICollection{System.Collections.Generic.TreeNode{System.String}})">
+            <summary>
+            Get all sub-nodes recursively.
+            </summary>
+            <param name="parentId">The parent node ID.</param>
+            <param name="nodes">The nodes to traverse.</param>
+            <returns>All sub-nodes.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueTreeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.Windows.CustomControls.TechniqueView">
+            <summary>
+            Interaction logic for <c>TechniqueView.xaml</c>.
+            </summary>
+            <summary>
+            TechniqueView
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueView.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.TechniqueView.ChosenTechniques">
+            <summary>
+            Indictaes the chosen techniques.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueView.InitializeTechniqueBoxes">
+            <summary>
+            Initializes the techniques, and stores them into the list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.TechniqueView.InitializeComponent">
+            <summary>
+            InitializeComponent
             </summary>
         </member>
         <member name="T:Sudoku.Windows.Data.DifficultyInfoToBackgroundColorConverter">
@@ -1603,6 +2226,16 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.Media.ColorPalette">
+            <summary>
+            Extracts the fixed colors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.Media.ColorPalette.PaletteColors">
+            <summary>
+            Indicates the color palette that is shown on the control.
+            </summary>
+        </member>
         <member name="T:Sudoku.Windows.PickingColorEventHandler">
             <summary>
             Indicates the event handler triggering when the color is start to pick.
@@ -2115,636 +2748,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Tooling.ColorComponentSlider">
-            <summary>
-            Interaction logic for <c>ColorComponentSlider.xaml</c>.
-            </summary>
-            <summary>
-            ColorComponentSlider
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorComponentSlider._updatingValues">
-            <summary>
-            Indicates the updating values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorComponentSlider.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.ColorComponentSlider.FormatString">
-            <summary>
-            The format string.
-            </summary>
-        </member>
-        <member name="E:Sudoku.Windows.Tooling.ColorComponentSlider.ValueChanged">
-            <summary>
-            The event triggering while value changed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorComponentSlider.Slider_ValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorComponentSlider.TextBox_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorComponentSlider.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.ColorPalette">
-            <summary>
-            The color palette.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPalette.NumColorsFirstSwatch">
-            <summary>
-            The number of first color swatches.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPalette.NumColorsCustomSwatch">
-            <summary>
-            The number of custom color swatches.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPalette.NumColorsSecondSwatch">
-            <summary>
-            The number of second color swatches.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPalette.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.ColorPalette.BuiltInColors">
-            <summary>
-            Indicates the built-in colors list.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.ColorPalette.CustomColors">
-            <summary>
-            Indicates the custom colors list.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPalette.InitializeDefaults">
-            <summary>
-            Initialize default values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPalette.GetColorSwatchItems(System.Collections.Generic.IReadOnlyList{System.Windows.Media.Color})">
-            <summary>
-            Get swatch items.
-            </summary>
-            <param name="colors">The colors to iterate on.</param>
-            <returns>The list of colors.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPalette.GetWebColors">
-            <summary>
-            Get all colors especially used for HTML.
-            </summary>
-            <returns>All colors.</returns>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.ColorPicker">
-            <summary>
-            Interaction logic for <c>ColorPicker.xaml</c>.
-            </summary>
-            <summary>
-            ColorPicker
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPicker.WidthMaxValue">
-            <summary>
-            The minimum or maximum width of the window.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPicker.WidthMinValue">
-            <summary>
-            The minimum or maximum width of the window.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPicker.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.ColorPicker.SimpleMode">
-            <summary>
-            Indicates whether the mode is simple mode (only shows basic options).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPicker.OkButton_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPicker.CloseButton_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPicker.MinMaxViewButton_OnClick(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPicker.ToggleSimpleAdvancedView">
-            <summary>
-            Toggle simple advanced view.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPicker.ShowDialog(System.Nullable{System.Windows.Media.Color}@,Sudoku.Windows.Tooling.ColorPickerOptions,Sudoku.Windows.PickingColorEventHandler)">
-            <summary>
-            Show the dialog.
-            </summary>
-            <param name="color">(<see langword="out"/> parameter) The color selected.</param>
-            <param name="flags">The flags that the control should enable.</param>
-            <param name="customPreviewEventHandler">
-            The event handler. The default value is <see langword="null"/>.
-            </param>
-            <returns>
-            Return <see langword="true"/> if a user has chosen a color successfully;
-            otherwise, <see langword="false"/> (i.e. user canceled).
-            </returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPicker.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.ColorPickerControl">
-            <summary>
-            Interaction logic for <c>ColorPickerControl.xaml</c>.
-            </summary>
-            <summary>
-            ColorPickerControl
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerControl.NumColorsFirstSwatch">
-            <summary>
-            The number of first-line swatches.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerControl.NumColorsSecondSwatch">
-            <summary>
-            The number of second-line swatches.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerControl._colorPalette">
-            <summary>
-            The color palette.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerControl._colorSwatch1">
-            <summary>
-            The color swatch 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerControl._colorSwatch2">
-            <summary>
-            The color swatch 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerControl._isSettingValues">
-            <summary>
-            Indicates whether the program is modifying the value now.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.ColorPickerControl.Color">
-            <summary>
-            Indicates the selected color.
-            </summary>
-        </member>
-        <member name="E:Sudoku.Windows.Tooling.ColorPickerControl.PickingColor">
-            <summary>
-            The event triggering while picking colors.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.SaveCustomPalette(System.String)">
-            <summary>
-            Save the custom palette to your drives.
-            </summary>
-            <param name="filename">The file name that you want to save.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
-            Throws when the color palette is currently <see langword="null"/>;
-            or throws when the process has encountered an error while writing the serialization string.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.LoadDefaultCustomPalette">
-            <summary>
-            Load the default custom palette.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.LoadCustomPalette(System.String)">
-            <summary>
-            Load the custom palette from the specified file using deserialization.
-            </summary>
-            <param name="filename">The file name to load from.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
-            Throws when the color palette is currently <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.CustomColorsChanged">
-            <summary>
-            Execute when the custom color is changed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.OnInitialized(System.EventArgs)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.SetColor(System.Nullable{System.Windows.Media.Color})">
-            <summary>
-            Set the current color.
-            </summary>
-            <param name="color">The color.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.SampleImageClick(System.Windows.Media.Imaging.BitmapSource,System.Windows.Point)">
-            <summary>
-            Execute when the sample image is clicked.
-            </summary>
-            <param name="img">The image.</param>
-            <param name="pos">The point.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.SampleImage_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.ColorPickerControl_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseMove(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.ColorPickerControl_MouseUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseUp(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.SampleImage2_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.Swatch_PickColor(System.Windows.Media.Color)">
-            <inheritdoc cref="T:Sudoku.Windows.PickingColorEventHandler"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.RSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.GSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.BSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.ASlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.HSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.SSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.LSlider_ValueChanged(System.Double)">
-            <inheritdoc cref="T:Sudoku.Windows.ValueChangedEventHandler"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.PickerHueSlider_OnValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.UpdateImageForHSV">
-            <summary>
-            Update the image for HSV.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.LoadFromXml``1(System.String)">
-            <summary>
-            Deserialize the file.
-            </summary>
-            <typeparam name="T">The type of the instance.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="filename">The file name.</param>
-            <returns>The instance.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.GetXmlText``1(``0)">
-            <summary>
-            Get the text from the specified text.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="this">The instance.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.ColorPickerControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.ColorPickerOptions">
-            <summary>
-            Indicates the option using in initialization for a <see cref="T:Sudoku.Windows.Tooling.ColorPicker"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerOptions.None">
-            <summary>
-            Indicates the initialization is default.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerOptions.SimpleView">
-            <summary>
-            Indicates the initialization should show the colors only.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerOptions.LoadCustomPalette">
-            <summary>
-            Indicates the initialization will display the custom palette.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.ColorPickerSettings">
-            <summary>
-            Indicates the color picker settings.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerSettings.UsingCustomPalette">
-            <summary>
-            Indicates whether the current environment can use custom palette.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerSettings.CustomColorsFilename">
-            <summary>
-            Indicates the XML file name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.ColorPickerSettings.CustomColorsDirectory">
-            <summary>
-            Indicates the directory that custom colors saved.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.ColorPickerSettings.CustomPaletteFilename">
-            <summary>
-            Indicates the custom palette file name.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.ColorSwatchItem">
-            <summary>
-            The swatch item.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.ColorSwatchItem.Color">
-            <summary>
-            Indicates the color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.ColorSwatchItem.HexString">
-            <summary>
-            Indicates the hex string.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.FontDialog">
-            <summary>
-            Interaction logic for <c>FontDialog.xaml</c>.
-            </summary>
-            <summary>
-            FontDialog
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.FontDialog.SampleText">
-            <summary>
-            Indicates the sample text.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.FontDialog._brush">
-            <summary>
-            The internal brush.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.FontDialog._isDisposed">
-            <summary>
-            Indicates whether the specified instance has been already disposed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.FontDialog.SelectedFont">
-            <summary>
-            Indicates the current selected font.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.OnInitialized(System.EventArgs)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.DrawString">
-            <summary>
-            To draw the text.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.ButtonApply_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.ButtonCancel_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.ListBoxStyle_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.ListBoxFonts_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.TextBoxSize_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.TextBoxSize_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.PreviewKeyDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.FontDialog.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.NumericUpDown">
-            <summary>
-            Interaction logic for <c>NumericUpDown.xaml</c>.
-            </summary>
-            <summary>
-            NumericUpDown
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Tooling.NumericUpDown._currentValue">
-            <summary>
-            Indicates the current value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.NumericUpDown.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.NumericUpDown.CurrentValue">
-            <summary>
-            Indicates the current value.
-            </summary>
-            <value>The value to set.</value>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.NumericUpDown.MinValue">
-            <summary>
-            Indicates the minimum value the control supports.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.NumericUpDown.MaxValue">
-            <summary>
-            Indicates the maximum value the control supports.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.NumericUpDown.IncreasingUnit">
-            <summary>
-            Indicates the increasing unit.
-            </summary>
-        </member>
-        <member name="E:Sudoku.Windows.Tooling.NumericUpDown.ValueChanged">
-            <summary>
-            Indicates the event triggering when the value changed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.NumericUpDown.TextBoxInner_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.NumericUpDown.ButtonUp_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.NumericUpDown.ButtonDown_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.NumericUpDown.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.Swatch">
-            <summary>
-            Interaction logic for <c>Swatch.xaml</c>.
-            </summary>
-            <summary>
-            Swatch
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Swatch.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.Swatch.Editable">
-            <summary>
-            Indicates whether the current color can be editable.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.Swatch.CurrentColor">
-            <summary>
-            Indicates the current color chosen.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.Swatch.ColorPickerControl">
-            <summary>
-            Indicates the color picker control instance.
-            </summary>
-        </member>
-        <member name="E:Sudoku.Windows.Tooling.Swatch.PickingColor">
-            <summary>
-            The event triggering while picking colors.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Swatch.Border_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Swatch.GetColors">
-            <summary>
-            Get all colors.
-            </summary>
-            <returns>The colors.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.Swatch.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.TechniqueBox">
-            <summary>
-            Interaction logic for <c>TechniqueBox.xaml</c>.
-            </summary>
-            <summary>
-            TechniqueBox
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueBox.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.TechniqueBox.Category">
-            <summary>
-            Indicates the gategory.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.TechniqueBox.Technique">
-            <summary>
-            Indicates the technique.
-            </summary>
-        </member>
-        <member name="E:Sudoku.Windows.Tooling.TechniqueBox.CheckingChanged">
-            <summary>
-            Indicates whether the check box changed the status.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueBox.CheckBox_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueBox.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.TechniqueTreeView">
-            <summary>
-            Interaction logic for <c>TechniqueTreeView.xaml</c>.
-            </summary>
-            <summary>
-            TechniqueTreeView
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueTreeView.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueTreeView.OnInitialized(System.EventArgs)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueTreeView.GetAllTechniques">
-            <summary>
-            Get all techniques to display.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when parent Id doesn't equal to the number of all categories.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueTreeView.GetSubnodes(System.Int32,System.Collections.Generic.ICollection{System.Collections.Generic.TreeNode{System.String}})">
-            <summary>
-            Get all sub-nodes recursively.
-            </summary>
-            <param name="parentId">The parent node ID.</param>
-            <param name="nodes">The nodes to traverse.</param>
-            <returns>All sub-nodes.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueTreeView.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Tooling.TechniqueView">
-            <summary>
-            Interaction logic for <c>TechniqueView.xaml</c>.
-            </summary>
-            <summary>
-            TechniqueView
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueView.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="P:Sudoku.Windows.Tooling.TechniqueView.ChosenTechniques">
-            <summary>
-            Indictaes the chosen techniques.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueView.InitializeTechniqueBoxes">
-            <summary>
-            Initializes the techniques, and stores them into the list.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Tooling.TechniqueView.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:Sudoku.Windows.ValueChangedEventHandler">
             <summary>
             Indicates the event handler when the value is changed.
@@ -2954,6 +2957,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The bitmap source to set.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

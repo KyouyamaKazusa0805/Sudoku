@@ -12,7 +12,7 @@ using static System.Drawing.Text.TextRenderingHint;
 using static System.Windows.Input.Key;
 using DFontStyle = System.Drawing.FontStyle;
 
-namespace Sudoku.Windows.Tooling
+namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
 	/// Interaction logic for <c>FontDialog.xaml</c>.

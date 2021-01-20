@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Sudoku.DocComments;
 
-namespace Sudoku.Windows.Tooling
+namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
 	/// Interaction logic for <c>NumericUpDown.xaml</c>.

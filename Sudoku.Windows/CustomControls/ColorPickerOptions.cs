@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Sudoku.Windows.Tooling
+namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
-	/// Indicates the option using in initialization for a <see cref="ColorPicker"/>.
+	/// Indicates the option using in initialization for a <see cref="ColorPickerWindow"/>.
 	/// </summary>
 	[Flags]
 	/*closed*/

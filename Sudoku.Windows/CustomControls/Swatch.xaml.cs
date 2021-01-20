@@ -5,7 +5,7 @@ using System.Windows.Media;
 using Sudoku.DocComments;
 using Sudoku.Windows.Extensions;
 
-namespace Sudoku.Windows.Tooling
+namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
 	/// Interaction logic for <c>Swatch.xaml</c>.
@@ -30,7 +30,7 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Indicates the color picker control instance.
 		/// </summary>
-		public static ColorPickerControl? ColorPickerControl { get; set; }
+		public static ColorPicker? ColorPickerControl { get; set; }
 
 
 		/// <summary>
@@ -71,6 +71,6 @@ namespace Sudoku.Windows.Tooling
 		/// </summary>
 		/// <returns>The colors.</returns>
 		internal ICollection<ColorSwatchItem> GetColors() =>
-			SwatchListBox.ItemsSource as List<ColorSwatchItem> ?? new();
+			_swatchListBox.ItemsSource as List<ColorSwatchItem> ?? new();
 	}
 }

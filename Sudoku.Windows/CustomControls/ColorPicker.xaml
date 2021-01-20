@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="Sudoku.Windows.Tooling.ColorPickerControl"
+﻿<UserControl x:Class="Sudoku.Windows.CustomControls.ColorPicker"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:c="clr-namespace:Sudoku.Windows.Tooling"
+			 xmlns:c="clr-namespace:Sudoku.Windows.CustomControls"
 			 mc:Ignorable="d"
 			 d:DesignWidth="560" d:DesignHeight="380" MinHeight="380">
 	<Grid>
@@ -90,11 +90,11 @@
 						Width="58" Height="58"/>
 				<c:Swatch x:Name="_swatch1" HorizontalAlignment="Left" Height="60" Margin="60,0,0,0"
 						  VerticalAlignment="Top" Width="260"
-						  PickingColor="Swatch_PickColor"/>
+						  PickingColor="Swatch_PickingColor"/>
 			</Grid>
 			<c:Swatch x:Name="_swatch2" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1"
 					  VerticalAlignment="Stretch"
-					  PickingColor="Swatch_PickColor"/>
+					  PickingColor="Swatch_PickingColor"/>
 		</Grid>
 	</Grid>
 </UserControl>

@@ -18,12 +18,12 @@ using WColor = System.Windows.Media.Color;
 using WColorEx = Sudoku.Windows.Extensions.WindowsColorEx;
 using WPoint = System.Windows.Point;
 
-namespace Sudoku.Windows.Tooling
+namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
-	/// Interaction logic for <c>ColorPickerControl.xaml</c>.
+	/// Interaction logic for <c>ColorPicker.xaml</c>.
 	/// </summary>
-	public sealed partial class ColorPickerControl : UserControl
+	public sealed partial class ColorPicker : UserControl
 	{
 		/// <summary>
 		/// The number of first-line swatches.
@@ -39,7 +39,7 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// The color palette.
 		/// </summary>
-		private static ColorPalette? _colorPalette;
+		private static ColorPickerPalette? _colorPalette;
 
 
 		/// <summary>
@@ -59,7 +59,7 @@ namespace Sudoku.Windows.Tooling
 
 
 		/// <inheritdoc cref="DefaultConstructor"/>
-		public ColorPickerControl() => InitializeComponent();
+		public ColorPicker() => InitializeComponent();
 
 
 		/// <summary>
@@ -135,17 +135,17 @@ namespace Sudoku.Windows.Tooling
 			{
 				try
 				{
-					_colorPalette = LoadFromXml<ColorPalette>(filename);
+					_colorPalette = LoadFromXml<ColorPickerPalette>(filename);
 
-					_customColorSwatch.SwatchListBox.ItemsSource = _colorPalette!.CustomColors;
+					_customColorSwatch._swatchListBox.ItemsSource = _colorPalette!.CustomColors;
 
 					_colorSwatch1.Clear();
 					_colorSwatch2.Clear();
 					_colorSwatch1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
 					_colorSwatch2.AddRange(
 						_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
-					_swatch1.SwatchListBox.ItemsSource = _colorSwatch1;
-					_swatch2.SwatchListBox.ItemsSource = _colorSwatch2;
+					_swatch1._swatchListBox.ItemsSource = _colorSwatch1;
+					_swatch2._swatchListBox.ItemsSource = _colorSwatch2;
 				}
 				catch (Exception ex)
 				{
@@ -183,7 +183,7 @@ namespace Sudoku.Windows.Tooling
 			{
 				try
 				{
-					_colorPalette = LoadFromXml<ColorPalette>(ColorPickerSettings.CustomPaletteFilename);
+					_colorPalette = LoadFromXml<ColorPickerPalette>(ColorPickerSettings.CustomPaletteFilename);
 				}
 				catch
 				{
@@ -199,12 +199,12 @@ namespace Sudoku.Windows.Tooling
 			_colorSwatch2.AddRange(
 				_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
 
-			_swatch1.SwatchListBox.ItemsSource = _colorSwatch1;
-			_swatch2.SwatchListBox.ItemsSource = _colorSwatch2;
+			_swatch1._swatchListBox.ItemsSource = _colorSwatch1;
+			_swatch2._swatchListBox.ItemsSource = _colorSwatch2;
 
 			if (ColorPickerSettings.UsingCustomPalette)
 			{
-				_customColorSwatch.SwatchListBox.ItemsSource = _colorPalette.CustomColors;
+				_customColorSwatch._swatchListBox.ItemsSource = _colorPalette.CustomColors;
 			}
 			else
 			{
@@ -324,7 +324,7 @@ namespace Sudoku.Windows.Tooling
 			SampleImageClick((BitmapSource)_sampleImage2.Source, e.GetPosition(_sampleImage2));
 
 		/// <inheritdoc cref="PickingColorEventHandler"/>
-		private void Swatch_PickColor(WColor color) => SetColor(color);
+		private void Swatch_PickingColor(in WColor color) => SetColor(color);
 
 		/// <inheritdoc cref="ValueChangedEventHandler"/>
 		private void RSlider_ValueChanged(double value)

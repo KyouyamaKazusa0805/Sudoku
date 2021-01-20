@@ -87,4 +87,11 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Page Update="CustomControls\FontDialog.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	</ItemGroup>
+
 </Project>

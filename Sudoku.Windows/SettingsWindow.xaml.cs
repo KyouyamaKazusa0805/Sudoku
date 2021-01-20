@@ -9,7 +9,7 @@ using System.Windows.Media;
 using Sudoku.DocComments;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
-using Sudoku.Windows.Tooling;
+using Sudoku.Windows.CustomControls;
 using StepTriplet = System.KeyedTuple<string, int, System.Type>;
 
 namespace Sudoku.Windows
@@ -250,7 +250,7 @@ namespace Sudoku.Windows
 		/// <param name="colorIndex">The index.</param>
 		private void HandleColor(object sender, WindowsSettings settings, int colorIndex)
 		{
-			if (sender is Button button && ColorPicker.ShowDialog(out var color) && color.HasValue)
+			if (sender is Button button && ColorPickerWindow.ShowDialog(out var color) && color.HasValue)
 			{
 				var target = color.Value.ToDColor();
 				typeof(WindowsSettings).GetProperty($"Color{colorIndex.ToString()}")!.SetValue(settings, target);
@@ -398,7 +398,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonBackgroundColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -412,7 +412,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonGivenColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -426,7 +426,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonModifiableColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -440,7 +440,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -454,7 +454,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonFocusColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -468,7 +468,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonGridLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -482,7 +482,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonBlockLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -496,7 +496,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonChainColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -510,7 +510,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCrosshatchingOutlineColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -524,7 +524,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCrosshatchingValuesColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{
@@ -538,7 +538,7 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCrossSignColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color))
+			if (ColorPickerWindow.ShowDialog(out var color))
 			{
 				_assigments += () =>
 				{

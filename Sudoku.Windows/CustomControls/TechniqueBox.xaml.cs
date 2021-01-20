@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using Sudoku.DocComments;
 using Sudoku.Techniques;
 
-namespace Sudoku.Windows.Tooling
+namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
 	/// Interaction logic for <c>TechniqueBox.xaml</c>.

@@ -8,7 +8,7 @@ using Sudoku.Techniques;
 using static Sudoku.Windows.MainWindow;
 using CoreResources = Sudoku.Windows.Resources;
 
-namespace Sudoku.Windows.Tooling
+namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
 	/// Interaction logic for <c>TechniqueView.xaml</c>.

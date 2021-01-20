@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace Sudoku.Windows.Tooling
+namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
 	/// The swatch item.
