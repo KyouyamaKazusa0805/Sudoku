@@ -1201,21 +1201,21 @@
             </summary>
             <seealso cref="T:System.Windows.Input.Key"/>
         </member>
-        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsDigit(System.Windows.Input.Key)">
+        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsDigit(System.Windows.Input.Key,System.Boolean)">
             <summary>
             Check whether the specified key is a digit key.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsNumPadDigit(System.Windows.Input.Key)">
+        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsNumPadDigit(System.Windows.Input.Key,System.Boolean)">
             <summary>
             Check whether the specified key is a digit key in number pad.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsDigitUpsideAlphabets(System.Windows.Input.Key)">
+        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsDigitUpsideAlphabets(System.Windows.Input.Key,System.Boolean)">
             <summary>
             Check whether the specified key is a digit key above those alphabets
             in keyboard.

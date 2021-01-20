@@ -137,35 +137,37 @@ namespace Sudoku.Windows.CustomControls
 		/// <inheritdoc cref="Events.TextChanged(object?, EventArgs)"/>
 		private void TextBoxSize_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (sender is TextBox textBox)
+			if (sender is not TextBox textBox)
 			{
-				if (!double.TryParse(textBox.Text, out double value))
-				{
-					textBox.Text = "9";
-
-					e.Handled = true;
-					return;
-				}
-
-				SelectedFont = new(SelectedFont.Name, (float)value, SelectedFont.Style);
-
-				DrawString();
+				e.Handled = true;
+				return;
 			}
+
+			if (!double.TryParse(textBox.Text, out double value))
+			{
+				textBox.Text = "9";
+
+				e.Handled = true;
+				return;
+			}
+
+			SelectedFont = new(SelectedFont.Name, (float)value, SelectedFont.Style);
+
+			DrawString();
 		}
 
 		/// <inheritdoc cref="Events.PreviewKeyDown(object?, EventArgs)"/>
 		private void TextBoxSize_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
-			static bool c(Key key) =>
-				key is > D0 and <= D9 or > NumPad0 and <= NumPad9
-				&& Keyboard.Modifiers == ModifierKeys.None;
-
-			if (sender is TextBox textBox && c(e.Key))
+			if (sender is not TextBox textBox || !e.Key.IsDigit(false) || Keyboard.Modifiers != ModifierKeys.None)
 			{
-				textBox.Text = textBox.Text == "0"
-					? e.Key is > D0 and <= D9 ? (e.Key - D0).ToString() : (e.Key - NumPad0).ToString()
-					: e.Key is >= D0 and <= D9 ? (e.Key - D0).ToString() : (e.Key - NumPad0).ToString();
+				e.Handled = true;
+				return;
 			}
+
+			textBox.Text = textBox.Text == "0"
+				? e.Key.IsDigitUpsideAlphabets(false) ? (e.Key - D0).ToString() : (e.Key - NumPad0).ToString()
+				: e.Key.IsDigitUpsideAlphabets() ? (e.Key - D0).ToString() : (e.Key - NumPad0).ToString();
 		}
 	}
 }

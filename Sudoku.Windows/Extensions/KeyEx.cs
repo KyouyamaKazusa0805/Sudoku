@@ -16,7 +16,9 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsDigit(this Key @this) => @this is >= D0 and <= D9 or >= NumPad0 and <= NumPad9;
+		public static bool IsDigit(this Key @this, bool fromZero = true) =>
+			@this >= (fromZero ? D0 : D1) && @this <= D9
+			|| @this >= (fromZero ? NumPad0 : NumPad1) && @this <= NumPad9;
 
 		/// <summary>
 		/// Check whether the specified key is a digit key in number pad.
@@ -24,7 +26,8 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsNumPadDigit(this Key @this) => @this is >= NumPad0 and <= NumPad9;
+		public static bool IsNumPadDigit(this Key @this, bool fromZero = true) =>
+			@this >= (fromZero ? NumPad0 : NumPad1) && @this <= NumPad9;
 
 		/// <summary>
 		/// Check whether the specified key is a digit key above those alphabets
@@ -33,7 +36,8 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsDigitUpsideAlphabets(this Key @this) => @this is >= D0 and <= D9;
+		public static bool IsDigitUpsideAlphabets(this Key @this, bool fromZero = true) =>
+			@this >= (fromZero ? D0 : D1) && @this <= D9;
 
 		/// <summary>
 		/// Check whether the specified key is a letter.
