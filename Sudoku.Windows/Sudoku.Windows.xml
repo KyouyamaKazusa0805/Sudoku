@@ -426,6 +426,54 @@
             Indicates the language source dictionary (Chinese).
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.Converters.DifficultyInfoToBackgroundColorConverter">
+            <summary>
+            Defines a converter that converts from a difficulty information to the background color information.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Converters.DifficultyInfoToBackgroundColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.Converters.DifficultyInfoToBackgroundColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Windows.Converters.DifficultyInfoToForegroundColorConverter">
+            <summary>
+            Defines a converter that converts from a difficulty information to the foreground color information.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Converters.DifficultyInfoToForegroundColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.Converters.DifficultyInfoToForegroundColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Windows.Converters.DifficultyInfoToTextConverter">
+            <summary>
+            Defines a converter that converts from a difficulty information to the text.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Converters.DifficultyInfoToTextConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.Converters.DifficultyInfoToTextConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Windows.Converters.WidthConverter">
+            <summary>
+            Defines a width conveter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Converters.WidthConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Windows.Converters.WidthConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Windows.CustomControls.ColorComponentSlider">
             <summary>
             Interaction logic for <c>ColorComponentSlider.xaml</c>.
@@ -989,54 +1037,6 @@
             <summary>
             InitializeComponent
             </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Data.DifficultyInfoToBackgroundColorConverter">
-            <summary>
-            Defines a converter that converts from a difficulty information to the background color information.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Data.DifficultyInfoToBackgroundColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.Data.DifficultyInfoToBackgroundColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-            <exception cref="T:System.NotImplementedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Windows.Data.DifficultyInfoToForegroundColorConverter">
-            <summary>
-            Defines a converter that converts from a difficulty information to the foreground color information.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Data.DifficultyInfoToForegroundColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.Data.DifficultyInfoToForegroundColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-            <exception cref="T:System.NotImplementedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Windows.Data.DifficultyInfoToTextConverter">
-            <summary>
-            Defines a converter that converts from a difficulty information to the text.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Data.DifficultyInfoToTextConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.Data.DifficultyInfoToTextConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-            <exception cref="T:System.NotImplementedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Windows.Data.WidthConverter">
-            <summary>
-            Defines a width conveter.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Data.WidthConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Windows.Data.WidthConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-            <exception cref="T:System.NotImplementedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Windows.DifficultyInfo">
             <summary>

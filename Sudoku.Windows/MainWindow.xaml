@@ -4,16 +4,16 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:Sudoku.Windows"
-		xmlns:localData="clr-namespace:Sudoku.Windows.Data"
+		xmlns:converters="clr-namespace:Sudoku.Windows.Converters"
 		mc:Ignorable="d" Title="{DynamicResource SolutionName}"
 		Height="800" Width="1200" SizeChanged="Window_SizeChanged"
 		WindowStartupLocation="CenterScreen">
 	<Window.Resources>
 		<local:WindowsSettings x:Key="globalSettings" />
-		<localData:DifficultyInfoToTextConverter x:Key="di2tcvt" />
-		<localData:DifficultyInfoToForegroundColorConverter x:Key="di2fgccvt" />
-		<localData:DifficultyInfoToBackgroundColorConverter x:Key="di2bgccvt" />
-		<localData:WidthConverter x:Key="wcvt" />
+		<converters:DifficultyInfoToTextConverter x:Key="di2tcvt" />
+		<converters:DifficultyInfoToForegroundColorConverter x:Key="di2fgccvt" />
+		<converters:DifficultyInfoToBackgroundColorConverter x:Key="di2bgccvt" />
+		<converters:WidthConverter x:Key="wcvt" />
 		<Style TargetType="MenuItem">
 			<Setter Property="IsTabStop" Value="False"/>
 		</Style>

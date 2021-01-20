@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Sudoku.Windows.Data
+namespace Sudoku.Windows.Converters
 {
 	/// <summary>
 	/// Defines a width conveter.

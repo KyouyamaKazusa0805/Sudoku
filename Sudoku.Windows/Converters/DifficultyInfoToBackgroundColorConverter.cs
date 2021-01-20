@@ -6,7 +6,7 @@ using System.Windows.Media;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
 
-namespace Sudoku.Windows.Data
+namespace Sudoku.Windows.Converters
 {
 	/// <summary>
 	/// Defines a converter that converts from a difficulty information to the background color information.

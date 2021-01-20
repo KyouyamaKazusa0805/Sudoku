@@ -2,26 +2,22 @@
 using System.Extensions;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Media;
 using Sudoku.Solving.Manual;
-using Sudoku.Windows.Extensions;
 
-namespace Sudoku.Windows.Data
+namespace Sudoku.Windows.Converters
 {
 	/// <summary>
-	/// Defines a converter that converts from a difficulty information to the foreground color information.
+	/// Defines a converter that converts from a difficulty information to the text.
 	/// </summary>
-	public sealed class DifficultyInfoToForegroundColorConverter : IValueConverter
+	public sealed class DifficultyInfoToTextConverter : IValueConverter
 	{
 		/// <inheritdoc/>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var diffColors = ((WindowsSettings)parameter).DiffColors;
 			var difficultyLevel = (DifficultyLevel)value;
-
 			if (difficultyLevel == DifficultyLevel.Unknown)
 			{
-				return Brushes.White;
+				return string.Empty;
 			}
 
 			DifficultyLevel min = default, max = default;
@@ -38,14 +34,8 @@ namespace Sudoku.Windows.Data
 
 		Returning:
 			return min == DifficultyLevel.Unknown
-				? Brushes.White
-				: i == 1
-				? diffColors.TryGetValue(min, out var pair)
-				? new SolidColorBrush(pair.Foreground.ToWColor())
-				: Brushes.White
-				: diffColors.TryGetValue(min, out var minPair) && diffColors.TryGetValue(max, out var maxPair)
-				? new LinearGradientBrush(minPair.Foreground.ToWColor(), maxPair.Foreground.ToWColor(), 0)
-				: Brushes.White;
+				? string.Empty
+				: i == 1 ? min.ToString() : $"{min.ToString()} - {max.ToString()}";
 		}
 
 		/// <inheritdoc/>
