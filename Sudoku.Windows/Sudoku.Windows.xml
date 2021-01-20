@@ -2231,6 +2231,11 @@
             Extracts the fixed colors.
             </summary>
         </member>
+        <member name="F:Sudoku.Windows.Media.ColorPalette.DifficultyLevelColors">
+            <summary>
+            The color table for each difficulty level.
+            </summary>
+        </member>
         <member name="F:Sudoku.Windows.Media.ColorPalette.PaletteColors">
             <summary>
             Indicates the color palette that is shown on the control.
@@ -2927,11 +2932,6 @@
         <member name="P:Sudoku.Windows.WindowsSettings.MainManualSolver">
             <summary>
             The main manual solver.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.WindowsSettings.DiffColors">
-            <summary>
-            The color table for each difficulty level.
             </summary>
         </member>
         <member name="T:System.SystemClipboard">

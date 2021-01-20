@@ -22,6 +22,7 @@ using Sudoku.Solving.Manual;
 using static Sudoku.Windows.Constants;
 using CoreResources = Sudoku.Windows.Resources;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
+using Sudoku.Windows.Media;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif
@@ -1038,7 +1039,7 @@ namespace Sudoku.Windows
 				var pathList = new List<ListBoxItem>();
 				foreach (var step in _analyisResult.Steps!)
 				{
-					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
+					var (fore, back) = ColorPalette.DifficultyLevelColors[step.DifficultyLevel];
 					var content =
 						new StepTriplet(
 							(Settings.ShowStepLabel, Settings.ShowStepDifficulty) switch

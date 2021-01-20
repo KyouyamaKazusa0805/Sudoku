@@ -3,13 +3,11 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:local="clr-namespace:Sudoku.Windows"
 		xmlns:converters="clr-namespace:Sudoku.Windows.Converters"
 		mc:Ignorable="d" Title="{DynamicResource SolutionName}"
 		Height="800" Width="1200" SizeChanged="Window_SizeChanged"
 		WindowStartupLocation="CenterScreen">
 	<Window.Resources>
-		<local:WindowsSettings x:Key="globalSettings" />
 		<converters:DifficultyInfoToTextConverter x:Key="di2tcvt" />
 		<converters:DifficultyInfoToForegroundColorConverter x:Key="di2fgccvt" />
 		<converters:DifficultyInfoToBackgroundColorConverter x:Key="di2bgccvt" />
@@ -491,8 +489,8 @@
 												<DataTemplate>
 													<Border x:Name="_summaryBorderDifficultyLevel"
 															CornerRadius="3" Padding="1.5,1.5,1.5,1.5"
-															Background="{Binding DifficultyLevel,Converter={StaticResource di2bgccvt},ConverterParameter={StaticResource globalSettings}}"
-															BorderBrush="{Binding DifficultyLevel,Converter={StaticResource di2fgccvt},ConverterParameter={StaticResource globalSettings}}">
+															Background="{Binding DifficultyLevel,Converter={StaticResource di2bgccvt}}"
+															BorderBrush="{Binding DifficultyLevel,Converter={StaticResource di2fgccvt}}">
 														<TextBlock Text="{Binding DifficultyLevel,Converter={StaticResource di2tcvt}}"
 																   Foreground="{Binding Path=BorderBrush,ElementName=_summaryBorderDifficultyLevel}"/>
 													</Border>

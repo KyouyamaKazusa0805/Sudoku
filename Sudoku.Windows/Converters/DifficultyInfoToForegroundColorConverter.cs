@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
+using Sudoku.Windows.Media;
 
 namespace Sudoku.Windows.Converters
 {
@@ -16,7 +17,7 @@ namespace Sudoku.Windows.Converters
 		/// <inheritdoc/>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var diffColors = ((WindowsSettings)parameter).DiffColors;
+			var diffColors = ColorPalette.DifficultyLevelColors;
 			var difficultyLevel = (DifficultyLevel)value;
 
 			if (difficultyLevel == DifficultyLevel.Unknown)

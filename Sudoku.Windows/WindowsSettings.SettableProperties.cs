@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
-using System.Text.Json.Serialization;
-using Sudoku.Globalization;
+﻿using Sudoku.Globalization;
 using Sudoku.Solving.Manual;
-using static Sudoku.Solving.Manual.DifficultyLevel;
 
 namespace Sudoku.Windows
 {
@@ -171,21 +167,5 @@ namespace Sudoku.Windows
 		/// The main manual solver.
 		/// </summary>
 		public ManualSolver MainManualSolver { get; set; } = new();
-
-		/// <summary>
-		/// The color table for each difficulty level.
-		/// </summary>
-		[JsonIgnore]
-		public IReadOnlyDictionary<DifficultyLevel, (Color Foreground, Color Background)> DiffColors =>
-			new Dictionary<DifficultyLevel, (Color, Color)>
-			{
-				[Unknown] = (Color.Black, Color.Gray),
-				[Easy] = (Color.FromArgb(0, 51, 204), Color.FromArgb(204, 204, 255)),
-				[Moderate] = (Color.FromArgb(0, 102, 0), Color.FromArgb(100, 255, 100)),
-				[Hard] = (Color.FromArgb(128, 128, 0), Color.FromArgb(255, 255, 100)),
-				[Fiendish] = (Color.FromArgb(102, 51, 0), Color.FromArgb(255, 150, 80)),
-				[Nightmare] = (Color.FromArgb(102, 0, 0), Color.FromArgb(255, 100, 100)),
-				[LastResort] = (Color.Black, Color.FromArgb(255, 100, 100))
-			};
 	}
 }
