@@ -2367,7 +2367,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Exocets.EliminatedReason.TrueBase">
             <summary>
-            Indicates the true base assignments.
+            Indicates the true base eliminations.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Exocets.EliminatedReason.CompatibilityTest">

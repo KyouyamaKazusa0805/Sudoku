@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		GeneralizedSwordfish = 16,
 
 		/// <summary>
-		/// Indicates the true base assignments.
+		/// Indicates the true base eliminations.
 		/// </summary>
 		TrueBase = 32,
 

@@ -84,8 +84,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			// Returns the result.
 			string elimStr = new ConclusionCollection(AsSpan()).ToString();
-			string suffix = Reason == EliminatedReason.TrueBase ? " assignment" : " elimination";
-			return $"{header}{suffix}: {elimStr}";
+			return $"* {header} elimination: {elimStr}";
 		}
 
 		/// <summary>
