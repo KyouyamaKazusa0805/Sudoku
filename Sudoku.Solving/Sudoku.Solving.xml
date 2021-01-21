@@ -861,12 +861,12 @@
             <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
             <returns>The difficulty level.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Extensions.BatchAnalyzer">
+        <member name="T:Sudoku.Solving.Extensions.BatchRater">
             <summary>
-            Define a batch analyzer.
+            Define a batch rater.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.BatchAnalyzer.BatchRatingAsync(System.String,System.String)">
+        <member name="M:Sudoku.Solving.Extensions.BatchRater.BatchRatingAsync(System.String,System.String)">
             <summary>
             To batch rating a series of puzzles being saved in <paramref name="inputPath"/>,
             and output the puzzles and their rating results to <paramref name="outputPath"/>.

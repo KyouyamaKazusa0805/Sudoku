@@ -9,9 +9,9 @@ using Sudoku.Solving.Manual.Extensions;
 namespace Sudoku.Solving.Extensions
 {
 	/// <summary>
-	/// Define a batch analyzer.
+	/// Define a batch rater.
 	/// </summary>
-	public static class BatchAnalyzer
+	public static class BatchRater
 	{
 		/// <summary>
 		/// To batch rating a series of puzzles being saved in <paramref name="inputPath"/>,
