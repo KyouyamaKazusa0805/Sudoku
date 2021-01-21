@@ -149,6 +149,45 @@ namespace System.Extensions
 		}
 
 		/// <summary>
+		/// Append a series of elements, and convert them to a <see cref="string"/> representation,
+		/// and then append a new line as a separator. This method allows you defining a custom converter
+		/// to convert the specified value into a string to be appended.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="contentList">All contents.</param>
+		/// <param name="converter">The converter method specified as a function pointer.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static StringBuilder AppendLineRange<TElement>(
+			this StringBuilder @this, IEnumerable<TElement?> contentList, Func<TElement?, string> converter)
+		{
+			foreach (var content in contentList)
+			{
+				@this.AppendLine(converter(content));
+			}
+
+			return @this;
+		}
+
+		/// <summary>
+		/// Append a series of elements, and convert them to a <see cref="string"/> representation, and then
+		/// append a new line as a separator.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="contentList">All contents.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static StringBuilder AppendLineRange<T>(this StringBuilder @this, IEnumerable<T?> contentList)
+		{
+			foreach (var content in contentList)
+			{
+				@this.AppendLine(content?.ToString() ?? string.Empty);
+			}
+
+			return @this;
+		}
+
+		/// <summary>
 		/// Copy the specified string builder to the specified target.
 		/// </summary>
 		/// <param name="this">The base string builder.</param>

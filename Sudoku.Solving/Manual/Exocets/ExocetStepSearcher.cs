@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Manual.Exocets.Eliminations;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 
@@ -162,13 +162,13 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		/// <returns>All mirror eliminations.</returns>
-		protected (Target, Mirror) CheckMirror(
+		protected (Elimination Target, Elimination Mirror) CheckMirror(
 			in SudokuGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
 			in Cells mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets,
 			IList<DrawingInfo> candidateOffsets)
 		{
-			var targetElims = new Target();
-			var mirrorElims = new Mirror();
+			var targetElims = ImmutableArray.Create<int>();
+			var mirrorElims = ImmutableArray.Create<int>();
 			int[] offsets = mirror.ToArray();
 			int l = offsets[0], r = offsets[1];
 			short mirrorCandsMask = (short)(grid.GetCandidates(l) | grid.GetCandidates(r));
@@ -178,7 +178,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				foreach (int digit in targetElim)
 				{
-					targetElims.Add(new(ConclusionType.Elimination, target, digit));
+					targetElims = targetElims.Add(target * 9 + digit);
 				}
 			}
 
@@ -197,11 +197,14 @@ namespace Sudoku.Solving.Manual.Exocets
 						cellOffsets.Add(new(3, r));
 						foreach (int digit in candidateMask)
 						{
-							mirrorElims.Add(new(ConclusionType.Elimination, p, digit));
+							mirrorElims = mirrorElims.Add(p * 9 + digit);
 						}
 					}
 
-					return (targetElims, mirrorElims);
+					return (
+						new(targetElims, EliminatedReason.Basic),
+						new(mirrorElims, EliminatedReason.Mirror)
+					);
 				}
 
 				short nonBase = (short)(mirrorCandsMask & ~baseCandidateMask);
@@ -253,7 +256,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 								foreach (int digit in grid.GetCandidates(p) & ~mask)
 								{
-									mirrorElims.Add(new(ConclusionType.Elimination, p, digit));
+									mirrorElims = mirrorElims.Add(p * 9 + digit);
 								}
 							}
 
@@ -266,8 +269,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						// Here you should use '|' operator rather than '||'.
 						// Operator '||' won't execute the second method if the first condition is true.
-						if (g(grid, l, mirrorElims, baseCandidateMask, locked)
-							| g(grid, r, mirrorElims, baseCandidateMask, locked))
+						if (g(grid, l, ref mirrorElims, baseCandidateMask, locked)
+							| g(grid, r, ref mirrorElims, baseCandidateMask, locked))
 						{
 							cellOffsets.Add(new(3, l));
 							cellOffsets.Add(new(3, r));
@@ -284,7 +287,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							{
 								foreach (int digit in candidateMask)
 								{
-									mirrorElims.Add(new(ConclusionType.Elimination, target, digit));
+									mirrorElims = mirrorElims.Add(target * 9 + digit);
 								}
 							}
 						}
@@ -293,7 +296,8 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						// Gathering.
 						bool g(
-							in SudokuGrid grid, int p, Mirror mirrorElims, short baseCandidateMask, short locked)
+							in SudokuGrid grid, int p, ref ImmutableArray<int> mirrorElims,
+							short baseCandidateMask, short locked)
 						{
 							short candidateMask = (short)(grid.GetCandidates(p) & ~(baseCandidateMask | locked));
 							if (candidateMask != 0)
@@ -308,7 +312,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 								foreach (int digit in candidateMask)
 								{
-									mirrorElims.Add(new(ConclusionType.Elimination, p, digit));
+									mirrorElims = mirrorElims.Add(p * 9 + digit);
 								}
 
 								return true;
@@ -320,7 +324,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 			}
 
-			return (targetElims, mirrorElims);
+			return (new(targetElims, EliminatedReason.Basic), new(mirrorElims, EliminatedReason.Mirror));
 		}
 	}
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Manual.Exocets.Eliminations;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -104,10 +104,10 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// Check target eliminations.
 				// Here we can't replace the operator '|' with '||', because two methods both should be called.
-				var targetElims = new Target();
+				var targetElims = ImmutableArray.Create<int>();
 				temp = (short)(nonBaseQ > 0 ? baseCandsMask | nonBaseQ : baseCandsMask);
-				if (GatheringTargetElims(targetElims, tq1, grid, baseCandsMask, temp)
-					| GatheringTargetElims(targetElims, tq2, grid, baseCandsMask, temp)
+				if (GatheringTargetElims(ref targetElims, tq1, grid, baseCandsMask, temp)
+					| GatheringTargetElims(ref targetElims, tq2, grid, baseCandsMask, temp)
 					&& nonBaseQ > 0
 					&& grid.GetStatus(tq1) == CellStatus.Empty ^ grid.GetStatus(tq2) == CellStatus.Empty)
 				{
@@ -123,8 +123,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				temp = (short)(nonBaseR > 0 ? baseCandsMask | nonBaseR : baseCandsMask);
-				if (GatheringTargetElims(targetElims, tr1, grid, baseCandsMask, temp)
-					| GatheringTargetElims(targetElims, tr2, grid, baseCandsMask, temp)
+				if (GatheringTargetElims(ref targetElims, tr1, grid, baseCandsMask, temp)
+					| GatheringTargetElims(ref targetElims, tr2, grid, baseCandsMask, temp)
 					&& nonBaseR > 0
 					&& grid.GetStatus(tr1) == CellStatus.Empty ^ grid.GetStatus(tr2) == CellStatus.Empty)
 				{
@@ -139,7 +139,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 
-				if (targetElims.Count == 0)
+				if (targetElims.Length == 0)
 				{
 					continue;
 				}
@@ -155,24 +155,19 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				accumulator.Add(
 					new JeStepInfo(
-						new List<Conclusion>(),
 						new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
 						exocet,
 						baseCandsMask.GetAllSets().ToArray(),
 						null,
 						null,
-						targetElims,
-						null,
-						null,
-						null,
-						null));
+						new Elimination[] { new(targetElims, EliminatedReason.Basic) }));
 			}
 		}
 
 		/// <summary>
 		/// The method for gathering target eliminations.
 		/// </summary>
-		/// <param name="targetElims">The target eliminations.</param>
+		/// <param name="targetElims">(<see langword="ref"/> parameter) The target eliminations.</param>
 		/// <param name="cell">The cell.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="baseCandsMask">The base candidates mask.</param>
@@ -181,7 +176,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// A <see cref="bool"/> value indicating whether this method has been found eliminations.
 		/// </returns>
 		private static bool GatheringTargetElims(
-			Target targetElims, int cell, in SudokuGrid grid, short baseCandsMask, short temp)
+			ref ImmutableArray<int> targetElims, int cell, in SudokuGrid grid, short baseCandsMask, short temp)
 		{
 			short candMask = (short)(grid.GetCandidates(cell) & ~temp);
 			if (grid.GetStatus(cell) == CellStatus.Empty && candMask != 0
@@ -189,7 +184,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				foreach (int digit in candMask)
 				{
-					targetElims.Add(new(ConclusionType.Elimination, cell, digit));
+					targetElims = targetElims.Add(cell * 9 + digit);
 				}
 
 				return true;
@@ -214,7 +209,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var crosslinePerCandidate = crossline & DigitMaps[digit];
 				short r = crosslinePerCandidate.RowMask, c = crosslinePerCandidate.ColumnMask;
-				if ((PopCount((uint)r), PopCount((uint)c)) is not ( > 2, > 2))
+				if (PopCount((uint)r) <= 2 || PopCount((uint)c) <= 2)
 				{
 					continue;
 				}
@@ -254,7 +249,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// the value will be <c>-1</c>.
 		/// </param>
 		/// <returns>The <see cref="bool"/> value.</returns>
-		private bool CheckTarget(
+		private unsafe bool CheckTarget(
 			in SudokuGrid grid, int pos1, int pos2, int baseCandsMask, out short otherCandsMask)
 		{
 			otherCandsMask = -1;
@@ -267,8 +262,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				return true;
 			}
 
-			if ((m1 & baseCandsMask, m2 & baseCandsMask) == (0, 0)
-				|| (m1 & ~baseCandsMask, m2 & ~baseCandsMask) == (0, 0))
+			if ((m1 & baseCandsMask) == 0 && (m2 & baseCandsMask) == 0
+				|| (m1 & ~baseCandsMask) == 0 && (m2 & ~baseCandsMask) == 0)
 			{
 				// Two cells don't contain any digits in the base cells neither,
 				// or both contains only digits from base cells,
@@ -282,7 +277,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Therefore, we should check on non-base digits, whether the non-base digits
 			// covers only one of two last cells; otherwise, false.
 			short candidatesMask = (short)((m1 | m2) & ~baseCandsMask);
-			var span = (Span<int>)stackalloc[]
+			int* span = stackalloc[]
 			{
 				RegionLabel.Block.ToRegion(pos1),
 				RegionLabel.Row.ToRegion(pos1) == RegionLabel.Row.ToRegion(pos2)

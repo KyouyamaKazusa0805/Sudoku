@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Solving.Manual.Exocets.Eliminations;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -104,7 +104,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					short elimDigits = (short)((
+					short elimDigits = (short)(
+					(
 						grid.GetCandidates(v1) | grid.GetCandidates(v2)
 					) & ~baseCandsMask);
 					if (!CheckCrossline(tempCrosslineMap, baseCandsMask, v1, v2, isRow))
@@ -113,13 +114,13 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					// Get all target eliminations.
-					var targetElims = new Target();
+					var targetElims = ImmutableArray.Create<int>();
 					short cands = (short)(elimDigits & grid.GetCandidates(v1));
 					if (cands != 0)
 					{
 						foreach (int digit in cands)
 						{
-							targetElims.Add(new(ConclusionType.Elimination, v1, digit));
+							targetElims = targetElims.Add(v1 * 9 + digit);
 						}
 					}
 					cands = (short)(elimDigits & grid.GetCandidates(v2));
@@ -127,7 +128,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						foreach (int digit in cands)
 						{
-							targetElims.Add(new(ConclusionType.Elimination, v2, digit));
+							targetElims = targetElims.Add(v2 * 9 + digit);
 						}
 					}
 
@@ -141,7 +142,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					// Get all true base eliminations.
-					var trueBaseElims = new TrueBase();
+					var trueBaseElims = ImmutableArray.Create<int>();
 					if (tbCands != 0 && (
 						grid.GetStatus(v1) != CellStatus.Empty || grid.GetStatus(v2) != CellStatus.Empty))
 					{
@@ -159,7 +160,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 							foreach (int digit in cands)
 							{
-								trueBaseElims.Add(new(ConclusionType.Elimination, comb[j], digit));
+								trueBaseElims = trueBaseElims.Add(comb[j] * 9 + digit);
 							}
 						}
 					}
@@ -171,12 +172,12 @@ namespace Sudoku.Solving.Manual.Exocets
 							var elimMap = (baseMap & CandMaps[digit]).PeerIntersection & CandMaps[digit];
 							foreach (int cell in elimMap)
 							{
-								trueBaseElims.Add(new(ConclusionType.Elimination, cell, digit));
+								trueBaseElims = trueBaseElims.Add(cell * 9 + digit);
 							}
 						}
 					}
 
-					if (targetElims.Count == 0 && trueBaseElims.Count == 0)
+					if (targetElims.Length == 0 && trueBaseElims.Length == 0)
 					{
 						continue;
 					}
@@ -202,16 +203,16 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					accumulator.Add(
 						new SeStepInfo(
-							new List<Conclusion>(), // Special eliminations will use this empty list.
 							new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
 							exocet,
 							m.GetAllSets().ToArray(),
 							endoTargetCell,
 							null,
-							targetElims,
-							trueBaseElims,
-							null,
-							null));
+							new Elimination[]
+							{
+								new(targetElims, EliminatedReason.Basic),
+								new(trueBaseElims, EliminatedReason.TrueBase)
+							}));
 				}
 			}
 		}

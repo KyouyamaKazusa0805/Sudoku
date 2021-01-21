@@ -1139,7 +1139,7 @@
             The internal collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Span{Sudoku.Data.Conclusion}@)">
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.ReadOnlySpan{Sudoku.Data.Conclusion}@)">
             <summary>
             Initializes an instance with the specified collection.
             </summary>

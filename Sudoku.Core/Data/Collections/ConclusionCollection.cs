@@ -16,14 +16,14 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// The internal collection.
 		/// </summary>
-		private readonly Span<Conclusion> _collection;
+		private readonly ReadOnlySpan<Conclusion> _collection;
 
 
 		/// <summary>
 		/// Initializes an instance with the specified collection.
 		/// </summary>
 		/// <param name="collection">(<see langword="in"/> parameter) The collection.</param>
-		public ConclusionCollection(in Span<Conclusion> collection) : this() => _collection = collection;
+		public ConclusionCollection(in ReadOnlySpan<Conclusion> collection) : this() => _collection = collection;
 
 		/// <summary>
 		/// Initializes an instance with the specified collection.
@@ -106,7 +106,7 @@ namespace Sudoku.Data.Collections
 				_ => internalToString(_collection)
 			};
 
-			unsafe string internalToString(in Span<Conclusion> collection)
+			unsafe string internalToString(in ReadOnlySpan<Conclusion> collection)
 			{
 				var conclusions = collection.ToArray();
 				var sb = new StringBuilder();
