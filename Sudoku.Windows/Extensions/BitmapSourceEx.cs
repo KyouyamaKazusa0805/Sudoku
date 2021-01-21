@@ -12,15 +12,15 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Get the <see cref="BitmapImage"/> from the specified <see cref="BitmapSource"/>.
 		/// </summary>
-		/// <param name="bitmapSource">(<see langword="this"/> parameter) The bitmap source.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The bitmap source.</param>
 		/// <returns>The image.</returns>
-		public static BitmapImage GetBitmapImage(this BitmapSource bitmapSource)
+		public static BitmapImage GetBitmapImage(this BitmapSource @this)
 		{
 			var encoder = new JpegBitmapEncoder();
 			using var memoryStream = new MemoryStream();
 			var bImg = new BitmapImage();
 
-			encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+			encoder.Frames.Add(BitmapFrame.Create(@this));
 			encoder.Save(memoryStream);
 
 			memoryStream.Position = 0;

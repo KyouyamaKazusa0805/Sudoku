@@ -16,6 +16,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this in"/> parameter) The size.</param>
 		/// <param name="width">(<see langword="out"/> parameter) The width.</param>
 		/// <param name="height">(<see langword="out"/> parameter) The height.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Deconstruct(this in WSize @this, out double width, out double height)
 		{
 			width = @this.Width;

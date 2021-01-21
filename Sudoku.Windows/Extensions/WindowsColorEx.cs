@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Sudoku.DocComments;
 using static System.Convert;
@@ -18,6 +19,7 @@ namespace Sudoku.Windows.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
 		/// <returns>A <see cref="float"/> value.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float GetHue(this in WColor @this) =>
 			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetHue();
 
@@ -26,6 +28,7 @@ namespace Sudoku.Windows.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
 		/// <returns>A <see cref="float"/> value.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float GetBrightness(this in WColor @this) =>
 			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetBrightness();
 
@@ -34,6 +37,7 @@ namespace Sudoku.Windows.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
 		/// <returns>A <see cref="float"/> value.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float GetSaturation(this in WColor @this) =>
 			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetSaturation();
 
@@ -43,6 +47,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="r">(<see langword="out"/> parameter) The red value.</param>
 		/// <param name="g">(<see langword="out"/> parameter) The green value.</param>
 		/// <param name="b">(<see langword="out"/> parameter) The blue value.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Deconstruct(this in WColor @this, out byte a, out byte r, out byte g, out byte b)
 		{
 			a = @this.A;
@@ -56,6 +61,7 @@ namespace Sudoku.Windows.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
 		/// <returns>The target color.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static DColor ToDColor(this in WColor @this) =>
 			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 
@@ -64,6 +70,7 @@ namespace Sudoku.Windows.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
 		/// <returns>The result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static string ToHexString(this in WColor @this)
 		{
 			var (a, r, g, b) = @this;
@@ -87,6 +94,7 @@ namespace Sudoku.Windows.Extensions
 		/// <item><paramref name="brightness"/> is less than 0 or greater than 1.</item>
 		/// </list>
 		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static WColor FromAhsb(int alpha, float hue, float saturation, float brightness)
 		{
 			if (alpha is < 0 or > 255)
@@ -109,7 +117,11 @@ namespace Sudoku.Windows.Extensions
 			if (saturation == 0)
 			{
 				return WColor.FromArgb(
-					(byte)alpha, (byte)(brightness * 255), (byte)(brightness * 255), (byte)(brightness * 255));
+					a: (byte)alpha,
+					r: (byte)(brightness * 255),
+					g: (byte)(brightness * 255),
+					b: (byte)(brightness * 255)
+				);
 			}
 
 			float fMax, fMid, fMin;
@@ -152,6 +164,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="s">The S value.</param>
 		/// <param name="l">The L value.</param>
 		/// <returns>The <see cref="WColor"/>.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static WColor FromHsl(int h, int s, int l)
 		{
 			byte[] bytes = BitConverter.GetBytes(hls2Rgb(h, l, s));
@@ -166,6 +179,7 @@ namespace Sudoku.Windows.Extensions
 		/// </summary>
 		/// <param name="hex">The hex string.</param>
 		/// <returns>The <see cref="WColor"/>.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static WColor FromHex(string hex) =>
 			WColor.FromRgb(ToByte(hex[1..3], 16), ToByte(hex[3..5], 16), ToByte(hex[5..], 16));
 	}

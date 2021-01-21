@@ -26,7 +26,11 @@ namespace Sudoku.Windows.Extensions
 		{
 			var hBitmap = @this.GetHbitmap();
 			var result = Imaging.CreateBitmapSourceFromHBitmap(
-				hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+				bitmap: hBitmap,
+				palette: IntPtr.Zero,
+				sourceRect: Int32Rect.Empty,
+				sizeOptions: BitmapSizeOptions.FromEmptyOptions()
+			);
 			delete(hBitmap);
 			return result;
 

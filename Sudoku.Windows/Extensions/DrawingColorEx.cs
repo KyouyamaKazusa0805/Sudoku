@@ -1,4 +1,5 @@
-﻿using DColor = System.Drawing.Color;
+﻿using System.Runtime.CompilerServices;
+using DColor = System.Drawing.Color;
 using WColor = System.Windows.Media.Color;
 
 namespace Sudoku.Windows.Extensions
@@ -14,6 +15,7 @@ namespace Sudoku.Windows.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
 		/// <returns>The target color.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static WColor ToWColor(this in DColor @this) =>
 			WColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 	}
