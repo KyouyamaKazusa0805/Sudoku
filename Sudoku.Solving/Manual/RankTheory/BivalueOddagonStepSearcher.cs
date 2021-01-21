@@ -2,7 +2,6 @@
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
@@ -111,7 +110,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 							continue;
 						}
 
-						int region = label.ToRegion(cell);
+						int region = cell.ToRegion(label);
 						var cellsMap = RegionMaps[region] & EmptyMap - cell;
 						if (cellsMap.IsEmpty)
 						{

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -30,9 +30,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 			List<Cells> rbList = new(3), cbList = new(3);
 			foreach (int pivot in EmptyMap)
 			{
-				int r = RegionLabel.Row.ToRegion(pivot);
-				int c = RegionLabel.Column.ToRegion(pivot);
-				int b = RegionLabel.Block.ToRegion(pivot);
+				int r = pivot.ToRegion(RegionLabel.Row);
+				int c = pivot.ToRegion(RegionLabel.Column);
+				int b = pivot.ToRegion(RegionLabel.Block);
 				Cells rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
 				Cells rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
 				if ((rbEmptyMap.Count, cbEmptyMap.Count) is not ( >= 2, >= 2))

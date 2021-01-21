@@ -5,8 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Windows.Extensions;
 
 namespace Sudoku.Windows
@@ -225,12 +225,9 @@ namespace Sudoku.Windows
 
 							int first = _selectedCellsWhileDrawingRegions[0];
 							int second = _selectedCellsWhileDrawingRegions[1];
-							int r1 = RegionLabel.Row.ToRegion(first);
-							int r2 = RegionLabel.Row.ToRegion(second);
-							int c1 = RegionLabel.Column.ToRegion(first);
-							int c2 = RegionLabel.Column.ToRegion(second);
-							int b1 = RegionLabel.Block.ToRegion(first);
-							int b2 = RegionLabel.Block.ToRegion(second);
+							int r1 = first.ToRegion(RegionLabel.Row), r2 = second.ToRegion(RegionLabel.Row);
+							int c1 = first.ToRegion(RegionLabel.Column), c2 = second.ToRegion(RegionLabel.Column);
+							int b1 = first.ToRegion(RegionLabel.Block), b2 = second.ToRegion(RegionLabel.Block);
 							int region = r1 == r2 ? r1 : c1 == c2 ? c1 : b1 == b2 ? b1 : -1;
 							if (region != -1)
 							{

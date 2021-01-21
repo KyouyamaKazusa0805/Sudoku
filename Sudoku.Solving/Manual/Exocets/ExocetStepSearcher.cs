@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual.Extensions;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 
@@ -208,11 +209,11 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				short nonBase = (short)(mirrorCandsMask & ~baseCandidateMask);
-				regions[0] = RegionLabel.Block.ToRegion(l);
+				regions[0] = l.ToRegion(RegionLabel.Block);
 				regions[1] =
-					RegionLabel.Row.ToRegion(l) == RegionLabel.Row.ToRegion(r)
-					? RegionLabel.Row.ToRegion(l)
-					: RegionLabel.Column.ToRegion(l);
+					l.ToRegion(RegionLabel.Row) == r.ToRegion(RegionLabel.Row)
+					? l.ToRegion(RegionLabel.Row)
+					: l.ToRegion(RegionLabel.Column);
 				short locked = default;
 				foreach (short mask in Algorithms.GetMaskSubsets(nonBase))
 				{

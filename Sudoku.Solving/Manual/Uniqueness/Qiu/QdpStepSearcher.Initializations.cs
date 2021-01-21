@@ -1,6 +1,6 @@
 ﻿using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
+using Sudoku.Solving.Manual.Extensions;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
@@ -37,8 +37,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						(
 							!(baseLineMap & pairMap).IsEmpty || !(
 								baseLineMap & (
-									RegionMaps[RegionLabel.Block.ToRegion(c1)]
-									| RegionMaps[RegionLabel.Block.ToRegion(c2)]
+									RegionMaps[c1.ToRegion(RegionLabel.Block)]
+									| RegionMaps[c2.ToRegion(RegionLabel.Block)]
 								)
 							).IsEmpty
 						)
@@ -48,8 +48,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 						var squareMap =
 							baseLineMap & (
-								RegionMaps[(isRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c1)]
-								| RegionMaps[(isRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c2)]
+								RegionMaps[c1.ToRegion(isRow ? RegionLabel.Column : RegionLabel.Row)]
+								| RegionMaps[c2.ToRegion(isRow ? RegionLabel.Column : RegionLabel.Row)]
 							);
 
 						Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);

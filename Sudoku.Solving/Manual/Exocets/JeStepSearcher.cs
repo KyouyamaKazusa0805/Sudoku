@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -279,10 +280,10 @@ namespace Sudoku.Solving.Manual.Exocets
 			short candidatesMask = (short)((m1 | m2) & ~baseCandsMask);
 			int* span = stackalloc[]
 			{
-				RegionLabel.Block.ToRegion(pos1),
-				RegionLabel.Row.ToRegion(pos1) == RegionLabel.Row.ToRegion(pos2)
-				? RegionLabel.Row.ToRegion(pos1)
-				: RegionLabel.Column.ToRegion(pos1)
+				pos1.ToRegion(RegionLabel.Block),
+				pos1.ToRegion(RegionLabel.Row) == pos2.ToRegion(RegionLabel.Row)
+				? pos1.ToRegion(RegionLabel.Row)
+				: pos1.ToRegion(RegionLabel.Column)
 			};
 			foreach (short mask in Algorithms.GetMaskSubsets(candidatesMask))
 			{

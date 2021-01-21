@@ -2,7 +2,6 @@
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Extensions;
@@ -267,7 +266,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
-				int region = label.ToRegion(cell);
+				int region = cell.ToRegion(label);
 				var worthMap = CandMaps[digit] & RegionMaps[region];
 				switch (worthMap.Count)
 				{

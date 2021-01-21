@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -73,12 +73,12 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					// Iterate on each region.
 					for (int region = 0; region < 27; region++)
 					{
-						if (region == RegionLabel.Block.ToRegion(c1)
-							|| region == RegionLabel.Row.ToRegion(c1)
-							|| region == RegionLabel.Column.ToRegion(c1)
-							|| region == RegionLabel.Block.ToRegion(c2)
-							|| region == RegionLabel.Row.ToRegion(c2)
-							|| region == RegionLabel.Column.ToRegion(c2))
+						if (region == c1.ToRegion(RegionLabel.Block)
+							|| region == c1.ToRegion(RegionLabel.Row)
+							|| region == c1.ToRegion(RegionLabel.Column)
+							|| region == c2.ToRegion(RegionLabel.Block)
+							|| region == c2.ToRegion(RegionLabel.Row)
+							|| region == c2.ToRegion(RegionLabel.Column))
 						{
 							// The region to search for conjugate pairs shouldn't
 							// be the same as those two cells' regions.

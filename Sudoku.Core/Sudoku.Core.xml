@@ -1614,35 +1614,6 @@
             <param name="region">(<see langword="this"/> parameter) The region.</param>
             <returns>The region label.</returns>
         </member>
-        <member name="T:Sudoku.Data.Extensions.RegionLabelEx">
-            <summary>
-            Provides extension methods for <see cref="T:Sudoku.Data.RegionLabel"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.RegionLabel"/>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.RegionLabelEx.BlockTable">
-            <summary>
-            The block table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.RegionLabelEx.RowTable">
-            <summary>
-            The row table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.RegionLabelEx.ColumnTable">
-            <summary>
-            The column table.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.RegionLabelEx.ToRegion(Sudoku.Data.RegionLabel,System.Int32)">
-            <summary>
-            Get the region index for the specified cell and the region type.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="@this">(<see langword="this"/> parameter) The label.</param>
-            <returns>The region index (<c>0..27</c>).</returns>
-        </member>
         <member name="T:Sudoku.Data.Extensions.SudokuGridEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.

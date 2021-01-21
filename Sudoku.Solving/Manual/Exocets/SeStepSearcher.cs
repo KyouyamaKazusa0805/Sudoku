@@ -4,9 +4,9 @@ using System.Collections.Immutable;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				short baseCandsMask = (short)(grid.GetCandidates(b1) | grid.GetCandidates(b2));
 
 				int i = 0;
-				int r = RegionLabel.Row.ToRegion(b1) - 9, c = RegionLabel.Column.ToRegion(b1) - 18;
+				int r = b1.ToRegion(RegionLabel.Row) - 9, c = b1.ToRegion(RegionLabel.Column) - 18;
 				foreach (int pos in SudokuGrid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))
 				{
 					cover[i++] = isRow ? pos + 9 : pos + 18;
@@ -97,8 +97,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					int row1 = RegionLabel.Row.ToRegion(v1), column1 = RegionLabel.Column.ToRegion(v1);
-					int row2 = RegionLabel.Row.ToRegion(v2), column2 = RegionLabel.Column.ToRegion(v2);
+					int row1 = v1.ToRegion(RegionLabel.Row), column1 = v1.ToRegion(RegionLabel.Column);
+					int row2 = v2.ToRegion(RegionLabel.Row), column2 = v2.ToRegion(RegionLabel.Column);
 					if (isRow ? column1 == column2 : row1 == row2)
 					{
 						continue;

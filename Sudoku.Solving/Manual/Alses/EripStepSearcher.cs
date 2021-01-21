@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -48,7 +49,7 @@ namespace Sudoku.Solving.Manual.Alses
 						continue;
 					}
 
-					int block1 = RegionLabel.Block.ToRegion(c1), block2 = RegionLabel.Block.ToRegion(c2);
+					int block1 = c1.ToRegion(RegionLabel.Block), block2 = c2.ToRegion(RegionLabel.Block);
 					if (block1 % 3 == block2 % 3 || block1 / 3 == block2 / 3)
 					{
 						continue;
@@ -59,7 +60,7 @@ namespace Sudoku.Solving.Manual.Alses
 					var unionMap = new Cells(c1) | new Cells(c2);
 					foreach (int interCell in interMap)
 					{
-						int block = RegionLabel.Block.ToRegion(interCell);
+						int block = interCell.ToRegion(RegionLabel.Block);
 						var regionMap = RegionMaps[block];
 						var checkingMap = regionMap - unionMap & regionMap;
 						if (checkingMap.Overlaps(CandMaps[d1]) || checkingMap.Overlaps(CandMaps[d2]))
@@ -70,8 +71,8 @@ namespace Sudoku.Solving.Manual.Alses
 						// Check whether two digits are both in the same empty rectangle.
 						int[] offsets = interMap.ToArray();
 						int inter1 = offsets[0], inter2 = offsets[1];
-						int b1 = RegionLabel.Block.ToRegion(inter1);
-						int b2 = RegionLabel.Block.ToRegion(inter2);
+						int b1 = inter1.ToRegion(RegionLabel.Block);
+						int b2 = inter2.ToRegion(RegionLabel.Block);
 						var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
 						var erCellsMap = regionMap & erMap;
 						short m = 0;

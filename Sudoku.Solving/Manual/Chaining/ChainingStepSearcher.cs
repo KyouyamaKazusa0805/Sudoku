@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
+using Sudoku.Solving.Manual.Extensions;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -47,7 +48,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Second rule: Other positions for this digit get off.
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
-				int region = label.ToRegion(p.Cell);
+				int region = p.Cell.ToRegion(label);
 				for (int pos = 0; pos < 9; pos++)
 				{
 					int cell = RegionCells[region][pos];
@@ -113,7 +114,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Second rule: If there's only two positions for this candidate, the other ont gets on.
 				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 				{
-					int region = label.ToRegion(p.Cell);
+					int region = p.Cell.ToRegion(label);
 					var cells = (h(grid, p.Digit, region, isDynamic) & RegionMaps[region]) - p.Cell;
 					if (cells.Count == 1)
 					{
@@ -202,7 +203,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private static void AddHiddenParentsOfRegion(
 			ref Node p, in SudokuGrid grid, in SudokuGrid source, RegionLabel currRegion, ISet<Node> offNodes)
 		{
-			int region = currRegion.ToRegion(p.Cell);
+			int region = p.Cell.ToRegion(currRegion);
 			foreach (int pos in (short)(m(source, p.Digit, region) & ~m(grid, p.Digit, region)))
 			{
 				// Add a hidden parent.

@@ -4,6 +4,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -577,8 +578,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int[] offsets = otherCellsMap.ToArray();
 			int o1 = offsets[0], o2 = offsets[1];
-			int r1 = RegionLabel.Row.ToRegion(corner1), c1 = RegionLabel.Column.ToRegion(corner1);
-			int r2 = RegionLabel.Row.ToRegion(corner2), c2 = RegionLabel.Column.ToRegion(corner2);
+			int r1 = corner1.ToRegion(RegionLabel.Row), c1 = corner1.ToRegion(RegionLabel.Column);
+			int r2 = corner2.ToRegion(RegionLabel.Row), c2 = corner2.ToRegion(RegionLabel.Column);
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
 				foreach (var (region1, region2) in stackalloc[] { (r1, r2), (c1, c2) })
@@ -696,7 +697,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = otherCellsMap - abzCell;
-			int r = RegionLabel.Row.ToRegion(abzCell), c = RegionLabel.Column.ToRegion(abzCell);
+			int r = abzCell.ToRegion(RegionLabel.Row), c = abzCell.ToRegion(RegionLabel.Column);
 
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{

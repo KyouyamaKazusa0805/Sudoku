@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 
 namespace Sudoku.Solving.Manual.Extensions
 {
@@ -23,7 +22,7 @@ namespace Sudoku.Solving.Manual.Extensions
 			{
 				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 				{
-					int region = label.ToRegion(cell);
+					int region = cell.ToRegion(label);
 					if (*&isOdd)
 					{
 						if ((visitedOddRegions >> region & 1) != 0)

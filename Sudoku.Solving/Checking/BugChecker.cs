@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Extensions;
 using System.Threading.Tasks;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
+using Sudoku.Solving.Manual.Extensions;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
@@ -78,9 +78,9 @@ namespace Sudoku.Solving.Checking
 					ref var map = ref stack[0, digit];
 					map.AddAnyway(cell);
 
-					span[0] = RegionLabel.Row.ToRegion(cell);
-					span[1] = RegionLabel.Column.ToRegion(cell);
-					span[2] = RegionLabel.Block.ToRegion(cell);
+					span[0] = cell.ToRegion(RegionLabel.Row);
+					span[1] = cell.ToRegion(RegionLabel.Column);
+					span[2] = cell.ToRegion(RegionLabel.Block);
 					foreach (int region in span)
 					{
 						if ((map & RegionMaps[region]).Count > 2)
@@ -137,9 +137,9 @@ namespace Sudoku.Solving.Checking
 						var temp = stack[currentIndex - 1, digit];
 						temp.AddAnyway(currentCell);
 
-						playground[0] = RegionLabel.Block.ToRegion(currentCell);
-						playground[1] = RegionLabel.Row.ToRegion(currentCell);
-						playground[2] = RegionLabel.Column.ToRegion(currentCell);
+						playground[0] = currentCell.ToRegion(RegionLabel.Block);
+						playground[1] = currentCell.ToRegion(RegionLabel.Row);
+						playground[2] = currentCell.ToRegion(RegionLabel.Column);
 						foreach (int region in playground)
 						{
 							if ((temp & RegionMaps[region]).Count > 2)

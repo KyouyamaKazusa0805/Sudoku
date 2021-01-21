@@ -2915,6 +2915,29 @@
             </summary>
             <seealso cref="T:System.Int32"/>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Extensions.Int32Ex.BlockTable">
+            <summary>
+            The block table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Extensions.Int32Ex.RowTable">
+            <summary>
+            The row table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Extensions.Int32Ex.ColumnTable">
+            <summary>
+            The column table.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.Int32Ex.ToRegion(System.Int32,Sudoku.Data.RegionLabel)">
+            <summary>
+            Get the region index for the specified cell and the region type.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The cell.</param>
+            <param name="label">The label to represent a region type.</param>
+            <returns>The region index.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Extensions.Int32Ex.GetExtraDifficultyByLength(System.Int32)">
             <summary>
             Get extra difficulty rating for a chain node sequence.

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
@@ -223,7 +223,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 								{
 									// Check whether the region is both used in base sets and cover sets.
-									region = label.ToRegion(cell);
+									region = cell.ToRegion(label);
 									if ((usedInBaseSets >> region & 1) != 0
 										|| (usedInCoverSets >> region & 1) != 0)
 									{

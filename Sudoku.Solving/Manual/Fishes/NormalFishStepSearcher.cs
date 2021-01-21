@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -269,7 +270,7 @@ namespace Sudoku.Solving.Manual.Fishes
 							foreach (int c in ValueMaps[digit])
 							{
 								if (
-									RegionMaps[(searchRow ? RegionLabel.Column : RegionLabel.Row).ToRegion(c)]
+									RegionMaps[c.ToRegion(searchRow ? RegionLabel.Column : RegionLabel.Row)]
 									.Contains(cell))
 								{
 									flag = true;
