@@ -590,9 +590,9 @@ namespace Sudoku.Data
 		{
 			const string separator = ", ";
 			var sb = new StringBuilder();
-			foreach (short mask in this)
+			for (int cell = 0; cell < 81; cell++)
 			{
-				sb.Append(mask).Append(separator);
+				sb.Append(_values[cell]).Append(separator);
 			}
 
 			return sb.RemoveFromEnd(separator.Length).ToString();

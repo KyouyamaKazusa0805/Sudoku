@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data
 {
@@ -10,7 +9,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The inner enumerator.
 		/// </summary>
-		public unsafe struct Enumerator : IEnumerator<short>
+		public unsafe ref struct Enumerator
 		{
 			/// <summary>
 			/// The pointer to the start value.
@@ -24,6 +23,11 @@ namespace Sudoku.Data
 			private short* _currentPointer;
 
 			/// <summary>
+			/// Indicates the current mask.
+			/// </summary>
+			private short _currentMask;
+
+			/// <summary>
 			/// The current index.
 			/// </summary>
 			private int _currentIndex;
@@ -33,38 +37,76 @@ namespace Sudoku.Data
 			/// Initializes an instance with the specified pointer to an array to iterate.
 			/// </summary>
 			/// <param name="arr">The pointer to an array.</param>
+			/// <remarks>
+			/// Note here we should point at the one-unit-lengthed memory before the array start.
+			/// </remarks>
 			[CLSCompliant(false)]
-			public Enumerator(short* arr)
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public Enumerator(short* arr) : this()
 			{
-				// Note here we should point at the one-unit-lengthed memory before the array start.
 				_currentPointer = _start = arr - 1;
-				_currentIndex = 0;
+				_currentIndex = -1;
 			}
 
 
-			/// <inheritdoc/>
-			public readonly short Current => *_currentPointer;
+			/// <summary>
+			/// Gets the element in the collection at the current position of the enumerator.
+			/// </summary>
+			public readonly int Current
+			{
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				get => _currentIndex * 9 + TrailingZeroCount(_currentMask);
+			}
 
-			/// <inheritdoc/>
-			readonly object? IEnumerator.Current => Current;
 
-
-			/// <inheritdoc/>
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public void Dispose() { }
-
-			/// <inheritdoc/>
+			/// <summary>
+			/// Advances the enumerator to the next element of the collection.
+			/// </summary>
+			/// <returns>
+			/// <see langword="true"/> if the enumerator was successfully advanced to the next element;
+			/// <see langword="false"/> if the enumerator has passed the end of the collection.
+			/// </returns>
 			public bool MoveNext()
 			{
-				_currentPointer++;
-				return ++_currentIndex != 82;
+				if (_currentMask == 0)
+				{
+					goto MovePointer;
+				}
+				else
+				{
+					_currentMask &= (short)~(1 << TrailingZeroCount(_currentMask));
+					if (_currentMask == 0)
+					{
+						goto MovePointer;
+					}
+
+					return true;
+				}
+
+			MovePointer:
+				do _currentIndex++;
+				while (MaskGetStatus(_start[_currentIndex + 1]) != CellStatus.Empty && _currentIndex != 82);
+
+				if (_currentIndex == 82)
+				{
+					return false;
+				}
+
+				_currentPointer = _start + _currentIndex + 1;
+				_currentMask = (short)(*_currentPointer & MaxCandidatesMask);
+				return true;
 			}
 
-			/// <inheritdoc/>
+			/// <summary>
+			/// Sets the enumerator to its initial position, which is before the first element
+			/// in the collection.
+			/// </summary>
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public void Reset()
 			{
 				_currentPointer = _start;
-				_currentIndex = 0;
+				_currentIndex = -1;
+				_currentMask = default;
 			}
 		}
 	}

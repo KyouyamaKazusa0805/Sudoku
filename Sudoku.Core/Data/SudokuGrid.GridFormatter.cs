@@ -252,44 +252,36 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 			/// <returns>The result.</returns>
-			private string ToSingleLineStringCore(in SudokuGrid grid)
+			private unsafe string ToSingleLineStringCore(in SudokuGrid grid)
 			{
 				StringBuilder sb = new(), elims = new();
 				var originalGrid = WithCandidates ? Parse(grid.ToString(".+")) : Undefined;
 
-				int cell = 0;
-				foreach (short value in originalGrid)
+				for (int c = 0; c < 81; c++)
 				{
-					var status = grid.GetStatus(cell);
+					var status = grid.GetStatus(c);
 					if (status == CellStatus.Empty && originalGrid != Undefined && WithCandidates)
 					{
 						// Check if the value has been set 'true'
 						// and the value has already deleted at the grid
 						// with only givens and modifiables.
-						foreach (int i in value & MaxCandidatesMask)
+						foreach (int i in originalGrid._values[c] & MaxCandidatesMask)
 						{
-							if (!grid[cell, i])
+							if (!grid[c, i])
 							{
 								// The value is 'true', which means the digit has already been deleted.
-								elims
-									.Append(i + 1)
-									.Append(cell / 9 + 1)
-									.Append(cell % 9 + 1)
-									.Append(' ');
+								elims.Append(i + 1).Append(c / 9 + 1).Append(c % 9 + 1).Append(' ');
 							}
 						}
 					}
 
-					sb.Append(
-						status switch
-						{
-							CellStatus.Empty => Placeholder.ToString(),
-							CellStatus.Modifiable =>
-								WithModifiables ? $"+{(grid[cell] + 1).ToString()}" : $"{Placeholder.ToString()}",
-							CellStatus.Given => $"{(grid[cell] + 1).ToString()}"
-						});
-
-					cell++;
+					sb.Append(status switch
+					{
+						CellStatus.Empty => Placeholder.ToString(),
+						CellStatus.Modifiable =>
+							WithModifiables ? $"+{(grid[c] + 1).ToString()}" : $"{Placeholder.ToString()}",
+						CellStatus.Given => $"{(grid[c] + 1).ToString()}"
+					});
 				}
 
 				string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFromEnd(1).ToString();
