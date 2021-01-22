@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -56,20 +57,34 @@ namespace Sudoku.Data
 		/// Initializes an instance with the specified cell offset
 		/// (Sets itself and all peers).
 		/// </summary>
-		/// <param name="offset">The cell offset.</param>
+		/// <param name="cell">The cell offset.</param>
 		/// <remarks>
 		/// If you don't want to set itself, you may use <see cref="PeerMaps"/>
 		/// instead.
 		/// </remarks>
 		/// <seealso cref="PeerMaps"/>
-		public Cells(int offset) : this(offset, true)
+		public Cells(int cell) : this(cell, true)
 		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the candidate list specified as a pointer.
+		/// </summary>
+		/// <param name="cells">The pointer points to an array of elements.</param>
+		/// <param name="length">The length of the array.</param>
+		[CLSCompliant(false)]
+		public unsafe Cells(int* cells, int length) : this()
+		{
+			for (int i = 0; i < length; i++)
+			{
+				InternalAdd(cells[i], true);
+			}
 		}
 
 		/// <summary>
 		/// Same behavior of the constructor as <see cref="Cells(IEnumerable{int})"/>.
 		/// </summary>
-		/// <param name="offsets">All offsets.</param>
+		/// <param name="cells">All offsets.</param>
 		/// <remarks>
 		/// This constructor is defined after another constructor with
 		/// <see cref="ReadOnlySpan{T}"/> had defined. Although this constructor
@@ -80,7 +95,7 @@ namespace Sudoku.Data
 		/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
 		/// </remarks>
 		/// <seealso cref="Cells(IEnumerable{int})"/>
-		public Cells(int[] offsets) : this((IEnumerable<int>)offsets)
+		public Cells(int[] cells) : this((IEnumerable<int>)cells)
 		{
 		}
 
@@ -117,14 +132,14 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Initializes an instance with a series of cell offsets.
 		/// </summary>
-		/// <param name="offsets">cell offsets.</param>
+		/// <param name="cells">cell offsets.</param>
 		/// <remarks>
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
 		/// won't be set <see langword="true"/>.
 		/// </remarks>
-		public Cells(IEnumerable<int> offsets) : this()
+		public Cells(IEnumerable<int> cells) : this()
 		{
-			foreach (int offset in offsets)
+			foreach (int offset in cells)
 			{
 				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
 				Count++;
@@ -148,7 +163,7 @@ namespace Sudoku.Data
 		/// <see cref="bool"/> value indicates whether this initialization
 		/// will set the bit of itself.
 		/// </summary>
-		/// <param name="offset">The cell offset.</param>
+		/// <param name="cell">The cell offset.</param>
 		/// <param name="setItself">
 		/// A <see cref="bool"/> value indicating whether this initialization
 		/// will set the bit of itself.
@@ -157,11 +172,11 @@ namespace Sudoku.Data
 		/// If you want to use this constructor, please use <see cref="PeerMaps"/> instead.
 		/// </remarks>
 		/// <seealso cref="PeerMaps"/>
-		private Cells(int offset, bool setItself)
+		private Cells(int cell, bool setItself)
 		{
 			// Don't merge those two to one.
-			this = PeerMaps[offset];
-			InternalAdd(offset, setItself);
+			this = PeerMaps[cell];
+			InternalAdd(cell, setItself);
 		}
 
 		/// <summary>
@@ -731,6 +746,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public void Add(int offset)
 		{
 			if (offset >= 0) // Positive or zero.

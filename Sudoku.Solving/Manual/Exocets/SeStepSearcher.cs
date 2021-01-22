@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -114,13 +113,13 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					// Get all target eliminations.
-					var targetElims = ImmutableArray.Create<int>();
+					var targetElims = Candidates.Empty;
 					short cands = (short)(elimDigits & grid.GetCandidates(v1));
 					if (cands != 0)
 					{
 						foreach (int digit in cands)
 						{
-							targetElims = targetElims.Add(v1 * 9 + digit);
+							targetElims.AddAnyway(v1 * 9 + digit);
 						}
 					}
 					cands = (short)(elimDigits & grid.GetCandidates(v2));
@@ -128,7 +127,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						foreach (int digit in cands)
 						{
-							targetElims = targetElims.Add(v2 * 9 + digit);
+							targetElims.AddAnyway(v2 * 9 + digit);
 						}
 					}
 
@@ -142,7 +141,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					// Get all true base eliminations.
-					var trueBaseElims = ImmutableArray.Create<int>();
+					var trueBaseElims = Candidates.Empty;
 					if (tbCands != 0 && (
 						grid.GetStatus(v1) != CellStatus.Empty || grid.GetStatus(v2) != CellStatus.Empty))
 					{
@@ -160,7 +159,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 							foreach (int digit in cands)
 							{
-								trueBaseElims = trueBaseElims.Add(comb[j] * 9 + digit);
+								trueBaseElims.AddAnyway(comb[j] * 9 + digit);
 							}
 						}
 					}
@@ -172,12 +171,12 @@ namespace Sudoku.Solving.Manual.Exocets
 							var elimMap = (baseMap & CandMaps[digit]).PeerIntersection & CandMaps[digit];
 							foreach (int cell in elimMap)
 							{
-								trueBaseElims = trueBaseElims.Add(cell * 9 + digit);
+								trueBaseElims.AddAnyway(cell * 9 + digit);
 							}
 						}
 					}
 
-					if (targetElims.Length == 0 && trueBaseElims.Length == 0)
+					if (targetElims.IsEmpty && trueBaseElims.IsEmpty)
 					{
 						continue;
 					}

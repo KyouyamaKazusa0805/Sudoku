@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -163,13 +162,12 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		/// <returns>All mirror eliminations.</returns>
-		protected (Elimination Target, Elimination Mirror) CheckMirror(
+		protected unsafe (Elimination Target, Elimination Mirror) CheckMirror(
 			in SudokuGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
 			in Cells mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets,
 			IList<DrawingInfo> candidateOffsets)
 		{
-			var targetElims = ImmutableArray.Create<int>();
-			var mirrorElims = ImmutableArray.Create<int>();
+			Candidates targetElims = Candidates.Empty, mirrorElims = Candidates.Empty;
 			int[] offsets = mirror.ToArray();
 			int l = offsets[0], r = offsets[1];
 			short mirrorCandsMask = (short)(grid.GetCandidates(l) | grid.GetCandidates(r));
@@ -179,13 +177,13 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				foreach (int digit in targetElim)
 				{
-					targetElims = targetElims.Add(target * 9 + digit);
+					targetElims.AddAnyway(target * 9 + digit);
 				}
 			}
 
 			if (CheckAdvanced)
 			{
-				var regions = (stackalloc int[2]);
+				int* regions = stackalloc int[2];
 				short m1 = (short)(grid.GetCandidates(l) & baseCandidateMask);
 				short m2 = (short)(grid.GetCandidates(r) & baseCandidateMask);
 				if (m1 == 0 ^ m2 == 0)
@@ -198,7 +196,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						cellOffsets.Add(new(3, r));
 						foreach (int digit in candidateMask)
 						{
-							mirrorElims = mirrorElims.Add(p * 9 + digit);
+							mirrorElims.AddAnyway(p * 9 + digit);
 						}
 					}
 
@@ -210,10 +208,11 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				short nonBase = (short)(mirrorCandsMask & ~baseCandidateMask);
 				regions[0] = l.ToRegion(RegionLabel.Block);
-				regions[1] =
+				regions[1] = l.ToRegion(
 					l.ToRegion(RegionLabel.Row) == r.ToRegion(RegionLabel.Row)
-					? l.ToRegion(RegionLabel.Row)
-					: l.ToRegion(RegionLabel.Column);
+					? RegionLabel.Row
+					: RegionLabel.Column
+				);
 				short locked = default;
 				foreach (short mask in Algorithms.GetMaskSubsets(nonBase))
 				{
@@ -257,7 +256,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 								foreach (int digit in grid.GetCandidates(p) & ~mask)
 								{
-									mirrorElims = mirrorElims.Add(p * 9 + digit);
+									mirrorElims.AddAnyway(p * 9 + digit);
 								}
 							}
 
@@ -288,7 +287,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							{
 								foreach (int digit in candidateMask)
 								{
-									mirrorElims = mirrorElims.Add(target * 9 + digit);
+									mirrorElims.AddAnyway(target * 9 + digit);
 								}
 							}
 						}
@@ -297,7 +296,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						// Gathering.
 						bool g(
-							in SudokuGrid grid, int p, ref ImmutableArray<int> mirrorElims,
+							in SudokuGrid grid, int p, ref Candidates mirrorElims,
 							short baseCandidateMask, short locked)
 						{
 							short candidateMask = (short)(grid.GetCandidates(p) & ~(baseCandidateMask | locked));
@@ -313,7 +312,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 								foreach (int digit in candidateMask)
 								{
-									mirrorElims = mirrorElims.Add(p * 9 + digit);
+									mirrorElims.AddAnyway(p * 9 + digit);
 								}
 
 								return true;

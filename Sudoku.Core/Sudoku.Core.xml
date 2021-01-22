@@ -330,6 +330,13 @@
             </summary>
             <param name="candidate">The candidate.</param>
         </member>
+        <member name="M:Sudoku.Data.Candidates.#ctor(System.Int32*,System.Int32)">
+            <summary>
+            Initializes an instance with the candidate list specified as a pointer.
+            </summary>
+            <param name="candidates">The pointer points to an array of elements.</param>
+            <param name="length">The length of the array.</param>
+        </member>
         <member name="M:Sudoku.Data.Candidates.#ctor(System.Int32,System.Boolean)">
             <summary>
             Inidicates an instance with the peer candidates of the specified candidate and a <see cref="T:System.Boolean"/>
@@ -651,18 +658,25 @@
             Initializes an instance with the specified cell offset
             (Sets itself and all peers).
             </summary>
-            <param name="offset">The cell offset.</param>
+            <param name="cell">The cell offset.</param>
             <remarks>
             If you don't want to set itself, you may use <see cref="F:Sudoku.Constants.Tables.PeerMaps"/>
             instead.
             </remarks>
             <seealso cref="F:Sudoku.Constants.Tables.PeerMaps"/>
         </member>
+        <member name="M:Sudoku.Data.Cells.#ctor(System.Int32*,System.Int32)">
+            <summary>
+            Initializes an instance with the candidate list specified as a pointer.
+            </summary>
+            <param name="cells">The pointer points to an array of elements.</param>
+            <param name="length">The length of the array.</param>
+        </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Int32[])">
             <summary>
             Same behavior of the constructor as <see cref="M:Sudoku.Data.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>.
             </summary>
-            <param name="offsets">All offsets.</param>
+            <param name="cells">All offsets.</param>
             <remarks>
             This constructor is defined after another constructor with
             <see cref="T:System.ReadOnlySpan`1"/> had defined. Although this constructor
@@ -701,7 +715,7 @@
             <summary>
             Initializes an instance with a series of cell offsets.
             </summary>
-            <param name="offsets">cell offsets.</param>
+            <param name="cells">cell offsets.</param>
             <remarks>
             Note that all offsets will be set <see langword="true"/>, but their own peers
             won't be set <see langword="true"/>.
@@ -722,7 +736,7 @@
             <see cref="T:System.Boolean"/> value indicates whether this initialization
             will set the bit of itself.
             </summary>
-            <param name="offset">The cell offset.</param>
+            <param name="cell">The cell offset.</param>
             <param name="setItself">
             A <see cref="T:System.Boolean"/> value indicating whether this initialization
             will set the bit of itself.

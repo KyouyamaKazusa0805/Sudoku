@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Sudoku.Data;
@@ -20,7 +19,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="eliminations">(<see langword="in"/> parameter) The eliminations.</param>
 		/// <param name="reason">The reason why those candidates can be eliminated.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Elimination(in ImmutableArray<int> eliminations, EliminatedReason reason)
+		public Elimination(in Candidates eliminations, EliminatedReason reason)
 		{
 			Eliminations = eliminations;
 			Reason = reason;
@@ -33,13 +32,13 @@ namespace Sudoku.Solving.Manual.Exocets
 		public int Count
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => Eliminations.Length;
+			get => Eliminations.Count;
 		}
 
 		/// <summary>
 		/// Indicates the eliminations.
 		/// </summary>
-		public ImmutableArray<int> Eliminations { [MethodImpl(MethodImplOptions.AggressiveInlining)] get; }
+		public Candidates Eliminations { [MethodImpl(MethodImplOptions.AggressiveInlining)] get; }
 
 		/// <summary>
 		/// Indicates the reason why these candidates can be eliminated.
@@ -95,8 +94,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <seealso cref="Conclusion"/>
 		public ReadOnlySpan<Conclusion> AsSpan()
 		{
-			var result = new Conclusion[Eliminations.Length];
-			for (int i = 0; i < Eliminations.Length; i++)
+			var result = new Conclusion[Eliminations.Count];
+			for (int i = 0; i < Eliminations.Count; i++)
 			{
 				result[i] = new(ConclusionType.Elimination, Eliminations[i]);
 			}
@@ -126,21 +125,21 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// The merged result. The result will contain all eliminations from two instances, and
 		/// the reason will use <see langword="operator"/> <c>|</c> to merge them.
 		/// </returns>
-		public static Elimination operator |(in Elimination left, in Elimination right)
+		public static unsafe Elimination operator |(in Elimination left, in Elimination right)
 		{
-			int[] merged = new int[left.Eliminations.Length + right.Eliminations.Length];
-			for (int i = 0; i < left.Eliminations.Length; i++)
+			int count = left.Eliminations.Count + right.Eliminations.Count;
+			int* merged = stackalloc int[count];
+			for (int i = 0; i < left.Eliminations.Count; i++)
 			{
 				merged[i] = left.Eliminations[i];
 			}
-			for (int i = 0; i < right.Eliminations.Length; i++)
+			for (int i = 0; i < right.Eliminations.Count; i++)
 			{
-				merged[i + left.Eliminations.Length] = right.Eliminations[i];
+				merged[i + left.Eliminations.Count] = right.Eliminations[i];
 			}
 
 			var flags = left.Reason | right.Reason;
-			var mergedArray = ImmutableArray.CreateRange(merged);
-			return new(mergedArray, flags);
+			return new(new(merged, count), flags);
 		}
 	}
 }

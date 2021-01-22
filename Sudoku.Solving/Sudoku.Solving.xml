@@ -2394,7 +2394,7 @@
             Encapsulates an instance to represent a series of eliminations in JE or SE.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.#ctor(System.Collections.Immutable.ImmutableArray{System.Int32}@,Sudoku.Solving.Manual.Exocets.EliminatedReason)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.#ctor(Sudoku.Data.Candidates@,Sudoku.Solving.Manual.Exocets.EliminatedReason)">
             <summary>
             Initializes an instance with the eliminations and the reason.
             </summary>
@@ -2656,7 +2656,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GatheringTargetElims(System.Collections.Immutable.ImmutableArray{System.Int32}@,System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GatheringTargetElims(Sudoku.Data.Candidates@,System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Int16)">
             <summary>
             The method for gathering target eliminations.
             </summary>

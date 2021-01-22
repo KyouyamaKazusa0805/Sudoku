@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -105,7 +104,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// Check target eliminations.
 				// Here we can't replace the operator '|' with '||', because two methods both should be called.
-				var targetElims = ImmutableArray.Create<int>();
+				var targetElims = Candidates.Empty;
 				temp = (short)(nonBaseQ > 0 ? baseCandsMask | nonBaseQ : baseCandsMask);
 				if (GatheringTargetElims(ref targetElims, tq1, grid, baseCandsMask, temp)
 					| GatheringTargetElims(ref targetElims, tq2, grid, baseCandsMask, temp)
@@ -140,7 +139,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 
-				if (targetElims.Length == 0)
+				if (targetElims.IsEmpty)
 				{
 					continue;
 				}
@@ -177,7 +176,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// A <see cref="bool"/> value indicating whether this method has been found eliminations.
 		/// </returns>
 		private static bool GatheringTargetElims(
-			ref ImmutableArray<int> targetElims, int cell, in SudokuGrid grid, short baseCandsMask, short temp)
+			ref Candidates targetElims, int cell, in SudokuGrid grid, short baseCandsMask, short temp)
 		{
 			short candMask = (short)(grid.GetCandidates(cell) & ~temp);
 			if (grid.GetStatus(cell) == CellStatus.Empty && candMask != 0
@@ -185,7 +184,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				foreach (int digit in candMask)
 				{
-					targetElims = targetElims.Add(cell * 9 + digit);
+					targetElims.AddAnyway(cell * 9 + digit);
 				}
 
 				return true;

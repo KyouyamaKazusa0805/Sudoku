@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -61,6 +62,20 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Candidates(int candidate) : this(candidate, true)
 		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the candidate list specified as a pointer.
+		/// </summary>
+		/// <param name="candidates">The pointer points to an array of elements.</param>
+		/// <param name="length">The length of the array.</param>
+		[CLSCompliant(false)]
+		public Candidates(int* candidates, int length) : this()
+		{
+			for (int i = 0; i < length; i++)
+			{
+				InternalAdd(candidates[i], true);
+			}
 		}
 
 		/// <summary>
@@ -398,6 +413,7 @@ namespace Sudoku.Data
 		/// into the corresponding bit position of its absolute value.
 		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public void Add(int offset)
 		{
 			switch (offset)
