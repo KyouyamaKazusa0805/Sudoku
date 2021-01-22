@@ -35,6 +35,19 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Converts all elements to the target instances using the specified converter.
 		/// </summary>
+		/// <typeparam name="T">The type of the base elements.</typeparam>
+		/// <typeparam name="TAuxiliary">The type of the auxiliary elements.</typeparam>
+		/// <typeparam name="TResult">The type of the target elements.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The enumerator.</param>
+		/// <param name="converter">The convert method.</param>
+		/// <returns>The iterator that iterates on each target element.</returns>
+		public static LetLetSelectIterator<T, TAuxiliary, TResult> Select<T, TAuxiliary, TResult>(
+			this in LetSelectIterator<T, TAuxiliary> @this, Func<TAuxiliary?, TResult> converter
+		) => new(@this, converter);
+
+		/// <summary>
+		/// Converts all elements to the target instances using the specified converter.
+		/// </summary>
 		/// <typeparam name="T">The type of the target elements.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The enumerator.</param>
 		/// <param name="converter">The convert method.</param>

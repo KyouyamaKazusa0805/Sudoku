@@ -2083,6 +2083,17 @@
             <param name="converter">The convert method.</param>
             <returns>The iterator that iterates on each target element.</returns>
         </member>
+        <member name="M:Sudoku.Data.Iterators.Select``3(Sudoku.Data.SudokuGrid.LetSelectIterator{``0,``1}@,System.Func{``1,``2})">
+            <summary>
+            Converts all elements to the target instances using the specified converter.
+            </summary>
+            <typeparam name="T">The type of the base elements.</typeparam>
+            <typeparam name="TAuxiliary">The type of the auxiliary elements.</typeparam>
+            <typeparam name="TResult">The type of the target elements.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The enumerator.</param>
+            <param name="converter">The convert method.</param>
+            <returns>The iterator that iterates on each target element.</returns>
+        </member>
         <member name="M:Sudoku.Data.Iterators.Select``1(Sudoku.Data.SudokuGrid.WhereIterator@,System.Func{System.Int32,``0})">
             <summary>
             Converts all elements to the target instances using the specified converter.
@@ -3676,6 +3687,51 @@
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the iteration ends.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.LetSelectIterator`2.GetEnumerator">
+            <summary>
+            Get the enumerator to iterate on each elements.
+            </summary>
+            <returns>The target enumerator.</returns>
+        </member>
+        <member name="T:Sudoku.Data.SudokuGrid.LetLetSelectIterator`3">
+            <summary>
+            The iterator that used in the <see langword="let"/>-<see langword="let"/>-<see langword="select"/>
+            clause in LINQ.
+            </summary>
+            <typeparam name="T">The type of the return value in the <see langword="let"/> clause.</typeparam>
+            <typeparam name="TAuxiliary">
+            The type of the return value in the <see langword="let"/>-<see langword="let"/> clause.
+            </typeparam>
+            <typeparam name="TResult">The type of the target elements.</typeparam>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.LetLetSelectIterator`3._enumerator">
+            <summary>
+            The enumerator that iterates on all elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.LetLetSelectIterator`3._converter">
+            <summary>
+            Indicates the convert method.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.LetLetSelectIterator`3.#ctor(Sudoku.Data.SudokuGrid.LetSelectIterator{`0,`1}@,System.Func{`1,`2})">
+            <summary>
+            Initializes an instance with the enumerator and the convert method.
+            </summary>
+            <param name="enumerator">(<see langword="in"/> parameter) The enumerator.</param>
+            <param name="converter">The convert method.</param>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.LetLetSelectIterator`3.Current">
+            <summary>
+            Indicates the current element of this iteration.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.LetLetSelectIterator`3.MoveNext">
+            <summary>
+            Move to next element.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the iteration ends.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.LetLetSelectIterator`3.GetEnumerator">
             <summary>
             Get the enumerator to iterate on each elements.
             </summary>

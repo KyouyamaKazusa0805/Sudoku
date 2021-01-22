@@ -245,6 +245,72 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// The iterator that used in the <see langword="let"/>-<see langword="let"/>-<see langword="select"/>
+		/// clause in LINQ.
+		/// </summary>
+		/// <typeparam name="T">The type of the return value in the <see langword="let"/> clause.</typeparam>
+		/// <typeparam name="TAuxiliary">
+		/// The type of the return value in the <see langword="let"/>-<see langword="let"/> clause.
+		/// </typeparam>
+		/// <typeparam name="TResult">The type of the target elements.</typeparam>
+		public struct LetLetSelectIterator<T, TAuxiliary, TResult>
+		{
+			/// <summary>
+			/// The enumerator that iterates on all elements.
+			/// </summary>
+			private readonly LetSelectIterator<T, TAuxiliary> _enumerator;
+
+			/// <summary>
+			/// Indicates the convert method.
+			/// </summary>
+			private readonly Func<TAuxiliary?, TResult> _converter;
+
+
+			/// <summary>
+			/// Initializes an instance with the enumerator and the convert method.
+			/// </summary>
+			/// <param name="enumerator">(<see langword="in"/> parameter) The enumerator.</param>
+			/// <param name="converter">The convert method.</param>
+			public LetLetSelectIterator(
+				in LetSelectIterator<T, TAuxiliary> enumerator, Func<TAuxiliary?, TResult> converter)
+				: this()
+			{
+				_enumerator = enumerator;
+				_converter = converter;
+			}
+
+
+			/// <summary>
+			/// Indicates the current element of this iteration.
+			/// </summary>
+			public TResult? Current { readonly get; private set; }
+
+
+			/// <summary>
+			/// Move to next element.
+			/// </summary>
+			/// <returns>A <see cref="bool"/> result indicating whether the iteration ends.</returns>
+			public bool MoveNext()
+			{
+				if (_enumerator.MoveNext())
+				{
+					Current = _converter(_enumerator.Current);
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+
+			/// <summary>
+			/// Get the enumerator to iterate on each elements.
+			/// </summary>
+			/// <returns>The target enumerator.</returns>
+			public LetLetSelectIterator<T, TAuxiliary, TResult> GetEnumerator() => this;
+		}
+
+		/// <summary>
 		/// The iterator that used in the <see langword="let"/>-<see langword="where"/> clause in LINQ.
 		/// </summary>
 		/// <typeparam name="T">The type of the return value in the <see langword="let"/> clause.</typeparam>
