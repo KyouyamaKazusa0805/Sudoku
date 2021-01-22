@@ -345,6 +345,9 @@ dotnet_diagnostic.CS8605.severity = error
 # CS8606: Possible null reference assignment to iteration variable
 dotnet_diagnostic.CS8606.severity = error
 
+# CS8607: A possible null value may not be used for a type marked with [NotNull] or [DisallowNull]
+dotnet_diagnostic.CS8607.severity = error
+
 # CS8610: Nullability of reference types in type of parameter doesn't match overridden member.
 dotnet_diagnostic.CS8610.severity = error
 
