@@ -24,6 +24,32 @@ namespace Sudoku.Data
 		public IIterator<int> Where(Predicate<int> condition) => new WhereIterator(GetEnumerator(), condition);
 
 		/// <summary>
+		/// Groups the elements of a sequence according to a specified key selector function.
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <param name="keySelector">The key selecting method.</param>
+		/// <returns>
+		/// An <see cref="IIterator{T}"/> of <see cref="IGroup{TKey, TValue}"/> where each
+		/// object contains a sequence of objects and a key.
+		/// </returns>
+		public IIterator<IGroup<TKey, int>> GroupBy<TKey>(Func<int, TKey> keySelector) where TKey : notnull =>
+			new GroupedIterator<TKey>(GetEnumerator(), keySelector);
+
+		/// <summary>
+		/// Groups the elements of a sequence according to a specified key selector function.
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TConverted">The type of the value converted.</typeparam>
+		/// <param name="keySelector">The key selecting method.</param>
+		/// <returns>
+		/// An <see cref="IIterator{T}"/> of <see cref="IGroup{TKey, TValue}"/> where each
+		/// object contains a sequence of objects and a key.
+		/// </returns>
+		public IIterator<IGroup<TKey, TConverted>> GroupBy<TKey, TConverted>(
+			Func<int, TKey> keySelector, Func<int, TConverted> elementSelector) where TKey : notnull =>
+			new GroupedIterator<TKey, TConverted>(GetEnumerator(), keySelector, elementSelector);
+
+		/// <summary>
 		/// Projects each element of a sequence to an <see cref="IEnumerable{T}"/>,
 		/// flattens the resulting sequences into one sequence, and invokes a result selector function
 		/// on each element therein.
