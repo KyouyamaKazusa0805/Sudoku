@@ -185,6 +185,66 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// The iterator that used in the <see langword="let"/>-<see langword="select"/> clause in LINQ.
+		/// </summary>
+		/// <typeparam name="T">The type of the return value in the <see langword="let"/> clause.</typeparam>
+		/// <typeparam name="TResult">The type of the target elements.</typeparam>
+		public struct LetSelectIterator<T, TResult>
+		{
+			/// <summary>
+			/// The enumerator that iterates on all elements.
+			/// </summary>
+			private readonly SelectIterator<T> _enumerator;
+
+			/// <summary>
+			/// Indicates the convert method.
+			/// </summary>
+			private readonly Func<T?, TResult> _converter;
+
+
+			/// <summary>
+			/// Initializes an instance with the enumerator and the convert method.
+			/// </summary>
+			/// <param name="enumerator">(<see langword="in"/> parameter) The enumerator.</param>
+			/// <param name="converter">The convert method.</param>
+			public LetSelectIterator(in SelectIterator<T> enumerator, Func<T?, TResult> converter) : this()
+			{
+				_enumerator = enumerator;
+				_converter = converter;
+			}
+
+
+			/// <summary>
+			/// Indicates the current element of this iteration.
+			/// </summary>
+			public TResult? Current { readonly get; private set; }
+
+
+			/// <summary>
+			/// Move to next element.
+			/// </summary>
+			/// <returns>A <see cref="bool"/> result indicating whether the iteration ends.</returns>
+			public bool MoveNext()
+			{
+				if (_enumerator.MoveNext())
+				{
+					Current = _converter(_enumerator.Current);
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+
+			/// <summary>
+			/// Get the enumerator to iterate on each elements.
+			/// </summary>
+			/// <returns>The target enumerator.</returns>
+			public LetSelectIterator<T, TResult> GetEnumerator() => this;
+		}
+
+		/// <summary>
 		/// The iterator that used in the <see langword="let"/>-<see langword="where"/> clause in LINQ.
 		/// </summary>
 		/// <typeparam name="T">The type of the return value in the <see langword="let"/> clause.</typeparam>
@@ -247,29 +307,29 @@ namespace Sudoku.Data
 		/// The iterator that used in the <see langword="let"/>-<see langword="where"/>-<see langword="select"/>
 		/// clause in LINQ.
 		/// </summary>
-		/// <typeparam name="TElement">
+		/// <typeparam name="T">
 		/// The type of the return value in the <see langword="let"/> clause.
 		/// </typeparam>
-		/// <typeparam name="TConverted">The type of the target elements.</typeparam>
-		public struct LetWhereSelectIterator<TElement, TConverted>
+		/// <typeparam name="TResult">The type of the target elements.</typeparam>
+		public struct LetWhereSelectIterator<T, TResult>
 		{
 			/// <summary>
 			/// The enumerator that iterates on all elements.
 			/// </summary>
-			private readonly LetWhereIterator<TElement?> _enumerator;
+			private readonly LetWhereIterator<T?> _enumerator;
 
-			private readonly Func<TElement?, TConverted?> _converter;
+			private readonly Func<T?, TResult?> _converter;
 
 
 			public LetWhereSelectIterator(
-				in LetWhereIterator<TElement?> enumerator, Func<TElement?, TConverted?> converter) : this()
+				in LetWhereIterator<T?> enumerator, Func<T?, TResult?> converter) : this()
 			{
 				_enumerator = enumerator;
 				_converter = converter;
 			}
 
 
-			public TConverted? Current { readonly get; private set; }
+			public TResult? Current { readonly get; private set; }
 
 
 			public bool MoveNext()
@@ -286,7 +346,7 @@ namespace Sudoku.Data
 			}
 
 
-			public LetWhereSelectIterator<TElement, TConverted> GetEnumerator() => this;
+			public LetWhereSelectIterator<T, TResult> GetEnumerator() => this;
 		}
 
 		/// <summary>

@@ -23,24 +23,36 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Converts all elements to the target instances using the specified converter.
 		/// </summary>
-		/// <typeparam name="TConverted">The type of the target elements.</typeparam>
+		/// <typeparam name="T">The type of the base elements.</typeparam>
+		/// <typeparam name="TResult">The type of the target elements.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The enumerator.</param>
 		/// <param name="converter">The convert method.</param>
 		/// <returns>The iterator that iterates on each target element.</returns>
-		public static WhereSelectIterator<TConverted> Select<TConverted>(
-			this in WhereIterator @this, Func<int, TConverted> converter
+		public static LetSelectIterator<T, TResult> Select<T, TResult>(
+			this in SelectIterator<T> @this, Func<T?, TResult> converter
 		) => new(@this, converter);
 
 		/// <summary>
 		/// Converts all elements to the target instances using the specified converter.
 		/// </summary>
-		/// <typeparam name="TElement">The type of the base elements.</typeparam>
-		/// <typeparam name="TConverted">The type of the target elements.</typeparam>
+		/// <typeparam name="T">The type of the target elements.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The enumerator.</param>
 		/// <param name="converter">The convert method.</param>
 		/// <returns>The iterator that iterates on each target element.</returns>
-		public static LetWhereSelectIterator<TElement, TConverted> Select<TElement, TConverted>(
-			this in LetWhereIterator<TElement?> @this, Func<TElement?, TConverted?> converter
+		public static WhereSelectIterator<T> Select<T>(
+			this in WhereIterator @this, Func<int, T> converter
+		) => new(@this, converter);
+
+		/// <summary>
+		/// Converts all elements to the target instances using the specified converter.
+		/// </summary>
+		/// <typeparam name="T">The type of the base elements.</typeparam>
+		/// <typeparam name="TResult">The type of the target elements.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The enumerator.</param>
+		/// <param name="converter">The convert method.</param>
+		/// <returns>The iterator that iterates on each target element.</returns>
+		public static LetWhereSelectIterator<T, TResult> Select<T, TResult>(
+			this in LetWhereIterator<T?> @this, Func<T?, TResult?> converter
 		) => new(@this, converter);
 	}
 }
