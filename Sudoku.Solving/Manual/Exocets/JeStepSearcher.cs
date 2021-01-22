@@ -280,9 +280,10 @@ namespace Sudoku.Solving.Manual.Exocets
 			int* span = stackalloc[]
 			{
 				pos1.ToRegion(RegionLabel.Block),
-				pos1.ToRegion(RegionLabel.Row) == pos2.ToRegion(RegionLabel.Row)
-				? pos1.ToRegion(RegionLabel.Row)
-				: pos1.ToRegion(RegionLabel.Column)
+				pos1.ToRegion(
+					pos1.ToRegion(RegionLabel.Row) == pos2.ToRegion(RegionLabel.Row)
+					? RegionLabel.Row
+					: RegionLabel.Column)
 			};
 			foreach (short mask in Algorithms.GetMaskSubsets(candidatesMask))
 			{
