@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using Sudoku.DocComments;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 using static Sudoku.Windows.MainWindow;
-using CoreResources = Sudoku.Windows.Resources;
 
 namespace Sudoku.Windows.CustomControls
 {
@@ -42,7 +42,7 @@ namespace Sudoku.Windows.CustomControls
 				select (
 					technique,
 					(int)technique,
-					CoreResources.GetValue(technique.ToString()),
+					TextResources.GetValue(technique.ToString()),
 					Category: nullableCategory);
 
 			var categories = new List<string>((from quadruple in selection select quadruple.Category).Distinct());

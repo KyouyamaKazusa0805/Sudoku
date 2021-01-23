@@ -9,8 +9,8 @@ using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
+using static Sudoku.Resources.TextResources;
 using static Sudoku.Solving.AnalysisResultFormattingOptions;
-using static Sudoku.Windows.Resources;
 using CountryCode = Sudoku.Globalization.CountryCode;
 
 namespace Sudoku.Solving

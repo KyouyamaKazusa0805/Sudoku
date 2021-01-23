@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
+using Sudoku.Resources;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.Uniqueness;
-using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual
 {
@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual
 				// Update the progress result.
 				if (progress is not null)
 				{
-					progressResult.CurrentTechnique = Resources.GetValue($"Progress{displayLabel}");
+					progressResult.CurrentTechnique = TextResources.GetValue($"Progress{displayLabel}");
 					progressResult.CurrentIndex++;
 					progress.Report(progressResult);
 				}
@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Manual
 			// Group them up.
 			if (progress is not null)
 			{
-				progressResult.CurrentTechnique = Resources.GetValue("Summary");
+				progressResult.CurrentTechnique = TextResources.GetValue("Summary");
 				progressResult.CurrentIndex++;
 				progress.Report(progressResult);
 			}

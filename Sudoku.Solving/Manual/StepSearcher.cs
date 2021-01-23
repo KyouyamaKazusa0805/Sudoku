@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Sudoku.Data;
 using Sudoku.Solving.Manual.Tracing;
-using static Sudoku.Windows.Resources;
+using static Sudoku.Resources.TextResources;
 
 namespace Sudoku.Solving.Manual
 {

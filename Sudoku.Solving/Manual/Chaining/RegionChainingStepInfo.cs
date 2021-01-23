@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Windows;
+using Sudoku.Resources;
 #if DOUBLE_LAYERED_ASSUMPTION
 using System.Linq;
 #endif
@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		: ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
 	{
 		/// <inheritdoc/>
-		public override string Name => Resources.GetValue(TechniqueCode.ToString());
+		public override string Name => TextResources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey =>

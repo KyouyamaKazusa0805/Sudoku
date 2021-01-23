@@ -3,9 +3,9 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Techniques;
-using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual
 {
@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public virtual string Name => Resources.GetValue(TechniqueCode.ToString());
+		public virtual string Name => TextResources.GetValue(TechniqueCode.ToString());
 
 		/// <summary>
 		/// The difficulty or this step.

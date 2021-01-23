@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
-using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		}
 
 		/// <inheritdoc/>
-		public override string Name => $"{Resources.GetValue("Bug")} + {Candidates.Count.ToString()} (+)";
+		public override string Name => $"{TextResources.GetValue("Bug")} + {Candidates.Count.ToString()} (+)";
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugMultipleFc;

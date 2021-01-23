@@ -4095,89 +4095,6 @@
             Indicates all symmetry types should be satisfied.
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Resources">
-            <summary>
-            Indicates the resources used later but not in the namespace Sudoku.<see cref="N:Sudoku.Windows"/>.
-            </summary>
-            <seealso cref="N:Sudoku.Windows"/>
-        </member>
-        <member name="F:Sudoku.Windows.Resources.DefaultOptions">
-            <summary>
-            Indicates the default options.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Resources._dicPointer">
-            <summary>
-            Indicates the current source.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Resources.CountryCode">
-            <summary>
-            Indicates the current country code.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Resources.LangSourceEnUs">
-            <summary>
-            The language source for the globalization string "<c>en-us</c>".
-            </summary>
-        </member>
-        <member name="P:Sudoku.Windows.Resources.LangSourceZhCn">
-            <summary>
-            The language source for the globalization string "<c>zh-cn</c>".
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Resources.ChangeLanguage(Sudoku.Globalization.CountryCode)">
-            <summary>
-            To change the current language with the specified country code.
-            </summary>
-            <param name="countryCode">The country code.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Resources.Serialize(System.String,System.String)">
-            <summary>
-            Try to serialize the instance whose name is specified as a string.
-            </summary>
-            <param name="instanceNameToSerialize">The instance that is to serialize.</param>
-            <param name="path">The path to serialize.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating whether the operation is successful.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Resources.Deserialize(System.String,System.String)">
-            <summary>
-            Try to deserialize the file specified as a file path, and converts it to the instance.
-            </summary>
-            <param name="instanceNameToDeserialize">The instance to covert to.</param>
-            <param name="path">The file path.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating whether the operaton is successful.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Resources.GetValue(System.String)">
-            <summary>
-            Get the value with the specified key.
-            </summary>
-            <param name="key">The key.</param>
-            <returns>The value.</returns>
-            <exception cref="T:System.Collections.Generic.KeyNotFoundException">
-            Throws when the key can't be found in neither the current language dictionary
-            nor the default dictionary.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Windows.Resources.GetValueWithoutExceptions(System.String)">
-            <summary>
-            Get the value with the specified key, without any exception throws.
-            </summary>
-            <param name="key">The key.</param>
-            <returns>
-            The value. If the key can't be found in neither the current language dictionary
-            nor the default dictionary, the return value will be <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Windows.Resources.GetDictionary(Sudoku.Globalization.CountryCode)">
-            <summary>
-            Get the dictionary with the specified globalization string.
-            </summary>
-            <param name="countryCode">The country code.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
-            Throws when the language resource dictionary doesn't exist (i.e. <see langword="null"/>).
-            </exception>
-        </member>
         <member name="T:Sudoku.Models.DrawingInfo">
             <summary>
             Encapsulates a drawing information pair for highlighting cells,
@@ -4389,6 +4306,88 @@
         </member>
         <member name="M:Sudoku.Models.TechniqueProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Resources.TextResources">
+            <summary>
+            Provides a way to get the local text resources, and save the resources to the local path.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.TextResources.DefaultOptions">
+            <summary>
+            Indicates the default options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.TextResources._dicPointer">
+            <summary>
+            Indicates the current source.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.TextResources.CountryCode">
+            <summary>
+            Indicates the current country code.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.TextResources.LangSourceEnUs">
+            <summary>
+            The language source for the globalization string "<c>en-us</c>".
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.TextResources.LangSourceZhCn">
+            <summary>
+            The language source for the globalization string "<c>zh-cn</c>".
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.TextResources.ChangeLanguage(Sudoku.Globalization.CountryCode)">
+            <summary>
+            To change the current language with the specified country code.
+            </summary>
+            <param name="countryCode">The country code.</param>
+        </member>
+        <member name="M:Sudoku.Resources.TextResources.Serialize(System.String,System.String)">
+            <summary>
+            Try to serialize the instance whose name is specified as a string.
+            </summary>
+            <param name="instanceNameToSerialize">The instance that is to serialize.</param>
+            <param name="path">The path to serialize.</param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating whether the operation is successful.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.TextResources.Deserialize(System.String,System.String)">
+            <summary>
+            Try to deserialize the file specified as a file path, and converts it to the instance.
+            </summary>
+            <param name="instanceNameToDeserialize">The instance to covert to.</param>
+            <param name="path">The file path.</param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating whether the operaton is successful.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.TextResources.GetValue(System.String)">
+            <summary>
+            Get the value with the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>The value.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">
+            Throws when the key can't be found in neither the current language dictionary
+            nor the default dictionary.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Resources.TextResources.GetValueWithoutExceptions(System.String)">
+            <summary>
+            Get the value with the specified key, without any exception throws.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>
+            The value. If the key can't be found in neither the current language dictionary
+            nor the default dictionary, the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Resources.TextResources.GetDictionary(Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the dictionary with the specified globalization string.
+            </summary>
+            <param name="countryCode">The country code.</param>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the language resource dictionary doesn't exist (i.e. <see langword="null"/>).
+            </exception>
         </member>
         <member name="T:Sudoku.SudokuHandlingException">
             <summary>

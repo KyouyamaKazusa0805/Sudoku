@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Windows;
+using Sudoku.Resources;
 
 namespace Sudoku.Solving.BruteForces
 {
@@ -17,7 +17,7 @@ namespace Sudoku.Solving.BruteForces
 
 
 		/// <inheritdoc/>
-		public string SolverName => Resources.GetValue("Backtracking");
+		public string SolverName => TextResources.GetValue("Backtracking");
 
 
 		/// <inheritdoc/>

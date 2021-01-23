@@ -1,5 +1,5 @@
 ﻿using Sudoku.Globalization;
-using Sudoku.Windows;
+using Sudoku.Resources;
 
 namespace Sudoku.Models
 {
@@ -41,7 +41,7 @@ namespace Sudoku.Models
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() =>
 			GeneratingTrial == 1
-			? Resources.GetValue("GeneratingProgressSingular")
-			: $"{GeneratingTrial.ToString()} {Resources.GetValue("GeneratingProgressPlural")}";
+			? TextResources.GetValue("GeneratingProgressSingular")
+			: $"{GeneratingTrial.ToString()} {TextResources.GetValue("GeneratingProgressPlural")}";
 	}
 }

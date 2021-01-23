@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Windows;
+using Sudoku.Resources;
 
 namespace Sudoku.Solving.BruteForces
 {
@@ -14,7 +14,7 @@ namespace Sudoku.Solving.BruteForces
 	public sealed class OneLineLinqSolver : ISolver
 	{
 		/// <inheritdoc/>
-		public string SolverName => Resources.GetValue("OneLineLinq");
+		public string SolverName => TextResources.GetValue("OneLineLinq");
 
 
 		/// <inheritdoc/>

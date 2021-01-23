@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
-using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override int FlatComplexity => Target.AncestorsCount;
 
 		/// <inheritdoc/>
-		public override string Name => Resources.GetValue(TechniqueCode.ToString());
+		public override string Name => TextResources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>

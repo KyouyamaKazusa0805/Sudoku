@@ -4,9 +4,9 @@ using System.Linq;
 using System.Windows.Controls;
 using Sudoku.DocComments;
 using Sudoku.Generating;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 using static Sudoku.Windows.MainWindow;
-using CoreResources = Sudoku.Windows.Resources;
 
 namespace Sudoku.Windows.CustomControls
 {
@@ -39,7 +39,7 @@ namespace Sudoku.Windows.CustomControls
 				from technique in Enum.GetValues<Technique>()
 				let nullableCategory = LangSource[$"Group{technique.ToString()}"] as string
 				where nullableCategory is not null
-				select (CoreResources.GetValue(technique.ToString()), technique, nullableCategory))
+				select (TextResources.GetValue(technique.ToString()), technique, nullableCategory))
 			{
 				var box = new TechniqueBox
 				{

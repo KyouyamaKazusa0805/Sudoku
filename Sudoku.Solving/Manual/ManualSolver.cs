@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
+using Sudoku.Resources;
 using Sudoku.Solving.Checking;
-using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual
 {
@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual
 	{
 		/// <inheritdoc/>
 		[JsonIgnore]
-		public string SolverName => Resources.GetValue("Manual");
+		public string SolverName => TextResources.GetValue("Manual");
 
 
 		/// <inheritdoc/>

@@ -5,13 +5,12 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using Sudoku.Globalization;
 
-namespace Sudoku.Windows
+namespace Sudoku.Resources
 {
 	/// <summary>
-	/// Indicates the resources used later but not in the namespace Sudoku.<see cref="Windows"/>.
+	/// Provides a way to get the local text resources, and save the resources to the local path.
 	/// </summary>
-	/// <seealso cref="Windows"/>
-	public static class Resources
+	public static class TextResources
 	{
 		/// <summary>
 		/// Indicates the default options.
@@ -61,7 +60,7 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-				var propertyInfo = typeof(Resources).GetProperty(instanceNameToSerialize);
+				var propertyInfo = typeof(TextResources).GetProperty(instanceNameToSerialize);
 				if (propertyInfo is null)
 				{
 					return false;
@@ -104,7 +103,7 @@ namespace Sudoku.Windows
 					return false;
 				}
 
-				var propertyInfo = typeof(Resources).GetProperty(instanceNameToDeserialize);
+				var propertyInfo = typeof(TextResources).GetProperty(instanceNameToDeserialize);
 				if (propertyInfo is null)
 				{
 					return false;
@@ -165,7 +164,7 @@ namespace Sudoku.Windows
 
 			if
 			(
-				typeof(Resources).GetProperty(
+				typeof(TextResources).GetProperty(
 					$"LangSource{countryCode.ToString()}",
 					BindingFlags.Public | BindingFlags.Static
 				) is not { } propInfo

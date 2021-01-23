@@ -17,12 +17,12 @@ using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Globalization;
+using Sudoku.Resources;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Data;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
 using static Sudoku.Windows.Constants;
-using CoreResources = Sudoku.Windows.Resources;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
@@ -444,7 +444,7 @@ namespace Sudoku.Windows
 
 			// Check whether the resource dictionary files are vaild.
 			const string languageFileIsInvalid = "The required resource dictionary file is invalid.";
-			if (CoreResources.LangSourceEnUs is null)
+			if (TextResources.LangSourceEnUs is null)
 			{
 				MessageBox.Show(
 					messageBoxText: languageFileIsInvalid,
@@ -1011,7 +1011,7 @@ namespace Sudoku.Windows
 			mergedDic.Add(rd);
 
 			// Then change the language of the library 'Sudoku.Core'.
-			CoreResources.ChangeLanguage(countryCode);
+			TextResources.ChangeLanguage(countryCode);
 		}
 
 		/// <summary>

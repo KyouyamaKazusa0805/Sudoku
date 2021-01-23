@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
-using Sudoku.Windows;
+using Sudoku.Resources;
 
 namespace Sudoku
 {
@@ -18,8 +18,8 @@ namespace Sudoku
 		[ModuleInitializer]
 		public static void Initialize()
 		{
-			DeserializeResourceDictionary(nameof(Resources.LangSourceEnUs), @"lang\Resources.en-us.dic");
-			DeserializeResourceDictionary(nameof(Resources.LangSourceZhCn), @"lang\Resources.zh-cn.dic");
+			DeserializeResourceDictionary(nameof(TextResources.LangSourceEnUs), @"lang\Resources.en-us.dic");
+			DeserializeResourceDictionary(nameof(TextResources.LangSourceZhCn), @"lang\Resources.zh-cn.dic");
 		}
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace Sudoku
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static void DeserializeResourceDictionary(string langSourceInstanceName, string path)
 		{
-			if (!Resources.Deserialize(langSourceInstanceName, path))
+			if (!TextResources.Deserialize(langSourceInstanceName, path))
 			{
 				throw new SudokuHandlingException<string, string>(
 					errorCode: 401,
