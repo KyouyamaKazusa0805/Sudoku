@@ -4307,6 +4307,31 @@
         <member name="M:Sudoku.Models.TechniqueProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Resources.Paths">
+            <summary>
+            Here displays the default and basic paths in this project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.Paths.TrainedDataFileName">
+            <summary>
+            Indicates the trained data file name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.Paths.LangSourceDirectory">
+            <summary>
+            Indicates the language source dictionary directory.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.Paths.LangSourceEnUs">
+            <summary>
+            Indicates the language source dictioanry (English).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.Paths.LangSourceZhCn">
+            <summary>
+            Indicates the language source dictionary (Chinese).
+            </summary>
+        </member>
         <member name="T:Sudoku.Resources.TextResources">
             <summary>
             Provides a way to get the local text resources, and save the resources to the local path.

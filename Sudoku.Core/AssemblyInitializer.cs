@@ -18,8 +18,8 @@ namespace Sudoku
 		[ModuleInitializer]
 		public static void Initialize()
 		{
-			DeserializeResourceDictionary(nameof(TextResources.LangSourceEnUs), @"lang\Resources.en-us.dic");
-			DeserializeResourceDictionary(nameof(TextResources.LangSourceZhCn), @"lang\Resources.zh-cn.dic");
+			DeserializeResourceDictionary(nameof(TextResources.LangSourceEnUs), Paths.LangSourceEnUs);
+			DeserializeResourceDictionary(nameof(TextResources.LangSourceZhCn), Paths.LangSourceZhCn);
 		}
 
 		/// <summary>

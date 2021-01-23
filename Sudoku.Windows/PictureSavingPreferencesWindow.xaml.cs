@@ -11,7 +11,6 @@ using Sudoku.Data.Stepping;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using static System.Drawing.StringAlignment;
-using static Sudoku.Windows.Constants;
 using static Sudoku.Windows.MainWindow;
 using DFontStyle = System.Drawing.FontStyle;
 

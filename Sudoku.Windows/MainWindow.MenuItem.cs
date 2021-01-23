@@ -23,7 +23,6 @@ using Sudoku.Solving.BruteForces;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
-using static Sudoku.Windows.Constants;
 #if SUDOKU_RECOGNITION
 using System.Drawing;
 #endif

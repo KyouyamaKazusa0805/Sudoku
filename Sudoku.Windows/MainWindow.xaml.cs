@@ -22,7 +22,6 @@ using Sudoku.Solving.Manual;
 using Sudoku.Windows.Data;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
-using static Sudoku.Windows.Constants;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;

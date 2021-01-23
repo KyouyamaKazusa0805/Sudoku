@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
 using Sudoku.DocComments;
-using static Sudoku.Windows.Constants;
 using static Sudoku.Windows.MainWindow;
 
 namespace Sudoku.Windows

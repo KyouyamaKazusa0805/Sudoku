@@ -8,7 +8,6 @@ using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.IO;
 using Sudoku.Solving;
-using static Sudoku.Windows.Constants;
 
 namespace Sudoku.Windows
 {

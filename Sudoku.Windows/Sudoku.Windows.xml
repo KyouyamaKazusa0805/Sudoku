@@ -189,243 +189,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Constants">
-            <summary>
-            Encapsulates a class that contains constants used in the whole project.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Windows.Constants.Messagings">
-            <summary>
-            Provides all messages used for <see cref="T:System.Windows.MessageBox"/> instance.
-            </summary>
-            <seealso cref="T:System.Windows.MessageBox"/>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.YouCanOnlyOpenOneProgram">
-            <summary>
-            Indicates the message for only opening one program.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FunctionIsUnavailable">
-            <summary>
-            Indicates the message for function being unavailable.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.WrongHandling">
-            <summary>
-            Indicates the message for wrong handling.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToBackupConfig">
-            <summary>
-            Indicates the message for failed to backup the configurations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToLoadPicture">
-            <summary>
-            Indicates the message for failed to load pictures.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToLoadGlobalizationFile">
-            <summary>
-            Indicates the message for failed to load globalization files.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToLoadPictureDueToNotHavingInitialized">
-            <summary>
-            Indicates the message for failed to load pictures due to not having initialized.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.NotSupportedForLoadingPicture">
-            <summary>
-            Indicates the message for loading pictures.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.LoadDatabase(System.Int32)">
-            <summary>
-            Indicates the message for loading database.
-            </summary>
-            <param name="puzzlesCount">The number of puzzles successfully loading.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToSaveToClipboardDueToAsyncCalling">
-            <summary>
-            Indicates the message of throwing an exception while saving to clipboard when using multiple threads.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToLoadPuzzle">
-            <summary>
-            Indicates the message while loading puzzles.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToLoadDatabase">
-            <summary>
-            Indicates the message for failed to load database.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToLoadSettings">
-            <summary>
-            Indicates the message for failed to load settings.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToLoadRecognitionTool(System.Exception)">
-            <summary>
-            Indicates the message for failed to load recognition tools.
-            </summary>
-            <param name="ex">The exception.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToSaveConfig(System.Exception)">
-            <summary>
-            Indicates the message for failed to save configurations.
-            </summary>
-            <param name="ex">The exception.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToSaveToClipboardDueToArgumentNullException(System.Exception)">
-            <summary>
-            Indicates the message of throwing an exception while saving to clipboard.
-            </summary>
-            <param name="ex">The exception.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.ShowExceptionMessage(System.Exception)">
-            <summary>
-            To show the message of an exception.
-            </summary>
-            <param name="ex">The exception instance.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.SukakuCannotUseThisFunction">
-            <summary>
-            Indicates the message that sukakus can't use this function.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.SaveSuccess">
-            <summary>
-            Indicates the message that succeed to save a file.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToPasteText">
-            <summary>
-            Indicates the message for failed to load sukaku text.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToCheckDueToInvalidPuzzle">
-            <summary>
-            Indicates the message for failed to check due to invalid puzzle.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.DoesNotContainBugMultiple">
-            <summary>
-            Indicates the message that the puzzle doesn't exist any BUG digit.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.DoesNotContainBackdoor">
-            <summary>
-            Indicates the message that the puzzle doesn't exist any backdoors of the level 0 or 1.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.NotSupportedWhileGeneratingWithFilter">
-            <summary>
-            Indicates the message while generating with the technique filter.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToApplyPuzzle">
-            <summary>
-            Indicates the message while applying a puzzle.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.PuzzleAlreadySolved">
-            <summary>
-            Indicates the message for a puzzle having been solved.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.FailedToSolveWithMessage(Sudoku.Solving.AnalysisResult)">
-            <summary>
-            Indicates the message for failed to solve a puzzle.
-            </summary>
-            <param name="analysisResult">The analysis result.</param>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.YouShouldSolveFirst">
-            <summary>
-            Indicates the message that you should solve the puzzle first.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.SukakuCannotUseGspChecking">
-            <summary>
-            Indicates the message that sukaku can't use GSP checking.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.DoesNotContainGsp">
-            <summary>
-            Indicates the message that the puzzle doesn't exist GSP hint.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.CannotCopyStep">
-            <summary>
-            Indicates the message that the step can't be copied.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.CheckInput">
-            <summary>
-            Indicates the message that warn you to check your input.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.CheckFormatString">
-            <summary>
-            Indicates the message that warn you to check the format string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.AskWhileQuitting">
-            <summary>
-            Indicates the message while quitting.
-            </summary>
-            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.AskWhileLoadingAndCoveringDatabase">
-            <summary>
-            Indicates the message while loading and covering the database.
-            </summary>
-            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.AskWhileLoadingPicture">
-            <summary>
-            Indicates the message while loading pictures.
-            </summary>
-            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.AskWhileClearingStack">
-            <summary>
-            Indicates the message while clearing stack.
-            </summary>
-            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Constants.Messagings.AskWhileGeneratingWithDatabase">
-            <summary>
-            Indicates the message for clearing database while generating.
-            </summary>
-            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Windows.Constants.Paths">
-            <summary>
-            Here displays the default and basic paths in this project.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Constants.Paths.TrainedDataFileName">
-            <summary>
-            Indicates the trained data file name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Constants.Paths.LangSourceDirectory">
-            <summary>
-            Indicates the language source dictionary directory.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Constants.Paths.LangSourceEnUs">
-            <summary>
-            Indicates the language source dictioanry (English).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Windows.Constants.Paths.LangSourceZhCn">
-            <summary>
-            Indicates the language source dictionary (Chinese).
-            </summary>
-        </member>
         <member name="T:Sudoku.Windows.Converters.DifficultyInfoToBackgroundColorConverter">
             <summary>
             Defines a converter that converts from a difficulty information to the background color information.
@@ -2253,6 +2016,213 @@
             Indicates the color palette that is shown on the control.
             </summary>
         </member>
+        <member name="T:Sudoku.Windows.Messagings">
+            <summary>
+            Provides all messages used for <see cref="T:System.Windows.MessageBox"/> instance.
+            </summary>
+            <seealso cref="T:System.Windows.MessageBox"/>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.YouCanOnlyOpenOneProgram">
+            <summary>
+            Indicates the message for only opening one program.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FunctionIsUnavailable">
+            <summary>
+            Indicates the message for function being unavailable.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.WrongHandling">
+            <summary>
+            Indicates the message for wrong handling.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToBackupConfig">
+            <summary>
+            Indicates the message for failed to backup the configurations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToLoadPicture">
+            <summary>
+            Indicates the message for failed to load pictures.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToLoadGlobalizationFile">
+            <summary>
+            Indicates the message for failed to load globalization files.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToLoadPictureDueToNotHavingInitialized">
+            <summary>
+            Indicates the message for failed to load pictures due to not having initialized.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.NotSupportedForLoadingPicture">
+            <summary>
+            Indicates the message for loading pictures.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.LoadDatabase(System.Int32)">
+            <summary>
+            Indicates the message for loading database.
+            </summary>
+            <param name="puzzlesCount">The number of puzzles successfully loading.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToSaveToClipboardDueToAsyncCalling">
+            <summary>
+            Indicates the message of throwing an exception while saving to clipboard when using multiple threads.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToLoadPuzzle">
+            <summary>
+            Indicates the message while loading puzzles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToLoadDatabase">
+            <summary>
+            Indicates the message for failed to load database.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToLoadSettings">
+            <summary>
+            Indicates the message for failed to load settings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToLoadRecognitionTool(System.Exception)">
+            <summary>
+            Indicates the message for failed to load recognition tools.
+            </summary>
+            <param name="ex">The exception.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToSaveConfig(System.Exception)">
+            <summary>
+            Indicates the message for failed to save configurations.
+            </summary>
+            <param name="ex">The exception.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToSaveToClipboardDueToArgumentNullException(System.Exception)">
+            <summary>
+            Indicates the message of throwing an exception while saving to clipboard.
+            </summary>
+            <param name="ex">The exception.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.ShowExceptionMessage(System.Exception)">
+            <summary>
+            To show the message of an exception.
+            </summary>
+            <param name="ex">The exception instance.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.SukakuCannotUseThisFunction">
+            <summary>
+            Indicates the message that sukakus can't use this function.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.SaveSuccess">
+            <summary>
+            Indicates the message that succeed to save a file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToPasteText">
+            <summary>
+            Indicates the message for failed to load sukaku text.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToCheckDueToInvalidPuzzle">
+            <summary>
+            Indicates the message for failed to check due to invalid puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.DoesNotContainBugMultiple">
+            <summary>
+            Indicates the message that the puzzle doesn't exist any BUG digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.DoesNotContainBackdoor">
+            <summary>
+            Indicates the message that the puzzle doesn't exist any backdoors of the level 0 or 1.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.NotSupportedWhileGeneratingWithFilter">
+            <summary>
+            Indicates the message while generating with the technique filter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToApplyPuzzle">
+            <summary>
+            Indicates the message while applying a puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.PuzzleAlreadySolved">
+            <summary>
+            Indicates the message for a puzzle having been solved.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.FailedToSolveWithMessage(Sudoku.Solving.AnalysisResult)">
+            <summary>
+            Indicates the message for failed to solve a puzzle.
+            </summary>
+            <param name="analysisResult">The analysis result.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.YouShouldSolveFirst">
+            <summary>
+            Indicates the message that you should solve the puzzle first.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.SukakuCannotUseGspChecking">
+            <summary>
+            Indicates the message that sukaku can't use GSP checking.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.DoesNotContainGsp">
+            <summary>
+            Indicates the message that the puzzle doesn't exist GSP hint.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.CannotCopyStep">
+            <summary>
+            Indicates the message that the step can't be copied.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.CheckInput">
+            <summary>
+            Indicates the message that warn you to check your input.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.CheckFormatString">
+            <summary>
+            Indicates the message that warn you to check the format string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.AskWhileQuitting">
+            <summary>
+            Indicates the message while quitting.
+            </summary>
+            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.AskWhileLoadingAndCoveringDatabase">
+            <summary>
+            Indicates the message while loading and covering the database.
+            </summary>
+            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.AskWhileLoadingPicture">
+            <summary>
+            Indicates the message while loading pictures.
+            </summary>
+            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.AskWhileClearingStack">
+            <summary>
+            Indicates the message while clearing stack.
+            </summary>
+            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Messagings.AskWhileGeneratingWithDatabase">
+            <summary>
+            Indicates the message for clearing database while generating.
+            </summary>
+            <returns>The <see cref="T:System.Windows.MessageBoxResult"/>.</returns>
+        </member>
         <member name="T:Sudoku.Windows.PictureSavingPreferencesWindow">
             <summary>
             Interaction logic for <c>PictureSavingPreferencesWindow.xaml</c>.
@@ -2957,6 +2927,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The bitmap source to set.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>
