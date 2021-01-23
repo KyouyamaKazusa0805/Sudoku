@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Drawing.Extensions;
 
-namespace System.Text.Json.Converters
+namespace Sudoku.Drawing.Converters
 {
 	/// <summary>
-	/// Indicates a color JSON converter.
+	/// Indicates a <see cref="Color"/> JSON converter.
 	/// </summary>
+	/// <seealso cref="Color"/>
 	[JsonConverter(typeof(Color))]
 	public sealed class ColorJsonConverter : JsonConverter<Color>
 	{
@@ -18,7 +20,7 @@ namespace System.Text.Json.Converters
 
 		/// <inheritdoc/>
 		/// <exception cref="JsonException">
-		/// Throws when the current token valis isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
+		/// Throws when the current token isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
 		/// </exception>
 		[SkipLocalsInit]
 		public override unsafe Color Read(
@@ -39,13 +41,13 @@ namespace System.Text.Json.Converters
 					case JsonTokenType.PropertyName:
 					case JsonTokenType.String:
 					{
-						string? token = reader.GetString()?.ToLower();
+						string? token = reader.GetString();
 						ptr = token switch
 						{
-							"a" => span,
-							"r" => span + 1,
-							"g" => span + 2,
-							"b" => span + 3,
+							nameof(Color.A) or "a" => span,
+							nameof(Color.R) or "r" => span + 1,
+							nameof(Color.G) or "g" => span + 2,
+							nameof(Color.B) or "b" => span + 3,
 							var str => throw new JsonException($"Can't check the current token '{str}' as a correct token.")
 						};
 
@@ -68,10 +70,10 @@ namespace System.Text.Json.Converters
 		{
 			var (a, r, g, b) = value;
 			writer.WriteStartObject();
-			writer.WriteNumber("A", a);
-			writer.WriteNumber("R", r);
-			writer.WriteNumber("G", g);
-			writer.WriteNumber("B", b);
+			writer.WriteNumber(nameof(Color.A), a);
+			writer.WriteNumber(nameof(Color.R), r);
+			writer.WriteNumber(nameof(Color.G), g);
+			writer.WriteNumber(nameof(Color.B), b);
 			writer.WriteEndObject();
 		}
 	}

@@ -721,6 +721,13 @@
             won't be set <see langword="true"/>.
             </remarks>
         </member>
+        <member name="M:Sudoku.Data.Cells.#ctor(System.Int64,System.Int64)">
+            <summary>
+            Initializes an instance with two binary values.
+            </summary>
+            <param name="high">Higher 40 bits.</param>
+            <param name="low">Lower 41 bits.</param>
+        </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with three binary values.
@@ -745,13 +752,6 @@
             If you want to use this constructor, please use <see cref="F:Sudoku.Constants.Tables.PeerMaps"/> instead.
             </remarks>
             <seealso cref="F:Sudoku.Constants.Tables.PeerMaps"/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.#ctor(System.Int64,System.Int64)">
-            <summary>
-            Initializes an instance with two binary values.
-            </summary>
-            <param name="high">Higher 40 bits.</param>
-            <param name="low">Lower 41 bits.</param>
         </member>
         <member name="P:Sudoku.Data.Cells.IsEmpty">
             <summary>

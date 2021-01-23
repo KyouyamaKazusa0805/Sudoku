@@ -4,6 +4,158 @@
         <name>Sudoku.Drawing</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Drawing.Converters.CellsJsonConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Data.Cells"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Cells"/>
+        </member>
+        <member name="F:Sudoku.Drawing.Converters.CellsJsonConverter.HighBits">
+            <summary>
+            The property name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.Converters.CellsJsonConverter.LowBits">
+            <summary>
+            The property name.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.CellsJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.CellsJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.CellsJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Converters.ColorJsonConverter">
+            <summary>
+            Indicates a <see cref="T:System.Drawing.Color"/> JSON converter.
+            </summary>
+            <seealso cref="T:System.Drawing.Color"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.ColorJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.ColorJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the current token isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Converters.DirectLineJsonConverter">
+            <summary>
+            Indicates a <see cref="T:System.ValueTuple`2"/> JSON converter.
+            </summary>
+            <seealso cref="T:System.ValueTuple`2"/>
+        </member>
+        <member name="F:Sudoku.Drawing.Converters.DirectLineJsonConverter.Start">
+            <summary>
+            Indicates the property name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.Converters.DirectLineJsonConverter.End">
+            <summary>
+            Indicates the property name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.Converters.DirectLineJsonConverter.InnerOptions">
+            <summary>
+            Indicates the inner options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.DirectLineJsonConverter.#cctor">
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.DirectLineJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.DirectLineJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.DirectLineJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells},System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Converters.DrawingInfoJsonConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Models.DrawingInfo"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Models.DrawingInfo"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.DrawingInfoJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.DrawingInfoJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.DrawingInfoJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Models.DrawingInfo,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Converters.LinkJsonConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Data.Link"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Link"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.LinkJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.LinkJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.LinkJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Link,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Converters.MutableViewJsonConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Drawing.MutableView"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.MutableView"/>
+        </member>
+        <member name="F:Sudoku.Drawing.Converters.MutableViewJsonConverter.InnerOptions">
+            <summary>
+            Indicates the inner options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.MutableViewJsonConverter.#cctor">
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.MutableViewJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.MutableViewJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.MutableViewJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Drawing.MutableView,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Converters.ViewJsonConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Drawing.View"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.View"/>
+        </member>
+        <member name="F:Sudoku.Drawing.Converters.ViewJsonConverter.InnerOptions">
+            <summary>
+            Indicates the inner options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.ViewJsonConverter.#cctor">
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.ViewJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.ViewJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converters.ViewJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Drawing.View,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Drawing.Extensions.BitmapEx">
             <summary>
             Provides extension methos on <see cref="T:System.Drawing.Bitmap"/>.
@@ -639,6 +791,28 @@
             <param name="end">(<see langword="in"/> parameter) The end map.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
+        <member name="M:Sudoku.Drawing.MutableView.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.Equals(Sudoku.Drawing.MutableView)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.ToJson(System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Converts the current instance to a JSON string.
+            </summary>
+            <param name="options">The option instance.</param>
+            <returns>The JSON result string.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.op_Equality(Sudoku.Drawing.MutableView,Sudoku.Drawing.MutableView)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.op_Inequality(Sudoku.Drawing.MutableView,Sudoku.Drawing.MutableView)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
         <member name="T:Sudoku.Drawing.PointConverter">
             <summary>
             Provides converting operations for <see cref="T:System.Drawing.Point"/> and
@@ -1068,22 +1242,27 @@
             Indicates all direct lines.
             </summary>
         </member>
-        <member name="T:System.Text.Json.Converters.ColorJsonConverter">
+        <member name="M:Sudoku.Drawing.View.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.View.Equals(Sudoku.Drawing.View)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.View.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.View.ToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
-            Indicates a color JSON converter.
+            Converts the current instance to a JSON string.
             </summary>
+            <param name="options">The option instance.</param>
+            <returns>The JSON result string.</returns>
         </member>
-        <member name="M:System.Text.Json.Converters.ColorJsonConverter.CanConvert(System.Type)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Drawing.View.op_Equality(Sudoku.Drawing.View,Sudoku.Drawing.View)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:System.Text.Json.Converters.ColorJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the current token valis isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
-            </exception>
-        </member>
-        <member name="M:System.Text.Json.Converters.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Drawing.View.op_Inequality(Sudoku.Drawing.View,Sudoku.Drawing.View)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
     </members>
 </doc>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 using Sudoku.DocComments;
 
 namespace Sudoku.Models
@@ -25,11 +26,13 @@ namespace Sudoku.Models
 		/// <summary>
 		/// Indicates the ID value. The ID is the unique key corresponding to one color.
 		/// </summary>
+		[JsonInclude]
 		public long Id { get; }
 
 		/// <summary>
 		/// Indicates the value.
 		/// </summary>
+		[JsonInclude]
 		public int Value { get; }
 
 
