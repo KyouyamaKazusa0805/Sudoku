@@ -2,6 +2,7 @@
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Models;
 
 namespace Sudoku.Solving.Manual.Symmetry
 {

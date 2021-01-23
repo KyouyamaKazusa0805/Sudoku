@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Models;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Techniques;

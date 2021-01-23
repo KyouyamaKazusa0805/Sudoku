@@ -9,6 +9,7 @@ using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Techniques;
 using static Sudoku.Data.ConclusionType;
+using Sudoku.Models;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {

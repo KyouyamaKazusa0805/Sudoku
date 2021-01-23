@@ -2,9 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Extensions;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,15 +16,13 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
-using Sudoku.Drawing;
+using Sudoku.Generating;
 using Sudoku.Globalization;
+using Sudoku.Models;
 using Sudoku.Solving.BruteForces;
 using Sudoku.Solving.Checking;
-using Sudoku.Generating;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
-using System.Extensions;
-using System.Threading;
 using static Sudoku.Windows.Constants;
 #if SUDOKU_RECOGNITION
 using System.Drawing;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.Models;
 
 namespace Sudoku.Drawing.Extensions
 {

@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Models;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -94,7 +95,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 						results,
 						new View[] { new() { Candidates = candidateOffsets } },
 						left.SymmetryType | right.SymmetryType,
-						null);
+						null
+					);
 				}
 				default:
 				{

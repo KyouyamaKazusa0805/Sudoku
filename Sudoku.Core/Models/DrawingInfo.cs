@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
-namespace Sudoku.Drawing
+namespace Sudoku.Models
 {
 	/// <summary>
 	/// Encapsulates a drawing information pair for highlighting cells,

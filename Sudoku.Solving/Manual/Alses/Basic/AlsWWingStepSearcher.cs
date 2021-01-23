@@ -3,6 +3,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Models;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -137,11 +138,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									cellOffsets.Add(new(-2, cell));
 								}
 
-								int[] offsets = cpMap.ToArray();
 								var candidateOffsets = new List<DrawingInfo>
 								{
-									new(0, offsets[0] * 9 + x),
-									new(0, offsets[1] * 9 + x)
+									new(0, cpMap[0] * 9 + x),
+									new(0, cpMap[1] * 9 + x)
 								};
 								foreach (int cell in map1)
 								{

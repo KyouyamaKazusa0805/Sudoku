@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Extensions;
+using Sudoku.Models;
 using static System.Math;
 
 namespace Sudoku.Drawing

@@ -2570,7 +2570,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.CheckMirror(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Collections.Generic.IList{Sudoku.Drawing.DrawingInfo},System.Collections.Generic.IList{Sudoku.Drawing.DrawingInfo})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.CheckMirror(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Collections.Generic.IList{Sudoku.Models.DrawingInfo},System.Collections.Generic.IList{Sudoku.Models.DrawingInfo})">
             <summary>
             Check mirror eliminations.
             </summary>
@@ -7643,7 +7643,7 @@
             <param name="region">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.IsIncompleteUr(System.Collections.Generic.IEnumerable{Sudoku.Drawing.DrawingInfo})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.IsIncompleteUr(System.Collections.Generic.IEnumerable{Sudoku.Models.DrawingInfo})">
             <summary>
             Check whether the highlight UR candidates is incomplete.
             </summary>

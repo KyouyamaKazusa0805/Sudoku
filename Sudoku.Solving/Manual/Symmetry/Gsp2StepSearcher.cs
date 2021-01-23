@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Models;
 using Sudoku.Techniques;
 using static Sudoku.Constants.Tables;
 
@@ -95,8 +96,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 									var oldViews = info.Views;
 									if (oldViews.Count != 0)
 									{
-										var newCellOffsets = new List<DrawingInfo>();
-										var newCandidateOffsets = new List<DrawingInfo>();
+										List<DrawingInfo> newCellOffsets = new(), newCandidateOffsets = new();
 
 										var view = oldViews[0];
 										var oldCellOffsets = view.Cells;
