@@ -77,5 +77,24 @@ namespace Sudoku.Data
 		/// <param name="count">The number of elements you want to skip.</param>
 		/// <returns>The iterator that iterates on each target element.</returns>
 		public IIterator<int> Skip(int count) => new SkipIterator(GetEnumerator(), count);
+
+		/// <summary>
+		/// To take the several elements in this collection.
+		/// </summary>
+		/// <param name="count">The number of elements you want to take.</param>
+		/// <returns>The iterator that iterates on each target element.</returns>
+		public IEnumerable<int> Take(int count)
+		{
+			var enumerator = GetEnumerator();
+			for (int i = 0; i < count; i++)
+			{
+				if (!enumerator.MoveNext())
+				{
+					yield break;
+				}
+
+				yield return enumerator.Current;
+			}
+		}
 	}
 }

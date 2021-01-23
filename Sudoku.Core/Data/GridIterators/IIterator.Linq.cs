@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Sudoku.Data.GridIterators
 {
@@ -55,5 +56,24 @@ namespace Sudoku.Data.GridIterators
 		/// <param name="count">The number of elements you want to skip.</param>
 		/// <returns>The iterator that iterates on each target element.</returns>
 		public IIterator<T> Skip(int count) => new IteratorSkipIterator<T>(this, count);
+
+		/// <summary>
+		/// To take the several elements in this collection.
+		/// </summary>
+		/// <param name="count">The number of elements you want to take.</param>
+		/// <returns>The iterator that iterates on each target element.</returns>
+		public IEnumerable<T> Take(int count)
+		{
+			var enumerator = GetEnumerator();
+			for (int i = 0; i < count; i++)
+			{
+				if (!enumerator.MoveNext())
+				{
+					yield break;
+				}
+
+				yield return enumerator.Current;
+			}
+		}
 	}
 }

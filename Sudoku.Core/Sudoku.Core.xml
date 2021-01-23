@@ -2056,6 +2056,13 @@
             <param name="count">The number of elements you want to skip.</param>
             <returns>The iterator that iterates on each target element.</returns>
         </member>
+        <member name="M:Sudoku.Data.GridIterators.IIterator`1.Take(System.Int32)">
+            <summary>
+            To take the several elements in this collection.
+            </summary>
+            <param name="count">The number of elements you want to take.</param>
+            <returns>The iterator that iterates on each target element.</returns>
+        </member>
         <member name="T:Sudoku.Data.GridIterators.IteratorGroupedIterator`2">
             <summary>
             Provides a grouped iterator that is used in
@@ -3969,6 +3976,13 @@
             To skip the several elements in this collection.
             </summary>
             <param name="count">The number of elements you want to skip.</param>
+            <returns>The iterator that iterates on each target element.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Take(System.Int32)">
+            <summary>
+            To take the several elements in this collection.
+            </summary>
+            <param name="count">The number of elements you want to take.</param>
             <returns>The iterator that iterates on each target element.</returns>
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.ValueChangedArgs">
