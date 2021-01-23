@@ -70,5 +70,12 @@ namespace Sudoku.Data
 				}
 			}
 		}
+
+		/// <summary>
+		/// To skip the several elements in this collection.
+		/// </summary>
+		/// <param name="count">The number of elements you want to skip.</param>
+		/// <returns>The iterator that iterates on each target element.</returns>
+		public IIterator<int> Skip(int count) => new SkipIterator(GetEnumerator(), count);
 	}
 }

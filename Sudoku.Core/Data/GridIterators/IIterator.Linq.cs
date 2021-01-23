@@ -48,5 +48,12 @@ namespace Sudoku.Data.GridIterators
 		public IIterator<IGroup<TKey, TConverted>> GroupBy<TKey, TConverted>(
 			Func<T, TKey> keySelector, Func<T, TConverted> converter) where TKey : notnull =>
 			new IteratorGroupedIterator<TKey, T, TConverted>(this, keySelector, converter);
+
+		/// <summary>
+		/// To skip the several elements in this collection.
+		/// </summary>
+		/// <param name="count">The number of elements you want to skip.</param>
+		/// <returns>The iterator that iterates on each target element.</returns>
+		public IIterator<T> Skip(int count) => new IteratorSkipIterator<T>(this, count);
 	}
 }

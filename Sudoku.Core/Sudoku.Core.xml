@@ -2049,6 +2049,13 @@
             object contains a sequence of objects and a key.
             </returns>
         </member>
+        <member name="M:Sudoku.Data.GridIterators.IIterator`1.Skip(System.Int32)">
+            <summary>
+            To skip the several elements in this collection.
+            </summary>
+            <param name="count">The number of elements you want to skip.</param>
+            <returns>The iterator that iterates on each target element.</returns>
+        </member>
         <member name="T:Sudoku.Data.GridIterators.IteratorGroupedIterator`2">
             <summary>
             Provides a grouped iterator that is used in
@@ -2146,6 +2153,30 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.GridIterators.IteratorSelectIterator`2.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.GridIterators.IteratorSkipIterator`1">
+            <summary>
+            Provides a grouped iterator that is used in
+            <see langword="skip"/> clause (only in Visual Basic .NET) in LINQ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridIterators.IteratorSkipIterator`1._enumerator">
+            <summary>
+            Indicates the enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.GridIterators.IteratorSkipIterator`1.#ctor(Sudoku.Data.GridIterators.IIterator{`0},System.Int32)">
+            <summary>
+            Initializes an instance with the enumerator and the count.
+            </summary>
+            <param name="enumerator">The enumerator.</param>
+            <param name="count">The count.</param>
+        </member>
+        <member name="P:Sudoku.Data.GridIterators.IteratorSkipIterator`1.Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.GridIterators.IteratorSkipIterator`1.MoveNext">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.GridIterators.IteratorWhereIterator`1">
@@ -2254,6 +2285,30 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.GridIterators.SelectIterator`1.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.GridIterators.SkipIterator">
+            <summary>
+            Provides a grouped iterator that is used in
+            <see langword="skip"/> clause (only in Visual Basic .NET) in LINQ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridIterators.SkipIterator._enumerator">
+            <summary>
+            Indicates the enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.GridIterators.SkipIterator.#ctor(Sudoku.Data.SudokuGrid.Enumerator@,System.Int32)">
+            <summary>
+            Initializes an instance with the enumerator and the count.
+            </summary>
+            <param name="enumerator">(<see langword="in"/> parameter) The enumerator.</param>
+            <param name="count">The count.</param>
+        </member>
+        <member name="P:Sudoku.Data.GridIterators.SkipIterator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.GridIterators.SkipIterator.MoveNext">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.GridIterators.WhereIterator">
@@ -3907,6 +3962,13 @@
             <typeparam name="TResult">The type of the projection result.</typeparam>
             <param name="collectionSelector">The collection selector.</param>
             <param name="resultSelector">The result selector.</param>
+            <returns>The iterator that iterates on each target element.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Skip(System.Int32)">
+            <summary>
+            To skip the several elements in this collection.
+            </summary>
+            <param name="count">The number of elements you want to skip.</param>
             <returns>The iterator that iterates on each target element.</returns>
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.ValueChangedArgs">
