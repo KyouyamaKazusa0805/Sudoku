@@ -10,7 +10,7 @@ namespace Sudoku.Data.GridIterators
 	/// </summary>
 	/// <typeparam name="TKey">The type of the key.</typeparam>
 	/// <typeparam name="TValue">The type of the value.</typeparam>
-	public sealed class IteratorGroupedIterator<TKey, TValue> : IIterator<IGroup<TKey, TValue>>
+	internal sealed class IteratorGroupedIterator<TKey, TValue> : IIterator<IGroup<TKey, TValue>>
 		where TKey : notnull
 	{
 		/// <summary>

@@ -6,7 +6,7 @@ namespace Sudoku.Data.GridIterators
 	/// Provides a grouped iterator that is used in
 	/// <see langword="skip"/> clause (only in Visual Basic .NET) in LINQ.
 	/// </summary>
-	public sealed class SkipIterator : IIterator<int>
+	internal sealed class SkipIterator : IIterator<int>
 	{
 		/// <summary>
 		/// Indicates the enumerator.

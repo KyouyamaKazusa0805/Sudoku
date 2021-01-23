@@ -9,7 +9,7 @@ namespace Sudoku.Data.GridIterators
 	/// Provides a grouped iterator that is used in <see langword="group"/>-<see langword="by"/> clause in LINQ.
 	/// </summary>
 	/// <typeparam name="TKey">The type of the key.</typeparam>
-	public sealed class GroupedIterator<TKey> : IIterator<IGroup<TKey, int>> where TKey : notnull
+	internal sealed class GroupedIterator<TKey> : IIterator<IGroup<TKey, int>> where TKey : notnull
 	{
 		/// <summary>
 		/// Indicates the enumerator.

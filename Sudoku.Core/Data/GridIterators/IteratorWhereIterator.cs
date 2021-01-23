@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1816
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data.GridIterators
@@ -9,7 +7,7 @@ namespace Sudoku.Data.GridIterators
 	/// The iterator that used in the <see langword="where"/> clause in LINQ.
 	/// </summary>
 	/// <typeparam name="TResult">The type of the target elements.</typeparam>
-	public sealed class IteratorWhereIterator<TResult> : IIterator<TResult>
+	internal sealed class IteratorWhereIterator<TResult> : IIterator<TResult>
 	{
 		/// <summary>
 		/// The enumerator that iterates on all elements.

@@ -8,7 +8,7 @@ namespace Sudoku.Data.GridIterators
 	/// The iterator that used in the <see langword="select"/> clause in LINQ.
 	/// </summary>
 	/// <typeparam name="T">The type of the target elements.</typeparam>
-	public sealed class SelectIterator<T> : IIterator<T>
+	internal sealed class SelectIterator<T> : IIterator<T>
 	{
 		/// <summary>
 		/// The enumerator that iterates on all elements.

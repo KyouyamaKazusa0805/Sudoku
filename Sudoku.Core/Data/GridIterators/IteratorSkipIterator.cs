@@ -4,7 +4,7 @@
 	/// Provides a grouped iterator that is used in
 	/// <see langword="skip"/> clause (only in Visual Basic .NET) in LINQ.
 	/// </summary>
-	public sealed class IteratorSkipIterator<T> : IIterator<T>
+	internal sealed class IteratorSkipIterator<T> : IIterator<T>
 	{
 		/// <summary>
 		/// Indicates the enumerator.

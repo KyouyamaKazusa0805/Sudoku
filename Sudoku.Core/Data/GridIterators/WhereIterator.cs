@@ -6,7 +6,7 @@ namespace Sudoku.Data.GridIterators
 	/// <summary>
 	/// The iterator that used in the <see langword="where"/> clause in LINQ.
 	/// </summary>
-	public sealed class WhereIterator : IIterator<int>
+	internal sealed class WhereIterator : IIterator<int>
 	{
 		/// <summary>
 		/// The enumerator that iterates on all elements.
