@@ -36,6 +36,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>
+		public sealed override string? Abbreviation => "UL";
+
+		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>

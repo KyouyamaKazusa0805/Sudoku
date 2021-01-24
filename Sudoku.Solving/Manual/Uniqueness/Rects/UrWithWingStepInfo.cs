@@ -37,6 +37,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override decimal Difficulty => 4.4M + AvoidableExtraDifficulty + WingSizeExtraDifficulty;
 
 		/// <inheritdoc/>
+		public override string? Abbreviation => "UR + Wing";
+
+		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <summary>

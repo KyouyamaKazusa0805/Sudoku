@@ -47,6 +47,17 @@ namespace Sudoku.Solving.Manual
 		public virtual string Name => TextResources.GetValue(TechniqueCode.ToString());
 
 		/// <summary>
+		/// Indicates the abbreviation of the step name. For example, the abbreviation of the technique
+		/// "Almost Locked Candidates" is ALC.
+		/// </summary>
+		/// <remarks>
+		/// This property only contains the result in English. Other languages doesn't contain any
+		/// abbreviations by default. On the other hand, this is really an easier way to implement
+		/// than storing values in resource dictionary files.
+		/// </remarks>
+		public virtual string? Abbreviation => null;
+
+		/// <summary>
 		/// The difficulty or this step.
 		/// </summary>
 		public abstract decimal Difficulty { get; }

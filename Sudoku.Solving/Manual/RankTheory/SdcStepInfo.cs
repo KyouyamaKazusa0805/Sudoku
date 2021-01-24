@@ -29,15 +29,26 @@ namespace Sudoku.Solving.Manual.RankTheory
 		in Cells IntersectionCells) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			5.0M + (IsolatedDigitsMask != 0 ? .1M : 0) + (IsCannibalistic ? .2M : 0);
+		public override decimal Difficulty => 5.0M + IsolatedExtraDifficulty + CannibalismExtraDifficulty;
+
+		/// <inheritdoc/>
+		public override string? Abbreviation => "SDC";
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			IsCannibalistic ? Technique.CannibalizedSdc : Technique.Sdc;
+		public override Technique TechniqueCode => IsCannibalistic ? Technique.CannibalizedSdc : Technique.Sdc;
+
+		/// <summary>
+		/// Indicates the extra difficulty on cannibalism.
+		/// </summary>
+		private decimal CannibalismExtraDifficulty => IsCannibalistic ? .2M : 0;
+
+		/// <summary>
+		/// Indicates the extra difficulty on isolated digits.
+		/// </summary>
+		private decimal IsolatedExtraDifficulty => IsolatedDigitsMask != 0 ? .1M : 0;
 
 
 		/// <inheritdoc/>

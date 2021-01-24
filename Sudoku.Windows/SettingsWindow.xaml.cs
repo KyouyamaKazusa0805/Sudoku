@@ -120,6 +120,7 @@ namespace Sudoku.Windows
 			_checkBoxOnlyShowSameLevelStepsInFindAllSteps.IsChecked = Settings.MainManualSolver.OnlyShowSameLevelTechniquesInFindAllSteps;
 			_checkBoxShowStepLabel.IsChecked = Settings.ShowStepLabel;
 			_checkBoxShowStepDifficulty.IsChecked = Settings.ShowStepDifficulty;
+			_checkBoxDisplayAbbrRatherThanFullNameOfSteps.IsChecked = Settings.DisplayAbbrRatherThanFullNameOfSteps;
 
 			// Page 2.
 			_checkBoxAllowOverlappingAlses.IsChecked = Settings.MainManualSolver.AllowOverlappingAlses;
@@ -291,6 +292,10 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxOnlyShowSameLevelStepsInFindAllSteps_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxOnlyShowSameLevelStepsInFindAllSteps.IsChecked = _manualSolver.OnlyShowSameLevelTechniquesInFindAllSteps ^= true;
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void CheckBoxDisplayAbbrRatherThanFullNameOfSteps_Click(object sender, RoutedEventArgs e) =>
+			_assigments += () => _checkBoxDisplayAbbrRatherThanFullNameOfSteps.IsChecked = Settings.DisplayAbbrRatherThanFullNameOfSteps ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowStepLabel_Click(object sender, RoutedEventArgs e) =>

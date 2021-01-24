@@ -80,6 +80,10 @@
 							  Content="{DynamicResource SettingsShowStepDifficulty}"
 							  Grid.Row="7" VerticalAlignment="Center"
 							  Click="CheckBoxShowStepDifficulty_Click"/>
+					<CheckBox x:Name="_checkBoxDisplayAbbrRatherThanFullNameOfSteps"
+							  Content="{DynamicResource SettingsDisplayAbbrRatherThanFullNameOfSteps}"
+							  Grid.Row="8" VerticalAlignment="Center"
+							  Click="CheckBoxDisplayAbbrRatherThanFullNameOfSteps_Click"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="{DynamicResource SettingsTabSolving}">

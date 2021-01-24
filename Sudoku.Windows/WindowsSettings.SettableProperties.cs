@@ -89,6 +89,15 @@ namespace Sudoku.Windows
 		public bool ShowStepDifficulty { get; set; } = true;
 
 		/// <summary>
+		/// <para>
+		/// Indicates whether the program will display abbreviation rather than full name for a technique
+		/// in analysis tab page.
+		/// </para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// </summary>
+		public bool DisplayAbbrRatherThanFullNameOfSteps { get; set; }
+
+		/// <summary>
 		/// <para>Indicates the size for picture to save as image files.</para>
 		/// <para>The default value is <c>800F</c>.</para>
 		/// </summary>

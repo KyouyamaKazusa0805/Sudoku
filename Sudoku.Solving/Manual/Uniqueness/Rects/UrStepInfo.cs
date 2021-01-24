@@ -24,10 +24,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		: UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
-		public sealed override bool ShowDifficulty => true;
+		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
 		public sealed override string Name => base.Name;
+
+		/// <inheritdoc/>
+		public override string? Abbreviation => "UR";
 
 		/// <inheritdoc/>
 		public sealed override Technique TechniqueCode => TechniqueCode2;

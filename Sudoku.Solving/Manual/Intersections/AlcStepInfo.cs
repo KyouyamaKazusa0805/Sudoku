@@ -32,6 +32,9 @@ namespace Sudoku.Solving.Manual.Intersections
 		public override decimal Difficulty => BaseDifficulty + (HasValueCell ? ExtraDifficulty : 0);
 
 		/// <inheritdoc/>
+		public override string? Abbreviation => Size switch { 2 => "ALP", 3 => "ALT", 4 => "ALQ" };
+
+		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
@@ -40,8 +43,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			{
 				2 => Technique.AlmostLockedPair,
 				3 => Technique.AlmostLockedTriple,
-				4 => Technique.AlmostLockedQuadruple,
-				_ => throw new NotSupportedException("The current instance doesn't support.")
+				4 => Technique.AlmostLockedQuadruple
 			};
 
 		/// <summary>

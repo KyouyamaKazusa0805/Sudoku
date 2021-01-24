@@ -23,6 +23,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override decimal Difficulty => 8.5M;
 
 		/// <inheritdoc/>
+		public override string? Abbreviation => "POM";
+
+		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 		/// <inheritdoc/>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 
@@ -31,6 +30,12 @@ namespace Sudoku.Solving.Manual.Chaining
 				_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + (FlatComplexity - 2).GetExtraDifficultyByLength()
 			};
 
+		/// <inheritdoc/>
+		public override int FlatComplexity => Target.AncestorsCount;
+
+		/// <inheritdoc/>
+		public override string? Abbreviation => "AIC";
+
 #if DOUBLE_LAYERED_ASSUMPTION
 		/// <inheritdoc/>
 		public override Node[] ChainsTargets => new[] { Target };
@@ -45,12 +50,6 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey => Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());
-
-		/// <inheritdoc/>
-		public override int FlatComplexity => Target.AncestorsCount;
-
-		/// <inheritdoc/>
-		public override string Name => TextResources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>

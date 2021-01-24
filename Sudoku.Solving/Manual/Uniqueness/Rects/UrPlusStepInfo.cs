@@ -30,6 +30,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public sealed override decimal Difficulty => ConjugatePairs.Count * .2M + 4.4M;
 
 		/// <inheritdoc/>
+		public override string? Abbreviation => "UR (+)";
+
+		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 

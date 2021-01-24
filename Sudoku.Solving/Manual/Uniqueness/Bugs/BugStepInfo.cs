@@ -16,6 +16,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public sealed override bool ShowDifficulty => true;
 
 		/// <inheritdoc/>
+		public override string? Abbreviation => "BUG";
+
+		/// <inheritdoc/>
 		public override decimal Difficulty => 5.6M;
 
 		/// <inheritdoc/>

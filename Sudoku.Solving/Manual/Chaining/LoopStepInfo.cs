@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 
@@ -43,7 +42,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			(XEnabled && YEnabled ? 5.0M : 4.5M) + (FlatComplexity - 2).GetExtraDifficultyByLength();
 
 		/// <inheritdoc/>
-		public override string Name => TextResources.GetValue(TechniqueCode.ToString());
+		public override string? Abbreviation => "CNL";
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>

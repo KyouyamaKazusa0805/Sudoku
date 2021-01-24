@@ -1074,10 +1074,17 @@ namespace Sudoku.Windows
 				var collection = new List<DifficultyInfo>();
 				decimal summary = 0, summaryMax = 0;
 				int summaryCount = 0;
-				foreach (var techniqueGroup in
-					from step in _analyisResult.Steps!
-					orderby step.Difficulty
-					group step by step.Name)
+				foreach
+				(
+					var techniqueGroup in
+						from step in _analyisResult.Steps!
+						orderby step.Difficulty
+						group step by (
+							Settings.DisplayAbbrRatherThanFullNameOfSteps
+							? step.Abbreviation ?? step.Name
+							: step.Name
+						)
+				)
 				{
 					string name = techniqueGroup.Key;
 					int count = techniqueGroup.Count();

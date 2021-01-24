@@ -1124,6 +1124,9 @@
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -1174,6 +1177,9 @@
             <param name="ZDigitsMask">The Z digits mask.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.DifficultyLevel">
@@ -1264,6 +1270,9 @@
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.DifficultyLevel">
@@ -1412,6 +1421,9 @@
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -1480,6 +1492,9 @@
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -1536,16 +1551,16 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.SortKey">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.FlatComplexity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.Name">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.TechniqueCode">
@@ -1751,9 +1766,6 @@
             <param name="Chains">All branches.</param>
             <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
             <param name="Level">Indicates the depth level of the dynamic chains.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingStepInfo.Name">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingStepInfo.SortKey">
             <inheritdoc/>
@@ -2161,7 +2173,7 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.LoopStepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.LoopStepInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Chaining.LoopStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.LoopStepInfo.TechniqueCode">
@@ -2204,9 +2216,6 @@
             <param name="Chains">All branches.</param>
             <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
             <param name="Level">Indicates the depth level of the dynamic chains.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingStepInfo.Name">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingStepInfo.SortKey">
             <inheritdoc/>
@@ -2613,6 +2622,9 @@
         <member name="P:Sudoku.Solving.Manual.Exocets.JeStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JeStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JeStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -2844,6 +2856,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeStepInfo.TechniqueCode">
@@ -3446,6 +3461,9 @@
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -3775,6 +3793,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.PomStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PomStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.PomStepInfo.DifficultyLevel">
@@ -4694,11 +4715,24 @@
         <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.TechniqueCode">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.CannibalismExtraDifficulty">
+            <summary>
+            Indicates the extra difficulty on cannibalism.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.IsolatedExtraDifficulty">
+            <summary>
+            Indicates the extra difficulty on isolated digits.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.ToString">
             <inheritdoc/>
@@ -5112,6 +5146,17 @@
             <summary>
             Indicates the technique name.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.Abbreviation">
+            <summary>
+            Indicates the abbreviation of the step name. For example, the abbreviation of the technique
+            "Almost Locked Candidates" is ALC.
+            </summary>
+            <remarks>
+            This property only contains the result in English. Other languages doesn't contain any
+            abbreviations by default. On the other hand, this is really an easier way to implement
+            than storing values in resource dictionary files.
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.StepInfo.Difficulty">
             <summary>
@@ -5922,6 +5967,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo.Name">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo.Difficulty">
             <inheritdoc/>
         </member>
@@ -5968,6 +6016,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepInfo.TechniqueCode">
@@ -6036,6 +6087,9 @@
             <param name="Views">All views.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.Difficulty">
@@ -6280,6 +6334,9 @@
             <param name="DigitsMask">All digits mask.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.TechniqueCode">
@@ -6534,6 +6591,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.DifficultyLevel">
@@ -7442,6 +7502,9 @@
             <param name="ConjugatePairs">All conjugate pairs.</param>
             <param name="AbsoluteOffset">The absolute offset used in sorting.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -7526,6 +7589,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -7567,6 +7633,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueCode">
@@ -8238,6 +8307,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.Abbreviation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -8307,6 +8379,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.Abbreviation">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.DifficultyLevel">

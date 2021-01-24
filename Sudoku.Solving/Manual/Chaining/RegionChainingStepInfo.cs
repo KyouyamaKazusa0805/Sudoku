@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Resources;
 #if DOUBLE_LAYERED_ASSUMPTION
 using System.Linq;
 #endif
@@ -24,9 +23,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		int Region, int Digit, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level)
 		: ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
 	{
-		/// <inheritdoc/>
-		public override string Name => TextResources.GetValue(TechniqueCode.ToString());
-
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey =>
 			IsDynamic ? ChainingTypeCode.DynamicRegionFc : ChainingTypeCode.RegionFc;

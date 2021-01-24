@@ -31,8 +31,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			BaseSet < 9 ? Technique.Pointing : Technique.Claiming;
+		public override Technique TechniqueCode => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;
 
 
 		/// <inheritdoc/>
