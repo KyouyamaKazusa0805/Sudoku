@@ -61,6 +61,13 @@
 						  x:Name="_menuItemFileSaveBatch"
 						  Click="MenuItemFileSaveBatch_Click"/>
 				<Separator/>
+				<MenuItem Header="{DynamicResource _menuItemFileLoadDrawing}"
+						  x:Name="_menuItemFileLoadDrawing"
+						  Click="MenuItemFileLoadDrawing_Click"/>
+				<MenuItem Header="{DynamicResource _menuItemFileSaveDrawing}"
+						  x:Name="_menuItemFileSaveDrawing"
+						  Click="MenuItemFileSaveDrawing_Click"/>
+				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemFileGetSnapshot}" InputGestureText="Ctrl + P"
 						  x:Name="_menuItemFileGetSnapshot"
 						  Click="MenuItemFileGetSnapshot_Click"/>

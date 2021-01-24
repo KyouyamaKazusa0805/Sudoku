@@ -23,6 +23,8 @@ using Sudoku.Solving.BruteForces;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
+using System.Text.Json;
+using Sudoku.Drawing;
 #if SUDOKU_RECOGNITION
 using System.Drawing;
 #endif
@@ -192,6 +194,70 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>
 			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog();
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void MenuItemFileLoadDrawing_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new OpenFileDialog
+			{
+				DefaultExt = "drawings",
+				Filter = (string)LangSource["FilterLoadingDrawingContents"],
+				Multiselect = false,
+				Title = (string)LangSource["TitleLoadingDrawingContents"]
+			};
+
+			if (dialog.ShowDialog() is true)
+			{
+				try
+				{
+					_currentPainter.CustomView =
+						JsonSerializer.Deserialize<MutableView>(
+							File.ReadAllText(dialog.FileName), _serializerOptions
+						) ?? throw new JsonException("The custom view is currently null.");
+
+					UpdateImageGrid();
+				}
+				catch
+				{
+					Messagings.FailedToLoadDrawingContents();
+				}
+			}
+		}
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void MenuItemFileSaveDrawing_Click(object sender, RoutedEventArgs e)
+		{
+			var customView = _currentPainter.CustomView;
+			if (customView is null)
+			{
+				Messagings.FailedToSaveDrawingContentsDueToEmpty();
+				return;
+			}
+
+			var dialog = new SaveFileDialog
+			{
+				AddExtension = true,
+				CheckPathExists = true,
+				DefaultExt = "drawings",
+				Filter = (string)LangSource["FilterSavingDrawingContents"],
+				Title = (string)LangSource["TitleSavingDrawingContents"]
+			};
+
+			if (dialog.ShowDialog() is true)
+			{
+				try
+				{
+					string json = JsonSerializer.Serialize(customView, _serializerOptions);
+					File.WriteAllText(dialog.FileName, json);
+
+					Messagings.SaveSuccess();
+				}
+				catch
+				{
+					Messagings.FailedToSaveDrawingContents();
+				}
+			}
+		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)

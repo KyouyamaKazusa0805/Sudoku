@@ -10,6 +10,8 @@
 	<sys:String x:Key="_menuItemFileLoadPicture">读取题目图片…</sys:String>
 	<sys:String x:Key="_menuItemFileSavePicture">保存图片…</sys:String>
 	<sys:String x:Key="_menuItemFileSaveBatch">同时保存题目和终盘</sys:String>
+	<sys:String x:Key="_menuItemFileLoadDrawing">读取绘图信息……</sys:String>
+	<sys:String x:Key="_menuItemFileSaveDrawing">保存绘图信息……</sys:String>
 	<sys:String x:Key="_menuItemFileGetSnapshot">获取题目截屏</sys:String>
 	<sys:String x:Key="_menuItemFileQuitApp">退出程序</sys:String>
 
@@ -312,6 +314,10 @@
 	<sys:String x:Key="TitleLoadingPuzzles">打开文件…</sys:String>
 	<sys:String x:Key="FilterSavingPuzzles">文本文件|*.txt|数独文件|*.sudoku</sys:String>
 	<sys:String x:Key="TitleSavingPuzzles">保存文件到…</sys:String>
+	<sys:String x:Key="FilterLoadingDrawingContents">文本文件|*.txt|绘图信息文件|*.drawings|JSON 文件|*.json|所有文件|*.*</sys:String>
+	<sys:String x:Key="TitleLoadingDrawingContents">打开绘图信息文件……</sys:String>
+	<sys:String x:Key="FilterSavingDrawingContents">文本文件|*.txt|绘图信息文件|*.drawings|JSON 文件|*.json</sys:String>
+	<sys:String x:Key="TitleSavingDrawingContents">保存绘图文件……</sys:String>
 	<sys:String x:Key="FilterOpeningDatabase">文本文件|*.txt|数独题库文件|*.sudokus|所有文件|*.*</sys:String>
 	<sys:String x:Key="TitleOpeningDatabase">打开题库文件…</sys:String>
 	<sys:String x:Key="FilterBackupingConfigurations">配置文件|*.scfg</sys:String>
@@ -346,6 +352,9 @@
 	<sys:String x:Key="FailedToLoadPuzzle">当前题目不合法。</sys:String>
 	<sys:String x:Key="FailedToLoadDatabase">文件丢失。载入失败 &gt;_&lt;</sys:String>
 	<sys:String x:Key="FailedToLoadSettings">载入设置失败。</sys:String>
+	<sys:String x:Key="FailedToLoadDrawingContents">读取绘图信息文件失败。</sys:String>
+	<sys:String x:Key="FailedToSaveDrawingContents">保存绘图信息文件失败。</sys:String>
+	<sys:String x:Key="FailedToSaveDrawingContentsDueToEmpty">没有需要保存的自定义绘图数据。</sys:String>
 	<sys:String x:Key="CannotCalculate">识别期间遇到错误。调试信息：</sys:String>
 	<sys:String x:Key="Source">源文件：</sys:String>
 	<sys:String x:Key="Message">错误信息：</sys:String>

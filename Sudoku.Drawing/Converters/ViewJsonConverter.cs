@@ -65,17 +65,17 @@ namespace Sudoku.Drawing.Converters
 						string str = reader.GetString()!;
 						var type = (Type)inst!.GetType().GenericTypeArguments[0];
 						object value = JsonSerializer.Deserialize(str, type, InnerOptions)!;
-						if (inst!.GetType() == typeof(List<DrawingInfo>))
+						if (inst.GetType() == typeof(List<DrawingInfo>))
 						{
-							inst!.Add((DrawingInfo)value);
+							inst.Add((DrawingInfo)value);
 						}
-						else if (inst!.GetType() == typeof(List<Link>))
+						else if (inst.GetType() == typeof(List<Link>))
 						{
-							inst!.Add((Link)value);
+							inst.Add((Link)value);
 						}
-						else if (inst!.GetType() == typeof(List<(Cells, Cells)>))
+						else if (inst.GetType() == typeof(List<(Cells, Cells)>))
 						{
-							inst!.Add(((Cells, Cells))value);
+							inst.Add(((Cells, Cells))value);
 						}
 						else
 						{

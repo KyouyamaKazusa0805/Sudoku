@@ -23,6 +23,7 @@ using Sudoku.Windows.Data;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
 using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
+using System.Text.Encodings.Web;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
 #endif
@@ -1183,8 +1184,17 @@ namespace Sudoku.Windows
 		/// <seealso cref="_serializerOptions"/>
 		private static JsonSerializerOptions CreateDefaultJsonSerializerOptionsInstance()
 		{
-			var result = new JsonSerializerOptions() { WriteIndented = true };
+			var result = new JsonSerializerOptions()
+			{
+				WriteIndented = true,
+				Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+			};
 			result.Converters.Add(new ColorJsonConverter());
+			result.Converters.Add(new ViewJsonConverter());
+			result.Converters.Add(new MutableViewJsonConverter());
+			result.Converters.Add(new DrawingInfoJsonConverter());
+			result.Converters.Add(new LinkJsonConverter());
+			result.Converters.Add(new DirectLineJsonConverter());
 			return result;
 		}
 		#endregion

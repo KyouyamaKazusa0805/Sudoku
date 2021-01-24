@@ -32,7 +32,7 @@ namespace Sudoku.Drawing.Converters
 
 
 		/// <inheritdoc/>
-		public override bool CanConvert(Type typeToConvert) => typeToConvert == typeof(View);
+		public override bool CanConvert(Type typeToConvert) => typeToConvert == typeof(MutableView);
 
 		/// <inheritdoc/>
 		public override MutableView? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -52,11 +52,11 @@ namespace Sudoku.Drawing.Converters
 					{
 						inst = reader.GetString() switch
 						{
-							nameof(View.Cells) => cells,
-							nameof(View.Candidates) => candidates,
-							nameof(View.Regions) => regions,
-							nameof(View.Links) => links,
-							nameof(View.DirectLines) => directLines
+							nameof(MutableView.Cells) => cells,
+							nameof(MutableView.Candidates) => candidates,
+							nameof(MutableView.Regions) => regions,
+							nameof(MutableView.Links) => links,
+							nameof(MutableView.DirectLines) => directLines
 						};
 						break;
 					}
@@ -65,17 +65,17 @@ namespace Sudoku.Drawing.Converters
 						string str = reader.GetString()!;
 						var type = (Type)inst!.GetType().GenericTypeArguments[0];
 						object value = JsonSerializer.Deserialize(str, type, InnerOptions)!;
-						if (inst!.GetType() == typeof(List<DrawingInfo>))
+						if (inst.GetType() == typeof(List<DrawingInfo>))
 						{
-							inst!.Add((DrawingInfo)value);
+							inst.Add((DrawingInfo)value);
 						}
-						else if (inst!.GetType() == typeof(List<Link>))
+						else if (inst.GetType() == typeof(List<Link>))
 						{
-							inst!.Add((Link)value);
+							inst.Add((Link)value);
 						}
-						else if (inst!.GetType() == typeof(List<(Cells, Cells)>))
+						else if (inst.GetType() == typeof(List<(Cells, Cells)>))
 						{
-							inst!.Add(((Cells, Cells))value);
+							inst.Add(((Cells, Cells))value);
 						}
 						else
 						{
@@ -103,7 +103,7 @@ namespace Sudoku.Drawing.Converters
 		{
 			writer.WriteStartObject();
 
-			writer.WritePropertyName(nameof(View.Cells));
+			writer.WritePropertyName(nameof(MutableView.Cells));
 			writer.WriteStartArray();
 			if (value.Cells is { } cells)
 			{
@@ -114,7 +114,7 @@ namespace Sudoku.Drawing.Converters
 			}
 			writer.WriteEndArray();
 
-			writer.WritePropertyName(nameof(View.Candidates));
+			writer.WritePropertyName(nameof(MutableView.Candidates));
 			writer.WriteStartArray();
 			if (value.Candidates is { } candidates)
 			{
@@ -125,7 +125,7 @@ namespace Sudoku.Drawing.Converters
 			}
 			writer.WriteEndArray();
 
-			writer.WritePropertyName(nameof(View.Regions));
+			writer.WritePropertyName(nameof(MutableView.Regions));
 			writer.WriteStartArray();
 			if (value.Regions is { } regions)
 			{
@@ -136,7 +136,7 @@ namespace Sudoku.Drawing.Converters
 			}
 			writer.WriteEndArray();
 
-			writer.WritePropertyName(nameof(View.Links));
+			writer.WritePropertyName(nameof(MutableView.Links));
 			writer.WriteStartArray();
 			if (value.Links is { } links)
 			{
@@ -147,7 +147,7 @@ namespace Sudoku.Drawing.Converters
 			}
 			writer.WriteEndArray();
 
-			writer.WritePropertyName(nameof(View.DirectLines));
+			writer.WritePropertyName(nameof(MutableView.DirectLines));
 			writer.WriteStartArray();
 			if (value.DirectLines is { } lines)
 			{

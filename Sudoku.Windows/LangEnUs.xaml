@@ -10,6 +10,8 @@
 	<sys:String x:Key="_menuItemFileLoadPicture">Load picture...</sys:String>
 	<sys:String x:Key="_menuItemFileSavePicture">Save picture...</sys:String>
 	<sys:String x:Key="_menuItemFileSaveBatch">Save both puzzle and its solution</sys:String>
+	<sys:String x:Key="_menuItemFileLoadDrawing">Load drawing contents from...</sys:String>
+	<sys:String x:Key="_menuItemFileSaveDrawing">Save drawing contents to...</sys:String>
 	<sys:String x:Key="_menuItemFileGetSnapshot">Get snapshot</sys:String>
 	<sys:String x:Key="_menuItemFileQuitApp">Quit App</sys:String>
 	
@@ -315,6 +317,10 @@
 	<sys:String x:Key="TitleLoadingPuzzles">Open sudoku file from...</sys:String>
 	<sys:String x:Key="FilterSavingPuzzles">Text file|*.txt|Sudoku file|*.sudoku</sys:String>
 	<sys:String x:Key="TitleSavingPuzzles">Save sudoku file to...</sys:String>
+	<sys:String x:Key="FilterLoadingDrawingContents">Text file|*.txt|Drawing contents file|*.drawings|JSON file|*.json|All files|*.*</sys:String>
+	<sys:String x:Key="TitleLoadingDrawingContents">Open drawing contents file from...</sys:String>
+	<sys:String x:Key="FilterSavingDrawingContents">Text file|*.txt|Drawing contents file|*.drawings|JSON file|*.json</sys:String>
+	<sys:String x:Key="TitleSavingDrawingContents">Save drawing contents file to...</sys:String>
 	<sys:String x:Key="FilterOpeningDatabase">Text file|*.txt|Sudoku database file|*.sudokus|All files|*.*</sys:String>
 	<sys:String x:Key="TitleOpeningDatabase">Open sudoku file from...</sys:String>
 	<sys:String x:Key="FilterBackupingConfigurations">Configuration file|*.scfg</sys:String>
@@ -349,6 +355,9 @@
 	<sys:String x:Key="FailedToLoadPuzzle">The specified puzzle is invalid.</sys:String>
 	<sys:String x:Key="FailedToLoadDatabase">File is missing... Load failed &gt;_&lt;</sys:String>
 	<sys:String x:Key="FailedToLoadSettings">Failed to load the settings.</sys:String>
+	<sys:String x:Key="FailedToLoadDrawingContents">Failed to load drawing contents.</sys:String>
+	<sys:String x:Key="FailedToSaveDrawingContents">Failed to save drawing contents.</sys:String>
+	<sys:String x:Key="FailedToSaveDrawingContentsDueToEmpty">Failed to save drawing contents, because the custom drawing contents are empty now.</sys:String>
 	<sys:String x:Key="CannotCalculate">Cannot calculate.</sys:String>
 	<sys:String x:Key="Source">Source: </sys:String>
 	<sys:String x:Key="Message">Message: </sys:String>

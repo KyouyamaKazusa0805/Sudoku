@@ -119,6 +119,30 @@ namespace Sudoku.Windows
 				(string)LangSource["CaptionWarning"]);
 
 		/// <summary>
+		/// Indicates the message for failed to load drawing contents.
+		/// </summary>
+		public static void FailedToLoadDrawingContents() =>
+			MessageBox.Show(
+				(string)LangSource["FailedToLoadDrawingContents"],
+				(string)LangSource["CaptionInfo"]);
+
+		/// <summary>
+		/// Indicates the message for failed to save drawing contents.
+		/// </summary>
+		public static void FailedToSaveDrawingContents() =>
+			MessageBox.Show(
+				(string)LangSource["FailedToSaveDrawingContents"],
+				(string)LangSource["CaptionWarning"]);
+
+		/// <summary>
+		/// Indicates the message for failed to save drawing contents due to the empty content.
+		/// </summary>
+		public static void FailedToSaveDrawingContentsDueToEmpty() =>
+			MessageBox.Show(
+				(string)LangSource["FailedToSaveDrawingContentsDueToEmpty"],
+				(string)LangSource["CaptionInfo"]);
+
+		/// <summary>
 		/// Indicates the message for failed to load recognition tools.
 		/// </summary>
 		/// <param name="ex">The exception.</param>
