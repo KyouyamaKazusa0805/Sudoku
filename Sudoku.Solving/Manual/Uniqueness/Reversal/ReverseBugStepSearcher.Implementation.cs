@@ -151,7 +151,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			short otherDigitsMask = (short)(m & ~comparer);
 			foreach (int region in extraCells.CoveredRegions)
 			{
-				if ((ValueMaps[d1] | ValueMaps[d2]).Overlaps(RegionMaps[region]))
+				if (!((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]).IsEmpty)
 				{
 					return;
 				}

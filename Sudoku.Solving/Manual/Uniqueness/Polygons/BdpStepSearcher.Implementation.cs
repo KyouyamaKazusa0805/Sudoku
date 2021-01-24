@@ -320,7 +320,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						bool flag = false;
 						foreach (int digit in combination)
 						{
-							if (ValueMaps[digit].Overlaps(RegionMaps[region]))
+							if (!(ValueMaps[digit] & RegionMaps[region]).IsEmpty)
 							{
 								flag = true;
 								break;

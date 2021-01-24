@@ -49,8 +49,8 @@ namespace Sudoku.Solving.Manual.Sdps
 
 						short blockMask = linkMap.BlockMask;
 						if (blockMask != 0 && (blockMask & blockMask - 1) == 0
-							|| i < 6 && !linkMap.Overlaps(RegionMaps[column])
-							|| i >= 6 && !linkMap.Overlaps(RegionMaps[row]))
+							|| i < 6 && (linkMap & RegionMaps[column]).IsEmpty
+							|| i >= 6 && (linkMap & RegionMaps[row]).IsEmpty)
 						{
 							continue;
 						}

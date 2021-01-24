@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				// Gather.
 				for (int region = 9; region < 27; region++)
 				{
-					if (RegionMaps[region].Overlaps(CandMaps[digit]))
+					if (!(RegionMaps[region] & CandMaps[digit]).IsEmpty)
 					{
 						if (region < 18)
 						{
@@ -174,13 +174,13 @@ namespace Sudoku.Solving.Manual.Fishes
 
 							// Cover set shouldn't overlap with the block of all fins lying in.
 							int finBlock = TrailingZeroCount(blockMask);
-							if (!coverLine.Overlaps(RegionMaps[finBlock]))
+							if ((coverLine & RegionMaps[finBlock]).IsEmpty)
 							{
 								continue;
 							}
 
 							// Don't intersect.
-							if (!RegionMaps[finBlock].Overlaps(coverLine - baseLine))
+							if ((RegionMaps[finBlock] & coverLine - baseLine).IsEmpty)
 							{
 								continue;
 							}

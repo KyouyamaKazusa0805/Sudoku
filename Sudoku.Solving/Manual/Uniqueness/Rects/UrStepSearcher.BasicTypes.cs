@@ -247,7 +247,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short otherDigitsMask = (short)(mask ^ comparer);
 			foreach (int region in otherCellsMap.CoveredRegions)
 			{
-				if ((ValueMaps[d1] | ValueMaps[d2]).Overlaps(RegionMaps[region]))
+				if (!((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]).IsEmpty)
 				{
 					return;
 				}

@@ -443,14 +443,6 @@ namespace Sudoku.Data
 		public readonly bool Equals(in Cells other) => _high == other._high && _low == other._low;
 
 		/// <summary>
-		/// Indicates whether this map overlaps another one.
-		/// </summary>
-		/// <param name="other">(<see langword="in"/> parameter) The other map.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Overlaps(in Cells other) => !(this & other).IsEmpty;
-
-		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
 		/// </summary>
 		/// <param name="region">
@@ -710,7 +702,7 @@ namespace Sudoku.Data
 			short result = 0;
 			for (int i = start; i < end; i++)
 			{
-				if (Overlaps(RegionMaps[i]))
+				if (!(this & RegionMaps[i]).IsEmpty)
 				{
 					result |= (short)(1 << i - start);
 				}

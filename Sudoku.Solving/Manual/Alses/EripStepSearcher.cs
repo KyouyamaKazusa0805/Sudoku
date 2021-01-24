@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Alses
 						int block = interCell.ToRegion(RegionLabel.Block);
 						var regionMap = RegionMaps[block];
 						var checkingMap = regionMap - unionMap & regionMap;
-						if (checkingMap.Overlaps(CandMaps[d1]) || checkingMap.Overlaps(CandMaps[d2]))
+						if (!(checkingMap & CandMaps[d1]).IsEmpty || !(checkingMap & CandMaps[d2]).IsEmpty)
 						{
 							continue;
 						}

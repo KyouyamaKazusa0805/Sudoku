@@ -300,7 +300,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					bool flag = false;
 					foreach (int d in otherDigitsMask)
 					{
-						if (ValueMaps[d].Overlaps(RegionMaps[region])
+						if (!(ValueMaps[d] & RegionMaps[region]).IsEmpty
 							|| (RegionMaps[region] & CandMaps[d]) != square)
 						{
 							flag = true;
@@ -389,7 +389,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			bool flag = false;
 			foreach (int digit in pairDigits)
 			{
-				if (ValueMaps[digit].Overlaps(RegionMaps[block]))
+				if (!(ValueMaps[digit] & RegionMaps[block]).IsEmpty)
 				{
 					flag = true;
 					break;

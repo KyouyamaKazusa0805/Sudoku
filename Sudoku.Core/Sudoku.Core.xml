@@ -843,13 +843,6 @@
         <member name="M:Sudoku.Data.Cells.Equals(Sudoku.Data.Cells@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Data.Cells.Overlaps(Sudoku.Data.Cells@)">
-            <summary>
-            Indicates whether this map overlaps another one.
-            </summary>
-            <param name="other">(<see langword="in"/> parameter) The other map.</param>
-            <returns>The <see cref="T:System.Boolean"/> value.</returns>
-        </member>
         <member name="M:Sudoku.Data.Cells.AllSetsAreInOneRegion(System.Int32@)">
             <summary>
             Indicates whether all cells in this instance are in one region.

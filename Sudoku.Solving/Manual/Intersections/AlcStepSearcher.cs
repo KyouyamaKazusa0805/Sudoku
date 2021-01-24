@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Models;
@@ -101,7 +100,7 @@ namespace Sudoku.Solving.Manual.Intersections
 				bool isOverlapped = false;
 				foreach (int digit in digits)
 				{
-					if (ValueMaps[digit].Overlaps(RegionMaps[coverSet]))
+					if (!(ValueMaps[digit] & RegionMaps[coverSet]).IsEmpty)
 					{
 						isOverlapped = true;
 						break;

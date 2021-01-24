@@ -141,7 +141,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						bool flag = false;
 						foreach (int digit in digits)
 						{
-							if (!square.Overlaps(CandMaps[digit]))
+							if ((square & CandMaps[digit]).IsEmpty)
 							{
 								flag = true;
 								break;

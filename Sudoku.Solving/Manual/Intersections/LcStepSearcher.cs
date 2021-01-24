@@ -34,18 +34,9 @@ namespace Sudoku.Solving.Manual.Intersections
 				}
 
 				short maskA = 0, maskB = 0, maskC = 0;
-				foreach (int cell in a)
-				{
-					maskA |= grid.GetCandidates(cell);
-				}
-				foreach (int cell in b)
-				{
-					maskB |= grid.GetCandidates(cell);
-				}
-				foreach (int cell in c)
-				{
-					maskC |= grid.GetCandidates(cell);
-				}
+				foreach (int cell in a) maskA |= grid.GetCandidates(cell);
+				foreach (int cell in b) maskB |= grid.GetCandidates(cell);
+				foreach (int cell in c) maskC |= grid.GetCandidates(cell);
 
 				short m = (short)(maskC & (maskA ^ maskB));
 				if (m == 0)
@@ -56,7 +47,7 @@ namespace Sudoku.Solving.Manual.Intersections
 				foreach (int digit in m)
 				{
 					Cells elimMap;
-					if (a.Overlaps(CandMaps[digit]))
+					if (!(a & CandMaps[digit]).IsEmpty)
 					{
 						r[0] = coverSet;
 						r[1] = baseSet;

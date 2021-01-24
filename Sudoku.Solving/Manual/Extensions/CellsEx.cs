@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Extensions
 			int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
 			for (int i = r, count = 0; i < r + 3; i++)
 			{
-				if (@this.Overlaps(RegionMaps[i]) || ++count <= 1)
+				if (!(@this & RegionMaps[i]).IsEmpty || ++count <= 1)
 				{
 					continue;
 				}
@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Extensions
 
 			for (int i = c, count = 0; i < c + 3; i++)
 			{
-				if (@this.Overlaps(RegionMaps[i]) || ++count <= 1)
+				if (!(@this & RegionMaps[i]).IsEmpty || ++count <= 1)
 				{
 					continue;
 				}
