@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						var possibleMap = CandMaps[digit] - new Cells(cell);
 
 						// Get the table of all possible regions that contains that digit.
-						int[] baseTable = possibleMap.Regions.GetAllSets().ToArray();
+						var baseTable = possibleMap.Regions.GetAllSets();
 
 						// If the 'table.Length' property is lower than '2 * size',
 						// we can't find any possible complex fish now. Just skip it.
@@ -177,18 +177,21 @@ namespace Sudoku.Solving.Manual.Fishes
 							baseMap &= possibleMap;
 
 							// Now check the possible cover sets to iterate.
-							int z = baseMap.Regions & ~usedInBaseSets & AllRegions, count = 0;
-							int[] coverTable = new int[PopCount((uint)z)];
-							foreach (int region in z)
-							{
-								coverTable[count++] = region;
-							}
-
-							// If the count is lower than size, we can't find any possible fish.
-							if (count < size)
+							int z = baseMap.Regions & ~usedInBaseSets & AllRegions;
+							if (z == 0)
 							{
 								continue;
 							}
+
+							// If the count is lower than size, we can't find any possible fish.
+							int popCount = PopCount((uint)z);
+							if (popCount < size)
+							{
+								continue;
+							}
+
+							// Now record the cover sets into the cover table.
+							var coverTable = z.GetAllSets();
 
 							// Iterate on each cover sets combination.
 							foreach (int[] coverSets in coverTable.GetSubsets(size - 1))
@@ -263,7 +266,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									}
 
 									// Now actual base sets must overlap the current region.
-									if (!actualBaseMap.Overlaps(RegionMaps[region]))
+									if ((actualBaseMap & RegionMaps[region]).IsEmpty)
 									{
 										continue;
 									}
