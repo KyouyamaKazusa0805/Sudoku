@@ -127,11 +127,20 @@ namespace Sudoku.Resources
 		/// Throws when the key can't be found in neither the current language dictionary
 		/// nor the default dictionary.
 		/// </exception>
-		public static string GetValue(string key) =>
-			_dicPointer is not null && _dicPointer.TryGetValue(key, out string? result)
-			|| LangSourceEnUs is not null && LangSourceEnUs.TryGetValue(key, out result)
-			? result
-			: throw new KeyNotFoundException();
+		public static string GetValue(string key)
+		{
+			if (_dicPointer is not null && _dicPointer.TryGetValue(key, out string? result))
+			{
+				return result;
+			}
+
+			if (LangSourceEnUs is not null && LangSourceEnUs.TryGetValue(key, out result))
+			{
+				return result;
+			}
+
+			throw new KeyNotFoundException();
+		}
 
 		/// <summary>
 		/// Get the value with the specified key, without any exception throws.
@@ -141,11 +150,20 @@ namespace Sudoku.Resources
 		/// The value. If the key can't be found in neither the current language dictionary
 		/// nor the default dictionary, the return value will be <see langword="null"/>.
 		/// </returns>
-		public static string? GetValueWithoutExceptions(string key) =>
-			_dicPointer.TryGetValue(key, out string? result)
-			|| LangSourceEnUs is not null && LangSourceEnUs.TryGetValue(key, out result)
-			? result
-			: null;
+		public static string? TryGetValue(string key)
+		{
+			if (_dicPointer.TryGetValue(key, out string? result))
+			{
+				return result;
+			}
+
+			if (LangSourceEnUs is not null && LangSourceEnUs.TryGetValue(key, out result))
+			{
+				return result;
+			}
+
+			return null;
+		}
 
 		/// <summary>
 		/// Get the dictionary with the specified globalization string.

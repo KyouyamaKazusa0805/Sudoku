@@ -44,7 +44,12 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public virtual string Name => TextResources.GetValue(TechniqueCode.ToString());
+		public virtual string Name => TextResources.GetValue(TechniqueCodeName);
+
+		/// <summary>
+		/// Indicates the technique name alias.
+		/// </summary>
+		public string? NameAlias => TextResources.TryGetValue($"{TechniqueCodeName}Alias");
 
 		/// <summary>
 		/// Indicates the abbreviation of the step name. For example, the abbreviation of the technique
@@ -72,6 +77,11 @@ namespace Sudoku.Solving.Manual
 		/// The difficulty level of this step.
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }
+
+		/// <summary>
+		/// Indicates the technique code name.
+		/// </summary>
+		protected string TechniqueCodeName => TechniqueCode.ToString();
 
 
 		/// <summary>

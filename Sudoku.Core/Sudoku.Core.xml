@@ -4388,7 +4388,7 @@
             nor the default dictionary.
             </exception>
         </member>
-        <member name="M:Sudoku.Resources.TextResources.GetValueWithoutExceptions(System.String)">
+        <member name="M:Sudoku.Resources.TextResources.TryGetValue(System.String)">
             <summary>
             Get the value with the specified key, without any exception throws.
             </summary>

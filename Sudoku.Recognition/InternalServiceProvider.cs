@@ -98,7 +98,7 @@ namespace Sudoku.Recognition
 			var imgGray = new Mat();
 			Cv.CvtColor(cellImg, imgGray, ColorConversion.Bgr2Gray);
 
-			// TODO: Can be problem with values for some image.
+			// TODO: Problematic for some image.
 			var imgThresholded = new Mat();
 			Cv.Threshold(imgGray, imgThresholded, ThOcrMin, ThOcrMax, ThresholdType.Binary);
 

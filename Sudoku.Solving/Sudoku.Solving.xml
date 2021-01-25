@@ -5147,6 +5147,11 @@
             Indicates the technique name.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.NameAlias">
+            <summary>
+            Indicates the technique name alias.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.StepInfo.Abbreviation">
             <summary>
             Indicates the abbreviation of the step name. For example, the abbreviation of the technique
@@ -5172,6 +5177,11 @@
         <member name="P:Sudoku.Solving.Manual.StepInfo.DifficultyLevel">
             <summary>
             The difficulty level of this step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.TechniqueCodeName">
+            <summary>
+            Indicates the technique code name.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.ApplyTo(Sudoku.Data.SudokuGrid@)">
