@@ -18,7 +18,7 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
-using InfoTriplet = System.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
+using InfoTriplet = System.Collections.Generic.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
 
 namespace Sudoku.Windows
 {

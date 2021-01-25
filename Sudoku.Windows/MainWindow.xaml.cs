@@ -22,7 +22,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Windows.Data;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
-using StepTriplet = System.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
+using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 using System.Text.Encodings.Web;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;

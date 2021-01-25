@@ -15,19 +15,4 @@
 		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<None Update="KeyedTuple.tt">
-			<LastGenOutput>KeyedTuple.cs</LastGenOutput>
-			<Generator>TextTemplatingFileGenerator</Generator>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Update="KeyedTuple.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>KeyedTuple.tt</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
 </Project>

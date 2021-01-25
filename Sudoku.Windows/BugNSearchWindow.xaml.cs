@@ -1,6 +1,7 @@
 ﻿#pragma warning disable IDE1006
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;

@@ -33,7 +33,7 @@ namespace Sudoku.CodeGen
 		public void Execute(GeneratorExecutionContext context)
 		{
 			var sb = new StringBuilder();
-			for (int length = 2; length <= 8; length++)
+			for (int length = 2; length <= 4; length++)
 			{
 				sb.Clear();
 				sb.AppendLine(PrintHeader());
@@ -63,8 +63,7 @@ namespace Sudoku.CodeGen
 				sb.AppendLine();
 				sb.AppendLine();
 				sb.AppendLine(PrintInheritDoc());
-				sb.AppendLine(PrintToString());
-				sb.AppendLine(PrintToStringValue());
+				sb.AppendLine(PrintToStringWithValue());
 				sb.AppendLine(PrintClosedBracketToken(1));
 				sb.AppendLine(PrintClosedBracketToken());
 
@@ -99,7 +98,7 @@ namespace Sudoku.CodeGen
 			sb.AppendLine("//");
 			return sb.ToString();
 		}
-		private static string PrintUsingDirectives() => "using System.Runtime.CompilerServices";
+		private static string PrintUsingDirectives() => "using System.Runtime.CompilerServices;";
 		private static string PrintNullableEnable() => "#nullable enable";
 		private static string PrintNamespace() => "namespace System.Collections.Generic";
 		private static string PrintCompilerGenerated()
@@ -113,7 +112,6 @@ namespace Sudoku.CodeGen
 			return $"{(UsingTabsAsIndentingCharacters ? "\t" : "    ")}[{name.Substring(0, name.Length - o)}]";
 #endif
 		}
-
 		private static string PrintRecordDocComment(int length)
 		{
 			var sb = new StringBuilder();
@@ -257,7 +255,6 @@ namespace Sudoku.CodeGen
 
 			return sb.ToString();
 		}
-		private static string PrintToString() => UsingTabsAsIndentingCharacters ? "\t\tpublic override string ToString() =>" : "        public override string ToString() =>";
-		private static string PrintToStringValue() => UsingTabsAsIndentingCharacters ? "\t\t\t((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;" : "            ((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;";
+		private static string PrintToStringWithValue() => $"{(UsingTabsAsIndentingCharacters ? "\t\t" : "        ")}public override string ToString() => ((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;";
 	}
 }

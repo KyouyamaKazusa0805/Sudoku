@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>netstandard2.1</TargetFramework>
 		<Authors>Sunnie</Authors>
 		<Description>The project that uses source generator to generate some dynamic code files.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>

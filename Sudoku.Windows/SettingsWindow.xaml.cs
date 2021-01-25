@@ -10,7 +10,7 @@ using Sudoku.DocComments;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.CustomControls;
-using StepTriplet = System.KeyedTuple<string, int, System.Type>;
+using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, System.Type>;
 
 namespace Sudoku.Windows
 {

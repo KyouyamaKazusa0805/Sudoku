@@ -12,8 +12,8 @@
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<ApplicationIcon>icon-64.ico</ApplicationIcon>
 		<PackageProjectUrl>https://github.com/Sunnie-Shine/Sudoku</PackageProjectUrl>
-		<AssemblyVersion>0.1.0.0</AssemblyVersion>
-		<FileVersion>0.1.0.0</FileVersion>
+		<AssemblyVersion>0.2.0.0</AssemblyVersion>
+		<FileVersion>0.2.0.0</FileVersion>
 		<PackageIcon>ImageIcon-Generate.png</PackageIcon>
 		<LangVersion>9.0</LangVersion>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
@@ -48,6 +48,15 @@
 		<ProjectReference Include="..\Sudoku.IO\Sudoku.IO.csproj" />
 		<ProjectReference Include="..\Sudoku.Recognition\Sudoku.Recognition.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
+	</ItemGroup>
+
+	<!--WPF doesn't support source generators by default in .NET 5.0.0-->
+	<ItemGroup Condition="'$(TargetFramework)'=='net5.0-windows'">
+		<ProjectReference Include="..\Sudoku.Debugging\Sudoku.Debugging.csproj" />
+		<!--
+		<ProjectReference Include="..\Sudoku.CodeGen\Sudoku.CodeGen.csproj"
+						  OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		-->
 	</ItemGroup>
 
 	<ItemGroup>
@@ -88,10 +97,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="CustomControls\FontDialog.xaml">
-	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-	    <SubType>Designer</SubType>
-	  </Page>
+		<Page Update="CustomControls\FontDialog.xaml">
+			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+			<SubType>Designer</SubType>
+		</Page>
 	</ItemGroup>
 
 </Project>
