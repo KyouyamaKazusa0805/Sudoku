@@ -2,10 +2,7 @@
 
 namespace Sudoku.Solving.Manual.Fishes
 {
-	public sealed partial record ComplexFishStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
-		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Exofins,
-		in Cells Endofins, bool IsFranken, bool? IsSashimi)
+	partial record ComplexFishStepInfo
 	{
 		/// <summary>
 		/// Indicates the shape modifiers.
