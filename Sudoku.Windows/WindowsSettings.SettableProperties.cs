@@ -90,12 +90,12 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the program will display abbreviation rather than full name for a technique
+		/// Indicates whether the program will display acronym rather than full name for a technique
 		/// in analysis tab page.
 		/// </para>
 		/// <para>The value is <see langword="false"/> in default case.</para>
 		/// </summary>
-		public bool DisplayAbbrRatherThanFullNameOfSteps { get; set; }
+		public bool DisplayAcronymRatherThanFullNameOfSteps { get; set; }
 
 		/// <summary>
 		/// <para>Indicates the size for picture to save as image files.</para>

@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override decimal Difficulty => 9.6M;
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => "SK-Loop";
+		public override string? Acronym => "SK-Loop";
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

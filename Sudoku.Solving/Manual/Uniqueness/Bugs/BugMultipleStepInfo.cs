@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override string Name => $"{TextResources.GetValue("Bug")} + {Candidates.Count.ToString()}";
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => $"BUG + {Candidates.Count.ToString()}";
+		public override string? Acronym => $"BUG + {Candidates.Count.ToString()}";
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .1M + ExtraDifficulty[Candidates.Count - 1];

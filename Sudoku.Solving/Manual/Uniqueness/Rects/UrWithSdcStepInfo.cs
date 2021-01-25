@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			5.0M + SdCDifficulty + IsolatedDifficulty + CannibalDifficulty + ArDifficulty;
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => IsAvoidable ? "AR + SDC" : "UR + SDC";
+		public override string? Acronym => IsAvoidable ? "AR + SDC" : "UR + SDC";
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

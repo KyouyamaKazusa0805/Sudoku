@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public override decimal Difficulty => 9.6M + (ContainsExtraRegions ? 0 : .2M);
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => "SE";
+		public override string? Acronym => "SE";
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => ContainsExtraRegions ? Technique.ComplexSe : Technique.Se;

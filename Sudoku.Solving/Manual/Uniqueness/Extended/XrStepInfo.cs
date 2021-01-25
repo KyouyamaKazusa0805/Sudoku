@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		public override decimal Difficulty => 4.5M + (Cells.Count >> 1 - 2) * .1M;
 
 		/// <inheritdoc/>
-		public sealed override string? Abbreviation => "XR";
+		public sealed override string? Acronym => "XR";
 
 		/// <inheritdoc/>
 		public abstract override Technique TechniqueCode { get; }

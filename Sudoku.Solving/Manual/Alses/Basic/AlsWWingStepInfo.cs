@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override decimal Difficulty => 6.2M;
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => "ALS-W-Wing";
+		public override string? Acronym => "ALS-W-Wing";
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

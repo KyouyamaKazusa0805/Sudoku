@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			(XEnabled && YEnabled ? 5.0M : 4.5M) + (FlatComplexity - 2).GetExtraDifficultyByLength();
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => "CNL";
+		public override string? Acronym => "CNL";
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>

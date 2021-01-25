@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
-		public override string? Abbreviation => IsAvoidable ? "HAR" : "HUR";
+		public override string? Acronym => IsAvoidable ? "HAR" : "HUR";
 
 
 		/// <inheritdoc/>

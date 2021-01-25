@@ -1080,8 +1080,8 @@ namespace Sudoku.Windows
 						from step in _analyisResult.Steps!
 						orderby step.Difficulty
 						group step by (
-							Settings.DisplayAbbrRatherThanFullNameOfSteps
-							? step.Abbreviation ?? step.Name
+							Settings.DisplayAcronymRatherThanFullNameOfSteps
+							? step.Acronym ?? step.Name
 							: step.Name
 						)
 				)

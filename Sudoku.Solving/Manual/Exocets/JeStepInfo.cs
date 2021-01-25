@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			9.4M + MirrorDifficulty + BiBiDifficulty + TargetPairDifficulty + GeneralizedSwordfishDifficulty;
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => "JE";
+		public override string? Acronym => "JE";
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.Je;

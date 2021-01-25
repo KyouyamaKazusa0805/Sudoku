@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override int FlatComplexity => Target.AncestorsCount;
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => "AIC";
+		public override string? Acronym => "AIC";
 
 #if DOUBLE_LAYERED_ASSUMPTION
 		/// <inheritdoc/>

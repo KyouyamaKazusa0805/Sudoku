@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => IsAvoidable ? "AR" : "UR";
+		public override string? Acronym => IsAvoidable ? "AR" : "UR";
 
 		/// <inheritdoc/>
 		public sealed override Technique TechniqueCode => TechniqueCode2;

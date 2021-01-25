@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual
 			TextResources.TryGetValue($"{TechniqueCodeName}Alias")?.Split(new[] { ';', ' ' });
 
 		/// <summary>
-		/// Indicates the abbreviation of the step name. For example, the abbreviation of the technique
+		/// Indicates the acronym of the step name. For example, the acronym of the technique
 		/// "Almost Locked Candidates" is ALC.
 		/// </summary>
 		/// <remarks>
@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual
 		/// abbreviations by default. On the other hand, this is really an easier way to implement
 		/// than storing values in resource dictionary files.
 		/// </remarks>
-		public virtual string? Abbreviation => null;
+		public virtual string? Acronym => null;
 
 		/// <summary>
 		/// The difficulty or this step.

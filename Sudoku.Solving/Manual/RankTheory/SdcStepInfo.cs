@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 		public override decimal Difficulty => 5.0M + IsolatedExtraDifficulty + CannibalismExtraDifficulty;
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => "SDC";
+		public override string? Acronym => "SDC";
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

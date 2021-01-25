@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => "ALS-XZ";
+		public override string? Acronym => "ALS-XZ";
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

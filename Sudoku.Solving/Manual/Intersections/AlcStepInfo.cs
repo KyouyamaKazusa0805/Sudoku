@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		public override decimal Difficulty => BaseDifficulty + (HasValueCell ? ExtraDifficulty : 0);
 
 		/// <inheritdoc/>
-		public override string? Abbreviation => Size switch { 2 => "ALP", 3 => "ALT", 4 => "ALQ" };
+		public override string? Acronym => Size switch { 2 => "ALP", 3 => "ALT", 4 => "ALQ" };
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
