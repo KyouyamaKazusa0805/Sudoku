@@ -3206,6 +3206,129 @@
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo">
+            <summary>
+            Provides a usage of <b>Hobiwan's fish</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Digit">The digit used.</param>
+            <param name="BaseSets">The base sets.</param>
+            <param name="CoverSets">The cover sets.</param>
+            <param name="Exofins">All exo-fins.</param>
+            <param name="Endofins">All endo-fins.</param>
+            <param name="IsFranken">Indicates whether the current structure is a Franken fish.</param>
+            <param name="IsSashimi">
+            Indicates whether the fish instance is sashimi.
+            The value can be:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term><description>Sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term><description>Normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term><description>Normal fish.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean,System.Nullable{System.Boolean})">
+            <summary>
+            Provides a usage of <b>Hobiwan's fish</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Digit">The digit used.</param>
+            <param name="BaseSets">The base sets.</param>
+            <param name="CoverSets">The cover sets.</param>
+            <param name="Exofins">All exo-fins.</param>
+            <param name="Endofins">All endo-fins.</param>
+            <param name="IsFranken">Indicates whether the current structure is a Franken fish.</param>
+            <param name="IsSashimi">
+            Indicates whether the fish instance is sashimi.
+            The value can be:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term><description>Sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term><description>Normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term><description>Normal fish.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.BasicDiff">
+            <summary>
+            The basic difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.FinnedDiff">
+            <summary>
+            The finned difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.SashimiDiff">
+            <summary>
+            The sashimi difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.FrankenShapeDiffExtra">
+            <summary>
+            The Franken shape extra difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.MutantShapeDiffExtra">
+            <summary>
+            The mutant shape extra difficulty rating table.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.BaseDifficulty">
+            <summary>
+            Indicates the base difficulty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.SashimiExtraDifficulty">
+            <summary>
+            Indicates the extra difficulty on sashimi judgement.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.ShapeExtraDifficulty">
+            <summary>
+            Indicates the extra difficulty on shape.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.InternalName">
+            <summary>
+            The internal name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.FinModifier">
+            <summary>
+            Indicates the fin modifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.ShapeModifier">
+            <summary>
+            Indicates the shape modifier.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher">
             <summary>
             Encapsulates a <b>Hobiwan's fish</b> technique searcher.
@@ -3232,7 +3355,7 @@
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Collections.Generic.IList{Sudoku.Data.Conclusion}})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Collections.Generic.IList{Sudoku.Data.Conclusion}[])">
             <summary>
             Get all possible fish steps.
             </summary>
