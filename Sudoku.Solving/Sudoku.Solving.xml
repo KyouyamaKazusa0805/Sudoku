@@ -3323,8 +3323,24 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.ShapeModifier">
             <summary>
+            The shape modifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.FinModifierText">
+            <summary>
+            Indicates the fin modifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.ShapeModifierText">
+            <summary>
             Indicates the shape modifier.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.Equals(Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.ToString">
             <inheritdoc/>

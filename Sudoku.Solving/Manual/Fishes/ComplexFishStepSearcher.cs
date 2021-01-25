@@ -38,9 +38,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(31, nameof(Technique.FrankenSwordfish))
 		{
-			DisplayLevel = 2,
-			//IsEnabled = false,
-			//DisabledReason = DisabledReason.TooSlow | DisabledReason.HasBugs
+			DisplayLevel = 3
 		};
 
 
@@ -56,7 +54,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				GetAll(tempList, grid, size, pomElims);
 			}
 
-			accumulator.AddRange(tempList);
+			accumulator.AddRange(tempList.RemoveDuplicateItems());
 		}
 
 
@@ -122,6 +120,13 @@ namespace Sudoku.Solving.Manual.Fishes
 							foreach (int baseSet in baseSets)
 							{
 								baseSetsMask |= 1 << baseSet;
+							}
+
+							// Franken fishes doesn't contain both row and column two region types.
+							if (!searchForMutant
+								&& (baseSetsMask & AllRowsMask) != 0 && (baseSetsMask & AllColumnsMask) != 0)
+							{
+								continue;
 							}
 
 							// Get the primary map of endo-fins.
@@ -283,9 +288,8 @@ namespace Sudoku.Solving.Manual.Fishes
 									}
 
 									// Verify passed.
-									// Re-initializes endo-fins, and add the new region into the cover sets map.
+									// Re-initializes endo-fins.
 									endofins = Cells.Empty;
-									coverMap |= RegionMaps[region];
 
 									// Insert into the current cover set list, in order to keep
 									// all cover sets are in order (i.e. Sort the cover sets).
@@ -326,9 +330,12 @@ namespace Sudoku.Solving.Manual.Fishes
 									}
 									endofins &= CandMaps[digit];
 
+									// Add the new region into the cover sets map.
+									var nowCoverMap = coverMap | RegionMaps[region];
+
 									// Collect all exo-fins, in order to get all eliminations.
-									var exofins = actualBaseMap - coverMap - endofins;
-									var elimMap = coverMap - actualBaseMap & CandMaps[digit];
+									var exofins = actualBaseMap - nowCoverMap - endofins;
+									var elimMap = nowCoverMap - actualBaseMap & CandMaps[digit];
 									var fins = exofins | endofins;
 									if (!fins.IsEmpty)
 									{

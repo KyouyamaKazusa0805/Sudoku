@@ -107,8 +107,6 @@ namespace Sudoku.Solving.Manual.Extensions
 				new FcStepSearcher(nishio: true, multiple: false, dynamic: true),
 				new FcStepSearcher(nishio: false, multiple: true, dynamic: false),
 				new BugMultipleWithFcStepSearcher(),
-				//new HobiwanFishStepSearcher(@this.HobiwanFishMaximumSize, @this.HobiwanFishMaximumExofinsCount, @this.HobiwanFishMaximumEndofinsCount, @this.HobiwanFishCheckTemplates),
-				new ComplexFishStepSearcher(),
 				new FcStepSearcher(nishio: false, multiple: true, dynamic: true),
 				new JeStepSearcher(@this.CheckAdvancedInExocet),
 				new SeStepSearcher(@this.CheckAdvancedInExocet),

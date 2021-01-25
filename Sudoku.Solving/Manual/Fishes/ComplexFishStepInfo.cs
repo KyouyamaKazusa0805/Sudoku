@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -33,7 +32,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </item>
 	/// </list>
 	/// </param>
-	public sealed record ComplexFishStepInfo(
+	public sealed partial record ComplexFishStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
 		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Exofins,
 		in Cells Endofins, bool IsFranken, bool? IsSashimi)
@@ -152,29 +151,92 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// The internal name.
 		/// </summary>
-		private string InternalName => $"{FinModifier}{ShapeModifier}{FishNames[Size]}";
+		private string InternalName => $"{FinModifierText}{ShapeModifierText}{FishNames[Size]}";
 
 		/// <summary>
 		/// Indicates the fin modifier.
 		/// </summary>
-		private string FinModifier =>
-			IsSashimi switch { null => string.Empty, true => "Sashimi ", false => "Finned " };
+		private FinModifiers FinModifier =>
+			IsSashimi switch
+			{
+				true => FinModifiers.Sashimi,
+				false => FinModifiers.Finned,
+				_ => FinModifiers.Normal
+			};
+
+		/// <summary>
+		/// The shape modifier.
+		/// </summary>
+		private ShapeModifiers ShapeModifier =>
+			IsFranken switch
+			{
+				true => ShapeModifiers.Franken,
+				false => ShapeModifiers.Mutant,
+				//_ => ShapeModifiers.Basic
+			};
+
+		/// <summary>
+		/// Indicates the fin modifier.
+		/// </summary>
+		private string FinModifierText =>
+			$"{(FinModifier == FinModifiers.Normal ? string.Empty : FinModifier.ToString())} ";
 
 		/// <summary>
 		/// Indicates the shape modifier.
 		/// </summary>
-		private string ShapeModifier => IsFranken ? "Franken " : "Mutant ";
+		private string ShapeModifierText =>
+			$"{(ShapeModifier == ShapeModifiers.Basic ? string.Empty : ShapeModifier.ToString())} ";
 
+
+		/// <inheritdoc/>
+		public bool Equals(ComplexFishStepInfo? other)
+		{
+			if (other is null)
+			{
+				return false;
+			}
+
+			if (Digit != other.Digit)
+			{
+				return false;
+			}
+
+			if (new RegionCollection(BaseSets) != new RegionCollection(other.BaseSets)
+				|| new RegionCollection(CoverSets) != new RegionCollection(other.CoverSets))
+			{
+				return false;
+			}
+
+			if (Exofins != other.Exofins || Endofins != other.Endofins)
+			{
+				return false;
+			}
+
+			return true;
+		}
+
+		/// <inheritdoc/>
+		public override int GetHashCode()
+		{
+			int result = Digit << 17 & 0xABC0DEF;
+			result ^= new RegionCollection(BaseSets).GetHashCode();
+			result ^= new RegionCollection(CoverSets).GetHashCode();
+			result ^= Exofins.GetHashCode();
+			result ^= Endofins.GetHashCode();
+
+			return result;
+		}
 
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			string digitStr = (Digit + 1).ToString();
 			string baseSets = new RegionCollection(BaseSets).ToString();
 			string coverSets = new RegionCollection(CoverSets).ToString();
 			string exo = Exofins.IsEmpty ? string.Empty : $"f{Exofins.ToString()} ";
 			string endo = Endofins.IsEmpty ? string.Empty : $"ef{Endofins.ToString()} ";
-			return $@"{Name}: {(Digit + 1).ToString()} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			return $@"{Name}: {digitStr} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
 		}
 	}
 }
