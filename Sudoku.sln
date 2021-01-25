@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemExtensions", "System\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Generating", "Sudoku.Generating\Sudoku.Generating.csproj", "{23CB06A5-C43F-40CC-9BB1-90937E89D0E6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen", "Sudoku.CodeGen\Sudoku.CodeGen.csproj", "{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +191,17 @@ Global
 		{23CB06A5-C43F-40CC-9BB1-90937E89D0E6}.Release|x64.Build.0 = Release|Any CPU
 		{23CB06A5-C43F-40CC-9BB1-90937E89D0E6}.Release|x86.ActiveCfg = Release|Any CPU
 		{23CB06A5-C43F-40CC-9BB1-90937E89D0E6}.Release|x86.Build.0 = Release|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Debug|x64.Build.0 = Debug|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Debug|x86.Build.0 = Debug|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Release|x64.ActiveCfg = Release|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Release|x64.Build.0 = Release|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Release|x86.ActiveCfg = Release|Any CPU
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
