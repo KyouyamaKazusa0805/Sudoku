@@ -49,7 +49,8 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name alias.
 		/// </summary>
-		public string? NameAlias => TextResources.TryGetValue($"{TechniqueCodeName}Alias");
+		public string[]? NameAlias =>
+			TextResources.TryGetValue($"{TechniqueCodeName}Alias")?.Split(new[] { ';', ' ' });
 
 		/// <summary>
 		/// Indicates the abbreviation of the step name. For example, the abbreviation of the technique
