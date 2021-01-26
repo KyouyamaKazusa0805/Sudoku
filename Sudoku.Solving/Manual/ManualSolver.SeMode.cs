@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (TechniqueProperties.GetPropertiesFrom(searcher) is not { IsEnabled: true })
+					if (TechniqueProperties.FromSearcher(searcher) is not { IsEnabled: true })
 					{
 						continue;
 					}

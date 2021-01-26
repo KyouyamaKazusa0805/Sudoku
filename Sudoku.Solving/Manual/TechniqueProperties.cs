@@ -162,6 +162,10 @@ namespace Sudoku.Solving.Manual
 		/// <param name="onlyEnableInAnalysis">
 		/// (<see langword="out"/> parameter) Indicates whether the searcher is enabled only in traversing mode.
 		/// </param>
+		/// <param name="onlyEnableInFastMode">
+		/// (<see langword="out"/> parameter) Indicates whether the searcher is only enabled
+		/// in fast searching mode.
+		/// </param>
 		/// <param name="displayLevel">
 		/// (<see langword="out"/> parameter) Indicates the display level.
 		/// </param>
@@ -170,29 +174,19 @@ namespace Sudoku.Solving.Manual
 		/// </param>
 		public void Deconstruct(
 			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason,
-			out bool onlyEnableInAnalysis, out int displayLevel, out string displayLabel)
+			out bool onlyEnableInAnalysis, out bool onlyEnableInFastMode, out int displayLevel,
+			out string displayLabel)
 		{
 			isEnabled = IsEnabled;
 			isReadOnly = IsReadOnly;
 			priority = Priority;
 			disabledReason = DisabledReason;
 			onlyEnableInAnalysis = OnlyEnableInAnalysis;
+			onlyEnableInFastMode = OnlyEnableInFastMode;
 			displayLevel = DisplayLevel;
 			displayLabel = DisplayLabel;
 		}
 
-
-		/// <summary>
-		/// Get the specified properties using reflection.
-		/// </summary>
-		/// <typeparam name="TTechniqueSearcher">The type of the searcher.</typeparam>
-		/// <returns>
-		/// The properties instance. If the searcher is <see langword="abstract"/> type
-		/// or not <see cref="StepSearcher"/> at all,
-		/// the return value will be <see langword="null"/>.
-		/// </returns>
-		public static TechniqueProperties? GetPropertiesFrom<TTechniqueSearcher>()
-			where TTechniqueSearcher : StepSearcher => GetPropertiesFrom(typeof(TTechniqueSearcher));
 
 		/// <summary>
 		/// Get the specified properties using reflection.
@@ -202,7 +196,7 @@ namespace Sudoku.Solving.Manual
 		/// The properties instance. If the searcher is <see langword="abstract"/> type,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
-		public static TechniqueProperties? GetPropertiesFrom(StepSearcher searcher)
+		public static TechniqueProperties? FromSearcher(StepSearcher searcher)
 		{
 			if (searcher.GetType() is not { IsAbstract: false } type)
 			{
@@ -222,7 +216,7 @@ namespace Sudoku.Solving.Manual
 		/// or not <see cref="StepSearcher"/> at all,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
-		public static TechniqueProperties? GetPropertiesFrom(Type type)
+		public static TechniqueProperties? FromType(Type type)
 		{
 			if (!type.IsSubclassOf(typeof(StepSearcher)) || type.IsAbstract)
 			{

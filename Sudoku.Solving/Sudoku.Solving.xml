@@ -5913,7 +5913,7 @@
             (<see langword="out"/> parameter) Indicates why this technique is disabled.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@,System.Boolean@,System.Int32@,System.String@)">
+        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@,System.Boolean@,System.Boolean@,System.Int32@,System.String@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isEnabled">
             (<see langword="out"/> parameter) Indicates whether the technique is enabled.
@@ -5930,6 +5930,10 @@
             <param name="onlyEnableInAnalysis">
             (<see langword="out"/> parameter) Indicates whether the searcher is enabled only in traversing mode.
             </param>
+            <param name="onlyEnableInFastMode">
+            (<see langword="out"/> parameter) Indicates whether the searcher is only enabled
+            in fast searching mode.
+            </param>
             <param name="displayLevel">
             (<see langword="out"/> parameter) Indicates the display level.
             </param>
@@ -5937,18 +5941,7 @@
             (<see langword="out"/> parameter) Indicates the display label.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.GetPropertiesFrom``1">
-            <summary>
-            Get the specified properties using reflection.
-            </summary>
-            <typeparam name="TTechniqueSearcher">The type of the searcher.</typeparam>
-            <returns>
-            The properties instance. If the searcher is <see langword="abstract"/> type
-            or not <see cref="T:Sudoku.Solving.Manual.StepSearcher"/> at all,
-            the return value will be <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.GetPropertiesFrom(Sudoku.Solving.Manual.StepSearcher)">
+        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.FromSearcher(Sudoku.Solving.Manual.StepSearcher)">
             <summary>
             Get the specified properties using reflection.
             </summary>
@@ -5958,7 +5951,7 @@
             the return value will be <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.GetPropertiesFrom(System.Type)">
+        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.FromType(System.Type)">
             <summary>
             Get the specified properties using reflection.
             </summary>

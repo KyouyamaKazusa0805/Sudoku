@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual
 		public static IEnumerable<(Type CurrentType, string SearcherName, TechniqueProperties Properties)> AllStepSearchers =>
 			from type in Assembly.GetExecutingAssembly().GetTypes()
 			where !type.IsAbstract && type.IsSubclassOf<StepSearcher>() && !type.IsDefined<ObsoleteAttribute>()
-			let prior = TechniqueProperties.GetPropertiesFrom(type)!.Priority
+			let prior = TechniqueProperties.FromType(type)!.Priority
 			orderby prior
 			let v = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
 			let casted = v as TechniqueProperties

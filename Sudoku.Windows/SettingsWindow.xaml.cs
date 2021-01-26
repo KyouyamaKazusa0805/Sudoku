@@ -652,7 +652,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is CheckBox checkBox)
 			{
-				TechniqueProperties.GetPropertiesFrom(
+				TechniqueProperties.FromType(
 					((StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
 				)!.IsEnabled = checkBox.IsChecked ?? false;
 			}
@@ -663,7 +663,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
 			{
-				TechniqueProperties.GetPropertiesFrom(
+				TechniqueProperties.FromType(
 					((StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
 				)!.Priority = value;
 			}
@@ -678,7 +678,7 @@ namespace Sudoku.Windows
 			}
 
 			var type = ((StepTriplet)draggedItem.Content).Item3;
-			if (TechniqueProperties.GetPropertiesFrom(type)!.IsReadOnly)
+			if (TechniqueProperties.FromType(type)!.IsReadOnly)
 			{
 				// We can't modify the status of any fixed technique searchers.
 				return;
@@ -729,7 +729,7 @@ namespace Sudoku.Windows
 						index,
 						type
 					);
-					TechniqueProperties.GetPropertiesFrom(type)!.Priority = index;
+					TechniqueProperties.FromType(type)!.Priority = index;
 				}
 			}
 		}

@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Extensions
 			var dic = new Dictionary<int, IList<StepSearcher>>();
 			foreach (var searcher in list)
 			{
-				int level = TechniqueProperties.GetPropertiesFrom(searcher)!.DisplayLevel;
+				int level = TechniqueProperties.FromSearcher(searcher)!.DisplayLevel;
 				if (dic.TryGetValue(level, out var l))
 				{
 					l.Add(searcher);

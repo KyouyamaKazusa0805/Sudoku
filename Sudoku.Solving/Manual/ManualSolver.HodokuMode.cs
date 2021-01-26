@@ -87,8 +87,8 @@ namespace Sudoku.Solving.Manual
 			{
 				static int cmp(in StepSearcher a, in StepSearcher b)
 				{
-					int l = TechniqueProperties.GetPropertiesFrom(a)!.Priority;
-					int r = TechniqueProperties.GetPropertiesFrom(b)!.Priority;
+					int l = TechniqueProperties.FromSearcher(a)!.Priority;
+					int r = TechniqueProperties.FromSearcher(b)!.Priority;
 					return l > r ? 1 : l < r ? -1 : 0;
 				}
 
@@ -109,7 +109,10 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				if (TechniqueProperties.GetPropertiesFrom(searcher) is not { IsEnabled: true })
+				var (
+					isEnabled, _, _, _, _, onlyEnabledInFastMode, _, _
+				) = TechniqueProperties.FromSearcher(searcher)!;
+				if (!isEnabled)
 				{
 					continue;
 				}
@@ -173,8 +176,10 @@ namespace Sudoku.Solving.Manual
 						bool first(StepInfo step) => !CheckConclusionsValidity(solutionCopied, step.Conclusions);
 					}
 				}
-				else
+				else if (!onlyEnabledInFastMode)
 				{
+					// If the searcher is only used in the fast mode, just skip it.
+
 					var step =
 					(
 						OptimizedApplyingOrder
