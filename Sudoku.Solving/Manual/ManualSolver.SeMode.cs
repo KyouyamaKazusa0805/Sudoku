@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual
 				var searcherListGroup = searchers[i];
 				foreach (var searcher in searcherListGroup)
 				{
-					if ((sukaku, searcher) is (true, UniquenessStepSearcher))
+					if (sukaku && searcher is UniquenessStepSearcher)
 					{
 						// Sukaku mode can't use them.
 						// In fact, sukaku can use uniqueness tests, however the program should
@@ -65,14 +65,12 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					var props = TechniqueProperties.GetPropertiesFrom(searcher)!;
-					if (props is { IsEnabled: false, DisabledReason: not DisabledReason.HighAllocation })
+					if (TechniqueProperties.GetPropertiesFrom(searcher) is not { IsEnabled: true })
 					{
 						continue;
 					}
 
-					if (EnableGarbageCollectionForcedly
-						&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
+					if (EnableGarbageCollectionForcedly)
 					{
 						GC.Collect();
 					}
@@ -131,20 +129,13 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						StepInfo? wrongStep = null;
-						foreach (var step in selection)
-						{
-							if (!CheckConclusionsValidity(solution, step.Conclusions))
-							{
-								wrongStep = step;
-								break;
-							}
-						}
-
+						var solutionCopied = solution;
 						throw new SudokuHandlingException<SudokuGrid, string>(
 							errorCode: 201,
 							grid,
-							wrongStep!.ToString());
+							selection.First(first).ToString());
+
+						bool first(StepInfo step) => !CheckConclusionsValidity(solutionCopied, step.Conclusions);
 					}
 				}
 				else

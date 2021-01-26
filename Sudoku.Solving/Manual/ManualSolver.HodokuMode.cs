@@ -104,13 +104,12 @@ namespace Sudoku.Solving.Manual
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];
-				if ((sukaku, searcher) is (true, UniquenessStepSearcher))
+				if (sukaku && searcher is UniquenessStepSearcher)
 				{
 					continue;
 				}
 
-				var props = TechniqueProperties.GetPropertiesFrom(searcher)!;
-				if (props is { IsEnabled: false, DisabledReason: not DisabledReason.HighAllocation })
+				if (TechniqueProperties.GetPropertiesFrom(searcher) is not { IsEnabled: true })
 				{
 					continue;
 				}
@@ -151,8 +150,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly
-							&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
+						if (EnableGarbageCollectionForcedly)
 						{
 							GC.Collect();
 						}
@@ -166,27 +164,23 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						StepInfo? wrongStep = null;
-						foreach (var step in bag)
-						{
-							if (!CheckConclusionsValidity(solution, step.Conclusions))
-							{
-								wrongStep = step;
-								break;
-							}
-						}
-
+						var solutionCopied = solution;
 						throw new SudokuHandlingException<SudokuGrid, string>(
 							errorCode: 201,
 							grid,
-							wrongStep!.ToString());
+							bag.First(first).ToString());
+
+						bool first(StepInfo step) => !CheckConclusionsValidity(solutionCopied, step.Conclusions);
 					}
 				}
 				else
 				{
-					var step = OptimizedApplyingOrder
-						? (from info in bag orderby info.Difficulty select info).FirstOrDefault()
-						: bag.FirstOrDefault();
+					var step =
+					(
+						OptimizedApplyingOrder
+						? from info in bag orderby info.Difficulty select info
+						: bag.AsEnumerable()
+					).FirstOrDefault();
 
 					if (step is null)
 					{
@@ -212,8 +206,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly
-							&& props.DisabledReason.Flags(DisabledReason.HighAllocation))
+						if (EnableGarbageCollectionForcedly)
 						{
 							GC.Collect();
 						}

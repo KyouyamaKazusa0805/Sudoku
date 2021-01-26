@@ -33,16 +33,6 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the searcher can get correct <see cref="StepInfo"/>s, but the difference
 		/// of the difficulty among them are too big.
 		/// </summary>
-		Unstable = 8,
-
-		/// <summary>
-		/// Indicates the searcher will cause a lot of memory allocation.
-		/// </summary>
-		HighAllocation = 16,
-
-		/// <summary>
-		/// Indicates the searcher is deprecated now.
-		/// </summary>
-		Deprecated = 32,
+		Unstable = 8
 	}
 }

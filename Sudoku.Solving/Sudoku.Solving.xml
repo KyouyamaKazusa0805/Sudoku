@@ -2348,16 +2348,6 @@
             of the difficulty among them are too big.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.DisabledReason.HighAllocation">
-            <summary>
-            Indicates the searcher will cause a lot of memory allocation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.DisabledReason.Deprecated">
-            <summary>
-            Indicates the searcher is deprecated now.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.EliminatedReason">
             <summary>
             Encapsulates a type that represents the reason why the eliminations can be removed.
@@ -5831,6 +5821,13 @@
             Indicates whether the searcher is only used in analyzing a sudoku grid.
             If <see langword="true"/>, when in find-all-step mode, this searcher will be disabled.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.TechniqueProperties.OnlyEnableInFastMode">
+            <summary>
+            Indicates whether the searcher is enabled in fast searching mode
+            (i.e. <see cref="P:Sudoku.Solving.Manual.ManualSolver.FastSearch"/> is set to <see langword="true"/>).
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.FastSearch"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.TechniqueProperties.Priority">
             <summary>

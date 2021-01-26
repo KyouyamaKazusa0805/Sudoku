@@ -15,6 +15,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// Encapsulates a <b>Gurth's symmetrical placement 2</b> (GSP2) technique searcher.
 	/// </summary>
 	[DirectSearcher]
+	[Obsolete("The searcher can be used only if this attribute is disabled.", true)]
 	public sealed class Gsp2StepSearcher : SymmetryStepSearcher
 	{
 		/// <summary>
@@ -39,7 +40,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		{
 			IsReadOnly = true,
 			IsEnabled = false,
-			DisabledReason = DisabledReason.TooSlow | DisabledReason.HasBugs | DisabledReason.Deprecated
+			DisabledReason = DisabledReason.TooSlow
 		};
 
 

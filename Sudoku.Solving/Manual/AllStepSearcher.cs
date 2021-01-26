@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Manual
 				}
 
 				// Skip the searcher that is disabled.
-				if (!isEnabled && disabledReason != DisabledReason.HighAllocation)
+				if (!isEnabled)
 				{
 					continue;
 				}
@@ -96,7 +96,7 @@ namespace Sudoku.Solving.Manual
 				// Sukaku mode can't use them.
 				// In fact, sukaku can use uniqueness tests, but this will make the project
 				// a large modification.
-				if ((sukaku, searcher) is (true, UniquenessStepSearcher))
+				if (sukaku is true && searcher is UniquenessStepSearcher)
 				{
 					continue;
 				}

@@ -39,6 +39,13 @@ namespace Sudoku.Solving.Manual
 		public bool OnlyEnableInAnalysis { get; set; }
 
 		/// <summary>
+		/// Indicates whether the searcher is enabled in fast searching mode
+		/// (i.e. <see cref="ManualSolver.FastSearch"/> is set to <see langword="true"/>).
+		/// </summary>
+		/// <seealso cref="ManualSolver.FastSearch"/>
+		public bool OnlyEnableInFastMode { get; set; }
+
+		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
 		public int Priority { get; set; }
