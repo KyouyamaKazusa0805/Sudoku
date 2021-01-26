@@ -436,7 +436,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				appendedInfo
 			};
 			var links = destOn.GetLinks(true);
-			globalCandidates.AddRange(candidateOffsets, true);
+			globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
 			globalLinks.AddRange(links);
 			views.Add(new()
 			{
@@ -450,7 +450,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				appendedInfo
 			};
 			links = destOff.GetLinks(true);
-			globalCandidates.AddRange(candidateOffsets, true);
+			globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
 			globalLinks.AddRange(links);
 			views.Add(new()
 			{
@@ -499,7 +499,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			var candidateOffsets = destOn.GetCandidateOffsets();
 			var links = destOn.GetLinks(true);
-			globalCandidates.AddRange(candidateOffsets, true);
+			globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
 			globalLinks.AddRange(links);
 			views.Add(new()
 			{
@@ -510,7 +510,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			candidateOffsets = destOff.GetCandidateOffsets();
 			links = destOff.GetLinks(true);
-			globalCandidates.AddRange(candidateOffsets, true);
+			globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
 			globalLinks.AddRange(links);
 			views.Add(new()
 			{
@@ -581,7 +581,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					Links = links
 				});
 				candidateOffsets.RemoveLastElement();
-				globalCandidates.AddRange(candidateOffsets, true);
+				globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
 				globalLinks.AddRange(links);
 			}
 
@@ -651,7 +651,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					Links = links
 				});
 				candidateOffsets.RemoveLastElement();
-				globalCandidates.AddRange(candidateOffsets, true);
+				globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
 				globalLinks.AddRange(links);
 			}
 

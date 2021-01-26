@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 				candidateOffsets.Add(new(0, cell * 9 + d2));
 			}
 
-			accumulator.AddIfDoesNotContain(
+			accumulator.Add(
 				new BivalueOddagonType1StepInfo(
 					conclusions,
 					new View[] { new() { Candidates = candidateOffsets, Links = links } },
@@ -108,7 +108,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 				}
 			}
 
-			accumulator.AddIfDoesNotContain(
+			accumulator.Add(
 				new BivalueOddagonType2StepInfo(
 					conclusions,
 					new View[] { new() { Candidates = candidateOffsets, Links = links } },
@@ -219,7 +219,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 							}
 						}
 
-						accumulator.AddIfDoesNotContain(
+						accumulator.Add(
 							new BivalueOddagonType3StepInfo(
 								conclusions,
 								new View[]

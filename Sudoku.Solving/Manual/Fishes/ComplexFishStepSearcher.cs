@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(31, nameof(Technique.FrankenSwordfish))
 		{
-			DisplayLevel = 3
+			DisplayLevel = 2
 		};
 
 
@@ -48,12 +48,14 @@ namespace Sudoku.Solving.Manual.Fishes
 			// Gather the POM eliminations to get all possible fish eliminations.
 			var pomElims = GetPomEliminationsFirstly(grid);
 
+			// Iterate on different sizes.
 			var tempList = new List<StepInfo>();
 			for (int size = 2; size <= 5; size++)
 			{
 				GetAll(tempList, grid, size, pomElims);
 			}
 
+			// Remove duplicate items.
 			accumulator.AddRange(tempList.RemoveDuplicateItems());
 		}
 

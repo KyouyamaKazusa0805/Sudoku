@@ -242,7 +242,10 @@ namespace System.Collections.Generic
 		{
 			foreach (var element in other)
 			{
-				_list.AddIfDoesNotContain(element);
+				if (!_list.Contains(element))
+				{
+					_list.Add(element);
+				}
 			}
 		}
 

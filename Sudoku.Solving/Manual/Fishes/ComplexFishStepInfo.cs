@@ -179,13 +179,13 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Indicates the fin modifier.
 		/// </summary>
 		private string FinModifierText =>
-			$"{(FinModifier == FinModifiers.Normal ? string.Empty : FinModifier.ToString())} ";
+			FinModifier == FinModifiers.Normal ? string.Empty : $"{FinModifier.ToString()} ";
 
 		/// <summary>
 		/// Indicates the shape modifier.
 		/// </summary>
 		private string ShapeModifierText =>
-			$"{(ShapeModifier == ShapeModifiers.Basic ? string.Empty : ShapeModifier.ToString())} ";
+			ShapeModifier == ShapeModifiers.Basic ? string.Empty : $"{ShapeModifier.ToString()} ";
 
 
 		/// <inheritdoc/>
