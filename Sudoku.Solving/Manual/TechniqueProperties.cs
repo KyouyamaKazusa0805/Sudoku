@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
+using System.Reflection;
 using Sudoku.DocComments;
-using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving.Manual
 {
@@ -196,10 +195,16 @@ namespace Sudoku.Solving.Manual
 		/// The properties instance. If the searcher is <see langword="abstract"/> type,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
-		public static TechniqueProperties? GetPropertiesFrom(StepSearcher searcher) =>
-			searcher.GetType() is not { IsAbstract: false } type
-			? null
-			: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
+		public static TechniqueProperties? GetPropertiesFrom(StepSearcher searcher)
+		{
+			if (searcher.GetType() is not { IsAbstract: false } type)
+			{
+				return null;
+			}
+
+			var propInfo = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static);
+			return propInfo?.GetValue(null) as TechniqueProperties;
+		}
 
 		/// <summary>
 		/// Get the specified properties using reflection.
@@ -210,9 +215,15 @@ namespace Sudoku.Solving.Manual
 		/// or not <see cref="StepSearcher"/> at all,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
-		public static TechniqueProperties? GetPropertiesFrom(Type type) =>
-			!type.IsSubclassOf(typeof(StepSearcher)) || type.IsAbstract
-			? null
-			: type.GetProperty("Properties", Public | Static)?.GetValue(null) as TechniqueProperties;
+		public static TechniqueProperties? GetPropertiesFrom(Type type)
+		{
+			if (!type.IsSubclassOf(typeof(StepSearcher)) || type.IsAbstract)
+			{
+				return null;
+			}
+
+			var propInfo = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static);
+			return propInfo?.GetValue(null) as TechniqueProperties;
+		}
 	}
 }
