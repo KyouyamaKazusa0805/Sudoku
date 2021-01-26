@@ -3326,16 +3326,6 @@
             The shape modifier.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.FinModifierText">
-            <summary>
-            Indicates the fin modifier.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.ShapeModifierText">
-            <summary>
-            Indicates the shape modifier.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.Equals(Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo)">
             <inheritdoc/>
         </member>
@@ -3418,14 +3408,14 @@
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Collections.Generic.IList{Sudoku.Data.Conclusion}[])">
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Collections.Generic.IList{Sudoku.Data.Conclusion}[],System.Int32)">
             <summary>
             Get all possible fish steps.
             </summary>
             <param name="accumulator">The accumulator.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="size">The size to check.</param>
             <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
+            <param name="digit">The current digit used.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetPomEliminationsFirstly(Sudoku.Data.SudokuGrid@)">
             <summary>

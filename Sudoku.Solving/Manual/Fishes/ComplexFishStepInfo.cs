@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -151,7 +152,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// The internal name.
 		/// </summary>
-		private string InternalName => $"{FinModifierText}{ShapeModifierText}{FishNames[Size]}";
+		private string InternalName =>
+			new StringBuilder()
+			.Append(FinModifier == FinModifiers.Normal ? string.Empty : $"{FinModifier.ToString()} ")
+			.Append(ShapeModifier == ShapeModifiers.Basic ? string.Empty : $"{ShapeModifier.ToString()} ")
+			.Append(FishNames[Size])
+			.ToString();
 
 		/// <summary>
 		/// Indicates the fin modifier.
@@ -174,18 +180,6 @@ namespace Sudoku.Solving.Manual.Fishes
 				false => ShapeModifiers.Mutant,
 				//_ => ShapeModifiers.Basic
 			};
-
-		/// <summary>
-		/// Indicates the fin modifier.
-		/// </summary>
-		private string FinModifierText =>
-			FinModifier == FinModifiers.Normal ? string.Empty : $"{FinModifier.ToString()} ";
-
-		/// <summary>
-		/// Indicates the shape modifier.
-		/// </summary>
-		private string ShapeModifierText =>
-			ShapeModifier == ShapeModifiers.Basic ? string.Empty : $"{ShapeModifier.ToString()} ";
 
 
 		/// <inheritdoc/>

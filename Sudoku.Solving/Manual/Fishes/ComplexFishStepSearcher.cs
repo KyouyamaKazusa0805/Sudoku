@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
+using System.Threading;
+using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -50,9 +52,43 @@ namespace Sudoku.Solving.Manual.Fishes
 
 			// Iterate on different sizes.
 			var tempList = new List<StepInfo>();
-			for (int size = 2; size <= 5; size++)
+			var tempGrid = grid;
+			var taskList = new Task?[9];
+			for (int digit = 0; digit < 9; digit++)
 			{
-				GetAll(tempList, grid, size, pomElims);
+				if (pomElims[digit] is null)
+				{
+					continue;
+				}
+
+				// Note the iteration variable can't be used directly.
+				// We should add a copy in order to use it.
+				int currentDigit = digit;
+
+				// Create a background thread to work on searching for fishes of this digit.
+				taskList[currentDigit] = Task.Run(innerProcess);
+
+				void innerProcess() => GetAll(tempList, tempGrid, pomElims, currentDigit);
+			}
+
+			// Round-robin algorithm to synchronize the threads.
+			while (true)
+			{
+				Thread.Sleep(500);
+
+				bool flag = true;
+				for (int digit = 0; digit < 9; digit++)
+				{
+					if (taskList[digit] is { IsCompleted: false })
+					{
+						flag = false;
+						break;
+					}
+				}
+				if (flag)
+				{
+					break;
+				}
 			}
 
 			// Remove duplicate items.
@@ -65,20 +101,21 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="size">The size to check.</param>
 		/// <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
+		/// <param name="digit">The current digit used.</param>
 		private static unsafe void GetAll(
-			IList<StepInfo> accumulator, in SudokuGrid grid, int size, IList<Conclusion>?[] pomElims)
+			IList<StepInfo> accumulator, in SudokuGrid grid, IList<Conclusion>?[] pomElims, int digit)
 		{
 			const RegionLabel bothLines = (RegionLabel)3;
 
-			// Iterate on different cases on whether searcher finds mutant fishes.
-			// If false, search for franken fishes.
-			int* currentCoverSets = stackalloc int[size];
-			foreach (bool searchForMutant in stackalloc[] { false, true })
+			int* currentCoverSets = stackalloc int[5];
+
+			// Iterate on each size.
+			for (int size = 2; size <= 5; size++)
 			{
-				// Iterate on each digit.
-				for (int digit = 0; digit < 9; digit++)
+				// Iterate on different cases on whether searcher finds mutant fishes.
+				// If false, search for franken fishes.
+				foreach (bool searchForMutant in stackalloc[] { false, true })
 				{
 					// Try to check the POM eliminations.
 					// If the digit as a key doesn't contain any list in that dictionary,
