@@ -44,13 +44,13 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public virtual string Name => TextResources.GetValue(TechniqueCodeName);
+		public virtual string Name => TextResources.Current[TechniqueCodeName];
 
 		/// <summary>
 		/// Indicates the technique name alias.
 		/// </summary>
 		public string[]? NameAlias =>
-			TextResources.TryGetValue($"{TechniqueCodeName}Alias")?.Split(new[] { ';', ' ' });
+			TextResources.Current[$"{TechniqueCodeName}Alias"]?.Split(new[] { ';', ' ' });
 
 		/// <summary>
 		/// Indicates the acronym of the step name. For example, the acronym of the technique

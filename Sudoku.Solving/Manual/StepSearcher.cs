@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual
 			let v = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
 			let casted = v as TechniqueProperties
 			where casted is not null && !casted.DisabledReason.Flags(DisabledReason.HasBugs)
-			select (type, GetValue($"Progress{casted.DisplayLabel}"), casted);
+			select (type, (string)Current[$"Progress{casted.DisplayLabel}"], casted);
 
 
 		/// <summary>

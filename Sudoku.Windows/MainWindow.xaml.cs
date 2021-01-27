@@ -444,7 +444,7 @@ namespace Sudoku.Windows
 
 			// Check whether the resource dictionary files are vaild.
 			const string languageFileIsInvalid = "The required resource dictionary file is invalid.";
-			if (TextResources.LangSourceEnUs is null)
+			if (TextResources.Current.LangSourceEnUs is null)
 			{
 				MessageBox.Show(
 					messageBoxText: languageFileIsInvalid,
@@ -1011,7 +1011,7 @@ namespace Sudoku.Windows
 			mergedDic.Add(rd);
 
 			// Then change the language of the library 'Sudoku.Core'.
-			TextResources.ChangeLanguage(countryCode);
+			TextResources.Current.ChangeLanguage(countryCode);
 		}
 
 		/// <summary>

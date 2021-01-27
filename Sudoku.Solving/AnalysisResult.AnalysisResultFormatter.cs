@@ -102,7 +102,7 @@ namespace Sudoku.Solving
 			/// <returns>The result.</returns>
 			public string ToString(AnalysisResultFormattingOptions options, CountryCode countryCode)
 			{
-				ChangeLanguage(countryCode);
+				Current.ChangeLanguage(countryCode);
 
 				// Get all information.
 				var (
@@ -111,22 +111,22 @@ namespace Sudoku.Solving
 
 				// Print header.
 				var sb = new StringBuilder()
-					.Append(GetValue("AnalysisResultPuzzle"))
+					.Append(Current.AnalysisResultPuzzle)
 					.AppendLine(puzzle.ToString("#"))
-					.Append(GetValue("AnalysisResultSolvingTool"))
+					.Append(Current.AnalysisResultSolvingTool)
 					.AppendLine(solverName);
 
 				// Print solving steps (if worth).
 				if (options.Flags(ShowSteps) && steps is { Count: not 0 })
 				{
-					sb.AppendLine(GetValue("AnalysisResultSolvingSteps"));
+					sb.AppendLine(Current.AnalysisResultSolvingSteps);
 					if (getBottleneck() is var (bIndex, bInfo))
 					{
 						for (int i = 0; i < steps.Count; i++)
 						{
 							if (i > bIndex && options.Flags(ShowStepsAfterBottleneck))
 							{
-								sb.AppendLine(GetValue("Ellipsis"));
+								sb.AppendLine(Current.Ellipsis);
 								break;
 							}
 
@@ -151,10 +151,10 @@ namespace Sudoku.Solving
 							a(options.Flags(ShowSeparators));
 
 							sb
-								.Append(GetValue("AnalysisResultBottleneckStep"))
+								.Append(Current.AnalysisResultBottleneckStep)
 								.Append(
 									options.Flags(ShowStepLabel)
-									? $"{GetValue("AnalysisResultInStep")}{(bIndex + 1).ToString()}{GetValue("Colon")}"
+									? $"{Current.AnalysisResultInStep}{(bIndex + 1).ToString()}{Current.Colon}"
 									: string.Empty)
 								.Append(' ')
 								.AppendLine(bInfo);
@@ -171,15 +171,15 @@ namespace Sudoku.Solving
 						from step in solvingSteps
 						orderby step.Difficulty
 						group step by step.Name);
-					sb.AppendLine(GetValue("AnalysisResultTechniqueUsed"));
+					sb.AppendLine(Current.AnalysisResultTechniqueUsed);
 					if (options.Flags(ShowStepDetail))
 					{
 						sb
-							.Append(GetValue("AnalysisResultMin").PadLeft(6))
+							.Append(Current.AnalysisResultMin.PadLeft(6))
 							.Append(',')
 							.Append(' ')
-							.Append(GetValue("AnalysisResultTotal").PadLeft(6))
-							.AppendLine(GetValue("AnalysisResultTechniqueUsing"));
+							.Append(Current.AnalysisResultTotal.PadLeft(6))
+							.AppendLine(Current.AnalysisResultTechniqueUsing);
 					}
 
 					foreach (var solvingStepsGroup in solvingStepsGrouped)
@@ -224,8 +224,8 @@ namespace Sudoku.Solving
 						.Append(' ')
 						.Append(
 							stepsCount == 1
-							? GetValue("AnalysisResultStepSingular")
-							: GetValue("AnalysisResultStepPlural"))
+							? Current.AnalysisResultStepSingular
+							: Current.AnalysisResultStepPlural)
 						.AppendLine();
 
 					a(options.Flags(ShowSeparators));
@@ -233,7 +233,7 @@ namespace Sudoku.Solving
 
 				// Print detail data.
 				sb
-					.Append(GetValue("AnalysisResultPuzzleRating"))
+					.Append(Current.AnalysisResultPuzzleRating)
 					.Append(max.ToString("0.0"))
 					.Append('/')
 					.Append(pearl.ToString("0.0"))
@@ -244,16 +244,16 @@ namespace Sudoku.Solving
 				if (solution.HasValue)
 				{
 					sb
-						.Append(GetValue("AnalysisResultPuzzleSolution"))
+						.Append(Current.AnalysisResultPuzzleSolution)
 						.AppendLine(solution.Value.ToString("!"));
 				}
 
 				// Print the elapsed time.
 				sb
-					.Append(GetValue("AnalysisResultPuzzleHas"))
-					.Append(hasSolved ? string.Empty : GetValue("AnalysisResultNot"))
-					.AppendLine(GetValue("AnalysisResultBeenSolved"))
-					.Append(GetValue("AnalysisResultTimeElapsed"))
+					.Append(Current.AnalysisResultPuzzleHas)
+					.Append(hasSolved ? string.Empty : Current.AnalysisResultNot)
+					.AppendLine(Current.AnalysisResultBeenSolved)
+					.Append(Current.AnalysisResultTimeElapsed)
 					.AppendLine(elapsed.ToString("hh\\:mm\\:ss\\.fff"));
 				a(options.Flags(ShowSeparators));
 
@@ -262,7 +262,7 @@ namespace Sudoku.Solving
 				// only one parameter and its type is 'Grid'.
 				if (options.Flags(ShowAttributes))
 				{
-					sb.AppendLine(GetValue("AnalysisResultAttributes"));
+					sb.AppendLine(Current.AnalysisResultAttributes);
 					foreach (var methodInfo in
 						from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
 						where methodInfo.ReturnType == typeof(bool)
@@ -284,7 +284,7 @@ namespace Sudoku.Solving
 				// Print backdoors (if worth).
 				if (options.Flags(ShowBackdoors))
 				{
-					sb.AppendLine(GetValue("AnalysisResultBackdoors"));
+					sb.AppendLine(Current.AnalysisResultBackdoors);
 					var searcher = new BackdoorSearcher();
 					foreach (var assignment in searcher.SearchForBackdoorsExact(puzzle, 0))
 					{

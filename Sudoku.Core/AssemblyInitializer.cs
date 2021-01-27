@@ -38,7 +38,8 @@ namespace Sudoku
 				throw new SudokuHandlingException<string, string>(
 					errorCode: 401,
 					Assembly.GetExecutingAssembly().FullName!,
-					path);
+					path
+				);
 			}
 		}
 	}

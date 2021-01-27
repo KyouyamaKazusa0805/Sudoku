@@ -14,7 +14,7 @@ namespace Sudoku.Solving.BruteForces
 	public sealed class OneLineLinqSolver : ISolver
 	{
 		/// <inheritdoc/>
-		public string SolverName => TextResources.GetValue("OneLineLinq");
+		public string SolverName => TextResources.Current.OneLineLinq;
 
 
 		/// <inheritdoc/>

@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual
 	{
 		/// <inheritdoc/>
 		[JsonIgnore]
-		public string SolverName => TextResources.GetValue("Manual");
+		public string SolverName => TextResources.Current.Manual;
 
 
 		/// <inheritdoc/>

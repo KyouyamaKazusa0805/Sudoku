@@ -17,7 +17,7 @@ namespace Sudoku.Solving.BruteForces
 
 
 		/// <inheritdoc/>
-		public string SolverName => TextResources.GetValue("Backtracking");
+		public string SolverName => TextResources.Current.Backtracking;
 
 
 		/// <inheritdoc/>

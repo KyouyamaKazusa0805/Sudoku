@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual
 				// Update the progress result.
 				if (progress is not null)
 				{
-					progressResult.CurrentTechnique = TextResources.GetValue($"Progress{displayLabel}");
+					progressResult.CurrentTechnique = TextResources.Current[$"Progress{displayLabel}"];
 					progressResult.CurrentIndex++;
 					progress.Report(progressResult);
 				}
@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Manual
 			// Group them up.
 			if (progress is not null)
 			{
-				progressResult.CurrentTechnique = TextResources.GetValue("Summary");
+				progressResult.CurrentTechnique = TextResources.Current.Summary;
 				progressResult.CurrentIndex++;
 				progress.Report(progressResult);
 			}

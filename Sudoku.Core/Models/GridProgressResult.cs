@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Sudoku.DocComments;
 using Sudoku.Globalization;
 using Sudoku.Resources;
@@ -84,8 +85,12 @@ namespace Sudoku.Models
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString() =>
-			$"{TextResources.GetValue("UnsolvedCells")}{CurrentCellsCount.ToString()}" +
-			$"{TextResources.GetValue("UnsolvedCandidates")}{CurrentCandidatesCount.ToString()}";
+			new StringBuilder()
+			.Append(TextResources.Current.UnsolvedCells)
+			.Append(CurrentCellsCount.ToString())
+			.Append(TextResources.Current.UnsolvedCandidates)
+			.Append(CurrentCandidatesCount.ToString())
+			.ToString();
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override readonly bool Equals(object? obj) =>

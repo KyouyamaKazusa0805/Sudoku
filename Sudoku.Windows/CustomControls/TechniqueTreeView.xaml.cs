@@ -42,7 +42,7 @@ namespace Sudoku.Windows.CustomControls
 				select (
 					technique,
 					(int)technique,
-					TextResources.GetValue(technique.ToString()),
+					TextResources.Current[technique.ToString()],
 					Category: nullableCategory);
 
 			var categories = new List<string>((from quadruple in selection select quadruple.Category).Distinct());

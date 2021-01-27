@@ -39,7 +39,7 @@ namespace Sudoku.Windows.CustomControls
 				from technique in Enum.GetValues<Technique>()
 				let nullableCategory = LangSource[$"Group{technique.ToString()}"] as string
 				where nullableCategory is not null
-				select (TextResources.GetValue(technique.ToString()), technique, nullableCategory))
+				select (TextResources.Current[technique.ToString()], technique, nullableCategory))
 			{
 				var box = new TechniqueBox
 				{
