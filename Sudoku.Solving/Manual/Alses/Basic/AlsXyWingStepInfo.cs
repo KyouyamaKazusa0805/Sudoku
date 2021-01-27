@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -38,9 +37,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string xStr = new DigitCollection(XDigitsMask.GetAllSets()).ToString();
-			string yStr = new DigitCollection(YDigitsMask.GetAllSets()).ToString();
-			string zStr = new DigitCollection(ZDigitsMask.GetAllSets()).ToString();
+			string xStr = new DigitCollection(XDigitsMask).ToString();
+			string yStr = new DigitCollection(YDigitsMask).ToString();
+			string zStr = new DigitCollection(ZDigitsMask).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: {Als1.ToString()} -> {Bridge.ToString()} -> {Als2.ToString()}, " +

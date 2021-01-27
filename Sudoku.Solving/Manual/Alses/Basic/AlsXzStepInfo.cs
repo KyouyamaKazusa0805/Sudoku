@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -83,10 +82,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			else
 			{
 				// ALS-XZ.
-				string xStr = new DigitCollection(XDigitsMask.GetAllSets()).ToString();
+				string xStr = new DigitCollection(XDigitsMask).ToString();
 				string zResultStr =
 					ZDigitsMask != 0
-					? $", z = {new DigitCollection(ZDigitsMask.GetAllSets()).ToString()}"
+					? $", z = {new DigitCollection(ZDigitsMask).ToString()}"
 					: string.Empty;
 				return $"{Name}: ALS 1: {Als1.ToString()}, ALS 2: {Als2.ToString()}, x = {xStr}{zResultStr} => {elimStr}";
 			}

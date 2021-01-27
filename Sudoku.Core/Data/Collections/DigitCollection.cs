@@ -20,10 +20,10 @@ namespace Sudoku.Data.Collections
 
 
 		/// <summary>
-		/// Initializes an instance with the specified digit.
+		/// Initializes the collection using a mask.
 		/// </summary>
-		/// <param name="digit">The digit.</param>
-		public DigitCollection(int digit) : this() => _mask |= (short)(1 << digit);
+		/// <param name="mask">The mask.</param>
+		public DigitCollection(short mask) => _mask = mask;
 
 		/// <summary>
 		/// Initializes an instance with the specified digits.
@@ -48,12 +48,6 @@ namespace Sudoku.Data.Collections
 				_mask |= (short)(1 << digit);
 			}
 		}
-
-		/// <summary>
-		/// Initializes the collection using a mask.
-		/// </summary>
-		/// <param name="mask">The mask.</param>
-		private DigitCollection(short mask) => _mask = mask;
 
 
 		/// <summary>

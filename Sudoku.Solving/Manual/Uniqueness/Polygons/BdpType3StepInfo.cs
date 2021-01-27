@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -30,10 +29,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
+			string digitsStr = new DigitCollection(DigitsMask).ToString();
 			string cellsStr = Map.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string exDigitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
+			string exDigitsStr = new DigitCollection(ExtraDigitsMask).ToString();
 			string exCellsStr = ExtraCells.ToString();
 			return
 				$"{Name}: {digitsStr} in cells {cellsStr} with the digits {exDigitsStr} in cells {exCellsStr}" +

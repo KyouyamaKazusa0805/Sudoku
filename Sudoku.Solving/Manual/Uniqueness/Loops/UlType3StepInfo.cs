@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -31,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			string cellsStr = Loop.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string subsetName = SubsetNames[SubsetCells.Count + 1];
-			string digitsStr = new DigitCollection(SubsetDigitsMask.GetAllSets()).ToString();
+			string digitsStr = new DigitCollection(SubsetDigitsMask).ToString();
 			string subsetCellsStr = new Cells(SubsetCells).ToString();
 			return
 				$"{Name}: Digits {(Digit1 + 1).ToString()}, {(Digit2 + 1).ToString()} in cells {cellsStr} " +

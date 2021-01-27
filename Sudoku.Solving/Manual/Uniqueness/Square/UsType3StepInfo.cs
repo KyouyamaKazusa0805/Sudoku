@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -36,9 +35,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
+			string digitsStr = new DigitCollection(DigitsMask).ToString();
 			string cellsStr = Cells.ToString();
-			string subsetDigitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
+			string subsetDigitsStr = new DigitCollection(ExtraDigitsMask).ToString();
 			string subsetCellsStr = new Cells(ExtraCells).ToString();
 			string subsetName = SubsetNames[ExtraCells.Count + 1];
 			string elimStr = new ConclusionCollection(Conclusions).ToString();

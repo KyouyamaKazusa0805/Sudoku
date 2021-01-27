@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -55,11 +54,11 @@ namespace Sudoku.Solving.Manual.RankTheory
 		public override string ToString()
 		{
 			string blockCellsStr = BlockCells.ToString();
-			string blockDigitsStr = new DigitCollection(BlockMask.GetAllSets()).ToString(null);
+			string blockDigitsStr = new DigitCollection(BlockMask).ToString(null);
 			string lineCellsStr = LineCells.ToString();
-			string lineDigitsStr = new DigitCollection(LineMask.GetAllSets()).ToString(null);
+			string lineDigitsStr = new DigitCollection(LineMask).ToString(null);
 			string interCellsStr = IntersectionCells.ToString();
-			string interDigitsStr = new DigitCollection(IntersectionMask.GetAllSets()).ToString(null);
+			string interDigitsStr = new DigitCollection(IntersectionMask).ToString(null);
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: {interCellsStr}({interDigitsStr}) - " +

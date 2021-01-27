@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -39,9 +38,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 			string cells1Str = RowCells.ToString();
 			string cells2Str = ColumnCells.ToString();
 			string cells3Str = BlockCells.ToString();
-			string digits1Str = new DigitCollection(RowDigitsMask.GetAllSets()).ToString();
-			string digits2Str = new DigitCollection(ColumnDigitsMask.GetAllSets()).ToString();
-			string digits3Str = new DigitCollection(BlockDigitsMask.GetAllSets()).ToString();
+			string digits1Str = new DigitCollection(RowDigitsMask).ToString();
+			string digits2Str = new DigitCollection(ColumnDigitsMask).ToString();
+			string digits3Str = new DigitCollection(BlockDigitsMask).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: {cells1Str}({digits1Str}) + {cells2Str}({digits2Str}) + " +

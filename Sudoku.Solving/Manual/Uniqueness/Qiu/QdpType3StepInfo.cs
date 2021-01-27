@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -31,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public override string ToString()
 		{
 			string patternStr = Pattern.FullMap.ToString();
-			string digitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
+			string digitsStr = new DigitCollection(ExtraDigitsMask).ToString();
 			string cellsStr = new Cells(ExtraCells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string subsetName = SubsetNames[ExtraCells.Count + 1].ToLower();

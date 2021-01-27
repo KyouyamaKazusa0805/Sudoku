@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -74,7 +73,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
-			string digits = new DigitCollection((LineMask | BlockMask).GetAllSets()).ToString();
+			string digits = new DigitCollection((short)(LineMask | BlockMask)).ToString();
 			string mergedCells = (LineCells | BlockCells).ToString();
 			return $"a generalized Sue de Coq in cells {mergedCells} of digits {digits}";
 		}

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Extensions;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -60,7 +58,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
+			string digitsStr = new DigitCollection(DigitsMask).ToString();
 			string baseCellsStr = BaseCells.ToString();
 			string targetCellsStr = TargetCells.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();

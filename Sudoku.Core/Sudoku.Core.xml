@@ -1204,11 +1204,11 @@
             Indicates the inner mask.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.Int32)">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.Int16)">
             <summary>
-            Initializes an instance with the specified digit.
+            Initializes the collection using a mask.
             </summary>
-            <param name="digit">The digit.</param>
+            <param name="mask">The mask.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
             <summary>
@@ -1221,12 +1221,6 @@
             Initializes an instance with the specified digits.
             </summary>
             <param name="digits">The digits.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.Int16)">
-            <summary>
-            Initializes the collection using a mask.
-            </summary>
-            <param name="mask">The mask.</param>
         </member>
         <member name="P:Sudoku.Data.Collections.DigitCollection.Count">
             <summary>

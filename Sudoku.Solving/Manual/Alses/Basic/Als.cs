@@ -175,12 +175,12 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override string ToString() =>
 			IsBivalueCell
 			? new StringBuilder()
-				.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
+				.Append(new DigitCollection(DigitsMask).ToString(null))
 				.Append('/')
 				.Append(Map.ToString())
 				.ToString()
 			: new StringBuilder()
-				.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
+				.Append(new DigitCollection(DigitsMask).ToString(null))
 				.Append('/')
 				.Append(Map.ToString())
 				.Append(' ')

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -27,7 +26,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		public override string ToString()
 		{
 			string candStr = new Candidates { Candidate }.ToString();
-			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
+			string digitsStr = new DigitCollection(DigitsMask).ToString();
 			string cellsStr = Cells.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
