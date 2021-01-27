@@ -198,20 +198,6 @@
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the solver will check templates before searching
-		/// Hobiwan's fish.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="true"/> in default case. If the value
-		/// is <see langword="true"/>, the solver will check templates first,
-		/// and get all possible eliminations for each digit. If the digit does
-		/// not contain any elimination, the digit won't exist any fish.
-		/// </para>
-		/// </summary>
-		public bool HobiwanFishCheckTemplates { get; set; } = true;
-
-		/// <summary>
-		/// <para>
 		/// Indicates whether the step accumulator only records template delete,
 		/// and template set won't be in this collection (if necessary).
 		/// </para>
@@ -303,33 +289,6 @@
 #if AUTHOR_RESERVED
 		= true;
 #endif
-
-		/// <summary>
-		/// <para>
-		/// Indicates what size of the Hobiwan's fish will be searched for.
-		/// </para>
-		/// <para>
-		/// The value is <c>3</c> in default case. The maximum value supporting
-		/// is <c>7</c>.
-		/// </para>
-		/// </summary>
-		public int HobiwanFishMaximumSize { get; set; } = 3;
-
-		/// <summary>
-		/// <para>
-		/// Indicates how many exo-fins in Hobiwan's fish will be searched for.
-		/// </para>
-		/// <para>The value is <c>3</c> in default case.</para>
-		/// </summary>
-		public int HobiwanFishMaximumExofinsCount { get; set; } = 3;
-
-		/// <summary>
-		/// <para>
-		/// Indicates how many endo-fins in Hobiwan's fish will be searched for.
-		/// </para>
-		/// <para>The value is <c>1</c> in default case.</para>
-		/// </summary>
-		public int HobiwanFishMaximumEndofinsCount { get; set; } = 1;
 
 		/// <summary>
 		/// <para>

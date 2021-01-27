@@ -134,10 +134,6 @@ namespace Sudoku.Windows
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.MainManualSolver.SearchExtendedUniqueRectangles;
 			_numericUpDownMaxPetalsOfDeathBlossom.CurrentValue = Settings.MainManualSolver.MaxPetalsOfDeathBlossom;
 			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.MainManualSolver.CheckAdvancedInExocet;
-			_numericUpDownMaximumSizeHobiwanFish.CurrentValue = Settings.MainManualSolver.HobiwanFishMaximumSize;
-			_numericUpDownMaximumExofinsHobiwanFish.CurrentValue = Settings.MainManualSolver.HobiwanFishMaximumExofinsCount;
-			_numericUpDownMaximumEndofinsHobiwanFish.CurrentValue = Settings.MainManualSolver.HobiwanFishMaximumEndofinsCount;
-			_checkBoxHobiwanFishCheckTemplates.IsChecked = Settings.MainManualSolver.HobiwanFishCheckTemplates;
 			_checkBoxShowDirectLines.IsChecked = Settings.ShowDirectLines;
 
 			// Page 3.
@@ -318,26 +314,6 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxCheckAdvancedInExocet_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxCheckAdvancedInExocet.IsChecked = _manualSolver.CheckAdvancedInExocet ^= true;
-
-		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
-		private void NumericUpDownMaximumSizeHobiwanFish_ValueChanged(object sender, RoutedEventArgs e) =>
-			_assigments += () =>
-			_manualSolver.HobiwanFishMaximumSize = (int)_numericUpDownMaximumSizeHobiwanFish.CurrentValue;
-
-		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
-		private void NumericUpDownExofinsHobiwanFish_ValueChanged(object sender, RoutedEventArgs e) =>
-			_assigments += () =>
-			_manualSolver.HobiwanFishMaximumExofinsCount = (int)_numericUpDownMaximumExofinsHobiwanFish.CurrentValue;
-
-		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
-		private void NumericUpDownMaximumEndofinsHobiwanFish_ValueChanged(object sender, RoutedEventArgs e) =>
-			_assigments += () =>
-			_manualSolver.HobiwanFishMaximumEndofinsCount = (int)_numericUpDownMaximumEndofinsHobiwanFish.CurrentValue;
-
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
-		private void CheckBoxHobiwanFishCheckTemplates_Click(object sender, RoutedEventArgs e) =>
-			_assigments += () =>
-			_checkBoxHobiwanFishCheckTemplates.IsChecked = _manualSolver.HobiwanFishCheckTemplates ^= true;
 
 		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void NumericUpDownGridLineWidth_ValueChanged(object sender, RoutedEventArgs e) =>

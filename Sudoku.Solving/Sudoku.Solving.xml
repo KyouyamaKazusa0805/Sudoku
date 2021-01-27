@@ -4395,20 +4395,6 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishCheckTemplates">
-            <summary>
-            <para>
-            Indicates whether the solver will check templates before searching
-            Hobiwan's fish.
-            </para>
-            <para>
-            The value is <see langword="true"/> in default case. If the value
-            is <see langword="true"/>, the solver will check templates first,
-            and get all possible eliminations for each digit. If the digit does
-            not contain any elimination, the digit won't exist any fish.
-            </para>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OnlyRecordTemplateDelete">
             <summary>
             <para>
@@ -4495,33 +4481,6 @@
             </para>
             <para>The value is <see langword="true"/> in debugger mode, and
             <see langword="false"/> in release mode in default case.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumSize">
-            <summary>
-            <para>
-            Indicates what size of the Hobiwan's fish will be searched for.
-            </para>
-            <para>
-            The value is <c>3</c> in default case. The maximum value supporting
-            is <c>7</c>.
-            </para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumExofinsCount">
-            <summary>
-            <para>
-            Indicates how many exo-fins in Hobiwan's fish will be searched for.
-            </para>
-            <para>The value is <c>3</c> in default case.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumEndofinsCount">
-            <summary>
-            <para>
-            Indicates how many endo-fins in Hobiwan's fish will be searched for.
-            </para>
-            <para>The value is <c>1</c> in default case.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength">
