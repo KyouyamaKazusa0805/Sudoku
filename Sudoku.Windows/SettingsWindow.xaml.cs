@@ -135,6 +135,7 @@ namespace Sudoku.Windows
 			_numericUpDownMaxPetalsOfDeathBlossom.CurrentValue = Settings.MainManualSolver.MaxPetalsOfDeathBlossom;
 			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.MainManualSolver.CheckAdvancedInExocet;
 			_checkBoxShowDirectLines.IsChecked = Settings.ShowDirectLines;
+			_numericUpDownComplexFishMaxSize.CurrentValue = Settings.MainManualSolver.ComplexFishMaxSize;
 
 			// Page 3.
 			_numericUpDownGridLineWidth.CurrentValue = (decimal)Settings.GridLineWidth;
@@ -226,7 +227,9 @@ namespace Sudoku.Windows
 				select new ListBoxItem()
 				{
 					Content = new StepTriplet(
-						$"({props.Priority.ToString()}) {triplet.SearcherName}", props.Priority, triplet.CurrentType
+						$"({props.Priority.ToString()}) {triplet.SearcherName}",
+						props.Priority,
+						triplet.CurrentType
 					),
 					HorizontalContentAlignment = HorizontalAlignment.Left,
 					VerticalContentAlignment = VerticalAlignment.Center
@@ -314,6 +317,10 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxCheckAdvancedInExocet_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxCheckAdvancedInExocet.IsChecked = _manualSolver.CheckAdvancedInExocet ^= true;
+
+		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
+		private void NumericUpDownComplexFishMaxSize_ValueChanged(object sender, RoutedEventArgs e) =>
+			_assigments += () => Settings.MainManualSolver.ComplexFishMaxSize = (int)_numericUpDownComplexFishMaxSize.CurrentValue;
 
 		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void NumericUpDownGridLineWidth_ValueChanged(object sender, RoutedEventArgs e) =>

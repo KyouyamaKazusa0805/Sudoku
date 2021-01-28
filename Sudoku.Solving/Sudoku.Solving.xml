@@ -3387,6 +3387,17 @@
             Indictes the mask that means all regions.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher._maxSize">
+            <summary>
+            Indicates the max size to search.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the max size.
+            </summary>
+            <param name="maxSize">The max size.</param>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
@@ -4509,6 +4520,12 @@
             <summary>
             <para>Indicates the max petals of death blossom to search.</para>
             <para>The value is <c>5</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.ComplexFishMaxSize">
+            <summary>
+            <para>Indicates the max size of the complex fish to search.</para>
+            <para>The default value is <c>5</c>.</para>
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordStep(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Diagnostics.Stopwatch,System.Collections.Generic.IList{Sudoku.Data.SudokuGrid},Sudoku.Solving.AnalysisResult@,System.Nullable{System.Threading.CancellationToken})">

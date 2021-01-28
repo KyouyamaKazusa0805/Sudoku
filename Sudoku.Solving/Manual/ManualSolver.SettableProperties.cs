@@ -322,5 +322,11 @@
 		/// <para>The value is <c>5</c> in default case.</para>
 		/// </summary>
 		public int MaxPetalsOfDeathBlossom { get; set; } = 5;
+
+		/// <summary>
+		/// <para>Indicates the max size of the complex fish to search.</para>
+		/// <para>The default value is <c>5</c>.</para>
+		/// </summary>
+		public int ComplexFishMaxSize { get; set; } = 5;
 	}
 }

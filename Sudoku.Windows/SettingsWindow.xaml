@@ -192,6 +192,12 @@
 									  x:Name="_checkBoxShowDirectLines"
 									  Content="{DynamicResource SettingsSolvingShowDirectLines}"
 									  Click="CheckBoxShowDirectLines_Click"/>
+							<Label Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"
+								   Content="{DynamicResource SettingsSolvingFishMaxSize}"/>
+							<c:NumericUpDown x:Name="_numericUpDownComplexFishMaxSize"
+											 Grid.Row="4" Grid.Column="5" MinValue="2" MaxValue="7"
+											 ValueChanged="NumericUpDownComplexFishMaxSize_ValueChanged"/>
 						</Grid>
 					</GroupBox>
 				</Grid>

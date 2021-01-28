@@ -37,6 +37,19 @@ namespace Sudoku.Solving.Manual.Fishes
 		private const int AllRegions = 0b111_111_111__111_111_111__111_111_111;
 
 
+		/// <summary>
+		/// Indicates the max size to search.
+		/// </summary>
+		private readonly int _maxSize;
+
+
+		/// <summary>
+		/// Initializes an instance with the max size.
+		/// </summary>
+		/// <param name="maxSize">The max size.</param>
+		public ComplexFishStepSearcher(int maxSize) => _maxSize = maxSize;
+
+
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(32, nameof(Technique.FrankenSwordfish))
 		{
@@ -104,16 +117,15 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
 		/// <param name="digit">The current digit used.</param>
-		private static unsafe void GetAll(
+		private unsafe void GetAll(
 			IList<StepInfo> accumulator, in SudokuGrid grid, IList<Conclusion>?[] pomElims, int digit)
 		{
-			const int maxSize = 5;
 			const RegionLabel bothLines = (RegionLabel)3;
 
-			int* currentCoverSets = stackalloc int[maxSize];
+			int* currentCoverSets = stackalloc int[_maxSize];
 
 			// Iterate on each size.
-			for (int size = 2; size <= maxSize; size++)
+			for (int size = 2; size <= _maxSize; size++)
 			{
 				// Iterate on different cases on whether searcher finds mutant fishes.
 				// If false, search for franken fishes.

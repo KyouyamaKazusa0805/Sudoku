@@ -243,10 +243,7 @@
 	<sys:String x:Key="SettingsSolvingMiscSearchUrExtensions">Search UR extensions</sys:String>
 	<sys:String x:Key="SettingsSolvingMiscDeathBlossomMaxPetals">Max petals of death blossom:</sys:String>
 	<sys:String x:Key="SettingsSolvingMiscExocetsCheckAdvancedElims">Check advanced eliminations in exocets</sys:String>
-	<sys:String x:Key="SettingsSolvingFish">Hobiwan's Fish</sys:String>
-	<sys:String x:Key="SettingsSolvingFishMaxSize">Maximum size:</sys:String>
-	<sys:String x:Key="SettingsSolvingFishMaxExofins">Maximum Exo-fins count:</sys:String>
-	<sys:String x:Key="SettingsSolvingFishMaxEndofins">Maximum Endo-fins count:</sys:String>
+	<sys:String x:Key="SettingsSolvingFishMaxSize">Maximum size of the fish searching:</sys:String>
 	<sys:String x:Key="SettingsSolvingFishCheckTemplates">Check templates</sys:String>
 	<sys:String x:Key="SettingsSolvingShowDirectLines">Show direct logic for hidden singles and naked singles</sys:String>
 	<sys:String x:Key="SettingsDrawing">Drawing</sys:String>

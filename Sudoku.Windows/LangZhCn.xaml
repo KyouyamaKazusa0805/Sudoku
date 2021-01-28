@@ -243,10 +243,7 @@
 	<sys:String x:Key="SettingsSolvingMiscSearchUrExtensions">搜索 UR 拓展类型</sys:String>
 	<sys:String x:Key="SettingsSolvingMiscDeathBlossomMaxPetals">死亡绽放的最多花瓣数：</sys:String>
 	<sys:String x:Key="SettingsSolvingMiscExocetsCheckAdvancedElims">检查飞鱼导弹的进阶删数</sys:String>
-	<sys:String x:Key="SettingsSolvingFish">鱼（Hobiwan's Fish）</sys:String>
-	<sys:String x:Key="SettingsSolvingFishMaxSize">最大规格：</sys:String>
-	<sys:String x:Key="SettingsSolvingFishMaxExofins">外鱼鳍最多搜索个数：</sys:String>
-	<sys:String x:Key="SettingsSolvingFishMaxEndofins">内鱼鳍最多搜索个数：</sys:String>
+	<sys:String x:Key="SettingsSolvingFishMaxSize">鱼的最大搜索规格：</sys:String>
 	<sys:String x:Key="SettingsSolvingFishCheckTemplates">预先检查模板删数</sys:String>
 	<sys:String x:Key="SettingsSolvingShowDirectLines">显示排除唯余的排除逻辑</sys:String>
 	<sys:String x:Key="SettingsDrawing">绘图</sys:String>

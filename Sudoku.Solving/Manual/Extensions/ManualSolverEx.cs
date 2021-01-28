@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.Extensions
 				new AlsXyWingStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
 				new AlsWWingStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
 				//new DbStepSearcher(),
-				new ComplexFishStepSearcher(),
+				new ComplexFishStepSearcher(@this.ComplexFishMaxSize),
 				new FcStepSearcher(nishio: true, multiple: false, dynamic: true),
 				new FcStepSearcher(nishio: false, multiple: true, dynamic: false),
 				new BugMultipleWithFcStepSearcher(),
