@@ -1344,17 +1344,6 @@
             Encapsulates a <b>death blossom</b> technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.Basic.DbStepSearcher._maxSize">
-            <summary>
-            Indicates the maximum number of ALSes to search.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DbStepSearcher.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified size.
-            </summary>
-            <param name="maxSize">The size.</param>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.DbStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>

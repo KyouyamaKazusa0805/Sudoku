@@ -14,21 +14,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// </summary>
 	public sealed class DbStepSearcher : AlsStepSearcher
 	{
-		/// <summary>
-		/// Indicates the maximum number of ALSes to search.
-		/// </summary>
-		private readonly int _maxSize;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified size.
-		/// </summary>
-		/// <param name="maxSize">The size.</param>
-		public DbStepSearcher(int maxSize) => _maxSize = maxSize;
-
-
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static TechniqueProperties Properties { get; } = new(80, nameof(Technique.DeathBlossom))
+		public static TechniqueProperties Properties { get; } = new(31, nameof(Technique.DeathBlossom))
 		{
 			DisplayLevel = 3,
 			IsEnabled = false,
@@ -81,7 +68,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 					}
 
-					for (int size = 2, min = Math.Min(relativeAlses.Count, _maxSize); size <= min; size++)
+					for (int size = 2, maxSize = relativeAlses.Count; size <= maxSize; size++)
 					{
 						foreach (var combination in relativeAlses.GetSubsets(size))
 						{
