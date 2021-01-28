@@ -155,65 +155,6 @@
             <param name="sender">The control to trigger <c>Drop</c> event.</param>
             <param name="e">The event information, whose value is specified as a parameter.</param>
         </member>
-        <member name="T:Sudoku.DocComments.ExocetElimination">
-            <summary>
-            Provides with doc comments for exocet eliminations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.DocComments.ExocetElimination.#ctor(System.Collections.Generic.IList{Sudoku.DocComments.ExocetElimination.Conclusion})">
-            <summary>
-            Initializes an instance with the specified conclusions.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-        </member>
-        <member name="P:Sudoku.DocComments.ExocetElimination.Count">
-            <summary>
-            Indicates the number of all conclusions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DocComments.ExocetElimination.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.DocComments.ExocetElimination.Add(Sudoku.DocComments.ExocetElimination.Conclusion@)">
-            <summary>
-            Add the conclusion into the collection.
-            </summary>
-            <param name="conclusion">(<see langword="in"/> parameter) The conclusion.</param>
-        </member>
-        <member name="M:Sudoku.DocComments.ExocetElimination.AddRange(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination.Conclusion})">
-            <summary>
-            Add a serial of conclusions into this collection.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-        </member>
-        <member name="M:Sudoku.DocComments.ExocetElimination.Merge(Sudoku.DocComments.ExocetElimination[])">
-            <summary>
-            Merge all eliminations.
-            </summary>
-            <param name="eliminations">(<see langword="params"/> parameter) All instances to merge.</param>
-            <returns>The merged result.</returns>
-        </member>
-        <member name="M:Sudoku.DocComments.ExocetElimination.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.DocComments.ExocetElimination})">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
-        </member>
-        <member name="M:Sudoku.DocComments.ExocetElimination.MergeAll(Sudoku.DocComments.ExocetElimination[])">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">(<see langword="params"/> parameter) The list.</param>
-            <returns>The merged result.</returns>
-        </member>
-        <member name="T:Sudoku.DocComments.ExocetElimination.Conclusion">
-            <summary>
-            Encapsulates a conclusion same as <c>Sudoku.Data.Conclusion</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.DocComments.Formattable">
             <summary>
             Provides with doc comments for <c>ToString</c> methods.
