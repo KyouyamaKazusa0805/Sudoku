@@ -261,7 +261,7 @@
         <member name="M:Sudoku.Recognition.RecognitionServiceProvider.Dispose">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Recognition.RecognitionServiceProvider.Recorgnize(System.Drawing.Bitmap)">
+        <member name="M:Sudoku.Recognition.RecognitionServiceProvider.Recognize(System.Drawing.Bitmap)">
             <summary>
             Recognize the image.
             </summary>
@@ -271,7 +271,7 @@
             Throws when the tool has not initialized yet.
             </exception>
         </member>
-        <member name="M:Sudoku.Recognition.RecognitionServiceProvider.RecorgnizeAsync(System.Drawing.Bitmap)">
+        <member name="M:Sudoku.Recognition.RecognitionServiceProvider.RecognizeAsync(System.Drawing.Bitmap)">
             <summary>
             Recognize the image asynchronizedly.
             </summary>
