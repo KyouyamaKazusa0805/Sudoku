@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			// Round-robin algorithm to synchronize the threads.
 			while (true)
 			{
-				Thread.Sleep(500);
+				Thread.Sleep(250);
 
 				bool flag = true;
 				for (int digit = 0; digit < 9; digit++)
