@@ -340,13 +340,13 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
 		/// </summary>
-		private readonly unsafe ValueArray<int> Offsets
+		private readonly unsafe int[] Offsets
 		{
 			get
 			{
 				if (IsEmpty)
 				{
-					return ValueArray<int>.Empty;
+					return Array.Empty<int>();
 				}
 
 				long value;
@@ -373,7 +373,13 @@ namespace Sudoku.Data
 					}
 				}
 
-				return new ValueArray<int>(result, Count);
+				int[] arr = new int[Count];
+				fixed (int* ptr = arr)
+				{
+					Unsafe.CopyBlock(ptr, result, (uint)(sizeof(int) * Count));
+				}
+
+				return arr;
 			}
 		}
 
@@ -505,7 +511,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly IEnumerator<int> GetEnumerator() => ((IEnumerable<int>)ToArray()).GetEnumerator();
+		public readonly IEnumerator<int> GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -516,7 +522,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>An array of all set cell offsets.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int[] ToArray() => Offsets.ToArray();
+		public readonly int[] ToArray() => Offsets;
 
 		/// <inheritdoc cref="object.ToString"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

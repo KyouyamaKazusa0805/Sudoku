@@ -4,10 +4,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
-using Sudoku.Drawing;
-using Sudoku.Models;
 using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
@@ -33,7 +30,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(80, nameof(Technique.DeathBlossom))
 		{
-			DisplayLevel = 3
+			DisplayLevel = 3,
+			IsEnabled = false,
+			DisabledReason = DisabledReason.HasBugs
 		};
 
 
