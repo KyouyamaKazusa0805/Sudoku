@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving.Manual.Tracing
 {

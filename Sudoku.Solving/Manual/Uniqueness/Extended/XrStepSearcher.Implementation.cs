@@ -1,13 +1,12 @@
-﻿using Sudoku.Data;
-using Sudoku.Data.Extensions;
-using Sudoku.Drawing;
+﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
+using Sudoku.Data;
+using Sudoku.Drawing;
+using Sudoku.Models;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
-using System;
-using Sudoku.Models;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {

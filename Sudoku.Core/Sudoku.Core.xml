@@ -1628,59 +1628,6 @@
             </summary>
             <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridEx.Deconstruct(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-            <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
-            <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
-            <param name="candidates">
-            (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit.
-            </param>
-            <param name="digits">
-            (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit
-            or that value in given or modifiable.
-            </param>
-            <param name="values">
-            (<see langword="out"/> parameter) The map of all cells that is the given or modifiable value,
-            and the digit is the specified one.
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridEx.Exists(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
-            <summary>
-            Indicates whether the specified grid contains the digit in the specified cell.
-            </summary>
-            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
-            <param name="cell">The cell offset.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
-            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
-            All values corresponding to the cases are below:
-            <list type="table">
-            <item>
-            <term><c><see langword="true"/></c></term>
-            <description>
-            The cell is an empty cell <b>and</b> contains the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><c><see langword="false"/></c></term>
-            <description>
-            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><c><see langword="null"/></c></term>
-            <description>The cell is <b>not</b> an empty cell.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
-            '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
-            to decide whether a condition is true.
-            </remarks>
-        </member>
         <member name="M:Sudoku.Data.Extensions.SudokuGridEx.Duplicate(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
             <summary>
             Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
@@ -3322,6 +3269,22 @@
             </value>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
+            <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
+            <param name="candidates">
+            (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit.
+            </param>
+            <param name="digits">
+            (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit
+            or that value in given or modifiable.
+            </param>
+            <param name="values">
+            (<see langword="out"/> parameter) The map of all cells that is the given or modifiable value,
+            and the digit is the specified one.
+            </param>
+        </member>
         <member name="M:Sudoku.Data.SudokuGrid.SimplyValidate">
             <summary>
             Check whether the current grid is valid (no duplicate values on same row, column or block).
@@ -3333,6 +3296,41 @@
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Exists(System.Int32,System.Int32)">
+            <summary>
+            Indicates whether the current grid contains the digit in the specified cell.
+            </summary>
+            <param name="cell">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
+            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+            All values corresponding to the cases are below:
+            <list type="table">
+            <item>
+            <term><c><see langword="true"/></c></term>
+            <description>
+            The cell is an empty cell <b>and</b> contains the specified digit.
+            </description>
+            </item>
+            <item>
+            <term><c><see langword="false"/></c></term>
+            <description>
+            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
+            </description>
+            </item>
+            <item>
+            <term><c><see langword="null"/></c></term>
+            <description>The cell is <b>not</b> an empty cell.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
+            '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
+            to decide whether a condition is true.
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>

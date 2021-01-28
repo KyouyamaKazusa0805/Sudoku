@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.FastProperties;

@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -454,6 +453,30 @@ namespace Sudoku.Data
 			}
 		}
 
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
+		/// <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
+		/// <param name="candidates">
+		/// (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit.
+		/// </param>
+		/// <param name="digits">
+		/// (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit
+		/// or that value in given or modifiable.
+		/// </param>
+		/// <param name="values">
+		/// (<see langword="out"/> parameter) The map of all cells that is the given or modifiable value,
+		/// and the digit is the specified one.
+		/// </param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly void Deconstruct(
+			out Cells empty, out Cells bivalue, out Cells[] candidates, out Cells[] digits, out Cells[] values)
+		{
+			empty = EmptyCells;
+			bivalue = BivalueCells;
+			candidates = CandidateMap;
+			digits = DigitsMap;
+			values = ValuesMap;
+		}
 
 		/// <summary>
 		/// Check whether the current grid is valid (no duplicate values on same row, column or block).
@@ -501,6 +524,43 @@ namespace Sudoku.Data
 		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Equals(in SudokuGrid other) => Equals(this, other);
+
+		/// <summary>
+		/// Indicates whether the current grid contains the digit in the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell offset.</param>
+		/// <param name="digit">The digit.</param>
+		/// <returns>
+		/// The method will return a <see cref="bool"/>? value (contains three possible cases:
+		/// <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+		/// All values corresponding to the cases are below:
+		/// <list type="table">
+		/// <item>
+		/// <term><c><see langword="true"/></c></term>
+		/// <description>
+		/// The cell is an empty cell <b>and</b> contains the specified digit.
+		/// </description>
+		/// </item>
+		/// <item>
+		/// <term><c><see langword="false"/></c></term>
+		/// <description>
+		/// The cell is an empty cell <b>but doesn't</b> contain the specified digit.
+		/// </description>
+		/// </item>
+		/// <item>
+		/// <term><c><see langword="null"/></c></term>
+		/// <description>The cell is <b>not</b> an empty cell.</description>
+		/// </item>
+		/// </list>
+		/// </returns>
+		/// <remarks>
+		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
+		/// '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
+		/// to decide whether a condition is true.
+		/// </remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly bool? Exists(int cell, int digit) =>
+			GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving.Manual.Tracing
 {
