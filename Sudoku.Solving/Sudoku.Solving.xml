@@ -5190,6 +5190,11 @@
             Indicates the solver enables these options.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.#ctor">
+            <summary>
+            Initializes the instance with all value <see langword="false"/>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with enable options.

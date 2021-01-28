@@ -24,6 +24,13 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <summary>
+		/// Initializes the instance with all value <see langword="false"/>.
+		/// </summary>
+		public SingleStepSearcher() : this(false, false, false)
+		{
+		}
+
+		/// <summary>
 		/// Initializes an instance with enable options.
 		/// </summary>
 		/// <param name="enableFullHouse">

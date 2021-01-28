@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Singles;
 
 namespace Sudoku.Solving.Manual
@@ -24,7 +23,7 @@ namespace Sudoku.Solving.Manual
 		{
 			var cloneation = grid;
 
-			var searcher = new SingleStepSearcher(false, false, false);
+			var searcher = new SingleStepSearcher();
 			List<StepInfo> steps = new(), bag = new();
 			while (!cloneation.IsSolved)
 			{
