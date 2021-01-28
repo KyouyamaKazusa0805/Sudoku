@@ -107,12 +107,13 @@ namespace Sudoku.Solving.Manual.Fishes
 		private static unsafe void GetAll(
 			IList<StepInfo> accumulator, in SudokuGrid grid, IList<Conclusion>?[] pomElims, int digit)
 		{
+			const int maxSize = 5;
 			const RegionLabel bothLines = (RegionLabel)3;
 
-			int* currentCoverSets = stackalloc int[5];
+			int* currentCoverSets = stackalloc int[maxSize];
 
 			// Iterate on each size.
-			for (int size = 2; size <= 5; size++)
+			for (int size = 2; size <= maxSize; size++)
 			{
 				// Iterate on different cases on whether searcher finds mutant fishes.
 				// If false, search for franken fishes.
