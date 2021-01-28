@@ -40,7 +40,9 @@ namespace System
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ValueArray(TUnmanaged* ptr, int length)
 		{
-			_array = ptr;
+			var arr = stackalloc TUnmanaged[length];
+			_array = arr;
+			Unsafe.CopyBlock(_array, ptr, (uint)(sizeof(TUnmanaged) * length));
 			Length = length;
 		}
 
@@ -65,6 +67,12 @@ namespace System
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set => _array[index] = value;
 		}
+
+
+		/// <summary>
+		/// Indicates an empty instance, where the pointer is <see langword="null"/>.
+		/// </summary>
+		public static ValueArray<TUnmanaged> Empty => new();
 
 
 		/// <inheritdoc/>

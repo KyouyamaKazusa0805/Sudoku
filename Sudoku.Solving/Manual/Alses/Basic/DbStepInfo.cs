@@ -37,16 +37,27 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			const string separator = ", ";
 			string pivotStr = new Cells { Pivot }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Cell {pivotStr} - {g()} => {elimStr}";
+			return $"{Name}: Cell {pivotStr} - {AlsPetalsToString()} => {elimStr}";
+		}
 
-			string g() =>
+		/// <summary>
+		/// Get the string result from those ALS petals and their own branches.
+		/// </summary>
+		/// <returns>The string result.</returns>
+		private StringBuilder AlsPetalsToString()
+		{
+			const string separator = ", ";
+
+			return new StringBuilder().AppendRange(Alses, appender).RemoveFromEnd(separator.Length);
+
+			static StringBuilder appender(KeyValuePair<int, Als> pair) =>
 				new StringBuilder()
-				.AppendRange(Alses, static pair => $"{(pair.Key + 1).ToString()} - {pair.Value.ToString()}{separator}")
-				.RemoveFromEnd(separator.Length)
-				.ToString();
+				.Append(pair.Key + 1)
+				.Append(" - ")
+				.Append(pair.Value.ToString())
+				.Append(separator);
 		}
 	}
 }

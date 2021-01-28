@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace System
 {
-	public readonly unsafe ref partial struct ValueArray<TUnmanaged> where TUnmanaged : unmanaged
+	unsafe partial struct ValueArray<TUnmanaged>
 	{
 		/// <summary>
 		/// Indicates the inner enumerator.

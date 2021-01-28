@@ -340,18 +340,18 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
 		/// </summary>
-		private readonly int[] Offsets
+		private readonly unsafe ValueArray<int> Offsets
 		{
 			get
 			{
 				if (IsEmpty)
 				{
-					return Array.Empty<int>();
+					return ValueArray<int>.Empty;
 				}
 
 				long value;
 				int i, pos = 0;
-				var result = (stackalloc int[Count]);
+				int* result = stackalloc int[Count];
 				if (_low != 0)
 				{
 					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
@@ -373,7 +373,7 @@ namespace Sudoku.Data
 					}
 				}
 
-				return result.ToArray();
+				return new ValueArray<int>(result, Count);
 			}
 		}
 
@@ -505,7 +505,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly IEnumerator<int> GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
+		public readonly IEnumerator<int> GetEnumerator() => ((IEnumerable<int>)ToArray()).GetEnumerator();
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -516,7 +516,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>An array of all set cell offsets.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int[] ToArray() => Offsets;
+		public readonly int[] ToArray() => Offsets.ToArray();
 
 		/// <inheritdoc cref="object.ToString"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -798,6 +798,27 @@ namespace Sudoku.Data
 		/// <seealso cref="Add(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Remove(int offset) => InternalAdd(offset, false);
+
+		/// <summary>
+		/// Remove some cells from the current instance when those cells satisfy the specified condition.
+		/// </summary>
+		/// <param name="condition">The condition.</param>
+		/// <returns>The number of cells removed successfully.</returns>
+		public int RemoveAll(Predicate<int> condition)
+		{
+			int count = 0;
+			foreach (int cell in Offsets)
+			{
+				if (condition(cell))
+				{
+					count++;
+
+					Remove(cell);
+				}
+			}
+
+			return count;
+		}
 
 		/// <summary>
 		/// Clear all bits.

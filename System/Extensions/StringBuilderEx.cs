@@ -149,6 +149,28 @@ namespace System.Extensions
 		}
 
 		/// <summary>
+		/// Append a series of elements, and convert them to a <see cref="StringBuilder"/> representation.
+		/// This method allows you defining a custom converter to convert the specified value into
+		/// a string to be appended.
+		/// </summary>
+		/// <typeparam name="TElement">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="contentList">All contents.</param>
+		/// <param name="converter">The converter method specified as a function pointer.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static StringBuilder AppendRange<TElement>(
+			this StringBuilder @this, IEnumerable<TElement?> contentList,
+			Func<TElement?, StringBuilder> converter)
+		{
+			foreach (var content in contentList)
+			{
+				@this.Append(converter(content));
+			}
+
+			return @this;
+		}
+
+		/// <summary>
 		/// Append a series of elements, and convert them to a <see cref="string"/> representation,
 		/// and then append a new line as a separator. This method allows you defining a custom converter
 		/// to convert the specified value into a string to be appended.
