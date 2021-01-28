@@ -1,12 +1,11 @@
-﻿using Sudoku.Data;
-using Sudoku.Data.Extensions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Extensions;
 using System.Runtime.CompilerServices;
+using Sudoku.Data;
+using Sudoku.Solving.Manual.Extensions;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
-using Sudoku.Solving.Manual.Extensions;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
