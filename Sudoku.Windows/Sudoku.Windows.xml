@@ -697,6 +697,61 @@
             </summary>
             <param name="color">(<see langword="in"/> parameter) The color.</param>
         </member>
+        <member name="T:Sudoku.Windows.CustomControls.SudokuGridPanel">
+            <summary>
+            Interaction logic for <c>SudokuGridPanel.xaml</c>.
+            </summary>
+            <summary>
+            SudokuGridPanel
+            </summary>
+        </member>
+        <member name="F:Sudoku.Windows.CustomControls.SudokuGridPanel._painter">
+            <summary>
+            Indicates the base painter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.SudokuGridPanel.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.SudokuGridPanel.#ctor(Sudoku.Drawing.Settings)">
+            <summary>
+            Initializes an instance with the specified settings.
+            </summary>
+            <param name="settings">The settings.</param>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.SudokuGridPanel.MainGrid">
+            <summary>
+            Gets or sets the main grid that this control used.
+            </summary>
+            <returns>The grid.</returns>
+            <value>The grid to assign.</value>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.SudokuGridPanel.Painter">
+            <summary>
+            Gets or sets the painter used.
+            </summary>
+            <value>The painter used.</value>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.SudokuGridPanel.Converter">
+            <summary>
+            Indicates the inner point converter used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.CustomControls.SudokuGridPanel.Settings">
+            <summary>
+            Indicates the base settings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.SudokuGridPanel.Redraw">
+            <summary>
+            To re-draw the grid onto the control.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.CustomControls.SudokuGridPanel.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Sudoku.Windows.CustomControls.TechniqueBox">
             <summary>
             Interaction logic for <c>TechniqueBox.xaml</c>.
@@ -2951,6 +3006,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The bitmap source to set.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>
