@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Extensions;
 using System.Runtime.CompilerServices;
 using static Sudoku.Constants.Tables;
 
@@ -241,7 +242,7 @@ namespace Sudoku.Data.Extensions
 			{
 				for (int i = 0; i < 9; i++)
 				{
-					Algorithms.Swap(pResult + RegionCells[region1][i], pThis + RegionCells[region2][i]);
+					Pointer.Swap(pResult + RegionCells[region1][i], pThis + RegionCells[region2][i]);
 				}
 			}
 

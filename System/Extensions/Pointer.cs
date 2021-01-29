@@ -1,4 +1,6 @@
-﻿namespace System.Extensions
+﻿using System.Runtime.CompilerServices;
+
+namespace System.Extensions
 {
 	/// <summary>
 	/// Provides methods on pointers.
@@ -9,6 +11,22 @@
 	[CLSCompliant(false)]
 	public static unsafe class Pointer
 	{
+		/// <summary>
+		/// To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
+		/// </summary>
+		/// <typeparam name="TUnmanaged">The type of the variable.</typeparam>
+		/// <param name="left">The left variable.</param>
+		/// <param name="right">The right variable.</param>
+		[CLSCompliant(false)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static unsafe void Swap<TUnmanaged>(TUnmanaged* left, TUnmanaged* right)
+			where TUnmanaged : unmanaged
+		{
+			var temp = *left;
+			*left = *right;
+			*right = temp;
+		}
+
 		/// <summary>
 		/// Get the length of the specified string which is represented by a <see cref="char"/>*.
 		/// </summary>

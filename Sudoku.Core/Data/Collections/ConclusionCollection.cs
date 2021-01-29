@@ -114,8 +114,7 @@ namespace Sudoku.Data.Collections
 				{
 					conclusions.Sort(&cmp);
 
-					var selection = from conclusion in conclusions
-									group conclusion by conclusion.ConclusionType;
+					var selection = from conclusion in conclusions group conclusion by conclusion.ConclusionType;
 					bool hasOnlyOneType = selection.HasOnlyOneElement();
 					foreach (var typeGroup in selection)
 					{

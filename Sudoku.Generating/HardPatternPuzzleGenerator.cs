@@ -175,19 +175,19 @@ namespace Sudoku.Generating
 			{
 				for (int i = 23; i >= 0; i--)
 				{
-					Algorithms.Swap(pPattern + i, pPattern + (int)((i + 1) * Rng.NextDouble()));
+					Pointer.Swap(pPattern + i, pPattern + (int)((i + 1) * Rng.NextDouble()));
 				}
 				for (int i = 47; i >= 24; i--)
 				{
-					Algorithms.Swap(pPattern + i, pPattern + 24 + (int)((i - 23) * Rng.NextDouble()));
+					Pointer.Swap(pPattern + i, pPattern + 24 + (int)((i - 23) * Rng.NextDouble()));
 				}
 				for (int i = 53; i >= 48; i--)
 				{
-					Algorithms.Swap(pPattern + i, pPattern + 48 + (int)((i - 47) * Rng.NextDouble()));
+					Pointer.Swap(pPattern + i, pPattern + 48 + (int)((i - 47) * Rng.NextDouble()));
 				}
 				for (int i = 80; i >= 54; i--)
 				{
-					Algorithms.Swap(pPattern + i, pPattern + 54 + (int)(27 * Rng.NextDouble()));
+					Pointer.Swap(pPattern + i, pPattern + 54 + (int)(27 * Rng.NextDouble()));
 				}
 			}
 		}
@@ -203,19 +203,19 @@ namespace Sudoku.Generating
 			{
 				for (int i = 23; i >= 0; i--)
 				{
-					Algorithms.Swap(pPattern + i, pPattern + (int)((i + 1) * Rng.NextDouble()));
+					Pointer.Swap(pPattern + i, pPattern + (int)((i + 1) * Rng.NextDouble()));
 				}
 				for (int i = 47; i >= 24; i--)
 				{
-					Algorithms.Swap(pPattern + i, pPattern + 24 + (int)((i - 23) * Rng.NextDouble()));
+					Pointer.Swap(pPattern + i, pPattern + 24 + (int)((i - 23) * Rng.NextDouble()));
 				}
 				for (int i = 53; i >= 48; i--)
 				{
-					Algorithms.Swap(pPattern + i, pPattern + 48 + (int)((i - 47) * Rng.NextDouble()));
+					Pointer.Swap(pPattern + i, pPattern + 48 + (int)((i - 47) * Rng.NextDouble()));
 				}
 				for (int i = 80; i >= 54; i--)
 				{
-					Algorithms.Swap(pPattern + i, pPattern + 54 + (int)(27 * Rng.NextDouble()));
+					Pointer.Swap(pPattern + i, pPattern + 54 + (int)(27 * Rng.NextDouble()));
 				}
 			}
 		}

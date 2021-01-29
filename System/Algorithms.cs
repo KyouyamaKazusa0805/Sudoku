@@ -10,14 +10,15 @@ namespace System
 	public static partial class Algorithms
 	{
 		/// <summary>
-		/// Sort the specified array.
+		/// Sort the specified array by quick sort.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
 		/// <param name="comparer">The method to compare two elements.</param>
 		/// <remarks>
-		/// If you want to use this method, please note that the <typeparamref name="T"/> may not be the built-in
-		/// types such as <see cref="int"/>, <see cref="float"/> or so on, because they can use operators directly.
+		/// If you want to use this method, please note that the <typeparamref name="T"/>
+		/// may not be the built-in types such as <see cref="int"/>, <see cref="float"/> or so on,
+		/// because they can use operators directly.
 		/// </remarks>
 		[CLSCompliant(false)]
 		public static unsafe void Sort<T>(this T[] @this, delegate* managed<in T, in T, int> comparer)
@@ -92,55 +93,6 @@ namespace System
 		}
 
 		/// <summary>
-		/// Create a <see cref="short"/> value, whose set bits are specified in the parameter
-		/// <paramref name="values"/>.
-		/// </summary>
-		/// <param name="values">The values.</param>
-		/// <returns>The mask result.</returns>
-		/// <remarks>
-		/// For example, if the <paramref name="values"/> are <c>{ 3, 6 }</c>, the return value
-		/// will be <c>1 &lt;&lt; 3 | 1 &lt;&lt; 6</c>.
-		/// </remarks>
-		public static short CreateBitsInt16(int[] values)
-		{
-			short result = 0;
-			foreach (int value in values)
-			{
-				result |= (short)(1 << value);
-			}
-
-			return result;
-		}
-
-		/// <inheritdoc cref="CreateBitsInt16(int[])"/>
-		public static short CreateBitsInt16(short[] values)
-		{
-			short result = 0;
-			foreach (int value in values)
-			{
-				result |= (short)(1 << value);
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
-		/// </summary>
-		/// <typeparam name="TUnmanaged">The type of the variable.</typeparam>
-		/// <param name="left">The left variable.</param>
-		/// <param name="right">The right variable.</param>
-		[CLSCompliant(false)]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static unsafe void Swap<TUnmanaged>(TUnmanaged* left, TUnmanaged* right)
-			where TUnmanaged : unmanaged
-		{
-			var temp = *left;
-			*left = *right;
-			*right = temp;
-		}
-
-		/// <summary>
 		/// Get all subsets that each element is chosen at most once.
 		/// Note that the null set <c>{ }</c> doesn't belong to the result.
 		/// </summary>
@@ -179,7 +131,9 @@ namespace System
 		/// The subsets of the list. For example, if the input array is <c>{ 1, 2, 3 }</c> and
 		/// the argument <paramref name="count"/> is 2, the output should be as follows:
 		/// <list type="table">
-		/// <item><c>{ 1, 2 }</c>, <c>{ 1, 3 }</c>, <c>{ 2, 3 }</c></item>
+		/// <item><c>{ 1, 2 }</c>,</item>
+		/// <item><c>{ 1, 3 }</c>,</item>
+		/// <item><c>{ 2, 3 }</c></item>
 		/// </list>
 		/// 3 cases in total.
 		/// </returns>
@@ -278,6 +232,33 @@ namespace System
 					}
 				}
 			} while (m >= -1);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Create a <see cref="short"/> value, whose set bits are specified in the parameter
+		/// <paramref name="values"/>.
+		/// </summary>
+		/// <param name="values">The values.</param>
+		/// <returns>The mask result.</returns>
+		/// <remarks>
+		/// For example, if the <paramref name="values"/> are <c>{ 3, 6 }</c>, the return value
+		/// will be <c>1 &lt;&lt; 3 | 1 &lt;&lt; 6</c>.
+		/// </remarks>
+		private static short CreateBitsInt16(int[] values)
+		{
+			short result = 0;
+			foreach (int value in values) result |= (short)(1 << value);
+
+			return result;
+		}
+
+		/// <inheritdoc cref="CreateBitsInt16(int[])"/>
+		private static short CreateBitsInt16(short[] values)
+		{
+			short result = 0;
+			foreach (int value in values) result |= (short)(1 << value);
 
 			return result;
 		}

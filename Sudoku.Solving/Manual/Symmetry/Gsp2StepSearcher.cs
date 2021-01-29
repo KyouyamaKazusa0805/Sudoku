@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -213,7 +214,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			{
 				for (int i = 0; i < 9; i++)
 				{
-					Algorithms.Swap(pGrid + RegionCells[region1][i], pGrid + RegionCells[region2][i]);
+					Pointer.Swap(pGrid + RegionCells[region1][i], pGrid + RegionCells[region2][i]);
 				}
 			}
 		}

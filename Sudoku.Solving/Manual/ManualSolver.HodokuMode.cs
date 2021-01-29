@@ -85,13 +85,6 @@ namespace Sudoku.Solving.Manual
 			var searchers = this.GetHodokuModeSearchers(solution);
 			if (UseCalculationPriority)
 			{
-				static int cmp(in StepSearcher a, in StepSearcher b)
-				{
-					int l = TechniqueProperties.FromSearcher(a)!.Priority;
-					int r = TechniqueProperties.FromSearcher(b)!.Priority;
-					return l > r ? 1 : l < r ? -1 : 0;
-				}
-
 				searchers.Sort(&cmp);
 			}
 
@@ -239,6 +232,9 @@ namespace Sudoku.Solving.Manual
 				Steps = steps,
 				StepGrids = stepGrids,
 			};
+
+			static int cmp(in StepSearcher a, in StepSearcher b) =>
+				TechniqueProperties.FromSearcher(a)!.Priority - TechniqueProperties.FromSearcher(b)!.Priority;
 		}
 	}
 }
