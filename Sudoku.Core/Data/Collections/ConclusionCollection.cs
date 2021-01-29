@@ -145,7 +145,7 @@ namespace Sudoku.Data.Collections
 				else
 				{
 					sb
-						.AppendRange(conclusions, conc => $"{conc.ToString()}{separator}")
+						.AppendRange(conclusions, conclusion => $"{conclusion.ToString()}{separator}")
 						.RemoveFromEnd(separator.Length);
 				}
 

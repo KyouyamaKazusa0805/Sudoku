@@ -68,8 +68,8 @@ namespace Sudoku.IO
 			try
 			{
 				XWPFDocument? doc = outputType == AnalysisResultOutputType.WordDocument ? new() : null;
-				if (AnalysisResult.Steps is IReadOnlyList<StepInfo> steps
-					&& AnalysisResult.StepGrids is IReadOnlyList<SudokuGrid> stepGrids
+				if (AnalysisResult.Steps is { } steps
+					&& AnalysisResult.StepGrids is { } stepGrids
 					&& doc is not null)
 				{
 					// If the directory cannot be found, create it.

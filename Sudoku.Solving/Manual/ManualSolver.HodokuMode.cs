@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Extensions;
 using System.Linq;
 using System.Threading;
 using Sudoku.Data;
@@ -67,8 +66,6 @@ namespace Sudoku.Solving.Manual
 						{
 							ReportProgress(cloneation, progress, ref progressResult);
 						}
-
-						goto Searching;
 					}
 					else
 					{
@@ -80,9 +77,8 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
-		Searching:
-			// Start searching.
-			var searchers = this.GetHodokuModeSearchers(solution);
+		// Start searching.
+		var searchers = this.GetHodokuModeSearchers(solution);
 			if (UseCalculationPriority)
 			{
 				searchers.Sort(&cmp);
@@ -118,17 +114,17 @@ namespace Sudoku.Solving.Manual
 
 				if (FastSearch)
 				{
-					bool allConclusionsAreVaild = true;
+					bool allConclusionsAreValid = true;
 					foreach (var element in bag)
 					{
 						if (!CheckConclusionsValidity(solution, element.Conclusions))
 						{
-							allConclusionsAreVaild = false;
+							allConclusionsAreValid = false;
 							break;
 						}
 					}
 
-					if (!CheckConclusionValidityAfterSearched || allConclusionsAreVaild)
+					if (!CheckConclusionValidityAfterSearched || allConclusionsAreValid)
 					{
 						foreach (var step in bag)
 						{

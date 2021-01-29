@@ -442,7 +442,7 @@ namespace Sudoku.Windows
 				Environment.FailFast(defaultLanguageFileIsRequired);
 			}
 
-			// Check whether the resource dictionary files are vaild.
+			// Check whether the resource dictionary files are valid.
 			const string languageFileIsInvalid = "The required resource dictionary file is invalid.";
 			if (TextResources.Current.LangSourceEnUs is null)
 			{
@@ -1001,7 +1001,7 @@ namespace Sudoku.Windows
 
 			// Get the specified dictionary.
 			ResourceDictionary? g(string p) => dictionaries.Find(d => d.Source.OriginalString == p);
-			if ((g($"Lang{countryCode}.xaml") ?? g("LangEnUs.xaml")) is not ResourceDictionary rd)
+			if ((g($"Lang{countryCode}.xaml") ?? g("LangEnUs.xaml")) is not { } rd)
 			{
 				Messagings.FailedToLoadGlobalizationFile();
 				return;
@@ -1091,15 +1091,15 @@ namespace Sudoku.Windows
 					decimal total = 0, minimum = decimal.MaxValue, maximum = 0;
 					var minDifficultyLevel = DifficultyLevel.LastResort;
 					var maxDifficultyLevel = DifficultyLevel.Unknown;
-					foreach (var step in techniqueGroup)
+					foreach (var (_, difficulty,  difficultyLevel) in techniqueGroup)
 					{
-						summary += step.Difficulty;
+						summary += difficulty;
 						summaryCount++;
-						total += step.Difficulty;
-						minimum = Math.Min(step.Difficulty, minimum);
-						maximum = Math.Max(step.Difficulty, maximum);
-						minDifficultyLevel = EnumEx.Min(step.DifficultyLevel, minDifficultyLevel);
-						maxDifficultyLevel = EnumEx.Max(step.DifficultyLevel, maxDifficultyLevel);
+						total += difficulty;
+						minimum = Math.Min(difficulty, minimum);
+						maximum = Math.Max(difficulty, maximum);
+						minDifficultyLevel = EnumEx.Min(difficultyLevel, minDifficultyLevel);
+						maxDifficultyLevel = EnumEx.Max(difficultyLevel, maxDifficultyLevel);
 					}
 
 					summaryMax = Math.Max(summaryMax, maximum);

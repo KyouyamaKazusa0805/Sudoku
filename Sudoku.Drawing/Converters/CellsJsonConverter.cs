@@ -24,9 +24,9 @@ namespace Sudoku.Drawing.Converters
 		public override unsafe Cells Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
 			long hi, lo;
-			byte pos;
 			while (reader.Read())
 			{
+				byte pos;
 				switch (reader.TokenType)
 				{
 					case JsonTokenType.PropertyName:

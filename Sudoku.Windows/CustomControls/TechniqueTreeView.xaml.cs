@@ -114,7 +114,7 @@ namespace Sudoku.Windows.CustomControls
 			// Create nodes.
 			var list = new List<TreeNode<string>>(
 				from c in parentList
-				select new TreeNode<string>() { Content = c.Content, Id = c.Id, ParentId = c.ParentId }
+				select new TreeNode<string> { Content = c.Content, Id = c.Id, ParentId = c.ParentId }
 			);
 
 			// The last step: get all techniques.
