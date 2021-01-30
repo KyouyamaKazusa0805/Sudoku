@@ -4,6 +4,21 @@
 	
 	<!-- NavigationViewMain -->
 	<x:String x:Key="NaviagtionViewItemSudokuGrid">Sudoku grid</x:String>
+	<x:String x:Key="NaviagtionViewItemSudokuGridToolTip">Switch to the sudoku grid.</x:String>
 	<x:String x:Key="NavigationViewItemInfo">Info</x:String>
+	<x:String x:Key="NavigationViewItemInfoToolTip">View the program information.</x:String>
 	<x:String x:Key="NavigationViewItemQuit">Quit</x:String>
+	<x:String x:Key="NavigationViewItemQuitToolTip">Say goodbye!</x:String>
+	
+	<!-- InfoPage -->
+	<x:String x:Key="AboutMeTitle">About me</x:String>
+	<x:String x:Key="AboutMeName">Name</x:String>
+	<x:String x:Key="AboutMeRealName">Sunnie</x:String>
+	<x:String x:Key="AboutMeQq">QQ</x:String>
+	<x:String x:Key="AboutMeRealQq">747507738</x:String>
+	<x:String x:Key="AboutMeGithub">GitHub</x:String>
+	<x:String x:Key="AboutMeRealGitHub">https://github.com/SunnieShine</x:String>
+	
+	<!-- MessageDialog -->
+	<x:String x:Key="MessageDialogTitleInfo">Info</x:String>
 </ResourceDictionary>

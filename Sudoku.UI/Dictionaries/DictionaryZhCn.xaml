@@ -4,6 +4,21 @@
 	
 	<!-- NavigationViewMain -->
 	<x:String x:Key="NaviagtionViewItemSudokuGrid">数独主界面</x:String>
+	<x:String x:Key="NaviagtionViewItemSudokuGridToolTip">切换到主界面。</x:String>
 	<x:String x:Key="NavigationViewItemInfo">程序信息</x:String>
+	<x:String x:Key="NavigationViewItemInfoToolTip">查看程序的具体信息。</x:String>
 	<x:String x:Key="NavigationViewItemQuit">退出程序</x:String>
+	<x:String x:Key="NavigationViewItemQuitToolTip">关掉程序！再见吧您呐！</x:String>
+
+	<!-- InfoPage -->
+	<x:String x:Key="AboutMeTitle">关于我</x:String>
+	<x:String x:Key="AboutMeName">英文名</x:String>
+	<x:String x:Key="AboutMeRealName">Sunnie（小向）</x:String>
+	<x:String x:Key="AboutMeQq">QQ</x:String>
+	<x:String x:Key="AboutMeRealQq">747507738</x:String>
+	<x:String x:Key="AboutMeGithub">GitHub</x:String>
+	<x:String x:Key="AboutMeRealGitHub">https://github.com/SunnieShine</x:String>
+
+	<!-- MessageDialog -->
+	<x:String x:Key="MessageDialogTitleInfo">信息</x:String>
 </ResourceDictionary>

@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Grid>
 		<!-- Menu items -->
@@ -15,16 +15,19 @@
 				<NavigationViewItem x:Name="NaviagtionViewItemSudokuGrid" Icon="Play"
 									Tag="NaviagtionViewItemSudokuGrid"
 									Content="{StaticResource NaviagtionViewItemSudokuGrid}"
-									ToolTipService.ToolTip="1"/>
+									ToolTipService.ToolTip="{StaticResource NaviagtionViewItemSudokuGridToolTip}" />
 				<NavigationViewItemSeparator/>
 				<NavigationViewItem x:Name="NavigationViewItemInfo" Icon="ContactInfo"
 									Tag="NavigationViewItemInfo"
-									Content="{StaticResource NavigationViewItemInfo}" />
-				<NavigationViewItem x:Name="NavigationViewItemQuit" Icon="Up" Tag="NavigationViewItemQuit"
-									Content="{StaticResource NavigationViewItemQuit}" />
+									Content="{StaticResource NavigationViewItemInfo}"
+									ToolTipService.ToolTip="{StaticResource NavigationViewItemInfoToolTip}" />
+				<NavigationViewItem x:Name="NavigationViewItemQuit" Icon="Up"
+									Tag="NavigationViewItemQuit"
+									Content="{StaticResource NavigationViewItemQuit}"
+									ToolTipService.ToolTip="{StaticResource NavigationViewItemQuitToolTip}" />
 			</NavigationView.MenuItems>
 
-			<Frame x:Name="ContentFrame" Margin="24">
+			<Frame x:Name="FrameToShowTheSpecifiedPage">
 				<Frame.ContentTransitions>
 					<TransitionCollection>
 						<NavigationThemeTransition/>

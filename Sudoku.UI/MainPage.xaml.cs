@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Sudoku.UI.Pages;
+using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml.Controls;
 
 namespace Sudoku.UI
@@ -37,16 +39,20 @@ namespace Sudoku.UI
 				{
 					//case nameof(NaviagtionViewItemSudokuGrid):
 					//{
-					//	ContentFrame.Navigate(typeof(SudokuGridPage));
+					//	// The sudoku grid page.
+					//	FrameToShowTheSpecifiedPage.Navigate(typeof(SudokuGridPage));
 					//	break;
 					//}
-					//case nameof(NavigationViewItemInfo):
-					//{
-					//	ContentFrame.Navigate(typeof(InfoPage));
-					//	break;
-					//}
+					case nameof(NavigationViewItemInfo):
+					{
+						// The information page.
+						FrameToShowTheSpecifiedPage.Navigate(typeof(InfoPage));
+						break;
+					}
 					case nameof(NavigationViewItemQuit):
 					{
+						// To exit the program.
+						CoreApplication.Exit();
 						break;
 					}
 				}
