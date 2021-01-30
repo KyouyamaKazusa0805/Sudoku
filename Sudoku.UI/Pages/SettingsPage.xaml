@@ -8,6 +8,30 @@
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Grid>
+		<NavigationView x:Name="NavigationViewMain" PaneDisplayMode="Top" IsSettingsVisible="False"
+						IsBackButtonVisible="Collapsed" IsBackEnabled="False"
+						SelectionChanged="NavigationViewMain_SelectionChanged"
+						ItemInvoked="NavigationViewMain_ItemInvoked">
+			<NavigationView.MenuItems>
+				<NavigationViewItem x:Name="NavigationViewItemBehavior" Tag="Behavior"
+									Content="{StaticResource NavigationViewItemBehavior}" />
+				<NavigationViewItem x:Name="NavigationViewItemAnalysis" Tag="Analysis"
+									Content="{StaticResource NavigationViewItemAnalysis}" />
+				<NavigationViewItem x:Name="NavigationViewItemPriority" Tag="Priority"
+									Content="{StaticResource NavigationViewItemPriority}" />
+				<NavigationViewItem x:Name="NavigationViewItemPainting" Tag="Painting"
+									Content="{StaticResource NavigationViewItemPainting}" />
+				<NavigationViewItem x:Name="NavigationViewItemPalette" Tag="Palette"
+									Content="{StaticResource NavigationViewItemPalette}" />
+			</NavigationView.MenuItems>
 
+			<Frame x:Name="FrameToShowTheSpecifiedPage">
+				<Frame.ContentTransitions>
+					<TransitionCollection>
+						<NavigationThemeTransition/>
+					</TransitionCollection>
+				</Frame.ContentTransitions>
+			</Frame>
+		</NavigationView>
 	</Grid>
 </Page>

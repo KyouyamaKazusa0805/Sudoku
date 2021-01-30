@@ -10,6 +10,7 @@
 	<Grid>
 		<!-- Menu items -->
 		<NavigationView x:Name="NavigationViewMain" IsSettingsVisible="True" IsTabStop="False"
+						IsBackButtonVisible="Collapsed" IsBackEnabled="False"
 						Loaded="NavigationViewMain_Loaded"
 						ItemInvoked="NavigationViewMain_ItemInvoked">
 			<NavigationView.MenuItems>

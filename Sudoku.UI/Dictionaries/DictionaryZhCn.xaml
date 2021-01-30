@@ -12,6 +12,19 @@
 	<x:String x:Key="NavigationViewItemSettings">设置项</x:String>
 	<x:String x:Key="NavigationViewItemSettingsToolTip">可以定义和修改需要的设置</x:String>
 
+	<!-- SettingsPage -->
+	<x:String x:Key="NavigationViewItemBehavior">行为</x:String>
+	<x:String x:Key="NavigationViewItemAnalysis">分析</x:String>
+	<x:String x:Key="NavigationViewItemPriority">解题器优先级</x:String>
+	<x:String x:Key="NavigationViewItemPainting">绘图</x:String>
+	<x:String x:Key="NavigationViewItemPalette">调色板</x:String>
+	<x:String x:Key="SettingsBehaviorAskBeforeQuitting">程序在退出前询问</x:String>
+	<x:String x:Key="SettingsBehaviorAskBeforeQuittingToolTip">当勾选后，程序会在你退出程序之前弹出警告提示是否确实需要关闭</x:String>
+	<x:String x:Key="SettingsBehaviorUseZeroCharacterWhenCopyCode">使用零字符 '0' 表示盘面代码里的空格</x:String>
+	<x:String x:Key="SettingsBehaviorUseZeroCharacterWhenCopyCodeToolTip">当勾选后，输出的数独盘面代码都会用 '0' 来占位，而不是小数点 '.'</x:String>
+	<x:String x:Key="SettingsBehaviorOnlyDisplaySameLevelStepsWhenFindAllSteps">在搜素所有技巧的时候，仅显示同级别的技巧</x:String>
+	<x:String x:Key="SettingsBehaviorOnlyDisplaySameLevelStepsWhenFindAllStepsToolTip">当勾选后，找所有技巧的时候，只有同一个级别的技巧才会显示</x:String>
+
 	<!-- InfoPage -->
 	<x:String x:Key="AboutMeTitle">关于我</x:String>
 	<x:String x:Key="AboutMeName">英文名</x:String>
@@ -19,7 +32,9 @@
 	<x:String x:Key="AboutMeQq">QQ</x:String>
 	<x:String x:Key="AboutMeRealQq">747507738</x:String>
 	<x:String x:Key="AboutMeGithub">GitHub</x:String>
+	<x:String x:Key="AboutMeGitee">Gitee</x:String>
 	<x:String x:Key="AboutMeRealGitHub">https://github.com/SunnieShine</x:String>
+	<x:String x:Key="AboutMeRealGitee">https://gitee.com/SunnieShine</x:String>
 
 	<!-- MessageDialog -->
 	<x:String x:Key="MessageDialogClose">关闭</x:String>

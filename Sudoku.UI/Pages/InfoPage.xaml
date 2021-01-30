@@ -7,39 +7,49 @@
 	mc:Ignorable="d"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.Resources>
-		<x:Double x:Key="DefaultFontSize">28</x:Double>
+		<Style TargetType="TextBlock">
+			<Setter Property="FontSize" Value="28" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="Margin" Value="10,10,30,10" />
+		</Style>
 	</Page.Resources>
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-		</Grid.ColumnDefinitions>
-		<TextBlock Grid.Row="0" Grid.Column="0" Text="{StaticResource AboutMeName}"
-				   HorizontalAlignment="Center" VerticalAlignment="Center"
-				   FontSize="{StaticResource DefaultFontSize}" Margin="36"/>
-		<TextBlock Grid.Row="0" Grid.Column="1" Text="{StaticResource AboutMeRealName}"
-				   HorizontalAlignment="Center" VerticalAlignment="Center"
-				   FontSize="{StaticResource DefaultFontSize}" Margin="36"/>
-		<TextBlock Grid.Row="1" Grid.Column="0" Text="{StaticResource AboutMeQq}"
-				   FontSize="{StaticResource DefaultFontSize}" HorizontalAlignment="Center"
-				   VerticalAlignment="Center" Margin="36"/>
-		<TextBlock Grid.Row="1" Grid.Column="1" Text="{StaticResource AboutMeRealQq}"
-				   HorizontalAlignment="Center" VerticalAlignment="Center"
-				   FontSize="{StaticResource DefaultFontSize}" Margin="36"/>
-		<TextBlock Grid.Row="2" Grid.Column="0" Text="{StaticResource AboutMeGithub}"
-				   HorizontalAlignment="Center" VerticalAlignment="Center"
-				   FontSize="{StaticResource DefaultFontSize}" Margin="36"/>
-		<TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"
-				   VerticalAlignment="Center" FontSize="{StaticResource DefaultFontSize}" Margin="36">
-			<Hyperlink x:Name="HyperlinkToGitHub" Click="HyperlinkToGitHub_Click">
-				<Run Text="{StaticResource AboutMeRealGitHub}"/>
-			</Hyperlink>
-		</TextBlock>
-	</Grid>
+	<StackPanel>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<TextBlock Grid.Column="0" Text="{StaticResource AboutMeName}" />
+			<TextBlock Grid.Column="1" Text="{StaticResource AboutMeRealName}" />
+		</Grid>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<TextBlock Grid.Column="0" Text="{StaticResource AboutMeQq}" />
+			<TextBlock Grid.Column="1" Text="{StaticResource AboutMeRealQq}" />
+		</Grid>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<TextBlock Grid.Column="0" Text="{StaticResource AboutMeGithub}" />
+			<HyperlinkButton Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+							 FontSize="28" Content="{StaticResource AboutMeRealGitHub}"
+							 NavigateUri="{StaticResource AboutMeRealGitHub}" />
+		</Grid>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<TextBlock Grid.Column="0" Text="{StaticResource AboutMeGitee}" />
+			<HyperlinkButton Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+							 FontSize="28" Content="{StaticResource AboutMeRealGitee}"
+							 NavigateUri="{StaticResource AboutMeRealGitee}" />
+		</Grid>
+	</StackPanel>
 </Page>
