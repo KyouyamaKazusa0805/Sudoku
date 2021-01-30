@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	
+	<!-- NavigationViewMain -->
+	<x:String x:Key="NaviagtionViewItemSudokuGrid">数独主界面</x:String>
+	<x:String x:Key="NavigationViewItemInfo">程序信息</x:String>
+	<x:String x:Key="NavigationViewItemQuit">退出程序</x:String>
+</ResourceDictionary>
