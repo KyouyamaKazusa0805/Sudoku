@@ -22,5 +22,11 @@
 	<x:String x:Key="AboutMeRealGitHub">https://github.com/SunnieShine</x:String>
 	
 	<!-- MessageDialog -->
+	<x:String x:Key="MessageDialogClose">Close</x:String>
+	<x:String x:Key="MessageDialogOk">OK</x:String>
+	<x:String x:Key="MessageDialogCancel">Cancel</x:String>
+	<x:String x:Key="MessageDialogTitleExceptionThrows">Exception throws</x:String>
 	<x:String x:Key="MessageDialogTitleInfo">Info</x:String>
+	<x:String x:Key="MessageDialogTitleWarning">Warning</x:String>
+	<x:String x:Key="MessageDialogTitleError">Error</x:String>
 </ResourceDictionary>

@@ -22,5 +22,11 @@
 	<x:String x:Key="AboutMeRealGitHub">https://github.com/SunnieShine</x:String>
 
 	<!-- MessageDialog -->
+	<x:String x:Key="MessageDialogClose">关闭</x:String>
+	<x:String x:Key="MessageDialogOk">确定</x:String>
+	<x:String x:Key="MessageDialogCancel">取消</x:String>
+	<x:String x:Key="MessageDialogTitleExceptionThrows">抛出了未处理的异常</x:String>
 	<x:String x:Key="MessageDialogTitleInfo">信息</x:String>
+	<x:String x:Key="MessageDialogTitleWarning">警告</x:String>
+	<x:String x:Key="MessageDialogTitleError">错误</x:String>
 </ResourceDictionary>

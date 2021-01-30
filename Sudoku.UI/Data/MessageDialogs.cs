@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Windows.UI.Popups;
 using static Sudoku.UI.Dictionaries.DictionaryResources;
 
@@ -14,12 +13,7 @@ namespace Sudoku.UI.Data
 		/// To show the exception details.
 		/// </summary>
 		/// <param name="ex">The exception instance.</param>
-		public static async Task ShowExceptionMessageAsync(Exception ex)
-		{
-			await new MessageDialog(
-				content: ex.Message,
-				title: (string)LangSource["MessageDialogTitleInfo"]
-			).ShowAsync();
-		}
+		public static MessageDialog ExceptionMessage(Exception ex) =>
+			new(ex.ToString(), (string)LangSource["MessageDialogTitleExceptionThrows"]);
 	}
 }

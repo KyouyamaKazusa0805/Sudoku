@@ -56,21 +56,18 @@ namespace Sudoku.UI
 				// Then navigate to the specified page.
 				switch (item.Tag)
 				{
-					//case nameof(NaviagtionViewItemSudokuGrid):
+					//case nameof(NaviagtionViewItemSudokuGrid): // The sudoku grid page.
 					//{
-					//	// The sudoku grid page.
 					//	FrameToShowTheSpecifiedPage.Navigate(typeof(SudokuGridPage));
 					//	break;
 					//}
-					case nameof(NavigationViewItemInfo):
+					case nameof(NavigationViewItemInfo): // The information page.
 					{
-						// The information page.
 						FrameToShowTheSpecifiedPage.Navigate(typeof(InfoPage));
 						break;
 					}
-					case nameof(NavigationViewItemQuit):
+					case nameof(NavigationViewItemQuit): // To exit the program.
 					{
-						// To exit the program.
 						CoreApplication.Exit();
 						break;
 					}

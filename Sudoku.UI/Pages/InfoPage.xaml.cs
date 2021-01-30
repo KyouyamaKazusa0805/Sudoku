@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Sudoku.UI.Data;
+using Sudoku.UI.Extensions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
@@ -31,7 +32,7 @@ namespace Sudoku.UI.Pages
 		{
 			await i();
 
-			async Task i()
+			static async Task i()
 			{
 				try
 				{
@@ -39,7 +40,10 @@ namespace Sudoku.UI.Pages
 				}
 				catch (Exception ex)
 				{
-					await MessageDialogs.ShowExceptionMessageAsync(ex);
+					await MessageDialogs.ExceptionMessage(ex)
+						.WithCommand((string)LangSource["MessageDialogClose"], static command => { }, 0)
+						.WithDefaultId(0)
+						.ShowAsync();
 				}
 			}
 		}
