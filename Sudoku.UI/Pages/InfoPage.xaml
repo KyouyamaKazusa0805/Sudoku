@@ -7,7 +7,7 @@
 	mc:Ignorable="d"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.Resources>
-		<x:Double x:Key="DefaultFontSize">36</x:Double>
+		<x:Double x:Key="DefaultFontSize">28</x:Double>
 	</Page.Resources>
 
 	<Grid>

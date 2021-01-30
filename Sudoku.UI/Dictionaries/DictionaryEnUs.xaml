@@ -4,11 +4,13 @@
 	
 	<!-- NavigationViewMain -->
 	<x:String x:Key="NaviagtionViewItemSudokuGrid">Sudoku grid</x:String>
-	<x:String x:Key="NaviagtionViewItemSudokuGridToolTip">Switch to the sudoku grid.</x:String>
+	<x:String x:Key="NaviagtionViewItemSudokuGridToolTip">Switch to the sudoku grid</x:String>
 	<x:String x:Key="NavigationViewItemInfo">Info</x:String>
-	<x:String x:Key="NavigationViewItemInfoToolTip">View the program information.</x:String>
+	<x:String x:Key="NavigationViewItemInfoToolTip">View the program information</x:String>
 	<x:String x:Key="NavigationViewItemQuit">Quit</x:String>
 	<x:String x:Key="NavigationViewItemQuitToolTip">Say goodbye!</x:String>
+	<x:String x:Key="NavigationViewItemSettings">Settings</x:String>
+	<x:String x:Key="NavigationViewItemSettingsToolTip">To define or modify the behaviors</x:String>
 	
 	<!-- InfoPage -->
 	<x:String x:Key="AboutMeTitle">About me</x:String>

@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using Sudoku.UI.Pages;
 using Windows.ApplicationModel.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using static Sudoku.UI.Dictionaries.DictionaryResources;
 
 namespace Sudoku.UI
 {
@@ -15,6 +17,23 @@ namespace Sudoku.UI
 		/// </summary>
 		public MainPage() => InitializeComponent();
 
+
+		/// <summary>
+		/// Triggers when <see cref="NavigationViewMain"/> is loaded.
+		/// </summary>
+		/// <param name="sender">The object to trigger this event.</param>
+		/// <param name="e">The event arguments provided.</param>
+		private void NavigationViewMain_Loaded(object sender, RoutedEventArgs e)
+		{
+			if (sender is not NavigationView view)
+			{
+				return;
+			}
+
+			var item = (NavigationViewItem)view.SettingsItem;
+			item.Content = LangSource["NavigationViewItemSettings"];
+			ToolTipService.SetToolTip(item, LangSource["NavigationViewItemSettingsToolTip"]);
+		}
 
 		/// <summary>
 		/// Triggers when a item control of <see cref="NavigationViewMain"/> is invoked.

@@ -10,6 +10,7 @@
 	<Grid>
 		<!-- Menu items -->
 		<NavigationView x:Name="NavigationViewMain" IsSettingsVisible="True" IsTabStop="False"
+						Loaded="NavigationViewMain_Loaded"
 						ItemInvoked="NavigationViewMain_ItemInvoked">
 			<NavigationView.MenuItems>
 				<NavigationViewItem x:Name="NaviagtionViewItemSudokuGrid" Icon="Play"

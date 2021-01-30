@@ -4,11 +4,13 @@
 	
 	<!-- NavigationViewMain -->
 	<x:String x:Key="NaviagtionViewItemSudokuGrid">数独主界面</x:String>
-	<x:String x:Key="NaviagtionViewItemSudokuGridToolTip">切换到主界面。</x:String>
+	<x:String x:Key="NaviagtionViewItemSudokuGridToolTip">切换到主界面</x:String>
 	<x:String x:Key="NavigationViewItemInfo">程序信息</x:String>
-	<x:String x:Key="NavigationViewItemInfoToolTip">查看程序的具体信息。</x:String>
+	<x:String x:Key="NavigationViewItemInfoToolTip">查看程序的具体信息</x:String>
 	<x:String x:Key="NavigationViewItemQuit">退出程序</x:String>
 	<x:String x:Key="NavigationViewItemQuitToolTip">关掉程序！再见吧您呐！</x:String>
+	<x:String x:Key="NavigationViewItemSettings">设置项</x:String>
+	<x:String x:Key="NavigationViewItemSettingsToolTip">可以定义和修改需要的设置</x:String>
 
 	<!-- InfoPage -->
 	<x:String x:Key="AboutMeTitle">关于我</x:String>
