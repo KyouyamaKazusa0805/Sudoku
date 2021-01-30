@@ -149,7 +149,7 @@
 	<sys:String x:Key="AboutMeQq">QQ</sys:String>
 	<sys:String x:Key="AboutMeRealQq">747507738</sys:String>
 	<sys:String x:Key="AboutMeGithub">GitHub</sys:String>
-	<sys:String x:Key="AboutMeRealGitHub">https://github.com/Sunnie-Shine</sys:String>
+	<sys:String x:Key="AboutMeRealGitHub">https://github.com/SunnieShine</sys:String>
 
 	<sys:String x:Key="BackdoorTitle">Backdoors searching...</sys:String>
 	<sys:String x:Key="BackdoorGrid">Grid: </sys:String>
