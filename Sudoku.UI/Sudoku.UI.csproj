@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Data\MessageDialogs.cs" />
     <Compile Include="Extensions\MessageDialogEx.cs" />
+    <Compile Include="MainPage.NavigationViewMain.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -143,6 +144,7 @@
       <DependentUpon>SudokuGridPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Preferences.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
