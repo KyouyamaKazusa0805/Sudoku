@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Sudoku.UI.Pages;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
@@ -45,30 +46,27 @@ namespace Sudoku.UI
 			if (args.IsSettingsInvoked)
 			{
 				// Settings page.
-				//ContentFrame.Navigate(typeof(SettingsPage));
+				FrameToShowTheSpecifiedPage.Navigate(typeof(SettingsPage));
 			}
 			else
 			{
 				// Other pages.
-				var navViews = sender.MenuItems.OfType<NavigationViewItem>();
-				var item = navViews.First(findFirstItem);
+				var allViews = sender.MenuItems.OfType<NavigationViewItem>();
 
 				// Then navigate to the specified page.
-				switch (item.Tag)
+				switch (allViews.First(findFirstItem).Tag)
 				{
-					//case nameof(NaviagtionViewItemSudokuGrid): // The sudoku grid page.
-					//{
-					//	FrameToShowTheSpecifiedPage.Navigate(typeof(SudokuGridPage));
-					//	break;
-					//}
-					case nameof(NavigationViewItemInfo): // The information page.
-					{
-						FrameToShowTheSpecifiedPage.Navigate(typeof(InfoPage));
-						break;
-					}
 					case nameof(NavigationViewItemQuit): // To exit the program.
 					{
 						CoreApplication.Exit();
+						break;
+					}
+					case string tag
+					when Type.GetType(
+						$"Sudoku.UI.Pages.{tag.Substring(nameof(NavigationViewItem).Length)}Page"
+					) is { } type: // Navigate to the specified page.
+					{
+						FrameToShowTheSpecifiedPage.Navigate(type);
 						break;
 					}
 				}
