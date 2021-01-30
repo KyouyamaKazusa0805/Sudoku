@@ -40,9 +40,10 @@ namespace Sudoku.UI.Pages
 				}
 				catch (Exception ex)
 				{
+					const uint commandId = 0;
 					await MessageDialogs.ExceptionMessage(ex)
-						.WithCommand((string)LangSource["MessageDialogClose"], static command => { }, 0)
-						.WithDefaultId(0)
+						.WithCommand((string)LangSource["MessageDialogClose"], static _ => { }, commandId)
+						.WithDefaultId(commandId)
 						.ShowAsync();
 				}
 			}
