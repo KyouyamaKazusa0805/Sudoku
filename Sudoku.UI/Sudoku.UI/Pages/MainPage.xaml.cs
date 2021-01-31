@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Sudoku.UI.Data;
@@ -32,6 +33,16 @@ namespace Sudoku.UI.Pages
 		/// Indicates the preferences used in the base window.
 		/// </summary>
 		public Preferences Preferences => BaseWindow.Preferences;
+
+
+		/// <summary>
+		/// Indicates the event that triggered when the base window is closing.
+		/// </summary>
+		/// <remarks>
+		/// This event is used for saving configuration files, when user clicked the navigation view item
+		/// called <c>NavigationViewItemQuit</c>.
+		/// </remarks>
+		public event EventHandler? BaseWindowClosing;
 
 
 		/// <summary>
@@ -78,6 +89,7 @@ namespace Sudoku.UI.Pages
 
 				if (t == QuitCommandName) // To exit the program.
 				{
+					BaseWindowClosing?.Invoke(this, EventArgs.Empty);
 					Application.Current.Exit();
 				}
 				else if (Navigation.GetPageType(t) is { } type) // Switch to other pages.

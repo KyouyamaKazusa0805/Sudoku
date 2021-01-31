@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text.Json;
 using Microsoft.UI.Xaml;
@@ -96,5 +97,12 @@ namespace Sudoku.UI
 		/// <param name="sender">The object to trigger this event.</param>
 		/// <param name="args">The event arguments provided.</param>
 		private void Window_Closed(object sender, WindowEventArgs args) => SavePreferences();
+
+		/// <summary>
+		/// Triggers when the base window of the main page is closing.
+		/// </summary>
+		/// <param name="sender">The object to trigger this event.</param>
+		/// <param name="e">The event arguments provided.</param>
+		private void MainPage_BaseWindowClosing(object sender, EventArgs e) => SavePreferences();
 	}
 }

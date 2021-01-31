@@ -9,6 +9,6 @@
 	Closed="Window_Closed">
 
 	<Grid>
-		<pages:MainPage x:Name="MainPage" />
+		<pages:MainPage x:Name="MainPage" BaseWindowClosing="MainPage_BaseWindowClosing" />
 	</Grid>
 </Window>
