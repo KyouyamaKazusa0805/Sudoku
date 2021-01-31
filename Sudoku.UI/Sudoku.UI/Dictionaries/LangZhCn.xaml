@@ -28,15 +28,15 @@
 	<x:String x:Key="SettingsBehaviorOnlyDisplaySameLevelStepsWhenFindAllStepsToolTip">当勾选后，找所有技巧的时候，只有同一个级别的技巧才会显示</x:String>
 
 	<!-- InfoPage -->
-	<x:String x:Key="AboutMeTitle">关于我</x:String>
-	<x:String x:Key="AboutMeName">英文名</x:String>
-	<x:String x:Key="AboutMeRealName">Sunnie（小向）</x:String>
-	<x:String x:Key="AboutMeQq">QQ</x:String>
-	<x:String x:Key="AboutMeRealQq">747507738</x:String>
-	<x:String x:Key="AboutMeGithub">GitHub</x:String>
-	<x:String x:Key="AboutMeGitee">Gitee</x:String>
-	<x:String x:Key="AboutMeRealGitHub">https://github.com/SunnieShine</x:String>
-	<x:String x:Key="AboutMeRealGitee">https://gitee.com/SunnieShine</x:String>
+	<x:String x:Key="InfoPageDescription">该页面陈列作者信息。如果你对项目感兴趣，可以联系我。</x:String>
+	<x:String x:Key="InfoPageName">英文名</x:String>
+	<x:String x:Key="InfoPageRealName">Sunnie（小向）</x:String>
+	<x:String x:Key="InfoPageQQ">QQ</x:String>
+	<x:String x:Key="InfoPageRealQQ">747507738</x:String>
+	<x:String x:Key="InfoPageGitHub">GitHub</x:String>
+	<x:String x:Key="InfoPageGitee">Gitee</x:String>
+	<x:String x:Key="InfoPageRealGitHub">https://github.com/SunnieShine</x:String>
+	<x:String x:Key="InfoPageRealGitee">https://gitee.com/SunnieShine</x:String>
 
 	<!-- MessageDialog -->
 	<x:String x:Key="MessageDialogClose">关闭</x:String>

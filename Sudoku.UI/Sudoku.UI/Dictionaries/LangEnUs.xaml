@@ -28,15 +28,15 @@
 	<x:String x:Key="SettingsBehaviorOnlyDisplaySameLevelStepsWhenFindAllStepsToolTip">If checked, when find all steps, only steps in the current level will be displayed</x:String>
 
 	<!-- InfoPage -->
-	<x:String x:Key="AboutMeTitle">About me</x:String>
-	<x:String x:Key="AboutMeName">Name</x:String>
-	<x:String x:Key="AboutMeRealName">Sunnie</x:String>
-	<x:String x:Key="AboutMeQq">QQ</x:String>
-	<x:String x:Key="AboutMeRealQq">747507738</x:String>
-	<x:String x:Key="AboutMeGithub">GitHub</x:String>
-	<x:String x:Key="AboutMeGitee">Gitee</x:String>
-	<x:String x:Key="AboutMeRealGitHub">https://github.com/SunnieShine</x:String>
-	<x:String x:Key="AboutMeRealGitee">https://gitee.com/SunnieShine</x:String>
+	<x:String x:Key="InfoPageDescription">This page displays the information about the author. If you are interested in this program, just contact me.</x:String>
+	<x:String x:Key="InfoPageName">Name</x:String>
+	<x:String x:Key="InfoPageRealName">Sunnie</x:String>
+	<x:String x:Key="InfoPageQQ">QQ</x:String>
+	<x:String x:Key="InfoPageRealQQ">747507738</x:String>
+	<x:String x:Key="InfoPageGitHub">GitHub</x:String>
+	<x:String x:Key="InfoPageGitee">Gitee</x:String>
+	<x:String x:Key="InfoPageRealGitHub">https://github.com/SunnieShine</x:String>
+	<x:String x:Key="InfoPageRealGitee">https://gitee.com/SunnieShine</x:String>
 
 	<!-- MessageDialog -->
 	<x:String x:Key="MessageDialogClose">Close</x:String>

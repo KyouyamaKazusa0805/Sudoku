@@ -10,19 +10,20 @@
 
     <Grid>
 		<NavigationView x:Name="NavigationViewMain" IsSettingsVisible="True" IsTabStop="False"
-					IsBackButtonVisible="Collapsed" IsBackEnabled="False">
+						IsBackButtonVisible="Collapsed" IsBackEnabled="False"
+						ItemInvoked="NavigationViewMain_ItemInvoked">
 			<NavigationView.MenuItems>
 				<NavigationViewItem x:Name="NavigationViewItemSudokuGrid" Icon="Play"
-									Tag="NavigationViewItemSudokuGrid"
+									Tag="SudokuGrid"
 									Content="{StaticResource NavigationViewItemSudokuGrid}"
 									ToolTipService.ToolTip="{StaticResource NavigationViewItemSudokuGridToolTip}" />
 				<NavigationViewItemSeparator />
 				<NavigationViewItem x:Name="NavigationViewItemInfo" Icon="ContactInfo"
-									Tag="NavigationViewItemInfo"
+									Tag="Info"
 									Content="{StaticResource NavigationViewItemInfo}"
 									ToolTipService.ToolTip="{StaticResource NavigationViewItemInfoToolTip}" />
 				<NavigationViewItem x:Name="NavigationViewItemQuit" Icon="Up"
-									Tag="NavigationViewItemQuit"
+									Tag="Quit"
 									Content="{StaticResource NavigationViewItemQuit}"
 									ToolTipService.ToolTip="{StaticResource NavigationViewItemQuitToolTip}" />
 			</NavigationView.MenuItems>

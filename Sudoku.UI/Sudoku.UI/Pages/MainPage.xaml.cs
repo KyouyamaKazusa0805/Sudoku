@@ -1,6 +1,9 @@
-﻿using Microsoft.UI.Xaml;
+﻿using System;
+using System.Linq;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Sudoku.UI.Dictionaries;
+using Windows.ApplicationModel.Core;
 
 namespace Sudoku.UI.Pages
 {
@@ -32,6 +35,42 @@ namespace Sudoku.UI.Pages
 			var item = (NavigationViewItem)view.SettingsItem;
 			item.Content = ResourceFinder.Current.NavigationViewItemSettings;
 			ToolTipService.SetToolTip(item, ResourceFinder.Current.NavigationViewItemSettingsToolTip);
+		}
+
+		/// <summary>
+		/// Triggers when the menu item of the control <see cref="NavigationViewMain"/>
+		/// is invoked.
+		/// </summary>
+		/// <param name="sender">The object to trigger this event.</param>
+		/// <param name="args">The event arguments provided.</param>
+		private void NavigationViewMain_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+		{
+			if (args.IsSettingsInvoked) // Settings page.
+			{
+				//FrameToShowTheSpecifiedPage.Navigate(typeof(SettingsPage));
+			}
+			else // Other pages.
+			{
+				var allViews = sender.MenuItems.OfType<NavigationViewItem>();
+
+				// Then navigate to the specified page.
+				object tag = allViews.First(findFirstItem).Tag;
+				if (tag is not string t)
+				{
+					return;
+				}
+
+				if (t == "Quit") // To exit the program.
+				{
+					CoreApplication.Exit();
+				}
+				else if (Type.GetType($"Sudoku.UI.Pages.{t}Page") is { } type) // Switch to other pages.
+				{
+					FrameToShowTheSpecifiedPage.Navigate(type);
+				}
+			}
+
+			bool findFirstItem(NavigationViewItem x) => (string)x.Content == (string)args.InvokedItem;
 		}
 	}
 }
