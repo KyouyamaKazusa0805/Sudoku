@@ -7,6 +7,7 @@
 	mc:Ignorable="d" Width="600" Height="600"
 	Loaded="SudokuPanel_Loaded">
 	<UserControl.Resources>
+		<x:Double x:Key="Offset">10</x:Double>
 		<x:Double x:Key="DefaultWidth">600</x:Double>
 		<x:Double x:Key="DefaultHeight">600</x:Double>
 	</UserControl.Resources>

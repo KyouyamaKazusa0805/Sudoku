@@ -1,20 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+﻿using Microsoft.UI.Xaml.Controls;
 
 namespace Sudoku.UI.Pages
 {
@@ -23,9 +7,21 @@ namespace Sudoku.UI.Pages
 	/// </summary>
 	public sealed partial class SudokuGridPage : Page
 	{
-		public SudokuGridPage()
-		{
-			this.InitializeComponent();
-		}
+		/// <summary>
+		/// Initializes a <see cref="SudokuGridPage"/> instance with the default instantiation behavior.
+		/// </summary>
+		public SudokuGridPage() => InitializeComponent();
+
+		/// <summary>
+		/// Initializes an instance with the specified base window.
+		/// </summary>
+		/// <param name="baseWindow">The base window.</param>
+		public SudokuGridPage(object baseWindow) : this() => BaseWindow = (MainWindow)baseWindow;
+
+
+		/// <summary>
+		/// Indicates the base window.
+		/// </summary>
+		public MainWindow BaseWindow { get; internal set; } = null!;
 	}
 }

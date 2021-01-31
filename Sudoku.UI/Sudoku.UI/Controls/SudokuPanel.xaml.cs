@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Shapes;
 using Sudoku.Data;
 using Sudoku.Painting;
+using Sudoku.UI.Data;
 
 namespace Sudoku.UI.Controls
 {
@@ -25,6 +26,11 @@ namespace Sudoku.UI.Controls
 		/// </summary>
 		public SudokuPanel() => InitializeComponent();
 
+
+		/// <summary>
+		/// Indicates the preferences used.
+		/// </summary>
+		public PagePreferences Preferences { get; set; } = new();
 
 		/// <summary>
 		/// Indicates the grid painter instance.
@@ -86,7 +92,7 @@ namespace Sudoku.UI.Controls
 		[MemberNotNull(nameof(GridPainter))]
 		private void InitializeGridPainter()
 		{
-			GridPainter = new(new(Width, Height)) { Grid = SudokuGrid.Empty };
+			GridPainter = new(new(Width, Height), Preferences) { Grid = SudokuGrid.Empty };
 			Repaint();
 		}
 

@@ -94,7 +94,7 @@ namespace Sudoku.UI.Pages
 				}
 				else if (Navigation.GetPageType(t) is { } type) // Switch to other pages.
 				{
-					FrameToShowTheSpecifiedPage.Navigate(type);
+					FrameToShowTheSpecifiedPage.Navigate(type, BaseWindow);
 				}
 			}
 
