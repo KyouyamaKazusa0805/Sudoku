@@ -4087,6 +4087,15 @@
             Indicates all symmetry types should be satisfied.
             </summary>
         </member>
+        <member name="M:Sudoku.JsonConverters.SudokuGridJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.SudokuGridJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.SudokuGridJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.SudokuGrid,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Models.DrawingInfo">
             <summary>
             Encapsulates a drawing information pair for highlighting cells,
@@ -4230,6 +4239,74 @@
         </member>
         <member name="M:Sudoku.Models.IProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Models.PresentationData">
+            <summary>
+            This is a data structure that stores the presentation data when drawing onto a picture.
+            </summary>
+            <param name="Cells">The cell information.</param>
+            <param name="Candidates">The candidate information.</param>
+            <param name="Regions">The region information.</param>
+            <param name="Links">The link information.</param>
+            <param name="DirectLines">The direct line information.</param>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.ICollection{Sudoku.Models.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Models.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Models.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Data.Link},System.Collections.Generic.ICollection{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}})">
+            <summary>
+            This is a data structure that stores the presentation data when drawing onto a picture.
+            </summary>
+            <param name="Cells">The cell information.</param>
+            <param name="Candidates">The candidate information.</param>
+            <param name="Regions">The region information.</param>
+            <param name="Links">The link information.</param>
+            <param name="DirectLines">The direct line information.</param>
+        </member>
+        <member name="E:Sudoku.Models.PresentationData.CellsChanged">
+            <summary>
+            Indicates the event triggered when the cell list is changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Models.PresentationData.CandidatesChanged">
+            <summary>
+            Indicates the event triggered when the candidate list is changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Models.PresentationData.RegionsChanged">
+            <summary>
+            Indicates the event triggered when the region list is changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Models.PresentationData.LinksChanged">
+            <summary>
+            Indicates the event triggered when the link list is changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Models.PresentationData.DirectLinesChanged">
+            <summary>
+            Indicates the event triggered when the direct line list is changed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.Add``1(System.String,``0@)">
+            <summary>
+            Add a new instance into the collection.
+            </summary>
+            <typeparam name="T">The type of the value to add into.</typeparam>
+            <param name="propertyName">The property name.</param>
+            <param name="value">The value to add into.</param>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.Remove``1(System.String,``0@)">
+            <summary>
+            Remove a new instance from the collection.
+            </summary>
+            <typeparam name="T">The type of the value to remove.</typeparam>
+            <param name="propertyName">The property name.</param>
+            <param name="value">The value to remove.</param>
+        </member>
+        <member name="T:Sudoku.Models.PresentationDataChangedEventHandler`1">
+            <summary>
+            Represents a event handler that triggered when the data is changed.
+            </summary>
+            <typeparam name="T">The type of the data.</typeparam>
+            <param name="args">(<see langword="in"/> parameter) The event arguments provided.</param>
         </member>
         <member name="T:Sudoku.Models.PuzzleGeneratingProgressResult">
             <summary>

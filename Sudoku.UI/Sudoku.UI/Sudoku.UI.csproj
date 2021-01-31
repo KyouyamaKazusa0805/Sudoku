@@ -11,10 +11,12 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Dictionaries\LangEnUs.xaml" />
-	  <None Remove="Dictionaries\LangZhCn.xaml" />
-	  <None Remove="Pages\InfoPage.xaml" />
-	  <None Remove="Pages\MainPage.xaml" />
+		<None Remove="Controls\SudokuPanel.xaml" />
+		<None Remove="Dictionaries\LangEnUs.xaml" />
+		<None Remove="Dictionaries\LangZhCn.xaml" />
+		<None Remove="Pages\InfoPage.xaml" />
+		<None Remove="Pages\MainPage.xaml" />
+		<None Remove="Pages\SudokuGridPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -24,26 +26,46 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Pages\InfoPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<ProjectReference Include="..\..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\..\Sudoku.Painting\Sudoku.Painting.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Dictionaries\LangZhCn.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<Page Update="Pages\SudokuGridPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Dictionaries\LangEnUs.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<Page Update="Pages\InfoPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Pages\MainPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<Page Update="Dictionaries\LangZhCn.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Dictionaries\LangEnUs.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Pages\MainPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Themes\Generic.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Controls\SudokuPanel.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 </Project>

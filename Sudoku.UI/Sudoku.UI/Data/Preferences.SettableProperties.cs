@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.Data
+﻿using Sudoku.Data;
+
+namespace Sudoku.UI.Data
 {
 	partial class Preferences
 	{
@@ -19,5 +21,10 @@
 		/// The default value is <see langword="true"/>.
 		/// </summary>
 		public bool OnlyDisplaySameLevelStepsWhenFindAllSteps { get; set; } = true;
+
+		/// <summary>
+		/// Indicates the last grid used. The default value is <see cref="SudokuGrid.Empty"/>.
+		/// </summary>
+		public SudokuGrid LastGrid { get; set; } = SudokuGrid.Empty;
 	}
 }

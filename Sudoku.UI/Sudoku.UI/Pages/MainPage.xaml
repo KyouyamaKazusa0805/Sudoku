@@ -10,6 +10,7 @@
 	<Grid>
 		<NavigationView x:Name="NavigationViewMain" IsSettingsVisible="True" IsTabStop="False"
 						IsBackButtonVisible="Collapsed" IsBackEnabled="False"
+						SelectionChanged="NavigationViewMain_SelectionChanged"
 						ItemInvoked="NavigationViewMain_ItemInvoked">
 			<NavigationView.MenuItems>
 				<NavigationViewItem x:Name="NavigationViewItemSudokuGrid" Icon="Play"

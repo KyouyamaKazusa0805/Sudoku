@@ -100,5 +100,18 @@ namespace Sudoku.UI.Pages
 
 			bool findFirstItem(NavigationViewItem x) => (string)x.Content == (string)args.InvokedItem;
 		}
+
+		/// <summary>
+		/// Triggers when the selection of <see cref="NavigationViewMain"/> is changed.
+		/// </summary>
+		/// <param name="sender">The object to trigger this event.</param>
+		/// <param name="args">The event arguments provided.</param>
+		private void NavigationViewMain_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+		{
+			if (sender is NavigationView view)
+			{
+				InitializeSettingsPartOfNavigationView(view);
+			}
+		}
 	}
 }
