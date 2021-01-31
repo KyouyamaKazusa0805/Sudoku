@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Sudoku.UI.Dictionaries;
-using Windows.ApplicationModel.Core;
 
 namespace Sudoku.UI.Pages
 {
@@ -62,7 +61,7 @@ namespace Sudoku.UI.Pages
 
 				if (t == "Quit") // To exit the program.
 				{
-					CoreApplication.Exit();
+					Application.Current.Exit();
 				}
 				else if (Type.GetType($"Sudoku.UI.Pages.{t}Page") is { } type) // Switch to other pages.
 				{
