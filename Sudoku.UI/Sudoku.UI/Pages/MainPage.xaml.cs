@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Sudoku.UI.Data;
 using Sudoku.UI.Dictionaries;
 
 namespace Sudoku.UI.Pages
@@ -24,12 +24,14 @@ namespace Sudoku.UI.Pages
 
 
 		/// <summary>
-		/// Triggers when the current page is loaded.
+		/// Indicates the base window. <b>It must be assigned when the base window is initialized.</b>
 		/// </summary>
-		/// <param name="sender">The object to trigger this event.</param>
-		/// <param name="e">The event arguments provided.</param>
-		private void Page_Loaded(object sender, RoutedEventArgs e) =>
-			InitializeSettingsPartOfNavigationView(NavigationViewMain);
+		public MainWindow BaseWindow { get; internal set; } = null!;
+
+		/// <summary>
+		/// Indicates the preferences used in the base window.
+		/// </summary>
+		public Preferences Preferences => BaseWindow.Preferences;
 
 
 		/// <summary>
@@ -41,6 +43,15 @@ namespace Sudoku.UI.Pages
 			item.Content = ResourceFinder.Current.NavigationViewItemSettings;
 			ToolTipService.SetToolTip(item, ResourceFinder.Current.NavigationViewItemSettingsToolTip);
 		}
+
+
+		/// <summary>
+		/// Triggers when the current page is loaded.
+		/// </summary>
+		/// <param name="sender">The object to trigger this event.</param>
+		/// <param name="e">The event arguments provided.</param>
+		private void Page_Loaded(object sender, RoutedEventArgs e) =>
+			InitializeSettingsPartOfNavigationView(NavigationViewMain);
 
 		/// <summary>
 		/// Triggers when the menu item of the control <see cref="NavigationViewMain"/>
