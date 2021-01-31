@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Text.Json;
 using Microsoft.UI.Xaml;
+using Sudoku.Painting;
 using Sudoku.UI.Data;
 using Sudoku.UI.Dictionaries;
 
@@ -28,7 +28,7 @@ namespace Sudoku.UI
 		/// <summary>
 		/// Indicates the inner preferences.
 		/// </summary>
-		public Preferences Preferences { get; private set; }
+		public PagePreferences Preferences { get; private set; }
 
 
 		/// <summary>
@@ -52,10 +52,11 @@ namespace Sudoku.UI
 			}
 
 			// Deserialize the object.
-			Preferences = JsonSerializer.Deserialize<Preferences>(
-				json: File.ReadAllText(Paths.ConfigurationFile),
-				options: JsonSerializerOptionsList.WithIndenting
-			) ?? new();
+			string dir = File.ReadAllText(Paths.ConfigurationFile);
+			Preferences =
+				PreferencesBase.Deserialize(dir, out var inst) && inst is PagePreferences preferences
+				? preferences
+				: new();
 
 			// Then set the instance to the main page. In this way we can get the preferences
 			// from this property in the main page.
@@ -65,21 +66,7 @@ namespace Sudoku.UI
 		/// <summary>
 		/// To save the preferences to local.
 		/// </summary>
-		private void SavePreferences()
-		{
-			// Serialize the object.
-			string json = JsonSerializer.Serialize(Preferences, JsonSerializerOptionsList.WithIndenting);
-
-			// Check the existence of the directory.
-			string dirPath = Path.GetDirectoryName(Paths.ConfigurationFile)!;
-			if (!Directory.Exists(dirPath))
-			{
-				Directory.CreateDirectory(dirPath);
-			}
-
-			// Save to the path.
-			File.WriteAllText(Paths.ConfigurationFile, json);
-		}
+		private void SavePreferences() => PreferencesBase.Serialize(Preferences, Paths.ConfigurationFile);
 
 		/// <summary>
 		/// To initialize the property <see cref="Window.Title"/>.

@@ -32,7 +32,7 @@ namespace Sudoku.UI.Pages
 		/// <summary>
 		/// Indicates the preferences used in the base window.
 		/// </summary>
-		public Preferences Preferences => BaseWindow.Preferences;
+		public PagePreferences Preferences => BaseWindow.Preferences;
 
 
 		/// <summary>
