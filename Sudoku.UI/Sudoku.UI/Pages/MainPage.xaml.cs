@@ -12,6 +12,12 @@ namespace Sudoku.UI.Pages
 	public sealed partial class MainPage : Page
 	{
 		/// <summary>
+		/// Indicates the command name that used for quitting this program.
+		/// </summary>
+		private static readonly string QuitCommandName = nameof(NavigationViewItemQuit)[^4..];
+
+
+		/// <summary>
 		/// Initializes a <see cref="MainPage"/> instance with the default instantiation behavior.
 		/// </summary>
 		public MainPage() => InitializeComponent();
@@ -59,11 +65,11 @@ namespace Sudoku.UI.Pages
 					return;
 				}
 
-				if (t == "Quit") // To exit the program.
+				if (t == QuitCommandName) // To exit the program.
 				{
 					Application.Current.Exit();
 				}
-				else if (Type.GetType($"Sudoku.UI.Pages.{t}Page") is { } type) // Switch to other pages.
+				else if (Navigation.GetPageType(t) is { } type) // Switch to other pages.
 				{
 					FrameToShowTheSpecifiedPage.Navigate(type);
 				}
