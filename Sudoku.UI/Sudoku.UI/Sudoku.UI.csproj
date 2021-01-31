@@ -10,10 +10,33 @@
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Dictionaries\LangEnUs.xaml" />
+	  <None Remove="Dictionaries\LangZhCn.xaml" />
+	  <None Remove="Pages\MainPage.xaml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.6" />
 		<PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview3.201113.0" />
 		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Dictionaries\LangZhCn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Dictionaries\LangEnUs.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Pages\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 </Project>

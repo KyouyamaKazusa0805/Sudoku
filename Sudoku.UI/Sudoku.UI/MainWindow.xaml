@@ -4,32 +4,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:pages="using:Sudoku.UI.Pages"
 	mc:Ignorable="d">
 
-	<NavigationView x:Name="NavigationViewMain" IsSettingsVisible="True" IsTabStop="False"
-					IsBackButtonVisible="Collapsed" IsBackEnabled="False">
-		<NavigationView.MenuItems>
-			<NavigationViewItem x:Name="NavigationViewItemSudokuGrid" Icon="Play"
-								Tag="NavigationViewItemSudokuGrid"
-								Content="Sudoku Grid"
-								ToolTipService.ToolTip="Switch to the main page" />
-			<NavigationViewItemSeparator />
-			<NavigationViewItem x:Name="NavigationViewItemInfo" Icon="ContactInfo"
-								Tag="NavigationViewItemInfo"
-								Content="Program Infomation"
-								ToolTipService.ToolTip="View the details of the program" />
-			<NavigationViewItem x:Name="NavigationViewItemQuit" Icon="Up"
-								Tag="NavigationViewItemQuit"
-								Content="Quit"
-								ToolTipService.ToolTip="Say goodbye!" />
-		</NavigationView.MenuItems>
-
-		<Frame x:Name="FrameToShowTheSpecifiedPage">
-			<Frame.ContentTransitions>
-				<TransitionCollection>
-					<NavigationThemeTransition />
-				</TransitionCollection>
-			</Frame.ContentTransitions>
-		</Frame>
-	</NavigationView>
+	<Grid>
+		<pages:MainPage />
+	</Grid>
 </Window>

@@ -1,9 +1,11 @@
 ﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Sudoku.UI.Dictionaries;
 
 namespace Sudoku.UI
 {
 	/// <summary>
-	/// An empty window that can be used on its own or navigated to within a Frame.
+	/// The main window of the program. This program will open this window at first.
 	/// </summary>
 	public sealed partial class MainWindow : Window
 	{
@@ -14,7 +16,7 @@ namespace Sudoku.UI
 		{
 			InitializeComponent();
 
-			InitializeTitle();
+			InitializeProgramTitle();
 		}
 
 
@@ -25,6 +27,6 @@ namespace Sudoku.UI
 		/// When I filled with this property into the XAML page, it'll give me a complier error
 		/// <c>WMC061: Property not found</c>, so I moved that statement to here.
 		/// </remarks>
-		private void InitializeTitle() => Title = "Sunnie's Sudoku Solution";
+		private void InitializeProgramTitle() => Title = ResourceFinder.Current.ProgramTitle;
 	}
 }

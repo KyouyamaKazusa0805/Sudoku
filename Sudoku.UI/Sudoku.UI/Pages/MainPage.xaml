@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="Sudoku.UI.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	Loaded="Page_Loaded">
+
+    <Grid>
+		<NavigationView x:Name="NavigationViewMain" IsSettingsVisible="True" IsTabStop="False"
+					IsBackButtonVisible="Collapsed" IsBackEnabled="False">
+			<NavigationView.MenuItems>
+				<NavigationViewItem x:Name="NavigationViewItemSudokuGrid" Icon="Play"
+									Tag="NavigationViewItemSudokuGrid"
+									Content="{StaticResource NavigationViewItemSudokuGrid}"
+									ToolTipService.ToolTip="{StaticResource NavigationViewItemSudokuGridToolTip}" />
+				<NavigationViewItemSeparator />
+				<NavigationViewItem x:Name="NavigationViewItemInfo" Icon="ContactInfo"
+									Tag="NavigationViewItemInfo"
+									Content="{StaticResource NavigationViewItemInfo}"
+									ToolTipService.ToolTip="{StaticResource NavigationViewItemInfoToolTip}" />
+				<NavigationViewItem x:Name="NavigationViewItemQuit" Icon="Up"
+									Tag="NavigationViewItemQuit"
+									Content="{StaticResource NavigationViewItemQuit}"
+									ToolTipService.ToolTip="{StaticResource NavigationViewItemQuitToolTip}" />
+			</NavigationView.MenuItems>
+
+			<Frame x:Name="FrameToShowTheSpecifiedPage">
+				<Frame.ContentTransitions>
+					<TransitionCollection>
+						<NavigationThemeTransition />
+					</TransitionCollection>
+				</Frame.ContentTransitions>
+			</Frame>
+		</NavigationView>
+	</Grid>
+</Page>
