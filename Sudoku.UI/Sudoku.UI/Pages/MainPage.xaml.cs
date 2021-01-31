@@ -24,7 +24,7 @@ namespace Sudoku.UI.Pages
 
 
 		/// <summary>
-		/// Indicates the base window. <b>It must be assigned when the base window is initialized.</b>
+		/// Indicates the base window.
 		/// </summary>
 		public MainWindow BaseWindow { get; internal set; } = null!;
 

@@ -4,11 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	Loaded="Page_Loaded">
-
-    <Grid>
+	<Grid>
 		<NavigationView x:Name="NavigationViewMain" IsSettingsVisible="True" IsTabStop="False"
 						IsBackButtonVisible="Collapsed" IsBackEnabled="False"
 						ItemInvoked="NavigationViewMain_ItemInvoked">

@@ -36,10 +36,18 @@ namespace Sudoku.UI
 		[MemberNotNull(nameof(Preferences))]
 		private void LoadPreferences()
 		{
-			// Check whether the local hard drive contains that configuration file.
+			// Check the existence of the directory that stores the configuration file.
+			if (!Directory.Exists(Path.GetDirectoryName(Paths.ConfigurationFile)))
+			{
+				Preferences = new();
+				return;
+			}
+
+			// Check the existence of the configuration file.
 			if (!File.Exists(Paths.ConfigurationFile))
 			{
 				Preferences = new();
+				return;
 			}
 
 			// Deserialize the object.
@@ -58,7 +66,17 @@ namespace Sudoku.UI
 		/// </summary>
 		private void SavePreferences()
 		{
+			// Serialize the object.
 			string json = JsonSerializer.Serialize(Preferences, JsonSerializerOptionsList.WithIndenting);
+
+			// Check the existence of the directory.
+			string dirPath = Path.GetDirectoryName(Paths.ConfigurationFile)!;
+			if (!Directory.Exists(dirPath))
+			{
+				Directory.CreateDirectory(dirPath);
+			}
+
+			// Save to the path.
 			File.WriteAllText(Paths.ConfigurationFile, json);
 		}
 
