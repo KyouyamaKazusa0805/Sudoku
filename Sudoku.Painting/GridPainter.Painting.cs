@@ -45,7 +45,7 @@ namespace Sudoku.Painting
 			}
 		}
 
-		partial void PaintView(Graphics g, PresentationData? view, float offset)
+		partial void PaintPresentationData(Graphics g, PresentationData? view, float offset)
 		{
 			if (view is null)
 			{
@@ -107,7 +107,7 @@ namespace Sudoku.Painting
 			Drawing:
 				g.FillEllipse(
 					isCannibalism ? cannibalBrush : eliminationBrush,
-					Translator.GetMouseRectangle(c, d).Zoom(-offset / 3));
+					Translator.GetMouseRectangleViaCandidate(c, d).Zoom(-offset / 3));
 			}
 		}
 
@@ -117,7 +117,7 @@ namespace Sudoku.Painting
 			float candidateWidth = Translator.CandidateSize.Width;
 			float vOffsetValue = cellWidth / 9; // The vertical offset of rendering each value.
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
-			float halfWidth = cellWidth / 2F;
+			float halfWidth = cellWidth / 2;
 
 			using var bGiven = new SolidBrush(Theme.GivenColor);
 			using var bModifiable = new SolidBrush(Theme.ModifiableColor);
@@ -143,7 +143,7 @@ namespace Sudoku.Painting
 						short candidateMask = (short)(mask & SudokuGrid.MaxCandidatesMask);
 						foreach (int digit in candidateMask)
 						{
-							var point = Translator.GetMousePointInCenter(cell, digit);
+							var point = Translator.GetMouseCenter(cell, digit);
 							point.Y += vOffsetCandidate;
 							g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
 						}
@@ -154,7 +154,7 @@ namespace Sudoku.Painting
 					case CellStatus.Given:
 					{
 						// Draw values.
-						var point = Translator.GetMousePointInCenter(cell);
+						var point = Translator.GetMouseCenter(cell);
 						point.Y += vOffsetValue;
 						g.DrawString(
 							(Grid[cell] + 1).ToString(), status == CellStatus.Given ? fGiven : fModifiable,
@@ -178,14 +178,14 @@ namespace Sudoku.Painting
 				if (ColorId.IsColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 				{
 					var (cw, ch) = Translator.CellSize;
-					var (x, y) = Translator.GetMousePointInCenter(cell);
+					var (x, y) = Translator.GetMouseCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
 					g.FillRectangle(brush, Translator.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
 				}
-				else if (Theme.PaletteColors.TryGetValue(id, out var color))
+				else if (Theme.TryGetPaletteColor(id, out var color))
 				{
 					var (cw, ch) = Translator.CellSize;
-					var (x, y) = Translator.GetMousePointInCenter(cell);
+					var (x, y) = Translator.GetMouseCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
 					g.FillRectangle(brush, Translator.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
 				}
@@ -199,12 +199,13 @@ namespace Sudoku.Painting
 				return;
 			}
 
+			// The offset values.
+			// 'vOffsetCandidate': The vertical offset of rendering each candidate.
 			float cellWidth = Translator.CellSize.Width, candidateWidth = Translator.CandidateSize.Width;
-			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
+			float halfWidth = cellWidth / 2, vOffsetCandidate = candidateWidth / 9;
 
 			using var bCandidate = new SolidBrush(Theme.CandidateColor);
-			using var fCandidate =
-				GetFont(Preferences.CandidateFontName, cellWidth / 2F, Preferences.CandidateScale);
+			using var fCandidate = GetFont(Preferences.CandidateFontName, halfWidth, Preferences.CandidateScale);
 			using var sf = new StringFormat
 			{
 				Alignment = StringAlignment.Center,
@@ -235,21 +236,21 @@ namespace Sudoku.Painting
 					if (ColorId.IsColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 					{
 						using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
-						g.FillEllipse(brush, Translator.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+						g.FillEllipse(brush, Translator.GetMouseRectangleViaCandidate(cell, digit).Zoom(-offset / 3));
 
-						// In direct view, candidates should be drawn also.
+						// Candidates should be painted also.
 						if (!Preferences.ShowCandidates)
 						{
 							d(cell, digit, vOffsetCandidate);
 						}
 					}
-					else if (Theme.PaletteColors.TryGetValue(id, out var color))
+					else if (Theme.TryGetPaletteColor(id, out var color))
 					{
-						// In the normal case, I'll draw these circles.
+						// In the normal case, I'll paint these circles.
 						using var brush = new SolidBrush(color);
-						g.FillEllipse(brush, Translator.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+						g.FillEllipse(brush, Translator.GetMouseRectangleViaCandidate(cell, digit).Zoom(-offset / 3));
 
-						// In direct view, candidates should be drawn also.
+						// Candidates should be painted also.
 						if (!Preferences.ShowCandidates)
 						{
 							d(cell, digit, vOffsetCandidate);
@@ -272,7 +273,7 @@ namespace Sudoku.Painting
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			void d(int cell, int digit, float vOffsetCandidate)
 			{
-				var point = Translator.GetMousePointInCenter(cell, digit);
+				var point = Translator.GetMouseCenter(cell, digit);
 				point.Y += vOffsetCandidate;
 				g.DrawString((digit + 1).ToString(), fCandidate, bCandidate, point, sf);
 			}
@@ -296,7 +297,7 @@ namespace Sudoku.Painting
 					//g.DrawRectangle(pen, rect.Truncate());
 					g.FillRectangle(brush, rect);
 				}
-				else if (Theme.PaletteColors.TryGetValue(id, out var color))
+				else if (Theme.TryGetPaletteColor(id, out var color))
 				{
 					var rect = Translator.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
@@ -328,7 +329,7 @@ namespace Sudoku.Painting
 			{
 				foreach (var conclusion in Conclusions)
 				{
-					points.Add(Translator.GetMousePointInCenter(conclusion.Cell, conclusion.Digit));
+					points.Add(Translator.GetMouseCenter(conclusion.Cell, conclusion.Digit));
 				}
 			}
 
@@ -354,8 +355,8 @@ namespace Sudoku.Painting
 					_ => DashStyle.Dash
 				};
 
-				var pt1 = Translator.GetMouseCenter(new() { start });
-				var pt2 = Translator.GetMouseCenter(new() { end });
+				var pt1 = Translator.GetMouseCenter(new Candidates() { start });
+				var pt2 = Translator.GetMouseCenter(new Candidates() { end });
 				var (pt1x, pt1y) = pt1;
 				var (pt2x, pt2y) = pt2;
 
@@ -539,8 +540,8 @@ namespace Sudoku.Painting
 				if (!start.IsEmpty)
 				{
 					// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-					var p1 = Translator.GetMousePointInCenter(start[0]) - Translator.CellSize / 2;
-					var p2 = Translator.GetMousePointInCenter(start[^1]) + Translator.CellSize / 2;
+					var p1 = Translator.GetMouseCenter(start[0]) - Translator.CellSize / 2;
+					var p2 = Translator.GetMouseCenter(start[^1]) + Translator.CellSize / 2;
 					var rect = RectangleEx.FromLeftUpAndRightDown(p1, p2).Zoom(-offset);
 
 					// Step 2: Draw capsule.

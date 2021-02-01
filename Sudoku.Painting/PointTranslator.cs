@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Painting.Extensions;
-using System.Drawing;
 
 namespace Sudoku.Painting
 {
@@ -131,88 +131,12 @@ namespace Sudoku.Painting
 		}
 
 		/// <summary>
-		/// Get the center mouse point of all candidates.
-		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map of candidates.</param>
-		/// <returns>The center mouse point.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PointF GetMouseCenter(in Candidates map)
-		{
-			int min = map[0], max = map[^1];
-			var (x1, y1) = GetMousePointInCenter(min / 9, min % 9);
-			var (x2, y2) = GetMousePointInCenter(max / 9, max % 9);
-			return new((x1 + x2) / 2, (y1 + y2) / 2);
-		}
-
-		/// <summary>
-		/// Get the rectangle from all candidates.
-		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The candidates.</param>
-		/// <returns>The rectangle.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RectangleF GetMouseRectangle(in Candidates map)
-		{
-			var (cw, ch) = CandidateSize;
-			int min = map[0], max = map[^1];
-			var pt1 = GetMousePointInCenter(min / 9, min % 9).WithOffset(-cw / 2, -ch / 2);
-			var pt2 = GetMousePointInCenter(max / 9, max % 9).WithOffset(cw / 2, ch / 2);
-			return RectangleEx.FromLeftUpAndRightDown(pt1, pt2);
-		}
-
-		/// <summary>
-		/// Get the rectangle (4 mouse points) via the specified cell.
-		/// </summary>
-		/// <param name="cell">The cell.</param>
-		/// <returns>The rectangle.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RectangleF GetMouseRectangleViaCell(int cell)
-		{
-			var (cw, ch) = CellSize;
-			var (x, y) = GetMousePointInCenter(cell);
-			return new(x - cw / 2, y - ch / 2, cw, ch);
-		}
-
-		/// <summary>
-		/// Get the rectangle (4 mouse points) for the specified cell
-		/// and digit of a candidate.
-		/// </summary>
-		/// <param name="cell">The cell.</param>
-		/// <returns>The rectangle.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RectangleF GetMouseRectangle(int cell, int digit)
-		{
-			var (cw, ch) = CandidateSize;
-			var (x, y) = GetMousePointInCenter(cell, digit);
-			return new(x - cw / 2, y - ch / 2, cw, ch);
-		}
-
-		/// <summary>
-		/// Get the rectangle (4 mouse points) via the specified region.
-		/// </summary>
-		/// <param name="region">The region.</param>
-		/// <returns>The rectangle.</returns>
-		/// <exception cref="ArgumentOutOfRangeException">
-		/// Throws when the region is less than 0 or greater than 26.
-		/// </exception>
-		public RectangleF GetMouseRectangleViaRegion(int region) =>
-			region switch
-			{
-				>= 0 and < 9 when (region % 3, region / 3) is (var v1, var v2) =>
-					RectangleEx.FromLeftUpAndRightDown(GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
-				>= 9 and < 18 when region - 9 is var v =>
-					RectangleEx.FromLeftUpAndRightDown(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
-				>= 18 and < 27 when region - 18 is var v =>
-					RectangleEx.FromLeftUpAndRightDown(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
-				_ => throw new ArgumentOutOfRangeException(nameof(region))
-			};
-
-		/// <summary>
 		/// Get the mouse point of the center of a cell via its offset.
 		/// </summary>
 		/// <param name="cell">The cell offset.</param>
 		/// <returns>The mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PointF GetMousePointInCenter(int cell)
+		public PointF GetMouseCenter(int cell)
 		{
 			var (cw, ch) = CellSize;
 			var (x, y) = GridPoints[cell % 9 * 3, cell / 9 * 3];
@@ -226,11 +150,95 @@ namespace Sudoku.Painting
 		/// <param name="digit">The digit.</param>
 		/// <returns>The mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PointF GetMousePointInCenter(int cell, int digit)
+		public PointF GetMouseCenter(int cell, int digit)
 		{
 			var (cw, ch) = CandidateSize;
 			var (x, y) = GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
 			return new(x + cw / 2, y + ch / 2);
 		}
+
+		/// <summary>
+		/// Get the center mouse point of all candidates.
+		/// </summary>
+		/// <param name="map">(<see langword="in"/> parameter) The map of candidates.</param>
+		/// <returns>The center mouse point.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public PointF GetMouseCenter(in Candidates map)
+		{
+			int min = map[0], max = map[^1];
+			var (x1, y1) = GetMouseCenter(min / 9, min % 9);
+			var (x2, y2) = GetMouseCenter(max / 9, max % 9);
+			return new((x1 + x2) / 2, (y1 + y2) / 2);
+		}
+
+		/// <summary>
+		/// Get the rectangle (4 mouse points) via the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <returns>The rectangle.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public RectangleF GetMouseRectangleViaCell(int cell)
+		{
+			var (cw, ch) = CellSize;
+			var (x, y) = GetMouseCenter(cell);
+			return new(x - cw / 2, y - ch / 2, cw, ch);
+		}
+
+		/// <summary>
+		/// Get the rectangle (4 mouse points) for the specified candidate.
+		/// </summary>
+		/// <param name="candidate">The candidate.</param>
+		/// <returns>The rectangle.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public RectangleF GetMouseRectangleViaCandidate(int candidate) =>
+			GetMouseRectangleViaCandidate(candidate / 9, candidate % 9);
+
+		/// <summary>
+		/// Get the rectangle (4 mouse points) for the specified cell
+		/// and digit of a candidate.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <returns>The rectangle.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public RectangleF GetMouseRectangleViaCandidate(int cell, int digit)
+		{
+			var (cw, ch) = CandidateSize;
+			var (x, y) = GetMouseCenter(cell, digit);
+			return new(x - cw / 2, y - ch / 2, cw, ch);
+		}
+
+		/// <summary>
+		/// Get the rectangle from all candidates.
+		/// </summary>
+		/// <param name="map">(<see langword="in"/> parameter) The candidates.</param>
+		/// <returns>The rectangle.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public RectangleF GetMouseRectangleViaCandidates(in Candidates map)
+		{
+			var (cw, ch) = CandidateSize;
+			int min = map[0], max = map[^1];
+			var pt1 = GetMouseCenter(min / 9, min % 9).WithOffset(-cw / 2, -ch / 2);
+			var pt2 = GetMouseCenter(max / 9, max % 9).WithOffset(cw / 2, ch / 2);
+			return RectangleEx.FromLeftUpAndRightDown(pt1, pt2);
+		}
+
+		/// <summary>
+		/// Get the rectangle (4 mouse points) via the specified region.
+		/// </summary>
+		/// <param name="region">The region.</param>
+		/// <returns>The rectangle.</returns>
+		public RectangleF GetMouseRectangleViaRegion(int region) =>
+			region switch
+			{
+				>= 0 and < 9 when (region % 3, region / 3) is (var v1, var v2) =>
+					RectangleEx.FromLeftUpAndRightDown(
+						GridPoints[v1 * 9, v2 * 9],
+						GridPoints[v1 * 9 + 9, v2 * 9 + 9]
+					),
+				>= 9 and < 18 when region - 9 is var v =>
+					RectangleEx.FromLeftUpAndRightDown(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
+				>= 18 and < 27 when region - 18 is var v =>
+					RectangleEx.FromLeftUpAndRightDown(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27])
+			};
 	}
 }

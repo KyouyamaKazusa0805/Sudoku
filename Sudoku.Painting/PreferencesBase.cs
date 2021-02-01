@@ -45,6 +45,11 @@ namespace Sudoku.Painting
 			Options = new() { WriteIndented = true };
 			Options.Converters.Add(new ColorJsonConverter());
 			Options.Converters.Add(new SudokuGridJsonConverter());
+			Options.Converters.Add(new PresentationDataJsonConverter());
+			Options.Converters.Add(new DrawingInfoJsonConverter());
+			Options.Converters.Add(new CellsJsonConverter());
+			Options.Converters.Add(new LinkJsonConverter());
+			Options.Converters.Add(new DirectLineJsonConverter());
 		}
 
 

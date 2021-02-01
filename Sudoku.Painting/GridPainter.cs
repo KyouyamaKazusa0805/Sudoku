@@ -67,6 +67,11 @@ namespace Sudoku.Painting
 		{
 			var result = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(result);
+			g.SmoothingMode = SmoothingMode.AntiAlias;
+			g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+			g.CompositingQuality = CompositingQuality.HighQuality;
+
 			return Paint(result, g);
 		}
 
@@ -79,21 +84,16 @@ namespace Sudoku.Painting
 		/// The return value is the same as the parameter <paramref name="bitmap"/> when
 		/// this parameter is not <see langword="null"/>.
 		/// </returns>
-		public Bitmap Paint(Bitmap? bitmap, Graphics g)
+		private Bitmap Paint(Bitmap? bitmap, Graphics g)
 		{
 			const float offset = 6F;
 
 			bitmap ??= new((int)Width, (int)Height);
 
-			g.SmoothingMode = SmoothingMode.AntiAlias;
-			g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-			g.CompositingQuality = CompositingQuality.HighQuality;
-
 			PaintBackground(g);
 			PaintGridAndBlockLines(g);
-			PaintView(g, View, offset);
-			PaintView(g, CustomView, offset);
+			PaintPresentationData(g, View, offset);
+			PaintPresentationData(g, CustomView, offset);
 			PaintFocusedCells(g);
 			PaintEliminations(g, offset);
 			PaintValues(g);
@@ -114,16 +114,16 @@ namespace Sudoku.Painting
 			new(fontName, size * scale, FontStyle.Regular);
 
 
-		partial void PaintBackground(       Graphics g);
+		partial void PaintBackground(Graphics g);
 		partial void PaintGridAndBlockLines(Graphics g);
-		partial void PaintView(             Graphics g, PresentationData? view, float offset);
-		partial void PaintFocusedCells(     Graphics g);
-		partial void PaintEliminations(     Graphics g, float offset);
-		partial void PaintValues(           Graphics g);
-		partial void PaintCells(            Graphics g, IEnumerable<DrawingInfo>? cells);
-		partial void PaintCandidates(       Graphics g, IEnumerable<DrawingInfo>? candidates, float offset);
-		partial void PaintRegions(          Graphics g, IEnumerable<DrawingInfo>? regions, float offset);
-		partial void PaintLinks(            Graphics g, IEnumerable<Link>? links, float offset);
-		partial void PaintDirectLines(      Graphics g, IEnumerable<(Cells, Cells)>? directLines, float offset);
+		partial void PaintPresentationData(Graphics g, PresentationData? view, float offset);
+		partial void PaintFocusedCells(Graphics g);
+		partial void PaintEliminations(Graphics g, float offset);
+		partial void PaintValues(Graphics g);
+		partial void PaintCells(Graphics g, IEnumerable<DrawingInfo>? cells);
+		partial void PaintCandidates(Graphics g, IEnumerable<DrawingInfo>? candidates, float offset);
+		partial void PaintRegions(Graphics g, IEnumerable<DrawingInfo>? regions, float offset);
+		partial void PaintLinks(Graphics g, IEnumerable<Link>? links, float offset);
+		partial void PaintDirectLines(Graphics g, IEnumerable<(Cells, Cells)>? directLines, float offset);
 	}
 }

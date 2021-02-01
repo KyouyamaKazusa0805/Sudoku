@@ -95,11 +95,11 @@
 		/// <summary>
 		/// Indicates the light theme.
 		/// </summary>
-		public Theme LightTheme { get; set; } = Themes.LightTheme.Clone();
+		public Theme LightTheme { get; set; } = new(Themes.LightTheme);
 
 		/// <summary>
 		/// Indicates the dark theme.
 		/// </summary>
-		public Theme DarkTheme { get; set; } = Themes.DarkTheme.Clone();
+		public Theme DarkTheme { get; set; } = new(Themes.DarkTheme);
 	}
 }
