@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Microsoft.UI.Xaml;
 using Sudoku.Painting;
+using Sudoku.Resources;
 using Sudoku.UI.Data;
 using Sudoku.UI.Dictionaries;
 
@@ -54,14 +55,7 @@ namespace Sudoku.UI
 
 			// Deserialize the object.
 			string json = File.ReadAllText(Paths.ConfigurationFile);
-			Preferences =
-				PreferencesBase.Deserialize(json, out var inst) && inst is PagePreferences preferences
-				? preferences
-				: new();
-
-			// Then set the instance to the static class 'ProgramData'. This class is used for passing
-			// key data through all pages.
-			ProgramData.BaseWindow = this;
+			Preferences = PreferencesBase.Deserialize(json, out var i) && i is PagePreferences p ? p : new();
 		}
 
 		/// <summary>

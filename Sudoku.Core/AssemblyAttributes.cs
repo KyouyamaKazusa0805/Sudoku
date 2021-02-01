@@ -17,8 +17,9 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Sudoku.Debugging")]
 [assembly: InternalsVisibleTo("Sudoku.Diagnostics")]
 [assembly: InternalsVisibleTo("Sudoku.Drawing")]
-[assembly: InternalsVisibleTo("Sudoku.Solving")]
 [assembly: InternalsVisibleTo("Sudoku.Painting")]
+[assembly: InternalsVisibleTo("Sudoku.Solving")]
 [assembly: InternalsVisibleTo("Sudoku.Windows")]
+[assembly: InternalsVisibleTo("Sudoku.UI")]
 
 [module: SkipLocalsInit]

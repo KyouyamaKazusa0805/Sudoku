@@ -1,4 +1,5 @@
-﻿using Sudoku.Data;
+﻿using System.Threading.Tasks;
+using Sudoku.Data;
 
 namespace Sudoku.UI.Controls
 {

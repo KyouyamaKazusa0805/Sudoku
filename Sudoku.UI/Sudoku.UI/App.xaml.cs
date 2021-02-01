@@ -25,14 +25,19 @@ namespace Sudoku.UI
 		}
 
 		/// <summary>
-		/// Invoked when the application is launched normally by the end user.  Other entry points
-		/// will be used such as when the application is launched to open a specific file.
+		/// Invoked when the application is launched normally by the end user.
+		/// Other entry points will be used such as when the application is launched to open a specific file.
 		/// </summary>
 		/// <param name="args">Details about the launch request and process.</param>
 		protected override void OnLaunched(LaunchActivatedEventArgs args)
 		{
-			_window = new MainWindow();
+			var window = new MainWindow();
+			_window = window;
 			_window.Activate();
+
+			// Then set the instance to the static class 'ProgramData'. This class is used for passing
+			// key data through all pages.
+			ProgramData.BaseWindow = window;
 		}
 
 		/// <summary>

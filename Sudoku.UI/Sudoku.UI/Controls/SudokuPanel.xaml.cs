@@ -30,10 +30,11 @@ namespace Sudoku.UI.Controls
 		/// <summary>
 		/// Indicates the preferences used.
 		/// </summary>
-		public PagePreferences Preferences { get; set; } = new();
+		public PagePreferences Preferences => ProgramData.BaseWindow.Preferences;
 
 		/// <summary>
-		/// Indicates the grid painter instance.
+		/// Indicates the grid painter instance. This property can be <see langword="null"/>
+		/// when the panel doesn't finish its initialization.
 		/// </summary>
 		public GridPainter GridPainter { get; set; } = null!;
 
@@ -52,9 +53,9 @@ namespace Sudoku.UI.Controls
 		/// <summary>
 		/// Raises <see cref="Undo"/>.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <seealso cref="Undo"/>
-		private void OnUndoing(in SudokuGrid grid)
+		private void OnUndoing(SudokuGrid grid)
 		{
 			// TODO: Update icons.
 
@@ -66,9 +67,9 @@ namespace Sudoku.UI.Controls
 		/// <summary>
 		/// Raises <see cref="Redo"/>.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <seealso cref="Redo"/>
-		private void OnRedoing(in SudokuGrid grid)
+		private void OnRedoing(SudokuGrid grid)
 		{
 			// TODO: Update icons.
 
