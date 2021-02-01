@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Painting.Extensions;
-using Windows.UI;
 
 namespace Sudoku.Painting.JsonConverters
 {
@@ -23,8 +23,7 @@ namespace Sudoku.Painting.JsonConverters
 		/// Throws when the current token isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
 		/// </exception>
 		[SkipLocalsInit]
-		public override unsafe Color Read(
-			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		public override unsafe Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
 			const int length = 4;
 			byte* span = stackalloc byte[length];

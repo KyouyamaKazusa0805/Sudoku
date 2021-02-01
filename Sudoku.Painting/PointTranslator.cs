@@ -2,12 +2,12 @@
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Painting.Extensions;
-using Windows.Foundation;
+using System.Drawing;
 
 namespace Sudoku.Painting
 {
 	/// <summary>
-	/// Provides an instance for converting drawing points (i.e. <see cref="Point"/>)
+	/// Provides an instance for converting drawing points (i.e. <see cref="PointF"/>)
 	/// to an element in sudoku grid.
 	/// </summary>
 	public readonly struct PointTranslator
@@ -33,15 +33,15 @@ namespace Sudoku.Painting
 		/// </summary>
 		/// <param name="width">The width.</param>
 		/// <param name="height">The height.</param>
-		public PointTranslator(double width, double height) : this(new(width, height))
+		public PointTranslator(float width, float height) : this(new(width, height))
 		{
 		}
 
 		/// <summary>
-		/// Initializes an instance with the specified <see cref="Size"/> instance.
+		/// Initializes an instance with the specified <see cref="SizeF"/> instance.
 		/// </summary>
-		/// <param name="size">(<see langword="in"/> parameter) The <see cref="Size"/> instance.</param>
-		public PointTranslator(in Size size)
+		/// <param name="size">(<see langword="in"/> parameter) The <see cref="SizeF"/> instance.</param>
+		public PointTranslator(in SizeF size)
 		{
 			// Initialize sizes.
 			{
@@ -55,7 +55,7 @@ namespace Sudoku.Painting
 			{
 				const int length = 28;
 				var (cw, ch) = CandidateSize;
-				GridPoints = new Point[length, length];
+				GridPoints = new PointF[length, length];
 				for (int i = 0; i < length; i++)
 				{
 					for (int j = 0; j < length; j++)
@@ -70,22 +70,22 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Indicates the control size.
 		/// </summary>
-		public Size ControlSize { get; }
+		public SizeF ControlSize { get; }
 
 		/// <summary>
 		/// Indicates the grid size.
 		/// </summary>
-		public Size GridSize { get; }
+		public SizeF GridSize { get; }
 
 		/// <summary>
 		/// Indicates the cell size.
 		/// </summary>
-		public Size CellSize { get; }
+		public SizeF CellSize { get; }
 
 		/// <summary>
 		/// Indicates the candidate size.
 		/// </summary>
-		public Size CandidateSize { get; }
+		public SizeF CandidateSize { get; }
 
 		/// <summary>
 		/// Indicates the absolutely points in grid cross-lines.
@@ -94,7 +94,7 @@ namespace Sudoku.Painting
 		/// <remarks>
 		/// Note that the size of this 2D array is always 28 by 28.
 		/// </remarks>
-		internal Point[,] GridPoints { get; }
+		internal PointF[,] GridPoints { get; }
 
 
 		/// <summary>
@@ -103,7 +103,7 @@ namespace Sudoku.Painting
 		/// <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
 		/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public int GetCell(in Point point)
+		public int GetCell(in PointF point)
 		{
 			var (x, y) = point.WithOffset(-Offset);
 			if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
@@ -123,7 +123,7 @@ namespace Sudoku.Painting
 		/// <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
 		/// <returns>The candidate offset.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public int GetCandidate(in Point point)
+		public int GetCandidate(in PointF point)
 		{
 			var (x, y) = point;
 			var (cw, ch) = CandidateSize;
@@ -136,7 +136,7 @@ namespace Sudoku.Painting
 		/// <param name="map">(<see langword="in"/> parameter) The map of candidates.</param>
 		/// <returns>The center mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Point GetMouseCenter(in Candidates map)
+		public PointF GetMouseCenter(in Candidates map)
 		{
 			int min = map[0], max = map[^1];
 			var (x1, y1) = GetMousePointInCenter(min / 9, min % 9);
@@ -150,13 +150,13 @@ namespace Sudoku.Painting
 		/// <param name="map">(<see langword="in"/> parameter) The candidates.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Rect GetMouseRectangle(in Candidates map)
+		public RectangleF GetMouseRectangle(in Candidates map)
 		{
 			var (cw, ch) = CandidateSize;
 			int min = map[0], max = map[^1];
 			var pt1 = GetMousePointInCenter(min / 9, min % 9).WithOffset(-cw / 2, -ch / 2);
 			var pt2 = GetMousePointInCenter(max / 9, max % 9).WithOffset(cw / 2, ch / 2);
-			return new(pt1, pt2);
+			return RectangleEx.FromLeftUpAndRightDown(pt1, pt2);
 		}
 
 		/// <summary>
@@ -165,7 +165,7 @@ namespace Sudoku.Painting
 		/// <param name="cell">The cell.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Rect GetMouseRectangleViaCell(int cell)
+		public RectangleF GetMouseRectangleViaCell(int cell)
 		{
 			var (cw, ch) = CellSize;
 			var (x, y) = GetMousePointInCenter(cell);
@@ -179,7 +179,7 @@ namespace Sudoku.Painting
 		/// <param name="cell">The cell.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Rect GetMouseRectangle(int cell, int digit)
+		public RectangleF GetMouseRectangle(int cell, int digit)
 		{
 			var (cw, ch) = CandidateSize;
 			var (x, y) = GetMousePointInCenter(cell, digit);
@@ -194,15 +194,15 @@ namespace Sudoku.Painting
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Throws when the region is less than 0 or greater than 26.
 		/// </exception>
-		public Rect GetMouseRectangleViaRegion(int region) =>
+		public RectangleF GetMouseRectangleViaRegion(int region) =>
 			region switch
 			{
 				>= 0 and < 9 when (region % 3, region / 3) is (var v1, var v2) =>
-					new(GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
+					RectangleEx.FromLeftUpAndRightDown(GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
 				>= 9 and < 18 when region - 9 is var v =>
-					new(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
+					RectangleEx.FromLeftUpAndRightDown(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
 				>= 18 and < 27 when region - 18 is var v =>
-					new(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
+					RectangleEx.FromLeftUpAndRightDown(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
 				_ => throw new ArgumentOutOfRangeException(nameof(region))
 			};
 
@@ -212,7 +212,7 @@ namespace Sudoku.Painting
 		/// <param name="cell">The cell offset.</param>
 		/// <returns>The mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Point GetMousePointInCenter(int cell)
+		public PointF GetMousePointInCenter(int cell)
 		{
 			var (cw, ch) = CellSize;
 			var (x, y) = GridPoints[cell % 9 * 3, cell / 9 * 3];
@@ -226,7 +226,7 @@ namespace Sudoku.Painting
 		/// <param name="digit">The digit.</param>
 		/// <returns>The mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Point GetMousePointInCenter(int cell, int digit)
+		public PointF GetMousePointInCenter(int cell, int digit)
 		{
 			var (cw, ch) = CandidateSize;
 			var (x, y) = GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];

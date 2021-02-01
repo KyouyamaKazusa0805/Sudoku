@@ -4244,21 +4244,31 @@
             <summary>
             This is a data structure that stores the presentation data when drawing onto a picture.
             </summary>
-            <param name="Cells">The cell information.</param>
-            <param name="Candidates">The candidate information.</param>
-            <param name="Regions">The region information.</param>
-            <param name="Links">The link information.</param>
-            <param name="DirectLines">The direct line information.</param>
         </member>
-        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.ICollection{Sudoku.Models.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Models.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Models.DrawingInfo},System.Collections.Generic.ICollection{Sudoku.Data.Link},System.Collections.Generic.ICollection{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}})">
+        <member name="P:Sudoku.Models.PresentationData.Cells">
             <summary>
-            This is a data structure that stores the presentation data when drawing onto a picture.
+            The cell information.
             </summary>
-            <param name="Cells">The cell information.</param>
-            <param name="Candidates">The candidate information.</param>
-            <param name="Regions">The region information.</param>
-            <param name="Links">The link information.</param>
-            <param name="DirectLines">The direct line information.</param>
+        </member>
+        <member name="P:Sudoku.Models.PresentationData.Candidates">
+            <summary>
+            The candidate information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.PresentationData.Regions">
+            <summary>
+            The region information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.PresentationData.Links">
+            <summary>
+            The link information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.PresentationData.DirectLines">
+            <summary>
+            The direct line information.
+            </summary>
         </member>
         <member name="E:Sudoku.Models.PresentationData.CellsChanged">
             <summary>

@@ -1,6 +1,6 @@
-﻿using Windows.UI;
-using Sudoku.DocComments;
+﻿using System.Drawing;
 using System.Runtime.CompilerServices;
+using Sudoku.DocComments;
 
 namespace Sudoku.Painting.Extensions
 {

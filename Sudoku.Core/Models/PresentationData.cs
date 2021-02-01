@@ -7,15 +7,34 @@ namespace Sudoku.Models
 	/// <summary>
 	/// This is a data structure that stores the presentation data when drawing onto a picture.
 	/// </summary>
-	/// <param name="Cells">The cell information.</param>
-	/// <param name="Candidates">The candidate information.</param>
-	/// <param name="Regions">The region information.</param>
-	/// <param name="Links">The link information.</param>
-	/// <param name="DirectLines">The direct line information.</param>
-	public sealed record PresentationData(
-		ICollection<DrawingInfo> Cells, ICollection<DrawingInfo> Candidates, ICollection<DrawingInfo> Regions,
-		ICollection<Link> Links, ICollection<(Cells Start, Cells End)> DirectLines)
+	public sealed class PresentationData
 	{
+		/// <summary>
+		/// The cell information.
+		/// </summary>
+		public ICollection<DrawingInfo>? Cells { get; set; }
+
+		/// <summary>
+		/// The candidate information.
+		/// </summary>
+		public ICollection<DrawingInfo>? Candidates { get; set; }
+
+		/// <summary>
+		/// The region information.
+		/// </summary>
+		public ICollection<DrawingInfo>? Regions { get; set; }
+
+		/// <summary>
+		/// The link information.
+		/// </summary>
+		public ICollection<Link>? Links { get; set; }
+
+		/// <summary>
+		/// The direct line information.
+		/// </summary>
+		public ICollection<(Cells Start, Cells End)>? DirectLines { get; set; }
+
+
 		/// <summary>
 		/// Indicates the event triggered when the cell list is changed.
 		/// </summary>
@@ -54,31 +73,31 @@ namespace Sudoku.Models
 			{
 				case nameof(Cells) when value is DrawingInfo i:
 				{
-					Cells.Add(i);
+					(Cells ??= new List<DrawingInfo>()).Add(i);
 					CellsChanged?.Invoke(Cells);
 					return true;
 				}
 				case nameof(Candidates) when value is DrawingInfo i:
 				{
-					Candidates.Add(i);
+					(Candidates ??= new List<DrawingInfo>()).Add(i);
 					CandidatesChanged?.Invoke(Candidates);
 					return true;
 				}
 				case nameof(Regions) when value is DrawingInfo i:
 				{
-					Regions.Add(i);
+					(Regions ??= new List<DrawingInfo>()).Add(i);
 					RegionsChanged?.Invoke(Regions);
 					return true;
 				}
 				case nameof(Links) when value is Link i:
 				{
-					Links.Add(i);
+					(Links ??= new List<Link>()).Add(i);
 					LinksChanged?.Invoke(Links);
 					return true;
 				}
 				case nameof(DirectLines) when value is ValueTuple<Cells, Cells> i:
 				{
-					DirectLines.Add(i);
+					(DirectLines ??= new List<(Cells, Cells)>()).Add(i);
 					DirectLinesChanged?.Invoke(DirectLines);
 					return true;
 				}
@@ -99,31 +118,31 @@ namespace Sudoku.Models
 		{
 			switch (propertyName)
 			{
-				case nameof(Cells) when value is DrawingInfo i:
+				case nameof(Cells) when value is DrawingInfo i && Cells is not null:
 				{
 					Cells.Remove(i);
 					CellsChanged?.Invoke(Cells);
 					return true;
 				}
-				case nameof(Candidates) when value is DrawingInfo i:
+				case nameof(Candidates) when value is DrawingInfo i && Candidates is not null:
 				{
 					Candidates.Remove(i);
 					CandidatesChanged?.Invoke(Candidates);
 					return true;
 				}
-				case nameof(Regions) when value is DrawingInfo i:
+				case nameof(Regions) when value is DrawingInfo i && Regions is not null:
 				{
 					Regions.Remove(i);
 					RegionsChanged?.Invoke(Regions);
 					return true;
 				}
-				case nameof(Links) when value is Link i:
+				case nameof(Links) when value is Link i && Links is not null:
 				{
 					Links.Remove(i);
 					LinksChanged?.Invoke(Links);
 					return true;
 				}
-				case nameof(DirectLines) when value is ValueTuple<Cells, Cells> i:
+				case nameof(DirectLines) when value is ValueTuple<Cells, Cells> i && DirectLines is not null:
 				{
 					DirectLines.Remove(i);
 					DirectLinesChanged?.Invoke(DirectLines);
