@@ -5,8 +5,8 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Shapes;
 using Sudoku.Data;
 using Sudoku.Painting;
+using Sudoku.Painting.Extensions;
 using Sudoku.UI.Data;
-using Sudoku.UI.Extensions;
 
 namespace Sudoku.UI.Controls
 {
