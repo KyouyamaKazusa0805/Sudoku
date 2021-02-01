@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Extensions;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Shapes;
 using Sudoku.Data;
 using Sudoku.Painting;
 using Sudoku.UI.Data;
+using Sudoku.UI.Extensions;
 
 namespace Sudoku.UI.Controls
 {
@@ -50,6 +50,35 @@ namespace Sudoku.UI.Controls
 
 
 		/// <summary>
+		/// Raises <see cref="Undo"/>.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <seealso cref="Undo"/>
+		private void OnUndoing(in SudokuGrid grid)
+		{
+			// TODO: Update icons.
+
+			Repaint();
+
+			Undo?.Invoke(grid);
+		}
+
+		/// <summary>
+		/// Raises <see cref="Redo"/>.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <seealso cref="Redo"/>
+		private void OnRedoing(in SudokuGrid grid)
+		{
+			// TODO: Update icons.
+
+			Repaint();
+
+			Redo?.Invoke(grid);
+		}
+
+
+		/// <summary>
 		/// Raises the event <see cref="Undo"/>.
 		/// </summary>
 		/// <seealso cref="Undo"/>
@@ -62,9 +91,8 @@ namespace Sudoku.UI.Controls
 
 			var grid = _undoStack.Pop();
 			_redoStack.Push(grid);
-			Repaint();
 
-			Undo?.Invoke(grid);
+			OnUndoing(grid);
 		}
 
 		/// <summary>
@@ -80,9 +108,8 @@ namespace Sudoku.UI.Controls
 
 			var grid = _redoStack.Pop();
 			_undoStack.Push(grid);
-			Repaint();
 
-			Redo?.Invoke(grid);
+			OnRedoing(grid);
 		}
 
 		/// <summary>
@@ -92,20 +119,14 @@ namespace Sudoku.UI.Controls
 		[MemberNotNull(nameof(GridPainter))]
 		private void InitializeGridPainter()
 		{
-			GridPainter = new(new(Width, Height), Preferences) { Grid = SudokuGrid.Empty };
+			GridPainter = new(new((float)Width, (float)Height), Preferences) { Grid = SudokuGrid.Empty };
 			Repaint();
 		}
 
 		/// <summary>
 		/// Repaint the grid using the <see cref="Shape"/> controls.
 		/// </summary>
-		private void Repaint()
-		{
-			var shapeControls = GridPainter.Create();
-			var controls = MainGrid.Children;
-			controls.Clear();
-			controls.AddRange(shapeControls);
-		}
+		private void Repaint() => ImageGrid.Source = GridPainter.Paint().ToImageSource();
 
 
 		/// <summary>

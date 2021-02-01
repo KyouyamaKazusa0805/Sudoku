@@ -12,5 +12,5 @@
 		<x:Double x:Key="DefaultHeight">600</x:Double>
 	</UserControl.Resources>
 
-	<Grid x:Name="MainGrid" Width="{StaticResource DefaultWidth}" Height="{StaticResource DefaultHeight}" />
+	<Image x:Name="ImageGrid" Width="{StaticResource DefaultWidth}" Height="{StaticResource DefaultHeight}" />
 </UserControl>
