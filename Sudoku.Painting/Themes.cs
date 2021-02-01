@@ -45,18 +45,17 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Indicates the default dark theme.
 		/// </summary>
-		/// <!--TODO: Change the color to the dark theme.-->
 		public static readonly Theme DarkTheme = new()
 		{
-			BackgroundColor = Color.White,
-			GridLineColor = Color.Black,
-			BlockLineColor = Color.Black,
-			FocusedCellsColor = Color.FromArgb(32, Color.Yellow),
+			BackgroundColor = Color.Black,
+			GridLineColor = Color.White,
+			BlockLineColor = Color.White,
+			FocusedCellsColor = Color.FromArgb(175, 175, 175),
 			EliminationColor = Color.FromArgb(255, 118, 132),
 			CannibalismColor = Color.FromArgb(235, 0, 0),
-			GivenColor = Color.Black,
-			ModifiableColor = Color.Blue,
-			CandidateColor = Color.DimGray,
+			GivenColor = Color.White,
+			ModifiableColor = Color.FromArgb(100, 149, 237),
+			CandidateColor = Color.FromArgb(215, 215, 215),
 			ChainColor = Color.Red,
 			CrosshatchingOutlineColor = Color.FromArgb(192, Color.Black),
 			CrosshatchingInnerColor = Color.Transparent,
