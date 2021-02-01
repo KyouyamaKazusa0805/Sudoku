@@ -35,6 +35,7 @@ namespace Sudoku.UI
 		/// To load the preferences from local.
 		/// </summary>
 		[MemberNotNull(nameof(Preferences))]
+		//[MemberNotNull(nameof(ProgramData) + "." + nameof(ProgramData.BaseWindow))]
 		private void LoadPreferences()
 		{
 			// Check the existence of the directory that stores the configuration file.
@@ -52,15 +53,15 @@ namespace Sudoku.UI
 			}
 
 			// Deserialize the object.
-			string dir = File.ReadAllText(Paths.ConfigurationFile);
+			string json = File.ReadAllText(Paths.ConfigurationFile);
 			Preferences =
-				PreferencesBase.Deserialize(dir, out var inst) && inst is PagePreferences preferences
+				PreferencesBase.Deserialize(json, out var inst) && inst is PagePreferences preferences
 				? preferences
 				: new();
 
-			// Then set the instance to the main page. In this way we can get the preferences
-			// from this property in the main page.
-			MainPage.BaseWindow = this;
+			// Then set the instance to the static class 'ProgramData'. This class is used for passing
+			// key data through all pages.
+			ProgramData.BaseWindow = this;
 		}
 
 		/// <summary>

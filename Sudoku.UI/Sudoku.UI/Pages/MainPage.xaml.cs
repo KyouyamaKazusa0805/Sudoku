@@ -2,7 +2,6 @@
 using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Sudoku.UI.Data;
 using Sudoku.UI.Dictionaries;
 
 namespace Sudoku.UI.Pages
@@ -22,17 +21,6 @@ namespace Sudoku.UI.Pages
 		/// Initializes a <see cref="MainPage"/> instance with the default instantiation behavior.
 		/// </summary>
 		public MainPage() => InitializeComponent();
-
-
-		/// <summary>
-		/// Indicates the base window.
-		/// </summary>
-		public MainWindow BaseWindow { get; internal set; } = null!;
-
-		/// <summary>
-		/// Indicates the preferences used in the base window.
-		/// </summary>
-		public PagePreferences Preferences => BaseWindow.Preferences;
 
 
 		/// <summary>
@@ -94,7 +82,7 @@ namespace Sudoku.UI.Pages
 				}
 				else if (Navigation.GetPageType(t) is { } type) // Switch to other pages.
 				{
-					FrameToShowTheSpecifiedPage.Navigate(type, BaseWindow);
+					FrameToShowTheSpecifiedPage.Navigate(type);
 				}
 			}
 

@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:controls="using:Sudoku.UI.Controls"
 	mc:Ignorable="d"
-	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	NavigationCacheMode="Enabled" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Grid>
 		<controls:SudokuPanel x:Name="MainPanel" />

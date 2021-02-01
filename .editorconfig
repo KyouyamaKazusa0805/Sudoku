@@ -411,6 +411,9 @@ dotnet_diagnostic.CS8769.severity = error
 # CS8774: Member must have a non-null value when exiting.
 dotnet_diagnostic.CS8774.severity = error
 
+# CS8776: Member cannot be used in this attribute.
+dotnet_diagnostic.CS8776.severity = error
+
 # CS8777: Parameter must have a non-null value when exiting.
 dotnet_diagnostic.CS8777.severity = error
 

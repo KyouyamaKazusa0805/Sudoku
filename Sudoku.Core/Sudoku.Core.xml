@@ -4396,11 +4396,6 @@
             Indicates the trained data file name.
             </summary>
         </member>
-        <member name="F:Sudoku.Resources.Paths.LangSourceDirectory">
-            <summary>
-            Indicates the language source dictionary directory.
-            </summary>
-        </member>
         <member name="F:Sudoku.Resources.Paths.LangSourceEnUs">
             <summary>
             Indicates the language source dictioanry (English).

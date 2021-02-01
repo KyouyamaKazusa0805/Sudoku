@@ -8,21 +8,31 @@
 		/// <summary>
 		/// Indicates the trained data file name.
 		/// </summary>
-		public const string TrainedDataFileName = "eng.traineddata";
-
-		/// <summary>
-		/// Indicates the language source dictionary directory.
-		/// </summary>
-		public const string LangSourceDirectory = "lang";
+		public const string TrainedDataFileName
+#if WIN_UI
+		= @"C:\ProgramData\Sunnie's Sudoku Solution\eng.traineddata";
+#elif WPF_OR_CONSOLE
+		= "eng.traineddata";
+#endif
 
 		/// <summary>
 		/// Indicates the language source dictioanry (English).
 		/// </summary>
-		public const string LangSourceEnUs = @"lang\Resources.en-us.dic";
+		public const string LangSourceEnUs
+#if WIN_UI
+		= @"C:\ProgramData\Sunnie's Sudoku Solution\lang\Resources.en-us.dic";
+#elif WPF_OR_CONSOLE
+		= @"lang\Resources.en-us.dic";
+#endif
 
 		/// <summary>
 		/// Indicates the language source dictionary (Chinese).
 		/// </summary>
-		public const string LangSourceZhCn = @"lang\Resources.zh-cn.dic";
+		public const string LangSourceZhCn
+#if WIN_UI
+		= @"C:\ProgramData\Sunnie's Sudoku Solution\lang\Resources.zh-cn.dic";
+#elif WPF_OR_CONSOLE
+		= @"lang\Resources.zh-cn.dic";
+#endif
 	}
 }

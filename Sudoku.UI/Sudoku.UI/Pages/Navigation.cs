@@ -16,6 +16,6 @@ namespace Sudoku.UI.Pages
 		/// <c>Sudoku.IO</c> and the suffix <c>Page</c> is fixed and can't be modifed.
 		/// </param>
 		/// <returns>The type of that page. If the page doesn't found, return <see langword="null"/>.</returns>
-		public static Type? GetPageType(string tag) => Type.GetType($"Sudoku.IO.{tag}Page");
+		public static Type? GetPageType(string tag) => Type.GetType($"Sudoku.UI.Pages.{tag}Page");
 	}
 }
