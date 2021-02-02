@@ -1,7 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 
@@ -20,7 +22,7 @@ namespace Sudoku.Painting.Extensions
 		/// <returns>The target image result.</returns>
 		/// <seealso cref="ImageSource"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static ImageSource ToImageSource(this Image @this)
+		public static async Task<ImageSource> ToImageSourceAsync(this Image @this)
 		{
 			// Create a memory stream.
 			var ms = new MemoryStream();
@@ -61,7 +63,7 @@ namespace Sudoku.Painting.Extensions
 
 			// Finally, set the resource to the image (control).
 			var image = new BitmapImage();
-			image.SetSource(ms.AsRandomAccessStream());
+			await image.SetSourceAsync(ms.AsRandomAccessStream());
 			return image;
 		}
 	}

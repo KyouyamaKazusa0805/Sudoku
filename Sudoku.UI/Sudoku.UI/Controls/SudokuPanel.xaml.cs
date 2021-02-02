@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Shapes;
@@ -36,7 +37,7 @@ namespace Sudoku.UI.Controls
 		/// Indicates the grid painter instance. This property can be <see langword="null"/>
 		/// when the panel doesn't finish its initialization.
 		/// </summary>
-		public GridPainter GridPainter { get; set; } = null!;
+		public GridPainter Painter { get; set; } = null!;
 
 
 		/// <summary>
@@ -55,11 +56,11 @@ namespace Sudoku.UI.Controls
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <seealso cref="Undo"/>
-		private void OnUndoing(SudokuGrid grid)
+		private async ValueTask OnUndoingAsync(SudokuGrid grid)
 		{
 			// TODO: Update icons.
 
-			Repaint();
+			await RepaintAsync();
 
 			Undo?.Invoke(grid);
 		}
@@ -69,11 +70,11 @@ namespace Sudoku.UI.Controls
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <seealso cref="Redo"/>
-		private void OnRedoing(SudokuGrid grid)
+		private async ValueTask OnRedoingAsync(SudokuGrid grid)
 		{
 			// TODO: Update icons.
 
-			Repaint();
+			await RepaintAsync();
 
 			Redo?.Invoke(grid);
 		}
@@ -83,7 +84,7 @@ namespace Sudoku.UI.Controls
 		/// Raises the event <see cref="Undo"/>.
 		/// </summary>
 		/// <seealso cref="Undo"/>
-		private void UndoGrid()
+		private async ValueTask UndoGridAsync()
 		{
 			if (_undoStack.Count == 0)
 			{
@@ -93,14 +94,14 @@ namespace Sudoku.UI.Controls
 			var grid = _undoStack.Pop();
 			_redoStack.Push(grid);
 
-			OnUndoing(grid);
+			await OnUndoingAsync(grid);
 		}
 
 		/// <summary>
 		/// Raises the event <see cref="Redo"/>
 		/// </summary>
 		/// <see cref="Redo"/>
-		private void RedoGrid()
+		private async ValueTask RedoGridAsync()
 		{
 			if (_redoStack.Count == 0)
 			{
@@ -110,24 +111,24 @@ namespace Sudoku.UI.Controls
 			var grid = _redoStack.Pop();
 			_undoStack.Push(grid);
 
-			OnRedoing(grid);
+			await OnRedoingAsync(grid);
 		}
 
 		/// <summary>
-		/// Initialize <see cref="GridPainter"/>.
+		/// Initialize <see cref="Painter"/>.
 		/// </summary>
-		/// <seealso cref="GridPainter"/>
-		[MemberNotNull(nameof(GridPainter))]
-		private void InitializeGridPainter()
+		/// <seealso cref="Painter"/>
+		[MemberNotNull(nameof(Painter))]
+		private async ValueTask InitializeGridPainterAsync()
 		{
-			GridPainter = new(new((float)Width, (float)Height), Preferences) { Grid = SudokuGrid.Empty };
-			Repaint();
+			Painter = new(new((float)Width, (float)Height), Preferences) { Grid = SudokuGrid.Empty };
+			await RepaintAsync();
 		}
 
 		/// <summary>
 		/// Repaint the grid using the <see cref="Shape"/> controls.
 		/// </summary>
-		private void Repaint() => ImageGrid.Source = GridPainter.Paint().ToImageSource();
+		private async ValueTask RepaintAsync() => ImageGrid.Source = await Painter.Paint().ToImageSourceAsync();
 
 
 		/// <summary>
@@ -135,6 +136,11 @@ namespace Sudoku.UI.Controls
 		/// </summary>
 		/// <param name="sender">The object to trigger the event.</param>
 		/// <param name="e">The event arguments provided.</param>
-		private void SudokuPanel_Loaded(object sender, RoutedEventArgs e) => InitializeGridPainter();
+		private async void SudokuPanel_LoadedAsync(object sender, RoutedEventArgs e)
+		{
+			await i();
+
+			async ValueTask i() => await InitializeGridPainterAsync();
+		}
 	}
 }
