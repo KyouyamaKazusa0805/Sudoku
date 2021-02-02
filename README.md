@@ -18,7 +18,7 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 GitHub: [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku)
 
-Gitee: [Sunnie-Shine/Sudoku](https://gitee.com/Sunnie-Shine/Sudoku)
+Gitee: [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)
 
 
 
@@ -44,7 +44,7 @@ Please visit those links to learn more information.
 请参看如下链接：
 
 * Bilingual: [Click me (GitHub site)](https://github.com/SunnieShine/Sudoku/issues/83)<br/>中英双语介绍：[此链接（GitHub）](https://github.com/SunnieShine/Sudoku/issues/83)
-* Chinese only: [Click me (Gitee Site)](https://gitee.com/Sunnie-Shine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593)<br/>中文介绍：[此链接（Gitee）](https://gitee.com/Sunnie-Shine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593)
+* Chinese only: [Click me (Gitee Site)](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593)<br/>中文介绍：[此链接（Gitee）](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593)
 
 
 
@@ -56,7 +56,7 @@ Please visit the link to learn more information.
 
 请参考这个连接：
 
-* Chinese only: [Click me (Gitee Site)](https://gitee.com/Sunnie-Shine/Sudoku/wikis/pages)<br/>中文介绍：[此链接（Gitee）](https://gitee.com/Sunnie-Shine/Sudoku/wikis/pages)
+* Chinese only: [Click me (Gitee Site)](https://gitee.com/SunnieShine/Sudoku/wikis/pages)<br/>中文介绍：[此链接（Gitee）](https://gitee.com/SunnieShine/Sudoku/wikis/pages)
 
 
 
