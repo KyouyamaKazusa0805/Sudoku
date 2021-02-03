@@ -84,8 +84,7 @@ namespace Sudoku.UI.Controls
 					case var key when key.IsDigit(out var anchor):
 					{
 						var grid = Painter.Grid;
-						int digit = key - anchor;
-						int cell = GetCell();
+						int cell = GetCell(), digit = key - anchor;
 						if (VirtualKey.Shift.IsDown())
 						{
 							RecordAnUndoStep(grid);
@@ -244,23 +243,24 @@ namespace Sudoku.UI.Controls
 		private async ValueTask RepaintAsync() => ImageGrid.Source = await Painter.Paint().ToImageSourceAsync();
 
 
-
 		/// <summary>
 		/// Triggers when the pointer is moved in <see cref="ImageGrid"/>.
 		/// </summary>
 		/// <param name="sender">The sender to trigger the event.</param>
 		/// <param name="e">The event arguments provided.</param>
+		/// <seealso cref="ImageGrid"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ImageGrid_PointerMoved(object sender, PointerRoutedEventArgs e) =>
 			_pointer = e.GetCurrentPoint(ImageGrid).Position;
 
 		/// <summary>
-		/// Triggers when the pointer is exited from the control.
+		/// Triggers when the pointer is exited from the control <see cref="ImageGrid"/>.
 		/// </summary>
 		/// <param name="sender">The sender to trigger the event.</param>
 		/// <param name="e">The event arguments provided.</param>
+		/// <seealso cref="ImageGrid"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void ImageGrid_PointerExited(object sender, PointerRoutedEventArgs e) => _pointer = new(-1, -1);
+		private void ImageGrid_PointerExited(object sender, PointerRoutedEventArgs e) => _pointer = new();
 
 		/// <summary>
 		/// Triggers when the sudoku panel is loaded.
