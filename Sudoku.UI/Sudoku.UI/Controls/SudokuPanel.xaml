@@ -12,5 +12,7 @@
 		<x:Double x:Key="DefaultHeight">600</x:Double>
 	</UserControl.Resources>
 
-	<Image x:Name="ImageGrid" Width="{StaticResource DefaultWidth}" Height="{StaticResource DefaultHeight}" />
+	<Image x:Name="ImageGrid" Width="{StaticResource DefaultWidth}" Height="{StaticResource DefaultHeight}"
+		   PointerExited="ImageGrid_PointerExited"
+		   PointerMoved="ImageGrid_PointerMoved" />
 </UserControl>
