@@ -169,6 +169,10 @@ namespace Sudoku.Windows
 									Puzzle = grid;
 								}
 
+								_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+								_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+								_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+
 								UpdateUndoRedoControls();
 								UpdateImageGrid();
 							}
