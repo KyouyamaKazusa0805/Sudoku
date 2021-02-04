@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Extensions
 	public static class StepInfoEx
 	{
 		/// <summary>
-		/// Check whether the currrent technique information is an ALS technique.
+		/// Check whether the current technique information is an ALS technique.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Extensions
 			or */AlsXzStepInfo or AlsXyWingStepInfo or AlsWWingStepInfo;
 
 		/// <summary>
-		/// Check whether the currrent technique information is a chaining-ruled technique.
+		/// Check whether the current technique information is a chaining-ruled technique.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Extensions
 			@this is ChainingStepInfo or BowmanBingoStepInfo;
 
 		/// <summary>
-		/// Check whether the currrent technique information is a forcing chains technique.
+		/// Check whether the current technique information is a forcing chains technique.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Extensions
 			@this is BowmanBingoStepInfo or RegionChainingStepInfo or CellChainingStepInfo;
 
 		/// <summary>
-		/// Check whether the currrent technique information is a uniqueness technique.
+		/// Check whether the current technique information is a uniqueness technique.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>

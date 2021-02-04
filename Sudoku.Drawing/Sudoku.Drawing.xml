@@ -158,7 +158,7 @@
         </member>
         <member name="T:Sudoku.Drawing.Extensions.BitmapEx">
             <summary>
-            Provides extension methos on <see cref="T:System.Drawing.Bitmap"/>.
+            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
             </summary>
             <seealso cref="T:System.Drawing.Bitmap"/>
         </member>
@@ -266,7 +266,7 @@
         <member name="M:Sudoku.Drawing.Extensions.DrawingPointEx.WithOffset(System.Drawing.PointF@,System.Single)">
             <summary>
             Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
-            added into the propeties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
+            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
             </summary>
             <param name="this">(<see langword="this in"/> parameter) The point.</param>
             <param name="offset">The offset.</param>
@@ -277,7 +277,7 @@
         <member name="M:Sudoku.Drawing.Extensions.DrawingPointEx.WithOffset(System.Drawing.PointF@,System.Single,System.Single)">
             <summary>
             Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
-            added into the propeties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
+            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
             </summary>
             <param name="this">(<see langword="this in"/> parameter) The point.</param>
             <param name="xOffset">The X offset.</param>

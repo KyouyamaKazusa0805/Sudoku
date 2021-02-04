@@ -16,18 +16,18 @@ namespace Sudoku.Solving.Manual.Tracing
 	public sealed class TraceableGrid : IEquatable<TraceableGrid?>, IFormattable, ITraceable
 	{
 		/// <summary>
-		/// Indicates the iner sudoku grid.
+		/// Indicates the inner sudoku grid.
 		/// </summary>
 		private SudokuGrid _innerGrid;
 
 		/// <summary>
-		/// Indictaes the table that holds reasons why the candidate has been eliminated.
+		/// Indicates the table that holds reasons why the candidate has been eliminated.
 		/// </summary>
 		private readonly StepInfo?[] _causes;
 
 
 		/// <summary>
-		/// Initializes an instance with the specified iner sudoku grid.
+		/// Initializes an instance with the specified inner sudoku grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

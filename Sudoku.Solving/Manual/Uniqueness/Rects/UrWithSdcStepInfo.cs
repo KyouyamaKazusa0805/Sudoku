@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <summary>
-		/// The extra difficulty that assesses SDC's size.
+		/// The extra difficulty that assesses the size of SdC.
 		/// </summary>
 		private decimal SdCDifficulty => (LineCells | BlockCells).Count * .1M;
 

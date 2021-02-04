@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 						// Iterate on each digit to search for the conjugate pair.
 						foreach (int digit in digits)
 						{
-							// Now search for conjuagte pair.
+							// Now search for conjugate pair.
 							var conjugateRegion = CandMaps[digit] & RegionMaps[region];
 							if (conjugateRegion.Count != 2)
 							{

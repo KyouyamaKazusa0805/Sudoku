@@ -7,7 +7,7 @@
 	public enum SizeUnit : byte
 	{
 		/// <summary>
-		/// Indictaes the size is of bytes.
+		/// Indicates the size is of bytes.
 		/// </summary>
 		Byte,
 
@@ -22,7 +22,7 @@
 		Megabyte,
 
 		/// <summary>
-		/// Indictaes the size is of gigabytes (GB).
+		/// Indicates the size is of gigabytes (GB).
 		/// </summary>
 		Gigabyte,
 
@@ -41,7 +41,7 @@
 		/// </summary>
 		IMegabyte,
 		/// <summary>
-		/// Indictaes the size is of GiB.
+		/// Indicates the size is of GiB.
 		/// </summary>
 		IGigabyte,
 

@@ -70,7 +70,7 @@ namespace System.Extensions
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
-		/// <returns>The reusult of the conversion.</returns>
+		/// <returns>The result of the conversion.</returns>
 		/// <exception cref="InvalidCastException">
 		/// Throws when the specified list is neither <see cref="List{T}"/> nor <typeparamref name="T"/>[].
 		/// </exception>

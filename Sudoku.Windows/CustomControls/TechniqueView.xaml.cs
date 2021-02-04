@@ -24,7 +24,7 @@ namespace Sudoku.Windows.CustomControls
 
 
 		/// <summary>
-		/// Indictaes the chosen techniques.
+		/// Indicates the chosen techniques.
 		/// </summary>
 		public TechniqueCodeFilter ChosenTechniques { get; } = new();
 

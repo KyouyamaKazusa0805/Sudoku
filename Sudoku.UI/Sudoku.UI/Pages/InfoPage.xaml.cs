@@ -8,7 +8,7 @@ namespace Sudoku.UI.Pages
 	public sealed partial class InfoPage : Page
 	{
 		/// <summary>
-		/// Initalizes an <see cref="InfoPage"/> instance with the default instantiation behavior.
+		/// Initializes an <see cref="InfoPage"/> instance with the default instantiation behavior.
 		/// </summary>
 		public InfoPage() => InitializeComponent();
 	}

@@ -16,7 +16,7 @@
 #endif
 
 		/// <summary>
-		/// Indicates the language source dictioanry (English).
+		/// Indicates the language source dictionary (English).
 		/// </summary>
 		public const string LangSourceEnUs
 #if WIN_UI
@@ -36,7 +36,7 @@
 #endif
 
 		/// <summary>
-		/// The appropraiate file path that can store configuration file.
+		/// The appropriate file path that can store configuration file.
 		/// </summary>
 		/// <remarks>
 		/// <para>

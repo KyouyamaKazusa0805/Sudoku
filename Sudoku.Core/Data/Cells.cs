@@ -89,7 +89,7 @@ namespace Sudoku.Data
 		/// This constructor is defined after another constructor with
 		/// <see cref="ReadOnlySpan{T}"/> had defined. Although this constructor
 		/// doesn't initialize something (use the other one instead),
-		/// while initializing with the type <see cref="int"/>[], the complier
+		/// while initializing with the type <see cref="int"/>[], the compiler
 		/// gives me an error without this constructor (ambiguity of two
 		/// constructors). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
 		/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
@@ -739,7 +739,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// <para>
 		/// Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
-		/// to describe the value is a negative one. As the belowing example, -2 is described as <c>~1</c>,
+		/// to describe the value is a negative one. As the example below, -2 is described as <c>~1</c>,
 		/// so the offset is 1, rather than 2.
 		/// </para>
 		/// </remarks>

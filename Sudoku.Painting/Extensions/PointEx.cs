@@ -23,7 +23,7 @@ namespace Sudoku.Painting.Extensions
 
 		/// <summary>
 		/// Get a new <see cref="PointF"/> instance created by the original one, with the specified offset
-		/// added into the propeties <see cref="PointF.X"/> and <see cref="PointF.Y"/>.
+		/// added into the properties <see cref="PointF.X"/> and <see cref="PointF.Y"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The point.</param>
 		/// <param name="offset">The offset.</param>
@@ -36,7 +36,7 @@ namespace Sudoku.Painting.Extensions
 
 		/// <summary>
 		/// Get a new <see cref="PointF"/> instance created by the original one, with the specified offset
-		/// added into the propeties <see cref="PointF.X"/> and <see cref="PointF.Y"/>.
+		/// added into the properties <see cref="PointF.X"/> and <see cref="PointF.Y"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The point.</param>
 		/// <param name="xOffset">The X offset.</param>

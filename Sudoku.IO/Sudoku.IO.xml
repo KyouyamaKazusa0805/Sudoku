@@ -319,9 +319,9 @@
         </member>
         <member name="M:Sudoku.IO.BatchExecutor.SavePictureToSpecifiedPath(System.String[])">
             <summary>
-            Save the current drawed picture to the specified path.
+            Save the current picture to the specified path.
             </summary>
-            <param name="args"></param>
+            <param name="args">The arguments.</param>
         </member>
         <member name="M:Sudoku.IO.BatchExecutor.FillValueInternal(System.String[],System.Action{System.Int32,System.Int32})">
             <summary>
@@ -346,7 +346,7 @@
         </member>
         <member name="F:Sudoku.IO.PictureFileType.Jpg">
             <summary>
-            Indictaes the JPG format.
+            Indicates the JPG format.
             </summary>
         </member>
         <member name="F:Sudoku.IO.PictureFileType.Png">

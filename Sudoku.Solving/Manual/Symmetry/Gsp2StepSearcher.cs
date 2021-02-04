@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 	public sealed class Gsp2StepSearcher : SymmetryStepSearcher
 	{
 		/// <summary>
-		/// Indictaes the iteration list.
+		/// Indicates the iteration list.
 		/// </summary>
 		private static readonly int[][]
 			R1 = { new[] { 0, 0 }, new[] { 9, 10 }, new[] { 9, 11 }, new[] { 10, 11 } },

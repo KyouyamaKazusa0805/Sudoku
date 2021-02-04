@@ -128,7 +128,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.SizeUnit.Byte">
             <summary>
-            Indictaes the size is of bytes.
+            Indicates the size is of bytes.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.SizeUnit.Kilobyte">
@@ -143,7 +143,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.SizeUnit.Gigabyte">
             <summary>
-            Indictaes the size is of gigabytes (GB).
+            Indicates the size is of gigabytes (GB).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.SizeUnit.Terabyte">
@@ -163,7 +163,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.SizeUnit.IGigabyte">
             <summary>
-            Indictaes the size is of GiB.
+            Indicates the size is of GiB.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.SizeUnit.ITerabyte">

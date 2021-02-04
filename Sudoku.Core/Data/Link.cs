@@ -10,7 +10,7 @@ namespace Sudoku.Data
 	public readonly struct Link : IValueEquatable<Link>
 	{
 		/// <summary>
-		/// Initializes an instance with the specified start and endcandidate, and a link type.
+		/// Initializes an instance with the specified start and end candidate, and a link type.
 		/// </summary>
 		/// <param name="startCandidate">The start candidate.</param>
 		/// <param name="endCandidate">The end candidate.</param>

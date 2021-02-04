@@ -63,9 +63,9 @@ namespace System.Collections.Generic
 		public void Sort() => ((List<T>)_list).Sort();
 
 		/// <summary>
-		/// Sort the list with the specified comparsion.
+		/// Sort the list with the specified comparison.
 		/// </summary>
-		/// <param name="comparison">The comparsion.</param>
+		/// <param name="comparison">The comparison.</param>
 		public void Sort(Comparison<T> comparison) => ((List<T>)_list).Sort(comparison);
 
 		/// <summary>
@@ -92,7 +92,7 @@ namespace System.Collections.Generic
 		/// <returns>Indicates whether the searching is successful.</returns>
 		/// <remarks>
 		/// Note that <paramref name="other"/> and <paramref name="result"/> aren't totally same.
-		/// The comparsion is decided by the implementation of its <c>Equals</c> method.
+		/// The comparison is decided by the implementation of its <c>Equals</c> method.
 		/// </remarks>
 		public bool TryGetValue(T other, out T? result)
 		{

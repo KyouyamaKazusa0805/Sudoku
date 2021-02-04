@@ -287,7 +287,7 @@
         </member>
         <member name="T:Sudoku.Data.Candidates">
             <summary>
-            Encapsulats a map that contains 729 positions to represent a candidate.
+            Encapsulates a map that contains 729 positions to represent a candidate.
             </summary>
         </member>
         <member name="F:Sudoku.Data.Candidates.BufferLength">
@@ -339,7 +339,7 @@
         </member>
         <member name="M:Sudoku.Data.Candidates.#ctor(System.Int32,System.Boolean)">
             <summary>
-            Inidicates an instance with the peer candidates of the specified candidate and a <see cref="T:System.Boolean"/>
+            Indicates an instance with the peer candidates of the specified candidate and a <see cref="T:System.Boolean"/>
             value indicating whether the map will process itself with <see langword="true"/> value.
             </summary>
             <param name="candidate">The candidate.</param>
@@ -681,7 +681,7 @@
             This constructor is defined after another constructor with
             <see cref="T:System.ReadOnlySpan`1"/> had defined. Although this constructor
             doesn't initialize something (use the other one instead),
-            while initializing with the type <see cref="T:System.Int32"/>[], the complier
+            while initializing with the type <see cref="T:System.Int32"/>[], the compiler
             gives me an error without this constructor (ambiguity of two
             constructors). However, unfortunately, <see cref="T:System.ReadOnlySpan`1"/>
             doesn't implemented the interface <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
@@ -931,7 +931,7 @@
             </para>
             <para>
             Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
-            to describe the value is a negative one. As the belowing example, -2 is described as <c>~1</c>,
+            to describe the value is a negative one. As the example below, -2 is described as <c>~1</c>,
             so the offset is 1, rather than 2.
             </para>
             </remarks>
@@ -2449,7 +2449,7 @@
         </member>
         <member name="M:Sudoku.Data.Link.#ctor(System.Int32,System.Int32,Sudoku.Data.LinkType)">
             <summary>
-            Initializes an instance with the specified start and endcandidate, and a link type.
+            Initializes an instance with the specified start and end candidate, and a link type.
             </summary>
             <param name="startCandidate">The start candidate.</param>
             <param name="endCandidate">The end candidate.</param>
@@ -4398,7 +4398,7 @@
         </member>
         <member name="F:Sudoku.Resources.Paths.LangSourceEnUs">
             <summary>
-            Indicates the language source dictioanry (English).
+            Indicates the language source dictionary (English).
             </summary>
         </member>
         <member name="F:Sudoku.Resources.Paths.LangSourceZhCn">
@@ -4408,7 +4408,7 @@
         </member>
         <member name="F:Sudoku.Resources.Paths.ConfigurationFile">
             <summary>
-            The appropraiate file path that can store configuration file.
+            The appropriate file path that can store configuration file.
             </summary>
             <remarks>
             <para>
@@ -4437,7 +4437,7 @@
             using the following code style to get the items in this class:
             <list type="bullet">
             <item><c>Current.PropertyName</c> (Property invokes)</item>
-            <item><c>Current[PropertIndex]</c> (Indexer invokes)</item>
+            <item><c>Current[PropertyIndex]</c> (Indexer invokes)</item>
             <item><c>Current.MethodName(Parameters)</c> (Method invokes)</item>
             </list>
             </para>
@@ -4515,7 +4515,7 @@
             </summary>
             <param name="instanceNameToDeserialize">The instance to covert to.</param>
             <param name="path">The file path.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating whether the operaton is successful.</returns>
+            <returns>The <see cref="T:System.Boolean"/> value indicating whether the operation is successful.</returns>
         </member>
         <member name="M:Sudoku.Resources.TextResources.Serialize(System.String,System.String)">
             <summary>
@@ -4543,7 +4543,7 @@
         </member>
         <member name="T:Sudoku.SudokuHandlingException">
             <summary>
-            Proivdes an exception that should thrown when the operation is error to handle or something is wrong.
+            Provides an exception that should thrown when the operation is error to handle or something is wrong.
             </summary>
         </member>
         <member name="M:Sudoku.SudokuHandlingException.#ctor">
@@ -4573,7 +4573,7 @@
         </member>
         <member name="T:Sudoku.SudokuHandlingException`1">
             <summary>
-            Proivdes an exception that should thrown when the operation is error to handle or something is wrong.
+            Provides an exception that should thrown when the operation is error to handle or something is wrong.
             </summary>
         </member>
         <member name="M:Sudoku.SudokuHandlingException`1.#ctor">
@@ -4596,7 +4596,7 @@
         </member>
         <member name="T:Sudoku.SudokuHandlingException`2">
             <summary>
-            Proivdes an exception that should thrown when the operation is error to handle or something is wrong.
+            Provides an exception that should thrown when the operation is error to handle or something is wrong.
             </summary>
         </member>
         <member name="M:Sudoku.SudokuHandlingException`2.#ctor">

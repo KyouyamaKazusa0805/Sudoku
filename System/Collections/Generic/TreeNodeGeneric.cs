@@ -62,7 +62,7 @@ namespace System.Collections.Generic
 
 #nullable disable warnings
 		/// <summary>
-		/// The internal comparsion.
+		/// The internal comparison.
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>

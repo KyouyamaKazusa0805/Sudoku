@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Extensions
 #endif
 			for (int i = 0, length = lines.Length; i < length; i++)
 			{
-				// Check the vaildity of the puzzle.
+				// Check the validity of the puzzle.
 				string puzzle = lines[i];
 				if (!SudokuGrid.TryParse(puzzle, out var grid))
 				{

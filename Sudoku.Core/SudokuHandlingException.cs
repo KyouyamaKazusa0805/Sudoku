@@ -5,7 +5,7 @@ using Sudoku.DocComments;
 namespace Sudoku
 {
 	/// <summary>
-	/// Proivdes an exception that should thrown when the operation is error to handle or something is wrong.
+	/// Provides an exception that should thrown when the operation is error to handle or something is wrong.
 	/// </summary>
 	public class SudokuHandlingException : Exception
 	{
@@ -54,7 +54,7 @@ namespace Sudoku
 
 
 	/// <summary>
-	/// Proivdes an exception that should thrown when the operation is error to handle or something is wrong.
+	/// Provides an exception that should thrown when the operation is error to handle or something is wrong.
 	/// </summary>
 	public class SudokuHandlingException<T> : SudokuHandlingException
 	{
@@ -91,7 +91,7 @@ namespace Sudoku
 
 
 	/// <summary>
-	/// Proivdes an exception that should thrown when the operation is error to handle or something is wrong.
+	/// Provides an exception that should thrown when the operation is error to handle or something is wrong.
 	/// </summary>
 	public sealed class SudokuHandlingException<T1, T2> : SudokuHandlingException<T1>
 	{

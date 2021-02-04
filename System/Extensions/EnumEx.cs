@@ -15,7 +15,7 @@ namespace System.Extensions
 		/// <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
 		/// <param name="left">The left one.</param>
 		/// <param name="right">The right one.</param>
-		/// <returns>The comparsion result.</returns>
+		/// <returns>The comparison result.</returns>
 		public static unsafe TEnum Min<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
 		{
 			switch (sizeof(TEnum))
@@ -47,7 +47,7 @@ namespace System.Extensions
 		/// <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
 		/// <param name="left">The left one.</param>
 		/// <param name="right">The right one.</param>
-		/// <returns>The comparsion result.</returns>
+		/// <returns>The comparison result.</returns>
 		public static unsafe TEnum Max<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
 		{
 			switch (sizeof(TEnum))

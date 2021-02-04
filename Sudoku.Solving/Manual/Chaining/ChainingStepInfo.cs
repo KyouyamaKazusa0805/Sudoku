@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="IsMultiple">
 	/// Indicates whether the chain is a multiple forcing chains (Cell forcing chains and Region forcing chains).
 	/// </param>
-	/// <param name="IsDynamic">Indicates whether the chain is a dynamic forcng chains.</param>
+	/// <param name="IsDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
 	/// <param name="Level">The dynamic searching level.</param>
 	public abstract record ChainingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,

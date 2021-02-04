@@ -67,7 +67,7 @@ namespace Sudoku.UI
 		/// To initialize the property <see cref="Window.Title"/>.
 		/// </summary>
 		/// <remarks>
-		/// When I filled with this property into the XAML page, it'll give me a complier error
+		/// When I filled with this property into the XAML page, it'll give me a compiler error
 		/// <c>WMC061: Property not found</c>, so I moved that statement to here.
 		/// </remarks>
 		private void InitializeProgramTitle() => Title = ResourceFinder.Current.ProgramTitle;

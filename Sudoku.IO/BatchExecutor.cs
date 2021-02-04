@@ -434,9 +434,9 @@ namespace Sudoku.IO
 			});
 
 		/// <summary>
-		/// Save the current drawed picture to the specified path.
+		/// Save the current picture to the specified path.
 		/// </summary>
-		/// <param name="args"></param>
+		/// <param name="args">The arguments.</param>
 		private void SavePictureToSpecifiedPath(string[] args)
 		{
 			if (_painter is null)

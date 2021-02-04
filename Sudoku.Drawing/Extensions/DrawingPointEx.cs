@@ -40,7 +40,7 @@ namespace Sudoku.Drawing.Extensions
 
 		/// <summary>
 		/// Get a new <see cref="DPointF"/> instance created by the original one, with the specified offset
-		/// added into the propeties <see cref="DPointF.X"/> and <see cref="DPointF.Y"/>.
+		/// added into the properties <see cref="DPointF.X"/> and <see cref="DPointF.Y"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The point.</param>
 		/// <param name="offset">The offset.</param>
@@ -52,7 +52,7 @@ namespace Sudoku.Drawing.Extensions
 
 		/// <summary>
 		/// Get a new <see cref="DPointF"/> instance created by the original one, with the specified offset
-		/// added into the propeties <see cref="DPointF.X"/> and <see cref="DPointF.Y"/>.
+		/// added into the properties <see cref="DPointF.X"/> and <see cref="DPointF.Y"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this in"/> parameter) The point.</param>
 		/// <param name="xOffset">The X offset.</param>

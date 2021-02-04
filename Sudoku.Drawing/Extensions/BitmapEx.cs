@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
-	/// Provides extension methos on <see cref="Bitmap"/>.
+	/// Provides extension methods on <see cref="Bitmap"/>.
 	/// </summary>
 	/// <seealso cref="Bitmap"/>
 	public static class BitmapEx

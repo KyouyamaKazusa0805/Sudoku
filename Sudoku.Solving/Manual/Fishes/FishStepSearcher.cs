@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </item>
 		/// <item>
 		/// <term><see langword="null"/></term>
-		/// <description>If the fish doesn't contian any fin.</description>
+		/// <description>If the fish doesn't contain any fin.</description>
 		/// </item>
 		/// </list>
 		/// </returns>

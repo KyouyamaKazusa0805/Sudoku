@@ -53,7 +53,7 @@ namespace Sudoku.Resources
 		/// </summary>
 		/// <param name="instanceNameToDeserialize">The instance to covert to.</param>
 		/// <param name="path">The file path.</param>
-		/// <returns>The <see cref="bool"/> value indicating whether the operaton is successful.</returns>
+		/// <returns>The <see cref="bool"/> value indicating whether the operation is successful.</returns>
 		internal static bool Deserialize(string instanceNameToDeserialize, string path)
 		{
 			try

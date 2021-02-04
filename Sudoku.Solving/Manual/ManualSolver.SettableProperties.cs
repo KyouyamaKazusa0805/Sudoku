@@ -292,7 +292,7 @@
 
 		/// <summary>
 		/// <para>
-		/// Indicates the number of nodes to be searched for in bowman bingos.
+		/// Indicates the number of nodes to be searched for in bowman bingoes.
 		/// </para>
 		/// <para>
 		/// The value is <c>32</c> in default case. You can let this value

@@ -72,7 +72,7 @@
 		CellFc,
 
 		/// <summary>
-		/// Indictaes the region forcing chains.
+		/// Indicates the region forcing chains.
 		/// </summary>
 		RegionFc,
 
@@ -92,7 +92,7 @@
 		DynamicCellFc,
 
 		/// <summary>
-		/// Indictaes the dynamic region forcing chains.
+		/// Indicates the dynamic region forcing chains.
 		/// </summary>
 		DynamicRegionFc,
 

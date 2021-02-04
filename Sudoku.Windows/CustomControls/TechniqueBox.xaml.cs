@@ -17,7 +17,7 @@ namespace Sudoku.Windows.CustomControls
 
 
 		/// <summary>
-		/// Indicates the gategory.
+		/// Indicates the category.
 		/// </summary>
 		public string Category { get; set; } = string.Empty;
 

@@ -26,7 +26,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Initializes an instance with the specified puzzle.
 		/// </summary>
-		/// <param name="puzzle">(<see langword="in"/> paramter) The puzzle.</param>
+		/// <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
 		public BugNSearchWindow(in SudokuGrid puzzle)
 		{
 			InitializeComponent();

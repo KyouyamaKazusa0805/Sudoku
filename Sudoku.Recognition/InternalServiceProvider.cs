@@ -47,7 +47,7 @@ namespace Sudoku.Recognition
 		/// <param name="field">The field.</param>
 		/// <returns>The grid.</returns>
 		/// <exception cref="SudokuHandlingException">
-		/// Throws when the processing is wrong or unhandlable.
+		/// Throws when the processing is wrong or unhandleable.
 		/// </exception>
 		public SudokuGrid RecognizeDigits(Field field)
 		{
@@ -99,10 +99,10 @@ namespace Sudoku.Recognition
 			Cv.CvtColor(cellImg, imgGray, ColorConversion.Bgr2Gray);
 
 			// TODO: Problematic for some image.
-			var imgThresholded = new Mat();
-			Cv.Threshold(imgGray, imgThresholded, ThOcrMin, ThOcrMax, ThresholdType.Binary);
+			var imgThresholds = new Mat();
+			Cv.Threshold(imgGray, imgThresholds, ThOcrMin, ThOcrMax, ThresholdType.Binary);
 
-			_ocr.SetImage(imgThresholded);
+			_ocr.SetImage(imgThresholds);
 			if (_ocr.Recognize() != 0)
 			{
 				throw new SudokuHandlingException(errorCode: 303);

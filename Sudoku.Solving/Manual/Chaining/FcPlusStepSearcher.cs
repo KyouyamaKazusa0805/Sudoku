@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					if (parents.Any())
 					{
 						// If no parent can be found, the rule probably already exists without the chain.
-						// Therefore, it's useles to include it in the chain.
+						// Therefore, it's useless to include it in the chain.
 						var nested = info as ChainingStepInfo;
 						foreach (var conclusion in info.Conclusions)
 						{

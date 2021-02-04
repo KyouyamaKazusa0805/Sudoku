@@ -6,7 +6,7 @@
 	public enum PictureFileType : byte
 	{
 		/// <summary>
-		/// Indictaes the JPG format.
+		/// Indicates the JPG format.
 		/// </summary>
 		Jpg,
 

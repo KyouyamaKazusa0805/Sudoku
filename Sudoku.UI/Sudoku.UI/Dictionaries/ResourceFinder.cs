@@ -28,7 +28,7 @@ namespace Sudoku.UI.Dictionaries
 		/// using the following code style to get the items in this class:
 		/// <list type="bullet">
 		/// <item><c>Current.PropertyName</c> (Property invokes)</item>
-		/// <item><c>Current[PropertIndex]</c> (Indexer invokes)</item>
+		/// <item><c>Current[PropertyIndex]</c> (Indexer invokes)</item>
 		/// </list>
 		/// </para>
 		/// <para>

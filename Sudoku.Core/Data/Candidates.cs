@@ -13,7 +13,7 @@ using static Sudoku.Constants.Tables;
 namespace Sudoku.Data
 {
 	/// <summary>
-	/// Encapsulats a map that contains 729 positions to represent a candidate.
+	/// Encapsulates a map that contains 729 positions to represent a candidate.
 	/// </summary>
 	public unsafe struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>
 	{
@@ -79,7 +79,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Inidicates an instance with the peer candidates of the specified candidate and a <see cref="bool"/>
+		/// Indicates an instance with the peer candidates of the specified candidate and a <see cref="bool"/>
 		/// value indicating whether the map will process itself with <see langword="true"/> value.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>

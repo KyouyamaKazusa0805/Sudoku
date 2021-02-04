@@ -5,7 +5,7 @@ using System.Windows.Data;
 namespace Sudoku.Windows.Converters
 {
 	/// <summary>
-	/// Defines a width conveter.
+	/// Defines a width converter.
 	/// </summary>
 	public sealed class WidthConverter : IValueConverter
 	{

@@ -217,7 +217,7 @@
             <param name="field">The field.</param>
             <returns>The grid.</returns>
             <exception cref="T:Sudoku.SudokuHandlingException">
-            Throws when the processing is wrong or unhandlable.
+            Throws when the processing is wrong or unhandleable.
             </exception>
         </member>
         <member name="M:Sudoku.Recognition.InternalServiceProvider.RecognizeCellNumber(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">

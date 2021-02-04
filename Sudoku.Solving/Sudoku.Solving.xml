@@ -1789,7 +1789,7 @@
             <param name="IsMultiple">
             Indicates whether the chain is a multiple forcing chains (Cell forcing chains and Region forcing chains).
             </param>
-            <param name="IsDynamic">Indicates whether the chain is a dynamic forcng chains.</param>
+            <param name="IsDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
             <param name="Level">The dynamic searching level.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
@@ -1804,7 +1804,7 @@
             <param name="IsMultiple">
             Indicates whether the chain is a multiple forcing chains (Cell forcing chains and Region forcing chains).
             </param>
-            <param name="IsDynamic">Indicates whether the chain is a dynamic forcng chains.</param>
+            <param name="IsDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
             <param name="Level">The dynamic searching level.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.SortKey">
@@ -1977,7 +1977,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.RegionFc">
             <summary>
-            Indictaes the region forcing chains.
+            Indicates the region forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.ContradictionFc">
@@ -1997,7 +1997,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.DynamicRegionFc">
             <summary>
-            Indictaes the dynamic region forcing chains.
+            Indicates the dynamic region forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.DynamicContradictionFc">
@@ -2969,9 +2969,9 @@
             <summary>
             Get the searchers to enumerate on Sudoku Explainer mode.
             </summary>
-            <param name="this">(<see langword="this"/> paraemeter) The manual solver.</param>
+            <param name="this">(<see langword="this"/> parameter) The manual solver.</param>
             <param name="solution">
-            (<see langword="in"/> paraemeter) The solution for a sudoku grid.
+            (<see langword="in"/> parameter) The solution for a sudoku grid.
             This parameter is necessary because some technique searchers will use this value,
             such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>.
             </param>
@@ -2981,9 +2981,9 @@
             <summary>
             Get the searchers to enumerate on Hodoku mode.
             </summary>
-            <param name="this">(<see langword="this"/> paraemeter) The manual solver.</param>
+            <param name="this">(<see langword="this"/> parameter) The manual solver.</param>
             <param name="solution">
-            (<see langword="in"/> paraemeter) The solution for a sudoku grid.
+            (<see langword="in"/> parameter) The solution for a sudoku grid.
             This parameter is necessary because some technique searchers will use this value,
             such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>. The default value is <see langword="null"/>.
             </param>
@@ -3040,28 +3040,28 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
             <summary>
-            Check whether the currrent technique information is an ALS technique.
+            Check whether the current technique information is an ALS technique.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
             <summary>
-            Check whether the currrent technique information is a chaining-ruled technique.
+            Check whether the current technique information is a chaining-ruled technique.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsForcingChainsTechnique(Sudoku.Solving.Manual.StepInfo)">
             <summary>
-            Check whether the currrent technique information is a forcing chains technique.
+            Check whether the current technique information is a forcing chains technique.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
             <summary>
-            Check whether the currrent technique information is a uniqueness technique.
+            Check whether the current technique information is a uniqueness technique.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
@@ -3480,7 +3480,7 @@
             </item>
             <item>
             <term><see langword="null"/></term>
-            <description>If the fish doesn't contian any fin.</description>
+            <description>If the fish doesn't contain any fin.</description>
             </item>
             </list>
             </returns>
@@ -4492,7 +4492,7 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength">
             <summary>
             <para>
-            Indicates the number of nodes to be searched for in bowman bingos.
+            Indicates the number of nodes to be searched for in bowman bingoes.
             </para>
             <para>
             The value is <c>32</c> in default case. You can let this value
@@ -5609,32 +5609,32 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.R1">
             <summary>
-            Indictaes the iteration list.
+            Indicates the iteration list.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.R2">
             <summary>
-            Indictaes the iteration list.
+            Indicates the iteration list.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.R3">
             <summary>
-            Indictaes the iteration list.
+            Indicates the iteration list.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.C1">
             <summary>
-            Indictaes the iteration list.
+            Indicates the iteration list.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.C2">
             <summary>
-            Indictaes the iteration list.
+            Indicates the iteration list.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.C3">
             <summary>
-            Indictaes the iteration list.
+            Indicates the iteration list.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.Searcher">
@@ -5989,17 +5989,17 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Tracing.TraceableGrid._innerGrid">
             <summary>
-            Indicates the iner sudoku grid.
+            Indicates the inner sudoku grid.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Tracing.TraceableGrid._causes">
             <summary>
-            Indictaes the table that holds reasons why the candidate has been eliminated.
+            Indicates the table that holds reasons why the candidate has been eliminated.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
-            Initializes an instance with the specified iner sudoku grid.
+            Initializes an instance with the specified inner sudoku grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
@@ -8467,7 +8467,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.SdCDifficulty">
             <summary>
-            The extra difficulty that assesses SDC's size.
+            The extra difficulty that assesses the size of SdC.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.IsolatedDifficulty">
