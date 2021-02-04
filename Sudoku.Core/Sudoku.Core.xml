@@ -4096,6 +4096,125 @@
         <member name="M:Sudoku.JsonConverters.SudokuGridJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.SudokuGrid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Models.DisplayingColor">
+            <summary>
+            Indicates a color that is used for displaying a conclsion, a drawing pair instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.DisplayingColor.A">
+            <summary>
+            Indicates the alpha value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.DisplayingColor.R">
+            <summary>
+            Indicates the red value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.DisplayingColor.G">
+            <summary>
+            Indicates the green value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.DisplayingColor.B">
+            <summary>
+            Indicates the blue value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.DisplayingColor.IsLightColor">
+            <summary>
+            Indicates whether the current color is a light color.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.Deconstruct(System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
+            <param name="r">(<see langword="out"/> parameter) The red value.</param>
+            <param name="g">(<see langword="out"/> parameter) The green value.</param>
+            <param name="b">(<see langword="out"/> parameter) The blue value.</param>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.Equals(Sudoku.Models.DisplayingColor@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+            <remarks>
+            All available format strings are:
+            <list type="table">
+            <item>
+            <term><c><see langword="null"/></c> or <c><see cref="F:System.String.Empty"/></c></term>
+            <description>
+            A quadruple that contains <see cref="P:Sudoku.Models.DisplayingColor.A"/>, <see cref="P:Sudoku.Models.DisplayingColor.R"/>, <see cref="P:Sudoku.Models.DisplayingColor.G"/>
+            and <see cref="P:Sudoku.Models.DisplayingColor.B"/> value.
+            </description>
+            </item>
+            <item>
+            <term><c>"x"</c> or <c>"x"</c></term>
+            <description>HTML color notation. For example: <c>#FFFFFFFF</c>.</description>
+            </item>
+            <item>
+            <term><c>"!x"</c> or <c>"!x"</c></term>
+            <description>
+            HTML color notation without <see cref="P:Sudoku.Models.DisplayingColor.A"/> value. For example: <c>#FFFFFF</c>.
+            </description>
+            </item>
+            <item>
+            <term><c>"V"</c> or <c>"v"</c></term>
+            <description>An integer value that represents the current instance.</description>
+            </item>
+            </list>
+            </remarks>
+            <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.IsWin32Color(System.Int32,Sudoku.Models.DisplayingColor@)">
+            <summary>
+            Determine whether the specified value is a valid Win32 color value.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="result">
+            (<see langword="out"/> parameter) The result color that created. If the value is greater than
+            the maximum value of the Win32 color limit, it'll be truncated.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.FromArgb(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Models.DisplayingColor"/> instance using the specified red, green and blue values.
+            </summary>
+            <param name="red">The red value.</param>
+            <param name="green">The green value.</param>
+            <param name="blue">The blue value.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.FromArgb(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Models.DisplayingColor"/> instance using the specified alpha, red, green
+            and blue values.
+            </summary>
+            <param name="alpha">The alpha value.</param>
+            <param name="red">The red value.</param>
+            <param name="green">The green value.</param>
+            <param name="blue">The blue value.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.op_Equality(Sudoku.Models.DisplayingColor@,Sudoku.Models.DisplayingColor@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Models.DisplayingColor.op_Inequality(Sudoku.Models.DisplayingColor@,Sudoku.Models.DisplayingColor@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
         <member name="T:Sudoku.Models.DrawingInfo">
             <summary>
             Encapsulates a drawing information pair for highlighting cells,
@@ -4240,35 +4359,111 @@
         <member name="M:Sudoku.Models.IProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Models.PaintingPair`1">
+            <summary>
+            Encapsulates a painting pair that contains the base color to paint and the value.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+        </member>
+        <member name="M:Sudoku.Models.PaintingPair`1.#ctor(Sudoku.Models.DisplayingColor@,`0@)">
+            <summary>
+            Initializes an instance with two values.
+            </summary>
+            <param name="color">(<see langword="in"/> parameter) The color used.</param>
+            <param name="value">(<see langword="in"/> parameter) The value used.</param>
+        </member>
+        <member name="P:Sudoku.Models.PaintingPair`1.Color">
+            <summary>
+            Indicates the displaying color that the current instance held.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.PaintingPair`1.Value">
+            <summary>
+            Indicates the value used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.PaintingPair`1.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PaintingPair`1.Equals(Sudoku.Models.PaintingPair{`0}@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PaintingPair`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Models.PaintingPair`1.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PaintingPair`1.op_Equality(Sudoku.Models.PaintingPair{`0}@,Sudoku.Models.PaintingPair{`0}@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Models.PaintingPair`1.op_Inequality(Sudoku.Models.PaintingPair{`0}@,Sudoku.Models.PaintingPair{`0}@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
         <member name="T:Sudoku.Models.PresentationData">
             <summary>
             This is a data structure that stores the presentation data when drawing onto a picture.
             </summary>
         </member>
+        <member name="F:Sudoku.Models.PresentationData._cells">
+            <summary>
+            The back field of <see cref="P:Sudoku.Models.PresentationData.Cells"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Models.PresentationData.Cells"/>
+        </member>
+        <member name="F:Sudoku.Models.PresentationData._candidates">
+            <summary>
+            The back field of <see cref="P:Sudoku.Models.PresentationData.Candidates"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Models.PresentationData.Candidates"/>
+        </member>
+        <member name="F:Sudoku.Models.PresentationData._regions">
+            <summary>
+            The back field of <see cref="P:Sudoku.Models.PresentationData.Regions"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Models.PresentationData.Regions"/>
+        </member>
+        <member name="F:Sudoku.Models.PresentationData._links">
+            <summary>
+            The back field of <see cref="P:Sudoku.Models.PresentationData.Links"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Models.PresentationData.Links"/>
+        </member>
+        <member name="F:Sudoku.Models.PresentationData._directLines">
+            <summary>
+            The back field of <see cref="P:Sudoku.Models.PresentationData.DirectLines"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Models.PresentationData.DirectLines"/>
+        </member>
         <member name="P:Sudoku.Models.PresentationData.Cells">
             <summary>
             The cell information.
             </summary>
+            <value>The value you want to set.</value>
         </member>
         <member name="P:Sudoku.Models.PresentationData.Candidates">
             <summary>
             The candidate information.
             </summary>
+            <value>The value you want to set.</value>
         </member>
         <member name="P:Sudoku.Models.PresentationData.Regions">
             <summary>
             The region information.
             </summary>
+            <value>The value you want to set.</value>
         </member>
         <member name="P:Sudoku.Models.PresentationData.Links">
             <summary>
             The link information.
             </summary>
+            <value>The value you want to set.</value>
         </member>
         <member name="P:Sudoku.Models.PresentationData.DirectLines">
             <summary>
             The direct line information.
             </summary>
+            <value>The value you want to set.</value>
         </member>
         <member name="E:Sudoku.Models.PresentationData.CellsChanged">
             <summary>
@@ -4295,6 +4490,14 @@
             Indicates the event triggered when the direct line list is changed.
             </summary>
         </member>
+        <member name="M:Sudoku.Models.PresentationData.Deconstruct(System.Collections.Generic.ICollection{Sudoku.Models.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Models.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Models.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Models.PaintingPair{Sudoku.Data.Link}}@,System.Collections.Generic.ICollection{Sudoku.Models.PaintingPair{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}}}@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="cells">(<see langword="out"/> parameter) The cells.</param>
+            <param name="candidates">(<see langword="out"/> parameter) The candidates.</param>
+            <param name="regions">(<see langword="out"/> parameter) The regions.</param>
+            <param name="links">(<see langword="out"/> parameter) The links.</param>
+            <param name="directLines">(<see langword="out"/> parameter) The direct lines.</param>
+        </member>
         <member name="M:Sudoku.Models.PresentationData.Add``1(System.String,``0@)">
             <summary>
             Add a new instance into the collection.
@@ -4316,7 +4519,7 @@
             Represents a event handler that triggered when the data is changed.
             </summary>
             <typeparam name="T">The type of the data.</typeparam>
-            <param name="args">(<see langword="in"/> parameter) The event arguments provided.</param>
+            <param name="args">The event arguments provided.</param>
         </member>
         <member name="T:Sudoku.Models.PuzzleGeneratingProgressResult">
             <summary>
