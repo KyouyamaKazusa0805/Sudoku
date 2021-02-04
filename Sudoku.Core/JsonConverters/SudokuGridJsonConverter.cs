@@ -5,6 +5,10 @@ using Sudoku.Data;
 
 namespace Sudoku.JsonConverters
 {
+	/// <summary>
+	/// Indicates a <see cref="SudokuGrid"/> JSON converter.
+	/// </summary>
+	/// <seealso cref="SudokuGrid"/>
 	[JsonConverter(typeof(SudokuGrid))]
 	public sealed class SudokuGridJsonConverter : JsonConverter<SudokuGrid>
 	{

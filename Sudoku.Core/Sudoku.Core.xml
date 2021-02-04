@@ -4087,6 +4087,167 @@
             Indicates all symmetry types should be satisfied.
             </summary>
         </member>
+        <member name="T:Sudoku.JsonConverters.CellsJsonConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Data.Cells"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Cells"/>
+        </member>
+        <member name="F:Sudoku.JsonConverters.CellsJsonConverter.HighBits">
+            <summary>
+            The property name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.JsonConverters.CellsJsonConverter.LowBits">
+            <summary>
+            The property name.
+            </summary>
+        </member>
+        <member name="M:Sudoku.JsonConverters.CellsJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.CellsJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.CellsJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.JsonConverters.DirectLineJsonConverter">
+            <summary>
+            Indicates a <see cref="T:System.ValueTuple`2"/> JSON converter.
+            </summary>
+            <seealso cref="T:System.ValueTuple`2"/>
+        </member>
+        <member name="F:Sudoku.JsonConverters.DirectLineJsonConverter.Start">
+            <summary>
+            Indicates the property name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.JsonConverters.DirectLineJsonConverter.End">
+            <summary>
+            Indicates the property name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.JsonConverters.DirectLineJsonConverter.InnerOptions">
+            <summary>
+            Indicates the inner options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.JsonConverters.DirectLineJsonConverter.#cctor">
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.DirectLineJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.DirectLineJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.DirectLineJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells},System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.JsonConverters.DisplayingColorJsonConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Models.DisplayingColor"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Models.DisplayingColor"/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.DisplayingColorJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.DisplayingColorJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the current token isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.JsonConverters.DisplayingColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Models.DisplayingColor,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.JsonConverters.LinkJsonConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Data.Link"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Link"/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.LinkJsonConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.LinkJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.LinkJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Link,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.JsonConverters.PaintingPairConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Models.PaintingPair`1"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Models.PaintingPair`1"/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.PaintingPairConverter.CanConvert(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.PaintingPairConverter.CreateConverter(System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1">
+            <summary>
+            Indicates the inner converter.
+            </summary>
+            <typeparam name="T">The type of the value used.</typeparam>
+        </member>
+        <member name="F:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1.ColorString">
+            <summary>
+            Indicates the string value representation of the property name <c>Color</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1.ValueString">
+            <summary>
+            Indicates the string value representation of the property name <c>Value</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1._colorConverter">
+            <summary>
+            Indicates the JSON converter of the color (If need).
+            </summary>
+        </member>
+        <member name="F:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1._valueConverter">
+            <summary>
+            Indicates the JSON converter of the value (If need).
+            </summary>
+        </member>
+        <member name="F:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1._valueType">
+            <summary>
+            Indicates the real type token of the value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Initializes an instance with the specified options.
+            </summary>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when:
+            <list type="number">
+            <item>The converter reader doesn't locate at the start object token.</item>
+            <item>The converter doesn't locate at the property name token while reading.</item>
+            <item>The property name read is invalid.</item>
+            <item>Failed to deserialize.</item>
+            </list>
+            </exception>
+        </member>
+        <member name="M:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Models.PaintingPair{`0},System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.JsonConverters.SudokuGridJsonConverter">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Data.SudokuGrid"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
+        </member>
         <member name="M:Sudoku.JsonConverters.SudokuGridJsonConverter.CanConvert(System.Type)">
             <inheritdoc/>
         </member>
