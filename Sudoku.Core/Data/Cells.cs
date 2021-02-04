@@ -262,7 +262,7 @@ namespace Sudoku.Data
 		/// Indicates the total number of cells where the corresponding
 		/// value are set <see langword="true"/>.
 		/// </summary>
-		public int Count { readonly get; private set; }
+		public int Count { get; private set; }
 
 		/// <summary>
 		/// Indicates all regions covered. This property is used to check all regions that all cells
@@ -301,7 +301,11 @@ namespace Sudoku.Data
 		public readonly int Regions
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
+			get =>
+#if VISUAL_STUDIO_IDE
+				(int)
+#endif
+				BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
 		}
 
 		/// <summary>

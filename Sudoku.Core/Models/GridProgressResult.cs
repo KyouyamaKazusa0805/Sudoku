@@ -32,22 +32,22 @@ namespace Sudoku.Models
 		/// <summary>
 		/// Indicates the number of unsolved cells.
 		/// </summary>
-		public int CurrentCellsCount { readonly get; set; }
+		public int CurrentCellsCount { get; set; }
 
 		/// <summary>
 		/// Indicates the number of unsolved candidates.
 		/// </summary>
-		public int CurrentCandidatesCount { readonly get; set; }
+		public int CurrentCandidatesCount { get; set; }
 
 		/// <summary>
 		/// Indicates the number of unsolved candidates in the initial grid.
 		/// </summary>
-		public readonly int InitialCandidatesCount { get; }
+		public int InitialCandidatesCount { get; }
 
 		/// <summary>
 		/// The country code.
 		/// </summary>
-		public readonly CountryCode CountryCode { get; }
+		public CountryCode CountryCode { get; }
 
 		/// <summary>
 		/// Indicates the current percentage.

@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc cref="StaticConstructor"/>
 		static BdpStepSearcher()
 		{
-			int[][] Quads =
+			int[][] quads =
 			{
 				new[] { 0, 1, 3, 4 }, new[] { 1, 2, 4, 5 }, new[] { 3, 4, 6, 7 }, new[] { 4, 5, 7, 8 },
 				new[] { 0, 2, 3, 5 }, new[] { 3, 5, 6, 8 }, new[] { 0, 1, 6, 7 }, new[] { 1, 2, 7, 8 },
@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			{
 				for (int i = 0; i < 9; i++) // 9 cases.
 				{
-					int[] quad = Quads[i];
+					int[] quad = quads[i];
 					int[] tempQuad = new int[4];
 					for (int j = 0; j < 4; j++)
 					{
@@ -85,7 +85,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							long v = 0;
 							for (int z = 0; z < allCells.Count; z++)
 							{
-								v |= (long)allCells[z];
+								v |=
+#if VISUAL_STUDIO_IDE
+									(long)
+#endif
+									allCells[z];
 								if (z != allCells.Count - 1)
 								{
 									v <<= 7;
@@ -146,7 +150,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						for (int z = 0; z < allCells.Count; z++)
 						{
 							int cell = allCells[z];
-							v |= (long)cell;
+							v |=
+#if VISUAL_STUDIO_IDE
+								(long)
+#endif
+								cell;
 							if (z != allCells.Count - 1)
 							{
 								v <<= 7;

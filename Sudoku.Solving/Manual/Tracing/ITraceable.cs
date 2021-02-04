@@ -49,6 +49,6 @@ namespace Sudoku.Solving.Manual.Tracing
 		}
 
 		/// <inheritdoc/>
-		IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<(int, StepInfo)>)this).GetEnumerator();
+		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
 }

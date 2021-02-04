@@ -38,11 +38,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			for (int i = 0, length = alses.Length; i < length - 1; i++)
 			{
 				var als1 = alses[i];
-				var (isBivalue1, region1, mask1, map1, possibleElimMap1, _) = als1;
+				var (_, region1, mask1, map1, possibleElimMap1, _) = als1;
 				for (int j = i + 1; j < length; j++)
 				{
 					var als2 = alses[j];
-					var (isBivalue2, region2, mask2, map2, possibleElimMap2, _) = als2;
+					var (_, region2, mask2, map2, possibleElimMap2, _) = als2;
 					short xzMask = (short)(mask1 & mask2);
 					var map = map1 | map2;
 					var overlapMap = map1 & map2;

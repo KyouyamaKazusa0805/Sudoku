@@ -7,7 +7,7 @@ namespace System
 	/// <summary>
 	/// Provides all algorithm processing methods.
 	/// </summary>
-	public static partial class Algorithms
+	public static class Algorithms
 	{
 		/// <summary>
 		/// Sort the specified array by quick sort.

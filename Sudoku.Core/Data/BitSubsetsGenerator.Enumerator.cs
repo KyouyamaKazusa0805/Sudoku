@@ -38,7 +38,7 @@ namespace Sudoku.Data
 
 
 			/// <inheritdoc/>
-			public long Current { readonly get; private set; }
+			public long Current { get; private set; }
 
 			/// <inheritdoc/>
 			readonly object IEnumerator.Current => Current;

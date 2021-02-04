@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Manual.Tracing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override string ToString() => ToString(null, null);
 
-		/// <inheritdoc cref="Formattable.ToString"/>
+		/// <inheritdoc cref="Formattable.ToString(string?)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public string ToString(string format) => ToString(format, null);
 

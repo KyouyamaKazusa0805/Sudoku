@@ -39,12 +39,12 @@ namespace Sudoku.Data
 		/// Indicates the cell used. In the default case, the AIC contains only one cell and the digit (which
 		/// combine to a candidate).
 		/// </summary>
-		public readonly int Cell { get; }
+		public int Cell { get; }
 
 		/// <summary>
 		/// Indicates the digit.
 		/// </summary>
-		public readonly int Digit { get; }
+		public int Digit { get; }
 
 		/// <summary>
 		/// Get the total number of the ancestors.
@@ -77,7 +77,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates whether the specified node is on.
 		/// </summary>
-		public readonly bool IsOn { get; }
+		public bool IsOn { get; }
 
 #if DOUBLE_LAYERED_ASSUMPTION
 		/// <summary>
@@ -114,7 +114,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get all parents of the current node.
 		/// </summary>
-		public IList<Node>? Parents { readonly get; set; }
+		public IList<Node>? Parents { get; set; }
 
 		/// <summary>
 		/// The chain nodes.
@@ -230,9 +230,8 @@ namespace Sudoku.Data
 			else
 			{
 				var nodes = new Candidates();
-				for (int i = 0; i < Parents.Count; i++)
+				foreach (var node in Parents)
 				{
-					var node = Parents[i];
 					nodes.Add(node.Cell * 9 + node.Digit);
 				}
 

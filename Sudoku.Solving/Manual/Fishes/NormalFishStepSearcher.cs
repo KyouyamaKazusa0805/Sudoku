@@ -103,7 +103,6 @@ namespace Sudoku.Solving.Manual.Fishes
 			bool withFin, bool searchRow)
 		{
 			// Iterate on each digit.
-			int offsetBase = searchRow ? 9 : 18, offsetCover = searchRow ? 18 : 9;
 			for (int digit = 0; digit < 9; digit++)
 			{
 				// Check the validity of the distribution for the current digit.
@@ -219,7 +218,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						accumulator.Add(
 							new NormalFishStepInfo(
 								conclusions,
-								new View[]
+								new[]
 								{
 									new() { Candidates = candidateOffsets, Regions = regionOffsets },
 									GetDirectView(grid, digit, baseSets, coverSets, fins, searchRow)
@@ -246,7 +245,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </param>
 		/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 		/// <returns>The view.</returns>
-		private static unsafe View GetDirectView(
+		private static View GetDirectView(
 			in SudokuGrid grid, int digit, int[] baseSets, int[] coverSets, in Cells fins, bool searchRow)
 		{
 			// Get the highlight cells (necessary).

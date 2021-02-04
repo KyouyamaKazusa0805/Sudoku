@@ -330,7 +330,7 @@ namespace Sudoku.Data
 				// Step 2: gets the maximal number of candidates in a cell,
 				// which is used for aligning by columns.
 				var maxLengths = (stackalloc int[9]);
-				foreach (var (i, values) in valuesByColumn)
+				foreach (var (i, _) in valuesByColumn)
 				{
 					ref int maxLength = ref maxLengths[i];
 

@@ -88,9 +88,9 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates whether the current searcher has bug to fix, or something else to describe why
 		/// the searcher is (or should be) disabled.
-		/// The default value is <see cref="DisabledReason.LastResort"/>.
+		/// The default value is <see cref="DisabledReason.None"/>.
 		/// </summary>
-		/// <seealso cref="DisabledReason.LastResort"/>
+		/// <seealso cref="DisabledReason.None"/>
 		public DisabledReason DisabledReason { get; set; }
 
 

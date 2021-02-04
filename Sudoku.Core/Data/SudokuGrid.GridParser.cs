@@ -68,14 +68,14 @@ namespace Sudoku.Data
 			/// <summary>
 			/// The string value to parse.
 			/// </summary>
-			public string ParsingValue { readonly get; private set; }
+			public string ParsingValue { get; private set; }
 
 			/// <summary>
 			/// Indicates whether the parser will change the execution order of PM grid.
 			/// If the value is <see langword="true"/>, the parser will check compatible one
 			/// first, and then check recommended parsing plan ('<c>&lt;d&gt;</c>' and '<c>*d*</c>').
 			/// </summary>
-			public readonly bool CompatibleFirst { get; }
+			public bool CompatibleFirst { get; }
 
 
 			/// <summary>

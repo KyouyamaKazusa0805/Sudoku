@@ -5849,9 +5849,9 @@
             <summary>
             Indicates whether the current searcher has bug to fix, or something else to describe why
             the searcher is (or should be) disabled.
-            The default value is <see cref="F:Sudoku.Solving.Manual.DisabledReason.LastResort"/>.
+            The default value is <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>.
             </summary>
-            <seealso cref="F:Sudoku.Solving.Manual.DisabledReason.LastResort"/>
+            <seealso cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>

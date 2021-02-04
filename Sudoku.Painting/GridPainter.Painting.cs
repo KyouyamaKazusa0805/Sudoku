@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Extensions;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Models;
@@ -177,15 +178,11 @@ namespace Sudoku.Painting
 			{
 				if (ColorId.IsColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 				{
-					var (cw, ch) = Translator.CellSize;
-					var (x, y) = Translator.GetMouseCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
 					g.FillRectangle(brush, Translator.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
 				}
 				else if (Theme.TryGetPaletteColor(id, out var color))
 				{
-					var (cw, ch) = Translator.CellSize;
-					var (x, y) = Translator.GetMouseCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
 					g.FillRectangle(brush, Translator.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
 				}
@@ -317,7 +314,8 @@ namespace Sudoku.Painting
 
 			// Gather all points used.
 			var points = new HashSet<PointF>();
-			foreach (var (startCand, endCand) in links)
+			var linkArray = links as Link[] ?? links.ToArray();
+			foreach (var (startCand, endCand) in linkArray)
 			{
 				Candidates map1 = new() { startCand }, map2 = new() { endCand };
 
@@ -327,9 +325,9 @@ namespace Sudoku.Painting
 
 			if (Conclusions is not null)
 			{
-				foreach (var conclusion in Conclusions)
+				foreach (var (_, cell, digit) in Conclusions)
 				{
-					points.Add(Translator.GetMouseCenter(conclusion.Cell, conclusion.Digit));
+					points.Add(Translator.GetMouseCenter(cell, digit));
 				}
 			}
 
@@ -345,7 +343,7 @@ namespace Sudoku.Painting
 			// This brush is used for drawing grouped nodes.
 			using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
 #endif
-			foreach (var (start, end, type) in links)
+			foreach (var (start, end, type) in linkArray)
 			{
 				arrowPen.DashStyle = type switch
 				{
@@ -399,7 +397,7 @@ namespace Sudoku.Painting
 					double alpha = Math.Atan2(deltaY, deltaX);
 					double dx1 = deltaX, dy1 = deltaY;
 					bool through = false;
-					adjust(pt1, pt2, out var p1, out var p2, alpha, cw, offset);
+					adjust(pt1, pt2, out var p1, out _, alpha, cw, offset);
 					foreach (var point in points)
 					{
 						if (point == pt1 || point == pt2)
@@ -494,10 +492,10 @@ namespace Sudoku.Painting
 				float y = ch * (float)Math.Sqrt(slope * slope / (1 + slope * slope));
 
 				float o = offset / 8;
-				if (pt1y > pt2y && pt1x == pt2x) { pt1.Y -= ch / 2 - o; pt2.Y += ch / 2 - o; }
-				else if (pt1y < pt2y && pt1x == pt2x) { pt1.Y += ch / 2 - o; pt2.Y -= ch / 2 - o; }
-				else if (pt1y == pt2y && pt1x > pt2x) { pt1.X -= cw / 2 - o; pt2.X += cw / 2 - o; }
-				else if (pt1y == pt2y && pt1x < pt2x) { pt1.X += cw / 2 - o; pt2.X -= cw / 2 - o; }
+				if (pt1y > pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y -= ch / 2 - o; pt2.Y += ch / 2 - o; }
+				else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y += ch / 2 - o; pt2.Y -= ch / 2 - o; }
+				else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x) { pt1.X -= cw / 2 - o; pt2.X += cw / 2 - o; }
+				else if (pt1y.NearlyEquals(pt2y) && pt1x < pt2x) { pt1.X += cw / 2 - o; pt2.X -= cw / 2 - o; }
 				else if (pt1y > pt2y && pt1x > pt2x)
 				{
 					pt1.X -= x / 2 - o; pt1.Y -= y / 2 - o;

@@ -29,13 +29,13 @@ namespace Sudoku.Models
 		/// <summary>
 		/// Indicates how many trials of the specified generator generates.
 		/// </summary>
-		public int GeneratingTrial { readonly get; set; }
+		public int GeneratingTrial { get; set; }
 
 		/// <inheritdoc/>
 		public readonly double Percentage => 0;
 
 		/// <inheritdoc/>
-		public readonly CountryCode CountryCode { get; }
+		public CountryCode CountryCode { get; }
 
 
 		/// <inheritdoc cref="object.ToString"/>

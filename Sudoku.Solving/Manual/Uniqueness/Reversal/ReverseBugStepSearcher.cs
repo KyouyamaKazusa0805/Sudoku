@@ -110,7 +110,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		{
 			var result = new List<(Cells, IReadOnlyList<Link>)>();
 			var loop = new List<int> { cell1 };
-			Cells pairMap = new() { cell1, cell2 }, loopMap = new() { cell1 };
+			var loopMap = new Cells { cell1 };
 			short digitsMask = (short)(1 << d1 | 1 << d2);
 
 			try

@@ -25,20 +25,20 @@ namespace Sudoku.Models
 		/// <summary>
 		/// Indicates the current technique.
 		/// </summary>
-		public string? CurrentTechnique { readonly get; set; }
+		public string? CurrentTechnique { get; set; }
 
 		/// <summary>
 		/// The current index.
 		/// </summary>
-		public int CurrentIndex { readonly get; set; }
+		public int CurrentIndex { get; set; }
 
 		/// <inheritdoc/>
-		public readonly CountryCode CountryCode { get; }
+		public CountryCode CountryCode { get; }
 
 		/// <summary>
 		/// The total number of searchers.
 		/// </summary>
-		public readonly int TotalSearchers { get; }
+		public int TotalSearchers { get; }
 
 
 		/// <inheritdoc cref="object.ToString"/>

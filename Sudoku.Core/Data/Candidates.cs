@@ -209,7 +209,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates how many bits are set <see langword="true"/>.
 		/// </summary>
-		public int Count { readonly get; private set; }
+		public int Count { get; private set; }
 
 		/// <summary>
 		/// Indicates the map of cells, which is the peer intersections.

@@ -1,7 +1,6 @@
 ﻿#pragma warning disable IDE1006
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Extensions;
 using System.Linq;
@@ -56,7 +55,6 @@ namespace Sudoku.Windows
 
 				// Searching.
 				ProgressWindow? dialog = null;
-				var list = new List<ListBoxItem>();
 				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 				_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
 				DisableSolvingControls();
@@ -75,7 +73,6 @@ namespace Sudoku.Windows
 				var collection = new ObservableCollection<ListBoxItem>();
 				foreach (var techniqueGroup in techniqueGroups)
 				{
-					string name = techniqueGroup.Key;
 					collection.AddRange(
 						from info in techniqueGroup
 						let pair = ColorPalette.DifficultyLevelColors[info.DifficultyLevel]
@@ -92,7 +89,13 @@ namespace Sudoku.Windows
 
 				// Group them by its name.
 				var srcView = new ListCollectionView(collection);
-				srcView.GroupDescriptions.Add(
+				var groupDescriptions = srcView.GroupDescriptions;
+				if (groupDescriptions is null)
+				{
+					goto CloseDialog;
+				}
+				
+				groupDescriptions.Add(
 					new PropertyGroupDescription(
 						new StringBuilder()
 						.Append(nameof(Content))
@@ -102,8 +105,9 @@ namespace Sudoku.Windows
 						.Append(nameof(StepInfo.Name))
 						.ToString()));
 				_listBoxTechniques.ItemsSource = srcView;
-
-				dialog?.Close();
+				
+			CloseDialog:
+				dialog.Close();
 			}
 		}
 
@@ -115,7 +119,7 @@ namespace Sudoku.Windows
 			LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 			UpdateDatabaseControls(false, false, true, true);
 
-			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
+			_labelPuzzleNumber.Content = $"1/{max.ToString()}";
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -128,7 +132,7 @@ namespace Sudoku.Windows
 			bool condition = Settings.CurrentPuzzleNumber != 0;
 			UpdateDatabaseControls(condition, condition, true, true);
 
-			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
+			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max.ToString()}";
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -141,7 +145,7 @@ namespace Sudoku.Windows
 			bool condition = Settings.CurrentPuzzleNumber != _puzzlesText.Length - 1;
 			UpdateDatabaseControls(true, true, condition, condition);
 
-			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
+			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max.ToString()}";
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -152,7 +156,7 @@ namespace Sudoku.Windows
 			LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 			UpdateDatabaseControls(true, true, false, false);
 
-			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
+			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max.ToString()}";
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>

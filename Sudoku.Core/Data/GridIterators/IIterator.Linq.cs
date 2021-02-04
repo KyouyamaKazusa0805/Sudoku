@@ -64,7 +64,7 @@ namespace Sudoku.Data.GridIterators
 		/// <returns>The iterator that iterates on each target element.</returns>
 		public IEnumerable<T> Take(int count)
 		{
-			var enumerator = GetEnumerator();
+			using var enumerator = GetEnumerator();
 			for (int i = 0; i < count; i++)
 			{
 				if (!enumerator.MoveNext())

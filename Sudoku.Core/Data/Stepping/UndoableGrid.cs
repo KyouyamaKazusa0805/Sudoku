@@ -112,10 +112,7 @@ namespace Sudoku.Data.Stepping
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				fixed (short* pGrid = _innerGrid)
-				{
-					_undoStack.Push(new AssignmentStep(cell, value, _innerGrid));
-				}
+				_undoStack.Push(new AssignmentStep(cell, value, _innerGrid));
 
 				// Do step.
 				_innerGrid[cell] = value;

@@ -9,6 +9,7 @@ using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;
 using static Sudoku.Solving.Manual.FastProperties;
+// ReSharper disable All
 
 namespace Sudoku.Solving.Manual
 {

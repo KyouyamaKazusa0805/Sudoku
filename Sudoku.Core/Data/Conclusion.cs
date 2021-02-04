@@ -104,7 +104,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[CLSCompliant(false)]
-		public readonly int CompareTo(in Conclusion other) => GetHashCode() - other.GetHashCode();
+		public int CompareTo(in Conclusion other) => GetHashCode() - other.GetHashCode();
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() =>
