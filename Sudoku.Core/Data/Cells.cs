@@ -301,11 +301,7 @@ namespace Sudoku.Data
 		public readonly int Regions
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get =>
-#if VISUAL_STUDIO_IDE
-				(int)
-#endif
-				BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
+			get => (int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
 		}
 
 		/// <summary>

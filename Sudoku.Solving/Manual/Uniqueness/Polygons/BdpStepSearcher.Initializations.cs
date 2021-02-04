@@ -85,11 +85,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							long v = 0;
 							for (int z = 0; z < allCells.Count; z++)
 							{
-								v |=
-#if VISUAL_STUDIO_IDE
-									(long)
-#endif
-									allCells[z];
+								v |= (long)allCells[z];
+
 								if (z != allCells.Count - 1)
 								{
 									v <<= 7;
@@ -150,11 +147,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						for (int z = 0; z < allCells.Count; z++)
 						{
 							int cell = allCells[z];
-							v |=
-#if VISUAL_STUDIO_IDE
-								(long)
-#endif
-								cell;
+							v |= (long)cell;
 							if (z != allCells.Count - 1)
 							{
 								v <<= 7;

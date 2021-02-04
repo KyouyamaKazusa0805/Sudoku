@@ -15,12 +15,12 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; AUTHOR_RESERVED; VISUAL_STUDIO_IDE</DefineConstants>
+		<DefineConstants>DEBUG; AUTHOR_RESERVED</DefineConstants>
 		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>AUTHOR_RESERVED; VISUAL_STUDIO_IDE</DefineConstants>
+		<DefineConstants>AUTHOR_RESERVED</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

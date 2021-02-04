@@ -168,13 +168,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				i++;
 			}
 
-			return Region << 18 | mask << 9 |
-#if VISUAL_STUDIO_IDE
-				(int)DigitsMask
-#else
-				DigitsMask
-#endif
-				;
+			return Region << 18 | mask << 9 | (int)DigitsMask;
 		}
 
 		/// <inheritdoc/>

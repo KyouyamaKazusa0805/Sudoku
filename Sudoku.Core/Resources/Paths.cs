@@ -8,32 +8,17 @@
 		/// <summary>
 		/// Indicates the trained data file name.
 		/// </summary>
-		public const string TrainedDataFileName
-#if WIN_UI
-		= @"C:\ProgramData\Sunnie's Sudoku Solution\eng.traineddata";
-#elif WPF_OR_CONSOLE
-		= "eng.traineddata";
-#endif
+		public const string TrainedDataFileName = "eng.traineddata";
 
 		/// <summary>
 		/// Indicates the language source dictionary (English).
 		/// </summary>
-		public const string LangSourceEnUs
-#if WIN_UI
-		= @"C:\ProgramData\Sunnie's Sudoku Solution\lang\Resources.en-us.dic";
-#elif WPF_OR_CONSOLE
-		= @"lang\Resources.en-us.dic";
-#endif
+		public const string LangSourceEnUs = @"lang\Resources.en-us.dic";
 
 		/// <summary>
 		/// Indicates the language source dictionary (Chinese).
 		/// </summary>
-		public const string LangSourceZhCn
-#if WIN_UI
-		= @"C:\ProgramData\Sunnie's Sudoku Solution\lang\Resources.zh-cn.dic";
-#elif WPF_OR_CONSOLE
-		= @"lang\Resources.zh-cn.dic";
-#endif
+		public const string LangSourceZhCn = @"lang\Resources.zh-cn.dic";
 
 		/// <summary>
 		/// The appropriate file path that can store configuration file.
@@ -49,11 +34,6 @@
 		/// </para>
 		/// <para>The program is only running on Windows 10, so the path can be fixed.</para>
 		/// </remarks>
-		public const string ConfigurationFile
-#if WIN_UI
-		= @"C:\ProgramData\Sunnie's Sudoku Solution\config.ssss";
-#elif WPF_OR_CONSOLE
-		= @"config.ssss";
-#endif
+		public const string ConfigurationFile = @"config.ssss";
 	}
 }
