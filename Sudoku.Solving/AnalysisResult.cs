@@ -7,7 +7,6 @@ using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Globalization;
 using Sudoku.Solving.Manual;
-using Sudoku.Solving.Manual.Singles;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving
@@ -56,9 +55,9 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		public decimal MaxDifficulty =>
-			Steps is null || !Steps.Any()
-			? 20.0M
-			: Steps.Max(static info => info.ShowDifficulty ? info.Difficulty : 0);
+			Steps is { Count: not 0 }
+			? Steps.Max(static info => info.ShowDifficulty ? info.Difficulty : 0)
+			: 20.0M;
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -127,23 +126,21 @@ namespace Sudoku.Solving
 			{
 				if (Steps is null)
 				{
-					return 20M;
+					return 20.0M;
 				}
 
 				if (IsSolved)
 				{
-					int index = Steps.FindIndexOf(isSingle);
+					int index = Steps.FindIndexOf(static info => info.HasTag(TechniqueFlags.Singles));
 					return index switch
 					{
-						-1 => 20M,
+						-1 => 20.0M,
 						0 => Steps[0].Difficulty,
 						_ => Steps.Slice(0, index).Max(static step => step.Difficulty)
 					};
-
-					static bool isSingle(StepInfo info) => info.TechniqueFlags.Flags(TechniqueFlags.Singles);
 				}
 
-				return 20M;
+				return 20.0M;
 			}
 		}
 
@@ -191,7 +188,8 @@ namespace Sudoku.Solving
 
 				for (int i = Steps.Count - 1; i >= 0; i--)
 				{
-					if (Steps[i] is not SingleStepInfo and { ShowDifficulty: true } step)
+					var step = Steps[i];
+					if (step.ShowDifficulty && !step.HasTag(TechniqueFlags.Singles))
 					{
 						return step;
 					}

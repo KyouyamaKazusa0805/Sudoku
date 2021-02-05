@@ -5450,6 +5450,16 @@
             <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
             <param name="views">(<see langword="out"/> parameter) All views.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.StepInfo.HasTag(Sudoku.Techniques.TechniqueFlags)">
+            <summary>
+            Determine whether the current step information instance with the specified flags.
+            </summary>
+            <param name="flags">
+            The flags. If the argument contains more than one set bit, all flags will be checked
+            one by one.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.ToString">
             <summary>
             Returns a string that only contains the name and the basic information. Different with

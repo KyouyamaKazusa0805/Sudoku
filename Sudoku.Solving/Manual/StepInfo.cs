@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
@@ -152,6 +153,23 @@ namespace Sudoku.Solving.Manual
 			difficultyLevel = DifficultyLevel;
 			conclusions = Conclusions;
 			views = Views;
+		}
+
+		/// <summary>
+		/// Determine whether the current step information instance with the specified flags.
+		/// </summary>
+		/// <param name="flags">
+		/// The flags. If the argument contains more than one set bit, all flags will be checked
+		/// one by one.
+		/// </param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public unsafe bool HasTag(TechniqueFlags flags)
+		{
+			short value = (short)flags;
+			delegate* managed<TechniqueFlags, TechniqueFlags, bool> func =
+				(value & value - 1) != 0 ? &EnumEx.Flags : &EnumEx.MultiFlags;
+
+			return func(TechniqueFlags, flags);
 		}
 
 		/// <summary>
