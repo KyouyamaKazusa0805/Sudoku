@@ -1,3 +1,12 @@
+<center><h1>Happy 2021 Chinese New Year!</h1></center>
+<center><img src="required/banner.png"/></center>
+
+I'm so sorry for late updates in this repo, for I'm unavailable during these days.
+
+最近忙春节的事情，更新较慢，见谅。
+
+
+
 # Sunnie's Sudoku Solution
 
 标题：**向向的数独解决方案**
