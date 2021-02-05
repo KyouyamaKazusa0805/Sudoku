@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// The technique tags of this instance.
 		/// </summary>
-		public abstract TechniqueFlags TechniqueFlags { get; }
+		public abstract TechniqueTags TechniqueTags { get; }
 
 		/// <summary>
 		/// The difficulty level of this step.
@@ -163,13 +163,13 @@ namespace Sudoku.Solving.Manual
 		/// one by one.
 		/// </param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public unsafe bool HasTag(TechniqueFlags flags)
+		public unsafe bool HasTag(TechniqueTags flags)
 		{
 			short value = (short)flags;
-			delegate* managed<TechniqueFlags, TechniqueFlags, bool> func =
+			delegate* managed<TechniqueTags, TechniqueTags, bool> func =
 				(value & value - 1) != 0 ? &EnumEx.Flags : &EnumEx.MultiFlags;
 
-			return func(TechniqueFlags, flags);
+			return func(TechniqueTags, flags);
 		}
 
 		/// <summary>

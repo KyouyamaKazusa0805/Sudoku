@@ -17,6 +17,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => TechniqueFlags.LastResort;
+		public override TechniqueTags TechniqueTags => TechniqueTags.LastResort;
 	}
 }

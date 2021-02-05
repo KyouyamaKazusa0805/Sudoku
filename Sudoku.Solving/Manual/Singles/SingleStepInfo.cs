@@ -23,6 +23,6 @@ namespace Sudoku.Solving.Manual.Singles
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Easy;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Singles;
+		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Singles;
 	}
 }

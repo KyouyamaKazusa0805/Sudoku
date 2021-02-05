@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override Technique TechniqueCode => Technique.Guardian;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => base.TechniqueFlags | TechniqueFlags.LongChaining;
+		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

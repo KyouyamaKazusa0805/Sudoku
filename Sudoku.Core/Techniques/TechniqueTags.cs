@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel;
 
 namespace Sudoku.Techniques
@@ -14,7 +13,7 @@ namespace Sudoku.Techniques
 	/// <seealso cref="Als"/>
 	/// <seealso cref="LongChaining"/>
 	[Flags]
-	public enum TechniqueFlags : short
+	public enum TechniqueTags : short
 	{
 		/// <summary>
 		/// Indicates none of flags that the technique belongs to.

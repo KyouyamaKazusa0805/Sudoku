@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Chaining
 #endif
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => TechniqueFlags.LongChaining;
+		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel =>

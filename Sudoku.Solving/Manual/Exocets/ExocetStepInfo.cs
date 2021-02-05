@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public abstract override decimal Difficulty { get; }
 
 		/// <inheritdoc/>
-		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Exocet;
+		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Exocet;
 
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

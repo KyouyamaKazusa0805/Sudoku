@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 		public override Technique TechniqueCode => Technique.Sdc3d;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => base.TechniqueFlags | TechniqueFlags.Als;
+		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Als;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

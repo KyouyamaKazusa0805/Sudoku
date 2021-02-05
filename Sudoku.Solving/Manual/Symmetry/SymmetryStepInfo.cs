@@ -17,6 +17,6 @@ namespace Sudoku.Solving.Manual.Symmetry
 		public sealed override bool ShowDifficulty => false;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Symmetry;
+		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Symmetry;
 	}
 }

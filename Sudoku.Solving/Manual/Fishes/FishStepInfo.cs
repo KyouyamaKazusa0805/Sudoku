@@ -41,6 +41,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Fishes | TechniqueFlags.RankTheory;
+		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Fishes | TechniqueTags.RankTheory;
 	}
 }

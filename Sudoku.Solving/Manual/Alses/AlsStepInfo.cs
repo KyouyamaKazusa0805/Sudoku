@@ -17,6 +17,6 @@ namespace Sudoku.Solving.Manual.Alses
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => TechniqueFlags.Als;
+		public override TechniqueTags TechniqueTags => TechniqueTags.Als;
 	}
 }

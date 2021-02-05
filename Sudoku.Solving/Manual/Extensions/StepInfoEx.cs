@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsAlsTechnique(this StepInfo @this) => @this.HasTag(TechniqueFlags.Als);
+		public static bool IsAlsTechnique(this StepInfo @this) => @this.HasTag(TechniqueTags.Als);
 
 		/// <summary>
 		/// Check whether the current technique information is a chaining-ruled technique.
@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsChainingTechnique(this StepInfo @this) =>
-			@this.HasTag(TechniqueFlags.Wings | TechniqueFlags.ShortChaining | TechniqueFlags.LongChaining);
+			@this.HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
 
 		/// <summary>
 		/// Check whether the current technique information is a uniqueness technique.
@@ -32,6 +32,6 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsUniqueness(this StepInfo @this) => @this.HasTag(TechniqueFlags.DeadlyPattern);
+		public static bool IsUniqueness(this StepInfo @this) => @this.HasTag(TechniqueTags.DeadlyPattern);
 	}
 }

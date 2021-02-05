@@ -17,6 +17,6 @@ namespace Sudoku.Solving.Manual.RankTheory
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => TechniqueFlags.RankTheory;
+		public override TechniqueTags TechniqueTags => TechniqueTags.RankTheory;
 	}
 }

@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			IsDynamic ? ChainingTypeCode.DynamicRegionFc : ChainingTypeCode.RegionFc;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => TechniqueFlags.LongChaining;
+		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining;
 
 #if DOUBLE_LAYERED_ASSUMPTION
 		/// <inheritdoc/>

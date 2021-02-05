@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override string? Acronym => "SK-Loop";
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => base.TechniqueFlags | TechniqueFlags.LongChaining | TechniqueFlags.RankTheory;
+		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

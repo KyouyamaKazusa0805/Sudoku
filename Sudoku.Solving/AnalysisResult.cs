@@ -131,7 +131,7 @@ namespace Sudoku.Solving
 
 				if (IsSolved)
 				{
-					int index = Steps.FindIndexOf(static info => info.HasTag(TechniqueFlags.Singles));
+					int index = Steps.FindIndexOf(static info => info.HasTag(TechniqueTags.Singles));
 					return index switch
 					{
 						-1 => 20.0M,
@@ -189,7 +189,7 @@ namespace Sudoku.Solving
 				for (int i = Steps.Count - 1; i >= 0; i--)
 				{
 					var step = Steps[i];
-					if (step.ShowDifficulty && !step.HasTag(TechniqueFlags.Singles))
+					if (step.ShowDifficulty && !step.HasTag(TechniqueTags.Singles))
 					{
 						return step;
 					}

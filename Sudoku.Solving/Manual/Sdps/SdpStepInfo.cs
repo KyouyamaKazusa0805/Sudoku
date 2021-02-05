@@ -19,6 +19,6 @@ namespace Sudoku.Solving.Manual.Sdps
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => TechniqueFlags.SingleDigitPatterns;
+		public override TechniqueTags TechniqueTags => TechniqueTags.SingleDigitPatterns;
 	}
 }

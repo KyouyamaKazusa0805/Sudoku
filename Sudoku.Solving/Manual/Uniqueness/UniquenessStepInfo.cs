@@ -17,6 +17,6 @@ namespace Sudoku.Solving.Manual.Uniqueness
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.DeadlyPattern;
+		public sealed override TechniqueTags TechniqueTags => TechniqueTags.DeadlyPattern;
 	}
 }

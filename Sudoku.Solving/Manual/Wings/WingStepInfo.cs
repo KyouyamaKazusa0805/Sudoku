@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Wings
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueFlags TechniqueFlags =>
-			TechniqueFlags.Wings | TechniqueFlags.ShortChaining;
+		public sealed override TechniqueTags TechniqueTags =>
+			TechniqueTags.Wings | TechniqueTags.ShortChaining;
 	}
 }

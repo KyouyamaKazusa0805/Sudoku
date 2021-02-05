@@ -29,6 +29,6 @@ namespace Sudoku.Solving.Manual.Subsets
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Subsets;
+		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Subsets;
 	}
 }

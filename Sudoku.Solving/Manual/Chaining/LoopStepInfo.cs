@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			: IsXyChain ? Technique.XyCycle : Technique.ContinuousNiceLoop;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => TechniqueFlags.LongChaining;
+		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining;
 
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey => Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());

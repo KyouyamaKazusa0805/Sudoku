@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override string? Acronym => "ALS-XZ";
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => base.TechniqueFlags | TechniqueFlags.ShortChaining;
+		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

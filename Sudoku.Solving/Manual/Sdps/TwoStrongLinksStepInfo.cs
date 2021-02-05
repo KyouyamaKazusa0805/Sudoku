@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => base.TechniqueFlags | TechniqueFlags.ShortChaining;
+		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>

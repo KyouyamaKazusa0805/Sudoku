@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override TechniqueFlags TechniqueFlags => base.TechniqueFlags | TechniqueFlags.Als;
+		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Als;
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => IsCannibalistic ? Technique.CannibalizedSdc : Technique.Sdc;

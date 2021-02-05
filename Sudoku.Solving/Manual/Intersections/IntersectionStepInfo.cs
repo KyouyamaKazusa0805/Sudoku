@@ -17,6 +17,6 @@ namespace Sudoku.Solving.Manual.Intersections
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Intersections;
+		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Intersections;
 	}
 }
