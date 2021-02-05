@@ -25,9 +25,6 @@ namespace Sudoku.Solving.Manual.Symmetry
 		int?[]? MappingTable) : SymmetryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
-		public override bool ShowDifficulty => false;
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 7.0M;
 
 		/// <inheritdoc/>

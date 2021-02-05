@@ -20,9 +20,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override decimal Difficulty => 5.3M;
 
 		/// <inheritdoc/>
-		public sealed override bool ShowDifficulty => true;
-
-		/// <inheritdoc/>
 		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>

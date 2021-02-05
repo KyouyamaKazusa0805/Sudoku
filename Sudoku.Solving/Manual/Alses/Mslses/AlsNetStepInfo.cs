@@ -24,6 +24,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override string? Acronym => "MSLS";
 
 		/// <inheritdoc/>
+		public override TechniqueFlags TechniqueFlags => base.TechniqueFlags | TechniqueFlags.Msls;
+
+		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.Msls;
 
 		/// <inheritdoc/>

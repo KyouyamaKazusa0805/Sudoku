@@ -116,6 +116,11 @@ namespace System.Extensions
 		/// <returns>All flags.</returns>
 		public static IEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 		{
+			if (!typeof(TEnum).IsDefined<FlagsAttribute>())
+			{
+				return ((IEnumerable<TEnum>)Array.Empty<TEnum>()).GetEnumerator();
+			}
+
 			unsafe
 			{
 				return inner(@this, sizeof(TEnum));
@@ -181,6 +186,26 @@ namespace System.Extensions
 					throw new ArgumentException("The parameter should be one of the values 1, 2, 4.", nameof(@this));
 				}
 			}
+		}
+
+		/// <summary>
+		/// Determines whether the instance has the flags specified as <paramref name="flags"/>.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enumeration field.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="flags">All flags used.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public static unsafe bool MultiFlags<TEnum>(this TEnum @this, TEnum flags) where TEnum : unmanaged, Enum
+		{
+			foreach (var flag in flags)
+			{
+				if (@this.Flags(flag))
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 }

@@ -28,6 +28,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override string? Acronym => "ALS-XY-Wing";
 
 		/// <inheritdoc/>
+		public override TechniqueFlags TechniqueFlags => base.TechniqueFlags | TechniqueFlags.ShortChaining;
+
+		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>

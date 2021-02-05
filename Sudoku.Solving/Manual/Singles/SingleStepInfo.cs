@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -15,9 +16,13 @@ namespace Sudoku.Solving.Manual.Singles
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit)
 		: StepInfo(Conclusions, Views)
 	{
-		/// <summary>
-		/// Indicates the difficulty level.
-		/// </summary>
+		/// <inheritdoc/>
+		public sealed override bool ShowDifficulty => base.ShowDifficulty;
+
+		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Easy;
+
+		/// <inheritdoc/>
+		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Singles;
 	}
 }

@@ -1,8 +1,6 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Solving.Manual.Alses.Basic;
-using Sudoku.Solving.Manual.Chaining;
-using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Solving.Manual.Uniqueness;
+﻿using System.Extensions;
+using System.Runtime.CompilerServices;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Extensions
 {
@@ -18,9 +16,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsAlsTechnique(this StepInfo @this) =>
-			@this is /*DeathBlossomStepInfo
-			or */AlsXzStepInfo or AlsXyWingStepInfo or AlsWWingStepInfo;
+		public static bool IsAlsTechnique(this StepInfo @this) => @this.TechniqueFlags.Flags(TechniqueFlags.Als);
 
 		/// <summary>
 		/// Check whether the current technique information is a chaining-ruled technique.
@@ -29,16 +25,9 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsChainingTechnique(this StepInfo @this) =>
-			@this is ChainingStepInfo or BowmanBingoStepInfo;
-
-		/// <summary>
-		/// Check whether the current technique information is a forcing chains technique.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
-		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsForcingChainsTechnique(this StepInfo @this) =>
-			@this is BowmanBingoStepInfo or RegionChainingStepInfo or CellChainingStepInfo;
+			@this.TechniqueFlags.MultiFlags(
+				TechniqueFlags.Wings | TechniqueFlags.ShortChaining | TechniqueFlags.LongChaining
+			);
 
 		/// <summary>
 		/// Check whether the current technique information is a uniqueness technique.
@@ -46,6 +35,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsUniqueness(this StepInfo @this) => @this is UniquenessStepInfo;
+		public static bool IsUniqueness(this StepInfo @this) =>
+			@this.TechniqueFlags.Flags(TechniqueFlags.DeadlyPattern);
 	}
 }

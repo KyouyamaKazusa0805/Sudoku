@@ -20,13 +20,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		public override decimal Difficulty => 5.3M;
 
 		/// <inheritdoc/>
-		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-		/// <inheritdoc/>
 		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>
-		public sealed override bool ShowDifficulty => base.ShowDifficulty;
+		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
 		public abstract override Technique TechniqueCode { get; }

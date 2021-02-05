@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -22,6 +23,12 @@ namespace Sudoku.Solving.Manual.Subsets
 		public int Size => Digits.Count;
 
 		/// <inheritdoc/>
+		public sealed override bool ShowDifficulty => base.ShowDifficulty;
+
+		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
+
+		/// <inheritdoc/>
+		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Subsets;
 	}
 }

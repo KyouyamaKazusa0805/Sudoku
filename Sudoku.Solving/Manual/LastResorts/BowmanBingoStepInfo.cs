@@ -24,6 +24,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 		/// <inheritdoc/>
+		public override TechniqueFlags TechniqueFlags => base.TechniqueFlags | TechniqueFlags.LongChaining;
+
+		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BowmanBingo;
 
 

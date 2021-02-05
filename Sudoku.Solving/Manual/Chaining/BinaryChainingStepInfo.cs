@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -24,16 +25,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		: ChainingStepInfo(Conclusions, Views, true, true, IsNishio, IsMultiple, true, Level)
 	{
 		/// <inheritdoc/>
-		public override ChainingTypeCode SortKey =>
-			IsAbsurd ? ChainingTypeCode.DynamicContradictionFc : ChainingTypeCode.DynamicDoubleFc;
+		public override int FlatComplexity => FromOnNode.AncestorsCount + FromOffNode.AncestorsCount;
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
-#if DOUBLE_LAYERED_ASSUMPTION
-		/// <inheritdoc/>
-		public override Node[] ChainsTargets => new[] { FromOnNode, FromOffNode };
-#endif
+		public override decimal Difficulty => BaseDifficulty + LengthDifficulty;
 
 		/// <summary>
 		/// Indicates the anchor.
@@ -41,11 +36,20 @@ namespace Sudoku.Solving.Manual.Chaining
 		public Node Anchor =>
 			IsNishio || IsAbsurd ? new(SourceNode.Cell, SourceNode.Digit, !SourceNode.IsOn) : FromOnNode;
 
+#if DOUBLE_LAYERED_ASSUMPTION
 		/// <inheritdoc/>
-		public override int FlatComplexity => FromOnNode.AncestorsCount + FromOffNode.AncestorsCount;
+		public override Node[] ChainsTargets => new[] { FromOnNode, FromOffNode };
+#endif
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => BaseDifficulty + LengthDifficulty;
+		public override ChainingTypeCode SortKey =>
+			IsAbsurd ? ChainingTypeCode.DynamicContradictionFc : ChainingTypeCode.DynamicDoubleFc;
+
+		/// <inheritdoc/>
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
+
+		/// <inheritdoc/>
+		public override TechniqueFlags TechniqueFlags => TechniqueFlags.LongChaining;
 
 
 		/// <inheritdoc/>

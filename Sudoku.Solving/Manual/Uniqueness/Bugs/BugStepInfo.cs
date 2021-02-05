@@ -13,9 +13,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		: UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
-		public sealed override bool ShowDifficulty => true;
-
-		/// <inheritdoc/>
 		public override string? Acronym => "BUG";
 
 		/// <inheritdoc/>

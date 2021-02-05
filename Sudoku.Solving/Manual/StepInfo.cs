@@ -75,6 +75,11 @@ namespace Sudoku.Solving.Manual
 		public abstract Technique TechniqueCode { get; }
 
 		/// <summary>
+		/// The technique tags of this instance.
+		/// </summary>
+		public abstract TechniqueFlags TechniqueFlags { get; }
+
+		/// <summary>
 		/// The difficulty level of this step.
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }

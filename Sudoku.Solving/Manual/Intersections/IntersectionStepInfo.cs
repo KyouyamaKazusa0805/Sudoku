@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -9,6 +10,13 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public abstract record IntersectionStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views) : StepInfo(Conclusions, Views);
+	public abstract record IntersectionStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+		: StepInfo(Conclusions, Views)
+	{
+		/// <inheritdoc/>
+		public sealed override bool ShowDifficulty => base.ShowDifficulty;
+
+		/// <inheritdoc/>
+		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Intersections;
+	}
 }

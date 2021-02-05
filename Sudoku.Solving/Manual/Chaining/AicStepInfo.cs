@@ -42,6 +42,9 @@ namespace Sudoku.Solving.Manual.Chaining
 #endif
 
 		/// <inheritdoc/>
+		public override TechniqueFlags TechniqueFlags => TechniqueFlags.LongChaining;
+
+		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel =>
 			TechniqueCode is Technique.MWing or Technique.SplitWing
 			or Technique.HybridWing or Technique.LocalWing

@@ -24,12 +24,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		: UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
-		public sealed override bool ShowDifficulty => base.ShowDifficulty;
-
-		/// <inheritdoc/>
-		public sealed override string Name => base.Name;
-
-		/// <inheritdoc/>
 		public override string? Acronym => IsAvoidable ? "AR" : "UR";
 
 		/// <inheritdoc/>

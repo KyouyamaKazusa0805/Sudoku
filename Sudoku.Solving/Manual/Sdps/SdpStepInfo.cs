@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -12,5 +13,12 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <param name="Digit">The digit used.</param>
 	public abstract record SdpStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit)
-		: StepInfo(Conclusions, Views);
+		: StepInfo(Conclusions, Views)
+	{
+		/// <inheritdoc/>
+		public sealed override bool ShowDifficulty => base.ShowDifficulty;
+
+		/// <inheritdoc/>
+		public override TechniqueFlags TechniqueFlags => TechniqueFlags.SingleDigitPatterns;
+	}
 }

@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 #if DOUBLE_LAYERED_ASSUMPTION
 using System.Linq;
 #endif
@@ -26,6 +27,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey =>
 			IsDynamic ? ChainingTypeCode.DynamicRegionFc : ChainingTypeCode.RegionFc;
+
+		/// <inheritdoc/>
+		public override TechniqueFlags TechniqueFlags => TechniqueFlags.LongChaining;
 
 #if DOUBLE_LAYERED_ASSUMPTION
 		/// <inheritdoc/>

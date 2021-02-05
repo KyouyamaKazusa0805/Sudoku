@@ -8,6 +8,7 @@ using Sudoku.DocComments;
 using Sudoku.Globalization;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving
 {
@@ -131,13 +132,15 @@ namespace Sudoku.Solving
 
 				if (IsSolved)
 				{
-					int index = Steps.FindIndexOf(static element => element is SingleStepInfo);
+					int index = Steps.FindIndexOf(isSingle);
 					return index switch
 					{
 						-1 => 20M,
 						0 => Steps[0].Difficulty,
 						_ => Steps.Slice(0, index).Max(static step => step.Difficulty)
 					};
+
+					static bool isSingle(StepInfo info) => info.TechniqueFlags.Flags(TechniqueFlags.Singles);
 				}
 
 				return 20M;

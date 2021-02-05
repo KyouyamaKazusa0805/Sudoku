@@ -4,6 +4,7 @@ using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -29,6 +30,9 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <inheritdoc/>
 		public abstract override decimal Difficulty { get; }
+
+		/// <inheritdoc/>
+		public sealed override TechniqueFlags TechniqueFlags => TechniqueFlags.Exocet;
 
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

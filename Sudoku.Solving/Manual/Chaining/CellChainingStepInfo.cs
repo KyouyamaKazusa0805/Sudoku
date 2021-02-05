@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 #if DOUBLE_LAYERED_ASSUMPTION
 using System.Linq;
 #endif
@@ -23,15 +24,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		: ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
 	{
 		/// <inheritdoc/>
-		public override ChainingTypeCode SortKey =>
-			IsDynamic ? ChainingTypeCode.DynamicCellFc : ChainingTypeCode.CellFc;
-
-#if DOUBLE_LAYERED_ASSUMPTION
-		/// <inheritdoc/>
-		public override Node[] ChainsTargets => Chains.Values.ToArray();
-#endif
-
-		/// <inheritdoc/>
 		public override int FlatComplexity
 		{
 			get
@@ -48,6 +40,18 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + LengthDifficulty;
+
+#if DOUBLE_LAYERED_ASSUMPTION
+		/// <inheritdoc/>
+		public override Node[] ChainsTargets => Chains.Values.ToArray();
+#endif
+
+		/// <inheritdoc/>
+		public override ChainingTypeCode SortKey =>
+			IsDynamic ? ChainingTypeCode.DynamicCellFc : ChainingTypeCode.CellFc;
+
+		/// <inheritdoc/>
+		public override TechniqueFlags TechniqueFlags => TechniqueFlags.LongChaining;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

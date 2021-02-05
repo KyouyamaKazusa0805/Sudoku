@@ -6347,5 +6347,97 @@
             Indicates the brute force.
             </summary>
         </member>
+        <member name="T:Sudoku.Techniques.TechniqueFlags">
+            <summary>
+            Provides a series of tags to mark on a technique.
+            </summary>
+            <remarks>
+            For example, a <see cref="F:Sudoku.Techniques.Technique.DeathBlossom"/> can be categorized
+            as two flags <see cref="F:Sudoku.Techniques.TechniqueFlags.Als"/> and <see cref="F:Sudoku.Techniques.TechniqueFlags.LongChaining"/>
+            </remarks>
+            <seealso cref="F:Sudoku.Techniques.TechniqueFlags.Als"/>
+            <seealso cref="F:Sudoku.Techniques.TechniqueFlags.LongChaining"/>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.None">
+            <summary>
+            Indicates none of flags that the technique belongs to.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.Singles">
+            <summary>
+            Indicates the singles technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.Intersections">
+            <summary>
+            Indicates the intersection technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.Subsets">
+            <summary>
+            Indicates the subset technique. Please note that all ALS techniques shouldn't be with this flag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.Fishes">
+            <summary>
+            Indicates the fish technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.Wings">
+            <summary>
+            Indicates the wing technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.SingleDigitPatterns">
+            <summary>
+            Indicates the single digit pattern technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.ShortChaining">
+            <summary>
+            Indicates the short chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.LongChaining">
+            <summary>
+            Indicates the long chain, which includes normal AICs, forcing chains
+            and other chaining-like techniques, such as Bowman's Bingo.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.DeadlyPattern">
+            <summary>
+            Indicates the deadly pattern technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.Als">
+            <summary>
+            Indicates the ALS technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.Msls">
+            <summary>
+            Indicates the MSLS technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.Exocet">
+            <summary>
+            Indicates the exocet technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.RankTheory">
+            <summary>
+            Indicates the technique checked and searched relies on the rank theory.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.Symmetry">
+            <summary>
+            Indicates the symmetry technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueFlags.LastResort">
+            <summary>
+            Indicates the last resort technique.
+            </summary>
+        </member>
     </members>
 </doc>

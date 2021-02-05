@@ -22,9 +22,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public abstract override Technique TechniqueCode { get; }
 
 		/// <inheritdoc/>
-		public sealed override bool ShowDifficulty => base.ShowDifficulty;
-
-		/// <inheritdoc/>
 		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>
