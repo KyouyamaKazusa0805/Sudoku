@@ -143,12 +143,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 							views[0] = new() { Cells = globalCells };
 
+#if DEBUG
 							accumulator.Add(
 								new DbStepInfo(
 									conclusions,
 									views,
 									cell,
 									null!));
+#endif
 						}
 					}
 				}

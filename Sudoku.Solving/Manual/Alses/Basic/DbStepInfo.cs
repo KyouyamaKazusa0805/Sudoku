@@ -51,10 +51,12 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <returns>The string result.</returns>
 		private StringBuilder AlsPetalsToString()
 		{
+#if DEBUG
 			if (Alses is null)
 			{
 				return null!;
 			}
+#endif
 
 			const string separator = ", ";
 
