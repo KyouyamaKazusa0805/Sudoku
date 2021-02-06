@@ -4667,6 +4667,15 @@
             <param name="propertyName">The property name.</param>
             <param name="value">The value to add into.</param>
         </member>
+        <member name="M:Sudoku.Models.PresentationData.AddRange``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Add a series of elements into the collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="propertyName">The name of the property you want to add into.</param>
+            <param name="values">The values you want to add.</param>
+            <returns>The number of elements that is successful to add.</returns>
+        </member>
         <member name="M:Sudoku.Models.PresentationData.Remove``1(System.String,``0@)">
             <summary>
             Remove a new instance from the collection.

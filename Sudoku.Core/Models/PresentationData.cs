@@ -171,7 +171,7 @@ namespace Sudoku.Models
 		/// <typeparam name="T">The type of the value to add into.</typeparam>
 		/// <param name="propertyName">The property name.</param>
 		/// <param name="value">The value to add into.</param>
-		public bool Add<T>(string propertyName, in T value) where T : struct
+		public bool Add<T>(string propertyName, in T value) where T : unmanaged
 		{
 			switch (propertyName)
 			{
@@ -213,12 +213,103 @@ namespace Sudoku.Models
 		}
 
 		/// <summary>
+		/// Add a series of elements into the collection.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="propertyName">The name of the property you want to add into.</param>
+		/// <param name="values">The values you want to add.</param>
+		/// <returns>The number of elements that is successful to add.</returns>
+		public int AddRange<T>(string propertyName, IEnumerable<T> values) where T : unmanaged
+		{
+			int result = 0;
+			byte tag = 0;
+			foreach (var value in values)
+			{
+				switch (propertyName)
+				{
+					case nameof(Cells) when value is PaintingPair<int> i:
+					{
+						(Cells ??= new List<PaintingPair<int>>()).Add(i);
+						if (tag == 0)
+						{
+							tag = 1;
+						}
+
+						result++;
+
+						break;
+					}
+					case nameof(Candidates) when value is PaintingPair<int> i:
+					{
+						(Candidates ??= new List<PaintingPair<int>>()).Add(i);
+						if (tag == 0)
+						{
+							tag = 2;
+						}
+
+						result++;
+
+						break;
+					}
+					case nameof(Regions) when value is PaintingPair<int> i:
+					{
+						(Regions ??= new List<PaintingPair<int>>()).Add(i);
+						if (tag == 0)
+						{
+							tag = 3;
+						}
+
+						result++;
+
+						break;
+					}
+					case nameof(Links) when value is PaintingPair<Link> i:
+					{
+						(Links ??= new List<PaintingPair<Link>>()).Add(i);
+						if (tag == 0)
+						{
+							tag = 4;
+						}
+
+						result++;
+
+						break;
+					}
+					case nameof(DirectLines) when value is PaintingPair<(Cells, Cells)> i:
+					{
+						(DirectLines ??= new List<PaintingPair<(Cells, Cells)>>()).Add(i);
+						if (tag == 0)
+						{
+							tag = 5;
+						}
+
+						result++;
+
+						break;
+					}
+				}
+			}
+
+			// Trigger the corresponding event.
+			switch (tag)
+			{
+				case 1: CellsChanged?.Invoke(Cells); break;
+				case 2: CandidatesChanged?.Invoke(Candidates); break;
+				case 3: RegionsChanged?.Invoke(Regions); break;
+				case 4: LinksChanged?.Invoke(Links); break;
+				case 5: DirectLinesChanged?.Invoke(DirectLines); break;
+			}
+
+			return result;
+		}
+
+		/// <summary>
 		/// Remove a new instance from the collection.
 		/// </summary>
 		/// <typeparam name="T">The type of the value to remove.</typeparam>
 		/// <param name="propertyName">The property name.</param>
 		/// <param name="value">The value to remove.</param>
-		public bool Remove<T>(string propertyName, in T value) where T : struct
+		public bool Remove<T>(string propertyName, in T value) where T : unmanaged
 		{
 			switch (propertyName)
 			{
