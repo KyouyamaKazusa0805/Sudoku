@@ -51,6 +51,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <returns>The string result.</returns>
 		private StringBuilder AlsPetalsToString()
 		{
+			if (Alses is null)
+			{
+				return null!;
+			}
+
 			const string separator = ", ";
 
 			return new StringBuilder().AppendRange(Alses, appender).RemoveFromEnd(separator.Length);
