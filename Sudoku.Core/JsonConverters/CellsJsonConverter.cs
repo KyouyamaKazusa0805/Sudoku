@@ -9,6 +9,7 @@ namespace Sudoku.JsonConverters
 	/// Indicates a <see cref="Cells"/> JSON converter.
 	/// </summary>
 	/// <seealso cref="Cells"/>
+	[JsonConverter(typeof(Cells))]
 	public sealed class CellsJsonConverter : JsonConverter<Cells>
 	{
 		/// <summary>
@@ -21,7 +22,8 @@ namespace Sudoku.JsonConverters
 		public override bool CanConvert(Type typeToConvert) => typeToConvert == typeof(Cells);
 
 		/// <inheritdoc/>
-		public override unsafe Cells Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		public override unsafe Cells Read(
+			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
 			long hi, lo;
 			while (reader.Read())

@@ -4128,13 +4128,10 @@
             Indicates the property name.
             </summary>
         </member>
-        <member name="F:Sudoku.JsonConverters.DirectLineJsonConverter.InnerOptions">
+        <member name="F:Sudoku.JsonConverters.DirectLineJsonConverter.Converter">
             <summary>
-            Indicates the inner options.
+            Indicates the inner converter.
             </summary>
-        </member>
-        <member name="M:Sudoku.JsonConverters.DirectLineJsonConverter.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
         <member name="M:Sudoku.JsonConverters.DirectLineJsonConverter.CanConvert(System.Type)">
             <inheritdoc/>

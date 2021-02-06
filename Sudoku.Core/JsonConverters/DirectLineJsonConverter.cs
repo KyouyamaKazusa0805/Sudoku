@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Text.Encodings.Web;
+using System.Extensions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Data;
-using Sudoku.DocComments;
 
 namespace Sudoku.JsonConverters
 {
@@ -12,6 +10,7 @@ namespace Sudoku.JsonConverters
 	/// Indicates a <see cref="ValueTuple{T1, T2}"/> JSON converter.
 	/// </summary>
 	/// <seealso cref="ValueTuple{T1, T2}"/>
+	[JsonConverter(typeof((Cells Start, Cells End)))]
 	public sealed class DirectLineJsonConverter : JsonConverter<(Cells Start, Cells End)>
 	{
 		/// <summary>
@@ -21,17 +20,9 @@ namespace Sudoku.JsonConverters
 
 
 		/// <summary>
-		/// Indicates the inner options.
+		/// Indicates the inner converter.
 		/// </summary>
-		private static readonly JsonSerializerOptions InnerOptions;
-
-
-		/// <inheritdoc cref="StaticConstructor"/>
-		static DirectLineJsonConverter()
-		{
-			InnerOptions = new() { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
-			InnerOptions.Converters.Add(new CellsJsonConverter());
-		}
+		private static readonly JsonConverter<Cells> Converter = new CellsJsonConverter();
 
 
 		/// <inheritdoc/>
@@ -39,7 +30,6 @@ namespace Sudoku.JsonConverters
 
 
 		/// <inheritdoc/>
-		[SkipLocalsInit]
 		public override unsafe (Cells Start, Cells End) Read(
 			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
@@ -54,18 +44,9 @@ namespace Sudoku.JsonConverters
 						pos = reader.GetString() == Start ? 0 : 1;
 						break;
 					}
-					case JsonTokenType.String:
+					case JsonTokenType.StartObject:
 					{
-						string cellsJson = reader.GetString()!;
-						if (*&pos == 0)
-						{
-							start = JsonSerializer.Deserialize<Cells>(cellsJson, InnerOptions);
-						}
-						else
-						{
-							end = JsonSerializer.Deserialize<Cells>(cellsJson, InnerOptions);
-						}
-
+						*(*&pos == 0 ? &start : &end) = reader.ReadObject(Converter, typeof(Cells), options);
 						break;
 					}
 				}
@@ -78,8 +59,10 @@ namespace Sudoku.JsonConverters
 		public override void Write(Utf8JsonWriter writer, (Cells Start, Cells End) value, JsonSerializerOptions options)
 		{
 			writer.WriteStartObject();
-			writer.WriteString(Start, JsonSerializer.Serialize(value.Start, InnerOptions));
-			writer.WriteString(End, JsonSerializer.Serialize(value.End, InnerOptions));
+			writer.WritePropertyName(Start);
+			writer.WriteObject(value.Start, Converter, options);
+			writer.WritePropertyName(End);
+			writer.WriteObject(value.End, Converter, options);
 			writer.WriteEndObject();
 		}
 	}

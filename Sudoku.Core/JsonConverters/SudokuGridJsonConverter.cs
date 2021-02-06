@@ -17,7 +17,8 @@ namespace Sudoku.JsonConverters
 
 
 		/// <inheritdoc/>
-		public override SudokuGrid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		public override SudokuGrid Read(
+			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
 			while (reader.Read())
 			{

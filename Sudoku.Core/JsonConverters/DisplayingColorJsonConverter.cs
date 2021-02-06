@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Models;
@@ -21,7 +20,6 @@ namespace Sudoku.JsonConverters
 		/// <exception cref="JsonException">
 		/// Throws when the current token isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
 		/// </exception>
-		[SkipLocalsInit]
 		public override unsafe DisplayingColor Read(
 			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{

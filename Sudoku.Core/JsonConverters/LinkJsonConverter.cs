@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Data;
@@ -10,6 +9,7 @@ namespace Sudoku.JsonConverters
 	/// Indicates a <see cref="Link"/> JSON converter.
 	/// </summary>
 	/// <seealso cref="Link"/>
+	[JsonConverter(typeof(Link))]
 	public sealed class LinkJsonConverter : JsonConverter<Link>
 	{
 		/// <inheritdoc/>
@@ -17,7 +17,6 @@ namespace Sudoku.JsonConverters
 
 
 		/// <inheritdoc/>
-		[SkipLocalsInit]
 		public override unsafe Link Read(
 			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
