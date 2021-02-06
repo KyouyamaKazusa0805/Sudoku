@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public virtual string Name => TextResources.Current[TechniqueCodeName];
+		public virtual string Name => TextResources.Current.TechniqueCodeName;
 
 		/// <summary>
 		/// Indicates the technique name alias.
