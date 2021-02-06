@@ -4242,6 +4242,18 @@
         <member name="M:Sudoku.JsonConverters.PaintingPairConverter.PaintingPairConverterInner`1.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Models.PaintingPair{`0},System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.JsonConverters.PresentationDataJsonConverter">
+            <summary>
+            Provides a <see cref="T:Sudoku.Models.PresentationData"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Models.PresentationData"/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.PresentationDataJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.JsonConverters.PresentationDataJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Models.PresentationData,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.JsonConverters.SudokuGridJsonConverter">
             <summary>
             Indicates a <see cref="T:Sudoku.Data.SudokuGrid"/> JSON converter.

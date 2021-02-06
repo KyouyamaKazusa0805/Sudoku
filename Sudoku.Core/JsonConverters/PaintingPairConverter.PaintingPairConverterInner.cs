@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -45,6 +46,7 @@ namespace Sudoku.JsonConverters
 			/// Initializes an instance with the specified options.
 			/// </summary>
 			/// <param name="options">The options.</param>
+			[DynamicDependency(DynamicallyAccessedMemberTypes.All, "Sudoku.JsonConverters.PaintingPairConverter", "Sudoku.Core")]
 			public PaintingPairConverterInner(JsonSerializerOptions options)
 			{
 				// For performance, use the existing converter if available.
