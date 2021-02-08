@@ -41,11 +41,17 @@ namespace Sudoku
 		public override string Message =>
 			ErrorCode switch
 			{
+				101 => "The specified grid has multiple solutions.",
+				102 => "The specified grid has no valid solution.",
+				201 => "The specified grid can't go on to be solved due to the error step encountered and failed to check.",
 				202 => "The specified grid is invalid.",
 				203 => "The function can be used and called if and only if the grid has been solved.",
 				301 => "The recognizer has not initialized.",
+				302 => "Recognizer error: Can't filled the cell <Unknown> with the digit <Unknown>.",
 				303 => "Tesseract is wrong: can't recognize any cell image.",
+				401 => "The specified assembly can't be loaded. The large possibility of the problem raised is that the required files don't exist.",
 				402 => "Color palette is current null.",
+				403 => "The specified resource dictionary name can't be found.",
 				501 => "Parent node can't be found.",
 				601 => $"The inner exception that thrown: {InnerException?.Message ?? "<Unknown>"}.",
 				_ => string.Empty
@@ -84,7 +90,7 @@ namespace Sudoku
 				102 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} contains no valid solution.",
 				202 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} is invalid.",
 				203 when Arg1 is SudokuGrid g => $"The function can be used if and only if specified grid {g.ToString("#")} should be solved.",
-				403 when Arg1 is string r => $"The specified resource dictionary can't be found: {r}.",
+				403 when Arg1 is string r => $"The specified resource dictionary name can't be found: {r}.",
 				_ => string.Empty
 			};
 	}
