@@ -25,7 +25,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the additional texts that we should describe.
 		/// </summary>
-		public string? Additional { get; init; }
+		public object? Additional { get; init; }
 
 		/// <summary>
 		/// Indicates the solution of the puzzle. If the puzzle doesn't contain non-unique solution,
@@ -242,7 +242,7 @@ namespace Sudoku.Solving
 			out string solverName, out bool hasSolved, out decimal total, out decimal max, out decimal pearl,
 			out decimal diamond, out SudokuGrid puzzle, out SudokuGrid? solution, out TimeSpan elasped,
 			out int stepCount, out IReadOnlyList<StepInfo>? steps, out IReadOnlyList<SudokuGrid>? stepGrids,
-			out string? additional)
+			out object? additional)
 		{
 			solverName = SolverName;
 			hasSolved = IsSolved;

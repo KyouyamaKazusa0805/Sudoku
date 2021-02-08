@@ -130,10 +130,10 @@ namespace Sudoku.Solving.Manual
 					else
 					{
 						var solutionCopied = solution;
-						throw new SudokuHandlingException<SudokuGrid, string>(
+						throw new SudokuHandlingException<SudokuGrid, StepInfo>(
 							errorCode: 201,
 							grid,
-							selection.First(first).ToString());
+							selection.First(first));
 
 						bool first(StepInfo step) => !CheckConclusionsValidity(solutionCopied, step.Conclusions);
 					}
@@ -179,10 +179,7 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						throw new SudokuHandlingException<SudokuGrid, string>(
-							errorCode: 201,
-							grid,
-							step.ToString());
+						throw new SudokuHandlingException<SudokuGrid, StepInfo>(errorCode: 201, grid, step);
 					}
 				}
 			}

@@ -826,6 +826,51 @@
             </param>
             <param name="DifficultyLevel">Indicates the difficulty level.</param>
         </member>
+        <member name="T:Sudoku.Windows.ErrorInfoWindow">
+            <summary>
+            Interaction logic for <c>ErrorInfoWindow.xaml</c>.
+            </summary>
+            <summary>
+            ErrorInfoWindow
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.ErrorInfoWindow.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.Windows.ErrorInfoWindow.ErrorText">
+            <summary>
+            Indicates the error text to show.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.ErrorInfoWindow.Picture">
+            <summary>
+            Indicates the picture to show.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.ErrorInfoWindow.Create(Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Windows.ErrorInfoWindow"/> with the inner information text
+            and the error step.
+            </summary>
+            <param name="errorStep">The error step to display to the user.</param>
+            <param name="grid">The grid used.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.ErrorInfoWindow.Create(System.String,Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Windows.ErrorInfoWindow"/> with the specified title, the inner information text
+            and the error step.
+            </summary>
+            <param name="title">The title.</param>
+            <param name="errorStep">The error step to display to the user.</param>
+            <param name="grid">The grid used.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.ErrorInfoWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Sudoku.Windows.ExportAnalysisResultWindow">
             <summary>
             Interaction logic for ExportAnalysisResultWindow.xaml
@@ -1039,6 +1084,20 @@
             </summary>
             <param name="this">(<see langword="this in"/> parameter) The point to truncate.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Windows.Extensions.StepInfoEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
+        </member>
+        <member name="M:Sudoku.Windows.Extensions.StepInfoEx.CreateBitmap(Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Creates a new <see cref="T:System.Drawing.Bitmap"/> instance that uses the .
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The information.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid used.</param>
+            <returns>The <see cref="T:System.Drawing.Bitmap"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Windows.Extensions.WindowsColorEx">
             <summary>
@@ -2038,10 +2097,12 @@
             Indicates the message for function being unavailable.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.Messagings.WrongHandling">
+        <member name="M:Sudoku.Windows.Messagings.WrongHandling(Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@)">
             <summary>
             Indicates the message for wrong handling.
             </summary>
+            <param name="errorInfo">The error information.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
         <member name="M:Sudoku.Windows.Messagings.FailedToBackupConfig">
             <summary>

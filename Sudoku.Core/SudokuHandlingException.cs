@@ -118,8 +118,8 @@ namespace Sudoku
 		public override string Message =>
 			ErrorCode switch
 			{
-				201 when Arg1 is SudokuGrid g && Arg2 is string info =>
-					$"The specified grid {g.ToString("#")} can't go on to be solved due to the step: {info} is wrong.",
+				201 when Arg1 is SudokuGrid g && Arg2 is not null =>
+					$"The specified grid {g.ToString("#")} can't go on to be solved due to the step: {Arg2} is wrong.",
 				302 when Arg1 is int cell && Arg2 is int digit =>
 					$"Recognizer error: can't fill the cell {new Cells { cell }.ToString()} with the digit " +
 					$"{(digit + 1).ToString()}.",

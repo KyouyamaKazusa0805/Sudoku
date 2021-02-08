@@ -99,10 +99,17 @@ namespace Sudoku.Solving.Manual
 						grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
 						cancellationToken);
 				}
+				catch (SudokuHandlingException<SudokuGrid, StepInfo> ex)
+				when (ex.ErrorCode == 201 && ex.Arg2 is { } info)
+				{
+					return new(SolverName, grid, false, TimeSpan.Zero) { Additional = ex };
+				}
+#if OBSOLETE
 				catch (SudokuHandlingException ex)
 				{
-					return new(SolverName, grid, false, TimeSpan.Zero) { Additional = ex.Message };
+					return new(SolverName, grid, false, TimeSpan.Zero) { Additional = ex };
 				}
+#endif
 			}
 			else
 			{

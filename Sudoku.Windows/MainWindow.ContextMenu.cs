@@ -158,7 +158,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					Messagings.WrongHandling();
+					Messagings.WrongHandling(info, valueGrid);
 				}
 			}
 		}

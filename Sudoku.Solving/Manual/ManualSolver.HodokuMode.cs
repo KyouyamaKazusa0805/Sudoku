@@ -70,10 +70,10 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						throw new SudokuHandlingException<SudokuGrid, string>(
+						throw new SudokuHandlingException<SudokuGrid, StepInfo>(
 							errorCode: 201,
 							grid,
-							tempStep.ToString());
+							tempStep);
 					}
 				}
 			}
@@ -158,10 +158,10 @@ namespace Sudoku.Solving.Manual
 					else
 					{
 						var solutionCopied = solution;
-						throw new SudokuHandlingException<SudokuGrid, string>(
+						throw new SudokuHandlingException<SudokuGrid, StepInfo>(
 							errorCode: 201,
 							grid,
-							bag.First(first).ToString());
+							bag.First(first));
 
 						bool first(StepInfo step) => !CheckConclusionsValidity(solutionCopied, step.Conclusions);
 					}
@@ -214,10 +214,7 @@ namespace Sudoku.Solving.Manual
 						goto Restart;
 					}
 
-					throw new SudokuHandlingException<SudokuGrid, string>(
-						errorCode: 201,
-						grid,
-						step.ToString());
+					throw new SudokuHandlingException<SudokuGrid, StepInfo>(errorCode: 201, grid, step);
 				}
 			}
 

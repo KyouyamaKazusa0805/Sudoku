@@ -393,6 +393,11 @@
 	<sys:String x:Key="AnalyzeEmptyGrid">当前盘面是空盘，无法分析空盘。</sys:String>
 	<sys:String x:Key="SaveSuccess">保存成功。</sys:String>
 
+	<!-- Error window -->
+	<sys:String x:Key="ErrorInfoTitle">处理错误</sys:String>
+	<sys:String x:Key="ErrorInfoGrid">盘面：</sys:String>
+	<sys:String x:Key="ErrorInfoHeader">技巧搜索器遇到了一个无法解决的问题。请将错误信息呈现给作者以修改程序漏洞。错误信息如下：</sys:String>
+
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">耗时：</sys:String>
 	<sys:String x:Key="StepSingular">个步骤</sys:String>

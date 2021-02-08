@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using Sudoku.Data;
 using Sudoku.Solving;
+using Sudoku.Solving.Manual;
 using static System.Environment;
 using static Sudoku.Windows.MainWindow;
 
@@ -31,10 +33,10 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the message for wrong handling.
 		/// </summary>
-		public static void WrongHandling() =>
-			MessageBox.Show(
-				(string)LangSource["WrongHandling"],
-				(string)LangSource["CaptionInfo"]);
+		/// <param name="errorInfo">The error information.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		public static void WrongHandling(StepInfo errorInfo, in SudokuGrid grid) =>
+			ErrorInfoWindow.Create(errorInfo, grid).ShowDialog();
 
 		/// <summary>
 		/// Indicates the message for failed to backup the configurations.
@@ -257,12 +259,36 @@ namespace Sudoku.Windows
 		/// Indicates the message for failed to solve a puzzle.
 		/// </summary>
 		/// <param name="analysisResult">The analysis result.</param>
-		public static void FailedToSolveWithMessage(AnalysisResult analysisResult) =>
+		public static void FailedToSolveWithMessage(AnalysisResult analysisResult)
+		{
+			switch (analysisResult.Additional)
+			{
+				case SudokuHandlingException<SudokuGrid, StepInfo> ex
+				when ex.Arg1 is var grid && ex.Arg2 is { } info:
+				{
+					ErrorInfoWindow.Create(info, grid).ShowDialog();
+
+					break;
+				}
+				default:
+				{
+					MessageBox.Show(
+						$"{LangSource["FailedToSolveWithMessage1"]}{NewLine}" +
+						$"{LangSource["FailedToSolveWithMessage2"]}{NewLine}",
+						(string)LangSource["CaptionWarning"]);
+
+					break;
+				}
+			}
+
+#if OBSOLETE
 			MessageBox.Show(
 				$"{LangSource["FailedToSolveWithMessage1"]}{NewLine}" +
 				$"{LangSource["FailedToSolveWithMessage2"]}{NewLine}" +
 				$"{LangSource["FailedToSolveWithMessage3"]}{analysisResult.Additional}",
 				(string)LangSource["CaptionWarning"]);
+#endif
+		}
 
 		/// <summary>
 		/// Indicates the message that you should solve the puzzle first.

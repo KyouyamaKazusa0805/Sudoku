@@ -395,6 +395,11 @@
 	<sys:String x:Key="InvalidFilter">The filter is invalid. Please re-confirm your input and try again.</sys:String>
 	<sys:String x:Key="AnalyzeEmptyGrid">The current puzzle is empty, which is invalid.</sys:String>
 	<sys:String x:Key="SaveSuccess">Save success.</sys:String>
+	
+	<!-- Error window -->
+	<sys:String x:Key="ErrorInfoTitle">Error handling encountered</sys:String>
+	<sys:String x:Key="ErrorInfoGrid">Grid: </sys:String>
+	<sys:String x:Key="ErrorInfoHeader">The searcher has encountered an error that can be solved itself. The error information is as below:</sys:String>
 
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">time elapsed:</sys:String>
