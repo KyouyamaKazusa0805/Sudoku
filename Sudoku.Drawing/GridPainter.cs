@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
@@ -23,6 +24,7 @@ namespace Sudoku.Drawing
 	/// Please note that eliminations will be colored with red, but all assignments won't be colored,
 	/// because they will be colored using another method (draw candidates).
 	/// </remarks>
+	[Obsolete("Please use " + nameof(GridImageGenerator) + " instead.")]
 	public sealed record GridPainter(PointConverter Converter, Settings Preferences, UndoableGrid Grid)
 	{
 		/// <summary>
