@@ -7,8 +7,6 @@ using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
-using Formatter = Sudoku.Data.SudokuGrid.GridFormatter;
-using Parser = Sudoku.Data.SudokuGrid.GridParser;
 using ParsingOption = Sudoku.Data.GridParsingOption;
 
 namespace Sudoku.Data

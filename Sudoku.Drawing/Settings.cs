@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using Sudoku.DocComments;
 
@@ -37,6 +38,43 @@ namespace Sudoku.Drawing
 			}
 
 			return resultInstance;
+		}
+
+		/// <summary>
+		/// Try to get the palette color using the specified index.
+		/// </summary>
+		/// <param name="id">The ID value.</param>
+		/// <param name="result">(<see langword="out"/> parameter) The result color.</param>
+		/// <returns>A <see cref="bool"/> indicating whether the operation is successful.</returns>
+		public bool TryGetPaletteColor(long id, out Color result)
+		{
+			if (id is >= 0 and < 15)
+			{
+				result = id switch
+				{
+					0 => Color1,
+					1 => Color2,
+					2 => Color3,
+					3 => Color4,
+					4 => Color5,
+					5 => Color6,
+					6 => Color7,
+					7 => Color8,
+					8 => Color9,
+					9 => Color10,
+					10 => Color11,
+					11 => Color12,
+					12 => Color13,
+					13 => Color14,
+					14 => Color15
+				};
+				return true;
+			}
+			else
+			{
+				result = default;
+				return false;
+			}
 		}
 
 		/// <summary>

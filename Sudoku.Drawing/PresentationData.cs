@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.DocComments;
 
-namespace Sudoku.Models
+namespace Sudoku.Drawing
 {
 	/// <summary>
 	/// This is a data structure that stores the presentation data when drawing onto a picture.

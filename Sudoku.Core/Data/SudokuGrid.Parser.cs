@@ -13,19 +13,19 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Encapsulates a grid parser.
 		/// </summary>
-		public unsafe ref struct GridParser
+		public unsafe ref struct Parser
 		{
 			/// <summary>
 			/// The list of all methods to parse.
 			/// </summary>
-			private static readonly delegate* managed<ref GridParser, SudokuGrid>[] ParseFunctions;
+			private static readonly delegate* managed<ref Parser, SudokuGrid>[] ParseFunctions;
 
 
 			/// <summary>
 			/// Initializes an instance with parsing data.
 			/// </summary>
 			/// <param name="parsingValue">The string to parse.</param>
-			public GridParser(string parsingValue) : this(parsingValue, false)
+			public Parser(string parsingValue) : this(parsingValue, false)
 			{
 			}
 
@@ -39,7 +39,7 @@ namespace Sudoku.Data
 			/// PM grid. See <see cref="CompatibleFirst"/> to learn more.
 			/// </param>
 			/// <seealso cref="CompatibleFirst"/>
-			public GridParser(string parsingValue, bool compatibleFirst)
+			public Parser(string parsingValue, bool compatibleFirst)
 			{
 				ParsingValue = parsingValue;
 				CompatibleFirst = compatibleFirst;
@@ -47,9 +47,9 @@ namespace Sudoku.Data
 
 
 			/// <inheritdoc cref="StaticConstructor"/>
-			static GridParser()
+			static Parser()
 			{
-				ParseFunctions = new delegate* managed<ref GridParser, SudokuGrid>[]
+				ParseFunctions = new delegate* managed<ref Parser, SudokuGrid>[]
 				{
 					&OnParsingSimpleTable,
 					&OnParsingSimpleMultilineGrid,
@@ -60,8 +60,8 @@ namespace Sudoku.Data
 					&OnParsingSukaku_2
 				};
 
-				static SudokuGrid OnParsingSukaku_1(ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
-				static SudokuGrid OnParsingSukaku_2(ref GridParser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
+				static SudokuGrid OnParsingSukaku_1(ref Parser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
+				static SudokuGrid OnParsingSukaku_2(ref Parser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
 			}
 
 
@@ -155,7 +155,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
 			/// <returns>The result.</returns>
-			private static SudokuGrid OnParsingSimpleMultilineGrid(ref GridParser parser)
+			private static SudokuGrid OnParsingSimpleMultilineGrid(ref Parser parser)
 			{
 				string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.DigitOrEmptyCell);
 				int length = matches.Length;
@@ -215,7 +215,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
 			/// <returns>The result.</returns>
-			private static SudokuGrid OnParsingExcel(ref GridParser parser)
+			private static SudokuGrid OnParsingExcel(ref Parser parser)
 			{
 				string parsingValue = parser.ParsingValue;
 				if (!parsingValue.Contains('\t'))
@@ -246,7 +246,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
 			/// <returns>The result.</returns>
-			private static SudokuGrid OnParsingPencilMarked(ref GridParser parser)
+			private static SudokuGrid OnParsingPencilMarked(ref Parser parser)
 			{
 				// Older regular expression pattern:
 				// string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit_Old);
@@ -359,7 +359,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
 			/// <returns>The grid.</returns>
-			private static SudokuGrid OnParsingSimpleTable(ref GridParser parser)
+			private static SudokuGrid OnParsingSimpleTable(ref Parser parser)
 			{
 				string? match = parser.ParsingValue.Match(RegularExpressions.SimpleTable);
 				if (match is null)
@@ -383,7 +383,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
 			/// <returns>The result.</returns>
-			private static SudokuGrid OnParsingSusser(ref GridParser parser)
+			private static SudokuGrid OnParsingSusser(ref Parser parser)
 			{
 				var match = parser.ParsingValue.Match(RegularExpressions.Susser);
 				if (match is not { Length: <= 405 })
@@ -486,7 +486,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
 			/// <returns>The result.</returns>
-			private static SudokuGrid OnParsingSukaku(ref GridParser parser, bool compatibleFirst)
+			private static SudokuGrid OnParsingSukaku(ref Parser parser, bool compatibleFirst)
 			{
 				if (compatibleFirst)
 				{

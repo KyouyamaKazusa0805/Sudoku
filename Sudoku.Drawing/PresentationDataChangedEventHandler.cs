@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Sudoku.Models
+namespace Sudoku.Drawing
 {
 	/// <summary>
 	/// Represents a event handler that triggered when the data is changed.

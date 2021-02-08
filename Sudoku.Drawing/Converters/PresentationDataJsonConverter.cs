@@ -4,9 +4,8 @@ using System.Extensions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Data;
-using Sudoku.Models;
 
-namespace Sudoku.JsonConverters
+namespace Sudoku.Drawing.Converters
 {
 	/// <summary>
 	/// Provides a <see cref="PresentationData"/> JSON converter.

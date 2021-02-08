@@ -11,7 +11,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Provides operations for grid formatting.
 		/// </summary>
-		public readonly ref struct GridFormatter
+		public readonly ref struct Formatter
 		{
 			/// <summary>
 			/// Initializes an instance with a <see cref="bool"/> value
@@ -21,7 +21,7 @@ namespace Sudoku.Data
 			/// The multi-line identifier. If the value is <see langword="true"/>, the output will
 			/// be multi-line.
 			/// </param>
-			public GridFormatter(bool multiline)
+			public Formatter(bool multiline)
 				: this('.', multiline, false, false, false, false, false, false, false)
 			{
 			}
@@ -42,7 +42,7 @@ namespace Sudoku.Data
 			/// </param>
 			/// <param name="sukaku">Indicates whether the formatter will output as sukaku.</param>
 			/// <param name="excel">Indicates whether the formatter will output as excel.</param>
-			private GridFormatter(
+			private Formatter(
 				char placeholder, bool multiline, bool withModifiables, bool withCandidates,
 				bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible, bool sukaku, bool excel)
 			{
@@ -407,7 +407,7 @@ namespace Sudoku.Data
 							break;
 
 							void p(
-								in GridFormatter formatter, IList<short> valuesByRow, char c1, char c2,
+								in Formatter formatter, IList<short> valuesByRow, char c1, char c2,
 								in Span<int> maxLengths)
 							{
 								sb.Append(c1);
@@ -419,7 +419,7 @@ namespace Sudoku.Data
 								sb.AppendLine(c1);
 
 								void printValues(
-									in GridFormatter formatter, IList<short> valuesByRow,
+									in Formatter formatter, IList<short> valuesByRow,
 									int start, int end, in Span<int> maxLengths)
 								{
 									sb.Append(' ');
@@ -538,15 +538,15 @@ namespace Sudoku.Data
 
 
 			/// <summary>
-			/// Create a <see cref="GridFormatter"/> according to the specified grid output options.
+			/// Create a <see cref="Formatter"/> according to the specified grid output options.
 			/// </summary>
 			/// <param name="gridOutputOption">The grid output options.</param>
 			/// <returns>The grid formatter.</returns>
-			public static GridFormatter Create(GridFormattingOptions gridOutputOption) =>
+			public static Formatter Create(GridFormattingOptions gridOutputOption) =>
 				gridOutputOption switch
 				{
 					GridFormattingOptions.Excel => new(true) { Excel = true },
-					_ => new GridFormatter(gridOutputOption.Flags(GridFormattingOptions.Multiline))
+					_ => new Formatter(gridOutputOption.Flags(GridFormattingOptions.Multiline))
 					{
 						WithModifiables = gridOutputOption.Flags(GridFormattingOptions.WithModifiers),
 						WithCandidates = gridOutputOption.Flags(GridFormattingOptions.WithCandidates),
@@ -559,12 +559,12 @@ namespace Sudoku.Data
 				};
 
 			/// <summary>
-			/// Create a <see cref="GridFormatter"/> according to the specified format.
+			/// Create a <see cref="Formatter"/> according to the specified format.
 			/// </summary>
 			/// <param name="format">The format.</param>
 			/// <returns>The grid formatter.</returns>
 			/// <exception cref="FormatException">Throws when the format string is invalid.</exception>
-			public static GridFormatter Create(string? format) =>
+			public static Formatter Create(string? format) =>
 				format switch
 				{
 					null or "." => new(false),

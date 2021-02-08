@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
-namespace Sudoku.Models
+namespace Sudoku.Drawing
 {
 	/// <summary>
 	/// Encapsulates a painting pair that contains the base color to paint and the value.
@@ -15,7 +16,8 @@ namespace Sudoku.Models
 		/// </summary>
 		/// <param name="color">(<see langword="in"/> parameter) The color used.</param>
 		/// <param name="value">(<see langword="in"/> parameter) The value used.</param>
-		public PaintingPair(in DisplayingColor color, in T value)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public PaintingPair(in Color color, in T value)
 		{
 			Color = color;
 			Value = value;
@@ -25,13 +27,23 @@ namespace Sudoku.Models
 		/// <summary>
 		/// Indicates the displaying color that the current instance held.
 		/// </summary>
-		public DisplayingColor Color { get; }
+		public Color Color { get; }
 
 		/// <summary>
 		/// Indicates the value used.
 		/// </summary>
 		public T Value { get; }
 
+
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="color">(<see langword="out"/> parameter) The color.</param>
+		/// <param name="value">(<see langword="out"/> parameter) The value.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Deconstruct(out Color color, out T value)
+		{
+			color = Color;
+			value = Value;
+		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

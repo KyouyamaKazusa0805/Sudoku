@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Extensions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Sudoku.Models;
 
-namespace Sudoku.JsonConverters
+namespace Sudoku.Drawing.Converters
 {
 	partial class PaintingPairConverter
 	{
@@ -29,7 +29,7 @@ namespace Sudoku.JsonConverters
 			/// <summary>
 			/// Indicates the JSON converter of the color (If need).
 			/// </summary>
-			private readonly JsonConverter<DisplayingColor> _colorConverter;
+			private readonly JsonConverter<Color> _colorConverter;
 
 			/// <summary>
 			/// Indicates the JSON converter of the value (If need).
@@ -50,7 +50,7 @@ namespace Sudoku.JsonConverters
 			public PaintingPairConverterInner(JsonSerializerOptions options)
 			{
 				// For performance, use the existing converter if available.
-				_colorConverter = new DisplayingColorJsonConverter();
+				_colorConverter = new ColorJsonConverter();
 				_valueConverter = options.GetConverter(typeof(T)) as JsonConverter<T>;
 
 				// Cache the key and value types.
@@ -76,13 +76,13 @@ namespace Sudoku.JsonConverters
 					throw new JsonException("The converter should locate at the start object token.");
 				}
 
-				DisplayingColor color;
+				Color color = default;
 				T value;
 				while (reader.Read())
 				{
 					if (reader.TokenType == JsonTokenType.EndObject)
 					{
-						return new(*&color, *&value);
+						return new(color, *&value);
 					}
 
 					if (reader.TokenType != JsonTokenType.PropertyName)
@@ -95,7 +95,7 @@ namespace Sudoku.JsonConverters
 					{
 						case ColorString:
 						{
-							color = reader.ReadObject(_colorConverter, typeof(DisplayingColor), options);
+							color = reader.ReadObject(_colorConverter, typeof(Color), options);
 							break;
 						}
 						case ValueString:
