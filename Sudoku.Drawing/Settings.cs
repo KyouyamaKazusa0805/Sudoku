@@ -46,7 +46,7 @@ namespace Sudoku.Drawing
 		/// <param name="id">The ID value.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The result color.</param>
 		/// <returns>A <see cref="bool"/> indicating whether the operation is successful.</returns>
-		public bool TryGetPaletteColor(long id, out Color result)
+		public bool TryGetPaletteColor(int id, out Color result)
 		{
 			if (id is >= 0 and < 15)
 			{

@@ -355,7 +355,7 @@ namespace Sudoku.Drawing
 			// Gather all points used.
 			var points = new HashSet<PointF>();
 			var linkArray = links as Link[] ?? links.ToArray();
-			foreach (var (startCand, endCand) in linkArray)
+			foreach (var (startCand, endCand, _) in linkArray)
 			{
 				Candidates map1 = new() { startCand }, map2 = new() { endCand };
 

@@ -2470,11 +2470,6 @@
             The link type.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="startCandidate">(<see langword="out"/> parameter) The start candidate.</param>
-            <param name="endCandidate">(<see langword="out"/> parameter) The end candidate.</param>
-        </member>
         <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@,Sudoku.Data.LinkType@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="startCandidate">(<see langword="out"/> parameter) The start candidate.</param>

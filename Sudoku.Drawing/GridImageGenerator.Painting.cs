@@ -14,7 +14,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// The square root of 2.
 		/// </summary>
-		private const float SqrtOf2 = 1.41421356F;
+		private const float SquareRootOfTwo = 1.414214F;
 
 		/// <summary>
 		/// The rotate angle (45 degrees).
@@ -23,8 +23,16 @@ namespace Sudoku.Drawing
 		private const float RotateAngle = MathF.PI / 4;
 
 
+		/// <summary>
+		/// To paint background with the color specified in preferences.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
 		partial void PaintBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
 
+		/// <summary>
+		/// To paint grid lines and block lines with the color specified in preferences.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
 		partial void PaintGridAndBlockLines(Graphics g)
 		{
 			using var pg = new Pen(Preferences.GridLineColor, Preferences.GridLineWidth);
@@ -43,6 +51,12 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// To display the presentation data.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
+		/// <param name="view">The presentation data that you want to display.</param>
+		/// <param name="offset">The offset that is assigned and used in drawing and rendering.</param>
 		partial void PaintPresentationData(Graphics g, PresentationData? view, float offset)
 		{
 			if (view is null)
@@ -57,6 +71,10 @@ namespace Sudoku.Drawing
 			PaintDirectLines(g, view.DirectLines, offset);
 		}
 
+		/// <summary>
+		/// To paint the focused cells.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
 		partial void PaintFocusedCells(Graphics g)
 		{
 			if (FocusedCells.IsEmpty)
@@ -71,6 +89,15 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// To paint eliminations.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
+		/// <param name="offset">
+		/// The offset that is used to render. When we draw the eliminations, the algorithm uses
+		/// a circle to render the candidate is start to remove. The candidate border line (outline)
+		/// and the circle don't intersect with each other. The offset is used for this point.
+		/// </param>
 		partial void PaintEliminations(Graphics g, float offset)
 		{
 			if (Conclusions is null)
@@ -93,7 +120,7 @@ namespace Sudoku.Drawing
 					goto Drawing;
 				}
 
-				foreach (var (_, value) in View.Candidates)
+				foreach (var (_, _, _, value) in View.Candidates)
 				{
 					if (value == c * 9 + d)
 					{
@@ -109,6 +136,16 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// To paint values (givens, modifiables and candidates).
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <remarks>
+		/// Different with <see cref="PaintEliminations(Graphics, float)"/>, this method will draw text
+		/// values of the candidates, while that method only displays the elimination circle
+		/// marked on that candidate text.
+		/// </remarks>
+		/// <seealso cref="PaintEliminations(Graphics, float)"/>
 		partial void PaintValues(Graphics g)
 		{
 			float cellWidth = Converter.CellSize.Width;
@@ -164,6 +201,11 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// To paint the cells in the presentation data.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
+		/// <param name="cells">The cells specified in the presentation data.</param>
 		partial void PaintCells(Graphics g, ICollection<PaintingPair<int>>? cells)
 		{
 			if (cells is null)
@@ -171,13 +213,24 @@ namespace Sudoku.Drawing
 				return;
 			}
 
-			foreach (var (id, cell) in cells)
+			foreach (var (usePalette, id, color, cell) in cells)
 			{
-				using var brush = new SolidBrush(id);
-				g.FillRectangle(brush, Converter.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
+				if (!usePalette || !Preferences.TryGetPaletteColor(id, out var colorToDraw))
+				{
+					colorToDraw = color;
+				}
+
+				using var brush = new SolidBrush(colorToDraw);
+				g.FillRectangle(brush, Converter.GetMouseRectangleViaCell(cell));
 			}
 		}
 
+		/// <summary>
+		/// To paint the candidates in the presentation data.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
+		/// <param name="candidates">The candidates specified in the presentation data.</param>
+		/// <param name="offset">The offset.</param>
 		partial void PaintCandidates(Graphics g, ICollection<PaintingPair<int>>? candidates, float offset)
 		{
 			if (candidates is null)
@@ -198,7 +251,7 @@ namespace Sudoku.Drawing
 				LineAlignment = StringAlignment.Center
 			};
 
-			foreach (var (id, candidate) in candidates)
+			foreach (var (usePalette, id, color, candidate) in candidates)
 			{
 				bool isOverlapped = false;
 				if (Conclusions is null)
@@ -218,8 +271,14 @@ namespace Sudoku.Drawing
 			IsOverlapped:
 				if (!isOverlapped)
 				{
+					if (!usePalette || !Preferences.TryGetPaletteColor(id, out var colorToDraw))
+					{
+						colorToDraw = color;
+					}
+
 					int cell = candidate / 9, digit = candidate % 9;
-					using var brush = new SolidBrush(id);
+
+					using var brush = new SolidBrush(colorToDraw);
 					g.FillEllipse(brush, Converter.GetMouseRectangleViaCandidate(cell, digit).Zoom(-offset / 3));
 
 					// Candidates should be painted also.
@@ -250,6 +309,12 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// To paint the regions in the presentation data.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
+		/// <param name="regions">The regions specified in the presentation data.</param>
+		/// <param name="offset">The offset.</param>
 		partial void PaintRegions(Graphics g, ICollection<PaintingPair<int>>? regions, float offset)
 		{
 			if (regions is null)
@@ -257,16 +322,25 @@ namespace Sudoku.Drawing
 				return;
 			}
 
-			foreach (var (id, region) in regions)
+			foreach (var (usePalette, id, color, region) in regions)
 			{
+				if (!usePalette || !Preferences.TryGetPaletteColor(id, out var colorToDraw))
+				{
+					colorToDraw = color;
+				}
+
 				var rect = Converter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
-				using var brush = new SolidBrush(id);
-				//using var pen = new Pen(id, 6F);
-				//g.DrawRectangle(pen, rect.Truncate());
+				using var brush = new SolidBrush(colorToDraw);
 				g.FillRectangle(brush, rect);
 			}
 		}
 
+		/// <summary>
+		/// To paint the links in the presentation data.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
+		/// <param name="links">The links specified in the presentation data.</param>
+		/// <param name="offset">The offset.</param>
 		partial void PaintLinks(Graphics g, ICollection<PaintingPair<Link>>? links, float offset)
 		{
 			if (links is null)
@@ -276,7 +350,7 @@ namespace Sudoku.Drawing
 
 			// Gather all points used.
 			var points = new HashSet<PointF>();
-			foreach (var (_, (startCand, endCand)) in links)
+			foreach (var (_, _, _, (startCand, endCand, _)) in links)
 			{
 				Candidates map1 = new() { startCand }, map2 = new() { endCand };
 
@@ -299,10 +373,15 @@ namespace Sudoku.Drawing
 			// This brush is used for drawing grouped nodes.
 			using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
 #endif
-			foreach (var (id, (start, end, type)) in links)
+			foreach (var (usePalette, id, color, (start, end, type)) in links)
 			{
-				using var linePen = new Pen(id, 2F);
-				using var arrowPen = new Pen(id, 2F)
+				if (!usePalette || !Preferences.TryGetPaletteColor(id, out var colorToDraw))
+				{
+					colorToDraw = color;
+				}
+
+				using var linePen = new Pen(colorToDraw, 2F);
+				using var arrowPen = new Pen(colorToDraw, 2F)
 				{
 					CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F),
 					DashStyle = type switch
@@ -348,7 +427,7 @@ namespace Sudoku.Drawing
 					// If the distance of two points is lower than the one of two adjacent candidates,
 					// the link will be emitted to draw because of too narrow.
 					float distance = MathF.Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
-					if (distance <= cw * SqrtOf2 + offset || distance <= ch * SqrtOf2 + offset)
+					if (distance <= cw * SquareRootOfTwo + offset || distance <= ch * SquareRootOfTwo + offset)
 					{
 						continue;
 					}
@@ -480,6 +559,12 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// To paint the direct lines in the presentation data.
+		/// </summary>
+		/// <param name="g">The graphics instance.</param>
+		/// <param name="directLines">The direct lines specified in the presentation data.</param>
+		/// <param name="offset">The offset.</param>
 		partial void PaintDirectLines(
 			Graphics g, ICollection<PaintingPair<(Cells, Cells)>>? directLines, float offset)
 		{
@@ -494,8 +579,13 @@ namespace Sudoku.Drawing
 				return;
 			}
 
-			foreach (var (id, (start, end)) in directLines)
+			foreach (var (usePalette, id, color, (start, end)) in directLines)
 			{
+				if (!usePalette || !Preferences.TryGetPaletteColor(id, out var colorToDraw))
+				{
+					colorToDraw = color;
+				}
+
 				// Draw start cells (may be a capsule-like shape to block them).
 				if (!start.IsEmpty)
 				{
@@ -506,7 +596,7 @@ namespace Sudoku.Drawing
 					).Zoom(-offset);
 
 					// Step 2: Draw capsule.
-					using var pen = new Pen(id, 3F);
+					using var pen = new Pen(colorToDraw, 3F);
 					g.DrawEllipse(pen, rect);
 				}
 
@@ -517,7 +607,7 @@ namespace Sudoku.Drawing
 					var rect = Converter.GetMouseRectangleViaCell(cell).Zoom(-offset * 2);
 
 					// Step 2: Draw cross sign.
-					using var pen = new Pen(id, 5F);
+					using var pen = new Pen(colorToDraw, 5F);
 					g.DrawCrossSign(pen, rect);
 				}
 			}

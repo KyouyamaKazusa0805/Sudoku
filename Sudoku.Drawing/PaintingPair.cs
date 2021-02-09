@@ -12,21 +12,54 @@ namespace Sudoku.Drawing
 	public readonly struct PaintingPair<T> : IValueEquatable<PaintingPair<T>> where T : unmanaged
 	{
 		/// <summary>
-		/// Initializes an instance with two values.
+		/// Initializes an instance with the color palette index and the value.
+		/// </summary>
+		/// <param name="paletteIndex">The palette index.</param>
+		/// <param name="value">(<see langword="in"/> parameter) The value used.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public PaintingPair(int paletteIndex, in T value) : this()
+		{
+			UsePaletteColor = true;
+			PaletteColorIndex = paletteIndex;
+			Value = value;
+		}
+
+		/// <summary>
+		/// Initializes an instance with the color and the value.
 		/// </summary>
 		/// <param name="color">(<see langword="in"/> parameter) The color used.</param>
 		/// <param name="value">(<see langword="in"/> parameter) The value used.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PaintingPair(in Color color, in T value)
+		public PaintingPair(in Color color, in T value) : this()
 		{
+			UsePaletteColor = false;
 			Color = color;
 			Value = value;
 		}
 
 
 		/// <summary>
+		/// Indicates the palette color index.
+		/// </summary>
+		/// <remarks>
+		/// The property contains value if <see cref="UsePaletteColor"/> is <see langword="true"/>.
+		/// </remarks>
+		public int PaletteColorIndex { get; }
+
+		/// <summary>
+		/// Indicates whether the program uses the palette color to draw and render.
+		/// </summary>
+		/// <remarks>
+		/// If <see langword="true"/>, we won't assign the property <see cref="Color"/>.
+		/// </remarks>
+		public bool UsePaletteColor { get; }
+
+		/// <summary>
 		/// Indicates the displaying color that the current instance held.
 		/// </summary>
+		/// <remarks>
+		/// The property contains value if <see cref="UsePaletteColor"/> is <see langword="false"/>.
+		/// </remarks>
 		public Color Color { get; }
 
 		/// <summary>
@@ -36,11 +69,24 @@ namespace Sudoku.Drawing
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="color">(<see langword="out"/> parameter) The color.</param>
+		/// <param name="usePaletteColor">
+		/// (<see langword="out"/> parameter) Indicates whether the instance stores the index
+		/// rather than color value.
+		/// </param>
+		/// <param name="paletteIndex">
+		/// (<see langword="out"/> parameter) The palette color index. The value should be valid
+		/// to use when the value <paramref name="usePaletteColor"/> is <see langword="true"/>.
+		/// </param>
+		/// <param name="color">
+		/// (<see langword="out"/> parameter) The color. The palette color index. The value should be valid
+		/// to use when the value <paramref name="usePaletteColor"/> is <see langword="false"/>.
+		/// </param>
 		/// <param name="value">(<see langword="out"/> parameter) The value.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Deconstruct(out Color color, out T value)
+		public void Deconstruct(out bool usePaletteColor, out int paletteIndex, out Color color, out T value)
 		{
+			usePaletteColor = UsePaletteColor;
+			paletteIndex = PaletteColorIndex;
 			color = Color;
 			value = Value;
 		}

@@ -738,7 +738,95 @@
             <param name="scale">The scale.</param>
             <returns>The font.</returns>
         </member>
-        <member name="F:Sudoku.Drawing.GridImageGenerator.SqrtOf2">
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintBackground(System.Drawing.Graphics)">
+            <summary>
+            To paint background with the color specified in preferences.
+            </summary>
+            <param name="g">The graphics instance.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintGridAndBlockLines(System.Drawing.Graphics)">
+            <summary>
+            To paint grid lines and block lines with the color specified in preferences.
+            </summary>
+            <param name="g">The graphics instance.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintPresentationData(System.Drawing.Graphics,Sudoku.Drawing.PresentationData,System.Single)">
+            <summary>
+            To display the presentation data.
+            </summary>
+            <param name="g">The graphics instance.</param>
+            <param name="view">The presentation data that you want to display.</param>
+            <param name="offset">The offset that is assigned and used in drawing and rendering.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintFocusedCells(System.Drawing.Graphics)">
+            <summary>
+            To paint the focused cells.
+            </summary>
+            <param name="g">The graphics instance.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintEliminations(System.Drawing.Graphics,System.Single)">
+            <summary>
+            To paint eliminations.
+            </summary>
+            <param name="g">The graphics instance.</param>
+            <param name="offset">
+            The offset that is used to render. When we draw the eliminations, the algorithm uses
+            a circle to render the candidate is start to remove. The candidate border line (outline)
+            and the circle don't intersect with each other. The offset is used for this point.
+            </param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintValues(System.Drawing.Graphics)">
+            <summary>
+            To paint values (givens, modifiables and candidates).
+            </summary>
+            <param name="g">The graphics.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Drawing.GridImageGenerator.PaintEliminations(System.Drawing.Graphics,System.Single)"/>, this method will draw text
+            values of the candidates, while that method only displays the elimination circle
+            marked on that candidate text.
+            </remarks>
+            <seealso cref="M:Sudoku.Drawing.GridImageGenerator.PaintEliminations(System.Drawing.Graphics,System.Single)"/>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintCells(System.Drawing.Graphics,System.Collections.Generic.ICollection{Sudoku.Drawing.PaintingPair{System.Int32}})">
+            <summary>
+            To paint the cells in the presentation data.
+            </summary>
+            <param name="g">The graphics instance.</param>
+            <param name="cells">The cells specified in the presentation data.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintCandidates(System.Drawing.Graphics,System.Collections.Generic.ICollection{Sudoku.Drawing.PaintingPair{System.Int32}},System.Single)">
+            <summary>
+            To paint the candidates in the presentation data.
+            </summary>
+            <param name="g">The graphics instance.</param>
+            <param name="candidates">The candidates specified in the presentation data.</param>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintRegions(System.Drawing.Graphics,System.Collections.Generic.ICollection{Sudoku.Drawing.PaintingPair{System.Int32}},System.Single)">
+            <summary>
+            To paint the regions in the presentation data.
+            </summary>
+            <param name="g">The graphics instance.</param>
+            <param name="regions">The regions specified in the presentation data.</param>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintLinks(System.Drawing.Graphics,System.Collections.Generic.ICollection{Sudoku.Drawing.PaintingPair{Sudoku.Data.Link}},System.Single)">
+            <summary>
+            To paint the links in the presentation data.
+            </summary>
+            <param name="g">The graphics instance.</param>
+            <param name="links">The links specified in the presentation data.</param>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridImageGenerator.PaintDirectLines(System.Drawing.Graphics,System.Collections.Generic.ICollection{Sudoku.Drawing.PaintingPair{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}}},System.Single)">
+            <summary>
+            To paint the direct lines in the presentation data.
+            </summary>
+            <param name="g">The graphics instance.</param>
+            <param name="directLines">The direct lines specified in the presentation data.</param>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="F:Sudoku.Drawing.GridImageGenerator.SquareRootOfTwo">
             <summary>
             The square root of 2.
             </summary>
@@ -1123,26 +1211,63 @@
             </summary>
             <typeparam name="T">The type of the value.</typeparam>
         </member>
+        <member name="M:Sudoku.Drawing.PaintingPair`1.#ctor(System.Int32,`0@)">
+            <summary>
+            Initializes an instance with the color palette index and the value.
+            </summary>
+            <param name="paletteIndex">The palette index.</param>
+            <param name="value">(<see langword="in"/> parameter) The value used.</param>
+        </member>
         <member name="M:Sudoku.Drawing.PaintingPair`1.#ctor(System.Drawing.Color@,`0@)">
             <summary>
-            Initializes an instance with two values.
+            Initializes an instance with the color and the value.
             </summary>
             <param name="color">(<see langword="in"/> parameter) The color used.</param>
             <param name="value">(<see langword="in"/> parameter) The value used.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.PaintingPair`1.PaletteColorIndex">
+            <summary>
+            Indicates the palette color index.
+            </summary>
+            <remarks>
+            The property contains value if <see cref="P:Sudoku.Drawing.PaintingPair`1.UsePaletteColor"/> is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Drawing.PaintingPair`1.UsePaletteColor">
+            <summary>
+            Indicates whether the program uses the palette color to draw and render.
+            </summary>
+            <remarks>
+            If <see langword="true"/>, we won't assign the property <see cref="P:Sudoku.Drawing.PaintingPair`1.Color"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Drawing.PaintingPair`1.Color">
             <summary>
             Indicates the displaying color that the current instance held.
             </summary>
+            <remarks>
+            The property contains value if <see cref="P:Sudoku.Drawing.PaintingPair`1.UsePaletteColor"/> is <see langword="false"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Drawing.PaintingPair`1.Value">
             <summary>
             Indicates the value used.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.PaintingPair`1.Deconstruct(System.Drawing.Color@,`0@)">
+        <member name="M:Sudoku.Drawing.PaintingPair`1.Deconstruct(System.Boolean@,System.Int32@,System.Drawing.Color@,`0@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="color">(<see langword="out"/> parameter) The color.</param>
+            <param name="usePaletteColor">
+            (<see langword="out"/> parameter) Indicates whether the instance stores the index
+            rather than color value.
+            </param>
+            <param name="paletteIndex">
+            (<see langword="out"/> parameter) The palette color index. The value should be valid
+            to use when the value <paramref name="usePaletteColor"/> is <see langword="true"/>.
+            </param>
+            <param name="color">
+            (<see langword="out"/> parameter) The color. The palette color index. The value should be valid
+            to use when the value <paramref name="usePaletteColor"/> is <see langword="false"/>.
+            </param>
             <param name="value">(<see langword="out"/> parameter) The value.</param>
         </member>
         <member name="M:Sudoku.Drawing.PaintingPair`1.Equals(System.Object)">
@@ -1449,7 +1574,7 @@
         <member name="M:Sudoku.Drawing.Settings.Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.Settings.TryGetPaletteColor(System.Int64,System.Drawing.Color@)">
+        <member name="M:Sudoku.Drawing.Settings.TryGetPaletteColor(System.Int32,System.Drawing.Color@)">
             <summary>
             Try to get the palette color using the specified index.
             </summary>

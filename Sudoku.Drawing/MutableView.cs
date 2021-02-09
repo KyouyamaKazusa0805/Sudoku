@@ -124,7 +124,7 @@ namespace Sudoku.Drawing
 			Link? linkToRemove = null;
 			foreach (var link in Links)
 			{
-				var (start, _) = link;
+				var (start, _, _) = link;
 				if (start == startCandidate)
 				{
 					linkToRemove = link;
@@ -250,7 +250,7 @@ namespace Sudoku.Drawing
 				return false;
 			}
 
-			foreach (var (start, _) in Links)
+			foreach (var (start, _, _) in Links)
 			{
 				if (start == startCandidate)
 				{

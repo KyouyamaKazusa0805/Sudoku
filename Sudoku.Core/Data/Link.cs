@@ -42,15 +42,6 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="startCandidate">(<see langword="out"/> parameter) The start candidate.</param>
 		/// <param name="endCandidate">(<see langword="out"/> parameter) The end candidate.</param>
-		public void Deconstruct(out int startCandidate, out int endCandidate)
-		{
-			startCandidate = StartCandidate;
-			endCandidate = EndCandidate;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="startCandidate">(<see langword="out"/> parameter) The start candidate.</param>
-		/// <param name="endCandidate">(<see langword="out"/> parameter) The end candidate.</param>
 		/// <param name="linkType">(<see langword="out"/> parameter) The link type.</param>
 		public void Deconstruct(out int startCandidate, out int endCandidate, out LinkType linkType)
 		{
