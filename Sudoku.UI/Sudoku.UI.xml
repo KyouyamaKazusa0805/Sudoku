@@ -35,6 +35,13 @@
             Initializes an instance with the normal instantiation behavior.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.MainWindow.ButtonQuit_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Triggers when the quit command is triggered.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent

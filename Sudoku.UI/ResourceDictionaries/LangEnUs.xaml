@@ -2,4 +2,6 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 	<sys:String x:Key="MainWindowTitle">Sunnie's Sudoku Solution</sys:String>
+	<sys:String x:Key="ToggleButtonCollapsedOrExpandedToolTip">To collapse or expand the menu</sys:String>
+	<sys:String x:Key="ButtonQuitToolTip">Quit the App :)</sys:String>
 </ResourceDictionary>

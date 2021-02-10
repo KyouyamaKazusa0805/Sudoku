@@ -2,4 +2,6 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 	<sys:String x:Key="MainWindowTitle">向向的数独解决方案</sys:String>
+	<sys:String x:Key="ToggleButtonCollapsedOrExpandedToolTip">这个用来折叠或者展开菜单</sys:String>
+	<sys:String x:Key="ButtonQuitToolTip">点这个可以退出程序噢 :)</sys:String>
 </ResourceDictionary>

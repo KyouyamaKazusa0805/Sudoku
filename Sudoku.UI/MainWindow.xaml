@@ -4,30 +4,35 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:viewModels="clr-namespace:Sudoku.UI.ViewModels"
-		mc:Ignorable="d"
-		Title="{DynamicResource MainWindowTitle}" WindowStartupLocation="CenterScreen"
-		Width="{DynamicResource MainWindowDefaultWidth}" Height="{DynamicResource MainWindowDefaultHeight}">
+		mc:Ignorable="d" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+		Title="{DynamicResource MainWindowTitle}"
+		Width="{DynamicResource MainWindowDefaultWidth}"
+		Height="{DynamicResource MainWindowDefaultHeight}">
 	<!-- Data context -->
 	<Window.DataContext>
 		<viewModels:MainWindowViewModel />
 	</Window.DataContext>
-	
+
 	<!-- Resources -->
 	<Window.Resources>
 		<GridLength x:Key="MenuZeroWidth">0</GridLength>
 		<GridLength x:Key="MenuExpandedWidth">200</GridLength>
 		<FontFamily x:Key="MenuIconFont">Segoe MDL2 Assets</FontFamily>
 
-		<Style TargetType="TextBlock" x:Key="MenuStyleTextBox">
+		<Style TargetType="{x:Type TextBlock}" x:Key="MenuStyleTextBox">
 			<Setter Property="HorizontalAlignment" Value="Center" />
 			<Setter Property="VerticalAlignment" Value="Center" />
 			<Setter Property="FontSize" Value="36" />
 			<Setter Property="FontFamily" Value="{StaticResource MenuIconFont}" />
 		</Style>
 
-		<Style TargetType="ToggleButton" x:Key="MenuStyleToggleButton">
-			<Setter Property="BorderThickness" Value="0" />
+		<Style TargetType="{x:Type TextBlock}" x:Key="ToolTipTextBlock">
+			<Setter Property="FontSize" Value="16" />
+		</Style>
+
+		<Style TargetType="{x:Type ToggleButton}" x:Key="MenuStyleToggleButton">
 			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
 			<Setter Property="FontSize" Value="36" />
 			<Setter Property="HorizontalContentAlignment" Value="Left" />
 			<Setter Property="VerticalContentAlignment" Value="Center" />
@@ -35,7 +40,7 @@
 			<Setter Property="Content" Value="&#xE700;" />
 		</Style>
 
-		<Style TargetType="Button" x:Key="MenuStyleButton">
+		<Style TargetType="{x:Type Button}" x:Key="MenuStyleButton">
 			<Setter Property="BorderThickness" Value="0" />
 			<Setter Property="Background" Value="Transparent" />
 		</Style>
@@ -44,8 +49,6 @@
 	<!-- Hamberger Menu -->
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition />
-			<RowDefinition />
 			<RowDefinition />
 			<RowDefinition />
 			<RowDefinition />
@@ -92,27 +95,48 @@
 		</Grid.Triggers>
 
 		<!-- Background displayer -->
-		<TextBlock Background="#E6E6E6" Grid.Row="0" Grid.Column="0" Grid.RowSpan="11" Grid.ColumnSpan="3"
+		<TextBlock Background="#E6E6E6" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="3"
 				   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
 		<!-- Menu button icons -->
 		<ToggleButton x:Name="ToggleButtonCollapsedOrExpanded" Grid.Row="0" Grid.Column="1"
-					  Grid.ColumnSpan="2" Style="{StaticResource MenuStyleToggleButton}" />
+					  Grid.ColumnSpan="2" Style="{StaticResource MenuStyleToggleButton}">
+			<ToggleButton.ToolTip>
+				<TextBlock Style="{StaticResource ToolTipTextBlock}"
+						   Text="{DynamicResource ToggleButtonCollapsedOrExpandedToolTip}" />
+			</ToggleButton.ToolTip>
+		</ToggleButton>
 		<TextBlock Text="&#xE932;" Grid.Row="1" Grid.Column="1" Style="{StaticResource MenuStyleTextBox}" />
-		
+
 		<!-- Menu buttons -->
 		<Button x:Name="ButtonMainPage" Grid.Row="1" Grid.Column="2" Style="{StaticResource MenuStyleButton}"/>
 
 		<!-- Right-side controls -->
-		<Grid Grid.Row="0" Grid.Column="3" Grid.RowSpan="11">
+		<Grid Grid.Row="0" Grid.Column="3" Grid.RowSpan="9">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="40" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
 
 			<!-- Title -->
 			<TextBlock Grid.Row="0" Grid.Column="0" FontSize="24" Text="{DynamicResource MainWindowTitle}"
-					   HorizontalAlignment="Center" VerticalAlignment="Center" />
+					   HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+			<Button Grid.Row="0" Grid.Column="1"
+					Background="Transparent" BorderThickness="0" Margin="10,0,10,0"
+					Click="ButtonQuit_Click">
+				<Button.Content>
+					<TextBlock FontSize="24" Text="&#xF3B1;" FontFamily="{StaticResource MenuIconFont}" />
+				</Button.Content>
+				<Button.ToolTip>
+					<TextBlock Style="{StaticResource ToolTipTextBlock}"
+							   Text="{DynamicResource ButtonQuitToolTip}" />
+				</Button.ToolTip>
+			</Button>
 
 			<!-- Page switcher -->
 			<Frame x:Name="FramePageToggler" Grid.Row="1" Grid.Column="0" />
