@@ -5,14 +5,117 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:viewModels="clr-namespace:Sudoku.UI.ViewModels"
 		mc:Ignorable="d"
-		Title="{DynamicResource MainWindowTitle}"
-		Width="{DynamicResource MainWindowDefaultWidth}"
-		Height="{DynamicResource MainWindowDefaultHeight}"
-		WindowStartupLocation="CenterScreen">
+		Title="{DynamicResource MainWindowTitle}" WindowStartupLocation="CenterScreen"
+		Width="{DynamicResource MainWindowDefaultWidth}" Height="{DynamicResource MainWindowDefaultHeight}">
+	<!-- Data context -->
 	<Window.DataContext>
 		<viewModels:MainWindowViewModel />
 	</Window.DataContext>
 	
+	<!-- Resources -->
+	<Window.Resources>
+		<GridLength x:Key="MenuZeroWidth">0</GridLength>
+		<GridLength x:Key="MenuExpandedWidth">200</GridLength>
+		<FontFamily x:Key="MenuIconFont">Segoe MDL2 Assets</FontFamily>
+
+		<Style TargetType="TextBlock" x:Key="MenuStyleTextBox">
+			<Setter Property="HorizontalAlignment" Value="Center" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="FontSize" Value="36" />
+			<Setter Property="FontFamily" Value="{StaticResource MenuIconFont}" />
+		</Style>
+
+		<Style TargetType="ToggleButton" x:Key="MenuStyleToggleButton">
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="FontSize" Value="36" />
+			<Setter Property="HorizontalContentAlignment" Value="Left" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="FontFamily" Value="{StaticResource MenuIconFont}" />
+			<Setter Property="Content" Value="&#xE700;" />
+		</Style>
+
+		<Style TargetType="Button" x:Key="MenuStyleButton">
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="Background" Value="Transparent" />
+		</Style>
+	</Window.Resources>
+
+	<!-- Hamberger Menu -->
 	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="5" />
+			<ColumnDefinition Width="40" />
+			<ColumnDefinition x:Name="ColumnMenu" Width="{StaticResource MenuExpandedWidth}" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Grid.Triggers>
+			<EventTrigger RoutedEvent="ToggleButton.Unchecked" SourceName="ToggleButtonCollapsedOrExpanded">
+				<EventTrigger.Actions>
+					<BeginStoryboard>
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ColumnMenu"
+														   Storyboard.TargetProperty="Width">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.2"
+														Value="{StaticResource MenuZeroWidth}" />
+							</ObjectAnimationUsingKeyFrames>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger.Actions>
+			</EventTrigger>
+			<EventTrigger RoutedEvent="ToggleButton.Checked" SourceName="ToggleButtonCollapsedOrExpanded">
+				<EventTrigger.Actions>
+					<BeginStoryboard>
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ColumnMenu"
+														   Storyboard.TargetProperty="Width">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.2"
+														Value="{StaticResource MenuExpandedWidth}" />
+							</ObjectAnimationUsingKeyFrames>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger.Actions>
+			</EventTrigger>
+		</Grid.Triggers>
+
+		<!-- Background displayer -->
+		<TextBlock Background="#E6E6E6" Grid.Row="0" Grid.Column="0" Grid.RowSpan="11" Grid.ColumnSpan="3"
+				   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+		<!-- Menu button icons -->
+		<ToggleButton x:Name="ToggleButtonCollapsedOrExpanded" Grid.Row="0" Grid.Column="1"
+					  Grid.ColumnSpan="2" Style="{StaticResource MenuStyleToggleButton}" />
+		<TextBlock Text="&#xE932;" Grid.Row="1" Grid.Column="1" Style="{StaticResource MenuStyleTextBox}" />
+		
+		<!-- Menu buttons -->
+		<Button x:Name="ButtonMainPage" Grid.Row="1" Grid.Column="2" Style="{StaticResource MenuStyleButton}"/>
+
+		<!-- Right-side controls -->
+		<Grid Grid.Row="0" Grid.Column="3" Grid.RowSpan="11">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="40" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<!-- Title -->
+			<TextBlock Grid.Row="0" Grid.Column="0" FontSize="24" Text="{DynamicResource MainWindowTitle}"
+					   HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+			<!-- Page switcher -->
+			<Frame x:Name="FramePageToggler" Grid.Row="1" Grid.Column="0" />
+		</Grid>
 	</Grid>
 </Window>
