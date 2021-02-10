@@ -8,6 +8,6 @@ namespace Sudoku.UI.ViewModels
 	public sealed class MainWindowViewModel : INotifyPropertyChanged
 	{
 		/// <inheritdoc/>
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler? PropertyChanged;
 	}
 }

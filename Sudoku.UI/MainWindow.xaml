@@ -4,7 +4,10 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:viewModels="clr-namespace:Sudoku.UI.ViewModels"
-		mc:Ignorable="d" Title="MainWindow" Width="1200" Height="800"
+		mc:Ignorable="d"
+		Title="{DynamicResource MainWindowTitle}"
+		Width="{DynamicResource MainWindowDefaultWidth}"
+		Height="{DynamicResource MainWindowDefaultHeight}"
 		WindowStartupLocation="CenterScreen">
 	<Window.DataContext>
 		<viewModels:MainWindowViewModel />
