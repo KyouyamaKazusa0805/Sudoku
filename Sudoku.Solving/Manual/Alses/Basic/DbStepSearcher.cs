@@ -19,8 +19,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public static TechniqueProperties Properties { get; } = new(31, nameof(Technique.DeathBlossom))
 		{
 			DisplayLevel = 3,
-			//IsEnabled = false,
-			//DisabledReason = DisabledReason.HasBugs
+			IsEnabled = false,
+			DisabledReason = DisabledReason.HasBugs
 		};
 
 
