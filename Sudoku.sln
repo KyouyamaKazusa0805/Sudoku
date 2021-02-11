@@ -38,8 +38,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Generating", "Sudoku
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen", "Sudoku.CodeGen\Sudoku.CodeGen.csproj", "{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.UI", "Sudoku.UI\Sudoku.UI.csproj", "{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -311,26 +309,6 @@ Global
 		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Release|x64.Build.0 = Release|Any CPU
 		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Release|x86.ActiveCfg = Release|Any CPU
 		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576}.Release|x86.Build.0 = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|ARM.Build.0 = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|x64.Build.0 = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Debug|x86.Build.0 = Debug|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|ARM.ActiveCfg = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|ARM.Build.0 = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|ARM64.Build.0 = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|x64.ActiveCfg = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|x64.Build.0 = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|x86.ActiveCfg = Release|Any CPU
-		{E3B7DC09-F383-43A6-9D9B-76A7F50BD851}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
