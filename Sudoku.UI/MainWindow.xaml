@@ -1,0 +1,33 @@
+﻿<Window x:Class="Sudoku.UI.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:viewModels="clr-namespace:Sudoku.UI.ViewModels"
+		mc:Ignorable="d" Title="{DynamicResource MainWindowTitle}" Width="1200" Height="800">
+	<!-- Data context -->
+	<Window.DataContext>
+		<viewModels:MainWindowViewModel />
+	</Window.DataContext>
+
+	<!-- Window items -->
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="20"/>  <!-- Menu         -->
+			<RowDefinition Height="40"/>  <!-- Gap          -->
+			<RowDefinition Height="650"/> <!-- Sudoku grid  -->
+			<RowDefinition/>              <!-- Info text    -->
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>           <!-- Sudoku panel -->
+			<ColumnDefinition/>           <!-- Summary      -->
+		</Grid.ColumnDefinitions>
+
+		<!-- Main menu -->
+		<Menu VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+			<MenuItem Header="{DynamicResource MainWindowMenuFile}">
+				
+			</MenuItem>
+		</Menu>
+	</Grid>
+</Window>
