@@ -1,13 +1,16 @@
 ﻿<Application x:Class="Sudoku.UI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:system="clr-namespace:System;assembly=System.Runtime"
 			 StartupUri="MainWindow.xaml">
-    <Application.Resources>
+	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="ResourceDictionaries/Dictionary1033.xaml" />
 				<ResourceDictionary Source="ResourceDictionaries/Dictionary2052.xaml" />
 			</ResourceDictionary.MergedDictionaries>
+
+			<system:Double x:Key="DefaultSudokuGridRenderingSize">600</system:Double>
 		</ResourceDictionary>
     </Application.Resources>
 </Application>

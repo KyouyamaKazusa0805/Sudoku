@@ -12,4 +12,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
+  </ItemGroup>
+
 </Project>
