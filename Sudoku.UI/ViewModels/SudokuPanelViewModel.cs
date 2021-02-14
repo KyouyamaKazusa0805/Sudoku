@@ -18,8 +18,8 @@ namespace Sudoku.UI.ViewModels
 		/// </summary>
 		private GridImageGenerator _generator = new(
 			new(
-				(float)(double)TextResources.CurrentApp.DefaultSudokuGridRenderingSize,
-				(float)(double)TextResources.CurrentApp.DefaultSudokuGridRenderingSize
+				(float)(double)TextResources.Current.DefaultSudokuGridRenderingSize,
+				(float)(double)TextResources.Current.DefaultSudokuGridRenderingSize
 			),
 			new()
 		);

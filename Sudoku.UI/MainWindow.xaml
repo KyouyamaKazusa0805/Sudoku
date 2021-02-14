@@ -3,8 +3,26 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:controls="clr-namespace:Sudoku.UI.Controls"
+		xmlns:viewModels="clr-namespace:Sudoku.UI.ViewModels"
 		mc:Ignorable="d" Title="{DynamicResource MainWindowTitle}" Width="1200" Height="800">
-	
+	<!-- Data context -->
+	<Window.DataContext>
+		<viewModels:MainWindowViewModel x:Name="ViewModel" />
+	</Window.DataContext>
+
+	<!-- Resources -->
+	<Window.Resources>
+		<Style TargetType="{x:Type controls:SudokuPanel}" x:Key="MainSudokuPanel">
+			<Setter Property="Width" Value="{DynamicResource DefaultSudokuGridRenderingSize}" />
+			<Setter Property="Height" Value="{DynamicResource DefaultSudokuGridRenderingSize}" />
+		</Style>
+		<Style TargetType="{x:Type Menu}" x:Key="MainMenu">
+			<Setter Property="IsMainMenu" Value="True" />
+			<Setter Property="VerticalAlignment" Value="Top" />
+		</Style>
+	</Window.Resources>
+
 	<!-- Window items -->
 	<Grid>
 		<Grid.RowDefinitions>
@@ -19,10 +37,29 @@
 		</Grid.ColumnDefinitions>
 
 		<!-- Main menu -->
-		<Menu VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-			<MenuItem Header="{DynamicResource MainWindowMenuFile}">
-				
+		<Menu Style="{StaticResource MainMenu}" Grid.ColumnSpan="2">
+			<MenuItem Header="{DynamicResource MainWindowMenuFile}"
+					  ToolTip="{DynamicResource MainWindowMenuFileToolTip}">
+				<MenuItem Header="{DynamicResource MainWindowMenuFileOpen}"
+						  ToolTip="{DynamicResource MainWindowMenuFileOpenToolTip}"
+						  InputGestureText="Ctrl + O"
+						  Click="MenuItemFileOpen_ClickAsync" />
 			</MenuItem>
 		</Menu>
+
+		<!-- Sudoku grid line -->
+		<Grid Grid.Row="2" Grid.ColumnSpan="2">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="50"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition MinWidth="100"/>
+				<ColumnDefinition Width="10"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+
+			<controls:SudokuPanel x:Name="SudokuPanelMain" Style="{StaticResource MainSudokuPanel}" />
+		</Grid>
 	</Grid>
 </Window>

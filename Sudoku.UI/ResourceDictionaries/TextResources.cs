@@ -27,7 +27,7 @@ namespace Sudoku.UI.ResourceDictionaries
 		/// write <c>Current.Bug</c> or <c>Current["Bug"]</c> to get that value.
 		/// </para>
 		/// </remarks>
-		public static readonly dynamic CurrentApp = new TextResources();
+		public static readonly dynamic Current = new TextResources();
 
 
 		/// <see cref="DefaultConstructor"/>
