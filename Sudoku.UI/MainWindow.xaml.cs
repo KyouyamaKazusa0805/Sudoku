@@ -58,6 +58,7 @@ namespace Sudoku.UI
 			else
 			{
 				// Load failed.
+				MessageDialogs.PuzzleFileLoadFailed.ShowDialog();
 			}
 		}
 	}

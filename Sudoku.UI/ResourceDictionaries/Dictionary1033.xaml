@@ -10,6 +10,13 @@
 
 	<system:String x:Key="MainWindowTextBlockGridIsReadOnlyWhileSolving">You can't modify the grid while solving or generating.</system:String>
 
+	<!-- MessageDialog -->
+	<system:String x:Key="MessageDialogTitle">Message</system:String>
+	<system:String x:Key="MessageDialogTitleInfo">Info</system:String>
+	<system:String x:Key="MessageDialogTitleWarning">Warning</system:String>
+	<system:String x:Key="MessageDialogTitleError">Error</system:String>
+	<system:String x:Key="MessageDialogTextSudokuGridFileLoadFailed">Sorry, the file is failed to load.</system:String>
+
 	<!-- FileDialog utils -->
 	<system:String x:Key="FileDialogTitlePuzzleLoading">Load a sudoku grid file...</system:String>
 

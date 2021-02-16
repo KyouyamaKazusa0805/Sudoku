@@ -10,6 +10,13 @@
 
 	<system:String x:Key="MainWindowTextBlockGridIsReadOnlyWhileSolving">您无法在解题或分析题目的过程之中修改题目。</system:String>
 
+	<!-- MessageDialog -->
+	<system:String x:Key="MessageDialogTitle">提示信息</system:String>
+	<system:String x:Key="MessageDialogTitleInfo">信息</system:String>
+	<system:String x:Key="MessageDialogTitleWarning">警告</system:String>
+	<system:String x:Key="MessageDialogTitleError">错误</system:String>
+	<system:String x:Key="MessageDialogTextSudokuGridFileLoadFailed">抱歉，数独文件打开失败。</system:String>
+
 	<!-- FileDialog utils -->
 	<system:String x:Key="FileDialogTitlePuzzleLoading">导入一个数独盘面的文件…</system:String>
 	
