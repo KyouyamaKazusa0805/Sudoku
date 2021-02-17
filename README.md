@@ -1,15 +1,4 @@
-<center><h1>Happy 2021 Chinese New Year!</h1></center>
-<center><img src="required/banner.png"/></center>
-
-I'm so sorry for late updates in this repo, for I'm unavailable during these days.
-
-最近忙春节的事情，更新较慢，见谅。
-
-
-
-# Sunnie's Sudoku Solution
-
-标题：**向向的数独解决方案**
+# Sunnie's Sudoku Solution (向向的数独解决方案)
 
 A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
@@ -21,19 +10,27 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 
 
-## Solution Sites
+## Sites (地址)
 
-标题：**项目地址**
+### Solution sites (项目地址)
 
 GitHub: [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku)
 
 Gitee: [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)
 
+### How to use this solution (如何使用)
+
+Bilingual (中英双语介绍): [Here (GitHub site)](https://github.com/SunnieShine/Sudoku/issues/83)
+
+Chinese only (中文介绍): [Here (Gitee Site)](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593)
+
+### Wiki (百科页面)
+
+Chinese only (中文介绍): [Click me (Gitee Site)](https://gitee.com/SunnieShine/Sudoku/wikis/pages)
 
 
-## Programming language and IDE using
 
-标题：**编程语言和 IDE 使用情况**
+## Language and IDE (语言和 IDE)
 
 * Programming language: C#<br/>编程语言：C#
 * Language version: 9.0<br/>语言版本：9.0
@@ -44,34 +41,7 @@ Gitee: [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)
 
 
 
-## How to use this solution
-
-标题：**如何使用**
-
-Please visit those links to learn more information.
-
-请参看如下链接：
-
-* Bilingual: [Click me (GitHub site)](https://github.com/SunnieShine/Sudoku/issues/83)<br/>中英双语介绍：[此链接（GitHub）](https://github.com/SunnieShine/Sudoku/issues/83)
-* Chinese only: [Click me (Gitee Site)](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593)<br/>中文介绍：[此链接（Gitee）](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593)
-
-
-
-## Wiki
-
-标题：**Wiki 页面**
-
-Please visit the link to learn more information.
-
-请参考这个连接：
-
-* Chinese only: [Click me (Gitee Site)](https://gitee.com/SunnieShine/Sudoku/wikis/pages)<br/>中文介绍：[此链接（Gitee）](https://gitee.com/SunnieShine/Sudoku/wikis/pages)
-
-
-
-## Author
-
-标题：**作者**
+## Author (作者)
 
 Sunnie, a normal student from normal university (pun).
 
