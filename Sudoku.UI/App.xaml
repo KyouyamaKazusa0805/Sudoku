@@ -6,8 +6,8 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="ResourceDictionaries/Dictionary1033.xaml" />
-				<ResourceDictionary Source="ResourceDictionaries/Dictionary2052.xaml" />
+				<ResourceDictionary Source="ResourceDictionaries/DictionaryEnUs.xaml" />
+				<ResourceDictionary Source="ResourceDictionaries/DictionaryZhCn.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
 			<system:Double x:Key="DefaultSudokuGridRenderingSize">600</system:Double>

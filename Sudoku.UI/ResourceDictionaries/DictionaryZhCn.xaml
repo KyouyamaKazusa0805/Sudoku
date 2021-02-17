@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:system="clr-namespace:System;assembly=System.Runtime">
 	<!-- MainWindow -->
 	<system:String x:Key="MainWindowTitle">向向的数独解决方案</system:String>
@@ -8,7 +8,7 @@
 	<system:String x:Key="MainWindowMenuFileToolTip">有关数独文件的基本操作</system:String>
 	<system:String x:Key="MainWindowMenuFileOpenToolTip">找到本地的文件，然后导入到程序里</system:String>
 
-	<system:String x:Key="MainWindowTextBlockGridIsReadOnlyWhileSolving">您无法在解题或分析题目的过程之中修改题目。</system:String>
+	<system:String x:Key="MainWindowTextBlockGridIsReadOnlyWhileSolving">您无法在解题或分析题目的过程之中变动题目。</system:String>
 
 	<!-- MessageDialog -->
 	<system:String x:Key="MessageDialogTitle">提示信息</system:String>

@@ -17,19 +17,6 @@ namespace Sudoku.UI
 
 
 		/// <summary>
-		/// To load a puzzle through a grid.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		private void LoadPuzzle(in SudokuGrid grid)
-		{
-			if (ViewModel.SudokuPanelViewModel is { } model)
-			{
-				model.Grid = grid;
-			}
-		}
-
-
-		/// <summary>
 		/// Triggers when the menu item that opens a file is clicked.
 		/// </summary>
 		/// <param name="sender">The sender triggers the event.</param>
@@ -53,7 +40,7 @@ namespace Sudoku.UI
 			if (SudokuGrid.TryParse(sudokuGridCode, out var grid))
 			{
 				// Load successful.
-				LoadPuzzle(grid);
+				ViewModel.Grid = grid;
 			}
 			else
 			{

@@ -3,12 +3,13 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:v="clr-namespace:Sudoku.UI.ViewModels" mc:Ignorable="d"
+			 xmlns:viewModels="clr-namespace:Sudoku.UI.ViewModels"
+			 mc:Ignorable="d"
 			 d:DesignWidth="{DynamicResource DefaultSudokuGridRenderingSize}"
 			 d:DesignHeight="{DynamicResource DefaultSudokuGridRenderingSize}">
 	<!-- Data context -->
 	<UserControl.DataContext>
-		<v:SudokuPanelViewModel x:Name="ViewModel" />
+		<viewModels:SudokuPanelViewModel x:Name="ViewModel" />
 	</UserControl.DataContext>
 
 	<!-- Resources (Styles, etc.) -->

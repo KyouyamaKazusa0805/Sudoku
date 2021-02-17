@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Windows;
+using Sudoku.Data;
+using Sudoku.Drawing;
 
 namespace Sudoku.UI.ViewModels
 {
@@ -7,33 +9,100 @@ namespace Sudoku.UI.ViewModels
 	/// Indicates the view model bound by <see cref="MainWindow"/>.
 	/// </summary>
 	/// <seealso cref="MainWindow"/>
-	public sealed class MainWindowViewModel : INotifyPropertyChanged
+	public sealed class MainWindowViewModel
 	{
+		/// <summary>
+		/// Gets or sets the focused cells.
+		/// </summary>
+		/// <value>The focused cells.</value>
+		public Cells FocusedCells
+		{
+			get => PanelViewModel.FocusedCells;
+
+			set => PanelViewModel.FocusedCells = value;
+		}
+
+		/// <summary>
+		/// Gets or sets the grid.
+		/// </summary>
+		/// <value>The grid.</value>
+		public SudokuGrid Grid
+		{
+			get => PanelViewModel.Grid;
+
+			set => PanelViewModel.Grid = value;
+		}
+
+		/// <summary>
+		/// Gets or sets the converter.
+		/// </summary>
+		/// <value>The converter.</value>
+		public DrawingPointConverter Converter
+		{
+			get => PanelViewModel.Converter;
+
+			set => PanelViewModel.Generator = new(value, Preferences);
+		}
+
+		/// <summary>
+		/// Gets or sets the preferences.
+		/// </summary>
+		/// <value>The preferences.</value>
+		public Settings Preferences
+		{
+			get => PanelViewModel.Preferences;
+
+			set => PanelViewModel.Generator = new(Converter, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the view.
+		/// </summary>
+		/// <value>The view.</value>
+		public PresentationData? View
+		{
+			get => PanelViewModel.View;
+
+			set => PanelViewModel.View = value;
+		}
+
+		/// <summary>
+		/// Gets or sets the custom view.
+		/// </summary>
+		/// <value>The custom view.</value>
+		public PresentationData? CustomView
+		{
+			get => PanelViewModel.CustomView;
+
+			set => PanelViewModel.CustomView = value;
+		}
+
+		/// <summary>
+		/// Gets or sets the generator.
+		/// </summary>
+		/// <value>The generator.</value>
+		public GridImageGenerator Generator
+		{
+			get => PanelViewModel.Generator;
+
+			set => PanelViewModel.Generator = value;
+		}
+
+		/// <summary>
+		/// Gets or sets the conclusions.
+		/// </summary>
+		/// <value>The conclusions.</value>
+		public IEnumerable<Conclusion>? Conclusions
+		{
+			get => PanelViewModel.Conclusions;
+
+			set => PanelViewModel.Conclusions = value;
+		}
+
 		/// <summary>
 		/// Indicates the sudoku panel view model.
 		/// </summary>
-		private SudokuPanelViewModel? _sudokuPanelViewModel;
-
-
-		/// <summary>
-		/// Gets or sets the sudoku panel view model.
-		/// </summary>
-		/// <value>The view model.</value>
-		[DisallowNull]
-		public SudokuPanelViewModel? SudokuPanelViewModel
-		{
-			get => _sudokuPanelViewModel;
-
-			set
-			{
-				_sudokuPanelViewModel = value;
-
-				PropertyChanged?.Invoke(this, new(nameof(SudokuPanelViewModel)));
-			}
-		}
-
-
-		/// <inheritdoc/>
-		public event PropertyChangedEventHandler? PropertyChanged;
+		public SudokuPanelViewModel PanelViewModel =>
+			(SudokuPanelViewModel)Application.Current.FindResource(nameof(PanelViewModel));
 	}
 }

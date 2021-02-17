@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.UI.Controls;
@@ -11,22 +11,19 @@ namespace Sudoku.UI.ViewModels
 	/// Indicates the view model bound by <see cref="SudokuPanel"/>.
 	/// </summary>
 	/// <seealso cref="SudokuPanel"/>
-	public sealed class SudokuPanelViewModel : INotifyPropertyChanged
+	public sealed class SudokuPanelViewModel
 	{
 		/// <summary>
-		/// Indicates the inner generator.
+		/// Indicates the default rendering size.
 		/// </summary>
-		private GridImageGenerator _generator = new(
-			new(
-				(float)(double)TextResources.Current.DefaultSudokuGridRenderingSize,
-				(float)(double)TextResources.Current.DefaultSudokuGridRenderingSize
-			),
-			new()
-		);
+		private static readonly float RenderingSize = (float)(double)App.DefaultSudokuGridRenderingSize;
 
 
-		/// <inheritdoc/>
-		public event PropertyChangedEventHandler? PropertyChanged;
+		/// <summary>
+		/// The back field of the property <see cref="Generator"/>.
+		/// </summary>
+		/// <seealso cref="Generator"/>
+		private GridImageGenerator _generator = new(new(RenderingSize, RenderingSize), new());
 
 
 		/// <summary>
@@ -35,13 +32,13 @@ namespace Sudoku.UI.ViewModels
 		/// <value>The focused cells.</value>
 		public Cells FocusedCells
 		{
-			get => _generator.FocusedCells;
+			get => Generator.FocusedCells;
 
 			set
 			{
-				_generator.FocusedCells = value;
+				Generator.FocusedCells = value;
 
-				PropertyChanged?.Invoke(this, new(nameof(FocusedCells)));
+				FocusedCellsChanged?.Invoke(this, value);
 			}
 		}
 
@@ -51,13 +48,13 @@ namespace Sudoku.UI.ViewModels
 		/// <value>The grid.</value>
 		public SudokuGrid Grid
 		{
-			get => _generator.Grid;
+			get => Generator.Grid;
 
 			set
 			{
-				_generator.Grid = value;
+				Generator.Grid = value;
 
-				PropertyChanged?.Invoke(this, new(nameof(Grid)));
+				GridChanged?.Invoke(this, value);
 			}
 		}
 
@@ -67,13 +64,13 @@ namespace Sudoku.UI.ViewModels
 		/// <value>The converter.</value>
 		public DrawingPointConverter Converter
 		{
-			get => _generator.Converter;
+			get => Generator.Converter;
 
 			set
 			{
-				_generator = new(value, _generator.Preferences);
+				Generator = new(value, Generator.Preferences);
 
-				PropertyChanged?.Invoke(this, new(nameof(Converter)));
+				ConverterChanged?.Invoke(this, value);
 			}
 		}
 
@@ -83,13 +80,13 @@ namespace Sudoku.UI.ViewModels
 		/// <value>The preferences.</value>
 		public Settings Preferences
 		{
-			get => _generator.Preferences;
+			get => Generator.Preferences;
 
 			set
 			{
-				_generator = new(_generator.Converter, value);
+				Generator = new(Generator.Converter, value);
 
-				PropertyChanged?.Invoke(this, new(nameof(Preferences)));
+				PreferencesChanged?.Invoke(this, value);
 			}
 		}
 
@@ -99,13 +96,13 @@ namespace Sudoku.UI.ViewModels
 		/// <value>The view.</value>
 		public PresentationData? View
 		{
-			get => _generator.View;
+			get => Generator.View;
 
 			set
 			{
-				_generator.View = value;
+				Generator.View = value;
 
-				PropertyChanged?.Invoke(this, new(nameof(View)));
+				ViewChanged?.Invoke(this, value);
 			}
 		}
 
@@ -115,13 +112,13 @@ namespace Sudoku.UI.ViewModels
 		/// <value>The custom view.</value>
 		public PresentationData? CustomView
 		{
-			get => _generator.CustomView;
+			get => Generator.CustomView;
 
 			set
 			{
-				_generator.CustomView = value;
+				Generator.CustomView = value;
 
-				PropertyChanged?.Invoke(this, new(nameof(CustomView)));
+				CustomViewChanged?.Invoke(this, value);
 			}
 		}
 
@@ -137,7 +134,7 @@ namespace Sudoku.UI.ViewModels
 			{
 				_generator = value;
 
-				PropertyChanged?.Invoke(this, new(nameof(Generator)));
+				GeneratorChanged?.Invoke(this, value);
 			}
 		}
 
@@ -147,14 +144,61 @@ namespace Sudoku.UI.ViewModels
 		/// <value>The conclusions.</value>
 		public IEnumerable<Conclusion>? Conclusions
 		{
-			get => _generator.Conclusions;
+			get => Generator.Conclusions;
 
 			set
 			{
-				_generator.Conclusions = value;
+				Generator.Conclusions = value;
 
-				PropertyChanged?.Invoke(this, new(nameof(Conclusions)));
+				ConclusionsChanged?.Invoke(this, value);
 			}
 		}
+
+
+		/// <summary>
+		/// Indicates the current application.
+		/// </summary>
+		private static dynamic App => TextResources.Current;
+
+
+		/// <summary>
+		/// Indicates the event to trigger when the focused cells instance has been changed.
+		/// </summary>
+		public event EventHandler<Cells>? FocusedCellsChanged;
+
+		/// <summary>
+		/// Indicates the event to trigger when the grid instance has been changed.
+		/// </summary>
+		public event EventHandler<SudokuGrid>? GridChanged;
+
+		/// <summary>
+		/// Indicates the event to trigger when the converter instance has been changed.
+		/// </summary>
+		public event EventHandler<DrawingPointConverter>? ConverterChanged;
+
+		/// <summary>
+		/// Indicates the event to trigger when the preferences instance has been changed.
+		/// </summary>
+		public event EventHandler<Settings>? PreferencesChanged;
+
+		/// <summary>
+		/// Indicates the event to trigger when the view instance has been changed.
+		/// </summary>
+		public event EventHandler<PresentationData?>? ViewChanged;
+
+		/// <summary>
+		/// Indicates the event to trigger when the custom view instance has been changed.
+		/// </summary>
+		public event EventHandler<PresentationData?>? CustomViewChanged;
+
+		/// <summary>
+		/// Indicates the event to trigger when the generator instance has been changed.
+		/// </summary>
+		public event EventHandler<GridImageGenerator>? GeneratorChanged;
+
+		/// <summary>
+		/// Indicates the event to trigger when the conclusions instance has been changed.
+		/// </summary>
+		public event EventHandler<IEnumerable<Conclusion>?>? ConclusionsChanged;
 	}
 }

@@ -13,6 +13,7 @@
 
 	<!-- Resources -->
 	<Window.Resources>
+		<viewModels:SudokuPanelViewModel x:Key="SudokuPanelViewModel" />
 		<Style TargetType="{x:Type controls:SudokuPanel}" x:Key="MainSudokuPanel">
 			<Setter Property="Width" Value="{DynamicResource DefaultSudokuGridRenderingSize}" />
 			<Setter Property="Height" Value="{DynamicResource DefaultSudokuGridRenderingSize}" />
@@ -27,7 +28,7 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="20"/>  <!-- Menu         -->
-			<RowDefinition Height="40"/>  <!-- Gap          -->
+			<RowDefinition Height="40"/>  <!-- Tool bar     -->
 			<RowDefinition Height="650"/> <!-- Sudoku grid  -->
 			<RowDefinition/>              <!-- Info text    -->
 		</Grid.RowDefinitions>
