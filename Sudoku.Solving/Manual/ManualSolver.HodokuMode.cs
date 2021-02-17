@@ -99,9 +99,7 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				var (
-					isEnabled, _, _, _, _, onlyEnabledInFastMode, _, _
-				) = TechniqueProperties.FromSearcher(searcher)!;
+				bool isEnabled = TechniqueProperties.FromSearcher(searcher)!.IsEnabled;
 				if (!isEnabled)
 				{
 					continue;
@@ -166,7 +164,7 @@ namespace Sudoku.Solving.Manual
 						bool first(StepInfo step) => !CheckConclusionsValidity(solutionCopied, step.Conclusions);
 					}
 				}
-				else if (!onlyEnabledInFastMode)
+				else
 				{
 					// If the searcher is only used in the fast mode, just skip it.
 

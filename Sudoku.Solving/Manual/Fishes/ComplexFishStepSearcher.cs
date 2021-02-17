@@ -53,8 +53,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(32, nameof(Technique.FrankenSwordfish))
 		{
-			DisplayLevel = 2,
-			OnlyEnableInFastMode = true
+			DisplayLevel = 2
 		};
 
 

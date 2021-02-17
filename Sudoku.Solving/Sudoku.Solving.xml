@@ -5909,13 +5909,6 @@
             If <see langword="true"/>, when in find-all-step mode, this searcher will be disabled.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.TechniqueProperties.OnlyEnableInFastMode">
-            <summary>
-            Indicates whether the searcher is enabled in fast searching mode
-            (i.e. <see cref="P:Sudoku.Solving.Manual.ManualSolver.FastSearch"/> is set to <see langword="true"/>).
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.FastSearch"/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.TechniqueProperties.Priority">
             <summary>
             Indicates the priority of this technique.
@@ -6000,7 +5993,7 @@
             (<see langword="out"/> parameter) Indicates why this technique is disabled.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@,System.Boolean@,System.Boolean@,System.Int32@,System.String@)">
+        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@,System.Boolean@,System.Int32@,System.String@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isEnabled">
             (<see langword="out"/> parameter) Indicates whether the technique is enabled.

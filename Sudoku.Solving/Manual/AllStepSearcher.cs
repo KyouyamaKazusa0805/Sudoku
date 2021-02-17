@@ -78,13 +78,7 @@ namespace Sudoku.Solving.Manual
 			{
 				// Check whether the searcher is only used for analyzing a sudoku grid.
 				// If so, the searcher will be disabled here.
-				var (isEnabled, _, _, _, onlyEnableInAnalysis, _, level, displayLabel) =
-					TechniqueProperties.FromSearcher(searcher)!;
-
-				if (onlyEnableInAnalysis)
-				{
-					continue;
-				}
+				var (isEnabled, _, _, _, _, level, displayLabel) = TechniqueProperties.FromSearcher(searcher)!;
 
 				// Skip the searcher that is disabled.
 				if (!isEnabled)

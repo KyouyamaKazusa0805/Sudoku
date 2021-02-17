@@ -39,13 +39,6 @@ namespace Sudoku.Solving.Manual
 		public bool OnlyEnableInAnalysis { get; set; }
 
 		/// <summary>
-		/// Indicates whether the searcher is enabled in fast searching mode
-		/// (i.e. <see cref="ManualSolver.FastSearch"/> is set to <see langword="true"/>).
-		/// </summary>
-		/// <seealso cref="ManualSolver.FastSearch"/>
-		public bool OnlyEnableInFastMode { get; set; }
-
-		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
 		public int Priority { get; set; }
@@ -174,7 +167,7 @@ namespace Sudoku.Solving.Manual
 		/// </param>
 		public void Deconstruct(
 			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason,
-			out bool onlyEnableInAnalysis, out bool onlyEnableInFastMode, out int displayLevel,
+			out bool onlyEnableInAnalysis, out int displayLevel,
 			out string displayLabel)
 		{
 			isEnabled = IsEnabled;
@@ -182,7 +175,6 @@ namespace Sudoku.Solving.Manual
 			priority = Priority;
 			disabledReason = DisabledReason;
 			onlyEnableInAnalysis = OnlyEnableInAnalysis;
-			onlyEnableInFastMode = OnlyEnableInFastMode;
 			displayLevel = DisplayLevel;
 			displayLabel = DisplayLabel;
 		}
