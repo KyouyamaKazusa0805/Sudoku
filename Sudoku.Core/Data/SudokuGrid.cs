@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Extensions;
 using System.Runtime.CompilerServices;
@@ -7,6 +8,7 @@ using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
+using CreatingOption = Sudoku.Data.GridCreatingOption;
 using ParsingOption = Sudoku.Data.GridParsingOption;
 
 namespace Sudoku.Data
@@ -104,7 +106,7 @@ namespace Sudoku.Data
 		/// Creates an instance using grid values.
 		/// </summary>
 		/// <param name="gridValues">The array of grid values.</param>
-		public SudokuGrid(int[] gridValues) : this(gridValues, GridCreatingOption.None)
+		public SudokuGrid(int[] gridValues) : this(gridValues, CreatingOption.None)
 		{
 		}
 
@@ -113,7 +115,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="gridValues">The array of grid values.</param>
 		/// <param name="creatingOption">The grid creating option.</param>
-		public SudokuGrid(int[] gridValues, GridCreatingOption creatingOption)
+		public SudokuGrid(int[] gridValues, CreatingOption creatingOption)
 		{
 			var result = Empty;
 			for (int i = 0; i < Length; i++)
@@ -122,7 +124,7 @@ namespace Sudoku.Data
 				{
 					// Calls the indexer to trigger the event
 					// (Clear the candidates in peer cells).
-					result[i] = creatingOption == GridCreatingOption.MinusOne ? value - 1 : value;
+					result[i] = creatingOption == CreatingOption.MinusOne ? value - 1 : value;
 
 					// Set the status to 'CellStatus.Given'.
 					result.SetStatus(i, CellStatus.Given);
@@ -625,6 +627,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public readonly ref readonly short GetPinnableReference()
 		{
 			fixed (SudokuGrid* @this = &this)

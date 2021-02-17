@@ -318,6 +318,7 @@ namespace Sudoku.Data
 		/// Get the first position of the inner binary array.
 		/// </summary>
 		/// <returns>The reference of the first position.</returns>
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public readonly ref readonly long GetPinnableReference() => ref _innerBinary[0];
 
 		/// <summary>

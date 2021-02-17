@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -92,6 +93,7 @@ namespace Sudoku.Solving.Manual.Tracing
 
 		/// <inheritdoc cref="SudokuGrid.GetPinnableReference"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public ref readonly short GetPinnableReference() => ref _innerGrid.GetPinnableReference();
 
 		/// <inheritdoc/>

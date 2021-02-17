@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
@@ -231,6 +232,7 @@ namespace Sudoku.Data.Stepping
 		/// </summary>
 		/// <returns>A reference to the element of the <see cref="UndoableGrid"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public ref readonly short GetPinnableReference()
 		{
 			fixed (short* pThis = _innerGrid)
