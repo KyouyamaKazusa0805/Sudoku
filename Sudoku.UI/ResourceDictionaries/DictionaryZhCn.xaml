@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:system="clr-namespace:System;assembly=System.Runtime">
+	<!-- MainWindow -->
+	<system:String x:Key="MainWindowTitle">向向的数独解决方案</system:String>
+	<system:String x:Key="MainWindowMenuFile">文件</system:String>
+	<system:String x:Key="MainWindowMenuFileOpen">导入一个题目……</system:String>
+	<system:String x:Key="MainWindowMenuFileToolTip">有关数独文件的基本操作</system:String>
+	<system:String x:Key="MainWindowMenuFileOpenToolTip">找到本地的文件，然后导入到程序里</system:String>
+
+	<system:String x:Key="MainWindowTextBlockGridIsReadOnlyWhileSolving">您无法在解题或分析题目的过程之中变动题目。</system:String>
+
+	<!-- MessageDialog -->
+	<system:String x:Key="MessageDialogTitle">提示信息</system:String>
+	<system:String x:Key="MessageDialogTitleInfo">信息</system:String>
+	<system:String x:Key="MessageDialogTitleWarning">警告</system:String>
+	<system:String x:Key="MessageDialogTitleError">错误</system:String>
+	<system:String x:Key="MessageDialogTextSudokuGridFileLoadFailed">抱歉，数独文件打开失败。</system:String>
+
+	<!-- FileDialog utils -->
+	<system:String x:Key="FileDialogTitlePuzzleLoading">导入一个数独盘面的文件…</system:String>
+	
+	<!-- File filters -->
+	<system:String x:Key="FilterNameJpg">JPG 文件</system:String>
+	<system:String x:Key="FilterNamePng">PNG 文件</system:String>
+	<system:String x:Key="FilterNameGif">GIF 文件</system:String>
+	<system:String x:Key="FilterNameBmp">BMP 位图文件</system:String>
+	<system:String x:Key="FilterNameWmf">WMF 矢量图文件</system:String>
+	<system:String x:Key="FilterNameJson">JSON 文件</system:String>
+	<system:String x:Key="FilterNameTxt">文本文件</system:String>
+	<system:String x:Key="FilterNameSudoku">数独文件</system:String>
+	<system:String x:Key="FilterNameSudokus">数独题库文件</system:String>
+	<system:String x:Key="FilterNameDrawings">数独绘图信息文件</system:String>
+	<system:String x:Key="FilterNameScfg">数独配置项文件</system:String>
+	<system:String x:Key="FilterNameAll">所有文件</system:String>
+</ResourceDictionary>

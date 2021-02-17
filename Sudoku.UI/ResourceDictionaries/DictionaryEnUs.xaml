@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:system="clr-namespace:System;assembly=System.Runtime">
+	<!-- MainWindow -->
+	<system:String x:Key="MainWindowTitle">Sunnie's Sudoku Solution</system:String>
+	<system:String x:Key="MainWindowMenuFile">File</system:String>
+	<system:String x:Key="MainWindowMenuFileToolTip">Indicates an operation about sudoku files</system:String>
+	<system:String x:Key="MainWindowMenuFileOpen">Open...</system:String>
+	<system:String x:Key="MainWindowMenuFileOpenToolTip">To open a file, and load the puzzle from that file</system:String>
+
+	<system:String x:Key="MainWindowTextBlockGridIsReadOnlyWhileSolving">You can't modify the grid while solving or generating.</system:String>
+
+	<!-- MessageDialog -->
+	<system:String x:Key="MessageDialogTitle">Message</system:String>
+	<system:String x:Key="MessageDialogTitleInfo">Info</system:String>
+	<system:String x:Key="MessageDialogTitleWarning">Warning</system:String>
+	<system:String x:Key="MessageDialogTitleError">Error</system:String>
+	<system:String x:Key="MessageDialogTextSudokuGridFileLoadFailed">Sorry, the file is failed to load.</system:String>
+
+	<!-- FileDialog utils -->
+	<system:String x:Key="FileDialogTitlePuzzleLoading">Load a sudoku grid file...</system:String>
+
+	<!-- File filters -->
+	<system:String x:Key="FilterNameJpg">Joint photographic experts group files</system:String>
+	<system:String x:Key="FilterNamePng">Portable network graphics files</system:String>
+	<system:String x:Key="FilterNameGif">Graphics interchange format files</system:String>
+	<system:String x:Key="FilterNameBmp">Bitmap files</system:String>
+	<system:String x:Key="FilterNameWmf">Windows metafile files</system:String>
+	<system:String x:Key="FilterNameJson">JavaScript object notation files</system:String>
+	<system:String x:Key="FilterNameTxt">Text files</system:String>
+	<system:String x:Key="FilterNameSudoku">Sudoku files</system:String>
+	<system:String x:Key="FilterNameSudokus">Sudoku database files</system:String>
+	<system:String x:Key="FilterNameDrawings">Sudoku drawing information files</system:String>
+	<system:String x:Key="FilterNameScfg">Sudoku configuration files</system:String>
+	<system:String x:Key="FilterNameAll">All files</system:String>
+</ResourceDictionary>
