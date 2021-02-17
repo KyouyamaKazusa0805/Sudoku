@@ -11,7 +11,9 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// Encapsulates a view when displaying the information on forms.
 	/// </summary>
+#if SUDOKU_UI
 	[Obsolete("Please use " + nameof(PresentationData) + " instead.")]
+#endif
 	public sealed class View : IEquatable<View>
 	{
 		/// <summary>

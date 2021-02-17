@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if SUDOKU_UI
+
+using System;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -43,3 +45,5 @@ namespace Sudoku.Drawing.Converters
 		}
 	}
 }
+
+#endif

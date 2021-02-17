@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if SUDOKU_UI
+
+using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -258,3 +260,5 @@ namespace Sudoku.Drawing
 		}
 	}
 }
+
+#endif

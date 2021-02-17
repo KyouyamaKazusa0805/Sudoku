@@ -8,7 +8,9 @@ namespace Sudoku.Models
 	/// Encapsulates a drawing information pair for highlighting cells,
 	/// candidates and regions.
 	/// </summary>
+#if SUDOKU_UI
 	[Obsolete("Please use Sudoku.Drawing.PaintingPair`1 instead.")]
+#endif
 	public readonly struct DrawingInfo : IValueEquatable<DrawingInfo>
 	{
 		/// <summary>

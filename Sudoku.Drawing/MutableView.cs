@@ -14,7 +14,9 @@ namespace Sudoku.Drawing
 	/// in the current collection.
 	/// </summary>
 	/// <seealso cref="View"/>
+#if SUDOKU_UI
 	[Obsolete("Please use " + nameof(PresentationData) + " instead.")]
+#endif
 	public sealed class MutableView : IEquatable<MutableView>
 	{
 		/// <inheritdoc cref="DefaultConstructor"/>

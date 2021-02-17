@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#if SUDOKU_UI
+
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.DocComments;
 
@@ -351,3 +353,5 @@ namespace Sudoku.Drawing
 		}
 	}
 }
+
+#endif
