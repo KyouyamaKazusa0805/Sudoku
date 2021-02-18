@@ -56,10 +56,6 @@ namespace Sudoku.CodeGen
 				sb.AppendLine();
 				sb.AppendLine();
 				sb.AppendLine(PrintInheritDoc());
-				sb.AppendLine(PrintLength(length));
-				sb.AppendLine();
-				sb.AppendLine();
-				sb.AppendLine(PrintInheritDoc());
 				sb.AppendLine(PrintToStringWithValue());
 				sb.AppendLine(PrintClosedBracketToken(1));
 				sb.AppendLine(PrintClosedBracketToken());
