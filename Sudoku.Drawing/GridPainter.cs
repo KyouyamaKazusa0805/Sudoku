@@ -572,20 +572,81 @@ namespace Sudoku.Drawing
 			{
 				if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 				{
+					#region Plan 1
+					//var color = Color.FromArgb(aWeight, rWeight, gWeight, bWeight);
+					//var rect = Converter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
+					//using var brush = new SolidBrush(color);
+					////using var pen = new Pen(color, 6F);
+					////g.DrawRectangle(pen, rect.Truncate());
+					//g.FillRectangle(brush, rect);
+					#endregion
+
+					#region Plan 2
 					var color = Color.FromArgb(aWeight, rWeight, gWeight, bWeight);
-					var rect = Converter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
-					using var brush = new SolidBrush(color);
-					//using var pen = new Pen(color, 6F);
-					//g.DrawRectangle(pen, rect.Truncate());
-					g.FillRectangle(brush, rect);
+					using var pen = new Pen(color, offset / 3 * 2);
+					switch (region)
+					{
+						case >= 0 and < 9:
+						{
+							// Block.
+							var rect = Converter.GetMouseRectangleViaRegion(region).Zoom(-offset);
+							g.DrawRoundedRectangle(pen, rect, offset);
+
+							break;
+						}
+						case >= 9 and < 27:
+						{
+							var (l, r) = Converter.GetAnchorsViaRegion(region);
+							var (w, h) = Converter.CellSize;
+							w /= 2;
+							h /= 2;
+							l = l.WithOffset(w, h);
+							r = r.WithOffset(-w, -h);
+
+							g.DrawLine(pen, l, r);
+
+							break;
+						}
+					}
+					#endregion
 				}
 				else if (Preferences.PaletteColors.TryGetValue(id, out var color))
 				{
-					var rect = Converter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
-					using var brush = new SolidBrush(Color.FromArgb(64, color));
-					//using var pen = new Pen(color, 6F);
-					//g.DrawRectangle(pen, rect.Truncate());
-					g.FillRectangle(brush, rect);
+					#region Plan 1
+					//var rect = Converter.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
+					//using var brush = new SolidBrush(Color.FromArgb(64, color));
+					////using var pen = new Pen(color, 6F);
+					////g.DrawRectangle(pen, rect.Truncate());
+					//g.FillRectangle(brush, rect);
+					#endregion
+
+					#region Plan 2
+					using var pen = new Pen(color, offset / 3 * 2);
+					switch (region)
+					{
+						case >= 0 and < 9:
+						{
+							// Block.
+							var rect = Converter.GetMouseRectangleViaRegion(region).Zoom(-offset);
+							g.DrawRoundedRectangle(pen, rect, offset);
+
+							break;
+						}
+						case >= 9 and < 27:
+						{
+							var (l, r) = Converter.GetAnchorsViaRegion(region);
+							var (w, h) = Converter.CellSize;
+							w /= 2;
+							h /= 2;
+							l = l.WithOffset(w, h);
+							r = r.WithOffset(-w, -h);
+
+							g.DrawLine(pen, l, r);
+
+							break;
+						}
+					}
+					#endregion
 				}
 			}
 		}

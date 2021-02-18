@@ -931,6 +931,13 @@
             Throws when the region is less than 0 or greater than 26.
             </exception>
         </member>
+        <member name="M:Sudoku.Drawing.PointConverter.GetAnchorsViaRegion(System.Int32)">
+            <summary>
+            Gets two points that specifies and represents the anchors of this region.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>The anchor points.</returns>
+        </member>
         <member name="M:Sudoku.Drawing.PointConverter.GetMousePointInCenter(System.Int32)">
             <summary>
             Get the mouse point of the center of a cell via its offset.

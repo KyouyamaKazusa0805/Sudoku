@@ -202,15 +202,28 @@ namespace Sudoku.Drawing
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Throws when the region is less than 0 or greater than 26.
 		/// </exception>
-		public RectangleF GetMouseRectangleViaRegion(int region) =>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public RectangleF GetMouseRectangleViaRegion(int region)
+		{
+			var (l, r) = GetAnchorsViaRegion(region);
+			return RectangleEx.CreateInstance(l, r);
+		}
+
+		/// <summary>
+		/// Gets two points that specifies and represents the anchors of this region.
+		/// </summary>
+		/// <param name="region">The region.</param>
+		/// <returns>The anchor points.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int region) =>
 			region switch
 			{
 				>= 0 and < 9 when (region % 3, region / 3) is (var v1, var v2) =>
-					RectangleEx.CreateInstance(GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
+					(GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
 				>= 9 and < 18 when region - 9 is var v =>
-					RectangleEx.CreateInstance(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
+					(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
 				>= 18 and < 27 when region - 18 is var v =>
-					RectangleEx.CreateInstance(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
+					(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
 				_ => throw new ArgumentOutOfRangeException(nameof(region))
 			};
 
