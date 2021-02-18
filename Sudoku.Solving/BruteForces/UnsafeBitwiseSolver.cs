@@ -5,6 +5,7 @@ using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
+using Sudoku.Resources;
 
 namespace Sudoku.Solving.BruteForces
 {
@@ -61,7 +62,7 @@ namespace Sudoku.Solving.BruteForces
 
 
 		/// <inheritdoc/>
-		public string SolverName => "Bitwise (Unsafe)";
+		public string SolverName => TextResources.Current.Bitwise;
 
 
 		/// <inheritdoc/>

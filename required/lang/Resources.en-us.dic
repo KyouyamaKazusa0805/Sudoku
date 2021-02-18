@@ -10,7 +10,7 @@
   "Manual": "Manual",
   "ManualLight": "Manual (Light)",
   "Backtracking": "Backtracking",
-  "Bitwise": "Bitwise",
+  "Bitwise": "Bitwise (Unsafe)",
   "OneLineLinq": "One line LINQ",
   "ProgressAlsWWing": "Almost Locked Sets W-Wing",
   "ProgressAlsXyWing": "Almost Locked Sets XY-Wing",
