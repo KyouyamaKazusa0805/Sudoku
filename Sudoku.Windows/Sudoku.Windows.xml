@@ -2585,6 +2585,9 @@
         <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxShowStepDifficulty_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
+        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxShowLightRegion_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
+        </member>
         <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxSearchExtendedUniqueRectangle_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>

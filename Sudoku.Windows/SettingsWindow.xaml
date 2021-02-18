@@ -84,6 +84,10 @@
 							  Content="{DynamicResource SettingsDisplayAbbrRatherThanFullNameOfSteps}"
 							  Grid.Row="8" VerticalAlignment="Center"
 							  Click="CheckBoxDisplayAbbrRatherThanFullNameOfSteps_Click"/>
+					<CheckBox x:Name="_checkBoxShowLightRegion"
+							  Content="{DynamicResource SettingsShowLightRegion}"
+							  Grid.Row="9" VerticalAlignment="Center"
+							  Click="CheckBoxShowLightRegion_Click" />
 				</Grid>
 			</TabItem>
 			<TabItem Header="{DynamicResource SettingsTabSolving}">

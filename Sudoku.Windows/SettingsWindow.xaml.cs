@@ -121,6 +121,7 @@ namespace Sudoku.Windows
 			_checkBoxShowStepLabel.IsChecked = Settings.ShowStepLabel;
 			_checkBoxShowStepDifficulty.IsChecked = Settings.ShowStepDifficulty;
 			_checkBoxDisplayAbbrRatherThanFullNameOfSteps.IsChecked = Settings.DisplayAcronymRatherThanFullNameOfSteps;
+			_checkBoxShowLightRegion.IsChecked = Settings.ShowLightRegion;
 
 			// Page 2.
 			_checkBoxAllowOverlappingAlses.IsChecked = Settings.MainManualSolver.AllowOverlappingAlses;
@@ -303,6 +304,10 @@ namespace Sudoku.Windows
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowStepDifficulty_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxShowStepDifficulty.IsChecked = Settings.ShowStepDifficulty ^= true;
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void CheckBoxShowLightRegion_Click(object sender, RoutedEventArgs e) =>
+			_assigments += () => _checkBoxShowStepDifficulty.IsChecked = Settings.ShowLightRegion ^= true;
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxSearchExtendedUniqueRectangle_Click(object sender, RoutedEventArgs e) =>

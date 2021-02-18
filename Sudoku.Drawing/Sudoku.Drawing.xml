@@ -996,6 +996,12 @@
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
+        <member name="P:Sudoku.Drawing.Settings.ShowLightRegion">
+            <summary>
+            <para>Indicates whether the grid painter will use new algorithm to render a region (lighter).</para>
+            <para>The value is <see langword="true"/> in author reserved case.</para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Drawing.Settings.ValueScale">
             <summary>
             <para>Indicates the scale of values.</para>

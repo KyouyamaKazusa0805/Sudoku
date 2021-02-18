@@ -223,6 +223,7 @@
 	<sys:String x:Key="SettingsDisplayAbbrRatherThanFullNameOfSteps">在步骤信息上显示简称而不是技巧全名</sys:String>
 	<sys:String x:Key="SettingsShowStepLabel">在解题步骤页面下显示每一步技巧的步骤编号</sys:String>
 	<sys:String x:Key="SettingsShowStepDifficulty">在解题步骤页面下显示每一步技巧的难度系数</sys:String>
+	<sys:String x:Key="SettingsShowLightRegion">使用清爽的线条表示和渲染区域</sys:String>
 	<sys:String x:Key="SettingsTabSolving">解题</sys:String>
 	<sys:String x:Key="SettingsSolvingChains">链（Chains）</sys:String>
 	<sys:String x:Key="SettingsSolvingChainsMaxLength">最长长度：</sys:String>

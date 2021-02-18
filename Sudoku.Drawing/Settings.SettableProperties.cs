@@ -13,6 +13,15 @@ namespace Sudoku.Drawing
 		public bool ShowCandidates { get; set; } = true;
 
 		/// <summary>
+		/// <para>Indicates whether the grid painter will use new algorithm to render a region (lighter).</para>
+		/// <para>The value is <see langword="true"/> in author reserved case.</para>
+		/// </summary>
+		public bool ShowLightRegion { get; set; }
+#if AUTHOR_RESERVED
+		= true;
+#endif
+
+		/// <summary>
 		/// <para>Indicates the scale of values.</para>
 		/// <para>The value is <c>0.9M</c> in default case.</para>
 		/// </summary>
