@@ -56,6 +56,14 @@ namespace Sudoku.CodeGen
 				sb.AppendLine();
 				sb.AppendLine();
 				sb.AppendLine(PrintInheritDoc());
+				sb.AppendLine(PrintLength(length));
+				sb.AppendLine();
+				sb.AppendLine();
+				sb.AppendLine(PrintInheritDoc());
+				sb.AppendLine(PrintIndexerWithValue(length));
+				sb.AppendLine();
+				sb.AppendLine();
+				sb.AppendLine(PrintInheritDoc());
 				sb.AppendLine(PrintToStringWithValue());
 				sb.AppendLine(PrintClosedBracketToken(1));
 				sb.AppendLine(PrintClosedBracketToken());
@@ -154,7 +162,7 @@ namespace Sudoku.CodeGen
 			{
 				sb.Append('T').Append(i).Append(' ').Append("Item").Append(i).Append(CommaToken);
 			}
-			sb.Append("int PriorKey)");
+			sb.Append("int PriorKey) : ITuple");
 			return sb.ToString();
 		}
 		private static string PrintUserDefinedConstructorDocComment(int length)
@@ -212,6 +220,38 @@ namespace Sudoku.CodeGen
 		}
 		private static string PrintInheritDoc() => UsingTabsAsIndentingCharacters ? "\t\t/// <inheritdoc/>" : "        /// <inheritdoc/>";
 		private static string PrintLength(int length) => $"{(UsingTabsAsIndentingCharacters ? "\t\t" : "        ")}int ITuple.Length => {length.ToString()};";
+		private static string PrintIndexerWithValue(int length)
+		{
+			var sb = new StringBuilder();
+			sb.Append(UsingTabsAsIndentingCharacters ? "\t\t" : "        ");
+			sb.Append("object? ITuple.this[int index] =>");
+			if (length <= 4)
+			{
+				sb.Append(' ').Append(PrintIndexerValue(false, length));
+			}
+			else
+			{
+				sb.AppendLine().Append(PrintIndexerValue(true, length));
+			}
+
+			return sb.ToString();
+		}
+		private static string PrintIndexerValue(bool withIndent, int length)
+		{
+			var sb = new StringBuilder();
+			if (withIndent)
+			{
+				sb.Append(UsingTabsAsIndentingCharacters ? "\t\t\t" : "            ");
+			}
+			sb.Append("index switch { ");
+			for (int i = 1; i <= length; i++)
+			{
+				sb.Append(i).Append(" => ").Append("Item").Append(i).Append(CommaToken);
+			}
+			sb.Remove(sb.Length - CommaToken.Length, CommaToken.Length).Append(" };");
+
+			return sb.ToString();
+		}
 		private static string PrintToStringWithValue() => $"{(UsingTabsAsIndentingCharacters ? "\t\t" : "        ")}public override string ToString() => ((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;";
 	}
 }
