@@ -6,6 +6,9 @@
 	/// <param name="Cell">Indicates the cell.</param>
 	/// <param name="OldMask">Indicates the old mask.</param>
 	/// <param name="NewMask">Indicates the new mask.</param>
+#if SUDOKU_UI
+	[Obsolete("In the future, this type won't be used.", false)]
+#endif
 	public sealed record SetMaskStep(int Cell, short OldMask, short NewMask) : IStep
 	{
 		/// <inheritdoc/>

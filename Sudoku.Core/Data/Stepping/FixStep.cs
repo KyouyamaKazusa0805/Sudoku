@@ -6,6 +6,9 @@ namespace Sudoku.Data.Stepping
 	/// Encapsulates a fix step.
 	/// </summary>
 	/// <param name="AllCells">Indicates all cells to fix.</param>
+#if SUDOKU_UI
+	[Obsolete("In the future, this type won't be used.", false)]
+#endif
 	public sealed record FixStep(in Cells AllCells) : IStep
 	{
 		/// <inheritdoc/>

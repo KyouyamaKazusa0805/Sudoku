@@ -14,6 +14,9 @@ namespace Sudoku.Data.Stepping
 #if DEBUG
 	[DebuggerDisplay("{ToString(\"#.\")}")]
 #endif
+#if SUDOKU_UI
+	[Obsolete("In the future, this class won't be used.", false)]
+#endif
 	public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable
 	{
 		/// <summary>

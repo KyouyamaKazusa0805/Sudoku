@@ -6,6 +6,9 @@
 	/// <param name="Cell">The cell.</param>
 	/// <param name="OldStatus">The old status.</param>
 	/// <param name="NewStatus">The new status.</param>
+#if SUDOKU_UI
+	[Obsolete("In the future, this type won't be used.", false)]
+#endif
 	public sealed record SetStatusStep(int Cell, CellStatus OldStatus, CellStatus NewStatus) : IStep
 	{
 		/// <inheritdoc/>

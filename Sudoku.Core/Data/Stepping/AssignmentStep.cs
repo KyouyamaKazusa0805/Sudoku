@@ -10,6 +10,9 @@ namespace Sudoku.Data.Stepping
 	/// <param name="Cell">The current cell to fill with a digit.</param>
 	/// <param name="Digit">The current digit to assign.</param>
 	/// <param name="Snapshot">The grid snapshot.</param>
+#if SUDOKU_UI
+	[Obsolete("In the future, this type won't be used.", false)]
+#endif
 	public sealed record AssignmentStep(int Cell, int Digit, in SudokuGrid Snapshot) : IStep
 	{
 		/// <inheritdoc/>

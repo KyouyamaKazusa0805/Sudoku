@@ -13,6 +13,9 @@ namespace Sudoku.Data.Stepping
 	/// I use <see cref="IntPtr"/> instead.
 	/// </remarks>
 	/// <seealso cref="IntPtr"/>
+#if SUDOKU_UI
+	[Obsolete("In the future, this type won't be used.", false)]
+#endif
 	public sealed record ResetStep(IntPtr OldMasks, IntPtr NewMasks) : IStep
 	{
 		/// <inheritdoc/>
