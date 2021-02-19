@@ -8,7 +8,7 @@ namespace Sudoku.Techniques
 	/// </summary>
 	/// <remarks>
 	/// For example, a <see cref="Technique.DeathBlossom"/> can be categorized
-	/// as two flags <see cref="Als"/> and <see cref="LongChaining"/>
+	/// as two flags <see cref="Als"/> and <see cref="LongChaining"/>.
 	/// </remarks>
 	/// <seealso cref="Als"/>
 	/// <seealso cref="LongChaining"/>

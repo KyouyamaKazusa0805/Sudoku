@@ -5896,7 +5896,7 @@
             </summary>
             <remarks>
             For example, a <see cref="F:Sudoku.Techniques.Technique.DeathBlossom"/> can be categorized
-            as two flags <see cref="F:Sudoku.Techniques.TechniqueTags.Als"/> and <see cref="F:Sudoku.Techniques.TechniqueTags.LongChaining"/>
+            as two flags <see cref="F:Sudoku.Techniques.TechniqueTags.Als"/> and <see cref="F:Sudoku.Techniques.TechniqueTags.LongChaining"/>.
             </remarks>
             <seealso cref="F:Sudoku.Techniques.TechniqueTags.Als"/>
             <seealso cref="F:Sudoku.Techniques.TechniqueTags.LongChaining"/>
