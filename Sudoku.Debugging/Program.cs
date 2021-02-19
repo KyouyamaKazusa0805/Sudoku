@@ -1,6 +1,16 @@
-﻿using System;
+﻿#pragma warning disable CA1050
+
+using System;
 using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Solving.Manual;
 
-var tuple = new KeyedTuple<int, int, double, double>(1, 2, 3, 5, 1);
+Console.WriteLine("Hello");
 
-Console.WriteLine(tuple);
+public sealed class MyStepSearcher : StepSearcher
+{
+	public static TechniqueProperties? Properties { get; }
+
+	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid) =>
+		throw new NotImplementedException();
+}
