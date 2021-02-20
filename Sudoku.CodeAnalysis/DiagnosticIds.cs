@@ -17,7 +17,7 @@
 	/// </summary>
 	internal static class HelpLinks
 	{
-		public const string Sudoku001 = "https://gitee.com/SunnieShine/Sudoku/wikis/%20SUDOKU001%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E5%BF%85%E9%A1%BB%E6%98%AF%20public%20%E7%9A%84?sort_id=3599808";
+		public const string Sudoku001 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU001%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E5%BF%85%E9%A1%BB%E6%98%AF%20public%20%E7%9A%84?sort_id=3599808";
 		public const string Sudoku002 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU002%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E5%BF%85%E9%A1%BB%E6%98%AF%E5%8F%AA%E8%AF%BB%E7%9A%84?sort_id=3599816";
 		public const string Sudoku003 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU003%EF%BC%9AProperties%20%E6%8B%A5%E6%9C%89%E9%94%99%E8%AF%AF%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B?sort_id=3599818";
 		public const string Sudoku004 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU004%EF%BC%9A%E4%BB%8E%20StepSearcher%20%E6%B4%BE%E7%94%9F%E7%9A%84%E7%B1%BB%E5%BF%85%E9%A1%BB%E6%8B%A5%E6%9C%89%20Properties%20%E5%B1%9E%E6%80%A7?sort_id=3599824";
