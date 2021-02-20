@@ -6,7 +6,7 @@ using Sudoku.CodeAnalysis.Extensions;
 
 namespace Sudoku.CodeAnalysis
 {
-	public sealed partial class PropertiesInStepSearcherAnalyzer
+	partial class PropertiesInStepSearcherAnalyzer
 	{
 		/// <summary>
 		/// Encapsulates a target property searcher.
