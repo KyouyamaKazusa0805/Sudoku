@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
 		<Authors>Sunnie</Authors>
 		<Description>The project that uses source generator to analyze some files.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
