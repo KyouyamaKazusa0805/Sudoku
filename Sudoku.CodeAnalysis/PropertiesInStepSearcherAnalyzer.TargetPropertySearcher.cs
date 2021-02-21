@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -77,7 +78,7 @@ namespace Sudoku.CodeAnalysis
 			/// the property <see cref="HasTargetProperty"/> is <see langword="true"/>.
 			/// </remarks>
 			/// <seealso cref="HasTargetProperty"/>
-			public (PropertyDeclarationSyntax Node, IPropertySymbol Symbol) TargetPropertyInfo { get; private set; }
+			public IList<(PropertyDeclarationSyntax Node, IPropertySymbol Symbol)>? TargetPropertyInfo { get; private set; }
 
 
 			/// <inheritdoc/>
@@ -121,7 +122,11 @@ namespace Sudoku.CodeAnalysis
 								default:
 								{
 									HasTargetProperty = true;
-									TargetPropertyInfo = (node, propertySymbol);
+
+									TargetPropertyInfo ??=
+										new List<(PropertyDeclarationSyntax, IPropertySymbol)>();
+
+									TargetPropertyInfo.Add((node, propertySymbol));
 
 									return;
 								}

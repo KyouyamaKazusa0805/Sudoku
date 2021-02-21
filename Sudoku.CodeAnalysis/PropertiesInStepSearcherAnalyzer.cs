@@ -1,4 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Sudoku.CodeAnalysis.Extensions;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -42,109 +44,131 @@ namespace Sudoku.CodeAnalysis
 
 				switch (collector.HasTargetProperty)
 				{
-					case true:
+					case true when collector.TargetPropertyInfo is { } targetPropertyInfos:
 					{
-						switch (collector.TargetPropertyInfo)
+						foreach (var targetPropertyInfo in targetPropertyInfos)
 						{
-							case (_, { DeclaredAccessibility: not Accessibility.Public } symbol):
+							switch (targetPropertyInfo)
 							{
-								// The property doesn't expose outside.
-								context.ReportDiagnostic(
-									Diagnostic.Create(
-										id: DiagnosticIds.Sudoku001,
-										category: Categories.Usage,
-										message: Messages.Sudoku001,
-										severity: DiagnosticSeverity.Error,
-										defaultSeverity: DiagnosticSeverity.Error,
-										isEnabledByDefault: true,
-										warningLevel: 0,
-										title: Titles.Sudoku001,
-										helpLink: HelpLinks.Sudoku001,
-										location: symbol.Locations[0]));
+								case (_, { DeclaredAccessibility: not Accessibility.Public } symbol):
+								{
+									// The property doesn't expose outside.
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											id: DiagnosticIds.Sudoku001,
+											category: Categories.Usage,
+											message: Messages.Sudoku001,
+											severity: DiagnosticSeverity.Error,
+											defaultSeverity: DiagnosticSeverity.Error,
+											isEnabledByDefault: true,
+											warningLevel: 0,
+											title: Titles.Sudoku001,
+											helpLink: HelpLinks.Sudoku001,
+											location: symbol.Locations[0]));
 
-								break;
-							}
-							case (_, { IsReadOnly: false }):
-							case (_, { IsWriteOnly: true }):
-							{
-								var symbol = collector.TargetPropertyInfo.Symbol;
+									break;
+								}
+								case (_, { IsReadOnly: false }):
+								case (_, { IsWriteOnly: true }):
+								{
+									var symbol = targetPropertyInfo.Symbol;
 
-								// The property shouldn't settable.
-								context.ReportDiagnostic(
-									Diagnostic.Create(
-										id: DiagnosticIds.Sudoku002,
-										category: Categories.Usage,
-										message: Messages.Sudoku002,
-										severity: DiagnosticSeverity.Error,
-										defaultSeverity: DiagnosticSeverity.Error,
-										isEnabledByDefault: true,
-										warningLevel: 0,
-										title: Titles.Sudoku002,
-										helpLink: HelpLinks.Sudoku002,
-										location: (
-											symbol.SetMethod is { } setMethodSymbol
-											? (ISymbol)setMethodSymbol
-											: symbol
-										).Locations[0]));
+									// The property shouldn't settable.
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											id: DiagnosticIds.Sudoku002,
+											category: Categories.Usage,
+											message: Messages.Sudoku002,
+											severity: DiagnosticSeverity.Error,
+											defaultSeverity: DiagnosticSeverity.Error,
+											isEnabledByDefault: true,
+											warningLevel: 0,
+											title: Titles.Sudoku002,
+											helpLink: HelpLinks.Sudoku002,
+											location: (
+												symbol.SetMethod is { } setMethodSymbol
+												? (ISymbol)setMethodSymbol
+												: symbol
+											).Locations[0]));
 
-								break;
-							}
-							case (_, { NullableAnnotation: NullableAnnotation.Annotated } symbol):
-							{
-								context.ReportDiagnostic(
-									Diagnostic.Create(
-										id: DiagnosticIds.Sudoku005,
-										category: Categories.Usage,
-										message: Messages.Sudoku005,
-										severity: DiagnosticSeverity.Error,
-										defaultSeverity: DiagnosticSeverity.Error,
-										isEnabledByDefault: true,
-										warningLevel: 0,
-										title: Titles.Sudoku005,
-										helpLink: HelpLinks.Sudoku005,
-										location: symbol.Locations[0]));
+									break;
+								}
+								case (_, { NullableAnnotation: NullableAnnotation.Annotated } symbol):
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											id: DiagnosticIds.Sudoku005,
+											category: Categories.Usage,
+											message: Messages.Sudoku005,
+											severity: DiagnosticSeverity.Error,
+											defaultSeverity: DiagnosticSeverity.Error,
+											isEnabledByDefault: true,
+											warningLevel: 0,
+											title: Titles.Sudoku005,
+											helpLink: HelpLinks.Sudoku005,
+											location: symbol.Locations[0]));
 
-								break;
-							}
-							case ({ Initializer: null } node, _):
-							{
-								context.ReportDiagnostic(
-									Diagnostic.Create(
-										id: DiagnosticIds.Sudoku006,
-										category: Categories.Usage,
-										message: Messages.Sudoku006,
-										severity: DiagnosticSeverity.Error,
-										defaultSeverity: DiagnosticSeverity.Error,
-										isEnabledByDefault: true,
-										warningLevel: 0,
-										title: Titles.Sudoku006,
-										helpLink: HelpLinks.Sudoku006,
-										location: node.GetLocation()));
+									break;
+								}
+								case ({ Initializer: null } node, _):
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											id: DiagnosticIds.Sudoku006,
+											category: Categories.Usage,
+											message: Messages.Sudoku006,
+											severity: DiagnosticSeverity.Error,
+											defaultSeverity: DiagnosticSeverity.Error,
+											isEnabledByDefault: true,
+											warningLevel: 0,
+											title: Titles.Sudoku006,
+											helpLink: HelpLinks.Sudoku006,
+											location: node.GetLocation()));
 
-								break;
+									break;
+								}
+								case ({ Initializer: { Value: var exprNode } } node, _)
+								when !exprNode.IsKind(
+									SyntaxKind.ObjectCreationExpression,
+									SyntaxKind.ImplicitObjectCreationExpression
+								):
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											id: DiagnosticIds.Sudoku007,
+											category: Categories.Usage,
+											message: Messages.Sudoku007,
+											severity: DiagnosticSeverity.Error,
+											defaultSeverity: DiagnosticSeverity.Error,
+											isEnabledByDefault: true,
+											warningLevel: 0,
+											title: Titles.Sudoku007,
+											helpLink: HelpLinks.Sudoku007,
+											location: node.GetLocation()));
 
-								// TODO: Check null assignments.
-							}
-							case var (_, symbol)
-							when !SymbolEqualityComparer.Default.Equals(
-								symbol.Type,
-								compilation.GetTypeByMetadataName(TechniquePropertiesTypeFullName)
-							):
-							{
-								context.ReportDiagnostic(
-									Diagnostic.Create(
-										id: DiagnosticIds.Sudoku003,
-										category: Categories.Usage,
-										message: Messages.Sudoku003,
-										severity: DiagnosticSeverity.Error,
-										defaultSeverity: DiagnosticSeverity.Error,
-										isEnabledByDefault: true,
-										warningLevel: 0,
-										title: Titles.Sudoku003,
-										helpLink: HelpLinks.Sudoku003,
-										location: symbol.Locations[0]));
+									break;
+								}
+								case var (_, symbol)
+								when !SymbolEqualityComparer.Default.Equals(
+									symbol.Type,
+									compilation.GetTypeByMetadataName(TechniquePropertiesTypeFullName)
+								):
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											id: DiagnosticIds.Sudoku003,
+											category: Categories.Usage,
+											message: Messages.Sudoku003,
+											severity: DiagnosticSeverity.Error,
+											defaultSeverity: DiagnosticSeverity.Error,
+											isEnabledByDefault: true,
+											warningLevel: 0,
+											title: Titles.Sudoku003,
+											helpLink: HelpLinks.Sudoku003,
+											location: symbol.Locations[0]));
 
-								break;
+									break;
+								}
 							}
 						}
 
