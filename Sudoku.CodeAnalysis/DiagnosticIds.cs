@@ -75,7 +75,7 @@
 		public const string Sudoku009 = "The specified method can't be found and called";
 		public const string Sudoku010 = "The number of arguments dismatched in this dynamically invocation";
 		public const string Sudoku011 = "The argument type dismatched in this dynamically invocation";
-		public const string Sudoku012 = "The method returns void, but you make it a rvalue expression";
+		public const string Sudoku012 = "The method returns void, but you make it an rvalue expression";
 	}
 
 	/// <summary>
