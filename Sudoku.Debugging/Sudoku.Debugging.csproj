@@ -22,5 +22,10 @@
 		<ProjectReference Include="..\Sudoku.CodeGen\Sudoku.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\Sudoku.CodeAnalysis\Sudoku.CodeAnalysis.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="..\required\lang\Resources.en-us.dic" />
+		<AdditionalFiles Include="..\required\lang\Resources.zh-cn.dic" />
+	</ItemGroup>
 	
 </Project>

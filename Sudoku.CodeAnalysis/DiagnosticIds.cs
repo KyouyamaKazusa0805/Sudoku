@@ -29,6 +29,7 @@
 		public const string Sudoku006 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU006%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E9%9C%80%E8%A6%81%E6%9C%89%E9%BB%98%E8%AE%A4%E5%80%BC?sort_id=3602787";
 		public const string Sudoku007 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU007%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E5%8F%AA%E8%83%BD%E4%BB%A5%20new%20%E8%AF%AD%E5%8F%A5%E8%BF%9B%E8%A1%8C%E5%88%9D%E5%A7%8B%E5%8C%96?sort_id=3607697";
 		public const string Sudoku008 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU008%EF%BC%9A%E6%97%A0%E6%B3%95%E5%9C%A8%E8%B5%84%E6%BA%90%E5%AD%97%E5%85%B8%E9%87%8C%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E9%94%AE%E7%9A%84%E8%B5%84%E6%BA%90?sort_id=3608009";
+		public const string Sudoku009 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU009%EF%BC%9ACurrent%20%E5%AF%B9%E8%B1%A1%E5%8F%AA%E8%83%BD%E8%B0%83%E7%94%A8%20Deserialize%E3%80%81Serialize%20%E5%92%8C%20ChangeLanguage%20%E7%9A%84%E5%85%B6%E4%B8%80?sort_id=3610020";
 	}
 
 	/// <summary>

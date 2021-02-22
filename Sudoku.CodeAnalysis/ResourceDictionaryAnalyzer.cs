@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -38,6 +39,12 @@ namespace Sudoku.CodeAnalysis
 			}
 
 			// Check all syntax trees if available.
+			string[] texts = (from file in context.AdditionalFiles select File.ReadAllText(file.Path)).ToArray();
+			if (texts.Length == 0)
+			{
+				return;
+			}
+
 			foreach (var syntaxTree in compilation.SyntaxTrees)
 			{
 				// Check whether the syntax contains the root node.
@@ -61,22 +68,11 @@ namespace Sudoku.CodeAnalysis
 				// Iterate on each dynamically called location.
 				foreach (var (node, value) in collector.Collection)
 				{
-					var jsonProprtyNameRegex = new Regex($@"""{value}""(?=\:)");
+					var jsonProprtyNameRegex = new Regex($@"""{value}""(?=\:\s""[^""]+"",?)");
 
 					// Check all dictionaries. If all dictionaries don't contain that key,
 					// we'll report on this.
-					bool flag = false;
-					foreach (var file in context.AdditionalFiles)
-					{
-						string json = File.ReadAllText(file.Path);
-						var match = jsonProprtyNameRegex.Match(json);
-						if (match.Success)
-						{
-							// Found that value. Just skip this case.
-							flag = true;
-						}
-					}
-					if (flag)
+					if (texts.Any(text => jsonProprtyNameRegex.Match(text).Success))
 					{
 						continue;
 					}
@@ -84,7 +80,7 @@ namespace Sudoku.CodeAnalysis
 					// Report the diagnostic result.
 					context.ReportDiagnostic(
 						Diagnostic.Create(
-							new(
+							descriptor: new(
 								id: DiagnosticIds.Sudoku008,
 								title: Titles.Sudoku008,
 								messageFormat: Messages.Sudoku008,
@@ -94,7 +90,7 @@ namespace Sudoku.CodeAnalysis
 								helpLinkUri: HelpLinks.Sudoku008
 							),
 							location: node.Name.GetLocation(),
-							messageArgs: new[] { node.Name.Identifier.ValueText }
+							messageArgs: new[] { value }
 						)
 					);
 				}
@@ -132,7 +128,8 @@ namespace Sudoku.CodeAnalysis
 			/// Initializes an instance with the specified semantic model.
 			/// </summary>
 			/// <param name="semanticModel">The semantic model.</param>
-			public DynamicallyUsingResourceDictionarySearcher(SemanticModel semanticModel) => _semanticModel = semanticModel;
+			public DynamicallyUsingResourceDictionarySearcher(SemanticModel semanticModel) =>
+				_semanticModel = semanticModel;
 
 
 			/// <summary>
