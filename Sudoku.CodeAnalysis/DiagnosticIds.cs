@@ -15,6 +15,8 @@
 		public const string Sudoku008 = "SUDOKU008";
 		public const string Sudoku009 = "SUDOKU009";
 		public const string Sudoku010 = "SUDOUK010";
+		public const string Sudoku011 = "SUDOKU011";
+		public const string Sudoku012 = "SUDOKU012";
 	}
 
 	/// <summary>
@@ -22,16 +24,18 @@
 	/// </summary>
 	internal static class HelpLinks
 	{
-		public const string Sudoku001 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU001%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E5%BF%85%E9%A1%BB%E6%98%AF%20public%20%E7%9A%84?sort_id=3599808";
-		public const string Sudoku002 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU002%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E5%BF%85%E9%A1%BB%E6%98%AF%E5%8F%AA%E8%AF%BB%E7%9A%84?sort_id=3599816";
-		public const string Sudoku003 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU003%EF%BC%9AProperties%20%E6%8B%A5%E6%9C%89%E9%94%99%E8%AF%AF%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B?sort_id=3599818";
-		public const string Sudoku004 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU004%EF%BC%9A%E4%BB%8E%20StepSearcher%20%E6%B4%BE%E7%94%9F%E7%9A%84%E7%B1%BB%E5%BF%85%E9%A1%BB%E6%8B%A5%E6%9C%89%20Properties%20%E5%B1%9E%E6%80%A7?sort_id=3599824";
-		public const string Sudoku005 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU005%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E4%B8%8D%E5%8F%AF%E4%B8%BA%20null?sort_id=3599826";
-		public const string Sudoku006 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU006%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E9%9C%80%E8%A6%81%E6%9C%89%E9%BB%98%E8%AE%A4%E5%80%BC?sort_id=3602787";
-		public const string Sudoku007 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU007%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E5%8F%AA%E8%83%BD%E4%BB%A5%20new%20%E8%AF%AD%E5%8F%A5%E8%BF%9B%E8%A1%8C%E5%88%9D%E5%A7%8B%E5%8C%96?sort_id=3607697";
-		public const string Sudoku008 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU008%EF%BC%9A%E6%97%A0%E6%B3%95%E5%9C%A8%E8%B5%84%E6%BA%90%E5%AD%97%E5%85%B8%E9%87%8C%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E9%94%AE%E7%9A%84%E8%B5%84%E6%BA%90?sort_id=3608009";
-		public const string Sudoku009 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU009%EF%BC%9ACurrent%20%E5%AF%B9%E8%B1%A1%E5%8F%AA%E8%83%BD%E8%B0%83%E7%94%A8%20Deserialize%E3%80%81Serialize%20%E5%92%8C%20ChangeLanguage%20%E7%9A%84%E5%85%B6%E4%B8%80?sort_id=3610020";
-		public const string Sudoku010 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU010%EF%BC%9ACurrent%20%E5%AF%B9%E8%B1%A1%E8%B0%83%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95%20'%7B0%7D'%20%E7%9A%84%E5%8F%82%E6%95%B0%20'%7B1%7D'%20%E5%BF%85%E9%A1%BB%E6%98%AF%20'%7B2%7D'%20%E7%B1%BB%E5%9E%8B%E7%9A%84?sort_id=3610022";
+		public const string Sudoku001 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU001?sort_id=3599808";
+		public const string Sudoku002 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU002?sort_id=3599816";
+		public const string Sudoku003 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU003?sort_id=3599818";
+		public const string Sudoku004 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU004?sort_id=3599824";
+		public const string Sudoku005 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU005?sort_id=3599826";
+		public const string Sudoku006 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU006?sort_id=3602787";
+		public const string Sudoku007 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU007?sort_id=3607697";
+		public const string Sudoku008 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU008?sort_id=3608009";
+		public const string Sudoku009 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU009?sort_id=3610020";
+		public const string Sudoku010 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU010?sort_id=3610022";
+		public const string Sudoku011 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU011?sort_id=3610347";
+		public const string Sudoku012 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU012?sort_id=3610364";
 	}
 
 	/// <summary>
@@ -69,7 +73,9 @@
 		public const string Sudoku007 = "The property 'Properties' must be initialized by a new clause";
 		public const string Sudoku008 = "The specified key can't be found in the resource dictionary";
 		public const string Sudoku009 = "The specified method can't be found and called";
-		public const string Sudoku010 = "The argument type dismatched in this dynamically invocation";
+		public const string Sudoku010 = "The number of arguments dismatched in this dynamically invocation";
+		public const string Sudoku011 = "The argument type dismatched in this dynamically invocation";
+		public const string Sudoku012 = "The method returns void, but you make it a rvalue expression";
 	}
 
 	/// <summary>
@@ -86,6 +92,8 @@
 		public const string Sudoku007 = "The property 'Properties' must be initialized by a new clause; try to initialize it with 'new(...)' or 'new TechniqueProperties(...)' instead.";
 		public const string Sudoku008 = "The specified key '{0}' can't be found in the resource dictionary; please check whether your input is valid.";
 		public const string Sudoku009 = "The specified method '{0}' can't be found and called; all supported methods are 'Serialize', 'Deserialize' and 'ChangeLanguage'.";
-		public const string Sudoku010 = "The argument '{0}' in the method '{1}' must be of type '{2}' in this dynamically invocation.";
+		public const string Sudoku010 = "The method '{0}' expects {1} argument(s), but your input contains {2} argument(s).";
+		public const string Sudoku011 = "The argument '{0}' in the method '{1}' must be of type '{2}', but the actual type is '{3}'.";
+		public const string Sudoku012 = "The method '{0}' returns void, but you make it a rvalue expression";
 	}
 }
