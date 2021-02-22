@@ -1,4 +1,5 @@
-﻿using Sudoku.Resources;
+﻿using Sudoku.Globalization;
+using Sudoku.Resources;
 
 internal static class Program
 {
@@ -9,6 +10,6 @@ internal static class Program
 		TextResources.Current.GreetWith("Sunnie"); // SUDOKU009.
 		TextResources.Current.Serialize(); // SUDOKU010.
 		TextResources.Current.Serialize(10, 30); // SUDOKU011.
-		_ = TextResources.Current.ChangeLanguage(); // SUDOKU012.
+		_ = TextResources.Current.ChangeLanguage(CountryCode.EnUs); // SUDOKU012.
 	}
 }

@@ -93,7 +93,7 @@
 		public const string Sudoku008 = "The specified key '{0}' can't be found in the resource dictionary; please check whether your input is valid.";
 		public const string Sudoku009 = "The specified method '{0}' can't be found and called; all supported methods are 'Serialize', 'Deserialize' and 'ChangeLanguage'.";
 		public const string Sudoku010 = "The method '{0}' expects {1} argument(s), but your input contains {2} argument(s).";
-		public const string Sudoku011 = "The argument '{0}' in the method '{1}' must be of type '{2}', but the actual type is '{3}'.";
+		public const string Sudoku011 = "This argument in the method '{0}' must be of type '{1}', but the actual type is '{2}'.";
 		public const string Sudoku012 = "The method '{0}' returns void, but you make it a rvalue expression";
 	}
 }

@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.Operations;
 
 namespace Sudoku.CodeAnalysis
 {
-	public sealed partial class DynamicallyInvocationOfCurrentAnalyzer
+	partial class DynamicallyInvocationOfCurrentAnalyzer
 	{
 		/// <summary>
 		/// Indicates the searcher that stores the syntax nodes of the dynamically invocation of
@@ -30,7 +30,7 @@ namespace Sudoku.CodeAnalysis
 			/// <summary>
 			/// Indicates the valid collection of the <c>Current</c> dynamically invocation.
 			/// </summary>
-			public IList<(InvocationExpressionSyntax Node, string MethodName, ArgumentListSyntax ArgumentsNode)>? Collection { get; private set; }
+			public IList<(InvocationExpressionSyntax Node, IdentifierNameSyntax NameNode, string MethodName, ArgumentListSyntax ArgumentsNode)>? Collection { get; private set; }
 
 
 			/// <inheritdoc/>
@@ -69,7 +69,7 @@ namespace Sudoku.CodeAnalysis
 							Name: IdentifierNameSyntax
 							{
 								Identifier: { ValueText: var methodName }
-							}
+							} nameNode
 						},
 						ArgumentList: var argList
 					}
@@ -78,9 +78,9 @@ namespace Sudoku.CodeAnalysis
 					return;
 				}
 
-				Collection ??= new List<(InvocationExpressionSyntax, string, ArgumentListSyntax)>();
+				Collection ??= new List<(InvocationExpressionSyntax, IdentifierNameSyntax, string, ArgumentListSyntax)>();
 
-				Collection.Add((node, methodName, argList));
+				Collection.Add((node, nameNode, methodName, argList));
 			}
 		}
 	}
