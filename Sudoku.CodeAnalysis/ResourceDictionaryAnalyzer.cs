@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Sudoku.CodeAnalysis.Extensions;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -13,15 +16,25 @@ namespace Sudoku.CodeAnalysis
 	public sealed class ResourceDictionaryAnalyzer : ISourceGenerator
 	{
 		/// <summary>
-		/// Indicates the folder where two resource dictionaries store.
+		/// Indicates the text resources class name.
 		/// </summary>
-		private const string Path = @"..\required\lang";
+		private const string TextResourcesClassName = "TextResources";
+
+		/// <summary>
+		/// Indicates that field dynamically bound.
+		/// </summary>
+		private const string TextResourcesStaticReadOnlyFieldName = "Current";
 
 
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
 			var compilation = context.Compilation;
+			if (compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
+			{
+				return;
+			}
+
 			foreach (var syntaxTree in compilation.SyntaxTrees)
 			{
 				if (!syntaxTree.TryGetRoot(out var root))
@@ -31,10 +44,48 @@ namespace Sudoku.CodeAnalysis
 
 				// Create the semantic model and the property list.
 				var semanticModel = compilation.GetSemanticModel(syntaxTree);
-				var collector = new DynamicMemberAccessSyntaxWalker(compilation, semanticModel);
+				var collector = new DynamicallyUsingResourceDictionarySearcher(semanticModel);
 				collector.Visit(root);
 
+				if (collector.Collection is null)
+				{
+					continue;
+				}
 
+				foreach (var (node, value) in collector.Collection)
+				{
+					var jsonProprtyNameRegex = new Regex($@"""{value}""(?=\:)");
+					bool flag = false;
+					foreach (var file in context.AdditionalFiles)
+					{
+						string json = File.ReadAllText(file.Path);
+						var match = jsonProprtyNameRegex.Match(json);
+						if (match.Success)
+						{
+							flag = true;
+						}
+					}
+					if (flag)
+					{
+						continue;
+					}
+
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							new(
+								id: DiagnosticIds.Sudoku008,
+								title: Titles.Sudoku008,
+								messageFormat: Messages.Sudoku008,
+								category: Categories.ResourceDictionary,
+								defaultSeverity: DiagnosticSeverity.Error,
+								isEnabledByDefault: true,
+								helpLinkUri: HelpLinks.Sudoku008
+							),
+							location: node.Name.GetLocation(),
+							messageArgs: new[] { node.Name.Identifier.ValueText }
+						)
+					);
+				}
 			}
 		}
 
@@ -42,6 +93,7 @@ namespace Sudoku.CodeAnalysis
 		public void Initialize(GeneratorInitializationContext context)
 		{
 		}
+
 
 		/// <summary>
 		/// Indicates the syntax walker that searches and visits the syntax node that is:
@@ -52,13 +104,12 @@ namespace Sudoku.CodeAnalysis
 		/// </item>
 		/// </list>
 		/// </summary>
-		private sealed class DynamicMemberAccessSyntaxWalker : CSharpSyntaxWalker
+		/// <remarks>
+		/// Please note that in this case the analyzer won't check: <c>Current["KeyToGet"]</c>, because
+		/// this case allows the parameter is a local variable, which isn't a constant.
+		/// </remarks>
+		private sealed class DynamicallyUsingResourceDictionarySearcher : CSharpSyntaxWalker
 		{
-			/// <summary>
-			/// Indicates the compilation.
-			/// </summary>
-			private readonly Compilation _compilation;
-
 			/// <summary>
 			/// Indicates the semantic model of this syntax tree.
 			/// </summary>
@@ -66,41 +117,16 @@ namespace Sudoku.CodeAnalysis
 
 
 			/// <summary>
-			/// Initializes an instance with the specified compilation and the semantic model.
+			/// Initializes an instance with the specified semantic model.
 			/// </summary>
-			/// <param name="compilation">The compilation.</param>
 			/// <param name="semanticModel">The semantic model.</param>
-			public DynamicMemberAccessSyntaxWalker(Compilation compilation, SemanticModel semanticModel)
-			{
-				_compilation = compilation;
-				_semanticModel = semanticModel;
-			}
+			public DynamicallyUsingResourceDictionarySearcher(SemanticModel semanticModel) => _semanticModel = semanticModel;
 
 
 			/// <summary>
-			/// Indicates whether the walker found the target syntax node.
+			/// Indicates the collection that stores those nodes.
 			/// </summary>
-			/// <remarks>
-			/// The result value can be:
-			/// <list type="table">
-			/// <item>
-			/// <term><c><see langword="true"/></c></term>
-			/// <description>The target syntax node found.</description>
-			/// </item>
-			/// <item>
-			/// <term><c><see langword="false"/></c></term>
-			/// <description>The target syntax node isn't found.</description>
-			/// </item>
-			/// </list>
-			/// </remarks>
-			public bool HasTargetValue { get; }
-
-			/// <summary>
-			/// Indicates the collection that stores those nodes. The value can be used if and only if
-			/// <see cref="HasTargetValue"/> is <see langword="true"/>.
-			/// </summary>
-			/// <seealso cref="HasTargetValue"/>
-			public IList<(MemberAccessExpressionSyntax Node, string Value)>? Collection { get; }
+			public IList<(MemberAccessExpressionSyntax Node, string Value)>? Collection { get; private set; }
 
 
 			/// <inheritdoc/>
@@ -111,21 +137,64 @@ namespace Sudoku.CodeAnalysis
 					return;
 				}
 
-				switch (_semanticModel.GetOperation(node))
+				var exprNode = node.Expression;
+				if (!exprNode.IsKind(SyntaxKind.SimpleMemberAccessExpression, SyntaxKind.IdentifierName))
 				{
-					case null:
-					case { Kind: not OperationKind.DynamicMemberReference }:
+					return;
+				}
+
+				var operation = _semanticModel.GetOperation(node);
+				if (operation is not { Kind: OperationKind.DynamicMemberReference })
+				{
+					return;
+				}
+
+				var exprOperation = _semanticModel.GetOperation(exprNode);
+				if (exprOperation is not { Kind: OperationKind.FieldReference })
+				{
+					return;
+				}
+
+				if (exprNode.IsKind(SyntaxKind.SimpleMemberAccessExpression))
+				{
+					// TextResources.Current.XYZ
+					// - SimpleMemberAccessExpression
+					//   - Expression: SimpleMemberAccessExpression
+					//     - Operation: FieldReference (TextResources.Current)
+					//     - Expression: IdentifierName (TextResources)
+					//     - Name: IdentifierName (Current)
+					//   - Name: IdentifierName (XYZ)
+					var memberAccessExprNode = (MemberAccessExpressionSyntax)exprNode;
+					var parentExprNode = memberAccessExprNode.Expression;
+					if (!parentExprNode.IsKind(SyntaxKind.IdentifierName))
 					{
 						return;
 					}
-					case { Children: var children } operation:
+
+					if (((IdentifierNameSyntax)parentExprNode).Identifier.ValueText != TextResourcesClassName)
 					{
-						var collection = new List<(MemberAccessExpressionSyntax, string)>();
-
-						// TODO: Implement.
-
-						break;
+						return;
 					}
+
+					if (memberAccessExprNode.Name.Identifier.ValueText != TextResourcesStaticReadOnlyFieldName)
+					{
+						return;
+					}
+
+					Collection ??= new List<(MemberAccessExpressionSyntax, string)>();
+
+					Collection.Add((node, node.Name.Identifier.ValueText));
+				}
+				else
+				{
+					// using static Sudoku.Resources.TextResources;
+					// Current.XYZ
+					// - SimpleMemberAccessExpression
+					//   - Expression: IdentifierName (Current)
+					//     - Operation: FieldReference (TextResources.Current)
+					//   - Name: IdentifierName (XYZ)
+
+					// TODO: Implement this case.
 				}
 			}
 		}

@@ -12,6 +12,8 @@
 		public const string Sudoku005 = "SUDOKU005";
 		public const string Sudoku006 = "SUDOKU006";
 		public const string Sudoku007 = "SUDOKU007";
+		public const string Sudoku008 = "SUDOKU008";
+		public const string Sudoku009 = "SUDOKU009";
 	}
 
 	/// <summary>
@@ -26,6 +28,7 @@
 		public const string Sudoku005 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU005%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E4%B8%8D%E5%8F%AF%E4%B8%BA%20null?sort_id=3599826";
 		public const string Sudoku006 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU006%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E9%9C%80%E8%A6%81%E6%9C%89%E9%BB%98%E8%AE%A4%E5%80%BC?sort_id=3602787";
 		public const string Sudoku007 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU007%EF%BC%9AProperties%20%E5%B1%9E%E6%80%A7%E5%8F%AA%E8%83%BD%E4%BB%A5%20new%20%E8%AF%AD%E5%8F%A5%E8%BF%9B%E8%A1%8C%E5%88%9D%E5%A7%8B%E5%8C%96?sort_id=3607697";
+		public const string Sudoku008 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU008%EF%BC%9A%E6%97%A0%E6%B3%95%E5%9C%A8%E8%B5%84%E6%BA%90%E5%AD%97%E5%85%B8%E9%87%8C%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E9%94%AE%E7%9A%84%E8%B5%84%E6%BA%90?sort_id=3608009";
 	}
 
 	/// <summary>
@@ -34,14 +37,19 @@
 	internal static class Categories
 	{
 		/// <summary>
-		/// Indicates the categories is the requirement.
+		/// Indicates the category is the requirement.
 		/// </summary>
 		public const string Requirements = nameof(Requirements);
 
 		/// <summary>
-		/// Indicates the categories is the usage.
+		/// Indicates the category is the usage.
 		/// </summary>
 		public const string Usage = nameof(Usage);
+
+		/// <summary>
+		/// Indicates the category is the resource dictionary.
+		/// </summary>
+		public const string ResourceDictionary = nameof(ResourceDictionary);
 	}
 
 	/// <summary>
@@ -56,6 +64,8 @@
 		public const string Sudoku005 = "The property 'Properties' can't be null";
 		public const string Sudoku006 = "The property 'Properties' must contain a default value";
 		public const string Sudoku007 = "The property 'Properties' must be initialized by a new clause";
+		public const string Sudoku008 = "The specified key can't be found in the resource dictionary";
+		public const string Sudoku009 = "The specified method can't be found and called";
 	}
 
 	/// <summary>
@@ -63,12 +73,14 @@
 	/// </summary>
 	internal static class Messages
 	{
-		public const string Sudoku001 = "A public property 'Properties' expected";
-		public const string Sudoku002 = "The property 'Properties' must be read-only";
-		public const string Sudoku003 = "The property 'Properties' must be of type 'Sudoku.Solving.Manual.TechiqueProperties'";
-		public const string Sudoku004 = "A property named 'Properties' expected";
-		public const string Sudoku005 = "The property 'Properties' can't be null; try to remove the nullable annotation '?'";
-		public const string Sudoku006 = "The property 'Properties' must contain a default value";
-		public const string Sudoku007 = "The property 'Properties' must be initialized by a new clause; try to initialize it with 'new(...)' or 'new TechniqueProperties(...)' instead";
+		public const string Sudoku001 = "A public property 'Properties' expected.";
+		public const string Sudoku002 = "The property 'Properties' must be read-only.";
+		public const string Sudoku003 = "The property 'Properties' must be of type 'Sudoku.Solving.Manual.TechiqueProperties'.";
+		public const string Sudoku004 = "A property named 'Properties' expected.";
+		public const string Sudoku005 = "The property 'Properties' can't be null; try to remove the nullable annotation '?'.";
+		public const string Sudoku006 = "The property 'Properties' must contain a default value.";
+		public const string Sudoku007 = "The property 'Properties' must be initialized by a new clause; try to initialize it with 'new(...)' or 'new TechniqueProperties(...)' instead.";
+		public const string Sudoku008 = "The specified key '{0}' can't be found in the resource dictionary; please check whether your input is valid.";
+		public const string Sudoku009 = "The specified method '{0}' can't be found and called; all supported methods are 'Serialize', 'Deserialize' and 'ChangeLanguage'.";
 	}
 }

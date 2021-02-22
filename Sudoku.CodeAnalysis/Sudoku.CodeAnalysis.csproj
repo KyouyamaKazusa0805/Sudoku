@@ -14,4 +14,9 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0-3.final" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<AdditionalFiles Include="..\required\lang\Resources.en-us.dic" />
+		<AdditionalFiles Include="..\required\lang\Resources.zh-cn.dic" />
+	</ItemGroup>
+
 </Project>
