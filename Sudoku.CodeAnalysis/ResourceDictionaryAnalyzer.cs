@@ -32,11 +32,15 @@ namespace Sudoku.CodeAnalysis
 			var compilation = context.Compilation;
 			if (compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
 			{
+				// We don't check on those two WPF projects, because those two projects has already used
+				// their own resource dictionary (MergedDictionary).
 				return;
 			}
 
+			// Check all syntax trees if available.
 			foreach (var syntaxTree in compilation.SyntaxTrees)
 			{
+				// Check whether the syntax contains the root node.
 				if (!syntaxTree.TryGetRoot(out var root))
 				{
 					continue;
@@ -47,14 +51,20 @@ namespace Sudoku.CodeAnalysis
 				var collector = new DynamicallyUsingResourceDictionarySearcher(semanticModel);
 				collector.Visit(root);
 
+				// If the syntax tree doesn't contain any dynamically called clause,
+				// just skip it.
 				if (collector.Collection is null)
 				{
 					continue;
 				}
 
+				// Iterate on each dynamically called location.
 				foreach (var (node, value) in collector.Collection)
 				{
 					var jsonProprtyNameRegex = new Regex($@"""{value}""(?=\:)");
+
+					// Check all dictionaries. If all dictionaries don't contain that key,
+					// we'll report on this.
 					bool flag = false;
 					foreach (var file in context.AdditionalFiles)
 					{
@@ -62,6 +72,7 @@ namespace Sudoku.CodeAnalysis
 						var match = jsonProprtyNameRegex.Match(json);
 						if (match.Success)
 						{
+							// Found that value. Just skip this case.
 							flag = true;
 						}
 					}
@@ -70,6 +81,7 @@ namespace Sudoku.CodeAnalysis
 						continue;
 					}
 
+					// Report the diagnostic result.
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							new(
