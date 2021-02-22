@@ -1,6 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Sudoku.CodeAnalysis.Extensions;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -127,11 +126,19 @@ namespace Sudoku.CodeAnalysis
 
 									break;
 								}
-								case ({ Initializer: { Value: var exprNode } } node, _)
-								when !exprNode.IsKind(
-									SyntaxKind.ObjectCreationExpression,
-									SyntaxKind.ImplicitObjectCreationExpression
-								):
+								case (
+								{
+									Initializer:
+									{
+										Value:
+										{
+											RawKind: not (
+												(int)SyntaxKind.ObjectCreationExpression
+												or (int)SyntaxKind.ImplicitObjectCreationExpression
+											)
+										}
+									}
+								} node, _):
 								{
 									context.ReportDiagnostic(
 										Diagnostic.Create(

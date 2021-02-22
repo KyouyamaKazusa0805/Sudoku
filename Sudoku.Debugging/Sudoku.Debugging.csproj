@@ -10,7 +10,7 @@
 		<LangVersion>9.0</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
 		<ProjectReference Include="..\Sudoku.IO\Sudoku.IO.csproj" />
@@ -23,9 +23,11 @@
 		<ProjectReference Include="..\Sudoku.CodeAnalysis\Sudoku.CodeAnalysis.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 
+	<!--
 	<ItemGroup>
 		<AdditionalFiles Include="..\required\lang\Resources.en-us.dic" />
 		<AdditionalFiles Include="..\required\lang\Resources.zh-cn.dic" />
 	</ItemGroup>
-	
+	-->
+
 </Project>
