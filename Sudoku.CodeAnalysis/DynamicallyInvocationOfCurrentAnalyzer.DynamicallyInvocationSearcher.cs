@@ -53,8 +53,10 @@ namespace Sudoku.CodeAnalysis
 					{
 						Expression: MemberAccessExpressionSyntax
 						{
+							RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 							Expression: MemberAccessExpressionSyntax
 							{
+								RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 								Expression: IdentifierNameSyntax
 								{
 									Identifier: { ValueText: TextResourcesClassName }

@@ -6,8 +6,8 @@ namespace Sudoku.CodeAnalysis
 	/// Indicates the analyzer that checks the dynamically invocation of the <see langword="dynamic"/>
 	/// field <c>TextResources.Current</c>.
 	/// </summary>
-	[Generator]
-	public sealed partial class DynamicallyInvocationOfCurrentAnalyzer : ISourceGenerator
+	//[Generator]
+	public sealed partial class DynamicallyInvocationOfCurrentAnalyzer /*: ISourceGenerator*/
 	{
 		/// <summary>
 		/// Indicates the text resources class name.

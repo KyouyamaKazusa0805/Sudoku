@@ -2,7 +2,6 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Sudoku.CodeAnalysis.Extensions;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -46,70 +45,39 @@ namespace Sudoku.CodeAnalysis
 			/// <inheritdoc/>
 			public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
 			{
-				if (!node.IsKind(SyntaxKind.SimpleMemberAccessExpression))
-				{
-					return;
-				}
-
-				var exprNode = node.Expression;
-				if (!exprNode.IsKind(SyntaxKind.SimpleMemberAccessExpression, SyntaxKind.IdentifierName))
-				{
-					return;
-				}
-
-				var operation = _semanticModel.GetOperation(node);
-				if (operation is not { Kind: OperationKind.DynamicMemberReference })
-				{
-					return;
-				}
-
-				var exprOperation = _semanticModel.GetOperation(exprNode);
-				if (exprOperation is not { Kind: OperationKind.FieldReference })
-				{
-					return;
-				}
-
-				if (exprNode.IsKind(SyntaxKind.SimpleMemberAccessExpression))
-				{
-					// TextResources.Current.XYZ
-					// - SimpleMemberAccessExpression
-					//   - Expression: SimpleMemberAccessExpression
-					//     - Operation: FieldReference (TextResources.Current)
-					//     - Expression: IdentifierName (TextResources)
-					//     - Name: IdentifierName (Current)
-					//   - Name: IdentifierName (XYZ)
-					var memberAccessExprNode = (MemberAccessExpressionSyntax)exprNode;
-					var parentExprNode = memberAccessExprNode.Expression;
-					if (!parentExprNode.IsKind(SyntaxKind.IdentifierName))
+				// TODO: Implement another case that is with a using static directive.
+				if
+				(
+					_semanticModel.GetOperation(node) is not { Kind: OperationKind.DynamicMemberReference }
+					|| node is not
 					{
-						return;
+						Parent: not InvocationExpressionSyntax,
+						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+						Expression: MemberAccessExpressionSyntax
+						{
+							RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+							Expression: IdentifierNameSyntax
+							{
+								Identifier: { ValueText: TextResourcesClassName }
+							},
+							Name: IdentifierNameSyntax
+							{
+								Identifier: { ValueText: TextResourcesStaticReadOnlyFieldName }
+							}
+						},
+						Name: IdentifierNameSyntax
+						{
+							Identifier: { ValueText: var key }
+						}
 					}
-
-					if (((IdentifierNameSyntax)parentExprNode).Identifier.ValueText != TextResourcesClassName)
-					{
-						return;
-					}
-
-					if (memberAccessExprNode.Name.Identifier.ValueText != TextResourcesStaticReadOnlyFieldName)
-					{
-						return;
-					}
-
-					Collection ??= new List<(MemberAccessExpressionSyntax, string)>();
-
-					Collection.Add((node, node.Name.Identifier.ValueText));
-				}
-				else
+				)
 				{
-					// using static Sudoku.Resources.TextResources;
-					// Current.XYZ
-					// - SimpleMemberAccessExpression
-					//   - Expression: IdentifierName (Current)
-					//     - Operation: FieldReference (TextResources.Current)
-					//   - Name: IdentifierName (XYZ)
-
-					// TODO: Implement this case.
+					return;
 				}
+
+				Collection ??= new List<(MemberAccessExpressionSyntax, string)>();
+
+				Collection.Add((node, key));
 			}
 		}
 	}
