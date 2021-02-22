@@ -45,11 +45,14 @@ namespace Sudoku.CodeAnalysis
 			/// <inheritdoc/>
 			public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
 			{
-				// TODO: Implement another case that is with a using static directive.
+				if (_semanticModel.GetOperation(node) is not { Kind: OperationKind.DynamicMemberReference })
+				{
+					return;
+				}
+
 				if
 				(
-					_semanticModel.GetOperation(node) is not { Kind: OperationKind.DynamicMemberReference }
-					|| node is not
+					node is not
 					{
 						Parent: not InvocationExpressionSyntax,
 						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
@@ -78,6 +81,8 @@ namespace Sudoku.CodeAnalysis
 				Collection ??= new List<(MemberAccessExpressionSyntax, string)>();
 
 				Collection.Add((node, key));
+
+				// TODO: Implement another case that is with a using static directive.
 			}
 		}
 	}
