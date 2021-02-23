@@ -59,13 +59,13 @@ namespace Sudoku.CodeAnalysis
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: new(
-								id: DiagnosticIds.Sudoku013,
+								id: DiagnosticIds.Sudoku014,
 								title: Titles.Sudoku013,
-								messageFormat: Messages.Sudoku013,
+								messageFormat: Messages.Sudoku014,
 								category: Categories.Usage,
 								defaultSeverity: DiagnosticSeverity.Error,
 								isEnabledByDefault: true,
-								helpLinkUri: HelpLinks.Sudoku013
+								helpLinkUri: HelpLinks.Sudoku014
 							),
 							location: node.GetLocation(),
 							messageArgs: new[] { fieldName }

@@ -11,7 +11,8 @@ unsafe
 
 sealed class MyStepSearcher : StepSearcher
 {
-	public static TechniqueProperties? Properties { get; }
+	public TechniqueProperties Properties { get; } = null!;
 
-	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid) => throw new System.NotImplementedException();
+	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid) =>
+		throw new System.NotImplementedException();
 }

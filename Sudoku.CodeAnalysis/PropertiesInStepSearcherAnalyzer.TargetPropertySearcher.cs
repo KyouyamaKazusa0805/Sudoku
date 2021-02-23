@@ -4,6 +4,12 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Sudoku.CodeAnalysis.Extensions;
+using Quadruple = System.ValueTuple<
+	bool,
+	Microsoft.CodeAnalysis.CSharp.Syntax.ClassDeclarationSyntax,
+	Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax?,
+	Microsoft.CodeAnalysis.IPropertySymbol?
+>;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -38,58 +44,15 @@ namespace Sudoku.CodeAnalysis
 
 
 			/// <summary>
-			/// Indicates whether the walker found the target property.
-			/// </summary>
-			/// <remarks>
-			/// The result value can be:
-			/// <list type="table">
-			/// <item>
-			/// <term><c><see langword="true"/></c></term>
-			/// <description>The target property named '<c>Properties</c>' found.</description>
-			/// </item>
-			/// <item>
-			/// <term><c><see langword="false"/></c></term>
-			/// <description>
-			/// The target property doesn't exist, but the class being checked
-			/// derives from <c>StepSearcher</c>.
-			/// </description>
-			/// </item>
-			/// <item>
-			/// <term><c><see langword="null"/></c></term>
-			/// <description>The class being checked doesn't derive from <c>StepSearcher</c>.</description>
-			/// </item>
-			/// </list>
-			/// </remarks>
-			public bool? HasTargetProperty { get; private set; }
-
-			/// <summary>
-			/// Indicatest the class declration syntax node. The value is not <see langword="null"/>
-			/// when the property <see cref="HasTargetProperty"/>
-			/// is <see langword="true"/> or <see langword="false"/>.
-			/// </summary>
-			/// <seealso cref="HasTargetProperty"/>
-			public ClassDeclarationSyntax? ClassDeclaration { get; private set; }
-
-			/// <summary>
 			/// Indicates the result collection.
 			/// </summary>
-			/// <remarks>
-			/// The value can be used if and only if
-			/// the property <see cref="HasTargetProperty"/> is <see langword="true"/>.
-			/// </remarks>
-			/// <seealso cref="HasTargetProperty"/>
-			public IList<(PropertyDeclarationSyntax Node, IPropertySymbol Symbol)>? TargetPropertyInfo { get; private set; }
+			public IList<Quadruple>? TargetPropertyInfo { get; private set; }
 
 
 			/// <inheritdoc/>
-			public override void VisitPropertyDeclaration(PropertyDeclarationSyntax node)
+			public override void VisitClassDeclaration(ClassDeclarationSyntax node)
 			{
-				if (node.Parent is not ClassDeclarationSyntax classNode)
-				{
-					return;
-				}
-
-				switch (_semanticModel.GetDeclaredSymbol(classNode))
+				switch (_semanticModel.GetDeclaredSymbol(node))
 				{
 					case null:
 					case { IsAbstract: true }:
@@ -100,35 +63,42 @@ namespace Sudoku.CodeAnalysis
 					}
 					case var classSymbol when classSymbol.DerivedFrom(_compilation, StepSearcherTypeFullName):
 					{
-						HasTargetProperty = false;
-						ClassDeclaration = classNode;
-
 						var propertySymbols = classSymbol.GetMembers().OfType<IPropertySymbol>();
 						if (!propertySymbols.Any())
 						{
-							return;
-						}
+							TargetPropertyInfo ??= new List<Quadruple>();
 
-						foreach (var propertySymbol in propertySymbols)
-						{
-							switch (propertySymbol)
+							if
+							(
+								!TargetPropertyInfo.Any(
+									quad =>
+									{
+										var symbol = _semanticModel.GetDeclaredSymbol(quad.Item2);
+										return SymbolEqualityComparer.Default.Equals(symbol, classSymbol);
+									}
+								)
+							)
 							{
-								case { IsIndexer: true }:
-								case { IsStatic: false }:
-								case { Name: not TargetPropertyName }:
+								// If the class isn't in this list, add it.
+								TargetPropertyInfo.Add((false, node, null, null));
+							}
+						}
+						else
+						{
+							foreach (var propertySymbol in propertySymbols)
+							{
+								if (propertySymbol is not { IsIndexer: true, Name: not TargetPropertyName })
 								{
-									continue;
-								}
-								default:
-								{
-									HasTargetProperty = true;
+									TargetPropertyInfo ??= new List<Quadruple>();
 
-									TargetPropertyInfo ??=
-										new List<(PropertyDeclarationSyntax, IPropertySymbol)>();
-
-									TargetPropertyInfo.Add((node, propertySymbol));
-
-									return;
+									TargetPropertyInfo.Add(
+										(
+											true,
+											node,
+											propertySymbol.FindMatchingNode(node, _semanticModel),
+											propertySymbol
+										)
+									);
 								}
 							}
 						}
