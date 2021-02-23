@@ -1,0 +1,83 @@
+﻿using Microsoft.CodeAnalysis;
+
+namespace Sudoku.CodeAnalysis
+{
+	/// <summary>
+	/// Indicates the analyzer that checks the usage of the type <c>SudokuGrid</c>.
+	/// </summary>
+	[Generator]
+	public sealed partial class SudokuGridAnalyzer : ISourceGenerator
+	{
+		/// <summary>
+		/// Indicates the type name of the sudoku grid.
+		/// </summary>
+		private const string SudokuGridTypeName = "SudokuGrid";
+
+		/// <summary>
+		/// Indicates the full type name of the sudoku grid.
+		/// </summary>
+		private const string SudokuGridFullTypeName = "Sudoku.Data.SudokuGrid";
+
+		/// <summary>
+		/// Indicates the field name "<c>RefreshingCandidates</c>".
+		/// </summary>
+		private const string RefreshingCandidatesFuncPtrName = "RefreshingCandidates";
+
+		/// <summary>
+		/// Indicates the field name "<c>ValueChanged</c>".
+		/// </summary>
+		private const string ValueChangedFuncPtrName = "ValueChanged";
+
+
+		/// <inheritdoc/>
+		public void Execute(GeneratorExecutionContext context)
+		{
+			var compilation = context.Compilation;
+			foreach (var syntaxTree in compilation.SyntaxTrees)
+			{
+				// Check whether the syntax contains the root node.
+				if (!syntaxTree.TryGetRoot(out var root))
+				{
+					continue;
+				}
+
+				var semanticModel = context.Compilation.GetSemanticModel(syntaxTree);
+				var collector = new SudokuGridFuncPtrInvocationSearcher(semanticModel, compilation);
+				collector.Visit(root);
+
+				// If the syntax tree doesn't contain any dynamically called clause,
+				// just skip it.
+				if (collector.Collection is null)
+				{
+					continue;
+				}
+
+				// Iterate on each dynamically called location.
+				foreach (var (node, fieldName) in collector.Collection)
+				{
+					// You can't invoke them.
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							descriptor: new(
+								id: DiagnosticIds.Sudoku013,
+								title: Titles.Sudoku013,
+								messageFormat: Messages.Sudoku013,
+								category: Categories.Usage,
+								defaultSeverity: DiagnosticSeverity.Error,
+								isEnabledByDefault: true,
+								helpLinkUri: HelpLinks.Sudoku013
+							),
+							location: node.GetLocation(),
+							messageArgs: new[] { fieldName }
+						)
+					);
+				}
+			}
+		}
+
+		/// <inheritdoc/>
+		public void Initialize(GeneratorInitializationContext context)
+		{
+		}
+	}
+}

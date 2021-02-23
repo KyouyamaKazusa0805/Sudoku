@@ -17,6 +17,7 @@
 		public const string Sudoku010 = "SUDOUK010";
 		public const string Sudoku011 = "SUDOKU011";
 		public const string Sudoku012 = "SUDOKU012";
+		public const string Sudoku013 = "SUDOKU013";
 	}
 
 	/// <summary>
@@ -36,6 +37,7 @@
 		public const string Sudoku010 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU010?sort_id=3610022";
 		public const string Sudoku011 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU011?sort_id=3610347";
 		public const string Sudoku012 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU012?sort_id=3610364";
+		public const string Sudoku013 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU013?sort_id=3614979";
 	}
 
 	/// <summary>
@@ -57,6 +59,11 @@
 		/// Indicates the category is the resource dictionary.
 		/// </summary>
 		public const string ResourceDictionary = nameof(ResourceDictionary);
+
+		/// <summary>
+		/// Indicates the category is the model (data structure implementation).
+		/// </summary>
+		public const string Model = nameof(Model);
 	}
 
 	/// <summary>
@@ -76,6 +83,7 @@
 		public const string Sudoku010 = "The number of arguments dismatched in this dynamically invocation";
 		public const string Sudoku011 = "The argument type dismatched in this dynamically invocation";
 		public const string Sudoku012 = "The method returns void, but you make it an rvalue expression";
+		public const string Sudoku013 = "The member can't be invoked because they are reserved";
 	}
 
 	/// <summary>
@@ -94,6 +102,7 @@
 		public const string Sudoku009 = "The specified method '{0}' can't be found and called; all supported methods are 'Serialize', 'Deserialize' and 'ChangeLanguage'.";
 		public const string Sudoku010 = "The method '{0}' expects {1} argument(s), but your input contains {2} argument(s).";
 		public const string Sudoku011 = "This argument in the method '{0}' must be of type '{1}', but the actual type is '{2}'.";
-		public const string Sudoku012 = "The method '{0}' returns void, but you make it a rvalue expression";
+		public const string Sudoku012 = "The method '{0}' returns void, but you make it a rvalue expression.";
+		public const string Sudoku013 = "The member '{0}' can't be invoked because they are reserved.";
 	}
 }
