@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Sudoku.CodeAnalysis.Extensions;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -46,18 +46,17 @@ namespace Sudoku.CodeAnalysis
 					return;
 				}
 
-				for (SyntaxNode? currentNode = node; currentNode is not null; currentNode = currentNode.Parent)
-				{
-					if
-					(
-						currentNode is StructDeclarationSyntax
+				if
+				(
+					node.ContainingTypeIs(
+						static nodeTraversing => nodeTraversing is StructDeclarationSyntax
 						{
 							Identifier: { ValueText: SudokuGridTypeName }
 						}
 					)
-					{
-						return;
-					}
+				)
+				{
+					return;
 				}
 
 				Collection ??= new List<(InvocationExpressionSyntax, string)>();
