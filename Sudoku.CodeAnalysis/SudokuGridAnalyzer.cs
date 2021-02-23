@@ -14,11 +14,6 @@ namespace Sudoku.CodeAnalysis
 		private const string SudokuGridTypeName = "SudokuGrid";
 
 		/// <summary>
-		/// Indicates the full type name of the sudoku grid.
-		/// </summary>
-		private const string SudokuGridFullTypeName = "Sudoku.Data.SudokuGrid";
-
-		/// <summary>
 		/// Indicates the field name "<c>RefreshingCandidates</c>".
 		/// </summary>
 		private const string RefreshingCandidatesFuncPtrName = "RefreshingCandidates";
@@ -41,8 +36,7 @@ namespace Sudoku.CodeAnalysis
 					continue;
 				}
 
-				var semanticModel = context.Compilation.GetSemanticModel(syntaxTree);
-				var collector = new SudokuGridFuncPtrInvocationSearcher(semanticModel, compilation);
+				var collector = new SudokuGridFuncPtrInvocationSearcher();
 				collector.Visit(root);
 
 				// If the syntax tree doesn't contain any dynamically called clause,

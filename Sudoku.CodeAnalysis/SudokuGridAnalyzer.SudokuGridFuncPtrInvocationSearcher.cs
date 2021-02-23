@@ -14,29 +14,6 @@ namespace Sudoku.CodeAnalysis
 		private sealed class SudokuGridFuncPtrInvocationSearcher : CSharpSyntaxWalker
 		{
 			/// <summary>
-			/// Indicates the semantic model.
-			/// </summary>
-			private readonly SemanticModel _semanticModel;
-
-			/// <summary>
-			/// Indicates the compilation.
-			/// </summary>
-			private readonly Compilation _compilation;
-
-
-			/// <summary>
-			/// Initializes an instance with the specified semantic model.
-			/// </summary>
-			/// <param name="semanticModel">The semantic model.</param>
-			/// <param name="compilation">The compilation.</param>
-			public SudokuGridFuncPtrInvocationSearcher(SemanticModel semanticModel, Compilation compilation)
-			{
-				_semanticModel = semanticModel;
-				_compilation = compilation;
-			}
-
-
-			/// <summary>
 			/// Indicates the collection that stores all possible and valid information.
 			/// </summary>
 			public IList<(InvocationExpressionSyntax Node, string FieldName)>? Collection { get; private set; }
@@ -45,18 +22,13 @@ namespace Sudoku.CodeAnalysis
 			/// <inheritdoc/>
 			public override void VisitInvocationExpression(InvocationExpressionSyntax node)
 			{
-				if (_semanticModel.GetDeclaredSymbol(node) is not { Kind: SymbolKind.FunctionPointerType } symbol)
-				{
-					return;
-				}
-
 				if
 				(
 					node is not
 					{
-						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 						Expression: MemberAccessExpressionSyntax
 						{
+							RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 							Expression: IdentifierNameSyntax { Identifier: { ValueText: SudokuGridTypeName } },
 							Name: IdentifierNameSyntax
 							{
@@ -74,15 +46,18 @@ namespace Sudoku.CodeAnalysis
 					return;
 				}
 
-				if
-				(
-					!SymbolEqualityComparer.Default.Equals(
-						symbol.ContainingType,
-						_compilation.GetTypeByMetadataName(SudokuGridFullTypeName)
-					)
-				)
+				for (SyntaxNode? currentNode = node; currentNode is not null; currentNode = currentNode.Parent)
 				{
-					return;
+					if
+					(
+						currentNode is StructDeclarationSyntax
+						{
+							Identifier: { ValueText: SudokuGridTypeName }
+						}
+					)
+					{
+						return;
+					}
 				}
 
 				Collection ??= new List<(InvocationExpressionSyntax, string)>();
