@@ -54,7 +54,7 @@ namespace Sudoku.CodeAnalysis
 						Diagnostic.Create(
 							descriptor: new(
 								id: DiagnosticIds.Sudoku014,
-								title: Titles.Sudoku013,
+								title: Titles.Sudoku014,
 								messageFormat: Messages.Sudoku014,
 								category: Categories.Usage,
 								defaultSeverity: DiagnosticSeverity.Error,
