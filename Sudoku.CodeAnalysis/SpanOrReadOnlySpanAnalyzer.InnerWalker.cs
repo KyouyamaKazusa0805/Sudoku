@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
+using Sudoku.CodeAnalysis.Extensions;
 using Pair = System.ValueTuple<bool, Microsoft.CodeAnalysis.CSharp.Syntax.BaseObjectCreationExpressionSyntax>;
 
 namespace Sudoku.CodeAnalysis
@@ -122,12 +123,17 @@ namespace Sudoku.CodeAnalysis
 						continue;
 					}
 
-					var voidPtrTypeSymbol = _compilation.CreatePointerTypeSymbol(
-						_compilation.GetSpecialType(SpecialType.System_Void)
-					);
-					var intTypeSymbol = _compilation.GetSpecialType(SpecialType.System_Int32);
-					if (!SymbolEqualityComparer.Default.Equals(@params[0].Type, voidPtrTypeSymbol)
-						|| !SymbolEqualityComparer.Default.Equals(@params[1].Type, intTypeSymbol))
+					if
+					(
+						!SymbolEqualityComparer.Default.Equals(
+							@params[0].Type,
+							_compilation.GetPointerTypeSymbol(SpecialType.System_Void)
+						)
+						|| !SymbolEqualityComparer.Default.Equals(
+							@params[1].Type,
+							_compilation.GetSpecialType(SpecialType.System_Int32)
+						)
+					)
 					{
 						continue;
 					}
