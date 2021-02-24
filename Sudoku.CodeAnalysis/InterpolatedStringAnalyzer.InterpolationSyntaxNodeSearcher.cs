@@ -41,7 +41,7 @@ namespace Sudoku.CodeAnalysis
 					_semanticModel.GetOperation(node) is not IInterpolationOperation
 					{
 						//Kind: OperationKind.Interpolation,
-						Type: { IsValueType: true }
+						Expression: { Type: { IsValueType: true } }
 					}
 				)
 				{
