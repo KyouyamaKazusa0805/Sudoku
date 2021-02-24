@@ -1,8 +1,6 @@
-﻿using Sudoku.Data;
-
-unsafe
+﻿unsafe
 {
-	var grid = SudokuGrid.Empty;
-	SudokuGrid.ValueChanged(ref grid, new()); // SUDOKU014.
-	SudokuGrid.RefreshingCandidates(ref grid); // SUDOKU014.
+	delegate*<int, bool> ptrIsEven = &isEven; // SUDOKU015.
 }
+
+static bool isEven(int val) => (val & 1) == 0;
