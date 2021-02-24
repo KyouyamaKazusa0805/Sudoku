@@ -20,6 +20,7 @@
 		public const string Sudoku013 = "SUDOKU013";
 		public const string Sudoku014 = "SUDOKU014";
 		public const string Sudoku015 = "SUDOKU015";
+		public const string Sudoku016 = "SUDOKU016";
 	}
 
 	/// <summary>
@@ -42,6 +43,7 @@
 		public const string Sudoku013 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU013?sort_id=3610364";
 		public const string Sudoku014 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU014?sort_id=3614979";
 		public const string Sudoku015 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU015?sort_id=3622103";
+		public const string Sudoku016 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU016?sort_id=3622115";
 	}
 
 	/// <summary>
@@ -73,6 +75,11 @@
 		/// Indicates the category is the performance.
 		/// </summary>
 		public const string Performance = nameof(Performance);
+
+		/// <summary>
+		/// Indicates the category is the style.
+		/// </summary>
+		public const string Style = nameof(Style);
 	}
 
 	/// <summary>
@@ -95,6 +102,7 @@
 		public const string Sudoku013 = "The method returns void, but you make it an rvalue expression";
 		public const string Sudoku014 = "The member can't be invoked because they are reserved";
 		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type";
+		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations";
 	}
 
 	/// <summary>
@@ -117,5 +125,6 @@
 		public const string Sudoku013 = "The method '{0}' returns void, but you make it a rvalue expression.";
 		public const string Sudoku014 = "The member '{0}' can't be invoked because they are reserved.";
 		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type.";
+		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.";
 	}
 }

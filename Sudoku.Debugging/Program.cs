@@ -1,9 +1,7 @@
-﻿unsafe
-{
-	delegate*<int, bool> ptrIsOdd; // SUDOKU015.
-	delegate* managed<int, bool> ptrIsEven;
-	delegate* unmanaged[Cdecl]<nint*, nint, void> ptrBubbleSort;
-	delegate* unmanaged[Cdecl, Stdcall]<nint*, nint, void> ptrSort;
+﻿using System;
 
-	System.Console.WriteLine();
-}
+int val = 20;
+Console.WriteLine($"Lily is {val} years old."); // SUDOKU016.
+
+string sunnie = nameof(sunnie);
+Console.WriteLine($"My name is {sunnie}.");

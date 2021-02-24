@@ -3,10 +3,10 @@
 namespace Sudoku.CodeAnalysis
 {
 	/// <summary>
-	/// Indicates the function pointer analyzer.
+	/// Indicates the analyzer that analyzes the interpolated strings.
 	/// </summary>
 	[Generator]
-	public sealed partial class FunctionPointerAnalyzer : ISourceGenerator
+	public sealed partial class InterpolatedStringAnalyzer : ISourceGenerator
 	{
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
@@ -21,7 +21,8 @@ namespace Sudoku.CodeAnalysis
 				}
 
 				// Create the semantic model and the property list.
-				var collector = new FunctionPointerTypeSyntaxNodeSearcher();
+				var semanticModel = compilation.GetSemanticModel(syntaxTree);
+				var collector = new InterpolationSyntaxNodeSearcher(semanticModel);
 				collector.Visit(root);
 
 				// If the syntax tree doesn't contain any dynamically called clause,
@@ -32,21 +33,21 @@ namespace Sudoku.CodeAnalysis
 				}
 
 				// Iterate on each location.
-				foreach (var node in collector.Collection)
+				foreach (var interpolation in collector.Collection)
 				{
 					// No calling conversion.
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: new(
-								id: DiagnosticIds.Sudoku015,
-								title: Titles.Sudoku015,
-								messageFormat: Messages.Sudoku015,
-								category: Categories.Style,
+								id: DiagnosticIds.Sudoku016,
+								title: Titles.Sudoku016,
+								messageFormat: Messages.Sudoku016,
+								category: Categories.Performance,
 								defaultSeverity: DiagnosticSeverity.Warning,
 								isEnabledByDefault: true,
-								helpLinkUri: HelpLinks.Sudoku015
+								helpLinkUri: HelpLinks.Sudoku016
 							),
-							location: node.GetLocation(),
+							location: interpolation.GetLocation(),
 							messageArgs: null
 						)
 					);
