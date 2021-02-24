@@ -21,6 +21,7 @@
 		public const string Sudoku014 = "SUDOKU014";
 		public const string Sudoku015 = "SUDOKU015";
 		public const string Sudoku016 = "SUDOKU016";
+		public const string Sudoku017 = "SUDOKU017";
 	}
 
 	/// <summary>
@@ -44,6 +45,7 @@
 		public const string Sudoku014 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU014?sort_id=3614979";
 		public const string Sudoku015 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU015?sort_id=3622103";
 		public const string Sudoku016 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU016?sort_id=3622115";
+		public const string Sudoku017 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU017?sort_id=3622127";
 	}
 
 	/// <summary>
@@ -103,6 +105,7 @@
 		public const string Sudoku014 = "The member can't be invoked because they are reserved";
 		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type";
 		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations";
+		public const string Sudoku017 = "The result of the expression '.ctor(void*, int)' can't be the return value as any methods";
 	}
 
 	/// <summary>
@@ -126,5 +129,6 @@
 		public const string Sudoku014 = "The member '{0}' can't be invoked because they are reserved.";
 		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type.";
 		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.";
+		public const string Sudoku017 = "The result of the expression '{0}..ctor(void*, int)' can't be the return value as any methods.";
 	}
 }
