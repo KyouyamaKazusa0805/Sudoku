@@ -11,7 +11,7 @@ namespace Sudoku.CodeAnalysis
 		/// <summary>
 		/// Indicates the searcher that searches for function pointer syntax node.
 		/// </summary>
-		private sealed class InterpolationSyntaxNodeSearcher : CSharpSyntaxWalker
+		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
 			/// Indicates the semantic model.
@@ -23,8 +23,7 @@ namespace Sudoku.CodeAnalysis
 			/// Initializes an instance with the specified semantic model.
 			/// </summary>
 			/// <param name="semanticModel">The semantic model.</param>
-			public InterpolationSyntaxNodeSearcher(SemanticModel semanticModel) =>
-				_semanticModel = semanticModel;
+			public InnerWalker(SemanticModel semanticModel) => _semanticModel = semanticModel;
 
 
 			/// <summary>
@@ -40,7 +39,7 @@ namespace Sudoku.CodeAnalysis
 				(
 					_semanticModel.GetOperation(node) is not IInterpolationOperation
 					{
-						//Kind: OperationKind.Interpolation,
+						Kind: OperationKind.Interpolation,
 						Expression: { Type: { IsValueType: true } }
 					}
 				)

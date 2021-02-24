@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Sudoku.CodeAnalysis.Extensions;
+using Pair = System.ValueTuple<Microsoft.CodeAnalysis.CSharp.Syntax.InvocationExpressionSyntax, string>;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -11,12 +12,12 @@ namespace Sudoku.CodeAnalysis
 		/// The syntax walker that checks and gathers all invocation expression syntax nodes
 		/// that uses the function pointer fields in <c>SudokuGrid</c>.
 		/// </summary>
-		private sealed class SudokuGridFuncPtrInvocationSearcher : CSharpSyntaxWalker
+		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
 			/// Indicates the collection that stores all possible and valid information.
 			/// </summary>
-			public IList<(InvocationExpressionSyntax Node, string FieldName)>? Collection { get; private set; }
+			public IList<Pair>? Collection { get; private set; }
 
 
 			/// <inheritdoc/>
@@ -59,7 +60,7 @@ namespace Sudoku.CodeAnalysis
 					return;
 				}
 
-				Collection ??= new List<(InvocationExpressionSyntax, string)>();
+				Collection ??= new List<Pair>();
 
 				Collection.Add((node, fieldName));
 			}

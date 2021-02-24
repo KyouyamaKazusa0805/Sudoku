@@ -9,7 +9,7 @@ namespace Sudoku.CodeAnalysis
 		/// <summary>
 		/// Indicates the searcher that searches for function pointer syntax node.
 		/// </summary>
-		private sealed class FunctionPointerTypeSyntaxNodeSearcher : CSharpSyntaxWalker
+		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
 			/// Indicates the result list.

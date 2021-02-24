@@ -3,6 +3,12 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
+using Quadruple = System.ValueTuple<
+	Microsoft.CodeAnalysis.CSharp.Syntax.InvocationExpressionSyntax,
+	Microsoft.CodeAnalysis.CSharp.Syntax.IdentifierNameSyntax,
+	string,
+	Microsoft.CodeAnalysis.CSharp.Syntax.ArgumentListSyntax
+>;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -12,7 +18,7 @@ namespace Sudoku.CodeAnalysis
 		/// Indicates the searcher that stores the syntax nodes of the dynamically invocation of
 		/// that <see langword="dynamic"/> field <c>Current</c>.
 		/// </summary>
-		private sealed class DynamicallyInvocationSearcher : CSharpSyntaxWalker
+		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
 			/// Indicates the semantic model.
@@ -24,13 +30,13 @@ namespace Sudoku.CodeAnalysis
 			/// Initializes an instance with the specified semantic model.
 			/// </summary>
 			/// <param name="semanticModel">The semantic model.</param>
-			public DynamicallyInvocationSearcher(SemanticModel semanticModel) => _semanticModel = semanticModel;
+			public InnerWalker(SemanticModel semanticModel) => _semanticModel = semanticModel;
 
 
 			/// <summary>
 			/// Indicates the valid collection of the <c>Current</c> dynamically invocation.
 			/// </summary>
-			public IList<(InvocationExpressionSyntax Node, IdentifierNameSyntax NameNode, string MethodName, ArgumentListSyntax ArgumentsNode)>? Collection { get; private set; }
+			public IList<Quadruple>? Collection { get; private set; }
 
 
 			/// <inheritdoc/>
@@ -78,7 +84,7 @@ namespace Sudoku.CodeAnalysis
 					return;
 				}
 
-				Collection ??= new List<(InvocationExpressionSyntax, IdentifierNameSyntax, string, ArgumentListSyntax)>();
+				Collection ??= new List<Quadruple>();
 
 				Collection.Add((node, nameNode, methodName, argList));
 			}

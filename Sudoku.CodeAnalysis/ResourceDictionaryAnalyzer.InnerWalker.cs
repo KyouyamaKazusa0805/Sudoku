@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Pair = System.ValueTuple<Microsoft.CodeAnalysis.CSharp.Syntax.MemberAccessExpressionSyntax, string>;
 
 namespace Sudoku.CodeAnalysis
 {
@@ -20,7 +21,7 @@ namespace Sudoku.CodeAnalysis
 		/// Please note that in this case the analyzer won't check: <c>Current["KeyToGet"]</c>, because
 		/// this case allows the parameter is a local variable, which isn't a constant.
 		/// </remarks>
-		private sealed class DynamicallyUsingResourceDictionarySearcher : CSharpSyntaxWalker
+		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
 			/// Indicates the semantic model of this syntax tree.
@@ -32,14 +33,13 @@ namespace Sudoku.CodeAnalysis
 			/// Initializes an instance with the specified semantic model.
 			/// </summary>
 			/// <param name="semanticModel">The semantic model.</param>
-			public DynamicallyUsingResourceDictionarySearcher(SemanticModel semanticModel) =>
-				_semanticModel = semanticModel;
+			public InnerWalker(SemanticModel semanticModel) => _semanticModel = semanticModel;
 
 
 			/// <summary>
 			/// Indicates the collection that stores those nodes.
 			/// </summary>
-			public IList<(MemberAccessExpressionSyntax Node, string Value)>? Collection { get; private set; }
+			public IList<Pair>? Collection { get; private set; }
 
 
 			/// <inheritdoc/>
@@ -78,7 +78,7 @@ namespace Sudoku.CodeAnalysis
 					return;
 				}
 
-				Collection ??= new List<(MemberAccessExpressionSyntax, string)>();
+				Collection ??= new List<Pair>();
 
 				Collection.Add((node, key));
 

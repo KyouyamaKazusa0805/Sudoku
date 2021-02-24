@@ -21,7 +21,7 @@ namespace Sudoku.CodeAnalysis
 				}
 
 				// Create the semantic model and the property list.
-				var collector = new FunctionPointerTypeSyntaxNodeSearcher();
+				var collector = new InnerWalker();
 				collector.Visit(root);
 
 				// If the syntax tree doesn't contain any dynamically called clause,

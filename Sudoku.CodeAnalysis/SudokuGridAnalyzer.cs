@@ -36,7 +36,7 @@ namespace Sudoku.CodeAnalysis
 					continue;
 				}
 
-				var collector = new SudokuGridFuncPtrInvocationSearcher();
+				var collector = new InnerWalker();
 				collector.Visit(root);
 
 				// If the syntax tree doesn't contain any dynamically called clause,

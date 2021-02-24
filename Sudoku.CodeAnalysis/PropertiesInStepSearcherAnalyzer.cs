@@ -41,7 +41,7 @@ namespace Sudoku.CodeAnalysis
 
 				// Create the semantic model and the property list.
 				var semanticModel = compilation.GetSemanticModel(syntaxTree);
-				var collector = new TargetPropertySearcher(compilation, semanticModel);
+				var collector = new InnerWalker(compilation, semanticModel);
 				collector.Visit(root);
 
 				// If none, skip it.

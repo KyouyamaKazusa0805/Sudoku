@@ -18,7 +18,7 @@ namespace Sudoku.CodeAnalysis
 		/// <summary>
 		/// Encapsulates a target property searcher.
 		/// </summary>
-		private sealed class TargetPropertySearcher : CSharpSyntaxWalker
+		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
 			/// Indicates the compilation.
@@ -36,7 +36,7 @@ namespace Sudoku.CodeAnalysis
 			/// </summary>
 			/// <param name="compilation">The compilation.</param>
 			/// <param name="semanticModel">The semantic model.</param>
-			public TargetPropertySearcher(Compilation compilation, SemanticModel semanticModel)
+			public InnerWalker(Compilation compilation, SemanticModel semanticModel)
 			{
 				_compilation = compilation;
 				_semanticModel = semanticModel;

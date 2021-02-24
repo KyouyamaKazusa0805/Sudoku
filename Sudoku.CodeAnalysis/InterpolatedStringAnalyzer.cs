@@ -22,7 +22,7 @@ namespace Sudoku.CodeAnalysis
 
 				// Create the semantic model and the property list.
 				var semanticModel = compilation.GetSemanticModel(syntaxTree);
-				var collector = new InterpolationSyntaxNodeSearcher(semanticModel);
+				var collector = new InnerWalker(semanticModel);
 				collector.Visit(root);
 
 				// If the syntax tree doesn't contain any dynamically called clause,
