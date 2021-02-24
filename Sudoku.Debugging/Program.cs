@@ -1,7 +1,28 @@
 ﻿using System;
+using System.Numerics;
 
-int val = 20;
-Console.WriteLine($"Lily is {val} years old."); // SUDOKU016.
+var span = getAllSets(17);
+foreach (int bit in span)
+{
+	Console.WriteLine(bit);
+}
 
-string sunnie = nameof(sunnie);
-Console.WriteLine($"My name is {sunnie}.");
+static unsafe ReadOnlySpan<int> getAllSets(byte val)
+{
+	if (val == 0)
+	{
+		return ReadOnlySpan<int>.Empty;
+	}
+
+	int length = BitOperations.PopCount(val);
+	int* resultSpan = stackalloc int[length];
+	for (byte i = 0, p = 0; i < 8; i++, val >>= 1)
+	{
+		if ((val & 1) != 0)
+		{
+			resultSpan[p++] = i;
+		}
+	}
+
+	return new(resultSpan, length); // SUDOKU017.
+}
