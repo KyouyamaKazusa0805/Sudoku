@@ -1,0 +1,149 @@
+﻿using System.Collections.Generic;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Operations;
+using Pair = System.ValueTuple<bool, Microsoft.CodeAnalysis.CSharp.Syntax.BaseObjectCreationExpressionSyntax>;
+
+namespace Sudoku.CodeAnalysis
+{
+	partial class SpanOrReadOnlySpanAnalyzer
+	{
+		/// <summary>
+		/// Indicates the inner walker to check implicit or explicit <see langword="new"/> clause.
+		/// </summary>
+		private sealed class InnerWalker : CSharpSyntaxWalker
+		{
+			/// <summary>
+			/// Indicates the semantic model.
+			/// </summary>
+			private readonly SemanticModel _semanticModel;
+
+			/// <summary>
+			/// Indicates the compilation.
+			/// </summary>
+			private readonly Compilation _compilation;
+
+
+			/// <summary>
+			/// Initializes an instance with the specified semantic model and the compilation.
+			/// </summary>
+			/// <param name="semanticModel">The semantic model.</param>
+			/// <param name="compilation">The compilation.</param>
+			public InnerWalker(SemanticModel semanticModel, Compilation compilation)
+			{
+				_semanticModel = semanticModel;
+				_compilation = compilation;
+			}
+
+
+			/// <summary>
+			/// Indicates the result collection.
+			/// </summary>
+			public IList<Pair>? Collection { get; private set; }
+
+
+			/// <inheritdoc/>
+			public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
+			{
+				if (node.Body is { } body)
+				{
+					InternalVisit(body);
+				}
+			}
+
+			/// <inheritdoc/>
+			public override void VisitGlobalStatement(GlobalStatementSyntax node) => InternalVisit(node);
+
+			/// <inheritdoc/>
+			public override void VisitLocalFunctionStatement(LocalFunctionStatementSyntax node)
+			{
+				if (node.Body is { } body)
+				{
+					InternalVisit(body);
+				}
+			}
+
+			/// <summary>
+			/// Visit methods.
+			/// </summary>
+			/// <param name="node">The root node of the function.</param>
+			private void InternalVisit(SyntaxNode node)
+			{
+				foreach (var descendant in node.DescendantNodes())
+				{
+					// Check whether the block contains explicit or implicit new clauses.
+					if
+					(
+						descendant is not BaseObjectCreationExpressionSyntax
+						{
+							RawKind:
+								(int)SyntaxKind.ObjectCreationExpression
+								or (int)SyntaxKind.ImplicitObjectCreationExpression
+						} newClauseNode
+					)
+					{
+						continue;
+					}
+
+					// Check operation and get the constructor symbol.
+					var operation = _semanticModel.GetOperation(newClauseNode);
+					if
+					(
+						operation is not IObjectCreationOperation
+						{
+							Kind: OperationKind.ObjectCreation,
+							Constructor: { } constructorSymbol
+						}
+					)
+					{
+						continue;
+					}
+
+					// Check type.
+					INamedTypeSymbol
+						typeSymbol = constructorSymbol.ContainingType.ConstructUnboundGenericType(),
+						spanTypeSymbol = _compilation
+							.GetTypeByMetadataName(SpanTypeFullName)!
+							.ConstructUnboundGenericType(),
+						readOnlySpanTypeSymbol = _compilation
+							.GetTypeByMetadataName(ReadOnlySpanTypeFullName)!
+							.ConstructUnboundGenericType();
+					if (!SymbolEqualityComparer.Default.Equals(typeSymbol, spanTypeSymbol)
+						&& !SymbolEqualityComparer.Default.Equals(typeSymbol, readOnlySpanTypeSymbol))
+					{
+						continue;
+					}
+
+					// Check parameters.
+					var @params = constructorSymbol.Parameters;
+					if (@params.Length != 2)
+					{
+						continue;
+					}
+
+					var voidPtrTypeSymbol = _compilation.CreatePointerTypeSymbol(
+						_compilation.GetSpecialType(SpecialType.System_Void)
+					);
+					var intTypeSymbol = _compilation.GetSpecialType(SpecialType.System_Int32);
+					if (!SymbolEqualityComparer.Default.Equals(@params[0].Type, voidPtrTypeSymbol)
+						|| !SymbolEqualityComparer.Default.Equals(@params[1].Type, intTypeSymbol))
+					{
+						continue;
+					}
+
+					// Potential syntax node found.
+					// If the first argument is a variable, check the assignment.
+					// If the assignment is 'stackalloc' clause, we can report the diagnostic result.
+					// TODO: Check the first argument.
+
+					Collection ??= new List<Pair>();
+
+					Collection.Add(
+						(SymbolEqualityComparer.Default.Equals(typeSymbol, spanTypeSymbol), newClauseNode)
+					);
+				}
+			}
+		}
+	}
+}

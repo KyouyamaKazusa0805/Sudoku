@@ -129,6 +129,6 @@
 		public const string Sudoku014 = "The member '{0}' can't be invoked because they are reserved.";
 		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type.";
 		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.";
-		public const string Sudoku017 = "The result of the expression '{0}..ctor(void*, int)' can't be the return value as any methods.";
+		public const string Sudoku017 = "The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods.";
 	}
 }
