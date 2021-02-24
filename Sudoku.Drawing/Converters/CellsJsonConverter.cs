@@ -31,7 +31,7 @@ namespace Sudoku.Drawing.Converters
 				{
 					case JsonTokenType.PropertyName:
 					{
-						pos = reader.GetString() == HighBits ? 0 : 1;
+						pos = (byte)(reader.GetString() == HighBits ? 0 : 1);
 						break;
 					}
 					case JsonTokenType.Number:

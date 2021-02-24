@@ -50,7 +50,7 @@ namespace Sudoku.Drawing.Converters
 				{
 					case JsonTokenType.PropertyName:
 					{
-						pos = reader.GetString() == Start ? 0 : 1;
+						pos = (byte)(reader.GetString() == Start ? 0 : 1);
 						break;
 					}
 					case JsonTokenType.String:

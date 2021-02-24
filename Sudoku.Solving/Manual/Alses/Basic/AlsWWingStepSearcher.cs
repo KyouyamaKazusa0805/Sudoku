@@ -147,16 +147,24 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								{
 									foreach (int digit in grid.GetCandidates(cell))
 									{
-										sbyte id = digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : -1;
-										candidateOffsets.Add(new(id, cell * 9 + digit));
+										candidateOffsets.Add(
+											new(
+												digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : -1,
+												cell * 9 + digit
+											)
+										);
 									}
 								}
 								foreach (int cell in map2)
 								{
 									foreach (int digit in grid.GetCandidates(cell))
 									{
-										sbyte id = digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : -2;
-										candidateOffsets.Add(new(id, cell * 9 + digit));
+										candidateOffsets.Add(
+											new(
+												digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : -2,
+												cell * 9 + digit
+											)
+										);
 									}
 								}
 

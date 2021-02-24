@@ -19,6 +19,7 @@
 		public const string Sudoku012 = "SUDOKU012";
 		public const string Sudoku013 = "SUDOKU013";
 		public const string Sudoku014 = "SUDOKU014";
+		public const string Sudoku015 = "SUDOKU015";
 	}
 
 	/// <summary>
@@ -40,6 +41,7 @@
 		public const string Sudoku012 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU012?sort_id=3610347";
 		public const string Sudoku013 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU013?sort_id=3610364";
 		public const string Sudoku014 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU014?sort_id=3614979";
+		public const string Sudoku015 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU015?sort_id=3622103";
 	}
 
 	/// <summary>
@@ -66,6 +68,11 @@
 		/// Indicates the category is the model (data structure implementation).
 		/// </summary>
 		public const string Model = nameof(Model);
+
+		/// <summary>
+		/// Indicates the category is the performance.
+		/// </summary>
+		public const string Performance = nameof(Performance);
 	}
 
 	/// <summary>
@@ -87,6 +94,7 @@
 		public const string Sudoku012 = "The argument type dismatched in this dynamically invocation";
 		public const string Sudoku013 = "The method returns void, but you make it an rvalue expression";
 		public const string Sudoku014 = "The member can't be invoked because they are reserved";
+		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type";
 	}
 
 	/// <summary>
@@ -108,5 +116,6 @@
 		public const string Sudoku012 = "This argument in the method '{0}' must be of type '{1}', but the actual type is '{2}'.";
 		public const string Sudoku013 = "The method '{0}' returns void, but you make it a rvalue expression.";
 		public const string Sudoku014 = "The member '{0}' can't be invoked because they are reserved.";
+		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type.";
 	}
 }

@@ -29,7 +29,7 @@ namespace Sudoku.Drawing.Converters
 				{
 					case JsonTokenType.PropertyName:
 					{
-						pos = reader.GetString() == nameof(DrawingInfo.Id) ? 0 : 1;
+						pos = (byte)(reader.GetString() == nameof(DrawingInfo.Id) ? 0 : 1);
 						break;
 					}
 					case JsonTokenType.Number:

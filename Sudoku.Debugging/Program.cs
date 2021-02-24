@@ -1,6 +1,9 @@
 ﻿unsafe
 {
-	delegate*<int, bool> ptrIsEven = &isEven; // SUDOKU015.
-}
+	delegate*<int, bool> ptrIsOdd; // SUDOKU015.
+	delegate* managed<int, bool> ptrIsEven;
+	delegate* unmanaged[Cdecl]<nint*, nint, void> ptrBubbleSort;
+	delegate* unmanaged[Cdecl, Stdcall]<nint*, nint, void> ptrSort;
 
-static bool isEven(int val) => (val & 1) == 0;
+	System.Console.WriteLine();
+}
