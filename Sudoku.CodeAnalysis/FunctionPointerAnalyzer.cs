@@ -5,6 +5,12 @@ namespace Sudoku.CodeAnalysis
 	/// <summary>
 	/// Indicates the function pointer analyzer.
 	/// </summary>
+	/// <remarks>
+	/// All supported diagnostics:
+	/// <list type="bullet">
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622103&amp;doc_id=633030">SUDOKU015</a> (For more readability and completeness, please add the keyword 'managed' into the function pointer type)</item>
+	/// </list>
+	/// </remarks>
 	[Generator]
 	public sealed partial class FunctionPointerAnalyzer : ISourceGenerator
 	{

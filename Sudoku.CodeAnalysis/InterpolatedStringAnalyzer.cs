@@ -5,6 +5,12 @@ namespace Sudoku.CodeAnalysis
 	/// <summary>
 	/// Indicates the analyzer that analyzes the interpolated strings.
 	/// </summary>
+	/// <remarks>
+	/// All supported diagnostics:
+	/// <list type="bullet">
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622115&amp;doc_id=633030">SUDOKU016</a> (Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations)</item>
+	/// </list>
+	/// </remarks>
 	[Generator]
 	public sealed partial class InterpolatedStringAnalyzer : ISourceGenerator
 	{

@@ -9,6 +9,12 @@ namespace Sudoku.CodeAnalysis
 	/// Indicates the analyzer that is called the resource dictionary values. Both two resource dictionaries
 	/// store in the folder <c>..\required\lang</c>.
 	/// </summary>
+	/// <remarks>
+	/// All supported diagnostics:
+	/// <list type="bullet">
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3608009&amp;doc_id=633030">SUDOKU009</a> (The specified key can't be found in the resource dictionary)</item>
+	/// </list>
+	/// </remarks>
 	[Generator]
 	public sealed partial class ResourceDictionaryAnalyzer : ISourceGenerator
 	{
@@ -77,13 +83,13 @@ namespace Sudoku.CodeAnalysis
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: new(
-								id: DiagnosticIds.Sudoku008,
-								title: Titles.Sudoku008,
-								messageFormat: Messages.Sudoku008,
+								id: DiagnosticIds.Sudoku009,
+								title: Titles.Sudoku009,
+								messageFormat: Messages.Sudoku009,
 								category: Categories.ResourceDictionary,
 								defaultSeverity: DiagnosticSeverity.Error,
 								isEnabledByDefault: true,
-								helpLinkUri: HelpLinks.Sudoku008
+								helpLinkUri: HelpLinks.Sudoku009
 							),
 							location: node.Name.GetLocation(),
 							messageArgs: new[] { value }

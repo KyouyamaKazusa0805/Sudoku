@@ -9,6 +9,19 @@ namespace Sudoku.CodeAnalysis
 	/// <summary>
 	/// Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
 	/// </summary>
+	/// <remarks>
+	/// All supported diagnostics:
+	/// <list type="bullet">
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599824&amp;doc_id=633030">SUDOKU001</a> (A property named 'Properties' expected)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599808&amp;doc_id=633030">SUDOKU002</a> (The property 'Properties' must be <see langword="public"/>)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3621783&amp;doc_id=633030">SUDOKU003</a> (The property 'Properties' must be <see langword="static"/>)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599816&amp;doc_id=633030">SUDOKU004</a> (The property 'Properties' must be <see langword="readonly"/>)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599818&amp;doc_id=633030">SUDOKU005</a> (The property 'Properties' has a wrong type)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599826&amp;doc_id=633030">SUDOKU006</a> (The property 'Properties' can't be <see langword="null"/>)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3602787&amp;doc_id=633030">SUDOKU007</a> (The property 'Properties' must contain an initializer)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3607697&amp;doc_id=633030">SUDOKU008</a> (The property 'Properties' must be initialized by a new clause)</item>
+	/// </list>
+	/// </remarks>
 	[Generator]
 	public sealed partial class PropertiesInStepSearcherAnalyzer : ISourceGenerator
 	{

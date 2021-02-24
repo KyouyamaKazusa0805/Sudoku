@@ -8,6 +8,15 @@ namespace Sudoku.CodeAnalysis
 	/// Indicates the analyzer that checks the dynamically invocation of the <see langword="dynamic"/>
 	/// field <c>TextResources.Current</c>.
 	/// </summary>
+	/// <remarks>
+	/// All supported diagnostics:
+	/// <list type="bullet">
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610020&amp;doc_id=633030">SUDOKU010</a> (The specified method can't be found and called)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610022&amp;doc_id=633030">SUDOKU011</a> (The number of arguments dismatched in this dynamically invocation)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610347&amp;doc_id=633030">SUDOKU012</a> (The argument type dismatched in this dynamically invocation)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610364&amp;doc_id=633030">SUDOKU013</a> (The method returns void, but you make it an rvalue expression)</item>
+	/// </list>
+	/// </remarks>
 	[Generator]
 	public sealed partial class DynamicallyInvocationOfCurrentAnalyzer : ISourceGenerator
 	{

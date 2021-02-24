@@ -90,12 +90,12 @@
 	internal static class Titles
 	{
 		public const string Sudoku001 = "A property named 'Properties' expected";
-		public const string Sudoku002 = "A public property 'Properties' expected";
+		public const string Sudoku002 = "The property 'Properties' must be public";
 		public const string Sudoku003 = "The property 'Properties' must be static";
 		public const string Sudoku004 = "The property 'Properties' must be read-only";
 		public const string Sudoku005 = "The property 'Properties' has a wrong type";
 		public const string Sudoku006 = "The property 'Properties' can't be null";
-		public const string Sudoku007 = "The property 'Properties' must contain a default value";
+		public const string Sudoku007 = "The property 'Properties' must contain an initializer";
 		public const string Sudoku008 = "The property 'Properties' must be initialized by a new clause";
 		public const string Sudoku009 = "The specified key can't be found in the resource dictionary";
 		public const string Sudoku010 = "The specified method can't be found and called";
@@ -114,12 +114,12 @@
 	internal static class Messages
 	{
 		public const string Sudoku001 = "A property named 'Properties' expected.";
-		public const string Sudoku002 = "A public property 'Properties' expected.";
+		public const string Sudoku002 = "The property 'Properties' must be public.";
 		public const string Sudoku003 = "The property 'Properties' must be static.";
 		public const string Sudoku004 = "The property 'Properties' must be read-only.";
 		public const string Sudoku005 = "The property 'Properties' must be of type 'Sudoku.Solving.Manual.TechiqueProperties'.";
 		public const string Sudoku006 = "The property 'Properties' can't be null; try to remove the nullable annotation '?'.";
-		public const string Sudoku007 = "The property 'Properties' must contain a default value.";
+		public const string Sudoku007 = "The property 'Properties' must contain an initializer.";
 		public const string Sudoku008 = "The property 'Properties' must be initialized by a new clause; try to initialize it with 'new(...)' or 'new TechniqueProperties(...)' instead.";
 		public const string Sudoku009 = "The specified key '{0}' can't be found in the resource dictionary; please check whether your input is valid.";
 		public const string Sudoku010 = "The specified method '{0}' can't be found and called; all supported methods are 'Serialize', 'Deserialize' and 'ChangeLanguage'.";

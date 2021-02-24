@@ -5,6 +5,12 @@ namespace Sudoku.CodeAnalysis
 	/// <summary>
 	/// Indicates the analyzer that checks the usage of the type <c>SudokuGrid</c>.
 	/// </summary>
+	/// <remarks>
+	/// All supported diagnostics:
+	/// <list type="bullet">
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3614979&amp;doc_id=633030">SUDOKU014</a> (The member can't be invoked because they are reserved)</item>
+	/// </list>
+	/// </remarks>
 	[Generator]
 	public sealed partial class SudokuGridAnalyzer : ISourceGenerator
 	{
