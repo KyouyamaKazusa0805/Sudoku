@@ -7,7 +7,7 @@ int count = 3;
 var complexList = new Collection { 1, 20, 50, 100, 200, 500, 1000 };
 if (complexList.Take(count).Count() >= count) // SUDOKU019.
 {
-	Console.WriteLine($"{nameof(complexList)} contains at least {count.ToString()} elements."); // SUDOKU016.
+	Console.WriteLine($"{nameof(complexList)} contains at least {count.ToString()} elements.");
 }
 
 // Implementation sample.
