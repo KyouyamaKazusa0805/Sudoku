@@ -8,7 +8,8 @@ namespace Sudoku.CodeAnalysis.Analyzers
 	/// <remarks>
 	/// All supported diagnostics:
 	/// <list type="bullet">
-	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625575&amp;doc_id=633030">SUDOKU018</a> (Replace 'Count == 0' with 'IsEmpty')</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625575&amp;doc_id=633030">SUDOKU018</a> (Replace <c>Count == 0</c> with <c>IsEmpty</c>)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3630107&amp;doc_id=633030">SUDOKU021</a> (Please use the field <c>Empty</c> to avoid instantiation)</item>
 	/// </list>
 	/// </remarks>
 	[Generator]
@@ -28,36 +29,8 @@ namespace Sudoku.CodeAnalysis.Analyzers
 
 				// Create the semantic model and the property list.
 				var semanticModel = compilation.GetSemanticModel(syntaxTree);
-				var collector = new InnerWalker(semanticModel, compilation);
-				collector.Visit(root);
-
-				// If the syntax tree doesn't contain any dynamically called clause,
-				// just skip it.
-				if (collector.Collection is null)
-				{
-					continue;
-				}
-
-				// Iterate on each location.
-				foreach (var (expr, eqToken, node) in collector.Collection)
-				{
-					// No calling conversion.
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: new(
-								id: DiagnosticIds.Sudoku018,
-								title: Titles.Sudoku018,
-								messageFormat: Messages.Sudoku018,
-								category: Categories.Usage,
-								defaultSeverity: DiagnosticSeverity.Warning,
-								isEnabledByDefault: true,
-								helpLinkUri: HelpLinks.Sudoku018
-							),
-							location: node.GetLocation(),
-							messageArgs: new[] { expr, eqToken, eqToken == "==" ? string.Empty : "!" }
-						)
-					);
-				}
+				CheckSudoku018(context, root, compilation, semanticModel);
+				CheckSudoku021(context, root, compilation, semanticModel);
 			}
 		}
 
@@ -65,5 +38,9 @@ namespace Sudoku.CodeAnalysis.Analyzers
 		public void Initialize(GeneratorInitializationContext context)
 		{
 		}
+
+
+		partial void CheckSudoku018(GeneratorExecutionContext context, SyntaxNode root, Compilation compilation, SemanticModel semanticModel);
+		partial void CheckSudoku021(GeneratorExecutionContext context, SyntaxNode root, Compilation compilation, SemanticModel semanticModel);
 	}
 }

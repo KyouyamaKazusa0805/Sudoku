@@ -25,6 +25,7 @@
 		public const string Sudoku018 = "SUDOKU018";
 		public const string Sudoku019 = "SUDOKU019";
 		public const string Sudoku020 = "SUDOKU020";
+		public const string Sudoku021 = "SUDOKU021";
 	}
 
 	/// <summary>
@@ -52,6 +53,7 @@
 		public const string Sudoku018 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU018?sort_id=3625575";
 		public const string Sudoku019 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU019?sort_id=3625073";
 		public const string Sudoku020 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU020?sort_id=3629641";
+		public const string Sudoku021 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU021?sort_id=3630107";
 	}
 
 	/// <summary>
@@ -115,6 +117,7 @@
 		public const string Sudoku018 = "Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'";
 		public const string Sudoku019 = "Replace 'Count() >= value' with 'Take(value).Count() >= value'";
 		public const string Sudoku020 = "Unnecessary interpolation leading character '$'";
+		public const string Sudoku021 = "Please use the default-value field to avoid instantiation";
 	}
 
 	/// <summary>
@@ -142,5 +145,6 @@
 		public const string Sudoku018 = "Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'.";
 		public const string Sudoku019 = "Replace 'Count() >= {0}' with 'Take({0}).Count() >= {0}'.";
 		public const string Sudoku020 = "Unnecessary interpolation leading character '$'.";
+		public const string Sudoku021 = "Please use the read-only field '{0}.{1}' to avoid instantiation.";
 	}
 }

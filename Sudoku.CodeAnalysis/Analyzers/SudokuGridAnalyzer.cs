@@ -9,6 +9,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 	/// All supported diagnostics:
 	/// <list type="bullet">
 	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3614979&amp;doc_id=633030">SUDOKU014</a> (The member can't be invoked because they are reserved)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3630107&amp;doc_id=633030">SUDOKU021</a> (Please use the field <c>Undefined</c> to avoid instantiation)</item>
 	/// </list>
 	/// </remarks>
 	[Generator]
@@ -26,36 +27,9 @@ namespace Sudoku.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				var collector = new InnerWalker();
-				collector.Visit(root);
-
-				// If the syntax tree doesn't contain any dynamically called clause,
-				// just skip it.
-				if (collector.Collection is null)
-				{
-					continue;
-				}
-
-				// Iterate on each dynamically called location.
-				foreach (var (node, fieldName) in collector.Collection)
-				{
-					// You can't invoke them.
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: new(
-								id: DiagnosticIds.Sudoku014,
-								title: Titles.Sudoku014,
-								messageFormat: Messages.Sudoku014,
-								category: Categories.Usage,
-								defaultSeverity: DiagnosticSeverity.Error,
-								isEnabledByDefault: true,
-								helpLinkUri: HelpLinks.Sudoku014
-							),
-							location: node.GetLocation(),
-							messageArgs: new[] { fieldName }
-						)
-					);
-				}
+				var semanticModel = compilation.GetSemanticModel(syntaxTree);
+				CheckSudoku014(context, root);
+				CheckSudoku021(context, root, semanticModel, compilation);
 			}
 		}
 
@@ -63,5 +37,9 @@ namespace Sudoku.CodeAnalysis.Analyzers
 		public void Initialize(GeneratorInitializationContext context)
 		{
 		}
+
+
+		partial void CheckSudoku014(GeneratorExecutionContext context, SyntaxNode root);
+		partial void CheckSudoku021(GeneratorExecutionContext context, SyntaxNode root, SemanticModel semanticModel, Compilation compilation);
 	}
 }

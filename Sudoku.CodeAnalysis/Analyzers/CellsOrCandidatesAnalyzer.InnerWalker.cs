@@ -6,13 +6,47 @@ using Triplet = System.ValueTuple<string, string, Microsoft.CodeAnalysis.CSharp.
 
 namespace Sudoku.CodeAnalysis.Analyzers
 {
-	public sealed partial class CellsOrCandidatesAnalyzer
+	partial class CellsOrCandidatesAnalyzer
 	{
+		partial void CheckSudoku018(
+			GeneratorExecutionContext context, SyntaxNode root,
+			Compilation compilation, SemanticModel semanticModel)
+		{
+			var collector = new InnerWalker_Count(semanticModel, compilation);
+			collector.Visit(root);
+
+			// If the syntax tree doesn't contain any dynamically called clause,
+			// just skip it.
+			if (collector.Collection is not null)
+			{
+				// Iterate on each location.
+				foreach (var (expr, eqToken, node) in collector.Collection)
+				{
+					// No calling conversion.
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							descriptor: new(
+								id: DiagnosticIds.Sudoku018,
+								title: Titles.Sudoku018,
+								messageFormat: Messages.Sudoku018,
+								category: Categories.Usage,
+								defaultSeverity: DiagnosticSeverity.Warning,
+								isEnabledByDefault: true,
+								helpLinkUri: HelpLinks.Sudoku018
+							),
+							location: node.GetLocation(),
+							messageArgs: new[] { expr, eqToken, eqToken == "==" ? string.Empty : "!" }
+						)
+					);
+				}
+			}
+		}
+
 		/// <summary>
-		/// Indicates the searcher that stores the syntax nodes of the dynamically invocation of
-		/// that <see langword="dynamic"/> field <c>Current</c>.
+		/// Bound by <see cref="CheckSudoku018"/>.
 		/// </summary>
-		private sealed class InnerWalker : CSharpSyntaxWalker
+		/// <seealso cref="CheckSudoku018"/>
+		private sealed class InnerWalker_Count : CSharpSyntaxWalker
 		{
 			/// <summary>
 			/// Indicates the zero string.
@@ -51,7 +85,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 			/// </summary>
 			/// <param name="semanticModel">The semantic model.</param>
 			/// <param name="compilation">The compilation.</param>
-			public InnerWalker(SemanticModel semanticModel, Compilation compilation)
+			public InnerWalker_Count(SemanticModel semanticModel, Compilation compilation)
 			{
 				_semanticModel = semanticModel;
 				_compilation = compilation;
@@ -67,8 +101,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 			/// <inheritdoc/>
 			public override void VisitBinaryExpression(BinaryExpressionSyntax node)
 			{
-				if
-				(
+				if (
 					node is not
 					{
 						RawKind: var kind and (
@@ -92,8 +125,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 				}
 
 				var operation = _semanticModel.GetOperation(exprNode);
-				if
-				(
+				if (
 					operation is not
 					{
 						Kind: OperationKind.LocalReference,
@@ -104,8 +136,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 					return;
 				}
 
-				if
-				(
+				if (
 					!SymbolEqualityComparer.Default.Equals(
 						typeSymbol,
 						_compilation.GetTypeByMetadataName(CellsFullTypeName)
