@@ -17,6 +17,11 @@ namespace Sudoku.CodeAnalysis
 		private class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
+			/// Indicates the method name <c>Take</c>.
+			/// </summary>
+			private const string TakeMethodName = "Take";
+
+			/// <summary>
 			/// Indicates the method name <c>Count</c>.
 			/// </summary>
 			private const string CountMethodName = "Count";
@@ -76,6 +81,19 @@ namespace Sudoku.CodeAnalysis
 							Expression: MemberAccessExpressionSyntax
 							{
 								RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+								Expression:
+									var potentialTakeMethodInvocationNode
+									and not InvocationExpressionSyntax
+									{
+										Expression: MemberAccessExpressionSyntax
+										{
+											RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+											Expression: IdentifierNameSyntax
+											{
+												Identifier: { ValueText: TakeMethodName }
+											}
+										}
+									},
 								Name: IdentifierNameSyntax { Identifier: { ValueText: CountMethodName } },
 							},
 							ArgumentList: { Arguments: { Count: 0 } }
@@ -101,6 +119,45 @@ namespace Sudoku.CodeAnalysis
 							IsGenericMethod: true
 						}
 					} operation
+				)
+				{
+					return;
+				}
+
+				if
+				(
+					_semanticModel.GetOperation(potentialTakeMethodInvocationNode) is IInvocationOperation
+					{
+						Kind: OperationKind.Invocation,
+						TargetMethod:
+						{
+							ContainingType: var containingTypeSymbolTakeMethod,
+							Parameters: { Length: 2 } parameterSymbolsTakeMethod,
+							ReturnType: var returnTypeSymbolTakeMethod,
+							IsExtensionMethod: true,
+							IsGenericMethod: true
+						}
+					} possibleTakeMethodInvocationOperation
+					&& SymbolEqualityComparer.Default.Equals(
+						containingTypeSymbolTakeMethod,
+						_compilation.GetTypeByMetadataName(EnumerableClassFullName)
+					)
+					&& SymbolEqualityComparer.Default.Equals(
+						returnTypeSymbolTakeMethod,
+						_compilation
+						.GetTypeByMetadataName(IEnumerableFullName)!
+						.WithTypeArguments(_compilation, SpecialType.System_Int32)
+					)
+					&& SymbolEqualityComparer.Default.Equals(
+						parameterSymbolsTakeMethod[0].Type,
+						_compilation
+						.GetTypeByMetadataName(IEnumerableFullName)!
+						.WithTypeArguments(_compilation, SpecialType.System_Int32)
+					)
+					&& SymbolEqualityComparer.Default.Equals(
+						parameterSymbolsTakeMethod[1].Type,
+						_compilation.GetSpecialType(SpecialType.System_Int32)
+					)
 				)
 				{
 					return;
