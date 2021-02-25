@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.Operations;
 using Sudoku.CodeAnalysis.Extensions;
 using Pair = System.ValueTuple<string, Microsoft.CodeAnalysis.CSharp.Syntax.BinaryExpressionSyntax>;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	partial class LinqAnalyzer
 	{

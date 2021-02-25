@@ -10,7 +10,7 @@ using Quadruple = System.ValueTuple<
 	Microsoft.CodeAnalysis.CSharp.Syntax.ArgumentListSyntax
 >;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	partial class DynamicallyInvocationOfCurrentAnalyzer
 	{

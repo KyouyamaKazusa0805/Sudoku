@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using System.Diagnostics;
 #endif
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.

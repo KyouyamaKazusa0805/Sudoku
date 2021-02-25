@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.Operations;
 using Sudoku.CodeAnalysis.Extensions;
 using Pair = System.ValueTuple<bool, Microsoft.CodeAnalysis.CSharp.Syntax.BaseObjectCreationExpressionSyntax>;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	partial class SpanOrReadOnlySpanAnalyzer
 	{

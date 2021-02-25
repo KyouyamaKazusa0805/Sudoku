@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI", "Sudoku.UI\Sudo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeAnalysis", "Sudoku.CodeAnalysis\Sudoku.CodeAnalysis.csproj", "{89B3250D-A56D-48C3-8C66-38E47DFE744C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.CodeAnalysis", "Sudoku.CodeAnalysis", "{52E094E2-4F17-4EE9-96E3-7245CEB7D1FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -352,6 +354,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{63DF92E9-F6B7-49B7-964F-EBBEEF1E0576} = {52E094E2-4F17-4EE9-96E3-7245CEB7D1FC}
+		{89B3250D-A56D-48C3-8C66-38E47DFE744C} = {52E094E2-4F17-4EE9-96E3-7245CEB7D1FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}

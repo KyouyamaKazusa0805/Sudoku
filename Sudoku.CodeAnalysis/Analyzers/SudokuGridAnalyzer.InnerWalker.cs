@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Sudoku.CodeAnalysis.Extensions;
 using Pair = System.ValueTuple<Microsoft.CodeAnalysis.CSharp.Syntax.InvocationExpressionSyntax, string>;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	partial class SudokuGridAnalyzer
 	{

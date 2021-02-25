@@ -1,18 +1,18 @@
 ﻿using Microsoft.CodeAnalysis;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	/// <summary>
-	/// Indicates the analyzer that checks the usage of the type <c>SudokuGrid</c>.
+	/// Indicates the function pointer analyzer.
 	/// </summary>
 	/// <remarks>
 	/// All supported diagnostics:
 	/// <list type="bullet">
-	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3614979&amp;doc_id=633030">SUDOKU014</a> (The member can't be invoked because they are reserved)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622103&amp;doc_id=633030">SUDOKU015</a> (For more readability and completeness, please add the keyword 'managed' into the function pointer type)</item>
 	/// </list>
 	/// </remarks>
 	[Generator]
-	public sealed partial class SudokuGridAnalyzer : ISourceGenerator
+	public sealed partial class FunctionPointerAnalyzer : ISourceGenerator
 	{
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
@@ -26,6 +26,7 @@ namespace Sudoku.CodeAnalysis
 					continue;
 				}
 
+				// Create the semantic model and the property list.
 				var collector = new InnerWalker();
 				collector.Visit(root);
 
@@ -36,23 +37,23 @@ namespace Sudoku.CodeAnalysis
 					continue;
 				}
 
-				// Iterate on each dynamically called location.
-				foreach (var (node, fieldName) in collector.Collection)
+				// Iterate on each location.
+				foreach (var node in collector.Collection)
 				{
-					// You can't invoke them.
+					// No calling conversion.
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: new(
-								id: DiagnosticIds.Sudoku014,
-								title: Titles.Sudoku014,
-								messageFormat: Messages.Sudoku014,
-								category: Categories.Usage,
-								defaultSeverity: DiagnosticSeverity.Error,
+								id: DiagnosticIds.Sudoku015,
+								title: Titles.Sudoku015,
+								messageFormat: Messages.Sudoku015,
+								category: Categories.Style,
+								defaultSeverity: DiagnosticSeverity.Warning,
 								isEnabledByDefault: true,
-								helpLinkUri: HelpLinks.Sudoku014
+								helpLinkUri: HelpLinks.Sudoku015
 							),
 							location: node.GetLocation(),
-							messageArgs: new[] { fieldName }
+							messageArgs: null
 						)
 					);
 				}

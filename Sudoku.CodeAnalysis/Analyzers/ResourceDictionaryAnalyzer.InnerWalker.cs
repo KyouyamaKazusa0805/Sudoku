@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Pair = System.ValueTuple<Microsoft.CodeAnalysis.CSharp.Syntax.MemberAccessExpressionSyntax, string>;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	partial class ResourceDictionaryAnalyzer
 	{

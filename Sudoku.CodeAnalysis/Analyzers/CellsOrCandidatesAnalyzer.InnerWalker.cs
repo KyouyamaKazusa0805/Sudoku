@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Triplet = System.ValueTuple<string, string, Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax>;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	public sealed partial class CellsOrCandidatesAnalyzer
 	{

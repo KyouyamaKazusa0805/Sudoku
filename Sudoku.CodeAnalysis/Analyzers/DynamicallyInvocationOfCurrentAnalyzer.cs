@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Sudoku.CodeAnalysis.Extensions;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates the analyzer that checks the dynamically invocation of the <see langword="dynamic"/>

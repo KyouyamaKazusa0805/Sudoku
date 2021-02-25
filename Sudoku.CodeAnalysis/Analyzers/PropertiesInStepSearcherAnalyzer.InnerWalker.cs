@@ -11,7 +11,7 @@ using Quadruple = System.ValueTuple<
 	Microsoft.CodeAnalysis.IPropertySymbol?
 >;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	partial class PropertiesInStepSearcherAnalyzer
 	{

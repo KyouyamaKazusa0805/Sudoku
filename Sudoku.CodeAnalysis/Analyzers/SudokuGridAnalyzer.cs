@@ -1,18 +1,18 @@
 ﻿using Microsoft.CodeAnalysis;
 
-namespace Sudoku.CodeAnalysis
+namespace Sudoku.CodeAnalysis.Analyzers
 {
 	/// <summary>
-	/// Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>.
+	/// Indicates the analyzer that checks the usage of the type <c>SudokuGrid</c>.
 	/// </summary>
 	/// <remarks>
 	/// All supported diagnostics:
 	/// <list type="bullet">
-	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625575&amp;doc_id=633030">SUDOKU018</a> (Replace 'Count == 0' with 'IsEmpty')</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3614979&amp;doc_id=633030">SUDOKU014</a> (The member can't be invoked because they are reserved)</item>
 	/// </list>
 	/// </remarks>
 	[Generator]
-	public sealed partial class CellsOrCandidatesAnalyzer : ISourceGenerator
+	public sealed partial class SudokuGridAnalyzer : ISourceGenerator
 	{
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
@@ -26,9 +26,7 @@ namespace Sudoku.CodeAnalysis
 					continue;
 				}
 
-				// Create the semantic model and the property list.
-				var semanticModel = compilation.GetSemanticModel(syntaxTree);
-				var collector = new InnerWalker(semanticModel, compilation);
+				var collector = new InnerWalker();
 				collector.Visit(root);
 
 				// If the syntax tree doesn't contain any dynamically called clause,
@@ -38,23 +36,23 @@ namespace Sudoku.CodeAnalysis
 					continue;
 				}
 
-				// Iterate on each location.
-				foreach (var (expr, eqToken, node) in collector.Collection)
+				// Iterate on each dynamically called location.
+				foreach (var (node, fieldName) in collector.Collection)
 				{
-					// No calling conversion.
+					// You can't invoke them.
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: new(
-								id: DiagnosticIds.Sudoku018,
-								title: Titles.Sudoku018,
-								messageFormat: Messages.Sudoku018,
+								id: DiagnosticIds.Sudoku014,
+								title: Titles.Sudoku014,
+								messageFormat: Messages.Sudoku014,
 								category: Categories.Usage,
-								defaultSeverity: DiagnosticSeverity.Warning,
+								defaultSeverity: DiagnosticSeverity.Error,
 								isEnabledByDefault: true,
-								helpLinkUri: HelpLinks.Sudoku018
+								helpLinkUri: HelpLinks.Sudoku014
 							),
 							location: node.GetLocation(),
-							messageArgs: new[] { expr, eqToken, eqToken == "==" ? string.Empty : "!" }
+							messageArgs: new[] { fieldName }
 						)
 					);
 				}
