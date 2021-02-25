@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
 using ExplicitNew = Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax;
 using ImplicitNew = Microsoft.CodeAnalysis.CSharp.Syntax.ImplicitObjectCreationExpressionSyntax;
-using New = Microsoft.CodeAnalysis.CSharp.Syntax.BaseObjectCreationExpressionSyntax;
 
 namespace Sudoku.CodeAnalysis.Analyzers
 {
@@ -84,7 +84,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 			/// <summary>
 			/// Indicates the collection that stores all possible and valid information.
 			/// </summary>
-			public IList<New>? Collection { get; private set; }
+			public IList<SyntaxNode>? Collection { get; private set; }
 
 
 			/// <inheritdoc/>
@@ -93,11 +93,74 @@ namespace Sudoku.CodeAnalysis.Analyzers
 			/// <inheritdoc/>
 			public override void VisitObjectCreationExpression(ExplicitNew node) => VisitNewClause(node);
 
+			/// <inheritdoc/>
+			public override void VisitDefaultExpression(DefaultExpressionSyntax node)
+			{
+				if (
+					_semanticModel.GetOperation(node) is not IDefaultValueOperation
+					{
+						Kind: OperationKind.DefaultValue,
+						Type: var typeSymbol
+					}
+				)
+				{
+					return;
+				}
+
+				if (
+					!SymbolEqualityComparer.Default.Equals(
+						typeSymbol,
+						_compilation.GetTypeByMetadataName(SudokuGridFullTypeName)
+					)
+				)
+				{
+					return;
+				}
+
+				Collection ??= new List<SyntaxNode>();
+
+				Collection.Add(node);
+			}
+
+			/// <inheritdoc/>
+			public override void VisitLiteralExpression(LiteralExpressionSyntax node)
+			{
+				if (node is not { RawKind: (int)SyntaxKind.DefaultLiteralExpression })
+				{
+					return;
+				}
+
+				if (
+					_semanticModel.GetOperation(node) is not IDefaultValueOperation
+					{
+						Kind: OperationKind.DefaultValue,
+						Type: var typeSymbol
+					}
+				)
+				{
+					return;
+				}
+
+				if (
+					!SymbolEqualityComparer.Default.Equals(
+						typeSymbol,
+						_compilation.GetTypeByMetadataName(SudokuGridFullTypeName)
+					)
+				)
+				{
+					return;
+				}
+
+				Collection ??= new List<SyntaxNode>();
+
+				Collection.Add(node);
+			}
+
 			/// <summary>
 			/// Bound by <see cref="VisitImplicitObjectCreationExpression"/>
 			/// and <see cref="VisitObjectCreationExpression"/>.
 			/// </summary>
-			private void VisitNewClause(New node)
+			private void VisitNewClause(BaseObjectCreationExpressionSyntax node)
 			{
 				if (
 					node is not
@@ -131,7 +194,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 					return;
 				}
 
-				Collection ??= new List<New>();
+				Collection ??= new List<SyntaxNode>();
 
 				Collection.Add(node);
 			}
