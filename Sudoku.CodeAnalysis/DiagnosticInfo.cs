@@ -108,7 +108,7 @@
 		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type";
 		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations";
 		public const string Sudoku017 = "The result of the expression '.ctor(void*, int)' can't be the return value as any methods";
-		public const string Sudoku018 = "Replace 'Count == 0' with 'IsEmpty'";
+		public const string Sudoku018 = "Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'";
 	}
 
 	/// <summary>
