@@ -32,12 +32,14 @@ Chinese only (中文介绍): [Click me (Gitee Site)](https://gitee.com/SunnieShi
 
 ## Language and IDE (语言和 IDE)
 
-* Programming language: C#<br/>编程语言：C#
-* Language version: 9.0<br/>语言版本：9.0
-* Framework: .NET 5<br/>框架版本：.NET 5
-* Indenting: Tabs (`\t`)<br/>缩进模式：原生 Tab
-* Integrated development environment: Visual Studio 2019 (16.9 Preview)<br/>集成开发环境：Visual Studio 2019 V16.9 预览版
-* Natural languages support: English, Simplified Chinese<br/>语言支持：英语、简体中文
+| Item<br />项目                                       |                                                              |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
+| Programming language<br />编程语言                   | C#                                                           |
+| Programming Language version<br />编程语言版本       | 9.0                                                          |
+| Framework<br />框架                                  | .NET 5                                                       |
+| Indenting<br />缩进                                  | Tabs (`\t`)<br />原生 Tab                                    |
+| Integrated development environment<br />集成开发环境 | Visual Studio 2019 (16.9 Preview)<br />Visual Studio 2019 16.9 预览版 |
+| Natural languages support<br />自然语言支持          | English, Simplified Chinese<br />英语、简体中文              |
 
 
 
