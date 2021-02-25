@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -71,7 +73,8 @@ namespace Sudoku.CodeAnalysis
 			/// <param name="node">The root node of the function.</param>
 			private void InternalVisit(SyntaxNode node)
 			{
-				foreach (var descendant in node.DescendantNodes())
+				var descendants = node.DescendantNodes().ToArray();
+				foreach (var descendant in descendants)
 				{
 					// Check whether the block contains explicit or implicit new clauses.
 					if
@@ -140,8 +143,39 @@ namespace Sudoku.CodeAnalysis
 
 					// Potential syntax node found.
 					// If the first argument is a variable, check the assignment.
+					if
+					(
+						newClauseNode.ArgumentList?.Arguments[0] is not
+						{
+							RawKind: (int)SyntaxKind.Argument,
+							Expression: IdentifierNameSyntax
+							{
+								Identifier: { ValueText: var variableName }
+							}
+						}
+					)
+					{
+						continue;
+					}
+
+					// Check the local variable.
 					// If the assignment is 'stackalloc' clause, we can report the diagnostic result.
-					// TODO: Check the first argument.
+					if
+					(
+						Array.Find(
+							descendants,
+							element => element is VariableDeclaratorSyntax
+							{
+								Identifier: { ValueText: var localVariableName }
+							} && localVariableName == variableName
+						) is not VariableDeclaratorSyntax
+						{
+							Initializer: { Value: StackAllocArrayCreationExpressionSyntax }
+						}
+					)
+					{
+						continue;
+					}
 
 					Collection ??= new List<Pair>();
 
