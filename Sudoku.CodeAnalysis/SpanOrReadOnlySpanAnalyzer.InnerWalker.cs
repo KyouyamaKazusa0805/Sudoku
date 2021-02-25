@@ -104,9 +104,15 @@ namespace Sudoku.CodeAnalysis
 						continue;
 					}
 
+					// Check generic.
+					if (constructorSymbol.ContainingType is not { IsGenericType: true } containingType)
+					{
+						continue;
+					}
+
 					// Check type.
 					INamedTypeSymbol
-						typeSymbol = constructorSymbol.ContainingType.ConstructUnboundGenericType(),
+						typeSymbol = containingType.ConstructUnboundGenericType(),
 						spanTypeSymbol = _compilation
 							.GetTypeByMetadataName(SpanTypeFullName)!
 							.ConstructUnboundGenericType(),
