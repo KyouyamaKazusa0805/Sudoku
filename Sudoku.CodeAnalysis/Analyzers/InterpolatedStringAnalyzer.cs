@@ -9,6 +9,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 	/// All supported diagnostics:
 	/// <list type="bullet">
 	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622115&amp;doc_id=633030">SUDOKU016</a> (Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations)</item>
+	/// <item><a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3629641&amp;doc_id=633030">SUDOKU020</a> (Unnecessary interpolation leading character '$')</item>
 	/// </list>
 	/// </remarks>
 	[Generator]
@@ -28,36 +29,9 @@ namespace Sudoku.CodeAnalysis.Analyzers
 
 				// Create the semantic model and the property list.
 				var semanticModel = compilation.GetSemanticModel(syntaxTree);
-				var collector = new InnerWalker(semanticModel);
-				collector.Visit(root);
 
-				// If the syntax tree doesn't contain any dynamically called clause,
-				// just skip it.
-				if (collector.Collection is null)
-				{
-					continue;
-				}
-
-				// Iterate on each location.
-				foreach (var interpolation in collector.Collection)
-				{
-					// No calling conversion.
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: new(
-								id: DiagnosticIds.Sudoku016,
-								title: Titles.Sudoku016,
-								messageFormat: Messages.Sudoku016,
-								category: Categories.Performance,
-								defaultSeverity: DiagnosticSeverity.Warning,
-								isEnabledByDefault: true,
-								helpLinkUri: HelpLinks.Sudoku016
-							),
-							location: interpolation.GetLocation(),
-							messageArgs: null
-						)
-					);
-				}
+				VerifySudoku016(context, root, semanticModel);
+				VerifySudoku020(context, root);
 			}
 		}
 
@@ -65,5 +39,9 @@ namespace Sudoku.CodeAnalysis.Analyzers
 		public void Initialize(GeneratorInitializationContext context)
 		{
 		}
+
+
+		partial void VerifySudoku016(GeneratorExecutionContext context, SyntaxNode root, SemanticModel model);
+		partial void VerifySudoku020(GeneratorExecutionContext context, SyntaxNode root);
 	}
 }

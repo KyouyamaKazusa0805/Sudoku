@@ -9,9 +9,48 @@ namespace Sudoku.CodeAnalysis.Analyzers
 	partial class InterpolatedStringAnalyzer
 	{
 		/// <summary>
-		/// Indicates the searcher that searches for function pointer syntax node.
+		/// Verify the diagnostic item <c>SUDOKU016</c>.
 		/// </summary>
-		private sealed class InnerWalker : CSharpSyntaxWalker
+		/// <param name="context">The context.</param>
+		/// <param name="root">The syntax root.</param>
+		/// <param name="model">The semantic model.</param>
+		partial void VerifySudoku016(GeneratorExecutionContext context, SyntaxNode root, SemanticModel model)
+		{
+			var collector = new InnerWalker_ValueTypeInterpolation(model);
+			collector.Visit(root);
+
+			// If the syntax tree doesn't contain any dynamically called clause,
+			// just skip it.
+			if (collector.Collection is not null)
+			{
+				// Iterate on each location.
+				foreach (var interpolation in collector.Collection)
+				{
+					// No calling conversion.
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							descriptor: new(
+								id: DiagnosticIds.Sudoku016,
+								title: Titles.Sudoku016,
+								messageFormat: Messages.Sudoku016,
+								category: Categories.Performance,
+								defaultSeverity: DiagnosticSeverity.Warning,
+								isEnabledByDefault: true,
+								helpLinkUri: HelpLinks.Sudoku016
+							),
+							location: interpolation.GetLocation(),
+							messageArgs: null
+						)
+					);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Bound by the method <see cref="VerifySudoku016"/>.
+		/// </summary>
+		/// <seealso cref="VerifySudoku016"/>
+		private sealed class InnerWalker_ValueTypeInterpolation : CSharpSyntaxWalker
 		{
 			/// <summary>
 			/// Indicates the semantic model.
@@ -23,7 +62,8 @@ namespace Sudoku.CodeAnalysis.Analyzers
 			/// Initializes an instance with the specified semantic model.
 			/// </summary>
 			/// <param name="semanticModel">The semantic model.</param>
-			public InnerWalker(SemanticModel semanticModel) => _semanticModel = semanticModel;
+			public InnerWalker_ValueTypeInterpolation(SemanticModel semanticModel) =>
+				_semanticModel = semanticModel;
 
 
 			/// <summary>

@@ -1,3 +1,5 @@
-﻿using Sudoku.Debugging;
+﻿using System;
 
-FileCounting.CountUp();
+Console.WriteLine($"Hello, sunnie."); // SUDOKU020.
+Console.WriteLine("Hello!");
+Console.WriteLine($"Hello, {"Sunnie"}!");

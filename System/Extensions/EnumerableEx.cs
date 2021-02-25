@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace System.Extensions
 {
@@ -39,6 +40,15 @@ namespace System.Extensions
 
 			return true;
 		}
+
+		/// <summary>
+		/// Check whether the collection contains any elements that match the specified type.
+		/// </summary>
+		/// <typeparam name="T">The type to check.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool ContainsType<T>(this IEnumerable<T> @this) => @this.OfType<T>().Any();
 
 		/// <summary>
 		/// Get the index of the whole list, whose corresponding element is satisfy the specified condition.
