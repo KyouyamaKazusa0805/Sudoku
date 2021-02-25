@@ -15,6 +15,27 @@ namespace Sudoku.CodeAnalysis
 		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
+			/// Indicates the zero string.
+			/// </summary>
+			private const string ZeroString = "0";
+
+			/// <summary>
+			/// Indicates the property name of <c>Count</c>.
+			/// </summary>
+			private const string CountPropertyName = "Count";
+
+			/// <summary>
+			/// Indicates the full type name of <c>Cells</c>.
+			/// </summary>
+			private const string CellsFullTypeName = "Sudoku.Data.Cells";
+
+			/// <summary>
+			/// Indicates the full type name of <c>Candidates</c>.
+			/// </summary>
+			private const string CandidatesFullTypeName = "Sudoku.Data.Candidates";
+
+
+			/// <summary>
 			/// Indicates the semantic model.
 			/// </summary>
 			private readonly SemanticModel _semanticModel;

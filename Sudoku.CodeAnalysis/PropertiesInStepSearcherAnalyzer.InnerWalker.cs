@@ -21,6 +21,17 @@ namespace Sudoku.CodeAnalysis
 		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
+			/// Indicates the target property name to check (i.e. <c>Properties</c>).
+			/// </summary>
+			private const string TargetPropertyName = "Properties";
+
+			/// <summary>
+			/// Indicates the full name of the type.
+			/// </summary>
+			private const string StepSearcherTypeFullName = "Sudoku.Solving.Manual.StepSearcher";
+
+
+			/// <summary>
 			/// Indicates the compilation.
 			/// </summary>
 			private readonly Compilation _compilation;

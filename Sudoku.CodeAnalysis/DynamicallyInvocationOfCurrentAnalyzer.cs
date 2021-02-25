@@ -21,16 +21,6 @@ namespace Sudoku.CodeAnalysis
 	public sealed partial class DynamicallyInvocationOfCurrentAnalyzer : ISourceGenerator
 	{
 		/// <summary>
-		/// Indicates the text resources class name.
-		/// </summary>
-		private const string TextResourcesClassName = "TextResources";
-
-		/// <summary>
-		/// Indicates that field dynamically bound.
-		/// </summary>
-		private const string TextResourcesStaticReadOnlyFieldName = "Current";
-
-		/// <summary>
 		/// Indicates the method name that is called in order to change the language of that resource dictionary.
 		/// </summary>
 		private const string ChangeLanguageMethodName = "ChangeLanguage";

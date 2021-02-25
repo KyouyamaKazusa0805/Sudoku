@@ -24,6 +24,17 @@ namespace Sudoku.CodeAnalysis
 		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
+			/// Indicates the text resources class name.
+			/// </summary>
+			private const string TextResourcesClassName = "TextResources";
+
+			/// <summary>
+			/// Indicates that field dynamically bound.
+			/// </summary>
+			private const string TextResourcesStaticReadOnlyFieldName = "Current";
+
+
+			/// <summary>
 			/// Indicates the semantic model of this syntax tree.
 			/// </summary>
 			private readonly SemanticModel _semanticModel;

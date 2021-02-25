@@ -14,22 +14,6 @@ namespace Sudoku.CodeAnalysis
 	[Generator]
 	public sealed partial class SudokuGridAnalyzer : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates the type name of the sudoku grid.
-		/// </summary>
-		private const string SudokuGridTypeName = "SudokuGrid";
-
-		/// <summary>
-		/// Indicates the field name "<c>RefreshingCandidates</c>".
-		/// </summary>
-		private const string RefreshingCandidatesFuncPtrName = "RefreshingCandidates";
-
-		/// <summary>
-		/// Indicates the field name "<c>ValueChanged</c>".
-		/// </summary>
-		private const string ValueChangedFuncPtrName = "ValueChanged";
-
-
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{

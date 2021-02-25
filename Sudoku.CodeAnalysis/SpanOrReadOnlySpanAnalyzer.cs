@@ -17,17 +17,6 @@ namespace Sudoku.CodeAnalysis
 	[Generator]
 	public sealed partial class SpanOrReadOnlySpanAnalyzer : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates the full type name of <see cref="Span{T}"/> of <see cref="int"/>.
-		/// </summary>
-		private const string SpanTypeFullName = "System.Span`1";
-
-		/// <summary>
-		/// Indicates the full type name of <see cref="ReadOnlySpan{T}"/> of <see cref="int"/>.
-		/// </summary>
-		private const string ReadOnlySpanTypeFullName = "System.ReadOnlySpan`1";
-
-
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{

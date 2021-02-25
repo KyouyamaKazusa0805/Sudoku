@@ -15,6 +15,22 @@ namespace Sudoku.CodeAnalysis
 		private sealed class InnerWalker : CSharpSyntaxWalker
 		{
 			/// <summary>
+			/// Indicates the type name of the sudoku grid.
+			/// </summary>
+			private const string SudokuGridTypeName = "SudokuGrid";
+
+			/// <summary>
+			/// Indicates the field name "<c>RefreshingCandidates</c>".
+			/// </summary>
+			private const string RefreshingCandidatesFuncPtrName = "RefreshingCandidates";
+
+			/// <summary>
+			/// Indicates the field name "<c>ValueChanged</c>".
+			/// </summary>
+			private const string ValueChangedFuncPtrName = "ValueChanged";
+
+
+			/// <summary>
 			/// Indicates the collection that stores all possible and valid information.
 			/// </summary>
 			public IList<Pair>? Collection { get; private set; }

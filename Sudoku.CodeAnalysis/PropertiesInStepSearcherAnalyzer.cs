@@ -26,16 +26,6 @@ namespace Sudoku.CodeAnalysis
 	public sealed partial class PropertiesInStepSearcherAnalyzer : ISourceGenerator
 	{
 		/// <summary>
-		/// Indicates the target property name to check (i.e. <c>Properties</c>).
-		/// </summary>
-		private const string TargetPropertyName = "Properties";
-
-		/// <summary>
-		/// Indicates the full name of the type.
-		/// </summary>
-		private const string StepSearcherTypeFullName = "Sudoku.Solving.Manual.StepSearcher";
-
-		/// <summary>
 		/// Indicates the full name of the type of the property technique properties.
 		/// </summary>
 		private const string TechniquePropertiesTypeFullName = "Sudoku.Solving.Manual.TechniqueProperties";
