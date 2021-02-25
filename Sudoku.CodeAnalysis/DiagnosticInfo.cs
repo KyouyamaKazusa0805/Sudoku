@@ -22,6 +22,7 @@
 		public const string Sudoku015 = "SUDOKU015";
 		public const string Sudoku016 = "SUDOKU016";
 		public const string Sudoku017 = "SUDOKU017";
+		public const string Sudoku018 = "SUDOKU018";
 	}
 
 	/// <summary>
@@ -46,6 +47,7 @@
 		public const string Sudoku015 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU015?sort_id=3622103";
 		public const string Sudoku016 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU016?sort_id=3622115";
 		public const string Sudoku017 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU017?sort_id=3622127";
+		public const string Sudoku018 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU018?sort_id=3625575";
 	}
 
 	/// <summary>
@@ -106,6 +108,7 @@
 		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type";
 		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations";
 		public const string Sudoku017 = "The result of the expression '.ctor(void*, int)' can't be the return value as any methods";
+		public const string Sudoku018 = "Replace 'Count == 0' with 'IsEmpty'";
 	}
 
 	/// <summary>
@@ -130,5 +133,6 @@
 		public const string Sudoku015 = "For more readability and completeness, please add the keyword 'managed' into the function pointer type.";
 		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.";
 		public const string Sudoku017 = "The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods.";
+		public const string Sudoku018 = "Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'.";
 	}
 }
