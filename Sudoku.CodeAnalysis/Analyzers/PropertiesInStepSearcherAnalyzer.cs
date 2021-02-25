@@ -1,5 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 #if DEBUG && SOURCE_GENERATOR_DEBUG
 using System.Diagnostics;
 #endif
@@ -58,160 +58,17 @@ namespace Sudoku.CodeAnalysis.Analyzers
 				{
 					if (hasTargetProperty)
 					{
-						if (propertySymbol is { DeclaredAccessibility: not Accessibility.Public })
-						{
-							// The property must be public (expose to outside).
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									id: DiagnosticIds.Sudoku002,
-									category: Categories.Usage,
-									message: Messages.Sudoku002,
-									severity: DiagnosticSeverity.Error,
-									defaultSeverity: DiagnosticSeverity.Error,
-									isEnabledByDefault: true,
-									warningLevel: 0,
-									title: Titles.Sudoku002,
-									helpLink: HelpLinks.Sudoku002,
-									location: propertySymbol.Locations[0]));
-						}
-
-						if (propertySymbol is { IsStatic: false })
-						{
-							// The property must be static.
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									id: DiagnosticIds.Sudoku003,
-									category: Categories.Usage,
-									message: Messages.Sudoku003,
-									severity: DiagnosticSeverity.Error,
-									defaultSeverity: DiagnosticSeverity.Error,
-									isEnabledByDefault: true,
-									warningLevel: 0,
-									title: Titles.Sudoku003,
-									helpLink: HelpLinks.Sudoku003,
-									location: propertySymbol.Locations[0]));
-						}
-
-						if (propertySymbol is { IsReadOnly: false })
-						{
-							// The property shouldn't settable.
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									id: DiagnosticIds.Sudoku004,
-									category: Categories.Usage,
-									message: Messages.Sudoku004,
-									severity: DiagnosticSeverity.Error,
-									defaultSeverity: DiagnosticSeverity.Error,
-									isEnabledByDefault: true,
-									warningLevel: 0,
-									title: Titles.Sudoku004,
-									helpLink: HelpLinks.Sudoku004,
-									location: (
-										propertySymbol.SetMethod is { } setMethodSymbol
-										? (ISymbol)setMethodSymbol
-										: propertySymbol
-									).Locations[0]));
-						}
-
-						if
-						(
-							!SymbolEqualityComparer.Default.Equals(
-								propertySymbol!.Type, // Not null if 'hasTargetProperty' is true.
-								compilation.GetTypeByMetadataName(TechniquePropertiesTypeFullName)
-							)
-						)
-						{
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									id: DiagnosticIds.Sudoku005,
-									category: Categories.Usage,
-									message: Messages.Sudoku005,
-									severity: DiagnosticSeverity.Error,
-									defaultSeverity: DiagnosticSeverity.Error,
-									isEnabledByDefault: true,
-									warningLevel: 0,
-									title: Titles.Sudoku005,
-									helpLink: HelpLinks.Sudoku005,
-									location: propertySymbol.Locations[0]));
-						}
-
-						if (propertySymbol is { NullableAnnotation: NullableAnnotation.Annotated })
-						{
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									id: DiagnosticIds.Sudoku006,
-									category: Categories.Usage,
-									message: Messages.Sudoku006,
-									severity: DiagnosticSeverity.Error,
-									defaultSeverity: DiagnosticSeverity.Error,
-									isEnabledByDefault: true,
-									warningLevel: 0,
-									title: Titles.Sudoku006,
-									helpLink: HelpLinks.Sudoku006,
-									location: propertySymbol.Locations[0]));
-						}
-
-						if (propertyNode is { Initializer: null })
-						{
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									id: DiagnosticIds.Sudoku007,
-									category: Categories.Usage,
-									message: Messages.Sudoku007,
-									severity: DiagnosticSeverity.Error,
-									defaultSeverity: DiagnosticSeverity.Error,
-									isEnabledByDefault: true,
-									warningLevel: 0,
-									title: Titles.Sudoku007,
-									helpLink: HelpLinks.Sudoku007,
-									location: propertyNode.GetLocation()));
-						}
-
-						if
-						(
-							propertyNode is
-							{
-								Initializer:
-								{
-									Value:
-									{
-										RawKind: not (
-											(int)SyntaxKind.ObjectCreationExpression
-											or (int)SyntaxKind.ImplicitObjectCreationExpression
-										)
-									}
-								}
-							}
-						)
-						{
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									id: DiagnosticIds.Sudoku008,
-									category: Categories.Usage,
-									message: Messages.Sudoku008,
-									severity: DiagnosticSeverity.Error,
-									defaultSeverity: DiagnosticSeverity.Error,
-									isEnabledByDefault: true,
-									warningLevel: 0,
-									title: Titles.Sudoku008,
-									helpLink: HelpLinks.Sudoku008,
-									location: propertyNode.GetLocation()));
-						}
+						CheckSudoku002(context, propertySymbol);
+						CheckSudoku003(context, propertySymbol);
+						CheckSudoku004(context, propertySymbol);
+						CheckSudoku005(context, compilation, propertySymbol!);
+						CheckSudoku006(context, propertySymbol);
+						CheckSudoku007(context, propertyNode);
+						CheckSudoku008(context, propertyNode);
 					}
 					else
 					{
-						context.ReportDiagnostic(
-							Diagnostic.Create(
-								id: DiagnosticIds.Sudoku001,
-								category: Categories.Usage,
-								message: Messages.Sudoku001,
-								severity: DiagnosticSeverity.Error,
-								defaultSeverity: DiagnosticSeverity.Error,
-								isEnabledByDefault: true,
-								warningLevel: 0,
-								title: Titles.Sudoku001,
-								helpLink: HelpLinks.Sudoku001,
-								location: classNode.GetLocation()));
+						CheckSudoku001(context, classNode);
 					}
 				}
 			}
@@ -227,5 +84,14 @@ namespace Sudoku.CodeAnalysis.Analyzers
 			}
 #endif
 		}
+
+		partial void CheckSudoku001(GeneratorExecutionContext context, ClassDeclarationSyntax classNode);
+		partial void CheckSudoku002(GeneratorExecutionContext context, IPropertySymbol? propertySymbol);
+		partial void CheckSudoku003(GeneratorExecutionContext context, IPropertySymbol? propertySymbol);
+		partial void CheckSudoku004(GeneratorExecutionContext context, IPropertySymbol? propertySymbol);
+		partial void CheckSudoku005(GeneratorExecutionContext context, Compilation compilation, IPropertySymbol propertySymbol);
+		partial void CheckSudoku006(GeneratorExecutionContext context, IPropertySymbol? propertySymbol);
+		partial void CheckSudoku007(GeneratorExecutionContext context, PropertyDeclarationSyntax? propertyNode);
+		partial void CheckSudoku008(GeneratorExecutionContext context, PropertyDeclarationSyntax? propertyNode);
 	}
 }
