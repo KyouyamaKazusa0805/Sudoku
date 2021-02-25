@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Linq;
+using Microsoft.CodeAnalysis;
 
 namespace Sudoku.CodeAnalysis.Extensions
 {
@@ -31,6 +32,22 @@ namespace Sudoku.CodeAnalysis.Extensions
 
 			return false;
 		}
+
+		/// <summary>
+		/// Creates an <see cref="INamedTypeSymbol"/> with specified type arguments.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The base symbol.</param>
+		/// <param name="compilation">The compilation.</param>
+		/// <param name="specialTypes">All special types to create.</param>
+		/// <returns>Result symbol.</returns>
+		public static INamedTypeSymbol WithTypeArguments(
+			this INamedTypeSymbol @this, Compilation compilation, params SpecialType[] specialTypes) =>
+			@this.Construct(
+				(
+					from specialType in specialTypes
+					select compilation.GetSpecialType(specialType)
+				).ToArray()
+			);
 
 		/// <summary>
 		/// Check whether the current symbol derives from the specified type.
