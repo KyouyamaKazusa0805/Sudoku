@@ -114,7 +114,7 @@
         <member name="M:Sudoku.Diagnostics.FileCounterResult.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.FileCounterResult.Tostring(Sudoku.Diagnostics.SizeUnit)">
+        <member name="M:Sudoku.Diagnostics.FileCounterResult.ToString(Sudoku.Diagnostics.SizeUnit)">
             <summary>
             Gets the specified string notation for a <see cref="T:Sudoku.Diagnostics.SizeUnit"/> instance.
             </summary>

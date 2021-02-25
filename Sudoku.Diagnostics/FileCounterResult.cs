@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Extensions;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Sudoku.Diagnostics
 {
@@ -23,14 +25,25 @@ namespace Sudoku.Diagnostics
 	{
 		/// <inheritdoc/>
 		public override string ToString() =>
-			$"Results:\n" +
-			$"* Code lines: {ResultLines.ToString()}\n" +
-			$"* Files: {FilesCount.ToString()}\n" +
-			$"* Characters: {CharactersCount.ToString()}\n" +
-			$"* Bytes: {SizeUnitConverter.Convert(Bytes, out var unit).ToString(".000")} {Tostring(unit)} ({Bytes.ToString()} Bytes)\n" +
-			$"* Time elapsed: {Elapsed.ToString("hh\\:mm\\.ss\\.fff")}\n" +
-			"\n" +
-			"About more information, please call each property in this instance.";
+			new StringBuilder()
+			.AppendLine("Results:")
+			.Append("* Code lines: ")
+			.AppendLine(ResultLines)
+			.Append("* Files: ")
+			.AppendLine(FilesCount)
+			.Append("* Characters: ")
+			.AppendLine(CharactersCount)
+			.Append("* Bytes: ")
+			.Append(SizeUnitConverter.Convert(Bytes, out var unit).ToString(".000"))
+			.Append(' ')
+			.Append(ToString(unit))
+			.Append(" (")
+			.Append(Bytes)
+			.AppendLine(" Bytes)")
+			.Append("* Time elapsed: ")
+			.AppendLine(Elapsed.ToString("hh\\:mm\\.ss\\.fff"))
+			.Append("About more information, please call each property in this instance.")
+			.ToString();
 
 
 		/// <summary>
@@ -39,7 +52,7 @@ namespace Sudoku.Diagnostics
 		/// <param name="this">The instance.</param>
 		/// <returns>The string result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static string Tostring(SizeUnit @this) =>
+		private static string ToString(SizeUnit @this) =>
 			@this switch
 			{
 				SizeUnit.Byte => "B",
