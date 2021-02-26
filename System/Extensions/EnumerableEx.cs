@@ -42,6 +42,31 @@ namespace System.Extensions
 		}
 
 		/// <summary>
+		/// Check whether the list contains the element that is in the specified array.
+		/// </summary>
+		/// <typeparam name="T">The type of the element to check.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="elements">
+		/// (<see langword="params"/> parameter) The array that contains the target elements.
+		/// </param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		public static bool Contains<T>(this IEnumerable<T> @this, params T[] elements) where T : IEquatable<T>
+		{
+			foreach (var elementToCompare in @this)
+			{
+				foreach (var element in elements)
+				{
+					if (elementToCompare.Equals(element))
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Check whether the collection contains any elements that match the specified type.
 		/// </summary>
 		/// <typeparam name="T">The type to check.</typeparam>

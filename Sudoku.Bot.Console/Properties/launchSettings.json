@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sudoku.Bot.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "/settings \"P:\\Bot\\Settings\" /number \"P:\\Bot\\Settings\\Number.txt\" /config"
+    }
+  }
+}

@@ -626,6 +626,17 @@
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:System.Extensions.EnumerableEx.Contains``1(System.Collections.Generic.IEnumerable{``0},``0[])">
+            <summary>
+            Check whether the list contains the element that is in the specified array.
+            </summary>
+            <typeparam name="T">The type of the element to check.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="elements">
+            (<see langword="params"/> parameter) The array that contains the target elements.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:System.Extensions.EnumerableEx.ContainsType``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Check whether the collection contains any elements that match the specified type.
