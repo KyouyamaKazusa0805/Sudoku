@@ -9,49 +9,59 @@ using Sudoku.Bot.Resources;
 using Sudoku.Bot.Serialization;
 using Sudoku.Drawing;
 
-// Constant declarations.
+#region Constant declarations
 const int port = 8080;
 const string ipAddress = "127.0.0.1";
 const string authKey = "1234567890";
 const string dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 string banner = "-".PadRight(40, '-'); /*readonly*/
+#endregion
 
-// Get the bot number.
+#region Get the bot number
 if (getNumber() is not { } number)
 {
 	return;
 }
+#endregion
 
-// Check whether the mode is the config mode.
+#region Check whether the mode is the config mode
 bool configMode = getConfigModeFromArgs(args);
 string? pathSettings = getPathSettingsFromArgs();
+#endregion
 
+#region De-serialize the configuration file
 if (pathSettings is not null && File.Exists(pathSettings))
 {
 	// Read the configuration.
 	string json = File.ReadAllText(pathSettings);
 	SudokuPlugin.Settings = JsonSerializer.Deserialize<Settings>(json, SerializationOptions.Default) ?? new();
 }
+#endregion
 
 try
 {
-	// Open the bot.
+	#region Open the bot
 	var sessionSettings = new SessionSettings(ipAddress, port, authKey);
 	await using var session = new Session(sessionSettings, number);
 	await session.ConnectAsync();
+	#endregion
 
-	// Instantiate the event sources, and enable the listening operation.
+	#region Instantiate the event sources, and enable the listening operation
 	var currentUserEventSource = new GroupMessageReceivedEventSource();
 	var handler = session.ApiEventHandler;
 	handler.Bind(currentUserEventSource);
 	await handler.ListenAsync();
+	#endregion
 
-	// TODO: Global greeting.
+	#region Global greeting
+	// If you want to add a greeting plugin, put it to here.
+	#endregion
 
-	// Instantiate a new plugin.
+	#region Instantiate a new plugin
 	var sudokuPlugin = new SudokuPlugin(currentUserEventSource);
+	#endregion
 
-	// Output the console information.
+	#region Output the console information
 	Console.WriteLine(banner);
 	Console.Write(TextResources.Current.ProgramName);
 	Console.WriteLine(configMode ? TextResources.Current.ConfigMode : string.Empty);
@@ -63,16 +73,19 @@ try
 	Console.WriteLine(TextResources.Current.OpenSuccessful);
 	Console.WriteLine(TextResources.Current.PleaseInputEnterKeyToQuit);
 	Console.ReadLine();
+	#endregion
 
 	try
 	{
+		#region Check whether the configuration file path is valid
 		if (pathSettings is null)
 		{
 			outputInfo(TextResources.Current.PathDoesNotExist);
 			return;
 		}
+		#endregion
 
-		// User has closed the program. Now save the configuration.
+		#region User has closed the program. Now save the configuration
 		string dir = Path.GetDirectoryName(pathSettings)!;
 		if (!Directory.Exists(dir))
 		{
@@ -81,6 +94,7 @@ try
 
 		string json = JsonSerializer.Serialize(SudokuPlugin.Settings, SerializationOptions.Default);
 		File.WriteAllText(pathSettings, json);
+		#endregion
 	}
 	catch (Exception ex)
 	{
