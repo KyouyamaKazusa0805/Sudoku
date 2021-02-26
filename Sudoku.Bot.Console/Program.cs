@@ -130,8 +130,7 @@ long? getNumber()
 	}
 }
 
-static bool getConfigModeFromArgs(string[] args) =>
-	args.Length != 0 && Array.IndexOf(args, Commands.ConfigMode) != -1;
+bool getConfigModeFromArgs() => args.Length != 0 && Array.IndexOf(args, Commands.ConfigMode) != -1;
 
 string? getPathSettingsFromArgs()
 {
