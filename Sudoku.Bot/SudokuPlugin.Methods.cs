@@ -584,6 +584,7 @@ namespace Sudoku.Bot
 				}
 			}
 		}
+#if DEBUG && TEST
 		private static async partial Task PlayMusicAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
 			switch (args.Length)
@@ -643,5 +644,6 @@ namespace Sudoku.Bot
 				}
 			}
 		}
+#endif
 	}
 }

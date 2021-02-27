@@ -5,6 +5,14 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DefineConstants>DEBUG;TEST</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DefineConstants>TEST</DefineConstants>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<None Include="..\required\bot\Resources.dic" Link="Resources.dic">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -12,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="HuajiTech.Mirai.Http" Version="0.14.0-ci.323" />
+		<PackageReference Include="HuajiTech.Mirai.Http" Version="0.14.0-ci.323" />
 	</ItemGroup>
 
 	<ItemGroup>

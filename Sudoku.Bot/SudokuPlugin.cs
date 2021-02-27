@@ -60,8 +60,11 @@ namespace Sudoku.Bot
 				RemoveTitleAsync,
 				(string)X.CommandRemoveTitle1, (string)X.CommandRemoveTitle2,
 				(string)X.CommandRemoveTitle3, (string)X.CommandRemoveTitle4
-			) +
-			new CommandRouter(PlayMusicAsync, (string)X.CommandPlayMusic);
+			)
+#if DEBUG && TEST
+			+ new CommandRouter(PlayMusicAsync, (string)X.CommandPlayMusic)
+#endif
+			;
 
 
 		/// <summary>
@@ -238,6 +241,8 @@ namespace Sudoku.Bot
 		private static partial Task UnjinxAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
 		private static partial Task SetTitleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
 		private static partial Task RemoveTitleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
+#if DEBUG && TEST
 		private static partial Task PlayMusicAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
+#endif
 	}
 }
