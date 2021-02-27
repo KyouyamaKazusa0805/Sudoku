@@ -46,7 +46,6 @@ namespace Sudoku.Bot
 				.ToString();
 			await e.Source.SendAsync(info);
 		}
-
 		private static async partial Task AnalyzeAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
 			switch (args.Length)
@@ -79,7 +78,6 @@ namespace Sudoku.Bot
 				}
 			}
 		}
-
 		private static async partial Task GeneratePictureAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
 			switch (args.Length)
@@ -142,7 +140,6 @@ namespace Sudoku.Bot
 				return true;
 			}
 		}
-
 		private static async partial Task CleanAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
 			switch (args.Length)
@@ -174,7 +171,6 @@ namespace Sudoku.Bot
 				}
 			}
 		}
-
 		private static async partial Task GenerateEmptyAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
 			switch (args.Length)
@@ -195,7 +191,6 @@ namespace Sudoku.Bot
 				}
 			}
 		}
-
 		private static async partial Task AboutAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
 			switch (args.Length)
@@ -218,7 +213,6 @@ namespace Sudoku.Bot
 				}
 			}
 		}
-
 		private static async partial Task ExtractPuzzleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
 			switch (args.Length)
@@ -466,7 +460,6 @@ namespace Sudoku.Bot
 			static bool isFc(StepInfo step) => step.HasTag(TechniqueTags.LongChaining) && step is not AicStepInfo;
 			static bool isChaining(StepInfo step) => step.HasTag(TechniqueTags.Als | TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
 		}
-
 		private static async partial Task JinxAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
 			switch (args.Length)
@@ -489,13 +482,12 @@ namespace Sudoku.Bot
 				}
 				case >= 5 when args[2] == X.SettingsTextSpan: // Jinx <someone> span (<number> (d|w|h|m|s))+
 				{
-					await TryJinxOrUnjinxMemberAsync(args, e, true);
+					await TryJinxOrUnjinxAsync(args, e, true);
 
 					break;
 				}
 			}
 		}
-
 		private static async partial Task UnjinxAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
 			switch (args.Length)
@@ -512,7 +504,79 @@ namespace Sudoku.Bot
 				}
 				case >= 2: // Unjinx <someone>
 				{
-					await TryJinxOrUnjinxMemberAsync(args, e, false);
+					await TryJinxOrUnjinxAsync(args, e, false);
+
+					break;
+				}
+			}
+		}
+		private static async partial Task SetTitleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
+		{
+			switch (args.Length)
+			{
+				case 2 when args[1] == X.ChineseQuestionMark: // SetTitle ?
+				{
+					string info = new StringBuilder()
+						.Append((string)X.CommandFormatSetTitle)
+						.Append((string)X.CommandDescriptionSetTitle)
+						.ToString();
+
+					await e.Source.SendAsync(info);
+
+					break;
+				}
+				case 3 when args[2].Length <= 6 && e.Sender.Number == 747507738L: // SetTitle <user> <title>
+				{
+					var member = await GetMemberAsync(args[1], e);
+					if (member is null)
+					{
+						return;
+					}
+
+					try
+					{
+						await member.SetTitleAsync(args[2]);
+					}
+					catch (ApiException ex) when (ex.ErrorCode == 10)
+					{
+						await e.ReplyAsync((string)X.CommandValueSetTitleFailed);
+					}
+
+					break;
+				}
+			}
+		}
+		private static async partial Task RemoveTitleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
+		{
+			switch (args.Length)
+			{
+				case 2 when args[1] == X.ChineseQuestionMark: // RemoveTitle ?
+				{
+					string info = new StringBuilder()
+						.Append((string)X.CommandFormatRemoveTitle)
+						.Append((string)X.CommandDescriptionRemoveTitle)
+						.ToString();
+
+					await e.Source.SendAsync(info);
+
+					break;
+				}
+				case 2 when e.Sender.Number == 747507738L: // RemoveTitle <user>
+				{
+					var member = await GetMemberAsync(args[1], e);
+					if (member is null)
+					{
+						return;
+					}
+
+					try
+					{
+						await member.SetTitleAsync(string.Empty);
+					}
+					catch (ApiException ex) when (ex.ErrorCode == 10)
+					{
+						await e.ReplyAsync((string)X.CommandValueRemoveTitleFailed);
+					}
 
 					break;
 				}

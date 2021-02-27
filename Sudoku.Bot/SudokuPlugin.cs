@@ -36,7 +36,6 @@ namespace Sudoku.Bot
 		private static readonly Random Rng = new();
 
 
-#nullable disable
 		/// <inheritdoc cref="StaticConstructor"/>
 		static SudokuPlugin() =>
 			Handler =
@@ -49,24 +48,29 @@ namespace Sudoku.Bot
 			new CommandRouter(AboutAsync, (string)X.CommandAbout) +
 			new CommandRouter(ExtractPuzzleAsync, (string)X.CommandExtractPuzzle) +
 			new CommandRouter(JinxAsync, (string)X.CommandJinx) +
-			new CommandRouter(UnjinxAsync, (string)X.CommandUnjinx);
-#nullable restore
+			new CommandRouter(UnjinxAsync, (string)X.CommandUnjinx) +
+			new CommandRouter(SetTitleAsync, (string)X.CommandSetTitle) +
+			new ComplexCommandRouter(
+				RemoveTitleAsync,
+				(string)X.CommandRemoveTitle1, (string)X.CommandRemoveTitle2,
+				(string)X.CommandRemoveTitle3, (string)X.CommandRemoveTitle4
+			);
 
 
 		/// <summary>
 		/// Indicates whether the mode is the config mode.
 		/// </summary>
-		public static bool ConfigMode { get; set; }
+		public static bool ConfigMode { get; private set; }
 
 		/// <summary>
 		/// Indicates the default size that is used for drawing.
 		/// </summary>
-		public static int Size { get; set; }
+		public static int Size { get; private set; }
 
 		/// <summary>
 		/// Indicates the directory name of the base settings path.
 		/// </summary>
-		public static string BasePath { get; set; }
+		public static string BasePath { get; private set; } = null!;
 
 		/// <summary>
 		/// Indicates the settings.
@@ -142,7 +146,7 @@ namespace Sudoku.Bot
 		/// <param name="e">The event arguments.</param>
 		/// <param name="jinx">Indicates whether the mode is to jinx somebody.</param>
 		/// <returns>The task with the result value of type <see cref="bool"/>.</returns>
-		private static async Task<bool> TryJinxOrUnjinxMemberAsync(
+		private static async Task<bool> TryJinxOrUnjinxAsync(
 			string[] args, GroupMessageReceivedEventArgs e, bool jinx)
 		{
 			var member = await GetMemberAsync(args[1], e);
@@ -225,5 +229,7 @@ namespace Sudoku.Bot
 		private static partial Task ExtractPuzzleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
 		private static partial Task JinxAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
 		private static partial Task UnjinxAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
+		private static partial Task SetTitleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
+		private static partial Task RemoveTitleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
 	}
 }

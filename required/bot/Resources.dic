@@ -38,6 +38,11 @@
   "CommandExtractPuzzle": "！抽题",
   "CommandJinx": "！！禁言",
   "CommandUnjinx": "！！解除禁言",
+  "CommandSetTitle": "！！设置头衔",
+  "CommandRemoveTitle1": "！！移除头衔",
+  "CommandRemoveTitle2": "！！删除头衔",
+  "CommandRemoveTitle3": "！！去除头衔",
+  "CommandRemoveTitle4": "！！去掉头衔",
 
   "CommandFormatHelp": "格式：！帮助。",
   "CommandFormatAnalyze": "格式：！分析 <题目>。",
@@ -48,6 +53,8 @@
   "CommandFormatExtractPuzzle": "格式：！抽题 [不带候选数|带候选数|带候选|不带候选] [快速解题]。",
   "CommandFormatJinx": "格式：！！禁言 <号码|昵称>。",
   "CommandFormatUnjinx": "格式：！！解除禁言 <号码|昵称>。",
+  "CommandFormatSetTitle": "格式：！！设置头衔 <头衔>。",
+  "CommandFormatRemoveTitle": "格式：！！去掉头衔 <头衔>。",
 
   "CommandDescriptionHelp1": "机器人可识别的功能有以下一些：",
   "CommandDescriptionHelpHelp1": "！帮助：显示此帮助信息。",
@@ -65,6 +72,8 @@
   "CommandDescriptionGeneratePicture": "题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。",
   "CommandDescriptionClean": "题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。",
   "CommandDescriptionExtractPuzzle": "默认为带候选数。",
+  "CommandDescriptionSetTitle": "其中，头衔长度不能超过 6 个字符。",
+  "CommandDescriptionRemoveTitle": "其中，头衔长度不能超过 6 个字符。",
 
   "CommandValueAbout1": "Hello 大家好！我是一个机器人，叫小蛋蛋，是女孩子哦 (✿◡‿◡)",
   "CommandValueAbout2": "我爸还在给我加别的功能，所以我现在还需要大家的鼓励和支持哦，蟹蟹~",
@@ -75,6 +84,8 @@
   "CommandValueJinxFailed2": "我没有管理员权限，因而不能随意禁言一个人。",
   "CommandValueUnjinxFailed1": "您没有权限使用此功能。",
   "CommandValueUnjinxFailed2": "我没有管理员权限，因而不能随意禁言一个人。",
+  "CommandValueSetTitleFailed": "抱歉，我没有权限设置头衔。修改头衔只有群主才可以。",
+  "CommandValueRemoveTitleFailed": "抱歉，我没有权限去掉头衔。修改头衔只有群主才可以。",
 
   "OptionsWithCandidates1": "带候选数",
   "OptionsWithCandidates2": "带候选",
