@@ -18,6 +18,13 @@ namespace Sudoku.Bot.Console.CommandLines
 		public static bool IsConfigMode(string[] args) => args.Contains(Commands.ConfigMode);
 
 		/// <summary>
+		/// Indicates whether the bot says hello to the groups when the bot is initialized.
+		/// </summary>
+		/// <param name="args">The arguments.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public static bool EnableGreeting(string[] args) => args.Contains(Commands.Greeting);
+
+		/// <summary>
 		/// Try to get the path from the arguments.
 		/// </summary>
 		/// <param name="args">The arguments.</param>

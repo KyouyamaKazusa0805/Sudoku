@@ -19,5 +19,10 @@
 		/// Indicates the size.
 		/// </summary>
 		public const string Size = "/size";
+
+		/// <summary>
+		/// Indicates the greeting.
+		/// </summary>
+		public const string Greeting = "/enableGreeting";
 	}
 }

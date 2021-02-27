@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
 using HuajiTech.Mirai.Http;
 using HuajiTech.Mirai.Http.Events;
@@ -64,9 +66,45 @@ try
 	await handler.ListenAsync();
 
 	//
-	// Instantiate a new plugin.
+	// Say hello to groups when possible.
 	//
 	bool configMode = ArgChecker.IsConfigMode(args);
+	if (ArgChecker.EnableGreeting(args) && !configMode)
+	{
+		var user = session.CurrentUser;
+
+		string pathBlackList = $@"{path}\BlackList.txt";
+		string[] groupStrs = File.Exists(pathBlackList) ? File.ReadAllLines(pathBlackList) : Array.Empty<string>();
+
+		var groups = await user.GetGroupsAsync();
+		foreach (var g in from g in groups where groupStrs.Contains(g.Number.ToString()) select g)
+		{
+			string info = new StringBuilder()
+				.Append((string)TextResources.Current.Evenybody)
+				.Append(
+					(string)(
+						DateTime.Now.Hour switch
+						{
+							>= 0 and < 4 => TextResources.Current.TimeModifierBehindMidnight,
+							>= 4 and < 7 => TextResources.Current.TimeModifierDawn,
+							>= 7 and < 11 => TextResources.Current.TimeModifierMorning,
+							>= 11 and < 13 => TextResources.Current.TimeModifierNoon,
+							>= 13 and < 17 => TextResources.Current.TimeModifierAfternoon,
+							>= 17 and < 19 => TextResources.Current.TimeModifierNightfall,
+							>= 19 and < 23 => TextResources.Current.TimeModifierEvening,
+							23 => TextResources.Current.TimeModifierForeMidnight,
+						}
+					))
+				.Append((string)TextResources.Current.Greeting)
+				.ToString();
+
+			await g.SendAsync(info);
+		}
+	}
+
+	//
+	// Instantiate a new plugin.
+	//
 	ArgChecker.TryGetSize(args, out int size);
 	SudokuPlugin.Start(groupReceivedSource, path, configMode, size);
 
@@ -100,16 +138,7 @@ try
 }
 catch (Exception ex)
 {
-	outputException(ex, TextResources.Current.ErrorWhileOpening);
-}
-
-
-static void outputException(Exception ex, string? header = null)
-{
-	if (header is not null)
-	{
-		Console.WriteLine(header);
-	}
+	Console.WriteLine((string)TextResources.Current.ErrorWhileOpening);
 
 	Console.ForegroundColor = ConsoleColor.Red;
 	Console.WriteLine(ex.Message);
