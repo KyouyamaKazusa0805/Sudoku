@@ -77,7 +77,7 @@ try
 		string[] groupStrs = File.Exists(pathBlackList) ? File.ReadAllLines(pathBlackList) : Array.Empty<string>();
 
 		var groups = await user.GetGroupsAsync();
-		foreach (var g in from g in groups where groupStrs.Contains(g.Number.ToString()) select g)
+		foreach (var g in from g in groups where !groupStrs.Contains(g.Number.ToString()) select g)
 		{
 			string info = new StringBuilder()
 				.Append((string)TextResources.Current.Evenybody)
