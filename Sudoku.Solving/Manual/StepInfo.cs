@@ -167,7 +167,7 @@ namespace Sudoku.Solving.Manual
 		{
 			short value = (short)flags;
 			delegate* managed<TechniqueTags, TechniqueTags, bool> func =
-				(value & value - 1) != 0 ? &EnumEx.Flags : &EnumEx.MultiFlags;
+				(value & value - 1) == 0 ? &EnumEx.Flags : &EnumEx.MultiFlags;
 
 			return func(TechniqueTags, flags);
 		}

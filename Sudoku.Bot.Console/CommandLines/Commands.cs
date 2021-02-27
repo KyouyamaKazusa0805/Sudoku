@@ -14,5 +14,10 @@
 		/// Indicates the path.
 		/// </summary>
 		public const string Path = "/path";
+
+		/// <summary>
+		/// Indicates the size.
+		/// </summary>
+		public const string Size = "/size";
 	}
 }

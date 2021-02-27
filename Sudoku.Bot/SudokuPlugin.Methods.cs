@@ -137,7 +137,7 @@ namespace Sudoku.Bot
 				Settings.ShowCandidates = withCands;
 				var painter = new GridPainter(new(Size, Size), Settings, targetGrid);
 				using var image = painter.Draw();
-				await e.ReplyImageAsync(image, (string)X.PathDesktop);
+				await e.ReplyImageAsync(image, Desktop);
 
 				return true;
 			}
@@ -165,10 +165,10 @@ namespace Sudoku.Bot
 					}
 
 					grid.Clean();
-					var painter = new GridPainter(new(Size, Size), Settings, grid);
+					var painter = new GridPainter(new(Size, Size), new(Settings) { ShowCandidates = true }, grid);
 
 					using var image = painter.Draw();
-					await e.ReplyImageAsync(image, (string)X.PathDesktop);
+					await e.ReplyImageAsync(image, Desktop);
 
 					break;
 				}
@@ -183,7 +183,7 @@ namespace Sudoku.Bot
 				{
 					var painter = new GridPainter(new(Size, Size), Settings, SudokuGrid.Undefined);
 					using var image = painter.Draw();
-					await e.ReplyImageAsync(image, (string)X.PathDesktop);
+					await e.ReplyImageAsync(image, Desktop);
 
 					break;
 				}
@@ -239,7 +239,7 @@ namespace Sudoku.Bot
 
 					break;
 				}
-				case 2: // ExtractPuzzle (+candidates|-candidates)
+				case 2: // ExtractPuzzle (+candidates|-candidates|+fast|-fast)
 				{
 					if (args[1] == X.OptionsWithCandidates1 || args[1] == X.OptionsWithCandidates2)
 					{
@@ -249,42 +249,62 @@ namespace Sudoku.Bot
 					{
 						await outputPuzzlePictureAsync(false);
 					}
-					else
+					else if (args.Contains((string)X.SettingsTextFastSearch))
 					{
-						await outputPuzzlePictureAsync(null);
+						await outputPuzzlePictureAsync(true, true);
+					}
+
+					break;
+				}
+				case 3: // ExtractPuzzle (+candidate|-candidates) (+fast|-fast)
+				{
+					bool fastSearch = args.Contains((string)X.SettingsTextFastSearch);
+					if (args.Contains((string)X.OptionsWithCandidates1, (string)X.OptionsWithCandidates2))
+					{
+						await outputPuzzlePictureAsync(true, fastSearch);
+					}
+					else if (args.Contains((string)X.OptionsWithoutCandidates1, (string)X.OptionsWithoutCandidates2))
+					{
+						await outputPuzzlePictureAsync(true, fastSearch);
 					}
 
 					break;
 				}
 			}
 
-			async Task outputPuzzlePictureAsync(bool? withCandidates)
+			async Task outputPuzzlePictureAsync(bool showCandidates, bool fastSearch = false)
 			{
-				if (!Directory.Exists(X.PathDatabaseDefault))
+				// Check whether the database path exists.
+				string dirDatabase = Path.Combine(BasePath, X.PathDatabaseDefault);
+				if (!Directory.Exists(dirDatabase))
 				{
 					return;
 				}
 
-				string[] files = Directory.GetFiles(X.PathDatabaseDefault);
+				// Check the database files exists.
+				string[] files = Directory.GetFiles(dirDatabase);
 				if (files.Length == 0)
 				{
 					return;
 				}
 
-				if (!withCandidates.HasValue)
-				{
-					return;
-				}
-
+				// Get the database that is used by the target group.
 				long groupNumber = e.Source.Number;
-				string correspondingPath = $@"{X.PathDatabaseDefault}\{groupNumber}.txt";
-				string finishedPath = $@"{X.PathDatabaseFinished}\{groupNumber}.txt";
+				string correspondingPath = $@"{dirDatabase}\{groupNumber}.txt";
+				string dirDatabaseFinished = Path.Combine(BasePath, X.PathDatabaseFinished);
+				string finishedPath = $@"{dirDatabaseFinished}\{groupNumber}.txt";
 				if (!File.Exists(correspondingPath))
 				{
 					await e.ReplyAsync((string)X.CommandValueExtractPuzzleFailed2);
 					return;
 				}
 
+				// File found.
+				// Now try to get the puzzle randomly.
+				// The algorithm will try 10 times to get the result puzzle.
+				// Why trying 10 times? Because the puzzle will be checked after extracted.
+				// If and only if the puzzle satisfies the specified condition, the puzzle will be returned.
+				// Of course, if the condition file doesn't found, we'll return the puzzle directly.
 				await e.Source.SendAsync((string)X.CommandValueExtractPuzzleNowGenerating);
 				string[] fileLines = File.ReadAllLines(correspondingPath);
 				AnalysisResult? analysisResult = null;
@@ -302,8 +322,11 @@ namespace Sudoku.Bot
 
 					bool exists = File.Exists(finishedPath);
 					string str = grid.ToString();
-					if (basicCondition(finishedPath, exists, str)
-						&& customCondition(groupNumber, grid, out analysisResult))
+					if (
+						// Base condition: if the file has already been finished, skip it.
+						basicCondition(finishedPath, exists, str)
+						// Custom condition: specified in the file.
+						&& customCondition(groupNumber, grid, out analysisResult, fastSearch))
 					{
 						break;
 					}
@@ -316,17 +339,17 @@ namespace Sudoku.Bot
 				else
 				{
 					// If with candidates, clean the grid. 
-					if (withCandidates is true)
+					if (showCandidates)
 					{
 						grid.Clean();
 					}
 
 					// Mark the puzzle as "finished", and save it to the "solved" folder.
-					DirectoryEx.CreateIfDoesNotExist(X.PathDatabaseFinished);
-					File.AppendAllText(finishedPath, $"{grid}\r\n");
+					DirectoryEx.CreateIfDoesNotExist(dirDatabaseFinished);
+					File.AppendAllText(finishedPath, $"{grid}{Environment.NewLine}");
 
 					// Output the analysis result.
-					analysisResult ??= new ManualSolver { FastSearch = true }.Solve(grid);
+					analysisResult ??= new ManualSolver { FastSearch = fastSearch }.Solve(grid);
 					await e.ReplyAsync(
 						analysisResult.ToString(
 							FormattingOptions.ShowDifficulty | FormattingOptions.ShowSeparators,
@@ -336,10 +359,10 @@ namespace Sudoku.Bot
 
 					// Output the picture.
 					var painter = new GridPainter(
-						new(Size, Size), new(Settings) { ShowCandidates = withCandidates.Value }, grid
+						new(Size, Size), new(Settings) { ShowCandidates = showCandidates }, grid
 					);
 					using var image = painter.Draw();
-					await e.ReplyImageAsync(image, (string)X.PathDesktop);
+					await e.ReplyImageAsync(image, Desktop);
 				}
 			}
 
@@ -353,9 +376,10 @@ namespace Sudoku.Bot
 				)
 				|| !exists;
 
-			static bool customCondition(long groupNumber, in SudokuGrid grid, out AnalysisResult? analysisResult)
+			static bool customCondition(
+				long groupNumber, in SudokuGrid grid, out AnalysisResult? analysisResult, bool fastSearch)
 			{
-				string path = X.PathDatabaseSettings;
+				string path = Path.Combine(BasePath, X.PathDatabaseSettings);
 				if (!File.Exists(path))
 				{
 					analysisResult = null;
@@ -407,7 +431,7 @@ namespace Sudoku.Bot
 					return true;
 				}
 
-				analysisResult = new ManualSolver()/* { FastSearch = true }*/.Solve(grid);
+				analysisResult = new ManualSolver { FastSearch = fastSearch }.Solve(grid);
 				decimal max = analysisResult.MaxDifficulty;
 				int chainingTechniquesCount = analysisResult.Steps!.Count(isChaining);
 

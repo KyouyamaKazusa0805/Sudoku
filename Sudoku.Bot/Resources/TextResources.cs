@@ -66,7 +66,6 @@ namespace Sudoku.Bot.Resources
 			return r;
 		}
 
-
 		/// <summary>
 		/// Try to get the value via the specified key.
 		/// </summary>

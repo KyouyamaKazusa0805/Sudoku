@@ -52,6 +52,11 @@ namespace System.Extensions
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		public static bool Contains<T>(this IEnumerable<T> @this, params T[] elements) where T : IEquatable<T>
 		{
+			if (elements.Length == 1)
+			{
+				return Enumerable.Contains(@this, elements[0]);
+			}
+
 			foreach (var elementToCompare in @this)
 			{
 				foreach (var element in elements)

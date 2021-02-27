@@ -58,20 +58,17 @@ try
 	//
 	// Instantiate the event sources, and enable the listening operation.
 	//
-	var currentUserEventSource = new GroupMessageReceivedEventSource();
+	var groupReceivedSource = new GroupMessageReceivedEventSource();
 	var handler = session.ApiEventHandler;
-	handler.Bind(currentUserEventSource);
+	handler.Bind(groupReceivedSource);
 	await handler.ListenAsync();
 
 	//
 	// Instantiate a new plugin.
 	//
-	var sudokuPlugin = new SudokuPlugin(currentUserEventSource);
-
-	//
-	// Check whether the mode is the config mode.
-	//
 	bool configMode = ArgChecker.IsConfigMode(args);
+	ArgChecker.TryGetSize(args, out int size);
+	SudokuPlugin.Start(groupReceivedSource, path, configMode, size);
 
 	//
 	// Output the console information.
