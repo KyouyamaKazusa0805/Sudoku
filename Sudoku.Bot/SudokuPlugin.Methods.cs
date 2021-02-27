@@ -1,4 +1,5 @@
-﻿#pragma warning disable IDE0060
+﻿#pragma warning disable IDE0079
+#pragma warning disable IDE0060
 
 using System;
 using System.Extensions;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HuajiTech.Mirai.Http;
 using HuajiTech.Mirai.Http.Events;
+using HuajiTech.Mirai.Http.Messaging;
 using Sudoku.Bot.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -576,6 +578,65 @@ namespace Sudoku.Bot
 					catch (ApiException ex) when (ex.ErrorCode == 10)
 					{
 						await e.ReplyAsync((string)X.CommandValueRemoveTitleFailed);
+					}
+
+					break;
+				}
+			}
+		}
+		private static async partial Task PlayMusicAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
+		{
+			switch (args.Length)
+			{
+				case 2 when args[1] == X.ChineseQuestionMark:
+				{
+					string info = new StringBuilder()
+						.AppendLine(X.CommandFormatPlayMusic)
+						.AppendLine(X.CommandDescriptionPlayMusic1)
+						.AppendLine(X.CommandDescriptionPlayMusic2)
+						.ToString();
+					await e.Source.SendAsync(info);
+
+					break;
+				}
+				case 2:
+				{
+					if (new string[] { X.OptionsKiraKiraDays1, X.OptionsKiraKiraDays2 }.Contains(args[1]))
+					{
+						await e.Source.SendAsync(
+							new Voice(new Uri($@"{VoicesDirectory.FullName}\KiraKiraDays.amr")));
+					}
+					else if (new[] { X.OptionsNoThankYou1, X.OptionsNoThankYou2 }.Contains(args[1]))
+					{
+						await e.Source.SendAsync(
+							new Voice(new Uri($@"{VoicesDirectory.FullName}\NoThankYou.amr")));
+					}
+					else if (args[1] == X.OptionsSinging)
+					{
+						await e.Source.SendAsync(
+							new Voice(new Uri($@"{VoicesDirectory.FullName}\Singing.amr")));
+					}
+					else if (
+						new string[]
+						{
+							X.OptionsTenshiNiFuretaYo1, X.OptionsTenshiNiFuretaYo2,
+							X.OptionsTenshiNiFuretaYo3, X.OptionsTenshiNiFuretaYo4
+						}.Contains(args[1])
+					)
+					{
+						await e.Source.SendAsync(
+							new Voice(new Uri($@"{VoicesDirectory.FullName}\TenshiNiFuretaYo.amr")));
+					}
+					else if (
+						new string[]
+						{
+							X.OptionsHuwaHuwaTime1, X.OptionsHuwaHuwaTime2, X.OptionsHuwaHuwaTime3,
+							X.OptionsHuwaHuwaTime4, X.OptionsHuwaHuwaTime5, X.OptionsHuwaHuwaTime6
+						}.Contains(args[1])
+					)
+					{
+						await e.Source.SendAsync(
+							new Voice(new Uri($@"{VoicesDirectory.FullName}\HuwaHuwaTime.amr")));
 					}
 
 					break;

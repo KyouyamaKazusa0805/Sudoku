@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -24,6 +25,11 @@ namespace Sudoku.Bot
 		/// Indicates the desktop path.
 		/// </summary>
 		private static readonly string Desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+		/// <summary>
+		/// Indicates the required directory.
+		/// </summary>
+		private static readonly DirectoryInfo VoicesDirectory = new(@"..\..\..\..\required\bot\Voices");
 
 		/// <summary>
 		/// Indicates the command hanlder.
@@ -54,7 +60,8 @@ namespace Sudoku.Bot
 				RemoveTitleAsync,
 				(string)X.CommandRemoveTitle1, (string)X.CommandRemoveTitle2,
 				(string)X.CommandRemoveTitle3, (string)X.CommandRemoveTitle4
-			);
+			) +
+			new CommandRouter(PlayMusicAsync, (string)X.CommandPlayMusic);
 
 
 		/// <summary>
@@ -231,5 +238,6 @@ namespace Sudoku.Bot
 		private static partial Task UnjinxAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
 		private static partial Task SetTitleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
 		private static partial Task RemoveTitleAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
+		private static partial Task PlayMusicAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e);
 	}
 }
