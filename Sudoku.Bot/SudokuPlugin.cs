@@ -26,10 +26,12 @@ namespace Sudoku.Bot
 		/// </summary>
 		private static readonly string Desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
+#if DEBUG && TEST
 		/// <summary>
 		/// Indicates the required directory.
 		/// </summary>
 		private static readonly DirectoryInfo VoicesDirectory = new(@"..\..\..\..\required\bot\Voices");
+#endif
 
 		/// <summary>
 		/// Indicates the command hanlder.
