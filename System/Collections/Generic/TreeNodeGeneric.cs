@@ -60,7 +60,6 @@ namespace System.Collections.Generic
 		public override string ToString() => (Id, ParentId, Content, ChildrenCount: Children.Count).ToString();
 
 
-#nullable disable warnings
 		/// <summary>
 		/// The internal comparison.
 		/// </summary>
@@ -71,10 +70,9 @@ namespace System.Collections.Generic
 			(left, right) switch
 			{
 				(null, null) => 0,
-				(not null, not null) => left.Id.CompareTo(right.Id),
+				(not null, not null) => left!.Id.CompareTo(right!.Id),
 				_ => left is null ? -1 : 1
 			};
-#nullable restore warnings
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

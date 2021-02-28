@@ -81,13 +81,11 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 				case (not null, not null):
 				{
-#nullable disable warnings
-					var results = new List<Conclusion>(left.Conclusions);
-					results.AddRange(right.Conclusions);
+					var results = new List<Conclusion>(left!.Conclusions);
+					results.AddRange(right!.Conclusions);
 
 					var candidateOffsets = new List<DrawingInfo>(left.Views[0].Candidates!);
 					candidateOffsets.AddRange(right.Views[0].Candidates!);
-#nullable restore warnings
 					return new(
 						results,
 						new View[] { new() { Candidates = candidateOffsets } },
@@ -97,9 +95,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 				default:
 				{
-#nullable disable warnings
-					return new(left ?? right);
-#nullable restore warnings
+					// Here the null suppression operator is unncessary, but Roslyn don't think so.
+					// Here either 'left' or 'right' isn't null, so the expression can't be null.
+					return new((left ?? right)!);
 				}
 			}
 		}

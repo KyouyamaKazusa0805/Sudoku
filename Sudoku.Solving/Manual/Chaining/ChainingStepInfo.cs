@@ -140,16 +140,14 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 
-#nullable disable warnings
 		/// <inheritdoc/>
 		public virtual bool Equals(ChainingStepInfo? other) =>
 			(this, other) switch
 			{
 				(null, null) => true,
-				(not null, not null) => GetHashCode() == other.GetHashCode(),
+				(not null, not null) => GetHashCode() == other!.GetHashCode(),
 				_ => false
 			};
-#nullable restore warnings
 
 		/// <inheritdoc/>
 		public override int GetHashCode()

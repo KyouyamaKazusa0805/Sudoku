@@ -56,13 +56,11 @@ namespace Sudoku.Drawing
 				return false;
 			}
 
-#nullable disable warnings
-			return (Cells is null || !Cells.Any(c => !other.Cells.Contains(c)))
-				&& (Candidates is null || !Candidates.Any(c => !other.Candidates.Contains(c)))
-				&& (Regions is null || !Regions.Any(c => !other.Regions.Contains(c)))
-				&& (Links is null || !Links.Any(l => !other.Links.Contains(l)))
-				&& (DirectLines is null || !DirectLines.Any(d => !other.DirectLines.Contains(d)));
-#nullable restore warnings
+			return (Cells is null || !Cells.Any(c => !other.Cells!.Contains(c)))
+				&& (Candidates is null || !Candidates.Any(c => !other.Candidates!.Contains(c)))
+				&& (Regions is null || !Regions.Any(c => !other.Regions!.Contains(c)))
+				&& (Links is null || !Links.Any(l => !other.Links!.Contains(l)))
+				&& (DirectLines is null || !DirectLines.Any(d => !other.DirectLines!.Contains(d)));
 			// You can also implement this method in this way.
 			//return GetHashCode() == other.GetHashCode();
 		}
@@ -78,16 +76,14 @@ namespace Sudoku.Drawing
 		public string ToJson(JsonSerializerOptions? options = null) => JsonSerializer.Serialize(this, options);
 
 
-#nullable disable warnings
 		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(View? left, View? right) =>
 			(left, right) switch
 			{
 				(null, null) => true,
-				(not null, not null) => left.Equals(right),
+				(not null, not null) => left!.Equals(right),
 				_ => false
 			};
-#nullable restore warnings
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(View? left, View? right) => !(left == right);
