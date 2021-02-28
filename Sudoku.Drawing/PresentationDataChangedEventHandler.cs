@@ -1,6 +1,4 @@
-﻿#if SUDOKU_UI
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Sudoku.Drawing
 {
@@ -12,5 +10,3 @@ namespace Sudoku.Drawing
 	public delegate void PresentationDataChangedEventHandler<T>(ICollection<PaintingPair<T>>? args)
 		where T : unmanaged;
 }
-
-#endif

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data.Stepping
+﻿using System;
+
+namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates a step for setting a cell status.
@@ -6,9 +8,7 @@
 	/// <param name="Cell">The cell.</param>
 	/// <param name="OldStatus">The old status.</param>
 	/// <param name="NewStatus">The new status.</param>
-#if SUDOKU_UI
 	[Obsolete("In the future, this type won't be used.", false)]
-#endif
 	public sealed record SetStatusStep(int Cell, CellStatus OldStatus, CellStatus NewStatus) : IStep
 	{
 		/// <inheritdoc/>

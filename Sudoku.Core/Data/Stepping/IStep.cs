@@ -1,11 +1,11 @@
-﻿namespace Sudoku.Data.Stepping
+﻿using System;
+
+namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Provides a step used for applying to a sudoku grid.
 	/// </summary>
-#if SUDOKU_UI
 	[Obsolete("In the future, this type won't be used.", false)]
-#endif
 	public interface IStep
 	{
 		/// <summary>

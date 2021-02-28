@@ -1,13 +1,13 @@
-﻿namespace Sudoku.Data.Stepping
+﻿using System;
+
+namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates an anti-elimination step.
 	/// </summary>
 	/// <param name="Digit">The digit.</param>
 	/// <param name="Cell">The cell.</param>
-#if SUDOKU_UI
 	[Obsolete("In the future, this type won't be used.", false)]
-#endif
 	public sealed record AntiEliminationStep(int Digit, int Cell) : IStep
 	{
 		/// <inheritdoc/>

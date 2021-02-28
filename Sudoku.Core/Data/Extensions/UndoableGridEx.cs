@@ -1,4 +1,5 @@
-﻿using Sudoku.Data.Stepping;
+﻿using System;
+using Sudoku.Data.Stepping;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Data.Extensions
@@ -7,9 +8,7 @@ namespace Sudoku.Data.Extensions
 	/// Provides extension methods on <see cref="UndoableGrid"/>.
 	/// </summary>
 	/// <seealso cref="UndoableGrid"/>
-#if SUDOKU_UI
 	[Obsolete("In the future, this class won't be used.", false)]
-#endif
 	public static class UndoableGridEx
 	{
 		/// <summary>

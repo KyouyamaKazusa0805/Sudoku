@@ -1,6 +1,4 @@
-﻿#if SUDOKU_UI
-
-using System;
+﻿using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
@@ -126,5 +124,3 @@ namespace Sudoku.Drawing
 			!(left == right);
 	}
 }
-
-#endif

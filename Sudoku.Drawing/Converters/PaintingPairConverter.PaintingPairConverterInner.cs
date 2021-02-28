@@ -1,6 +1,4 @@
-﻿#if SUDOKU_UI
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Extensions;
@@ -129,5 +127,3 @@ namespace Sudoku.Drawing.Converters
 		}
 	}
 }
-
-#endif

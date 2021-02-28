@@ -14,9 +14,7 @@ namespace Sudoku.Data.Stepping
 #if DEBUG
 	[DebuggerDisplay("{ToString(\"#.\")}")]
 #endif
-#if SUDOKU_UI
 	[Obsolete("In the future, this class won't be used.", false)]
-#endif
 	public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable
 	{
 		/// <summary>
@@ -201,7 +199,7 @@ namespace Sudoku.Data.Stepping
 		{
 			fixed (short* pGrid = _innerGrid)
 			{
-				_undoStack.Push(new ResetStep(new(_innerGrid.InitialMaskPinnableReference), new(pGrid)));
+				_undoStack.Push(new ResetStep((IntPtr)_innerGrid.InitialMaskPinnableReference, (IntPtr)pGrid));
 			}
 			_innerGrid.Reset();
 		}

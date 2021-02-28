@@ -1,6 +1,4 @@
-﻿#if SUDOKU_UI
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
@@ -124,5 +122,3 @@ namespace Sudoku.Drawing
 		partial void PaintDirectLines(Graphics g, ICollection<PaintingPair<(Cells, Cells)>>? directLines, float offset);
 	}
 }
-
-#endif
