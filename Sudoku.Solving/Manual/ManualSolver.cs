@@ -104,12 +104,6 @@ namespace Sudoku.Solving.Manual
 				{
 					return new(SolverName, grid, false, TimeSpan.Zero) { Additional = ex };
 				}
-#if OBSOLETE
-				catch (SudokuHandlingException ex)
-				{
-					return new(SolverName, grid, false, TimeSpan.Zero) { Additional = ex };
-				}
-#endif
 			}
 			else
 			{

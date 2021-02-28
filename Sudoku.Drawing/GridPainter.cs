@@ -381,10 +381,9 @@ namespace Sudoku.Drawing
 			};
 			using var linePen = new Pen(Preferences.ChainColor, 2F);
 
-#if OBSOLETE
 			// This brush is used for drawing grouped nodes.
-			using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
-#endif
+			//using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
+
 			foreach (var (start, end, type) in linkArray)
 			{
 				arrowPen.DashStyle = type switch
@@ -400,23 +399,21 @@ namespace Sudoku.Drawing
 				var (pt1x, pt1y) = pt1;
 				var (pt2x, pt2y) = pt2;
 
-#if OBSOLETE
 				// Draw grouped node regions.
-				if (startMap.Count != 1)
-				{
-					g.FillRoundedRectangle(
-						groupedNodeBrush,
-						Converter.GetMouseRectangleOfCandidates(startFullMap),
-						offset);
-				}
-				if (endMap.Count != 1)
-				{
-					g.FillRoundedRectangle(
-						groupedNodeBrush,
-						Converter.GetMouseRectangleOfCandidates(endFullMap),
-						offset);
-				}
-#endif
+				//if (startMap.Count != 1)
+				//{
+				//	g.FillRoundedRectangle(
+				//		groupedNodeBrush,
+				//		Converter.GetMouseRectangleOfCandidates(startFullMap),
+				//		offset);
+				//}
+				//if (endMap.Count != 1)
+				//{
+				//	g.FillRoundedRectangle(
+				//		groupedNodeBrush,
+				//		Converter.GetMouseRectangleOfCandidates(endFullMap),
+				//		offset);
+				//}
 
 				var penToDraw = type != LinkType.Line ? arrowPen : linePen;
 				if (type == LinkType.Line)

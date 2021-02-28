@@ -74,13 +74,8 @@ namespace Sudoku.Recognition
 			Cv.PyrUp(pyrDown, uimage);
 
 			var cannyEdges = new UMat();
-#if OBSOLETE
-			//Another way to process image, but worse. Use only one!
-			Cv.Threshold(uimage, cannyEdges, 50.0, 100.0, ThresholdType.Binary);
-			Cv.AdaptiveThreshold(uimage, cannyEdges, 50, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 7, 1);
-#else
+
 			Cv.Canny(uimage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
-#endif
 
 			return cannyEdges;
 		}

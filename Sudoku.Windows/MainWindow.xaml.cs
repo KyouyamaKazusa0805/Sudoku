@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Extensions;
 using System.IO;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading;
 using System.Windows;
@@ -23,12 +24,8 @@ using Sudoku.Windows.Data;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
 using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
-using System.Text.Encodings.Web;
 #if SUDOKU_RECOGNITION
 using System.Diagnostics;
-#endif
-#if OBSOLETE
-using System.Runtime.CompilerServices;
 #endif
 
 namespace Sudoku.Windows
@@ -537,23 +534,12 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-#if OBSOLETE
-				// This may throw exceptions being called while solving and generating puzzles.
-				SystemClipboard.Text = _puzzle.ToString(format);
-#else
 				SystemClipboard.DataObject = _puzzle.ToString(format);
-#endif
 			}
 			catch (ArgumentNullException ex)
 			{
 				Messagings.FailedToSaveToClipboardDueToArgumentNullException(ex);
 			}
-#if OBSOLETE
-			catch (COMException ex) when (ex.HResult == unchecked((int)2147746256))
-			{
-				Messagings.FailedToSaveToClipboardDueToAsyncCalling();
-			}
-#endif
 		}
 
 		/// <summary>
@@ -1091,7 +1077,7 @@ namespace Sudoku.Windows
 					decimal total = 0, minimum = decimal.MaxValue, maximum = 0;
 					var minDifficultyLevel = DifficultyLevel.LastResort;
 					var maxDifficultyLevel = DifficultyLevel.Unknown;
-					foreach (var (_, difficulty,  difficultyLevel) in techniqueGroup)
+					foreach (var (_, difficulty, difficultyLevel) in techniqueGroup)
 					{
 						summary += difficulty;
 						summaryCount++;

@@ -280,14 +280,6 @@ namespace Sudoku.Windows
 					break;
 				}
 			}
-
-#if OBSOLETE
-			MessageBox.Show(
-				$"{LangSource["FailedToSolveWithMessage1"]}{NewLine}" +
-				$"{LangSource["FailedToSolveWithMessage2"]}{NewLine}" +
-				$"{LangSource["FailedToSolveWithMessage3"]}{analysisResult.Additional}",
-				(string)LangSource["CaptionWarning"]);
-#endif
 		}
 
 		/// <summary>
