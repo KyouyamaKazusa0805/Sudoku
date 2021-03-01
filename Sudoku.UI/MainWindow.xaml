@@ -13,7 +13,6 @@
 
 	<!-- Resources -->
 	<Window.Resources>
-		<viewModels:SudokuPanelViewModel x:Key="SudokuPanelViewModel" />
 		<Style TargetType="{x:Type controls:SudokuPanel}" x:Key="MainSudokuPanel">
 			<Setter Property="Width" Value="{DynamicResource DefaultSudokuGridRenderingSize}" />
 			<Setter Property="Height" Value="{DynamicResource DefaultSudokuGridRenderingSize}" />
@@ -60,7 +59,11 @@
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 
-			<controls:SudokuPanel x:Name="SudokuPanelMain" Style="{StaticResource MainSudokuPanel}" />
+			<controls:SudokuPanel x:Name="SudokuPanelMain" Style="{StaticResource MainSudokuPanel}"
+								  Width="{DynamicResource DefaultSudokuGridRenderingSize}"
+								  Height="{DynamicResource DefaultSudokuGridRenderingSize}" />
 		</Grid>
+
+		<TextBox Grid.Row="3" Grid.ColumnSpan="2" x:Name="TextBoxDescription" IsReadOnly="True" />
 	</Grid>
 </Window>

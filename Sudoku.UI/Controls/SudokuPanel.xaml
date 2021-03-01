@@ -4,7 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:viewModels="clr-namespace:Sudoku.UI.ViewModels"
-			 mc:Ignorable="d"
+			 mc:Ignorable="d" x:Name="SudokuPanelBase"
 			 d:DesignWidth="{DynamicResource DefaultSudokuGridRenderingSize}"
 			 d:DesignHeight="{DynamicResource DefaultSudokuGridRenderingSize}">
 	<!-- Data context -->

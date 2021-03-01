@@ -1,7 +1,10 @@
-﻿using System;
+﻿#pragma warning disable IDE0079
+#pragma warning restore 618
+
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.UI.ComponentModels;
 using Sudoku.UI.Controls;
 using Sudoku.UI.ResourceDictionaries;
 
@@ -16,7 +19,7 @@ namespace Sudoku.UI.ViewModels
 		/// <summary>
 		/// Indicates the default rendering size.
 		/// </summary>
-		private static readonly float RenderingSize = (float)(double)App.DefaultSudokuGridRenderingSize;
+		private static readonly float RenderingSize = (float)(double)X.DefaultSudokuGridRenderingSize;
 
 
 		/// <summary>
@@ -24,6 +27,13 @@ namespace Sudoku.UI.ViewModels
 		/// </summary>
 		/// <seealso cref="Generator"/>
 		private GridImageGenerator _generator = new(new(RenderingSize, RenderingSize), new());
+
+
+		/// <summary>
+		/// The short form of the invocation <see cref="TextResources.Current"/>.
+		/// </summary>
+		/// <seealso cref="TextResources.Current"/>
+		private static dynamic X => TextResources.Current;
 
 
 		/// <summary>
@@ -38,7 +48,7 @@ namespace Sudoku.UI.ViewModels
 			{
 				Generator.FocusedCells = value;
 
-				FocusedCellsChanged?.Invoke(this, value);
+				FocusedCellsChanged?.Invoke();
 			}
 		}
 
@@ -54,7 +64,7 @@ namespace Sudoku.UI.ViewModels
 			{
 				Generator.Grid = value;
 
-				GridChanged?.Invoke(this, value);
+				GridChanged?.Invoke();
 			}
 		}
 
@@ -70,7 +80,7 @@ namespace Sudoku.UI.ViewModels
 			{
 				Generator = new(value, Generator.Preferences);
 
-				ConverterChanged?.Invoke(this, value);
+				ConverterChanged?.Invoke();
 			}
 		}
 
@@ -86,7 +96,7 @@ namespace Sudoku.UI.ViewModels
 			{
 				Generator = new(Generator.Converter, value);
 
-				PreferencesChanged?.Invoke(this, value);
+				PreferencesChanged?.Invoke();
 			}
 		}
 
@@ -102,7 +112,7 @@ namespace Sudoku.UI.ViewModels
 			{
 				Generator.View = value;
 
-				ViewChanged?.Invoke(this, value);
+				ViewChanged?.Invoke();
 			}
 		}
 
@@ -118,7 +128,7 @@ namespace Sudoku.UI.ViewModels
 			{
 				Generator.CustomView = value;
 
-				CustomViewChanged?.Invoke(this, value);
+				CustomViewChanged?.Invoke();
 			}
 		}
 
@@ -134,7 +144,7 @@ namespace Sudoku.UI.ViewModels
 			{
 				_generator = value;
 
-				GeneratorChanged?.Invoke(this, value);
+				GeneratorChanged?.Invoke();
 			}
 		}
 
@@ -150,55 +160,49 @@ namespace Sudoku.UI.ViewModels
 			{
 				Generator.Conclusions = value;
 
-				ConclusionsChanged?.Invoke(this, value);
+				ConclusionsChanged?.Invoke();
 			}
 		}
 
 
 		/// <summary>
-		/// Indicates the current application.
-		/// </summary>
-		private static dynamic App => TextResources.Current;
-
-
-		/// <summary>
 		/// Indicates the event to trigger when the focused cells instance has been changed.
 		/// </summary>
-		public event EventHandler<Cells>? FocusedCellsChanged;
+		public event ValueChangedEventHandler? FocusedCellsChanged;
 
 		/// <summary>
 		/// Indicates the event to trigger when the grid instance has been changed.
 		/// </summary>
-		public event EventHandler<SudokuGrid>? GridChanged;
+		public event ValueChangedEventHandler? GridChanged;
 
 		/// <summary>
 		/// Indicates the event to trigger when the converter instance has been changed.
 		/// </summary>
-		public event EventHandler<DrawingPointConverter>? ConverterChanged;
+		public event ValueChangedEventHandler? ConverterChanged;
 
 		/// <summary>
 		/// Indicates the event to trigger when the preferences instance has been changed.
 		/// </summary>
-		public event EventHandler<Settings>? PreferencesChanged;
+		public event ValueChangedEventHandler? PreferencesChanged;
 
 		/// <summary>
 		/// Indicates the event to trigger when the view instance has been changed.
 		/// </summary>
-		public event EventHandler<PresentationData?>? ViewChanged;
+		public event ValueChangedEventHandler? ViewChanged;
 
 		/// <summary>
 		/// Indicates the event to trigger when the custom view instance has been changed.
 		/// </summary>
-		public event EventHandler<PresentationData?>? CustomViewChanged;
+		public event ValueChangedEventHandler? CustomViewChanged;
 
 		/// <summary>
 		/// Indicates the event to trigger when the generator instance has been changed.
 		/// </summary>
-		public event EventHandler<GridImageGenerator>? GeneratorChanged;
+		public event ValueChangedEventHandler? GeneratorChanged;
 
 		/// <summary>
 		/// Indicates the event to trigger when the conclusions instance has been changed.
 		/// </summary>
-		public event EventHandler<IEnumerable<Conclusion>?>? ConclusionsChanged;
+		public event ValueChangedEventHandler? ConclusionsChanged;
 	}
 }

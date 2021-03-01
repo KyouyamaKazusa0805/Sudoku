@@ -13,7 +13,46 @@ namespace Sudoku.UI
 		/// <summary>
 		/// Initializes a <see cref="MainWindow"/> instance with the default instantiation behavior.
 		/// </summary>
-		public MainWindow() => InitializeComponent();
+		public MainWindow()
+		{
+			InitializeComponent();
+			InitializeValue();
+			InitializeEvent();
+
+			RefreshPicture();
+		}
+
+
+		/// <summary>
+		/// Initializes events.
+		/// </summary>
+		private void InitializeEvent()
+		{
+			var model = ViewModel.PanelViewModel;
+
+			model.ConclusionsChanged += () => RefreshPicture();
+			model.ConverterChanged += () => RefreshPicture();
+			model.CustomViewChanged += () => RefreshPicture();
+			model.FocusedCellsChanged += () => RefreshPicture();
+			model.GeneratorChanged += () => RefreshPicture();
+			model.PreferencesChanged += () => RefreshPicture();
+			model.ViewChanged += () => RefreshPicture();
+			model.GridChanged += () => { ViewModel.Description = null; RefreshPicture(); };
+		}
+
+		/// <summary>
+		/// Set the references that XAML page can't set.
+		/// </summary>
+		private void InitializeValue()
+		{
+			ViewModel.TextBoxDescription = TextBoxDescription;
+			ViewModel.SudokuPanelMain = SudokuPanelMain;
+		}
+
+		/// <summary>
+		/// Refresh the control, and re-paint the picture, then display the picture.
+		/// </summary>
+		private void RefreshPicture() => ViewModel.Image = ViewModel.Generator.Paint();
 
 
 		/// <summary>
