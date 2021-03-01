@@ -1595,6 +1595,13 @@
             </summary>
             <param name="newSetting">The new settings.</param>
         </member>
+        <member name="M:Sudoku.Drawing.Settings.InternalClone``1">
+            <summary>
+            The internal clone.
+            </summary>
+            <typeparam name="TSettings">The type of the cloneation.</typeparam>
+            <returns>The result instance.</returns>
+        </member>
         <member name="P:Sudoku.Drawing.Settings.ShowCandidates">
             <summary>
             <para>Indicates whether the form shows candidates.</para>

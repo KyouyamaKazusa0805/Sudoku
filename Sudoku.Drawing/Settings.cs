@@ -29,16 +29,7 @@ namespace Sudoku.Drawing
 		public virtual void CoverBy(Settings newSetting) => InternalCoverBy(newSetting);
 
 		/// <inheritdoc/>
-		public virtual Settings Clone()
-		{
-			var resultInstance = new Settings();
-			foreach (var property in GetType().GetProperties())
-			{
-				property.SetValue(resultInstance, property.GetValue(this));
-			}
-
-			return resultInstance;
-		}
+		public virtual Settings Clone() => InternalClone<Settings>();
 
 		/// <summary>
 		/// Try to get the palette color using the specified index.
@@ -87,6 +78,22 @@ namespace Sudoku.Drawing
 			{
 				property.SetValue(this, property.GetValue(newSetting));
 			}
+		}
+
+		/// <summary>
+		/// The internal clone.
+		/// </summary>
+		/// <typeparam name="TSettings">The type of the cloneation.</typeparam>
+		/// <returns>The result instance.</returns>
+		protected TSettings InternalClone<TSettings>() where TSettings : Settings, new()
+		{
+			var resultInstance = new TSettings();
+			foreach (var property in GetType().GetProperties())
+			{
+				property.SetValue(resultInstance, property.GetValue(this));
+			}
+
+			return resultInstance;
 		}
 	}
 }

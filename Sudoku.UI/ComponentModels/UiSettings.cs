@@ -27,15 +27,6 @@ namespace Sudoku.UI.ComponentModels
 		}
 
 		/// <inheritdoc/>
-		public override UiSettings Clone()
-		{
-			var resultInstance = new UiSettings();
-			foreach (var property in GetType().GetProperties())
-			{
-				property.SetValue(resultInstance, property.GetValue(this));
-			}
-
-			return resultInstance;
-		}
+		public override UiSettings Clone() => InternalClone<UiSettings>();
 	}
 }
