@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows;
 using Sudoku.Data;
 using Sudoku.UI.Extensions;
@@ -22,6 +23,17 @@ namespace Sudoku.UI
 			RefreshPicture();
 		}
 
+
+		/// <inheritdoc/>
+		protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+		{
+			base.OnRenderSizeChanged(sizeInfo);
+
+			if (sizeInfo is { WidthChanged: true } or { HeightChanged: true })
+			{
+				ViewModel.Size = MathF.Min(ViewModel.ActualWidth, ViewModel.ActualHeight);
+			}
+		}
 
 		/// <summary>
 		/// Initializes events.
@@ -47,6 +59,7 @@ namespace Sudoku.UI
 		{
 			ViewModel.TextBoxDescription = TextBoxDescription;
 			ViewModel.SudokuPanelMain = SudokuPanelMain;
+			ViewModel.GridSudokuPanel = GridSudokuPanel;
 		}
 
 		/// <summary>

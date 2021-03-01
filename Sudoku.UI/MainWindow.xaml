@@ -48,7 +48,7 @@
 		</Menu>
 
 		<!-- Sudoku grid line -->
-		<Grid Grid.Row="2" Grid.ColumnSpan="2">
+		<Grid Grid.Row="2" Grid.ColumnSpan="2" x:Name="GridSudokuPanel">
 			<Grid.RowDefinitions>
 				<RowDefinition/>
 				<RowDefinition Height="50"/>
@@ -59,9 +59,7 @@
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 
-			<controls:SudokuPanel x:Name="SudokuPanelMain" Style="{StaticResource MainSudokuPanel}"
-								  Width="{DynamicResource DefaultSudokuGridRenderingSize}"
-								  Height="{DynamicResource DefaultSudokuGridRenderingSize}" />
+			<controls:SudokuPanel x:Name="SudokuPanelMain" Style="{StaticResource MainSudokuPanel}" />
 		</Grid>
 
 		<TextBox Grid.Row="3" Grid.ColumnSpan="2" x:Name="TextBoxDescription" IsReadOnly="True" />

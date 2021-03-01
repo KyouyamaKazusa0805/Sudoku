@@ -26,7 +26,7 @@ namespace Sudoku.UI.ViewModels
 		/// The back field of the property <see cref="Generator"/>.
 		/// </summary>
 		/// <seealso cref="Generator"/>
-		private GridImageGenerator _generator = new(new(RenderingSize, RenderingSize), new());
+		private GridImageGenerator _generator = new(new(RenderingSize, RenderingSize), new UiSettings());
 
 
 		/// <summary>

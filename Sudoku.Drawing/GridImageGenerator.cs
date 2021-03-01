@@ -62,11 +62,7 @@ namespace Sudoku.Drawing
 		{
 			var result = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(result);
-			g.SmoothingMode = SmoothingMode.AntiAlias;
-			g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-			g.CompositingQuality = CompositingQuality.HighQuality;
-
+			
 			return Paint(result, g);
 		}
 
@@ -83,16 +79,28 @@ namespace Sudoku.Drawing
 		{
 			const float offset = 6F;
 
+			// Creates a bitmap when null.
 			bitmap ??= new((int)Width, (int)Height);
 
+			// Draw background, grid and block lines (cell borders).
 			PaintBackground(g);
 			PaintGridAndBlockLines(g);
+
+			// After painted the borders, we should change some values
+			// to make the digits to display more clear.
+			g.SmoothingMode = SmoothingMode.AntiAlias;
+			g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+			g.CompositingQuality = CompositingQuality.HighQuality;
+
+			// Then paint other information onto the grid.
 			PaintPresentationData(g, View, offset);
 			PaintPresentationData(g, CustomView, offset);
 			PaintFocusedCells(g);
 			PaintEliminations(g, offset);
 			PaintValues(g);
 
+			// Returns the result image instance.
 			return bitmap;
 		}
 
