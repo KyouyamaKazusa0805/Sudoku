@@ -36,8 +36,6 @@ namespace Sudoku.Bot
 				.AppendLine(X.CommandDescriptionHelpClean)
 				.AppendLine(X.CommandDescriptionHelpExtractPuzzle)
 				.AppendLine(X.CommandDescriptionHelpAbout)
-				.AppendLine(X.CommandDescriptionHelpJinx)
-				.AppendLine(X.CommandDescriptionHelpUnjinx)
 				.AppendLine()
 				.AppendLine(X.CommandDescriptionHelpHelp2)
 				.AppendLine(X.CommandDescriptionHelpHelp3)
