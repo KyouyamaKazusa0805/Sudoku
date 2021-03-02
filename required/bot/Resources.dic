@@ -54,7 +54,6 @@
   "CommandDescriptionHelpAbout": "！关于：我 介 绍 我 自 己",
   "CommandDescriptionHelpHelp2": "注：为和普通聊天信息作区分，命令前面的叹号“！”也是命令的一部分；",
   "CommandDescriptionHelpHelp3": "每一个命令的详情信息请输入“命令 ？”来获取。",
-  "CommandDescriptionHelpHelp4": "带一个感叹号的命令任何人都可以用；带双叹号的命令只能管理员和群主使用。",
   "CommandDescriptionAnalyze1": "题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。",
   "CommandDescriptionGeneratePicture": "题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。",
   "CommandDescriptionClean": "题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。",

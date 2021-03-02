@@ -39,7 +39,6 @@ namespace Sudoku.Bot
 				.AppendLine()
 				.AppendLine(X.CommandDescriptionHelpHelp2)
 				.AppendLine(X.CommandDescriptionHelpHelp3)
-				.AppendLine(X.CommandDescriptionHelpHelp4)
 				.AppendLine()
 				.Append(DateTime.Today.ToString("yyyy-MM-dd ddd", null))
 				.ToString();
