@@ -68,6 +68,7 @@ namespace Sudoku.UI.ViewModels
 		/// <summary>
 		/// Indicates the <see cref="System.Windows.Controls.Grid"/> instance that stores the main sudoku panel.
 		/// </summary>
+		/// <seealso cref="System.Windows.Controls.Grid"/>
 		public Grid GridSudokuPanel { get; set; } = null!;
 	}
 }
