@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <inheritdoc/>
-		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining;
+		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
 
 
 		/// <inheritdoc/>

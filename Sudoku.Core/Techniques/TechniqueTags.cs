@@ -13,7 +13,7 @@ namespace Sudoku.Techniques
 	/// <seealso cref="Als"/>
 	/// <seealso cref="LongChaining"/>
 	[Flags]
-	public enum TechniqueTags : short
+	public enum TechniqueTags
 	{
 		/// <summary>
 		/// Indicates none of flags that the technique belongs to.
@@ -63,38 +63,43 @@ namespace Sudoku.Techniques
 		LongChaining = 128,
 
 		/// <summary>
+		/// Indicates the forcing chains technique, such as Bowman's Bingo, Region Forcing Chains and so on.
+		/// </summary>
+		ForcingChains = 256,
+
+		/// <summary>
 		/// Indicates the deadly pattern technique.
 		/// </summary>
-		DeadlyPattern = 256,
+		DeadlyPattern = 512,
 
 		/// <summary>
 		/// Indicates the ALS technique.
 		/// </summary>
-		Als = 512,
+		Als = 1024,
 
 		/// <summary>
 		/// Indicates the MSLS technique.
 		/// </summary>
-		Msls = 1024,
+		Msls = 2048,
 
 		/// <summary>
 		/// Indicates the exocet technique.
 		/// </summary>
-		Exocet = 2048,
+		Exocet = 4096,
 
 		/// <summary>
 		/// Indicates the technique checked and searched relies on the rank theory.
 		/// </summary>
-		RankTheory = 4096,
+		RankTheory = 8192,
 
 		/// <summary>
 		/// Indicates the symmetry technique.
 		/// </summary>
-		Symmetry = 8192,
+		Symmetry = 16384,
 
 		/// <summary>
 		/// Indicates the last resort technique.
 		/// </summary>
-		LastResort = 16384
+		LastResort = 32768
 	}
 }

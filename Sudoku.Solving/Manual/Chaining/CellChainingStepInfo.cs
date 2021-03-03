@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			IsDynamic ? ChainingTypeCode.DynamicCellFc : ChainingTypeCode.CellFc;
 
 		/// <inheritdoc/>
-		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining;
+		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

@@ -16,7 +16,6 @@ using Sudoku.Globalization;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
-using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using FormattingOptions = Sudoku.Solving.AnalysisResultFormattingOptions;
@@ -478,8 +477,12 @@ namespace Sudoku.Bot
 				}
 			}
 
-			static bool isFc(StepInfo step) => step.HasTag(TechniqueTags.LongChaining) && step is not AicStepInfo;
-			static bool isChaining(StepInfo step) => step.HasTag(TechniqueTags.Als | TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
+			static bool isFc(StepInfo step) => step.HasTag(TechniqueTags.ForcingChains);
+			static bool isChaining(StepInfo step) =>
+				step.HasTag(
+					TechniqueTags.Als | TechniqueTags.Wings | TechniqueTags.ShortChaining
+					| TechniqueTags.LongChaining | TechniqueTags.ForcingChains
+				);
 		}
 	}
 }
