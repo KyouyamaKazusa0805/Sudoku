@@ -25,7 +25,7 @@ namespace Sudoku.UI.ViewModels
 
 			set
 			{
-				Generator = new(new(value, value), Generator.Preferences) { Grid = Grid };
+				Generator = Generator with { Converter = new(value, value) };
 
 				Preferences.GridSize = value;
 
