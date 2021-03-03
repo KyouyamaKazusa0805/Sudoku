@@ -42,7 +42,7 @@ namespace Sudoku.Bot
 				.AppendLine()
 				.Append(DateTime.Today.ToString("yyyy-MM-dd ddd", null))
 				.ToString();
-			await e.Source.SendAsync(info);
+			await e.NormalSendAsync(info);
 		}
 		private static async partial Task AnalyzeAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
 		{
@@ -54,7 +54,7 @@ namespace Sudoku.Bot
 						.AppendLine(X.CommandFormatAnalyze)
 						.Append(X.CommandDescriptionAnalyze1)
 						.ToString();
-					await e.Source.SendAsync(info);
+					await e.NormalSendAsync(info);
 
 					break;
 				}
@@ -65,8 +65,31 @@ namespace Sudoku.Bot
 						return;
 					}
 
-					await e.Source.SendAsync(
+					await e.NormalSendAsync(
 						(await new ManualSolver().SolveAsync(grid, null))!.ToString(
+							FormattingOptions.ShowSeparators | FormattingOptions.ShowDifficulty,
+							CountryCode.ZhCn
+						)
+					);
+
+					break;
+				}
+				case 3: // Analyze (<puzzle> fast|fast <puzzle>)
+				{
+					int index = Array.IndexOf(args, X.SettingsTextFastSearch);
+					if (index == -1)
+					{
+						return;
+					}
+
+					int gridIndex = index == 1 ? 2 : 1;
+					if (!SudokuGrid.TryParse(args[gridIndex].Trim(), out var grid) || !grid.IsValid())
+					{
+						return;
+					}
+
+					await e.NormalSendAsync(
+						(await new ManualSolver { FastSearch = true }.SolveAsync(grid, null))!.ToString(
 							FormattingOptions.ShowSeparators | FormattingOptions.ShowDifficulty,
 							CountryCode.ZhCn
 						)
@@ -86,7 +109,7 @@ namespace Sudoku.Bot
 						.AppendLine(X.CommandFormatGeneratePicture)
 						.Append(X.CommandDescriptionGeneratePicture)
 						.ToString();
-					await e.Source.SendAsync(info);
+					await e.NormalSendAsync(info);
 
 					break;
 				}
@@ -148,7 +171,7 @@ namespace Sudoku.Bot
 						.AppendLine(X.CommandFormatClean)
 						.Append(X.CommandDescriptionClean)
 						.ToString();
-					await e.Source.SendAsync(info);
+					await e.NormalSendAsync(info);
 
 					break;
 				}
@@ -183,7 +206,7 @@ namespace Sudoku.Bot
 				}
 				case 2 when args[1] == X.ChineseQuestionMark: // GenerateEmpty ?
 				{
-					await e.Source.SendAsync((string)X.CommandFormatGenerateEmpty);
+					await e.NormalSendAsync((string)X.CommandFormatGenerateEmpty);
 
 					break;
 				}
@@ -199,13 +222,13 @@ namespace Sudoku.Bot
 						.AppendLine(X.CommandValueAbout1)
 						.Append(X.CommandValueAbout2)
 						.ToString();
-					await e.Source.SendAsync(info);
+					await e.NormalSendAsync(info);
 
 					break;
 				}
 				case 2 when args[1] == X.ChineseQuestionMark: // About ?
 				{
-					await e.Source.SendAsync((string)X.CommandFormatAbout);
+					await e.NormalSendAsync((string)X.CommandFormatAbout);
 
 					break;
 				}
@@ -227,7 +250,7 @@ namespace Sudoku.Bot
 						.AppendLine(X.CommandFormatExtractPuzzle)
 						.Append(X.CommandDescriptionExtractPuzzle)
 						.ToString();
-					await e.Source.SendAsync(info);
+					await e.NormalSendAsync(info);
 
 					break;
 				}
@@ -297,7 +320,7 @@ namespace Sudoku.Bot
 				// Why trying 10 times? Because the puzzle will be checked after extracted.
 				// If and only if the puzzle satisfies the specified condition, the puzzle will be returned.
 				// Of course, if the condition file doesn't found, we'll return the puzzle directly.
-				await e.Source.SendAsync((string)X.CommandValueExtractPuzzleNowGenerating);
+				await e.NormalSendAsync((string)X.CommandValueExtractPuzzleNowGenerating);
 				string[] fileLines = File.ReadAllLines(correspondingPath);
 				AnalysisResult? analysisResult = null;
 				SudokuGrid grid;

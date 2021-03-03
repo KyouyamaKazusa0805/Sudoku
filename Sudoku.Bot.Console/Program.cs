@@ -40,6 +40,14 @@ if (!File.Exists(pathNumberFile) || !long.TryParse(File.ReadAllText(pathNumberFi
 	return;
 }
 
+long numberAllowedInConfig = -1;
+string pathAllowInConfigModeFile = $@"{path}\AllowInConfigMode.txt";
+if (File.Exists(pathAllowInConfigModeFile)
+	&& !long.TryParse(File.ReadAllText(pathAllowInConfigModeFile), out numberAllowedInConfig))
+{
+	numberAllowedInConfig = -1;
+}
+
 //
 // De-serialize the configuration file.
 //
@@ -106,7 +114,7 @@ try
 	// Instantiate a new plugin.
 	//
 	ArgChecker.TryGetSize(args, out int size);
-	SudokuPlugin.Start(groupReceivedSource, path, configMode, size);
+	SudokuPlugin.Start(groupReceivedSource, path, configMode, size, numberAllowedInConfig);
 
 	//
 	// Output the console information.

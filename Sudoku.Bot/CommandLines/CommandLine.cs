@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using HuajiTech.Mirai.Http;
 using HuajiTech.Mirai.Http.Events;
-using GroupReceived = HuajiTech.Mirai.Http.Events.GroupMessageReceivedEventArgs;
+using Sudoku.Bot.Extensions;
+using Sudoku.Bot.Resources;
 
 namespace Sudoku.Bot.CommandLines
 {
@@ -14,7 +15,7 @@ namespace Sudoku.Bot.CommandLines
 		/// <summary>
 		/// Indicates the inner dictionary.
 		/// </summary>
-		private readonly IDictionary<string, CommandHandler> _dic = new Dictionary<string, CommandHandler>();
+		private readonly IDictionary<string, CommandHandler> _routeDictionary = new Dictionary<string, CommandHandler>();
 
 
 		/// <summary>
@@ -24,11 +25,27 @@ namespace Sudoku.Bot.CommandLines
 		/// <param name="args">The arguments.</param>
 		/// <param name="sender">The session that trigger the command.</param>
 		/// <param name="e">The detail arguments.</param>
+		/// <param name="configMode">Indicates whether the current mode is the config mode.</param>
+		/// <param name="userAllowedInConfigMode">Indicates the number allowed in config mode.</param>
 		/// <returns>The task.</returns>
-		public async Task HandleAsync(string command, string[] args, Session sender, GroupReceived e)
+		public async Task HandleAsync(
+			string command, string[] args, Session sender, GroupMessageReceivedEventArgs e,
+			bool configMode, long userAllowedInConfigMode)
 		{
-			if (_dic.TryGetValue(command, out var handler))
+			// Check whether the command name exists.
+			if (_routeDictionary.TryGetValue(command, out var handler))
 			{
+				// Then check whether the user is allowed in config mode.
+				if (configMode && (userAllowedInConfigMode == -1 || userAllowedInConfigMode != e.Sender.Number))
+				{
+					await e.NormalSendAsync(
+						(string)TextResources.Current.CommandValueOnlyAllowsSpecifiedUserInConfigMode
+					);
+
+					return;
+				}
+
+				// Route the command, and handle.
 				await handler(args, sender, e);
 			}
 		}
@@ -40,13 +57,13 @@ namespace Sudoku.Bot.CommandLines
 		/// <param name="handler">The handler.</param>
 		private void RegisterCommand(string commandName, CommandHandler handler)
 		{
-			if (_dic.ContainsKey(commandName))
+			if (_routeDictionary.ContainsKey(commandName))
 			{
-				_dic[commandName] = handler;
+				_routeDictionary[commandName] = handler;
 			}
 			else
 			{
-				_dic.Add(commandName, handler);
+				_routeDictionary.Add(commandName, handler);
 			}
 		}
 
@@ -59,13 +76,13 @@ namespace Sudoku.Bot.CommandLines
 		{
 			foreach (string commandName in commandNames)
 			{
-				if (_dic.ContainsKey(commandName))
+				if (_routeDictionary.ContainsKey(commandName))
 				{
-					_dic[commandName] = handler;
+					_routeDictionary[commandName] = handler;
 				}
 				else
 				{
-					_dic.Add(commandName, handler);
+					_routeDictionary.Add(commandName, handler);
 				}
 			}
 		}
@@ -74,7 +91,7 @@ namespace Sudoku.Bot.CommandLines
 		/// Remove a command.
 		/// </summary>
 		/// <param name="commandName">The command name.</param>
-		private void RemoveCommand(string commandName) => _dic.Remove(commandName);
+		private void RemoveCommand(string commandName) => _routeDictionary.Remove(commandName);
 
 
 		/// <summary>

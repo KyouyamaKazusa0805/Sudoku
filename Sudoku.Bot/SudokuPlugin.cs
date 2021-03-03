@@ -60,6 +60,11 @@ namespace Sudoku.Bot
 		public static int Size { get; private set; }
 
 		/// <summary>
+		/// Indicates the user number allowed in config mode.
+		/// </summary>
+		public static long UserAllowedInConfigMode { get; private set; }
+
+		/// <summary>
 		/// Indicates the directory name of the base settings path.
 		/// </summary>
 		public static string BasePath { get; private set; } = null!;
@@ -84,15 +89,20 @@ namespace Sudoku.Bot
 		/// <param name="basePath">The base path.</param>
 		/// <param name="configMode">Indicates whether the current mode is the config mode.</param>
 		/// <param name="groupReceivedSource">The event source.</param>
+		/// <param name="size">The size of the picture to render.</param>
+		/// <param name="numberAllowedInConfig">
+		/// The user number that allows in config mode. If the value is -1, all users will be disallowed.
+		/// </param>
 		[MemberNotNull(nameof(BasePath))]
 		public static void Start(
 			GroupMessageReceivedEventSource groupReceivedSource, string basePath,
-			bool configMode = false, int size = 800)
+			bool configMode = false, int size = 800, long numberAllowedInConfig = -1)
 		{
 			// Assign values.
 			ConfigMode = configMode;
 			Size = size;
 			BasePath = basePath;
+			UserAllowedInConfigMode = numberAllowedInConfig;
 
 			// Change the language to Chinese.
 			CoreTextResources.Current.ChangeLanguage(CountryCode.ZhCn);
@@ -128,7 +138,7 @@ namespace Sudoku.Bot
 			// Creates the regex to match a command.
 			var regex = new Regex(@"(?<=\s*)((?<=“).+?(?=”)|[^:\s])+((\s*:\s*((?<=“).+?(?=”)|[^\s])+)|)|((?<=“).+?(?=”)|[^“”\s])+");
 			string[] args = (from match in regex.Matches(info) select match.Value).ToArray();
-			await Handler.HandleAsync(args[0], args, sender, e);
+			await Handler.HandleAsync(args[0], args, sender, e, ConfigMode, UserAllowedInConfigMode);
 		}
 
 

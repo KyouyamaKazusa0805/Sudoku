@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 using HuajiTech.Mirai.Http;
@@ -15,6 +14,15 @@ namespace Sudoku.Bot.Extensions
 	/// <seealso cref="GroupMessageReceivedEventArgs"/>
 	public static class GroupMessageReceivedEventArgsEx
 	{
+		/// <summary>
+		/// Send the message without mention someone.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The event arguments.</param>
+		/// <param name="message">The message to send.</param>
+		/// <returns>The task.</returns>
+		public static async Task NormalSendAsync(this GroupMessageReceivedEventArgs @this, MessageElement message) =>
+			await @this.Source.SendAsync(message);
+
 		/// <summary>
 		/// To reply an image.
 		/// </summary>

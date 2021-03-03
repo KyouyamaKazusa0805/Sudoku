@@ -59,11 +59,12 @@
   "CommandDescriptionClean": "题目代码目前可支持普通文本格式、Hodoku 的中间盘面格式等。",
   "CommandDescriptionExtractPuzzle": "默认为带候选数。",
 
-  "CommandValueAbout1": "Hello 大家好！小蛋蛋说她恋爱了，所以让我担任这个机器人的角色！我叫平泽唯，是樱丘女子高等学校的学生！",
+  "CommandValueAbout1": "Hello 大家好！我叫平泽唯，是樱丘女子高等学校的学生，以前是轻音部的！",
   "CommandValueAbout2": "我和梓喵关系很好，有空介绍给你们哦~ 蟹蟹各位~",
   "CommandValueExtractPuzzleFailed": "随机抽题失败，可能是脸不好；请重试一次。",
   "CommandValueExtractPuzzleFailed2": "本群尚未拥有刷题题库，抽取题目失败。",
   "CommandValueExtractPuzzleNowGenerating": "正在抽取题目，请耐心等待……",
+  "CommandValueOnlyAllowsSpecifiedUserInConfigMode": "在调试模式下，所有命令都仅允许指定的人使用此功能。",
 
   "OptionsWithCandidates1": "带候选数",
   "OptionsWithCandidates2": "带候选",
