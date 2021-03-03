@@ -173,13 +173,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// The shape modifier.
 		/// </summary>
-		private ShapeModifiers ShapeModifier =>
-			IsFranken switch
-			{
-				true => ShapeModifiers.Franken,
-				false => ShapeModifiers.Mutant,
-				//_ => ShapeModifiers.Basic
-			};
+		private ShapeModifiers ShapeModifier => IsFranken ? ShapeModifiers.Franken : ShapeModifiers.Mutant;
 
 
 		/// <inheritdoc/>

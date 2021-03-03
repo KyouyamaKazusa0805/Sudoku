@@ -23,14 +23,14 @@ In the future, I'd like to apply this solution to **almost everything**. I may f
 
 | How to use this solution<br />如何使用 |                                                              |
 | -------------------------------------- | ------------------------------------------------------------ |
-| Bilingual<br />中英双语介绍            | [Here (GitHub site)](https://github.com/SunnieShine/Sudoku/issues/83) |
-| Chinese only<br />中文介绍             | [Here (Gitee Site)](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593) |
+| Bilingual<br />中英双语介绍            | [GitHub](https://github.com/SunnieShine/Sudoku/issues/83)    |
+| Chinese only<br />中文介绍             | [Gitee Site](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593) |
 
 ### Wiki (百科页面)
 
 | Wiki<br />百科页面         |                                                              |
 | -------------------------- | ------------------------------------------------------------ |
-| Chinese only<br />中文介绍 | [Click me (Gitee Site)](https://gitee.com/SunnieShine/Sudoku/wikis/pages) |
+| Chinese only<br />中文介绍 | [Gitee Site](https://gitee.com/SunnieShine/Sudoku/wikis/pages) |
 
 
 
@@ -42,7 +42,7 @@ In the future, I'd like to apply this solution to **almost everything**. I may f
 | Programming Language version<br />编程语言版本       | 9.0                                             |
 | Framework<br />框架                                  | .NET 5                                          |
 | Indenting<br />缩进                                  | Tabs (`\t`)<br />原生 Tab                       |
-| Integrated development environment<br />集成开发环境 | Visual Studio 2019 16.9                         |
+| Integrated development environment<br />集成开发环境 | Visual Studio 2019 16.10                        |
 | Natural languages support<br />自然语言支持          | English, Simplified Chinese<br />英语、简体中文 |
 
 

@@ -38,12 +38,12 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates the eliminations.
 		/// </summary>
-		public Candidates Eliminations { [MethodImpl(MethodImplOptions.AggressiveInlining)] get; }
+		public Candidates Eliminations { get; }
 
 		/// <summary>
 		/// Indicates the reason why these candidates can be eliminated.
 		/// </summary>
-		public EliminatedReason Reason { [MethodImpl(MethodImplOptions.AggressiveInlining)] get; }
+		public EliminatedReason Reason { get; }
 
 
 		/// <inheritdoc/>
