@@ -5947,6 +5947,11 @@
             and other chaining-like techniques, such as Bowman's Bingo.
             </summary>
         </member>
+        <member name="F:Sudoku.Techniques.TechniqueTags.ForcingChains">
+            <summary>
+            Indicates the forcing chains technique, such as Bowman's Bingo, Region Forcing Chains and so on.
+            </summary>
+        </member>
         <member name="F:Sudoku.Techniques.TechniqueTags.DeadlyPattern">
             <summary>
             Indicates the deadly pattern technique.
