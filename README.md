@@ -4,9 +4,9 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
-In the future, I'd like to apply this solution to **almost everything**. I may finish the Win10 app project, android app project, robot on common online platforms (QQ, Bilibili and so on).
-
-以后，我想把这个解决方案用于**几乎所有东西**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
+> In the future, I'd like to apply this solution to **almost everything**. I may finish the Win10 app project, android app project, robot on common online platforms (QQ, Bilibili and so on).
+>
+> 以后，我想把这个解决方案用于**几乎所有东西**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
 
 
