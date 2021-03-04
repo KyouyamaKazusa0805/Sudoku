@@ -53,8 +53,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			foreach (var exocet in Patterns)
 			{
-				var (_, targetMap, _) = exocet;
-				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
+				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2, _, targetMap, _) = exocet;
 
 				// Base cells should be empty:
 				// {567} and {267} are empty cells.
@@ -65,8 +64,8 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// The number of different candidates in base cells can't be greater than 5:
 				// {267} | {567} = {2567}, Count{2567} = 4, which is <= 5.
-				short baseCandsMask = (short)(grid.GetCandidates(b1) | grid.GetCandidates(b2));
-				if (PopCount((uint)baseCandsMask) > 5)
+				short baseCands = (short)(grid.GetCandidates(b1) | grid.GetCandidates(b2));
+				if (PopCount((uint)baseCands) > 5)
 				{
 					continue;
 				}
@@ -81,8 +80,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				// Then check target eliminations.
 				// Here 'nonBaseQ' and 'nonBaseR' are the conjugate pair (or AHS) digits
 				// in target Q and target R cells pair.
-				if (!CheckTarget(grid, tq1, tq2, baseCandsMask, out short nonBaseQ)
-					|| !CheckTarget(grid, tr1, tr2, baseCandsMask, out short nonBaseR))
+				if (!CheckTarget(grid, tq1, tq2, baseCands, out short nonBaseQ)
+					|| !CheckTarget(grid, tr1, tr2, baseCands, out short nonBaseR))
 				{
 					continue;
 				}
@@ -91,7 +90,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				int[] mq1o = mq1.ToArray(), mq2o = mq2.ToArray(), mr1o = mr1.ToArray(), mr2o = mr2.ToArray();
 				int v1 = grid.GetCandidates(mq1o[0]) | grid.GetCandidates(mq1o[1]);
 				int v2 = grid.GetCandidates(mq2o[0]) | grid.GetCandidates(mq2o[1]);
-				short temp = (short)(v1 | v2), needChecking = (short)(baseCandsMask & temp);
+				short temp = (short)(v1 | v2), needChecking = (short)(baseCands & temp);
 
 				v1 = grid.GetCandidates(mr1o[0]) | grid.GetCandidates(mr1o[1]);
 				v2 = grid.GetCandidates(mr2o[0]) | grid.GetCandidates(mr2o[1]);
@@ -118,10 +117,10 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// Check target eliminations.
 				// Here we can't replace the operator '|' with '||', because two methods both should be called.
-				var targetElims = Candidates.Empty;
-				temp = (short)(nonBaseQ > 0 ? baseCandsMask | nonBaseQ : baseCandsMask);
-				if (GatheringTargetElims(ref targetElims, tq1, grid, baseCandsMask, temp)
-					| GatheringTargetElims(ref targetElims, tq2, grid, baseCandsMask, temp)
+				var targetElimsMap = Candidates.Empty;
+				temp = (short)(nonBaseQ > 0 ? baseCands | nonBaseQ : baseCands);
+				if (GatheringTargetElims(grid, ref targetElimsMap, tq1, baseCands, temp)
+					| GatheringTargetElims(grid, ref targetElimsMap, tq2, baseCands, temp)
 					&& nonBaseQ > 0
 					&& grid.GetStatus(tq1) == CellStatus.Empty ^ grid.GetStatus(tq2) == CellStatus.Empty)
 				{
@@ -136,9 +135,9 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 
-				temp = (short)(nonBaseR > 0 ? baseCandsMask | nonBaseR : baseCandsMask);
-				if (GatheringTargetElims(ref targetElims, tr1, grid, baseCandsMask, temp)
-					| GatheringTargetElims(ref targetElims, tr2, grid, baseCandsMask, temp)
+				temp = (short)(nonBaseR > 0 ? baseCands | nonBaseR : baseCands);
+				if (GatheringTargetElims(grid, ref targetElimsMap, tr1, baseCands, temp)
+					| GatheringTargetElims(grid, ref targetElimsMap, tr2, baseCands, temp)
 					&& nonBaseR > 0
 					&& grid.GetStatus(tr1) == CellStatus.Empty ^ grid.GetStatus(tr2) == CellStatus.Empty)
 				{
@@ -153,7 +152,24 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 
-				if (targetElims.IsEmpty)
+				// Check mirror candidates.
+				Elimination targetInferElims, mirrorElims;
+				if (CheckAdvanced)
+				{
+					var (tar1, mir1) = GatheringMirrorElims(
+						tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0, grid,
+						baseCands, cellOffsets, candidateOffsets
+					);
+					var (tar2, mir2) = GatheringMirrorElims(
+						tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1, grid,
+						baseCands, cellOffsets, candidateOffsets
+					);
+
+					targetInferElims = tar1 + tar2;
+					mirrorElims = mir1 + mir2;
+				}
+
+				if (targetElimsMap.IsEmpty)
 				{
 					continue;
 				}
@@ -167,38 +183,49 @@ namespace Sudoku.Solving.Manual.Exocets
 					cellOffsets.Add(new(2, cell));
 				}
 
-				accumulator.Add(
-					new JeStepInfo(
-						new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
-						exocet,
-						baseCandsMask.GetAllSets().ToArray(),
-						null,
-						null,
-						new Elimination[] { new(targetElims, EliminatedReason.Basic) }));
+				var targetElims = new Elimination(targetElimsMap, EliminatedReason.Basic);
+				unsafe
+				{
+					accumulator.Add(
+						new JeStepInfo(
+							new View[] { new() { Cells = cellOffsets, Candidates = candidateOffsets } },
+							exocet,
+							baseCands.GetAllSets().ToArray(),
+							null,
+							null,
+							CheckAdvanced
+							? new Elimination[]
+							{
+								targetElims,
+								*&targetInferElims,
+								*&mirrorElims
+							}
+							: new Elimination[] { targetElims }));
+				}
 			}
 		}
 
 		/// <summary>
 		/// The method for gathering target eliminations.
 		/// </summary>
-		/// <param name="targetElims">(<see langword="ref"/> parameter) The target eliminations.</param>
-		/// <param name="cell">The cell.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="baseCandsMask">The base candidates mask.</param>
+		/// <param name="targetElimsMap">(<see langword="ref"/> parameter) The target eliminations.</param>
+		/// <param name="cell">The cell.</param>
+		/// <param name="baseCands">The base candidates mask.</param>
 		/// <param name="temp">The temp mask.</param>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether this method has been found eliminations.
 		/// </returns>
-		private static bool GatheringTargetElims(
-			ref Candidates targetElims, int cell, in SudokuGrid grid, short baseCandsMask, short temp)
+		private bool GatheringTargetElims(
+			in SudokuGrid grid, ref Candidates targetElimsMap, int cell, short baseCands, short temp)
 		{
-			short candMask = (short)(grid.GetCandidates(cell) & ~temp);
-			if (grid.GetStatus(cell) == CellStatus.Empty && candMask != 0
-				&& (grid.GetCandidates(cell) & baseCandsMask) != 0)
+			short cands = (short)(grid.GetCandidates(cell) & ~temp);
+			if (grid.GetStatus(cell) == CellStatus.Empty
+				&& cands != 0 && (grid.GetCandidates(cell) & baseCands) != 0)
 			{
-				foreach (int digit in candMask)
+				foreach (int digit in cands)
 				{
-					targetElims.AddAnyway(cell * 9 + digit);
+					targetElimsMap.AddAnyway(cell * 9 + digit);
 				}
 
 				return true;
@@ -210,41 +237,97 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 		/// <summary>
+		/// Gathering mirror eliminations. This method is an entry for the method check mirror in base class.
+		/// </summary>
+		/// <param name="tq1">The target Q1 cell.</param>
+		/// <param name="tq2">The target Q2 cell.</param>
+		/// <param name="tr1">The target R1 cell.</param>
+		/// <param name="tr2">The target R2 cell.</param>
+		/// <param name="m1">(<see langword="in"/> parameter) The mirror 1 cell.</param>
+		/// <param name="m2">(<see langword="in"/> parameter) The mirror 2 cell.</param>
+		/// <param name="lockedNonTarget">The locked digits that is not the target digits.</param>
+		/// <param name="x">The X digit.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="baseCands">The base candidates mask.</param>
+		/// <param name="cellOffsets">The highlight cells.</param>
+		/// <param name="candidateOffsets">The highliht candidates.</param>
+		/// <returns>The result.</returns>
+		private (Elimination Target, Elimination Mirror) GatheringMirrorElims(
+			int tq1, int tq2, int tr1, int tr2, in Cells m1, in Cells m2, short lockedNonTarget,
+			int x, in SudokuGrid grid, short baseCands, List<DrawingInfo> cellOffsets,
+			List<DrawingInfo> candidateOffsets)
+		{
+			if ((grid.GetCandidates(tq1) & baseCands) != 0)
+			{
+				short mask1 = grid.GetCandidates(tr1), mask2 = grid.GetCandidates(tr2);
+				short m1d = (short)(mask1 & baseCands), m2d = (short)(mask2 & baseCands);
+				return CheckMirror(
+					grid, tq1, tq2, lockedNonTarget != 0 ? lockedNonTarget : (short)0,
+					baseCands, m1, x,
+					(m1d, m2d) switch { (not 0, 0) => tr1, (0, not 0) => tr2, _ => -1 },
+					cellOffsets, candidateOffsets);
+			}
+			else if ((grid.GetCandidates(tq2) & baseCands) != 0)
+			{
+				short mask1 = grid.GetCandidates(tq1), mask2 = grid.GetCandidates(tq2);
+				short m1d = (short)(mask1 & baseCands), m2d = (short)(mask2 & baseCands);
+				return CheckMirror(
+					grid, tq2, tq1, lockedNonTarget != 0 ? lockedNonTarget : (short)0,
+					baseCands, m2, x,
+					(m1d, m2d) switch { (not 0, 0) => tr1, (0, not 0) => tr2, _ => -1 },
+					cellOffsets, candidateOffsets);
+			}
+			else
+			{
+				return default;
+			}
+		}
+
+		/// <summary>
 		/// Check the cross-line cells.
 		/// </summary>
 		/// <param name="crossline">(<see langword="in"/> parameter) The cross line cells.</param>
-		/// <param name="digitsNeedChecking">The digits that need checking.</param>
+		/// <param name="needChecking">The digits that need checking.</param>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the structure passed the validation.
 		/// </returns>
-		private bool CheckCrossline(in Cells crossline, short digitsNeedChecking)
+		private bool CheckCrossline(in Cells crossline, short needChecking)
 		{
-			foreach (int digit in digitsNeedChecking)
+			foreach (int digit in needChecking)
 			{
 				var crosslinePerCandidate = crossline & DigitMaps[digit];
 				short r = crosslinePerCandidate.RowMask, c = crosslinePerCandidate.ColumnMask;
+
+				// Basic check.
+				// If the cells that contains the digit to check is spanned more than two regions,
+				// the cross-line will be invalid; furthermore, the exocet is invalid.
 				if (PopCount((uint)r) <= 2 || PopCount((uint)c) <= 2)
 				{
 					continue;
 				}
 
-				bool flag = false;
-				foreach (int d1 in r)
+				if (CheckAdvanced)
 				{
-					foreach (int d2 in c)
+					// Advanced check.
+					// This checking is only used for complex exocets.
+					bool flag = false;
+					foreach (int d1 in r)
 					{
-						if (crosslinePerCandidate < (RegionMaps[d1 + 9] | RegionMaps[d2 + 18]))
+						foreach (int d2 in c)
 						{
-							flag = true;
-							goto FinalCheck;
+							if (crosslinePerCandidate < (RegionMaps[d1 + 9] | RegionMaps[d2 + 18]))
+							{
+								flag = true;
+								goto FinalCheck;
+							}
 						}
 					}
-				}
 
-			FinalCheck:
-				if (!flag)
-				{
-					return false;
+				FinalCheck:
+					if (!flag)
+					{
+						return false;
+					}
 				}
 			}
 
@@ -258,13 +341,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="pos1">The cell 1 to determine.</param>
 		/// <param name="pos2">The cell 2 to determine.</param>
 		/// <param name="baseCands">The candidates that is from base two cells.</param>
-		/// <param name="otherCands">
+		/// <param name="ahsOrConjugatePairCands">
 		/// (<see langword="out"/> parameter) The other candidate mask. If failed to check,
 		/// the value will be -1.
 		/// </param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		private unsafe bool CheckTarget(
-			in SudokuGrid grid, int pos1, int pos2, int baseCands, out short otherCands)
+			in SudokuGrid grid, int pos1, int pos2, int baseCands,
+			out short ahsOrConjugatePairCands)
 		{
 			// According to the puzzle, we just describe for the TQ1 and TQ2 ({23567} and 9).
 			// .------------------------.---------------------.-----------------------.
@@ -273,7 +357,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			// | 2578    9     T  568   | 2567   3      1     | 2567 T  24678   2458  |
 			// :------------------------+---------------------+-----------------------:
 
-			otherCands = -1;
+			ahsOrConjugatePairCands = -1;
 
 			// m1: {23567}
 			// m2: {9}
@@ -414,7 +498,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								// 2) Can't be value cells (given or modifiable).
 								// 3) Must contain base candidates.
 								// 4) Must contain non-base candiates.
-								otherCands = mask;
+								ahsOrConjugatePairCands = mask;
 								return true;
 							}
 						}

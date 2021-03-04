@@ -39,8 +39,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			int* compatibleCells = stackalloc int[4], cover = stackalloc int[8];
 			foreach (var exocet in Patterns)
 			{
-				var (baseMap, targetMap, _) = exocet;
-				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
+				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2, baseMap, targetMap, _) = exocet;
 				if (PopCount((uint)grid.GetCandidates(b1)) < 2 || PopCount((uint)grid.GetCandidates(b2)) < 2)
 				{
 					continue;

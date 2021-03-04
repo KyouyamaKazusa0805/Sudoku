@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					return (
-						new(targetElims, EliminatedReason.Basic),
+						new(targetElims, EliminatedReason.TargetInference),
 						new(mirrorElims, EliminatedReason.Mirror)
 					);
 				}
@@ -281,7 +281,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						{
 							short targetMask = (short)(grid.GetCandidates(target) & baseCandidateMask);
 							short candidateMask = (short)(
-								~(grid.GetCandidates(m1Locked ? r : l) & targetMask) & targetMask);
+								~(grid.GetCandidates(m1Locked ? r : l) & targetMask) & targetMask
+							);
 							if (candidateMask != 0)
 							{
 								foreach (int digit in candidateMask)
@@ -323,7 +324,10 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 			}
 
-			return (new(targetElims, EliminatedReason.Basic), new(mirrorElims, EliminatedReason.Mirror));
+			return (
+				new(targetElims, EliminatedReason.TargetInference),
+				new(mirrorElims, EliminatedReason.Mirror)
+			);
 		}
 	}
 }

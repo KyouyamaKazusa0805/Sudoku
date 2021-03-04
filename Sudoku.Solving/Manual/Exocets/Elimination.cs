@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
@@ -13,6 +12,17 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </summary>
 	public readonly struct Elimination : IValueEquatable<Elimination>
 	{
+		/// <summary>
+		/// Initializes an instance with the reason, but uses an empty list.
+		/// </summary>
+		/// <param name="reason">The reason why the candidates should be eliminated.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Elimination(EliminatedReason reason)
+		{
+			Eliminations = Candidates.Empty;
+			Reason = reason;
+		}
+
 		/// <summary>
 		/// Initializes an instance with the eliminations and the reason.
 		/// </summary>
@@ -45,6 +55,21 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		public EliminatedReason Reason { get; }
 
+		/// <summary>
+		/// Indicates the header of the reason.
+		/// </summary>
+		private string Header => Reason switch
+		{
+			EliminatedReason.Basic => "Target",
+			EliminatedReason.TargetInference => "Target inference",
+			EliminatedReason.Mirror => "Mirror",
+			EliminatedReason.BiBiPattern => "Bi-Bi pattern",
+			EliminatedReason.TargetPair => "Target pair",
+			EliminatedReason.GeneralizedSwordfish => "Generalized swordfish",
+			EliminatedReason.TrueBase => "True base",
+			EliminatedReason.CompatibilityTest => "Compatibility test"
+		};
+
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -61,30 +86,8 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override unsafe string ToString()
-		{
-			// To replace each value into separate words.
-			// For example: TargetPair => target pair
-			string header = Regex.Replace(
-				input: Reason.ToString(),
-				pattern: @"[A-Z]",
-				evaluator: static m => $"{m.Value.ToLower()} ",
-				options: RegexOptions.ExplicitCapture,
-				matchTimeout: TimeSpan.FromSeconds(5)
-			);
-
-			// Converts the first value into upper case.
-			// For example: target pair => Target pair
-			fixed (char* ptr = header)
-			{
-				//*ptr = char.ToUpper(*ptr);
-				*ptr -= ' ';
-			}
-
-			// Returns the result.
-			string elimStr = new ConclusionCollection(AsSpan()).ToString();
-			return $"* {header} elimination: {elimStr}";
-		}
+		public override unsafe string ToString() =>
+			$"* {Header} elimination: {new ConclusionCollection(AsSpan()).ToString()}";
 
 		/// <summary>
 		/// Converts all elements to <see cref="Conclusion"/>.
@@ -123,10 +126,18 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="right">The right instance.</param>
 		/// <returns>
 		/// The merged result. The result will contain all eliminations from two instances, and
-		/// the reason will use <see langword="operator"/> <c>|</c> to merge them.
+		/// the reason will use <see langword="operator"/> <c>+</c> to merge them.
 		/// </returns>
-		public static unsafe Elimination operator |(in Elimination left, in Elimination right)
+		/// <exception cref="ArgumentException">
+		/// Throws when two instances contains different eliminated reason.
+		/// </exception>
+		public static unsafe Elimination operator +(in Elimination left, in Elimination right)
 		{
+			if (left.Reason != right.Reason)
+			{
+				throw new ArgumentException("Two arguments should contains same eliminated reason.");
+			}
+
 			int count = left.Eliminations.Count + right.Eliminations.Count;
 			int* merged = stackalloc int[count];
 			for (int i = 0; i < left.Eliminations.Count; i++)
@@ -138,8 +149,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				merged[i + left.Eliminations.Count] = right.Eliminations[i];
 			}
 
-			var flags = left.Reason | right.Reason;
-			return new(new(merged, count), flags);
+			return new(new(merged, count), left.Reason);
 		}
 	}
 }
