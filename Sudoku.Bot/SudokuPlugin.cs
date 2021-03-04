@@ -138,6 +138,12 @@ namespace Sudoku.Bot
 			// Creates the regex to match a command.
 			var regex = new Regex(@"(?<=\s*)((?<=“).+?(?=”)|[^:\s])+((\s*:\s*((?<=“).+?(?=”)|[^\s])+)|)|((?<=“).+?(?=”)|[^“”\s])+");
 			string[] args = (from match in regex.Matches(info) select match.Value).ToArray();
+			if (args.Length == 0)
+			{
+				// No command should be checked and process.
+				return;
+			}
+
 			await Handler.HandleAsync(args[0], args, sender, e, ConfigMode, UserAllowedInConfigMode);
 		}
 
