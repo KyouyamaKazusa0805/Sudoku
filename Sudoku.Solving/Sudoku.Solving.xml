@@ -2725,10 +2725,10 @@
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="pos1">The cell 1 to determine.</param>
             <param name="pos2">The cell 2 to determine.</param>
-            <param name="baseCandsMask">The base candidate mask.</param>
-            <param name="otherCandsMask">
+            <param name="baseCands">The candidates that is from base two cells.</param>
+            <param name="otherCands">
             (<see langword="out"/> parameter) The other candidate mask. If failed to check,
-            the value will be <c>-1</c>.
+            the value will be -1.
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>

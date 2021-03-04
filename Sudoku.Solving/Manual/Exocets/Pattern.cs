@@ -101,8 +101,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
 		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
 		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
-		public void Deconstruct(
-			out Cells baseCellsMap, out Cells targetCellsMap, out Cells crosslineMap)
+		public void Deconstruct(out Cells baseCellsMap, out Cells targetCellsMap, out Cells crosslineMap)
 		{
 			baseCellsMap = new() { Base1, Base2 };
 			targetCellsMap = new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
@@ -116,8 +115,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="tq2">(<see langword="out"/> parameter) The target Q2 cell.</param>
 		/// <param name="tr1">(<see langword="out"/> parameter) The target R1 cell.</param>
 		/// <param name="tr2">(<see langword="out"/> parameter) The target R2 cell.</param>
-		public void Deconstruct(
-			out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2)
+		public void Deconstruct(out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2)
 		{
 			base1 = Base1;
 			base2 = Base2;
