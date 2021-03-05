@@ -53,7 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Test", "Sudoku.Test"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Painting", "src\Sudoku.Painting\Sudoku.Painting.csproj", "{F41811E4-8662-4B90-A410-45D71C11D8A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Test", "src\Sudoku.Test\Sudoku.Test.csproj", "{15E05996-0A70-4559-8F98-000030DC4187}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Test", "src\Sudoku.Test\Sudoku.Test.csproj", "{15E05996-0A70-4559-8F98-000030DC4187}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

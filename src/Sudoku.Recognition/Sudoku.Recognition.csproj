@@ -20,7 +20,7 @@
 	<ItemGroup>
 		<PackageReference Include="Emgu.CV" Version="4.4.0.4099" />
 		<PackageReference Include="Emgu.CV.runtime.windows" Version="4.4.0.4099" />
-		<PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+		<PackageReference Include="System.Drawing.Common" Version="5.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
