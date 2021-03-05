@@ -2432,12 +2432,6 @@
             Encapsulates an instance to represent a series of eliminations in JE or SE.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.#ctor(Sudoku.Solving.Manual.Exocets.EliminatedReason)">
-            <summary>
-            Initializes an instance with the reason, but uses an empty list.
-            </summary>
-            <param name="reason">The reason why the candidates should be eliminated.</param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.#ctor(Sudoku.Data.Candidates@,Sudoku.Solving.Manual.Exocets.EliminatedReason)">
             <summary>
             Initializes an instance with the eliminations and the reason.
@@ -2459,6 +2453,18 @@
             <summary>
             Indicates the reason why these candidates can be eliminated.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Elimination.Header">
+            <summary>
+            Indicates the header of the reason.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Deconstruct(Sudoku.Data.Candidates@,Sudoku.Solving.Manual.Exocets.EliminatedReason@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="eliminations">(<see langword="out"/> parameter) The eliminations.</param>
+            <param name="reason">
+            (<see langword="out"/> parameter) The reason why the eliminations should be removed.
+            </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Equals(System.Object)">
             <inheritdoc/>
@@ -2489,7 +2495,7 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.op_Inequality(Sudoku.Solving.Manual.Exocets.Elimination@,Sudoku.Solving.Manual.Exocets.Elimination@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.op_Addition(Sudoku.Solving.Manual.Exocets.Elimination@,Sudoku.Solving.Manual.Exocets.Elimination@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.op_BitwiseOr(Sudoku.Solving.Manual.Exocets.Elimination@,Sudoku.Solving.Manual.Exocets.Elimination@)">
             <summary>
             To merge two different instances, and return the merged result.
             </summary>
@@ -2497,7 +2503,7 @@
             <param name="right">The right instance.</param>
             <returns>
             The merged result. The result will contain all eliminations from two instances, and
-            the reason will use <see langword="operator"/> <c>+</c> to merge them.
+            the reason should be same.
             </returns>
             <exception cref="T:System.ArgumentException">
             Throws when two instances contains different eliminated reason.
@@ -2566,37 +2572,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher">
             <summary>
-            <para>
-            Encapsulates an <b>exocet</b> technique searcher. The pattern will be like:
-            <code>
-            .-------.-------.-------.
-            | B B E | E . . | E . . |
-            | . . E | Q . . | R . . |
-            | . . E | Q . . | R . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            '-------'-------'-------'
-            </code>
-            Where:
-            <list type="table">
-            <item><term>B</term><description>Base Cells.</description></item>
-            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
-            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
-            <item><term>S</term><description>Cross-line Cells.</description></item>
-            <item><term>E</term><description>Escape Cells.</description></item>
-            </list>
-            </para>
-            <para>
-            In the data structure, all letters will be used as the same one in this exemplar.
-            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
-            and the lines of two target cells lying on can't contain any base digits.
-            </para>
+            Encapsulates an <b>exocet</b> technique searcher.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.Patterns">
@@ -2619,24 +2595,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.CheckMirror(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Collections.Generic.IList{Sudoku.Models.DrawingInfo},System.Collections.Generic.IList{Sudoku.Models.DrawingInfo})">
-            <summary>
-            Check mirror eliminations.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="target">The target cell.</param>
-            <param name="target2">
-            The another target cell that is adjacent with <paramref name="target"/>.
-            </param>
-            <param name="lockedNonTarget">The locked member that is non-target digits.</param>
-            <param name="baseCandidateMask">The base candidate mask.</param>
-            <param name="mirror">(<see langword="in"/> parameter) The mirror map.</param>
-            <param name="x">The x.</param>
-            <param name="onlyOne">The only one cell.</param>
-            <param name="cellOffsets">The cell offsets.</param>
-            <param name="candidateOffsets">The candidate offsets.</param>
-            <returns>All mirror eliminations.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.JeStepInfo">
             <summary>
@@ -2709,36 +2667,39 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GatheringTargetElims(Sudoku.Data.SudokuGrid@,Sudoku.Data.Candidates@,System.Int32,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GatherBasic(Sudoku.Data.SudokuGrid@,Sudoku.Data.Candidates@,System.Int32,System.Int16,System.Int16)">
             <summary>
-            The method for gathering target eliminations.
+            Gathering basic eliminations.
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="targetElimsMap">(<see langword="ref"/> parameter) The target eliminations.</param>
-            <param name="cell">The cell.</param>
-            <param name="baseCands">The base candidates mask.</param>
-            <param name="temp">The temp mask.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating whether this method has been found eliminations.
-            </returns>
+            <param name="elims">(<see langword="ref"/> parameter) The elimination set.</param>
+            <param name="cell">The cell to check eliminations.</param>
+            <param name="baseCands">The mask that holds the digits in the base cells.</param>
+            <param name="baseCandsWithAhsOrConjugatePair">
+            The extra digits mask that holds in AHS or conjugate pair structure.
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GatheringMirrorElims(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Collections.Generic.List{Sudoku.Models.DrawingInfo},System.Collections.Generic.List{Sudoku.Models.DrawingInfo})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GatherMirror(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Collections.Generic.List{Sudoku.Models.DrawingInfo},System.Collections.Generic.List{Sudoku.Models.DrawingInfo},System.ValueTuple{Sudoku.Solving.Manual.Exocets.Elimination,Sudoku.Solving.Manual.Exocets.Elimination}@)">
             <summary>
-            Gathering mirror eliminations. This method is an entry for the method check mirror in base class.
+            Gathering mirror eliminations.
             </summary>
-            <param name="tq1">The target Q1 cell.</param>
-            <param name="tq2">The target Q2 cell.</param>
-            <param name="tr1">The target R1 cell.</param>
-            <param name="tr2">The target R2 cell.</param>
-            <param name="m1">(<see langword="in"/> parameter) The mirror 1 cell.</param>
-            <param name="m2">(<see langword="in"/> parameter) The mirror 2 cell.</param>
-            <param name="lockedNonTarget">The locked digits that is not the target digits.</param>
-            <param name="x">The X digit.</param>
+            <param name="tq1">The target cells Q1.</param>
+            <param name="tq2">The target cells Q2.</param>
+            <param name="tr1">The target cells R1.</param>
+            <param name="tr2">The target cells R2.</param>
+            <param name="m1">(<see langword="in"/> parameter) The mirror cell 1.</param>
+            <param name="m2">(<see langword="in"/> parameter) The mirror cell 2.</param>
+            <param name="ahsOrConjugatePairDigits">
+            The digits mask that holds the digits in AHS or conjuagte pair structure.
+            </param>
+            <param name="x">The extra digit.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="baseCands">The base candidates mask.</param>
+            <param name="baseCands">The base digits.</param>
             <param name="cellOffsets">The highlight cells.</param>
-            <param name="candidateOffsets">The highliht candidates.</param>
-            <returns>The result.</returns>
+            <param name="candidateOffsets">The highlight candidates.</param>
+            <param name="resultPair">(<see langword="out"/> parameter) The result pair.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.CheckCrossline(Sudoku.Data.Cells@,System.Int16)">
             <summary>
@@ -2764,9 +2725,60 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.CheckMirror(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Collections.Generic.IList{Sudoku.Models.DrawingInfo},System.Collections.Generic.IList{Sudoku.Models.DrawingInfo},System.ValueTuple{Sudoku.Solving.Manual.Exocets.Elimination,Sudoku.Solving.Manual.Exocets.Elimination}@)">
+            <summary>
+            Check mirror eliminations.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="target">The target cell.</param>
+            <param name="target2">
+            The another target cell that is adjacent with <paramref name="target"/>.
+            </param>
+            <param name="lockedNonTarget">The locked member that is non-target digits.</param>
+            <param name="baseCandidateMask">The base candidate mask.</param>
+            <param name="mirror">(<see langword="in"/> parameter) The mirror map.</param>
+            <param name="x">The x.</param>
+            <param name="onlyOne">The only one cell.</param>
+            <param name="cellOffsets">The cell offsets.</param>
+            <param name="candidateOffsets">The candidate offsets.</param>
+            <param name="resultPair">
+            The result eliminations (contains the target inference and mirror eliminations).
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the elimination exists.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Pattern">
             <summary>
-            Indicates an exocet pattern.
+            <para>
+            Indicates an exocet pattern. The pattern will be like:
+            <code>
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            '-------'-------'-------'
+            </code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
+            In the data structure, all letters will be used as the same one in this exemplar.
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+            and the lines of two target cells lying on can't contain any base digits.
+            </para>
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">

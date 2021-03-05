@@ -5,7 +5,37 @@ using Sudoku.DocComments;
 namespace Sudoku.Solving.Manual.Exocets
 {
 	/// <summary>
-	/// Indicates an exocet pattern.
+	/// <para>
+	/// Indicates an exocet pattern. The pattern will be like:
+	/// <code>
+	/// .-------.-------.-------.
+	/// | B B E | E . . | E . . |
+	/// | . . E | Q . . | R . . |
+	/// | . . E | Q . . | R . . |
+	/// :-------+-------+-------:
+	/// | . . S | S . . | S . . |
+	/// | . . S | S . . | S . . |
+	/// | . . S | S . . | S . . |
+	/// :-------+-------+-------:
+	/// | . . S | S . . | S . . |
+	/// | . . S | S . . | S . . |
+	/// | . . S | S . . | S . . |
+	/// '-------'-------'-------'
+	/// </code>
+	/// Where:
+	/// <list type="table">
+	/// <item><term>B</term><description>Base Cells.</description></item>
+	/// <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+	/// <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+	/// <item><term>S</term><description>Cross-line Cells.</description></item>
+	/// <item><term>E</term><description>Escape Cells.</description></item>
+	/// </list>
+	/// </para>
+	/// <para>
+	/// In the data structure, all letters will be used as the same one in this exemplar.
+	/// In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+	/// and the lines of two target cells lying on can't contain any base digits.
+	/// </para>
 	/// </summary>
 	public readonly struct Pattern : IValueEquatable<Pattern>
 	{

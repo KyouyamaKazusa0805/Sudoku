@@ -13,17 +13,6 @@ namespace Sudoku.Solving.Manual.Exocets
 	public readonly struct Elimination : IValueEquatable<Elimination>
 	{
 		/// <summary>
-		/// Initializes an instance with the reason, but uses an empty list.
-		/// </summary>
-		/// <param name="reason">The reason why the candidates should be eliminated.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Elimination(EliminatedReason reason)
-		{
-			Eliminations = Candidates.Empty;
-			Reason = reason;
-		}
-
-		/// <summary>
 		/// Initializes an instance with the eliminations and the reason.
 		/// </summary>
 		/// <param name="eliminations">(<see langword="in"/> parameter) The eliminations.</param>
@@ -70,6 +59,18 @@ namespace Sudoku.Solving.Manual.Exocets
 			EliminatedReason.CompatibilityTest => "Compatibility test"
 		};
 
+
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="eliminations">(<see langword="out"/> parameter) The eliminations.</param>
+		/// <param name="reason">
+		/// (<see langword="out"/> parameter) The reason why the eliminations should be removed.
+		/// </param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Deconstruct(out Candidates eliminations, out EliminatedReason reason)
+		{
+			eliminations = Eliminations;
+			reason = Reason;
+		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -126,30 +127,33 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="right">The right instance.</param>
 		/// <returns>
 		/// The merged result. The result will contain all eliminations from two instances, and
-		/// the reason will use <see langword="operator"/> <c>+</c> to merge them.
+		/// the reason should be same.
 		/// </returns>
 		/// <exception cref="ArgumentException">
 		/// Throws when two instances contains different eliminated reason.
 		/// </exception>
-		public static unsafe Elimination operator +(in Elimination left, in Elimination right)
+		public static unsafe Elimination operator |(in Elimination left, in Elimination right)
 		{
-			if (left.Reason != right.Reason)
+			var (le, lr) = left;
+			var (re, rr) = right;
+
+			if (lr != rr)
 			{
 				throw new ArgumentException("Two arguments should contains same eliminated reason.");
 			}
 
-			int count = left.Eliminations.Count + right.Eliminations.Count;
+			int count = le.Count + re.Count;
 			int* merged = stackalloc int[count];
-			for (int i = 0; i < left.Eliminations.Count; i++)
+			for (int i = 0; i < le.Count; i++)
 			{
 				merged[i] = left.Eliminations[i];
 			}
-			for (int i = 0; i < right.Eliminations.Count; i++)
+			for (int i = 0; i < re.Count; i++)
 			{
-				merged[i + left.Eliminations.Count] = right.Eliminations[i];
+				merged[i + le.Count] = re[i];
 			}
 
-			return new(new(merged, count), left.Reason);
+			return new(new(merged, count), lr);
 		}
 	}
 }
