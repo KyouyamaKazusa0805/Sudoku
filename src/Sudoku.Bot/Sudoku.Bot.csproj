@@ -14,7 +14,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\required\bot\Resources.dic" Link="Resources.dic">
+		<None Include="..\..\required\bot\Resources.dic" Link="Resources.dic">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

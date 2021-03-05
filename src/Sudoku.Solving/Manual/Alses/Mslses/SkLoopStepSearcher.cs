@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -9,6 +8,7 @@ using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
+using SolvingAlgorithms = Sudoku.Solving.Extensions.Algorithms;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
@@ -82,7 +82,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				}
 
 				// Check all combinations.
-				short[] masks = Algorithms.GetMaskSubsets(candidateMask);
+				short[] masks = SolvingAlgorithms.GetMaskSubsets(candidateMask);
 				for (int j = masks.Length - 1; j >= 0; j--)
 				{
 					short mask = masks[j];

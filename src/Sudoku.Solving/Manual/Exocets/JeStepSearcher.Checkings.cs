@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Models;
@@ -7,6 +6,7 @@ using Sudoku.Solving.Manual.Extensions;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
+using SolvingAlgorithms = Sudoku.Solving.Extensions.Algorithms;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -144,7 +144,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			// Iterate on each combination of non-base candidates.
 			// All cases: 1, 2, 3, 5, 12, 13, 15, 23, 25, 35, 123, 125, 135, 235, 1235.
-			foreach (short mask in Algorithms.GetMaskSubsets(nonBaseCands))
+			foreach (short mask in SolvingAlgorithms.GetMaskSubsets(nonBaseCands))
 			{
 				// Iterate on each region in 'regions'.
 				// All cases: block 2, column 4.
@@ -309,7 +309,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					: RegionLabel.Column
 				);
 				short locked = default;
-				foreach (short mask in Algorithms.GetMaskSubsets(nonBase))
+				foreach (short mask in SolvingAlgorithms.GetMaskSubsets(nonBase))
 				{
 					for (int i = 0; i < 2; i++)
 					{

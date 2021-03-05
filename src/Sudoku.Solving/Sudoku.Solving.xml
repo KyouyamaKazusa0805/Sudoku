@@ -861,6 +861,41 @@
             <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
             <returns>The difficulty level.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Extensions.Algorithms">
+            <summary>
+            Provides the algorithms about sudoku solving (using basic implementation of sudoku data structures).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.Algorithms.GetMaskSubsets(System.Int16)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The result list.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.Algorithms.GetMaskSubsets(System.Int16,System.Int32)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <param name="size">The size.</param>
+            <returns>The result list.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.Algorithms.CreateBitsInt16(System.Int32[])">
+            <summary>
+            Create a <see cref="T:System.Int16"/> value, whose set bits are specified in the parameter
+            <paramref name="values"/>.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>The mask result.</returns>
+            <remarks>
+            For example, if the <paramref name="values"/> are <c>{ 3, 6 }</c>, the return value
+            will be <c>1 &lt;&lt; 3 | 1 &lt;&lt; 6</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.Algorithms.CreateBitsInt16(System.Int16[])">
+            <inheritdoc cref="M:Sudoku.Solving.Extensions.Algorithms.CreateBitsInt16(System.Int32[])"/>
+        </member>
         <member name="T:Sudoku.Solving.Extensions.BatchRater">
             <summary>
             Define a batch rater.
@@ -5538,6 +5573,11 @@
             Encapsulates a step finder that used in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.StepSearcher.NecessaryPropertyName">
+            <summary>
+            Indicates the necessary property name.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.StepSearcher.AllStepSearchers">
             <summary>
