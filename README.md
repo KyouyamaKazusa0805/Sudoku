@@ -24,13 +24,13 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 | How to use this solution<br />如何使用 |                                                              |
 | -------------------------------------- | ------------------------------------------------------------ |
 | Bilingual<br />中英双语介绍            | [GitHub](https://github.com/SunnieShine/Sudoku/issues/83)    |
-| Chinese only<br />中文介绍             | [Gitee Site](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593) |
+| Chinese only<br />中文介绍             | [Gitee](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593) |
 
 ### Wiki (百科页面)
 
-| Wiki<br />百科页面         |                                                              |
-| -------------------------- | ------------------------------------------------------------ |
-| Chinese only<br />中文介绍 | [Gitee Site](https://gitee.com/SunnieShine/Sudoku/wikis/pages) |
+| Wiki<br />百科页面         |                                                           |
+| -------------------------- | --------------------------------------------------------- |
+| Chinese only<br />中文介绍 | [Gitee](https://gitee.com/SunnieShine/Sudoku/wikis/pages) |
 
 
 
