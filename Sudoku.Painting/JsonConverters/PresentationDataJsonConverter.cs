@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Data;
 
-namespace Sudoku.Drawing.Converters
+namespace Sudoku.Painting.JsonConverters
 {
 	/// <summary>
 	/// Provides a <see cref="PresentationData"/> JSON converter.

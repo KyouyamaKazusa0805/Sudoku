@@ -53,6 +53,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.WpfProjects", "Sudok
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Test", "Sudoku.Test", "{DBB5B77D-32F6-422D-BB98-CF5BD5F99FAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Painting", "Sudoku.Painting\Sudoku.Painting.csproj", "{F41811E4-8662-4B90-A410-45D71C11D8A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -392,6 +394,26 @@ Global
 		{69CA814C-668A-43F3-B7C0-54AC4AB7DDB5}.Release|x64.Build.0 = Release|Any CPU
 		{69CA814C-668A-43F3-B7C0-54AC4AB7DDB5}.Release|x86.ActiveCfg = Release|Any CPU
 		{69CA814C-668A-43F3-B7C0-54AC4AB7DDB5}.Release|x86.Build.0 = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|ARM.Build.0 = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|x64.Build.0 = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Debug|x86.Build.0 = Debug|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|ARM.Build.0 = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|ARM64.Build.0 = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|x64.ActiveCfg = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|x64.Build.0 = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|x86.ActiveCfg = Release|Any CPU
+		{F41811E4-8662-4B90-A410-45D71C11D8A5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

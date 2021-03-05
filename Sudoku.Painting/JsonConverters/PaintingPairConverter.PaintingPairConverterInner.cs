@@ -5,7 +5,7 @@ using System.Extensions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Sudoku.Drawing.Converters
+namespace Sudoku.Painting.JsonConverters
 {
 	partial class PaintingPairConverter
 	{

@@ -14,7 +14,7 @@ namespace Sudoku.Drawing
 	/// </summary>
 	/// <seealso cref="Point"/>
 	/// <seealso cref="PointF"/>
-	[Obsolete("Please use " + nameof(DrawingPointConverter) + " instead.", false)]
+	[Obsolete("Please use 'DrawingPointConverter' instead.", false)]
 	public sealed class PointConverter
 	{
 		/// <summary>

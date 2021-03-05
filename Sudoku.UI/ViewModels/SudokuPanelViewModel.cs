@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Drawing;
+using Sudoku.Painting;
 using Sudoku.UI.ComponentModels;
 using Sudoku.UI.Controls;
 using Sudoku.UI.ResourceDictionaries;

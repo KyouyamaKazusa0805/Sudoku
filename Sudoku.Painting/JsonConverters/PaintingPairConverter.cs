@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Sudoku.Drawing.Converters
+namespace Sudoku.Painting.JsonConverters
 {
 	/// <summary>
 	/// Indicates a <see cref="PaintingPair{T}"/> JSON converter.

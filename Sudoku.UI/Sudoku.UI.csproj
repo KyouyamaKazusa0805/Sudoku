@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
+	  <ProjectReference Include="..\Sudoku.Painting\Sudoku.Painting.csproj" />
 	</ItemGroup>
 
 </Project>

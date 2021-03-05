@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.DocComments;
 
-namespace Sudoku.Drawing
+namespace Sudoku.Painting
 {
 	/// <summary>
 	/// Encapsulates a painting pair that contains the base color to paint and the value.

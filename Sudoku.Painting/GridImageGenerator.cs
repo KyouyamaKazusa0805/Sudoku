@@ -5,7 +5,7 @@ using System.Drawing.Text;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 
-namespace Sudoku.Drawing
+namespace Sudoku.Painting
 {
 	/// <summary>
 	/// Indicates a generator that is used for painting the specified information onto the image,
@@ -62,7 +62,7 @@ namespace Sudoku.Drawing
 		{
 			var result = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(result);
-			
+
 			return Paint(result, g);
 		}
 

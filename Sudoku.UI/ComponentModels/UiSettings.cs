@@ -1,5 +1,5 @@
 ﻿using System;
-using Sudoku.Drawing;
+using Sudoku.Painting;
 
 namespace Sudoku.UI.ComponentModels
 {

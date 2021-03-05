@@ -5,9 +5,9 @@ using System.Drawing.Drawing2D;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Drawing.Extensions;
+using Sudoku.Painting.Extensions;
 
-namespace Sudoku.Drawing
+namespace Sudoku.Painting
 {
 	partial record GridImageGenerator
 	{

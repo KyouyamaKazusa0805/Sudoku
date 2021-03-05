@@ -14,7 +14,7 @@ namespace Sudoku.Drawing
 	/// in the current collection.
 	/// </summary>
 	/// <seealso cref="View"/>
-	[Obsolete("Please use " + nameof(PresentationData) + " instead.", false)]
+	[Obsolete("Please use 'PresentationData' instead.", false)]
 	public sealed class MutableView : IEquatable<MutableView>
 	{
 		/// <inheritdoc cref="DefaultConstructor"/>

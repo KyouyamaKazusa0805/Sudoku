@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Drawing.Extensions;
+using Sudoku.Painting.Extensions;
 
-namespace Sudoku.Drawing
+namespace Sudoku.Painting
 {
 	/// <summary>
 	/// Provides an instance for converting drawing points (i.e. <see cref="PointF"/>)
