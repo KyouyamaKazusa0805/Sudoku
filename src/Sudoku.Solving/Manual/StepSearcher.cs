@@ -16,6 +16,12 @@ namespace Sudoku.Solving.Manual
 	public abstract class StepSearcher
 	{
 		/// <summary>
+		/// Indicates the necessary property name.
+		/// </summary>
+		private const string NecessaryPropertyName = "Properties";
+
+
+		/// <summary>
 		/// Indicates all step searchers and their type info used in the current solution.
 		/// </summary>
 		/// <remarks>
@@ -27,8 +33,8 @@ namespace Sudoku.Solving.Manual
 			where !type.IsAbstract && type.IsSubclassOf<StepSearcher>() && !type.IsDefined<ObsoleteAttribute>()
 			let prior = TechniqueProperties.FromType(type)!.Priority
 			orderby prior
-			let v = type.GetProperty("Properties", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
-			let casted = v as TechniqueProperties
+			let v = type.GetProperty(NecessaryPropertyName, BindingFlags.Public | BindingFlags.Static)
+			let casted = v?.GetValue(null) as TechniqueProperties
 			where casted is not null && !casted.DisabledReason.Flags(DisabledReason.HasBugs)
 			select (type, (string)Current[$"Progress{casted.DisplayLabel}"], casted);
 
