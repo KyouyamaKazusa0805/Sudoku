@@ -2,7 +2,7 @@
 using System.IO;
 using Sudoku.Diagnostics;
 
-namespace Sudoku.Debugging
+namespace Sudoku.Test
 {
 	/// <summary>
 	/// Provides the method to create a file counter, and count all files up.
@@ -13,12 +13,10 @@ namespace Sudoku.Debugging
 		/// To count all files, and output the result using the <see cref="Console"/>.
 		/// </summary>
 		internal static void CountUp() =>
-			Console.WriteLine
-			(
-				value: new FileCounter
-				(
+			Console.WriteLine(
+				new FileCounter(
 					root: Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName,
-					extension: "cs", 
+					extension: "cs",
 					withBinOrObjDirectory: false
 				).CountUp()
 			);
