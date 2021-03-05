@@ -223,16 +223,16 @@ namespace System.Extensions
 			}
 
 			int length = PopCount(@this);
-			var resultSpan = (stackalloc int[length]);
+			int[] result = new int[length];
 			for (byte i = 0, p = 0; i < 8; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0)
 				{
-					resultSpan[p++] = i;
+					result[p++] = i;
 				}
 			}
 
-			return new(resultSpan.ToArray());
+			return result;
 		}
 
 		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
@@ -244,16 +244,16 @@ namespace System.Extensions
 			}
 
 			int length = PopCount((uint)@this);
-			var resultSpan = (stackalloc int[length]);
+			int[] result = new int[length];
 			for (byte i = 0, p = 0; i < 16; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0)
 				{
-					resultSpan[p++] = i;
+					result[p++] = i;
 				}
 			}
 
-			return new(resultSpan.ToArray());
+			return result;
 		}
 
 		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
@@ -265,16 +265,16 @@ namespace System.Extensions
 			}
 
 			int length = PopCount((uint)@this);
-			var resultSpan = (stackalloc int[length]);
+			int[] result = new int[length];
 			for (byte i = 0, p = 0; i < 32; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0)
 				{
-					resultSpan[p++] = i;
+					result[p++] = i;
 				}
 			}
 
-			return new(resultSpan.ToArray());
+			return result;
 		}
 
 		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
@@ -286,16 +286,16 @@ namespace System.Extensions
 			}
 
 			int length = PopCount((ulong)@this);
-			var resultSpan = (stackalloc int[length]);
+			int[] result = new int[length];
 			for (byte i = 0, p = 0; i < 64; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0)
 				{
-					resultSpan[p++] = i;
+					result[p++] = i;
 				}
 			}
 
-			return new(resultSpan.ToArray());
+			return result;
 		}
 
 		/// <inheritdoc cref="Integer.GetEnumerator(Integer)"/>
