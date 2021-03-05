@@ -29,6 +29,8 @@ namespace Sudoku.UI.ViewModels
 
 				Preferences.GridSize = value;
 
+				SudokuPanelMain.Width = SudokuPanelMain.Height = value;
+
 				Image = Generator.Paint();
 			}
 		}
