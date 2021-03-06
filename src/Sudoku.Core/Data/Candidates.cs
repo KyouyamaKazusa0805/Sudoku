@@ -127,7 +127,8 @@ namespace Sudoku.Data
 		{
 			if (binary.Length != BufferLength)
 			{
-				throw new ArgumentException($"The length of the array should be {BufferLength.ToString()}.", nameof(binary));
+				throw new ArgumentException(
+					$"The length of the array should be {BufferLength.ToString()}.", nameof(binary));
 			}
 
 			int count = 0;
@@ -156,7 +157,8 @@ namespace Sudoku.Data
 		{
 			if (length != BufferLength)
 			{
-				throw new ArgumentException($"Argument 'length' should be {BufferLength.ToString()}.", nameof(length));
+				throw new ArgumentException(
+					$"Argument 'length' should be {BufferLength.ToString()}.", nameof(length));
 			}
 
 			int count = 0;

@@ -2715,7 +2715,7 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GatherMirror(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,Sudoku.Data.SudokuGrid@,System.Int16,System.Collections.Generic.List{Sudoku.Models.DrawingInfo},System.Collections.Generic.List{Sudoku.Models.DrawingInfo},System.ValueTuple{Sudoku.Solving.Manual.Exocets.Elimination,Sudoku.Solving.Manual.Exocets.Elimination}@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GatherMirror(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.SudokuGrid@,System.Int16,System.Collections.Generic.List{Sudoku.Models.DrawingInfo},System.Collections.Generic.List{Sudoku.Models.DrawingInfo},System.ValueTuple{Sudoku.Data.Candidates,Sudoku.Data.Candidates}@)">
             <summary>
             Gathering mirror eliminations.
             </summary>
@@ -2728,7 +2728,6 @@
             <param name="ahsOrConjugatePairDigits">
             The digits mask that holds the digits in AHS or conjuagte pair structure.
             </param>
-            <param name="x">The extra digit.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="baseCands">The base digits.</param>
             <param name="cellOffsets">The highlight cells.</param>
@@ -2760,19 +2759,15 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.CheckMirror(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Collections.Generic.IList{Sudoku.Models.DrawingInfo},System.Collections.Generic.IList{Sudoku.Models.DrawingInfo},System.ValueTuple{Sudoku.Solving.Manual.Exocets.Elimination,Sudoku.Solving.Manual.Exocets.Elimination}@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.CheckMirror(Sudoku.Data.SudokuGrid@,System.Int32,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Int32,System.Collections.Generic.IList{Sudoku.Models.DrawingInfo},System.Collections.Generic.IList{Sudoku.Models.DrawingInfo},System.ValueTuple{Sudoku.Data.Candidates,Sudoku.Data.Candidates}@)">
             <summary>
             Check mirror eliminations.
             </summary>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="target">The target cell.</param>
-            <param name="target2">
-            The another target cell that is adjacent with <paramref name="target"/>.
-            </param>
-            <param name="lockedNonTarget">The locked member that is non-target digits.</param>
-            <param name="baseCandidateMask">The base candidate mask.</param>
+            <param name="lockedNontarget">The locked member that is non-target digits.</param>
+            <param name="baseCands">The base candidate mask.</param>
             <param name="mirror">(<see langword="in"/> parameter) The mirror map.</param>
-            <param name="x">The x.</param>
             <param name="onlyOne">The only one cell.</param>
             <param name="cellOffsets">The cell offsets.</param>
             <param name="candidateOffsets">The candidate offsets.</param>

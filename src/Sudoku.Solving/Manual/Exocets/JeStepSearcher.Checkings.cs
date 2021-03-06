@@ -242,13 +242,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="target">The target cell.</param>
-		/// <param name="target2">
-		/// The another target cell that is adjacent with <paramref name="target"/>.
-		/// </param>
-		/// <param name="lockedNonTarget">The locked member that is non-target digits.</param>
-		/// <param name="baseCandidateMask">The base candidate mask.</param>
+		/// <param name="lockedNontarget">The locked member that is non-target digits.</param>
+		/// <param name="baseCands">The base candidate mask.</param>
 		/// <param name="mirror">(<see langword="in"/> parameter) The mirror map.</param>
-		/// <param name="x">The x.</param>
 		/// <param name="onlyOne">The only one cell.</param>
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="candidateOffsets">The candidate offsets.</param>
@@ -256,175 +252,156 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// The result eliminations (contains the target inference and mirror eliminations).
 		/// </param>
 		/// <returns>A <see cref="bool"/> result indicating whether the elimination exists.</returns>
-		private unsafe partial bool CheckMirror(
-			in SudokuGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
-			in Cells mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets,
-			IList<DrawingInfo> candidateOffsets, out (Elimination Target, Elimination Mirror) resultPair)
+		private unsafe partial void CheckMirror(
+			in SudokuGrid grid, int target, short lockedNontarget, short baseCands, in Cells mirror,
+			int onlyOne, IList<DrawingInfo> cellOffsets, IList<DrawingInfo> candidateOffsets,
+			out (Candidates Target, Candidates Mirror) resultPair)
 		{
+			// Gets the basic information, and gets the digits that can be eliminated.
 			Candidates targetElims = Candidates.Empty, mirrorElims = Candidates.Empty;
-			int[] offsets = mirror.ToArray();
-			int l = offsets[0], r = offsets[1];
-			short mirrorCandsMask = (short)(grid.GetCandidates(l) | grid.GetCandidates(r));
-			short commonBase = (short)(mirrorCandsMask & baseCandidateMask & grid.GetCandidates(target));
-			short targetElim = (short)(grid.GetCandidates(target) & ~(short)(commonBase | lockedNonTarget));
-			if (targetElim != 0)
+			int l = mirror[0], r = mirror[1];
+			short mirrorCands = (short)(grid.GetCandidates(l) | grid.GetCandidates(r));
+			short commonBase = (short)(mirrorCands & baseCands & grid.GetCandidates(target));
+			short targetElimDigits = (short)(grid.GetCandidates(target) & ~(short)(commonBase | lockedNontarget));
+			if (targetElimDigits != 0)
 			{
-				foreach (int digit in targetElim)
+				foreach (int digit in targetElimDigits)
 				{
 					targetElims.AddAnyway(target * 9 + digit);
 				}
 			}
 
-			if (CheckAdvanced)
+			short m1 = (short)(grid.GetCandidates(l) & baseCands);
+			short m2 = (short)(grid.GetCandidates(r) & baseCands);
+			if (m1 != 0 ^ m2 != 0)
 			{
-				int* regions = stackalloc int[2];
-				short m1 = (short)(grid.GetCandidates(l) & baseCandidateMask);
-				short m2 = (short)(grid.GetCandidates(r) & baseCandidateMask);
-				if (m1 == 0 ^ m2 == 0)
+				// One cell contains the digits from base cells,
+				// and another cell is a given cell that is filled with non-base digits.
+				int p = m1 == 0 ? r : l;
+				short cands = (short)(grid.GetCandidates(p) & ~commonBase);
+				if (cands != 0)
 				{
-					int p = m1 == 0 ? r : l;
-					short candidateMask = (short)(grid.GetCandidates(p) & ~commonBase);
-					if (candidateMask != 0)
+					cellOffsets.Add(new(3, l));
+					cellOffsets.Add(new(3, r));
+					foreach (int digit in cands)
 					{
-						cellOffsets.Add(new(3, l));
-						cellOffsets.Add(new(3, r));
-						foreach (int digit in candidateMask)
-						{
-							mirrorElims.AddAnyway(p * 9 + digit);
-						}
-					}
-
-					resultPair = (
-						new(targetElims, EliminatedReason.TargetInference),
-						new(mirrorElims, EliminatedReason.Mirror)
-					);
-					return true;
-				}
-
-				short nonBase = (short)(mirrorCandsMask & ~baseCandidateMask);
-				regions[0] = l.ToRegion(RegionLabel.Block);
-				regions[1] = l.ToRegion(
-					l.ToRegion(RegionLabel.Row) == r.ToRegion(RegionLabel.Row)
-					? RegionLabel.Row
-					: RegionLabel.Column
-				);
-				short locked = default;
-				foreach (short mask in SolvingAlgorithms.GetMaskSubsets(nonBase))
-				{
-					for (int i = 0; i < 2; i++)
-					{
-						int count = 0;
-						for (int j = 0; j < 9; j++)
-						{
-							int p = RegionCells[regions[i]][j];
-							if (p == l || p == r || p == onlyOne)
-							{
-								continue;
-							}
-
-							if ((grid.GetCandidates(p) & mask) != 0)
-							{
-								count++;
-							}
-						}
-
-						if (count == PopCount((uint)mask) - 1)
-						{
-							for (int j = 0; j < 9; j++)
-							{
-								int p = RegionCells[regions[i]][j];
-								if ((grid.GetCandidates(p) & mask) == 0
-									|| grid.GetStatus(p) != CellStatus.Empty || p == onlyOne)
-								{
-									continue;
-								}
-
-								foreach (int digit in grid.GetCandidates(p) & ~mask)
-								{
-									candidateOffsets.Add(new(3, p * 9 + digit));
-								}
-
-								if (p == l || p == r || (grid.GetCandidates(p) & ~mask) == 0)
-								{
-									continue;
-								}
-
-								foreach (int digit in grid.GetCandidates(p) & ~mask)
-								{
-									mirrorElims.AddAnyway(p * 9 + digit);
-								}
-							}
-
-							locked = mask;
-							break;
-						}
-					}
-
-					if (locked != 0)
-					{
-						// Here you should use '|' operator rather than '||'.
-						// Operator '||' won't execute the second method if the first condition is true.
-						if (g(grid, l, ref mirrorElims, baseCandidateMask, locked)
-							| g(grid, r, ref mirrorElims, baseCandidateMask, locked))
-						{
-							cellOffsets.Add(new(3, l));
-							cellOffsets.Add(new(3, r));
-						}
-
-						short mask1 = grid.GetCandidates(l), mask2 = grid.GetCandidates(r);
-						bool m1Locked = (mask1 & locked) != 0, m2Locked = (mask2 & locked) != 0;
-						if (PopCount((uint)locked) == 1 && m1Locked ^ m2Locked)
-						{
-							short targetMask = (short)(grid.GetCandidates(target) & baseCandidateMask);
-							short candidateMask = (short)(
-								~(grid.GetCandidates(m1Locked ? r : l) & targetMask) & targetMask
-							);
-							if (candidateMask != 0)
-							{
-								foreach (int digit in candidateMask)
-								{
-									mirrorElims.AddAnyway(target * 9 + digit);
-								}
-							}
-						}
-
-						break;
-
-						// Gathering.
-						bool g(
-							in SudokuGrid grid, int p, ref Candidates mirrorElims,
-							short baseCandidateMask, short locked)
-						{
-							short candidateMask = (short)(grid.GetCandidates(p) & ~(baseCandidateMask | locked));
-							if (candidateMask != 0)
-							{
-								foreach (int digit in locked)
-								{
-									if (grid.Exists(p, digit) is true)
-									{
-										candidateOffsets.Add(new(1, p * 9 + digit));
-									}
-								}
-
-								foreach (int digit in candidateMask)
-								{
-									mirrorElims.AddAnyway(p * 9 + digit);
-								}
-
-								return true;
-							}
-
-							return false;
-						}
+						mirrorElims.AddAnyway(p * 9 + digit);
 					}
 				}
 			}
 
-			resultPair = (
-				new(targetElims, EliminatedReason.TargetInference),
-				new(mirrorElims, EliminatedReason.Mirror)
-			);
-			return true;
+			short nonBase = (short)(mirrorCands & ~baseCands);
+			int regions = new Cells { l, r }.CoveredRegions;
+			short locked = default;
+			foreach (short mask in SolvingAlgorithms.GetMaskSubsets(nonBase))
+			{
+				foreach (int region in regions)
+				{
+					int count = 0;
+					foreach (int p in RegionCells[region])
+					{
+						if (p == l || p == r || p == onlyOne)
+						{
+							continue;
+						}
+
+						if ((grid.GetCandidates(p) & mask) == 0)
+						{
+							continue;
+						}
+
+						count++;
+					}
+
+					if (count == PopCount((uint)mask) - 1)
+					{
+						foreach (int p in RegionCells[region])
+						{
+							if ((grid.GetCandidates(p) & mask) == 0
+								|| grid.GetStatus(p) != CellStatus.Empty || p == onlyOne)
+							{
+								continue;
+							}
+
+							foreach (int digit in grid.GetCandidates(p) & mask)
+							{
+								candidateOffsets.Add(new(3, p * 9 + digit));
+							}
+
+							if (p == l || p == r || (grid.GetCandidates(p) & ~mask) == 0)
+							{
+								continue;
+							}
+
+							foreach (int digit in grid.GetCandidates(p) & ~mask)
+							{
+								mirrorElims.AddAnyway(p * 9 + digit);
+							}
+						}
+
+						locked = mask;
+						break;
+					}
+				}
+
+				if (locked != 0)
+				{
+					// Here you should use '|' operator rather than '||'.
+					// Operator '||' won't execute the second method if the first condition is true.
+					if (g(grid, l, ref mirrorElims, baseCands, locked)
+						| g(grid, r, ref mirrorElims, baseCands, locked))
+					{
+						cellOffsets.Add(new(3, l));
+						cellOffsets.Add(new(3, r));
+					}
+
+					bool m1Locked = (grid.GetCandidates(l) & locked) != 0;
+					bool m2Locked = (grid.GetCandidates(r) & locked) != 0;
+					if ((locked & locked - 1) == 0 && m1Locked ^ m2Locked)
+					{
+						short targetCands = (short)(grid.GetCandidates(target) & baseCands);
+						short cands = (short)(
+							~(grid.GetCandidates(m1Locked ? r : l) & targetCands) & targetCands
+						);
+						if (cands != 0)
+						{
+							foreach (int digit in cands)
+							{
+								mirrorElims.AddAnyway(target * 9 + digit);
+							}
+						}
+					}
+
+					break;
+
+					// Gathering.
+					bool g(in SudokuGrid grid, int m, ref Candidates mirrorElims, short baseCands, short locked)
+					{
+						short cands = (short)(grid.GetCandidates(m) & ~(baseCands | locked));
+						if (cands == 0)
+						{
+							return false;
+						}
+
+						foreach (int digit in locked)
+						{
+							if (grid.Exists(m, digit) is true)
+							{
+								candidateOffsets.Add(new(1, m * 9 + digit));
+							}
+						}
+
+						foreach (int digit in cands)
+						{
+							mirrorElims.AddAnyway(m * 9 + digit);
+						}
+
+						return true;
+					}
+				}
+			}
+
+			resultPair = (targetElims, mirrorElims);
 		}
 	}
 }

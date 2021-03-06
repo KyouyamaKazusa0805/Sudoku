@@ -2,6 +2,7 @@
 using Sudoku.Models;
 using System.Collections.Generic;
 using System.Extensions;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -60,44 +61,78 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="ahsOrConjugatePairDigits">
 		/// The digits mask that holds the digits in AHS or conjuagte pair structure.
 		/// </param>
-		/// <param name="x">The extra digit.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
 		/// <param name="baseCands">The base digits.</param>
 		/// <param name="cellOffsets">The highlight cells.</param>
 		/// <param name="candidateOffsets">The highlight candidates.</param>
 		/// <param name="resultPair">(<see langword="out"/> parameter) The result pair.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		private partial bool GatherMirror(
+		private partial void GatherMirror(
 			int tq1, int tq2, int tr1, int tr2, in Cells m1, in Cells m2,
-			short ahsOrConjugatePairDigits, int x, in SudokuGrid grid, short baseCands,
-			List<DrawingInfo> cellOffsets, List<DrawingInfo> candidateOffsets,
-			out (Elimination Target, Elimination Mirror) resultPair)
+			short ahsOrConjugatePairDigits, in SudokuGrid grid, short baseCands, List<DrawingInfo> cellOffsets,
+			List<DrawingInfo> candidateOffsets, out (Candidates Target, Candidates Mirror) resultPair)
 		{
+			Candidates target = Candidates.Empty, mirror = Candidates.Empty;
+			short lockedNontarget = ahsOrConjugatePairDigits > 0 ? ahsOrConjugatePairDigits : (short)0;
 			if ((grid.GetCandidates(tq1) & baseCands) != 0)
 			{
-				short mask1 = grid.GetCandidates(tr1), mask2 = grid.GetCandidates(tr2);
-				short m1d = (short)(mask1 & baseCands), m2d = (short)(mask2 & baseCands);
-				return CheckMirror(
-					grid, tq1, tq2, ahsOrConjugatePairDigits != 0 ? ahsOrConjugatePairDigits : (short)0,
-					baseCands, m1, x, (m1d, m2d) switch { (not 0, 0) => tr1, (0, not 0) => tr2, _ => -1 },
-					cellOffsets, candidateOffsets, out resultPair
+				short mask1 = grid.GetCandidates(tq1), mask2 = grid.GetCandidates(tq2);
+				CheckMirror(
+					grid, tq1, lockedNontarget, baseCands, m1,
+					onlyOne((short)(mask1 & baseCands), (short)(mask2 & baseCands), tr1, tr2),
+					cellOffsets, candidateOffsets, out var pair
 				);
+
+				target |= pair.Target;
+				mirror |= pair.Mirror;
 			}
 			else if ((grid.GetCandidates(tq2) & baseCands) != 0)
 			{
 				short mask1 = grid.GetCandidates(tq1), mask2 = grid.GetCandidates(tq2);
-				short m1d = (short)(mask1 & baseCands), m2d = (short)(mask2 & baseCands);
-				return CheckMirror(
-					grid, tq2, tq1, ahsOrConjugatePairDigits != 0 ? ahsOrConjugatePairDigits : (short)0,
-					baseCands, m2, x, (m1d, m2d) switch { (not 0, 0) => tr1, (0, not 0) => tr2, _ => -1 },
-					cellOffsets, candidateOffsets, out resultPair
+				CheckMirror(
+					grid, tq2, lockedNontarget, baseCands, m2,
+					onlyOne((short)(mask1 & baseCands), (short)(mask2 & baseCands), tr1, tr2),
+					cellOffsets, candidateOffsets, out var pair
 				);
+
+				target |= pair.Target;
+				mirror |= pair.Mirror;
 			}
-			else
+
+			if ((grid.GetCandidates(tr1) & baseCands) != 0)
 			{
-				resultPair = default;
-				return false;
+				short mask1 = grid.GetCandidates(tr1), mask2 = grid.GetCandidates(tr2);
+				CheckMirror(
+					grid, tr1, lockedNontarget, baseCands, m1,
+					onlyOne((short)(mask1 & baseCands), (short)(mask2 & baseCands), tq1, tq2),
+					cellOffsets, candidateOffsets, out var pair
+				);
+
+				target |= pair.Target;
+				mirror |= pair.Mirror;
 			}
+			else if ((grid.GetCandidates(tr2) & baseCands) != 0)
+			{
+				short mask1 = grid.GetCandidates(tr1), mask2 = grid.GetCandidates(tr2);
+				CheckMirror(
+					grid, tr2, lockedNontarget, baseCands, m2,
+					onlyOne((short)(mask1 & baseCands), (short)(mask2 & baseCands), tq1, tq2),
+					cellOffsets, candidateOffsets, out var pair
+				);
+
+				target |= pair.Target;
+				mirror |= pair.Mirror;
+			}
+
+			resultPair = (target, mirror);
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static int onlyOne(short m1d, short m2d, int t1, int t2) => (m1d, m2d) switch
+			{
+				(not 0, 0) => t1,
+				(0, not 0) => t2,
+				_ => -1
+			};
 		}
 	}
 }

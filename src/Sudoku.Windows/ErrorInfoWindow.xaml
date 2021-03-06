@@ -15,8 +15,10 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
-			<TextBlock Grid.Row="0" FontSize="16" Text="{DynamicResource ErrorInfoHeader}" TextWrapping="Wrap" />
-			<TextBox x:Name="_textBoxInfo" Grid.Row="1" IsReadOnly="True" BorderThickness="0" FontSize="16" />
+			<TextBlock Grid.Row="0" FontSize="16" Text="{DynamicResource ErrorInfoHeader}" TextWrapping="Wrap"
+					   Margin="10,10,10,10" />
+			<TextBox x:Name="_textBoxInfo" Grid.Row="1" IsReadOnly="True" BorderThickness="0" FontSize="16"
+					 TextWrapping="Wrap" Margin="10,10,10,10" />
 		</Grid>
 		<Image x:Name="_imageErrorStep" Grid.Column="1" />
 	</Grid>
