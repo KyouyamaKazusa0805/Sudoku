@@ -108,7 +108,9 @@ namespace Sudoku.Solving.Manual
 							if (
 								RecordStep(
 									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result,
-									cancellationToken))
+									cancellationToken
+								)
+							)
 							{
 								stopwatch.Stop();
 								return result;
@@ -155,7 +157,9 @@ namespace Sudoku.Solving.Manual
 						if (
 							RecordStep(
 								steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result,
-								cancellationToken))
+								cancellationToken
+							)
+						)
 						{
 							// The puzzle has been solved.
 							// :)

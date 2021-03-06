@@ -28,7 +28,6 @@ namespace Sudoku.Solving.Manual
 		/// <exception cref="OperationCanceledException">
 		/// Throws when the current operation is cancelled.
 		/// </exception>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordStep(
 			IList<StepInfo> steps, StepInfo step, in SudokuGrid grid,
 			ref SudokuGrid cloneation, Stopwatch stopwatch, IList<SudokuGrid> stepGrids,
