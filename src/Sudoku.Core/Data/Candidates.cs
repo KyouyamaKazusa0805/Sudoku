@@ -18,17 +18,19 @@ namespace Sudoku.Data
 	public unsafe struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>
 	{
 		/// <summary>
-		/// The length of the buffer.
-		/// </summary>
-		/// <remarks>
-		/// Why 12? Because 12 is equals to <c>Ceiling(729 / 64)</c>.
-		/// </remarks>
-		private const int BufferLength = 12;
-
-		/// <summary>
 		/// Indicates the size of each unit.
 		/// </summary>
 		private const int Shifting = sizeof(long) * 8;
+
+		/// <summary>
+		/// Indicates the number of all segments.
+		/// </summary>
+		private const int Len = 12;
+
+		/// <summary>
+		/// Indicates the length of the collection that all bits are set <see langword="true"/>.
+		/// </summary>
+		private const int FullCount = 729;
 
 
 		/// <summary>
@@ -45,7 +47,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The inner binary values.
 		/// </summary>
-		private fixed long _innerBinary[BufferLength];
+		private long _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11;
 
 
 		/// <summary>
@@ -86,25 +88,18 @@ namespace Sudoku.Data
 		/// <param name="setItself">
 		/// Indicates whether the map will process itself with <see langword="true"/> value.
 		/// </param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Candidates(int candidate, bool setItself)
+		public Candidates(int candidate, bool setItself) : this()
 		{
-			Count = setItself ? 29 : 28;
-			assign(ref this, candidate, setItself);
-
-			static void assign(ref Candidates @this, int candidate, bool setItself)
+			int cell = candidate / 9, digit = candidate % 9;
+			foreach (int c in PeerMaps[cell])
 			{
-				int cell = candidate / 9, digit = candidate % 9;
-				foreach (int c in PeerMaps[cell])
+				InternalAdd(c * 9 + digit, true);
+			}
+			for (int d = 0; d < 9; d++)
+			{
+				if (d != digit || d == digit && setItself)
 				{
-					@this.InternalAdd(c * 9 + digit, true);
-				}
-				for (int d = 0; d < 9; d++)
-				{
-					if (d != digit || d == digit && setItself)
-					{
-						@this.InternalAdd(cell * 9 + d, true);
-					}
+					InternalAdd(cell * 9 + d, true);
 				}
 			}
 		}
@@ -123,25 +118,29 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="binary">The array.</param>
 		/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Candidates(long[] binary)
 		{
-			if (binary.Length != BufferLength)
+			if (binary.Length != Len)
 			{
 				throw new ArgumentException(
-					$"The length of the array should be {BufferLength.ToString()}.", nameof(binary));
+					$"The length of the array should be {Len.ToString()}.", nameof(binary));
 			}
 
 			int count = 0;
-			fixed (long* pThis = _innerBinary)
-			{
-				long* p = pThis;
-				for (int i = 0; i < BufferLength; i++)
-				{
-					long v = binary[i];
-					*p++ = v;
-					count += PopCount((ulong)v);
-				}
-			}
+
+			_0 = binary[0]; count += PopCount((ulong)binary[0]);
+			_1 = binary[1]; count += PopCount((ulong)binary[1]);
+			_2 = binary[2]; count += PopCount((ulong)binary[2]);
+			_3 = binary[3]; count += PopCount((ulong)binary[3]);
+			_4 = binary[4]; count += PopCount((ulong)binary[4]);
+			_5 = binary[5]; count += PopCount((ulong)binary[5]);
+			_6 = binary[6]; count += PopCount((ulong)binary[6]);
+			_7 = binary[7]; count += PopCount((ulong)binary[7]);
+			_8 = binary[8]; count += PopCount((ulong)binary[8]);
+			_9 = binary[9]; count += PopCount((ulong)binary[9]);
+			_10 = binary[10]; count += PopCount((ulong)binary[10]);
+			_11 = binary[11]; count += PopCount((ulong)binary[11]);
 
 			Count = count;
 		}
@@ -155,21 +154,26 @@ namespace Sudoku.Data
 		[CLSCompliant(false)]
 		public Candidates(long* binary, int length)
 		{
-			if (length != BufferLength)
+			if (length != Len)
 			{
 				throw new ArgumentException(
-					$"Argument 'length' should be {BufferLength.ToString()}.", nameof(length));
+					$"Argument '{nameof(length)}' should be {Len.ToString()}.", nameof(length));
 			}
 
 			int count = 0;
-			fixed (long* pThis = _innerBinary)
-			{
-				long* p = pThis;
-				for (int i = 0; i < BufferLength; i++, *p++ = *binary++)
-				{
-					count += PopCount((ulong)*binary);
-				}
-			}
+
+			_0 = binary[0]; count += PopCount((ulong)binary[0]);
+			_1 = binary[1]; count += PopCount((ulong)binary[1]);
+			_2 = binary[2]; count += PopCount((ulong)binary[2]);
+			_3 = binary[3]; count += PopCount((ulong)binary[3]);
+			_4 = binary[4]; count += PopCount((ulong)binary[4]);
+			_5 = binary[5]; count += PopCount((ulong)binary[5]);
+			_6 = binary[6]; count += PopCount((ulong)binary[6]);
+			_7 = binary[7]; count += PopCount((ulong)binary[7]);
+			_8 = binary[8]; count += PopCount((ulong)binary[8]);
+			_9 = binary[9]; count += PopCount((ulong)binary[9]);
+			_10 = binary[10]; count += PopCount((ulong)binary[10]);
+			_11 = binary[11]; count += PopCount((ulong)binary[11]);
 
 			Count = count;
 		}
@@ -216,7 +220,25 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the map of cells, which is the peer intersections.
 		/// </summary>
-		public readonly Candidates PeerIntersection => CreateInstance(Offsets);
+		public readonly Candidates PeerIntersection
+		{
+			get
+			{
+				if (Count == 0)
+				{
+					// Empty list can't contain any peer intersections.
+					return Empty;
+				}
+
+				var result = ~Empty;
+				foreach (int candidate in Offsets)
+				{
+					result &= new Candidates(candidate, false);
+				}
+
+				return result;
+			}
+		}
 
 		/// <summary>
 		/// Indicates all indices of set bits.
@@ -225,14 +247,14 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				if (Count == 0)
+				if (IsEmpty)
 				{
 					return Array.Empty<int>();
 				}
 
 				int[] result = new int[Count];
 				int count = 0;
-				for (int i = 0; i < 729; i++)
+				for (int i = 0; i < FullCount; i++)
 				{
 					if (Contains(i))
 					{
@@ -257,7 +279,7 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				for (int i = 0, count = -1; i < 729; i++)
+				for (int i = 0, count = -1; i < FullCount; i++)
 				{
 					if (Contains(i) && ++count == index)
 					{
@@ -275,18 +297,11 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[CLSCompliant(false)]
-		public readonly bool Equals(in Candidates other)
-		{
-			for (int i = 0; i < BufferLength; i++)
-			{
-				if (_innerBinary[i] != other._innerBinary[i])
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
+		public readonly bool Equals(in Candidates other) =>
+			_0 == other._0 && _1 == other._1 && _2 == other._2
+			&& _3 == other._3 && _4 == other._4 && _5 == other._5
+			&& _6 == other._6 && _7 == other._7 && _8 == other._8
+			&& _9 == other._9 && _10 == other._10 && _11 == other._11;
 
 		/// <summary>
 		/// Check whether the specified candidate is in the current list.
@@ -295,19 +310,27 @@ namespace Sudoku.Data
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Contains(int candidate) =>
-			(_innerBinary[candidate / Shifting] >> candidate % Shifting & 1) != 0;
+		(
+			(candidate / Shifting) switch
+			{
+				0 => _0,
+				1 => _1,
+				2 => _2,
+				3 => _3,
+				4 => _4,
+				5 => _5,
+				6 => _6,
+				7 => _7,
+				8 => _8,
+				9 => _9,
+				10 => _10,
+				11 => _11
+			} >> candidate % Shifting & 1
+		) != 0;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		public override readonly int GetHashCode()
-		{
-			long @base = 0xDECADE;
-			for (int i = 0; i < BufferLength; i++)
-			{
-				@base ^= _innerBinary[i];
-			}
-
-			return (int)(@base & int.MaxValue);
-		}
+		public override readonly int GetHashCode() =>
+			(int)((0xDECADE ^ _0 ^ _1 ^ _2 ^ _3 ^ _4 ^ _5 ^ _6 ^ _7 ^ _8 ^ _9 ^ _10 ^ _11) & int.MaxValue);
 
 		/// <summary>
 		/// Get all cell offsets whose bits are set <see langword="true"/>.
@@ -315,13 +338,6 @@ namespace Sudoku.Data
 		/// <returns>An array of cell offsets.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int[] ToArray() => Offsets;
-
-		/// <summary>
-		/// Get the first position of the inner binary array.
-		/// </summary>
-		/// <returns>The reference of the first position.</returns>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public readonly ref readonly long GetPinnableReference() => ref _innerBinary[0];
 
 		/// <summary>
 		/// Get the subview mask of this map.
@@ -357,6 +373,12 @@ namespace Sudoku.Data
 					int candidate = this[0], cell = candidate / 9, digit = candidate % 9;
 					return $"r{(cell / 9 + 1).ToString()}c{(cell % 9 + 1).ToString()}({(digit + 1).ToString()})";
 				}
+#if DEBUG
+				case > FullCount:
+				{
+					throw new OutOfMemoryException();
+				}
+#endif
 				default:
 				{
 					const string separator = ", ";
@@ -488,16 +510,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Clear()
 		{
-			fixed (long* pArray = _innerBinary)
-			{
-				long* p = pArray;
-				for (int i = 0; i < BufferLength; i++, p++)
-				{
-					// Clear the memory.
-					*p = 0;
-				}
-			}
-
+			_0 = _1 = _2 = _3 = _4 = _5 = _6 = _7 = _8 = _9 = _10 = _11 = 0;
 			Count = 0;
 		}
 
@@ -509,10 +522,24 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void InternalAdd(int candidate, bool value)
 		{
-			fixed (long* pArray = _innerBinary)
+			fixed (Candidates* pThis = &this)
 			{
-				long* block = pArray + candidate / Shifting;
 				bool older = Contains(candidate);
+				long* block = (candidate / Shifting) switch
+				{
+					0 => &pThis->_0,
+					1 => &pThis->_1,
+					2 => &pThis->_2,
+					3 => &pThis->_3,
+					4 => &pThis->_4,
+					5 => &pThis->_5,
+					6 => &pThis->_6,
+					7 => &pThis->_7,
+					8 => &pThis->_8,
+					9 => &pThis->_9,
+					10 => &pThis->_10,
+					11 => &pThis->_11
+				};
 				if (value)
 				{
 					*block |= 1L << candidate % Shifting;
@@ -533,23 +560,6 @@ namespace Sudoku.Data
 		}
 
 
-		/// <summary>
-		/// Get the map of candidates, which is the peer intersections from the specified candidates.
-		/// </summary>
-		/// <param name="candidates">All candidates.</param>
-		/// <returns>The result map.</returns>
-		public static Candidates CreateInstance(IEnumerable<int> candidates)
-		{
-			var result = ~Empty;
-			foreach (int candidate in candidates)
-			{
-				result &= new Candidates(candidate, false);
-			}
-
-			return result;
-		}
-
-
 		/// <inheritdoc cref="Operators.operator =="/>
 		public static bool operator ==(in Candidates left, in Candidates right) => left.Equals(right);
 
@@ -563,15 +573,26 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The instance to negate.</param>
 		/// <returns>The negative result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator ~(in Candidates map)
 		{
-			long* result = stackalloc long[BufferLength];
-			for (int i = 0; i < BufferLength; i++)
-			{
-				result[i] = ~map._innerBinary[i];
-			}
+			const long s = (1 << FullCount - Shifting * (Len - 1)) - 1;
 
-			return new(result, BufferLength);
+			long* result = stackalloc long[Len];
+			result[0] = ~map._0;
+			result[1] = ~map._1;
+			result[2] = ~map._2;
+			result[3] = ~map._3;
+			result[4] = ~map._4;
+			result[5] = ~map._5;
+			result[6] = ~map._6;
+			result[7] = ~map._7;
+			result[8] = ~map._8;
+			result[9] = ~map._9;
+			result[10] = ~map._10;
+			result[11] = ~map._11 & s;
+
+			return new(result, Len);
 		}
 
 		/// <summary>
@@ -580,15 +601,24 @@ namespace Sudoku.Data
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The intersection result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator &(in Candidates left, in Candidates right)
 		{
-			long* result = stackalloc long[BufferLength];
-			for (int i = 0; i < BufferLength; i++)
-			{
-				result[i] = left._innerBinary[i] & right._innerBinary[i];
-			}
+			long* result = stackalloc long[Len];
+			result[0] = left._0 & right._0;
+			result[1] = left._1 & right._1;
+			result[2] = left._2 & right._2;
+			result[3] = left._3 & right._3;
+			result[4] = left._4 & right._4;
+			result[5] = left._5 & right._5;
+			result[6] = left._6 & right._6;
+			result[7] = left._7 & right._7;
+			result[8] = left._8 & right._8;
+			result[9] = left._9 & right._9;
+			result[10] = left._10 & right._10;
+			result[11] = left._11 & right._11;
 
-			return new(result, BufferLength);
+			return new(result, Len);
 		}
 
 		/// <summary>
@@ -597,15 +627,24 @@ namespace Sudoku.Data
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The union result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator |(in Candidates left, in Candidates right)
 		{
-			long* result = stackalloc long[BufferLength];
-			for (int i = 0; i < BufferLength; i++)
-			{
-				result[i] = left._innerBinary[i] | right._innerBinary[i];
-			}
+			long* result = stackalloc long[Len];
+			result[0] = left._0 | right._0;
+			result[1] = left._1 | right._1;
+			result[2] = left._2 | right._2;
+			result[3] = left._3 | right._3;
+			result[4] = left._4 | right._4;
+			result[5] = left._5 | right._5;
+			result[6] = left._6 | right._6;
+			result[7] = left._7 | right._7;
+			result[8] = left._8 | right._8;
+			result[9] = left._9 | right._9;
+			result[10] = left._10 | right._10;
+			result[11] = left._11 | right._11;
 
-			return new(result, BufferLength);
+			return new(result, Len);
 		}
 
 		/// <summary>
@@ -614,15 +653,24 @@ namespace Sudoku.Data
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The symmetrical difference result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator ^(in Candidates left, in Candidates right)
 		{
-			long* result = stackalloc long[BufferLength];
-			for (int i = 0; i < BufferLength; i++)
-			{
-				result[i] = left._innerBinary[i] ^ right._innerBinary[i];
-			}
+			long* result = stackalloc long[Len];
+			result[0] = left._0 ^ right._0;
+			result[1] = left._1 ^ right._1;
+			result[2] = left._2 ^ right._2;
+			result[3] = left._3 ^ right._3;
+			result[4] = left._4 ^ right._4;
+			result[5] = left._5 ^ right._5;
+			result[6] = left._6 ^ right._6;
+			result[7] = left._7 ^ right._7;
+			result[8] = left._8 ^ right._8;
+			result[9] = left._9 ^ right._9;
+			result[10] = left._10 ^ right._10;
+			result[11] = left._11 ^ right._11;
 
-			return new(result, BufferLength);
+			return new(result, Len);
 		}
 
 		/// <summary>
@@ -632,15 +680,24 @@ namespace Sudoku.Data
 		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
 		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
 		/// <returns>The result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator -(in Candidates left, in Candidates right)
 		{
-			long* result = stackalloc long[BufferLength];
-			for (int i = 0; i < BufferLength; i++)
-			{
-				result[i] = left._innerBinary[i] & ~right._innerBinary[i];
-			}
+			long* result = stackalloc long[Len];
+			result[0] = left._0 & ~right._0;
+			result[1] = left._1 & ~right._1;
+			result[2] = left._2 & ~right._2;
+			result[3] = left._3 & ~right._3;
+			result[4] = left._4 & ~right._4;
+			result[5] = left._5 & ~right._5;
+			result[6] = left._6 & ~right._6;
+			result[7] = left._7 & ~right._7;
+			result[8] = left._8 & ~right._8;
+			result[9] = left._9 & ~right._9;
+			result[10] = left._10 & ~right._10;
+			result[11] = left._11 & ~right._11;
 
-			return new(result, BufferLength);
+			return new(result, Len);
 		}
 
 

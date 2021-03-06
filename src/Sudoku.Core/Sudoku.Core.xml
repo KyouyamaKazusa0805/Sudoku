@@ -290,17 +290,19 @@
             Encapsulates a map that contains 729 positions to represent a candidate.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Candidates.BufferLength">
-            <summary>
-            The length of the buffer.
-            </summary>
-            <remarks>
-            Why 12? Because 12 is equals to <c>Ceiling(729 / 64)</c>.
-            </remarks>
-        </member>
         <member name="F:Sudoku.Data.Candidates.Shifting">
             <summary>
             Indicates the size of each unit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates.Len">
+            <summary>
+            Indicates the number of all segments.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates.FullCount">
+            <summary>
+            Indicates the length of the collection that all bits are set <see langword="true"/>.
             </summary>
         </member>
         <member name="F:Sudoku.Data.Candidates.Empty">
@@ -313,7 +315,62 @@
             </summary>
             <seealso cref="M:Sudoku.Data.Candidates.#ctor"/>
         </member>
-        <member name="F:Sudoku.Data.Candidates._innerBinary">
+        <member name="F:Sudoku.Data.Candidates._0">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._1">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._2">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._3">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._4">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._5">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._6">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._7">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._8">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._9">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._10">
+            <summary>
+            The inner binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Candidates._11">
             <summary>
             The inner binary values.
             </summary>
@@ -439,12 +496,6 @@
             </summary>
             <returns>An array of cell offsets.</returns>
         </member>
-        <member name="M:Sudoku.Data.Candidates.GetPinnableReference">
-            <summary>
-            Get the first position of the inner binary array.
-            </summary>
-            <returns>The reference of the first position.</returns>
-        </member>
         <member name="M:Sudoku.Data.Candidates.GetSubviewMask(System.Int32,System.Int32)">
             <summary>
             Get the subview mask of this map.
@@ -525,13 +576,6 @@
             </summary>
             <param name="candidate">The candidate.</param>
             <param name="value">The value.</param>
-        </member>
-        <member name="M:Sudoku.Data.Candidates.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Get the map of candidates, which is the peer intersections from the specified candidates.
-            </summary>
-            <param name="candidates">All candidates.</param>
-            <returns>The result map.</returns>
         </member>
         <member name="M:Sudoku.Data.Candidates.op_Equality(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
