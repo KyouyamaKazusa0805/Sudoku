@@ -9,14 +9,14 @@ using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
-namespace Sudoku.Solving.Manual.Alses.Mslses
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique. This searcher is
 	/// the real technique, different with the abstract class <see cref="MslsStepSearcher"/>.
 	/// </summary>
 	/// <seealso cref="MslsStepSearcher"/>
-	public sealed partial class AlsNetStepSearcher : MslsStepSearcher
+	public sealed partial class MslsStepSearcher : RankTheoryStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(36, nameof(Technique.Msls))
@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					}
 
 					accumulator.Add(
-						new AlsNetStepInfo(
+						new MslsStepInfo(
 							conclusions,
 							new View[] { new() { Candidates = candidateOffsets } },
 							map));

@@ -979,6 +979,114 @@
             <returns>The task of that searching.</returns>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is cancelled.</exception>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Als">
+            <summary>
+            Encapsulates a normal ALS.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.#ctor(System.Int16,Sudoku.Data.Cells@)">
+            <summary>
+            Initializes an instance with the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.#ctor(System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Initializes an instance with the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="possibleEliminationSet">
+            (<see langword="in"/> parameter) The possible elimination set.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.IsBivalueCell">
+            <summary>
+            Indicates whether this instance is a bi-value-cell ALS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.Region">
+            <summary>
+            Indicates the region that the instance lies in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.DigitsMask">
+            <summary>
+            Indicates the mask of each digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.Map">
+            <summary>
+            Indicates the map that ALS lying on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.PossibleEliminationSet">
+            <summary>
+            Indicates the possible elimination set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.StrongLinksMask">
+            <summary>
+            Indicates all strong links in this ALS. The result will be represented
+            as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="region">(<see langword="out"/> parameter) The region.</param>
+            <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
+            <param name="map">(<see langword="out"/> parameter) The map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Collections.Generic.IEnumerable{System.Int16}@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="isBivalueCell">
+            (<see langword="out"/> parameter) Indicates whether the specified ALS is bi-value.
+            </param>
+            <param name="region">(<see langword="out"/> parameter) The region.</param>
+            <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
+            <param name="map">(<see langword="out"/> parameter) The map.</param>
+            <param name="possibleEliminations">(<see langword="out"/> parameter) The possible eliminations.</param>
+            <param name="strongLinksMask">(<see langword="out"/> parameter) The strong links mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.ContainsDigit(Sudoku.Data.SudokuGrid@,System.Int32,Sudoku.Data.Cells@)">
+            <summary>
+            Indicates whether the specified grid contains the digit.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(Sudoku.Solving.Manual.Alses.Als@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <remarks>
+            If you want to determine the equality of two instance, I recommend you
+            <b>should</b> use method <see cref="M:Sudoku.Solving.Manual.Alses.Als.Equals(Sudoku.Solving.Manual.Alses.Als@)"/> instead of this method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.SudokuGrid)">
+            <summary>
+            To search for all ALSes in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All ALSes searched.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.op_Equality(Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsStepInfo">
             <summary>
             Provides a usage of <b>almost locked set</b> (ALS) technique.
@@ -1030,115 +1138,7 @@
             <param name="alsShowRegions">Indicates whether the ALSes shows their regions rather than cells.</param>
             <param name="allowAlsCycles">Indicates whether the solver will check ALS cycles.</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Basic.Als">
-            <summary>
-            Encapsulates a normal ALS.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.#ctor(System.Int16,Sudoku.Data.Cells@)">
-            <summary>
-            Initializes an instance with the specified digit mask and the map of cells.
-            </summary>
-            <param name="digitMask">The digit mask.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.#ctor(System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Initializes an instance with the specified digit mask and the map of cells.
-            </summary>
-            <param name="digitMask">The digit mask.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
-            <param name="possibleEliminationSet">
-            (<see langword="in"/> parameter) The possible elimination set.
-            </param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.IsBivalueCell">
-            <summary>
-            Indicates whether this instance is a bi-value-cell ALS.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.Region">
-            <summary>
-            Indicates the region that the instance lies in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.DigitsMask">
-            <summary>
-            Indicates the mask of each digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.Map">
-            <summary>
-            Indicates the map that ALS lying on.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.PossibleEliminationSet">
-            <summary>
-            Indicates the possible elimination set.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.StrongLinksMask">
-            <summary>
-            Indicates all strong links in this ALS. The result will be represented
-            as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="region">(<see langword="out"/> parameter) The region.</param>
-            <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
-            <param name="map">(<see langword="out"/> parameter) The map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Collections.Generic.IEnumerable{System.Int16}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isBivalueCell">
-            (<see langword="out"/> parameter) Indicates whether the specified ALS is bi-value.
-            </param>
-            <param name="region">(<see langword="out"/> parameter) The region.</param>
-            <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
-            <param name="map">(<see langword="out"/> parameter) The map.</param>
-            <param name="possibleEliminations">(<see langword="out"/> parameter) The possible eliminations.</param>
-            <param name="strongLinksMask">(<see langword="out"/> parameter) The strong links mask.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ContainsDigit(Sudoku.Data.SudokuGrid@,System.Int32,Sudoku.Data.Cells@)">
-            <summary>
-            Indicates whether the specified grid contains the digit.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="result">(<see langword="out"/> parameter) The result.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <remarks>
-            If you want to determine the equality of two instance, I recommend you
-            <b>should</b> use method <see cref="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als@)"/> instead of this method.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.GetAllAlses(Sudoku.Data.SudokuGrid)">
-            <summary>
-            To search for all ALSes in the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All ALSes searched.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Equality(Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo">
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo">
             <summary>
             Provides a usage of <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
             </summary>
@@ -1150,7 +1150,7 @@
             <param name="WDigitsMask">The W digit mask.</param>
             <param name="X">The digit X.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Data.ConjugatePair@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,Sudoku.Data.ConjugatePair@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
             </summary>
@@ -1162,39 +1162,39 @@
             <param name="WDigitsMask">The W digit mask.</param>
             <param name="X">The digit X.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.Acronym">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.Acronym">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.TechniqueTags">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher">
             <summary>
             Encapsulates an <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepSearcher.Properties">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo">
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo">
             <summary>
             Provides a usage of <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
             </summary>
@@ -1207,7 +1207,7 @@
             <param name="YDigitsMask">The Y digits mask.</param>
             <param name="ZDigitsMask">The Z digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@,System.Int16,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,System.Int16,System.Int16,System.Int16)">
             <summary>
             Provides a usage of <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
             </summary>
@@ -1220,39 +1220,39 @@
             <param name="YDigitsMask">The Y digits mask.</param>
             <param name="ZDigitsMask">The Z digits mask.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.Acronym">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.Acronym">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.TechniqueTags">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher">
             <summary>
             Encapsulates an <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepSearcher.Properties">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo">
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsXzStepInfo">
             <summary>
             Provides a usage of <b>almost locked sets XZ rule</b> (ALS-XZ)
             or <b>extended subset principle</b> technique.
@@ -1284,7 +1284,7 @@
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als@,Sudoku.Solving.Manual.Alses.Basic.Als@,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>almost locked sets XZ rule</b> (ALS-XZ)
             or <b>extended subset principle</b> technique.
@@ -1316,39 +1316,39 @@
             </para>
             </param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.Acronym">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.Acronym">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.TechniqueTags">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher">
             <summary>
             Encapsulates an <b>almost locked set XZ rule</b> (ALS-XZ) technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepSearcher.Properties">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Basic.DbStepInfo">
+        <member name="T:Sudoku.Solving.Manual.Alses.DbStepInfo">
             <summary>
             Provides a usage of <b>death blossom</b> technique.
             </summary>
@@ -1357,7 +1357,7 @@
             <param name="Pivot">The pivot cell.</param>
             <param name="Alses">All ALSes used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DbStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Basic.Als})">
+        <member name="M:Sudoku.Solving.Manual.Alses.DbStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Als})">
             <summary>
             Provides a usage of <b>death blossom</b> technique.
             </summary>
@@ -1366,41 +1366,41 @@
             <param name="Pivot">The pivot cell.</param>
             <param name="Alses">All ALSes used.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DbStepInfo.PetalsCount">
+        <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.PetalsCount">
             <summary>
             Indicates how many petals used.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DbStepInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DbStepInfo.TechniqueTags">
+        <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DbStepInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DbStepInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DbStepInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Alses.DbStepInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DbStepInfo.AlsPetalsToString">
+        <member name="M:Sudoku.Solving.Manual.Alses.DbStepInfo.AlsPetalsToString">
             <summary>
             Get the string result from those ALS petals and their own branches.
             </summary>
             <returns>The string result.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Basic.DbStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Alses.DbStepSearcher">
             <summary>
             Encapsulates a <b>death blossom</b> technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DbStepSearcher.Properties">
+        <member name="P:Sudoku.Solving.Manual.Alses.DbStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DbStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.DbStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.EripStepInfo">
@@ -1449,138 +1449,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.EripStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo">
-            <summary>
-            Provides a usage of <b>almost locked sets net</b> technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Cells">Indicates the cells used.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@)">
-            <summary>
-            Provides a usage of <b>almost locked sets net</b> technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Cells">Indicates the cells used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.Acronym">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepSearcher">
-            <summary>
-            Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique. This searcher is
-            the real technique, different with the abstract class <see cref="T:Sudoku.Solving.Manual.Alses.Mslses.MslsStepSearcher"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.Alses.Mslses.MslsStepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepSearcher.Patterns">
-            <summary>
-            Indicates the list initialized with the static constructor.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetStepSearcher.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.MslsStepInfo">
-            <summary>
-            Provides a usage of <b>multi-sector locked set</b> (MSLS) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.MslsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <summary>
-            Provides a usage of <b>multi-sector locked set</b> (MSLS) technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.MslsStepSearcher">
-            <summary>
-            Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo">
-            <summary>
-            Provides a usage of <b>domino loop</b> technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Cells">All cells used.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Provides a usage of <b>domino loop</b> technique.
-            </summary>
-            <param name="Conclusions">All conclusions.</param>
-            <param name="Views">All views.</param>
-            <param name="Cells">All cells used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.Acronym">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher">
-            <summary>
-            Encapsulates a <b>domino loop</b> technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher.SkLoopTable">
-            <summary>
-            The position table of all SK-loops.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher.RegionMaps">
-            <summary>
-            The region maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopStepSearcher.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.AicStepInfo">
             <summary>
@@ -4880,6 +4748,61 @@
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.MslsStepInfo">
+            <summary>
+            Provides a usage of <b>multi-sector locked sets</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@)">
+            <summary>
+            Provides a usage of <b>multi-sector locked sets</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.Acronym">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher">
+            <summary>
+            Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique. This searcher is
+            the real technique, different with the abstract class <see cref="T:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher.Patterns">
+            <summary>
+            Indicates the list initialized with the static constructor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher.#cctor">
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.RankTheory.RankTheoryStepInfo">
             <summary>
             Provides a usage of <b>rank theory</b> technique.
@@ -5030,6 +4953,64 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.SdcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo">
+            <summary>
+            Provides a usage of <b>domino loop</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Cells">All cells used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Provides a usage of <b>domino loop</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Cells">All cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.Acronym">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher">
+            <summary>
+            Encapsulates a <b>domino loop</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.Properties">
+            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.SkLoopTable">
+            <summary>
+            The position table of all SK-loops.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.RegionMaps">
+            <summary>
+            The region maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.#cctor">
+            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.ErStepInfo">
             <summary>

@@ -5,7 +5,7 @@ using Sudoku.Drawing;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
-namespace Sudoku.Solving.Manual.Alses.Basic
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Provides a usage of <b>almost locked sets XZ rule</b> (ALS-XZ)

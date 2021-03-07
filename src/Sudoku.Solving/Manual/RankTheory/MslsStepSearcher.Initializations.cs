@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Extensions;
 using static Sudoku.Constants.Tables;
 
-namespace Sudoku.Solving.Manual.Alses.Mslses
+namespace Sudoku.Solving.Manual.RankTheory
 {
-	partial class AlsNetStepSearcher
+	partial class MslsStepSearcher
 	{
 		/// <summary>
 		/// Indicates the list initialized with the static constructor.
@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
-		static AlsNetStepSearcher()
+		static MslsStepSearcher()
 		{
 			const int a = ~7, b = ~56, c = ~448;
 			int[,] sizeList = { { 3, 3 }, { 3, 4 }, { 4, 3 }, { 4, 4 }, { 4, 5 }, { 5, 4 } };

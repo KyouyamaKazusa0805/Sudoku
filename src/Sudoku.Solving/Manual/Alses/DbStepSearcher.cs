@@ -8,7 +8,7 @@ using Sudoku.Models;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.FastProperties;
 
-namespace Sudoku.Solving.Manual.Alses.Basic
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Encapsulates a <b>death blossom</b> technique.

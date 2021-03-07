@@ -4,7 +4,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Alses.Basic
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Provides a usage of <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.

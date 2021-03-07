@@ -2,8 +2,6 @@
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Solving.Manual.Alses;
-using Sudoku.Solving.Manual.Alses.Basic;
-using Sudoku.Solving.Manual.Alses.Mslses;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
@@ -111,7 +109,7 @@ namespace Sudoku.Solving.Manual.Extensions
 				new JeStepSearcher(@this.CheckAdvancedInExocet),
 				new SeStepSearcher(@this.CheckAdvancedInExocet),
 				new SkLoopStepSearcher(),
-				new AlsNetStepSearcher(),
+				new MslsStepSearcher(),
 				new PomStepSearcher(),
 				new BowmanBingoStepSearcher(@this.BowmanBingoMaximumLength),
 				new TemplateStepSearcher(@this.OnlyRecordTemplateDelete),

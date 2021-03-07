@@ -4,7 +4,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Alses.Mslses
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Provides a usage of <b>domino loop</b> technique.
@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <param name="Cells">All cells used.</param>
 	public sealed record SkLoopStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Cells)
-		: MslsStepInfo(Conclusions, Views)
+		: RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 9.6M;

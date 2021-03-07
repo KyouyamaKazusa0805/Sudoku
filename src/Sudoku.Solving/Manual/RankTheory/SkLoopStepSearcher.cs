@@ -10,12 +10,12 @@ using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
 using SolvingAlgorithms = Sudoku.Solving.Extensions.Algorithms;
 
-namespace Sudoku.Solving.Manual.Alses.Mslses
+namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Encapsulates a <b>domino loop</b> technique.
 	/// </summary>
-	public sealed partial class SkLoopStepSearcher : MslsStepSearcher
+	public sealed partial class SkLoopStepSearcher : RankTheoryStepSearcher
 	{
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(37, nameof(Technique.SkLoop))
