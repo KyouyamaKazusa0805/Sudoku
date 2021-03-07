@@ -648,6 +648,11 @@
             the digit.
             </remarks>
         </member>
+        <member name="F:Sudoku.Data.Cells.CoverTable">
+            <summary>
+            The cover table.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.Cells.Empty">
             <summary>
             <para>Indicates an empty instance (all bits are 0).</para>
@@ -1154,11 +1159,6 @@
             Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Data.Cells"/>.
             </summary>
             <param name="cells">(<see langword="in"/> parameter) The cells.</param>
-        </member>
-        <member name="F:Sudoku.Data.Cells.CoverTable">
-            <summary>
-            The cover table.
-            </summary>
         </member>
         <member name="T:Sudoku.Data.CellStatus">
             <summary>
