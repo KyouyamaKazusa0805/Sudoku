@@ -150,30 +150,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 
-				// Check mirror candidates.
-				Elimination targetInferElims, mirrorElims;
-				if (CheckAdvanced)
-				{
-					GatherMirror(
-						tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, grid, baseCands,
-						cellOffsets, candidateOffsets, out var resultPair1
-					);
-					GatherMirror(
-						tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, grid, baseCands,
-						cellOffsets, candidateOffsets, out var resultPair2
-					);
-
-					targetInferElims = new(
-						resultPair1.Target | resultPair2.Target,
-						EliminatedReason.TargetInference
-					);
-					mirrorElims = new(resultPair1.Mirror | resultPair2.Mirror, EliminatedReason.Mirror);
-				}
-
 				// Check whether the result contains any valid eliminations.
-				if (!CheckAdvanced && targetElimsMap.IsEmpty
-					|| CheckAdvanced && targetElimsMap.IsEmpty
-					&& (*&targetInferElims).Count == 0 && (*&mirrorElims).Count == 0)
+				if (targetElimsMap.IsEmpty)
 				{
 					continue;
 				}
@@ -196,22 +174,13 @@ namespace Sudoku.Solving.Manual.Exocets
 						baseCands.GetAllSets().ToArray(),
 						null,
 						null,
-						!CheckAdvanced
-						? new Elimination[] { targetElims }
-						: new Elimination[]
-						{
-							targetElims,
-							*&targetInferElims,
-							*&mirrorElims
-						}));
+						new Elimination[] { targetElims }));
 			}
 		}
 
 		private partial bool GatherBasic(in SudokuGrid grid, ref Candidates elims, int cell, short baseCands, short baseCandsWithAhsOrConjugatePair);
-		private partial void GatherMirror(int tq1, int tq2, int tr1, int tr2, in Cells m1, in Cells m2, short ahsOrConjugatePairDigits, in SudokuGrid grid, short baseCands, List<DrawingInfo> cellOffsets, List<DrawingInfo> candidateOffsets, out (Candidates Target, Candidates Mirror) resultPair);
 
-		private unsafe partial bool CheckCrossline(in Cells crossline, short needChecking);
+		private partial bool CheckCrossline(in Cells crossline, short needChecking);
 		private unsafe partial bool CheckTarget(in SudokuGrid grid, int pos1, int pos2, int baseCands, out short ahsOrConjugatePairCands);
-		private unsafe partial void CheckMirror(in SudokuGrid grid, int target, short lockedNontarget, short baseCands, in Cells mirror, int onlyOne, IList<DrawingInfo> cellOffsets, IList<DrawingInfo> candidateOffsets, out (Candidates Target, Candidates Mirror) resultPair);
 	}
 }
