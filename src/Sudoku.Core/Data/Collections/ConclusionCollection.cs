@@ -109,12 +109,15 @@ namespace Sudoku.Data.Collections
 			unsafe string internalToString(in ReadOnlySpan<Conclusion> collection)
 			{
 				var conclusions = collection.ToArray();
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[50]);
 				if (shouldSort)
 				{
 					conclusions.Sort(&cmp);
 
-					var selection = from conclusion in conclusions group conclusion by conclusion.ConclusionType;
+					var selection =
+						from conclusion in conclusions
+						orderby conclusion.Digit
+						group conclusion by conclusion.ConclusionType;
 					bool hasOnlyOneType = selection.HasOnlyOneElement();
 					foreach (var typeGroup in selection)
 					{
@@ -123,11 +126,16 @@ namespace Sudoku.Data.Collections
 							from conclusion in typeGroup
 							group conclusion by conclusion.Digit)
 						{
-							sb
-								.Append(new Cells(from conclusion in digitGroup select conclusion.Cell).ToString())
-								.Append(op)
-								.Append(digitGroup.Key + 1)
-								.Append(separator);
+							var cells = Cells.Empty;
+							foreach (var (_, cell, _) in digitGroup)
+							{
+								cells.AddAnyway(cell);
+							}
+
+							sb.Append(cells.ToString());
+							sb.Append(op);
+							sb.Append(digitGroup.Key + 1);
+							sb.Append(separator);
 						}
 
 						sb.RemoveFromEnd(separator.Length);
@@ -144,9 +152,9 @@ namespace Sudoku.Data.Collections
 				}
 				else
 				{
-					sb
-						.AppendRange(conclusions, conclusion => $"{conclusion.ToString()}{separator}")
-						.RemoveFromEnd(separator.Length);
+					sb.AppendRange(conclusions, &p, separator);
+
+					static string p(Conclusion conclusion) => conclusion.ToString();
 				}
 
 				return sb.ToString();

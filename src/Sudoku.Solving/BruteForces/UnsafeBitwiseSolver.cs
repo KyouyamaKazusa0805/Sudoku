@@ -140,6 +140,32 @@ namespace Sudoku.Solving.BruteForces
 		}
 
 		/// <summary>
+		/// The inner solver.
+		/// </summary>
+		/// <param name="puzzle">The puzzle.</param>
+		/// <param name="solution">
+		/// (<see langword="ref"/> parameter) The solution receiver. This parameter is used when you want
+		/// to use the solution string. The receiver is represented as a <see cref="ValueStringBuilder"/>.
+		/// </param>
+		/// <param name="limit">The limit.</param>
+		/// <returns>The number of all solutions.</returns>
+		/// <seealso cref="ValueStringBuilder"/>
+		[CLSCompliant(false)]
+		public long Solve(string puzzle, ref ValueStringBuilder solution, int limit)
+		{
+			fixed (char* p = puzzle)
+			{
+				char* solutionStr = stackalloc char[BufferLength];
+				long result = InternalSolve(p, solutionStr, limit);
+
+				solution.Clear();
+				solution.Append(solutionStr, BufferLength);
+
+				return result;
+			}
+		}
+
+		/// <summary>
 		/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
 		/// any <see langword="out"/> parameters.
 		/// </summary>

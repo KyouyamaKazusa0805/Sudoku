@@ -84,13 +84,16 @@ namespace Sudoku.Models
 		}
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override readonly string ToString() =>
-			new StringBuilder()
-			.Append(TextResources.Current.UnsolvedCells)
-			.Append(CurrentCellsCount.ToString())
-			.Append(TextResources.Current.UnsolvedCandidates)
-			.Append(CurrentCandidatesCount.ToString())
-			.ToString();
+		public override readonly string ToString()
+		{
+			var sb = new ValueStringBuilder(stackalloc char[50]);
+			sb.Append((string)TextResources.Current.UnsolvedCells);
+			sb.Append(CurrentCellsCount.ToString());
+			sb.Append((string)TextResources.Current.UnsolvedCandidates);
+			sb.Append(CurrentCandidatesCount.ToString());
+
+			return sb.ToString();
+		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override readonly bool Equals(object? obj) =>

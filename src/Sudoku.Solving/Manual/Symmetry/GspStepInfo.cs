@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -42,20 +41,20 @@ namespace Sudoku.Solving.Manual.Symmetry
 			string conclusions = new ConclusionCollection(Conclusions).ToString();
 			if (MappingTable is not null)
 			{
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[100]);
 				for (int i = 0; i < 9; i++)
 				{
 					int? value = MappingTable[i];
-					sb
-						.Append(i + 1)
-						.Append(
-							value.HasValue && value != i
-							? $" -> {(value.Value + 1).ToString()}"
-							: string.Empty)
-						.Append(separator);
+
+					sb.Append(i + 1);
+					sb.Append(
+						value.HasValue && value != i ? $" -> {(value.Value + 1).ToString()}" : string.Empty
+					);
+					sb.Append(separator);
 				}
 
-				string mapping = sb.RemoveFromEnd(separator.Length).ToString();
+				sb.RemoveFromEnd(separator.Length);
+				string mapping = sb.ToString();
 				return $"{Name}: Symmetry type: {customName}, mapping relations: {mapping} => {conclusions}";
 			}
 			else

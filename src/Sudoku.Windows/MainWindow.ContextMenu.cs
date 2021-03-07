@@ -109,7 +109,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is MenuItem)
 			{
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[50]);
 				foreach (string step in
 					from ListBoxItem item in _listBoxPaths.Items
 					let content = item.Content as StepTriplet

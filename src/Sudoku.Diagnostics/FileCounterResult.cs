@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -24,26 +23,29 @@ namespace Sudoku.Diagnostics
 		in TimeSpan Elapsed, IList<string> FileList)
 	{
 		/// <inheritdoc/>
-		public override string ToString() =>
-			new StringBuilder()
-			.AppendLine("Results:")
-			.Append("* Code lines: ")
-			.AppendLine(ResultLines)
-			.Append("* Files: ")
-			.AppendLine(FilesCount)
-			.Append("* Characters: ")
-			.AppendLine(CharactersCount)
-			.Append("* Bytes: ")
-			.Append(SizeUnitConverter.Convert(Bytes, out var unit).ToString(".000"))
-			.Append(' ')
-			.Append(ToString(unit))
-			.Append(" (")
-			.Append(Bytes)
-			.AppendLine(" Bytes)")
-			.Append("* Time elapsed: ")
-			.AppendLine(Elapsed.ToString("hh\\:mm\\.ss\\.fff"))
-			.Append("About more information, please call each property in this instance.")
-			.ToString();
+		public override string ToString()
+		{
+			var sb = new ValueStringBuilder(stackalloc char[300]);
+			sb.AppendLine("Results:");
+			sb.Append("* Code lines: ");
+			sb.AppendLine(ResultLines);
+			sb.Append("* Files: ");
+			sb.AppendLine(FilesCount);
+			sb.Append("* Characters: ");
+			sb.AppendLine(CharactersCount);
+			sb.Append("* Bytes: ");
+			sb.Append(SizeUnitConverter.Convert(Bytes, out var unit).ToString(".000"));
+			sb.Append(' ');
+			sb.Append(ToString(unit));
+			sb.Append(" (");
+			sb.Append(Bytes);
+			sb.AppendLine(" Bytes)");
+			sb.Append("* Time elapsed: ");
+			sb.AppendLine(Elapsed.ToString("hh\\:mm\\.ss\\.fff"));
+			sb.Append("About more information, please call each property in this instance.");
+
+			return sb.ToString();
+		}
 
 
 		/// <summary>
@@ -52,14 +54,13 @@ namespace Sudoku.Diagnostics
 		/// <param name="this">The instance.</param>
 		/// <returns>The string result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static string ToString(SizeUnit @this) =>
-			@this switch
-			{
-				SizeUnit.Byte => "B",
-				SizeUnit.Kilobyte => "KB",
-				SizeUnit.Megabyte => "MB",
-				SizeUnit.Gigabyte => "GB",
-				SizeUnit.Terabyte => "TB"
-			};
+		private static string ToString(SizeUnit @this) => @this switch
+		{
+			SizeUnit.Byte => "B",
+			SizeUnit.Kilobyte => "KB",
+			SizeUnit.Megabyte => "MB",
+			SizeUnit.Gigabyte => "GB",
+			SizeUnit.Terabyte => "TB"
+		};
 	}
 }

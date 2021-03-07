@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -49,25 +48,30 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Get the string result from those ALS petals and their own branches.
 		/// </summary>
 		/// <returns>The string result.</returns>
-		private StringBuilder AlsPetalsToString()
+		private unsafe string? AlsPetalsToString()
 		{
 #if DEBUG
 			if (Alses is null)
 			{
-				return null!;
+				return null;
 			}
 #endif
 
 			const string separator = ", ";
 
-			return new StringBuilder().AppendRange(Alses, appender).RemoveFromEnd(separator.Length);
+			var sb = new ValueStringBuilder(stackalloc char[50]);
+			sb.AppendRange(Alses, &appender, separator);
+			return sb.ToString();
 
-			static StringBuilder appender(KeyValuePair<int, Als> pair) =>
-				new StringBuilder()
-				.Append(pair.Key + 1)
-				.Append(" - ")
-				.Append(pair.Value.ToString())
-				.Append(separator);
+			static string appender(KeyValuePair<int, Als> pair)
+			{
+				var sb = new ValueStringBuilder(stackalloc char[15]);
+				sb.Append(pair.Key + 1);
+				sb.Append(" - ");
+				sb.Append(pair.Value.ToString());
+
+				return sb.ToString();
+			}
 		}
 	}
 }

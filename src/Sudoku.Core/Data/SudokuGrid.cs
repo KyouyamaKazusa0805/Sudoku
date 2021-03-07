@@ -647,16 +647,18 @@ namespace Sudoku.Data
 		/// when we call this method using <see cref="DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
 		/// can be output correctly, and other values will be incorrect: they're always 0.
 		/// </remarks>
-		public readonly string ToMaskString()
+		public readonly unsafe string ToMaskString()
 		{
 			const string separator = ", ";
-			var sb = new StringBuilder();
-			for (int cell = 0; cell < 81; cell++)
+			fixed (short* pArr = _values)
 			{
-				sb.Append(_values[cell]).Append(separator);
+				var sb = new ValueStringBuilder(stackalloc char[400]);
+				sb.AppendRange(pArr, 81, &p, separator);
+				sb.RemoveFromEnd(separator.Length);
+				return sb.ToString();
 			}
 
-			return sb.RemoveFromEnd(separator.Length).ToString();
+			static string p(short v) => v.ToString();
 		}
 
 		/// <inheritdoc cref="object.ToString"/>

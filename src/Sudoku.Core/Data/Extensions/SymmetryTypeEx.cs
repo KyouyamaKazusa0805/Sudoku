@@ -36,18 +36,25 @@ namespace Sudoku.Data.Extensions
 			static string getAllPossibleNames(SymmetryType type)
 			{
 				const string separator = ", ";
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[210]);
 				var flags = Enum.GetValues<SymmetryType>();
 				for (int i = 1, length = flags.Length; i < length; i++)
 				{
 					var flag = flags[i];
 					if (type.Flags(flag))
 					{
-						sb.Append(flag.ToString()).Append(separator);
+						sb.Append(flag.ToString());
+						sb.Append(separator);
 					}
 				}
 
-				return sb.Length != 0 ? sb.RemoveFromEnd(separator.Length).ToString() : string.Empty;
+				if (sb.Length != 0)
+				{
+					sb.RemoveFromEnd(separator.Length);
+					return sb.ToString();
+				}
+
+				return string.Empty;
 			}
 		}
 	}

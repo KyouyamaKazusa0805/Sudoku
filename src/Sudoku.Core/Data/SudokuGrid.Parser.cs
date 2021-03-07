@@ -229,12 +229,15 @@ namespace Sudoku.Data
 					return Undefined;
 				}
 
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[81]);
 				foreach (string value in values)
 				{
 					foreach (string digitString in value.Split(new[] { '\t' }))
 					{
-						sb.Append(string.IsNullOrEmpty(digitString) ? '.' : digitString[0]);
+						fixed (char* c = digitString)
+						{
+							sb.Append(string.IsNullOrEmpty(digitString) ? '.' : *c);
+						}
 					}
 				}
 
@@ -368,7 +371,7 @@ namespace Sudoku.Data
 				}
 
 				// Remove all '\r' and '\n'-s.
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[81 + (9 << 1)]);
 				foreach (char c in from @char in match where @char is not ('\r' or '\n') select @char)
 				{
 					sb.Append(c);

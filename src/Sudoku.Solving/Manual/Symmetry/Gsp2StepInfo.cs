@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -45,20 +44,23 @@ namespace Sudoku.Solving.Manual.Symmetry
 				if (SwappingTable is { Length: not 0 })
 				{
 					const string separator = ", ";
-					var sb = new StringBuilder("We should swap region(s) ");
+					var sb = new ValueStringBuilder(stackalloc char[100]);
+					sb.Append("We should swap region(s) ");
+
 					foreach (int[]? swappingRegionPair in SwappingTable)
 					{
 						if (swappingRegionPair is not null)
 						{
-							sb
-								.Append(new RegionCollection(swappingRegionPair[0]).ToString())
-								.Append(" with ")
-								.Append(new RegionCollection(swappingRegionPair[1]).ToString())
-								.Append(separator);
+							sb.Append(new RegionCollection(swappingRegionPair[0]).ToString());
+							sb.Append(" with ");
+							sb.Append(new RegionCollection(swappingRegionPair[1]).ToString());
+							sb.Append(separator);
 						}
 					}
 
-					return sb.Append("then we'll get the symmetrical placement (").ToString();
+					sb.Append("then we'll get the symmetrical placement (");
+
+					return sb.ToString();
 				}
 				else
 				{
@@ -72,20 +74,20 @@ namespace Sudoku.Solving.Manual.Symmetry
 				string customName = SymmetryType.GetName().ToLower();
 				if (MappingTable is not null)
 				{
-					var sb = new StringBuilder();
+					var sb = new ValueStringBuilder(stackalloc char[50]);
 					for (int i = 0; i < 9; i++)
 					{
 						int? value = MappingTable[i];
-						sb
-							.Append(i + 1)
-							.Append(
-								value.HasValue && value != i
-								? $" -> {(value.Value + 1).ToString()}"
-								: string.Empty)
-							.Append(separator);
+
+						sb.Append(i + 1);
+						sb.Append(
+							value.HasValue && value != i ? $" -> {(value.Value + 1).ToString()}" : string.Empty
+						);
+						sb.Append(separator);
 					}
 
-					string mapping = sb.RemoveFromEnd(separator.Length).ToString();
+					sb.RemoveFromEnd(separator.Length);
+					string mapping = sb.ToString();
 					return $"Symmetry type: {customName}, mapping relations: {mapping}";
 				}
 				else

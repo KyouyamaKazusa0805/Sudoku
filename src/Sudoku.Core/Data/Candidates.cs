@@ -373,16 +373,10 @@ namespace Sudoku.Data
 					int candidate = this[0], cell = candidate / 9, digit = candidate % 9;
 					return $"r{(cell / 9 + 1).ToString()}c{(cell % 9 + 1).ToString()}({(digit + 1).ToString()})";
 				}
-#if DEBUG
-				case > FullCount:
-				{
-					throw new OutOfMemoryException();
-				}
-#endif
 				default:
 				{
 					const string separator = ", ";
-					var sb = new StringBuilder();
+					var sb = new ValueStringBuilder(stackalloc char[50]);
 
 					foreach (var digitGroup in
 						from candidate in Offsets
@@ -390,15 +384,21 @@ namespace Sudoku.Data
 						orderby digitGroups.Key
 						select digitGroups)
 					{
-						sb
-							.Append(new Cells(from candidate in digitGroup select candidate / 9).ToString())
-							.Append('(')
-							.Append(digitGroup.Key + 1)
-							.Append(')')
-							.Append(separator);
+						var cells = Cells.Empty;
+						foreach (var candidate in digitGroup)
+						{
+							cells.AddAnyway(candidate / 9);
+						}
+
+						sb.Append(cells.ToString());
+						sb.Append('(');
+						sb.Append(digitGroup.Key + 1);
+						sb.Append(')');
+						sb.Append(separator);
 					}
 
-					return sb.RemoveFromEnd(separator.Length).ToString();
+					sb.RemoveFromEnd(separator.Length);
+					return sb.ToString();
 				}
 			}
 		}

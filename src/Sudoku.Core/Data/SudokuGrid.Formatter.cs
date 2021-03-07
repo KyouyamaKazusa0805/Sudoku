@@ -152,7 +152,7 @@ namespace Sudoku.Data
 			private string ToExcelString(in SudokuGrid grid)
 			{
 				var span = grid.ToString("0").AsSpan();
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[81 + 72 + 9]);
 				for (int i = 0; i < 9; i++)
 				{
 					for (int j = 0; j < 9; j++)
@@ -165,7 +165,8 @@ namespace Sudoku.Data
 						sb.Append('\t');
 					}
 
-					sb.RemoveFromEnd(1).AppendLine();
+					sb.RemoveFromEnd(1);
+					sb.AppendLine();
 				}
 
 				return sb.ToString();
@@ -254,7 +255,8 @@ namespace Sudoku.Data
 			/// <returns>The result.</returns>
 			private unsafe string ToSingleLineStringCore(in SudokuGrid grid)
 			{
-				StringBuilder sb = new(), elims = new();
+				var sb = new ValueStringBuilder(stackalloc char[162]);
+				var elims = new StringBuilder();
 				var originalGrid = WithCandidates ? Parse(grid.ToString(".+")) : Undefined;
 
 				for (int c = 0; c < 81; c++)
@@ -285,7 +287,7 @@ namespace Sudoku.Data
 				}
 
 				string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFromEnd(1).ToString();
-				return $"{sb}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
+				return $"{sb.ToString()}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
 			}
 
 			/// <summary>
@@ -452,7 +454,7 @@ namespace Sudoku.Data
 											}
 											default:
 											{
-												var innerSb = new StringBuilder();
+												var innerSb = new ValueStringBuilder(stackalloc char[9]);
 												foreach (int z in value)
 												{
 													innerSb.Append(z + 1);

@@ -73,64 +73,63 @@ namespace Sudoku.Solving.Manual.Fishes
 			Size is 2 or 3 or 4 ? DifficultyLevel.Fiendish : DifficultyLevel.Nightmare;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			InternalName switch
-			{
-				"X-Wing" => Technique.XWing,
-				"Finned X-Wing" => Technique.FinnedXWing,
-				"Sashimi X-Wing" => Technique.SashimiXWing,
-				"Franken X-Wing" => Technique.FrankenXWing,
-				"Finned Franken X-Wing" => Technique.FinnedFrankenXWing,
-				"Sashimi Franken X-Wing" => Technique.SashimiFrankenXWing,
-				"Mutant X-Wing" => Technique.MutantXWing,
-				"Finned Mutant X-Wing" => Technique.FinnedMutantXWing,
-				"Sashimi Mutant X-Wing" => Technique.SashimiMutantXWing,
-				"Swordfish" => Technique.Swordfish,
-				"Finned Swordfish" => Technique.FinnedSwordfish,
-				"Sashimi Swordfish" => Technique.SashimiSwordfish,
-				"Franken Swordfish" => Technique.FrankenSwordfish,
-				"Finned Franken Swordfish" => Technique.FinnedFrankenSwordfish,
-				"Sashimi Franken Swordfish" => Technique.SashimiFrankenSwordfish,
-				"Mutant Swordfish" => Technique.MutantSwordfish,
-				"Finned Mutant Swordfish" => Technique.FinnedMutantSwordfish,
-				"Sashimi Mutant Swordfish" => Technique.SashimiMutantSwordfish,
-				"Jellyfish" => Technique.Jellyfish,
-				"Finned Jellyfish" => Technique.FinnedJellyfish,
-				"Sashimi Jellyfish" => Technique.SashimiJellyfish,
-				"Franken Jellyfish" => Technique.FrankenJellyfish,
-				"Finned Franken Jellyfish" => Technique.FinnedFrankenJellyfish,
-				"Sashimi Franken Jellyfish" => Technique.SashimiFrankenJellyfish,
-				"Mutant Jellyfish" => Technique.MutantJellyfish,
-				"Finned Mutant Jellyfish" => Technique.FinnedMutantJellyfish,
-				"Sashimi Mutant Jellyfish" => Technique.SashimiMutantJellyfish,
-				"Squirmbag" => Technique.Squirmbag,
-				"Finned Squirmbag" => Technique.FinnedSquirmbag,
-				"Sashimi Squirmbag" => Technique.SashimiSquirmbag,
-				"Franken Squirmbag" => Technique.FrankenSquirmbag,
-				"Finned Franken Squirmbag" => Technique.FinnedFrankenSquirmbag,
-				"Sashimi Franken Squirmbag" => Technique.SashimiFrankenSquirmbag,
-				"Mutant Squirmbag" => Technique.MutantSquirmbag,
-				"Finned Mutant Squirmbag" => Technique.FinnedMutantSquirmbag,
-				"Sashimi Mutant Squirmbag" => Technique.SashimiMutantSquirmbag,
-				"Whale" => Technique.Whale,
-				"Finned Whale" => Technique.FinnedWhale,
-				"Sashimi Whale" => Technique.SashimiWhale,
-				"Franken Whale" => Technique.FrankenWhale,
-				"Finned Franken Whale" => Technique.FinnedFrankenWhale,
-				"Sashimi Franken Whale" => Technique.SashimiFrankenWhale,
-				"Mutant Whale" => Technique.MutantWhale,
-				"Finned Mutant Whale" => Technique.FinnedMutantWhale,
-				"Sashimi Mutant Whale" => Technique.SashimiMutantWhale,
-				"Leviathan" => Technique.Leviathan,
-				"Finned Leviathan" => Technique.FinnedLeviathan,
-				"Sashimi Leviathan" => Technique.SashimiLeviathan,
-				"Franken Leviathan" => Technique.FrankenLeviathan,
-				"Finned Franken Leviathan" => Technique.FinnedFrankenLeviathan,
-				"Sashimi Franken Leviathan" => Technique.SashimiFrankenLeviathan,
-				"Mutant Leviathan" => Technique.MutantLeviathan,
-				"Finned Mutant Leviathan" => Technique.FinnedMutantLeviathan,
-				"Sashimi Mutant Leviathan" => Technique.SashimiMutantLeviathan
-			};
+		public override Technique TechniqueCode => InternalName switch
+		{
+			"X-Wing" => Technique.XWing,
+			"Finned X-Wing" => Technique.FinnedXWing,
+			"Sashimi X-Wing" => Technique.SashimiXWing,
+			"Franken X-Wing" => Technique.FrankenXWing,
+			"Finned Franken X-Wing" => Technique.FinnedFrankenXWing,
+			"Sashimi Franken X-Wing" => Technique.SashimiFrankenXWing,
+			"Mutant X-Wing" => Technique.MutantXWing,
+			"Finned Mutant X-Wing" => Technique.FinnedMutantXWing,
+			"Sashimi Mutant X-Wing" => Technique.SashimiMutantXWing,
+			"Swordfish" => Technique.Swordfish,
+			"Finned Swordfish" => Technique.FinnedSwordfish,
+			"Sashimi Swordfish" => Technique.SashimiSwordfish,
+			"Franken Swordfish" => Technique.FrankenSwordfish,
+			"Finned Franken Swordfish" => Technique.FinnedFrankenSwordfish,
+			"Sashimi Franken Swordfish" => Technique.SashimiFrankenSwordfish,
+			"Mutant Swordfish" => Technique.MutantSwordfish,
+			"Finned Mutant Swordfish" => Technique.FinnedMutantSwordfish,
+			"Sashimi Mutant Swordfish" => Technique.SashimiMutantSwordfish,
+			"Jellyfish" => Technique.Jellyfish,
+			"Finned Jellyfish" => Technique.FinnedJellyfish,
+			"Sashimi Jellyfish" => Technique.SashimiJellyfish,
+			"Franken Jellyfish" => Technique.FrankenJellyfish,
+			"Finned Franken Jellyfish" => Technique.FinnedFrankenJellyfish,
+			"Sashimi Franken Jellyfish" => Technique.SashimiFrankenJellyfish,
+			"Mutant Jellyfish" => Technique.MutantJellyfish,
+			"Finned Mutant Jellyfish" => Technique.FinnedMutantJellyfish,
+			"Sashimi Mutant Jellyfish" => Technique.SashimiMutantJellyfish,
+			"Squirmbag" => Technique.Squirmbag,
+			"Finned Squirmbag" => Technique.FinnedSquirmbag,
+			"Sashimi Squirmbag" => Technique.SashimiSquirmbag,
+			"Franken Squirmbag" => Technique.FrankenSquirmbag,
+			"Finned Franken Squirmbag" => Technique.FinnedFrankenSquirmbag,
+			"Sashimi Franken Squirmbag" => Technique.SashimiFrankenSquirmbag,
+			"Mutant Squirmbag" => Technique.MutantSquirmbag,
+			"Finned Mutant Squirmbag" => Technique.FinnedMutantSquirmbag,
+			"Sashimi Mutant Squirmbag" => Technique.SashimiMutantSquirmbag,
+			"Whale" => Technique.Whale,
+			"Finned Whale" => Technique.FinnedWhale,
+			"Sashimi Whale" => Technique.SashimiWhale,
+			"Franken Whale" => Technique.FrankenWhale,
+			"Finned Franken Whale" => Technique.FinnedFrankenWhale,
+			"Sashimi Franken Whale" => Technique.SashimiFrankenWhale,
+			"Mutant Whale" => Technique.MutantWhale,
+			"Finned Mutant Whale" => Technique.FinnedMutantWhale,
+			"Sashimi Mutant Whale" => Technique.SashimiMutantWhale,
+			"Leviathan" => Technique.Leviathan,
+			"Finned Leviathan" => Technique.FinnedLeviathan,
+			"Sashimi Leviathan" => Technique.SashimiLeviathan,
+			"Franken Leviathan" => Technique.FrankenLeviathan,
+			"Finned Franken Leviathan" => Technique.FinnedFrankenLeviathan,
+			"Sashimi Franken Leviathan" => Technique.SashimiFrankenLeviathan,
+			"Mutant Leviathan" => Technique.MutantLeviathan,
+			"Finned Mutant Leviathan" => Technique.FinnedMutantLeviathan,
+			"Sashimi Mutant Leviathan" => Technique.SashimiMutantLeviathan
+		};
 
 		/// <summary>
 		/// Indicates the base difficulty.
@@ -152,23 +151,28 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// The internal name.
 		/// </summary>
-		private string InternalName =>
-			new StringBuilder()
-			.Append(FinModifier == FinModifiers.Normal ? string.Empty : $"{FinModifier.ToString()} ")
-			.Append(ShapeModifier == ShapeModifiers.Basic ? string.Empty : $"{ShapeModifier.ToString()} ")
-			.Append(FishNames[Size])
-			.ToString();
+		private string InternalName
+		{
+			get
+			{
+				var sb = new ValueStringBuilder(stackalloc char[50]);
+				sb.Append(FinModifier == FinModifiers.Normal ? string.Empty : $"{FinModifier.ToString()} ");
+				sb.Append(ShapeModifier == ShapeModifiers.Basic ? string.Empty : $"{ShapeModifier.ToString()} ");
+				sb.Append(FishNames[Size]);
+
+				return sb.ToString();
+			}
+		}
 
 		/// <summary>
 		/// Indicates the fin modifier.
 		/// </summary>
-		private FinModifiers FinModifier =>
-			IsSashimi switch
-			{
-				true => FinModifiers.Sashimi,
-				false => FinModifiers.Finned,
-				_ => FinModifiers.Normal
-			};
+		private FinModifiers FinModifier => IsSashimi switch
+		{
+			true => FinModifiers.Sashimi,
+			false => FinModifiers.Finned,
+			_ => FinModifiers.Normal
+		};
 
 		/// <summary>
 		/// The shape modifier.

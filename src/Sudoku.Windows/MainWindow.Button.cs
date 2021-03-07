@@ -94,20 +94,24 @@ namespace Sudoku.Windows
 				{
 					goto CloseDialog;
 				}
-				
-				groupDescriptions.Add(
-					new PropertyGroupDescription(
-						new StringBuilder()
-						.Append(nameof(Content))
-						.Append('.')
-						.Append(nameof(InfoTriplet.Item2))
-						.Append('.')
-						.Append(nameof(StepInfo.Name))
-						.ToString()));
+
+				groupDescriptions.Add(new PropertyGroupDescription(z()));
 				_listBoxTechniques.ItemsSource = srcView;
-				
+
 			CloseDialog:
 				dialog.Close();
+			}
+
+			static string z()
+			{
+				var sb = new ValueStringBuilder(stackalloc char[17]);
+				sb.Append(nameof(Content));
+				sb.Append('.');
+				sb.Append(nameof(InfoTriplet.Item2));
+				sb.Append('.');
+				sb.Append(nameof(StepInfo.Name));
+
+				return sb.ToString();
 			}
 		}
 

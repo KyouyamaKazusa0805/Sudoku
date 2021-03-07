@@ -42,20 +42,19 @@ namespace Sudoku.Generating
 			int max, SymmetryType symmetricalType, IProgress<IProgressResult>? progress,
 			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
 		{
-			PuzzleGeneratingProgressResult defaultValue = default;
-			var pr = new PuzzleGeneratingProgressResult(
-				countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
+			PuzzleGeneratingProgressResult
+				defaultValue = default,
+				pr = new(countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			progress?.Report(defaultValue);
 
-			var puzzle = new StringBuilder(SudokuGrid.EmptyString);
-			var solution = new StringBuilder(SudokuGrid.EmptyString);
+			StringBuilder puzzle = new(SudokuGrid.EmptyString), solution = new(SudokuGrid.EmptyString);
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
 			var allTypes = symmetricalType.GetAllFlags() ?? new[] { SymmetryType.None };
 			int count = allTypes.Length;
-			var tempSb = new StringBuilder(solution.ToString());
+			var tempSb = new ValueStringBuilder(solution.ToString());
 			string result;
 			do
 			{

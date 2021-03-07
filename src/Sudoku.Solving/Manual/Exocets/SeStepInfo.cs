@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			string endoTargetStr = $"endo-target: {new Cells { EndoTargetCell }.ToString()}";
 			if (ExtraRegionsMask is not null)
 			{
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[100]);
 				int count = 0;
 				for (int digit = 0; digit < 9; digit++)
 				{
@@ -57,17 +57,18 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					sb
-						.Append(digit + 1)
-						.Append(new RegionCollection(mask.GetAllSets()).ToString())
-						.Append(separator);
+					sb.Append(digit + 1);
+					sb.Append(new RegionCollection(mask.GetAllSets()).ToString());
+					sb.Append(separator);
+
 					count++;
 				}
 
 				if (count != 0)
 				{
-					return
-						$"{endoTargetStr}. Extra regions will be included: {sb.RemoveFromEnd(separator.Length)}";
+					sb.RemoveFromEnd(separator.Length);
+
+					return $"{endoTargetStr}. Extra regions will be included: {sb.ToString()}";
 				}
 			}
 

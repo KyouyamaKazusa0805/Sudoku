@@ -110,23 +110,23 @@ namespace Sudoku.Solving
 					puzzle, solution, elapsed, stepsCount, steps, _, additional) = Result;
 
 				// Print header.
-				var sb = new StringBuilder()
-					.Append(Current.AnalysisResultPuzzle)
-					.AppendLine(puzzle.ToString("#"))
-					.Append(Current.AnalysisResultSolvingTool)
-					.AppendLine(solverName);
+				var sb = new ValueStringBuilder(stackalloc char[300]);
+				sb.Append((string)Current.AnalysisResultPuzzle);
+				sb.AppendLine(puzzle.ToString("#"));
+				sb.Append((string)Current.AnalysisResultSolvingTool);
+				sb.AppendLine(solverName);
 
 				// Print solving steps (if worth).
 				if (options.Flags(ShowSteps) && steps is { Count: not 0 })
 				{
-					sb.AppendLine(Current.AnalysisResultSolvingSteps);
+					sb.AppendLine((string)Current.AnalysisResultSolvingSteps);
 					if (getBottleneck() is var (bIndex, bInfo))
 					{
 						for (int i = 0; i < steps.Count; i++)
 						{
 							if (i > bIndex && options.Flags(ShowStepsAfterBottleneck))
 							{
-								sb.AppendLine(Current.Ellipsis);
+								sb.AppendLine((string)Current.Ellipsis);
 								break;
 							}
 
@@ -143,24 +143,26 @@ namespace Sudoku.Solving
 								(false, true) => $"{d}) ",
 								_ => string.Empty,
 							};
-							sb.Append(labelInfo).AppendLine(infoStr);
+
+							sb.Append(labelInfo);
+							sb.AppendLine(infoStr);
 						}
 
 						if (options.Flags(ShowBottleneck))
 						{
-							a(options.Flags(ShowSeparators));
+							a(ref sb, options.Flags(ShowSeparators));
 
-							sb
-								.Append(Current.AnalysisResultBottleneckStep)
-								.Append(
-									options.Flags(ShowStepLabel)
-									? $"{Current.AnalysisResultInStep}{(bIndex + 1).ToString()}{Current.Colon}"
-									: string.Empty)
-								.Append(' ')
-								.AppendLine(bInfo);
+							sb.Append((string)Current.AnalysisResultBottleneckStep);
+							sb.Append(
+								options.Flags(ShowStepLabel)
+								? $"{Current.AnalysisResultInStep}{(bIndex + 1).ToString()}{Current.Colon}"
+								: string.Empty
+							);
+							sb.Append(' ');
+							sb.AppendLine(bInfo);
 						}
 
-						a(options.Flags(ShowSeparators));
+						a(ref sb, options.Flags(ShowSeparators));
 					}
 				}
 
@@ -171,15 +173,14 @@ namespace Sudoku.Solving
 						from step in solvingSteps
 						orderby step.Difficulty
 						group step by step.Name);
-					sb.AppendLine(Current.AnalysisResultTechniqueUsed);
+					sb.AppendLine((string)Current.AnalysisResultTechniqueUsed);
 					if (options.Flags(ShowStepDetail))
 					{
-						sb
-							.Append(Current.AnalysisResultMin.PadLeft(6))
-							.Append(',')
-							.Append(' ')
-							.Append(Current.AnalysisResultTotal.PadLeft(6))
-							.AppendLine(Current.AnalysisResultTechniqueUsing);
+						sb.Append((string)Current.AnalysisResultMin.PadLeft(6));
+						sb.Append(',');
+						sb.Append(' ');
+						sb.Append((string)Current.AnalysisResultTotal.PadLeft(6));
+						sb.AppendLine((string)Current.AnalysisResultTechniqueUsing);
 					}
 
 					foreach (var solvingStepsGroup in solvingStepsGrouped)
@@ -193,76 +194,71 @@ namespace Sudoku.Solving
 								currentTotal += difficulty;
 								currentMinimum = Math.Min(currentMinimum, difficulty);
 							}
-							sb
-								.Append($"({currentMinimum.ToString("0.0")}".PadLeft(6))
-								.Append(',')
-								.Append(' ')
-								.Append(currentTotal.ToString("0.0").PadLeft(6))
-								.Append(')')
-								.Append(' ');
+
+							sb.Append($"({currentMinimum.ToString("0.0")}".PadLeft(6));
+							sb.Append(',');
+							sb.Append(' ');
+							sb.Append(currentTotal.ToString("0.0").PadLeft(6));
+							sb.Append(')');
+							sb.Append(' ');
 						}
 
-						sb
-							.Append(solvingStepsGroup.Count().ToString().PadLeft(3))
-							.Append(' ')
-							.Append('*')
-							.Append(' ')
-							.AppendLine(solvingStepsGroup.Key);
+						sb.Append(solvingStepsGroup.Count().ToString().PadLeft(3));
+						sb.Append(' ');
+						sb.Append('*');
+						sb.Append(' ');
+						sb.AppendLine(solvingStepsGroup.Key);
 					}
 
 					if (options.Flags(ShowStepDetail))
 					{
-						sb
-							.Append("  (---")
-							.Append(total.ToString().PadLeft(8))
-							.Append(')')
-							.Append(' ');
+						sb.Append("  (---");
+						sb.Append(total.ToString().PadLeft(8));
+						sb.Append(')');
+						sb.Append(' ');
 					}
 
-					sb
-						.Append(stepsCount.ToString().PadLeft(3))
-						.Append(' ')
-						.Append(
-							stepsCount == 1
-							? Current.AnalysisResultStepSingular
-							: Current.AnalysisResultStepPlural)
-						.AppendLine();
+					sb.Append(stepsCount.ToString().PadLeft(3));
+					sb.Append(' ');
+					sb.AppendLine(
+						stepsCount == 1
+						? (string)Current.AnalysisResultStepSingular
+						: (string)Current.AnalysisResultStepPlural
+					);
 
-					a(options.Flags(ShowSeparators));
+					a(ref sb, options.Flags(ShowSeparators));
 				}
 
 				// Print detail data.
-				sb
-					.Append(Current.AnalysisResultPuzzleRating)
-					.Append(max.ToString("0.0"))
-					.Append('/')
-					.Append(pearl.ToString("0.0"))
-					.Append('/')
-					.AppendLine(diamond.ToString("0.0"));
+				sb.Append((string)Current.AnalysisResultPuzzleRating);
+				sb.Append(max.ToString("0.0"));
+				sb.Append('/');
+				sb.Append(pearl.ToString("0.0"));
+				sb.Append('/');
+				sb.AppendLine(diamond.ToString("0.0"));
 
 				// Print the solution (if not null).
 				if (solution.HasValue)
 				{
-					sb
-						.Append(Current.AnalysisResultPuzzleSolution)
-						.AppendLine(solution.Value.ToString("!"));
+					sb.Append((string)Current.AnalysisResultPuzzleSolution);
+					sb.AppendLine(solution.Value.ToString("!"));
 				}
 
 				// Print the elapsed time.
-				sb
-					.Append(Current.AnalysisResultPuzzleHas)
-					.Append(hasSolved ? string.Empty : Current.AnalysisResultNot)
-					.AppendLine(Current.AnalysisResultBeenSolved)
-					.Append(Current.AnalysisResultTimeElapsed)
-					.AppendLine(elapsed.ToString("hh\\:mm\\:ss\\.fff"));
-				a(options.Flags(ShowSeparators));
+				sb.Append((string)Current.AnalysisResultPuzzleHas);
+				sb.Append(hasSolved ? string.Empty : (string)Current.AnalysisResultNot);
+				sb.AppendLine((string)Current.AnalysisResultBeenSolved);
+				sb.Append((string)Current.AnalysisResultTimeElapsed);
+				sb.AppendLine(elapsed.ToString("hh\\:mm\\:ss\\.fff"));
+
+				a(ref sb, options.Flags(ShowSeparators));
 
 				// Print attributes (if worth).
 				// Here use dynamic call (reflection) to get all methods which contains
 				// only one parameter and its type is 'Grid'.
 				if (options.Flags(ShowAttributes))
 				{
-					sb.AppendLine(Current.AnalysisResultAttributes);
+					sb.AppendLine((string)Current.AnalysisResultAttributes);
 					foreach (var methodInfo in
 						from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
 						where methodInfo.ReturnType == typeof(bool)
@@ -270,28 +266,30 @@ namespace Sudoku.Solving
 						where @params.Length == 1 && @params[0].ParameterType == typeof(SudokuGrid)
 						select methodInfo)
 					{
-						sb
-							.Append(new string(' ', 4))
-							.Append(methodInfo.Name)
-							.Append(':')
-							.Append(' ')
-							.AppendLine(methodInfo.Invoke(null, new object[] { puzzle })!);
+						var grid = (SudokuGrid)methodInfo.Invoke(null, new object[] { puzzle })!;
+
+						sb.Append(new string(' ', 4));
+						sb.Append(methodInfo.Name);
+						sb.Append(':');
+						sb.Append(' ');
+						sb.AppendLine(grid.ToString());
 					}
 
-					a(options.Flags(ShowSeparators));
+					a(ref sb, options.Flags(ShowSeparators));
 				}
 
 				// Print backdoors (if worth).
 				if (options.Flags(ShowBackdoors))
 				{
-					sb.AppendLine(Current.AnalysisResultBackdoors);
+					sb.AppendLine((string)Current.AnalysisResultBackdoors);
 					var searcher = new BackdoorSearcher();
 					foreach (var assignment in searcher.SearchForBackdoorsExact(puzzle, 0))
 					{
-						sb.Append(new string(' ', 4)).AppendLine(assignment[0]);
+						sb.Append(new string(' ', 4));
+						sb.AppendLine(assignment[0]);
 					}
 
-					a(options.Flags(ShowSeparators));
+					a(ref sb, options.Flags(ShowSeparators));
 				}
 
 				// Print the additional information (if worth).
@@ -303,7 +301,7 @@ namespace Sudoku.Solving
 				return sb.ToString();
 
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				void a(bool showSeparator) =>
+				static void a(ref ValueStringBuilder sb, bool showSeparator) =>
 					sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);
 
 				(int, StepInfo)? getBottleneck()

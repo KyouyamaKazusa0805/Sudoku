@@ -62,11 +62,14 @@ namespace Sudoku.Generating
 			PuzzleGeneratingProgressResult
 				defaultValue = default,
 				pr = new(0, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
+
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			progress?.Report(defaultValue);
 
-			StringBuilder puzzle = new() { Length = 81 }, solution = new() { Length = 81 };
-			var emptyGridStr = new StringBuilder(SudokuGrid.EmptyString);
+			StringBuilder
+				puzzle = new() { Length = 81 },
+				solution = new() { Length = 81 },
+				emptyGridStr = new(SudokuGrid.EmptyString);
 
 			while (true)
 			{

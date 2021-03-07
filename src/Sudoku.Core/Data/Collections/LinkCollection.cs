@@ -69,13 +69,12 @@ namespace Sudoku.Data.Collections
 				default:
 				{
 					var links = _collection.ToArray();
-					var sb = new StringBuilder();
+					var sb = new ValueStringBuilder(stackalloc char[100]);
 					for (int i = 0, length = links.Length; i < length; i++)
 					{
 						var (start, _, type) = links[i];
-						sb
-							.Append(new Candidates { start }.ToString())
-							.Append(type.GetNotation());
+						sb.Append(new Candidates { start }.ToString());
+						sb.Append(type.GetNotation());
 					}
 					sb.Append(new Candidates { links[^1].EndCandidate }.ToString());
 

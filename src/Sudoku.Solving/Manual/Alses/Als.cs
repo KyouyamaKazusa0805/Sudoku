@@ -172,22 +172,29 @@ namespace Sudoku.Solving.Manual.Alses
 		}
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			IsBivalueCell
-			? new StringBuilder()
-				.Append(new DigitCollection(DigitsMask).ToString(null))
-				.Append('/')
-				.Append(Map.ToString())
-				.ToString()
-			: new StringBuilder()
-				.Append(new DigitCollection(DigitsMask).ToString(null))
-				.Append('/')
-				.Append(Map.ToString())
-				.Append(' ')
-				.Append("in")
-				.Append(' ')
-				.Append(new RegionCollection(Region).ToString())
-				.ToString();
+		public override string ToString()
+		{
+			var sb = new ValueStringBuilder(stackalloc char[50]);
+
+			if (IsBivalueCell)
+			{
+				sb.Append(new DigitCollection(DigitsMask).ToString(null));
+				sb.Append('/');
+				sb.Append(Map.ToString());
+			}
+			else
+			{
+				sb.Append(new DigitCollection(DigitsMask).ToString(null));
+				sb.Append('/');
+				sb.Append(Map.ToString());
+				sb.Append(' ');
+				sb.Append("in");
+				sb.Append(' ');
+				sb.Append(new RegionCollection(Region).ToString());
+			}
+
+			return sb.ToString();
+		}
 
 
 		/// <summary>

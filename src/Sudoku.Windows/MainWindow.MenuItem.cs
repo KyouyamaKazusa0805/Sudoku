@@ -25,6 +25,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
 using System.Text.Json;
 using Sudoku.Drawing;
+using Sudoku.Data.Stepping;
 #if SUDOKU_RECOGNITION
 using System.Drawing;
 #endif
@@ -683,9 +684,14 @@ namespace Sudoku.Windows
 
 			bool applySukaku()
 			{
-				var sb = new StringBuilder(SudokuGrid.EmptyString);
-				if (new UnsafeBitwiseSolver().Solve(
-					_puzzle.ToString($"~{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}"), sb, 2) != 1)
+				var sb = new ValueStringBuilder(SudokuGrid.EmptyString);
+				if (
+					new UnsafeBitwiseSolver().Solve(
+						_puzzle.ToString($"~{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}"),
+						ref sb,
+						2
+					) != 1
+				)
 				{
 					return !(e.Handled = true);
 				}
@@ -700,14 +706,14 @@ namespace Sudoku.Windows
 
 			bool applyNormal()
 			{
-				var solutionSb = new StringBuilder();
+				var solutionSb = new ValueStringBuilder(stackalloc char[81]);
 				string puzzleStr = _puzzle.ToString("0+");
-				if (new UnsafeBitwiseSolver().Solve(_puzzle.ToString(), solutionSb, 2) != 1)
+				if (new UnsafeBitwiseSolver().Solve(_puzzle.ToString(), ref solutionSb, 2) != 1)
 				{
 					return !(e.Handled = true);
 				}
 
-				var newSb = new StringBuilder();
+				var newSb = new ValueStringBuilder(stackalloc char[300]);
 				for (int i = 0, cell = 0, length = puzzleStr.Length; i < length; cell++)
 				{
 					char c = solutionSb[cell];
@@ -715,13 +721,15 @@ namespace Sudoku.Windows
 					{
 						case '+':
 						{
-							newSb.Append('+').Append(c);
+							newSb.Append('+');
+							newSb.Append(c);
 							i += 2;
 							break;
 						}
 						case '0':
 						{
-							newSb.Append('+').Append(c);
+							newSb.Append('+');
+							newSb.Append(c);
 							i++;
 							break;
 						}
@@ -784,26 +792,9 @@ namespace Sudoku.Windows
 						continue;
 					}
 
-					var sb = new StringBuilder(SudokuGrid.EmptyString);
-					if (sukakuMode)
+					if (!isValidGrid(_puzzle, sukakuMode))
 					{
-						string puzzleString = _puzzle.ToString("~");
-						if (new UnsafeBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
-						{
-							continue;
-						}
-					}
-					else
-					{
-						for (int cell = 0; cell < 81; cell++)
-						{
-							sb[cell] += (char)(_puzzle[cell] + 1);
-						}
-
-						if (new UnsafeBitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
-						{
-							continue;
-						}
+						continue;
 					}
 
 					// Update status.
@@ -845,6 +836,32 @@ namespace Sudoku.Windows
 				}
 
 				return false;
+			}
+
+			static bool isValidGrid(UndoableGrid grid, bool sukakuMode)
+			{
+				if (sukakuMode)
+				{
+					if (new UnsafeBitwiseSolver().Solve(grid.ToString("~"), null, 2) != 1)
+					{
+						return false;
+					}
+				}
+				else
+				{
+					var sb = new ValueStringBuilder(SudokuGrid.EmptyString);
+					for (int cell = 0; cell < 81; cell++)
+					{
+						sb[cell] += (char)(grid[cell] + 1);
+					}
+
+					if (new UnsafeBitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
+					{
+						return false;
+					}
+				}
+
+				return true;
 			}
 		}
 

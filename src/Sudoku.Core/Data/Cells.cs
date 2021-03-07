@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Extensions;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.DocComments;
@@ -591,19 +590,17 @@ namespace Sudoku.Data
 
 			static string tableToString(in Cells @this)
 			{
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[(3 * 7 + 2) * 13]);
 				for (int i = 0; i < 3; i++)
 				{
-					for (int bandLine = 0; bandLine < 3; bandLine++)
+					for (int bandLn = 0; bandLn < 3; bandLn++)
 					{
 						for (int j = 0; j < 3; j++)
 						{
-							for (int columnLine = 0; columnLine < 3; columnLine++)
+							for (int columnLn = 0; columnLn < 3; columnLn++)
 							{
-								sb
-									.Append(
-										@this.Contains((i * 3 + bandLine) * 9 + j * 3 + columnLine) ? '*' : '.')
-									.Append(' ');
+								sb.Append(@this.Contains((i * 3 + bandLn) * 9 + j * 3 + columnLn) ? '*' : '.');
+								sb.Append(' ');
 							}
 
 							if (j != 2)
@@ -626,10 +623,10 @@ namespace Sudoku.Data
 				return sb.ToString();
 			}
 
-			static string normalToString(in Cells @this)
+			static unsafe string normalToString(in Cells @this)
 			{
 				const string leftCurlyBrace = "{ ", rightCurlyBrace = " }", separator = ", ";
-				var sbRow = new StringBuilder();
+				var sbRow = new ValueStringBuilder(stackalloc char[50]);
 				var dic = new Dictionary<int, ICollection<int>>();
 				foreach (int cell in @this)
 				{
@@ -647,12 +644,11 @@ namespace Sudoku.Data
 				}
 				foreach (int row in dic.Keys)
 				{
-					sbRow
-						.Append('r')
-						.Append(row + 1)
-						.Append('c')
-						.AppendRange(dic[row], static v => (v + 1).ToString())
-						.Append(separator);
+					sbRow.Append('r');
+					sbRow.Append(row + 1);
+					sbRow.Append('c');
+					sbRow.AppendRange(dic[row], &g);
+					sbRow.Append(separator);
 				}
 				sbRow.RemoveFromEnd(separator.Length);
 				if (addCurlyBraces)
@@ -661,7 +657,7 @@ namespace Sudoku.Data
 				}
 
 				dic.Clear();
-				var sbColumn = new StringBuilder();
+				var sbColumn = new ValueStringBuilder(stackalloc char[50]);
 				foreach (int cell in @this)
 				{
 					if (!dic.ContainsKey(cell % 9))
@@ -679,12 +675,11 @@ namespace Sudoku.Data
 
 				foreach (int column in dic.Keys)
 				{
-					sbColumn
-						.Append('r')
-						.AppendRange(dic[column], static v => (v + 1).ToString())
-						.Append('c')
-						.Append(column + 1)
-						.Append(separator);
+					sbColumn.Append('r');
+					sbColumn.AppendRange(dic[column], &g);
+					sbColumn.Append('c');
+					sbColumn.Append(column + 1);
+					sbColumn.Append(separator);
 				}
 				sbColumn.RemoveFromEnd(separator.Length);
 				if (addCurlyBraces)
@@ -693,11 +688,13 @@ namespace Sudoku.Data
 				}
 
 				return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
+
+				static string g(int v) => (v + 1).ToString();
 			}
 
 			static string binaryToString(in Cells @this, bool withSeparator)
 			{
-				var sb = new StringBuilder();
+				var sb = new ValueStringBuilder(stackalloc char[81]);
 				int i;
 				long value = @this._low;
 				for (i = 0; i < 27; i++, value >>= 1)
@@ -725,7 +722,8 @@ namespace Sudoku.Data
 					sb.Append(value & 1);
 				}
 
-				return sb.Reverse().ToString();
+				sb.Reverse();
+				return sb.ToString();
 			}
 		}
 

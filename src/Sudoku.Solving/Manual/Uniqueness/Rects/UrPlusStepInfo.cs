@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -46,11 +45,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			bool singular = ConjugatePairs.Count == 1;
 			return $"{(singular ? "a " : string.Empty)}conjugate pair{(singular ? string.Empty : "s")} {g()}";
 
-			string g() =>
-				new StringBuilder()
-				.AppendRange(ConjugatePairs, static cp => $"{cp.ToString()}{separator}")
-				.RemoveFromEnd(separator.Length)
-				.ToString();
+			unsafe string g()
+			{
+				var sb = new ValueStringBuilder(stackalloc char[100]);
+				sb.AppendRange(ConjugatePairs, &p, separator);
+
+				return sb.ToString();
+			}
+
+			static string p(ConjugatePair cp) => $"{cp.ToString()}{separator}";
 		}
 	}
 }

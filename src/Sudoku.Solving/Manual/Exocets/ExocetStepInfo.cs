@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -42,8 +41,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		public override string ToString() => ToStringInternal();
 
 		/// <inheritdoc/>
-		public sealed override string ToFullString() =>
-			new StringBuilder(ToString()).AppendLine().AppendLineRange(Eliminations).ToString();
+		public sealed override string ToFullString()
+		{
+			var sb = new ValueStringBuilder(stackalloc char[100]);
+			sb.AppendLine(ToString());
+			sb.AppendLineRange(Eliminations);
+
+			return sb.ToString();
+		}
 
 		/// <summary>
 		/// Get the additional message.
@@ -60,25 +65,29 @@ namespace Sudoku.Solving.Manual.Exocets
 			var (baseMap, targetMap, _) = Exocet;
 			string? addtional = GetAdditional();
 
-			return new StringBuilder(Name)
-				.Append(": Digits ")
-				.Append(new DigitCollection(Digits).ToString())
-				.Append(" in base cells ")
-				.Append(baseMap.ToString())
-				.Append(", target cells ")
-				.Append(targetMap.ToString())
-				.NullableAppend(
-					LockedMemberQ is null
-					? null
-					: $", locked member 1: {new DigitCollection(LockedMemberQ).ToString()}")
-				.NullableAppend(
-					LockedMemberR is null
-					? null
-					: $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}")
-				.Append(addtional is null ? string.Empty : $" with {addtional}")
-				.Append(" => ")
-				.Append(new ConclusionCollection(Conclusions).ToString())
-				.ToString();
+			var sb = new ValueStringBuilder(stackalloc char[150]);
+			sb.Append(Name);
+			sb.Append(": Digits ");
+			sb.Append(new DigitCollection(Digits).ToString());
+			sb.Append(" in base cells ");
+			sb.Append(baseMap.ToString());
+			sb.Append(", target cells ");
+			sb.Append(targetMap.ToString());
+			sb.Append(
+				LockedMemberQ is null
+				? null
+				: $", locked member 1: {new DigitCollection(LockedMemberQ).ToString()}"
+			);
+			sb.Append(
+				LockedMemberR is null
+				? null
+				: $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}"
+			);
+			sb.Append(addtional is null ? string.Empty : $" with {addtional}");
+			sb.Append(" => ");
+			sb.Append(new ConclusionCollection(Conclusions).ToString());
+
+			return sb.ToString();
 		}
 
 

@@ -91,13 +91,15 @@ namespace Sudoku.Data.Collections
 			}
 
 			string separator = format ?? string.Empty;
-			var sb = new StringBuilder();
+			var sb = new ValueStringBuilder(stackalloc char[9]);
 			foreach (int digit in this)
 			{
-				sb.Append(digit + 1).Append(separator);
+				sb.Append(digit + 1);
+				sb.Append(separator);
 			}
 
-			return sb.RemoveFromEnd(separator.Length).ToString();
+			sb.RemoveFromEnd(separator.Length);
+			return sb.ToString();
 		}
 
 		/// <summary>
