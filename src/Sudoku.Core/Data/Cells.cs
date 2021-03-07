@@ -124,8 +124,7 @@ namespace Sudoku.Data
 		{
 			foreach (int offset in cells)
 			{
-				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
-				Count++;
+				InternalAdd(offset, true);
 			}
 		}
 
@@ -141,8 +140,7 @@ namespace Sudoku.Data
 		{
 			foreach (int offset in cells)
 			{
-				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
-				Count++;
+				InternalAdd(offset, true);
 			}
 		}
 
