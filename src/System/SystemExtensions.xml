@@ -1560,6 +1560,18 @@
             </remarks>
             <seealso cref="M:System.Text.ValueStringBuilder.#ctor"/>
         </member>
+        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.ValueStringBuilder@)">
+            <summary>
+            Try to copy the current instance to the specified builder.
+            </summary>
+            <param name="builder">(<see langword="ref"/> parameter) The builder.</param>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.StringBuilder)">
+            <summary>
+            Try to copy the current instance to the specified builder.
+            </summary>
+            <param name="builder">The builder.</param>
+        </member>
         <member name="F:System.Text.ValueStringBuilder._chunk">
             <summary>
             Indicates the inner character series that is created by <see cref="T:System.Buffers.ArrayPool`1"/>.
@@ -1631,51 +1643,12 @@
             <param name="index">The index.</param>
             <returns>The reference of the character.</returns>
         </member>
-        <member name="M:System.Text.ValueStringBuilder.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@)">
             <summary>
             Determines whether the current instance has same values with the other instance.
             </summary>
             <param name="other">(<see langword="in"/> parameter) The other instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference">
-            <summary>
-            <para>
-            Get a pinnable reference to the builder.
-            Does not ensure there is a null char after <see cref="P:System.Text.ValueStringBuilder.Length"/>.
-            </para>
-            <para>
-            This overload is pattern matched in the C# 7.3+ compiler so you can omit
-            the explicit method call, and write eg <c>fixed (char* c = builder)</c>.
-            </para>
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference(System.Boolean)">
-            <summary>
-            Get a pinnable reference to the builder.
-            </summary>
-            <param name="withTerminate">
-            Ensures that the builder has a null character after <see cref="P:System.Text.ValueStringBuilder.Length"/>.
-            </param>
-            <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.ValueStringBuilder@)">
-            <summary>
-            Try to copy the current instance to the specified builder.
-            </summary>
-            <param name="builder">(<see langword="ref"/> parameter) The builder.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.StringBuilder)">
-            <summary>
-            Try to copy the current instance to the specified builder.
-            </summary>
-            <param name="builder">The builder.</param>
         </member>
         <member name="M:System.Text.ValueStringBuilder.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
@@ -1702,6 +1675,72 @@
             </list>
             </para>
             </remarks>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.op_Equality(System.Text.ValueStringBuilder,System.Text.ValueStringBuilder)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.op_Inequality(System.Text.ValueStringBuilder,System.Text.ValueStringBuilder)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="T:System.Text.ValueStringBuilder.Enumerator">
+            <summary>
+            Encapsulates the enumerator of this collection.
+            </summary>
+        </member>
+        <member name="F:System.Text.ValueStringBuilder.Enumerator._length">
+            <summary>
+            Indicates the length.
+            </summary>
+        </member>
+        <member name="F:System.Text.ValueStringBuilder.Enumerator._index">
+            <summary>
+            Indicates whether 
+            </summary>
+        </member>
+        <member name="F:System.Text.ValueStringBuilder.Enumerator._ptr">
+            <summary>
+            Indicates the pointer that points to the current character.
+            </summary>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Enumerator.#ctor(System.Text.ValueStringBuilder@)">
+            <summary>
+            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
+            </summary>
+            <param name="chars">The characters.</param>
+            <seealso cref="T:System.Span`1"/>
+        </member>
+        <member name="P:System.Text.ValueStringBuilder.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference">
+            <summary>
+            <para>
+            Get a pinnable reference to the builder.
+            Does not ensure there is a null char after <see cref="P:System.Text.ValueStringBuilder.Length"/>.
+            </para>
+            <para>
+            This overload is pattern matched in the C# 7.3+ compiler so you can omit
+            the explicit method call, and write eg <c>fixed (char* c = builder)</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference(System.Boolean)">
+            <summary>
+            Get a pinnable reference to the builder.
+            </summary>
+            <param name="withTerminate">
+            Ensures that the builder has a null character after <see cref="P:System.Text.ValueStringBuilder.Length"/>.
+            </param>
+            <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Insert(System.Int32,System.Char,System.Int32)">
             <summary>
@@ -1914,45 +1953,6 @@
             Append a string.
             </summary>
             <param name="s">The string.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.op_Equality(System.Text.ValueStringBuilder,System.Text.ValueStringBuilder)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.op_Inequality(System.Text.ValueStringBuilder,System.Text.ValueStringBuilder)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="T:System.Text.ValueStringBuilder.Enumerator">
-            <summary>
-            Encapsulates the enumerator of this collection.
-            </summary>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder.Enumerator._length">
-            <summary>
-            Indicates the length.
-            </summary>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder.Enumerator._index">
-            <summary>
-            Indicates whether 
-            </summary>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder.Enumerator._ptr">
-            <summary>
-            Indicates the pointer that points to the current character.
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.#ctor(System.Text.ValueStringBuilder@)">
-            <summary>
-            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="chars">The characters.</param>
-            <seealso cref="T:System.Span`1"/>
-        </member>
-        <member name="P:System.Text.ValueStringBuilder.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
     </members>
 </doc>

@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-#if DEBUG
-#endif
 
 namespace System.Text
 {
