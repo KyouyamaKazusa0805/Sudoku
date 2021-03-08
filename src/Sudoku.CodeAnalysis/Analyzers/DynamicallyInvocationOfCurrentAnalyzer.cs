@@ -101,8 +101,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 						goto CheckSudoku012;
 					}
 
-					int actualParamsCount = argNodes.Arguments.Count;
-					int requiredParamsCount = methodName switch
+					int actualParamsCount = argNodes.Arguments.Count, requiredParamsCount = methodName switch
 					{
 						ChangeLanguageMethodName => 1,
 						SerializeMethodName => 2,

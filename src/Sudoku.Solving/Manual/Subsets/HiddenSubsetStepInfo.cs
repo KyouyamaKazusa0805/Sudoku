@@ -26,13 +26,12 @@ namespace Sudoku.Solving.Manual.Subsets
 		public override decimal Difficulty => Size switch { 2 => 3.4M, 3 => 4.0M, 4 => 5.4M };
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			Size switch
-			{
-				2 => Technique.HiddenPair,
-				3 => Technique.HiddenTriple,
-				4 => Technique.HiddenQuadruple
-			};
+		public override Technique TechniqueCode => Size switch
+		{
+			2 => Technique.HiddenPair,
+			3 => Technique.HiddenTriple,
+			4 => Technique.HiddenQuadruple
+		};
 
 
 		/// <inheritdoc/>

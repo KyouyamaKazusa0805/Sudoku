@@ -77,13 +77,12 @@ namespace Sudoku.Drawing
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(View? left, View? right) =>
-			(left, right) switch
-			{
-				(null, null) => true,
-				(not null, not null) => left!.Equals(right),
-				_ => false
-			};
+		public static bool operator ==(View? left, View? right) => (left, right) switch
+		{
+			(null, null) => true,
+			(not null, not null) => left!.Equals(right),
+			_ => false
+		};
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(View? left, View? right) => !(left == right);

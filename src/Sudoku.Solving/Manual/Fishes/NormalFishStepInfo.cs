@@ -61,13 +61,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates the extra difficulty on sashimi judgement.
 		/// </summary>
-		private decimal SashimiExtraDifficulty =>
-			IsSashimi switch
-			{
-				null => 0,
-				true => Size switch { 2 => .3M, 3 => .3M, 4 => .4M },
-				false => .2M
-			};
+		private decimal SashimiExtraDifficulty => IsSashimi switch
+		{
+			null => 0,
+			true => Size switch { 2 => .3M, 3 => .3M, 4 => .4M },
+			false => .2M
+		};
 
 		/// <summary>
 		/// Indicates the internal name.

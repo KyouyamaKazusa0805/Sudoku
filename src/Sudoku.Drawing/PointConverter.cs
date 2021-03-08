@@ -213,17 +213,16 @@ namespace Sudoku.Drawing
 		/// <param name="region">The region.</param>
 		/// <returns>The anchor points.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int region) =>
-			region switch
-			{
-				>= 0 and < 9 when (region % 3, region / 3) is (var v1, var v2) =>
-					(GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
-				>= 9 and < 18 when region - 9 is var v =>
-					(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
-				>= 18 and < 27 when region - 18 is var v =>
-					(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
-				_ => throw new ArgumentOutOfRangeException(nameof(region))
-			};
+		public (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int region) => region switch
+		{
+			>= 0 and < 9 when (region % 3, region / 3) is (var v1, var v2) =>
+				(GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
+			>= 9 and < 18 when region - 9 is var v =>
+				(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
+			>= 18 and < 27 when region - 18 is var v =>
+				(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
+			_ => throw new ArgumentOutOfRangeException(nameof(region))
+		};
 
 		/// <summary>
 		/// Get the mouse point of the center of a cell via its offset.

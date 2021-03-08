@@ -22,13 +22,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		: ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			TechniqueCode switch
-			{
-				Technique.MWing => 4.5M,
-				Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
-				_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + (FlatComplexity - 2).GetExtraDifficultyByLength()
-			};
+		public override decimal Difficulty => TechniqueCode switch
+		{
+			Technique.MWing => 4.5M,
+			Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
+			_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + (FlatComplexity - 2).GetExtraDifficultyByLength()
+		};
 
 		/// <inheritdoc/>
 		public override int FlatComplexity => Target.AncestorsCount;
@@ -46,8 +45,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel =>
-			TechniqueCode is Technique.MWing or Technique.SplitWing
-			or Technique.HybridWing or Technique.LocalWing
+			TechniqueCode is Technique.MWing or Technique.SplitWing or Technique.HybridWing or Technique.LocalWing
 			? DifficultyLevel.Hard
 			: DifficultyLevel.Fiendish;
 

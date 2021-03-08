@@ -54,13 +54,12 @@ namespace Sudoku.Solving.Manual.Alses
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			IsDoublyLinked switch
-			{
-				true => Technique.DoublyLinkedAlsXz,
-				false => Technique.SinglyLinkedAlsXz,
-				null => Technique.Esp
-			};
+		public override Technique TechniqueCode => IsDoublyLinked switch
+		{
+			true => Technique.DoublyLinkedAlsXz,
+			false => Technique.SinglyLinkedAlsXz,
+			null => Technique.Esp
+		};
 
 
 		/// <inheritdoc/>

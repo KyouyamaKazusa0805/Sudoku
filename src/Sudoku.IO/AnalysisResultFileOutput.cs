@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using NPOI.XWPF.UserModel;
-using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving;
-using Sudoku.Solving.Manual;
 
 namespace Sudoku.IO
 {
@@ -109,7 +106,8 @@ namespace Sudoku.IO
 									PictureFileType.Bmp => PictureType.BMP,
 									PictureFileType.Gif => PictureType.GIF
 								}),
-								curPictureName, TargetSize * Emu, TargetSize * Emu);
+								curPictureName, TargetSize * Emu, TargetSize * Emu
+							);
 
 							// Bug fix: The document cannot be opened due to NPOI inserting pictures.
 							runPic.GetCTR().GetDrawingList()[0].inline[0].docPr.id = 1;

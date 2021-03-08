@@ -36,13 +36,12 @@ namespace Sudoku.Solving.Manual.Intersections
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			Size switch
-			{
-				2 => Technique.AlmostLockedPair,
-				3 => Technique.AlmostLockedTriple,
-				4 => Technique.AlmostLockedQuadruple
-			};
+		public override Technique TechniqueCode => Size switch
+		{
+			2 => Technique.AlmostLockedPair,
+			3 => Technique.AlmostLockedTriple,
+			4 => Technique.AlmostLockedQuadruple
+		};
 
 		/// <summary>
 		/// Indicates the base difficulty.

@@ -66,13 +66,12 @@ namespace System.Collections.Generic
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>The result.</returns>
-		private static int InternalCompare(TreeNode<T>? left, TreeNode<T>? right) =>
-			(left, right) switch
-			{
-				(null, null) => 0,
-				(not null, not null) => left!.Id.CompareTo(right!.Id),
-				_ => left is null ? -1 : 1
-			};
+		private static int InternalCompare(TreeNode<T>? left, TreeNode<T>? right) => (left, right) switch
+		{
+			(null, null) => 0,
+			(not null, not null) => left!.Id.CompareTo(right!.Id),
+			_ => left is null ? -1 : 1
+		};
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

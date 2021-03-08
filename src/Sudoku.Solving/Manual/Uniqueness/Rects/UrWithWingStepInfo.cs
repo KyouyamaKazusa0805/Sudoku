@@ -50,13 +50,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <summary>
 		/// Indicates the extra difficulty on wing size.
 		/// </summary>
-		private decimal WingSizeExtraDifficulty =>
-			ExtraDifficulty[TechniqueCode switch
-			{
-				Technique.UrXyWing or Technique.ArXyWing => 0,
-				Technique.UrXyzWing or Technique.ArXyzWing => 1,
-				Technique.UrWxyzWing or Technique.ArWxyzWing => 2
-			}];
+		private decimal WingSizeExtraDifficulty => ExtraDifficulty[TechniqueCode switch
+		{
+			Technique.UrXyWing or Technique.ArXyWing => 0,
+			Technique.UrXyzWing or Technique.ArXyzWing => 1,
+			Technique.UrWxyzWing or Technique.ArWxyzWing => 2
+		}];
 
 
 		/// <inheritdoc/>

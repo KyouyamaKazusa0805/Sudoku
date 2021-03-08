@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -20,14 +19,12 @@ namespace Sudoku.Solving.Manual.Sdps
 		int TargetRegion) : SdpStepInfo(Conclusions, Views, Digit)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			TechniqueCode switch
-			{
-				Technique.TurbotFish => 4.2M,
-				Technique.Skyscraper => 4.0M,
-				Technique.TwoStringKite => 4.1M,
-				_ => throw new NotSupportedException("The specified value is invalid.")
-			};
+		public override decimal Difficulty => TechniqueCode switch
+		{
+			Technique.TurbotFish => 4.2M,
+			Technique.Skyscraper => 4.0M,
+			Technique.TwoStringKite => 4.1M
+		};
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -41,8 +38,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			{
 				(0, _) or (_, 0) => Technique.TurbotFish,
 				(1, 1) or (2, 2) => Technique.Skyscraper,
-				(1, 2) or (2, 1) => Technique.TwoStringKite,
-				_ => throw new NotSupportedException("The specified value is invalid.")
+				(1, 2) or (2, 1) => Technique.TwoStringKite
 			};
 
 

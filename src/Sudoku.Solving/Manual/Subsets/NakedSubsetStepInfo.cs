@@ -27,18 +27,17 @@ namespace Sudoku.Solving.Manual.Subsets
 		public override decimal Difficulty => BaseDifficulty + ExtraDifficulty;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			(IsLocked, Digits.Count) switch
-			{
-				(true, 2) => Technique.LockedPair,
-				(false, 2) => Technique.NakedPairPlus,
-				(null, 2) => Technique.NakedPair,
-				(true, 3) => Technique.LockedTriple,
-				(false, 3) => Technique.NakedTriplePlus,
-				(null, 3) => Technique.NakedTriple,
-				(false, 4) => Technique.NakedQuadruplePlus,
-				(null, 4) => Technique.NakedQuadruple
-			};
+		public override Technique TechniqueCode => (IsLocked, Digits.Count) switch
+		{
+			(true, 2) => Technique.LockedPair,
+			(false, 2) => Technique.NakedPairPlus,
+			(null, 2) => Technique.NakedPair,
+			(true, 3) => Technique.LockedTriple,
+			(false, 3) => Technique.NakedTriplePlus,
+			(null, 3) => Technique.NakedTriple,
+			(false, 4) => Technique.NakedQuadruplePlus,
+			(null, 4) => Technique.NakedQuadruple
+		};
 
 		/// <summary>
 		/// Indicates the base difficulty.

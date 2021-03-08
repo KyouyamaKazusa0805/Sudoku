@@ -11,13 +11,12 @@
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The link type.</param>
 		/// <returns>The notation.</returns>
-		public static string GetNotation(this LinkType @this) =>
-			@this switch
-			{
-				LinkType.Default => " -> ",
-				LinkType.Weak => " -- ",
-				LinkType.Strong => " == ",
-				LinkType.Line => " -- "
-			};
+		public static string GetNotation(this LinkType @this) => @this switch
+		{
+			LinkType.Default => " -> ",
+			LinkType.Weak => " -- ",
+			LinkType.Strong => " == ",
+			LinkType.Line => " -- "
+		};
 	}
 }

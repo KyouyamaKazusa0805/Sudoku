@@ -46,50 +46,46 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public int Size => PopCount((uint)DigitsMask);
 
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			Size switch
-			{
-				3 => IsIncomplete ? 4.2M : 4.4M,
-				>= 4 and < 9 => IsIncomplete ? DifficultyRating[Size] + .1M : DifficultyRating[Size]
-			};
+		public override decimal Difficulty => Size switch
+		{
+			3 => IsIncomplete ? 4.2M : 4.4M,
+			>= 4 and < 9 => IsIncomplete ? DifficultyRating[Size] + .1M : DifficultyRating[Size]
+		};
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel =>
-			Size switch
-			{
-				>= 3 and <= 4 => DifficultyLevel.Hard,
-				> 4 and < 9 => DifficultyLevel.Fiendish
-			};
+		public override DifficultyLevel DifficultyLevel => Size switch
+		{
+			>= 3 and <= 4 => DifficultyLevel.Hard,
+			> 4 and < 9 => DifficultyLevel.Fiendish
+		};
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			InternalName switch
-			{
-				"XY-Wing" => Technique.XyWing,
-				"XYZ-Wing" => Technique.XyzWing,
-				"WXYZ-Wing" => Technique.WxyzWing,
-				"VWXYZ-Wing" => Technique.VwxyzWing,
-				"UVWXYZ-Wing" => Technique.UvwxyzWing,
-				"TUVWXYZ-Wing" => Technique.TuvwxyzWing,
-				"STUVWXYZ-Wing" => Technique.StuvwxyzWing,
-				"RSTUVWXYZ-Wing" => Technique.RstuvwxyzWing,
-				"Incomplete WXYZ-Wing" => Technique.IncompleteWxyzWing,
-				"Incomplete VWXYZ-Wing" => Technique.IncompleteVwxyzWing,
-				"Incomplete UVWXYZ-Wing" => Technique.IncompleteUvwxyzWing,
-				"Incomplete TUVWXYZ-Wing" => Technique.IncompleteTuvwxyzWing,
-				"Incomplete STUVWXYZ-Wing" => Technique.IncompleteStuvwxyzWing,
-				"Incomplete RSTUVWXYZ-Wing" => Technique.IncompleteRstuvwxyzWing
-			};
+		public override Technique TechniqueCode => InternalName switch
+		{
+			"XY-Wing" => Technique.XyWing,
+			"XYZ-Wing" => Technique.XyzWing,
+			"WXYZ-Wing" => Technique.WxyzWing,
+			"VWXYZ-Wing" => Technique.VwxyzWing,
+			"UVWXYZ-Wing" => Technique.UvwxyzWing,
+			"TUVWXYZ-Wing" => Technique.TuvwxyzWing,
+			"STUVWXYZ-Wing" => Technique.StuvwxyzWing,
+			"RSTUVWXYZ-Wing" => Technique.RstuvwxyzWing,
+			"Incomplete WXYZ-Wing" => Technique.IncompleteWxyzWing,
+			"Incomplete VWXYZ-Wing" => Technique.IncompleteVwxyzWing,
+			"Incomplete UVWXYZ-Wing" => Technique.IncompleteUvwxyzWing,
+			"Incomplete TUVWXYZ-Wing" => Technique.IncompleteTuvwxyzWing,
+			"Incomplete STUVWXYZ-Wing" => Technique.IncompleteStuvwxyzWing,
+			"Incomplete RSTUVWXYZ-Wing" => Technique.IncompleteRstuvwxyzWing
+		};
 
 		/// <summary>
 		/// Indicates the internal name.
 		/// </summary>
-		private string InternalName =>
-			Size switch
-			{
-				3 => IsIncomplete ? "XY-Wing" : "XYZ-Wing",
-				>= 4 and < 9 => IsIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size]
-			};
+		private string InternalName => Size switch
+		{
+			3 => IsIncomplete ? "XY-Wing" : "XYZ-Wing",
+			>= 4 and < 9 => IsIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size]
+		};
 
 
 		/// <inheritdoc/>

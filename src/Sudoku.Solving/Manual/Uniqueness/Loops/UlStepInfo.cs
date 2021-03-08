@@ -47,14 +47,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <summary>
 		/// Indicates the base difficulty.
 		/// </summary>
-		private decimal BaseDifficulty =>
-			Type switch
-			{
-				1 => 4.5M,
-				2 => 4.6M,
-				3 => 4.5M + ((UlType3StepInfo)this).SubsetCells.Count * .1M,
-				4 => 4.6M
-			};
+		private decimal BaseDifficulty => Type switch
+		{
+			1 => 4.5M,
+			2 => 4.6M,
+			3 => 4.5M + ((UlType3StepInfo)this).SubsetCells.Count * .1M,
+			4 => 4.6M
+		};
 
 
 		/// <inheritdoc/>
@@ -63,10 +62,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <inheritdoc/>
 		public virtual bool Equals(UlStepInfo? other) =>
 			other is not null
-			&& (Type, Loop) == (other.Type, other.Loop)
+			&& Type == other.Type && Loop == other.Loop
 			&& (
-			(Digit1, Digit2) == (other.Digit1, other.Digit2)
-			|| (Digit1, Digit2) == (other.Digit2, other.Digit1));
+				Digit1 == other.Digit1 && Digit2 == other.Digit2
+				|| Digit1 == other.Digit2 && Digit2 == other.Digit1
+			);
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => HashCode.Combine(Type, Loop, Digit1, Digit2);

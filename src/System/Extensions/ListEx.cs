@@ -75,15 +75,14 @@ namespace System.Extensions
 		/// Throws when the specified list is neither <see cref="List{T}"/> nor <typeparamref name="T"/>[].
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReadOnlyList<T> AsReadOnlyList<T>(this IList<T> @this) =>
-			@this switch
-			{
-				List<T> list => list,
-				T[] array => array,
-				_ =>
-					throw new InvalidCastException(
-						$"Can't convert {nameof(@this)} to {typeof(IReadOnlyList<>).Name} " +
-						$"because the element isn't a normal {typeof(List<>).Name}.")
-			};
+		public static IReadOnlyList<T> AsReadOnlyList<T>(this IList<T> @this) => @this switch
+		{
+			List<T> list => list,
+			T[] array => array,
+			_ =>
+				throw new InvalidCastException(
+					$"Can't convert {nameof(@this)} to {typeof(IReadOnlyList<>).Name} " +
+					$"because the element isn't a normal {typeof(List<>).Name}.")
+		};
 	}
 }

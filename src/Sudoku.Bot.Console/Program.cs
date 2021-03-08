@@ -90,19 +90,18 @@ try
 			string info = new StringBuilder()
 				.Append((string)TextResources.Current.Evenybody)
 				.Append(
-					(string)(
-						DateTime.Now.Hour switch
-						{
-							>= 0 and < 4 => TextResources.Current.TimeModifierBehindMidnight,
-							>= 4 and < 7 => TextResources.Current.TimeModifierDawn,
-							>= 7 and < 11 => TextResources.Current.TimeModifierMorning,
-							>= 11 and < 13 => TextResources.Current.TimeModifierNoon,
-							>= 13 and < 17 => TextResources.Current.TimeModifierAfternoon,
-							>= 17 and < 19 => TextResources.Current.TimeModifierNightfall,
-							>= 19 and < 23 => TextResources.Current.TimeModifierEvening,
-							23 => TextResources.Current.TimeModifierForeMidnight,
-						}
-					))
+					(string)(DateTime.Now.Hour switch
+					{
+						>= 0 and < 4 => TextResources.Current.TimeModifierBehindMidnight,
+						>= 4 and < 7 => TextResources.Current.TimeModifierDawn,
+						>= 7 and < 11 => TextResources.Current.TimeModifierMorning,
+						>= 11 and < 13 => TextResources.Current.TimeModifierNoon,
+						>= 13 and < 17 => TextResources.Current.TimeModifierAfternoon,
+						>= 17 and < 19 => TextResources.Current.TimeModifierNightfall,
+						>= 19 and < 23 => TextResources.Current.TimeModifierEvening,
+						23 => TextResources.Current.TimeModifierForeMidnight,
+					})
+				)
 				.Append((string)TextResources.Current.Greeting)
 				.ToString();
 

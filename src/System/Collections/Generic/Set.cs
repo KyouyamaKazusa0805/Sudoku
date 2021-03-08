@@ -268,13 +268,12 @@ namespace System.Collections.Generic
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		private static bool InternalEquals(Set<T>? left, Set<T>? right) =>
-			(left, right) switch
-			{
-				(null, null) => true,
-				(not null, not null) => SetEquals(left, right),
-				_ => false
-			};
+		private static bool InternalEquals(Set<T>? left, Set<T>? right) => (left, right) switch
+		{
+			(null, null) => true,
+			(not null, not null) => SetEquals(left, right),
+			_ => false
+		};
 
 		/// <summary>
 		/// Determine whether two <see cref="Set{T}"/>s contain the same elements.

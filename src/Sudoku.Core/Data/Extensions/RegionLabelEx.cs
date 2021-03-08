@@ -16,13 +16,12 @@ namespace Sudoku.Data.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The region label.</param>
 		/// <returns>The cause.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cause GetRegionCause(this RegionLabel @this) =>
-			@this switch
-			{
-				RegionLabel.Row => Cause.RowHiddenSingle,
-				RegionLabel.Column => Cause.ColumnHiddenSingle,
-				RegionLabel.Block => Cause.BlockHiddenSingle
-			};
+		public static Cause GetRegionCause(this RegionLabel @this) => @this switch
+		{
+			RegionLabel.Row => Cause.RowHiddenSingle,
+			RegionLabel.Column => Cause.ColumnHiddenSingle,
+			RegionLabel.Block => Cause.BlockHiddenSingle
+		};
 	}
 }
 

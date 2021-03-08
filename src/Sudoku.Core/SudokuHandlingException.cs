@@ -38,24 +38,23 @@ namespace Sudoku
 		public int ErrorCode { get; }
 
 		/// <inheritdoc/>
-		public override string Message =>
-			ErrorCode switch
-			{
-				101 => "The specified grid has multiple solutions.",
-				102 => "The specified grid has no valid solution.",
-				201 => "The specified grid can't go on to be solved due to the error step encountered and failed to check.",
-				202 => "The specified grid is invalid.",
-				203 => "The function can be used and called if and only if the grid has been solved.",
-				301 => "The recognizer has not initialized.",
-				302 => "Recognizer error: Can't filled the cell <Unknown> with the digit <Unknown>.",
-				303 => "Tesseract is wrong: can't recognize any cell image.",
-				401 => "The specified assembly can't be loaded. The large possibility of the problem raised is that the required files don't exist.",
-				402 => "Color palette is current null.",
-				403 => "The specified resource dictionary name can't be found.",
-				501 => "Parent node can't be found.",
-				601 => $"The inner exception that thrown: {InnerException?.Message ?? "<Unknown>"}.",
-				_ => string.Empty
-			};
+		public override string Message => ErrorCode switch
+		{
+			101 => "The specified grid has multiple solutions.",
+			102 => "The specified grid has no valid solution.",
+			201 => "The specified grid can't go on to be solved due to the error step encountered and failed to check.",
+			202 => "The specified grid is invalid.",
+			203 => "The function can be used and called if and only if the grid has been solved.",
+			301 => "The recognizer has not initialized.",
+			302 => "Recognizer error: Can't filled the cell <Unknown> with the digit <Unknown>.",
+			303 => "Tesseract is wrong: can't recognize any cell image.",
+			401 => "The specified assembly can't be loaded. The large possibility of the problem raised is that the required files don't exist.",
+			402 => "Color palette is current null.",
+			403 => "The specified resource dictionary name can't be found.",
+			501 => "Parent node can't be found.",
+			601 => $"The inner exception that thrown: {InnerException?.Message ?? "<Unknown>"}.",
+			_ => string.Empty
+		};
 	}
 
 
@@ -83,16 +82,15 @@ namespace Sudoku
 		public T? Arg1 { get; }
 
 		/// <inheritdoc/>
-		public override string Message =>
-			ErrorCode switch
-			{
-				101 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} contains multiple solutions.",
-				102 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} contains no valid solution.",
-				202 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} is invalid.",
-				203 when Arg1 is SudokuGrid g => $"The function can be used if and only if specified grid {g.ToString("#")} should be solved.",
-				403 when Arg1 is string r => $"The specified resource dictionary name can't be found: {r}.",
-				_ => string.Empty
-			};
+		public override string Message => ErrorCode switch
+		{
+			101 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} contains multiple solutions.",
+			102 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} contains no valid solution.",
+			202 when Arg1 is SudokuGrid g => $"The specified grid {g.ToString("#")} is invalid.",
+			203 when Arg1 is SudokuGrid g => $"The function can be used if and only if specified grid {g.ToString("#")} should be solved.",
+			403 when Arg1 is string r => $"The specified resource dictionary name can't be found: {r}.",
+			_ => string.Empty
+		};
 	}
 
 
@@ -121,19 +119,18 @@ namespace Sudoku
 		public T2? Arg2 { get; }
 
 		/// <inheritdoc/>
-		public override string Message =>
-			ErrorCode switch
-			{
-				201 when Arg1 is SudokuGrid g && Arg2 is not null =>
-					$"The specified grid {g.ToString("#")} can't go on to be solved due to the step: {Arg2} is wrong.",
-				302 when Arg1 is int cell && Arg2 is int digit =>
-					$"Recognizer error: can't fill the cell {new Cells { cell }.ToString()} with the digit " +
-					$"{(digit + 1).ToString()}.",
-				401 when Arg1 is string assembly && Arg2 is string path =>
-					$"The assembly {assembly} can't be loaded. " +
-					$"The large possibility of the problem raised is that the required files don't exist. " +
-					$"Please check the existence of the resource dictionary file (path {path}).",
-				_ => string.Empty
-			};
+		public override string Message => ErrorCode switch
+		{
+			201 when Arg1 is SudokuGrid g && Arg2 is not null =>
+				$"The specified grid {g.ToString("#")} can't go on to be solved due to the step: {Arg2} is wrong.",
+			302 when Arg1 is int cell && Arg2 is int digit =>
+				$"Recognizer error: can't fill the cell {new Cells { cell }.ToString()} with the digit " +
+				$"{(digit + 1).ToString()}.",
+			401 when Arg1 is string assembly && Arg2 is string path =>
+				$"The assembly {assembly} can't be loaded. " +
+				$"The large possibility of the problem raised is that the required files don't exist. " +
+				$"Please check the existence of the resource dictionary file (path {path}).",
+			_ => string.Empty
+		};
 	}
 }

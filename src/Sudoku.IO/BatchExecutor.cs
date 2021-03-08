@@ -305,7 +305,9 @@ namespace Sudoku.IO
 						"chain" or "strong" => LinkType.Strong,
 						"weak" => LinkType.Weak,
 						_ => LinkType.Default
-					}));
+					}
+				)
+			);
 		}
 
 		/// <summary>

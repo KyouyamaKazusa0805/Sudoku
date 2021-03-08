@@ -89,13 +89,13 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					// Get the logical order of three ALSes.
-					var (a, b, c) = true switch
-					{
-						_ when als11 == als21 => (als12, als22, als11),
-						_ when als11 == als22 => (als12, als21, als11),
-						_ when als12 == als21 => (als11, als22, als12),
-						_ => (als11, als21, als12)
-					};
+					var (a, b, c) = als11 == als21
+						? (als12, als22, als11)
+						: als11 == als22
+						? (als12, als21, als11)
+						: als12 == als21
+						? (als11, als22, als12)
+						: (als11, als21, als12);
 
 					var (_, aRegion, aMask, aMap, _, _) = a;
 					var (_, bRegion, bMask, bMap, _, _) = b;

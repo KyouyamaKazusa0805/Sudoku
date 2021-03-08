@@ -80,7 +80,9 @@ namespace Sudoku.Solving.Manual.Extensions
 								(false, true) => LinkType.Strong,
 								(true, false) => LinkType.Weak,
 								_ => LinkType.Default
-							}));
+							}
+						)
+					);
 				}
 			}
 

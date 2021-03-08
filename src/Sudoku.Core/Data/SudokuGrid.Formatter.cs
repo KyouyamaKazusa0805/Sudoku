@@ -350,18 +350,18 @@ namespace Sudoku.Data
 						candidatesCount += PopCount((uint)value);
 
 						// Compares the values.
-						int comparer =
-							Math.Max(
-								candidatesCount,
-								MaskGetStatus(value) switch
-								{
-									// The output will be '<digit>' and consist of 3 characters.
-									CellStatus.Given => Math.Max(candidatesCount, 3),
-									// The output will be '*digit*' and consist of 3 characters.
-									CellStatus.Modifiable => Math.Max(candidatesCount, 3),
-									// Normal output: 'series' (at least 1 character).
-									_ => candidatesCount,
-								});
+						int comparer = Math.Max(
+							candidatesCount,
+							MaskGetStatus(value) switch
+							{
+								// The output will be '<digit>' and consist of 3 characters.
+								CellStatus.Given => Math.Max(candidatesCount, 3),
+								// The output will be '*digit*' and consist of 3 characters.
+								CellStatus.Modifiable => Math.Max(candidatesCount, 3),
+								// Normal output: 'series' (at least 1 character).
+								_ => candidatesCount,
+							}
+						);
 						if (comparer > maxLength)
 						{
 							maxLength = comparer;
@@ -397,16 +397,13 @@ namespace Sudoku.Data
 						default: // Print values and tabs.
 						{
 							p(
-								this,
-								valuesByRow
-								[
-									i switch
-									{
-										1 or 2 or 3 or 4 => i - 1,
-										5 or 6 or 7 or 8 => i - 2,
-										9 or 10 or 11 or 12 => i - 3
-									}
-								], '|', '|', maxLengths);
+								this, valuesByRow[i switch
+								{
+									1 or 2 or 3 or 4 => i - 1,
+									5 or 6 or 7 or 8 => i - 2,
+									9 or 10 or 11 or 12 => i - 3
+								}], '|', '|', maxLengths
+							);
 
 							break;
 
@@ -546,21 +543,20 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="gridOutputOption">The grid output options.</param>
 			/// <returns>The grid formatter.</returns>
-			public static Formatter Create(GridFormattingOptions gridOutputOption) =>
-				gridOutputOption switch
+			public static Formatter Create(GridFormattingOptions gridOutputOption) => gridOutputOption switch
+			{
+				GridFormattingOptions.Excel => new(true) { Excel = true },
+				_ => new(gridOutputOption.Flags(GridFormattingOptions.Multiline))
 				{
-					GridFormattingOptions.Excel => new(true) { Excel = true },
-					_ => new Formatter(gridOutputOption.Flags(GridFormattingOptions.Multiline))
-					{
-						WithModifiables = gridOutputOption.Flags(GridFormattingOptions.WithModifiers),
-						WithCandidates = gridOutputOption.Flags(GridFormattingOptions.WithCandidates),
-						TreatValueAsGiven = gridOutputOption.Flags(GridFormattingOptions.TreatValueAsGiven),
-						SubtleGridLines = gridOutputOption.Flags(GridFormattingOptions.SubtleGridLines),
-						HodokuCompatible = gridOutputOption.Flags(GridFormattingOptions.HodokuCompatible),
-						Sukaku = gridOutputOption == GridFormattingOptions.Sukaku,
-						Placeholder = gridOutputOption.Flags(GridFormattingOptions.DotPlaceholder) ? '.' : '0'
-					}
-				};
+					WithModifiables = gridOutputOption.Flags(GridFormattingOptions.WithModifiers),
+					WithCandidates = gridOutputOption.Flags(GridFormattingOptions.WithCandidates),
+					TreatValueAsGiven = gridOutputOption.Flags(GridFormattingOptions.TreatValueAsGiven),
+					SubtleGridLines = gridOutputOption.Flags(GridFormattingOptions.SubtleGridLines),
+					HodokuCompatible = gridOutputOption.Flags(GridFormattingOptions.HodokuCompatible),
+					Sukaku = gridOutputOption == GridFormattingOptions.Sukaku,
+					Placeholder = gridOutputOption.Flags(GridFormattingOptions.DotPlaceholder) ? '.' : '0'
+				}
+			};
 
 			/// <summary>
 			/// Create a <see cref="Formatter"/> according to the specified format.
@@ -568,41 +564,40 @@ namespace Sudoku.Data
 			/// <param name="format">The format.</param>
 			/// <returns>The grid formatter.</returns>
 			/// <exception cref="FormatException">Throws when the format string is invalid.</exception>
-			public static Formatter Create(string? format) =>
-				format switch
-				{
-					null or "." => new(false),
-					"+" or ".+" or "+." => new(false) { WithModifiables = true },
-					"0" => new(false) { Placeholder = '0' },
-					":" => new(false) { WithCandidates = true },
-					"!" or ".!" or "!." => new(false) { WithModifiables = true, TreatValueAsGiven = true },
-					"0!" or "!0" => new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
-					".:" => new(false) { WithCandidates = true },
-					"0:" => new(false) { Placeholder = '0', WithCandidates = true },
-					"0+" or "+0" => new(false) { Placeholder = '0', WithModifiables = true },
-					"+:" or "+.:" or ".+:" or "#" or "#." => new(false) { WithModifiables = true, WithCandidates = true },
-					"0+:" or "+0:" or "#0" => new(false) { Placeholder = '0', WithModifiables = true, WithCandidates = true },
-					".!:" or "!.:" => new(false) { WithModifiables = true, TreatValueAsGiven = true },
-					"0!:" or "!0:" => new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
-					"@" or "@." => new(true) { SubtleGridLines = true },
-					"@0" => new(true) { Placeholder = '0', SubtleGridLines = true },
-					"@!" or "@.!" or "@!." => new(true) { TreatValueAsGiven = true, SubtleGridLines = true },
-					"@0!" or "@!0" => new(true) { Placeholder = '0', TreatValueAsGiven = true, SubtleGridLines = true },
-					"@*" or "@.*" or "@*." => new(true),
-					"@0*" or "@*0" => new(true) { Placeholder = '0' },
-					"@!*" or "@*!" => new(true) { TreatValueAsGiven = true },
-					"@:" => new(true) { WithCandidates = true, SubtleGridLines = true },
-					"@:!" or "@!:" => new(true) { WithCandidates = true, TreatValueAsGiven = true, SubtleGridLines = true },
-					"@*:" or "@:*" => new(true) { WithCandidates = true },
-					"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!" => new(true) { WithCandidates = true, TreatValueAsGiven = true },
-					"~" or "~0" => new(false) { Sukaku = true, Placeholder = '0' },
-					"~." => new(false) { Sukaku = true },
-					"@~" or "~@" => new(true) { Sukaku = true },
-					"@~0" or "@0~" or "~@0" or "~0@" => new(true) { Sukaku = true, Placeholder = '0' },
-					"@~." or "@.~" or "~@." or "~.@" => new(true) { Sukaku = true },
-					"%" => new(true) { Excel = true },
-					_ => throw new FormatException("The specified format is invalid.")
-				};
+			public static Formatter Create(string? format) => format switch
+			{
+				null or "." => new(false),
+				"+" or ".+" or "+." => new(false) { WithModifiables = true },
+				"0" => new(false) { Placeholder = '0' },
+				":" => new(false) { WithCandidates = true },
+				"!" or ".!" or "!." => new(false) { WithModifiables = true, TreatValueAsGiven = true },
+				"0!" or "!0" => new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
+				".:" => new(false) { WithCandidates = true },
+				"0:" => new(false) { Placeholder = '0', WithCandidates = true },
+				"0+" or "+0" => new(false) { Placeholder = '0', WithModifiables = true },
+				"+:" or "+.:" or ".+:" or "#" or "#." => new(false) { WithModifiables = true, WithCandidates = true },
+				"0+:" or "+0:" or "#0" => new(false) { Placeholder = '0', WithModifiables = true, WithCandidates = true },
+				".!:" or "!.:" => new(false) { WithModifiables = true, TreatValueAsGiven = true },
+				"0!:" or "!0:" => new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
+				"@" or "@." => new(true) { SubtleGridLines = true },
+				"@0" => new(true) { Placeholder = '0', SubtleGridLines = true },
+				"@!" or "@.!" or "@!." => new(true) { TreatValueAsGiven = true, SubtleGridLines = true },
+				"@0!" or "@!0" => new(true) { Placeholder = '0', TreatValueAsGiven = true, SubtleGridLines = true },
+				"@*" or "@.*" or "@*." => new(true),
+				"@0*" or "@*0" => new(true) { Placeholder = '0' },
+				"@!*" or "@*!" => new(true) { TreatValueAsGiven = true },
+				"@:" => new(true) { WithCandidates = true, SubtleGridLines = true },
+				"@:!" or "@!:" => new(true) { WithCandidates = true, TreatValueAsGiven = true, SubtleGridLines = true },
+				"@*:" or "@:*" => new(true) { WithCandidates = true },
+				"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!" => new(true) { WithCandidates = true, TreatValueAsGiven = true },
+				"~" or "~0" => new(false) { Sukaku = true, Placeholder = '0' },
+				"~." => new(false) { Sukaku = true },
+				"@~" or "~@" => new(true) { Sukaku = true },
+				"@~0" or "@0~" or "~@0" or "~0@" => new(true) { Sukaku = true, Placeholder = '0' },
+				"@~." or "@.~" or "~@." or "~.@" => new(true) { Sukaku = true },
+				"%" => new(true) { Excel = true },
+				_ => throw new FormatException("The specified format is invalid.")
+			};
 		}
 	}
 }
