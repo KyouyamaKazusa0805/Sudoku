@@ -8,7 +8,9 @@ namespace System.Text
 	/// Encapsulates a string builder implementation that is used via a <see langword="struct"/>.
 	/// </summary>
 	/// <remarks>
-	/// <para>
+	/// You shouldn't use the parameterless constructor <see cref="ValueStringBuilder()"/>.
+	/// </remarks>
+	/// <example>
 	/// You can use this struct like this:
 	/// <code>
 	/// var sb = new ValueStringBuilder(stackalloc char[100]);
@@ -21,11 +23,7 @@ namespace System.Text
 	/// 
 	/// Console.WriteLine(sb.ToString()); // Dispose method will be called here.
 	/// </code>
-	/// </para>
-	/// <para>
-	/// In addition, you shouldn't use the parameterless constructor <see cref="ValueStringBuilder()"/>.
-	/// </para>
-	/// </remarks>
+	/// </example>
 	/// <seealso cref="ValueStringBuilder()"/>
 	[CLSCompliant(false)]
 	public ref partial struct ValueStringBuilder
@@ -52,11 +50,12 @@ namespace System.Text
 		/// </remarks>
 		public unsafe ValueStringBuilder(string s)
 		{
+			_chunk = null;
+			Length = s.Length;
+
 			fixed (char* p = s)
 			{
-				_chunk = null;
 				_chars = new Span<char>(p, s.Length);
-				Length = s.Length;
 			}
 		}
 
@@ -115,6 +114,10 @@ namespace System.Text
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The reference of the character.</returns>
+		/// <remarks>
+		/// This property returns a <see langword="ref"/> <see cref="char"/>, which
+		/// means you can use the return value to re-assign a new value.
+		/// </remarks>
 		public ref char this[int index] => ref _chars[index];
 
 

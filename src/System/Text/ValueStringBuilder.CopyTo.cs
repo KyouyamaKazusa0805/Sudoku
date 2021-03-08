@@ -6,13 +6,16 @@
 		/// Try to copy the current instance to the specified builder.
 		/// </summary>
 		/// <param name="builder">(<see langword="ref"/> parameter) The builder.</param>
+		/// <exception cref="ArgumentException">
+		/// Throws when the target argument doesn't contain the enough space.
+		/// </exception>
 		public readonly unsafe void CopyTo(ref ValueStringBuilder builder)
 		{
 			if (builder.Capacity < Length)
 			{
 				throw new ArgumentException(
-					$"The length of the argument '{nameof(builder)}' is different with 'this'."
-					, nameof(builder)
+					"The argument can't receive the value because the instance doesn't contain the enough space.",
+					nameof(builder)
 				);
 			}
 

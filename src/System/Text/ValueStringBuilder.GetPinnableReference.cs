@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace System.Text
 {
@@ -14,6 +15,7 @@ namespace System.Text
 		/// the explicit method call, and write eg <c>fixed (char* c = builder)</c>.
 		/// </para>
 		/// </summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public readonly ref readonly char GetPinnableReference() => ref MemoryMarshal.GetReference(_chars);
 
 		/// <summary>
