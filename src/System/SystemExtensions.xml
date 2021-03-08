@@ -1682,6 +1682,42 @@
         <member name="M:System.Text.ValueStringBuilder.op_Inequality(System.Text.ValueStringBuilder,System.Text.ValueStringBuilder)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
+        <member name="M:System.Text.ValueStringBuilder.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Dispose">
+            <summary>
+            To dispose the collection, all fields and properties will be cleared. In other words,
+            this method is nearly equivalent to the code <c>this = default;</c>.
+            </summary>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Dispose(System.Boolean)">
+            <summary>
+            To dispose the collection. Although this method is <see langword="public"/>,
+            you may not call this method, because this method will be called automatically when
+            the method <see cref="M:System.Text.ValueStringBuilder.ToString"/> is called.
+            </summary>
+            <param name="clearAll">Indicates whether we should return the buffer.</param>
+            <seealso cref="M:System.Text.ValueStringBuilder.ToString"/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.EnsureCapacity(System.Int32)">
+            <summary>
+            To ensure the capacity in order to append characters into this collection.
+            </summary>
+            <param name="capacity">The capacity value to ensure.</param>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Grow(System.Int32)">
+            <summary>
+            Resize the internal buffer either by doubling current buffer size or
+            by adding <paramref name="additionalCapacityBeyondPos"/> to
+            <see cref="P:System.Text.ValueStringBuilder.Length"/> whichever is greater.
+            </summary>
+            <param name="additionalCapacityBeyondPos">Number of chars requested beyond current position.</param>
+            <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
+        </member>
         <member name="T:System.Text.ValueStringBuilder.Enumerator">
             <summary>
             Encapsulates the enumerator of this collection.
@@ -1736,12 +1772,6 @@
             </param>
             <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
         </member>
-        <member name="M:System.Text.ValueStringBuilder.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.GetHashCode">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Text.ValueStringBuilder.Insert(System.Int32,System.Char,System.Int32)">
             <summary>
             Inserts a new character into the collection at the specified index.
@@ -1772,12 +1802,6 @@
             Removes the specified number of characters from the end of the collection.
             </summary>
             <param name="length">The number of characters you want to remove.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.EnsureCapacity(System.Int32)">
-            <summary>
-            To ensure the capacity in order to append characters into this collection.
-            </summary>
-            <param name="capacity">The capacity value to ensure.</param>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Clear">
             <summary>
@@ -1861,6 +1885,13 @@
             </summary>
             <param name="s">The string.</param>
         </member>
+        <member name="M:System.Text.ValueStringBuilder.AppendLine``1(``0)">
+            <summary>
+            Append a string representation of a specified instance, and then append a new line.
+            </summary>
+            <typeparam name="TUnmanaged">The type of the instance.</typeparam>
+            <param name="value">The value.</param>
+        </member>
         <member name="M:System.Text.ValueStringBuilder.AppendLineRange``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Append a series of elements into the current collection.
@@ -1904,13 +1935,6 @@
             <param name="converter">The converter.</param>
             <param name="separator">The separator when an element is finished to append.</param>
         </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendLine``1(``0)">
-            <summary>
-            Append a string representation of a specified instance, and then append a new line.
-            </summary>
-            <typeparam name="TUnmanaged">The type of the instance.</typeparam>
-            <param name="value">The value.</param>
-        </member>
         <member name="M:System.Text.ValueStringBuilder.AppendSpan(System.Int32)">
             <summary>
             Append a span.
@@ -1923,30 +1947,6 @@
             Reverse the string builder instance. For example, if the list holds a string <c>"Hello"</c>,
             after called this method, the string will be <c>"olleH"</c>.
             </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Dispose">
-            <summary>
-            To dispose the collection, all fields and properties will be cleared. In other words,
-            this method is nearly equivalent to the code <c>this = default;</c>.
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Dispose(System.Boolean)">
-            <summary>
-            To dispose the collection. Although this method is <see langword="public"/>,
-            you may not call this method, because this method will be called automatically when
-            the method <see cref="M:System.Text.ValueStringBuilder.ToString"/> is called.
-            </summary>
-            <param name="clearAll">Indicates whether we should return the buffer.</param>
-            <seealso cref="M:System.Text.ValueStringBuilder.ToString"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Grow(System.Int32)">
-            <summary>
-            Resize the internal buffer either by doubling current buffer size or
-            by adding <paramref name="additionalCapacityBeyondPos"/> to
-            <see cref="P:System.Text.ValueStringBuilder.Length"/> whichever is greater.
-            </summary>
-            <param name="additionalCapacityBeyondPos">Number of chars requested beyond current position.</param>
-            <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
         </member>
         <member name="M:System.Text.ValueStringBuilder.AppendSlow(System.String)">
             <summary>

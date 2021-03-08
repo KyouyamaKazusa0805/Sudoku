@@ -1,10 +1,5 @@
-﻿using System.Buffers;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-#if DEBUG
-using System.Diagnostics;
-#endif
 
 namespace System.Text
 {
@@ -79,25 +74,6 @@ namespace System.Text
 		public void RemoveFromEnd(int length) => Length -= length;
 
 		/// <summary>
-		/// To ensure the capacity in order to append characters into this collection.
-		/// </summary>
-		/// <param name="capacity">The capacity value to ensure.</param>
-		public void EnsureCapacity(int capacity)
-		{
-#if DEBUG
-			// This is not expected to be called this with negative capacity
-			Debug.Assert(capacity >= 0);
-#endif
-
-			// If the caller has a bug and calls this with negative capacity,
-			// make sure to call Grow to throw an exception.
-			if (capacity > Capacity)
-			{
-				Grow(capacity - Length);
-			}
-		}
-
-		/// <summary>
 		/// To clear the builder.
 		/// </summary>
 		public void Clear() => Dispose(false);
@@ -148,26 +124,25 @@ namespace System.Text
 		/// </summary>
 		/// <typeparam name="TUnmanaged">The type of the value.</typeparam>
 		/// <param name="value">The value.</param>
-		public void Append<TUnmanaged>(TUnmanaged value) where TUnmanaged : unmanaged =>
-			Append(value switch
-			{
-				sbyte s => s.ToString(),
-				byte b => b.ToString(),
-				short s => s.ToString(),
-				ushort u => u.ToString(),
-				nint n => n.ToString(),
-				nuint n => n.ToString(),
-				int i => i.ToString(),
-				uint u => u.ToString(),
-				long l => l.ToString(),
-				ulong u => u.ToString(),
-				char c => c.ToString(),
-				bool b => b.ToString(),
-				float f => f.ToString(),
-				double d => d.ToString(),
-				decimal d => d.ToString(),
-				_ => value.ToString()
-			});
+		public void Append<TUnmanaged>(TUnmanaged value) where TUnmanaged : unmanaged => Append(value switch
+		{
+			sbyte s => s.ToString(),
+			byte b => b.ToString(),
+			short s => s.ToString(),
+			ushort u => u.ToString(),
+			nint n => n.ToString(),
+			nuint n => n.ToString(),
+			int i => i.ToString(),
+			uint u => u.ToString(),
+			long l => l.ToString(),
+			ulong u => u.ToString(),
+			char c => c.ToString(),
+			bool b => b.ToString(),
+			float f => f.ToString(),
+			double d => d.ToString(),
+			decimal d => d.ToString(),
+			_ => value.ToString()
+		});
 
 		/// <summary>
 		/// Append a string into the collection.
@@ -300,6 +275,18 @@ namespace System.Text
 		}
 
 		/// <summary>
+		/// Append a string representation of a specified instance, and then append a new line.
+		/// </summary>
+		/// <typeparam name="TUnmanaged">The type of the instance.</typeparam>
+		/// <param name="value">The value.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void AppendLine<TUnmanaged>(TUnmanaged value) where TUnmanaged : unmanaged
+		{
+			Append(value);
+			AppendLine();
+		}
+
+		/// <summary>
 		/// Append a series of elements into the current collection.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
@@ -417,18 +404,6 @@ namespace System.Text
 		}
 
 		/// <summary>
-		/// Append a string representation of a specified instance, and then append a new line.
-		/// </summary>
-		/// <typeparam name="TUnmanaged">The type of the instance.</typeparam>
-		/// <param name="value">The value.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void AppendLine<TUnmanaged>(TUnmanaged value) where TUnmanaged : unmanaged
-		{
-			Append(value);
-			AppendLine();
-		}
-
-		/// <summary>
 		/// Append a span.
 		/// </summary>
 		/// <param name="length">The length of the characters.</param>
@@ -460,81 +435,6 @@ namespace System.Text
 					p[i] = p[Length - 1 - i];
 					p[Length - 1 - i] = c;
 				}
-			}
-		}
-
-		/// <summary>
-		/// To dispose the collection, all fields and properties will be cleared. In other words,
-		/// this method is nearly equivalent to the code <c>this = default;</c>.
-		/// </summary>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Dispose() => Dispose(true);
-
-		/// <summary>
-		/// To dispose the collection. Although this method is <see langword="public"/>,
-		/// you may not call this method, because this method will be called automatically when
-		/// the method <see cref="ToString"/> is called.
-		/// </summary>
-		/// <param name="clearAll">Indicates whether we should return the buffer.</param>
-		/// <seealso cref="ToString"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void Dispose(bool clearAll)
-		{
-			char[]? toReturn = _chunk;
-
-			if (clearAll)
-			{
-				// For safety, to avoid using pooled array if this instance is erroneously appended to again.
-				this = default;
-			}
-			else
-			{
-				// Store the previous data, but clear the length value to 0.
-				Length = 0;
-				_chars.Clear();
-			}
-
-			// Returns the buffer memory.
-			if (toReturn is not null)
-			{
-				ArrayPool<char>.Shared.Return(toReturn);
-			}
-		}
-
-		/// <summary>
-		/// Resize the internal buffer either by doubling current buffer size or
-		/// by adding <paramref name="additionalCapacityBeyondPos"/> to
-		/// <see cref="Length"/> whichever is greater.
-		/// </summary>
-		/// <param name="additionalCapacityBeyondPos">Number of chars requested beyond current position.</param>
-		/// <seealso cref="Length"/>
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		private void Grow(int additionalCapacityBeyondPos)
-		{
-#if DEBUG
-			Debug.Assert(additionalCapacityBeyondPos > 0);
-			Debug.Assert(
-				Length > _chars.Length - additionalCapacityBeyondPos,
-				"Grow called incorrectly, no resize is needed."
-			);
-#endif
-
-			// Make sure to let Rent throw an exception
-			// if the caller has a bug and the desired capacity is negative.
-			char[] poolArray = ArrayPool<char>.Shared.Rent(
-				(int)Math.Max((uint)(Length + additionalCapacityBeyondPos), (uint)_chars.Length * 2)
-			);
-
-			// If lack of space to store extra characters, just creates a new one,
-			// and copy them into the new collection.
-			_chars[..Length].CopyTo(poolArray);
-
-			char[]? toReturn = _chunk;
-			_chars = _chunk = poolArray;
-			if (toReturn is not null)
-			{
-				ArrayPool<char>.Shared.Return(toReturn);
 			}
 		}
 
