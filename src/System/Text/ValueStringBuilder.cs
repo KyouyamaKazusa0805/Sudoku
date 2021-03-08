@@ -135,7 +135,7 @@ namespace System.Text
 				int i = 0;
 				for (char* p = pThis, q = pOther; i < Length; i++)
 				{
-					if (*p != *q)
+					if (*p++ != *q++)
 					{
 						return false;
 					}
