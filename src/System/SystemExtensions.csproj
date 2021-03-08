@@ -13,11 +13,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DocumentationFile>.\SystemExtensions.xml</DocumentationFile>
+		<DocumentationFile>.\SystemExtensions.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="SystemExtensions.xml" />
+		<None Remove="SystemExtensions.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
