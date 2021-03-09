@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		{
 			var result = new List<StepSearcher>
 			{
-				new SingleStepSearcher(@this.EnableFullHouse, @this.EnableLastDigit, @this.ShowDirectLines),
+				new SingleStepSearcher { EnableFullHouse = @this.EnableFullHouse, EnableLastDigit = @this.EnableLastDigit, ShowDirectLines = @this.ShowDirectLines },
 				new LcStepSearcher(),
 				new SubsetStepSearcher(),
 				new NormalFishStepSearcher(),

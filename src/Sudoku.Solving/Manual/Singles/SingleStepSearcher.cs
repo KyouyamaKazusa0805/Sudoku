@@ -18,30 +18,51 @@ namespace Sudoku.Solving.Manual.Singles
 	public sealed class SingleStepSearcher : StepSearcher
 	{
 		/// <summary>
-		/// Indicates the solver enables these options.
+		/// Indicates whether the solver enables the technique full house.
 		/// </summary>
-		private readonly bool _enableFullHouse, _enableLastDigit, _showDirectLines;
-
+		public bool EnableFullHouse { get; init; }
 
 		/// <summary>
-		/// Initializes an instance with enable options.
+		/// Indicates whether the solver enables the technique last digit.
 		/// </summary>
-		/// <param name="enableFullHouse">
-		/// Indicates whether the solver enables full house.
-		/// </param>
-		/// <param name="enableLastDigit">
-		/// Indicates whether the solver enables last digit.
-		/// </param>
-		/// <param name="showDirectLines">
+		public bool EnableLastDigit { get; init; }
+
+		/// <summary>
 		/// Indicates whether the solver shows the direct lines (cross-hatching information).
-		/// </param>
-		public SingleStepSearcher(
-			bool enableFullHouse = false, bool enableLastDigit = false, bool showDirectLines = false)
-		{
-			_enableFullHouse = enableFullHouse;
-			_enableLastDigit = enableLastDigit;
-			_showDirectLines = showDirectLines;
-		}
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// Direct lines is a concept that describes the crosshatching information of a hidden single.
+		/// For example, in this following grid:
+		/// <code>
+		/// .---------.---------.---------.
+		/// | .  .  . | .  .  . | .  .  . |
+		/// | .  .  . | .  .  1 | .  .  . |
+		/// | .  .  . | .  .  . | .  .  . |
+		/// :---------+---------+---------:
+		/// | .  .  1 | x  x  x | .  .  . |
+		/// | .  .  . | x  .  x | .  .  . |
+		/// | .  .  . | x  x  x | 1  .  . |
+		/// :---------+---------+---------:
+		/// | .  .  . | .  .  . | .  .  . |
+		/// | .  .  . | 1  .  . | .  .  . |
+		/// | .  .  . | .  .  . | .  .  . |
+		/// '---------'---------'---------'
+		/// </code>
+		/// The start point of the direct lines are:
+		/// <list type="bullet">
+		/// <item><c>r4c3(1)</c>, removes the cases of digit 1 for cells <c>r4c456</c></item>
+		/// <item><c>r2c6(1)</c>, removes the cases of digit 1 for cells <c>r456c6</c></item>
+		/// <item><c>r6c7(1)</c>, removes the cases of digit 1 for cells <c>r6c456</c></item>
+		/// <item><c>r8c4(1)</c>, removes the cases of digit 1 for cells <c>r456c4</c></item>
+		/// </list>
+		/// </para>
+		/// <para>
+		/// All the end points may be displayed using a cross mark (<c>'x'</c>), and the start
+		/// point may be used a circle mark (<c>'o'</c>).
+		/// </para>
+		/// </remarks>
+		public bool ShowDirectLines { get; init; }
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -57,7 +78,7 @@ namespace Sudoku.Solving.Manual.Singles
 		{
 #pragma warning disable IDE0055
 			#region Full houses
-			if (!_enableFullHouse)
+			if (!EnableFullHouse)
 			{
 				goto CheckHiddenSingle;
 			}
@@ -157,7 +178,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 				int digit = TrailingZeroCount(mask);
 				List<(Cells, Cells)>? directLines = null;
-				if (_showDirectLines)
+				if (ShowDirectLines)
 				{
 					directLines = new();
 					for (int i = 0; i < 9; i++)
@@ -230,7 +251,7 @@ namespace Sudoku.Solving.Manual.Singles
 				// (painting or text information) on the step in order to display onto the UI.
 				bool enableAndIsLastDigit = false;
 				var cellOffsets = new List<DrawingInfo>();
-				if (_enableLastDigit)
+				if (EnableLastDigit)
 				{
 					// Sum up the number of appearing in the grid of 'digit'.
 					int digitCount = 0;
@@ -246,30 +267,9 @@ namespace Sudoku.Solving.Manual.Singles
 					enableAndIsLastDigit = digitCount == 8;
 				}
 
-				// Direct lines is a concept that describes the crosshatching information of a hidden single.
-				// For example, in this following grid:
-				// .---------.---------.---------.
-				// | .  .  . | .  .  . | .  .  . |
-				// | .  .  . | .  .  1 | .  .  . |
-				// | .  .  . | .  .  . | .  .  . |
-				// :---------+---------+---------:
-				// | .  .  1 | x  x  x | .  .  . |
-				// | .  .  . | x  .  x | .  .  . |
-				// | .  .  . | x  x  x | 1  .  . |
-				// :---------+---------+---------:
-				// | .  .  . | .  .  . | .  .  . |
-				// | .  .  . | 1  .  . | .  .  . |
-				// | .  .  . | .  .  . | .  .  . |
-				// '---------'---------'---------'
-				// The start point of the direct lines are:
-				// * r4c3(1), removes the cases of digit 1 for cells r4c456
-				// * r2c6(1), removes the cases of digit 1 for cells r456c6
-				// * r6c7(1), removes the cases of digit 1 for cells r6c456
-				// * r8c4(1), removes the cases of digit 1 for cells r456c4
-				// All the end points may be displayed using a cross mark ('x'), and the start
-				// point may be used a circle mark ('o').
+				// Get direct lines.
 				List<(Cells, Cells)>? directLines = null;
-				if (!enableAndIsLastDigit && _showDirectLines)
+				if (!enableAndIsLastDigit && ShowDirectLines)
 				{
 					directLines = new();
 

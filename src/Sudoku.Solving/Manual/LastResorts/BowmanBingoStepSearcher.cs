@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// The singles searcher.
 		/// </summary>
-		private readonly SingleStepSearcher _searcher = new(true, true);
+		private readonly SingleStepSearcher _searcher = new() { EnableFullHouse = true, EnableLastDigit = true };
 
 		/// <summary>
 		/// All temporary conclusions.

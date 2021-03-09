@@ -5296,34 +5296,52 @@
             Encapsulates a <b>single</b> technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Singles.SingleStepSearcher._enableFullHouse">
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.EnableFullHouse">
             <summary>
-            Indicates the solver enables these options.
+            Indicates whether the solver enables the technique full house.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Singles.SingleStepSearcher._enableLastDigit">
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.EnableLastDigit">
             <summary>
-            Indicates the solver enables these options.
+            Indicates whether the solver enables the technique last digit.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Singles.SingleStepSearcher._showDirectLines">
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.ShowDirectLines">
             <summary>
-            Indicates the solver enables these options.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes an instance with enable options.
-            </summary>
-            <param name="enableFullHouse">
-            Indicates whether the solver enables full house.
-            </param>
-            <param name="enableLastDigit">
-            Indicates whether the solver enables last digit.
-            </param>
-            <param name="showDirectLines">
             Indicates whether the solver shows the direct lines (cross-hatching information).
-            </param>
+            </summary>
+            <remarks>
+            <para>
+            Direct lines is a concept that describes the crosshatching information of a hidden single.
+            For example, in this following grid:
+            <code>
+            .---------.---------.---------.
+            | .  .  . | .  .  . | .  .  . |
+            | .  .  . | .  .  1 | .  .  . |
+            | .  .  . | .  .  . | .  .  . |
+            :---------+---------+---------:
+            | .  .  1 | x  x  x | .  .  . |
+            | .  .  . | x  .  x | .  .  . |
+            | .  .  . | x  x  x | 1  .  . |
+            :---------+---------+---------:
+            | .  .  . | .  .  . | .  .  . |
+            | .  .  . | 1  .  . | .  .  . |
+            | .  .  . | .  .  . | .  .  . |
+            '---------'---------'---------'
+            </code>
+            The start point of the direct lines are:
+            <list type="bullet">
+            <item><c>r4c3(1)</c>, removes the cases of digit 1 for cells <c>r4c456</c></item>
+            <item><c>r2c6(1)</c>, removes the cases of digit 1 for cells <c>r456c6</c></item>
+            <item><c>r6c7(1)</c>, removes the cases of digit 1 for cells <c>r6c456</c></item>
+            <item><c>r8c4(1)</c>, removes the cases of digit 1 for cells <c>r456c4</c></item>
+            </list>
+            </para>
+            <para>
+            All the end points may be displayed using a cross mark (<c>'x'</c>), and the start
+            point may be used a circle mark (<c>'o'</c>).
+            </para>
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
