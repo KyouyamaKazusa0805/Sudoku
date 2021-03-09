@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// </summary>
 		private static readonly StepSearcher[] SstsSearchers =
 		{
-			new SingleStepSearcher(false, false, false),
+			new SingleStepSearcher(),
 			new LcStepSearcher(),
 			new SubsetStepSearcher()
 		};

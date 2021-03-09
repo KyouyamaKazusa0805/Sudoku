@@ -5311,11 +5311,6 @@
             Indicates the solver enables these options.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.#ctor">
-            <summary>
-            Initializes the instance with all value <see langword="false"/>.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with enable options.
@@ -5335,40 +5330,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetFullHouses(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get all full houses.
-            </summary>
-            <param name="accumulator">The current accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetHiddenSinglesOrLastDigits(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get all hidden singles or last digits.
-            </summary>
-            <param name="accumulator">The current accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetHiddenSinglesOrLastDigits(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
-            <summary>
-            Called by <see cref="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetHiddenSinglesOrLastDigits(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)"/>.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="region">The region.</param>
-            <returns>
-            Returns a <see cref="T:System.Boolean"/> value indicating whether the searching is successful.
-            </returns>
-            <seealso cref="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetHiddenSinglesOrLastDigits(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetNakedSingles(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get all naked singles.
-            </summary>
-            <param name="accumulator">The current accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.StepInfo">
             <summary>
