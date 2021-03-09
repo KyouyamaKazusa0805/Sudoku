@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Extensions;
 using System.Reflection;
 using Sudoku.DocComments;
 
@@ -210,7 +211,7 @@ namespace Sudoku.Solving.Manual
 		/// </returns>
 		public static TechniqueProperties? FromType(Type type)
 		{
-			if (!type.IsSubclassOf(typeof(StepSearcher)) || type.IsAbstract)
+			if (!type.IsSubclassOf<StepSearcher>() || type.IsAbstract)
 			{
 				return null;
 			}
