@@ -3343,16 +3343,10 @@
             Indictes the mask that means all regions.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher._maxSize">
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.MaxSize">
             <summary>
             Indicates the max size to search.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the max size.
-            </summary>
-            <param name="maxSize">The max size.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
@@ -5673,22 +5667,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher.GetHiddenSubsets(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32)">
-            <summary>
-            Get all naked subsets.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="size">The size to search.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher.GetNakedSubsets(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32)">
-            <summary>
-            Get all hidden subsets.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="size">The size to search.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.Gsp2StepInfo">
             <summary>
