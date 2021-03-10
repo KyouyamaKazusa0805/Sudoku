@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
-using System.Threading;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -40,14 +39,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates the max size to search.
 		/// </summary>
-		private readonly int _maxSize;
-
-
-		/// <summary>
-		/// Initializes an instance with the max size.
-		/// </summary>
-		/// <param name="maxSize">The max size.</param>
-		public ComplexFishStepSearcher(int maxSize) => _maxSize = maxSize;
+		public int MaxSize { get; init; }
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -63,10 +55,22 @@ namespace Sudoku.Solving.Manual.Fishes
 			// Gather the POM eliminations to get all possible fish eliminations.
 			var pomElims = GetPomEliminationsFirstly(grid);
 
-			// Iterate on different sizes.
+			// Other variables.
 			var tempList = new List<StepInfo>();
 			var tempGrid = grid;
-			var taskList = new Task?[9];
+
+			// Sum up how many digits exist complex fish.
+			int count = 0;
+			for (int digit = 0; digit < 9; digit++)
+			{
+				if (pomElims[digit] is not null)
+				{
+					count++;
+				}
+			}
+
+			var tasksForSearchingForComplexFishes = new Task[count];
+			count = 0;
 			for (int digit = 0; digit < 9; digit++)
 			{
 				if (pomElims[digit] is null)
@@ -79,30 +83,15 @@ namespace Sudoku.Solving.Manual.Fishes
 				int currentDigit = digit;
 
 				// Create a background thread to work on searching for fishes of this digit.
-				taskList[currentDigit] = Task.Run(innerProcess);
+				// Here we use the local function because all captured objects will be encapsulated
+				// by a struct instead of a class.
+				tasksForSearchingForComplexFishes[count++] = Task.Run(innerProcess);
 
 				void innerProcess() => GetAll(tempList, tempGrid, pomElims, currentDigit);
 			}
 
-			// Round-robin algorithm to synchronize the threads.
-			while (true)
-			{
-				Thread.Sleep(250);
-
-				bool flag = true;
-				for (int digit = 0; digit < 9; digit++)
-				{
-					if (taskList[digit] is { IsCompleted: false })
-					{
-						flag = false;
-						break;
-					}
-				}
-				if (flag)
-				{
-					break;
-				}
-			}
+			// Synchronize the tasks.
+			Task.WaitAll(tasksForSearchingForComplexFishes);
 
 			// Remove duplicate items.
 			accumulator.AddRange(tempList.RemoveDuplicateItems());
@@ -121,10 +110,10 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			const RegionLabel bothLines = (RegionLabel)3;
 
-			int* currentCoverSets = stackalloc int[_maxSize];
+			int* currentCoverSets = stackalloc int[MaxSize];
 
 			// Iterate on each size.
-			for (int size = 2; size <= _maxSize; size++)
+			for (int size = 2; size <= MaxSize; size++)
 			{
 				// Iterate on different cases on whether searcher finds mutant fishes.
 				// If false, search for franken fishes.
