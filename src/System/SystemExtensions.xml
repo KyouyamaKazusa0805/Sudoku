@@ -365,6 +365,29 @@
         <member name="M:System.Collections.Generic.TreeNode`1.op_LessThanOrEqual(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DisableParameterlessConstructorAttribute">
+            <summary>
+            Marks on a <see langword="struct"/>, to tell the users the parameterless constructor is disabled
+            and can't be called or used.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DisableParameterlessConstructorAttribute.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DisableParameterlessConstructorAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the specified recommend member name.
+            </summary>
+            <param name="recommendMemberName">The recommend member name.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DisableParameterlessConstructorAttribute.RecommendMemberName">
+            <summary>
+            Indicates the recommend member name.
+            </summary>
+            <remarks>
+            This property holds the value that tells users which member they should use and replace with.
+            </remarks>
+        </member>
         <member name="T:System.Extensions.BitArrayEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.

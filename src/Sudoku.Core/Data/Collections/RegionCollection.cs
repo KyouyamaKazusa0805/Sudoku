@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Sudoku.Data.Collections
 	/// <summary>
 	/// Indicates a region collection.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly ref struct RegionCollection
 	{
 		/// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Text;
 using Sudoku.DocComments;
@@ -11,6 +12,7 @@ namespace Sudoku.Data.Collections
 	/// <summary>
 	/// Indicates a collection that contains the several digits.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly ref struct DigitCollection
 	{
 		/// <summary>

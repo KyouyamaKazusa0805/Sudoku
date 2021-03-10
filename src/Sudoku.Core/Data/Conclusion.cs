@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -6,6 +7,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a conclusion representation while solving in logic.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly struct Conclusion : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IComparable<Conclusion>
 	{
 		/// <summary>
@@ -120,5 +122,17 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		public static bool operator !=(in Conclusion left, in Conclusion right) => !(left == right);
+
+		/// <inheritdoc cref="Operators.operator &gt;"/>
+		public static bool operator <(Conclusion left, Conclusion right) => left.CompareTo(right) < 0;
+
+		/// <inheritdoc cref="Operators.operator &gt;="/>
+		public static bool operator <=(Conclusion left, Conclusion right) => left.CompareTo(right) <= 0;
+
+		/// <inheritdoc cref="Operators.operator &lt;"/>
+		public static bool operator >(Conclusion left, Conclusion right) => left.CompareTo(right) > 0;
+
+		/// <inheritdoc cref="Operators.operator &lt;="/>
+		public static bool operator >=(Conclusion left, Conclusion right) => left.CompareTo(right) >= 0;
 	}
 }

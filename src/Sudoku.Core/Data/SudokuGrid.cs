@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Sudoku.Data
 #if DEBUG
 	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
 #endif
+	[DisableParameterlessConstructor(nameof(Empty))]
 	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable
 	{
 		/// <summary>

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,6 +21,7 @@ namespace Sudoku.Data
 	/// and the <see langword="false"/> bit (0) is for the cell not containing
 	/// the digit.
 	/// </remarks>
+	[DisableParameterlessConstructor(nameof(Empty))]
 	public struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
 	{
 		/// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -10,6 +11,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Encapsulates an instance to represent a series of eliminations in JE or SE.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly struct Elimination : IValueEquatable<Elimination>
 	{
 		/// <summary>

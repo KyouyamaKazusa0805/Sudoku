@@ -1524,6 +1524,18 @@
         <member name="M:Sudoku.Data.Conclusion.op_Inequality(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
+        <member name="M:Sudoku.Data.Conclusion.op_LessThan(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.op_LessThanOrEqual(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.op_GreaterThan(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.op_GreaterThanOrEqual(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
         <member name="T:Sudoku.Data.ConclusionType">
             <summary>
             Provides a conclusion type.

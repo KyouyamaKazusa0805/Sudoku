@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data
 {
@@ -15,6 +16,7 @@ namespace Sudoku.Data
 	/// }
 	/// </code>
 	/// </remarks>
+	[DisableParameterlessConstructor]
 	public readonly ref partial struct BitSubsetsGenerator
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data;
 using Sudoku.DocComments;
 
@@ -7,6 +8,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <summary>
 	/// Indicates the borescoper's deadly pattern.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>

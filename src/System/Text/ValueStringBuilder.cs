@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.DocComments;
 
 namespace System.Text
@@ -26,6 +27,7 @@ namespace System.Text
 	/// </example>
 	/// <seealso cref="ValueStringBuilder()"/>
 	[CLSCompliant(false)]
+	[DisableParameterlessConstructor]
 	public ref partial struct ValueStringBuilder
 	{
 		/// <summary>

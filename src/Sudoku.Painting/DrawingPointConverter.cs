@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -10,6 +11,7 @@ namespace Sudoku.Painting
 	/// Provides an instance for converting drawing points (i.e. <see cref="PointF"/>)
 	/// to an element in sudoku grid.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly struct DrawingPointConverter
 	{
 		/// <summary>

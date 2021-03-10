@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 
@@ -7,6 +9,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a link used for drawing.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly struct Link : IValueEquatable<Link>
 	{
 		/// <summary>
@@ -67,8 +70,15 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override string ToString() =>
-			$"{new Candidates { StartCandidate }.ToString()}{LinkType.GetNotation()}{new Candidates { EndCandidate }.ToString()}";
+		public override string ToString()
+		{
+			var sb = new ValueStringBuilder(stackalloc char[100]);
+			sb.Append(new Candidates { StartCandidate }.ToString());
+			sb.Append(LinkType.GetNotation());
+			sb.Append(new Candidates { EndCandidate }.ToString());
+
+			return sb.ToString();
+		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);

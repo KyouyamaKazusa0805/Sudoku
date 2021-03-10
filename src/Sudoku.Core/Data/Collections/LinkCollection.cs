@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Sudoku.Data.Extensions;
@@ -11,6 +12,7 @@ namespace Sudoku.Data.Collections
 	/// <summary>
 	/// Provides a collection that contains the chain links.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly ref struct LinkCollection
 	{
 		/// <summary>

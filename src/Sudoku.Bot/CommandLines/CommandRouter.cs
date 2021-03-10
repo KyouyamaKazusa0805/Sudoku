@@ -1,8 +1,11 @@
-﻿namespace Sudoku.Bot.CommandLines
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Bot.CommandLines
 {
 	/// <summary>
 	/// Indicates a command router.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly struct CommandRouter
 	{
 		/// <summary>

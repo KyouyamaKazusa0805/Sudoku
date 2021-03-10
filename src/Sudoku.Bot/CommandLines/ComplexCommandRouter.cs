@@ -1,8 +1,11 @@
-﻿namespace Sudoku.Bot.CommandLines
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Bot.CommandLines
 {
 	/// <summary>
 	/// Indicates a complex command router.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly struct ComplexCommandRouter
 	{
 		/// <summary>

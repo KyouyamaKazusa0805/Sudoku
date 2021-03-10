@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Sudoku.Data.Collections
 	/// <summary>
 	/// Provides a collection that contains the conclusions.
 	/// </summary>
+	[DisableParameterlessConstructor]
 	public readonly ref struct ConclusionCollection
 	{
 		/// <summary>
