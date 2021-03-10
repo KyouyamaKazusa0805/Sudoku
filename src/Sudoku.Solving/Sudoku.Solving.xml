@@ -1823,6 +1823,8 @@
             <param name="p">(<see langword="in"/> parameter) The current node.</param>
             <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <param name="source">The source grid.</param>
+            <param name="offNodes">All off nodes.</param>
             <param name="isDynamic">
             Indicates whether the current searcher is searching for dynamic chains. If so,
             we can't use those static properties to optimize the performance.
@@ -2101,7 +2103,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
             <param name="XEnabled">Indicates whether the chain is enabled X strong relations.</param>
-            <param name="yEnabled">Indicates whether the chain is enabled Y strong relations.</param>
+            <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
             <param name="Target">The destination node that is off.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.LoopStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean,System.Boolean,Sudoku.Data.Node@)">
@@ -2111,7 +2113,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
             <param name="XEnabled">Indicates whether the chain is enabled X strong relations.</param>
-            <param name="yEnabled">Indicates whether the chain is enabled Y strong relations.</param>
+            <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
             <param name="Target">The destination node that is off.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.LoopStepInfo.Difficulty">
@@ -3450,7 +3452,7 @@
             <param name="Digit">The digit used.</param>
             <param name="BaseSets">The base sets.</param>
             <param name="CoverSets">The cover sets.</param>
-            <param name="FinCells">All fin cells.</param>
+            <param name="Fins">All fin cells.</param>
             <param name="IsSashimi">
             Indicates whether the fish instance is sashimi.
             The value can be:
@@ -3476,7 +3478,7 @@
             <param name="Digit">The digit used.</param>
             <param name="BaseSets">The base sets.</param>
             <param name="CoverSets">The cover sets.</param>
-            <param name="FinCells">All fin cells.</param>
+            <param name="Fins">All fin cells.</param>
             <param name="IsSashimi">
             Indicates whether the fish instance is sashimi.
             The value can be:
@@ -6006,10 +6008,6 @@
             <param name="onlyEnableInAnalysis">
             (<see langword="out"/> parameter) Indicates whether the searcher is enabled only in traversing mode.
             </param>
-            <param name="onlyEnableInFastMode">
-            (<see langword="out"/> parameter) Indicates whether the searcher is only enabled
-            in fast searching mode.
-            </param>
             <param name="displayLevel">
             (<see langword="out"/> parameter) Indicates the display level.
             </param>
@@ -7719,7 +7717,6 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -7734,7 +7731,6 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TypeCode">The type code.</param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -7760,7 +7756,6 @@
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
-            <param name="ConjugatePairs">All conjugate pairs.</param>
             <param name="XDigit">The X digit.</param>
             <param name="YDigit">The Y digit.</param>
             <param name="XyCell">The cell that only contains X and Y digit.</param>
@@ -7778,7 +7773,6 @@
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
-            <param name="ConjugatePairs">All conjugate pairs.</param>
             <param name="XDigit">The X digit.</param>
             <param name="YDigit">The Y digit.</param>
             <param name="XyCell">The cell that only contains X and Y digit.</param>

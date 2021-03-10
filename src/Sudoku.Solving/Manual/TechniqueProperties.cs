@@ -156,10 +156,6 @@ namespace Sudoku.Solving.Manual
 		/// <param name="onlyEnableInAnalysis">
 		/// (<see langword="out"/> parameter) Indicates whether the searcher is enabled only in traversing mode.
 		/// </param>
-		/// <param name="onlyEnableInFastMode">
-		/// (<see langword="out"/> parameter) Indicates whether the searcher is only enabled
-		/// in fast searching mode.
-		/// </param>
 		/// <param name="displayLevel">
 		/// (<see langword="out"/> parameter) Indicates the display level.
 		/// </param>

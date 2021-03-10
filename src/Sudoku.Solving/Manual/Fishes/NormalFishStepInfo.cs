@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// <param name="Digit">The digit used.</param>
 	/// <param name="BaseSets">The base sets.</param>
 	/// <param name="CoverSets">The cover sets.</param>
-	/// <param name="FinCells">All fin cells.</param>
+	/// <param name="Fins">All fin cells.</param>
 	/// <param name="IsSashimi">
 	/// Indicates whether the fish instance is sashimi.
 	/// The value can be:

@@ -3913,6 +3913,7 @@
             <typeparam name="TKey">The type of the key.</typeparam>
             <typeparam name="TConverted">The type of the value converted.</typeparam>
             <param name="keySelector">The key selecting method.</param>
+            <param name="elementSelector">The element selecting method.</param>
             <returns>
             An <see cref="T:Sudoku.Data.GridIterators.IIterator`1"/> of <see cref="T:Sudoku.Data.GridIterators.IGroup`2"/> where each
             object contains a sequence of objects and a key.
@@ -4041,6 +4042,9 @@
             Parse the sukaku format string.
             </summary>
             <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
+            <param name="compatibleFirst">
+            Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
+            </param>
             <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.ValueChangedArgs">

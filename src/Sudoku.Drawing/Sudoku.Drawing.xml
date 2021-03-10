@@ -919,6 +919,7 @@
             and digit of a candidate.
             </summary>
             <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
             <returns>The rectangle.</returns>
         </member>
         <member name="M:Sudoku.Drawing.PointConverter.GetMouseRectangleViaRegion(System.Int32)">

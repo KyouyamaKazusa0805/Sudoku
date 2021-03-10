@@ -1540,7 +1540,9 @@
             Encapsulates a string builder implementation that is used via a <see langword="struct"/>.
             </summary>
             <remarks>
-            <para>
+            You shouldn't use the parameterless constructor <see cref="M:System.Text.ValueStringBuilder.#ctor"/>.
+            </remarks>
+            <example>
             You can use this struct like this:
             <code>
             var sb = new ValueStringBuilder(stackalloc char[100]);
@@ -1553,11 +1555,7 @@
             
             Console.WriteLine(sb.ToString()); // Dispose method will be called here.
             </code>
-            </para>
-            <para>
-            In addition, you shouldn't use the parameterless constructor <see cref="M:System.Text.ValueStringBuilder.#ctor"/>.
-            </para>
-            </remarks>
+            </example>
             <seealso cref="M:System.Text.ValueStringBuilder.#ctor"/>
         </member>
         <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.ValueStringBuilder@)">
@@ -1565,6 +1563,9 @@
             Try to copy the current instance to the specified builder.
             </summary>
             <param name="builder">(<see langword="ref"/> parameter) The builder.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the target argument doesn't contain the enough space.
+            </exception>
         </member>
         <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.StringBuilder)">
             <summary>
@@ -1642,6 +1643,10 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The reference of the character.</returns>
+            <remarks>
+            This property returns a <see langword="ref"/> <see cref="T:System.Char"/>, which
+            means you can use the return value to re-assign a new value.
+            </remarks>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@)">
             <summary>

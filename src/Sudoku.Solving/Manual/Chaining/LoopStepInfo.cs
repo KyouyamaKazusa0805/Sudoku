@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	/// <param name="XEnabled">Indicates whether the chain is enabled X strong relations.</param>
-	/// <param name="yEnabled">Indicates whether the chain is enabled Y strong relations.</param>
+	/// <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
 	/// <param name="DestOn">The destination node that is on.</param>
 	/// <param name="DestOff">The destination node that is off.</param>
 #else
@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	/// <param name="XEnabled">Indicates whether the chain is enabled X strong relations.</param>
-	/// <param name="yEnabled">Indicates whether the chain is enabled Y strong relations.</param>
+	/// <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
 	/// <param name="Target">The destination node that is off.</param>
 #endif
 	public sealed record LoopStepInfo(

@@ -419,7 +419,6 @@
             Deserialize the file.
             </summary>
             <typeparam name="T">The type of the instance.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
             <param name="filename">The file name.</param>
             <returns>The instance.</returns>
         </member>
@@ -1011,6 +1010,10 @@
             Check whether the specified key is a digit key.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The key.</param>
+            <param name="fromZero">
+            Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
+            or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
+            </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.KeyEx.IsNumPadDigit(System.Windows.Input.Key,System.Boolean)">
@@ -1018,6 +1021,10 @@
             Check whether the specified key is a digit key in number pad.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The key.</param>
+            <param name="fromZero">
+            Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
+            or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
+            </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.KeyEx.IsDigitUpsideAlphabets(System.Windows.Input.Key,System.Boolean)">
@@ -1026,6 +1033,10 @@
             in keyboard.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The key.</param>
+            <param name="fromZero">
+            Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
+            or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
+            </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.KeyEx.IsAlphabet(System.Windows.Input.Key)">

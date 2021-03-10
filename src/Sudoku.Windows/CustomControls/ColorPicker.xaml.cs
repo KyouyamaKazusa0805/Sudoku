@@ -449,7 +449,6 @@ namespace Sudoku.Windows.CustomControls
 		/// Deserialize the file.
 		/// </summary>
 		/// <typeparam name="T">The type of the instance.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
 		/// <param name="filename">The file name.</param>
 		/// <returns>The instance.</returns>
 		private static T? LoadFromXml<T>(string filename)

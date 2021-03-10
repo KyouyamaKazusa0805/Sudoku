@@ -487,6 +487,9 @@ namespace Sudoku.Data
 			/// Parse the sukaku format string.
 			/// </summary>
 			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
+			/// <param name="compatibleFirst">
+			/// Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
+			/// </param>
 			/// <returns>The result.</returns>
 			private static SudokuGrid OnParsingSukaku(ref Parser parser, bool compatibleFirst)
 			{

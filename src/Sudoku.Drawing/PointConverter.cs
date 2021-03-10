@@ -183,6 +183,7 @@ namespace Sudoku.Drawing
 		/// and digit of a candidate.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
+		/// <param name="digit">The digit.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public RectangleF GetMouseRectangle(int cell, int digit)

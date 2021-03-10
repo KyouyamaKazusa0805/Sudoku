@@ -41,6 +41,7 @@ namespace Sudoku.Data
 		/// <typeparam name="TKey">The type of the key.</typeparam>
 		/// <typeparam name="TConverted">The type of the value converted.</typeparam>
 		/// <param name="keySelector">The key selecting method.</param>
+		/// <param name="elementSelector">The element selecting method.</param>
 		/// <returns>
 		/// An <see cref="IIterator{T}"/> of <see cref="IGroup{TKey, TValue}"/> where each
 		/// object contains a sequence of objects and a key.

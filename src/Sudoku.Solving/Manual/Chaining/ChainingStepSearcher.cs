@@ -75,6 +75,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="p">(<see langword="in"/> parameter) The current node.</param>
 		/// <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+		/// <param name="source">The source grid.</param>
+		/// <param name="offNodes">All off nodes.</param>
 		/// <param name="isDynamic">
 		/// Indicates whether the current searcher is searching for dynamic chains. If so,
 		/// we can't use those static properties to optimize the performance.

@@ -454,8 +454,4 @@ dotnet_diagnostic.CA2244.severity = error
 
 # Other custom disabled cases.
 # May be deleted later in the future.
-dotnet_diagnostic.CS1572.severity = none
-dotnet_diagnostic.CS1573.severity = none
-dotnet_diagnostic.CS1591.severity = none
-
 dotnet_diagnostic.CS0618.severity = silent

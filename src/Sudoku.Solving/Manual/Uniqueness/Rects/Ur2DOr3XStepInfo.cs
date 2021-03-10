@@ -16,7 +16,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Cells">All cells.</param>
 	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
-	/// <param name="ConjugatePairs">All conjugate pairs.</param>
 	/// <param name="XDigit">The X digit.</param>
 	/// <param name="YDigit">The Y digit.</param>
 	/// <param name="XyCell">The cell that only contains X and Y digit.</param>

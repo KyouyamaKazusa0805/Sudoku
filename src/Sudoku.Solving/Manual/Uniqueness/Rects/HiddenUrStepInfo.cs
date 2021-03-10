@@ -11,7 +11,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	/// <param name="TypeCode">The type code.</param>
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Cells">All cells.</param>

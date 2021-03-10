@@ -14,6 +14,10 @@ namespace Sudoku.Windows.Extensions
 		/// Check whether the specified key is a digit key.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
+		/// <param name="fromZero">
+		/// Indicates whether the checking is from <see cref="D0"/>
+		/// or <see cref="NumPad0"/>.
+		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsDigit(this Key @this, bool fromZero = true) =>
@@ -24,6 +28,10 @@ namespace Sudoku.Windows.Extensions
 		/// Check whether the specified key is a digit key in number pad.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
+		/// <param name="fromZero">
+		/// Indicates whether the checking is from <see cref="D0"/>
+		/// or <see cref="NumPad0"/>.
+		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsNumPadDigit(this Key @this, bool fromZero = true) =>
@@ -34,6 +42,10 @@ namespace Sudoku.Windows.Extensions
 		/// in keyboard.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
+		/// <param name="fromZero">
+		/// Indicates whether the checking is from <see cref="D0"/>
+		/// or <see cref="NumPad0"/>.
+		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsDigitUpsideAlphabets(this Key @this, bool fromZero = true) =>
