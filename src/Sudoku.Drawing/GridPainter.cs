@@ -24,7 +24,7 @@ namespace Sudoku.Drawing
 	/// Please note that eliminations will be colored with red, but all assignments won't be colored,
 	/// because they will be colored using another method (draw candidates).
 	/// </remarks>
-	[Obsolete("Please use 'GridImageGenerator' instead.")]
+	[Obsolete("Please use 'GridImageGenerator' instead.", false)]
 	public sealed record GridPainter(PointConverter Converter, Settings Preferences, UndoableGrid Grid)
 	{
 		/// <summary>
