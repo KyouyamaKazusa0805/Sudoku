@@ -294,6 +294,49 @@ namespace Sudoku.Data
 		}
 
 
+		/// <summary>
+		/// Copies the current instance to the tagret array specified as an <see cref="int"/>*.
+		/// </summary>
+		/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
+		/// <param name="length">The length of that array.</param>
+		[CLSCompliant(false)]
+		public readonly void CopyTo(int* arr, int length)
+		{
+			if (IsEmpty)
+			{
+				return;
+			}
+
+			if (length < Count)
+			{
+				throw new ArgumentException("The capacity is not enough.", nameof(arr));
+			}
+
+			for (int i = 0, count = 0; i < FullCount; i++)
+			{
+				if (Contains(i))
+				{
+					arr[count++] = i;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Copies the current instance to the tagret <see cref="Span{T}"/> instance.
+		/// </summary>
+		/// <param name="span">
+		/// (<see langword="ref"/> parameter) The target <see cref="Span{T}"/> instance.
+		/// </param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly void CopyTo(ref Span<int> span)
+		{
+			fixed (int* arr = span)
+			{
+				CopyTo(arr, span.Length);
+			}
+		}
+
+
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override readonly bool Equals(object? obj) => obj is Candidates comparer && Equals(comparer);
 
@@ -424,6 +467,18 @@ namespace Sudoku.Data
 
 			return result;
 		}
+
+		/// <summary>
+		/// Converts the current instance to a <see cref="Span{T}"/> of type <see cref="int"/>.
+		/// </summary>
+		/// <returns>The <see cref="Span{T}"/> of <see cref="int"/> result.</returns>
+		public readonly Span<int> ToSpan() => Offsets.AsSpan();
+
+		/// <summary>
+		/// Converts the current instance to a <see cref="ReadOnlySpan{T}"/> of type <see cref="int"/>.
+		/// </summary>
+		/// <returns>The <see cref="ReadOnlySpan{T}"/> of <see cref="int"/> result.</returns>
+		public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
 
 		/// <inheritdoc/>
 		public readonly IEnumerator<int> GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
@@ -702,17 +757,39 @@ namespace Sudoku.Data
 			return new(result, Len);
 		}
 
-
 		/// <summary>
-		/// Implicit cast from <see cref="Candidates"/> to <see cref="int"/>[].
+		/// Simplified calls <see cref="Reduce(int)"/>.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
-		public static implicit operator int[](in Candidates map) => map.ToArray();
+		/// <param name="candidates">(<see langword="in"/> parameter) The candidates.</param>
+		/// <param name="digit">The digit.</param>
+		/// <returns>The cells.</returns>
+		/// <seealso cref="Reduce(int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Cells operator /(in Candidates candidates, int digit) => candidates.Reduce(digit);
+
 
 		/// <summary>
 		/// Implicit cast from <see cref="int"/>[] to <see cref="Candidates"/>.
 		/// </summary>
 		/// <param name="array">The array.</param>
 		public static implicit operator Candidates(int[] array) => new(array);
+
+		/// <summary>
+		/// Implicit cast from <see cref="Candidates"/> to <see cref="Span{T}"/>.
+		/// </summary>
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		public static implicit operator Span<int>(in Candidates map) => map.ToSpan();
+
+		/// <summary>
+		/// Implicit cast from <see cref="Candidates"/> to <see cref="ReadOnlySpan{T}"/>.
+		/// </summary>
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		public static implicit operator ReadOnlySpan<int>(in Candidates map) => map.ToReadOnlySpan();
+
+		/// <summary>
+		/// Explicit cast from <see cref="Candidates"/> to <see cref="int"/>[].
+		/// </summary>
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		public static explicit operator int[](in Candidates map) => map.ToArray();
 	}
 }

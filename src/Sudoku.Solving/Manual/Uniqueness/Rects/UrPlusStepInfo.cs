@@ -48,12 +48,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			unsafe string g()
 			{
 				var sb = new ValueStringBuilder(stackalloc char[100]);
-				sb.AppendRange(ConjugatePairs, &p, separator);
+				sb.AppendRange(ConjugatePairs, separator);
 
 				return sb.ToString();
 			}
-
-			static string p(ConjugatePair cp) => $"{cp.ToString()}{separator}";
 		}
 	}
 }

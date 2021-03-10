@@ -474,6 +474,21 @@
             The candidate at that index. If the index is invalid, the return value will be -1.
             </returns>
         </member>
+        <member name="M:Sudoku.Data.Candidates.CopyTo(System.Int32*,System.Int32)">
+            <summary>
+            Copies the current instance to the tagret array specified as an <see cref="T:System.Int32"/>*.
+            </summary>
+            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
+            <param name="length">The length of that array.</param>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.CopyTo(System.Span{System.Int32}@)">
+            <summary>
+            Copies the current instance to the tagret <see cref="T:System.Span`1"/> instance.
+            </summary>
+            <param name="span">
+            (<see langword="ref"/> parameter) The target <see cref="T:System.Span`1"/> instance.
+            </param>
+        </member>
         <member name="M:Sudoku.Data.Candidates.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -514,6 +529,18 @@
             </summary>
             <param name="digit">The digit.</param>
             <returns>The map of all cells chosen.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.ToSpan">
+            <summary>
+            Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.
+            </summary>
+            <returns>The <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.ToReadOnlySpan">
+            <summary>
+            Converts the current instance to a <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:System.Int32"/>.
+            </summary>
+            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.Candidates.GetEnumerator">
             <inheritdoc/>
@@ -625,17 +652,38 @@
             <param name="right">(<see langword="in"/> parameter) The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Candidates.op_Implicit(Sudoku.Data.Candidates@)~System.Int32[]">
+        <member name="M:Sudoku.Data.Candidates.op_Division(Sudoku.Data.Candidates@,System.Int32)">
             <summary>
-            Implicit cast from <see cref="T:Sudoku.Data.Candidates"/> to <see cref="T:System.Int32"/>[].
+            Simplified calls <see cref="M:Sudoku.Data.Candidates.Reduce(System.Int32)"/>.
             </summary>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="candidates">(<see langword="in"/> parameter) The candidates.</param>
+            <param name="digit">The digit.</param>
+            <returns>The cells.</returns>
+            <seealso cref="M:Sudoku.Data.Candidates.Reduce(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.Candidates.op_Implicit(System.Int32[])~Sudoku.Data.Candidates">
             <summary>
             Implicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Data.Candidates"/>.
             </summary>
             <param name="array">The array.</param>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.op_Implicit(Sudoku.Data.Candidates@)~System.Span{System.Int32}">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Data.Candidates"/> to <see cref="T:System.Span`1"/>.
+            </summary>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.op_Implicit(Sudoku.Data.Candidates@)~System.ReadOnlySpan{System.Int32}">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Data.Candidates"/> to <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.op_Explicit(Sudoku.Data.Candidates@)~System.Int32[]">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Data.Candidates"/> to <see cref="T:System.Int32"/>[].
+            </summary>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
         <member name="T:Sudoku.Data.Cells">
             <summary>
@@ -898,6 +946,21 @@
             <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
             <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
         </member>
+        <member name="M:Sudoku.Data.Cells.CopyTo(System.Int32*,System.Int32)">
+            <summary>
+            Copies the current instance to the tagret array specified as an <see cref="T:System.Int32"/>*.
+            </summary>
+            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
+            <param name="length">The length of that array.</param>
+        </member>
+        <member name="M:Sudoku.Data.Cells.CopyTo(System.Span{System.Int32}@)">
+            <summary>
+            Copies the current instance to the tagret <see cref="T:System.Span`1"/> instance.
+            </summary>
+            <param name="span">
+            (<see langword="ref"/> parameter) The target <see cref="T:System.Span`1"/> instance.
+            </param>
+        </member>
         <member name="M:Sudoku.Data.Cells.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -954,6 +1017,18 @@
         </member>
         <member name="M:Sudoku.Data.Cells.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.ToSpan">
+            <summary>
+            Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.
+            </summary>
+            <returns>The <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.ToReadOnlySpan">
+            <summary>
+            Converts the current instance to a <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:System.Int32"/>.
+            </summary>
+            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -1159,6 +1234,18 @@
             Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Data.Cells"/>.
             </summary>
             <param name="cells">(<see langword="in"/> parameter) The cells.</param>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Implicit(Sudoku.Data.Cells@)~System.Span{System.Int32}">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Data.Cells"/> to <see cref="T:System.Span`1"/>.
+            </summary>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Implicit(Sudoku.Data.Cells@)~System.ReadOnlySpan{System.Int32}">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Data.Cells"/> to <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
         </member>
         <member name="T:Sudoku.Data.CellStatus">
             <summary>
