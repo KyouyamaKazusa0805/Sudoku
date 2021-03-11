@@ -3043,11 +3043,6 @@
             Indicates the number of given cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Stepping.UndoableGrid.InitialMaskPinnableReference">
-            <summary>
-            Indicates the pointer that points to the initial grid field of the inner grid.
-            </summary>
-        </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.InnerGrid">
             <summary>
             Indicates the inner grid.
@@ -3102,6 +3097,13 @@
             Returns a reference to the element of the <see cref="T:Sudoku.Data.Stepping.UndoableGrid"/> at index zero.
             </summary>
             <returns>A reference to the element of the <see cref="T:Sudoku.Data.Stepping.UndoableGrid"/> at index zero.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetPinnableReference(Sudoku.Data.SudokuGrid.PinnedItem)">
+            <summary>
+            Returns a reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.
+            </summary>
+            <param name="pinnedItem">The item you want to fix. If </param>
+            <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.</returns>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetMask(System.Int32,System.Int16)">
             <inheritdoc cref="M:Sudoku.Data.SudokuGrid.SetMask(System.Int32,System.Int16)"/>
@@ -3307,11 +3309,6 @@
         <member name="P:Sudoku.Data.SudokuGrid.CandidatesCount">
             <summary>
             Indicates the number of total candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.SudokuGrid.InitialMaskPinnableReference">
-            <summary>
-            Indicates the pinnable reference of the initial mask list.
             </summary>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.GivensCount">
@@ -3531,6 +3528,13 @@
             <summary>
             Returns a reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.
             </summary>
+            <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.GetPinnableReference(Sudoku.Data.SudokuGrid.PinnedItem)">
+            <summary>
+            Returns a reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.
+            </summary>
+            <param name="pinnedItem">The item you want to fix. If </param>
             <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToMaskString">
@@ -4145,6 +4149,48 @@
             Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
             </param>
             <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Data.SudokuGrid.PinnedItem">
+            <summary>
+            Indicates the item that <see cref="M:Sudoku.Data.SudokuGrid.GetPinnableReference"/> selects and returns the reference.
+            </summary>
+            <remarks>
+            <para>
+            This enumeration type is called to select what the inner field we want to fix. For example,
+            if called <see cref="M:Sudoku.Data.SudokuGrid.GetPinnableReference"/> (parameterless method), the default value is
+            <see cref="F:Sudoku.Data.SudokuGrid.PinnedItem.CurrentGrid"/>, and we'll get the table that contains all current statuses of the
+            current grid using a <see cref="T:System.Int16"/>*. The code should be:
+            <code>
+            fixed (short* s = grid)
+            {
+                // Do something...
+            }
+            </code>
+            The code is equivalent to
+            <code>
+            fixed (short* s = &amp;grid.GetPinnableReference())
+            {
+                // Do something...
+            }
+            </code>
+            </para>
+            <para>
+            If you want to get the item <see cref="F:Sudoku.Data.SudokuGrid.PinnedItem.InitialGrid"/>, you should call the method
+            <see cref="M:Sudoku.Data.SudokuGrid.GetPinnableReference(Sudoku.Data.SudokuGrid.PinnedItem)"/>.
+            </para>
+            </remarks>
+            <see cref="M:Sudoku.Data.SudokuGrid.GetPinnableReference"/>
+            <see cref="M:Sudoku.Data.SudokuGrid.GetPinnableReference(Sudoku.Data.SudokuGrid.PinnedItem)"/>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.PinnedItem.CurrentGrid">
+            <summary>
+            Indicates the current grid should be pinned.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.PinnedItem.InitialGrid">
+            <summary>
+            Indicates the initial grid should be pinned.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.ValueChangedArgs">
             <summary>

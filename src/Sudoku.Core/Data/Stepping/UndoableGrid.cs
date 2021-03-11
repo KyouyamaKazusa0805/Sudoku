@@ -81,16 +81,6 @@ namespace Sudoku.Data.Stepping
 		}
 
 		/// <summary>
-		/// Indicates the pointer that points to the initial grid field of the inner grid.
-		/// </summary>
-		[CLSCompliant(false)]
-		public short* InitialMaskPinnableReference
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => _innerGrid.InitialMaskPinnableReference;
-		}
-
-		/// <summary>
 		/// Indicates the inner grid.
 		/// </summary>
 		public ref SudokuGrid InnerGrid
@@ -197,9 +187,9 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Reset()
 		{
-			fixed (short* pGrid = _innerGrid)
+			fixed (short* pGrid = _innerGrid, pInitial = &_innerGrid.GetPinnableReference(PinnedItem.InitialGrid))
 			{
-				_undoStack.Push(new ResetStep((IntPtr)_innerGrid.InitialMaskPinnableReference, (IntPtr)pGrid));
+				_undoStack.Push(new ResetStep((IntPtr)pInitial, (IntPtr)pGrid));
 			}
 			_innerGrid.Reset();
 		}
@@ -241,6 +231,15 @@ namespace Sudoku.Data.Stepping
 				return ref *pThis;
 			}
 		}
+
+		/// <summary>
+		/// Returns a reference to the element of the <see cref="SudokuGrid"/> at index zero.
+		/// </summary>
+		/// <param name="pinnedItem">The item you want to fix. If </param>
+		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
+			ref _innerGrid.GetPinnableReference(pinnedItem);
 
 		/// <inheritdoc cref="SudokuGrid.SetMask(int, short)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

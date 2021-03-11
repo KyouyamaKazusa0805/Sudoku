@@ -214,21 +214,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Indicates the pinnable reference of the initial mask list.
-		/// </summary>
-		[CLSCompliant(false)]
-		public readonly short* InitialMaskPinnableReference
-		{
-			get
-			{
-				fixed (short* p = _initialValues)
-				{
-					return p;
-				}
-			}
-		}
-
-		/// <summary>
 		/// Indicates the total number of given cells.
 		/// </summary>
 		public readonly int GivensCount => Triplet.C;
@@ -635,6 +620,38 @@ namespace Sudoku.Data
 			fixed (SudokuGrid* @this = &this)
 			{
 				return ref @this->_values[0];
+			}
+		}
+
+		/// <summary>
+		/// Returns a reference to the element of the <see cref="SudokuGrid"/> at index zero.
+		/// </summary>
+		/// <param name="pinnedItem">The item you want to fix. If </param>
+		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem)
+		{
+			switch (pinnedItem)
+			{
+				case PinnedItem.CurrentGrid:
+				{
+					return ref GetPinnableReference();
+				}
+				case PinnedItem.InitialGrid:
+				{
+					fixed (SudokuGrid* @this = &this)
+					{
+						return ref @this->_initialValues[0];
+					}
+				}
+				default:
+				{
+					throw new ArgumentException(
+						$"The argument '{nameof(pinnedItem)}' holds invalid value: " +
+						$"The value must be {nameof(PinnedItem.CurrentGrid)} or {nameof(PinnedItem.InitialGrid)}.",
+						nameof(pinnedItem)
+					);
+				}
 			}
 		}
 

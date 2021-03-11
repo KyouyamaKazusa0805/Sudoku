@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.Tracing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override int GetHashCode() => _innerGrid.GetHashCode();
 
-		/// <inheritdoc cref="SudokuGrid.GetPinnableReference"/>
+		/// <inheritdoc cref="SudokuGrid.GetPinnableReference()"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public ref readonly short GetPinnableReference() => ref _innerGrid.GetPinnableReference();

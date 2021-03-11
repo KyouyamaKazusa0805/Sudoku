@@ -30,9 +30,9 @@ namespace Sudoku.Data.Stepping
 			{
 				case -1 when grid.GetStatus(Cell) == CellStatus.Modifiable:
 				{
-					fixed (short* pGrid = grid)
+					fixed (short* pGrid = grid, p = &grid.GetPinnableReference(PinnedItem.InitialGrid))
 					{
-						Unsafe.CopyBlock(pGrid, grid.InitialMaskPinnableReference, sizeof(short) * 81);
+						Unsafe.CopyBlock(pGrid, p, sizeof(short) * 81);
 					}
 
 					break;
