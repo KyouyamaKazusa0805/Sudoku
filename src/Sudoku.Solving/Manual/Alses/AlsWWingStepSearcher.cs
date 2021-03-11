@@ -57,21 +57,31 @@ namespace Sudoku.Solving.Manual.Alses
 				{
 					var als2 = alses[j];
 					var (_, region2, mask2, map2, _, _) = als2;
+
+					// Now we have got two ALSes to check.
+					// Firstly, we should check whether two ALSes overlap with each other.
 					if (!(map1 & map2).IsEmpty || (map1 | map2).InOneRegion)
 					{
+						// If overlap (or in a same region), just skip it.
 						continue;
 					}
 
-					var mask = (short)(mask1 & mask2);
+					// Then merge masks from two ALSes' into one using the opeartor &.
+					short mask = (short)(mask1 & mask2);
 					if (PopCount((uint)mask) < 2)
 					{
+						// If we can't find any digit that both two ALSes holds, the ALS-W-Wing won't form.
+						// Just skip it.
 						continue;
 					}
 
+					// Iterate on each digit that two ALSes both holds.
 					foreach (int x in mask)
 					{
 						if (conjugatePairs[x] is not { Count: not 0 })
 						{
+							// If the digit 'x' doesn't contain any conjugate pairs,
+							// we won't find any ALS-W-Wings, So just skip it.
 							continue;
 						}
 
@@ -83,11 +93,12 @@ namespace Sudoku.Solving.Manual.Alses
 							continue;
 						}
 
-						// Iterate on each conjugate pair.
-						short wDigitsMask = 0;
-						var conclusions = new List<Conclusion>();
 						if (conjugatePairs[x] is { } conjPairs)
 						{
+							short wDigitsMask = 0;
+							var conclusions = new List<Conclusion>();
+
+							// Iterate on each conjugate pair.
 							foreach (var conjugatePair in conjPairs)
 							{
 								var cpMap = conjugatePair.Map;
@@ -97,16 +108,15 @@ namespace Sudoku.Solving.Manual.Alses
 									continue;
 								}
 
-								if ((cpMap & p1).Count != 1 || (cpMap & p2).Count != 1)
+								if ((cpMap & p1).Count != 1 || (cpMap & p2).Count != 1
+									|| ((p1 | p2) & cpMap).Count != 2)
 								{
+									// If so, the structure may be a grouped ALS-W-Wing,
+									// but I don't implement this one, so just skip it.
 									continue;
 								}
 
-								if (((p1 | p2) & cpMap).Count != 2)
-								{
-									continue;
-								}
-
+								// Iterate on each digit as the digit 'w'.
 								foreach (int w in mask & ~(1 << x))
 								{
 									var tempMap = ((map1 | map2) & CandMaps[w]).PeerIntersection & CandMaps[w];
@@ -122,6 +132,7 @@ namespace Sudoku.Solving.Manual.Alses
 									}
 								}
 
+								// Check the existence of the eliminations.
 								if (conclusions.Count == 0)
 								{
 									continue;
