@@ -23,28 +23,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates whether the UR can be incomplete. In other words,
 		/// some of UR candidates can be removed before the pattern forms.
 		/// </summary>
-		private readonly bool _allowIncompleteUr;
+		public bool AllowIncompleteUniqueRectangles { get; init; }
 
 		/// <summary>
 		/// Indicates whether the searcher can search for extended URs.
 		/// </summary>
-		private readonly bool _searchExtended;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified value indicating
-		/// whether the structure can be incomplete, and a value indicating
-		/// whether the searcher can search for extended URs.
-		/// </summary>
-		/// <param name="allowIncomplete">
-		/// A <see cref="bool"/> value indicating that.
-		/// </param>
-		/// <param name="searchExtended">A <see cref="bool"/> value indicating that.</param>
-		public UrStepSearcher(bool allowIncomplete, bool searchExtended)
-		{
-			_allowIncompleteUr = allowIncomplete;
-			_searchExtended = searchExtended;
-		}
+		public bool SearchForExtendedUniqueRectangles { get; init; }
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -126,7 +110,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						if (_searchExtended)
+						if (SearchForExtendedUniqueRectangles)
 						{
 							CheckGuardian(gathered, grid, urCells, comparer, d1, d2, index);
 						}
@@ -141,7 +125,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 							CheckHidden(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 
-							if (!arMode && _searchExtended)
+							if (!arMode && SearchForExtendedUniqueRectangles)
 							{
 								Check3X(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
 								Check3X2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
@@ -163,7 +147,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								// Both diagonal and non-diagonal.
 								CheckType2(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
-								if (_searchExtended)
+								if (SearchForExtendedUniqueRectangles)
 								{
 									for (int size = 2; size <= 4; size++)
 									{
@@ -177,7 +161,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									{
 										CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
-										if (_searchExtended)
+										if (SearchForExtendedUniqueRectangles)
 										{
 											Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 											Check2D1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
@@ -192,7 +176,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										{
 											CheckType4(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
-											if (_searchExtended)
+											if (SearchForExtendedUniqueRectangles)
 											{
 												Check2B1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 												Check4X3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
@@ -200,7 +184,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											}
 										}
 
-										if (_searchExtended)
+										if (SearchForExtendedUniqueRectangles)
 										{
 											CheckSdc(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 										}
@@ -271,7 +255,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <returns>A <see cref="bool"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private unsafe bool IsIncompleteUr(IEnumerable<DrawingInfo> list) =>
-			!_allowIncompleteUr && list.Count(static pair => pair.Id == 0) != 8;
+			!AllowIncompleteUniqueRectangles && list.Count(static pair => pair.Id == 0) != 8;
 
 		/// <summary>
 		/// Get a cell that can't see each other.

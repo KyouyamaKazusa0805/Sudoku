@@ -250,7 +250,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								}
 							}
 
-							if (!_allowIncompleteUr && candidateOffsets.Count != 7)
+							if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
 							{
 								continue;
 							}
@@ -400,7 +400,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								}
 							}
 
-							if (!_allowIncompleteUr && candidateOffsets.Count != 7)
+							if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
 							{
 								continue;
 							}
@@ -638,7 +638,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					candidateOffsets.Add(new(0, cornerCell * 9 + digit));
 				}
-				if (!_allowIncompleteUr && candidateOffsets.Count != 6)
+				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 6)
 				{
 					continue;
 				}
@@ -761,7 +761,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add(new(0, end * 9 + d));
 						}
 					}
-					if (!_allowIncompleteUr && candidateOffsets.Count != 7)
+					if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
 					{
 						continue;
 					}
@@ -884,7 +884,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add(new(d == b ? 1 : 0, abzCell * 9 + d));
 						}
 					}
-					if (!_allowIncompleteUr && candidateOffsets.Count != 7)
+					if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
 					{
 						continue;
 					}
@@ -1007,7 +1007,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add(new(d == a ? 1 : 0, abzCell * 9 + d));
 						}
 					}
-					if (!_allowIncompleteUr && candidateOffsets.Count != 7)
+					if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
 					{
 						continue;
 					}
@@ -1138,7 +1138,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add(new(1, end * 9 + d));
 						}
 					}
-					if (!_allowIncompleteUr && (candidateOffsets.Count, conclusions.Count) != (6, 2))
+					if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Count) != (6, 2))
 					{
 						continue;
 					}
@@ -1282,7 +1282,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								candidateOffsets.Add(new(1, abw * 9 + d));
 							}
 						}
-						if (!_allowIncompleteUr && candidateOffsets.Count != 7)
+						if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
 						{
 							continue;
 						}

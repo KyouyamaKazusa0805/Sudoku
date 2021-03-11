@@ -7884,27 +7884,16 @@
             <b>avoidable rectangle</b> (AR) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher._allowIncompleteUr">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.AllowIncompleteUniqueRectangles">
             <summary>
             Indicates whether the UR can be incomplete. In other words,
             some of UR candidates can be removed before the pattern forms.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher._searchExtended">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.SearchForExtendedUniqueRectangles">
             <summary>
             Indicates whether the searcher can search for extended URs.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.#ctor(System.Boolean,System.Boolean)">
-            <summary>
-            Initializes an instance with the specified value indicating
-            whether the structure can be incomplete, and a value indicating
-            whether the searcher can search for extended URs.
-            </summary>
-            <param name="allowIncomplete">
-            A <see cref="T:System.Boolean"/> value indicating that.
-            </param>
-            <param name="searchExtended">A <see cref="T:System.Boolean"/> value indicating that.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>

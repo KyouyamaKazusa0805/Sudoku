@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Extensions
 				new RegularWingStepSearcher(@this.CheckRegularWingSize),
 				new IrregularWingStepSearcher(),
 				new TwoStrongLinksStepSearcher(),
-				new UrStepSearcher(@this.CheckIncompleteUniquenessPatterns, @this.SearchExtendedUniqueRectangles),
+				new UrStepSearcher { AllowIncompleteUniqueRectangles = @this.CheckIncompleteUniquenessPatterns, SearchForExtendedUniqueRectangles =@this.SearchExtendedUniqueRectangles },
 				new XrStepSearcher(),
 				new UlStepSearcher(),
 				new ErStepSearcher(),
