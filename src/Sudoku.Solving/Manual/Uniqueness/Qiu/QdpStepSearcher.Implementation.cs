@@ -116,8 +116,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 
 			int extraDigit = TrailingZeroCount(otherDigitsMask);
-			var map = pair & CandMaps[extraDigit];
-			var elimMap = map.PeerIntersection & CandMaps[extraDigit];
+			Cells map = pair & CandMaps[extraDigit], elimMap = map.PeerIntersection & CandMaps[extraDigit];
 			if (elimMap.IsEmpty)
 			{
 				return;

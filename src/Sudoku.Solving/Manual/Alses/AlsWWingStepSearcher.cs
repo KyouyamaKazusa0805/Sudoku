@@ -85,8 +85,7 @@ namespace Sudoku.Solving.Manual.Alses
 							continue;
 						}
 
-						var p1 = (map1 & CandMaps[x]).PeerIntersection & CandMaps[x];
-						var p2 = (map2 & CandMaps[x]).PeerIntersection & CandMaps[x];
+						Cells p1 = map1 * CandMaps[x], p2 = map2 * CandMaps[x];
 						if (p1.IsEmpty || p2.IsEmpty)
 						{
 							// At least one of two ALSes can't see the node of the conjugate pair.
@@ -119,7 +118,7 @@ namespace Sudoku.Solving.Manual.Alses
 								// Iterate on each digit as the digit 'w'.
 								foreach (int w in mask & ~(1 << x))
 								{
-									var tempMap = ((map1 | map2) & CandMaps[w]).PeerIntersection & CandMaps[w];
+									var tempMap = (map1 | map2) * CandMaps[w];
 									if (tempMap.IsEmpty)
 									{
 										continue;

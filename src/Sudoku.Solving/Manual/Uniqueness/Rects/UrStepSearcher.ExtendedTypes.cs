@@ -476,8 +476,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			short xyMask = (short)(mask ^ comparer);
-			int x = TrailingZeroCount(xyMask);
-			int y = xyMask.GetNextSet(x);
+			int x = TrailingZeroCount(xyMask), y = xyMask.GetNextSet(x);
 			var inter = otherCellsMap.PeerIntersection - urCells;
 			foreach (int possibleXyCell in inter)
 			{
@@ -1634,7 +1633,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										// Now check eliminations.
 										var conclusions = new List<Conclusion>();
 										int elimDigit = TrailingZeroCount(m);
-										var elimMap = new Cells { c1, c2, c3, c4 }.PeerIntersection & CandMaps[elimDigit];
+										var elimMap =
+											new Cells { c1, c2, c3, c4 }.PeerIntersection & CandMaps[elimDigit];
 										if (elimMap.IsEmpty)
 										{
 											continue;
@@ -1919,11 +1919,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		{
 			short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
 			short maskIsolated = (short)(
-				cannibalMode ? (lineMask & blockMask & selectedInterMask) : maskOnlyInInter);
-			if (!cannibalMode && (
-				(blockMask & lineMask) != 0
-				|| maskIsolated != 0 && (maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0))
-				|| cannibalMode && (maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0))
+				cannibalMode ? (lineMask & blockMask & selectedInterMask) : maskOnlyInInter
+			);
+			if (
+				!cannibalMode && (
+					(blockMask & lineMask) != 0
+					|| maskIsolated != 0 && (maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0)
+				) || cannibalMode && (maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0)
+			)
 			{
 				return;
 			}
@@ -1933,11 +1936,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			if (digitIsolated != Constants.InvalidFirstSet)
 			{
 				elimMapIsolated =
-				(
-					cannibalMode
-					? (currentBlockMap | currentLineMap) & CandMaps[digitIsolated]
-					: currentInterMap & CandMaps[digitIsolated]
-				).PeerIntersection & CandMaps[digitIsolated] & EmptyMap;
+					(cannibalMode ? currentBlockMap | currentLineMap : currentInterMap) * CandMaps[digitIsolated]
+					& EmptyMap;
 			}
 
 			if (currentInterMap.Count + i + j + 1 ==

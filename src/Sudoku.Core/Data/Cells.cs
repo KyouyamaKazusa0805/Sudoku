@@ -352,14 +352,34 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the map of cells, which is the peer intersections.
 		/// </summary>
-		/// <remarks>
-		/// This property simply calls the <see cref="operator -(in Cells)"/>.
-		/// </remarks>
-		/// <seealso cref="operator -(in Cells)"/>
 		public readonly Cells PeerIntersection
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => -this;
+			get
+			{
+				long lowerBits = 0, higherBits = 0;
+				int i = 0;
+				foreach (int offset in Offsets)
+				{
+					long low = 0, high = 0;
+					foreach (int peer in Peers[offset])
+					{
+						(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
+					}
+
+					if (i++ == 0)
+					{
+						lowerBits = low;
+						higherBits = high;
+					}
+					else
+					{
+						lowerBits &= low;
+						higherBits &= high;
+					}
+				}
+
+				return new(higherBits, lowerBits);
+			}
 		}
 
 		/// <summary>
@@ -971,46 +991,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Gets a new <see cref="Cells"/> instance with itself.
-		/// </summary>
-		/// <param name="gridMap">(<see langword="in"/> parameter) The map.</param>
-		/// <returns>The totally same <see cref="Cells"/> instance with <paramref name="gridMap"/>.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cells operator +(in Cells gridMap) => gridMap;
-
-		/// <summary>
-		/// Gets the peer intersection of a <see cref="Cells"/> instance.
-		/// </summary>
-		/// <param name="gridMap">(<see langword="in"/> parameter) The map.</param>
-		/// <returns>The peer intersection.</returns>
-		public static Cells operator -(in Cells gridMap)
-		{
-			long lowerBits = 0, higherBits = 0;
-			int i = 0;
-			foreach (int offset in gridMap.Offsets)
-			{
-				long low = 0, high = 0;
-				foreach (int peer in Peers[offset])
-				{
-					(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
-				}
-
-				if (i++ == 0)
-				{
-					lowerBits = low;
-					higherBits = high;
-				}
-				else
-				{
-					lowerBits &= low;
-					higherBits &= high;
-				}
-			}
-
-			return new(higherBits, lowerBits);
-		}
-
-		/// <summary>
 		/// <para>
 		/// Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
 		/// eliminations.
@@ -1032,7 +1012,7 @@ namespace Sudoku.Data
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator *(in Cells @base, in Cells limit) =>
-			-(@base & limit) & limit;
+			(@base & limit).PeerIntersection & limit;
 
 		/// <summary>
 		/// Reverse status for all cells, which means all <see langword="true"/> bits
@@ -1073,7 +1053,7 @@ namespace Sudoku.Data
 		/// <param name="right">(<see langword="in"/> parameter) The subtractor.</param>
 		/// <returns>The <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator <(in Cells left, in Cells right) => !(left > right);
+		public static bool operator <(in Cells left, in Cells right) => (left - right).IsEmpty;
 
 		/// <summary>
 		/// The syntactic sugar for <c>new Cells(map) { cell }</c> (i.e. add a new cell into the current
@@ -1081,7 +1061,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
 		/// <param name="cell">The cell to add.</param>
-		/// <returns>The result of the map.</returns>
+		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator +(in Cells map, int cell) => new(map) { cell };
 

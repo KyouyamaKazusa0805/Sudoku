@@ -925,10 +925,6 @@
             <summary>
             Indicates the map of cells, which is the peer intersections.
             </summary>
-            <remarks>
-            This property simply calls the <see cref="M:Sudoku.Data.Cells.op_UnaryNegation(Sudoku.Data.Cells@)"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Cells.op_UnaryNegation(Sudoku.Data.Cells@)"/>
         </member>
         <member name="P:Sudoku.Data.Cells.Offsets">
             <summary>
@@ -1140,20 +1136,6 @@
             <param name="cell">The cell to add into.</param>
             <param name="value">The value to add.</param>
         </member>
-        <member name="M:Sudoku.Data.Cells.op_UnaryPlus(Sudoku.Data.Cells@)">
-            <summary>
-            Gets a new <see cref="T:Sudoku.Data.Cells"/> instance with itself.
-            </summary>
-            <param name="gridMap">(<see langword="in"/> parameter) The map.</param>
-            <returns>The totally same <see cref="T:Sudoku.Data.Cells"/> instance with <paramref name="gridMap"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.op_UnaryNegation(Sudoku.Data.Cells@)">
-            <summary>
-            Gets the peer intersection of a <see cref="T:Sudoku.Data.Cells"/> instance.
-            </summary>
-            <param name="gridMap">(<see langword="in"/> parameter) The map.</param>
-            <returns>The peer intersection.</returns>
-        </member>
         <member name="M:Sudoku.Data.Cells.op_Multiply(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             <para>
@@ -1218,7 +1200,7 @@
             </summary>
             <param name="map">(<see langword="in"/> parameter) The map.</param>
             <param name="cell">The cell to add.</param>
-            <returns>The result of the map.</returns>
+            <returns>The result map.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,System.Int32)">
             <summary>

@@ -166,9 +166,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 											elimMapIsolated =
 											(
 												cannibalMode
-												? (currentBlockMap | currentLineMap) & CandMaps[digitIsolated]
-												: currentInterMap & CandMaps[digitIsolated]
-											).PeerIntersection & CandMaps[digitIsolated] & EmptyMap;
+												? (currentBlockMap | currentLineMap)
+												: currentInterMap
+											) * CandMaps[digitIsolated] & EmptyMap;
 										}
 
 										if (currentInterMap.Count + i + j ==

@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Alses
 							{
 								p |= als.Map;
 							}
-							var realElimMap = (p & CandMaps[digit]).PeerIntersection & CandMaps[digit];
+							var realElimMap = p * CandMaps[digit];
 							var conclusions = new Conclusion[realElimMap.Count];
 							int i = 0;
 							foreach (int c in realElimMap)

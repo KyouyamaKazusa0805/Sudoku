@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in mask)
 						{
-							var map = (cells & CandMaps[digit]).PeerIntersection & CandMaps[digit];
+							var map = cells * CandMaps[digit];
 							flagMask |= (short)(map.InOneRegion ? 0 : (1 << digit));
 
 							foreach (int cell in map)
