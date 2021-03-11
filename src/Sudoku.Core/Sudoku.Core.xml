@@ -925,6 +925,10 @@
             <summary>
             Indicates the map of cells, which is the peer intersections.
             </summary>
+            <remarks>
+            This property simply calls the <see cref="M:Sudoku.Data.Cells.op_UnaryNegation(Sudoku.Data.Cells@)"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.Cells.op_UnaryNegation(Sudoku.Data.Cells@)"/>
         </member>
         <member name="P:Sudoku.Data.Cells.Offsets">
             <summary>
@@ -995,6 +999,17 @@
             </summary>
             <param name="region">The region.</param>
             <returns>The mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.PeerIntersectionLimitsWith(Sudoku.Data.Cells@)">
+            <summary>
+            To gets the cells that is in the cells that both <see langword="this"/>
+            and <paramref name="limit"/> sees (i.e. peer intersection of <c>this &amp; limit</c>),
+            and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
+            </summary>
+            <param name="limit">
+            (<see langword="in"/> parameter) The map to limit the result peer intersection.
+            </param>
+            <returns>The result map.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.GetEnumerator">
             <inheritdoc/>
@@ -1125,6 +1140,55 @@
             <param name="cell">The cell to add into.</param>
             <param name="value">The value to add.</param>
         </member>
+        <member name="M:Sudoku.Data.Cells.op_UnaryPlus(Sudoku.Data.Cells@)">
+            <summary>
+            Gets a new <see cref="T:Sudoku.Data.Cells"/> instance with itself.
+            </summary>
+            <param name="gridMap">(<see langword="in"/> parameter) The map.</param>
+            <returns>The totally same <see cref="T:Sudoku.Data.Cells"/> instance with <paramref name="gridMap"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_UnaryNegation(Sudoku.Data.Cells@)">
+            <summary>
+            Gets the peer intersection of a <see cref="T:Sudoku.Data.Cells"/> instance.
+            </summary>
+            <param name="gridMap">(<see langword="in"/> parameter) The map.</param>
+            <returns>The peer intersection.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Multiply(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            <para>
+            Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
+            eliminations.
+            </para>
+            <para>
+            The expression should be comprehended as those multiple steps:
+            <list type="number">
+            <item><c>a &amp; b</c>: Gets the intersection of two maps.</item>
+            <item><c>-(a &amp; b)</c>: Gets the peer intersection of the result map in the step 1.</item>
+            <item>
+            <c>-(a &amp; b) &amp; b</c>: Gets the cells in the step 2, which is included in the map <c>b</c>.
+            </item>
+            <item>Returns the map in the step 3.</item>
+            </list>
+            </para>
+            </summary>
+            <param name="base">The base map.</param>
+            <param name="limit">The limit map that the base map sees.</param>
+            <returns>The result map.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_OnesComplement(Sudoku.Data.Cells@)">
+            <summary>
+            Reverse status for all cells, which means all <see langword="true"/> bits
+            will be set <see langword="false"/>, and all <see langword="false"/> bits
+            will be set <see langword="true"/>.
+            </summary>
+            <param name="gridMap">(<see langword="in"/> parameter) The instance to negate.</param>
+            <returns>The negative result.</returns>
+            <remarks>
+            While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
+            that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
+            </remarks>
+        </member>
         <member name="M:Sudoku.Data.Cells.op_Equality(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
@@ -1164,19 +1228,6 @@
             <param name="map">(<see langword="in"/> parameter) The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The result of the map.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.op_OnesComplement(Sudoku.Data.Cells@)">
-            <summary>
-            Reverse status for all cells, which means all <see langword="true"/> bits
-            will be set <see langword="false"/>, and all <see langword="false"/> bits
-            will be set <see langword="true"/>.
-            </summary>
-            <param name="gridMap">(<see langword="in"/> parameter) The instance to negate.</param>
-            <returns>The negative result.</returns>
-            <remarks>
-            While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
-            that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
-            </remarks>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>

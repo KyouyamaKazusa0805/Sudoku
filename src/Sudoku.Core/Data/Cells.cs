@@ -352,34 +352,14 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the map of cells, which is the peer intersections.
 		/// </summary>
+		/// <remarks>
+		/// This property simply calls the <see cref="operator -(in Cells)"/>.
+		/// </remarks>
+		/// <seealso cref="operator -(in Cells)"/>
 		public readonly Cells PeerIntersection
 		{
-			get
-			{
-				long lowerBits = 0, higherBits = 0;
-				int i = 0;
-				foreach (int offset in Offsets)
-				{
-					long low = 0, high = 0;
-					foreach (int peer in Peers[offset])
-					{
-						(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
-					}
-
-					if (i++ == 0)
-					{
-						lowerBits = low;
-						higherBits = high;
-					}
-					else
-					{
-						lowerBits &= low;
-						higherBits &= high;
-					}
-				}
-
-				return new(higherBits, lowerBits);
-			}
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => -this;
 		}
 
 		/// <summary>
@@ -610,6 +590,18 @@ namespace Sudoku.Data
 
 			return p;
 		}
+
+		/// <summary>
+		/// To gets the cells that is in the cells that both <see langword="this"/>
+		/// and <paramref name="limit"/> sees (i.e. peer intersection of <c>this &amp; limit</c>),
+		/// and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
+		/// </summary>
+		/// <param name="limit">
+		/// (<see langword="in"/> parameter) The map to limit the result peer intersection.
+		/// </param>
+		/// <returns>The result map.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this * limit;
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -978,6 +970,84 @@ namespace Sudoku.Data
 			}
 		}
 
+		/// <summary>
+		/// Gets a new <see cref="Cells"/> instance with itself.
+		/// </summary>
+		/// <param name="gridMap">(<see langword="in"/> parameter) The map.</param>
+		/// <returns>The totally same <see cref="Cells"/> instance with <paramref name="gridMap"/>.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Cells operator +(in Cells gridMap) => gridMap;
+
+		/// <summary>
+		/// Gets the peer intersection of a <see cref="Cells"/> instance.
+		/// </summary>
+		/// <param name="gridMap">(<see langword="in"/> parameter) The map.</param>
+		/// <returns>The peer intersection.</returns>
+		public static Cells operator -(in Cells gridMap)
+		{
+			long lowerBits = 0, higherBits = 0;
+			int i = 0;
+			foreach (int offset in gridMap.Offsets)
+			{
+				long low = 0, high = 0;
+				foreach (int peer in Peers[offset])
+				{
+					(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
+				}
+
+				if (i++ == 0)
+				{
+					lowerBits = low;
+					higherBits = high;
+				}
+				else
+				{
+					lowerBits &= low;
+					higherBits &= high;
+				}
+			}
+
+			return new(higherBits, lowerBits);
+		}
+
+		/// <summary>
+		/// <para>
+		/// Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
+		/// eliminations.
+		/// </para>
+		/// <para>
+		/// The expression should be comprehended as those multiple steps:
+		/// <list type="number">
+		/// <item><c>a &amp; b</c>: Gets the intersection of two maps.</item>
+		/// <item><c>-(a &amp; b)</c>: Gets the peer intersection of the result map in the step 1.</item>
+		/// <item>
+		/// <c>-(a &amp; b) &amp; b</c>: Gets the cells in the step 2, which is included in the map <c>b</c>.
+		/// </item>
+		/// <item>Returns the map in the step 3.</item>
+		/// </list>
+		/// </para>
+		/// </summary>
+		/// <param name="base">The base map.</param>
+		/// <param name="limit">The limit map that the base map sees.</param>
+		/// <returns>The result map.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Cells operator *(in Cells @base, in Cells limit) =>
+			-(@base & limit) & limit;
+
+		/// <summary>
+		/// Reverse status for all cells, which means all <see langword="true"/> bits
+		/// will be set <see langword="false"/>, and all <see langword="false"/> bits
+		/// will be set <see langword="true"/>.
+		/// </summary>
+		/// <param name="gridMap">(<see langword="in"/> parameter) The instance to negate.</param>
+		/// <returns>The negative result.</returns>
+		/// <remarks>
+		/// While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
+		/// that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
+		/// </remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Cells operator ~(in Cells gridMap) =>
+			new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low & 0x1FFFFFFFFFFL);
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1024,21 +1094,6 @@ namespace Sudoku.Data
 		/// <returns>The result of the map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator -(in Cells map, int cell) => new(map) { ~cell };
-
-		/// <summary>
-		/// Reverse status for all cells, which means all <see langword="true"/> bits
-		/// will be set <see langword="false"/>, and all <see langword="false"/> bits
-		/// will be set <see langword="true"/>.
-		/// </summary>
-		/// <param name="gridMap">(<see langword="in"/> parameter) The instance to negate.</param>
-		/// <returns>The negative result.</returns>
-		/// <remarks>
-		/// While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
-		/// that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
-		/// </remarks>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cells operator ~(in Cells gridMap) =>
-			new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low & 0x1FFFFFFFFFFL);
 
 		/// <summary>
 		/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> cells
