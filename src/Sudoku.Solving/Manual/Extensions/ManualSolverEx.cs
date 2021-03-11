@@ -1,26 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Solving.Manual.Alses;
-using Sudoku.Solving.Manual.Chaining;
-using Sudoku.Solving.Manual.Exocets;
-using Sudoku.Solving.Manual.Fishes;
-using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Solving.Manual.RankTheory;
-using Sudoku.Solving.Manual.Sdps;
-using Sudoku.Solving.Manual.Singles;
-using Sudoku.Solving.Manual.Subsets;
-using Sudoku.Solving.Manual.Uniqueness.Bugs;
-using Sudoku.Solving.Manual.Uniqueness.Extended;
-using Sudoku.Solving.Manual.Uniqueness.Loops;
-using Sudoku.Solving.Manual.Uniqueness.Polygons;
-using Sudoku.Solving.Manual.Uniqueness.Qiu;
-using Sudoku.Solving.Manual.Uniqueness.Rects;
-using Sudoku.Solving.Manual.Uniqueness.Reversal;
-using Sudoku.Solving.Manual.Uniqueness.Square;
-using Sudoku.Solving.Manual.Wings.Irregular;
-using Sudoku.Solving.Manual.Wings.Regular;
 
 namespace Sudoku.Solving.Manual.Extensions
 {
@@ -70,64 +52,8 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// such as <see cref="BfStepSearcher"/>. The default value is <see langword="null"/>.
 		/// </param>
 		/// <returns>The result.</returns>
-		public static StepSearcher[] GetHodokuModeSearchers(this ManualSolver @this, in SudokuGrid? solution)
-		{
-			var result = new List<StepSearcher>
-			{
-				new SingleStepSearcher { EnableFullHouse = @this.EnableFullHouse, EnableLastDigit = @this.EnableLastDigit, ShowDirectLines = @this.ShowDirectLines },
-				new LcStepSearcher(),
-				new SubsetStepSearcher(),
-				new NormalFishStepSearcher(),
-				new RegularWingStepSearcher(@this.CheckRegularWingSize),
-				new IrregularWingStepSearcher(),
-				new TwoStrongLinksStepSearcher(),
-				new UrStepSearcher { AllowIncompleteUniqueRectangles = @this.CheckIncompleteUniquenessPatterns, SearchForExtendedUniqueRectangles =@this.SearchExtendedUniqueRectangles },
-				new XrStepSearcher(),
-				new UlStepSearcher(),
-				new ErStepSearcher(),
-				new AlcStepSearcher(@this.CheckAlmostLockedQuadruple),
-				new SdcStepSearcher(),
-				new Sdc3dStepSearcher(),
-				new BdpStepSearcher(),
-				new ReverseBugStepSearcher(),
-				new QdpStepSearcher(),
-				new UsStepSearcher(),
-				new GuardianStepSearcher(),
-				new BugStepSearcher(@this.UseExtendedBugSearcher),
-				new EripStepSearcher(),
-				new BivalueOddagonStepSearcher(),
-				new AicStepSearcher(),
-				new AlsXzStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-				new AlsXyWingStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-				new AlsWWingStepSearcher(@this.AllowOverlappingAlses, @this.AlsHighlightRegionInsteadOfCell, @this.AllowAlsCycles),
-				new DbStepSearcher(),
-				new ComplexFishStepSearcher { MaxSize = @this.ComplexFishMaxSize },
-				//new FcStepSearcher(nishio: true, multiple: false, dynamic: true),
-				new FcStepSearcher(nishio: false, multiple: true, dynamic: false),
-				new BugMultipleWithFcStepSearcher(),
-				new FcStepSearcher(nishio: false, multiple: true, dynamic: true),
-				new JeStepSearcher(@this.CheckAdvancedInExocet),
-				new SeStepSearcher(@this.CheckAdvancedInExocet),
-				new SkLoopStepSearcher(),
-				new MslsStepSearcher(),
-				new PomStepSearcher(),
-				new BowmanBingoStepSearcher(@this.BowmanBingoMaximumLength),
-				new TemplateStepSearcher(@this.OnlyRecordTemplateDelete),
-#if DOUBLE_LAYERED_ASSUMPTION
-				new FcPlusTechniqueSearcher(level: 1),
-				new FcPlusTechniqueSearcher(level: 2),
-				new FcPlusTechniqueSearcher(level: 3),
-				new FcPlusTechniqueSearcher(level: 4),
-				new FcPlusTechniqueSearcher(level: 5),
-#endif
-			};
-
-			if (solution.HasValue)
-			{
-				result.Add(new BfStepSearcher(solution.Value));
-			}
-
-			return result.ToArray();
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static StepSearcher[] GetHodokuModeSearchers(this ManualSolver @this, in SudokuGrid? solution) =>
+			@this.GetSearchers(solution);
 	}
 }

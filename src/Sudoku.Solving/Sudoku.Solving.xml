@@ -4501,6 +4501,19 @@
             <para>The default value is <c>5</c>.</para>
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSearchers(System.Nullable{Sudoku.Data.SudokuGrid}@)">
+            <summary>
+            Gets all possible searchers via the current manual solver settings.
+            </summary>
+            <param name="solution">
+            <para>(<see langword="in"/> parameter) The solution grid.</para>
+            <para>
+            This parameter is necessary because some technique searchers will use this value,
+            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>. The default value is <see langword="null"/>.
+            </para>
+            </param>
+            <returns>The result list.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordStep(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Diagnostics.Stopwatch,System.Collections.Generic.IList{Sudoku.Data.SudokuGrid},Sudoku.Solving.AnalysisResult@,System.Nullable{System.Threading.CancellationToken})">
             <summary>
             Bound with on-solving methods returns the solving state.

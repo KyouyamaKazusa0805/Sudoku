@@ -3,16 +3,117 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using Sudoku.Data;
 using Sudoku.Models;
-using static Sudoku.Data.ConclusionType;
+using Sudoku.Solving.Manual.Alses;
+using Sudoku.Solving.Manual.Chaining;
+using Sudoku.Solving.Manual.Exocets;
+using Sudoku.Solving.Manual.Fishes;
+using Sudoku.Solving.Manual.Intersections;
+using Sudoku.Solving.Manual.LastResorts;
+using Sudoku.Solving.Manual.RankTheory;
+using Sudoku.Solving.Manual.Sdps;
+using Sudoku.Solving.Manual.Singles;
+using Sudoku.Solving.Manual.Subsets;
+using Sudoku.Solving.Manual.Uniqueness.Bugs;
+using Sudoku.Solving.Manual.Uniqueness.Extended;
+using Sudoku.Solving.Manual.Uniqueness.Loops;
+using Sudoku.Solving.Manual.Uniqueness.Polygons;
+using Sudoku.Solving.Manual.Uniqueness.Qiu;
+using Sudoku.Solving.Manual.Uniqueness.Rects;
+using Sudoku.Solving.Manual.Uniqueness.Reversal;
+using Sudoku.Solving.Manual.Uniqueness.Square;
+using Sudoku.Solving.Manual.Wings.Irregular;
+using Sudoku.Solving.Manual.Wings.Regular;
 
 namespace Sudoku.Solving.Manual
 {
 	partial class ManualSolver
 	{
+		/// <summary>
+		/// Gets all possible searchers via the current manual solver settings.
+		/// </summary>
+		/// <param name="solution">
+		/// <para>(<see langword="in"/> parameter) The solution grid.</para>
+		/// <para>
+		/// This parameter is necessary because some technique searchers will use this value,
+		/// such as <see cref="BfStepSearcher"/>. The default value is <see langword="null"/>.
+		/// </para>
+		/// </param>
+		/// <returns>The result list.</returns>
+		public StepSearcher[] GetSearchers(in SudokuGrid? solution)
+		{
+			var result = new List<StepSearcher>
+			{
+				new SingleStepSearcher
+				{
+					EnableFullHouse = EnableFullHouse,
+					EnableLastDigit = EnableLastDigit,
+					ShowDirectLines = ShowDirectLines
+				},
+				new LcStepSearcher(),
+				new SubsetStepSearcher(),
+				new NormalFishStepSearcher(),
+				new RegularWingStepSearcher(CheckRegularWingSize),
+				new IrregularWingStepSearcher(),
+				new TwoStrongLinksStepSearcher(),
+				new UrStepSearcher
+				{
+					AllowIncompleteUniqueRectangles = CheckIncompleteUniquenessPatterns,
+					SearchForExtendedUniqueRectangles = SearchExtendedUniqueRectangles
+				},
+				new XrStepSearcher(),
+				new UlStepSearcher(),
+				new ErStepSearcher(),
+				new AlcStepSearcher(CheckAlmostLockedQuadruple),
+				new SdcStepSearcher(),
+				new Sdc3dStepSearcher(),
+				new BdpStepSearcher(),
+				new ReverseBugStepSearcher(),
+				new QdpStepSearcher(),
+				new UsStepSearcher(),
+				new GuardianStepSearcher(),
+				new BugStepSearcher(UseExtendedBugSearcher),
+				new EripStepSearcher(),
+				new BivalueOddagonStepSearcher(),
+				new AicStepSearcher(),
+				new AlsXzStepSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
+				new AlsXyWingStepSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
+				new AlsWWingStepSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
+				new DbStepSearcher(),
+#if NISHIO_FORCING_CHAINS
+				new FcStepSearcher(nishio: true, multiple: false, dynamic: true),
+#else
+				new ComplexFishStepSearcher { MaxSize = ComplexFishMaxSize },
+#endif
+				new FcStepSearcher(nishio: false, multiple: true, dynamic: false),
+				new BugMultipleWithFcStepSearcher(),
+				new FcStepSearcher(nishio: false, multiple: true, dynamic: true),
+				new JeStepSearcher(CheckAdvancedInExocet),
+				new SeStepSearcher(CheckAdvancedInExocet),
+				new SkLoopStepSearcher(),
+				new MslsStepSearcher(),
+				new PomStepSearcher(),
+				new BowmanBingoStepSearcher(BowmanBingoMaximumLength),
+				new TemplateStepSearcher(OnlyRecordTemplateDelete),
+#if DOUBLE_LAYERED_ASSUMPTION
+				new FcPlusTechniqueSearcher(level: 1),
+				new FcPlusTechniqueSearcher(level: 2),
+				new FcPlusTechniqueSearcher(level: 3),
+				new FcPlusTechniqueSearcher(level: 4),
+				new FcPlusTechniqueSearcher(level: 5),
+#endif
+			};
+
+			if (solution is { } s)
+			{
+				result.Add(new BfStepSearcher(s));
+			}
+
+			return result.ToArray();
+		}
+
 		/// <summary>
 		/// Bound with on-solving methods returns the solving state.
 		/// </summary>
@@ -38,8 +139,8 @@ namespace Sudoku.Solving.Manual
 			{
 				switch (t)
 				{
-					case Assignment when cloneation.GetStatus(c) == CellStatus.Empty:
-					case Elimination when cloneation.Exists(c, d) is true:
+					case ConclusionType.Assignment when cloneation.GetStatus(c) == CellStatus.Empty:
+					case ConclusionType.Elimination when cloneation.Exists(c, d) is true:
 					{
 						needAdd = true;
 
@@ -86,8 +187,8 @@ namespace Sudoku.Solving.Manual
 				int digit = solution[c];
 				switch (t)
 				{
-					case Assignment when digit != d:
-					case Elimination when digit == d:
+					case ConclusionType.Assignment when digit != d:
+					case ConclusionType.Elimination when digit == d:
 					{
 						return false;
 					}
