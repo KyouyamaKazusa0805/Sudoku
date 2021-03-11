@@ -157,15 +157,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 								switch ((c1, c2))
 								{
-									case (0, 3) or (1, 2) when !arMode: // Diagonal type.
+									case (0, 3) or (1, 2): // Diagonal type.
 									{
-										CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-
-										if (SearchForExtendedUniqueRectangles)
+										if (!arMode)
 										{
-											Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-											Check2D1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+
+											if (SearchForExtendedUniqueRectangles)
+											{
+												Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+												Check2D1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											}
 										}
+										else
+										{
+											if (SearchForExtendedUniqueRectangles)
+											{
+												CheckHiddenSingleAvoidable(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											}
+										}
+
 										break;
 									}
 									default: // Non-diagonal type.
@@ -338,5 +349,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		partial void CheckWing(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int size, int index);
 		partial void CheckSdc(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
 		partial void CheckGuardian(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, short comparer, int d1, int d2, int index);
+		partial void CheckHiddenSingleAvoidable(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
 	}
 }

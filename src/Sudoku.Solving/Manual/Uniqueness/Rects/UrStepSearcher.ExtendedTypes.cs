@@ -4,6 +4,7 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -2090,9 +2091,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				accumulator.Add(
 					new UrWithGuardianStepInfo(
 						conclusions,
-						new[]
+						new View[]
 						{
-							new View
+							new()
 							{
 								Candidates = candidateOffsets,
 								Regions = new DrawingInfo[]
@@ -2108,6 +2109,119 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						guardianDigit,
 						guardianMap,
 						index));
+			}
+		}
+
+		/// <summary>
+		/// Check AR+Hidden single.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+		/// <param name="comparer">The mask comparer.</param>
+		/// <param name="d1">The digit 1 used in UR.</param>
+		/// <param name="d2">The digit 2 used in UR.</param>
+		/// <param name="corner1">The corner cell 1.</param>
+		/// <param name="corner2">The corner cell 2.</param>
+		/// <param name="otherCellsMap">
+		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// </param>
+		/// <param name="index">The index.</param>
+		partial void CheckHiddenSingleAvoidable(
+			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer,
+			int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		{
+			// ↓corner1
+			// a   | aby  -  -
+			// abx | a    -  b
+			//     | -    -  -
+			//       ↑corner2(cell 'a')
+			// There's only one cell can be filled with the digit 'b' besides the cell 'aby'.
+
+			if (grid.GetStatus(corner1) != CellStatus.Modifiable
+				|| grid.GetStatus(corner2) != CellStatus.Modifiable
+				|| grid[corner1] != grid[corner2]
+				|| grid[corner1] != d1 && grid[corner1] != d2)
+			{
+				return;
+			}
+
+			// Get the base digit ('a') and the other digit ('b').
+			// Here 'b' is the digit that we should check the possible hidden single.
+			int baseDigit = grid[corner1], otherDigit = baseDigit == d1 ? d2 : d1;
+			var cellsThatTwoOtherCellsBothCanSee = otherCellsMap.PeerIntersection & CandMaps[otherDigit];
+
+			// Iterate on two cases (because we holds two other cells,
+			// and both those two cells may contain possible elimination).
+			for (int i = 0; i < 2; i++)
+			{
+				var (baseCell, anotherCell) = i == 0
+					? (otherCellsMap[0], otherCellsMap[1])
+					: (otherCellsMap[1], otherCellsMap[0]);
+
+				// Iterate on each region type.
+				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+				{
+					int region = baseCell.ToRegion(label);
+
+					// If the region doesn't overlap with the specified region, just skip it.
+					if ((cellsThatTwoOtherCellsBothCanSee & RegionMaps[region]).IsEmpty)
+					{
+						continue;
+					}
+
+					var otherCellsToCheck = RegionMaps[region] & CandMaps[otherDigit] & PeerMaps[anotherCell];
+					int sameRegions = (otherCellsToCheck + anotherCell).CoveredRegions;
+					foreach (int sameRegion in sameRegions)
+					{
+						// Check whether all possible positions of the digit 'b' in this region only
+						// lies in the given cells above ('cellsThatTwoOtherCellsBothCanSee').
+						if ((RegionMaps[sameRegion] - anotherCell & CandMaps[otherDigit]) != otherCellsToCheck)
+						{
+							continue;
+						}
+
+						// Possible hidden single found.
+						// If the elimination doesn't exist, just skip it.
+						if (grid.Exists(baseCell, otherDigit) is not true)
+						{
+							continue;
+						}
+
+						var cellOffsets = new List<DrawingInfo>();
+						foreach (int cell in urCells)
+						{
+							cellOffsets.Add(new(0, cell));
+						}
+
+						var candidateOffsets = new List<DrawingInfo> { new(0, anotherCell * 9 + otherDigit) };
+						foreach (int cell in otherCellsToCheck)
+						{
+							candidateOffsets.Add(new(1, cell * 9 + otherDigit));
+						}
+
+						accumulator.Add(
+							new ArWithHiddenSingleStepInfo(
+								new Conclusion[] { new(ConclusionType.Elimination, baseCell, otherDigit) },
+								new View[]
+								{
+									new()
+									{
+										Cells = cellOffsets,
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[] { new(0, sameRegion) }
+									}
+								},
+								d1,
+								d2,
+								urCells,
+								baseCell,
+								anotherCell,
+								sameRegion,
+								index));
+					}
+				}
 			}
 		}
 	}

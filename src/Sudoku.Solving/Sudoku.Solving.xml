@@ -7723,6 +7723,46 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType4StepInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo">
+            <summary>
+            Provides a usage of <b>avoidable rectangle + hidden single</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="Cells">All AR cells.</param>
+            <param name="BaseCell">The base cell.</param>
+            <param name="TargetCell">The target cell.</param>
+            <param name="TargetRegion">The target region.</param>
+            <param name="AbsoluteOffset">The absolute offset.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides a usage of <b>avoidable rectangle + hidden single</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="Cells">All AR cells.</param>
+            <param name="BaseCell">The base cell.</param>
+            <param name="TargetCell">The target cell.</param>
+            <param name="TargetRegion">The target region.</param>
+            <param name="AbsoluteOffset">The absolute offset.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrStepInfo">
             <summary>
             Provides a usage of <b>hidden unique rectangle</b> (HUR) or
@@ -8326,6 +8366,24 @@
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check AR+Hidden single.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">
+            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            </param>
             <param name="index">The index.</param>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.PossibleUrList">

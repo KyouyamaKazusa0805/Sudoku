@@ -897,6 +897,21 @@
 		ArGuardian,
 
 		/// <summary>
+		/// Indicates the AR hidden single in block.
+		/// </summary>
+		ArHiddenSingleBlock,
+
+		/// <summary>
+		/// Indicates the AR hidden single in row.
+		/// </summary>
+		ArHiddenSingleRow,
+
+		/// <summary>
+		/// Indicates the AR hidden single in column.
+		/// </summary>
+		ArHiddenSingleColumn,
+
+		/// <summary>
 		/// Indicates the UL type 1.
 		/// </summary>
 		UlType1,

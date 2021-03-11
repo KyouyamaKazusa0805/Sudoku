@@ -5658,6 +5658,21 @@
             Indicates the AR guardian.
             </summary>
         </member>
+        <member name="F:Sudoku.Techniques.Technique.ArHiddenSingleBlock">
+            <summary>
+            Indicates the AR hidden single in block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.ArHiddenSingleRow">
+            <summary>
+            Indicates the AR hidden single in row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.ArHiddenSingleColumn">
+            <summary>
+            Indicates the AR hidden single in column.
+            </summary>
+        </member>
         <member name="F:Sudoku.Techniques.Technique.UlType1">
             <summary>
             Indicates the UL type 1.
