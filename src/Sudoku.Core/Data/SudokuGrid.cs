@@ -671,7 +671,7 @@ namespace Sudoku.Data
 			const string separator = ", ";
 			fixed (short* pArr = _values)
 			{
-				var sb = new ValueStringBuilder(stackalloc char[400]);
+				var sb = new ValueStringBuilder(400);
 				sb.AppendRange(pArr, 81, &p, separator);
 				sb.RemoveFromEnd(separator.Length);
 				return sb.ToString();
