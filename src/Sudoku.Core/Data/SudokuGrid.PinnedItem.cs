@@ -32,7 +32,7 @@
 		/// </remarks>
 		/// <see cref="GetPinnableReference()"/>
 		/// <see cref="GetPinnableReference(PinnedItem)"/>
-		public enum PinnedItem
+		public enum PinnedItem : byte
 		{
 			/// <summary>
 			/// Indicates the current grid should be pinned.
