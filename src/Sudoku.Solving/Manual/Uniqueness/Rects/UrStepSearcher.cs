@@ -126,6 +126,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
+						if (_searchExtended)
+						{
+							CheckGuardian(gathered, grid, urCells, comparer, d1, d2, index);
+						}
+
 						// Iterate on each corner of four cells.
 						for (int c1 = 0; c1 < 4; c1++)
 						{
@@ -348,5 +353,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		partial void Check4C3SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
 		partial void CheckWing(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int size, int index);
 		partial void CheckSdc(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void CheckGuardian(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, short comparer, int d1, int d2, int index);
 	}
 }

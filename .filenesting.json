@@ -60,6 +60,7 @@
           "UrType3StepInfo.cs": [ "UrStepInfo.cs" ],
           "UrWithSdcStepInfo.cs": [ "UrStepInfo.cs" ],
           "UrWithWingStepInfo.cs": [ "UrStepInfo.cs" ],
+          "UrWithGuardianStepInfo.cs": [ "UrStepInfo.cs" ],
           "UsType1StepInfo.cs": [ "UsStepInfo.cs" ],
           "UsType2StepInfo.cs": [ "UsStepInfo.cs" ],
           "UsType3StepInfo.cs": [ "UsStepInfo.cs" ],

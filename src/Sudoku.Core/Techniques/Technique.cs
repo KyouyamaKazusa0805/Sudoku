@@ -832,6 +832,11 @@
 		UrSdc,
 
 		/// <summary>
+		/// Indicates the UR guardian.
+		/// </summary>
+		UrGuardian,
+
+		/// <summary>
 		/// Indicates the AR type 1.
 		/// </summary>
 		ArType1,
@@ -885,6 +890,11 @@
 		/// Indicates the AR sue de coq.
 		/// </summary>
 		ArSdc,
+
+		/// <summary>
+		/// Indicates the AR guardian.
+		/// </summary>
+		ArGuardian,
 
 		/// <summary>
 		/// Indicates the UL type 1.

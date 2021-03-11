@@ -5593,6 +5593,11 @@
             Indicates the UR sue de coq.
             </summary>
         </member>
+        <member name="F:Sudoku.Techniques.Technique.UrGuardian">
+            <summary>
+            Indicates the UR guardian.
+            </summary>
+        </member>
         <member name="F:Sudoku.Techniques.Technique.ArType1">
             <summary>
             Indicates the AR type 1.
@@ -5646,6 +5651,11 @@
         <member name="F:Sudoku.Techniques.Technique.ArSdc">
             <summary>
             Indicates the AR sue de coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.ArGuardian">
+            <summary>
+            Indicates the AR guardian.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UlType1">
