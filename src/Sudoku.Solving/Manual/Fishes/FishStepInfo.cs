@@ -30,6 +30,43 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates the size of this fish instance.
 		/// </summary>
+		/// <remarks>
+		/// The name of the corresponding names are:
+		/// <list type="table">
+		/// <item>
+		/// <term>1</term>
+		/// <description>Cyclops (But out of use)</description>
+		/// </item>
+		/// <item>
+		/// <term>2</term>
+		/// <description>X-Wing</description>
+		/// </item>
+		/// <item>
+		/// <term>3</term>
+		/// <description>Swordfish</description>
+		/// </item>
+		/// <item>
+		/// <term>4</term>
+		/// <description>Jellyfish</description>
+		/// </item>
+		/// <item>
+		/// <term>5</term>
+		/// <description>Squirmbag or Starfish</description>
+		/// </item>
+		/// <item>
+		/// <term>6</term>
+		/// <description>Whale</description>
+		/// </item>
+		/// <item>
+		/// <term>7</term>
+		/// <description>Leviathan</description>
+		/// </item>
+		/// <item>
+		/// <term>&gt; 7</term>
+		/// <description>No name</description>
+		/// </item>
+		/// </list>
+		/// </remarks>
 		public int Size => BaseSets.Count;
 
 		/// <summary>

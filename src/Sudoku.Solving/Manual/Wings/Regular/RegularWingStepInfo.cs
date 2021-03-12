@@ -43,6 +43,43 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <summary>
 		/// Indicates the size of this regular wing.
 		/// </summary>
+		/// <remarks>
+		/// All names are:
+		/// <list type="table">
+		/// <item>
+		/// <term>2</term>
+		/// <description>XY-Wing</description>
+		/// </item>
+		/// <item>
+		/// <term>3</term>
+		/// <description>XYZ-Wing</description>
+		/// </item>
+		/// <item>
+		/// <term>4</term>
+		/// <description>WXYZ-Wing or XYZW-Wing</description>
+		/// </item>
+		/// <item>
+		/// <term>5</term>
+		/// <description>VWXYZ-Wing</description>
+		/// </item>
+		/// <item>
+		/// <term>6</term>
+		/// <description>UVWXYZ-Wing</description>
+		/// </item>
+		/// <item>
+		/// <term>7</term>
+		/// <description>TUVWXYZ-Wing</description>
+		/// </item>
+		/// <item>
+		/// <term>8</term>
+		/// <description>STUVWXYZ-Wing</description>
+		/// </item>
+		/// <item>
+		/// <term>9</term>
+		/// <description>RSTUVWXYZ-Wing</description>
+		/// </item>
+		/// </list>
+		/// </remarks>
 		public int Size => PopCount((uint)DigitsMask);
 
 		/// <inheritdoc/>
