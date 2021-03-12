@@ -8321,7 +8321,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckWing(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32)">
             <summary>
-            Check UR-XY-Wing, UR-XYZ-Wing and UR-WXYZ-Wing.
+            Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
@@ -8356,7 +8356,7 @@
             </param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckGuardian(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckGuardianUnique(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo},Sudoku.Data.SudokuGrid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
             Check UR+Guardian.
             </summary>
