@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual
 				new LcStepSearcher(),
 				new SubsetStepSearcher(),
 				new NormalFishStepSearcher(),
-				new RegularWingStepSearcher(CheckRegularWingSize),
+				new RegularWingStepSearcher { MaxSize = CheckRegularWingSize },
 				new IrregularWingStepSearcher(),
 				new TwoStrongLinksStepSearcher(),
 				new UrStepSearcher

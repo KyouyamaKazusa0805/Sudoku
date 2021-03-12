@@ -9296,16 +9296,10 @@
             Encapsulates a <b>regular wing</b> technique solver.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher._size">
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher.MaxSize">
             <summary>
-            The size.
+            Indicates the maximum size the searcher will search for. The maximum possible value is 9.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified size.
-            </summary>
-            <param name="size">The size.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>

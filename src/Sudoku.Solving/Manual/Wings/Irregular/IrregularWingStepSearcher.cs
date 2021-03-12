@@ -99,8 +99,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 
 							// Check whether the cells are the same region as the head and the tail cell.
 							int a = conjugateRegion[0], b = conjugateRegion[1];
-							if
-							(
+							if (
 								!(
 									new Cells { c1, a }.InOneRegion && new Cells { c2, b }.InOneRegion
 									|| new Cells { c1, b }.InOneRegion && new Cells { c2, a }.InOneRegion

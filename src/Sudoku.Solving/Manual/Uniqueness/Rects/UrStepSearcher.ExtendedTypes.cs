@@ -2074,7 +2074,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap)
 				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, d1));
+					conclusions.Add(new(ConclusionType.Elimination, cell, guardianDigit));
 				}
 
 				var candidateOffsets = new List<DrawingInfo>();

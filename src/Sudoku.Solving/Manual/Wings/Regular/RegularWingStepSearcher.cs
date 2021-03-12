@@ -18,16 +18,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 	public sealed class RegularWingStepSearcher : WingStepSearcher
 	{
 		/// <summary>
-		/// The size.
+		/// Indicates the maximum size the searcher will search for. The maximum possible value is 9.
 		/// </summary>
-		private readonly int _size;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified size.
-		/// </summary>
-		/// <param name="size">The size.</param>
-		public RegularWingStepSearcher(int size) => _size = size;
+		public int MaxSize { get; init; }
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -43,7 +36,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			// Iterate on the size.
 			// Note that the greatest size is determined by two factors: the size that you specified
 			// and the number of bi-value cells in the grid.
-			for (int size = 3, count = Math.Min(_size, BivalueMap.Count); size <= count; size++)
+			for (int size = 3, count = Math.Min(MaxSize, BivalueMap.Count); size <= count; size++)
 			{
 				// Iterate on each pivot cell.
 				foreach (int pivot in EmptyMap)
@@ -76,12 +69,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								if (grid.GetMask(cells[i]) == grid.GetMask(cells[j]))
 								{
 									flag = true;
-									goto Determine;
+									goto CheckWhetherTwoCellsContainSameCandidateKind;
 								}
 							}
 						}
 
-					Determine:
+					CheckWhetherTwoCellsContainSameCandidateKind:
 						if (flag)
 						{
 							continue;
@@ -101,7 +94,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 							continue;
 						}
 
-						// Get the Z digit (The removing value).
+						// Get the Z digit (The digit to be removed).
 						bool isIncomplete = inter == 0;
 						short interWithoutPivot = (short)(union & ~grid.GetCandidates(pivot));
 						short maskToCheck = isIncomplete ? interWithoutPivot : inter;

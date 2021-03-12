@@ -127,7 +127,6 @@ namespace Sudoku.Solving.Manual.Fishes
 							CandMaps[digit] & (
 								RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]
 								| RegionMaps[baseSets[2]] | RegionMaps[baseSets[3]])
-
 					};
 
 					// Iterate on the cover set combination.
@@ -269,8 +268,10 @@ namespace Sudoku.Solving.Manual.Fishes
 							foreach (int c in ValueMaps[digit])
 							{
 								if (
-									RegionMaps[c.ToRegion(searchRow ? RegionLabel.Column : RegionLabel.Row)]
-									.Contains(cell))
+									RegionMaps[c.ToRegion(
+										searchRow ? RegionLabel.Column : RegionLabel.Row
+									)].Contains(cell)
+								)
 								{
 									flag = true;
 									break;
