@@ -83,6 +83,61 @@
             with the whole array.
             </remarks>
         </member>
+        <member name="T:System.Collections.Generic.NotifyChangedList`1">
+            <summary>
+            Encapsulates the list that notifies the users while adding an element.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+        </member>
+        <member name="F:System.Collections.Generic.NotifyChangedList`1._innerList">
+            <summary>
+            Indicates the inner list.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.NotifyChangedList`1.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Collections.Generic.NotifyChangedList`1.IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Collections.Generic.NotifyChangedList`1.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="E:System.Collections.Generic.NotifyChangedList`1.ElementAdded">
+            <summary>
+            Indicates the event triggers when the element is added.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.Add(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.Contains(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.CopyTo(`0[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.IndexOf(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.Insert(System.Int32,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.Remove(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.RemoveAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.NotifyChangedList`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Collections.Generic.Set`1">
             <summary>
             Indicates a set which contains the different elements.

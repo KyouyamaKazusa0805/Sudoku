@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Extensions;
 using System.Linq;
 using System.Threading;
 using Sudoku.Data;
@@ -9,7 +10,6 @@ using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;
 using static Sudoku.Solving.Manual.FastProperties;
-// ReSharper disable All
 
 namespace Sudoku.Solving.Manual
 {
@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
 		private unsafe AnalysisResult SolveNaively(
-			in SudokuGrid grid, ref SudokuGrid cloneation, List<StepInfo> steps, in SudokuGrid solution,
+			in SudokuGrid grid, ref SudokuGrid cloneation, IList<StepInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress,
 			CancellationToken? cancellationToken)
 		{
@@ -78,8 +78,8 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
-		// Start searching.
-		var searchers = this.GetHodokuModeSearchers(solution);
+			// Start searching.
+			var searchers = this.GetHodokuModeSearchers(solution);
 			if (UseCalculationPriority)
 			{
 				searchers.Sort(&cmp);
@@ -223,7 +223,7 @@ namespace Sudoku.Solving.Manual
 			stopwatch.Stop();
 			return new(SolverName, grid, false, stopwatch.Elapsed)
 			{
-				Steps = steps,
+				Steps = steps.AsReadOnlyList(),
 				StepGrids = stepGrids,
 			};
 
