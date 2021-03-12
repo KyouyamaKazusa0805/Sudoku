@@ -19,16 +19,6 @@ namespace Sudoku.Solving.Manual
 	public abstract record StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
 	{
 		/// <summary>
-		/// The names of all subsets by their sizes.
-		/// </summary>
-		protected static readonly string[] SubsetNames =
-		{
-			string.Empty, "Single", "Pair", "Triple", "Quadruple",
-			"Quintuple", "Sextuple", "Septuple", "Octuple", "Nonuple"
-		};
-
-
-		/// <summary>
 		/// <para>
 		/// Indicates whether the difficulty rating of this technique should be
 		/// shown in the output screen. Some techniques such as <b>Gurth's symmetrical placement</b>

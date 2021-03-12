@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			string cellsStr = Cells.ToString();
 			string subsetDigitsStr = new DigitCollection(ExtraDigitsMask).ToString();
 			string subsetCellsStr = new Cells(ExtraCells).ToString();
-			string subsetName = SubsetNames[ExtraCells.Count + 1];
+			string subsetName = TechniqueStrings.SubsetNames[ExtraCells.Count + 1];
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: Digits {digitsStr} in cells {cellsStr} can be avoid to form a deadly pattern " +

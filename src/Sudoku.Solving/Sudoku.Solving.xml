@@ -5383,11 +5383,6 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="F:Sudoku.Solving.Manual.StepInfo.SubsetNames">
-            <summary>
-            The names of all subsets by their sizes.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.StepInfo.ShowDifficulty">
             <summary>
             <para>
@@ -9266,11 +9261,6 @@
         <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepInfo.DifficultyRating">
             <summary>
             The difficulty rating.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepInfo.RegularWingNames">
-            <summary>
-            The names of all regular wings by their sizes.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepInfo.IsIncomplete">

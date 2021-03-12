@@ -26,16 +26,6 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		private static readonly decimal[] DifficultyRating = { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6.0M };
 
 		/// <summary>
-		/// The names of all regular wings by their sizes.
-		/// </summary>
-		public static readonly string[] RegularWingNames =
-		{
-			string.Empty, string.Empty, string.Empty, string.Empty, "WXYZ-Wing", "VWXYZ-Wing",
-			"UVWXYZ-Wing", "TUVWXYZ-Wing", "STUVWXYZ-Wing", "RSTUVWXYZ-Wing"
-		};
-
-
-		/// <summary>
 		/// Indicates whether the structure is incomplete.
 		/// </summary>
 		public bool IsIncomplete => Size == PivotCandidatesCount + 1;
@@ -121,7 +111,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		private string InternalName => Size switch
 		{
 			3 => IsIncomplete ? "XY-Wing" : "XYZ-Wing",
-			>= 4 and < 9 => IsIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size]
+			>= 4 and < 9 => IsIncomplete
+				? $"Incomplete {TechniqueStrings.RegularWingNames[Size]}"
+				: TechniqueStrings.RegularWingNames[Size]
 		};
 
 

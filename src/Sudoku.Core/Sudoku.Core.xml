@@ -6171,6 +6171,35 @@
             Indicates the brute force.
             </summary>
         </member>
+        <member name="T:Sudoku.Techniques.TechniqueStrings">
+            <summary>
+            Provides the <see cref="T:System.String"/> values to be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueStrings.SubsetNames">
+            <summary>
+            <para>The names of all subsets by their sizes.</para>
+            <para>
+            For example, if you want to get the name of the size 3, the code will be
+            <code>
+            string name = TechniqueStrings.SubsetNames[3];
+            </code>
+            Here the digit <c>3</c> is the size you want to get.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueStrings.RegularWingNames">
+            <summary>
+            <para>The names of all regular wings by their sizes.</para>
+            <para>
+            For example, if you want to get the name of the size 3, the code will be
+            <code>
+            string name = TechniqueStrings.RegularWingNames[3];
+            </code>
+            Here the digit <c>3</c> is the size you want to get.
+            </para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Techniques.TechniqueTags">
             <summary>
             Provides a series of tags to mark on a technique.

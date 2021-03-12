@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -29,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		{
 			string cellsStr = Loop.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string subsetName = SubsetNames[SubsetCells.Count + 1];
+			string subsetName = TechniqueStrings.SubsetNames[SubsetCells.Count + 1];
 			string digitsStr = new DigitCollection(SubsetDigitsMask).ToString();
 			string subsetCellsStr = new Cells(SubsetCells).ToString();
 			return
