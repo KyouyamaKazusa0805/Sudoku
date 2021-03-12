@@ -135,6 +135,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								Check3E2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
 							}
 
+							// If we aim to a single cell, all four cells should be checked.
+							// Therefore, the 'break' clause should be written here, rather than
+							// 'for' loop declaration.
+							// If that declaration is 'for (int c1 = 0; c1 < 3; c1++)',
+							// we'll miss the cases for checking the last cell.
 							if (c1 == 3)
 							{
 								break;
