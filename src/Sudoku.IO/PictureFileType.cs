@@ -1,8 +1,11 @@
-﻿namespace Sudoku.IO
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.IO
 {
 	/// <summary>
 	/// Encapsulates a picture type.
 	/// </summary>
+	[Closed]
 	public enum PictureFileType : byte
 	{
 		/// <summary>

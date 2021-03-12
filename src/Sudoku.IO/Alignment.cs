@@ -1,8 +1,11 @@
-﻿namespace Sudoku.IO
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.IO
 {
 	/// <summary>
 	/// Indicates an alignment type.
 	/// </summary>
+	[Closed]
 	public enum Alignment : byte
 	{
 		/// <summary>

@@ -1,9 +1,11 @@
-﻿namespace Sudoku.Diagnostics
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Diagnostics
 {
 	/// <summary>
 	/// Indicates a unit for a file size.
 	/// </summary>
-	/*closed*/
+	[Closed]
 	public enum SizeUnit : byte
 	{
 		/// <summary>

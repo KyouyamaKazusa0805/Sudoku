@@ -1,9 +1,11 @@
-﻿namespace Sudoku.Solving.Manual.Chaining
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Indicates a type code for a chain.
 	/// </summary>
-	/*closed*/
+	[Closed]
 	public enum ChainingTypeCode : byte
 	{
 		/// <summary>

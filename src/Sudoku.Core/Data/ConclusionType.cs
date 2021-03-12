@@ -1,9 +1,11 @@
-﻿namespace Sudoku.Data
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides a conclusion type.
 	/// </summary>
-	/*closed*/
+	[Closed]
 	public enum ConclusionType : byte
 	{
 		/// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Techniques
 {
@@ -12,7 +13,7 @@ namespace Sudoku.Techniques
 	/// </remarks>
 	/// <seealso cref="Als"/>
 	/// <seealso cref="LongChaining"/>
-	[Flags]
+	[Flags, Closed]
 	public enum TechniqueTags
 	{
 		/// <summary>

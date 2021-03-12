@@ -1,9 +1,11 @@
-﻿namespace Sudoku.Data
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Represents a grid parsing type.
 	/// </summary>
-	/*closed*/
+	[Closed]
 	public enum GridParsingOption : byte
 	{
 		/// <summary>

@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Windows.CustomControls
 {
 	/// <summary>
 	/// Indicates the option using in initialization for a <see cref="ColorPickerWindow"/>.
 	/// </summary>
-	[Flags]
-	/*closed*/
+	[Flags, Closed]
 	public enum ColorPickerOptions
 	{
 		/// <summary>

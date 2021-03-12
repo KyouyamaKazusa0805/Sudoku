@@ -13,5 +13,9 @@
 	<ItemGroup>
 		<None Remove="Sudoku.Globalization.xml" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
 
 </Project>

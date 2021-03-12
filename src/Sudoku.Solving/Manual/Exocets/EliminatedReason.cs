@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
 	/// <summary>
 	/// Encapsulates a type that represents the reason why the eliminations can be removed.
 	/// </summary>
-	[Flags]
+	[Flags, Closed]
 	public enum EliminatedReason : byte
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -7,7 +8,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates the shape modifiers.
 		/// </summary>
-		[Flags]
+		[Flags, Closed]
 		private enum ShapeModifiers
 		{
 			/// <summary>

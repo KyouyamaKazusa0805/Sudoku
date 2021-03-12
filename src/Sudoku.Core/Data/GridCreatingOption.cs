@@ -1,9 +1,11 @@
-﻿
+﻿using System.Diagnostics.CodeAnalysis;
+
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Indicates teh grid creating option.
 	/// </summary>
+	[Closed]
 	public enum GridCreatingOption : byte
 	{
 		/// <summary>

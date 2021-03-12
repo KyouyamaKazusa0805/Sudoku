@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Indicates a reason why the searcher is disabled.
 	/// </summary>
-	[Flags]
-	/*closed*/
+	[Flags, Closed]
 	public enum DisabledReason : byte
 	{
 		/// <summary>

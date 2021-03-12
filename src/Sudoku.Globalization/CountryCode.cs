@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Globalization
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Globalization
 {
 	/// <summary>
 	/// Encapsulates a country code to tell different countries.
@@ -7,6 +9,7 @@
 	/// This <see langword="enum"/> is used for some formatted string output, i.e. a
 	/// multi-language string.
 	/// </remarks>
+	[Closed]
 	public enum CountryCode : short
 	{
 		/// <summary>

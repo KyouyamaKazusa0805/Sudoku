@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Define a symmetry type.
 	/// </summary>
-	[Flags]
-	/*closed*/
+	[Flags, Closed]
 	public enum SymmetryType : byte
 	{
 		/// <summary>

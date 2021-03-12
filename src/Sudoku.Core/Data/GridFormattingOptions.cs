@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides a grid format option.
 	/// </summary>
-	[Flags]
-	/*closed*/
+	[Flags, Closed]
 	public enum GridFormattingOptions : short
 	{
 		/// <summary>

@@ -1,9 +1,11 @@
-﻿namespace Sudoku.Data
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Indicates a link type.
 	/// </summary>
-	/*closed*/
+	[Closed]
 	public enum LinkType : byte
 	{
 		/// <summary>

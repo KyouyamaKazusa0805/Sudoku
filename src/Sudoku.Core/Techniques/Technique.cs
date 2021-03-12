@@ -1,9 +1,11 @@
-﻿namespace Sudoku.Techniques
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Techniques
 {
 	/// <summary>
 	/// Represents a technique instance, which is used for comparison.
 	/// </summary>
-	/*closed*/
+	[Closed]
 	public enum Technique : short
 	{
 		/// <summary>

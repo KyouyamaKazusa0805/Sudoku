@@ -1,11 +1,13 @@
 ﻿#if DOUBLE_LAYERED_ASSUMPTION
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Indicates a case of the advanced forcing chains.
 	/// </summary>
-	/*closed*/
+	[Closed]
 	public enum Cause : byte
 	{
 		/// <summary>
