@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Models;
-using Sudoku.Solving.Checking;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -16,18 +14,22 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public sealed class TemplateStepSearcher : LastResortStepSearcher
 	{
 		/// <summary>
-		/// Indicates whether the searcher checks template deletes.
+		/// Indicates the solution.
 		/// </summary>
-		private readonly bool _templateDeleteOnly;
+		private readonly SudokuGrid _solution;
 
 
 		/// <summary>
-		/// Initializes an instance with the specified <see cref="bool"/> value.
+		/// Initializes an instance with the specified solution.
 		/// </summary>
-		/// <param name="templateDeleteOnly">
-		/// Indicates whether the technique searcher checks template deletes only.
-		/// </param>
-		public TemplateStepSearcher(bool templateDeleteOnly) => _templateDeleteOnly = templateDeleteOnly;
+		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+		public TemplateStepSearcher(in SudokuGrid solution) => _solution = solution;
+
+
+		/// <summary>
+		/// Indicates whether the technique searcher only checks template deletes.
+		/// </summary>
+		public bool TemplateDeleteOnly { get; init; }
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -40,117 +42,55 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		/// <exception cref="SudokuHandlingException">Throws when the puzzle is invalid to process.</exception>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			if (!grid.IsValid(out SudokuGrid solution))
-			{
-				throw new SudokuHandlingException<SudokuGrid>(errorCode: 202, grid);
-			}
-
-			if (!_templateDeleteOnly)
-			{
-				GetAllTemplateSet(accumulator, solution);
-			}
-
-			GetAllTemplateDelete(accumulator, solution);
-		}
-
-
-		/// <summary>
-		/// Get all template sets.
-		/// </summary>
-		/// <param name="result">(<see langword="in"/> parameter) The result.</param>
-		/// <param name="solution">The solution.</param>
-		/// <returns>All template sets.</returns>
-		private static void GetAllTemplateSet(IList<StepInfo> result, in SudokuGrid solution)
-		{
+			// Iterate on each digit.
 			for (int digit = 0; digit < 9; digit++)
 			{
-				var map = CreateInstance(solution, digit);
-				var resultMap = map & CandMaps[digit];
-				var conclusions = new List<Conclusion>();
-				foreach (int cell in resultMap)
+				if (!TemplateDeleteOnly)
 				{
-					conclusions.Add(new(ConclusionType.Assignment, cell, digit));
+					// Check template sets.
+					var templateSetMap = _solution.ValuesMap[digit] & CandMaps[digit];
+					if (templateSetMap.IsEmpty)
+					{
+						continue;
+					}
+
+					var templateSetConclusions = new List<Conclusion>();
+					foreach (int cell in templateSetMap)
+					{
+						templateSetConclusions.Add(new(ConclusionType.Assignment, cell, digit));
+					}
+
+					var candidateOffsets = new DrawingInfo[templateSetConclusions.Count];
+					int i = 0;
+					foreach (var (_, candidate) in templateSetConclusions)
+					{
+						candidateOffsets[i++] = new(0, candidate);
+					}
+
+					accumulator.Add(
+						new TemplateStepInfo(
+							templateSetConclusions,
+							new View[] { new() { Candidates = candidateOffsets } },
+							false));
 				}
 
-				if (conclusions.Count == 0)
+				// Then check template deletes.
+				var templateDeleteMap = CandMaps[digit] - _solution.ValuesMap[digit];
+				if (templateDeleteMap.IsEmpty)
 				{
 					continue;
 				}
 
-				var candidateOffsets = new DrawingInfo[conclusions.Count];
-				int i = 0;
-				foreach (var (_, candidate) in conclusions)
+				var templateDeleteConclusions = new List<Conclusion>();
+				foreach (int cell in templateDeleteMap)
 				{
-					candidateOffsets[i++] = new(0, candidate);
+					templateDeleteConclusions.Add(new(ConclusionType.Elimination, cell, digit));
 				}
 
-				result.Add(
-					new TemplateStepInfo(
-						conclusions,
-						new View[] { new() { Candidates = candidateOffsets } },
-						false));
+				accumulator.Add(new TemplateStepInfo(templateDeleteConclusions, new View[] { new() }, true));
 			}
-		}
-
-		/// <summary>
-		/// Get all template deletes.
-		/// </summary>
-		/// <param name="result">(<see langword="in"/> parameter) The result.</param>
-		/// <param name="solution">The solution.</param>
-		/// <returns>All template deletes.</returns>
-		private static void GetAllTemplateDelete(IList<StepInfo> result, in SudokuGrid solution)
-		{
-			for (int digit = 0; digit < 9; digit++)
-			{
-				var map = CreateInstance(solution, digit);
-				var resultMap = CandMaps[digit] - map;
-				var conclusions = new List<Conclusion>();
-				foreach (int cell in resultMap)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, digit));
-				}
-
-				if (conclusions.Count == 0)
-				{
-					continue;
-				}
-
-				result.Add(new TemplateStepInfo(conclusions, new View[] { new() }, true));
-			}
-		}
-
-		/// <summary>
-		/// Create a <see cref="Cells"/> instance with the specified solution.
-		/// If the puzzle has been solved, this method will create a grid map of
-		/// distribution of a single digit in this solution.
-		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="digit">The digit to search.</param>
-		/// <returns>
-		/// The grid map that contains all cells of a digit appearing
-		/// in the solution.
-		/// </returns>
-		/// <exception cref="SudokuHandlingException">Throws when the puzzle has not been solved.</exception>
-		private static Cells CreateInstance(in SudokuGrid grid, int digit)
-		{
-			if (!grid.IsSolved)
-			{
-				throw new SudokuHandlingException<SudokuGrid>(errorCode: 203, grid);
-			}
-
-			var result = Cells.Empty;
-			for (int cell = 0; cell < 81; cell++)
-			{
-				if (grid[cell] == digit)
-				{
-					result.AddAnyway(cell);
-				}
-			}
-
-			return result;
 		}
 	}
 }

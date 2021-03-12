@@ -358,7 +358,25 @@ namespace Sudoku.Data
 		/// The value you want to set. The value should be between 0 and 8. If assigning -1,
 		/// that means to re-compute all candidates.
 		/// </value>
-		/// <returns>The value that the cell filled with.</returns>
+		/// <returns>
+		/// The value that the cell filled with. The possible values are:
+		/// <list type="table">
+		/// <item>
+		/// <term>-2</term>
+		/// <description>The status of the specified cell is <see cref="CellStatus.Undefined"/>.</description>
+		/// </item>
+		/// <item>
+		/// <term>-1</term>
+		/// <description>The status of the specified cell is <see cref="CellStatus.Empty"/>.</description>
+		/// </item>
+		/// <item>
+		/// <term>0 to 8</term>
+		/// <description>
+		/// The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..
+		/// </description>
+		/// </item>
+		/// </list>
+		/// </returns>
 		[IndexerName("Value")]
 		public int this[int cell]
 		{

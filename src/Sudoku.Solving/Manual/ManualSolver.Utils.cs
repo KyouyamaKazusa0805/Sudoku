@@ -96,19 +96,27 @@ namespace Sudoku.Solving.Manual
 				new MslsStepSearcher(),
 				new PomStepSearcher(),
 				new BowmanBingoStepSearcher(BowmanBingoMaximumLength),
-				new TemplateStepSearcher(OnlyRecordTemplateDelete),
-#if DOUBLE_LAYERED_ASSUMPTION
-				new FcPlusTechniqueSearcher(level: 1),
-				new FcPlusTechniqueSearcher(level: 2),
-				new FcPlusTechniqueSearcher(level: 3),
-				new FcPlusTechniqueSearcher(level: 4),
-				new FcPlusTechniqueSearcher(level: 5),
-#endif
 			};
 
-			if (solution is { } s)
+			if (solution.HasValue)
 			{
-				result.Add(new BfStepSearcher(s));
+				result.Add(new TemplateStepSearcher(solution.Value)
+				{
+					TemplateDeleteOnly = OnlyRecordTemplateDelete
+				});
+			}
+
+#if DOUBLE_LAYERED_ASSUMPTION
+			result.Add(new FcPlusTechniqueSearcher(level: 1));
+			result.Add(new FcPlusTechniqueSearcher(level: 2));
+			result.Add(new FcPlusTechniqueSearcher(level: 3));
+			result.Add(new FcPlusTechniqueSearcher(level: 4));
+			result.Add(new FcPlusTechniqueSearcher(level: 5));
+#endif
+
+			if (solution.HasValue)
+			{
+				result.Add(new BfStepSearcher(solution.Value));
 			}
 
 			return result.ToArray();

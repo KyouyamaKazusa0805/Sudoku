@@ -36,8 +36,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override string ToString()
 		{
 			string conclusionsStr = new ConclusionCollection(Conclusions).ToString();
-			int digit = Digit + 1;
-			return $"{Name}: Digit {digit.ToString()} => {conclusionsStr}";
+			string digitStr = (Digit + 1).ToString();
+			return $"{Name}: Digit {digitStr} => {conclusionsStr}";
 		}
 	}
 }

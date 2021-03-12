@@ -4014,55 +4014,27 @@
             Encapsulates a <b>template</b> technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher._templateDeleteOnly">
+        <member name="F:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher._solution">
             <summary>
-            Indicates whether the searcher checks template deletes.
+            Indicates the solution.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.#ctor(System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
-            Initializes an instance with the specified <see cref="T:System.Boolean"/> value.
+            Initializes an instance with the specified solution.
             </summary>
-            <param name="templateDeleteOnly">
-            Indicates whether the technique searcher checks template deletes only.
-            </param>
+            <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.TemplateDeleteOnly">
+            <summary>
+            Indicates whether the technique searcher only checks template deletes.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the puzzle is invalid to process.</exception>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.GetAllTemplateSet(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get all template sets.
-            </summary>
-            <param name="result">(<see langword="in"/> parameter) The result.</param>
-            <param name="solution">The solution.</param>
-            <returns>All template sets.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.GetAllTemplateDelete(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Get all template deletes.
-            </summary>
-            <param name="result">(<see langword="in"/> parameter) The result.</param>
-            <param name="solution">The solution.</param>
-            <returns>All template deletes.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.CreateInstance(Sudoku.Data.SudokuGrid@,System.Int32)">
-            <summary>
-            Create a <see cref="T:Sudoku.Data.Cells"/> instance with the specified solution.
-            If the puzzle has been solved, this method will create a grid map of
-            distribution of a single digit in this solution.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="digit">The digit to search.</param>
-            <returns>
-            The grid map that contains all cells of a digit appearing
-            in the solution.
-            </returns>
-            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the puzzle has not been solved.</exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.LightManualSolver">
             <summary>
