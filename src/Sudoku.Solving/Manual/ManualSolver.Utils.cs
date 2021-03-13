@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define COMPLEX_FISH
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -97,10 +99,12 @@ namespace Sudoku.Solving.Manual
 					AllowAlsCycles = AllowAlsCycles
 				},
 				new DbStepSearcher(),
-#if NISHIO_FORCING_CHAINS
+#if COMPLEX_FISH
+				new ComplexFishStepSearcher { MaxSize = ComplexFishMaxSize },
+#elif NISHIO_FORCING_CHAINS
 				new FcStepSearcher(nishio: true, multiple: false, dynamic: true),
 #else
-				new ComplexFishStepSearcher { MaxSize = ComplexFishMaxSize },
+#warning You must define one conditional compilation symbols in 'COMPLEX_FISH' and 'NISHIO_FORCING_CHAINS'.
 #endif
 				new FcStepSearcher(nishio: false, multiple: true, dynamic: false),
 				new BugMultipleWithFcStepSearcher(),
