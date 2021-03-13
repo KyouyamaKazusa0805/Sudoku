@@ -2478,18 +2478,10 @@
             Indicates all patterns.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.CheckAdvanced">
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.CheckAdvanced">
             <summary>
             Indicates whether the searcher will find advanced eliminations.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.#ctor(System.Boolean)">
-            <summary>
-            Initializes an instance with the specified region maps.
-            </summary>
-            <param name="checkAdvanced">
-            Indicates whether the searcher will find advanced eliminations.
-            </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
@@ -2555,9 +2547,6 @@
             <summary>
             Encapsulates a <b>junior exocet</b> (JE) technique searcher.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.#ctor(System.Boolean)">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JeStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
@@ -2804,9 +2793,6 @@
             <summary>
             Encapsulates a <b>senior exocet</b> (SE) technique searcher.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeStepSearcher.#ctor(System.Boolean)">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>

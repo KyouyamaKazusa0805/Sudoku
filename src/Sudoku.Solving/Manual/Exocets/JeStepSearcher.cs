@@ -15,12 +15,6 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </summary>
 	public sealed partial class JeStepSearcher : ExocetStepSearcher
 	{
-		/// <inheritdoc/>
-		public JeStepSearcher(bool checkAdvanced) : base(checkAdvanced)
-		{
-		}
-
-
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(34, nameof(Technique.Je))
 		{

@@ -16,16 +16,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates whether the searcher will find advanced eliminations.
 		/// </summary>
-		protected readonly bool CheckAdvanced;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified region maps.
-		/// </summary>
-		/// <param name="checkAdvanced">
-		/// Indicates whether the searcher will find advanced eliminations.
-		/// </param>
-		protected ExocetStepSearcher(bool checkAdvanced) => CheckAdvanced = checkAdvanced;
+		public bool CheckAdvanced { get; init; }
 
 
 		/// <inheritdoc cref="StaticConstructor"/>
