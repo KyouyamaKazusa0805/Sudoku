@@ -5439,11 +5439,6 @@
             The difficulty level of this step.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.StepInfo.TechniqueCodeName">
-            <summary>
-            Indicates the technique code name.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.ApplyTo(Sudoku.Data.SudokuGrid@)">
             <summary>
             Put this instance into the specified grid.

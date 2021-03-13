@@ -35,13 +35,13 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public virtual string Name => TextResources.Current[TechniqueCodeName];
+		public virtual string Name => TextResources.Current[TechniqueCode.ToString()];
 
 		/// <summary>
 		/// Indicates the technique name alias.
 		/// </summary>
 		public string[]? NameAlias =>
-			TextResources.Current[$"{TechniqueCodeName}Alias"]?.Split(new[] { ';', ' ' });
+			TextResources.Current[$"{TechniqueCode.ToString()}Alias"]?.Split(new[] { ';', ' ' });
 
 		/// <summary>
 		/// Indicates the acronym of the step name. For example, the acronym of the technique
@@ -74,11 +74,6 @@ namespace Sudoku.Solving.Manual
 		/// The difficulty level of this step.
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }
-
-		/// <summary>
-		/// Indicates the technique code name.
-		/// </summary>
-		protected string TechniqueCodeName => TechniqueCode.ToString();
 
 
 		/// <summary>
