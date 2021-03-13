@@ -74,13 +74,28 @@ namespace Sudoku.Solving.Manual
 				new QdpStepSearcher(),
 				new UsStepSearcher(),
 				new GuardianStepSearcher(),
-				new BugStepSearcher(UseExtendedBugSearcher),
+				new BugStepSearcher { SearchExtendedBugTypes = UseExtendedBugSearcher },
 				new EripStepSearcher(),
 				new BivalueOddagonStepSearcher(),
 				new AicStepSearcher(),
-				new AlsXzStepSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new AlsXyWingStepSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new AlsWWingStepSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
+				new AlsXzStepSearcher
+				{
+					AllowOverlapping = AllowOverlappingAlses,
+					AlsShowRegions = AlsHighlightRegionInsteadOfCell,
+					AllowAlsCycles = AllowAlsCycles
+				},
+				new AlsXyWingStepSearcher
+				{
+					AllowOverlapping = AllowOverlappingAlses,
+					AlsShowRegions = AlsHighlightRegionInsteadOfCell,
+					AllowAlsCycles = AllowAlsCycles
+				},
+				new AlsWWingStepSearcher
+				{
+					AllowOverlapping = AllowOverlappingAlses,
+					AlsShowRegions = AlsHighlightRegionInsteadOfCell,
+					AllowAlsCycles = AllowAlsCycles
+				},
 				new DbStepSearcher(),
 #if NISHIO_FORCING_CHAINS
 				new FcStepSearcher(nishio: true, multiple: false, dynamic: true),

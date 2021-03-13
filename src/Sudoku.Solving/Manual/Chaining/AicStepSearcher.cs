@@ -123,14 +123,15 @@ namespace Sudoku.Solving.Manual.Chaining
 #if DOUBLE_LAYERED_ASSUMPTION
 				var destOff = getReversedLoop(destOn);
 #endif
-				if ((destOn.Chain.Count & 1) == 0
-					&&
+				if (
+					(destOn.Chain.Count & 1) == 0
 #if DOUBLE_LAYERED_ASSUMPTION
-					CreateLoopHint(grid, destOn, destOff, xEnabled, yEnabled)
+					&& CreateLoopHint(grid, destOn, destOff, xEnabled, yEnabled)
 #else
-					CreateLoopHint(grid, destOn, xEnabled, yEnabled)
+					&& CreateLoopHint(grid, destOn, xEnabled, yEnabled)
 #endif
-					is { } result)
+					is { } result
+				)
 				{
 					accumulator.Add(result);
 				}
@@ -238,21 +239,14 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			return new(
 				conclusions,
-				new View[]
-				{
-					new()
-					{
-						Candidates = candidateOffsets.AsReadOnlyList(),
-						Links = links
-					}
-				},
+				new View[] { new() { Candidates = candidateOffsets.AsReadOnlyList(), Links = links } },
 				xEnabled,
 				yEnabled,
 				destOn
 #if DOUBLE_LAYERED_ASSUMPTION
 				, destOff
 #endif
-				);
+			);
 		}
 
 		/// <summary>

@@ -1125,31 +1125,20 @@
             Encapsulates an <b>almost locked set</b> (ALS) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsStepSearcher.AllowOverlapping">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsStepSearcher.AllowOverlapping">
             <summary>
             Indicates whether the ALSes can be overlapped with each other.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsStepSearcher.AlsShowRegions">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsStepSearcher.AlsShowRegions">
             <summary>
             Indicates whether the ALSes shows their regions rather than cells.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsStepSearcher.AllowAlsCycles">
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsStepSearcher.AllowAlsCycles">
             <summary>
             Indicates whether the solver will check ALS cycles.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsStepSearcher.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="allowOverlapping">Indicates whether the ALSes can be overlapped with each other.</param>
-            <param name="alsShowRegions">Indicates whether the ALSes shows their regions rather than cells.</param>
-            <param name="allowAlsCycles">Indicates whether the solver will check ALS cycles.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo">
             <summary>
@@ -1197,9 +1186,6 @@
             <summary>
             Encapsulates an <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
@@ -1255,9 +1241,6 @@
             <summary>
             Encapsulates an <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
@@ -1351,9 +1334,6 @@
             <summary>
             Encapsulates an <b>almost locked set XZ rule</b> (ALS-XZ) technique searcher.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
@@ -6346,21 +6326,11 @@
             Encapsulates a <b>bivalue universal grave</b> (BUG) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher._extended">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.SearchExtendedBugTypes">
             <summary>
             Indicates whether the searcher should call the extended BUG checker
-            to find all true candidates.
+            to search for all true candidates no matter how difficult searching.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.#ctor(System.Boolean)">
-            <summary>
-            Initializes an instance with the region maps.
-            </summary>
-            <param name="extended">
-            A <see cref="T:System.Boolean"/> value indicating whether the searcher should call
-            the extended BUG checker to search for all true candidates no matter how
-            difficult searching.
-            </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>

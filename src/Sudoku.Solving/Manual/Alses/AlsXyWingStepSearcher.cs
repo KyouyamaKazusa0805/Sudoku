@@ -14,13 +14,6 @@ namespace Sudoku.Solving.Manual.Alses
 	/// </summary>
 	public sealed class AlsXyWingStepSearcher : AlsStepSearcher
 	{
-		/// <inheritdoc/>
-		public AlsXyWingStepSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles)
-			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
-		{
-		}
-
-
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(29, nameof(Technique.AlsXyWing))
 		{

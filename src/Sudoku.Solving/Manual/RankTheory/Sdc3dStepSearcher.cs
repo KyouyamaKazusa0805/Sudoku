@@ -126,8 +126,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 								}
 								elimMapBlock &= blockMap - currentBlockMap;
 
-								for
-								(
+								for (
 									int
 										j = 1,
 										limit = MathEx.Min(
@@ -154,8 +153,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 										}
 										elimMapRow &= RegionMaps[r] - rbCurrentMap - currentRowMap;
 
-										for
-										(
+										for (
 											int k = 1;
 											k <= MathEx.Min(
 												9 - i - j - currentBlockMap.Count - currentRowMap.Count,
@@ -217,11 +215,17 @@ namespace Sudoku.Solving.Manual.RankTheory
 												mask = (short)((short)(blockMask | rowMask) | columnMask);
 												short rbMaskOnlyInInter = (short)(rbSelectedInterMask & ~mask);
 												short cbMaskOnlyInInter = (short)(cbSelectedInterMask & ~mask);
-												if (cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1 ==
-													PopCount((uint)blockMask) + PopCount((uint)rowMask) + PopCount((uint)columnMask)
-													+ PopCount((uint)rbMaskOnlyInInter) + PopCount((uint)cbMaskOnlyInInter)
-													&& (!elimMapRow.IsEmpty || !elimMapColumn.IsEmpty
-														|| !elimMapBlock.IsEmpty))
+												if (
+													cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1
+													== PopCount((uint)blockMask)
+													+ PopCount((uint)rowMask) + PopCount((uint)columnMask)
+													+ PopCount((uint)rbMaskOnlyInInter)
+													+ PopCount((uint)cbMaskOnlyInInter)
+													&& (
+														!elimMapRow.IsEmpty || !elimMapColumn.IsEmpty
+														|| !elimMapBlock.IsEmpty
+													)
+												)
 												{
 													// Check eliminations.
 													var conclusions = new List<Conclusion>();

@@ -15,20 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	{
 		/// <summary>
 		/// Indicates whether the searcher should call the extended BUG checker
-		/// to find all true candidates.
+		/// to search for all true candidates no matter how difficult searching.
 		/// </summary>
-		private readonly bool _extended;
-
-
-		/// <summary>
-		/// Initializes an instance with the region maps.
-		/// </summary>
-		/// <param name="extended">
-		/// A <see cref="bool"/> value indicating whether the searcher should call
-		/// the extended BUG checker to search for all true candidates no matter how
-		/// difficult searching.
-		/// </param>
-		public BugStepSearcher(bool extended) => _extended = extended;
+		public bool SearchExtendedBugTypes { get; init; }
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -67,7 +56,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					}
 					else
 					{
-						if (_extended)
+						if (SearchExtendedBugTypes)
 						{
 							CheckMultiple(accumulator, grid, trueCandidates);
 							CheckXz(accumulator, grid, trueCandidates);

@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0055
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
@@ -89,6 +87,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			return result;
 		}
 
+#pragma warning disable IDE0055
 		/// <summary>
 		/// Get templates.
 		/// </summary>
@@ -119,5 +118,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 					1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18));
 			}
 		}
+#pragma warning restore IDE0055
 	}
 }

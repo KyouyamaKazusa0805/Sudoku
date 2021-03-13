@@ -16,13 +16,6 @@ namespace Sudoku.Solving.Manual.Alses
 	/// </summary>
 	public sealed class AlsXzStepSearcher : AlsStepSearcher
 	{
-		/// <inheritdoc/>
-		public AlsXzStepSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles)
-			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
-		{
-		}
-
-
 		/// <inheritdoc cref="SearchingProperties"/>
 		public static TechniqueProperties Properties { get; } = new(23, nameof(Technique.SinglyLinkedAlsXz))
 		{
