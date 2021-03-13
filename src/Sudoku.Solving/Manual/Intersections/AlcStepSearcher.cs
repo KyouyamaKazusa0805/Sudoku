@@ -18,18 +18,9 @@ namespace Sudoku.Solving.Manual.Intersections
 	public sealed class AlcStepSearcher : IntersectionStepSearcher
 	{
 		/// <summary>
-		/// Indicates the searcher will check almost locked quadruple (ALQ).
+		/// Indicates whether the user checks the almost locked quadruple.
 		/// </summary>
-		private readonly bool _checkAlq;
-
-
-		/// <summary>
-		/// Initializes an instance with the intersection table.
-		/// </summary>
-		/// <param name="checkAlq">
-		/// Indicates whether the searcher should check almost locked quadruple.
-		/// </param>
-		public AlcStepSearcher(bool checkAlq) => _checkAlq = checkAlq;
+		public bool CheckAlmostLockedQuadruple { get; init; }
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -42,32 +33,20 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			for (int size = 2, maxSize = _checkAlq ? 4 : 3; size <= maxSize; size++)
+			for (int size = 2, maxSize = CheckAlmostLockedQuadruple ? 4 : 3; size <= maxSize; size++)
 			{
-				GetAll(accumulator, grid, size);
-			}
-		}
-
-
-		/// <summary>
-		/// Get all technique information instances by size.
-		/// </summary>
-		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="size">The size.</param>
-		/// <returns>The result.</returns>
-		private static void GetAll(IList<StepInfo> result, in SudokuGrid grid, int size)
-		{
-			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
-			{
-				if (!(c & EmptyMap).IsEmpty)
+				foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 				{
-					// Process for 2 cases.
-					GetAll(result, grid, size, baseSet, coverSet, a, b, c);
-					GetAll(result, grid, size, coverSet, baseSet, b, a, c);
+					if (!(c & EmptyMap).IsEmpty)
+					{
+						// Process for 2 cases.
+						GetAll(accumulator, grid, size, baseSet, coverSet, a, b, c);
+						GetAll(accumulator, grid, size, coverSet, baseSet, b, a, c);
+					}
 				}
 			}
 		}
+
 
 		/// <summary>
 		/// Process the calculation.
@@ -84,8 +63,26 @@ namespace Sudoku.Solving.Manual.Intersections
 			IList<StepInfo> result, in SudokuGrid grid, int size, int baseSet, int coverSet,
 			in Cells a, in Cells b, in Cells c)
 		{
+			// The diagrams:
+			//   ALP:
+			//   abx aby | ab
+			//   abz     |
+			//
+			//   ALT:
+			//   abcw abcx | abc abc
+			//   abcy abcz |
+			//
+			// Algorithm:
+			// If the cell 'ab' (in ALP) or 'abc' (in ALT) is filled with the digit 'p',
+			// then the cells 'abx' and 'aby' (in ALP) and 'abcw' and 'abcx' (in ALT) can't
+			// fill the digit 'p'. Therefore the digit 'p' can only be filled into the left-side block.
+			// If the block only contains those cells that can contain the digit 'p',
+			// the ALP or ALT will be formed, and the elimination is 'z' (in ALP) and 'y' and 'z' (in ALT).
+
+			// Iterate on each cell combination.
 			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{
+				// Gather the mask. The cell combination must contain the specified number of digits.
 				short mask = 0;
 				foreach (int cell in cells)
 				{
@@ -96,7 +93,10 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
+				// Get all possible digits (Digit 'a', 'b' and 'c' in those diagrams).
 				var digits = mask.GetAllSets();
+
+				// Check whether overlapped.
 				bool isOverlapped = false;
 				foreach (int digit in digits)
 				{
@@ -111,23 +111,26 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
+				// Then check whether the another region (left-side block in those diagrams)
+				// forms an AHS (i.e. those digits must appear in the specified cells).
 				short ahsMask = 0;
 				foreach (int digit in digits)
 				{
-					ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
+					ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b) / coverSet;
 				}
 				if (PopCount((uint)ahsMask) != size - 1)
 				{
 					continue;
 				}
 
+				// Gather the AHS cells.
 				var ahsCells = Cells.Empty;
 				foreach (int pos in ahsMask)
 				{
 					ahsCells.AddAnyway(RegionCells[coverSet][pos]);
 				}
 
-				// Record all eliminations.
+				// Gather all eliminations.
 				var cellsMap = new Cells(cells);
 				var conclusions = new List<Conclusion>();
 				foreach (int aCell in a)
@@ -149,6 +152,8 @@ namespace Sudoku.Solving.Manual.Intersections
 						conclusions.Add(new(ConclusionType.Elimination, ahsCell, digit));
 					}
 				}
+
+				// Check whether any eliminations exists.
 				if (conclusions.Count == 0)
 				{
 					continue;

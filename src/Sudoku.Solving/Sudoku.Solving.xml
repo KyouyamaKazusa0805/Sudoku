@@ -3655,33 +3655,16 @@
             Encapsulates an <b>almost locked candidates</b> (ALC) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Intersections.AlcStepSearcher._checkAlq">
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.CheckAlmostLockedQuadruple">
             <summary>
-            Indicates the searcher will check almost locked quadruple (ALQ).
+            Indicates whether the user checks the almost locked quadruple.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.#ctor(System.Boolean)">
-            <summary>
-            Initializes an instance with the intersection table.
-            </summary>
-            <param name="checkAlq">
-            Indicates whether the searcher should check almost locked quadruple.
-            </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32)">
-            <summary>
-            Get all technique information instances by size.
-            </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="size">The size.</param>
-            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>

@@ -1158,6 +1158,14 @@
             <param name="limit">The limit map that the base map sees.</param>
             <returns>The result map.</returns>
         </member>
+        <member name="M:Sudoku.Data.Cells.op_Division(Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Get the subview mask of this map.
+            </summary>
+            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="region">The region.</param>
+            <returns>The mask.</returns>
+        </member>
         <member name="M:Sudoku.Data.Cells.op_OnesComplement(Sudoku.Data.Cells@)">
             <summary>
             Reverse status for all cells, which means all <see langword="true"/> bits

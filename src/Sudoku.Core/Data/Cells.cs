@@ -595,21 +595,8 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="region">The region.</param>
 		/// <returns>The mask.</returns>
-		public readonly short GetSubviewMask(int region)
-		{
-			short p = 0, i = 0;
-			foreach (int cell in RegionCells[region])
-			{
-				if (Contains(cell))
-				{
-					p |= (short)(1 << i);
-				}
-
-				i++;
-			}
-
-			return p;
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly short GetSubviewMask(int region) => this / region;
 
 		/// <summary>
 		/// To gets the cells that is in the cells that both <see langword="this"/>
@@ -1013,6 +1000,28 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator *(in Cells @base, in Cells limit) =>
 			(@base & limit).PeerIntersection & limit;
+
+		/// <summary>
+		/// Get the subview mask of this map.
+		/// </summary>
+		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="region">The region.</param>
+		/// <returns>The mask.</returns>
+		public static short operator /(in Cells map, int region)
+		{
+			short p = 0, i = 0;
+			foreach (int cell in RegionCells[region])
+			{
+				if (map.Contains(cell))
+				{
+					p |= (short)(1 << i);
+				}
+
+				i++;
+			}
+
+			return p;
+		}
 
 		/// <summary>
 		/// Reverse status for all cells, which means all <see langword="true"/> bits

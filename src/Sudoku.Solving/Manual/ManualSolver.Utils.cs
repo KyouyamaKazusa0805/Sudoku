@@ -66,7 +66,7 @@ namespace Sudoku.Solving.Manual
 				new XrStepSearcher(),
 				new UlStepSearcher(),
 				new ErStepSearcher(),
-				new AlcStepSearcher(CheckAlmostLockedQuadruple),
+				new AlcStepSearcher { CheckAlmostLockedQuadruple = CheckAlmostLockedQuadruple },
 				new SdcStepSearcher(),
 				new Sdc3dStepSearcher(),
 				new BdpStepSearcher(),

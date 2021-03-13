@@ -210,7 +210,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				for (int conjuagtePairDigit = 0; conjuagtePairDigit < 9; conjuagtePairDigit++)
 				{
 					// Check whether forms a conjugate pair.
-					short mask = (RegionMaps[region] & CandMaps[conjuagtePairDigit]).GetSubviewMask(region);
+					short mask = (RegionMaps[region] & CandMaps[conjuagtePairDigit]) / region;
 					if (PopCount((uint)mask) != 2)
 					{
 						continue;

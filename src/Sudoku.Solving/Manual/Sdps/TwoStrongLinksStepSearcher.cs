@@ -33,8 +33,8 @@ namespace Sudoku.Solving.Manual.Sdps
 					for (int r2 = r1 + 1; r2 < 27; r2++)
 					{
 						// Get masks.
-						short mask1 = (RegionMaps[r1] & CandMaps[digit]).GetSubviewMask(r1);
-						short mask2 = (RegionMaps[r2] & CandMaps[digit]).GetSubviewMask(r2);
+						short mask1 = (RegionMaps[r1] & CandMaps[digit]) / r1;
+						short mask2 = (RegionMaps[r2] & CandMaps[digit]) / r2;
 						if (PopCount((uint)mask1) != 2 || PopCount((uint)mask2) != 2)
 						{
 							continue;
