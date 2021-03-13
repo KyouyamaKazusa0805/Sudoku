@@ -15,13 +15,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>Bowman's bingo</b> technique searcher.
 	/// </summary>
+	/// <remarks>
+	/// This searcher only uses hidden singles and naked singles as the iteration condition. Therefore,
+	/// "Dynamic" Bowman's Bingo can't be found here.
+	/// </remarks>
 	public sealed class BowmanBingoStepSearcher : LastResortStepSearcher
 	{
-		/// <summary>
-		/// Indicates the length to find.
-		/// </summary>
-		private readonly int _length;
-
 		/// <summary>
 		/// The singles searcher.
 		/// </summary>
@@ -34,10 +33,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <summary>
-		/// Initializes an instance with the specified length.
+		/// Indicates the maximum length of the bowman bingo you want to search for.
 		/// </summary>
-		/// <param name="length">The length.</param>
-		public BowmanBingoStepSearcher(int length) => _length = length;
+		public int MaxLength { get; init; }
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
@@ -68,7 +66,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 					if (IsValidGrid(grid, cell))
 					{
-						GetAll(tempAccumulator, ref tempGrid, startCandidate, _length - 1);
+						GetAll(tempAccumulator, ref tempGrid, startCandidate, MaxLength - 1);
 					}
 					else
 					{
@@ -82,14 +80,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 						tempAccumulator.Add(
 							new BowmanBingoStepInfo(
 								new Conclusion[] { new(ConclusionType.Elimination, startCandidate) },
-								new View[]
-								{
-									new()
-									{
-										Candidates = candidateOffsets,
-										Links = GetLinks()
-									}
-								},
+								new View[] { new() { Candidates = candidateOffsets, Links = GetLinks() } },
 								_tempConclusions.AsReadOnlyList()));
 					}
 
@@ -110,10 +101,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="result">The result.</param>
 		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
-		/// <param name="startCandidate">The start candidate.</param>
+		/// <param name="startCand">The start candidate.</param>
 		/// <param name="length">The length.</param>
-		private void GetAll(
-			IList<BowmanBingoStepInfo> result, ref SudokuGrid grid, int startCandidate, int length)
+		private void GetAll(IList<BowmanBingoStepInfo> result, ref SudokuGrid grid, int startCand, int length)
 		{
 			if (length == 0 || _searcher.GetOne(grid) is not SingleStepInfo singleInfo)
 			{
@@ -135,7 +125,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			if (IsValidGrid(grid, c))
 			{
 				// Sounds good.
-				GetAll(result, ref grid, startCandidate, length - 1);
+				GetAll(result, ref grid, startCand, length - 1);
 			}
 			else
 			{
@@ -148,15 +138,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 				result.Add(
 					new BowmanBingoStepInfo(
-						new Conclusion[] { new(ConclusionType.Elimination, startCandidate) },
-						new View[]
-						{
-							new()
-							{
-								Candidates = candidateOffsets,
-								Links = GetLinks()
-							}
-						},
+						new Conclusion[] { new(ConclusionType.Elimination, startCand) },
+						new View[] { new() { Candidates = candidateOffsets, Links = GetLinks() } },
 						_tempConclusions.AsReadOnlyList()));
 			}
 

@@ -3843,11 +3843,10 @@
             <summary>
             Encapsulates a <b>Bowman's bingo</b> technique searcher.
             </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher._length">
-            <summary>
-            Indicates the length to find.
-            </summary>
+            <remarks>
+            This searcher only uses hidden singles and naked singles as the iteration condition. Therefore,
+            "Dynamic" Bowman's Bingo can't be found here.
+            </remarks>
         </member>
         <member name="F:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher._searcher">
             <summary>
@@ -3859,11 +3858,10 @@
             All temporary conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher.#ctor(System.Int32)">
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher.MaxLength">
             <summary>
-            Initializes an instance with the specified length.
+            Indicates the maximum length of the bowman bingo you want to search for.
             </summary>
-            <param name="length">The length.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
@@ -3877,7 +3875,7 @@
             </summary>
             <param name="result">The result.</param>
             <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
-            <param name="startCandidate">The start candidate.</param>
+            <param name="startCand">The start candidate.</param>
             <param name="length">The length.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher.GetLinks">

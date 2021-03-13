@@ -95,7 +95,7 @@ namespace Sudoku.Solving.Manual
 				new SkLoopStepSearcher(),
 				new MslsStepSearcher(),
 				new PomStepSearcher(),
-				new BowmanBingoStepSearcher(BowmanBingoMaximumLength),
+				new BowmanBingoStepSearcher { MaxLength = BowmanBingoMaximumLength },
 			};
 
 			if (solution.HasValue)
