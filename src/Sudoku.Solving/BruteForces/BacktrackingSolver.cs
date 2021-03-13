@@ -39,10 +39,10 @@ namespace Sudoku.Solving.BruteForces
 
 				return new(SolverName, grid, true, stopwatch.Elapsed)
 				{
-					Solution =
-						new(
-							result ?? throw new SudokuHandlingException<SudokuGrid>(errorCode: 102, grid),
-							GridCreatingOption.MinusOne)
+					Solution = new(
+						result ?? throw new SudokuHandlingException<SudokuGrid>(errorCode: 102, grid),
+						GridCreatingOption.MinusOne
+					)
 				};
 			}
 			catch (SudokuHandlingException ex) when (ex.ErrorCode == 101)
