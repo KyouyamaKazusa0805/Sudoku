@@ -7,22 +7,18 @@
 		<Description>The drawing operation library.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<LangVersion>9.0</LangVersion>
-		<DocumentationFile>.\Sudoku.Drawing.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Drawing.xml</DocumentationFile>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; SUDOKU_RECOGNITION; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>DEBUG;SUDOKU_RECOGNITION;AUTHOR_RESERVED</DefineConstants>
 		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SUDOKU_RECOGNITION; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>SUDOKU_RECOGNITION;AUTHOR_RESERVED</DefineConstants>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Sudoku.Drawing.xml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="System.Drawing.Common" Version="5.0.1" />

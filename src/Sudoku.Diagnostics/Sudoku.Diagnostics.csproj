@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
@@ -7,12 +7,8 @@
 		<Authors>Sunnie</Authors>
 		<Description>This project encapsulates operations for diagnosing the whole solution, such as checking the number of code lines.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
-		<DocumentationFile>.\Sudoku.Diagnostics.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Diagnostics.xml</DocumentationFile>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Sudoku.Diagnostics.xml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />

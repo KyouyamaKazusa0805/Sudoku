@@ -10,15 +10,8 @@
 		<Description>Provides the extension methods for the System library instances.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<RootNamespace>System</RootNamespace>
+		<DocumentationFile>..\docxml\SystemExtensions.xml</DocumentationFile>
 	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>.\SystemExtensions.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="SystemExtensions.xml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />

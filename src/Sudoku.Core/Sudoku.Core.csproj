@@ -9,7 +9,7 @@
 		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<LangVersion>9.0</LangVersion>
-		<DocumentationFile>.\Sudoku.Core.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Core.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,10 +20,6 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DefineConstants>AUTHOR_RESERVED</DefineConstants>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Sudoku.Core.xml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />

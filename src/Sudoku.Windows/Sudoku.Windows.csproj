@@ -18,23 +18,22 @@
 		<LangVersion>9.0</LangVersion>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<DocumentationFile>.\Sudoku.Windows.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Windows.xml</DocumentationFile>
 		<NeutralLanguage>en-US</NeutralLanguage>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; SUDOKU_RECOGNITION; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>DEBUG;SUDOKU_RECOGNITION;AUTHOR_RESERVED</DefineConstants>
 		<NoWarn>1701;1702</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SUDOKU_RECOGNITION; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>SUDOKU_RECOGNITION;AUTHOR_RESERVED</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Remove="icon-32.ico" />
 		<None Remove="icon-64.ico" />
-		<None Remove="Sudoku.Windows.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -6,6 +6,10 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>..\docxml\Sudoku.Bot.Console.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="HuajiTech.Mirai.Http" Version="0.14.0-ci.323" />
 	</ItemGroup>

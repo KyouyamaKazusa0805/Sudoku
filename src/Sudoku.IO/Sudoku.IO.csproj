@@ -5,15 +5,11 @@
 		<Nullable>enable</Nullable>
 		<LangVersion>9.0</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<DocumentationFile>.\Sudoku.IO.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.IO.xml</DocumentationFile>
 		<Authors>Sunnie</Authors>
 		<Description>The IO operations for sudoku.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Sudoku.IO.xml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="NPOI" Version="2.5.1" />

@@ -10,12 +10,8 @@
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<PackageId>Sudoku.Recognition</PackageId>
 		<Product>Sudoku.Recognition</Product>
-		<DocumentationFile>.\Sudoku.Recognition.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Recognition.xml</DocumentationFile>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Sudoku.Recognition.xml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Emgu.CV" Version="4.4.0.4099" />

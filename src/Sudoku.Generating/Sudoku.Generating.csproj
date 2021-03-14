@@ -8,13 +8,9 @@
 		<Description>The project used for generating sudoku puzzles.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<DocumentationFile>.\Sudoku.Generating.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Generating.xml</DocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<None Remove="Sudoku.Generating.xml" />
-	</ItemGroup>
-	
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 	</ItemGroup>

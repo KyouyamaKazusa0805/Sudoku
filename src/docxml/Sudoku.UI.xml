@@ -1,0 +1,668 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.UI</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.UI.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.ComponentModels.UiSettings">
+            <summary>
+            Encapsulates and provides a settings instance that is only used in UI (i.e. this project).
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.ComponentModels.UiSettings.CoverBy(Sudoku.Painting.Settings)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the parameter <paramref name="newSetting"/> isn't of type <see cref="T:Sudoku.UI.ComponentModels.UiSettings"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.ComponentModels.UiSettings.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.ComponentModels.UiSettings.GridSize">
+            <summary>
+            Indicates the grid size.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.ComponentModels.ValueChangedEventHandler">
+            <summary>
+            Indicates the event handler that executed when the specified value is changed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Controls.SudokuPanel">
+            <summary>
+            Interaction logic for <see cref="T:Sudoku.UI.Controls.SudokuPanel"/>.
+            </summary>
+            <summary>
+            SudokuPanel
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Controls.SudokuPanel.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Controls.SudokuPanel"/> instance with the default instantiation behavior.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Controls.SudokuPanel.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Extensions.BitmapEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Bitmap"/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.BitmapEx.ToImageSource(System.Drawing.Bitmap)">
+            <summary>
+            Convert the <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Windows.Media.ImageSource"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The bitmap image.</param>
+            <returns>The target image result.</returns>
+            <seealso cref="T:System.Windows.Media.ImageSource"/>
+        </member>
+        <member name="T:Sudoku.UI.Extensions.Filter">
+            <summary>
+            Encapsulates a filter that stores a several of file formats.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Extensions.Filter._sb">
+            <summary>
+            Indicates the inner string builder.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="P:Sudoku.UI.Extensions.Filter.Count">
+            <summary>
+            Indicates the number of file formats the instance recorded.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithJpg">
+            <summary>
+            Append the JPG format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithPng">
+            <summary>
+            Append the PNG format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithGif">
+            <summary>
+            Append the GIF format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithBmp">
+            <summary>
+            Append the BMP format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithWmf">
+            <summary>
+            Append the WMF format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithJson">
+            <summary>
+            Append the JSON format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithText">
+            <summary>
+            Append the text format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithSudoku">
+            <summary>
+            Append the sudoku format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithSudokuDatabase">
+            <summary>
+            Append the sudoku database format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithDrawings">
+            <summary>
+            Append the sudoku drawing contents format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithSudokuConfig">
+            <summary>
+            Append the sudoku configuration format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.WithAll">
+            <summary>
+            Append the all-file format filter into the list.
+            </summary>
+            <returns>The reference of <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.Equals(Sudoku.UI.Extensions.Filter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.AddFormat(System.String,System.String)">
+            <summary>
+            Add the format.
+            </summary>
+            <param name="filterName">The filter name.</param>
+            <param name="filter">The filter.</param>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.AddSeparatorIfNeed">
+            <summary>
+            Add a separator if need.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.op_Equality(Sudoku.UI.Extensions.Filter,Sudoku.UI.Extensions.Filter)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.op_Inequality(Sudoku.UI.Extensions.Filter,Sudoku.UI.Extensions.Filter)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filter.op_Implicit(Sudoku.UI.Extensions.Filter)~System.String">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.UI.Extensions.Filter"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="filter">The filter.</param>
+        </member>
+        <member name="T:Sudoku.UI.Extensions.Filters">
+            <summary>
+            Encapsulates some built-in <see cref="T:Sudoku.UI.Extensions.Filter"/>s in use.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Extensions.Filter"/>
+        </member>
+        <member name="P:Sudoku.UI.Extensions.Filters.PuzzleLoading">
+            <summary>
+            Indicates the filter that is used in puzzle loading.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.Filters.Create">
+            <summary>
+            Creates a new <see cref="T:Sudoku.UI.Extensions.Filter"/> instance.
+            </summary>
+            <returns>The new <see cref="T:Sudoku.UI.Extensions.Filter"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Extensions.MessageDialogs">
+            <summary>
+            Encapsulates a several of <see cref="T:Sudoku.UI.Windows.MessageDialog"/>s to use.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Windows.MessageDialog"/>
+        </member>
+        <member name="F:Sudoku.UI.Extensions.MessageDialogs.App">
+            <summary>
+            Indicates the current application.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Extensions.MessageDialogs.PuzzleFileLoadFailed">
+            <summary>
+            Indicates the message dialog that is used when the sudoku grid file is failed to open.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.MessageDialogs.Create">
+            <summary>
+            Creates a new <see cref="T:Sudoku.UI.Windows.MessageDialog"/> instance.
+            </summary>
+            <returns>The new <see cref="T:Sudoku.UI.Windows.MessageDialog"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.MessageDialogs.WithText(Sudoku.UI.Windows.MessageDialog,System.String)">
+            <summary>
+            Sets the specified text into the message window.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="text">The text to set.</param>
+            <returns>The reference that is same as <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.MessageDialogs.WithTitle(Sudoku.UI.Windows.MessageDialog,System.String)">
+            <summary>
+            Sets the specified title into the message window.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="title">The title to set.</param>
+            <returns>The reference that is same as <see langword="this"/>.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Extensions.OpenFileDialogs">
+            <summary>
+            Provides the extension methods on <see cref="T:Microsoft.Win32.OpenFileDialog"/>.
+            </summary>
+            <seealso cref="T:Microsoft.Win32.OpenFileDialog"/>
+        </member>
+        <member name="P:Sudoku.UI.Extensions.OpenFileDialogs.PuzzleLoading">
+            <summary>
+            Indicates the open file dialog used in opening a sudoku grid file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.OpenFileDialogs.Create">
+            <summary>
+            Create an empty open file dialog.
+            </summary>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.OpenFileDialogs.WithDefaultExtension(Microsoft.Win32.OpenFileDialog,System.String)">
+            <summary>
+            Modify the current instance, to change the default extension property
+            <see cref="P:Microsoft.Win32.FileDialog.DefaultExt"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="extension">The extension to change.</param>
+            <returns>The current instance.</returns>
+            <seealso cref="P:Microsoft.Win32.FileDialog.DefaultExt"/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.OpenFileDialogs.WithFilter(Microsoft.Win32.OpenFileDialog,System.String)">
+            <summary>
+            Modify the current instance, to change the filter property
+            <see cref="P:Microsoft.Win32.FileDialog.Filter"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="filter">The filter to change.</param>
+            <returns>The current instance.</returns>
+            <seealso cref="P:Microsoft.Win32.FileDialog.Filter"/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.OpenFileDialogs.WithMultiselect(Microsoft.Win32.OpenFileDialog,System.Boolean)">
+            <summary>
+            Modify the current instance, to change the multi-select property
+            <see cref="P:Microsoft.Win32.OpenFileDialog.Multiselect"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="multiselect">The multi-select to change.</param>
+            <returns>The current instance.</returns>
+            <seealso cref="P:Microsoft.Win32.OpenFileDialog.Multiselect"/>
+        </member>
+        <member name="M:Sudoku.UI.Extensions.OpenFileDialogs.WithTitle(Microsoft.Win32.OpenFileDialog,System.String)">
+            <summary>
+            Modify the current instance, to change the title property
+            <see cref="P:Microsoft.Win32.FileDialog.Title"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="multiselect">The title to change.</param>
+            <returns>The current instance.</returns>
+            <seealso cref="P:Microsoft.Win32.FileDialog.Title"/>
+        </member>
+        <member name="T:Sudoku.UI.MainWindow">
+            <summary>
+            Interaction logic for <see cref="T:Sudoku.UI.MainWindow"/>.
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.MainWindow"/> instance with the default instantiation behavior.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.OnRenderSizeChanged(System.Windows.SizeChangedInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.InitializeEvent">
+            <summary>
+            Initializes events.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.InitializeValue">
+            <summary>
+            Set the references that XAML page can't set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.RefreshPicture">
+            <summary>
+            Refresh the control, and re-paint the picture, then display the picture.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.MenuItemFileOpen_ClickAsync(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Triggers when the menu item that opens a file is clicked.
+            </summary>
+            <param name="sender">The sender triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.ResourceDictionaries.TextResources">
+            <summary>
+            Provides a way to get the local text resources, and save the resources to the local path.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.ResourceDictionaries.TextResources.Current">
+            <summary>
+            Indicates the singleton to get items and method invokes.
+            </summary>
+            <remarks>
+            <para>
+            This is a <see langword="dynamic"/> instance, which means you can get anything you want
+            using the following code style to get the items in this class:
+            <list type="bullet">
+            <item><c>Current.PropertyName</c> (Property invokes)</item>
+            <item><c>Current[PropertyIndex]</c> (Indexer invokes)</item>
+            </list>
+            </para>
+            <para>
+            For example,
+            if you want to get the <see cref="T:System.String"/> value from the key <c>"Bug"</c>, now you may
+            write <c>Current.Bug</c> or <c>Current["Bug"]</c> to get that value.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.ResourceDictionaries.TextResources.#ctor">
+            <see cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="M:Sudoku.UI.ResourceDictionaries.TextResources.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.ResourceDictionaries.TextResources.TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.ResourceDictionaries.TextResources.TryGetValue(System.String)">
+            <summary>
+            Try to get the inner value.
+            </summary>
+            <param name="index">The index that you want to get. The index is a <see cref="T:System.String"/> key.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.UI.ViewModels.MainWindowViewModel">
+            <summary>
+            Indicates the view model bound by <see cref="T:Sudoku.UI.MainWindow"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.MainWindow"/>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.ActualWidth">
+            <summary>
+            Indicates the actual width of the sudoku panel.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.ActualHeight">
+            <summary>
+            Indicates the actual height of the sudoku panel.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.Size">
+            <summary>
+            Gets or sets the size.
+            </summary>
+            <value>The size.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.Description">
+            <summary>
+            Gets or sets the description of the window (using the text box to display).
+            If <see langword="null"/>, the control will clear its value.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.SudokuPanelMain">
+            <summary>
+            Indicates the base panel.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.TextBoxDescription">
+            <summary>
+            Indicates the text box that stores the description.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.GridSudokuPanel">
+            <summary>
+            Indicates the <see cref="T:System.Windows.Controls.Grid"/> instance that stores the main sudoku panel.
+            </summary>
+            <seealso cref="T:System.Windows.Controls.Grid"/>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.FocusedCells">
+            <summary>
+            Gets or sets the focused cells.
+            </summary>
+            <value>The focused cells.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.Grid">
+            <summary>
+            Gets or sets the grid.
+            </summary>
+            <value>The grid.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.Converter">
+            <summary>
+            Gets or sets the converter.
+            </summary>
+            <value>The converter.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.Preferences">
+            <summary>
+            Gets or sets the preferences.
+            </summary>
+            <value>The preferences.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.View">
+            <summary>
+            Gets or sets the view.
+            </summary>
+            <value>The view.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.CustomView">
+            <summary>
+            Gets or sets the custom view.
+            </summary>
+            <value>The custom view.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.Generator">
+            <summary>
+            Gets or sets the generator.
+            </summary>
+            <value>The generator.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.Image">
+            <summary>
+            Indicates the bitmap image to set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.PanelViewModel">
+            <summary>
+            Indicates the sudoku panel view model.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MainWindowViewModel.Conclusions">
+            <summary>
+            Gets or sets the conclusions.
+            </summary>
+            <value>The conclusions.</value>
+        </member>
+        <member name="T:Sudoku.UI.ViewModels.MessageDialogViewModel">
+            <summary>
+            Indicates the view model bound by <see cref="T:Sudoku.UI.Windows.MessageDialog"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Windows.MessageDialog"/>
+        </member>
+        <member name="F:Sudoku.UI.ViewModels.MessageDialogViewModel._text">
+            <summary>
+            The back field of the property <see cref="P:Sudoku.UI.ViewModels.MessageDialogViewModel.Text"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.ViewModels.MessageDialogViewModel._title">
+            <summary>
+            The back field of the property <see cref="P:Sudoku.UI.ViewModels.MessageDialogViewModel.Title"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.ViewModels.MessageDialogViewModel.Title"/>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.MessageDialogViewModel.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MessageDialogViewModel.Text">
+            <summary>
+            Gets or sets the base text.
+            </summary>
+            <value>The value you want to set.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.MessageDialogViewModel.Title">
+            <summary>
+            Gets or sets the title of the window.
+            </summary>
+            <value>The value you want to set.</value>
+        </member>
+        <member name="T:Sudoku.UI.ViewModels.SudokuPanelViewModel">
+            <summary>
+            Indicates the view model bound by <see cref="T:Sudoku.UI.Controls.SudokuPanel"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Controls.SudokuPanel"/>
+        </member>
+        <member name="F:Sudoku.UI.ViewModels.SudokuPanelViewModel.RenderingSize">
+            <summary>
+            Indicates the default rendering size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.ViewModels.SudokuPanelViewModel._generator">
+            <summary>
+            The back field of the property <see cref="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.Generator"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.Generator"/>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.X">
+            <summary>
+            The short form of the invocation <see cref="F:Sudoku.UI.ResourceDictionaries.TextResources.Current"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.ResourceDictionaries.TextResources.Current"/>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.FocusedCells">
+            <summary>
+            Gets or sets the focused cells.
+            </summary>
+            <value>The focused cells.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.Grid">
+            <summary>
+            Gets or sets the grid.
+            </summary>
+            <value>The grid.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.Converter">
+            <summary>
+            Gets or sets the converter.
+            </summary>
+            <value>The converter.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.Preferences">
+            <summary>
+            Gets or sets the preferences.
+            </summary>
+            <value>The preferences.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.View">
+            <summary>
+            Gets or sets the view.
+            </summary>
+            <value>The view.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.CustomView">
+            <summary>
+            Gets or sets the custom view.
+            </summary>
+            <value>The custom view.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.Generator">
+            <summary>
+            Gets or sets the generator.
+            </summary>
+            <value>The generator.</value>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPanelViewModel.Conclusions">
+            <summary>
+            Gets or sets the conclusions.
+            </summary>
+            <value>The conclusions.</value>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.SudokuPanelViewModel.FocusedCellsChanged">
+            <summary>
+            Indicates the event to trigger when the focused cells instance has been changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.SudokuPanelViewModel.GridChanged">
+            <summary>
+            Indicates the event to trigger when the grid instance has been changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.SudokuPanelViewModel.ConverterChanged">
+            <summary>
+            Indicates the event to trigger when the converter instance has been changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.SudokuPanelViewModel.PreferencesChanged">
+            <summary>
+            Indicates the event to trigger when the preferences instance has been changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.SudokuPanelViewModel.ViewChanged">
+            <summary>
+            Indicates the event to trigger when the view instance has been changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.SudokuPanelViewModel.CustomViewChanged">
+            <summary>
+            Indicates the event to trigger when the custom view instance has been changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.SudokuPanelViewModel.GeneratorChanged">
+            <summary>
+            Indicates the event to trigger when the generator instance has been changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.SudokuPanelViewModel.ConclusionsChanged">
+            <summary>
+            Indicates the event to trigger when the conclusions instance has been changed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Windows.MessageDialog">
+            <summary>
+            Interaction logic for <c>MessageDialog.xaml</c>.
+            </summary>
+            <summary>
+            MessageDialog
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.MessageDialog.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Windows.MessageDialog"/> instance with the default instantiation behavior.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.MessageDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>

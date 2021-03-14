@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Bot.Console</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Bot.Console.CommandLines.ArgChecker">
+            <summary>
+            Encapsulates a command line arguments checker.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Console.CommandLines.ArgChecker.IsConfigMode(System.String[])">
+            <summary>
+            Check whether the arguments contains the config mode symbol <c>/config</c>.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Console.CommandLines.ArgChecker.EnableGreeting(System.String[])">
+            <summary>
+            Indicates whether the bot says hello to the groups when the bot is initialized.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Console.CommandLines.ArgChecker.TryGetPath(System.String[],System.String@)">
+            <summary>
+            Try to get the path from the arguments.
+            </summary>
+            <param name="args">The arguments.</param>
+            <param name="path">(<see langword="out"/> parameter) The result path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Console.CommandLines.ArgChecker.TryGetSize(System.String[],System.Int32@)">
+            <summary>
+            Try to get the size value from the arguments.
+            </summary>
+            <param name="args">The arguments.</param>
+            <param name="size">
+            (<see langword="out"/> parameter) The result size. If failed to get, the value is always 800.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Bot.Console.CommandLines.Commands">
+            <summary>
+            Indicates all possible commands.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Console.CommandLines.Commands.ConfigMode">
+            <summary>
+            Indicates the config mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Console.CommandLines.Commands.Path">
+            <summary>
+            Indicates the path.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Console.CommandLines.Commands.Size">
+            <summary>
+            Indicates the size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Console.CommandLines.Commands.Greeting">
+            <summary>
+            Indicates the greeting.
+            </summary>
+        </member>
+    </members>
+</doc>

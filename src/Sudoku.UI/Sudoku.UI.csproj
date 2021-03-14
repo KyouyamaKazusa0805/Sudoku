@@ -8,6 +8,10 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 	  <ProjectReference Include="..\Sudoku.Painting\Sudoku.Painting.csproj" />
 	</ItemGroup>

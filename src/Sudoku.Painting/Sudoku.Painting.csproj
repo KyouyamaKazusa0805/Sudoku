@@ -6,6 +6,10 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>..\docxml\Sudoku.Painting.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="System.Drawing.Common" Version="5.0.1" />
 	</ItemGroup>

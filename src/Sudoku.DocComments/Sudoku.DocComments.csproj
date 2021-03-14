@@ -1,15 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<Description>This project is only used for providing with doc comments.</Description>
 		<Authors>Sunnie</Authors>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
-		<DocumentationFile>.\Sudoku.DocComments.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.DocComments.xml</DocumentationFile>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Sudoku.DocComments.xml" />
-	</ItemGroup>
 
 </Project>
