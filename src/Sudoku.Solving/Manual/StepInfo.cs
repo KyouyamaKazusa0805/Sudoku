@@ -4,9 +4,9 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Techniques;
+using static Sudoku.Resources.TextResources;
 
 namespace Sudoku.Solving.Manual
 {
@@ -35,13 +35,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public virtual string Name => TextResources.Current[TechniqueCode.ToString()];
-
-		/// <summary>
-		/// Indicates the technique name alias.
-		/// </summary>
-		public string[]? NameAlias =>
-			TextResources.Current[$"{TechniqueCode.ToString()}Alias"]?.Split(new[] { ';', ' ' });
+		public virtual string Name => Current[TechniqueCode.ToString()];
 
 		/// <summary>
 		/// Indicates the acronym of the step name. For example, the acronym of the technique
@@ -53,6 +47,11 @@ namespace Sudoku.Solving.Manual
 		/// than storing values in resource dictionary files.
 		/// </remarks>
 		public virtual string? Acronym => null;
+
+		/// <summary>
+		/// Indicates the technique name alias.
+		/// </summary>
+		public string[]? NameAlias => Current[$"{TechniqueCode.ToString()}Alias"]?.Split(new[] { ';', ' ' });
 
 		/// <summary>
 		/// The difficulty or this step.
@@ -150,9 +149,8 @@ namespace Sudoku.Solving.Manual
 		/// <returns>A <see cref="bool"/> result.</returns>
 		public unsafe bool HasTag(TechniqueTags flags)
 		{
-			short value = (short)flags;
-			delegate* managed<TechniqueTags, TechniqueTags, bool> func =
-				(value & value - 1) == 0 ? &EnumEx.Flags : &EnumEx.MultiFlags;
+			bool p = ((short)flags & (short)flags - 1) == 0;
+			delegate* managed<TechniqueTags, TechniqueTags, bool> func = p ? &EnumEx.Flags : &EnumEx.MultiFlags;
 
 			return func(TechniqueTags, flags);
 		}

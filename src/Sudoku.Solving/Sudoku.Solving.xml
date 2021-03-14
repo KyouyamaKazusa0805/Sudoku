@@ -5349,11 +5349,6 @@
             Indicates the technique name.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.StepInfo.NameAlias">
-            <summary>
-            Indicates the technique name alias.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.StepInfo.Acronym">
             <summary>
             Indicates the acronym of the step name. For example, the acronym of the technique
@@ -5364,6 +5359,11 @@
             abbreviations by default. On the other hand, this is really an easier way to implement
             than storing values in resource dictionary files.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.NameAlias">
+            <summary>
+            Indicates the technique name alias.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.StepInfo.Difficulty">
             <summary>
