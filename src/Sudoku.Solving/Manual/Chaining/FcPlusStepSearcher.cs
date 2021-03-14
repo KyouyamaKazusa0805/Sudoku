@@ -8,6 +8,7 @@ using Sudoku.DocComments;
 using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Subsets;
+using Sudoku.Techniques;
 using Grid = Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -31,7 +32,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc cref="SearchingProperties"/>
-		public static new TechniqueProperties Properties { get; } = new(33, nameof(TechniqueCode.DynamicRegionFc))
+		public static new TechniqueProperties Properties { get; } = new(33, nameof(Technique.DynamicRegionFc))
 		{
 			OnlyEnableInAnalysis = true,
 			DisplayLevel = 5

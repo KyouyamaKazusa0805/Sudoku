@@ -1786,56 +1786,6 @@
             Encapsulates a <b>chain</b> technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepSearcher.GetOnToOff(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean)">
-            <summary>
-            Get all available weak links.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="p">(<see langword="in"/> parameter) The current node.</param>
-            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
-            <returns>All possible weak links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepSearcher.GetOffToOn(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean)">
-            <summary>
-            Get all available strong links.
-            </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="p">(<see langword="in"/> parameter) The current node.</param>
-            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
-            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
-            <param name="source">The source grid.</param>
-            <param name="offNodes">All off nodes.</param>
-            <param name="isDynamic">
-            Indicates whether the current searcher is searching for dynamic chains. If so,
-            we can't use those static properties to optimize the performance.
-            </param>
-            <returns>All possible strong links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.Node@,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.ISet{Sudoku.Data.Node})">
-            <summary>
-            Add hidden parents of a cell.
-            </summary>
-            <param name="p">(<see langword="ref"/> parameter) The node.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="source">(<see langword="in"/> parameter) The source grid.</param>
-            <param name="offNodes">All off nodes.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
-            Throws when the parent node of the specified node cannot be found.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.Node@,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{Sudoku.Data.Node})">
-            <summary>
-            Add hidden parents of a region.
-            </summary>
-            <param name="p">(<see langword="ref"/> parameter) The node.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="source">(<see langword="in"/> parameter) The source grid.</param>
-            <param name="currRegion">The current region label.</param>
-            <param name="offNodes">All off nodes.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
-            Throws when the parent node of the specified node cannot be found.
-            </exception>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTypeCode">
             <summary>
             Indicates a type code for a chain.
@@ -2840,6 +2790,64 @@
             <param name="row">(<see langword="out"/> parameter) The row.</param>
             <param name="column">(<see langword="out"/> parameter) The column.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Extensions.Chaining">
+            <summary>
+            Provides methods that do checking during chain searching.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.Chaining.GetOnToOff(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean)">
+            <summary>
+            Get all available weak links.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="p">(<see langword="in"/> parameter) The current node.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <returns>All possible weak links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.Chaining.GetOffToOn(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Boolean,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean)">
+            <summary>
+            Get all available strong links.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="p">(<see langword="in"/> parameter) The current node.</param>
+            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <param name="enableFastProperties">
+            Indicates whether the caller has enabled <see cref="T:Sudoku.Solving.Manual.FastProperties"/>.
+            </param>
+            <param name="source">The source grid.</param>
+            <param name="offNodes">All off nodes.</param>
+            <param name="isDynamic">
+            Indicates whether the current searcher is searching for dynamic chains. If so,
+            we can't use those static properties to optimize the performance.
+            </param>
+            <returns>All possible strong links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.Chaining.AddHiddenParentsOfCell(Sudoku.Data.Node@,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.ISet{Sudoku.Data.Node})">
+            <summary>
+            Add hidden parents of a cell.
+            </summary>
+            <param name="p">(<see langword="ref"/> parameter) The node.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="source">(<see langword="in"/> parameter) The source grid.</param>
+            <param name="offNodes">All off nodes.</param>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the parent node of the specified node cannot be found.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.Chaining.AddHiddenParentsOfRegion(Sudoku.Data.Node@,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{Sudoku.Data.Node})">
+            <summary>
+            Add hidden parents of a region.
+            </summary>
+            <param name="p">(<see langword="ref"/> parameter) The node.</param>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="source">(<see langword="in"/> parameter) The source grid.</param>
+            <param name="currRegion">The current region label.</param>
+            <param name="offNodes">All off nodes.</param>
+            <exception cref="T:Sudoku.SudokuHandlingException">
+            Throws when the parent node of the specified node cannot be found.
+            </exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.Extensions.EnumerableEx">
             <summary>

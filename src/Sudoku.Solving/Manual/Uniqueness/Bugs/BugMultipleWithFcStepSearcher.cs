@@ -4,12 +4,11 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
+using Sudoku.Models;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Extensions;
-using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Techniques;
-using static Sudoku.Data.ConclusionType;
-using Sudoku.Models;
+using C = Sudoku.Solving.Manual.Extensions.Chaining;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -116,7 +115,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				{
 					var p = pendingOn.Remove();
 
-					var makeOff = ChainingStepSearcher.GetOnToOff(grid, p, true);
+					var makeOff = C.GetOnToOff(grid, p, true);
 					foreach (var pOff in makeOff)
 					{
 						var pOn = new Node(pOff.Cell, pOff.Digit, true); // Conjugate
@@ -136,7 +135,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				else
 				{
 					var p = pendingOff.Remove();
-					var makeOn = ChainingStepSearcher.GetOffToOn(grid, p, true, true);
+					var makeOn = C.GetOffToOn(grid, p, true, true, true);
 
 					foreach (var pOn in makeOn)
 					{
@@ -174,7 +173,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>
 			{
-				new(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
+				new(
+					target.IsOn ? ConclusionType.Assignment : ConclusionType.Elimination,
+					target.Cell,
+					target.Digit
+				)
 			};
 
 			// Build chains.

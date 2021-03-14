@@ -122,6 +122,7 @@ namespace Sudoku.Bot.CommandLines
 		/// Remove a command router.
 		/// </summary>
 		/// <param name="this">The command line instance.</param>
+		/// <param name="command">The comamnd name.</param>
 		/// <returns>The reference same as <paramref name="this"/>.</returns>
 		public static CommandLine operator -(CommandLine @this, string command)
 		{
