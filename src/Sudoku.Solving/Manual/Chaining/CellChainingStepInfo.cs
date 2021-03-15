@@ -3,9 +3,6 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
-#if DOUBLE_LAYERED_ASSUMPTION
-using System.Linq;
-#endif
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -40,11 +37,6 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + LengthDifficulty;
-
-#if DOUBLE_LAYERED_ASSUMPTION
-		/// <inheritdoc/>
-		public override Node[] ChainsTargets => Chains.Values.ToArray();
-#endif
 
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey =>

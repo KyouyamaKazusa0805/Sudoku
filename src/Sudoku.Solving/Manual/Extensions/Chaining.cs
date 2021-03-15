@@ -31,14 +31,7 @@ namespace Sudoku.Solving.Manual.Extensions
 				{
 					if (digit != p.Digit && grid.Exists(p.Cell, digit) is true)
 					{
-						result.Add(
-							new(p.Cell, digit, false, p)
-#if DOUBLE_LAYERED_ASSUMPTION
-							{
-								Cause = Cause.NakedSingle
-							}
-#endif
-							);
+						result.Add(new(p.Cell, digit, false, p));
 					}
 				}
 			}
@@ -52,14 +45,7 @@ namespace Sudoku.Solving.Manual.Extensions
 					int cell = RegionCells[region][pos];
 					if (cell != p.Cell && grid.Exists(cell, p.Digit) is true)
 					{
-						result.Add(
-							new(cell, p.Digit, false, p)
-#if DOUBLE_LAYERED_ASSUMPTION
-							{
-								Cause = label.GetRegionCause()
-							}
-#endif
-						);
+						result.Add(new(cell, p.Digit, false, p));
 					}
 				}
 			}
@@ -95,13 +81,7 @@ namespace Sudoku.Solving.Manual.Extensions
 				short mask = (short)(grid.GetCandidates(p.Cell) & ~(1 << p.Digit));
 				if (g(grid, p.Cell, isDynamic, enableFastProperties) && mask != 0 && (mask & mask - 1) == 0)
 				{
-					var pOn = new Node(p.Cell, TrailingZeroCount(mask), true, p)
-#if DOUBLE_LAYERED_ASSUMPTION
-					{
-						Cause = Cause.NakedSingle
-					}
-#endif
-					;
+					var pOn = new Node(p.Cell, TrailingZeroCount(mask), true, p);
 
 					if (source.HasValue && offNodes is not null)
 					{
@@ -123,13 +103,7 @@ namespace Sudoku.Solving.Manual.Extensions
 					) - p.Cell;
 					if (cells.Count == 1)
 					{
-						var pOn = new Node(cells[0], p.Digit, true, p)
-#if DOUBLE_LAYERED_ASSUMPTION
-						{
-							Cause = label.GetRegionCause()
-						}
-#endif
-						;
+						var pOn = new Node(cells[0], p.Digit, true, p);
 
 						if (source.HasValue && offNodes is not null)
 						{

@@ -125,14 +125,6 @@ namespace Sudoku.Solving.Manual
 				});
 			}
 
-#if DOUBLE_LAYERED_ASSUMPTION
-			result.Add(new FcPlusTechniqueSearcher(level: 1));
-			result.Add(new FcPlusTechniqueSearcher(level: 2));
-			result.Add(new FcPlusTechniqueSearcher(level: 3));
-			result.Add(new FcPlusTechniqueSearcher(level: 4));
-			result.Add(new FcPlusTechniqueSearcher(level: 5));
-#endif
-
 			if (solution.HasValue)
 			{
 				result.Add(new BfStepSearcher(solution.Value));

@@ -17,22 +17,13 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
 	/// </summary>
-	public
-#if !DOUBLE_LAYERED_ASSUMPTION
-	sealed
-#endif
-	class FcStepSearcher : ChainingStepSearcher
+	public sealed class FcStepSearcher : ChainingStepSearcher
 	{
 		/// <summary>
 		/// Indicates the information.
 		/// </summary>
 #pragma warning disable IDE1006
-#if DOUBLE_LAYERED_ASSUMPTION
-		protected
-#else
-		private
-#endif
-		readonly bool IsNishio, IsMultiple, IsDynamic;
+		private readonly bool IsNishio, IsMultiple, IsDynamic;
 #pragma warning restore IDE1006
 
 
@@ -40,12 +31,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates the level of the searching depth.
 		/// </summary>
 #pragma warning disable IDE1006
-#if DOUBLE_LAYERED_ASSUMPTION
-		protected
-#else
-		private readonly
-#endif
-		int Level;
+		private readonly int Level;
 #pragma warning restore IDE1006
 
 		/// <summary>
@@ -93,21 +79,6 @@ namespace Sudoku.Solving.Manual.Chaining
 				orderby info.Difficulty, info.Complexity, info.SortKey
 				select info);
 		}
-
-		/// <summary>
-		/// Get all advanced nodes.
-		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="source">(<see langword="in"/> parameter) The source.</param>
-		/// <param name="offNodes">All nodes that is off.</param>
-		/// <returns>All nodes.</returns>
-#if DOUBLE_LAYERED_ASSUMPTION
-		protected virtual IEnumerable<Node>? Advanced(in SudokuGrid grid, in SudokuGrid source, Set<Node> offNodes) => null;
-#else
-#pragma warning disable IDE0060
-		private IEnumerable<Node>? Advanced(in SudokuGrid grid, in SudokuGrid source, Set<Node> offNodes) => null;
-#pragma warning restore IDE0060
-#endif
 
 		/// <summary>
 		/// Search for chains of each type.
@@ -388,21 +359,6 @@ namespace Sudoku.Solving.Manual.Chaining
 							}
 						}
 					}
-
-					// Get advanced relations (i.e. FCs (+) in Sudoku Explainer).
-					if (Level > 0 && pendingOn.Count == 0 && pendingOff.Count == 0
-						&& Advanced(grid, _savedGrid, toOff) is { } list)
-					{
-						foreach (var pOff in list)
-						{
-							if (!toOff.Contains(pOff))
-							{
-								// Not processed yet.
-								toOff.Add(pOff);
-								pendingOff.Add(pOff);
-							}
-						}
-					}
 				}
 
 				return null;
@@ -600,7 +556,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					new(
 						targetIsOn ? ConclusionType.Assignment : ConclusionType.Elimination,
 						target.Cell,
-						target.Digit)
+						target.Digit
+					)
 				},
 				views,
 				sourceCell,
@@ -669,7 +626,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					new(
 						targetIsOn ? ConclusionType.Assignment : ConclusionType.Elimination,
 						target.Cell,
-						target.Digit)
+						target.Digit
+					)
 				},
 				views,
 				region,

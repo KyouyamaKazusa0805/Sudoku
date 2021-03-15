@@ -19,9 +19,6 @@ namespace Sudoku.Solving.Manual.Subsets
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Region, in Cells Cells, IReadOnlyList<int> Digits, bool? IsLocked)
 		: SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
-#if DOUBLE_LAYERED_ASSUMPTION
-		, IHasParentNodeInfo
-#endif
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + ExtraDifficulty;
@@ -59,33 +56,5 @@ namespace Sudoku.Solving.Manual.Subsets
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitStr} in {regionStr} => {elimStr}";
 		}
-
-#if DOUBLE_LAYERED_ASSUMPTION
-		/// <inheritdoc/>
-		IEnumerable<Node> IHasParentNodeInfo.GetRuleParents(in SudokuGrid initialGrid, in SudokuGrid currentGrid)
-		{
-			short digitsMask = 0;
-			foreach (int digit in Digits)
-			{
-				digitsMask |= (short)(1 << digit);
-			}
-			digitsMask = (short)(SudokuGrid.MaxCandidatesMask & ~digitsMask);
-
-			var result = new List<Node>();
-			foreach (int digit in digitsMask)
-			{
-				foreach (int cell in Cells)
-				{
-					var mask = initialGrid.GetCandidateMask(cell);
-					if ((mask >> digit & 1) != 0)
-					{
-						result.Add(new(cell, digit, false));
-					}
-				}
-			}
-
-			return result;
-		}
-#endif
 	}
 }

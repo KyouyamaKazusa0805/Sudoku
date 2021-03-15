@@ -35,11 +35,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override string? Acronym => "AIC";
 
-#if DOUBLE_LAYERED_ASSUMPTION
-		/// <inheritdoc/>
-		public override Node[] ChainsTargets => new[] { Target };
-#endif
-
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining;
 

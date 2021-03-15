@@ -36,11 +36,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		public Node Anchor =>
 			IsNishio || IsAbsurd ? new(SourceNode.Cell, SourceNode.Digit, !SourceNode.IsOn) : FromOnNode;
 
-#if DOUBLE_LAYERED_ASSUMPTION
-		/// <inheritdoc/>
-		public override Node[] ChainsTargets => new[] { FromOnNode, FromOffNode };
-#endif
-
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey =>
 			IsAbsurd ? ChainingTypeCode.DynamicContradictionFc : ChainingTypeCode.DynamicDoubleFc;

@@ -4,10 +4,6 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
-#if DOUBLE_LAYERED_ASSUMPTION
-using static Sudoku.Constants.Processings;
-using static Sudoku.Solving.TechniqueSearcher;
-#endif
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -39,9 +35,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
 		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Fins, bool? IsSashimi)
 		: FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
-#if DOUBLE_LAYERED_ASSUMPTION
-		, IHasParentNodeInfo
-#endif
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + SashimiExtraDifficulty;
@@ -85,42 +78,5 @@ namespace Sudoku.Solving.Manual.Fishes
 				$@"{Name}: {(Digit + 1).ToString()} in {baseSetStr}\{coverSetStr}" +
 				$"{(Fins.IsEmpty ? string.Empty : $" f{Fins.ToString()}")} => {elimStr}";
 		}
-
-#if DOUBLE_LAYERED_ASSUMPTION
-		/// <inheritdoc/>
-		IEnumerable<Node> IHasParentNodeInfo.GetRuleParents(in SudokuGrid initialGrid, in SudokuGrid currentGrid)
-		{
-			var result = new List<Node>();
-			foreach (int baseSet in BaseSets)
-			{
-				foreach (int cell in RegionMaps[baseSet] & EmptyMap)
-				{
-					short mask = currentGrid.GetCandidateMask(cell);
-					short initialMask = initialGrid.GetCandidateMask(cell);
-					if ((initialMask >> Digit & 1) != 0 && !(mask >> Digit & 1) != 0)
-					{
-						bool isInCoverSet = false;
-						foreach (int coverSet in CoverSets)
-						{
-							foreach (int otherCell in RegionMaps[coverSet] & EmptyMap)
-							{
-								if (otherCell == cell)
-								{
-									isInCoverSet = true;
-									break;
-								}
-							}
-						}
-						if (!isInCoverSet)
-						{
-							result.Add(new(cell, Digit, false));
-						}
-					}
-				}
-			}
-
-			return result;
-		}
-#endif
 	}
 }

@@ -81,13 +81,6 @@ namespace Sudoku.Data
 		/// </summary>
 		public bool IsOn { get; }
 
-#if DOUBLE_LAYERED_ASSUMPTION
-		/// <summary>
-		/// Indicates the cause of the node.
-		/// </summary>
-		public readonly Cause Cause { get; init; }
-#endif
-
 		/// <summary>
 		/// Indicates the root.
 		/// </summary>
