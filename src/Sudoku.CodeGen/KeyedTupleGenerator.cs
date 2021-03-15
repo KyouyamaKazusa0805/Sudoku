@@ -141,6 +141,26 @@ namespace Sudoku.CodeGen
 					.AppendLine("\"/>.</typeparam>");
 			}
 
+			for (int i = 1; i <= length; i++)
+			{
+				sb
+					.Append(UsingTabsAsIndentingCharacters ? "\t" : "    ")
+					.Append("/// <param name=\"Item")
+					.Append(i)
+					.Append("\">The ")
+					.Append(i);
+
+				switch (i)
+				{
+					case 1 when i / 10 != 1: sb.Append("st"); break;
+					case 2 when i / 10 != 1: sb.Append("nd"); break;
+					case 3 when i / 10 != 1: sb.Append("rd"); break;
+					default: sb.Append("th"); break;
+				}
+
+				sb.AppendLine(" item.");
+			}
+
 			sb
 				.Append(UsingTabsAsIndentingCharacters ? "\t" : "    ")
 				.Append("/// <param name=\"PriorKey\">The prior key.</param>");

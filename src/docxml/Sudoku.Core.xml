@@ -3310,12 +3310,32 @@
         </member>
         <member name="F:Sudoku.Data.SudokuGrid._values">
             <summary>
-            Indicates the inner array.
+            Indicates the inner array that stores the masks of the sudoku grid, where:
+            <list type="table">
+            <item>
+            <term><c>_values</c></term>
+            <description>Stores the in-time sudoku grid inner information.</description>
+            </item>
+            <item>
+            <term><c>_initialValues</c></term>
+            <description>Stores the initial information of a sudoku grid.</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid._initialValues">
             <summary>
-            Indicates the inner array suggests the initial grid.
+            Indicates the inner array that stores the masks of the sudoku grid, where:
+            <list type="table">
+            <item>
+            <term><c>_values</c></term>
+            <description>Stores the in-time sudoku grid inner information.</description>
+            </item>
+            <item>
+            <term><c>_initialValues</c></term>
+            <description>Stores the initial information of a sudoku grid.</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int32[])">
@@ -3626,7 +3646,7 @@
             <returns>The cell status.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetEnumerator">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Fix">
             <summary>

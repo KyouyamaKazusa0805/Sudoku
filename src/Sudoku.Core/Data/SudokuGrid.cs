@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -62,13 +63,13 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the event triggered when the value is changed.
 		/// </summary>
-		[CLSCompliant(false)]
+		[CLSCompliant(false), FunctionPointerExposeOnly]
 		public static readonly delegate* managed<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
 
 		/// <summary>
 		/// Indicates the event triggered when should re-compute candidates.
 		/// </summary>
-		[CLSCompliant(false)]
+		[CLSCompliant(false), FunctionPointerExposeOnly]
 		public static readonly delegate* managed<ref SudokuGrid, void> RefreshingCandidates;
 
 		/// <summary>
@@ -94,14 +95,19 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Indicates the inner array.
+		/// Indicates the inner array that stores the masks of the sudoku grid, where:
+		/// <list type="table">
+		/// <item>
+		/// <term><c>_values</c></term>
+		/// <description>Stores the in-time sudoku grid inner information.</description>
+		/// </item>
+		/// <item>
+		/// <term><c>_initialValues</c></term>
+		/// <description>Stores the initial information of a sudoku grid.</description>
+		/// </item>
+		/// </list>
 		/// </summary>
-		private fixed short _values[Length];
-
-		/// <summary>
-		/// Indicates the inner array suggests the initial grid.
-		/// </summary>
-		private fixed short _initialValues[Length];
+		private fixed short _values[Length], _initialValues[Length];
 
 
 		/// <summary>
@@ -143,10 +149,12 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
 		internal SudokuGrid(short[] masks)
 		{
-			if (masks.Length != Length)
-			{
-				throw new ArgumentException($"The length of the array argument should be {Length.ToString()}.", nameof(masks));
-			}
+#if DEBUG
+			Debug.Assert(
+				masks.Length == Length,
+				$"The length of the array argument should be {Length.ToString()}."
+			);
+#endif
 
 			fixed (short* pArray = masks, pValues = _values, pInitialValues = _initialValues)
 			{
@@ -684,7 +692,7 @@ namespace Sudoku.Data
 		/// when we call this method using <see cref="DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
 		/// can be output correctly, and other values will be incorrect: they're always 0.
 		/// </remarks>
-		public readonly unsafe string ToMaskString()
+		public readonly string ToMaskString()
 		{
 			const string separator = ", ";
 			fixed (short* pArr = _values)
@@ -790,7 +798,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly CellStatus GetStatus(int cell) => MaskGetStatus(_values[cell]);
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly Enumerator GetEnumerator()
 		{
